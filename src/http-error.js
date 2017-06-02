@@ -14,7 +14,7 @@ function HttpError(url, status, responseBody) {
   this.status = status;
   this.url = url;
   this.stack = '';
-  this.message = 'HTTP ' + this.status + ' ' + responseBody;
+  this.message = `HTTP ${this.status} ${responseBody}`;
 }
 
 util.inherits(HttpError, Error);

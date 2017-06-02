@@ -2,7 +2,7 @@ const os = require('os');
 const package = require('../package.json');
 
 const Http = require('./http');
-const DEFAULT_USER_AGENT = `${package.name}/${package.version} node/${process.versions.node} node/` + os.platform() + '/' + os.release();
+const DEFAULT_USER_AGENT = `${package.name}/${package.version} node/${process.versions.node} node/${os.platform()}/${os.release()}`;
 
 /**
  * Base client that encapsulates the HTTP request mechanism, and knowledge of how to authenticate with the Okta API

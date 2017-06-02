@@ -1,8 +1,8 @@
 # Contributing
 
-Some of this SDK is auto-generated from our API Spec, defined as an Open API JSON Schema file.  Files that are auto-generated have a banner at top which indicate this.  As such, modifying the SDK may require you to edit one of the templates in the `templates/` directory.
+Some of this SDK is auto-generated from our API Spec, defined as an Open API JSON Schema file.  Files that are auto-generated have a banner at the top which indicate this.  As such, modifying the SDK may require you to edit one of the templates in the `templates/` directory.
 
-To re-build the auto generated files, use this command in a cloned copy of this repor (after insuring the dev dependencies have been installed):
+To re-build the auto generated files, use this command in a cloned copy of this repo (after ensuring the dev dependencies have been installed):
 
 ```sh
 npm run build

@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "Okta API wrapper for Node.js",
   "engines": {
-    "node": ">=4"
+    "node": ">=4.8.3"
   },
   "files": [
     "src/",

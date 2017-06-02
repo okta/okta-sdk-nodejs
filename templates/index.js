@@ -109,7 +109,7 @@ js.process = ({spec, operations, models, handlebars}) => {
       }
       operation.pathParams.forEach(param => {
         if (param.name === argument.dest) {
-          args.push('this.' + argument.src);
+          args.push(`this.${argument.src}`);
         } else {
           args.push(param.name);
         }
