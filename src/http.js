@@ -57,7 +57,6 @@ class Http {
     return this.json(uri, request);
   }
 
-
   post(uri, request) {
     request = request || {};
     request.method = 'post';

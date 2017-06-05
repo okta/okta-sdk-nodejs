@@ -36,7 +36,7 @@ class ApiClient extends Client {
 
     url += queryString ? ('?' + queryString) : '';
 
-    return new Collection(this.http, url, models.UserGroup);
+    return new Collection(this, url, models.UserGroup);
   }
 
   /**
@@ -68,7 +68,7 @@ class ApiClient extends Client {
 
     url += queryString ? ('?' + queryString) : '';
 
-    return new Collection(this.http, url, models.GroupMembershipMediationRule);
+    return new Collection(this, url, models.GroupMembershipMediationRule);
   }
 
   /**
@@ -224,7 +224,7 @@ class ApiClient extends Client {
 
     url += queryString ? ('?' + queryString) : '';
 
-    return new Collection(this.http, url, models.User);
+    return new Collection(this, url, models.User);
   }
 
   /**
@@ -272,7 +272,7 @@ class ApiClient extends Client {
 
     url += queryString ? ('?' + queryString) : '';
 
-    return new Collection(this.http, url, models.User);
+    return new Collection(this, url, models.User);
   }
 
   /**
@@ -363,7 +363,7 @@ class ApiClient extends Client {
 
     url += queryString ? ('?' + queryString) : '';
 
-    return new Collection(this.http, url, models.AppLink);
+    return new Collection(this, url, models.AppLink);
   }
 
   /**
@@ -430,7 +430,7 @@ class ApiClient extends Client {
 
     url += queryString ? ('?' + queryString) : '';
 
-    return new Collection(this.http, url, models.UserGroup);
+    return new Collection(this, url, models.UserGroup);
   }
 
   /**
@@ -540,7 +540,7 @@ class ApiClient extends Client {
 
     url += queryString ? ('?' + queryString) : '';
 
-    return new Collection(this.http, url, models.MediationRoleAssignment);
+    return new Collection(this, url, models.MediationRoleAssignment);
   }
 
   /**
@@ -599,7 +599,7 @@ class ApiClient extends Client {
 
     url += queryString ? ('?' + queryString) : '';
 
-    return new Collection(this.http, url, models.UserGroup);
+    return new Collection(this, url, models.UserGroup);
   }
 
   /**

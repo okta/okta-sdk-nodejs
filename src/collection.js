@@ -7,58 +7,57 @@ class Collection {
 
   /**
    * Creates an instance of Collection.
-   * @param {Object <FetchLike>} http A fetch-like http service
+   * @param {ApiClient} client A reference to the top-level api client
    * @param {String} uri E.g. /api/v1/resources
    * @param {Object} Ctor Class of each item in the collection
    */
-  constructor(http, uri, Ctor) {
-    this.currentUri = uri;
-    this.http = http;
+  constructor(client, uri, Ctor) {
+    this.nextUri = uri;
+    this.client = client;
     this.Ctor = Ctor;
-    this.index = 0;
-    this.currentPage = [];
+    this.currentItems = [];
   }
 
   next() {
-    return new Promise((resolve) => {
-      if (this.currentPage.length) {
+    const self = this;
+
+    return new Promise((resolve, reject) => {
+      function nextItem() {
+        const item = self.currentItems.shift();
         const result = {
-          value: this.currentPage[this.index] ? new this.Ctor(this.currentPage[this.index]) : null,
-          done: ((this.currentPage.length - 1) === this.index) && (!this.currentUri)
+          value: new self.Ctor(item, self.client),
+          done: !self.currentItems.length && !self.nextUri
         };
-        if (!result.done) {
-          this.index++;
-        }
-        return resolve(result);
+        resolve(result);
       }
-      this.getPage().then(collection => {
-        this.currentPage = collection;
-        const result = {
-          value: this.currentPage[this.index] ? new this.Ctor(this.currentPage[this.index]) : null,
-          done: ((this.currentPage.length - 1) === this.index) && (!this.currentUri)
-        };
-        if (!result.done) {
-          this.index++;
-        }
-        return resolve(result);
-      });
+
+      if (self.currentItems.length) {
+        return nextItem();
+      }
+
+      self.getNextPage()
+      .then(collection => {
+        self.currentItems = collection;
+        return nextItem();
+      })
+      .catch(reject);
     });
   }
 
-  getPage() {
-    return this.http.http(this.currentUri)
-      .then(res => {
-        const link = res.headers.get('link');
-        if (link) {
-          const parsed = parseLinkHeader(link);
-          if (parsed.next) {
-            this.currentUri = parsed.next.url;
-            return res.json();
-          }
+  getNextPage() {
+    return this.client.http.http(this.nextUri)
+    .then(res => {
+      const link = res.headers.get('link');
+      if (link) {
+        const parsed = parseLinkHeader(link);
+        if (parsed.next) {
+          this.nextUri = parsed.next.url;
+          return res.json();
         }
-        this.currentUri = undefined;
-        return res.json();
-      });
+      }
+      this.nextUri = undefined;
+      return res.json();
+    });
   }
 
   /**
@@ -67,54 +66,35 @@ class Collection {
    * @memberOf Collection
    */
   each(iterator) {
-
     const self = this;
+    function nextItem() {
+      return self.next()
+      .then(nextResult => {
+        const result = iterator(nextResult.value);
 
-    return new Promise((resolve, reject) => {
-
-      function processPage() {
-        // Get the first page
-        return self.getPage()
-        .then(resources => {
-          let resourceIndex = 0;
-
-          // Loop through resources using a Promise
-          function sendResource(resource) {
-            // Stop iterating these resources, get more
-            if (!resource) {
-              if (self.currentUri) {
-                return processPage();
-              }
-              resolve();
-              return;
+        // if it's a Promise
+        if (result && result.then) {
+          return result.then(shouldContinue => {
+            if (shouldContinue !== false && !nextResult.done) {
+              return nextItem();
             }
+          });
 
-            const result = iterator(new self.Ctor(resource));
+        // if they want to short-circuit
+        } else if (result === false) {
+          return;
 
-            // if it's a Promise
-            if (result && result.then) {
-              return result.then(() => {
-                resourceIndex++;
-                const nextresource = resources[resourceIndex];
-                return sendResource(nextresource);
-              });
-            } else if (result === false) { // if they want to short-circuit
-              resolve();
-              return;
-            } else { // if it's synchronous and not short-circuited
-              resourceIndex++;
-              const nextresource = resources[resourceIndex];
-              return sendResource(nextresource);
-            }
-          }
+        // if there are no more items
+        } else if (nextResult.done) {
+          return;
+        }
 
-          const resource = resources[resourceIndex];
-          return sendResource(resource);
-        });
-      }
+        // if it's synchronous and not short-circuited
+        return nextItem();
+      });
+    }
 
-      return processPage().catch(err => reject(err));
-    });
+    return nextItem();
   }
 }
 

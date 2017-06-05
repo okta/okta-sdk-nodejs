@@ -32,7 +32,7 @@ class ApiClient extends Client {
     {{/if}}
 
     {{#if isArray}}
-    return new Collection(this.http, url, models.{{responseModel}});
+    return new Collection(this, url, models.{{responseModel}});
     {{else}}
     {{#if (eq method 'delete')}}
     const request = this.http.delete(url);
