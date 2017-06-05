@@ -9,7 +9,7 @@ class Collection {
    * Creates an instance of Collection.
    * @param {Object <FetchLike>} http A fetch-like http service
    * @param {String} uri E.g. /api/v1/resources
-   * @param {Object} queryMap querystring map to create collection with, e.g { 'search': 'profile.firstName sw "FOO"' }
+   * @param {Object} Ctor Class of each item in the collection
    */
   constructor(http, uri, Ctor) {
     this.currentUri = uri;

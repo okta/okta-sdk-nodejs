@@ -18,7 +18,8 @@
     "registry": "https://artifacts.aue1d.saasure.com/artifactory/api/npm/npm-okta"
   },
   "keywords": [],
-  "license": "Apache 2.0",
+  "license": "Apache-2.0",
+  "repository": "https://github.com/okta/okta-sdk-nodejs",
   "dependencies": {
     "isomorphic-fetch": "2.2.1",
     "parse-link-header": "1.0.0"
