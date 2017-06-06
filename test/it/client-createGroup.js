@@ -2,9 +2,9 @@ const assert = require('chai').assert;
 const okta = require('../../');
 const models = require('../../src/models');
 
-const client = new okta.ApiClient({
-  orgUrl: process.env.OKTA_APICLIENT_ORGURL,
-  token: process.env.OKTA_APICLIENT_TOKEN
+const client = new okta.Client({
+  orgUrl: process.env.OKTA_CLIENT_ORGURL,
+  token: process.env.OKTA_CLIENT_TOKEN
 });
 
 describe('client.createGroup()', () => {

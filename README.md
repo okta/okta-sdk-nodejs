@@ -23,9 +23,9 @@ All usage of this SDK begins with the creation of a client, the client handles t
 ```javascript
 const okta = require('@okta/okta-sdk-nodejs');
 
-const client = new okta.ApiClient({
-  orgUrl: process.env.OKTA_APICLIENT_ORGURL, // e.g. 'https://dev-1234.oktapreview.com/'
-  token: process.env.OKTA_APICLIENT_TOKEN    // Obtained from Developer Dashboard, API section
+const client = new okta.Client({
+  orgUrl: process.env.OKTA_CLIENT_ORGURL, // e.g. 'https://dev-1234.oktapreview.com/'
+  token: process.env.OKTA_CLIENT_TOKEN    // Obtained from Developer Dashboard, API section
 });
 ```
 
