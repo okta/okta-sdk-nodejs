@@ -1,4 +1,6 @@
 const faker = require('faker');
+
+const utils = require('../utils');
 const okta = require('../../');
 
 const client = new okta.ApiClient({
@@ -15,20 +17,7 @@ describe('user.addToGroup(:groupId)', () => {
         name: 'Test User Group ' + faker.random.uuid()
       }
     };
-    const email = faker.internet.email(null, null, 'example.com');
-    const newUser = {
-      'profile': {
-        'firstName': faker.name.firstName(),
-        'lastName': faker.name.lastName(),
-        'email': email,
-        'login': email
-      },
-      'credentials': {
-        'password' : {
-          'value': 'PasswordAbc123'
-        }
-      }
-    };
+    const newUser = utils.userWithPassword();
     return Promise.all([
       client.createGroup(newGroup).then((group) => {
         return _group = group;

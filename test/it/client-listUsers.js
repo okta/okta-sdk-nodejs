@@ -1,6 +1,8 @@
 const assert = require('chai').assert;
+const faker = require('faker');
 const okta = require('../../');
 const models = require('../../src/models');
+const utils = require('../utils');
 
 const client = new okta.ApiClient({
   orgUrl: process.env.OKTA_APICLIENT_ORGURL,
@@ -10,8 +12,38 @@ const client = new okta.ApiClient({
 let userCount = 0;
 
 describe('client.listUsers()', () => {
+  let _user;
+
+  before(() => {
+    const newUser = utils.userWithPassword();
+    newUser.profile.nickName = faker.random.uuid();
+    return client.createUser(newUser).then(user => _user = user);
+  });
+
+  after(() => {
+    return _user.deactivate().then(() => _user.delete());
+  });
+
   it('should return a collection', () => {
     assert.instanceOf(client.listUsers(), require('../../src/collection'));
+  });
+
+  it('should allow me to perform search queries', () => {
+    let foundUser;
+    let foundUserCount = 0;
+    // The search indexing is not instant, so give it some time to settle
+    return utils.delay(2000).then(() => {
+      return client.listUsers({
+        search: `profile.nickName eq "${_user.profile.nickName}"`
+      }).each(user => {
+        foundUser = user;
+        foundUserCount++;
+      }).then(() => {
+        assert.isDefined(foundUser, 'The user should be found');
+        assert.equal(foundUser.id, _user.id, 'The user should be the right one');
+        assert.equal(foundUserCount, 1, 'Other users should not have been matched');
+      });
+    });
   });
 });
 
@@ -28,7 +60,7 @@ describe('client.listUsers().each()', () => {
     return client.listUsers().each(() => {
       localCount++;
       return new Promise((resolve) => {
-        setTimeout(resolve.bind(null), 1);
+        setTimeout(resolve.bind(null));
       });
     }).then(() => {
       assert.equal(localCount, userCount);
@@ -90,17 +122,5 @@ describe('client.listUsers().next()', () => {
       return collection.next().then(iter);
     }
     return collection.next().then(iter);
-  });
-
-  it('should allow me to visit every user', () => {
-    const collection = client.listUsers();
-    function iter() {
-      return collection.next().then(result => {
-        if (!result.done) {
-          return iter();
-        }
-      });
-    }
-    return iter();
   });
 });
