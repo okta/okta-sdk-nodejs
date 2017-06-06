@@ -1,5 +1,5 @@
 const assert = require('chai').assert;
-const faker = require('faker');
+const utils = require('../utils');
 const okta = require('../../');
 const models = require('../../src/models');
 
@@ -14,20 +14,7 @@ describe('client.createUser()', () => {
     return _user.deactivate().then(() => _user.delete());
   });
   it('should allow me to create a user', () => {
-    const email = faker.internet.email(null, null, 'example.com');
-    const newUser = {
-      'profile': {
-        'firstName': faker.name.firstName(),
-        'lastName': faker.name.lastName(),
-        'email': email,
-        'login': email
-      },
-      'credentials': {
-        'password' : {
-          'value': 'PasswordAbc123'
-        }
-      }
-    };
+    const newUser = utils.userWithPassword();
     return client.createUser(newUser).then((user) => {
       _user = user;
       assert.instanceOf(user, models.User);
