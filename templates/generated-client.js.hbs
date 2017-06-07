@@ -1,0 +1,68 @@
+/**
+ *  THIS FILE IS AUTO GENERATED - SEE CONTRIBUTOR DOCUMENTATION
+ */
+
+const qs = require('querystring');
+
+const Collection = require('./collection');
+const models = require('./models');
+
+/**
+ * Auto-Generated API client, implementes the operations as defined in the OpenaAPI JSON spec
+ *
+ * @class GeneratedApiClient
+ * @extends {Client}
+ */
+class GeneratedApiClient {
+
+{{#each operations}}
+  /**
+   {{jsdocBuilder this}}
+   */
+  {{operationId}}({{operationArgumentBuilder this}}) {
+    let url = `${this.baseUrl}{{replacePathParams path}}`;
+    {{#if queryParams.length}}
+    const queryString = qs.stringify(queryParameters || {});
+
+    url += queryString ? ('?' + queryString) : '';
+    {{/if}}
+
+    {{#if isArray}}
+    return new Collection(this, url, models.{{responseModel}});
+    {{else}}
+    {{#if (eq method 'delete')}}
+    const request = this.http.delete(url);
+    {{/if}}
+    {{#if (eq method 'get')}}
+    const request = this.http.getJson(url);
+    {{/if}}
+    {{#if (eq method 'post')}}
+    {{#if bodyModel}}
+    const request = this.http.postJson(url, {
+      body: {{camelCase bodyModel}}
+    });
+    {{else}}
+    const request = this.http.post(url);
+    {{/if}}
+    {{/if}}
+    {{#if (eq method 'put')}}
+    {{#if bodyModel}}
+    const request = this.http.putJson(url, {
+      body: {{camelCase bodyModel}}
+    });
+    {{else}}
+    const request = this.http.put(url);
+    {{/if}}
+    {{/if}}
+    {{#if responseModel}}
+    return request.then(jsonRes => new models.{{responseModel}}(jsonRes, this));
+    {{else}}
+    return request;
+    {{/if}}
+    {{/if}}
+  }
+
+{{/each}}
+}
+
+module.exports = GeneratedApiClient;

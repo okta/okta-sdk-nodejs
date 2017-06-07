@@ -1,0 +1,39 @@
+{
+  "name": "@okta/okta-sdk-nodejs",
+  "version": "0.0.1",
+  "description": "Okta API wrapper for Node.js",
+  "engines": {
+    "node": ">=4.8.3"
+  },
+  "files": [
+    "src/",
+    "README.md"
+  ],
+  "main": "src/index.js",
+  "scripts": {
+    "build": "./node_modules/.bin/okta-sdk-generator -t templates/ -o .",
+    "test": "eslint -c .eslintrc src/ test/ && nyc mocha test/**/*.js --no-timeouts"
+  },
+  "publishConfig": {
+    "registry": "https://artifacts.aue1d.saasure.com/artifactory/api/npm/npm-okta"
+  },
+  "keywords": [],
+  "license": "Apache-2.0",
+  "repository": "https://github.com/okta/okta-sdk-nodejs",
+  "dependencies": {
+    "flat": "^2.0.1",
+    "isomorphic-fetch": "2.2.1",
+    "js-yaml": "^3.8.4",
+    "parse-link-header": "1.0.0"
+  },
+  "devDependencies": {
+    "@okta/openapi": "0.1.0-beta.7",
+    "chai": "^3.5.0",
+    "eslint": "^3.19.0",
+    "fake-fs": "^0.5.0",
+    "faker": "^4.1.0",
+    "lodash": "^4.17.4",
+    "mocha": "^3.4.1",
+    "nyc": "^10.3.2"
+  }
+}
