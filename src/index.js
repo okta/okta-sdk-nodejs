@@ -1,5 +1,3 @@
-const ApiClient = require('./api-client');
-
 module.exports = {
-  ApiClient: ApiClient
+  Client: require('./client')
 };

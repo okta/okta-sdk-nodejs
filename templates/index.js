@@ -17,8 +17,8 @@ js.process = ({spec, operations, models, handlebars}) => {
   const templates = [];
 
   templates.push({
-    src: 'api-client.js.hbs',
-    dest: 'src/api-client.js',
+    src: 'generated-client.js.hbs',
+    dest: 'src/generated-client.js',
     context: {operations}
   });
 

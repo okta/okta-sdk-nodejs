@@ -18,16 +18,18 @@ npm install @okta/okta-sdk-nodejs
 
 ## Usage
 
-All usage of this SDK begins with the creation of a client, the client handles the authentication and communication with the Okta API.  To create a client, you need to provide it the URL of your Okta Org, and an API Token that you have provisioned for yourself (this can be done by visiting Admin -> Security -> API -> Tokens in your Okta Org):
+All usage of this SDK begins with the creation of a client, the client handles the authentication and communication with the Okta API.  To create a client, you need to provide it the URL of your Okta Org, and an API Token that you have provisioned for yourself (this can be done by visiting Admin -> Security -> API -> Tokens in your Okta Developer Dashboard):
 
 ```javascript
 const okta = require('@okta/okta-sdk-nodejs');
 
-const client = new okta.ApiClient({
-  orgUrl: process.env.OKTA_APICLIENT_ORGURL, // e.g. 'https://dev-1234.oktapreview.com/'
-  token: process.env.OKTA_APICLIENT_TOKEN    // Obtained from Developer Dashboard, API section
+const client = new okta.Client({
+  orgUrl: 'https://dev-1234.oktapreview.com/'
+  token: 'xYzabc'    // Obtained from Developer Dashboard
 });
 ```
+
+It is also possible to provide configuration through environment variables or YAML files.  Please see [Configuration](#configuration) for examples.
 
 ## Examples
 
@@ -260,7 +262,31 @@ function iter(result) {
 collection.next().then(iter);
 ```
 
+## Configuration
 
+There are several ways to provide configuration to the client constructor.  When creating a new client, the following locations are searched in order, in a last-one-wins fashion:
+
+1. An `okta.yaml` file in  `~/.okta`.
+1. An `okta.yaml` file in the current working directory of the node process.
+1. Environment variables
+1. Properties passed to the client constructor
+
+As such, you can create a client without passing a configuration option, e.g. `new okta.Client()`, so long as you have provided the configuration in one of the other locations.
+
+If providing a yaml file, the structure should be the same as the properties that you pass to the client constructor:
+
+```yaml
+client:
+  orgUrl: 'https://dev-1234.oktapreview.com/'
+  token: 'xYzabc'
+```
+
+If providing environment variables, the configuration names are flattened and delimited with underscores:
+
+```sh
+OKTA_CLIENT_ORGURL=https://dev-1234.oktapreview.com/
+OKTA_CLIENT_TOKEN=xYzabc
+```
 
 ### Contributing
 

@@ -4,20 +4,16 @@
 
 const qs = require('querystring');
 
-const Client = require('./client');
 const Collection = require('./collection');
 const models = require('./models');
 
 /**
- * Auto-Generated extension of {@link BaseClient}, adding the operations as defined in the API JSON spec
+ * Auto-Generated API client, implementes the operations as defined in the OpenaAPI JSON spec
  *
- * @class ApiClient
+ * @class GeneratedApiClient
  * @extends {Client}
  */
-class ApiClient extends Client {
-  constructor(opts) {
-    super(opts);
-  }
+class GeneratedApiClient {
 
   /**
    *
@@ -632,4 +628,4 @@ class ApiClient extends Client {
 
 }
 
-module.exports = ApiClient;
+module.exports = GeneratedApiClient;
