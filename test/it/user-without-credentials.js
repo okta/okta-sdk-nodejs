@@ -1,75 +1,61 @@
-const assert = require('chai').assert;
-const models = require('../../src/models');
+const expect = require('chai').expect;
 const utils = require('../utils');
+const okta = require('../../');
+let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
-const client = utils.getClient();
+if (process.env.OKTA_USE_MOCK) {
+  orgUrl = `${orgUrl}/scenario/user-without-credentials`;
+}
 
-describe('User API tests for user without credentials', () => {
-  let createdUser;
+const client = new okta.Client({
+  orgUrl: orgUrl,
+  token: process.env.OKTA_CLIENT_TOKEN
+});
 
-  after(() => {
-    return createdUser.deactivate().then(() => createdUser.delete());
-  });
-
-  it('should create a user without credentials', () => {
+describe('User API Tests', () => {
+  it('should implement CRUD operations on user without credentials', async () => {
+    // 1. Create a user without credentails and activate the user
     const newUser = utils.getFakeUser();
-
     const queryParameters = { activate : 'false' };
-    return client.createUser(newUser, queryParameters).then((user) => {
-      createdUser = user;
-      utils.assertUser(user, newUser);
-    });
-  });
 
-  it('should activate and set the password', () => {
+    let createdUser = await client.createUser(newUser, queryParameters);
+    utils.validateUser(createdUser, newUser);
+
     const sendEmail = {sendEmail : 'false'};
-    return createdUser.activate(sendEmail).then(() => {
-      const credentials = {
-        'credentials': {
-          'password' : { 'value': 'Abcd1234' }
-        }
-      };
+    await createdUser.activate(sendEmail);
 
-      return client.updateUser(createdUser.id, credentials).then((user) => {
-        utils.assertUser(user, createdUser);
-        utils.authenticateUser(user.profile.login, 'Abcd1234').then((response) => {
-          assert.equal(response.status, 'SUCCESS');
-        });
-      });
-    });
-  });
-
-  it('should get the user by user login', () => {
-    return client.getUser(createdUser.profile.login).then((user) => {
-      utils.assertUser(user, createdUser);
-    });
-  });
-
-  it('should list all users and find the user created', () => {
-    let foundUser = false;
-    return client.listUsers().each(user => {
-      assert.instanceOf(user, models.User);
-      if (user.profile.login === createdUser.profile.login) {
-        foundUser = true;
+    // 2. Update the user credentials and authenticate the user
+    const credentials = {
+      credentials: {
+        password : { value: 'Abcd1234' }
       }
-    }).then(() => {
-      assert.equal(foundUser, true);
-    });
-  });
+    };
+    const updatedUser = await client.updateUser(createdUser.id, credentials);
+    utils.validateUser(updatedUser, createdUser);
 
-  it('should get forgot password link', () => {
-    const sendEmail = {sendEmail : 'false'};
-    return createdUser.forgotPassword(sendEmail).then((link) => {
-      assert.isNotNull(link.resetPasswordUrl);
-    });
-  });
+    const response = await utils.authenticateUser(updatedUser.profile.login, 'Abcd1234', client);
+    expect(response.status).to.equal('SUCCESS');
 
-  it('should update the user profile', () => {
+    // 3. Get the user by user login
+    const user = await client.getUser(createdUser.profile.login);
+    utils.validateUser(user, createdUser);
+
+    // 4. List all users and find the user created
+    const userPresent = await utils.isUserPresent(client, createdUser);
+    expect(userPresent).to.equal(true);
+
+    // 5. Get the forgot password link
+    const link = createdUser.forgotPassword(sendEmail);
+    expect(link.resetPasswordUrl).to.not.be.null;
+
+    // 6. Update the user profile
     createdUser.profile.nickName = 'Batman';
-    return createdUser.update().then(user => {
-      utils.assertUser(user, createdUser);
-      assert(user.lastUpdated > createdUser.lastUpdated, 'lastUpdated has increased');
-    });
+    const profileUpdateUser = await createdUser.update();
+    expect(profileUpdateUser.lastUpdated).to.be.gt(createdUser.lastUpdated);
+    expect(profileUpdateUser.profile.nickName).to.equal('Batman');
+
+    // 7. Delete the user
+    await utils.deleteUser(createdUser);
   });
 
 });

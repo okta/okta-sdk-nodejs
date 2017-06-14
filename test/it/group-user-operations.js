@@ -1,63 +1,48 @@
-const assert = require('chai').assert;
+const expect = require('chai').expect;
 const faker = require('faker');
 const utils = require('../utils');
+const okta = require('../../');
+let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
-const client = utils.getClient();
+if (process.env.OKTA_USE_MOCK) {
+  orgUrl = `${orgUrl}/scenario/group-user-operations`;
+}
 
-describe('Group Member Operations tests', () => {
-  let createdUser;
-  let createdGroup;
+const client = new okta.Client({
+  orgUrl: orgUrl,
+  token: process.env.OKTA_CLIENT_TOKEN
+});
 
-  before(() => {
+describe('Group-Member API Tests', () => {
+  it('should implement the CRUD operations for Group-Member APIs', async () => {
+    // 1. Create a user and a group
     const password = 'Abcd1234';
     const newUser = utils.getFakeUser(password);
+
+    let queryParameters = { activate : 'false' };
+    const createdUser = await client.createUser(newUser, queryParameters);
+
     const newGroup = {
       profile: {
-        name: 'Mocha Test Group' + faker.random.uuid()
+        name: `Mocha Test Group ${faker.random.uuid()}`
       }
     };
 
-    return Promise.all([
-      client.createGroup(newGroup).then((group) => {
-        return createdGroup = group;
-      }),
-      client.createUser(newUser).then((user) => {
-        return createdUser = user;
-      }),
-    ]);
-  });
+    const createdGroup = await client.createGroup(newGroup);
 
-  after(() => {
-    return Promise.all([
-      client.deleteGroup(createdGroup.id),
-      createdUser.deactivate().then(() => createdUser.delete())
-    ]);
-  });
+    // 2. Add user to the group and validate user present in group
+    await createdUser.addToGroup(createdGroup.id);
+    let userInGroup = await utils.isUserInGroup(createdUser, createdGroup);
+    expect(userInGroup).to.equal(true);
 
-  it('should add user to the group', () => {
-    return createdUser.addToGroup(createdGroup.id).then(() => {
-      utils.isUserInGroup(createdUser, createdGroup, true);
-    });
-  });
+    // 3. Remove user from group and validate user removed
+    await client.removeUserFromGroup(createdGroup.id, createdUser.id);
+    userInGroup = await utils.isUserInGroup(createdUser, createdGroup);
+    expect(userInGroup).to.equal(false);
 
-  it('should list the users of the group', () => {
-    let foundUser = false;
-    const groupUsers = createdGroup.listUsers();
-
-    return groupUsers.each(user => {
-      if (user.id === createdUser.id) {
-        foundUser = true;
-        return false;
-      }
-    }).then(() => {
-      assert.equal(foundUser, true);
-    });
-  });
-
-  it('should remove user from the group', () => {
-    return client.removeUserFromGroup(createdGroup.id, createdUser.id).then(() => {
-      return utils.isUserInGroup(createdUser, createdGroup, false);
-    });
+    // 4. Delete the group and user
+    await createdGroup.delete();
+    await utils.deleteUser(createdUser);
   });
 
 });

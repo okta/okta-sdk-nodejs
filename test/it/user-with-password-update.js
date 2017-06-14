@@ -1,75 +1,67 @@
-const assert = require('chai').assert;
-const models = require('../../src/models');
+const expect = require('chai').expect;
 const utils = require('../utils');
+const okta = require('../../');
+let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
-const client = utils.getClient();
+if (process.env.OKTA_USE_MOCK) {
+  orgUrl = `${orgUrl}/scenario/user-with-password-update`;
+}
 
-describe('User API tests for user with password credentials', () => {
-  let createdUser;
+const client = new okta.Client({
+  orgUrl: orgUrl,
+  token: process.env.OKTA_CLIENT_TOKEN
+});
 
-  it('should create a user with password', () => {
+describe('User API Tests', () => {
+  it('should implement CRUD operations on user with password credentials', async () => {
+    // 1. Create a user with password & recovery question
     const password = 'Abcd1234';
     const newUser = utils.getFakeUser(password);
 
-    const queryParameters = { activate : 'false' };
-    return client.createUser(newUser, queryParameters).then(user => {
-      createdUser = user;
-      utils.assertUser(user, newUser);
-    });
-  });
+    let queryParameters = { activate : 'false' };
+    const createdUser = await client.createUser(newUser, queryParameters);
+    utils.validateUser(createdUser, newUser);
 
-  it('should activate and have user in list of active users', () => {
-    const sendEmail = {sendEmail : 'false'};
-    return createdUser.activate(sendEmail).then(() => {
-      let foundUser = false;
+    // 2. Activate the user
+    const sendEmail = {sendEmail: 'false'};
+    await createdUser.activate(sendEmail);
 
-      const queryParameters = { filter : 'status eq \"ACTIVE\"' };
-      return client.listUsers(queryParameters).each(user => {
-        assert.instanceOf(user, models.User);
-        if (user.profile.login === createdUser.profile.login) {
-          foundUser = true;
-        }
-      }).then(() => {
-        assert.equal(foundUser, true);
-      });
-    });
-  });
-
-  it('should change recovery question', () => {
-    const userCredentials = {
-      'password': { 'value': 'Abcd1234' },
-      'recovery_question': {
-        'question': 'How many roads must a man walk down?',
-        'answer': 'forty two'
+    // 3. Change the recovery question
+    let userCredentials = {
+      password: { value: 'Abcd1234' },
+      recovery_question: {
+        question: 'How many roads must a man walk down?',
+        answer: 'forty two'
       }
     };
 
-    return client.changeRecoveryQuestion(createdUser.id, userCredentials).then(response => {
-      assert.equal(response.provider.type, 'OKTA');
-      return utils.authenticateUser(createdUser.profile.login, 'Abcd1234').then(response => {
-        assert.equal(response.status, 'SUCCESS');
-      });
-    });
-  });
+    let response = await client.changeRecoveryQuestion(createdUser.id, userCredentials);
+    expect(response.provider.type).to.equal('OKTA');
 
-  it('should update the password', () => {
-    const changePasswordCredentials = {
-      'oldPassword': { 'value': 'Abcd1234' },
-      'newPassword': { 'value': '1234Abcd' }
+    // 4. Update the user password through updated recovery question
+    userCredentials = {
+      password: { value: 'Abcd!234' },
+      recovery_question: { answer: 'forty two' }
     };
 
-    return client.changePassword(createdUser.id, changePasswordCredentials).then(response => {
-      assert.equal(response.provider.type, 'OKTA');
-      return utils.authenticateUser(createdUser.profile.login, '1234Abcd').then(response => {
-        assert.equal(response.status, 'SUCCESS');
-      });
-    });
-  });
+    await client.forgotPasswordWithRecoveryAnswer(createdUser.id, userCredentials);
+    response = await utils.authenticateUser(createdUser.profile.login, 'Abcd!234', client);
+    expect(response.status).to.equal('SUCCESS');
 
-  it('should deactivate and delete the user', () => {
-    return createdUser.deactivate().then(() => {
-      return client.deactivateOrDeleteUser(createdUser.id);
-    });
+    // 5. Update the password without recovery question
+    const changePasswordCredentials = {
+      oldPassword: { value: 'Abcd!234' },
+      newPassword: { value: '1234Abcd' }
+    };
+
+    response = await createdUser.changePassword(changePasswordCredentials);
+    expect(response.provider.type).to.equal('OKTA');
+
+    response = await utils.authenticateUser(createdUser.profile.login, '1234Abcd', client);
+    expect(response.status).to.equal('SUCCESS');
+
+    // 6. Delete the user
+    await utils.deleteUser(createdUser);
   });
 
 });

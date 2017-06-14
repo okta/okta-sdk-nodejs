@@ -1,11 +1,16 @@
-const assert = require('chai').assert;
+const expect = require('chai').expect;
 const faker = require('faker');
 const okta = require('../../');
 const models = require('../../src/models');
 const utils = require('../utils');
+let orgUrl = process.env.OKTA_CLIENT_ORGURL;
+
+if (process.env.OKTA_USE_MOCK) {
+  orgUrl = `${orgUrl}/scenario/list-users `;
+}
 
 const client = new okta.Client({
-  orgUrl: process.env.OKTA_CLIENT_ORGURL,
+  orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN
 });
 
@@ -25,7 +30,7 @@ describe('client.listUsers()', () => {
   });
 
   it('should return a collection', () => {
-    assert.instanceOf(client.listUsers(), require('../../src/collection'));
+    expect(client.listUsers()).to.be.an.instanceof(require('../../src/collection'));
   });
 
   it('should allow me to perform search queries', () => {
@@ -39,9 +44,9 @@ describe('client.listUsers()', () => {
         foundUser = user;
         foundUserCount++;
       }).then(() => {
-        assert.isDefined(foundUser, 'The user should be found');
-        assert.equal(foundUser.id, _user.id, 'The user should be the right one');
-        assert.equal(foundUserCount, 1, 'Other users should not have been matched');
+        expect(foundUser, 'The user should be found').to.exist;
+        expect(foundUser.id, 'The user should be the right one').to.equal(_user.id);
+        expect(foundUserCount, 'Other users should not have been matched').to.equal(1);
       });
     });
   });
@@ -51,7 +56,7 @@ describe('client.listUsers().each()', () => {
   it('should return User models', () => {
     return client.listUsers().each(user => {
       userCount++;
-      assert.instanceOf(user, models.User);
+      expect(user).to.be.an.instanceof(models.User);
     });
   });
 
@@ -63,7 +68,7 @@ describe('client.listUsers().each()', () => {
         setTimeout(resolve.bind(null));
       });
     }).then(() => {
-      assert.equal(localCount, userCount);
+      expect(localCount).to.equal(userCount);
     });
   });
 
@@ -73,7 +78,7 @@ describe('client.listUsers().each()', () => {
       localCount++;
       return false;
     }).then(() => {
-      assert.equal(localCount, 1);
+      expect(localCount).to.equal(1);
     });
   });
 
@@ -85,7 +90,7 @@ describe('client.listUsers().each()', () => {
         setTimeout(resolve.bind(null, false), 1000);
       });
     }).then(() => {
-      assert.equal(localCount, 1);
+      expect(localCount).to.equal(1);
     });
   });
 
@@ -97,8 +102,8 @@ describe('client.listUsers().each()', () => {
         setTimeout(reject.bind(null, 'foo error'), 1000);
       });
     }).catch((err)=>{
-      assert.equal(localCount, 1);
-      assert.equal(err, 'foo error');
+      expect(localCount).to.equal(1);
+      expect(err).to.equal('foo error');
     });
   });
 });
@@ -106,7 +111,7 @@ describe('client.listUsers().each()', () => {
 describe('client.listUsers().next()', () => {
   it('should return User models', () => {
     return client.listUsers().next().then(result => {
-      assert.instanceOf(result.value, models.User);
+      expect(result.value).to.be.an.instanceof(models.User);
     });
   });
 
@@ -116,7 +121,7 @@ describe('client.listUsers().next()', () => {
     function iter(result) {
       localCount++;
       if (result.done) {
-        assert.equal(localCount, userCount, 'next() count should be same as each() count');
+        expect(localCount, 'next() count should be same as each() count').to.equal(userCount);
         return result.value;
       }
       return collection.next().then(iter);

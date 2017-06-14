@@ -13,7 +13,7 @@
   "scripts": {
     "banners": "./utils/maintain-banners.js",
     "build": "okta-sdk-generator -t templates/ -o . && ./utils/maintain-banners.js",
-    "test": "eslint -c .eslintrc src/ test/ && nyc mocha test/**/*.js --no-timeouts"
+    "test": "eslint -c src/.eslintrc src/ && eslint -c test/.eslintrc test/ && nyc mocha test/**/*.js --no-timeouts"
   },
   "publishConfig": {
     "registry": "https://artifacts.aue1d.saasure.com/artifactory/api/npm/npm-okta"
