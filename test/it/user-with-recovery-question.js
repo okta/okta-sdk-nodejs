@@ -1,75 +1,67 @@
-const assert = require('chai').assert;
-const models = require('../../src/models');
+const expect = require('chai').expect;
 const utils = require('../utils');
+const okta = require('../../');
+let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
-const client = utils.getClient();
+if (process.env.OKTA_USE_MOCK) {
+  orgUrl = `${orgUrl}/user-with-recovery-question`;
+}
 
-describe('User API tests for user with recovery question credentials', () => {
-  let createdUser;
+const client = new okta.Client({
+  orgUrl: orgUrl,
+  token: process.env.OKTA_CLIENT_TOKEN
+});
 
-  after(() => {
-    return createdUser.deactivate().then(() => createdUser.delete());
-  });
-
-  it('should create a user with password & recovery question', () => {
-    const password = 'Abcd1234';
-    const recoveryQuestion = 'Who is Major player in the cowboy scene?';
-    const recoveryAnswer = 'Annie Oakley';
-    const newUser = utils.getFakeUser(password, recoveryQuestion, recoveryAnswer);
-
-    const queryParameters = { activate : 'false' };
-    return client.createUser(newUser, queryParameters).then(user => {
-      createdUser = user;
-      utils.assertUser(user, newUser);
-    });
-  });
-
-  it('should get the user by userID', () => {
-    return client.getUser(createdUser.id).then(user => {
-      utils.assertUser(user, createdUser);
-    });
-  });
-
-  it('should list all staged users and find the user created', () => {
-    let foundUser = false;
-    const queryParameters = { filter : 'status eq \"STAGED\"' };
-    return client.listUsers(queryParameters).each(user => {
-      assert.instanceOf(user, models.User);
-      if (user.profile.login === createdUser.profile.login) {
-        foundUser = true;
+describe('User API Tests', () => {
+  it('should implement CRUD operations on user with recovery question credentials', async () => {
+    // 1. Create a user with password & recovery question
+    const newUser = {
+      profile: {
+        firstName: 'John',
+        lastName: 'With-Recovery-Question',
+        email: 'john-with-recovery-question@example.com',
+        login: 'john-with-recovery-question@example.com'
+      },
+      credentials: {
+        recovery_question: {
+          question: 'Who is Major player in the cowboy scene?',
+          answer: 'Annie Oakley'
+        },
+        password: { value: 'Abcd1234' }
       }
-    }).then(() => {
-      assert.equal(foundUser, true);
-    });
-  });
-
-  it('should activate and have user in list of active users', () => {
-    const sendEmail = {sendEmail : 'false'};
-    return createdUser.activate(sendEmail).then(() => {
-      let foundUser = false;
-
-      const queryParameters = { filter : 'status eq \"ACTIVE\"' };
-      return client.listUsers(queryParameters).each(user => {
-        assert.instanceOf(user, models.User);
-        if (user.profile.login === createdUser.profile.login) {
-          foundUser = true;
-        }
-      }).then(() => {
-        assert.equal(foundUser, true);
-      });
-    });
-  });
-
-  it('should update the user password through recovery question', () => {
-    const userCredentials = {
-      'password': { 'value': 'Abcd!234' },
-      'recovery_question': { 'answer': 'Annie Oakley' }
     };
 
-    return client.forgotPasswordWithRecoveryAnswer(createdUser.id, userCredentials).then(() => {
-      return utils.authenticateUser(createdUser.profile.login, 'Abcd!234').then(response => {
-        assert.equal(response.status, 'SUCCESS');
-      });
-    });
+    let queryParameters = { activate : 'false' };
+    const createdUser = await client.createUser(newUser, queryParameters);
+    utils.validateUser(createdUser, newUser);
+
+    // 2. Get the user by user ID
+    const user = await client.getUser(createdUser.id);
+    utils.validateUser(user, createdUser);
+
+    // 3. List all staged users and find the user created
+    queryParameters = { filter : 'status eq \"STAGED\"' };
+    let userPresent = await utils.isUserPresent(client, createdUser, queryParameters);
+    expect(userPresent).to.equal(true);
+
+    // 4. Activate the user and verify user in list of active users
+    const sendEmail = { sendEmail : 'false' };
+    await createdUser.activate(sendEmail);
+    queryParameters = { filter: 'status eq \"ACTIVE\"' };
+    userPresent = await utils.isUserPresent(client, createdUser, queryParameters);
+    expect(userPresent).to.equal(true);
+
+    // 5. Update the user password through recovery question
+    const userCredentials = {
+      password: { value: 'Abcd!234' },
+      recovery_question: { answer: 'Annie Oakley' }
+    };
+
+    await createdUser.forgotPassword(userCredentials, sendEmail);
+    const response = await utils.authenticateUser(createdUser.profile.login, 'Abcd!234', client);
+    expect(response.status).to.equal('SUCCESS');
+
+    // 6. Delete the user
+    await utils.deleteUser(createdUser);
   });
 });

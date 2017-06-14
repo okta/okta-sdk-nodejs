@@ -1,83 +1,60 @@
-const assert = require('chai').assert;
-const models = require('../../src/models');
-const faker = require('faker');
+const expect = require('chai').expect;
 const utils = require('../utils');
+const okta = require('../../');
+let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
-const client = utils.getClient();
+if (process.env.OKTA_USE_MOCK) {
+  orgUrl = `${orgUrl}/group-crud-operations`;
+}
 
-describe('Group CRUD Operations tests', () => {
-  let createdGroup;
+const client = new okta.Client({
+  orgUrl: orgUrl,
+  token: process.env.OKTA_CLIENT_TOKEN
+});
 
-  after(() => {
-    return client.deleteGroup(createdGroup.id);
-  });
-
-  it('should create a group', () => {
+describe('Group API tests', () => {
+  it('should implement the CRUD operations for Group APIs', async () => {
+    // 1. Create a new group
     const newGroup = {
       profile: {
-        name: 'Mocha Test Group' + faker.random.uuid()
+        name: 'Group API Test Group'
       }
     };
 
-    return client.createGroup(newGroup).then((group) => {
-      createdGroup = group;
-      utils.assertGroup(createdGroup, newGroup);
-    });
+    const createdGroup = await client.createGroup(newGroup);
+    utils.validateGroup(createdGroup, newGroup);
 
-  });
+    // 2. Get the group by ID
+    const group = await client.getGroup(createdGroup.id);
+    utils.validateGroup(group, createdGroup);
 
-  it('should get the group by group ID', () => {
-    return client.getGroup(createdGroup.id).then(group => {
-      utils.assertGroup(group, createdGroup);
-    });
-  });
+    // 3. List all groups and find the group created
+    let groupPresent =  await utils.isGroupPresent(client, group);
+    expect(groupPresent).to.equal(true);
 
-  it('should list all groups and find the group created', () => {
-    let foundGroup = false;
-    return client.listGroups().each(group => {
-      assert.instanceOf(group, models.UserGroup);
-      if (group.profile.name === createdGroup.profile.name) {
-        foundGroup = true;
-        return false;
-      }
-    }).then(() => assert.equal(foundGroup, true));
-  });
+    // 4. Search the group by name
+    let queryParameters = { q : 'Group API' };
+    groupPresent = await utils.isGroupPresent(client, group, queryParameters);
+    expect(groupPresent).to.equal(true);
 
-  it('should search the group by name', () => {
-    let foundGroup = false;
-    const queryParameters = { q : 'Mocha' };
-    return client.listGroups(queryParameters).each(group => {
-      assert.instanceOf(group, models.UserGroup);
-      if (group.profile.name === createdGroup.profile.name) {
-        foundGroup = true;
-        return false;
-      }
-    }).then(() => assert.equal(foundGroup, true));
-  });
+    // 5. Filter the group by type
+    queryParameters = { filter : 'type eq \"OKTA_GROUP\"', limit : '200' };
+    groupPresent = await utils.isGroupPresent(client, group, queryParameters);
+    expect(groupPresent).to.equal(true);
 
-  it('should list the group by type', () => {
-    let foundGroup = false;
-    const queryParameters = { filter : 'type eq \"OKTA_GROUP\"', limit : '200' };
-    return client.listGroups(queryParameters).each(group => {
-      assert.instanceOf(group, models.UserGroup);
-      if (group.profile.name === createdGroup.profile.name) {
-        foundGroup = true;
-        return false;
-      }
-    }).then(() => assert.equal(foundGroup, true));
-  });
-
-  it('should update the group name and description', () => {
+    // 6. Update the group name and description
     const updateGroup = {
       profile: {
-        name: 'Mocha CRUD Test Group - Updated',
+        name: 'SDK Test Group - Updated',
         description: 'Description updated',
       }
     };
 
-    return client.updateGroup(createdGroup.id, updateGroup).then(group => {
-      utils.assertGroup(group, updateGroup);
-    });
+    const updatedGroup = await client.updateGroup(createdGroup.id, updateGroup);
+    utils.validateGroup(updatedGroup, updateGroup);
+
+    // 7. Delete the group
+    await client.deleteGroup(createdGroup.id);
   });
 
 });
