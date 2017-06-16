@@ -12,19 +12,19 @@
 
 
 /**
- *  THIS FILE IS AUTO GENERATED - SEE CONTRIBUTOR DOCUMENTATION
+ *  THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION
  */
 
 var Resource = require('../resource');
 
 /**
- * @class AuthProvider
+ * @class GroupRuleAction
  */
-class AuthProvider extends Resource {
+class GroupRuleAction extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
   }
 
 }
 
-module.exports = AuthProvider;
+module.exports = GroupRuleAction;

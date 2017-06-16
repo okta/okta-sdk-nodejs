@@ -12,19 +12,19 @@
 
 
 /**
- *  THIS FILE IS AUTO GENERATED - SEE CONTRIBUTOR DOCUMENTATION
+ *  THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION
  */
 
 var Resource = require('../resource');
 
 /**
- * @class HashedPassword
+ * @class GroupRuleUserCondition
  */
-class HashedPassword extends Resource {
+class GroupRuleUserCondition extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
   }
 
 }
 
-module.exports = HashedPassword;
+module.exports = GroupRuleUserCondition;

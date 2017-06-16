@@ -12,19 +12,19 @@
 
 
 /**
- *  THIS FILE IS AUTO GENERATED - SEE CONTRIBUTOR DOCUMENTATION
+ *  THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION
  */
 
 var Resource = require('../resource');
 
 /**
- * @class EmbeddedObject
+ * @class GroupProfile
  */
-class EmbeddedObject extends Resource {
+class GroupProfile extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
   }
 
 }
 
-module.exports = EmbeddedObject;
+module.exports = GroupProfile;

@@ -12,34 +12,19 @@
 
 
 /**
- *  THIS FILE IS AUTO GENERATED - SEE CONTRIBUTOR DOCUMENTATION
+ *  THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION
  */
 
 var Resource = require('../resource');
 
 /**
- * @class UserGroup
+ * @class ChangePasswordRequest
  */
-class UserGroup extends Resource {
+class ChangePasswordRequest extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
   }
 
-  update() {
-    return this.client.updateGroup(this.id, this);
-  }
-  delete() {
-    return this.client.deleteGroup(this.id);
-  }
-  getUserGroupStats() {
-    return this.client.getUserGroupStats(this.id);
-  }
-  removeUserFromGroup(userId) {
-    return this.client.removeUserFromGroup(this.id, userId);
-  }
-  listUsers(queryParameters) {
-    return this.client.listGroupUsers(this.id, queryParameters);
-  }
 }
 
-module.exports = UserGroup;
+module.exports = ChangePasswordRequest;

@@ -12,31 +12,19 @@
 
 
 /**
- *  THIS FILE IS AUTO GENERATED - SEE CONTRIBUTOR DOCUMENTATION
+ *  THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION
  */
 
 var Resource = require('../resource');
 
 /**
- * @class GroupMembershipMediationRule
+ * @class GroupRuleGroupCondition
  */
-class GroupMembershipMediationRule extends Resource {
+class GroupRuleGroupCondition extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
   }
 
-  update() {
-    return this.client.updateRule(this.id, this);
-  }
-  delete(queryParameters) {
-    return this.client.deleteRule(this.id, queryParameters);
-  }
-  activate() {
-    return this.client.activateRule(this.id);
-  }
-  deactivate() {
-    return this.client.deactivateRule(this.id);
-  }
 }
 
-module.exports = GroupMembershipMediationRule;
+module.exports = GroupRuleGroupCondition;

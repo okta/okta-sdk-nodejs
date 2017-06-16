@@ -12,19 +12,19 @@
 
 
 /**
- *  THIS FILE IS AUTO GENERATED - SEE CONTRIBUTOR DOCUMENTATION
+ *  THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION
  */
 
 var Resource = require('../resource');
 
 /**
- * @class GroupMembershipMediationActions
+ * @class UserActivationToken
  */
-class GroupMembershipMediationActions extends Resource {
+class UserActivationToken extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
   }
 
 }
 
-module.exports = GroupMembershipMediationActions;
+module.exports = UserActivationToken;

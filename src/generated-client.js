@@ -12,7 +12,7 @@
 
 
 /**
- *  THIS FILE IS AUTO GENERATED - SEE CONTRIBUTOR DOCUMENTATION
+ *  THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION
  */
 
 const qs = require('querystring');
@@ -45,22 +45,22 @@ class GeneratedApiClient {
 
     url += queryString ? ('?' + queryString) : '';
 
-    return new Collection(this, url, models.UserGroup);
+    return new Collection(this, url, models.Group);
   }
 
   /**
    *
-   * @param {UserGroup} userGroup
+   * @param {Group} group
    * @description
    * Adds a new group with &#x60;OKTA_GROUP&#x60; type to your organization.
    */
-  createGroup(userGroup) {
+  createGroup(group) {
     let url = `${this.baseUrl}/api/v1/groups`;
 
     const request = this.http.postJson(url, {
-      body: userGroup
+      body: group
     });
-    return request.then(jsonRes => new models.UserGroup(jsonRes, this));
+    return request.then(jsonRes => new models.Group(jsonRes, this));
   }
 
   /**
@@ -77,22 +77,22 @@ class GeneratedApiClient {
 
     url += queryString ? ('?' + queryString) : '';
 
-    return new Collection(this, url, models.GroupMembershipMediationRule);
+    return new Collection(this, url, models.GroupRule);
   }
 
   /**
    *
-   * @param {GroupMembershipMediationRule} groupMembershipMediationRule
+   * @param {GroupRule} groupRule
    * @description
    * Creates a group rule to dynamically add users to the specified group if they match the condition
    */
-  createRule(groupMembershipMediationRule) {
+  createRule(groupRule) {
     let url = `${this.baseUrl}/api/v1/groups/rules`;
 
     const request = this.http.postJson(url, {
-      body: groupMembershipMediationRule
+      body: groupRule
     });
-    return request.then(jsonRes => new models.GroupMembershipMediationRule(jsonRes, this));
+    return request.then(jsonRes => new models.GroupRule(jsonRes, this));
   }
 
   /**
@@ -121,22 +121,22 @@ class GeneratedApiClient {
     let url = `${this.baseUrl}/api/v1/groups/rules/${ruleId}`;
 
     const request = this.http.getJson(url);
-    return request.then(jsonRes => new models.GroupMembershipMediationRule(jsonRes, this));
+    return request.then(jsonRes => new models.GroupRule(jsonRes, this));
   }
 
   /**
    *
    * @param ruleId {String}
-   * @param {GroupMembershipMediationRule} groupMembershipMediationRule
+   * @param {GroupRule} groupRule
    * @description
    */
-  updateRule(ruleId, groupMembershipMediationRule) {
+  updateRule(ruleId, groupRule) {
     let url = `${this.baseUrl}/api/v1/groups/rules/${ruleId}`;
 
     const request = this.http.putJson(url, {
-      body: groupMembershipMediationRule
+      body: groupRule
     });
-    return request.then(jsonRes => new models.GroupMembershipMediationRule(jsonRes, this));
+    return request.then(jsonRes => new models.GroupRule(jsonRes, this));
   }
 
   /**
@@ -189,22 +189,22 @@ class GeneratedApiClient {
     url += queryString ? ('?' + queryString) : '';
 
     const request = this.http.getJson(url);
-    return request.then(jsonRes => new models.UserGroup(jsonRes, this));
+    return request.then(jsonRes => new models.Group(jsonRes, this));
   }
 
   /**
    *
    * @param groupId {String}
-   * @param {UserGroup} userGroup
+   * @param {Group} group
    * @description
    */
-  updateGroup(groupId, userGroup) {
+  updateGroup(groupId, group) {
     let url = `${this.baseUrl}/api/v1/groups/${groupId}`;
 
     const request = this.http.putJson(url, {
-      body: userGroup
+      body: group
     });
-    return request.then(jsonRes => new models.UserGroup(jsonRes, this));
+    return request.then(jsonRes => new models.Group(jsonRes, this));
   }
 
   /**
@@ -212,11 +212,11 @@ class GeneratedApiClient {
    * @param groupId {String}
    * @description
    */
-  getUserGroupStats(groupId) {
+  getGroupStats(groupId) {
     let url = `${this.baseUrl}/api/v1/groups/${groupId}/stats`;
 
     const request = this.http.getJson(url);
-    return request.then(jsonRes => new models.UserGroupStats(jsonRes, this));
+    return request.then(jsonRes => new models.GroupStats(jsonRes, this));
   }
 
   /**
@@ -242,7 +242,7 @@ class GeneratedApiClient {
    * @param userId {String}
    * @description
    */
-  removeUserFromGroup(groupId, userId) {
+  removeGroupUser(groupId, userId) {
     let url = `${this.baseUrl}/api/v1/groups/${groupId}/users/${userId}`;
 
     const request = this.http.delete(url);
@@ -335,21 +335,6 @@ class GeneratedApiClient {
    * @param {User} user
    * @description
    */
-  updateUserWithDefaults(userId, user) {
-    let url = `${this.baseUrl}/api/v1/users/${userId}`;
-
-    const request = this.http.postJson(url, {
-      body: user
-    });
-    return request.then(jsonRes => new models.User(jsonRes, this));
-  }
-
-  /**
-   *
-   * @param userId {String}
-   * @param {User} user
-   * @description
-   */
   updateUser(userId, user) {
     let url = `${this.baseUrl}/api/v1/users/${userId}`;
 
@@ -378,14 +363,14 @@ class GeneratedApiClient {
   /**
    *
    * @param userId {String}
-   * @param {ChangePasswordCredentials} changePasswordCredentials
+   * @param {ChangePasswordRequest} changePasswordRequest
    * @description
    */
-  changePassword(userId, changePasswordCredentials) {
+  changePassword(userId, changePasswordRequest) {
     let url = `${this.baseUrl}/api/v1/users/${userId}/credentials/change_password`;
 
     const request = this.http.postJson(url, {
-      body: changePasswordCredentials
+      body: changePasswordRequest
     });
     return request.then(jsonRes => new models.UserCredentials(jsonRes, this));
   }
@@ -413,7 +398,7 @@ class GeneratedApiClient {
    * @param {String} [queryParams.sendEmail]
    * @description
    */
-  forgotPasswordWithRecoveryAnswer(userId, userCredentials, queryParameters) {
+  forgotPassword(userId, userCredentials, queryParameters) {
     let url = `${this.baseUrl}/api/v1/users/${userId}/credentials/forgot_password`;
     const queryString = qs.stringify(queryParameters || {});
 
@@ -422,7 +407,7 @@ class GeneratedApiClient {
     const request = this.http.postJson(url, {
       body: userCredentials
     });
-    return request.then(jsonRes => new models.BaseCredentialsObject(jsonRes, this));
+    return request.then(jsonRes => new models.ForgotPasswordResponse(jsonRes, this));
   }
 
   /**
@@ -439,7 +424,7 @@ class GeneratedApiClient {
 
     url += queryString ? ('?' + queryString) : '';
 
-    return new Collection(this, url, models.UserGroup);
+    return new Collection(this, url, models.Group);
   }
 
   /**
@@ -456,7 +441,7 @@ class GeneratedApiClient {
     url += queryString ? ('?' + queryString) : '';
 
     const request = this.http.post(url);
-    return request.then(jsonRes => new models.ActivationToken(jsonRes, this));
+    return request.then(jsonRes => new models.UserActivationToken(jsonRes, this));
   }
 
   /**
@@ -464,7 +449,7 @@ class GeneratedApiClient {
    * @param userId {String}
    * @description
    */
-  lifecycleDeactivateUser(userId) {
+  deactivateUser(userId) {
     let url = `${this.baseUrl}/api/v1/users/${userId}/lifecycle/deactivate`;
 
     const request = this.http.post(url);
@@ -475,17 +460,17 @@ class GeneratedApiClient {
    *
    * @param userId {String}
    * @param {Object} queryParams Map of query parameters to add to this request
-   * @param {String} [queryParams.sendEmail]
+   * @param {String} [queryParams.tempPassword]
    * @description
    */
-  forgotPassword(userId, queryParameters) {
-    let url = `${this.baseUrl}/api/v1/users/${userId}/lifecycle/forgot_password`;
+  expirePassword(userId, queryParameters) {
+    let url = `${this.baseUrl}/api/v1/users/${userId}/lifecycle/expire_password`;
     const queryString = qs.stringify(queryParameters || {});
 
     url += queryString ? ('?' + queryString) : '';
 
     const request = this.http.post(url);
-    return request.then(jsonRes => new models.ResetPasswordToken(jsonRes, this));
+    return request.then(jsonRes => new models.TempPassword(jsonRes, this));
   }
 
   /**
@@ -498,6 +483,24 @@ class GeneratedApiClient {
 
     const request = this.http.post(url);
     return request;
+  }
+
+  /**
+   *
+   * @param userId {String}
+   * @param {Object} queryParams Map of query parameters to add to this request
+   * @param {String} [queryParams.provider]
+   * @param {String} [queryParams.sendEmail]
+   * @description
+   */
+  resetPassword(userId, queryParameters) {
+    let url = `${this.baseUrl}/api/v1/users/${userId}/lifecycle/reset_password`;
+    const queryString = qs.stringify(queryParameters || {});
+
+    url += queryString ? ('?' + queryString) : '';
+
+    const request = this.http.post(url);
+    return request.then(jsonRes => new models.ResetPasswordToken(jsonRes, this));
   }
 
   /**
@@ -549,22 +552,22 @@ class GeneratedApiClient {
 
     url += queryString ? ('?' + queryString) : '';
 
-    return new Collection(this, url, models.MediationRoleAssignment);
+    return new Collection(this, url, models.Role);
   }
 
   /**
    *
    * @param userId {String}
-   * @param {MediationRoleAssignment} mediationRoleAssignment
+   * @param {Role} role
    * @description
    */
-  assignRoleToUser(userId, mediationRoleAssignment) {
+  addRoleToUser(userId, role) {
     let url = `${this.baseUrl}/api/v1/users/${userId}/roles`;
 
     const request = this.http.postJson(url, {
-      body: mediationRoleAssignment
+      body: role
     });
-    return request.then(jsonRes => new models.MediationRoleAssignment(jsonRes, this));
+    return request.then(jsonRes => new models.Role(jsonRes, this));
   }
 
   /**
@@ -573,24 +576,11 @@ class GeneratedApiClient {
    * @param roleId {String}
    * @description
    */
-  unassignRoleFromUser(userId, roleId) {
+  removeRoleFromUser(userId, roleId) {
     let url = `${this.baseUrl}/api/v1/users/${userId}/roles/${roleId}`;
 
     const request = this.http.delete(url);
     return request;
-  }
-
-  /**
-   *
-   * @param userId {String}
-   * @param roleId {String}
-   * @description
-   */
-  getRoleForUser(userId, roleId) {
-    let url = `${this.baseUrl}/api/v1/users/${userId}/roles/${roleId}`;
-
-    const request = this.http.getJson(url);
-    return request.then(jsonRes => new models.MediationRoleAssignment(jsonRes, this));
   }
 
   /**
@@ -608,7 +598,7 @@ class GeneratedApiClient {
 
     url += queryString ? ('?' + queryString) : '';
 
-    return new Collection(this, url, models.UserGroup);
+    return new Collection(this, url, models.Group);
   }
 
   /**

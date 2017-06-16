@@ -12,19 +12,19 @@
 
 
 /**
- *  THIS FILE IS AUTO GENERATED - SEE CONTRIBUTOR DOCUMENTATION
+ *  THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION
  */
 
 var Resource = require('../resource');
 
 /**
- * @class AssignUserToGroupsMediationAction
+ * @class AuthenticationProviderType
  */
-class AssignUserToGroupsMediationAction extends Resource {
+class AuthenticationProviderType extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
   }
 
 }
 
-module.exports = AssignUserToGroupsMediationAction;
+module.exports = AuthenticationProviderType;
