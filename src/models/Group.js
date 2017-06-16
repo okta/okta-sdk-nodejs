@@ -12,19 +12,34 @@
 
 
 /**
- *  THIS FILE IS AUTO GENERATED - SEE CONTRIBUTOR DOCUMENTATION
+ *  THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION
  */
 
 var Resource = require('../resource');
 
 /**
- * @class GroupMembershipMediationPeopleCondition
+ * @class Group
  */
-class GroupMembershipMediationPeopleCondition extends Resource {
+class Group extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
   }
 
+  update() {
+    return this.client.updateGroup(this.id, this);
+  }
+  delete() {
+    return this.client.deleteGroup(this.id);
+  }
+  getStats() {
+    return this.client.getGroupStats(this.id);
+  }
+  removeUser(userId) {
+    return this.client.removeGroupUser(this.id, userId);
+  }
+  listUsers(queryParameters) {
+    return this.client.listGroupUsers(this.id, queryParameters);
+  }
 }
 
-module.exports = GroupMembershipMediationPeopleCondition;
+module.exports = Group;

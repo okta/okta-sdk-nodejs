@@ -12,34 +12,34 @@
 
 
 /**
- *  THIS FILE IS AUTO GENERATED - SEE CONTRIBUTOR DOCUMENTATION
+ *  THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION
  */
 
-exports.ActivationToken = require('./ActivationToken');
 exports.AppLink = require('./AppLink');
-exports.AssignUserToGroupsMediationAction = require('./AssignUserToGroupsMediationAction');
-exports.AuthProvider = require('./AuthProvider');
-exports.BaseCredentialsObject = require('./BaseCredentialsObject');
-exports.ChangePasswordCredentials = require('./ChangePasswordCredentials');
-exports.EmbeddedObject = require('./EmbeddedObject');
-exports.FactorDevice = require('./FactorDevice');
-exports.GroupMembershipMediationActions = require('./GroupMembershipMediationActions');
-exports.GroupMembershipMediationConditions = require('./GroupMembershipMediationConditions');
-exports.GroupMembershipMediationExpressionCondition = require('./GroupMembershipMediationExpressionCondition');
-exports.GroupMembershipMediationGroupCondition = require('./GroupMembershipMediationGroupCondition');
-exports.GroupMembershipMediationPeopleCondition = require('./GroupMembershipMediationPeopleCondition');
-exports.GroupMembershipMediationRule = require('./GroupMembershipMediationRule');
-exports.GroupMembershipMediationUserCondition = require('./GroupMembershipMediationUserCondition');
-exports.HashedPassword = require('./HashedPassword');
-exports.Link = require('./Link');
-exports.LinksUnion = require('./LinksUnion');
-exports.MediationRoleAssignment = require('./MediationRoleAssignment');
+exports.AuthenticationProvider = require('./AuthenticationProvider');
+exports.AuthenticationProviderType = require('./AuthenticationProviderType');
+exports.ChangePasswordRequest = require('./ChangePasswordRequest');
+exports.ForgotPasswordResponse = require('./ForgotPasswordResponse');
+exports.Group = require('./Group');
+exports.GroupProfile = require('./GroupProfile');
+exports.GroupRule = require('./GroupRule');
+exports.GroupRuleAction = require('./GroupRuleAction');
+exports.GroupRuleConditions = require('./GroupRuleConditions');
+exports.GroupRuleExpression = require('./GroupRuleExpression');
+exports.GroupRuleGroupAssignment = require('./GroupRuleGroupAssignment');
+exports.GroupRuleGroupCondition = require('./GroupRuleGroupCondition');
+exports.GroupRulePeopleCondition = require('./GroupRulePeopleCondition');
+exports.GroupRuleStatus = require('./GroupRuleStatus');
+exports.GroupRuleUserCondition = require('./GroupRuleUserCondition');
+exports.GroupStats = require('./GroupStats');
 exports.PasswordCredential = require('./PasswordCredential');
 exports.RecoveryQuestionCredential = require('./RecoveryQuestionCredential');
 exports.ResetPasswordToken = require('./ResetPasswordToken');
+exports.Role = require('./Role');
+exports.RoleStatus = require('./RoleStatus');
+exports.TempPassword = require('./TempPassword');
 exports.User = require('./User');
+exports.UserActivationToken = require('./UserActivationToken');
 exports.UserCredentials = require('./UserCredentials');
-exports.UserGroup = require('./UserGroup');
-exports.UserGroupProfile = require('./UserGroupProfile');
-exports.UserGroupStats = require('./UserGroupStats');
 exports.UserProfile = require('./UserProfile');
+exports.UserStatus = require('./UserStatus');

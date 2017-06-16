@@ -12,19 +12,19 @@
 
 
 /**
- *  THIS FILE IS AUTO GENERATED - SEE CONTRIBUTOR DOCUMENTATION
+ *  THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION
  */
 
 var Resource = require('../resource');
 
 /**
- * @class UserGroupProfile
+ * @class GroupRuleGroupAssignment
  */
-class UserGroupProfile extends Resource {
+class GroupRuleGroupAssignment extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
   }
 
 }
 
-module.exports = UserGroupProfile;
+module.exports = GroupRuleGroupAssignment;

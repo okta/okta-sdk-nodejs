@@ -20,7 +20,7 @@ describe('client.createGroup()', () => {
     };
     return client.createGroup(newGroup).then((group) => {
       _group = group;
-      assert.instanceOf(group, models.UserGroup);
+      assert.instanceOf(group, models.Group);
       assert.equal(group.profile.name, group.profile.name);
     });
   });

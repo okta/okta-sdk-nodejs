@@ -12,7 +12,7 @@
 
 
 /**
- *  THIS FILE IS AUTO GENERATED - SEE CONTRIBUTOR DOCUMENTATION
+ *  THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION
  */
 
 var Resource = require('../resource');
@@ -31,32 +31,26 @@ class User extends Resource {
   delete() {
     return this.client.deactivateOrDeleteUser(this.id);
   }
-  updateUserWithDefaults() {
-    return this.client.updateUserWithDefaults(this.id, this);
-  }
   listAppLinks(queryParameters) {
     return this.client.listAppLinks(this.id, queryParameters);
   }
-  changePassword(changePasswordCredentials) {
-    return this.client.changePassword(this.id, changePasswordCredentials);
+  changePassword(changePasswordRequest) {
+    return this.client.changePassword(this.id, changePasswordRequest);
   }
   changeRecoveryQuestion(userCredentials) {
     return this.client.changeRecoveryQuestion(this.id, userCredentials);
   }
-  forgotPasswordWithRecoveryAnswer(userCredentials, queryParameters) {
-    return this.client.forgotPasswordWithRecoveryAnswer(this.id, userCredentials, queryParameters);
+  forgotPassword(userCredentials, queryParameters) {
+    return this.client.forgotPassword(this.id, userCredentials, queryParameters);
   }
-  listAssignedRoles(queryParameters) {
+  listRoles(queryParameters) {
     return this.client.listAssignedRoles(this.id, queryParameters);
   }
-  assignRoleToUser(mediationRoleAssignment) {
-    return this.client.assignRoleToUser(this.id, mediationRoleAssignment);
+  addRole(role) {
+    return this.client.addRoleToUser(this.id, role);
   }
-  unassignRoleFromUser(roleId) {
-    return this.client.unassignRoleFromUser(this.id, roleId);
-  }
-  getRoleForUser(roleId) {
-    return this.client.getRoleForUser(this.id, roleId);
+  removeRole(roleId) {
+    return this.client.removeRoleFromUser(this.id, roleId);
   }
   listGroupTargetsForRole(roleId, queryParameters) {
     return this.client.listGroupTargetsForRole(this.id, roleId, queryParameters);
@@ -74,7 +68,7 @@ class User extends Resource {
     return this.client.activateUser(this.id, queryParameters);
   }
   deactivate() {
-    return this.client.lifecycleDeactivateUser(this.id);
+    return this.client.deactivateUser(this.id);
   }
   suspend() {
     return this.client.suspendUser(this.id);
@@ -82,11 +76,14 @@ class User extends Resource {
   unsuspend() {
     return this.client.unsuspendUser(this.id);
   }
+  resetPassword(queryParameters) {
+    return this.client.resetPassword(this.id, queryParameters);
+  }
+  expirePassword(queryParameters) {
+    return this.client.expirePassword(this.id, queryParameters);
+  }
   unlock() {
     return this.client.unlockUser(this.id);
-  }
-  forgotPassword(queryParameters) {
-    return this.client.forgotPassword(this.id, queryParameters);
   }
   resetFactors() {
     return this.client.resetAllFactors(this.id);
