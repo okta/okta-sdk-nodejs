@@ -1,4 +1,4 @@
-# okta-sdk-nodejs
+# okta-sdk-nodejss
 
 Node.js API Client for the [Okta Platform API].
 
