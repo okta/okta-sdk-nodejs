@@ -1,6 +1,7 @@
 const assert = require('chai').assert;
 const faker = require('faker');
 const okta = require('../../');
+const utils = require('../utils');
 
 const client = new okta.Client({
   orgUrl: process.env.OKTA_CLIENT_ORGURL,
@@ -36,11 +37,14 @@ describe('user.update()', () => {
     _user.profile.nickName = 'rob';
     const modified = JSON.parse(JSON.stringify(_user));
     delete modified.lastUpdated;
-    return _user.update().then(user => {
-      const result = JSON.parse(JSON.stringify(user));
-      delete result.lastUpdated;
-      assert.deepEqual(result, modified, 'we are returned an updated user object');
-      assert(user.lastUpdated > _user.lastUpdated, 'lastUpdated has increased');
+    //  Okta's lastUpdated minimum resolution is one second, so we need to ensure we wait at least that long
+    utils.delay(1000).then(() => {
+      return _user.update().then(user => {
+        const result = JSON.parse(JSON.stringify(user));
+        delete result.lastUpdated;
+        assert.deepEqual(result, modified, 'we are returned an updated user object');
+        assert.isAbove(user.lastUpdated, _user.lastUpdated, 'lastUpdated has not been increased');
+      });
     });
   });
 });
