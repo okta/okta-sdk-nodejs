@@ -44,7 +44,7 @@ describe('Group-Member API Tests', () => {
     expect(userInGroup).to.equal(true);
 
     // 3. Remove user from group and validate user removed
-    await client.removeGroupUser(createdGroup.id, createdUser.id);
+    await createdGroup.removeUser(createdUser.id);
     userInGroup = await utils.isUserInGroup(createdUser, createdGroup);
     expect(userInGroup).to.equal(false);
 
@@ -52,5 +52,4 @@ describe('Group-Member API Tests', () => {
     await createdGroup.delete();
     await utils.deleteUser(createdUser);
   });
-
 });

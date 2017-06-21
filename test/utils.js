@@ -75,6 +75,30 @@ async function isGroupPresent(client, expectedGroup, queryParameters) {
   return groupPresent;
 }
 
+async function doesUserHaveRole(user, roleType) {
+  let hasRole = false;
+  await user.listRoles().each(role => {
+    expect(role).to.be.an.instanceof(models.Role);
+    if (role.type === roleType) {
+      hasRole = true;
+      return false;
+    }
+  });
+  return hasRole;
+}
+
+async function isGroupTargetPresent(user, userGroup, role) {
+  let groupTargetPresent = false;
+  const groupTargets = user.listGroupTargetsForRole(role.id);
+  await groupTargets.each(group => {
+    if (group.profile.name === userGroup.profile.name) {
+      groupTargetPresent = true;
+      return false;
+    }
+  });
+  return groupTargetPresent;
+}
+
 module.exports = {
   delay: delay,
   validateUser: validateUser,
@@ -83,5 +107,7 @@ module.exports = {
   isUserInGroup: isUserInGroup,
   deleteUser: deleteUser,
   isUserPresent: isUserPresent,
-  isGroupPresent: isGroupPresent
+  isGroupPresent: isGroupPresent,
+  doesUserHaveRole: doesUserHaveRole,
+  isGroupTargetPresent: isGroupTargetPresent
 };
