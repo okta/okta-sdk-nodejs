@@ -31,6 +31,7 @@ describe('client.listUsers()', () => {
         password: {value: 'Abcd1234'}
       }
     };
+    // Add an unmapped property to the user profile
     newUser.profile.nickName = 'johny-list-users';
     return client.createUser(newUser).then(user => _user = user);
   });

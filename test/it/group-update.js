@@ -14,7 +14,7 @@ const client = new okta.Client({
 describe('Group API tests', () => {
   it('should update a group', async () => {
     // 1. Create a new group
-    const newGroup = {
+    let newGroup = {
       profile: {
         name: 'Update Test Group'
       }
@@ -24,15 +24,11 @@ describe('Group API tests', () => {
     utils.validateGroup(createdGroup, newGroup);
 
     // 2. Update the group name and description
-    const updateGroup = {
-      profile: {
-        name: 'Update Test Group - Updated',
-        description: 'Description updated',
-      }
-    };
+    createdGroup.profile.name = 'Update Test Group - Updated';
+    createdGroup.profile.description = 'Description updated';
 
-    const updatedGroup = await client.updateGroup(createdGroup.id, updateGroup);
-    utils.validateGroup(updatedGroup, updateGroup);
+    const updatedGroup = await createdGroup.update();
+    utils.validateGroup(updatedGroup, createdGroup);
 
     // 3. Delete the group
     await client.deleteGroup(createdGroup.id);

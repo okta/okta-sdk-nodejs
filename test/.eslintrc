@@ -1,6 +1,6 @@
 {
   "parserOptions": {
-    "ecmaVersion": 8 // or 2017
+    "ecmaVersion": 8
   },
   "rules": {
     "curly": [
