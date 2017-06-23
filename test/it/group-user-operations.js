@@ -2,9 +2,11 @@ const expect = require('chai').expect;
 const utils = require('../utils');
 const okta = require('../../');
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
+let mockServer = false;
 
 if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/group-user-operations`;
+  mockServer = true;
 }
 
 const client = new okta.Client({
@@ -27,15 +29,19 @@ describe('Group-Member API Tests', () => {
       }
     };
 
-    let queryParameters = { activate : 'false' };
-    const createdUser = await client.createUser(newUser, queryParameters);
-
     const newGroup = {
       profile: {
         name: 'Group-Member API Test Group'
       }
     };
 
+    // Cleanup the user & group if they exist
+    if (!mockServer) {
+      await utils.cleanup(client, newUser, newGroup);
+    }
+
+    let queryParameters = { activate : 'false' };
+    const createdUser = await client.createUser(newUser, queryParameters);
     const createdGroup = await client.createGroup(newGroup);
 
     // 2. Add user to the group and validate user present in group

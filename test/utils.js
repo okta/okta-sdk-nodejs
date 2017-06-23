@@ -46,6 +46,7 @@ async function isUserInGroup(groupUser, group) {
   return userPresent;
 }
 
+
 async function deleteUser(user) {
   await user.deactivate();
   await user.delete();
@@ -99,6 +100,39 @@ async function isGroupTargetPresent(user, userGroup, role) {
   return groupTargetPresent;
 }
 
+async function cleanupUser(client, user) {
+  try {
+    const existingUser = await client.getUser(user.profile.login);
+    await existingUser.deactivate();
+    await existingUser.delete();
+  } catch (err) {
+    expect(err.message).to.contain('Okta HTTP 404');
+  }
+}
+
+async function cleanupGroup(client, expectedGroup) {
+  let queryParameters = { q : `${expectedGroup.profile.name}` };
+  await client.listGroups(queryParameters).each(async (group) => {
+    expect(group).to.be.an.instanceof(models.Group);
+    // If search doesn't return any results, listGroups() returns empty collection
+    if (group.hasOwnProperty('profile')) {
+      if (group.profile.name === expectedGroup.profile.name) {
+        await group.delete();
+      }
+    }
+  });
+}
+
+async function cleanup(client, user = null, group = null) {
+  if (user !== null) {
+    await cleanupUser(client, user);
+  }
+
+  if (group !== null) {
+    await cleanupGroup(client, group);
+  }
+}
+
 module.exports = {
   delay: delay,
   validateUser: validateUser,
@@ -109,5 +143,8 @@ module.exports = {
   isUserPresent: isUserPresent,
   isGroupPresent: isGroupPresent,
   doesUserHaveRole: doesUserHaveRole,
-  isGroupTargetPresent: isGroupTargetPresent
+  isGroupTargetPresent: isGroupTargetPresent,
+  cleanupUser: cleanupUser,
+  cleanupGroup: cleanupGroup,
+  cleanup: cleanup
 };

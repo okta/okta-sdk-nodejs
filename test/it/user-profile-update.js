@@ -2,9 +2,11 @@ const expect = require('chai').expect;
 const utils = require('../utils');
 const okta = require('../../');
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
+let mockServer = false;
 
 if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/user-profile-update`;
+  mockServer = true;
 }
 
 const client = new okta.Client({
@@ -27,15 +29,24 @@ describe('User API Tests', () => {
       }
     };
 
+    // Cleanup the user if user exists
+    if (!mockServer) {
+      await utils.cleanup(client, newUser);
+    }
+
     let queryParameters = { activate : 'false' };
     const createdUser = await client.createUser(newUser, queryParameters);
     utils.validateUser(createdUser, newUser);
 
-    // 2. Update the user profile
+    // 2. Update the user profile and verify that profile was updated
+    // Need to wait 1 second here as that is the minimum time resolution of the 'lastUpdated' field
+    await utils.delay(1000);
     createdUser.profile.nickName = 'Batman';
     const profileUpdateUser = await createdUser.update();
     expect(profileUpdateUser.lastUpdated).to.be.gt(createdUser.lastUpdated);
-    expect(profileUpdateUser.profile.nickName).to.equal('Batman');
+
+    const updatedUser = await client.getUser(createdUser.id);
+    expect(updatedUser.profile.nickName).to.equal('Batman');
 
     // 3. Delete the user
     await utils.deleteUser(createdUser);

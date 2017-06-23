@@ -2,9 +2,11 @@ const expect = require('chai').expect;
 const utils = require('../utils');
 const okta = require('../../');
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
+let mockServer = false;
 
 if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/list-groups`;
+  mockServer = true;
 }
 
 const client = new okta.Client({
@@ -20,6 +22,11 @@ describe('Group API tests', () => {
         name: 'List Test Group'
       }
     };
+
+    // Cleanup the group if it exists
+    if (!mockServer) {
+      await utils.cleanup(client, null, newGroup);
+    }
 
     const createdGroup = await client.createGroup(newGroup);
     utils.validateGroup(createdGroup, newGroup);

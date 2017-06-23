@@ -4,9 +4,11 @@ const models = require('../../src/models');
 const utils = require('../utils');
 const collection = require('../../src/collection');
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
+let mockServer = false;
 
 if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/list-users`;
+  mockServer = true;
 }
 
 const client = new okta.Client({
@@ -19,7 +21,7 @@ let userCount = 0;
 describe('client.listUsers()', () => {
   let _user;
 
-  before(() => {
+  before(async () => {
     const newUser = {
       profile: {
         firstName: 'John',
@@ -31,6 +33,12 @@ describe('client.listUsers()', () => {
         password: {value: 'Abcd1234'}
       }
     };
+
+    // Cleanup the user if user exists
+    if (!mockServer) {
+      await utils.cleanup(client, newUser);
+    }
+
     // Add an unmapped property to the user profile
     newUser.profile.nickName = 'johny-list-users';
     return client.createUser(newUser).then(user => _user = user);

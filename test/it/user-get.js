@@ -1,9 +1,11 @@
 const utils = require('../utils');
 const okta = require('../../');
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
+let mockServer = false;
 
 if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/user-get`;
+  mockServer = true;
 }
 
 const client = new okta.Client({
@@ -25,6 +27,11 @@ describe('User API Tests', () => {
         password: { value: 'Abcd1234' }
       }
     };
+
+    // Cleanup the user if user exists
+    if (!mockServer) {
+      await utils.cleanup(client, newUser);
+    }
 
     let queryParameters = { activate : 'false' };
     const createdUser = await client.createUser(newUser, queryParameters);
