@@ -123,13 +123,20 @@ async function cleanupGroup(client, expectedGroup) {
   });
 }
 
-async function cleanup(client, user = null, group = null) {
-  if (user !== null) {
-    await cleanupUser(client, user);
+async function cleanup(client, users = null, groups = null) {
+  // Cleanup the entities only if user is running a real OKTA server
+  if (process.env.OKTA_USE_MOCK) {
+    return;
   }
 
-  if (group !== null) {
-    await cleanupGroup(client, group);
+  const usersToDelete = [].concat(users || []);
+  for (let i = 0; i < usersToDelete.length; i++) {
+    await cleanupUser(client, usersToDelete[i]);
+  }
+
+  const groupsToDelete = [].concat(groups || []);
+  for (let i = 0; i < groupsToDelete.length; i++) {
+    await cleanupGroup(client, groupsToDelete[i]);
   }
 }
 

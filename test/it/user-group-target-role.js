@@ -2,11 +2,9 @@ const expect = require('chai').expect;
 const utils = require('../utils');
 const okta = require('../../');
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
-let mockServer = false;
 
 if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/user-group-target-role`;
-  mockServer = true;
 }
 
 const client = new okta.Client({
@@ -36,9 +34,7 @@ describe('User Role API Tests', () => {
     };
 
     // Cleanup the user & group if they exist
-    if (!mockServer) {
-      await utils.cleanup(client, newUser, newGroup);
-    }
+    await utils.cleanup(client, newUser, newGroup);
 
     let queryParameters = { activate : 'true' };
     const createdUser = await client.createUser(newUser, queryParameters);
@@ -64,9 +60,7 @@ describe('User Role API Tests', () => {
       }
     };
 
-    if (!mockServer) {
-      await utils.cleanup(client, null, group);
-    }
+    await utils.cleanup(client, null, group);
 
     const adminGroup = await client.createGroup(group);
     await createdUser.addGroupTargetToRole(role.id, adminGroup.id);
