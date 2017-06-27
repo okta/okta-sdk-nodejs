@@ -36,8 +36,10 @@ describe('ConfigLoader', () => {
 
     it('should override defaults with ~/.okta/okta.yaml file', () => {
       fakeFs.file(path.join(os.homedir(), '.okta', 'okta.yaml'), yaml.safeDump({
-        client: {
-          orgUrl: 'foo'
+        okta: {
+          client: {
+            orgUrl: 'foo'
+          }
         }
       }));
       loader.applyDefaults();
@@ -51,8 +53,10 @@ describe('ConfigLoader', () => {
 
     it('should override ~/.okta/okta.yaml with okta.yaml in the process context', () => {
       fakeFs.file(path.join(process.cwd(), 'okta.yaml'), yaml.safeDump({
-        client: {
-          orgUrl: 'bar'
+        okta: {
+          client: {
+            orgUrl: 'bar'
+          }
         }
       }));
       loader.applyDefaults();
