@@ -440,7 +440,7 @@ class GeneratedApiClient {
 
     url += queryString ? ('?' + queryString) : '';
 
-    const request = this.http.post(url);
+    const request = this.http.postJson(url);
     return request.then(jsonRes => new models.UserActivationToken(jsonRes, this));
   }
 
@@ -469,7 +469,7 @@ class GeneratedApiClient {
 
     url += queryString ? ('?' + queryString) : '';
 
-    const request = this.http.post(url);
+    const request = this.http.postJson(url);
     return request.then(jsonRes => new models.TempPassword(jsonRes, this));
   }
 
@@ -499,7 +499,7 @@ class GeneratedApiClient {
 
     url += queryString ? ('?' + queryString) : '';
 
-    const request = this.http.post(url);
+    const request = this.http.postJson(url);
     return request.then(jsonRes => new models.ResetPasswordToken(jsonRes, this));
   }
 

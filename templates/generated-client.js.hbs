@@ -38,20 +38,40 @@ class GeneratedApiClient {
     {{/if}}
     {{#if (eq method 'post')}}
     {{#if bodyModel}}
+    {{#if responseModel}}
     const request = this.http.postJson(url, {
       body: {{camelCase bodyModel}}
     });
     {{else}}
+    const request = this.http.post(url, {
+      body: {{camelCase bodyModel}}
+    });
+    {{/if}}
+    {{else}}
+    {{#if responseModel}}
+    const request = this.http.postJson(url);
+    {{else}}
     const request = this.http.post(url);
+    {{/if}}
     {{/if}}
     {{/if}}
     {{#if (eq method 'put')}}
     {{#if bodyModel}}
+    {{#if responseModel}}
     const request = this.http.putJson(url, {
       body: {{camelCase bodyModel}}
     });
     {{else}}
+    const request = this.http.put(url, {
+      body: {{camelCase bodyModel}}
+    });
+    {{/if}}
+    {{else}}
+    {{#if responseModel}}
+    const request = this.http.putJson(url);
+    {{else}}
     const request = this.http.put(url);
+    {{/if}}
     {{/if}}
     {{/if}}
     {{#if responseModel}}
