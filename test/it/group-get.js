@@ -4,7 +4,7 @@ const expect = require('chai').expect;
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
 if (process.env.OKTA_USE_MOCK) {
-  orgUrl = `${orgUrl}/group-get-and-stats`;
+  orgUrl = `${orgUrl}/group-get`;
 }
 
 const client = new okta.Client({
@@ -13,7 +13,7 @@ const client = new okta.Client({
 });
 
 describe('Group API tests', () => {
-  it('should get the group by ID & group stats', async () => {
+  it('should get the group by ID', async () => {
     // 1. Create a new group
     const newGroup = {
       profile: {

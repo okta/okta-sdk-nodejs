@@ -47,7 +47,6 @@ describe('User API Tests', () => {
     // 3. Verify that password was updated
     const updatedUser = await client.getUser(createdUser.id);
     expect(updatedUser.passwordChanged).to.be.gt(createdUser.passwordChanged);
-    // TODO - Authenticate the user with updated password (Authn APIs not supported in SDK yet)
 
     // 4. Delete the user
     await utils.cleanup(client, createdUser);

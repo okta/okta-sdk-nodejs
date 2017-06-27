@@ -19,8 +19,8 @@ describe('User API Tests', () => {
       profile: {
         firstName: 'John',
         lastName: 'Change-Recovery-Question',
-        email: 'john-change-recover-question@example.com',
-        login: 'john-change-recover-question@example.com'
+        email: 'john-change-recovery-question@example.com',
+        login: 'john-change-recovery-question@example.com'
       },
       credentials: {
         password: { value: 'Abcd1234' }
@@ -56,7 +56,6 @@ describe('User API Tests', () => {
     // Need to wait 1 second here as that is the minimum time resolution of the 'passwordChanged' field
     await utils.delay(1000);
     await createdUser.forgotPassword(userCredentials);
-    // TODO - Authenticate the user with updated password (Authn APIs not supported in SDK yet)
 
     // 4. Verify that password was updated
     const updatedUser = await client.getUser(createdUser.id);
