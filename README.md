@@ -251,9 +251,10 @@ As such, you can create a client without passing a configuration option, e.g. `n
 If providing a yaml file, the structure should be the same as the properties that you pass to the client constructor:
 
 ```yaml
-client:
-  orgUrl: 'https://dev-1234.oktapreview.com/'
-  token: 'xYzabc'
+okta:
+  client:
+    orgUrl: 'https://dev-1234.oktapreview.com/'
+    token: 'xYzabc'
 ```
 
 If providing environment variables, the configuration names are flattened and delimited with underscores:
