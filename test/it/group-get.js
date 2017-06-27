@@ -31,13 +31,14 @@ describe('Group API tests', () => {
     const group = await client.getGroup(createdGroup.id);
     utils.validateGroup(group, createdGroup);
 
-    // 3. Get group stats
-    const stats = await createdGroup.getStats();
-    expect(stats.usersCount).to.equal(0);
-    expect(stats.appsCount).to.equal(0);
-    expect(stats.groupPushMappingsCount).to.equal(0);
-
-    // 4. Delete the group
+    // 3. Delete the group
     await client.deleteGroup(createdGroup.id);
+
+    // 4. Verify group was deleted
+    try {
+      await client.getGroup(createdGroup.id);
+    } catch (err) {
+      expect(err.message).to.contain('Okta HTTP 404');
+    }
   });
 });

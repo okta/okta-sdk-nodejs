@@ -37,10 +37,9 @@ describe('User API Tests', () => {
     // 2. Expire the user's password with tempPassword=true
     queryParameters = { tempPassword : 'true' };
     const response = await createdUser.expirePassword(queryParameters);
-    // TODO: The response should return a temporary password. But currently it is not. Debug...
-    expect(response).to.not.be.null;
+    expect(response.tempPassword).to.not.be.null;
 
     // 3. Delete the user
-    await utils.deleteUser(createdUser);
+    await utils.cleanup(client, createdUser);
   });
 });

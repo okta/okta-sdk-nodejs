@@ -1,3 +1,4 @@
+const expect = require('chai').expect;
 const utils = require('../utils');
 const okta = require('../../');
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
@@ -43,5 +44,12 @@ describe('User API Tests', () => {
 
     // 4. Delete the user
     await utils.deleteUser(createdUser);
+
+    // 5. Verify user was deleted
+    try {
+      await client.getUser(createdUser.profile.login);
+    } catch (err) {
+      expect(err.message).to.contain('Okta HTTP 404');
+    }
   });
 });

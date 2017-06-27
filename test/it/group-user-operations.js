@@ -51,7 +51,6 @@ describe('Group-Member API Tests', () => {
     expect(userInGroup).to.equal(false);
 
     // 4. Delete the group and user
-    await createdGroup.delete();
-    await utils.deleteUser(createdUser);
+    await utils.cleanup(client, createdUser, createdGroup);
   });
 });

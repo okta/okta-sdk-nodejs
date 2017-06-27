@@ -47,6 +47,6 @@ describe('User API Tests', () => {
     expect(userPresent).to.equal(true);
 
     // 4. Delete the user
-    await utils.deleteUser(createdUser);
+    await utils.cleanup(client, createdUser);
   });
 });

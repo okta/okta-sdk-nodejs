@@ -70,9 +70,8 @@ describe('Group-Rule API tests', () => {
     const createdRule = await client.createRule(rule);
     await createdRule.activate();
 
-    // Delay is needed as there is some time between activating the rule and triggering it
-    await utils.delay(2000);
-    let userInGroup = await utils.isUserInGroup(createdUser, createdGroup);
+    // We wait for 30 seconds for the rule to activate i.e. userInGroup = true
+    let userInGroup = await utils.waitTillUserInGroup(createdUser, createdGroup, true);
     expect(userInGroup).to.equal(true);
 
     // 3. List group rules
@@ -93,14 +92,12 @@ describe('Group-Rule API tests', () => {
     const updatedRule = await createdRule.update();
     await updatedRule.activate();
 
-    // Triggering the updated rule will remove the user from group
-    await utils.delay(2000);
-    userInGroup = await utils.isUserInGroup(createdUser, createdGroup);
+    // Triggering the updated rule will remove the user from group i.e. userInGroup = false
+    userInGroup = await utils.waitTillUserInGroup(createdUser, createdGroup, false);
     expect(userInGroup).to.equal(false);
 
     // 5. Delete the group, user and group rule
-    await createdGroup.delete();
-    await utils.deleteUser(createdUser);
+    await utils.cleanup(client, createdUser, createdGroup);
     await updatedRule.deactivate();
     await updatedRule.delete();
   });

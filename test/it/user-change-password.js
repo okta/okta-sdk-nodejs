@@ -40,11 +40,16 @@ describe('User API Tests', () => {
       newPassword: { value: '1234Abcd' }
     };
 
-    let response = await createdUser.changePassword(changePasswordCredentials);
-    expect(response.provider.type).to.equal('OKTA');
+    // Need to wait 1 second here as that is the minimum time resolution of the 'passwordChanged' field
+    await utils.delay(1000);
+    await createdUser.changePassword(changePasswordCredentials);
+
+    // 3. Verify that password was updated
+    const updatedUser = await client.getUser(createdUser.id);
+    expect(updatedUser.passwordChanged).to.be.gt(createdUser.passwordChanged);
     // TODO - Authenticate the user with updated password (Authn APIs not supported in SDK yet)
 
-    // 3. Delete the user
-    await utils.deleteUser(createdUser);
+    // 4. Delete the user
+    await utils.cleanup(client, createdUser);
   });
 });

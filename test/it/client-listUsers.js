@@ -20,7 +20,7 @@ describe('client.listUsers()', () => {
   let _user;
 
   before(async () => {
-    const newUser = {
+    let newUser = {
       profile: {
         firstName: 'John',
         lastName: 'List-Users',
@@ -37,39 +37,39 @@ describe('client.listUsers()', () => {
 
     // Add an unmapped property to the user profile
     newUser.profile.nickName = 'johny-list-users';
-    return client.createUser(newUser).then(user => _user = user);
+
+    _user = await client.createUser(newUser);
   });
 
-  after(() => {
-    return _user.deactivate().then(() => _user.delete());
+  after(async () => {
+    await utils.cleanup(client, _user);
   });
 
   it('should return a collection', () => {
     expect(client.listUsers()).to.be.an.instanceof(collection);
   });
 
-  it('should allow me to perform search queries', () => {
+  it('should allow me to perform search queries', async () => {
     let foundUser;
     let foundUserCount = 0;
     // The search indexing is not instant, so give it some time to settle
-    return utils.delay(2000).then(() => {
-      return client.listUsers({
-        search: `profile.nickName eq "${_user.profile.nickName}"`
-      }).each(user => {
-        foundUser = user;
-        foundUserCount++;
-      }).then(() => {
-        expect(foundUser, 'The user should be found').to.exist;
-        expect(foundUser.id, 'The user should be the right one').to.equal(_user.id);
-        expect(foundUserCount, 'Other users should not have been matched').to.equal(1);
-      });
+
+    await utils.delay(2000);
+    let queryParameters = { search: `profile.nickName eq "${_user.profile.nickName}"` };
+    await client.listUsers(queryParameters).each(user => {
+      foundUser = user;
+      foundUserCount++;
     });
+
+    expect(foundUser, 'The user should be found').to.exist;
+    expect(foundUser.id, 'The user should be the right one').to.equal(_user.id);
+    expect(foundUserCount, 'Other users should not have been matched').to.equal(1);
   });
 });
 
 describe('client.listUsers().each()', () => {
-  it('should return User models', () => {
-    return client.listUsers().each(user => {
+  it('should return User models', async () => {
+    await client.listUsers().each(user => {
       userCount++;
       expect(user).to.be.an.instanceof(models.User);
     });
@@ -87,14 +87,13 @@ describe('client.listUsers().each()', () => {
     });
   });
 
-  it('should allow me to abort iteration synchronously', () => {
+  it('should allow me to abort iteration synchronously', async () => {
     let localCount = 0;
-    return client.listUsers().each(() => {
+    await client.listUsers().each(() => {
       localCount++;
       return false;
-    }).then(() => {
-      expect(localCount).to.equal(1);
     });
+    expect(localCount).to.equal(1);
   });
 
   it('should allow me to abort iteration asynchronously, using a promise', () => {

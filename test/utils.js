@@ -46,6 +46,23 @@ async function isUserInGroup(groupUser, group) {
   return userPresent;
 }
 
+async function waitTillUserInGroup(user, group, condition) {
+  let userInGroup = await isUserInGroup(user, group);
+  let timeOut = 0;
+  while (userInGroup !== condition) {
+    userInGroup = await isUserInGroup(user, group);
+    if (userInGroup === condition) {
+      return userInGroup;
+    }
+
+    await delay(1000);
+    timeOut++;
+    if (timeOut === 30) {
+      break;
+    }
+  }
+  return userInGroup;
+}
 
 async function deleteUser(user) {
   await user.deactivate();
@@ -146,6 +163,7 @@ module.exports = {
   authenticateUser: authenticateUser,
   validateGroup: validateGroup,
   isUserInGroup: isUserInGroup,
+  waitTillUserInGroup: waitTillUserInGroup,
   deleteUser: deleteUser,
   isUserPresent: isUserPresent,
   isGroupPresent: isGroupPresent,
