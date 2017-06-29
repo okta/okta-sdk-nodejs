@@ -15,10 +15,12 @@
  *  THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION
  */
 
+/** @ignore */
 var Resource = require('../resource');
 
 /**
  * @class GroupRuleStatus
+ * @extends Resource
  */
 class GroupRuleStatus extends Resource {
   constructor(resourceJson, client) {
