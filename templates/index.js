@@ -150,6 +150,9 @@ js.process = ({spec, operations, models, handlebars}) => {
 
     if (operation.description) {
       lines.push(`   * ${operation.description}`);
+    } else {
+      // TODO: Once documentation is parsed correctly, this line can be omitted.
+      lines.push(`   * Convenience method for ${operation.path}`);
     }
 
     return lines.join('\n');
