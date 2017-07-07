@@ -19,8 +19,8 @@ describe('User API Tests', () => {
       profile: {
         firstName: 'John',
         lastName: 'Change-Recovery-Question',
-        email: 'john-change-recover-qyestion@example.com',
-        login: 'john-change-recover-qyestion@example.com'
+        email: 'john-change-recovery-question@example.com',
+        login: 'john-change-recovery-question@example.com'
       },
       credentials: {
         password: { value: 'Abcd1234' }
@@ -53,12 +53,15 @@ describe('User API Tests', () => {
       recovery_question: { answer: 'forty two' }
     };
 
-    const sendEmail = { sendEmail : 'false' };
-    response = await createdUser.forgotPassword(userCredentials, sendEmail);
-    expect(response.provider.type).to.equal('OKTA');
-    // TODO - Authenticate the user with updated password (Authn APIs not supported in SDK yet)
+    // Need to wait 1 second here as that is the minimum time resolution of the 'passwordChanged' field
+    await utils.delay(1000);
+    await createdUser.forgotPassword(userCredentials);
 
-    // 4. Delete the user
-    await utils.deleteUser(createdUser);
+    // 4. Verify that password was updated
+    const updatedUser = await client.getUser(createdUser.id);
+    expect(updatedUser.passwordChanged).to.be.gt(createdUser.passwordChanged);
+
+    // 5. Delete the user
+    await utils.cleanup(client, createdUser);
   });
 });

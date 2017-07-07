@@ -69,9 +69,8 @@ describe('User Role API Tests', () => {
     groupTargetPresent = await utils.isGroupTargetPresent(createdUser, createdGroup, role);
     expect(groupTargetPresent).to.equal(false);
 
-    // 6. Delete the group and user
-    await createdGroup.delete();
-    await adminGroup.delete();
-    await utils.deleteUser(createdUser);
+    // 6. Delete the groups and user
+    let groupsToDelete = [createdGroup, adminGroup];
+    await utils.cleanup(client, createdUser, groupsToDelete);
   });
 });

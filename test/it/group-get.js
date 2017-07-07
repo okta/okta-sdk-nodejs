@@ -4,7 +4,7 @@ const expect = require('chai').expect;
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
 if (process.env.OKTA_USE_MOCK) {
-  orgUrl = `${orgUrl}/group-get-and-stats`;
+  orgUrl = `${orgUrl}/group-get`;
 }
 
 const client = new okta.Client({
@@ -13,7 +13,7 @@ const client = new okta.Client({
 });
 
 describe('Group API tests', () => {
-  it('should get the group by ID & group stats', async () => {
+  it('should get the group by ID', async () => {
     // 1. Create a new group
     const newGroup = {
       profile: {
@@ -31,13 +31,14 @@ describe('Group API tests', () => {
     const group = await client.getGroup(createdGroup.id);
     utils.validateGroup(group, createdGroup);
 
-    // 3. Get group stats
-    const stats = await createdGroup.getStats();
-    expect(stats.usersCount).to.equal(0);
-    expect(stats.appsCount).to.equal(0);
-    expect(stats.groupPushMappingsCount).to.equal(0);
-
-    // 4. Delete the group
+    // 3. Delete the group
     await client.deleteGroup(createdGroup.id);
+
+    // 4. Verify group was deleted
+    try {
+      await client.getGroup(createdGroup.id);
+    } catch (err) {
+      expect(err.message).to.contain('Okta HTTP 404');
+    }
   });
 });

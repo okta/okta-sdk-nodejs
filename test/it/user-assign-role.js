@@ -50,6 +50,6 @@ describe('User Role API Tests', () => {
     expect(hasRole).to.equal(false);
 
     // 6. Delete the user
-    await utils.deleteUser(createdUser);
+    await utils.cleanup(client, createdUser);
   });
 });

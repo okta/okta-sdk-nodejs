@@ -45,6 +45,6 @@ describe('User API Tests', () => {
     expect(updatedUser.profile.nickName).to.equal('Batman');
 
     // 3. Delete the user
-    await utils.deleteUser(createdUser);
+    await utils.cleanup(client, createdUser);
   });
 });
