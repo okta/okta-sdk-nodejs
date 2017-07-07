@@ -4,10 +4,6 @@ Node.js API Client for the [Okta Platform API].
 
 Requires Node.js version 4.8.3 or higher.
 
-## :warning: :construction: Alpha Preview :construction: :warning:
-
-This library is under development and is currently a 0.x version series.  Breaking changes will be introduced as minor version bumps in the 0.x range.  Some of the API is not yet expressed in this library, please use your IDE hints or view [src/api-client.js](src/api-client.js) to browse available methods.  We will eventually publish the JsDoc documentation on https://developer.okta.com.
-
 Need help?  Contact [developers@okta.com](mailto:developers@okta.com) or use the [Okta Developer Forum].
 
 ## Installation
@@ -34,17 +30,6 @@ It is also possible to provide configuration through environment variables or YA
 ## Examples
 
 This libray is a wrapper for the [Okta Platform API], which should be referred to as the source-of-truth for what is and isn't possible with the API.  In the following sections we show you how to use your client to perform some common operations with the [Okta Platform API].
-
-* [Create a User](#create-a-user)
-* [Get a User](#get-a-user)
-* [Update a User](#update-a-user)
-* [Delete a User](#delete-a-user)
-* [List All Org Users](#list-all-org-users)
-* [Search for Users](#search-for-users)
-* [Create a Group](#create-a-group)
-* [Assign a User to a Group](#assign-a-user-to-a-group)
-* [Collections](#collections)
-  * [each](#each)
 
 #### Create a User
 

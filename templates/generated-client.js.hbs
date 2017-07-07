@@ -2,6 +2,7 @@
  *  THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION
  */
 
+/** @ignore */
 const qs = require('querystring');
 
 const Collection = require('./collection');
@@ -17,7 +18,7 @@ class GeneratedApiClient {
 
 {{#each operations}}
   /**
-   {{jsdocBuilder this}}
+   {{{jsdocBuilder this}}}
    */
   {{operationId}}({{operationArgumentBuilder this}}) {
     let url = `${this.baseUrl}{{replacePathParams path}}`;

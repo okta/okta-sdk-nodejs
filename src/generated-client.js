@@ -15,6 +15,7 @@
  *  THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION
  */
 
+/** @ignore */
 const qs = require('querystring');
 
 const Collection = require('./collection');
@@ -52,7 +53,7 @@ class GeneratedApiClient {
    *
    * @param {Group} group
    * @description
-   * Adds a new group with &#x60;OKTA_GROUP&#x60; type to your organization.
+   * Adds a new group with `OKTA_GROUP` type to your organization.
    */
   createGroup(group) {
     let url = `${this.baseUrl}/api/v1/groups`;
@@ -101,6 +102,7 @@ class GeneratedApiClient {
    * @param {Object} queryParams Map of query parameters to add to this request
    * @param {String} [queryParams.removeUsers]
    * @description
+   * Convenience method for /api/v1/groups/rules/{ruleId}
    */
   deleteRule(ruleId, queryParameters) {
     let url = `${this.baseUrl}/api/v1/groups/rules/${ruleId}`;
@@ -116,6 +118,7 @@ class GeneratedApiClient {
    *
    * @param ruleId {String}
    * @description
+   * Convenience method for /api/v1/groups/rules/{ruleId}
    */
   getRule(ruleId) {
     let url = `${this.baseUrl}/api/v1/groups/rules/${ruleId}`;
@@ -129,6 +132,7 @@ class GeneratedApiClient {
    * @param ruleId {String}
    * @param {GroupRule} groupRule
    * @description
+   * Convenience method for /api/v1/groups/rules/{ruleId}
    */
   updateRule(ruleId, groupRule) {
     let url = `${this.baseUrl}/api/v1/groups/rules/${ruleId}`;
@@ -143,6 +147,7 @@ class GeneratedApiClient {
    *
    * @param ruleId {String}
    * @description
+   * Convenience method for /api/v1/groups/rules/{ruleId}/lifecycle/activate
    */
   activateRule(ruleId) {
     let url = `${this.baseUrl}/api/v1/groups/rules/${ruleId}/lifecycle/activate`;
@@ -155,6 +160,7 @@ class GeneratedApiClient {
    *
    * @param ruleId {String}
    * @description
+   * Convenience method for /api/v1/groups/rules/{ruleId}/lifecycle/deactivate
    */
   deactivateRule(ruleId) {
     let url = `${this.baseUrl}/api/v1/groups/rules/${ruleId}/lifecycle/deactivate`;
@@ -167,6 +173,7 @@ class GeneratedApiClient {
    *
    * @param groupId {String}
    * @description
+   * Convenience method for /api/v1/groups/{groupId}
    */
   deleteGroup(groupId) {
     let url = `${this.baseUrl}/api/v1/groups/${groupId}`;
@@ -181,6 +188,7 @@ class GeneratedApiClient {
    * @param {Object} queryParams Map of query parameters to add to this request
    * @param {String} [queryParams.expand]
    * @description
+   * Convenience method for /api/v1/groups/{groupId}
    */
   getGroup(groupId, queryParameters) {
     let url = `${this.baseUrl}/api/v1/groups/${groupId}`;
@@ -197,6 +205,7 @@ class GeneratedApiClient {
    * @param groupId {String}
    * @param {Group} group
    * @description
+   * Convenience method for /api/v1/groups/{groupId}
    */
   updateGroup(groupId, group) {
     let url = `${this.baseUrl}/api/v1/groups/${groupId}`;
@@ -211,6 +220,7 @@ class GeneratedApiClient {
    *
    * @param groupId {String}
    * @description
+   * Convenience method for /api/v1/groups/{groupId}/stats
    */
   getGroupStats(groupId) {
     let url = `${this.baseUrl}/api/v1/groups/${groupId}/stats`;
@@ -226,6 +236,7 @@ class GeneratedApiClient {
    * @param {String} [queryParams.after]
    * @param {String} [queryParams.limit]
    * @description
+   * Convenience method for /api/v1/groups/{groupId}/users
    */
   listGroupUsers(groupId, queryParameters) {
     let url = `${this.baseUrl}/api/v1/groups/${groupId}/users`;
@@ -241,6 +252,7 @@ class GeneratedApiClient {
    * @param groupId {String}
    * @param userId {String}
    * @description
+   * Convenience method for /api/v1/groups/{groupId}/users/{userId}
    */
   removeGroupUser(groupId, userId) {
     let url = `${this.baseUrl}/api/v1/groups/${groupId}/users/${userId}`;
@@ -254,6 +266,7 @@ class GeneratedApiClient {
    * @param groupId {String}
    * @param userId {String}
    * @description
+   * Convenience method for /api/v1/groups/{groupId}/users/{userId}
    */
   addUserToGroup(groupId, userId) {
     let url = `${this.baseUrl}/api/v1/groups/${groupId}/users/${userId}`;
@@ -309,6 +322,7 @@ class GeneratedApiClient {
    *
    * @param userId {String}
    * @description
+   * Convenience method for /api/v1/users/{userId}
    */
   deactivateOrDeleteUser(userId) {
     let url = `${this.baseUrl}/api/v1/users/${userId}`;
@@ -321,6 +335,7 @@ class GeneratedApiClient {
    *
    * @param userId {String}
    * @description
+   * Convenience method for /api/v1/users/{userId}
    */
   getUser(userId) {
     let url = `${this.baseUrl}/api/v1/users/${userId}`;
@@ -334,6 +349,7 @@ class GeneratedApiClient {
    * @param userId {String}
    * @param {User} user
    * @description
+   * Convenience method for /api/v1/users/{userId}
    */
   updateUser(userId, user) {
     let url = `${this.baseUrl}/api/v1/users/${userId}`;
@@ -350,6 +366,7 @@ class GeneratedApiClient {
    * @param {Object} queryParams Map of query parameters to add to this request
    * @param {String} [queryParams.showAll]
    * @description
+   * Convenience method for /api/v1/users/{userId}/appLinks
    */
   listAppLinks(userId, queryParameters) {
     let url = `${this.baseUrl}/api/v1/users/${userId}/appLinks`;
@@ -365,6 +382,7 @@ class GeneratedApiClient {
    * @param userId {String}
    * @param {ChangePasswordRequest} changePasswordRequest
    * @description
+   * Convenience method for /api/v1/users/{userId}/credentials/change_password
    */
   changePassword(userId, changePasswordRequest) {
     let url = `${this.baseUrl}/api/v1/users/${userId}/credentials/change_password`;
@@ -380,6 +398,7 @@ class GeneratedApiClient {
    * @param userId {String}
    * @param {UserCredentials} userCredentials
    * @description
+   * Convenience method for /api/v1/users/{userId}/credentials/change_recovery_question
    */
   changeRecoveryQuestion(userId, userCredentials) {
     let url = `${this.baseUrl}/api/v1/users/${userId}/credentials/change_recovery_question`;
@@ -397,6 +416,7 @@ class GeneratedApiClient {
    * @param {Object} queryParams Map of query parameters to add to this request
    * @param {String} [queryParams.sendEmail]
    * @description
+   * Convenience method for /api/v1/users/{userId}/credentials/forgot_password
    */
   forgotPassword(userId, userCredentials, queryParameters) {
     let url = `${this.baseUrl}/api/v1/users/${userId}/credentials/forgot_password`;
@@ -417,6 +437,7 @@ class GeneratedApiClient {
    * @param {String} [queryParams.after]
    * @param {String} [queryParams.limit]
    * @description
+   * Convenience method for /api/v1/users/{userId}/groups
    */
   listUserGroups(userId, queryParameters) {
     let url = `${this.baseUrl}/api/v1/users/${userId}/groups`;
@@ -433,6 +454,7 @@ class GeneratedApiClient {
    * @param {Object} queryParams Map of query parameters to add to this request
    * @param {String} [queryParams.sendEmail]
    * @description
+   * Convenience method for /api/v1/users/{userId}/lifecycle/activate
    */
   activateUser(userId, queryParameters) {
     let url = `${this.baseUrl}/api/v1/users/${userId}/lifecycle/activate`;
@@ -448,6 +470,7 @@ class GeneratedApiClient {
    *
    * @param userId {String}
    * @description
+   * Convenience method for /api/v1/users/{userId}/lifecycle/deactivate
    */
   deactivateUser(userId) {
     let url = `${this.baseUrl}/api/v1/users/${userId}/lifecycle/deactivate`;
@@ -462,6 +485,7 @@ class GeneratedApiClient {
    * @param {Object} queryParams Map of query parameters to add to this request
    * @param {String} [queryParams.tempPassword]
    * @description
+   * Convenience method for /api/v1/users/{userId}/lifecycle/expire_password
    */
   expirePassword(userId, queryParameters) {
     let url = `${this.baseUrl}/api/v1/users/${userId}/lifecycle/expire_password`;
@@ -477,6 +501,7 @@ class GeneratedApiClient {
    *
    * @param userId {String}
    * @description
+   * Convenience method for /api/v1/users/{userId}/lifecycle/reset_factors
    */
   resetAllFactors(userId) {
     let url = `${this.baseUrl}/api/v1/users/${userId}/lifecycle/reset_factors`;
@@ -492,6 +517,7 @@ class GeneratedApiClient {
    * @param {String} [queryParams.provider]
    * @param {String} [queryParams.sendEmail]
    * @description
+   * Convenience method for /api/v1/users/{userId}/lifecycle/reset_password
    */
   resetPassword(userId, queryParameters) {
     let url = `${this.baseUrl}/api/v1/users/${userId}/lifecycle/reset_password`;
@@ -507,6 +533,7 @@ class GeneratedApiClient {
    *
    * @param userId {String}
    * @description
+   * Convenience method for /api/v1/users/{userId}/lifecycle/suspend
    */
   suspendUser(userId) {
     let url = `${this.baseUrl}/api/v1/users/${userId}/lifecycle/suspend`;
@@ -519,6 +546,7 @@ class GeneratedApiClient {
    *
    * @param userId {String}
    * @description
+   * Convenience method for /api/v1/users/{userId}/lifecycle/unlock
    */
   unlockUser(userId) {
     let url = `${this.baseUrl}/api/v1/users/${userId}/lifecycle/unlock`;
@@ -531,6 +559,7 @@ class GeneratedApiClient {
    *
    * @param userId {String}
    * @description
+   * Convenience method for /api/v1/users/{userId}/lifecycle/unsuspend
    */
   unsuspendUser(userId) {
     let url = `${this.baseUrl}/api/v1/users/${userId}/lifecycle/unsuspend`;
@@ -545,6 +574,7 @@ class GeneratedApiClient {
    * @param {Object} queryParams Map of query parameters to add to this request
    * @param {String} [queryParams.expand]
    * @description
+   * Convenience method for /api/v1/users/{userId}/roles
    */
   listAssignedRoles(userId, queryParameters) {
     let url = `${this.baseUrl}/api/v1/users/${userId}/roles`;
@@ -560,6 +590,7 @@ class GeneratedApiClient {
    * @param userId {String}
    * @param {Role} role
    * @description
+   * Convenience method for /api/v1/users/{userId}/roles
    */
   addRoleToUser(userId, role) {
     let url = `${this.baseUrl}/api/v1/users/${userId}/roles`;
@@ -575,6 +606,7 @@ class GeneratedApiClient {
    * @param userId {String}
    * @param roleId {String}
    * @description
+   * Convenience method for /api/v1/users/{userId}/roles/{roleId}
    */
   removeRoleFromUser(userId, roleId) {
     let url = `${this.baseUrl}/api/v1/users/${userId}/roles/${roleId}`;
@@ -591,6 +623,7 @@ class GeneratedApiClient {
    * @param {String} [queryParams.after]
    * @param {String} [queryParams.limit]
    * @description
+   * Convenience method for /api/v1/users/{userId}/roles/{roleId}/targets/groups
    */
   listGroupTargetsForRole(userId, roleId, queryParameters) {
     let url = `${this.baseUrl}/api/v1/users/${userId}/roles/${roleId}/targets/groups`;
@@ -607,6 +640,7 @@ class GeneratedApiClient {
    * @param roleId {String}
    * @param groupId {String}
    * @description
+   * Convenience method for /api/v1/users/{userId}/roles/{roleId}/targets/groups/{groupId}
    */
   removeGroupTargetFromRole(userId, roleId, groupId) {
     let url = `${this.baseUrl}/api/v1/users/${userId}/roles/${roleId}/targets/groups/${groupId}`;
@@ -621,6 +655,7 @@ class GeneratedApiClient {
    * @param roleId {String}
    * @param groupId {String}
    * @description
+   * Convenience method for /api/v1/users/{userId}/roles/{roleId}/targets/groups/{groupId}
    */
   addGroupTargetToRole(userId, roleId, groupId) {
     let url = `${this.baseUrl}/api/v1/users/${userId}/roles/${roleId}/targets/groups/${groupId}`;

@@ -12,12 +12,12 @@
 
 
 const os = require('os');
-const package = require('../package.json');
+const packageJson = require('../package.json');
 
 const ConfigLoader = require('./config-loader');
 const GeneratedApiClient = require('./generated-client');
 const Http = require('./http');
-const DEFAULT_USER_AGENT = `${package.name}/${package.version} node/${process.versions.node} ${os.platform()}/${os.release()}`;
+const DEFAULT_USER_AGENT = `${packageJson.name}/${packageJson.version} node/${process.versions.node} ${os.platform()}/${os.release()}`;
 const repoUrl = 'https://github.com/okta/okta-sdk-nodejs';
 
 /**

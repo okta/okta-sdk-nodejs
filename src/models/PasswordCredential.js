@@ -15,10 +15,12 @@
  *  THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION
  */
 
+/** @ignore */
 var Resource = require('../resource');
 
 /**
  * @class PasswordCredential
+ * @extends Resource
  */
 class PasswordCredential extends Resource {
   constructor(resourceJson, client) {
