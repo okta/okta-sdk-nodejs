@@ -9,10 +9,10 @@ function formatDocs {
     # I bet there is a cleaner solution for this
     cd jsdocs/
     mkdir jsdocs/
-    mkdir -p ${CURRENT_VERSION}/jsdocs/
+    mkdir -p jsdocs/${CURRENT_VERSION}/
     cd \@okta/okta-sdk-nodejs/${CURRENT_VERSION}/
     cp -r . ../../../jsdocs/
-    cp -r . ../../../${CURRENT_VERSION}/jsdocs/
+    cp -r . ../../../jsdocs/${CURRENT_VERSION}
     cd ../../../
     rm -rf \@okta
     cd ..
