@@ -6,9 +6,9 @@ Requires Node.js version 4.8.3 or higher.
 
 ## :warning: :construction: Alpha Preview :construction: :warning:
 
-This library is under development and is currently a 0.x version series.  Breaking changes will be introduced as minor version bumps in the 0.x range.  Some of the API is not yet expressed in this library, please use your IDE hints or view [src/api-client.js](src/api-client.js) to browse available methods.  We will eventually publish the JsDoc documentation on https://developer.okta.com.
+This library is under development and is currently a 0.x version series.  Breaking changes will be introduced as minor version bumps in the 0.x range.  Some of the API is not yet expressed in this library, please refer to the JsDoc: [Okta NodeJS Management SDK Documentation](https://developer.okta.com/okta-sdk-nodejs/jsdocs/).
 
-Need help?  Contact [developers@okta.com](mailto:developers@okta.com) or use the [Okta Developer Forum].
+Need help? Contact [developers@okta.com](mailto:developers@okta.com) or use the [Okta Developer Forum].
 
 ## Installation
 
