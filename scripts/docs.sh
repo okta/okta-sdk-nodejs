@@ -41,11 +41,17 @@ rm -rf jsdoc
 git clone $REPO jsdoc
 cd jsdoc
 git checkout $TARGET_BRANCH
+
 cd ..
 
 # Remove existing contents
 echo "==== Removing existing contents ===="
 rm -rf jsdoc/* || exit 0
+rm jsdoc/.gitignore
+rm jsdoc/.travis.yml
+
+mkdir -p jsdoc/jsdocs/
+mkdir -p jsdoc/jsdocs/${CURRENT_VERSION}/
 ls jsdoc/
 
 # Run compile script
@@ -54,19 +60,22 @@ buildDocs
 # Format docs
 formatDocs
 
+# Change into docs output folder
+cd jsdoc/
 
-# If there are no changes to the compiled out (e.g. this is a README update) then just bail.
-if git diff --quiet; then
+# If there are no changes -- skip.
+if ! git status --porcelain; then
     echo "No changes to the output on this push; exiting."
     exit 0
 fi
 
 # Commit the "changes", i.e. the new version.
 # The delta will show diffs between new and old versions.
-cd jsdoc/
 BRANCH=`git branch | grep \* | cut -d ' ' -f2`
 echo "Current Branch: ${BRANCH}"
+
 git add -A .
+
 git commit -m ":arrow_up: Release jsdocs for version: ${CURRENT_VERSION}"
 
 # Now that we're all set up, we can push.
