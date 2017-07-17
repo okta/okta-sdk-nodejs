@@ -23,10 +23,19 @@ function buildDocs {
     npm run docs
 }
 
+function createGhPages {
+    git checkout --orphan $TARGET_BRANCH
+    git rm --cached -r .
+    git clean -df
+    touch README.md
+    git add README.md
+    git commit -m "Initial Commit"
+    git push $SSH_REPO $TARGET_BRANCH
+}
+
 # Pull requests and commits to other branches shouldn't try to deploy, just build to verify
 if [ "$TRAVIS_PULL_REQUEST" != "false" -o "$TRAVIS_BRANCH" != "$SOURCE_BRANCH" ]; then
-    echo "Skipping deploy; just doing a build."
-    buildDocs
+    echo "Skipping deploy due to Pull Request -- Exiting."
     exit 0
 fi
 
@@ -40,19 +49,10 @@ echo "Stored: REPO=${REPO}"
 rm -rf jsdoc
 git clone $REPO jsdoc
 cd jsdoc
-git checkout $TARGET_BRANCH
-
+git checkout $TARGET_BRANCH || createGhPages
 cd ..
 
-# Remove existing contents
-echo "==== Removing existing contents ===="
-rm -rf jsdoc/* || exit 0
-rm jsdoc/.gitignore
-rm jsdoc/.travis.yml
-
-mkdir -p jsdoc/jsdocs/
 mkdir -p jsdoc/jsdocs/${CURRENT_VERSION}/
-ls jsdoc/
 
 # Run compile script
 buildDocs
@@ -61,11 +61,11 @@ buildDocs
 formatDocs
 
 # Change into docs output folder
-cd jsdoc/
+cd jsdoc/ 
 
 # If there are no changes -- skip.
 if ! git status --porcelain; then
-    echo "No changes to the output on this push; exiting."
+    echo "No changes to the output on this push -- exiting."
     exit 0
 fi
 
@@ -74,7 +74,7 @@ fi
 BRANCH=`git branch | grep \* | cut -d ' ' -f2`
 echo "Current Branch: ${BRANCH}"
 
-git add -A .
+git add -A ./jsdocs/
 
 git commit -m ":arrow_up: Release jsdocs for version: ${CURRENT_VERSION}"
 
