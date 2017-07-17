@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>Okta API wrapper for Node.js Index</title>
+
+	<!--[if lt IE 9]>
+	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+	<link type="text/css" rel="stylesheet" href="styles/sunlight.default.css">
+
+	<link type="text/css" rel="stylesheet" href="styles/site.paper.css">
+
+</head>
+
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top ">
+<div class="container">
+	<div class="navbar-header">
+		<a class="navbar-brand" href="index.html">Okta API wrapper for Node.js</a>
+		<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#topNavigation">
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+        </button>
+	</div>
+	<div class="navbar-collapse collapse" id="topNavigation">
+		<ul class="nav navbar-nav">
+			
+			<li class="dropdown">
+				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
+				<ul class="dropdown-menu ">
+					<li><a href="AppLink.html">AppLink</a></li><li><a href="AuthenticationProvider.html">AuthenticationProvider</a></li><li><a href="AuthenticationProviderType.html">AuthenticationProviderType</a></li><li><a href="ChangePasswordRequest.html">ChangePasswordRequest</a></li><li><a href="Client.html">Client</a></li><li><a href="Collection.html">Collection</a></li><li><a href="ForgotPasswordResponse.html">ForgotPasswordResponse</a></li><li><a href="GeneratedApiClient.html">GeneratedApiClient</a></li><li><a href="Group.html">Group</a></li><li><a href="GroupProfile.html">GroupProfile</a></li><li><a href="GroupRule.html">GroupRule</a></li><li><a href="GroupRuleAction.html">GroupRuleAction</a></li><li><a href="GroupRuleConditions.html">GroupRuleConditions</a></li><li><a href="GroupRuleExpression.html">GroupRuleExpression</a></li><li><a href="GroupRuleGroupAssignment.html">GroupRuleGroupAssignment</a></li><li><a href="GroupRuleGroupCondition.html">GroupRuleGroupCondition</a></li><li><a href="GroupRulePeopleCondition.html">GroupRulePeopleCondition</a></li><li><a href="GroupRuleStatus.html">GroupRuleStatus</a></li><li><a href="GroupRuleUserCondition.html">GroupRuleUserCondition</a></li><li><a href="GroupStats.html">GroupStats</a></li><li><a href="Http.html">Http</a></li><li><a href="PasswordCredential.html">PasswordCredential</a></li><li><a href="RecoveryQuestionCredential.html">RecoveryQuestionCredential</a></li><li><a href="ResetPasswordToken.html">ResetPasswordToken</a></li><li><a href="Resource.html">Resource</a></li><li><a href="Role.html">Role</a></li><li><a href="RoleStatus.html">RoleStatus</a></li><li><a href="TempPassword.html">TempPassword</a></li><li><a href="User.html">User</a></li><li><a href="UserActivationToken.html">UserActivationToken</a></li><li><a href="UserCredentials.html">UserCredentials</a></li><li><a href="UserProfile.html">UserProfile</a></li><li><a href="UserStatus.html">UserStatus</a></li>
+				</ul>
+			</li>
+			
+			<li class="dropdown">
+				<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Global<b class="caret"></b></a>
+				<ul class="dropdown-menu ">
+					<li><a href="global.html#_">_</a></li><li><a href="global.html#fetch">fetch</a></li><li><a href="global.html#HttpError">HttpError</a></li><li><a href="global.html#OktaApiError">OktaApiError</a></li><li><a href="global.html#os">os</a></li><li><a href="global.html#parseLinkHeader">parseLinkHeader</a></li><li><a href="global.html#util">util</a></li>
+				</ul>
+			</li>
+			
+		</ul>
+        
+            <div class="col-sm-3 col-md-3">
+                <form class="navbar-form" role="search">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search" name="q" id="search-input">
+                        <div class="input-group-btn">
+                            <button class="btn btn-default" id="search-submit"><i class="glyphicon glyphicon-search"></i></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        
+	</div>
+
+</div>
+</div>
+
+
+<div class="container" id="toc-content">
+<div class="row">
+
+	
+	<div class="col-md-8">
+	
+		<div id="main">
+			
+
+	
+	
+
+
+
+    <h3>@okta/okta-sdk-nodejs 0.1.0</h3>
+
+
+
+
+
+
+
+
+
+	
+	
+
+
+
+
+
+    <section class="readme-section">
+        <article><h1>okta-sdk-nodejs</h1><p>Node.js API Client for the <a href="https://developer.okta.com/docs/api/getting_started/api_test_client.html">Okta Platform API</a>.</p>
+<p>Requires Node.js version 4.8.3 or higher.</p>
+<p>Need help?  Contact <a href="mailto:developers@okta.com">developers@okta.com</a> or use the <a href="https://devforum.okta.com/">Okta Developer Forum</a>.</p>
+<h2>Installation</h2><pre class="prettyprint source lang-sh"><code>npm install @okta/okta-sdk-nodejs</code></pre><h2>Usage</h2><p>All usage of this SDK begins with the creation of a client, the client handles the authentication and communication with the Okta API.  To create a client, you need to provide it the URL of your Okta Org, and an API Token that you have provisioned for yourself (this can be done by visiting Admin -&gt; Security -&gt; API -&gt; Tokens in your Okta Developer Dashboard):</p>
+<pre class="prettyprint source lang-javascript"><code>const okta = require('@okta/okta-sdk-nodejs');
+
+const client = new okta.Client({
+  orgUrl: 'https://dev-1234.oktapreview.com/'
+  token: 'xYzabc'    // Obtained from Developer Dashboard
+});</code></pre><p>It is also possible to provide configuration through environment variables or YAML files.  Please see <a href="#configuration">Configuration</a> for examples.</p>
+<h2>Examples</h2><p>This libray is a wrapper for the <a href="https://developer.okta.com/docs/api/getting_started/api_test_client.html">Okta Platform API</a>, which should be referred to as the source-of-truth for what is and isn't possible with the API.  In the following sections we show you how to use your client to perform some common operations with the <a href="https://developer.okta.com/docs/api/getting_started/api_test_client.html">Okta Platform API</a>.</p>
+<h4>Create a User</h4><p>The <a href="https://developer.okta.com/docs/api/resources/users.html#create-user">Users: Create User</a> API can be used to create users.  The most basic type of user is one that has an email address and a password to login with, and can be created with the <code>client.createUser()</code> method:</p>
+<pre class="prettyprint source lang-javascript"><code>const newUser = {
+  profile: {
+    firstName: 'Foo',
+    lastName: 'Bar',
+    email: 'foo@example.com',
+    login: 'foo@example.com',
+  },
+  credentials: {
+    password : {
+      value: 'PasswordAbc123'
+    }
+  }
+};
+
+client.createUser(newUser)
+.then(user => {
+  console.log('Created user', user);
+});</code></pre><h4>Get a User</h4><p>The <a href="https://developer.okta.com/docs/api/resources/users.html#get-user">Users: Get User</a> API can be used to fetch a user by id or login (as defined on their <code>profile.login</code> property), and is wrapped by <code>client.getUser(:id|:login)</code>:</p>
+<pre class="prettyprint source lang-javascript"><code>client.getUser('ausmvdt5xg8wRVI1d0g3').then(user => {
+  console.log(user);
+});
+
+client.getUser('foo@bar.com').then(user => {
+  console.log(user);
+});</code></pre><h4>Update a User</h4><p>Once you have a user instance, you can modify it and then call the <code>update()</code> method to persist those changes to the API.  This uses the <a href="https://developer.okta.com/docs/api/resources/users.html#update-user">Users: Update User</a> API:</p>
+<pre class="prettyprint source lang-javascript"><code>user.profile.nickName = 'rob';
+user.update().then(() => console.log('User nickname change has been saved'));</code></pre><h4>Delete a User</h4><p>Before deleting an Okta user, they must first be deactivated.  Both operations are done with the <a href="https://developer.okta.com/docs/api/resources/users.html#lifecycle-operations">Users: Lifecycle Operations</a> API.  We can chain the <code>deactivate()</code> and <code>delete</code> operations on the user instance to achieve both calls:</p>
+<pre class="prettyprint source lang-javascript"><code>user.deactivate()
+.then(() => console.log('User has been deactivated'))
+.then(() => user.delete())
+.then(() => console.log('User has been deleted'));</code></pre><h4>List All Org Users</h4><p>The client can be used to fetch collections of resources, in this example we'll use the <a href="https://developer.okta.com/docs/api/resources/users.html#list-users">Users: List Users</a> API.  When fetching collections, you can use the <code>each()</code> method to iterate through the collection.  For more information see <a href="#collections">Collections</a>.</p>
+<pre class="prettyprint source lang-javascript"><code>const orgUsersCollection = client.listUsers();
+
+orgUsersCollection.each(user => {
+  console.log(user);
+})
+.then(() => console.log('All users have been listed'));</code></pre><p>For more information about this API see <a href="https://developer.okta.com/docs/api/resources/users.html#get-user">Users: Get User</a>.</p>
+<h4>Search for Users</h4><p>The <a href="https://developer.okta.com/docs/api/resources/users.html#list-users">Users: List Users</a> API provides three ways to search for users, &quot;q&quot;, &quot;filter&quot;, or &quot;search&quot;, and all of these approaches can be achieved by passing them as query parameters to the <code>client.listUser()</code> method.  The library will URL encode the values for you.</p>
+<pre class="prettyprint source lang-javascript"><code>client.listUsers({
+  q: 'Robert'
+}).each(user => {
+  console.log('User matches query: ', user);
+});
+
+client.listUsers({
+  search: 'profile.nickName eq &quot;abc 1234&quot;'
+}).each(user => {
+  console.log('User matches search:', user);
+});
+
+client.listUsers({
+  filter: 'lastUpdated gt &quot;2017-06-05T23:00:00.000Z&quot;'
+}).each(user => {
+  console.log('User matches filter:', user);
+});</code></pre><h4>Create a Group</h4><p>The <a href="https://developer.okta.com/docs/api/resources/groups.html#add-group">Groups: Add Group</a> API allows you to create Groups, and this is wrapped by <code>client.createGroup(:newGroup)</code>:</p>
+<pre class="prettyprint source lang-javascript"><code>const newGroup = {
+  profile: {
+    name: 'Admin Users Group'
+  }
+};
+
+client.createGroup(newGroup)
+.then(group => {
+  console.log('Created group', group);
+});</code></pre><h4>Assign a User to a Group</h4><p>With a user and group instance, you can use the <code>addToGroup(:groupId)</code> method of the user to add the user to the known group:</p>
+<pre class="prettyprint source lang-javascript"><code>user.addToGroup(group.id).then(() => console.log('User has been added to group'));</code></pre><h2>Collections</h2><p>When the client is used to fetch collections of resources, a collection instance is returned.  The collection encapsulates the work of paginating the API to fetch all resources in the collection (see <a href="https://developer.okta.com/docs/api/getting_started/design_principles.html#pagination">Pagination</a>).  The collection provides the <code>each()</code> method for iterating over the collection, as described below.</p>
+<h3><code>each()</code></h3><p>Allows you to visit every item in the collection, while optionally doing work at each item.  All calls to <code>each()</code> will return a promise that is resolved when all items have been visited or rejected if you return a rejected promise from your iterator.  Iteration can be stopped by rejecting a returned promise, or by returning <code>false</code> (will not cause a promise rejection).  The following examples show you the various use-cases.</p>
+<h4>Serial or Parallel Synchronous Work</h4><p>If no value is returned, each() will continue to the next item:</p>
+<pre class="prettyprint source lang-javascript"><code>client.listUsers().each(user => {
+  console.log(user);
+  logUserToRemoteSystem(user);
+}).then(() => {
+  console.log('All users have been vistied');
+});</code></pre><h4>Serial Asynchronous Work</h4><p>Returning a promise will pause the iterator until the promise is resolved:</p>
+<pre class="prettyprint source lang-javascript"><code>client.listUsers().each(user => {
+  return new Promise((resolve, reject) => {
+    // do work, then resolve or reject the promise
+  })
+});</code></pre><h4>Ending Iteration</h4><p>Returning false will end iteration:</p>
+<pre class="prettyprint source lang-javascript"><code>client.listUsers().each(user => {
+  console.log(user);
+  return false;
+}).then(() => {
+  console.log('Only one user was visited');
+});</code></pre><p>Returning false in a promise will also end iteration:</p>
+<pre class="prettyprint source lang-javascript"><code>client.listUsers().each((user) => {
+  console.log(user);
+  return Promise.resolve(false);
+}).then(() => {
+  console.log('Only one user was visited');
+});</code></pre><p>Rejecting a promise will end iteration with an error:</p>
+<pre class="prettyprint source lang-javascript"><code>return client.listUsers().each((user) => {
+  console.log(user);
+  return Promise.reject('foo error');
+}).catch((err)=>{
+  console.log(err); // 'foo error'
+});</code></pre><h2>Configuration</h2><p>There are several ways to provide configuration to the client constructor.  When creating a new client, the following locations are searched in order, in a last-one-wins fashion:</p>
+<ol>
+<li>An <code>okta.yaml</code> file in  <code>~/.okta</code>.</li>
+<li>An <code>okta.yaml</code> file in the current working directory of the node process.</li>
+<li>Environment variables</li>
+<li>Properties passed to the client constructor</li>
+</ol>
+<p>As such, you can create a client without passing a configuration option, e.g. <code>new okta.Client()</code>, so long as you have provided the configuration in one of the other locations.</p>
+<p>If providing a yaml file, the structure should be the same as the properties that you pass to the client constructor:</p>
+<pre class="prettyprint source lang-yaml"><code>okta:
+  client:
+    orgUrl: 'https://dev-1234.oktapreview.com/'
+    token: 'xYzabc'</code></pre><p>If providing environment variables, the configuration names are flattened and delimited with underscores:</p>
+<pre class="prettyprint source lang-sh"><code>OKTA_CLIENT_ORGURL=https://dev-1234.oktapreview.com/
+OKTA_CLIENT_TOKEN=xYzabc</code></pre><h3>Contributing</h3><p>See <a href="CONTRIBUTING.md">CONTRIBUTING.md</a> if you would like to propose changes to this library.</p></article>
+    </section>
+
+
+
+
+
+
+
+		</div>
+	</div>
+
+	<div class="clearfix"></div>
+
+	
+		<div class="col-md-3">
+			<div id="toc" class="col-md-3 hidden-xs hidden-sm hidden-md"></div>
+		</div>
+	
+
+</div>
+</div>
+
+
+    <div class="modal fade" id="searchResults">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Search results</h4>
+          </div>
+          <div class="modal-body"></div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div>
+
+
+<footer>
+
+
+<span class="jsdoc-message">
+	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.2</a>
+	
+	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
+</span>
+</footer>
+
+<script src="scripts/docstrap.lib.js"></script>
+<script src="scripts/toc.js"></script>
+
+    <script type="text/javascript" src="scripts/fulltext-search-ui.js"></script>
+
+
+<script>
+$( function () {
+	$( "[id*='$']" ).each( function () {
+		var $this = $( this );
+
+		$this.attr( "id", $this.attr( "id" ).replace( "$", "__" ) );
+	} );
+
+	$( ".tutorial-section pre, .readme-section pre, pre.prettyprint.source" ).each( function () {
+		var $this = $( this );
+
+		var example = $this.find( "code" );
+		exampleText = example.html();
+		var lang = /{@lang (.*?)}/.exec( exampleText );
+		if ( lang && lang[1] ) {
+			exampleText = exampleText.replace( lang[0], "" );
+			example.html( exampleText );
+			lang = lang[1];
+		} else {
+			var langClassMatch = example.parent()[0].className.match(/lang\-(\S+)/);
+			lang = langClassMatch ? langClassMatch[1] : "javascript";
+		}
+
+		if ( lang ) {
+
+			$this
+			.addClass( "sunlight-highlight-" + lang )
+			.addClass( "linenums" )
+			.html( example.html() );
+
+		}
+	} );
+
+	Sunlight.highlightAll( {
+		lineNumbers : true,
+		showMenu : true,
+		enableDoclinks : true
+	} );
+
+	$.catchAnchorLinks( {
+        navbarOffset: 10
+	} );
+	$( "#toc" ).toc( {
+		anchorName  : function ( i, heading, prefix ) {
+			return $( heading ).attr( "id" ) || ( prefix + i );
+		},
+		selectors   : "#toc-content h1,#toc-content h2,#toc-content h3,#toc-content h4",
+		showAndHide : false,
+		smoothScrolling: true
+	} );
+
+	$( "#main span[id^='toc']" ).addClass( "toc-shim" );
+	$( '.dropdown-toggle' ).dropdown();
+
+    $( "table" ).each( function () {
+      var $this = $( this );
+      $this.addClass('table');
+    } );
+
+} );
+</script>
+
+
+
+<!--Navigation and Symbol Display-->
+
+
+<!--Google Analytics-->
+
+
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            SearcherDisplay.init();
+        });
+    </script>
+
+
+</body>
+</html>
