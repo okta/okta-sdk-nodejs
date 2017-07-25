@@ -6,7 +6,8 @@ TARGET_BRANCH="gh-pages"
 CURRENT_VERSION=$(cat package.json | grep version | head -1 | awk -F= "{ print $2 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]')
 
 function formatDocs {
-    # I bet there is a cleaner solution for this
+    # Copy the contents of the generated docs into
+    # the root of gh-pages and a versioned directory.
     cd jsdocs/
     mkdir jsdocs/
     mkdir -p jsdocs/${CURRENT_VERSION}/
@@ -23,12 +24,16 @@ function buildDocs {
     npm run docs
 }
 
-# Pull requests and commits to other branches shouldn't try to deploy, just build to verify
-if [ "$TRAVIS_PULL_REQUEST" != "false" -o "$TRAVIS_BRANCH" != "$SOURCE_BRANCH" ]; then
-    echo "Skipping deploy; just doing a build."
-    buildDocs
-    exit 0
-fi
+function createGhPages {
+    # If the branch gh-pages doesn't exist, create it.
+    git checkout --orphan $TARGET_BRANCH
+    git rm --cached -r .
+    git clean -df
+    touch README.md
+    git add README.md
+    git commit -m "Initial Commit"
+    git push $SSH_REPO $TARGET_BRANCH
+}
 
 # Save useful information
 REPO=`git config remote.origin.url`
@@ -40,19 +45,10 @@ echo "Stored: REPO=${REPO}"
 rm -rf jsdoc
 git clone $REPO jsdoc
 cd jsdoc
-git checkout $TARGET_BRANCH
-
+git checkout $TARGET_BRANCH || createGhPages
 cd ..
 
-# Remove existing contents
-echo "==== Removing existing contents ===="
-rm -rf jsdoc/* || exit 0
-rm jsdoc/.gitignore
-rm jsdoc/.travis.yml
-
-mkdir -p jsdoc/jsdocs/
 mkdir -p jsdoc/jsdocs/${CURRENT_VERSION}/
-ls jsdoc/
 
 # Run compile script
 buildDocs
@@ -61,20 +57,9 @@ buildDocs
 formatDocs
 
 # Change into docs output folder
-cd jsdoc/
+cd jsdoc/ 
 
-# If there are no changes -- skip.
-if ! git status --porcelain; then
-    echo "No changes to the output on this push; exiting."
-    exit 0
-fi
-
-# Commit the "changes", i.e. the new version.
-# The delta will show diffs between new and old versions.
-BRANCH=`git branch | grep \* | cut -d ' ' -f2`
-echo "Current Branch: ${BRANCH}"
-
-git add -A .
+git add -A ./jsdocs/
 
 git commit -m ":arrow_up: Release jsdocs for version: ${CURRENT_VERSION}"
 
