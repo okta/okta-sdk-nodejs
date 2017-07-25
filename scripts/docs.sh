@@ -6,7 +6,8 @@ TARGET_BRANCH="gh-pages"
 CURRENT_VERSION=$(cat package.json | grep version | head -1 | awk -F= "{ print $2 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]')
 
 function formatDocs {
-    # I bet there is a cleaner solution for this
+    # Copy the contents of the generated docs into
+    # the root of gh-pages and a versioned directory.
     cd jsdocs/
     mkdir jsdocs/
     mkdir -p jsdocs/${CURRENT_VERSION}/
@@ -24,6 +25,7 @@ function buildDocs {
 }
 
 function createGhPages {
+    # If the branch gh-pages doesn't exist, create it.
     git checkout --orphan $TARGET_BRANCH
     git rm --cached -r .
     git clean -df
@@ -32,12 +34,6 @@ function createGhPages {
     git commit -m "Initial Commit"
     git push $SSH_REPO $TARGET_BRANCH
 }
-
-# Pull requests and commits to other branches shouldn't try to deploy, just build to verify
-if [ "$TRAVIS_PULL_REQUEST" != "false" -o "$TRAVIS_BRANCH" != "$SOURCE_BRANCH" ]; then
-    echo "Skipping deploy due to Pull Request -- Exiting."
-    exit 0
-fi
 
 # Save useful information
 REPO=`git config remote.origin.url`
@@ -62,17 +58,6 @@ formatDocs
 
 # Change into docs output folder
 cd jsdoc/ 
-
-# If there are no changes -- skip.
-if ! git status --porcelain; then
-    echo "No changes to the output on this push -- exiting."
-    exit 0
-fi
-
-# Commit the "changes", i.e. the new version.
-# The delta will show diffs between new and old versions.
-BRANCH=`git branch | grep \* | cut -d ' ' -f2`
-echo "Current Branch: ${BRANCH}"
 
 git add -A ./jsdocs/
 
