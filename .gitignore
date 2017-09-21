@@ -9,3 +9,5 @@ node_modules
 jsdocs/
 jsdoc/
 
+.envrc
+.DS_Store

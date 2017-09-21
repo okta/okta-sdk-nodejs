@@ -24,10 +24,10 @@ class Collection {
    * @param {String} uri E.g. /api/v1/resources
    * @param {Object} Ctor Class of each item in the collection
    */
-  constructor(client, uri, Ctor) {
+  constructor(client, uri, factory) {
     this.nextUri = uri;
     this.client = client;
-    this.Ctor = Ctor;
+    this.factory = factory;
     this.currentItems = [];
   }
 
@@ -38,7 +38,7 @@ class Collection {
       function nextItem() {
         const item = self.currentItems.shift();
         const result = {
-          value: new self.Ctor(item, self.client),
+          value: self.factory.createInstance(item, self.client),
           done: !self.currentItems.length && !self.nextUri
         };
         resolve(result);

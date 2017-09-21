@@ -93,6 +93,21 @@ class User extends Resource {
   addToGroup(groupId) {
     return this.client.addUserToGroup(groupId, this.id);
   }
+  addFactor(factor, queryParameters) {
+    return this.client.addFactor(this.id, factor, queryParameters);
+  }
+  listSupportedFactors() {
+    return this.client.listSupportedFactors(this.id);
+  }
+  listFactors() {
+    return this.client.listFactors(this.id);
+  }
+  listSupportedSecurityQuestions() {
+    return this.client.listSupportedSecurityQuestions(this.id);
+  }
+  getFactor(factorId) {
+    return this.client.getFactor(this.id, factorId);
+  }
 }
 
 module.exports = User;

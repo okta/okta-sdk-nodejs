@@ -3,13 +3,21 @@
  */
 
 /** @ignore */
+{{#if extends}}
+var {{extends}} = require('./{{extends}}');
+{{else}}
 var Resource = require('../resource');
+{{/if}}
 
 /**
  * @class {{modelName}}
  * @extends Resource
  */
+{{#if extends}}
+class {{modelName}} extends {{extends}} {
+{{else}}
 class {{modelName}} extends Resource {
+{{/if}}
   constructor(resourceJson, client) {
     super(resourceJson, client);
   }
