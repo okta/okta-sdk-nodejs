@@ -16,29 +16,17 @@
  */
 
 /** @ignore */
-var Resource = require('../resource');
+var Factor = require('./Factor');
 
 /**
- * @class Group
+ * @class WebFactor
  * @extends Resource
  */
-class Group extends Resource {
+class WebFactor extends Factor {
   constructor(resourceJson, client) {
     super(resourceJson, client);
   }
 
-  update() {
-    return this.client.updateGroup(this.id, this);
-  }
-  delete() {
-    return this.client.deleteGroup(this.id);
-  }
-  removeUser(userId) {
-    return this.client.removeGroupUser(this.id, userId);
-  }
-  listUsers(queryParameters) {
-    return this.client.listGroupUsers(this.id, queryParameters);
-  }
 }
 
-module.exports = Group;
+module.exports = WebFactor;

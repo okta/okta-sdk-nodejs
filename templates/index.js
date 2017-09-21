@@ -2,6 +2,21 @@ const _ = require('lodash');
 const js = module.exports;
 
 /**
+ * Easy lookup of models from the models array
+ *
+ * @class ModelResolver
+ */
+class ModelResolver {
+  constructor(models) {
+    this.models = models
+  }
+  getByName(name) {
+    const match = this.models.filter(model => model.modelName === name);
+    return match && match[0];
+  }
+}
+
+/**
  * This file is used by the @okta/openapi generator.  It defines language-specific
  * post-processing of the JSON spec, as well as handebars helpers.  This file is meant
  * to give you control over the data that handlebars uses when processing your templates
@@ -16,25 +31,63 @@ js.process = ({spec, operations, models, handlebars}) => {
 
   const templates = [];
 
+  const extensibleModels = new Set();
+
+  const modelGraph = {} ;
+
+  const modelResolver = new ModelResolver(models);
+
+  // Add a property to the operation that lets the client template know if the response needs resolution
+  operations.forEach(operation => {
+    const responseModelName = operation.responseModel;
+    if (responseModelName) {
+      const model = modelResolver.getByName(responseModelName);
+      if (model.requiresResolution) {
+        operation.responseModelRequiresResolution = true;
+      }
+    }
+  });
+
   templates.push({
     src: 'generated-client.js.hbs',
     dest: 'src/generated-client.js',
-    context: {operations}
+    context: {operations, spec}
   });
 
-  // add all the models
+  // add all the models and any related factories
   for (let model of models) {
     templates.push({
       src: 'model.js.hbs',
       dest: `src/models/${model.modelName}.js`,
       context: model
     });
+
+    if (model.resolutionStrategy) {
+      const mapping = Object.entries(model.resolutionStrategy.valueToModelMapping).map(([propertyValue, className]) => {
+        return { propertyValue, modelName: className };
+      });
+      templates.push({
+        src: 'factory.js.hbs',
+        dest: `src/factories/${model.modelName}Factory.js`,
+        context: {
+          parentModelName: model.modelName,
+          mapping,
+          propertyName: model.resolutionStrategy.propertyName
+        }
+      });
+    }
   }
 
   templates.push({
     src: 'model.index.js.hbs',
     dest: 'src/models/index.js',
     context: { models }
+  });
+
+  templates.push({
+    src: 'factories.index.js.hbs',
+    dest: 'src/factories/index.js',
+    context: { models: models.filter(model => model.requiresResolution) }
   });
 
   // Add helpers
@@ -74,15 +127,11 @@ js.process = ({spec, operations, models, handlebars}) => {
 
     const operation = method.operation;
 
-    method.arguments.forEach((argument) => {
-      if (argument.dest === 'body') {
-        return;
+    operation.pathParams.forEach(param => {
+      const matchingArgument = method.arguments.filter(argument => argument.dest === param.name)[0];
+      if (!matchingArgument || !matchingArgument.src){
+        args.push(param.name);
       }
-      operation.pathParams.forEach(param => {
-        if (param.name !== argument.dest) {
-          args.push(param.name);
-        }
-      });
     });
 
     if ((operation.method === 'post' || operation.method === 'put') && operation.bodyModel && (operation.bodyModel !== modelName)) {
@@ -102,18 +151,13 @@ js.process = ({spec, operations, models, handlebars}) => {
 
     const operation = method.operation;
 
-    method.arguments.forEach((argument) => {
-      if (argument.self) {
-        // These arguments indicate where to put a post body, so skip them
-        return;
+    operation.pathParams.forEach(param => {
+      const matchingArgument = method.arguments.filter(argument => argument.dest === param.name)[0];
+      if (matchingArgument && matchingArgument.src){
+        args.push(`this.${matchingArgument.src}`);
+      } else {
+        args.push(param.name);
       }
-      operation.pathParams.forEach(param => {
-        if (param.name === argument.dest) {
-          args.push(`this.${argument.src}`);
-        } else {
-          args.push(param.name);
-        }
-      });
     });
 
     if ((operation.method === 'post' || operation.method === 'put') && operation.bodyModel) {

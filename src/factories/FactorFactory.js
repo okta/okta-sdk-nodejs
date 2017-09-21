@@ -15,30 +15,25 @@
  *  THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION
  */
 
-/** @ignore */
-var Resource = require('../resource');
+const ModelResolutionFactory = require('../resolution-factory');
 
-/**
- * @class Group
- * @extends Resource
- */
-class Group extends Resource {
-  constructor(resourceJson, client) {
-    super(resourceJson, client);
+class FactorFactory extends ModelResolutionFactory {
+  getMapping() {
+    return {
+      'call': 'CallFactor',
+      'push': 'PushFactor',
+      'question': 'SecurityQuestionFactor',
+      'sms': 'SmsFactor',
+      'token': 'TokenFactor',
+      'token:hardware': 'HardwareFactor',
+      'token:software:totp': 'TotpFactor',
+      'web': 'WebFactor',
+    };
   }
 
-  update() {
-    return this.client.updateGroup(this.id, this);
-  }
-  delete() {
-    return this.client.deleteGroup(this.id);
-  }
-  removeUser(userId) {
-    return this.client.removeGroupUser(this.id, userId);
-  }
-  listUsers(queryParameters) {
-    return this.client.listGroupUsers(this.id, queryParameters);
+  getResolutionProperty() {
+    return 'factorType';
   }
 }
 
-module.exports = Group;
+module.exports = FactorFactory;

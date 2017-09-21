@@ -16,29 +16,17 @@
  */
 
 /** @ignore */
-var Resource = require('../resource');
+var FactorProfile = require('./FactorProfile');
 
 /**
- * @class Group
+ * @class PushFactorProfile
  * @extends Resource
  */
-class Group extends Resource {
+class PushFactorProfile extends FactorProfile {
   constructor(resourceJson, client) {
     super(resourceJson, client);
   }
 
-  update() {
-    return this.client.updateGroup(this.id, this);
-  }
-  delete() {
-    return this.client.deleteGroup(this.id);
-  }
-  removeUser(userId) {
-    return this.client.removeGroupUser(this.id, userId);
-  }
-  listUsers(queryParameters) {
-    return this.client.listGroupUsers(this.id, queryParameters);
-  }
 }
 
-module.exports = Group;
+module.exports = PushFactorProfile;
