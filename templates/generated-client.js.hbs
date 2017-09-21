@@ -7,6 +7,8 @@ const qs = require('querystring');
 
 const Collection = require('./collection');
 const models = require('./models');
+const factories = require('./factories');
+const ModelFactory = require('./model-factory');
 
 /**
  * Auto-Generated API client, implementes the operations as defined in the OpenaAPI JSON spec
@@ -29,7 +31,11 @@ class GeneratedApiClient {
     {{/if}}
 
     {{#if isArray}}
-    return new Collection(this, url, models.{{responseModel}});
+    {{#if responseModelRequiresResolution}}
+    return new Collection(this, url, new factories.{{responseModel}}());
+    {{else}}
+    return new Collection(this, url, new ModelFactory(models.{{responseModel}}));
+    {{/if}}
     {{else}}
     {{#if (eq method 'delete')}}
     const request = this.http.delete(url);
@@ -76,7 +82,11 @@ class GeneratedApiClient {
     {{/if}}
     {{/if}}
     {{#if responseModel}}
+    {{#if responseModelRequiresResolution}}
+    return request.then(jsonRes => new factories.{{responseModel}}().createInstance(jsonRes, this));
+    {{else}}
     return request.then(jsonRes => new models.{{responseModel}}(jsonRes, this));
+    {{/if}}
     {{else}}
     return request;
     {{/if}}

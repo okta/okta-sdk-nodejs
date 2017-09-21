@@ -1,0 +1,21 @@
+/**
+ *  THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION
+ */
+
+const ModelResolutionFactory = require('../resolution-factory');
+
+class {{parentModelName}}Factory extends ModelResolutionFactory {
+  getMapping() {
+    return {
+      {{#each mapping}}
+      '{{propertyValue}}': '{{modelName}}',
+      {{/each}}
+    };
+  }
+
+  getResolutionProperty() {
+    return '{{propertyName}}';
+  }
+}
+
+module.exports = {{parentModelName}}Factory;

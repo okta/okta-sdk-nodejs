@@ -10,35 +10,15 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
+class ModelFactory {
 
-/**
- *  THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION
- */
-
-/** @ignore */
-var Resource = require('../resource');
-
-/**
- * @class Group
- * @extends Resource
- */
-class Group extends Resource {
-  constructor(resourceJson, client) {
-    super(resourceJson, client);
+  constructor(Ctor) {
+    this.Ctor = Ctor;
   }
 
-  update() {
-    return this.client.updateGroup(this.id, this);
-  }
-  delete() {
-    return this.client.deleteGroup(this.id);
-  }
-  removeUser(userId) {
-    return this.client.removeGroupUser(this.id, userId);
-  }
-  listUsers(queryParameters) {
-    return this.client.listGroupUsers(this.id, queryParameters);
+  createInstance(resource, client) {
+    return new this.Ctor(resource, client);
   }
 }
 
-module.exports = Group;
+module.exports = ModelFactory;
