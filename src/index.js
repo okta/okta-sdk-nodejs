@@ -27,5 +27,5 @@ require('strict-mode')(function () {
 });
 
 module.exports = {
-  Client: client;
+  Client: client
 };
