@@ -10,7 +10,22 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
+"use strict";
+
+let client;
+
+/*
+strict-mode ensures all files included from this point forward
+have strict mode enabled.
+This is particularly useful while using this library in applications where passing
+a --use_strict flag is not possible.
+  OR
+An alternative to this is include the "use strict" declaration on top of each file using ES6 features
+*/
+require('strict-mode')(function () {
+  client = require('./client');
+});
 
 module.exports = {
-  Client: require('./client')
+  Client: client;
 };

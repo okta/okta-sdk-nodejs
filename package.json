@@ -25,7 +25,8 @@
     "isomorphic-fetch": "2.2.1",
     "js-yaml": "^3.8.4",
     "lodash": "^4.17.4",
-    "parse-link-header": "1.0.0"
+    "parse-link-header": "1.0.0",
+    "strict-mode": "1.1.2"
   },
   "devDependencies": {
     "@okta/openapi": "^0.5.0",
