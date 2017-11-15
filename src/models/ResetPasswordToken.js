@@ -11,20 +11,20 @@
  */
 
 
-/**
- *  THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION
- */
+/* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-/** @ignore */
 var Resource = require('../resource');
+
 
 /**
  * @class ResetPasswordToken
  * @extends Resource
+ * @property { string } resetPasswordUrl
  */
 class ResetPasswordToken extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
+
   }
 
 }

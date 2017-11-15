@@ -11,20 +11,20 @@
  */
 
 
-/**
- *  THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION
- */
+/* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-/** @ignore */
 var Resource = require('../resource');
+
 
 /**
  * @class PasswordCredential
  * @extends Resource
+ * @property { string } value
  */
 class PasswordCredential extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
+
   }
 
 }

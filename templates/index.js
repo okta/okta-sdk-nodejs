@@ -64,7 +64,8 @@ js.process = ({spec, operations, models, handlebars}) => {
 
     if (model.resolutionStrategy) {
       const mapping = Object.entries(model.resolutionStrategy.valueToModelMapping).map(([propertyValue, className]) => {
-        return { propertyValue, modelName: className };
+        const classModel = models.filter(model => model.modelName === className)[0];
+        return { propertyValue, modelName: classModel.resolutionStrategy ? `new factories.${className}()` : `models.${className}` };
       });
       templates.push({
         src: 'factory.js.hbs',
@@ -102,6 +103,34 @@ js.process = ({spec, operations, models, handlebars}) => {
       }
     }
     return path;
+  });
+
+  handlebars.registerHelper('modelImportBuilder', (model) => {
+    if (!model.properties) {
+      return;
+    }
+    const importStatements = new Set();
+    model.properties.forEach(property => {
+      if (property.$ref && property.model !== 'object' && !property.isEnum) {
+        importStatements.add(`const ${property.model} = require('./${property.model}');`);
+      }
+    });
+    return Array.from(importStatements).join('\n');
+  });
+
+  handlebars.registerHelper('propertyCastBuilder', (model) => {
+    if (!model.properties) {
+      return;
+    }
+    const constructorStatements = [];
+    model.properties.forEach(property => {
+      if (property.$ref && property.model !== 'object' && !property.isEnum) {
+        constructorStatements.push(`    if (resourceJson && resourceJson.${property.propertyName}) {`);
+        constructorStatements.push(`      this.${property.propertyName} = new ${property.model}(this.${property.propertyName});`);
+        constructorStatements.push(`    }`);
+      }
+    });
+    return constructorStatements.join('\n');
   });
 
   handlebars.registerHelper('operationArgumentBuilder', (operation) => {

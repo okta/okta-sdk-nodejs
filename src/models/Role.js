@@ -11,20 +11,27 @@
  */
 
 
-/**
- *  THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION
- */
+/* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-/** @ignore */
 var Resource = require('../resource');
+
 
 /**
  * @class Role
  * @extends Resource
+ * @property { hash } _embedded
+ * @property { dateTime } created
+ * @property { string } description
+ * @property { string } id
+ * @property { string } label
+ * @property { dateTime } lastUpdated
+ * @property { RoleStatus } status
+ * @property { string } type
  */
 class Role extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
+
   }
 
 }

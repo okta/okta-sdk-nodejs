@@ -11,20 +11,22 @@
  */
 
 
-/**
- *  THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION
- */
+/* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-/** @ignore */
 var Factor = require('./Factor');
+const SecurityQuestionFactorProfile = require('./SecurityQuestionFactorProfile');
 
 /**
  * @class SecurityQuestionFactor
- * @extends Resource
+ * @extends Factor
+ * @property { SecurityQuestionFactorProfile } profile
  */
 class SecurityQuestionFactor extends Factor {
   constructor(resourceJson, client) {
     super(resourceJson, client);
+    if (resourceJson && resourceJson.profile) {
+      this.profile = new SecurityQuestionFactorProfile(this.profile);
+    }
   }
 
 }

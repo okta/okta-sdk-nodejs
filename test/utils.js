@@ -157,6 +157,15 @@ async function cleanup(client, users = null, groups = null) {
   }
 }
 
+async function removeAppByLabel(client, label) {
+  return client.listApplications().each(async (application) => {
+    if (application.label === label) {
+      await application.deactivate();
+      return application.delete();
+    }
+  });
+}
+
 module.exports = {
   delay: delay,
   validateUser: validateUser,
@@ -171,5 +180,6 @@ module.exports = {
   isGroupTargetPresent: isGroupTargetPresent,
   cleanupUser: cleanupUser,
   cleanupGroup: cleanupGroup,
-  cleanup: cleanup
+  cleanup: cleanup,
+  removeAppByLabel: removeAppByLabel
 };

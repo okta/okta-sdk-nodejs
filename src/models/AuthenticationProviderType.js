@@ -11,12 +11,10 @@
  */
 
 
-/**
- *  THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION
- */
+/* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-/** @ignore */
 var Resource = require('../resource');
+
 
 /**
  * @class AuthenticationProviderType
@@ -25,6 +23,7 @@ var Resource = require('../resource');
 class AuthenticationProviderType extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
+
   }
 
 }

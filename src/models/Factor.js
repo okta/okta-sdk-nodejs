@@ -11,20 +11,39 @@
  */
 
 
-/**
- *  THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION
- */
+/* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-/** @ignore */
 var Resource = require('../resource');
+const FactorProfile = require('./FactorProfile');
+const VerifyFactorRequest = require('./VerifyFactorRequest');
 
 /**
  * @class Factor
  * @extends Resource
+ * @property { hash } _embedded
+ * @property { hash } _links
+ * @property { string } device
+ * @property { string } deviceType
+ * @property { FactorType } factorType
+ * @property { string } id
+ * @property { string } mfaStateTokenId
+ * @property { FactorProfile } profile
+ * @property { string } provider
+ * @property { boolean } rechallengeExistingFactor
+ * @property { string } sessionId
+ * @property { FactorStatus } status
+ * @property { string } userId
+ * @property { VerifyFactorRequest } verify
  */
 class Factor extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
+    if (resourceJson && resourceJson.profile) {
+      this.profile = new FactorProfile(this.profile);
+    }
+    if (resourceJson && resourceJson.verify) {
+      this.verify = new VerifyFactorRequest(this.verify);
+    }
   }
 
   delete(userId) {

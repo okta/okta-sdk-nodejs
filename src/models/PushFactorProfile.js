@@ -11,20 +11,24 @@
  */
 
 
-/**
- *  THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION
- */
+/* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-/** @ignore */
 var FactorProfile = require('./FactorProfile');
+
 
 /**
  * @class PushFactorProfile
- * @extends Resource
+ * @extends FactorProfile
+ * @property { string } credentialId
+ * @property { string } deviceType
+ * @property { string } name
+ * @property { string } platform
+ * @property { string } version
  */
 class PushFactorProfile extends FactorProfile {
   constructor(resourceJson, client) {
     super(resourceJson, client);
+
   }
 
 }

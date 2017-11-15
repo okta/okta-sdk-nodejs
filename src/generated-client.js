@@ -11,11 +11,8 @@
  */
 
 
-/**
- *  THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION
- */
+/* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-/** @ignore */
 const qs = require('querystring');
 
 const Collection = require('./collection');
@@ -27,9 +24,343 @@ const ModelFactory = require('./model-factory');
  * Auto-Generated API client, implementes the operations as defined in the OpenaAPI JSON spec
  *
  * @class GeneratedApiClient
- * @extends {Client}
  */
 class GeneratedApiClient {
+
+  /**
+   *
+   * @param {Object} queryParams Map of query parameters to add to this request
+   * @param {String} [queryParams.q]
+   * @param {String} [queryParams.after]
+   * @param {String} [queryParams.limit]
+   * @param {String} [queryParams.filter]
+   * @param {String} [queryParams.expand]
+   * @param {String} [queryParams.includeNonDeleted]
+   * @description
+   * Enumerates apps added to your organization with pagination. A subset of apps can be returned that match a supported filter expression or query.
+   */
+  listApplications(queryParameters) {
+    let url = `${this.baseUrl}/api/v1/apps`;
+    const queryString = qs.stringify(queryParameters || {});
+
+    url += queryString ? ('?' + queryString) : '';
+
+    return new Collection(this, url, new factories.Application());
+  }
+
+  /**
+   *
+   * @param {Application} application
+   * @param {Object} queryParams Map of query parameters to add to this request
+   * @param {String} [queryParams.activate]
+   * @description
+   * Adds a new application to your Okta organization.
+   */
+  createApplication(application, queryParameters) {
+    let url = `${this.baseUrl}/api/v1/apps`;
+    const queryString = qs.stringify(queryParameters || {});
+
+    url += queryString ? ('?' + queryString) : '';
+
+    const request = this.http.postJson(url, {
+      body: application
+    });
+    return request.then(jsonRes => new factories.Application().createInstance(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param appId {String}
+   * @description
+   * Removes an inactive application.
+   */
+  deleteApplication(appId) {
+    let url = `${this.baseUrl}/api/v1/apps/${appId}`;
+
+    const request = this.http.delete(url);
+    return request;
+  }
+
+  /**
+   *
+   * @param appId {String}
+   * @param {Object} queryParams Map of query parameters to add to this request
+   * @param {String} [queryParams.expand]
+   * @description
+   * Fetches an application from your Okta organization by `id`.
+   */
+  getApplication(appId, queryParameters) {
+    let url = `${this.baseUrl}/api/v1/apps/${appId}`;
+    const queryString = qs.stringify(queryParameters || {});
+
+    url += queryString ? ('?' + queryString) : '';
+
+    const request = this.http.getJson(url);
+    return request.then(jsonRes => new factories.Application().createInstance(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param appId {String}
+   * @param {Application} application
+   * @description
+   * Updates an application in your organization.
+   */
+  updateApplication(appId, application) {
+    let url = `${this.baseUrl}/api/v1/apps/${appId}`;
+
+    const request = this.http.putJson(url, {
+      body: application
+    });
+    return request.then(jsonRes => new factories.Application().createInstance(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param appId {String}
+   * @description
+   * Enumerates key credentials for an application
+   */
+  listApplicationKeys(appId) {
+    let url = `${this.baseUrl}/api/v1/apps/${appId}/credentials/keys`;
+
+    return new Collection(this, url, new ModelFactory(models.JsonWebKey));
+  }
+
+  /**
+   *
+   * @param appId {String}
+   * @param {Object} queryParams Map of query parameters to add to this request
+   * @param {String} [queryParams.validityYears]
+   * @description
+   * Generates a new X.509 certificate for an application key credential
+   */
+  generateApplicationKey(appId, queryParameters) {
+    let url = `${this.baseUrl}/api/v1/apps/${appId}/credentials/keys/generate`;
+    const queryString = qs.stringify(queryParameters || {});
+
+    url += queryString ? ('?' + queryString) : '';
+
+    const request = this.http.postJson(url);
+    return request.then(jsonRes => new models.JsonWebKey(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param appId {String}
+   * @param keyId {String}
+   * @description
+   * Gets a specific [application key credential](#application-key-credential-model) by `kid`
+   */
+  getApplicationKey(appId, keyId) {
+    let url = `${this.baseUrl}/api/v1/apps/${appId}/credentials/keys/${keyId}`;
+
+    const request = this.http.getJson(url);
+    return request.then(jsonRes => new models.JsonWebKey(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param appId {String}
+   * @param keyId {String}
+   * @param {Object} queryParams Map of query parameters to add to this request
+   * @param {String} [queryParams.targetAid]
+   * @description
+   * Clones a X.509 certificate for an application key credential from a source application to target application.
+   */
+  cloneApplicationKey(appId, keyId, queryParameters) {
+    let url = `${this.baseUrl}/api/v1/apps/${appId}/credentials/keys/${keyId}/clone`;
+    const queryString = qs.stringify(queryParameters || {});
+
+    url += queryString ? ('?' + queryString) : '';
+
+    const request = this.http.postJson(url);
+    return request.then(jsonRes => new models.JsonWebKey(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param appId {String}
+   * @param {Object} queryParams Map of query parameters to add to this request
+   * @param {String} [queryParams.q]
+   * @param {String} [queryParams.after]
+   * @param {String} [queryParams.limit]
+   * @param {String} [queryParams.expand]
+   * @description
+   * Enumerates group assignments for an application.
+   */
+  listApplicationGroupAssignments(appId, queryParameters) {
+    let url = `${this.baseUrl}/api/v1/apps/${appId}/groups`;
+    const queryString = qs.stringify(queryParameters || {});
+
+    url += queryString ? ('?' + queryString) : '';
+
+    return new Collection(this, url, new ModelFactory(models.ApplicationGroupAssignment));
+  }
+
+  /**
+   *
+   * @param appId {String}
+   * @param groupId {String}
+   * @description
+   * Removes a group assignment from an application.
+   */
+  deleteApplicationGroupAssignment(appId, groupId) {
+    let url = `${this.baseUrl}/api/v1/apps/${appId}/groups/${groupId}`;
+
+    const request = this.http.delete(url);
+    return request;
+  }
+
+  /**
+   *
+   * @param appId {String}
+   * @param groupId {String}
+   * @param {Object} queryParams Map of query parameters to add to this request
+   * @param {String} [queryParams.expand]
+   * @description
+   * Fetches an application group assignment
+   */
+  getApplicationGroupAssignment(appId, groupId, queryParameters) {
+    let url = `${this.baseUrl}/api/v1/apps/${appId}/groups/${groupId}`;
+    const queryString = qs.stringify(queryParameters || {});
+
+    url += queryString ? ('?' + queryString) : '';
+
+    const request = this.http.getJson(url);
+    return request.then(jsonRes => new models.ApplicationGroupAssignment(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param appId {String}
+   * @param groupId {String}
+   * @param {ApplicationGroupAssignment} applicationGroupAssignment
+   * @description
+   * Assigns a group to an application
+   */
+  updateApplicationGroupAssignment(appId, groupId, applicationGroupAssignment) {
+    let url = `${this.baseUrl}/api/v1/apps/${appId}/groups/${groupId}`;
+
+    const request = this.http.putJson(url, {
+      body: applicationGroupAssignment
+    });
+    return request.then(jsonRes => new models.ApplicationGroupAssignment(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param appId {String}
+   * @description
+   * Activates an inactive application.
+   */
+  activateApplication(appId) {
+    let url = `${this.baseUrl}/api/v1/apps/${appId}/lifecycle/activate`;
+
+    const request = this.http.post(url);
+    return request;
+  }
+
+  /**
+   *
+   * @param appId {String}
+   * @description
+   * Deactivates an active application.
+   */
+  deactivateApplication(appId) {
+    let url = `${this.baseUrl}/api/v1/apps/${appId}/lifecycle/deactivate`;
+
+    const request = this.http.post(url);
+    return request;
+  }
+
+  /**
+   *
+   * @param appId {String}
+   * @param {Object} queryParams Map of query parameters to add to this request
+   * @param {String} [queryParams.q]
+   * @param {String} [queryParams.query_scope]
+   * @param {String} [queryParams.after]
+   * @param {String} [queryParams.limit]
+   * @param {String} [queryParams.filter]
+   * @param {String} [queryParams.expand]
+   * @description
+   * Enumerates all assigned [application users](#application-user-model) for an application.
+   */
+  listApplicationUsers(appId, queryParameters) {
+    let url = `${this.baseUrl}/api/v1/apps/${appId}/users`;
+    const queryString = qs.stringify(queryParameters || {});
+
+    url += queryString ? ('?' + queryString) : '';
+
+    return new Collection(this, url, new ModelFactory(models.AppUser));
+  }
+
+  /**
+   *
+   * @param appId {String}
+   * @param {AppUser} appUser
+   * @description
+   * Assigns an user to an application with [credentials](#application-user-credentials-object) and an app-specific [profile](#application-user-profile-object). Profile mappings defined for the application are first applied before applying any profile properties specified in the request.
+   */
+  assignUserToApplication(appId, appUser) {
+    let url = `${this.baseUrl}/api/v1/apps/${appId}/users`;
+
+    const request = this.http.postJson(url, {
+      body: appUser
+    });
+    return request.then(jsonRes => new models.AppUser(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param appId {String}
+   * @param userId {String}
+   * @description
+   * Removes an assignment for a user from an application.
+   */
+  deleteApplicationUser(appId, userId) {
+    let url = `${this.baseUrl}/api/v1/apps/${appId}/users/${userId}`;
+
+    const request = this.http.delete(url);
+    return request;
+  }
+
+  /**
+   *
+   * @param appId {String}
+   * @param userId {String}
+   * @param {Object} queryParams Map of query parameters to add to this request
+   * @param {String} [queryParams.expand]
+   * @description
+   * Fetches a specific user assignment for application by `id`.
+   */
+  getApplicationUser(appId, userId, queryParameters) {
+    let url = `${this.baseUrl}/api/v1/apps/${appId}/users/${userId}`;
+    const queryString = qs.stringify(queryParameters || {});
+
+    url += queryString ? ('?' + queryString) : '';
+
+    const request = this.http.getJson(url);
+    return request.then(jsonRes => new models.AppUser(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param appId {String}
+   * @param userId {String}
+   * @param {AppUser} appUser
+   * @description
+   * Updates a user's profile for an application
+   */
+  updateApplicationUser(appId, userId, appUser) {
+    let url = `${this.baseUrl}/api/v1/apps/${appId}/users/${userId}`;
+
+    const request = this.http.postJson(url, {
+      body: appUser
+    });
+    return request.then(jsonRes => new models.AppUser(jsonRes, this));
+  }
 
   /**
    *

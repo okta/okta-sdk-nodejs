@@ -11,20 +11,22 @@
  */
 
 
-/**
- *  THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION
- */
+/* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-/** @ignore */
 var Factor = require('./Factor');
+const WebFactorProfile = require('./WebFactorProfile');
 
 /**
  * @class WebFactor
- * @extends Resource
+ * @extends Factor
+ * @property { WebFactorProfile } profile
  */
 class WebFactor extends Factor {
   constructor(resourceJson, client) {
     super(resourceJson, client);
+    if (resourceJson && resourceJson.profile) {
+      this.profile = new WebFactorProfile(this.profile);
+    }
   }
 
 }

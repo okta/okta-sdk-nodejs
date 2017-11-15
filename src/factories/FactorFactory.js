@@ -11,23 +11,24 @@
  */
 
 
-/**
- *  THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION
- */
+/* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
 const ModelResolutionFactory = require('../resolution-factory');
+/*eslint-disable no-unused-vars*/
+const factories = require('./');
+const models = require('../models');
 
 class FactorFactory extends ModelResolutionFactory {
   getMapping() {
     return {
-      'call': 'CallFactor',
-      'push': 'PushFactor',
-      'question': 'SecurityQuestionFactor',
-      'sms': 'SmsFactor',
-      'token': 'TokenFactor',
-      'token:hardware': 'HardwareFactor',
-      'token:software:totp': 'TotpFactor',
-      'web': 'WebFactor',
+      'call': models.CallFactor,
+      'push': models.PushFactor,
+      'question': models.SecurityQuestionFactor,
+      'sms': models.SmsFactor,
+      'token': models.TokenFactor,
+      'token:hardware': models.HardwareFactor,
+      'token:software:totp': models.TotpFactor,
+      'web': models.WebFactor,
     };
   }
 

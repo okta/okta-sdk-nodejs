@@ -11,20 +11,33 @@
  */
 
 
-/**
- *  THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION
- */
+/* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-/** @ignore */
 var Resource = require('../resource');
+const GroupRuleAction = require('./GroupRuleAction');
+const GroupRuleConditions = require('./GroupRuleConditions');
 
 /**
  * @class GroupRule
  * @extends Resource
+ * @property { GroupRuleAction } actions
+ * @property { GroupRuleConditions } conditions
+ * @property { dateTime } created
+ * @property { string } id
+ * @property { dateTime } lastUpdated
+ * @property { string } name
+ * @property { GroupRuleStatus } status
+ * @property { string } type
  */
 class GroupRule extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
+    if (resourceJson && resourceJson.actions) {
+      this.actions = new GroupRuleAction(this.actions);
+    }
+    if (resourceJson && resourceJson.conditions) {
+      this.conditions = new GroupRuleConditions(this.conditions);
+    }
   }
 
   update() {

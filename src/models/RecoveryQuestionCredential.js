@@ -11,20 +11,21 @@
  */
 
 
-/**
- *  THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION
- */
+/* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-/** @ignore */
 var Resource = require('../resource');
+
 
 /**
  * @class RecoveryQuestionCredential
  * @extends Resource
+ * @property { string } answer
+ * @property { string } question
  */
 class RecoveryQuestionCredential extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
+
   }
 
 }

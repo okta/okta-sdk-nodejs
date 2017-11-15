@@ -11,20 +11,21 @@
  */
 
 
-/**
- *  THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION
- */
+/* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-/** @ignore */
 var Resource = require('../resource');
+
 
 /**
  * @class GroupProfile
  * @extends Resource
+ * @property { string } description
+ * @property { string } name
  */
 class GroupProfile extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
+
   }
 
 }

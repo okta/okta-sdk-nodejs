@@ -11,20 +11,21 @@
  */
 
 
-/**
- *  THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION
- */
+/* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-/** @ignore */
 var Resource = require('../resource');
+
 
 /**
  * @class UserActivationToken
  * @extends Resource
+ * @property { string } activationToken
+ * @property { string } activationUrl
  */
 class UserActivationToken extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
+
   }
 
 }
