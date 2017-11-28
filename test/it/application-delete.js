@@ -34,10 +34,12 @@ describe('Application.delete()', () => {
     try {
       await utils.removeAppByLabel(client, application.label);
       createdApplication = await client.createApplication(application);
-      await createdApplication.deactivate().then(response => {
+      await createdApplication.deactivate()
+      .then(response => {
         expect(response.status).to.equal(200);
       });
-      await createdApplication.delete().then(response => {
+      await createdApplication.delete()
+      .then(response => {
         expect(response.status).to.equal(204);
         createdApplication = null;
       });

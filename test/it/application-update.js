@@ -35,7 +35,8 @@ describe('Application.update()', () => {
       await utils.removeAppByLabel(client, application.label);
       createdApplication = await client.createApplication(application);
       createdApplication.label = 'foo label';
-      await createdApplication.update().then(response => {
+      await createdApplication.update()
+      .then(response => {
         expect(response.label).to.equal('foo label');
       });
 

@@ -89,11 +89,13 @@ client.createUser(newUser)
 The [Users: Get User] API can be used to fetch a user by id or login (as defined on their `profile.login` property), and is wrapped by `client.getUser(:id|:login)`:
 
 ```javascript
-client.getUser('ausmvdt5xg8wRVI1d0g3').then(user => {
+client.getUser('ausmvdt5xg8wRVI1d0g3')
+.then(user => {
   console.log(user);
 });
 
-client.getUser('foo@bar.com').then(user => {
+client.getUser('foo@bar.com')
+.then(user => {
   console.log(user);
 });
 ```
@@ -104,7 +106,8 @@ Once you have a user instance, you can modify it and then call the `update()` me
 
 ```javascript
 user.profile.nickName = 'rob';
-user.update().then(() => console.log('User nickname change has been saved'));
+user.update()
+.then(() => console.log('User nickname change has been saved'));
 ```
 
 #### Delete a User
@@ -181,7 +184,8 @@ client.createGroup(newGroup)
 With a user and group instance, you can use the `addToGroup(:groupId)` method of the user to add the user to the known group:
 
 ```javascript
-user.addToGroup(group.id).then(() => console.log('User has been added to group'));
+user.addToGroup(group.id)
+.then(() => console.log('User has been added to group'));
 ```
 
 ### Applications
@@ -250,7 +254,8 @@ If no value is returned, each() will continue to the next item:
 client.listUsers().each(user => {
   console.log(user);
   logUserToRemoteSystem(user);
-}).then(() => {
+})
+.then(() => {
   console.log('All users have been visited');
 });
 ```
@@ -275,7 +280,8 @@ Returning false will end iteration:
 client.listUsers().each(user => {
   console.log(user);
   return false;
-}).then(() => {
+})
+.then(() => {
   console.log('Only one user was visited');
 });
 ```
@@ -286,7 +292,8 @@ Returning false in a promise will also end iteration:
 client.listUsers().each((user) => {
   console.log(user);
   return Promise.resolve(false);
-}).then(() => {
+})
+.then(() => {
   console.log('Only one user was visited');
 });
 ```

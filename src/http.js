@@ -30,7 +30,8 @@ class Http {
     if (response.status >= 200 && response.status < 300) {
       return response;
     } else {
-      return response.text().then((body) => {
+      return response.text()
+      .then((body) => {
         let err;
 
         // If the response is JSON, assume it's an Okta API error. Otherwise, assume it's some other HTTP error
@@ -48,7 +49,8 @@ class Http {
   http(uri, request) {
     request = request || {};
     request.headers = Object.assign(this.defaultHeaders, request.headers);
-    return fetch(uri, request).then(this.errorFilter);
+    return fetch(uri, request)
+    .then(this.errorFilter);
   }
 
   delete(uri, request) {
@@ -61,7 +63,8 @@ class Http {
       'Content-Type': 'application/json',
       'Accept': 'application/json'
     }, request.headers);
-    return this.http(uri, request).then(res => res.json());
+    return this.http(uri, request)
+    .then(res => res.json());
   }
 
   getJson(uri, request) {

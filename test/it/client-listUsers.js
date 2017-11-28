@@ -82,7 +82,8 @@ describe('client.listUsers().each()', () => {
       return new Promise((resolve) => {
         setTimeout(resolve.bind(null));
       });
-    }).then(() => {
+    })
+    .then(() => {
       expect(localCount).to.equal(userCount);
     });
   });
@@ -103,7 +104,8 @@ describe('client.listUsers().each()', () => {
       return new Promise((resolve) => {
         setTimeout(resolve.bind(null, false), 1000);
       });
-    }).then(() => {
+    })
+    .then(() => {
       expect(localCount).to.equal(1);
     });
   });
@@ -124,7 +126,8 @@ describe('client.listUsers().each()', () => {
 
 describe('client.listUsers().next()', () => {
   it('should return User models', () => {
-    return client.listUsers().next().then(result => {
+    return client.listUsers().next()
+    .then(result => {
       expect(result.value).to.be.an.instanceof(models.User);
     });
   });
@@ -138,8 +141,10 @@ describe('client.listUsers().next()', () => {
         expect(localCount, 'next() count should be same as each() count').to.equal(userCount);
         return result.value;
       }
-      return collection.next().then(iter);
+      return collection.next()
+      .then(iter);
     }
-    return collection.next().then(iter);
+    return collection.next()
+    .then(iter);
   });
 });
