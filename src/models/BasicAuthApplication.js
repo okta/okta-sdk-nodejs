@@ -21,6 +21,7 @@ const BasicApplicationSettings = require('./BasicApplicationSettings');
  * @class BasicAuthApplication
  * @extends Application
  * @property { SchemeApplicationCredentials } credentials
+ * @property { object } name
  * @property { BasicApplicationSettings } settings
  */
 class BasicAuthApplication extends Application {

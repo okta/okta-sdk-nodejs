@@ -21,17 +21,17 @@ const AppUserCredentials = require('./AppUserCredentials');
  * @extends Resource
  * @property { hash } _embedded
  * @property { hash } _links
- * @property { string } created
+ * @property { dateTime } created
  * @property { AppUserCredentials } credentials
  * @property { string } externalId
  * @property { string } id
- * @property { string } lastSync
- * @property { string } lastUpdated
- * @property { string } passwordChanged
+ * @property { dateTime } lastSync
+ * @property { dateTime } lastUpdated
+ * @property { dateTime } passwordChanged
  * @property { hash } profile
  * @property { string } scope
  * @property { string } status
- * @property { string } statusChanged
+ * @property { dateTime } statusChanged
  * @property { string } syncState
  */
 class AppUser extends Resource {
@@ -42,6 +42,12 @@ class AppUser extends Resource {
     }
   }
 
+  update(appId) {
+    return this.client.updateApplicationUser(appId, this.id, this);
+  }
+  delete(appId) {
+    return this.client.deleteApplicationUser(appId, this.id);
+  }
 }
 
 module.exports = AppUser;

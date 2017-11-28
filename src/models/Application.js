@@ -80,20 +80,11 @@ class Application extends Resource {
   getApplicationUser(userId, queryParameters) {
     return this.client.getApplicationUser(this.id, userId, queryParameters);
   }
-  updateApplicationUser(userId, appUser) {
-    return this.client.updateApplicationUser(this.id, userId, appUser);
-  }
-  deleteApplicationUser(userId) {
-    return this.client.deleteApplicationUser(this.id, userId);
-  }
-  updateApplicationGroupAssignment(groupId, applicationGroupAssignment) {
-    return this.client.updateApplicationGroupAssignment(this.id, groupId, applicationGroupAssignment);
+  createApplicationGroupAssignment(groupId, applicationGroupAssignment) {
+    return this.client.createApplicationGroupAssignment(this.id, groupId, applicationGroupAssignment);
   }
   getApplicationGroupAssignment(groupId, queryParameters) {
     return this.client.getApplicationGroupAssignment(this.id, groupId, queryParameters);
-  }
-  deleteApplicationGroupAssignment(groupId) {
-    return this.client.deleteApplicationGroupAssignment(this.id, groupId);
   }
   generateApplicationKey(queryParameters) {
     return this.client.generateApplicationKey(this.id, queryParameters);

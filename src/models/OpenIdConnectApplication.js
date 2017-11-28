@@ -21,6 +21,7 @@ const OpenIdConnectApplicationSettings = require('./OpenIdConnectApplicationSett
  * @class OpenIdConnectApplication
  * @extends Application
  * @property { OAuthApplicationCredentials } credentials
+ * @property { object } name
  * @property { OpenIdConnectApplicationSettings } settings
  */
 class OpenIdConnectApplication extends Application {

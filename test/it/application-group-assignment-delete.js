@@ -6,7 +6,7 @@ const utils = require('../utils');
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
 if (process.env.OKTA_USE_MOCK) {
-  orgUrl = `${orgUrl}/application-delete-user`;
+  orgUrl = `${orgUrl}/application-delete-group-assignment`;
 }
 
 const client = new okta.Client({
@@ -14,9 +14,9 @@ const client = new okta.Client({
   token: process.env.OKTA_CLIENT_TOKEN
 });
 
-describe('Application.deleteApplicationUser()', () => {
+describe('ApplicationGroupAssignment.delete(:appId)', () => {
 
-  it('should allow me to get a user that is assigned to the application', async () => {
+  it('should allow me to delete the group assignment', async () => {
     const application = {
       name: 'bookmark',
       label: 'my bookmark app',
@@ -29,31 +29,22 @@ describe('Application.deleteApplicationUser()', () => {
       }
     };
 
-    const user = {
+    const group = {
       profile: {
-        firstName: 'John',
-        lastName: 'Activate',
-        email: 'john-activate@example.com',
-        login: 'john-activate@example.com'
-      },
-      credentials: {
-        password: { value: 'Abcd1234' }
+        name: 'test group'
       }
     };
 
     let createdApplication;
-    let createdUser;
-    let createdAppUser;
+    let createdGroup;
 
     try {
       await utils.removeAppByLabel(client, application.label);
-      await utils.cleanup(client, user);
+      await utils.cleanup(client, null, group);
       createdApplication = await client.createApplication(application);
-      createdUser = await client.createUser(user);
-      createdAppUser = await createdApplication.assignUserToApplication({
-        id: createdUser.id
-      });
-      await createdApplication.deleteApplicationUser(createdAppUser.id)
+      createdGroup = await client.createGroup(group);
+      const groupAssignment = await createdApplication.createApplicationGroupAssignment(createdGroup.id);
+      await groupAssignment.delete(createdApplication.id)
       .then(response => {
         expect(response.status).to.equal(204);
       });
@@ -62,11 +53,8 @@ describe('Application.deleteApplicationUser()', () => {
         await createdApplication.deactivate();
         await createdApplication.delete();
       }
-      if (createdUser) {
-        await utils.cleanup(client, createdUser);
-      }
-      if (createdAppUser) {
-        await utils.cleanup(client, createdAppUser);
+      if (createdGroup) {
+        await utils.cleanup(client, null, createdGroup);
       }
     }
   });

@@ -14,19 +14,19 @@
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
 var Resource = require('../resource');
-const PasswordCredential = require('./PasswordCredential');
+const AppUserPasswordCredential = require('./AppUserPasswordCredential');
 
 /**
  * @class AppUserCredentials
  * @extends Resource
- * @property { PasswordCredential } password
+ * @property { AppUserPasswordCredential } password
  * @property { string } userName
  */
 class AppUserCredentials extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
     if (resourceJson && resourceJson.password) {
-      this.password = new PasswordCredential(this.password);
+      this.password = new AppUserPasswordCredential(this.password);
     }
   }
 

@@ -239,7 +239,7 @@ class GeneratedApiClient {
    * @description
    * Assigns a group to an application
    */
-  updateApplicationGroupAssignment(appId, groupId, applicationGroupAssignment) {
+  createApplicationGroupAssignment(appId, groupId, applicationGroupAssignment) {
     let url = `${this.baseUrl}/api/v1/apps/${appId}/groups/${groupId}`;
 
     const request = this.http.putJson(url, {

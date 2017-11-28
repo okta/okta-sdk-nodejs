@@ -20,8 +20,8 @@ var Resource = require('../resource');
  * @class ApplicationCredentialsSigning
  * @extends Resource
  * @property { string } kid
- * @property { string } lastRotated
- * @property { string } nextRotation
+ * @property { dateTime } lastRotated
+ * @property { dateTime } nextRotation
  * @property { string } rotationMode
  */
 class ApplicationCredentialsSigning extends Resource {

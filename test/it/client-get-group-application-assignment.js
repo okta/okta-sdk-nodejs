@@ -44,7 +44,7 @@ describe('client.getApplicationGroupAssignment()', () => {
       await utils.cleanup(client, null, group);
       createdApplication = await client.createApplication(application);
       createdGroup = await client.createGroup(group);
-      await client.updateApplicationGroupAssignment(createdApplication.id, createdGroup.id);
+      await client.createApplicationGroupAssignment(createdApplication.id, createdGroup.id);
       const assignment = await client.getApplicationGroupAssignment(createdApplication.id, createdGroup.id);
       expect(assignment).to.be.instanceof(models.ApplicationGroupAssignment);
       expect(assignment._links.app.href).to.contain(createdApplication.id);

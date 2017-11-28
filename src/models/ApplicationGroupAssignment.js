@@ -22,7 +22,7 @@ var Resource = require('../resource');
  * @property { hash } _embedded
  * @property { hash } _links
  * @property { string } id
- * @property { string } lastUpdated
+ * @property { dateTime } lastUpdated
  * @property { integer } priority
  * @property { hash } profile
  */
@@ -32,6 +32,9 @@ class ApplicationGroupAssignment extends Resource {
 
   }
 
+  delete(appId) {
+    return this.client.deleteApplicationGroupAssignment(appId, this.id);
+  }
 }
 
 module.exports = ApplicationGroupAssignment;

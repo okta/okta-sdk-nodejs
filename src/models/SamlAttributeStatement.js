@@ -19,8 +19,10 @@ var Resource = require('../resource');
 /**
  * @class SamlAttributeStatement
  * @extends Resource
- * @property { array } name
+ * @property { string } name
  * @property { string } namespace
+ * @property { string } type
+ * @property { array } values
  */
 class SamlAttributeStatement extends Resource {
   constructor(resourceJson, client) {

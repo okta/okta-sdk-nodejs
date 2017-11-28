@@ -17,10 +17,11 @@ var Resource = require('../resource');
 
 
 /**
- * @class ApplicationTemplateName
+ * @class AppUserPasswordCredential
  * @extends Resource
+ * @property { string } value
  */
-class ApplicationTemplateName extends Resource {
+class AppUserPasswordCredential extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
 
@@ -28,4 +29,4 @@ class ApplicationTemplateName extends Resource {
 
 }
 
-module.exports = ApplicationTemplateName;
+module.exports = AppUserPasswordCredential;

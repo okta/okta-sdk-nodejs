@@ -19,6 +19,7 @@ const BookmarkApplicationSettings = require('./BookmarkApplicationSettings');
 /**
  * @class BookmarkApplication
  * @extends Application
+ * @property { object } name
  * @property { BookmarkApplicationSettings } settings
  */
 class BookmarkApplication extends Application {

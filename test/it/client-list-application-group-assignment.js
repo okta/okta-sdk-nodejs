@@ -44,7 +44,7 @@ describe('client.listApplicationGroupAssignments()', () => {
       await utils.cleanup(client, null, group);
       createdApplication = await client.createApplication(application);
       createdGroup = await client.createGroup(group);
-      await client.updateApplicationGroupAssignment(createdApplication.id, createdGroup.id);
+      await client.createApplicationGroupAssignment(createdApplication.id, createdGroup.id);
       await client.listApplicationGroupAssignments(createdApplication.id).each(async (assignment) => {
         // there should be only one assignment
         expect(assignment).to.be.instanceof(models.ApplicationGroupAssignment);

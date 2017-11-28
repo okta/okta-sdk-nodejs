@@ -19,6 +19,7 @@ const SwaThreeFieldApplicationSettings = require('./SwaThreeFieldApplicationSett
 /**
  * @class SwaThreeFieldApplication
  * @extends BrowserPluginApplication
+ * @property { object } name
  * @property { SwaThreeFieldApplicationSettings } settings
  */
 class SwaThreeFieldApplication extends BrowserPluginApplication {

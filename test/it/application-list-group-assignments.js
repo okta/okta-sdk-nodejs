@@ -43,7 +43,7 @@ describe('Application.listGroupAssignments()', () => {
       await utils.cleanup(client, null, group);
       createdApplication = await client.createApplication(application);
       createdGroup = await client.createGroup(group);
-      const assignment = await createdApplication.updateApplicationGroupAssignment(createdGroup.id);
+      const assignment = await createdApplication.createApplicationGroupAssignment(createdGroup.id);
       await createdApplication.listGroupAssignments().each(async (fetchedAssignment) => {
         // there should be only one assignment
         expect(fetchedAssignment.id).to.equal(assignment.id);

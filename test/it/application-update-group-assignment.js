@@ -14,7 +14,7 @@ const client = new okta.Client({
   token: process.env.OKTA_CLIENT_TOKEN
 });
 
-describe('Application.updateApplicationGroupAssignment()', () => {
+describe('Application.createApplicationGroupAssignment()', () => {
 
   it('should allow me to assign a group to an application', async () => {
     const application = {
@@ -43,7 +43,7 @@ describe('Application.updateApplicationGroupAssignment()', () => {
       await utils.cleanup(client, null, group);
       createdApplication = await client.createApplication(application);
       createdGroup = await client.createGroup(group);
-      const assignment = await createdApplication.updateApplicationGroupAssignment(createdGroup.id);
+      const assignment = await createdApplication.createApplicationGroupAssignment(createdGroup.id);
       expect(assignment._links.group.href).to.contain(createdGroup.id);
     } finally {
       if (createdApplication) {

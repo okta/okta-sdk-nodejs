@@ -29,7 +29,7 @@ var ApplicationSettingsApplication = require('./ApplicationSettingsApplication')
  * @property { string } realm
  * @property { string } siteURL
  * @property { string } usernameAttribute
- * @property { string } wReplyOverride
+ * @property { boolean } wReplyOverride
  * @property { string } wReplyURL
  */
 class WsFederationApplicationSettingsApplication extends ApplicationSettingsApplication {

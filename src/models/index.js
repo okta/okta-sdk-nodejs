@@ -18,6 +18,7 @@
 exports.AppLink = require('./AppLink');
 exports.AppUser = require('./AppUser');
 exports.AppUserCredentials = require('./AppUserCredentials');
+exports.AppUserPasswordCredential = require('./AppUserPasswordCredential');
 exports.Application = require('./Application');
 exports.ApplicationAccessibility = require('./ApplicationAccessibility');
 exports.ApplicationCredentials = require('./ApplicationCredentials');
@@ -33,7 +34,6 @@ exports.ApplicationSettingsNotifications = require('./ApplicationSettingsNotific
 exports.ApplicationSettingsNotificationsVpn = require('./ApplicationSettingsNotificationsVpn');
 exports.ApplicationSettingsNotificationsVpnNetwork = require('./ApplicationSettingsNotificationsVpnNetwork');
 exports.ApplicationSignOnMode = require('./ApplicationSignOnMode');
-exports.ApplicationTemplateName = require('./ApplicationTemplateName');
 exports.ApplicationVisibility = require('./ApplicationVisibility');
 exports.ApplicationVisibilityHide = require('./ApplicationVisibilityHide');
 exports.AuthenticationProvider = require('./AuthenticationProvider');

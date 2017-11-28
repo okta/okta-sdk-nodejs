@@ -21,6 +21,7 @@ const SecurePasswordStoreApplicationSettings = require('./SecurePasswordStoreApp
  * @class SecurePasswordStoreApplication
  * @extends Application
  * @property { SchemeApplicationCredentials } credentials
+ * @property { object } name
  * @property { SecurePasswordStoreApplicationSettings } settings
  */
 class SecurePasswordStoreApplication extends Application {

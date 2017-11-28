@@ -6,7 +6,7 @@ const utils = require('../utils');
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
 if (process.env.OKTA_USE_MOCK) {
-  orgUrl = `${orgUrl}/application-delete-group-assignment`;
+  orgUrl = `${orgUrl}/application-delete-user`;
 }
 
 const client = new okta.Client({
@@ -14,9 +14,9 @@ const client = new okta.Client({
   token: process.env.OKTA_CLIENT_TOKEN
 });
 
-describe('Application.deleteApplicationGroupAssignment()', () => {
+describe('AppUser.delete()', () => {
 
-  it('should allow me to delete a group application assignment', async () => {
+  it('should allow me to delete the app user', async () => {
     const application = {
       name: 'bookmark',
       label: 'my bookmark app',
@@ -29,22 +29,31 @@ describe('Application.deleteApplicationGroupAssignment()', () => {
       }
     };
 
-    const group = {
+    const user = {
       profile: {
-        name: 'test group'
+        firstName: 'John',
+        lastName: 'Activate',
+        email: 'john-activate@example.com',
+        login: 'john-activate@example.com'
+      },
+      credentials: {
+        password: { value: 'Abcd1234' }
       }
     };
 
     let createdApplication;
-    let createdGroup;
+    let createdUser;
+    let createdAppUser;
 
     try {
       await utils.removeAppByLabel(client, application.label);
-      await utils.cleanup(client, null, group);
+      await utils.cleanup(client, user);
       createdApplication = await client.createApplication(application);
-      createdGroup = await client.createGroup(group);
-      await createdApplication.updateApplicationGroupAssignment(createdGroup.id);
-      await createdApplication.deleteApplicationGroupAssignment(createdGroup.id)
+      createdUser = await client.createUser(user);
+      createdAppUser = await createdApplication.assignUserToApplication({
+        id: createdUser.id
+      });
+      await createdAppUser.delete(createdApplication.id)
       .then(response => {
         expect(response.status).to.equal(204);
       });
@@ -53,8 +62,11 @@ describe('Application.deleteApplicationGroupAssignment()', () => {
         await createdApplication.deactivate();
         await createdApplication.delete();
       }
-      if (createdGroup) {
-        await utils.cleanup(client, null, createdGroup);
+      if (createdUser) {
+        await utils.cleanup(client, createdUser);
+      }
+      if (createdAppUser) {
+        await utils.cleanup(client, createdAppUser);
       }
     }
   });

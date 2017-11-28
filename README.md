@@ -231,7 +231,7 @@ An App User is created, which is a new user instance that is specific to this ap
 To assign a group to an application, you must know the ID of the application and the group:
 
 ```javascript
-client.updateApplicationGroupAssignment(createdApplication.id, createdGroup.id);
+client.createApplicationGroupAssignment(createdApplication.id, createdGroup.id);
 ```
 
 ## Collections

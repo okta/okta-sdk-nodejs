@@ -19,6 +19,7 @@ const SwaApplicationSettings = require('./SwaApplicationSettings');
 /**
  * @class SwaApplication
  * @extends BrowserPluginApplication
+ * @property { object } name
  * @property { SwaApplicationSettings } settings
  */
 class SwaApplication extends BrowserPluginApplication {

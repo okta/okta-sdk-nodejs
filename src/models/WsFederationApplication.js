@@ -19,6 +19,7 @@ const WsFederationApplicationSettings = require('./WsFederationApplicationSettin
 /**
  * @class WsFederationApplication
  * @extends Application
+ * @property { object } name
  * @property { WsFederationApplicationSettings } settings
  */
 class WsFederationApplication extends Application {
