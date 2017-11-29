@@ -20,13 +20,13 @@ var Resource = require('../resource');
  * @class JsonWebKey
  * @extends Resource
  * @property { string } alg
- * @property { string } created
+ * @property { dateTime } created
  * @property { string } e
- * @property { string } expiresAt
+ * @property { dateTime } expiresAt
  * @property { array } key_ops
  * @property { string } kid
  * @property { string } kty
- * @property { string } lastUpdated
+ * @property { dateTime } lastUpdated
  * @property { string } n
  * @property { string } status
  * @property { string } use
