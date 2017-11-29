@@ -15,18 +15,29 @@ function validateUser(user, expectedUser) {
   expect(user.profile.login).to.equal(expectedUser.profile.login);
 }
 
-function authenticateUser(userName, password, client) {
+function authenticateUser(client, userName, password) {
   const data = {
     username: userName,
     password: password,
   };
 
-  let url = `${client.baseUrl}/api/v1/authn`;
+  const url = `${client.baseUrl}/api/v1/authn`;
 
-  const request = client.http.postJson(url, {
+  return client.http.postJson(url, {
     body: data
   });
-  return request;
+}
+
+async function createSessionId(client, userName, password) {
+  const authnResponse = await authenticateUser(client, userName, password);
+  const sessionToken = authnResponse.sessionToken;
+
+  // Exchange the sessionToken for a session
+  const response = await client.http.postJson(`${client.baseUrl}/api/v1/sessions`, {
+    body: { sessionToken }
+  });
+
+  return response.id;
 }
 
 function validateGroup(group, expectedGroup) {
@@ -170,6 +181,7 @@ module.exports = {
   delay: delay,
   validateUser: validateUser,
   authenticateUser: authenticateUser,
+  createSessionId: createSessionId,
   validateGroup: validateGroup,
   isUserInGroup: isUserInGroup,
   waitTillUserInGroup: waitTillUserInGroup,
