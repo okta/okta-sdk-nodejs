@@ -13,8 +13,8 @@
   "scripts": {
     "banners": "./utils/maintain-banners.js",
     "build": "okta-sdk-generator -t templates/ -o . && ./utils/maintain-banners.js",
-    "predocs": "rm -rf ./jsdocs",
-    "docs": "./node_modules/.bin/jsdoc src/ -c ./docs/config.json -d ./jsdocs/ -P ./package.json -R ./docs/JSDOC.md -r",
+    "predocs": "rm -rf ./jsdocs && mkdir jsdocs/ && ./utils/make-jsdoc-readme.js > ./jsdocs/jsdoc-temp.md",
+    "docs": "./node_modules/.bin/jsdoc src/ -c ./docs/config.json -d ./jsdocs/ -P ./package.json -R ./jsdocs/jsdoc-temp.md -r",
     "test": "eslint -c src/.eslintrc src/ && eslint -c test/.eslintrc test/ && nyc --reporter=text --reporter=html mocha test/**/*.js --no-timeouts"
   },
   "keywords": [],
