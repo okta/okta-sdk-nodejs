@@ -37,7 +37,7 @@ https://developer.okta.com/okta-sdk-nodejs/jsdocs/Client.html
 
 ## Examples
 
-This libray is a wrapper for the [Okta Platform API], which should be referred to as the source-of-truth for what is and isn't possible with the API.  In the following sections we show you how to use your client to perform some common operations with the [Okta Platform API].
+This library is a wrapper for the [Okta Platform API], which should be referred to as the source-of-truth for what is and isn't possible with the API.  In the following sections we show you how to use your client to perform some common operations with the [Okta Platform API].
 
 * [Users](#users)
   * [Create a User](#create-a-user)
