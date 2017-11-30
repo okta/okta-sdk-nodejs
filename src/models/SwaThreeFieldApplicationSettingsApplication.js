@@ -22,8 +22,9 @@ var ApplicationSettingsApplication = require('./ApplicationSettingsApplication')
  * @property { string } buttonSelector
  * @property { string } extraFieldSelector
  * @property { string } extraFieldValue
+ * @property { string } loginUrlRegex
  * @property { string } passwordSelector
- * @property { string } url
+ * @property { string } targetUrl
  * @property { string } userNameSelector
  */
 class SwaThreeFieldApplicationSettingsApplication extends ApplicationSettingsApplication {
