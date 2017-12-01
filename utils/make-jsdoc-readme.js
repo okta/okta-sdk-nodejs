@@ -5,7 +5,7 @@
  *
  * The things we want to transform are:
  *
- * - Removing the table-of-contents for the examples, because the JsDoc site has it's own TOC sidebar
+ * - Removing the table-of-contents for the examples, because the JsDoc site has its own TOC sidebar
  * - Removing the "warning" and "construction" icons from the Alpha banner, because those only render on Github
  */
 
