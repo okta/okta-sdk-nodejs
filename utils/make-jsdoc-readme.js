@@ -8,6 +8,7 @@
  * - Removing the table-of-contents for the examples, because the JsDoc site has it's own TOC sidebar
  * - Removing the "warning" and "construction" icons from the Alpha banner, because those only render on Github
  */
+
 const fs = require('fs');
 
 const lines = fs.readFileSync(__dirname + '/../README.md').toString().split('\n');
@@ -30,9 +31,10 @@ const filtered = lines.filter(line => {
 
 const transformed = filtered.map(line => {
   if (line.includes('## :warning: :construction: Alpha Preview :construction: :warning:')) {
-    return '## Alpha Preview'
+    return '## Alpha Preview';
   }
   return line;
-})
+});
 
-console.log(transformed.join('\n'))
+/*eslint-disable no-console*/
+console.log(transformed.join('\n'));
