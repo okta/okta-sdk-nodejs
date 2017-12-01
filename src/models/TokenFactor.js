@@ -11,20 +11,22 @@
  */
 
 
-/**
- *  THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION
- */
+/* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-/** @ignore */
 var Factor = require('./Factor');
+const TokenFactorProfile = require('./TokenFactorProfile');
 
 /**
  * @class TokenFactor
- * @extends Resource
+ * @extends Factor
+ * @property { TokenFactorProfile } profile
  */
 class TokenFactor extends Factor {
   constructor(resourceJson, client) {
     super(resourceJson, client);
+    if (resourceJson && resourceJson.profile) {
+      this.profile = new TokenFactorProfile(this.profile);
+    }
   }
 
 }

@@ -11,20 +11,24 @@
  */
 
 
-/**
- *  THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION
- */
+/* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-/** @ignore */
 var Resource = require('../resource');
+
 
 /**
  * @class VerifyFactorResponse
  * @extends Resource
+ * @property { hash } _embedded
+ * @property { hash } _links
+ * @property { dateTime } expiresAt
+ * @property { FactorResultType } factorResult
+ * @property { string } factorResultMessage
  */
 class VerifyFactorResponse extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
+
   }
 
 }

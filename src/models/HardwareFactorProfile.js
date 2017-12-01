@@ -11,20 +11,20 @@
  */
 
 
-/**
- *  THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION
- */
+/* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-/** @ignore */
 var FactorProfile = require('./FactorProfile');
+
 
 /**
  * @class HardwareFactorProfile
- * @extends Resource
+ * @extends FactorProfile
+ * @property { string } credentialId
  */
 class HardwareFactorProfile extends FactorProfile {
   constructor(resourceJson, client) {
     super(resourceJson, client);
+
   }
 
 }

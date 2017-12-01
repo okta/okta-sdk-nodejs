@@ -1,17 +1,28 @@
-/**
- *  THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION
- */
+/* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-/** @ignore */
-{{#if extends}}
+{{#if extends~}}
 var {{extends}} = require('./{{extends}}');
 {{else}}
 var Resource = require('../resource');
 {{/if}}
+{{{modelImportBuilder this}}}
 
 /**
  * @class {{modelName}}
+{{#if extends}}
+ * @extends {{extends}}
+{{else}}
  * @extends Resource
+{{/if}}
+{{#each properties}}
+{{#if this.$ref}}
+{{#if (ne this.model "object") }}
+ * @property { {{model}} } {{this.propertyName}}
+{{/if}}
+{{else}}
+ * @property { {{this.commonType}} } {{this.propertyName}}
+{{/if}}
+{{/each}}
  */
 {{#if extends}}
 class {{modelName}} extends {{extends}} {
@@ -20,6 +31,7 @@ class {{modelName}} extends Resource {
 {{/if}}
   constructor(resourceJson, client) {
     super(resourceJson, client);
+{{{propertyCastBuilder this}}}
   }
 
   {{#each crud}}

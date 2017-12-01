@@ -11,20 +11,22 @@
  */
 
 
-/**
- *  THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION
- */
+/* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-/** @ignore */
 var Factor = require('./Factor');
+const SmsFactorProfile = require('./SmsFactorProfile');
 
 /**
  * @class SmsFactor
- * @extends Resource
+ * @extends Factor
+ * @property { SmsFactorProfile } profile
  */
 class SmsFactor extends Factor {
   constructor(resourceJson, client) {
     super(resourceJson, client);
+    if (resourceJson && resourceJson.profile) {
+      this.profile = new SmsFactorProfile(this.profile);
+    }
   }
 
 }

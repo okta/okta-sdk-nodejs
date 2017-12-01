@@ -11,20 +11,21 @@
  */
 
 
-/**
- *  THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION
- */
+/* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-/** @ignore */
 var FactorProfile = require('./FactorProfile');
+
 
 /**
  * @class CallFactorProfile
- * @extends Resource
+ * @extends FactorProfile
+ * @property { string } phoneExtension
+ * @property { string } phoneNumber
  */
 class CallFactorProfile extends FactorProfile {
   constructor(resourceJson, client) {
     super(resourceJson, client);
+
   }
 
 }

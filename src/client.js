@@ -24,6 +24,7 @@ const repoUrl = 'https://github.com/okta/okta-sdk-nodejs';
  * Base client that encapsulates the HTTP request mechanism, and knowledge of how to authenticate with the Okta API
  *
  * @class Client
+ * @extends {GeneratedApiClient}
  */
 class Client extends GeneratedApiClient {
   constructor(clientConfig) {

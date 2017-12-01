@@ -11,20 +11,22 @@
  */
 
 
-/**
- *  THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION
- */
+/* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-/** @ignore */
 var Factor = require('./Factor');
+const HardwareFactorProfile = require('./HardwareFactorProfile');
 
 /**
  * @class HardwareFactor
- * @extends Resource
+ * @extends Factor
+ * @property { HardwareFactorProfile } profile
  */
 class HardwareFactor extends Factor {
   constructor(resourceJson, client) {
     super(resourceJson, client);
+    if (resourceJson && resourceJson.profile) {
+      this.profile = new HardwareFactorProfile(this.profile);
+    }
   }
 
 }

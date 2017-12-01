@@ -1,14 +1,15 @@
-/**
- *  THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION
- */
+/* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
 const ModelResolutionFactory = require('../resolution-factory');
+/*eslint-disable no-unused-vars*/
+const factories = require('./');
+const models = require('../models');
 
 class {{parentModelName}}Factory extends ModelResolutionFactory {
   getMapping() {
     return {
       {{#each mapping}}
-      '{{propertyValue}}': '{{modelName}}',
+      '{{propertyValue}}': {{{modelName}}},
       {{/each}}
     };
   }

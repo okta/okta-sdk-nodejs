@@ -11,20 +11,38 @@
  */
 
 
-/**
- *  THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION
- */
+/* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-/** @ignore */
 var Resource = require('../resource');
+const UserCredentials = require('./UserCredentials');
+const UserProfile = require('./UserProfile');
 
 /**
  * @class User
  * @extends Resource
+ * @property { hash } _embedded
+ * @property { hash } _links
+ * @property { dateTime } activated
+ * @property { dateTime } created
+ * @property { UserCredentials } credentials
+ * @property { string } id
+ * @property { dateTime } lastLogin
+ * @property { dateTime } lastUpdated
+ * @property { dateTime } passwordChanged
+ * @property { UserProfile } profile
+ * @property { UserStatus } status
+ * @property { dateTime } statusChanged
+ * @property { UserStatus } transitioningToStatus
  */
 class User extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
+    if (resourceJson && resourceJson.credentials) {
+      this.credentials = new UserCredentials(this.credentials);
+    }
+    if (resourceJson && resourceJson.profile) {
+      this.profile = new UserProfile(this.profile);
+    }
   }
 
   update() {

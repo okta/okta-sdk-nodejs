@@ -11,20 +11,23 @@
  */
 
 
-/**
- *  THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION
- */
+/* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-/** @ignore */
 var Resource = require('../resource');
+
 
 /**
  * @class VerifyFactorRequest
  * @extends Resource
+ * @property { string } activationToken
+ * @property { string } answer
+ * @property { string } nextPassCode
+ * @property { string } passCode
  */
 class VerifyFactorRequest extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
+
   }
 
 }

@@ -11,20 +11,22 @@
  */
 
 
-/**
- *  THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION
- */
+/* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-/** @ignore */
 var Factor = require('./Factor');
+const TotpFactorProfile = require('./TotpFactorProfile');
 
 /**
  * @class TotpFactor
- * @extends Resource
+ * @extends Factor
+ * @property { TotpFactorProfile } profile
  */
 class TotpFactor extends Factor {
   constructor(resourceJson, client) {
     super(resourceJson, client);
+    if (resourceJson && resourceJson.profile) {
+      this.profile = new TotpFactorProfile(this.profile);
+    }
   }
 
 }

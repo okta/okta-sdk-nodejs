@@ -11,20 +11,30 @@
  */
 
 
-/**
- *  THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION
- */
+/* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-/** @ignore */
 var Resource = require('../resource');
+const GroupProfile = require('./GroupProfile');
 
 /**
  * @class Group
  * @extends Resource
+ * @property { hash } _embedded
+ * @property { hash } _links
+ * @property { dateTime } created
+ * @property { string } id
+ * @property { dateTime } lastMembershipUpdated
+ * @property { dateTime } lastUpdated
+ * @property { array } objectClass
+ * @property { GroupProfile } profile
+ * @property { string } type
  */
 class Group extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
+    if (resourceJson && resourceJson.profile) {
+      this.profile = new GroupProfile(this.profile);
+    }
   }
 
   update() {

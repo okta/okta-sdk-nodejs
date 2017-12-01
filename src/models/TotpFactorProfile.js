@@ -11,20 +11,20 @@
  */
 
 
-/**
- *  THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION
- */
+/* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-/** @ignore */
 var FactorProfile = require('./FactorProfile');
+
 
 /**
  * @class TotpFactorProfile
- * @extends Resource
+ * @extends FactorProfile
+ * @property { string } credentialId
  */
 class TotpFactorProfile extends FactorProfile {
   constructor(resourceJson, client) {
     super(resourceJson, client);
+
   }
 
 }

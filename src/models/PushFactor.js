@@ -11,20 +11,22 @@
  */
 
 
-/**
- *  THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION
- */
+/* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-/** @ignore */
 var Factor = require('./Factor');
+const PushFactorProfile = require('./PushFactorProfile');
 
 /**
  * @class PushFactor
- * @extends Resource
+ * @extends Factor
+ * @property { PushFactorProfile } profile
  */
 class PushFactor extends Factor {
   constructor(resourceJson, client) {
     super(resourceJson, client);
+    if (resourceJson && resourceJson.profile) {
+      this.profile = new PushFactorProfile(this.profile);
+    }
   }
 
 }

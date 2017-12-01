@@ -6,7 +6,7 @@ Requires Node.js version 4.8.3 or higher.
 
 ## :warning: :construction: Alpha Preview :construction: :warning:
 
-This library is under development and is currently a 0.x version series.  Breaking changes will be introduced as minor version bumps in the 0.x range.  Some of the API is not yet expressed in this library, please refer to the JsDoc: [Okta NodeJS Management SDK Documentation](https://developer.okta.com/okta-sdk-nodejs/jsdocs/).
+This library is under development and is currently a 0.x version series.  Breaking changes will be introduced as minor version bumps in the 0.x range.  Some of the API is not yet expressed in this library, please refer to the JsDoc for a complete list of classes and methods: [Okta NodeJS Management SDK JSDoc Site].
 
 Need help? Contact [developers@okta.com](mailto:developers@okta.com) or use the [Okta Developer Forum].
 
@@ -18,7 +18,7 @@ npm install @okta/okta-sdk-nodejs
 
 ## Usage
 
-All usage of this SDK begins with the creation of a client, the client handles the authentication and communication with the Okta API.  To create a client, you need to provide it the URL of your Okta Org, and an API Token that you have provisioned for yourself (this can be done by visiting Admin -> Security -> API -> Tokens in your Okta Developer Dashboard):
+All usage of this SDK begins with the creation of a client, the client handles the authentication and communication with the Okta API.  To create a client, you need to provide it the URL of your Okta Org, and an API Token that you have provisioned for yourself (this can be done by visiting API -> Tokens in your Okta Developer Dashboard):
 
 ```javascript
 const okta = require('@okta/okta-sdk-nodejs');
@@ -31,20 +31,33 @@ const client = new okta.Client({
 
 It is also possible to provide configuration through environment variables or YAML files.  Please see [Configuration](#configuration) for examples.
 
+All interaction with the [Okta Platform API] is done through client methods.  Some examples are below, but for a full list of methods please refer to the JsDoc page for the client:
+
+https://developer.okta.com/okta-sdk-nodejs/jsdocs/Client.html
+
 ## Examples
 
-This libray is a wrapper for the [Okta Platform API], which should be referred to as the source-of-truth for what is and isn't possible with the API.  In the following sections we show you how to use your client to perform some common operations with the [Okta Platform API].
+This library is a wrapper for the [Okta Platform API], which should be referred to as the source-of-truth for what is and isn't possible with the API.  In the following sections we show you how to use your client to perform some common operations with the [Okta Platform API].
 
-* [Create a User](#create-a-user)
-* [Get a User](#get-a-user)
-* [Update a User](#update-a-user)
-* [Delete a User](#delete-a-user)
-* [List All Org Users](#list-all-org-users)
-* [Search for Users](#search-for-users)
-* [Create a Group](#create-a-group)
-* [Assign a User to a Group](#assign-a-user-to-a-group)
+* [Users](#users)
+  * [Create a User](#create-a-user)
+  * [Get a User](#get-a-user)
+  * [Update a User](#update-a-user)
+  * [Delete a User](#delete-a-user)
+  * [List All Org Users](#list-all-org-users)
+  * [Search for Users](#search-for-users)
+* [Groups](#groups)
+  * [Create a Group](#create-a-group)
+  * [Assign a User to a Group](#assign-a-user-to-a-group)
+* [Applications](#applications)
+  * [Create an Application](#create-an-application)
+  * [Assign a User to an Application](#assign-a-user-to-an-application)
+  * [Assign a Group to an Application](#assign-a-group-to-an-application)
 * [Collections](#collections)
   * [each](#each)
+* [Configuration](#configuration)
+
+### Users
 
 #### Create a User
 
@@ -76,11 +89,13 @@ client.createUser(newUser)
 The [Users: Get User] API can be used to fetch a user by id or login (as defined on their `profile.login` property), and is wrapped by `client.getUser(:id|:login)`:
 
 ```javascript
-client.getUser('ausmvdt5xg8wRVI1d0g3').then(user => {
+client.getUser('ausmvdt5xg8wRVI1d0g3')
+.then(user => {
   console.log(user);
 });
 
-client.getUser('foo@bar.com').then(user => {
+client.getUser('foo@bar.com')
+.then(user => {
   console.log(user);
 });
 ```
@@ -91,7 +106,8 @@ Once you have a user instance, you can modify it and then call the `update()` me
 
 ```javascript
 user.profile.nickName = 'rob';
-user.update().then(() => console.log('User nickname change has been saved'));
+user.update()
+.then(() => console.log('User nickname change has been saved'));
 ```
 
 #### Delete a User
@@ -144,6 +160,8 @@ client.listUsers({
 });
 ```
 
+## Groups
+
 #### Create a Group
 
 The [Groups: Add Group] API allows you to create Groups, and this is wrapped by `client.createGroup(:newGroup)`:
@@ -166,7 +184,58 @@ client.createGroup(newGroup)
 With a user and group instance, you can use the `addToGroup(:groupId)` method of the user to add the user to the known group:
 
 ```javascript
-user.addToGroup(group.id).then(() => console.log('User has been added to group'));
+user.addToGroup(group.id)
+.then(() => console.log('User has been added to group'));
+```
+
+### Applications
+
+#### Create An Application
+
+The [Applications: Add Application] API allows you to create Okta Applications.  There are many different types of applications that can be created.  Please refer to the [Applications] documentation for details about each application type and what is required when creating the application.
+
+In this example, we create a [Basic Authentication Application]:
+
+```javascript
+const application = {
+  name: 'template_basic_auth',
+  label: 'Sample Basic Auth App',
+  signOnMode: 'BASIC_AUTH',
+  settings: {
+    app: {
+      url: 'https://example.com/auth.htm'
+      authURL: 'https://example.com/login.html',
+    }
+  }
+};
+
+client.createApplication(application)
+.then(application => {
+  console.log('Created application:', application);
+});
+```
+
+#### Assign a User to an Application
+
+To assign a user to an application, you must know the ID of the application and the user:
+
+```javascript
+client.assignUserToApplication(createdApplication.id, {
+  id: createdUser.id
+})
+.then(appUser => {
+  console.log('Assigned user to app, app user instance:' appUser);
+});
+```
+
+An App User is created, which is a new user instance that is specific to this application.  An App User allows you define an application-specific profile for that user.  For more information please see [Applications: User Operations] and [Applications: Application User Profile].
+
+#### Assign a Group to an Application
+
+To assign a group to an application, you must know the ID of the application and the group:
+
+```javascript
+client.createApplicationGroupAssignment(createdApplication.id, createdGroup.id);
 ```
 
 ## Collections
@@ -185,8 +254,9 @@ If no value is returned, each() will continue to the next item:
 client.listUsers().each(user => {
   console.log(user);
   logUserToRemoteSystem(user);
-}).then(() => {
-  console.log('All users have been vistied');
+})
+.then(() => {
+  console.log('All users have been visited');
 });
 ```
 
@@ -210,7 +280,8 @@ Returning false will end iteration:
 client.listUsers().each(user => {
   console.log(user);
   return false;
-}).then(() => {
+})
+.then(() => {
   console.log('Only one user was visited');
 });
 ```
@@ -221,7 +292,8 @@ Returning false in a promise will also end iteration:
 client.listUsers().each((user) => {
   console.log(user);
   return Promise.resolve(false);
-}).then(() => {
+})
+.then(() => {
   console.log('Only one user was visited');
 });
 ```
@@ -268,6 +340,11 @@ OKTA_CLIENT_TOKEN=xYzabc
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) if you would like to propose changes to this library.
 
+[Applications]: https://developer.okta.com/docs/api/resources/apps.html
+[Applications: Application User Profile]: https://developer.okta.com/docs/api/resources/apps.html#application-user-profile-object
+[Applications: Add Application]: https://developer.okta.com/docs/api/resources/apps.html#add-application
+[Applications: User Operations]:https://developer.okta.com/docs/api/resources/apps.html#application-user-operations
+[Basic Authentication Application]: https://developer.okta.com/docs/api/resources/apps.html#add-basic-authentication-application
 [Groups: Add Group]: https://developer.okta.com/docs/api/resources/groups.html#add-group
 [Okta Developer Forum]: https://devforum.okta.com/
 [Okta Platform API]: https://developer.okta.com/docs/api/getting_started/api_test_client.html
@@ -278,3 +355,4 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) if you would like to propose changes to t
 [Users: Lifecycle Operations]: https://developer.okta.com/docs/api/resources/users.html#lifecycle-operations
 [Users: List Users]: https://developer.okta.com/docs/api/resources/users.html#list-users
 [Users: Update User]: https://developer.okta.com/docs/api/resources/users.html#update-user
+[Okta NodeJS Management SDK JSDoc Site]: https://developer.okta.com/okta-sdk-nodejs/jsdocs/

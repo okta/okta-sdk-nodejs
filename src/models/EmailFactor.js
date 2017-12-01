@@ -11,20 +11,22 @@
  */
 
 
-/**
- *  THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION
- */
+/* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-/** @ignore */
 var Factor = require('./Factor');
+const EmailFactorProfile = require('./EmailFactorProfile');
 
 /**
  * @class EmailFactor
- * @extends Resource
+ * @extends Factor
+ * @property { EmailFactorProfile } profile
  */
 class EmailFactor extends Factor {
   constructor(resourceJson, client) {
     super(resourceJson, client);
+    if (resourceJson && resourceJson.profile) {
+      this.profile = new EmailFactorProfile(this.profile);
+    }
   }
 
 }

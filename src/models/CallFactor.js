@@ -11,20 +11,22 @@
  */
 
 
-/**
- *  THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION
- */
+/* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-/** @ignore */
 var Factor = require('./Factor');
+const CallFactorProfile = require('./CallFactorProfile');
 
 /**
  * @class CallFactor
- * @extends Resource
+ * @extends Factor
+ * @property { CallFactorProfile } profile
  */
 class CallFactor extends Factor {
   constructor(resourceJson, client) {
     super(resourceJson, client);
+    if (resourceJson && resourceJson.profile) {
+      this.profile = new CallFactorProfile(this.profile);
+    }
   }
 
 }
