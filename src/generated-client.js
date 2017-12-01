@@ -611,7 +611,7 @@ class GeneratedApiClient {
   }
 
   /**
-   * 
+   *
    * @param sessionId {String}
    * @description
    * Convenience method for /api/v1/sessions/{sessionId}
