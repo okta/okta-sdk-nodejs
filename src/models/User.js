@@ -51,6 +51,9 @@ class User extends Resource {
   delete() {
     return this.client.deactivateOrDeleteUser(this.id);
   }
+  endAllSessions(queryParameters) {
+    return this.client.endAllUserSessions(this.id, queryParameters);
+  }
   listAppLinks(queryParameters) {
     return this.client.listAppLinks(this.id, queryParameters);
   }

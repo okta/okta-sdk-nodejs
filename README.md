@@ -238,6 +238,67 @@ To assign a group to an application, you must know the ID of the application and
 client.createApplicationGroupAssignment(createdApplication.id, createdGroup.id);
 ```
 
+### Sessions
+
+#### Create a Session
+
+This is a rarely used method. See [Sessions: Create Session with Session Token] for the common ways to create a session. To use this method, you must have a sessionToken:
+
+```javascript
+client.createSession({
+  sessionToken: 'your session token' 
+})
+.then(session => {
+  console.log('Session details:' session);
+});
+```
+
+#### Get a Session
+
+To retrieve details about a session, you must know the ID of the session:
+
+```javascript
+client.getSession(session.id)
+.then(session => {
+  console.log('Session details:' session);
+});
+```
+
+These details include when and how the user authenticated and the session expiration. For more information see [Sessions: Session Properties] and [Sessions: Session Operations].
+
+#### Refresh a Session
+
+To refresh a session before it expires, you must know the ID of the session:
+
+```javascript
+client.refreshSession(session.id)
+.then(session => {
+  console.log('Refreshed session expiration:', session.expiresAt);
+});
+```
+
+#### End a Session
+
+To end a session, you must know the ID of the session:
+
+```javascript
+client.endSession(session.id)
+.then(() => {
+  console.log('Session ended');
+});
+```
+
+#### End all Sessions for a User
+
+To end all sessions for a user, you must know the ID of the user:
+
+```javascript
+client.endAllUserSessions(user.id)
+.then(() => {
+  console.log('All user sessions have ended');
+});
+```
+
 ## Collections
 
 When the client is used to fetch collections of resources, a collection instance is returned.  The collection encapsulates the work of paginating the API to fetch all resources in the collection (see [Pagination]).  The collection provides the `each()` method for iterating over the collection, as described below.
@@ -340,6 +401,9 @@ OKTA_CLIENT_TOKEN=xYzabc
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) if you would like to propose changes to this library.
 
+[Sessions: Create Session with Session Token]: https://developer.okta.com/docs/api/resources/sessions.html#create-session-with-session-token
+[Sessions: Session Properties]: https://developer.okta.com/docs/api/resources/sessions.html#session-properties
+[Sessions: Session Operations]: https://developer.okta.com/docs/api/resources/sessions.html#session-operations
 [Applications]: https://developer.okta.com/docs/api/resources/apps.html
 [Applications: Application User Profile]: https://developer.okta.com/docs/api/resources/apps.html#application-user-profile-object
 [Applications: Add Application]: https://developer.okta.com/docs/api/resources/apps.html#add-application

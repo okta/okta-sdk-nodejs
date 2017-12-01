@@ -597,6 +597,60 @@ class GeneratedApiClient {
 
   /**
    *
+   * @param {CreateSessionRequest} createSessionRequest
+   * @description
+   * Creates a new session for a user with a valid session token. Use this API if, for example, you want to set the session cookie yourself instead of allowing Okta to set it, or want to hold the session ID in order to delete a session via the API instead of visiting the logout URL.
+   */
+  createSession(createSessionRequest) {
+    let url = `${this.baseUrl}/api/v1/sessions`;
+
+    const request = this.http.postJson(url, {
+      body: createSessionRequest
+    });
+    return request.then(jsonRes => new models.Session(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param sessionId {String}
+   * @description
+   * Convenience method for /api/v1/sessions/{sessionId}
+   */
+  endSession(sessionId) {
+    let url = `${this.baseUrl}/api/v1/sessions/${sessionId}`;
+
+    const request = this.http.delete(url);
+    return request;
+  }
+
+  /**
+   *
+   * @param sessionId {String}
+   * @description
+   * Get details about a session.
+   */
+  getSession(sessionId) {
+    let url = `${this.baseUrl}/api/v1/sessions/${sessionId}`;
+
+    const request = this.http.getJson(url);
+    return request.then(jsonRes => new models.Session(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param sessionId {String}
+   * @description
+   * Convenience method for /api/v1/sessions/{sessionId}/lifecycle/refresh
+   */
+  refreshSession(sessionId) {
+    let url = `${this.baseUrl}/api/v1/sessions/${sessionId}/lifecycle/refresh`;
+
+    const request = this.http.postJson(url);
+    return request.then(jsonRes => new models.Session(jsonRes, this));
+  }
+
+  /**
+   *
    * @param {Object} queryParams Map of query parameters to add to this request
    * @param {String} [queryParams.q]
    * @param {String} [queryParams.after]
@@ -1106,6 +1160,24 @@ class GeneratedApiClient {
     let url = `${this.baseUrl}/api/v1/users/${userId}/roles/${roleId}/targets/groups/${groupId}`;
 
     const request = this.http.put(url);
+    return request;
+  }
+
+  /**
+   *
+   * @param userId {String}
+   * @param {Object} queryParams Map of query parameters to add to this request
+   * @param {String} [queryParams.oauthTokens]
+   * @description
+   * Removes all active identity provider sessions. This forces the user to authenticate on the next operation. Optionally revokes OpenID Connect and OAuth refresh and access tokens issued to the user.
+   */
+  endAllUserSessions(userId, queryParameters) {
+    let url = `${this.baseUrl}/api/v1/users/${userId}/sessions`;
+    const queryString = qs.stringify(queryParameters || {});
+
+    url += queryString ? ('?' + queryString) : '';
+
+    const request = this.http.delete(url);
     return request;
   }
 

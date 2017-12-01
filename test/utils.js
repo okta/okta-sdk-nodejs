@@ -15,18 +15,17 @@ function validateUser(user, expectedUser) {
   expect(user.profile.login).to.equal(expectedUser.profile.login);
 }
 
-function authenticateUser(userName, password, client) {
+function authenticateUser(client, userName, password) {
   const data = {
     username: userName,
     password: password,
   };
 
-  let url = `${client.baseUrl}/api/v1/authn`;
+  const url = `${client.baseUrl}/api/v1/authn`;
 
-  const request = client.http.postJson(url, {
+  return client.http.postJson(url, {
     body: data
   });
-  return request;
 }
 
 function validateGroup(group, expectedGroup) {
