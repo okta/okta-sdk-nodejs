@@ -240,6 +240,19 @@ client.createApplicationGroupAssignment(createdApplication.id, createdGroup.id);
 
 ### Sessions
 
+#### Create a Session
+
+This is a rarely used method. See [Sessions: Create Session with Session Token] for the common ways to create a session. To use this method, you must have a sessionToken:
+
+```javascript
+client.createSession({
+  sessionToken: 'your session token' 
+})
+.then(session => {
+  console.log('Session details:' session);
+});
+```
+
 #### Get a Session
 
 To retrieve details about a session, you must know the ID of the session:
@@ -264,7 +277,7 @@ client.refreshSession(session.id)
 });
 ```
 
-#### Delete a Session
+#### End a Session
 
 To end a session, you must know the ID of the session:
 
@@ -275,7 +288,7 @@ client.endSession(session.id)
 });
 ```
 
-#### Delete all Sessions for a User
+#### End all Sessions for a User
 
 To end all sessions for a user, you must know the ID of the user:
 
@@ -388,6 +401,7 @@ OKTA_CLIENT_TOKEN=xYzabc
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) if you would like to propose changes to this library.
 
+[Sessions: Create Session with Session Token]: https://developer.okta.com/docs/api/resources/sessions.html#create-session-with-session-token
 [Sessions: Session Properties]: https://developer.okta.com/docs/api/resources/sessions.html#session-properties
 [Sessions: Session Operations]: https://developer.okta.com/docs/api/resources/sessions.html#session-operations
 [Applications]: https://developer.okta.com/docs/api/resources/apps.html
