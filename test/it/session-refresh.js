@@ -4,7 +4,7 @@ const expect = require('chai').expect;
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
 if (process.env.OKTA_USE_MOCK) {
-  orgUrl = `${orgUrl}/session-clear`;
+  orgUrl = `${orgUrl}/session-refresh`;
 }
 
 const client = new okta.Client({
@@ -38,14 +38,15 @@ describe('Sessions API', () => {
 
   it('should allow me to refresh an existing session', async () => {
     // 1 - create sessionId
-    const sessionId = await utils.createSessionId(client, 'john-session@example.com', 'Abcd1234');
-
-    const currentSession = await client.getSession(sessionId);
+    const transaction = await utils.authenticateUser(client, 'john-session@example.com', 'Abcd1234');
+    const currentSession = await client.createSession({
+      sessionToken: transaction.sessionToken
+    });
 
     await utils.delay(1000);
 
     // 2 - refresh the session
-    const refreshedSession = await client.refreshSession(sessionId);
+    const refreshedSession = await currentSession.refresh();
 
     expect(new Date(refreshedSession.expiresAt).getTime())
       .to.be.above(new Date(currentSession.expiresAt).getTime());

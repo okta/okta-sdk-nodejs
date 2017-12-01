@@ -38,12 +38,15 @@ describe('Sessions API', () => {
   });
 
   it('should allow me to get an existing session', async () => {
-    // 1 - create sessionId
-    const sessionId = await utils.createSessionId(client, 'john-session@example.com', 'Abcd1234');
+    // 1 - create session
+    const transaction = await utils.authenticateUser(client, 'john-session@example.com', 'Abcd1234');
+    const session = await client.createSession({
+      sessionToken: transaction.sessionToken
+    });
 
     // 2 - retrieve session
-    const session = await client.getSession(sessionId);
+    const sess = await client.getSession(session.id);
 
-    expect(session).to.be.instanceOf(models.Session);
+    expect(sess).to.be.instanceOf(models.Session);
   });
 });

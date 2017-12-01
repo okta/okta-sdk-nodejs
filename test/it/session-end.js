@@ -4,7 +4,7 @@ const expect = require('chai').expect;
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
 if (process.env.OKTA_USE_MOCK) {
-  orgUrl = `${orgUrl}/session-clear`;
+  orgUrl = `${orgUrl}/session-end`;
 }
 
 const client = new okta.Client({
@@ -36,20 +36,23 @@ describe('Sessions API', () => {
     return utils.cleanup(client, createdUser);
   });
 
-  it('should allow me to clear an existing session', async () => {
-    // 1 - create sessionId
-    const sessionId = await utils.createSessionId(client, 'john-session@example.com', 'Abcd1234');
+  it('should allow me to end an existing session', async () => {
+    // 1 - create session
+    const transaction = await utils.authenticateUser(client, 'john-session@example.com', 'Abcd1234');
+    const session = await client.createSession({
+      sessionToken: transaction.sessionToken
+    });
 
-    // 2 - clear sessionId
-    await client.clearSession(sessionId);
+    // 2 - end session
+    await session.delete();
 
     // 3 - attempt to retrieve session
-    let session;
+    let sess;
     try {
-      session = await client.getSession(sessionId);
+      sess = await client.getSession(session.id);
     } catch (e) {
       expect(e.status).to.equal(404);
     }
-    expect(session).to.be.undefined;
+    expect(sess).to.be.undefined;
   });
 });
