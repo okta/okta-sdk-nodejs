@@ -269,7 +269,7 @@ client.refreshSession(session.id)
 To end a session, you must know the ID of the session:
 
 ```javascript
-client.clearSession(session.id)
+client.endSession(session.id)
 .then(() => {
   console.log('Session ended');
 });
@@ -280,7 +280,7 @@ client.clearSession(session.id)
 To end all sessions for a user, you must know the ID of the user:
 
 ```javascript
-client.clearUserSessions(user.id)
+client.endAllUserSessions(user.id)
 .then(() => {
   console.log('All user sessions have ended');
 });

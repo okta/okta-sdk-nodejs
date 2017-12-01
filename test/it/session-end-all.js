@@ -36,7 +36,7 @@ describe('Sessions API', () => {
     return utils.cleanup(client, createdUser);
   });
 
-  it('should allow me to clear all existing sessions', async () => {
+  it('should allow me to end all existing sessions for a user', async () => {
     // 1 - create session
     const transaction1 = await utils.authenticateUser(client, 'john-session@example.com', 'Abcd1234');
     const session1 = await client.createSession({
