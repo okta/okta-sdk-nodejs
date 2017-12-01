@@ -55,6 +55,7 @@ exports.EmailFactor = require('./EmailFactor');
 exports.EmailFactorProfile = require('./EmailFactorProfile');
 exports.Factor = require('./Factor');
 exports.FactorProfile = require('./FactorProfile');
+exports.FactorProvider = require('./FactorProvider');
 exports.FactorResultType = require('./FactorResultType');
 exports.FactorStatus = require('./FactorStatus');
 exports.FactorType = require('./FactorType');

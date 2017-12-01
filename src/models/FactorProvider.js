@@ -13,29 +13,19 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-const ModelResolutionFactory = require('../resolution-factory');
-/*eslint-disable no-unused-vars*/
-const factories = require('./');
-const models = require('../models');
+var Resource = require('../resource');
 
-class FactorFactory extends ModelResolutionFactory {
-  getMapping() {
-    return {
-      'call': models.CallFactor,
-      'email': models.EmailFactor,
-      'push': models.PushFactor,
-      'question': models.SecurityQuestionFactor,
-      'sms': models.SmsFactor,
-      'token': models.TokenFactor,
-      'token:hardware': models.HardwareFactor,
-      'token:software:totp': models.TotpFactor,
-      'web': models.WebFactor,
-    };
+
+/**
+ * @class FactorProvider
+ * @extends Resource
+ */
+class FactorProvider extends Resource {
+  constructor(resourceJson, client) {
+    super(resourceJson, client);
+
   }
 
-  getResolutionProperty() {
-    return 'factorType';
-  }
 }
 
-module.exports = FactorFactory;
+module.exports = FactorProvider;

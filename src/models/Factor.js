@@ -28,7 +28,7 @@ const VerifyFactorRequest = require('./VerifyFactorRequest');
  * @property { string } id
  * @property { string } mfaStateTokenId
  * @property { FactorProfile } profile
- * @property { string } provider
+ * @property { FactorProvider } provider
  * @property { boolean } rechallengeExistingFactor
  * @property { string } sessionId
  * @property { FactorStatus } status
