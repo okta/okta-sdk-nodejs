@@ -28,18 +28,6 @@ function authenticateUser(client, userName, password) {
   });
 }
 
-async function createSessionId(client, userName, password) {
-  const authnResponse = await authenticateUser(client, userName, password);
-  const sessionToken = authnResponse.sessionToken;
-
-  // Exchange the sessionToken for a session
-  const response = await client.http.postJson(`${client.baseUrl}/api/v1/sessions`, {
-    body: { sessionToken }
-  });
-
-  return response.id;
-}
-
 function validateGroup(group, expectedGroup) {
   expect(group).to.be.an.instanceof(models.Group);
   expect(group.profile.name).to.equal(expectedGroup.profile.name);
@@ -181,7 +169,6 @@ module.exports = {
   delay: delay,
   validateUser: validateUser,
   authenticateUser: authenticateUser,
-  createSessionId: createSessionId,
   validateGroup: validateGroup,
   isUserInGroup: isUserInGroup,
   waitTillUserInGroup: waitTillUserInGroup,
