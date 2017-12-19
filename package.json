@@ -19,7 +19,7 @@
   },
   "keywords": [],
   "license": "Apache-2.0",
-  "repository": "https://github.com/okta/okta-sdk-nodejs",
+  "repository": "https://github.com/vurankar/okta-sdk-nodejs",
   "dependencies": {
     "flat": "^2.0.1",
     "isomorphic-fetch": "2.2.1",
