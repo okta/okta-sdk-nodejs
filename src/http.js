@@ -15,6 +15,8 @@ const fetch = require('isomorphic-fetch');
 
 const OktaApiError = require('./api-error');
 const HttpError = require('./http-error');
+const MemoryStore = require('./memory-store');
+const defaultCacheMiddleware = require('./default-cache-middleware');
 
 /**
  * It's like fetch :) plus some extra convenience methods.
@@ -22,8 +24,12 @@ const HttpError = require('./http-error');
  * @class Http
  */
 class Http {
-  constructor() {
+  constructor(httpConfig) {
     this.defaultHeaders = {};
+    this.cacheStore = httpConfig.cacheStore || new MemoryStore();
+    if (httpConfig.cacheMiddleware !== null) {
+      this.cacheMiddleware = httpConfig.cacheMiddleware || defaultCacheMiddleware;
+    }
   }
 
   errorFilter(response) {
@@ -31,7 +37,7 @@ class Http {
       return response;
     } else {
       return response.text()
-      .then((body) => {
+      .then(body => {
         let err;
 
         // If the response is JSON, assume it's an Okta API error. Otherwise, assume it's some other HTTP error
@@ -46,57 +52,75 @@ class Http {
     }
   }
 
-  http(uri, request) {
+  http(uri, request, context) {
     request = request || {};
+    context = context || {};
     request.headers = Object.assign(this.defaultHeaders, request.headers);
-    return fetch(uri, request)
-    .then(this.errorFilter);
+    if (!this.cacheMiddleware) {
+      return fetch(uri, request)
+      .then(this.errorFilter);
+    }
+    const ctx = {
+      uri,
+      isCollection: context.isCollection,
+      resources: context.resources,
+      req: request,
+      cacheStore: this.cacheStore
+    };
+    return this.cacheMiddleware(ctx, () => {
+      return Promise.resolve(ctx.res ||
+        fetch(uri, request)
+        .then(this.errorFilter)
+        .then(res => ctx.res = res)
+      );
+    })
+    .then(() => ctx.res);
   }
 
-  delete(uri, request) {
-    return this.http(uri, Object.assign(request || {}, { method: 'delete' }));
+  delete(uri, request, context) {
+    return this.http(uri, Object.assign(request || {}, { method: 'delete' }), context);
   }
 
-  json(uri, request) {
+  json(uri, request, context) {
     request = request || {};
     request.headers = Object.assign({
       'Content-Type': 'application/json',
       'Accept': 'application/json'
     }, request.headers);
-    return this.http(uri, request)
+    return this.http(uri, request, context)
     .then(res => res.json());
   }
 
-  getJson(uri, request) {
+  getJson(uri, request, context) {
     request = request || {};
     request.method = 'get';
-    return this.json(uri, request);
+    return this.json(uri, request, context);
   }
 
-  post(uri, request) {
+  post(uri, request, context) {
     request = request || {};
     request.method = 'post';
-    return this.http(uri, request);
+    return this.http(uri, request, context);
   }
 
-  postJson(uri, request) {
+  postJson(uri, request, context) {
     request = request || {};
     request.method = 'post',
     request.body = JSON.stringify(request.body);
-    return this.json(uri, request);
+    return this.json(uri, request, context);
   }
 
-  putJson(uri, request) {
+  putJson(uri, request, context) {
     request = request || {};
     request.method = 'put';
     request.body = JSON.stringify(request.body);
-    return this.json(uri, request);
+    return this.json(uri, request, context);
   }
 
-  put(uri, request) {
+  put(uri, request, context) {
     request = request || {};
     request.method = 'put';
-    return this.http(uri, request);
+    return this.http(uri, request, context);
   }
 }
 

@@ -35,9 +35,13 @@ describe('Group API tests', () => {
     await client.deleteGroup(createdGroup.id);
 
     // 4. Verify group was deleted
+    let err;
     try {
       await client.getGroup(createdGroup.id);
-    } catch (err) {
+    } catch (e) {
+      err = e;
+    } finally {
+      expect(err, 'Group was not deleted').to.exist;
       expect(err.message).to.contain('Okta HTTP 404');
     }
   });

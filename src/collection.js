@@ -58,7 +58,7 @@ class Collection {
   }
 
   getNextPage() {
-    return this.client.http.http(this.nextUri)
+    return this.client.http.http(this.nextUri, null, {isCollection: true})
     .then(res => {
       const link = res.headers.get('link');
       if (link) {

@@ -231,5 +231,22 @@ js.process = ({spec, operations, models, handlebars}) => {
     return lines.join('\n');
   });
 
+  handlebars.registerHelper('getAffectedResources', (path) => {
+    const resources = [];
+    let pl = path.length;
+    while(pl--) {
+      if (path[pl] === '}') {
+        const resourcePath = path.slice(0, pl + 1).replace(/{/g, '${');
+        resources.push('${this.baseUrl}' + resourcePath);
+      }
+    }
+    const lines = JSON.stringify(resources, null, 2).replace(/"/g, '`').split('\n');
+    const indented = [lines[0]];
+    for (let l = 1, ll = lines.length; l < ll; l++) {
+      indented.push(`    ${lines[l]}`);
+    }
+    return indented.join('\n');
+  });
+
   return templates;
 };
