@@ -117,12 +117,23 @@ async function isGroupTargetPresent(user, userGroup, role) {
 }
 
 async function cleanupUser(client, user) {
+  let existingUser;
   try {
-    const existingUser = await client.getUser(user.profile.login);
-    await existingUser.deactivate();
-    await existingUser.delete();
+    existingUser = await client.getUser(user.profile.login);
   } catch (err) {
     expect(err.message).to.contain('Okta HTTP 404');
+  }
+  if (existingUser) {
+    try {
+      await existingUser.deactivate();
+    } catch (err) {
+      expect(err.message).to.contain('Okta HTTP 404');
+    }
+    try {
+      await existingUser.delete();
+    } catch (err) {
+      expect(err.message).to.contain('Okta HTTP 404');
+    }
   }
 }
 
