@@ -597,6 +597,28 @@ class GeneratedApiClient {
 
   /**
    *
+   * @param {Object} queryParams Map of query parameters to add to this request
+   * @param {String} [queryParams.until]
+   * @param {String} [queryParams.since]
+   * @param {String} [queryParams.filter]
+   * @param {String} [queryParams.q]
+   * @param {String} [queryParams.limit]
+   * @param {String} [queryParams.sortOrder]
+   * @param {String} [queryParams.after]
+   * @description
+   * The Okta System Log API provides read access to your organization’s system log. This API provides more functionality than the Events API
+   */
+  getLogs(queryParameters) {
+    let url = `${this.baseUrl}/api/v1/logs`;
+    const queryString = qs.stringify(queryParameters || {});
+
+    url += queryString ? ('?' + queryString) : '';
+
+    return new Collection(this, url, new ModelFactory(models.LogEvent));
+  }
+
+  /**
+   *
    * @param {CreateSessionRequest} createSessionRequest
    * @description
    * Creates a new session for a user with a valid session token. Use this API if, for example, you want to set the session cookie yourself instead of allowing Okta to set it, or want to hold the session ID in order to delete a session via the API instead of visiting the logout URL.

@@ -53,8 +53,13 @@ This library is a wrapper for the [Okta Platform API], which should be referred 
   * [Create an Application](#create-an-application)
   * [Assign a User to an Application](#assign-a-user-to-an-application)
   * [Assign a Group to an Application](#assign-a-group-to-an-application)
-* [Collections](#collections)
+* [System Log](#system-log)
+  * [Get Logs](#get-logs)
+* [Collection](#collection)
   * [each](#each)
+* [Subscription](#subscription)
+  * [poll](#pollitervalms-iterator)
+  * [stop](#stop)
 * [Configuration](#configuration)
 
 ### Users
@@ -123,7 +128,7 @@ user.deactivate()
 
 #### List All Org Users
 
-The client can be used to fetch collections of resources, in this example we'll use the [Users: List Users] API.  When fetching collections, you can use the `each()` method to iterate through the collection.  For more information see [Collections](#collections).
+The client can be used to fetch collections of resources, in this example we'll use the [Users: List Users] API.  When fetching collections, you can use the `each()` method to iterate through the collection.  For more information see [Collection](#collection).
 
 ```javascript
 const orgUsersCollection = client.listUsers();
@@ -246,7 +251,7 @@ This is a rarely used method. See [Sessions: Create Session with Session Token] 
 
 ```javascript
 client.createSession({
-  sessionToken: 'your session token' 
+  sessionToken: 'your session token'
 })
 .then(session => {
   console.log('Session details:' session);
@@ -299,7 +304,41 @@ client.endAllUserSessions(user.id)
 });
 ```
 
-## Collections
+### System Log
+
+#### Get logs
+
+To query logs, first get a collection and specify your query filter:
+
+```javascript
+const collection = client.getLogs({ since: '2018-01-25T00:00:00Z' });
+```
+
+Please refer to the [System Log API Documentation][System Log API] for a full query reference.
+
+If you wish to paginate the entire result set until there are no more records, sipmly use `each()` to paginate the collection.  The promise will resolve once the first empty page is reached.
+
+If you wish to continue polling the collection for new results as they arrive, then use a [subscription](#subscription):
+
+```javascript
+const collection = client.getLogs({ since: '2018-01-24T23:00:00Z' });
+const subscription = collection.getSubscription();
+
+const poller = subscription.poll(5000, (logEvent) => {
+  console.log(logEvent.uuid, logEvent.eventType);
+})
+.then(() => {
+  // stop() was called on the subscription
+})
+.catch((err) => {
+  // HTTP/Network Request errors are given here
+});
+
+// If you need to stop the subscription
+subscription.stop();
+```
+
+## Collection
 
 When the client is used to fetch collections of resources, a collection instance is returned.  The collection encapsulates the work of paginating the API to fetch all resources in the collection (see [Pagination]).  The collection provides the `each()` method for iterating over the collection, as described below.
 
@@ -370,6 +409,25 @@ return client.listUsers().each((user) => {
 });
 ```
 
+### `getSubscription()`
+
+Returns a [subscription](#subscription) instance for the collection.
+
+
+## Subscription
+
+A subscription allows you to continue paginating a collection until new items are available, if the REST API supports it for the collection.  The only supported collection is the [System Log API][] at this time.
+
+You must get a subscription from the `getSubscription()` method of a [collection](#collection) instance.
+
+### `poll(itervalMs, iterator)`
+
+Fetch pages until the first empty page is reached.  From that point, fetch a new page every `intervalMs`.  A promise is returned, HTTP errors will be rejected.  The promise will resolve if you call `stop()` on the subscription.  Items are passed to the iterator.
+
+### `stop()`
+
+Stops the iterator immediately, stops returning items and will not request another page from the API.  Resolves the promise returned by `poll()`.
+
 ## Configuration
 
 There are several ways to provide configuration to the client constructor.  When creating a new client, the following locations are searched in order, in a last-one-wins fashion:
@@ -413,6 +471,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) if you would like to propose changes to t
 [Okta Developer Forum]: https://devforum.okta.com/
 [Okta Platform API]: https://developer.okta.com/docs/api/getting_started/api_test_client.html
 [Pagination]: https://developer.okta.com/docs/api/getting_started/design_principles.html#pagination
+[System Log API]: https://developer.okta.com/docs/api/resources/system_log
 [Users API Reference]: https://developer.okta.com/docs/api/resources/users.html
 [Users: Create User]: https://developer.okta.com/docs/api/resources/users.html#create-user
 [Users: Get User]: https://developer.okta.com/docs/api/resources/users.html#get-user

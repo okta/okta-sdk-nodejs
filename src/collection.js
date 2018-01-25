@@ -10,6 +10,7 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
+const Subscription = require('./subscription');
 
 const parseLinkHeader = require('parse-link-header');
 
@@ -111,6 +112,15 @@ class Collection {
     }
 
     return nextItem();
+  }
+
+  /**
+   * @description Returns a Subscription for this collection.  Not all collections support this (only System Log at this time).
+   * @memberOf Collection
+   * @returns Subscription
+   */
+  getSubscription() {
+    return new Subscription(this);
   }
 }
 
