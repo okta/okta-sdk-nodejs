@@ -4,11 +4,44 @@ Node.js API Client for the [Okta Platform API].
 
 Requires Node.js version 4.8.3 or higher.
 
-## :warning: :construction: Alpha Preview :construction: :warning:
+# :warning: :construction: Alpha Preview :construction: :warning:
 
 This library is under development and is currently a 0.x version series.  Breaking changes will be introduced as minor version bumps in the 0.x range.  Some of the API is not yet expressed in this library, please refer to the JsDoc for a complete list of classes and methods: [Okta NodeJS Management SDK JSDoc Site].
 
 Need help? Contact [developers@okta.com](mailto:developers@okta.com) or use the [Okta Developer Forum].
+
+# Table of Contents
+
+- [Installation](#installation)
+- [Usage](#usage)
+- [Examples](#examples)
+  - [Users](#users)
+    - [Create a User](#create-a-user)
+    - [Get a User](#get-a-user)
+    - [Update a User](#update-a-user)
+    - [Delete a User](#delete-a-user)
+    - [List All Org Users](#list-all-org-users)
+    - [Search for Users](#search-for-users)
+  - [Groups](#groups)
+    - [Create a Group](#create-a-group)
+    - [Assign a User to a Group](#assign-a-user-to-a-group)
+  - [Applications](#applications)
+    - [Create An Application](#create-an-application)
+    - [Assign a User to an Application](#assign-a-user-to-an-application)
+    - [Assign a Group to an Application](#assign-a-group-to-an-application)
+  - [Sessions](#sessions)
+    - [Create a Session](#create-a-session)
+    - [Get a Session](#get-a-session)
+    - [Refresh a Session](#refresh-a-session)
+    - [End a Session](#end-a-session)
+    - [End all Sessions for a User](#end-all-sessions-for-a-user)
+- [Collections](#collections)
+  - [`each()`](#each)
+    - [Serial or Parallel Synchronous Work](#serial-or-parallel-synchronous-work)
+    - [Serial Asynchronous Work](#serial-asynchronous-work)
+    - [Ending Iteration](#ending-iteration)
+- [Configuration](#configuration)
+- [Contributing](#contributing)
 
 ## Installation
 
@@ -38,24 +71,6 @@ https://developer.okta.com/okta-sdk-nodejs/jsdocs/Client.html
 ## Examples
 
 This library is a wrapper for the [Okta Platform API], which should be referred to as the source-of-truth for what is and isn't possible with the API.  In the following sections we show you how to use your client to perform some common operations with the [Okta Platform API].
-
-* [Users](#users)
-  * [Create a User](#create-a-user)
-  * [Get a User](#get-a-user)
-  * [Update a User](#update-a-user)
-  * [Delete a User](#delete-a-user)
-  * [List All Org Users](#list-all-org-users)
-  * [Search for Users](#search-for-users)
-* [Groups](#groups)
-  * [Create a Group](#create-a-group)
-  * [Assign a User to a Group](#assign-a-user-to-a-group)
-* [Applications](#applications)
-  * [Create an Application](#create-an-application)
-  * [Assign a User to an Application](#assign-a-user-to-an-application)
-  * [Assign a Group to an Application](#assign-a-group-to-an-application)
-* [Collections](#collections)
-  * [each](#each)
-* [Configuration](#configuration)
 
 ### Users
 
@@ -160,7 +175,7 @@ client.listUsers({
 });
 ```
 
-## Groups
+### Groups
 
 #### Create a Group
 
@@ -246,7 +261,7 @@ This is a rarely used method. See [Sessions: Create Session with Session Token] 
 
 ```javascript
 client.createSession({
-  sessionToken: 'your session token' 
+  sessionToken: 'your session token'
 })
 .then(session => {
   console.log('Session details:' session);
@@ -397,7 +412,7 @@ OKTA_CLIENT_ORGURL=https://dev-1234.oktapreview.com/
 OKTA_CLIENT_TOKEN=xYzabc
 ```
 
-### Contributing
+## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) if you would like to propose changes to this library.
 
