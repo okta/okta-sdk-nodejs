@@ -5,7 +5,9 @@ node_modules
 .coveralls.yml
 *.log
 .env
-.vscode
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
 jsdocs/
 jsdoc/
 
