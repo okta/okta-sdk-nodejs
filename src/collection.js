@@ -38,7 +38,7 @@ class Collection {
       function nextItem() {
         const item = self.currentItems.shift();
         const result = {
-          value: self.factory.createInstance(item, self.client),
+          value: item ? self.factory.createInstance(item, self.client) : null,
           done: !self.currentItems.length && !self.nextUri
         };
         resolve(result);
@@ -83,6 +83,9 @@ class Collection {
     function nextItem() {
       return self.next()
       .then(nextResult => {
+        if (!nextResult.value) {
+          return;
+        }
         const result = iterator(nextResult.value);
 
         // if it's a Promise
