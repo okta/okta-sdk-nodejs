@@ -14,7 +14,7 @@ const _ = require('lodash');
 
 module.exports = function defaultCacheMiddleware(ctx, next) {
   let cacheCheck, cacheHit = false;
-  if (ctx.req.method.toLowerCase() === 'get' && !ctx.isCollection) {
+  if (ctx.req.method && ctx.req.method.toLowerCase() === 'get' && !ctx.isCollection) {
     cacheCheck = ctx.cacheStore.get(ctx.req.uri)
     .then(body => {
       if (body) {
