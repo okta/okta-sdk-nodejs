@@ -56,6 +56,7 @@ class Http {
     request = request || {};
     context = context || {};
     request.headers = Object.assign(this.defaultHeaders, request.headers);
+    request.method = request.method || 'get';
     if (!this.cacheMiddleware) {
       return fetch(uri, request)
       .then(this.errorFilter);

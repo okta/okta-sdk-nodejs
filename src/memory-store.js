@@ -18,16 +18,18 @@ class MemoryStore {
     this._store = new Map();
 
     // Purge based on expiration every x milliseconds
-    setInterval(() => {
-      const now = Date.now();
-      for (let entry of this._store.entries()) {
-        const key = entry[0];
-        const val = entry[1];
-        if (val.expiration < now) {
-          this._store.delete(key);
+    if (options.expirationPoll !== null) {
+      setInterval(() => {
+        const now = Date.now();
+        for (let entry of this._store.entries()) {
+          const key = entry[0];
+          const val = entry[1];
+          if (val.expiration < now) {
+            this._store.delete(key);
+          }
         }
-      }
-    }, options.expirationPoll || 15000);
+      }, options.expirationPoll || 15000);
+    }
   }
 
   get(key) {

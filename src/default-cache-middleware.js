@@ -14,7 +14,7 @@ const _ = require('lodash');
 
 module.exports = function defaultCacheMiddleware(ctx, next) {
   let cacheCheck, cacheHit = false;
-  if (ctx.req.method && ctx.req.method.toLowerCase() === 'get' && !ctx.isCollection) {
+  if (ctx.req.method.toLowerCase() === 'get' && !ctx.isCollection) {
     cacheCheck = ctx.cacheStore.get(ctx.req.uri)
     .then(body => {
       if (body) {
@@ -23,9 +23,6 @@ module.exports = function defaultCacheMiddleware(ctx, next) {
           status: 200,
           text() {
             return Promise.resolve(body);
-          },
-          json() {
-            return new Promise(resolve => resolve(JSON.parse(body)));
           }
         };
       }
@@ -46,7 +43,9 @@ module.exports = function defaultCacheMiddleware(ctx, next) {
           if (selfHref) {
             ctx.cacheStore.set(selfHref, text);
           }
-        } catch(e) {} // eslint-disable-line
+        } catch (e) {
+          // TODO: add custom logger
+        }
       });
     } else {
       // clear cache for affected resources
