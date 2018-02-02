@@ -50,6 +50,6 @@ describe('Memory store', () => {
     await store.set('key', 'value', { ttl: 10 });
     expect(await store.get('key')).to.equal('value');
     await wait(20);
-    expect(store._keyArray.length).to.equal(0);
+    expect(store._store.size).to.equal(0);
   });
 });

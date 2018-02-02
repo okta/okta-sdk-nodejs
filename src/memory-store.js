@@ -15,22 +15,16 @@ class MemoryStore {
   constructor(options) {
     options = options || {};
     this._keyLimit = options.keyLimit || 100000;
-    this._keyArray = [];
-    this._store = {};
+    this._store = new Map();
 
     // Purge based on expiration every x milliseconds
     setInterval(() => {
-      let kl = this._keyArray.length;
       const now = Date.now();
-      while (kl--) {
-        const key = this._keyArray[kl];
-        if (!this._store[key]) {
-          this._keyArray.splice(kl, 1);
-          continue;
-        }
-        if (this._store[key].expiration < now) {
-          delete this._store[key];
-          this._keyArray.splice(kl, 1);
+      for (let entry of this._store.entries()) {
+        const key = entry[0];
+        const val = entry[1];
+        if (val.expiration < now) {
+          this._store.delete(key);
         }
       }
     }, options.expirationPoll || 15000);
@@ -39,12 +33,11 @@ class MemoryStore {
   get(key) {
     return new Promise(resolve => {
       let string;
-      const stored = this._store[key];
+      const stored = this._store.get(key);
       if (stored) {
         // Remove from cache if expired
         if (stored.expiration < Date.now()) {
-          this._keyArray.splice(stored.keyIndex, 1);
-          delete this._store[key];
+          this._store.delete(key);
         } else {
           string = stored.string;
         }
@@ -60,16 +53,18 @@ class MemoryStore {
         throw new Error('MemoryStore.set requires a defined key');
       }
 
-      this._store[key] = {
+      this._store.set(key, {
         string: string,
-        expiration: (options.ttl && options.ttl + Date.now()) || Infinity,
-        keyIndex: this._keyArray.length
-      };
-      this._keyArray.push(key);
+        expiration: (options.ttl && options.ttl + Date.now()) || Infinity
+      });
 
       // Purge over key limit
-      while (this._keyArray.length > this._keyLimit) {
-        delete this._store[this._keyArray.shift()];
+      const purgeCount = this._store.size - this._keyLimit;
+      if (purgeCount > 0) {
+        const keys = this._store.keys();
+        for (let k = 0; k < purgeCount; k++) {
+          this._store.delete(keys.next().value);
+        }
       }
 
       resolve(string);
@@ -78,10 +73,9 @@ class MemoryStore {
 
   delete(key) {
     return new Promise(resolve => {
-      const stored = this._store[key];
+      const stored = this._store.get(key);
       if (stored) {
-        this._keyArray.splice(stored.keyIndex, 1);
-        delete this._store[key];
+        this._store.delete(key);
       }
       resolve();
     });
