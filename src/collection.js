@@ -10,7 +10,6 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
-const Subscription = require('./subscription');
 
 const parseLinkHeader = require('parse-link-header');
 
@@ -115,12 +114,65 @@ class Collection {
   }
 
   /**
-   * @description Returns a Subscription for this collection.  Not all collections support this (only System Log at this time).
+   * @description Returns a polling for this collection.  Not all collections support this (only System Log at this time).
+   * @param {Function} iterator Function to call with each resource instance
+   * @param {Object} config Polling configuration options
+   * @param {Number} config.interval Time in ms to wait before checking for more items
+   * @param {Function} errorCallback Synchronous function to call with each error.
+   *
    * @memberOf Collection
-   * @returns Subscription
    */
-  getSubscription() {
-    return new Subscription(this);
+  poll(iterator, config, errorCallback) {
+    const self = this;
+    return new Promise((resolve, reject) => {
+      errorCallback = errorCallback || (err => {
+        throw err;
+      });
+
+      const interval = config && config.interval || 5000;
+
+      function nextItem() {
+        return self.next()
+        .then(nextResult => {
+          if (!nextResult.value) {
+            // break Promise chain to avoid stack overflow
+            return setTimeout(nextItem, interval);
+          }
+          const result = iterator(nextResult.value);
+
+          // if it's a Promise
+          if (result && result.then) {
+            return result.then(shouldContinue => {
+              if (shouldContinue === false || nextResult.done) {
+                return resolve();
+              }
+              nextItem();
+            });
+
+          // if they want to short-circuit
+          } else if (result === false) {
+            return resolve();
+
+          // if there are no more items
+          // (this might never happen in a polling scenario)
+          } else if (nextResult.done) {
+            return resolve();
+          }
+
+          // if it's synchronous and not short-circuited
+          nextItem();
+        })
+        .catch(err => {
+          try {
+            errorCallback(err);
+          } catch (e) {
+            reject(e);
+          }
+        });
+      }
+
+      return nextItem();
+    });
   }
 }
 

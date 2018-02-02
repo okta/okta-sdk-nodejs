@@ -57,9 +57,7 @@ This library is a wrapper for the [Okta Platform API], which should be referred 
   * [Get Logs](#get-logs)
 * [Collection](#collection)
   * [each](#each)
-* [Subscription](#subscription)
-  * [poll](#pollitervalms-iterator)
-  * [stop](#stop)
+  * [poll](#poll)
 * [Configuration](#configuration)
 
 ### Users
@@ -316,26 +314,27 @@ const collection = client.getLogs({ since: '2018-01-25T00:00:00Z' });
 
 Please refer to the [System Log API Documentation][System Log API] for a full query reference.
 
-If you wish to paginate the entire result set until there are no more records, sipmly use `each()` to paginate the collection.  The promise will resolve once the first empty page is reached.
+If you wish to paginate the entire result set until there are no more records, simply use `each()` to paginate the collection.  The promise will resolve once the first empty page is reached.
 
-If you wish to continue polling the collection for new results as they arrive, then use a [subscription](#subscription):
+If you wish to continue polling the collection for new results as they arrive, then start a [poll](#poll):
 
 ```javascript
 const collection = client.getLogs({ since: '2018-01-24T23:00:00Z' });
-const subscription = collection.getSubscription();
 
-const poller = subscription.poll(5000, (logEvent) => {
+collection.poll((logEvent) => {
   console.log(logEvent.uuid, logEvent.eventType);
+  // If you need to stop the subscription
+  return false;
+}, {interval: 5000}, (err) => {
+  // HTTP/Network Request errors are given here
+  // Rethrowing an error will stop the subscription
 })
 .then(() => {
-  // stop() was called on the subscription
+  // false was returned
 })
 .catch((err) => {
-  // HTTP/Network Request errors are given here
+  // An error was rethrown
 });
-
-// If you need to stop the subscription
-subscription.stop();
 ```
 
 ## Collection
@@ -409,24 +408,35 @@ return client.listUsers().each((user) => {
 });
 ```
 
-### `getSubscription()`
+### `poll(iterator, config, errorCallback)`
 
-Returns a [subscription](#subscription) instance for the collection.
+Polling allows you to continue paginating a collection until new items are available, if the REST API supports it for the collection.  The only supported collection is the [System Log API][] at this time.
 
+Fetch pages until the first empty page is reached. From that point, fetch a new page at an interval in milliseconds defined by config (`{ interval: 5000 }`).  This interval defaults to 5000 milliseconds.  A promise is returned, and errors will be rejected.  If you'd like to continue iteration after some errors, include an errorCallback and only rethrow errors that should halt polling. To terminate polling, return `false` or `Promise.resolve(false)`.
 
-## Subscription
+#### Simple polling
 
-A subscription allows you to continue paginating a collection until new items are available, if the REST API supports it for the collection.  The only supported collection is the [System Log API][] at this time.
+```javascript
+client.getLogs().poll(item => {
+  console.log('Process item');
+})
+.catch((err) => {
+  console.log('An error terminated polling');
+});
+```
 
-You must get a subscription from the `getSubscription()` method of a [collection](#collection) instance.
+#### Advanced polling
 
-### `poll(itervalMs, iterator)`
-
-Fetch pages until the first empty page is reached.  From that point, fetch a new page every `intervalMs`.  A promise is returned, HTTP errors will be rejected.  The promise will resolve if you call `stop()` on the subscription.  Items are passed to the iterator.
-
-### `stop()`
-
-Stops the iterator immediately, stops returning items and will not request another page from the API.  Resolves the promise returned by `poll()`.
+```javascript
+client.getLogs().poll(item => {
+  console.log('Process item');
+}, { interval: 10000 }, (err) => {
+  console.log('Had an error, but will continue');
+})
+.catch((err) => {
+  console.log('Will never be hit');
+});
+```
 
 ## Configuration
 

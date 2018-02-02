@@ -18,18 +18,21 @@ describe('client.getLogs()', () => {
 
   it('should allow me to poll the collection but stop when needed', async () => {
     const collection = await client.getLogs({ since: '2018-01-26T00:00:00Z'});
-    const subscription = collection.getSubscription();
     let iteratorCalled = false;
-    const poller = subscription.poll(1, (logEvent) => {
+    let shouldStop = false;
+    const poller = collection.poll((logEvent) => {
+      if (shouldStop) {
+        return false;
+      }
       expect(logEvent).to.be.instanceof(models.LogEvent);
       iteratorCalled = true;
-    })
+    }, {interval: 1})
     .then(() => {
       expect(iteratorCalled).to.be.true;
     });
 
     setTimeout(() => {
-      subscription.stop();
+      shouldStop = true;
     }, 1000);
 
     return poller;
