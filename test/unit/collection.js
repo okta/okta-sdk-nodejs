@@ -216,5 +216,57 @@ describe('Collection', () => {
       expect(thrownError).to.be.undefined;
       expect(collected.length).to.equal(0);
     });
+    it('should wait for error handler to return, then continue', async () => {
+      const mockClient = {
+        http: {
+          http: (uri) => {
+            return Promise.resolve({
+              headers: {
+                get: () => {
+                  if (uri === '/') {
+                    return '</next>; rel="next"';
+                  }
+                },
+              },
+              json: () => {
+                if (uri === '/') {
+                  return Promise.reject(new Error('some failure'));
+                }
+                if (uri === '/next') {
+                  return Promise.resolve([1]);
+                }
+              }
+            });
+          }
+        }
+      };
+      const mockFactory = {
+        createInstance: (item) => item
+      };
+      const collection = new Collection(mockClient, '/', mockFactory);
+      const orderOfEvents = [];
+      let thrownError;
+      await new Promise(resolve => {
+        const subscription = collection.subscribe({
+          next() {
+            orderOfEvents.push('pushed');
+            subscription.unsubscribe();
+          },
+          complete() {
+            resolve();
+          },
+          error(err) {
+            thrownError = err;
+            return new Promise(resolve => {
+              orderOfEvents.push('errored');
+              setTimeout(resolve, 100);
+            });
+          }
+        });
+      });
+      expect(thrownError).to.be.instanceof(Error);
+      expect(thrownError.message).to.equal('some failure');
+      expect(orderOfEvents).to.equal(['errored', 'pushed']);
+    });
   });
 });

@@ -158,7 +158,10 @@ class Collection {
         }
       })
       .catch(err => {
-        config.error(err);
+        const errResult = config.error(err);
+        if (errResult && errResult.then) {
+          return errResult.then(() => nextItem());
+        }
         return nextItem();
       });
     }

@@ -21,7 +21,7 @@
   "license": "Apache-2.0",
   "repository": "https://github.com/okta/okta-sdk-nodejs",
   "dependencies": {
-    "@okta/openapi": "^0.12.0",
+    "@okta/openapi": "^0.13.0",
     "flat": "^2.0.1",
     "isomorphic-fetch": "2.2.1",
     "js-yaml": "^3.8.4",

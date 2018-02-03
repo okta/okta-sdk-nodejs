@@ -37,9 +37,9 @@ class Http {
         // If the response is JSON, assume it's an Okta API error. Otherwise, assume it's some other HTTP error
 
         try {
-          err = new OktaApiError(response.url, response.status, JSON.parse(body));
+          err = new OktaApiError(response.url, response.status, JSON.parse(body), response.headers);
         } catch (e) {
-          err = new HttpError(response.url, response.status, body);
+          err = new HttpError(response.url, response.status, body, response.headers);
         }
         throw err;
       });
