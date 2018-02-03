@@ -57,7 +57,7 @@ This library is a wrapper for the [Okta Platform API], which should be referred 
   * [Get Logs](#get-logs)
 * [Collection](#collection)
   * [each](#each)
-  * [poll](#poll)
+  * [subscribe](#subscribe)
 * [Configuration](#configuration)
 
 ### Users
@@ -316,24 +316,23 @@ Please refer to the [System Log API Documentation][System Log API] for a full qu
 
 If you wish to paginate the entire result set until there are no more records, simply use `each()` to paginate the collection.  The promise will resolve once the first empty page is reached.
 
-If you wish to continue polling the collection for new results as they arrive, then start a [poll](#poll):
+If you wish to continue polling the collection for new results as they arrive, then start a [subscription](#subscribe):
 
 ```javascript
 const collection = client.getLogs({ since: '2018-01-24T23:00:00Z' });
 
-collection.poll((logEvent) => {
-  console.log(logEvent.uuid, logEvent.eventType);
-  // If you need to stop the subscription
-  return false;
-}, {interval: 5000}, (err) => {
-  // HTTP/Network Request errors are given here
-  // Rethrowing an error will stop the subscription
-})
-.then(() => {
-  // false was returned
-})
-.catch((err) => {
-  // An error was rethrown
+const subscription = collection.subscribe({
+  interval: 5000, // Time in ms before fetching new logs when all existing logs are read
+  next(logItem) {
+    // Do something with the logItem
+  },
+  error(err) {
+    // HTTP/Network Request errors are given here
+    // The subscription will continue unless you call subscription.unsubscribe()
+  },
+  complete() {
+    // Triggered when subscription.unsubscribe() is called
+  }
 });
 ```
 
@@ -408,33 +407,57 @@ return client.listUsers().each((user) => {
 });
 ```
 
-### `poll(iterator, config, errorCallback)`
+### `subscribe(config)`
 
-Polling allows you to continue paginating a collection until new items are available, if the REST API supports it for the collection.  The only supported collection is the [System Log API][] at this time.
+A subscription allows you to continue paginating a collection until new items are available, if the REST API supports it for the collection.  The only supported collection is the [System Log API][] at this time.
 
-Fetch pages until the first empty page is reached. From that point, fetch a new page at an interval in milliseconds defined by config (`{ interval: 5000 }`).  This interval defaults to 5000 milliseconds.  A promise is returned, and errors will be rejected.  If you'd like to continue iteration after some errors, include an errorCallback and only rethrow errors that should halt polling. To terminate polling, return `false` or `Promise.resolve(false)`.
+A subscription fetches pages until the first empty page is reached. From that point, it fetches a new page at an interval in milliseconds defined by config (`{ interval: 5000 }`).  This interval defaults to 5000 milliseconds.  A subscription object is returned.  To terminate polling, call `unsubscribe()` on the subscription object.
 
-#### Simple polling
+#### Simple subscription
 
 ```javascript
-client.getLogs().poll(item => {
-  console.log('Process item');
-})
-.catch((err) => {
-  console.log('An error terminated polling');
+const subscription = collection.subscribe({
+  next(item) {
+    console.log('Process item');
+  },
+  error(err) {
+    console.log('Handle error');
+    console.log('Call subscription.unsubscribe() to terminate');
+  }
 });
 ```
 
-#### Advanced polling
+#### Advanced subscription
+
+Rate-limiting errors are common with subscriptions. Here's one way to handle them:
 
 ```javascript
-client.getLogs().poll(item => {
-  console.log('Process item');
-}, { interval: 10000 }, (err) => {
-  console.log('Had an error, but will continue');
-})
-.catch((err) => {
-  console.log('Will never be hit');
+const subscription = collection.subscribe({
+  interval: 5000, // Time in ms before fetching new logs when all existing logs are read
+  next(item) {
+    console.log('Process item');
+  },
+  error(err) {
+    if (err.status == 429) {
+      const retryEpochMs = parseInt(err.headers.get('x-rate-limit-reset'), 10) * 1000;
+      const retryDate = new Date(retryEpochMs);
+      const nowDate = new Date(err.headers.get('date'));
+      const delayMs = retryDate.getTime() - nowDate.getTime();
+
+      console.log('backoff', retryDate, now, delayMs)
+      return new Promise(resolve => {
+        setTimeout(resolve, delayMs);
+      });
+    }
+
+    if (err.status >= 500) {
+      subscription.unsubscribe();
+    }
+  },
+  complete() {
+    console.log('subscription.unsubscribe() was called');
+    console.log('next() will no longer be triggered');
+  }
 });
 ```
 
