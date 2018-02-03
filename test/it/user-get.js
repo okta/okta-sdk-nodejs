@@ -46,9 +46,13 @@ describe('User API Tests', () => {
     await utils.deleteUser(createdUser);
 
     // 5. Verify user was deleted
+    let err;
     try {
       await client.getUser(createdUser.profile.login);
-    } catch (err) {
+    } catch (e) {
+      err = e;
+    } finally {
+      expect(err, 'User was not deleted').to.exist;
       expect(err.message).to.contain('Okta HTTP 404');
     }
   });

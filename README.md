@@ -56,6 +56,7 @@ This library is a wrapper for the [Okta Platform API], which should be referred 
 * [Collections](#collections)
   * [each](#each)
 * [Configuration](#configuration)
+* [Caching](#caching)
 
 ### Users
 
@@ -246,7 +247,7 @@ This is a rarely used method. See [Sessions: Create Session with Session Token] 
 
 ```javascript
 client.createSession({
-  sessionToken: 'your session token' 
+  sessionToken: 'your session token'
 })
 .then(session => {
   console.log('Session details:' session);
@@ -397,7 +398,101 @@ OKTA_CLIENT_ORGURL=https://dev-1234.oktapreview.com/
 OKTA_CLIENT_TOKEN=xYzabc
 ```
 
-### Contributing
+## Caching
+
+To speed up your service, we enable caching by default to prevent unnecessary requests. Both caching storage and caching strategy are configurable. You'll want to configure your cache when your service is distributed across more than one server.
+
+### Storage
+
+By default, the SDK uses an in-memory cache. Here's how to configure that cache:
+
+```javascript
+const okta = require('@okta/okta-sdk-nodejs');
+const MemoryStore = require('@okta/okta-sdk-nodejs/src/memory-store');
+
+const client = new okta.Client({
+  orgUrl: 'https://dev-1234.oktapreview.com/'
+  token: 'xYzabc', // Obtained from Developer Dashboard
+  cacheStore: new MemoryStore({
+    keyLimit: 100000,
+    expirationPoll: 15000
+  })
+});
+```
+
+Configuration options:
+
+* `keyLimit` - Max number of keys stored (default is 100000). The oldest keys are deleted as new keys are set.
+* `expirationPoll` - Time in ms to purge expired keys (default is 15000). Expired keys are usually removed on attempted retrieval. If a key isn't retrieved, it will remain in the cache forever. To prevent this, we periodically scan the entire store to remove expired keys. If you'd like to remove this poll, set it to `null`.
+
+#### Custom Storage
+
+It's easy to build your own cache store, just conform to this interface:
+
+```javascript
+class CustomStore {
+  async get(stringKey) {}
+  async set(stringKey, stringValue) {}
+  async delete(stringKey) {}
+}
+```
+
+### Middleware
+
+The default caching middleware caches any resource that has a `self` link, and invalidates the cache for any non-GET requests affecting that resource. If you'd like to disable caching entirely, set `cacheMiddleware` to `null`:
+
+```javascript
+const okta = require('@okta/okta-sdk-nodejs');
+
+const client = new okta.Client({
+  orgUrl: 'https://dev-1234.oktapreview.com/'
+  token: 'xYzabc', // Obtained from Developer Dashboard
+  cacheMiddleware: null
+});
+```
+
+#### Custom Middleware
+
+Custom middleware provides very granular control to manage caching. Middleware is simply a function that accepts a context and a callback:
+
+```javascript
+async function customMiddleware(ctx, next) {
+  // do something before the request
+  await next();
+  // do something after the response
+}
+
+const client = new okta.Client({
+  orgUrl: 'https://dev-1234.oktapreview.com/'
+  token: 'xYzabc', // Obtained from Developer Dashboard
+  cacheMiddleware: customMiddleware
+});
+```
+
+The context contains:
+* `req` - An object containing details about the request:
+  * `uri`
+  * `method`
+  * `body`
+* `res` - An object containing details about the response. This is the [same interface as a response you'd receive from `fetch`](https://developer.mozilla.org/en-US/docs/Web/API/Response).
+* `isCollection` - Whether the response is expected to be a collection.
+* `resources` - An array of resource URIs affected by the request.
+* `cacheStore` - A reference to the cache store
+
+If `res` is attached to the context before `next` is called, then a request will not be made. In order to attach a `res`, do the following:
+
+```javascript
+async function customMiddleware(ctx, next) {
+  const text = 'someText';
+  ctx.res = {
+    status: 200,
+    text() { return Promise.resolve(text); }
+  };
+  await next(); // will skip external request
+}
+```
+
+## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) if you would like to propose changes to this library.
 
