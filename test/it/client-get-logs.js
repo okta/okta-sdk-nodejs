@@ -18,24 +18,48 @@ describe('client.getLogs()', () => {
 
   it('should allow me to poll the collection but stop when needed', async () => {
     const collection = await client.getLogs({ since: '2018-01-26T00:00:00Z'});
-    let iteratorCalled = false;
-    let shouldStop = false;
-    const poller = collection.poll((logEvent) => {
-      if (shouldStop) {
-        return false;
-      }
-      expect(logEvent).to.be.instanceof(models.LogEvent);
-      iteratorCalled = true;
-    }, {interval: 1})
-    .then(() => {
-      expect(iteratorCalled).to.be.true;
+    let iteratorCalledTimes = 0;
+    await new Promise((resolve, reject) => {
+      const subscription = collection.subscribe({
+        next(logEvent) {
+          iteratorCalledTimes++;
+          expect(logEvent).to.be.instanceof(models.LogEvent);
+          subscription.unsubscribe();
+        },
+        error(e) {
+          reject(e);
+        },
+        complete() {
+          resolve();
+        }
+      });
     });
+    expect(iteratorCalledTimes).to.equal(1);
+  });
 
-    setTimeout(() => {
-      shouldStop = true;
-    }, 1000);
-
-    return poller;
+  it('should allow the iterator to return a Promise', async () => {
+    const collection = await client.getLogs({ since: '2018-01-26T00:00:00Z'});
+    let iteratorCalledTimes = 0;
+    await new Promise((resolve, reject) => {
+      const subscription = collection.subscribe({
+        interval: 1000,
+        next(logEvent) {
+          iteratorCalledTimes++;
+          expect(logEvent).to.be.instanceof(models.LogEvent);
+          return new Promise(resolve => setTimeout(() => {
+            subscription.unsubscribe();
+            resolve();
+          }, 100));
+        },
+        error(e) {
+          reject(e);
+        },
+        complete() {
+          resolve();
+        }
+      });
+    });
+    expect(iteratorCalledTimes).to.equal(1);
   });
 
 });

@@ -86,9 +86,6 @@ class Application extends Resource {
   getApplicationGroupAssignment(groupId, queryParameters) {
     return this.client.getApplicationGroupAssignment(this.id, groupId, queryParameters);
   }
-  generateApplicationKey(queryParameters) {
-    return this.client.generateApplicationKey(this.id, queryParameters);
-  }
   cloneApplicationKey(keyId, queryParameters) {
     return this.client.cloneApplicationKey(this.id, keyId, queryParameters);
   }

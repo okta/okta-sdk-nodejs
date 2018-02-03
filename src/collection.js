@@ -114,65 +114,63 @@ class Collection {
   }
 
   /**
-   * @description Returns a polling for this collection.  Not all collections support this (only System Log at this time).
-   * @param {Function} iterator Function to call with each resource instance
-   * @param {Object} config Polling configuration options
+   * @description Returns a subscription for this collection.  Not all collections support this (only System Log at this time).
+   * @param {Object} config Subscription configuration options
    * @param {Number} config.interval Time in ms to wait before checking for more items
-   * @param {Function} errorCallback Synchronous function to call with each error.
+   * @param {Function} config.next Function to call with each resource instance
+   * @param {Function} config.error Synchronous function to call with each error.
+   * @param {Function} config.complete Function to call when the stream is finished
    *
    * @memberOf Collection
    */
-  poll(iterator, config, errorCallback) {
+  subscribe(config) {
     const self = this;
-    return new Promise((resolve, reject) => {
-      errorCallback = errorCallback || (err => {
-        throw err;
-      });
+    config = config || {};
+    if (!config.next) {
+      throw new Error('subscribe must have a next() callback defined');
+    }
+    if (typeof config.error !== 'function') {
+      throw new Error('subscribe must have a error() callback defined');
+    }
+    const interval = config.interval || 5000;
+    let closed = false;
 
-      const interval = config && config.interval || 5000;
-
-      function nextItem() {
-        return self.next()
-        .then(nextResult => {
-          if (!nextResult.value) {
-            // break Promise chain to avoid stack overflow
-            return setTimeout(nextItem, interval);
-          }
-          const result = iterator(nextResult.value);
-
-          // if it's a Promise
-          if (result && result.then) {
-            return result.then(shouldContinue => {
-              if (shouldContinue === false || nextResult.done) {
-                return resolve();
-              }
-              nextItem();
-            });
-
-          // if they want to short-circuit
-          } else if (result === false) {
-            return resolve();
-
-          // if there are no more items
-          // (this might never happen in a polling scenario)
-          } else if (nextResult.done) {
-            return resolve();
-          }
-
-          // if it's synchronous and not short-circuited
-          nextItem();
-        })
-        .catch(err => {
-          try {
-            errorCallback(err);
-          } catch (e) {
-            reject(e);
-          }
-        });
+    function nextItem() {
+      if (closed) {
+        return;
       }
+      return self.next()
+      .then(nextResult => {
+        if (closed) {
+          return;
+        }
 
-      return nextItem();
-    });
+        if (!nextResult.value) {
+          return setTimeout(nextItem, interval);
+        }
+        const result = config.next(nextResult.value);
+
+        // if it's a Promise
+        if (result && result.then) {
+          return result.then(() => nextItem());
+        } else {
+          nextItem();
+        }
+      })
+      .catch(err => {
+        config.error(err);
+        return nextItem();
+      });
+    }
+
+    nextItem();
+
+    return {
+      unsubscribe() {
+        closed = true;
+        config.complete();
+      }
+    };
   }
 }
 

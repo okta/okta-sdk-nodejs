@@ -19,7 +19,7 @@ var Resource = require('../resource');
 /**
  * @class AppUserPasswordCredential
  * @extends Resource
- * @property { string } value
+ * @property { password } value
  */
 class AppUserPasswordCredential extends Resource {
   constructor(resourceJson, client) {

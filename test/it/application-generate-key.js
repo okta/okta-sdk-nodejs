@@ -15,7 +15,7 @@ const client = new okta.Client({
   token: process.env.OKTA_CLIENT_TOKEN
 });
 
-describe('Application.generateApplicationKey()', () => {
+describe.skip('Application.generateApplicationKey()', () => {
 
   it('should allow me to generate keys for an application', async () => {
     const application = {

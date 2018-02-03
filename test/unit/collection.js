@@ -68,4 +68,153 @@ describe('Collection', () => {
       });
     });
   });
+
+  describe('.subscribe()', () => {
+    it('should throw if next is not provided', () => {
+      const collection = new Collection({}, '', {});
+      expect(() => {
+        collection.subscribe();
+      }).to.throw('');
+    });
+    it('should throw if error is not provided', () => {
+      const collection = new Collection({}, '', {});
+      expect(() => {
+        collection.subscribe({ next: () => {} });
+      }).to.throw('');
+    });
+    it('should handle null, then continue', async () => {
+      const mockClient = {
+        http: {
+          http: (uri) => {
+            return Promise.resolve({
+              headers: {
+                get: () => {
+                  if (uri === '/') {
+                    return '</next>; rel="next"';
+                  }
+                },
+              },
+              json: () => {
+                if (uri === '/') {
+                  return Promise.resolve([]);
+                }
+                if (uri === '/next') {
+                  return Promise.resolve([1]);
+                }
+              }
+            });
+          }
+        }
+      };
+      const mockFactory = {
+        createInstance: (item) => item
+      };
+      const collection = new Collection(mockClient, '/', mockFactory);
+      const collected = [];
+      let thrownError;
+      await new Promise(resolve => {
+        const subscription = collection.subscribe({
+          interval: 1,
+          next(item) {
+            collected.push(item);
+            subscription.unsubscribe();
+          },
+          complete() {
+            resolve();
+          },
+          error(err) {
+            thrownError = err;
+          }
+        });
+      });
+      expect(thrownError).to.be.undefined;
+      expect(collected[0]).to.equal(1);
+    });
+    it('should catch errors if thrown, then continue', async () => {
+      const mockClient = {
+        http: {
+          http: (uri) => {
+            return Promise.resolve({
+              headers: {
+                get: () => {
+                  if (uri === '/') {
+                    return '</next>; rel="next"';
+                  }
+                },
+              },
+              json: () => {
+                if (uri === '/') {
+                  return Promise.reject(new Error('some failure'));
+                }
+                if (uri === '/next') {
+                  return Promise.resolve([1]);
+                }
+              }
+            });
+          }
+        }
+      };
+      const mockFactory = {
+        createInstance: (item) => item
+      };
+      const collection = new Collection(mockClient, '/', mockFactory);
+      const collected = [];
+      let thrownError;
+      await new Promise(resolve => {
+        const subscription = collection.subscribe({
+          next(item) {
+            collected.push(item);
+            subscription.unsubscribe();
+          },
+          complete() {
+            resolve();
+          },
+          error(err) {
+            thrownError = err;
+          }
+        });
+      });
+      expect(thrownError).to.be.instanceof(Error);
+      expect(thrownError.message).to.equal('some failure');
+      expect(collected[0]).to.equal(1);
+    });
+    it('does not call next if cancelled during fetch', async () => {
+      const mockClient = {
+        http: {
+          http: () => new Promise(resolve => setTimeout(() => resolve({
+            headers: {
+              get: () => {
+                return '</next>; rel="next"';
+              },
+            },
+            json: () => {
+              return Promise.resolve([1]);
+            }
+          }), 100))
+        }
+      };
+      const mockFactory = {
+        createInstance: (item) => item
+      };
+      const collection = new Collection(mockClient, '/', mockFactory);
+      const collected = [];
+      let thrownError;
+      await new Promise(resolve => {
+        const subscription = collection.subscribe({
+          next(item) {
+            collected.push(item);
+          },
+          complete() {
+            setTimeout(resolve, 200);
+          },
+          error(err) {
+            thrownError = err;
+          }
+        });
+        subscription.unsubscribe();
+      });
+      expect(thrownError).to.be.undefined;
+      expect(collected.length).to.equal(0);
+    });
+  });
 });
