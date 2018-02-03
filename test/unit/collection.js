@@ -258,15 +258,17 @@ describe('Collection', () => {
           error(err) {
             thrownError = err;
             return new Promise(resolve => {
-              orderOfEvents.push('errored');
-              setTimeout(resolve, 100);
+              setTimeout(() => {
+                orderOfEvents.push('errored');
+                resolve();
+              }, 100);
             });
           }
         });
       });
       expect(thrownError).to.be.instanceof(Error);
       expect(thrownError.message).to.equal('some failure');
-      expect(orderOfEvents).to.equal(['errored', 'pushed']);
+      expect(orderOfEvents).to.deep.equal(['errored', 'pushed']);
     });
   });
 });
