@@ -247,7 +247,7 @@ This is a rarely used method. See [Sessions: Create Session with Session Token] 
 
 ```javascript
 client.createSession({
-  sessionToken: 'your session token' 
+  sessionToken: 'your session token'
 })
 .then(session => {
   console.log('Session details:' session);
@@ -461,6 +461,12 @@ async function customMiddleware(ctx, next) {
   await next();
   // do something after the response
 }
+
+const client = new okta.Client({
+  orgUrl: 'https://dev-1234.oktapreview.com/'
+  token: 'xYzabc', // Obtained from Developer Dashboard
+  cacheMiddleware: customMiddleware
+});
 ```
 
 The context contains:
