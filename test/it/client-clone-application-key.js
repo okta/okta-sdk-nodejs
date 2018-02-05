@@ -15,7 +15,7 @@ const client = new okta.Client({
   token: process.env.OKTA_CLIENT_TOKEN
 });
 
-describe('client.cloneApplicationKey()', () => {
+describe.skip('client.cloneApplicationKey()', () => {
 
   it('should allow me to clone a key from one app to another app', async () => {
     const application = {

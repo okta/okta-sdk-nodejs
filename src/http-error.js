@@ -20,12 +20,13 @@ var util = require('util');
  * @param {Number|String} status The HTTP status code of the response
  * @param {String} responseBody The text of the response body
  */
-function HttpError(url, status, responseBody) {
+function HttpError(url, status, responseBody, headers) {
   Error.captureStackTrace(this, this.constructor);
 
   this.name = this.constructor.name;
   this.status = status;
   this.url = url;
+  this.headers = headers;
   this.stack = '';
   this.message = `HTTP ${this.status} ${responseBody}`;
 }

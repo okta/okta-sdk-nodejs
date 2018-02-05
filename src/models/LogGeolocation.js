@@ -17,11 +17,12 @@ var Resource = require('../resource');
 
 
 /**
- * @class PasswordCredential
+ * @class LogGeolocation
  * @extends Resource
- * @property { password } value
+ * @property { double } lat
+ * @property { double } lon
  */
-class PasswordCredential extends Resource {
+class LogGeolocation extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
 
@@ -29,4 +30,4 @@ class PasswordCredential extends Resource {
 
 }
 
-module.exports = PasswordCredential;
+module.exports = LogGeolocation;

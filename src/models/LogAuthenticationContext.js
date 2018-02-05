@@ -14,19 +14,27 @@
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
 var Resource = require('../resource');
-
+const LogIssuer = require('./LogIssuer');
 
 /**
- * @class PasswordCredential
+ * @class LogAuthenticationContext
  * @extends Resource
- * @property { password } value
+ * @property { LogAuthenticationProvider } authenticationProvider
+ * @property { integer } authenticationStep
+ * @property { array } credentialProvider
+ * @property { array } credentialType
+ * @property { string } externalSessionId
+ * @property { string } interface
+ * @property { LogIssuer } issuer
  */
-class PasswordCredential extends Resource {
+class LogAuthenticationContext extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-
+    if (resourceJson && resourceJson.issuer) {
+      this.issuer = new LogIssuer(this.issuer);
+    }
   }
 
 }
 
-module.exports = PasswordCredential;
+module.exports = LogAuthenticationContext;

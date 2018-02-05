@@ -53,8 +53,11 @@ This library is a wrapper for the [Okta Platform API], which should be referred 
   * [Create an Application](#create-an-application)
   * [Assign a User to an Application](#assign-a-user-to-an-application)
   * [Assign a Group to an Application](#assign-a-group-to-an-application)
-* [Collections](#collections)
+* [System Log](#system-log)
+  * [Get Logs](#get-logs)
+* [Collection](#collection)
   * [each](#each)
+  * [subscribe](#subscribeconfig)
 * [Configuration](#configuration)
 * [Caching](#caching)
 
@@ -124,7 +127,7 @@ user.deactivate()
 
 #### List All Org Users
 
-The client can be used to fetch collections of resources, in this example we'll use the [Users: List Users] API.  When fetching collections, you can use the `each()` method to iterate through the collection.  For more information see [Collections](#collections).
+The client can be used to fetch collections of resources, in this example we'll use the [Users: List Users] API.  When fetching collections, you can use the `each()` method to iterate through the collection.  For more information see [Collection](#collection).
 
 ```javascript
 const orgUsersCollection = client.listUsers();
@@ -300,7 +303,41 @@ client.endAllUserSessions(user.id)
 });
 ```
 
-## Collections
+### System Log
+
+#### Get logs
+
+To query logs, first get a collection and specify your query filter:
+
+```javascript
+const collection = client.getLogs({ since: '2018-01-25T00:00:00Z' });
+```
+
+Please refer to the [System Log API Documentation][System Log API] for a full query reference.
+
+If you wish to paginate the entire result set until there are no more records, simply use `each()` to paginate the collection.  The promise will resolve once the first empty page is reached.
+
+If you wish to continue polling the collection for new results as they arrive, then start a [subscription](#subscribeconfig):
+
+```javascript
+const collection = client.getLogs({ since: '2018-01-24T23:00:00Z' });
+
+const subscription = collection.subscribe({
+  interval: 5000, // Time in ms before fetching new logs when all existing logs are read
+  next(logItem) {
+    // Do something with the logItem
+  },
+  error(err) {
+    // HTTP/Network Request errors are given here
+    // The subscription will continue unless you call subscription.unsubscribe()
+  },
+  complete() {
+    // Triggered when subscription.unsubscribe() is called
+  }
+});
+```
+
+## Collection
 
 When the client is used to fetch collections of resources, a collection instance is returned.  The collection encapsulates the work of paginating the API to fetch all resources in the collection (see [Pagination]).  The collection provides the `each()` method for iterating over the collection, as described below.
 
@@ -368,6 +405,60 @@ return client.listUsers().each((user) => {
   return Promise.reject('foo error');
 }).catch((err)=>{
   console.log(err); // 'foo error'
+});
+```
+
+### `subscribe(config)`
+
+A subscription allows you to continue paginating a collection until new items are available, if the REST API supports it for the collection.  The only supported collection is the [System Log API][] at this time.
+
+A subscription fetches pages until the first empty page is reached. From that point, it fetches a new page at an interval in milliseconds defined by config (`{ interval: 5000 }`).  This interval defaults to 5000 milliseconds.  A subscription object is returned.  To terminate polling, call `unsubscribe()` on the subscription object.
+
+#### Simple subscription
+
+```javascript
+const subscription = collection.subscribe({
+  next(item) {
+    console.log('Process item');
+  },
+  error(err) {
+    console.log('Handle error');
+    console.log('Call subscription.unsubscribe() to terminate');
+  }
+});
+```
+
+#### Advanced subscription
+
+Rate-limiting errors are common with subscriptions. Here's one way to handle them:
+
+```javascript
+const subscription = collection.subscribe({
+  interval: 5000, // Time in ms before fetching new logs when all existing logs are read
+  next(item) {
+    console.log('Process item');
+  },
+  error(err) {
+    if (err.status == 429) {
+      const retryEpochMs = parseInt(err.headers.get('x-rate-limit-reset'), 10) * 1000;
+      const retryDate = new Date(retryEpochMs);
+      const nowDate = new Date(err.headers.get('date'));
+      const delayMs = retryDate.getTime() - nowDate.getTime();
+
+      console.log('backoff', retryDate, now, delayMs)
+      return new Promise(resolve => {
+        setTimeout(resolve, delayMs);
+      });
+    }
+
+    if (err.status >= 500) {
+      subscription.unsubscribe();
+    }
+  },
+  complete() {
+    console.log('subscription.unsubscribe() was called');
+    console.log('next() will no longer be triggered');
+  }
 });
 ```
 
@@ -508,6 +599,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) if you would like to propose changes to t
 [Okta Developer Forum]: https://devforum.okta.com/
 [Okta Platform API]: https://developer.okta.com/docs/api/getting_started/api_test_client.html
 [Pagination]: https://developer.okta.com/docs/api/getting_started/design_principles.html#pagination
+[System Log API]: https://developer.okta.com/docs/api/resources/system_log
 [Users API Reference]: https://developer.okta.com/docs/api/resources/users.html
 [Users: Create User]: https://developer.okta.com/docs/api/resources/users.html#create-user
 [Users: Get User]: https://developer.okta.com/docs/api/resources/users.html#get-user

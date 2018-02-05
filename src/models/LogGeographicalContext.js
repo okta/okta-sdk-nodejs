@@ -14,19 +14,25 @@
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
 var Resource = require('../resource');
-
+const LogGeolocation = require('./LogGeolocation');
 
 /**
- * @class PasswordCredential
+ * @class LogGeographicalContext
  * @extends Resource
- * @property { password } value
+ * @property { string } city
+ * @property { string } country
+ * @property { LogGeolocation } geolocation
+ * @property { string } postalCode
+ * @property { string } state
  */
-class PasswordCredential extends Resource {
+class LogGeographicalContext extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-
+    if (resourceJson && resourceJson.geolocation) {
+      this.geolocation = new LogGeolocation(this.geolocation);
+    }
   }
 
 }
 
-module.exports = PasswordCredential;
+module.exports = LogGeographicalContext;

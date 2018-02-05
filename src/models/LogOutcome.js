@@ -17,11 +17,12 @@ var Resource = require('../resource');
 
 
 /**
- * @class PasswordCredential
+ * @class LogOutcome
  * @extends Resource
- * @property { password } value
+ * @property { string } reason
+ * @property { string } result
  */
-class PasswordCredential extends Resource {
+class LogOutcome extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
 
@@ -29,4 +30,4 @@ class PasswordCredential extends Resource {
 
 }
 
-module.exports = PasswordCredential;
+module.exports = LogOutcome;

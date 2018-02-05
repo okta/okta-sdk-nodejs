@@ -144,28 +144,6 @@ class GeneratedApiClient {
   /**
    *
    * @param appId {String}
-   * @param {Object} queryParams Map of query parameters to add to this request
-   * @param {String} [queryParams.validityYears]
-   * @description
-   * Generates a new X.509 certificate for an application key credential
-   */
-  generateApplicationKey(appId, queryParameters) {
-    let url = `${this.baseUrl}/api/v1/apps/${appId}/credentials/keys/generate`;
-    const queryString = qs.stringify(queryParameters || {});
-
-    url += queryString ? ('?' + queryString) : '';
-
-    const resources = [
-      `${this.baseUrl}/api/v1/apps/${appId}`
-    ];
-
-    const request = this.http.postJson(url, null, {resources});
-    return request.then(jsonRes => new models.JsonWebKey(jsonRes, this));
-  }
-
-  /**
-   *
-   * @param appId {String}
    * @param keyId {String}
    * @description
    * Gets a specific [application key credential](#application-key-credential-model) by `kid`
@@ -709,6 +687,28 @@ class GeneratedApiClient {
 
     const request = this.http.put(url, null, {resources});
     return request;
+  }
+
+  /**
+   *
+   * @param {Object} queryParams Map of query parameters to add to this request
+   * @param {String} [queryParams.until]
+   * @param {String} [queryParams.since]
+   * @param {String} [queryParams.filter]
+   * @param {String} [queryParams.q]
+   * @param {String} [queryParams.limit]
+   * @param {String} [queryParams.sortOrder]
+   * @param {String} [queryParams.after]
+   * @description
+   * The Okta System Log API provides read access to your organization’s system log. This API provides more functionality than the Events API
+   */
+  getLogs(queryParameters) {
+    let url = `${this.baseUrl}/api/v1/logs`;
+    const queryString = qs.stringify(queryParameters || {});
+
+    url += queryString ? ('?' + queryString) : '';
+
+    return new Collection(this, url, new ModelFactory(models.LogEvent));
   }
 
   /**
