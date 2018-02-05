@@ -57,7 +57,7 @@ This library is a wrapper for the [Okta Platform API], which should be referred 
   * [Get Logs](#get-logs)
 * [Collection](#collection)
   * [each](#each)
-  * [subscribe](#subscribe)
+  * [subscribe](#subscribeconfig)
 * [Configuration](#configuration)
 
 ### Users
@@ -316,7 +316,7 @@ Please refer to the [System Log API Documentation][System Log API] for a full qu
 
 If you wish to paginate the entire result set until there are no more records, simply use `each()` to paginate the collection.  The promise will resolve once the first empty page is reached.
 
-If you wish to continue polling the collection for new results as they arrive, then start a [subscription](#subscribe):
+If you wish to continue polling the collection for new results as they arrive, then start a [subscription](#subscribeconfig):
 
 ```javascript
 const collection = client.getLogs({ since: '2018-01-24T23:00:00Z' });
