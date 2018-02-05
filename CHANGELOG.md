@@ -2,7 +2,7 @@
 
 ## 1.1.0
 
-- Add a HTTP cache for simple resources fetched by GET.
+- Add an HTTP cache for simple resources fetched by GET.
 - Add support for the System Log API, including a subscription interface on collections.
 - Fix: client.listUsers().each() executes once for query that returns an empty list (#12).
 
