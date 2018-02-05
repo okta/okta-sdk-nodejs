@@ -4,10 +4,6 @@ Node.js API Client for the [Okta Platform API].
 
 Requires Node.js version 4.8.3 or higher.
 
-## :warning: :construction: Alpha Preview :construction: :warning:
-
-This library is under development and is currently a 0.x version series.  Breaking changes will be introduced as minor version bumps in the 0.x range.  Some of the API is not yet expressed in this library, please refer to the JsDoc for a complete list of classes and methods: [Okta NodeJS Management SDK JSDoc Site].
-
 Need help? Contact [developers@okta.com](mailto:developers@okta.com) or use the [Okta Developer Forum].
 
 ## Installation
