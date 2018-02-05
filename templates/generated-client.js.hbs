@@ -33,28 +33,30 @@ class GeneratedApiClient {
     return new Collection(this, url, new ModelFactory(models.{{responseModel}}));
     {{/if}}
     {{else}}
+    const resources = {{{getAffectedResources path}}};
+
     {{#if (eq method 'delete')}}
-    const request = this.http.delete(url);
+    const request = this.http.delete(url, null, {resources});
     {{/if}}
     {{#if (eq method 'get')}}
-    const request = this.http.getJson(url);
+    const request = this.http.getJson(url, null, {resources});
     {{/if}}
     {{#if (eq method 'post')}}
     {{#if bodyModel}}
     {{#if responseModel}}
     const request = this.http.postJson(url, {
       body: {{camelCase bodyModel}}
-    });
+    }, {resources});
     {{else}}
     const request = this.http.post(url, {
       body: {{camelCase bodyModel}}
-    });
+    }, {resources});
     {{/if}}
     {{else}}
     {{#if responseModel}}
-    const request = this.http.postJson(url);
+    const request = this.http.postJson(url, null, {resources});
     {{else}}
-    const request = this.http.post(url);
+    const request = this.http.post(url, null, {resources});
     {{/if}}
     {{/if}}
     {{/if}}
@@ -63,17 +65,17 @@ class GeneratedApiClient {
     {{#if responseModel}}
     const request = this.http.putJson(url, {
       body: {{camelCase bodyModel}}
-    });
+    }, {resources});
     {{else}}
     const request = this.http.put(url, {
       body: {{camelCase bodyModel}}
-    });
+    }, {resources});
     {{/if}}
     {{else}}
     {{#if responseModel}}
-    const request = this.http.putJson(url);
+    const request = this.http.putJson(url, null, {resources});
     {{else}}
-    const request = this.http.put(url);
+    const request = this.http.put(url, null, {resources});
     {{/if}}
     {{/if}}
     {{/if}}

@@ -62,9 +62,11 @@ class GeneratedApiClient {
 
     url += queryString ? ('?' + queryString) : '';
 
+    const resources = [];
+
     const request = this.http.postJson(url, {
       body: application
-    });
+    }, {resources});
     return request.then(jsonRes => new factories.Application().createInstance(jsonRes, this));
   }
 
@@ -77,7 +79,11 @@ class GeneratedApiClient {
   deleteApplication(appId) {
     let url = `${this.baseUrl}/api/v1/apps/${appId}`;
 
-    const request = this.http.delete(url);
+    const resources = [
+      `${this.baseUrl}/api/v1/apps/${appId}`
+    ];
+
+    const request = this.http.delete(url, null, {resources});
     return request;
   }
 
@@ -95,7 +101,11 @@ class GeneratedApiClient {
 
     url += queryString ? ('?' + queryString) : '';
 
-    const request = this.http.getJson(url);
+    const resources = [
+      `${this.baseUrl}/api/v1/apps/${appId}`
+    ];
+
+    const request = this.http.getJson(url, null, {resources});
     return request.then(jsonRes => new factories.Application().createInstance(jsonRes, this));
   }
 
@@ -109,9 +119,13 @@ class GeneratedApiClient {
   updateApplication(appId, application) {
     let url = `${this.baseUrl}/api/v1/apps/${appId}`;
 
+    const resources = [
+      `${this.baseUrl}/api/v1/apps/${appId}`
+    ];
+
     const request = this.http.putJson(url, {
       body: application
-    });
+    }, {resources});
     return request.then(jsonRes => new factories.Application().createInstance(jsonRes, this));
   }
 
@@ -137,7 +151,12 @@ class GeneratedApiClient {
   getApplicationKey(appId, keyId) {
     let url = `${this.baseUrl}/api/v1/apps/${appId}/credentials/keys/${keyId}`;
 
-    const request = this.http.getJson(url);
+    const resources = [
+      `${this.baseUrl}/api/v1/apps/${appId}/credentials/keys/${keyId}`,
+      `${this.baseUrl}/api/v1/apps/${appId}`
+    ];
+
+    const request = this.http.getJson(url, null, {resources});
     return request.then(jsonRes => new models.JsonWebKey(jsonRes, this));
   }
 
@@ -156,7 +175,12 @@ class GeneratedApiClient {
 
     url += queryString ? ('?' + queryString) : '';
 
-    const request = this.http.postJson(url);
+    const resources = [
+      `${this.baseUrl}/api/v1/apps/${appId}/credentials/keys/${keyId}`,
+      `${this.baseUrl}/api/v1/apps/${appId}`
+    ];
+
+    const request = this.http.postJson(url, null, {resources});
     return request.then(jsonRes => new models.JsonWebKey(jsonRes, this));
   }
 
@@ -190,7 +214,12 @@ class GeneratedApiClient {
   deleteApplicationGroupAssignment(appId, groupId) {
     let url = `${this.baseUrl}/api/v1/apps/${appId}/groups/${groupId}`;
 
-    const request = this.http.delete(url);
+    const resources = [
+      `${this.baseUrl}/api/v1/apps/${appId}/groups/${groupId}`,
+      `${this.baseUrl}/api/v1/apps/${appId}`
+    ];
+
+    const request = this.http.delete(url, null, {resources});
     return request;
   }
 
@@ -209,7 +238,12 @@ class GeneratedApiClient {
 
     url += queryString ? ('?' + queryString) : '';
 
-    const request = this.http.getJson(url);
+    const resources = [
+      `${this.baseUrl}/api/v1/apps/${appId}/groups/${groupId}`,
+      `${this.baseUrl}/api/v1/apps/${appId}`
+    ];
+
+    const request = this.http.getJson(url, null, {resources});
     return request.then(jsonRes => new models.ApplicationGroupAssignment(jsonRes, this));
   }
 
@@ -224,9 +258,14 @@ class GeneratedApiClient {
   createApplicationGroupAssignment(appId, groupId, applicationGroupAssignment) {
     let url = `${this.baseUrl}/api/v1/apps/${appId}/groups/${groupId}`;
 
+    const resources = [
+      `${this.baseUrl}/api/v1/apps/${appId}/groups/${groupId}`,
+      `${this.baseUrl}/api/v1/apps/${appId}`
+    ];
+
     const request = this.http.putJson(url, {
       body: applicationGroupAssignment
-    });
+    }, {resources});
     return request.then(jsonRes => new models.ApplicationGroupAssignment(jsonRes, this));
   }
 
@@ -239,7 +278,11 @@ class GeneratedApiClient {
   activateApplication(appId) {
     let url = `${this.baseUrl}/api/v1/apps/${appId}/lifecycle/activate`;
 
-    const request = this.http.post(url);
+    const resources = [
+      `${this.baseUrl}/api/v1/apps/${appId}`
+    ];
+
+    const request = this.http.post(url, null, {resources});
     return request;
   }
 
@@ -252,7 +295,11 @@ class GeneratedApiClient {
   deactivateApplication(appId) {
     let url = `${this.baseUrl}/api/v1/apps/${appId}/lifecycle/deactivate`;
 
-    const request = this.http.post(url);
+    const resources = [
+      `${this.baseUrl}/api/v1/apps/${appId}`
+    ];
+
+    const request = this.http.post(url, null, {resources});
     return request;
   }
 
@@ -288,9 +335,13 @@ class GeneratedApiClient {
   assignUserToApplication(appId, appUser) {
     let url = `${this.baseUrl}/api/v1/apps/${appId}/users`;
 
+    const resources = [
+      `${this.baseUrl}/api/v1/apps/${appId}`
+    ];
+
     const request = this.http.postJson(url, {
       body: appUser
-    });
+    }, {resources});
     return request.then(jsonRes => new models.AppUser(jsonRes, this));
   }
 
@@ -304,7 +355,12 @@ class GeneratedApiClient {
   deleteApplicationUser(appId, userId) {
     let url = `${this.baseUrl}/api/v1/apps/${appId}/users/${userId}`;
 
-    const request = this.http.delete(url);
+    const resources = [
+      `${this.baseUrl}/api/v1/apps/${appId}/users/${userId}`,
+      `${this.baseUrl}/api/v1/apps/${appId}`
+    ];
+
+    const request = this.http.delete(url, null, {resources});
     return request;
   }
 
@@ -323,7 +379,12 @@ class GeneratedApiClient {
 
     url += queryString ? ('?' + queryString) : '';
 
-    const request = this.http.getJson(url);
+    const resources = [
+      `${this.baseUrl}/api/v1/apps/${appId}/users/${userId}`,
+      `${this.baseUrl}/api/v1/apps/${appId}`
+    ];
+
+    const request = this.http.getJson(url, null, {resources});
     return request.then(jsonRes => new models.AppUser(jsonRes, this));
   }
 
@@ -338,9 +399,14 @@ class GeneratedApiClient {
   updateApplicationUser(appId, userId, appUser) {
     let url = `${this.baseUrl}/api/v1/apps/${appId}/users/${userId}`;
 
+    const resources = [
+      `${this.baseUrl}/api/v1/apps/${appId}/users/${userId}`,
+      `${this.baseUrl}/api/v1/apps/${appId}`
+    ];
+
     const request = this.http.postJson(url, {
       body: appUser
-    });
+    }, {resources});
     return request.then(jsonRes => new models.AppUser(jsonRes, this));
   }
 
@@ -373,9 +439,11 @@ class GeneratedApiClient {
   createGroup(group) {
     let url = `${this.baseUrl}/api/v1/groups`;
 
+    const resources = [];
+
     const request = this.http.postJson(url, {
       body: group
-    });
+    }, {resources});
     return request.then(jsonRes => new models.Group(jsonRes, this));
   }
 
@@ -405,9 +473,11 @@ class GeneratedApiClient {
   createRule(groupRule) {
     let url = `${this.baseUrl}/api/v1/groups/rules`;
 
+    const resources = [];
+
     const request = this.http.postJson(url, {
       body: groupRule
-    });
+    }, {resources});
     return request.then(jsonRes => new models.GroupRule(jsonRes, this));
   }
 
@@ -425,7 +495,11 @@ class GeneratedApiClient {
 
     url += queryString ? ('?' + queryString) : '';
 
-    const request = this.http.delete(url);
+    const resources = [
+      `${this.baseUrl}/api/v1/groups/rules/${ruleId}`
+    ];
+
+    const request = this.http.delete(url, null, {resources});
     return request;
   }
 
@@ -438,7 +512,11 @@ class GeneratedApiClient {
   getRule(ruleId) {
     let url = `${this.baseUrl}/api/v1/groups/rules/${ruleId}`;
 
-    const request = this.http.getJson(url);
+    const resources = [
+      `${this.baseUrl}/api/v1/groups/rules/${ruleId}`
+    ];
+
+    const request = this.http.getJson(url, null, {resources});
     return request.then(jsonRes => new models.GroupRule(jsonRes, this));
   }
 
@@ -452,9 +530,13 @@ class GeneratedApiClient {
   updateRule(ruleId, groupRule) {
     let url = `${this.baseUrl}/api/v1/groups/rules/${ruleId}`;
 
+    const resources = [
+      `${this.baseUrl}/api/v1/groups/rules/${ruleId}`
+    ];
+
     const request = this.http.putJson(url, {
       body: groupRule
-    });
+    }, {resources});
     return request.then(jsonRes => new models.GroupRule(jsonRes, this));
   }
 
@@ -467,7 +549,11 @@ class GeneratedApiClient {
   activateRule(ruleId) {
     let url = `${this.baseUrl}/api/v1/groups/rules/${ruleId}/lifecycle/activate`;
 
-    const request = this.http.post(url);
+    const resources = [
+      `${this.baseUrl}/api/v1/groups/rules/${ruleId}`
+    ];
+
+    const request = this.http.post(url, null, {resources});
     return request;
   }
 
@@ -480,7 +566,11 @@ class GeneratedApiClient {
   deactivateRule(ruleId) {
     let url = `${this.baseUrl}/api/v1/groups/rules/${ruleId}/lifecycle/deactivate`;
 
-    const request = this.http.post(url);
+    const resources = [
+      `${this.baseUrl}/api/v1/groups/rules/${ruleId}`
+    ];
+
+    const request = this.http.post(url, null, {resources});
     return request;
   }
 
@@ -493,7 +583,11 @@ class GeneratedApiClient {
   deleteGroup(groupId) {
     let url = `${this.baseUrl}/api/v1/groups/${groupId}`;
 
-    const request = this.http.delete(url);
+    const resources = [
+      `${this.baseUrl}/api/v1/groups/${groupId}`
+    ];
+
+    const request = this.http.delete(url, null, {resources});
     return request;
   }
 
@@ -511,7 +605,11 @@ class GeneratedApiClient {
 
     url += queryString ? ('?' + queryString) : '';
 
-    const request = this.http.getJson(url);
+    const resources = [
+      `${this.baseUrl}/api/v1/groups/${groupId}`
+    ];
+
+    const request = this.http.getJson(url, null, {resources});
     return request.then(jsonRes => new models.Group(jsonRes, this));
   }
 
@@ -525,9 +623,13 @@ class GeneratedApiClient {
   updateGroup(groupId, group) {
     let url = `${this.baseUrl}/api/v1/groups/${groupId}`;
 
+    const resources = [
+      `${this.baseUrl}/api/v1/groups/${groupId}`
+    ];
+
     const request = this.http.putJson(url, {
       body: group
-    });
+    }, {resources});
     return request.then(jsonRes => new models.Group(jsonRes, this));
   }
 
@@ -559,7 +661,12 @@ class GeneratedApiClient {
   removeGroupUser(groupId, userId) {
     let url = `${this.baseUrl}/api/v1/groups/${groupId}/users/${userId}`;
 
-    const request = this.http.delete(url);
+    const resources = [
+      `${this.baseUrl}/api/v1/groups/${groupId}/users/${userId}`,
+      `${this.baseUrl}/api/v1/groups/${groupId}`
+    ];
+
+    const request = this.http.delete(url, null, {resources});
     return request;
   }
 
@@ -573,7 +680,12 @@ class GeneratedApiClient {
   addUserToGroup(groupId, userId) {
     let url = `${this.baseUrl}/api/v1/groups/${groupId}/users/${userId}`;
 
-    const request = this.http.put(url);
+    const resources = [
+      `${this.baseUrl}/api/v1/groups/${groupId}/users/${userId}`,
+      `${this.baseUrl}/api/v1/groups/${groupId}`
+    ];
+
+    const request = this.http.put(url, null, {resources});
     return request;
   }
 
@@ -608,9 +720,11 @@ class GeneratedApiClient {
   createSession(createSessionRequest) {
     let url = `${this.baseUrl}/api/v1/sessions`;
 
+    const resources = [];
+
     const request = this.http.postJson(url, {
       body: createSessionRequest
-    });
+    }, {resources});
     return request.then(jsonRes => new models.Session(jsonRes, this));
   }
 
@@ -623,7 +737,11 @@ class GeneratedApiClient {
   endSession(sessionId) {
     let url = `${this.baseUrl}/api/v1/sessions/${sessionId}`;
 
-    const request = this.http.delete(url);
+    const resources = [
+      `${this.baseUrl}/api/v1/sessions/${sessionId}`
+    ];
+
+    const request = this.http.delete(url, null, {resources});
     return request;
   }
 
@@ -636,7 +754,11 @@ class GeneratedApiClient {
   getSession(sessionId) {
     let url = `${this.baseUrl}/api/v1/sessions/${sessionId}`;
 
-    const request = this.http.getJson(url);
+    const resources = [
+      `${this.baseUrl}/api/v1/sessions/${sessionId}`
+    ];
+
+    const request = this.http.getJson(url, null, {resources});
     return request.then(jsonRes => new models.Session(jsonRes, this));
   }
 
@@ -649,7 +771,11 @@ class GeneratedApiClient {
   refreshSession(sessionId) {
     let url = `${this.baseUrl}/api/v1/sessions/${sessionId}/lifecycle/refresh`;
 
-    const request = this.http.postJson(url);
+    const resources = [
+      `${this.baseUrl}/api/v1/sessions/${sessionId}`
+    ];
+
+    const request = this.http.postJson(url, null, {resources});
     return request.then(jsonRes => new models.Session(jsonRes, this));
   }
 
@@ -690,9 +816,11 @@ class GeneratedApiClient {
 
     url += queryString ? ('?' + queryString) : '';
 
+    const resources = [];
+
     const request = this.http.postJson(url, {
       body: user
-    });
+    }, {resources});
     return request.then(jsonRes => new models.User(jsonRes, this));
   }
 
@@ -705,7 +833,11 @@ class GeneratedApiClient {
   deactivateOrDeleteUser(userId) {
     let url = `${this.baseUrl}/api/v1/users/${userId}`;
 
-    const request = this.http.delete(url);
+    const resources = [
+      `${this.baseUrl}/api/v1/users/${userId}`
+    ];
+
+    const request = this.http.delete(url, null, {resources});
     return request;
   }
 
@@ -718,7 +850,11 @@ class GeneratedApiClient {
   getUser(userId) {
     let url = `${this.baseUrl}/api/v1/users/${userId}`;
 
-    const request = this.http.getJson(url);
+    const resources = [
+      `${this.baseUrl}/api/v1/users/${userId}`
+    ];
+
+    const request = this.http.getJson(url, null, {resources});
     return request.then(jsonRes => new models.User(jsonRes, this));
   }
 
@@ -732,9 +868,13 @@ class GeneratedApiClient {
   updateUser(userId, user) {
     let url = `${this.baseUrl}/api/v1/users/${userId}`;
 
+    const resources = [
+      `${this.baseUrl}/api/v1/users/${userId}`
+    ];
+
     const request = this.http.putJson(url, {
       body: user
-    });
+    }, {resources});
     return request.then(jsonRes => new models.User(jsonRes, this));
   }
 
@@ -765,9 +905,13 @@ class GeneratedApiClient {
   changePassword(userId, changePasswordRequest) {
     let url = `${this.baseUrl}/api/v1/users/${userId}/credentials/change_password`;
 
+    const resources = [
+      `${this.baseUrl}/api/v1/users/${userId}`
+    ];
+
     const request = this.http.postJson(url, {
       body: changePasswordRequest
-    });
+    }, {resources});
     return request.then(jsonRes => new models.UserCredentials(jsonRes, this));
   }
 
@@ -781,9 +925,13 @@ class GeneratedApiClient {
   changeRecoveryQuestion(userId, userCredentials) {
     let url = `${this.baseUrl}/api/v1/users/${userId}/credentials/change_recovery_question`;
 
+    const resources = [
+      `${this.baseUrl}/api/v1/users/${userId}`
+    ];
+
     const request = this.http.postJson(url, {
       body: userCredentials
-    });
+    }, {resources});
     return request.then(jsonRes => new models.UserCredentials(jsonRes, this));
   }
 
@@ -802,9 +950,13 @@ class GeneratedApiClient {
 
     url += queryString ? ('?' + queryString) : '';
 
+    const resources = [
+      `${this.baseUrl}/api/v1/users/${userId}`
+    ];
+
     const request = this.http.postJson(url, {
       body: userCredentials
-    });
+    }, {resources});
     return request.then(jsonRes => new models.ForgotPasswordResponse(jsonRes, this));
   }
 
@@ -836,9 +988,13 @@ class GeneratedApiClient {
 
     url += queryString ? ('?' + queryString) : '';
 
+    const resources = [
+      `${this.baseUrl}/api/v1/users/${userId}`
+    ];
+
     const request = this.http.postJson(url, {
       body: factor
-    });
+    }, {resources});
     return request.then(jsonRes => new factories.Factor().createInstance(jsonRes, this));
   }
 
@@ -876,7 +1032,12 @@ class GeneratedApiClient {
   deleteFactor(userId, factorId) {
     let url = `${this.baseUrl}/api/v1/users/${userId}/factors/${factorId}`;
 
-    const request = this.http.delete(url);
+    const resources = [
+      `${this.baseUrl}/api/v1/users/${userId}/factors/${factorId}`,
+      `${this.baseUrl}/api/v1/users/${userId}`
+    ];
+
+    const request = this.http.delete(url, null, {resources});
     return request;
   }
 
@@ -890,7 +1051,12 @@ class GeneratedApiClient {
   getFactor(userId, factorId) {
     let url = `${this.baseUrl}/api/v1/users/${userId}/factors/${factorId}`;
 
-    const request = this.http.getJson(url);
+    const resources = [
+      `${this.baseUrl}/api/v1/users/${userId}/factors/${factorId}`,
+      `${this.baseUrl}/api/v1/users/${userId}`
+    ];
+
+    const request = this.http.getJson(url, null, {resources});
     return request.then(jsonRes => new factories.Factor().createInstance(jsonRes, this));
   }
 
@@ -905,9 +1071,14 @@ class GeneratedApiClient {
   activateFactor(userId, factorId, verifyFactorRequest) {
     let url = `${this.baseUrl}/api/v1/users/${userId}/factors/${factorId}/lifecycle/activate`;
 
+    const resources = [
+      `${this.baseUrl}/api/v1/users/${userId}/factors/${factorId}`,
+      `${this.baseUrl}/api/v1/users/${userId}`
+    ];
+
     const request = this.http.postJson(url, {
       body: verifyFactorRequest
-    });
+    }, {resources});
     return request.then(jsonRes => new factories.Factor().createInstance(jsonRes, this));
   }
 
@@ -927,9 +1098,14 @@ class GeneratedApiClient {
 
     url += queryString ? ('?' + queryString) : '';
 
+    const resources = [
+      `${this.baseUrl}/api/v1/users/${userId}/factors/${factorId}`,
+      `${this.baseUrl}/api/v1/users/${userId}`
+    ];
+
     const request = this.http.postJson(url, {
       body: verifyFactorRequest
-    });
+    }, {resources});
     return request.then(jsonRes => new models.VerifyFactorResponse(jsonRes, this));
   }
 
@@ -965,7 +1141,11 @@ class GeneratedApiClient {
 
     url += queryString ? ('?' + queryString) : '';
 
-    const request = this.http.postJson(url);
+    const resources = [
+      `${this.baseUrl}/api/v1/users/${userId}`
+    ];
+
+    const request = this.http.postJson(url, null, {resources});
     return request.then(jsonRes => new models.UserActivationToken(jsonRes, this));
   }
 
@@ -978,7 +1158,11 @@ class GeneratedApiClient {
   deactivateUser(userId) {
     let url = `${this.baseUrl}/api/v1/users/${userId}/lifecycle/deactivate`;
 
-    const request = this.http.post(url);
+    const resources = [
+      `${this.baseUrl}/api/v1/users/${userId}`
+    ];
+
+    const request = this.http.post(url, null, {resources});
     return request;
   }
 
@@ -996,7 +1180,11 @@ class GeneratedApiClient {
 
     url += queryString ? ('?' + queryString) : '';
 
-    const request = this.http.postJson(url);
+    const resources = [
+      `${this.baseUrl}/api/v1/users/${userId}`
+    ];
+
+    const request = this.http.postJson(url, null, {resources});
     return request.then(jsonRes => new models.TempPassword(jsonRes, this));
   }
 
@@ -1009,7 +1197,11 @@ class GeneratedApiClient {
   resetAllFactors(userId) {
     let url = `${this.baseUrl}/api/v1/users/${userId}/lifecycle/reset_factors`;
 
-    const request = this.http.post(url);
+    const resources = [
+      `${this.baseUrl}/api/v1/users/${userId}`
+    ];
+
+    const request = this.http.post(url, null, {resources});
     return request;
   }
 
@@ -1028,7 +1220,11 @@ class GeneratedApiClient {
 
     url += queryString ? ('?' + queryString) : '';
 
-    const request = this.http.postJson(url);
+    const resources = [
+      `${this.baseUrl}/api/v1/users/${userId}`
+    ];
+
+    const request = this.http.postJson(url, null, {resources});
     return request.then(jsonRes => new models.ResetPasswordToken(jsonRes, this));
   }
 
@@ -1041,7 +1237,11 @@ class GeneratedApiClient {
   suspendUser(userId) {
     let url = `${this.baseUrl}/api/v1/users/${userId}/lifecycle/suspend`;
 
-    const request = this.http.post(url);
+    const resources = [
+      `${this.baseUrl}/api/v1/users/${userId}`
+    ];
+
+    const request = this.http.post(url, null, {resources});
     return request;
   }
 
@@ -1054,7 +1254,11 @@ class GeneratedApiClient {
   unlockUser(userId) {
     let url = `${this.baseUrl}/api/v1/users/${userId}/lifecycle/unlock`;
 
-    const request = this.http.post(url);
+    const resources = [
+      `${this.baseUrl}/api/v1/users/${userId}`
+    ];
+
+    const request = this.http.post(url, null, {resources});
     return request;
   }
 
@@ -1067,7 +1271,11 @@ class GeneratedApiClient {
   unsuspendUser(userId) {
     let url = `${this.baseUrl}/api/v1/users/${userId}/lifecycle/unsuspend`;
 
-    const request = this.http.post(url);
+    const resources = [
+      `${this.baseUrl}/api/v1/users/${userId}`
+    ];
+
+    const request = this.http.post(url, null, {resources});
     return request;
   }
 
@@ -1098,9 +1306,13 @@ class GeneratedApiClient {
   addRoleToUser(userId, role) {
     let url = `${this.baseUrl}/api/v1/users/${userId}/roles`;
 
+    const resources = [
+      `${this.baseUrl}/api/v1/users/${userId}`
+    ];
+
     const request = this.http.postJson(url, {
       body: role
-    });
+    }, {resources});
     return request.then(jsonRes => new models.Role(jsonRes, this));
   }
 
@@ -1114,7 +1326,12 @@ class GeneratedApiClient {
   removeRoleFromUser(userId, roleId) {
     let url = `${this.baseUrl}/api/v1/users/${userId}/roles/${roleId}`;
 
-    const request = this.http.delete(url);
+    const resources = [
+      `${this.baseUrl}/api/v1/users/${userId}/roles/${roleId}`,
+      `${this.baseUrl}/api/v1/users/${userId}`
+    ];
+
+    const request = this.http.delete(url, null, {resources});
     return request;
   }
 
@@ -1148,7 +1365,13 @@ class GeneratedApiClient {
   removeGroupTargetFromRole(userId, roleId, groupId) {
     let url = `${this.baseUrl}/api/v1/users/${userId}/roles/${roleId}/targets/groups/${groupId}`;
 
-    const request = this.http.delete(url);
+    const resources = [
+      `${this.baseUrl}/api/v1/users/${userId}/roles/${roleId}/targets/groups/${groupId}`,
+      `${this.baseUrl}/api/v1/users/${userId}/roles/${roleId}`,
+      `${this.baseUrl}/api/v1/users/${userId}`
+    ];
+
+    const request = this.http.delete(url, null, {resources});
     return request;
   }
 
@@ -1163,7 +1386,13 @@ class GeneratedApiClient {
   addGroupTargetToRole(userId, roleId, groupId) {
     let url = `${this.baseUrl}/api/v1/users/${userId}/roles/${roleId}/targets/groups/${groupId}`;
 
-    const request = this.http.put(url);
+    const resources = [
+      `${this.baseUrl}/api/v1/users/${userId}/roles/${roleId}/targets/groups/${groupId}`,
+      `${this.baseUrl}/api/v1/users/${userId}/roles/${roleId}`,
+      `${this.baseUrl}/api/v1/users/${userId}`
+    ];
+
+    const request = this.http.put(url, null, {resources});
     return request;
   }
 
@@ -1181,7 +1410,11 @@ class GeneratedApiClient {
 
     url += queryString ? ('?' + queryString) : '';
 
-    const request = this.http.delete(url);
+    const resources = [
+      `${this.baseUrl}/api/v1/users/${userId}`
+    ];
+
+    const request = this.http.delete(url, null, {resources});
     return request;
   }
 

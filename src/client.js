@@ -47,7 +47,10 @@ class Client extends GeneratedApiClient {
 
     this.baseUrl = parsedConfig.client.orgUrl.replace(/\/$/, '');
     this.apiToken = parsedConfig.client.token;
-    this.http = new Http();
+    this.http = new Http({
+      cacheStore: clientConfig.cacheStore,
+      cacheMiddleware: clientConfig.cacheMiddleware
+    });
     this.http.defaultHeaders.Authorization = `SSWS ${this.apiToken}`;
     this.http.defaultHeaders['User-Agent'] = parsedConfig.client.userAgent ? parsedConfig.client.userAgent + ' ' + DEFAULT_USER_AGENT : DEFAULT_USER_AGENT;
   }
