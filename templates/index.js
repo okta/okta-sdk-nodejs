@@ -200,6 +200,33 @@ js.process = ({spec, operations, models, handlebars}) => {
     return args.join(', ');
   });
 
+  handlebars.registerHelper('modelMethodPublicArgumentJsDocBuilder', (method, modelName) => {
+
+    const args = [];
+
+    const operation = method.operation;
+
+    operation.pathParams.forEach(param => {
+      const matchingArgument = method.arguments.filter(argument => argument.dest === param.name)[0];
+      if (!matchingArgument || !matchingArgument.src){
+        console.log(param);
+        args.push(`@param {${param.type}} ${param.name}`);
+      }
+    });
+
+    if ((operation.method === 'post' || operation.method === 'put') && operation.bodyModel && (operation.bodyModel !== modelName)) {
+      args.push(`@param {${operation.bodyModel}} ${_.camelCase(operation.bodyModel)}`);
+    }
+
+    if (operation.queryParams.length) {
+      args.push('@param {object} queryParameters');
+    }
+
+    const output = args.join('\n   * ');
+
+    return output ? ` ${output}` : '';
+  });
+
   handlebars.registerHelper('jsdocBuilder', (operation) => {
     const lines = ['*'];
 

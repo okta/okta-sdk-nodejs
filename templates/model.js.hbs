@@ -33,20 +33,29 @@ class {{modelName}} extends Resource {
     super(resourceJson, client);
 {{{propertyCastBuilder this}}}
   }
-
   {{#each crud}}
   {{#if (eq alias 'update')}}
+  /**
+   *{{modelMethodPublicArgumentJsDocBuilder this ../modelName}}
+   */
   {{alias}}({{modelMethodPublicArgumentBuilder this ../modelName}}) {
     return this.client.{{operation.operationId}}({{modelMethodProxyArgumentBuilder this ../modelName}});
   }
   {{/if}}
   {{#if (eq alias 'delete')}}
+  /**
+   *{{modelMethodPublicArgumentJsDocBuilder this ../modelName}}
+   */
   {{alias}}({{modelMethodPublicArgumentBuilder this ../modelName}}) {
     return this.client.{{operation.operationId}}({{modelMethodProxyArgumentBuilder this ../modelName}});
   }
   {{/if}}
   {{/each}}
   {{#each methods}}
+
+  /**
+   *{{modelMethodPublicArgumentJsDocBuilder this ../modelName}}
+   */
   {{alias}}({{modelMethodPublicArgumentBuilder this ../modelName}}) {
     return this.client.{{operation.operationId}}({{modelMethodProxyArgumentBuilder this ../modelName}});
   }
