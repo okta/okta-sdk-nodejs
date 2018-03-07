@@ -209,7 +209,6 @@ js.process = ({spec, operations, models, handlebars}) => {
     operation.pathParams.forEach(param => {
       const matchingArgument = method.arguments.filter(argument => argument.dest === param.name)[0];
       if (!matchingArgument || !matchingArgument.src){
-        console.log(param);
         args.push(`@param {${param.type}} ${param.name}`);
       }
     });
@@ -222,9 +221,12 @@ js.process = ({spec, operations, models, handlebars}) => {
       args.push('@param {object} queryParameters');
     }
 
-    const output = args.join('\n   * ');
+    if (!args.length) {
+      return;
+    }
 
-    return output ? ` ${output}` : '';
+    const output = '/**\n   * ' + args.join('\n   * ') + '\n   */\n  ';
+    return output;
   });
 
   handlebars.registerHelper('jsdocBuilder', (operation) => {
