@@ -43,9 +43,17 @@ class Group extends Resource {
   delete() {
     return this.client.deleteGroup(this.id);
   }
+
+  /**
+   * @param {string} userId
+   */
   removeUser(userId) {
     return this.client.removeGroupUser(this.id, userId);
   }
+
+  /**
+   * @param {object} queryParameters
+   */
   listUsers(queryParameters) {
     return this.client.listGroupUsers(this.id, queryParameters);
   }

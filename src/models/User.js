@@ -51,81 +51,166 @@ class User extends Resource {
   delete() {
     return this.client.deactivateOrDeleteUser(this.id);
   }
+
+  /**
+   * @param {object} queryParameters
+   */
   endAllSessions(queryParameters) {
     return this.client.endAllUserSessions(this.id, queryParameters);
   }
+
+  /**
+   * @param {object} queryParameters
+   */
   listAppLinks(queryParameters) {
     return this.client.listAppLinks(this.id, queryParameters);
   }
+
+  /**
+   * @param {ChangePasswordRequest} changePasswordRequest
+   */
   changePassword(changePasswordRequest) {
     return this.client.changePassword(this.id, changePasswordRequest);
   }
+
+  /**
+   * @param {UserCredentials} userCredentials
+   */
   changeRecoveryQuestion(userCredentials) {
     return this.client.changeRecoveryQuestion(this.id, userCredentials);
   }
+
+  /**
+   * @param {UserCredentials} userCredentials
+   * @param {object} queryParameters
+   */
   forgotPassword(userCredentials, queryParameters) {
     return this.client.forgotPassword(this.id, userCredentials, queryParameters);
   }
+
+  /**
+   * @param {object} queryParameters
+   */
   listRoles(queryParameters) {
     return this.client.listAssignedRoles(this.id, queryParameters);
   }
+
+  /**
+   * @param {Role} role
+   */
   addRole(role) {
     return this.client.addRoleToUser(this.id, role);
   }
+
+  /**
+   * @param {string} roleId
+   */
   removeRole(roleId) {
     return this.client.removeRoleFromUser(this.id, roleId);
   }
+
+  /**
+   * @param {string} roleId
+   * @param {object} queryParameters
+   */
   listGroupTargetsForRole(roleId, queryParameters) {
     return this.client.listGroupTargetsForRole(this.id, roleId, queryParameters);
   }
+
+  /**
+   * @param {string} roleId
+   * @param {string} groupId
+   */
   removeGroupTargetFromRole(roleId, groupId) {
     return this.client.removeGroupTargetFromRole(this.id, roleId, groupId);
   }
+
+  /**
+   * @param {string} roleId
+   * @param {string} groupId
+   */
   addGroupTargetToRole(roleId, groupId) {
     return this.client.addGroupTargetToRole(this.id, roleId, groupId);
   }
+
+  /**
+   * @param {object} queryParameters
+   */
   listGroups(queryParameters) {
     return this.client.listUserGroups(this.id, queryParameters);
   }
+
+  /**
+   * @param {object} queryParameters
+   */
   activate(queryParameters) {
     return this.client.activateUser(this.id, queryParameters);
   }
+
   deactivate() {
     return this.client.deactivateUser(this.id);
   }
+
   suspend() {
     return this.client.suspendUser(this.id);
   }
+
   unsuspend() {
     return this.client.unsuspendUser(this.id);
   }
+
+  /**
+   * @param {object} queryParameters
+   */
   resetPassword(queryParameters) {
     return this.client.resetPassword(this.id, queryParameters);
   }
+
+  /**
+   * @param {object} queryParameters
+   */
   expirePassword(queryParameters) {
     return this.client.expirePassword(this.id, queryParameters);
   }
+
   unlock() {
     return this.client.unlockUser(this.id);
   }
+
   resetFactors() {
     return this.client.resetAllFactors(this.id);
   }
+
+  /**
+   * @param {string} groupId
+   */
   addToGroup(groupId) {
     return this.client.addUserToGroup(groupId, this.id);
   }
+
+  /**
+   * @param {Factor} factor
+   * @param {object} queryParameters
+   */
   addFactor(factor, queryParameters) {
     return this.client.addFactor(this.id, factor, queryParameters);
   }
+
   listSupportedFactors() {
     return this.client.listSupportedFactors(this.id);
   }
+
   listFactors() {
     return this.client.listFactors(this.id);
   }
+
   listSupportedSecurityQuestions() {
     return this.client.listSupportedSecurityQuestions(this.id);
   }
+
+  /**
+   * @param {string} factorId
+   */
   getFactor(factorId) {
     return this.client.getFactor(this.id, factorId);
   }

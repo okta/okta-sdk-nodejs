@@ -42,9 +42,15 @@ class AppUser extends Resource {
     }
   }
 
+  /**
+   * @param {string} appId
+   */
   update(appId) {
     return this.client.updateApplicationUser(appId, this.id, this);
   }
+  /**
+   * @param {string} appId
+   */
   delete(appId) {
     return this.client.deleteApplicationUser(appId, this.id);
   }

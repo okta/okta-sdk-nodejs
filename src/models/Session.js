@@ -42,6 +42,7 @@ class Session extends Resource {
   delete() {
     return this.client.endSession(this.id);
   }
+
   refresh() {
     return this.client.refreshSession(this.id);
   }

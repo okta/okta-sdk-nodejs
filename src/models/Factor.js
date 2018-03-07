@@ -46,12 +46,26 @@ class Factor extends Resource {
     }
   }
 
+  /**
+   * @param {string} userId
+   */
   delete(userId) {
     return this.client.deleteFactor(userId, this.id);
   }
+
+  /**
+   * @param {string} userId
+   * @param {VerifyFactorRequest} verifyFactorRequest
+   */
   activate(userId, verifyFactorRequest) {
     return this.client.activateFactor(userId, this.id, verifyFactorRequest);
   }
+
+  /**
+   * @param {string} userId
+   * @param {VerifyFactorRequest} verifyFactorRequest
+   * @param {object} queryParameters
+   */
   verify(userId, verifyFactorRequest, queryParameters) {
     return this.client.verifyFactor(userId, this.id, verifyFactorRequest, queryParameters);
   }

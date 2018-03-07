@@ -65,36 +65,75 @@ class Application extends Resource {
   delete() {
     return this.client.deleteApplication(this.id);
   }
+
   activate() {
     return this.client.activateApplication(this.id);
   }
+
   deactivate() {
     return this.client.deactivateApplication(this.id);
   }
+
+  /**
+   * @param {object} queryParameters
+   */
   listApplicationUsers(queryParameters) {
     return this.client.listApplicationUsers(this.id, queryParameters);
   }
+
+  /**
+   * @param {AppUser} appUser
+   */
   assignUserToApplication(appUser) {
     return this.client.assignUserToApplication(this.id, appUser);
   }
+
+  /**
+   * @param {string} userId
+   * @param {object} queryParameters
+   */
   getApplicationUser(userId, queryParameters) {
     return this.client.getApplicationUser(this.id, userId, queryParameters);
   }
+
+  /**
+   * @param {string} groupId
+   * @param {ApplicationGroupAssignment} applicationGroupAssignment
+   */
   createApplicationGroupAssignment(groupId, applicationGroupAssignment) {
     return this.client.createApplicationGroupAssignment(this.id, groupId, applicationGroupAssignment);
   }
+
+  /**
+   * @param {string} groupId
+   * @param {object} queryParameters
+   */
   getApplicationGroupAssignment(groupId, queryParameters) {
     return this.client.getApplicationGroupAssignment(this.id, groupId, queryParameters);
   }
+
+  /**
+   * @param {string} keyId
+   * @param {object} queryParameters
+   */
   cloneApplicationKey(keyId, queryParameters) {
     return this.client.cloneApplicationKey(this.id, keyId, queryParameters);
   }
+
+  /**
+   * @param {string} keyId
+   */
   getApplicationKey(keyId) {
     return this.client.getApplicationKey(this.id, keyId);
   }
+
+  /**
+   * @param {object} queryParameters
+   */
   listGroupAssignments(queryParameters) {
     return this.client.listApplicationGroupAssignments(this.id, queryParameters);
   }
+
   listKeys() {
     return this.client.listApplicationKeys(this.id);
   }
