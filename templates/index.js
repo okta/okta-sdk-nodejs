@@ -200,6 +200,43 @@ js.process = ({spec, operations, models, handlebars}) => {
     return args.join(', ');
   });
 
+  handlebars.registerHelper('modelMethodPublicArgumentJsDocBuilder', (method, modelName) => {
+
+    const args = [];
+
+    const operation = method.operation;
+
+    operation.pathParams.forEach(param => {
+      const matchingArgument = method.arguments.filter(argument => argument.dest === param.name)[0];
+      if (!matchingArgument || !matchingArgument.src){
+        args.push(`@param {${param.type}} ${param.name}`);
+      }
+    });
+
+    if ((operation.method === 'post' || operation.method === 'put') && operation.bodyModel && (operation.bodyModel !== modelName)) {
+      args.push(`@param {${operation.bodyModel}} ${_.camelCase(operation.bodyModel)}`);
+    }
+
+    if (operation.queryParams.length) {
+      args.push('@param {object} queryParameters');
+    }
+
+    if (operation.responseModel) {
+      if (operation.isArray) {
+        args.push(`@returns {Promise<Collection>} A collection that will yield {@link ${operation.responseModel}} instances.`)
+      } else {
+        args.push(`@returns {Promise<${operation.responseModel}>}`)
+      }
+    }
+
+    if (!args.length) {
+      return;
+    }
+
+    const output = '/**\n   * ' + args.join('\n   * ') + '\n   */\n  ';
+    return output;
+  });
+
   handlebars.registerHelper('jsdocBuilder', (operation) => {
     const lines = ['*'];
 
@@ -226,6 +263,14 @@ js.process = ({spec, operations, models, handlebars}) => {
     } else {
       // TODO: Once documentation is parsed correctly, this line can be omitted.
       lines.push(`   * Convenience method for ${operation.path}`);
+    }
+
+    if (operation.responseModel) {
+      if (operation.isArray) {
+        lines.push(`   * @returns {Promise<Collection>} A collection that will yield {@link ${operation.responseModel}} instances.`)
+      } else {
+        lines.push(`   * @returns {Promise<${operation.responseModel}>}`)
+      }
     }
 
     return lines.join('\n');

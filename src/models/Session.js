@@ -42,6 +42,10 @@ class Session extends Resource {
   delete() {
     return this.client.endSession(this.id);
   }
+
+  /**
+   * @returns {Promise<Session>}
+   */
   refresh() {
     return this.client.refreshSession(this.id);
   }

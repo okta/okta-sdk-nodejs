@@ -37,15 +37,27 @@ class Group extends Resource {
     }
   }
 
+  /**
+   * @returns {Promise<Group>}
+   */
   update() {
     return this.client.updateGroup(this.id, this);
   }
   delete() {
     return this.client.deleteGroup(this.id);
   }
+
+  /**
+   * @param {string} userId
+   */
   removeUser(userId) {
     return this.client.removeGroupUser(this.id, userId);
   }
+
+  /**
+   * @param {object} queryParameters
+   * @returns {Promise<Collection>} A collection that will yield {@link User} instances.
+   */
   listUsers(queryParameters) {
     return this.client.listGroupUsers(this.id, queryParameters);
   }

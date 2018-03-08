@@ -32,6 +32,9 @@ class ApplicationGroupAssignment extends Resource {
 
   }
 
+  /**
+   * @param {string} appId
+   */
   delete(appId) {
     return this.client.deleteApplicationGroupAssignment(appId, this.id);
   }
