@@ -37,6 +37,9 @@ class Group extends Resource {
     }
   }
 
+  /**
+   * @returns {Promise<Group>}
+   */
   update() {
     return this.client.updateGroup(this.id, this);
   }
@@ -53,6 +56,7 @@ class Group extends Resource {
 
   /**
    * @param {object} queryParameters
+   * @returns {Promise<Collection>} A collection that will yield {@link User} instances.
    */
   listUsers(queryParameters) {
     return this.client.listGroupUsers(this.id, queryParameters);

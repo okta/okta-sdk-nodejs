@@ -45,6 +45,9 @@ class User extends Resource {
     }
   }
 
+  /**
+   * @returns {Promise<User>}
+   */
   update() {
     return this.client.updateUser(this.id, this);
   }
@@ -61,6 +64,7 @@ class User extends Resource {
 
   /**
    * @param {object} queryParameters
+   * @returns {Promise<Collection>} A collection that will yield {@link AppLink} instances.
    */
   listAppLinks(queryParameters) {
     return this.client.listAppLinks(this.id, queryParameters);
@@ -68,6 +72,7 @@ class User extends Resource {
 
   /**
    * @param {ChangePasswordRequest} changePasswordRequest
+   * @returns {Promise<UserCredentials>}
    */
   changePassword(changePasswordRequest) {
     return this.client.changePassword(this.id, changePasswordRequest);
@@ -75,6 +80,7 @@ class User extends Resource {
 
   /**
    * @param {UserCredentials} userCredentials
+   * @returns {Promise<UserCredentials>}
    */
   changeRecoveryQuestion(userCredentials) {
     return this.client.changeRecoveryQuestion(this.id, userCredentials);
@@ -83,6 +89,7 @@ class User extends Resource {
   /**
    * @param {UserCredentials} userCredentials
    * @param {object} queryParameters
+   * @returns {Promise<ForgotPasswordResponse>}
    */
   forgotPassword(userCredentials, queryParameters) {
     return this.client.forgotPassword(this.id, userCredentials, queryParameters);
@@ -90,6 +97,7 @@ class User extends Resource {
 
   /**
    * @param {object} queryParameters
+   * @returns {Promise<Collection>} A collection that will yield {@link Role} instances.
    */
   listRoles(queryParameters) {
     return this.client.listAssignedRoles(this.id, queryParameters);
@@ -97,6 +105,7 @@ class User extends Resource {
 
   /**
    * @param {Role} role
+   * @returns {Promise<Role>}
    */
   addRole(role) {
     return this.client.addRoleToUser(this.id, role);
@@ -112,6 +121,7 @@ class User extends Resource {
   /**
    * @param {string} roleId
    * @param {object} queryParameters
+   * @returns {Promise<Collection>} A collection that will yield {@link Group} instances.
    */
   listGroupTargetsForRole(roleId, queryParameters) {
     return this.client.listGroupTargetsForRole(this.id, roleId, queryParameters);
@@ -135,6 +145,7 @@ class User extends Resource {
 
   /**
    * @param {object} queryParameters
+   * @returns {Promise<Collection>} A collection that will yield {@link Group} instances.
    */
   listGroups(queryParameters) {
     return this.client.listUserGroups(this.id, queryParameters);
@@ -142,6 +153,7 @@ class User extends Resource {
 
   /**
    * @param {object} queryParameters
+   * @returns {Promise<UserActivationToken>}
    */
   activate(queryParameters) {
     return this.client.activateUser(this.id, queryParameters);
@@ -161,6 +173,7 @@ class User extends Resource {
 
   /**
    * @param {object} queryParameters
+   * @returns {Promise<ResetPasswordToken>}
    */
   resetPassword(queryParameters) {
     return this.client.resetPassword(this.id, queryParameters);
@@ -168,6 +181,7 @@ class User extends Resource {
 
   /**
    * @param {object} queryParameters
+   * @returns {Promise<TempPassword>}
    */
   expirePassword(queryParameters) {
     return this.client.expirePassword(this.id, queryParameters);
@@ -191,25 +205,36 @@ class User extends Resource {
   /**
    * @param {Factor} factor
    * @param {object} queryParameters
+   * @returns {Promise<Factor>}
    */
   addFactor(factor, queryParameters) {
     return this.client.addFactor(this.id, factor, queryParameters);
   }
 
+  /**
+   * @returns {Promise<Collection>} A collection that will yield {@link Factor} instances.
+   */
   listSupportedFactors() {
     return this.client.listSupportedFactors(this.id);
   }
 
+  /**
+   * @returns {Promise<Collection>} A collection that will yield {@link Factor} instances.
+   */
   listFactors() {
     return this.client.listFactors(this.id);
   }
 
+  /**
+   * @returns {Promise<Collection>} A collection that will yield {@link SecurityQuestion} instances.
+   */
   listSupportedSecurityQuestions() {
     return this.client.listSupportedSecurityQuestions(this.id);
   }
 
   /**
    * @param {string} factorId
+   * @returns {Promise<Factor>}
    */
   getFactor(factorId) {
     return this.client.getFactor(this.id, factorId);

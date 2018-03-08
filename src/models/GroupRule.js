@@ -40,6 +40,9 @@ class GroupRule extends Resource {
     }
   }
 
+  /**
+   * @returns {Promise<GroupRule>}
+   */
   update() {
     return this.client.updateRule(this.id, this);
   }

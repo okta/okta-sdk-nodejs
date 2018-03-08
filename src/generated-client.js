@@ -38,6 +38,7 @@ class GeneratedApiClient {
    * @param {String} [queryParams.includeNonDeleted]
    * @description
    * Enumerates apps added to your organization with pagination. A subset of apps can be returned that match a supported filter expression or query.
+   * @returns {Promise<Collection>} A collection that will yield {@link Application} instances.
    */
   listApplications(queryParameters) {
     let url = `${this.baseUrl}/api/v1/apps`;
@@ -55,6 +56,7 @@ class GeneratedApiClient {
    * @param {String} [queryParams.activate]
    * @description
    * Adds a new application to your Okta organization.
+   * @returns {Promise<Application>}
    */
   createApplication(application, queryParameters) {
     let url = `${this.baseUrl}/api/v1/apps`;
@@ -94,6 +96,7 @@ class GeneratedApiClient {
    * @param {String} [queryParams.expand]
    * @description
    * Fetches an application from your Okta organization by `id`.
+   * @returns {Promise<Application>}
    */
   getApplication(appId, queryParameters) {
     let url = `${this.baseUrl}/api/v1/apps/${appId}`;
@@ -115,6 +118,7 @@ class GeneratedApiClient {
    * @param {Application} application
    * @description
    * Updates an application in your organization.
+   * @returns {Promise<Application>}
    */
   updateApplication(appId, application) {
     let url = `${this.baseUrl}/api/v1/apps/${appId}`;
@@ -134,6 +138,7 @@ class GeneratedApiClient {
    * @param appId {String}
    * @description
    * Enumerates key credentials for an application
+   * @returns {Promise<Collection>} A collection that will yield {@link JsonWebKey} instances.
    */
   listApplicationKeys(appId) {
     let url = `${this.baseUrl}/api/v1/apps/${appId}/credentials/keys`;
@@ -147,6 +152,7 @@ class GeneratedApiClient {
    * @param keyId {String}
    * @description
    * Gets a specific [application key credential](#application-key-credential-model) by `kid`
+   * @returns {Promise<JsonWebKey>}
    */
   getApplicationKey(appId, keyId) {
     let url = `${this.baseUrl}/api/v1/apps/${appId}/credentials/keys/${keyId}`;
@@ -168,6 +174,7 @@ class GeneratedApiClient {
    * @param {String} [queryParams.targetAid]
    * @description
    * Clones a X.509 certificate for an application key credential from a source application to target application.
+   * @returns {Promise<JsonWebKey>}
    */
   cloneApplicationKey(appId, keyId, queryParameters) {
     let url = `${this.baseUrl}/api/v1/apps/${appId}/credentials/keys/${keyId}/clone`;
@@ -194,6 +201,7 @@ class GeneratedApiClient {
    * @param {String} [queryParams.expand]
    * @description
    * Enumerates group assignments for an application.
+   * @returns {Promise<Collection>} A collection that will yield {@link ApplicationGroupAssignment} instances.
    */
   listApplicationGroupAssignments(appId, queryParameters) {
     let url = `${this.baseUrl}/api/v1/apps/${appId}/groups`;
@@ -231,6 +239,7 @@ class GeneratedApiClient {
    * @param {String} [queryParams.expand]
    * @description
    * Fetches an application group assignment
+   * @returns {Promise<ApplicationGroupAssignment>}
    */
   getApplicationGroupAssignment(appId, groupId, queryParameters) {
     let url = `${this.baseUrl}/api/v1/apps/${appId}/groups/${groupId}`;
@@ -254,6 +263,7 @@ class GeneratedApiClient {
    * @param {ApplicationGroupAssignment} applicationGroupAssignment
    * @description
    * Assigns a group to an application
+   * @returns {Promise<ApplicationGroupAssignment>}
    */
   createApplicationGroupAssignment(appId, groupId, applicationGroupAssignment) {
     let url = `${this.baseUrl}/api/v1/apps/${appId}/groups/${groupId}`;
@@ -315,6 +325,7 @@ class GeneratedApiClient {
    * @param {String} [queryParams.expand]
    * @description
    * Enumerates all assigned [application users](#application-user-model) for an application.
+   * @returns {Promise<Collection>} A collection that will yield {@link AppUser} instances.
    */
   listApplicationUsers(appId, queryParameters) {
     let url = `${this.baseUrl}/api/v1/apps/${appId}/users`;
@@ -331,6 +342,7 @@ class GeneratedApiClient {
    * @param {AppUser} appUser
    * @description
    * Assigns an user to an application with [credentials](#application-user-credentials-object) and an app-specific [profile](#application-user-profile-object). Profile mappings defined for the application are first applied before applying any profile properties specified in the request.
+   * @returns {Promise<AppUser>}
    */
   assignUserToApplication(appId, appUser) {
     let url = `${this.baseUrl}/api/v1/apps/${appId}/users`;
@@ -372,6 +384,7 @@ class GeneratedApiClient {
    * @param {String} [queryParams.expand]
    * @description
    * Fetches a specific user assignment for application by `id`.
+   * @returns {Promise<AppUser>}
    */
   getApplicationUser(appId, userId, queryParameters) {
     let url = `${this.baseUrl}/api/v1/apps/${appId}/users/${userId}`;
@@ -395,6 +408,7 @@ class GeneratedApiClient {
    * @param {AppUser} appUser
    * @description
    * Updates a user's profile for an application
+   * @returns {Promise<AppUser>}
    */
   updateApplicationUser(appId, userId, appUser) {
     let url = `${this.baseUrl}/api/v1/apps/${appId}/users/${userId}`;
@@ -420,6 +434,7 @@ class GeneratedApiClient {
    * @param {String} [queryParams.expand]
    * @description
    * Enumerates groups in your organization with pagination. A subset of groups can be returned that match a supported filter expression or query.
+   * @returns {Promise<Collection>} A collection that will yield {@link Group} instances.
    */
   listGroups(queryParameters) {
     let url = `${this.baseUrl}/api/v1/groups`;
@@ -435,6 +450,7 @@ class GeneratedApiClient {
    * @param {Group} group
    * @description
    * Adds a new group with `OKTA_GROUP` type to your organization.
+   * @returns {Promise<Group>}
    */
   createGroup(group) {
     let url = `${this.baseUrl}/api/v1/groups`;
@@ -454,6 +470,7 @@ class GeneratedApiClient {
    * @param {String} [queryParams.after]
    * @description
    * Lists all group rules for your organization.
+   * @returns {Promise<Collection>} A collection that will yield {@link GroupRule} instances.
    */
   listRules(queryParameters) {
     let url = `${this.baseUrl}/api/v1/groups/rules`;
@@ -469,6 +486,7 @@ class GeneratedApiClient {
    * @param {GroupRule} groupRule
    * @description
    * Creates a group rule to dynamically add users to the specified group if they match the condition
+   * @returns {Promise<GroupRule>}
    */
   createRule(groupRule) {
     let url = `${this.baseUrl}/api/v1/groups/rules`;
@@ -508,6 +526,7 @@ class GeneratedApiClient {
    * @param ruleId {String}
    * @description
    * Fetches a specific group rule by id from your organization
+   * @returns {Promise<GroupRule>}
    */
   getRule(ruleId) {
     let url = `${this.baseUrl}/api/v1/groups/rules/${ruleId}`;
@@ -526,6 +545,7 @@ class GeneratedApiClient {
    * @param {GroupRule} groupRule
    * @description
    * Convenience method for /api/v1/groups/rules/{ruleId}
+   * @returns {Promise<GroupRule>}
    */
   updateRule(ruleId, groupRule) {
     let url = `${this.baseUrl}/api/v1/groups/rules/${ruleId}`;
@@ -598,6 +618,7 @@ class GeneratedApiClient {
    * @param {String} [queryParams.expand]
    * @description
    * Lists all group rules for your organization.
+   * @returns {Promise<Group>}
    */
   getGroup(groupId, queryParameters) {
     let url = `${this.baseUrl}/api/v1/groups/${groupId}`;
@@ -619,6 +640,7 @@ class GeneratedApiClient {
    * @param {Group} group
    * @description
    * Updates the profile for a group with `OKTA_GROUP` type from your organization.
+   * @returns {Promise<Group>}
    */
   updateGroup(groupId, group) {
     let url = `${this.baseUrl}/api/v1/groups/${groupId}`;
@@ -641,6 +663,7 @@ class GeneratedApiClient {
    * @param {String} [queryParams.limit]
    * @description
    * Enumerates all [users](/docs/api/resources/users.html#user-model) that are a member of a group.
+   * @returns {Promise<Collection>} A collection that will yield {@link User} instances.
    */
   listGroupUsers(groupId, queryParameters) {
     let url = `${this.baseUrl}/api/v1/groups/${groupId}/users`;
@@ -701,6 +724,7 @@ class GeneratedApiClient {
    * @param {String} [queryParams.after]
    * @description
    * The Okta System Log API provides read access to your organization’s system log. This API provides more functionality than the Events API
+   * @returns {Promise<Collection>} A collection that will yield {@link LogEvent} instances.
    */
   getLogs(queryParameters) {
     let url = `${this.baseUrl}/api/v1/logs`;
@@ -716,6 +740,7 @@ class GeneratedApiClient {
    * @param {CreateSessionRequest} createSessionRequest
    * @description
    * Creates a new session for a user with a valid session token. Use this API if, for example, you want to set the session cookie yourself instead of allowing Okta to set it, or want to hold the session ID in order to delete a session via the API instead of visiting the logout URL.
+   * @returns {Promise<Session>}
    */
   createSession(createSessionRequest) {
     let url = `${this.baseUrl}/api/v1/sessions`;
@@ -750,6 +775,7 @@ class GeneratedApiClient {
    * @param sessionId {String}
    * @description
    * Get details about a session.
+   * @returns {Promise<Session>}
    */
   getSession(sessionId) {
     let url = `${this.baseUrl}/api/v1/sessions/${sessionId}`;
@@ -767,6 +793,7 @@ class GeneratedApiClient {
    * @param sessionId {String}
    * @description
    * Convenience method for /api/v1/sessions/{sessionId}/lifecycle/refresh
+   * @returns {Promise<Session>}
    */
   refreshSession(sessionId) {
     let url = `${this.baseUrl}/api/v1/sessions/${sessionId}/lifecycle/refresh`;
@@ -791,6 +818,7 @@ class GeneratedApiClient {
    * @param {String} [queryParams.expand]
    * @description
    * Lists users in your organization with pagination in most cases.  A subset of users can be returned that match a supported filter expression or search criteria.
+   * @returns {Promise<Collection>} A collection that will yield {@link User} instances.
    */
   listUsers(queryParameters) {
     let url = `${this.baseUrl}/api/v1/users`;
@@ -809,6 +837,7 @@ class GeneratedApiClient {
    * @param {String} [queryParams.provider]
    * @description
    * Creates a new user in your Okta organization with or without credentials.
+   * @returns {Promise<User>}
    */
   createUser(user, queryParameters) {
     let url = `${this.baseUrl}/api/v1/users`;
@@ -846,6 +875,7 @@ class GeneratedApiClient {
    * @param userId {String}
    * @description
    * Fetches a user from your Okta organization.
+   * @returns {Promise<User>}
    */
   getUser(userId) {
     let url = `${this.baseUrl}/api/v1/users/${userId}`;
@@ -864,6 +894,7 @@ class GeneratedApiClient {
    * @param {User} user
    * @description
    * Update a user's profile and/or credentials using strict-update semantics.
+   * @returns {Promise<User>}
    */
   updateUser(userId, user) {
     let url = `${this.baseUrl}/api/v1/users/${userId}`;
@@ -885,6 +916,7 @@ class GeneratedApiClient {
    * @param {String} [queryParams.showAll]
    * @description
    * Fetches appLinks for all direct or indirect (via group membership) assigned applications.
+   * @returns {Promise<Collection>} A collection that will yield {@link AppLink} instances.
    */
   listAppLinks(userId, queryParameters) {
     let url = `${this.baseUrl}/api/v1/users/${userId}/appLinks`;
@@ -901,6 +933,7 @@ class GeneratedApiClient {
    * @param {ChangePasswordRequest} changePasswordRequest
    * @description
    * Changes a user's password by validating the user's current password.  This operation can only be performed on users in `STAGED`, `ACTIVE`, `PASSWORD_EXPIRED`, or `RECOVERY` status that have a valid [password credential](#password-object)
+   * @returns {Promise<UserCredentials>}
    */
   changePassword(userId, changePasswordRequest) {
     let url = `${this.baseUrl}/api/v1/users/${userId}/credentials/change_password`;
@@ -921,6 +954,7 @@ class GeneratedApiClient {
    * @param {UserCredentials} userCredentials
    * @description
    * Changes a user's recovery question & answer credential by validating the user's current password.  This operation can only be performed on users in **STAGED**, **ACTIVE** or **RECOVERY** `status` that have a valid [password credential](#password-object)
+   * @returns {Promise<UserCredentials>}
    */
   changeRecoveryQuestion(userId, userCredentials) {
     let url = `${this.baseUrl}/api/v1/users/${userId}/credentials/change_recovery_question`;
@@ -943,6 +977,7 @@ class GeneratedApiClient {
    * @param {String} [queryParams.sendEmail]
    * @description
    * Generates a one-time token (OTT) that can be used to reset a user's password.  The user will be required to validate their security question's answer when visiting the reset link.  This operation can only be performed on users with a valid [recovery question credential](#recovery-question-object) and have an `ACTIVE` status.
+   * @returns {Promise<ForgotPasswordResponse>}
    */
   forgotPassword(userId, userCredentials, queryParameters) {
     let url = `${this.baseUrl}/api/v1/users/${userId}/credentials/forgot_password`;
@@ -965,6 +1000,7 @@ class GeneratedApiClient {
    * @param userId {String}
    * @description
    * Enumerates all the enrolled factors for the specified user
+   * @returns {Promise<Collection>} A collection that will yield {@link Factor} instances.
    */
   listFactors(userId) {
     let url = `${this.baseUrl}/api/v1/users/${userId}/factors`;
@@ -981,6 +1017,7 @@ class GeneratedApiClient {
    * @param {String} [queryParams.templateId]
    * @description
    * Enrolls a user with a supported [factor](#list-factors-to-enroll)
+   * @returns {Promise<Factor>}
    */
   addFactor(userId, factor, queryParameters) {
     let url = `${this.baseUrl}/api/v1/users/${userId}/factors`;
@@ -1003,6 +1040,7 @@ class GeneratedApiClient {
    * @param userId {String}
    * @description
    * Enumerates all the [supported factors](#supported-factors-for-providers) that can be enrolled for the specified user
+   * @returns {Promise<Collection>} A collection that will yield {@link Factor} instances.
    */
   listSupportedFactors(userId) {
     let url = `${this.baseUrl}/api/v1/users/${userId}/factors/catalog`;
@@ -1015,6 +1053,7 @@ class GeneratedApiClient {
    * @param userId {String}
    * @description
    * Enumerates all available security questions for a user's `question` factor
+   * @returns {Promise<Collection>} A collection that will yield {@link SecurityQuestion} instances.
    */
   listSupportedSecurityQuestions(userId) {
     let url = `${this.baseUrl}/api/v1/users/${userId}/factors/questions`;
@@ -1047,6 +1086,7 @@ class GeneratedApiClient {
    * @param factorId {String}
    * @description
    * Fetches a factor for the specified user
+   * @returns {Promise<Factor>}
    */
   getFactor(userId, factorId) {
     let url = `${this.baseUrl}/api/v1/users/${userId}/factors/${factorId}`;
@@ -1067,6 +1107,7 @@ class GeneratedApiClient {
    * @param {VerifyFactorRequest} verifyFactorRequest
    * @description
    * The `sms` and `token:software:totp` [factor types](#factor-type) require activation to complete the enrollment process.
+   * @returns {Promise<Factor>}
    */
   activateFactor(userId, factorId, verifyFactorRequest) {
     let url = `${this.baseUrl}/api/v1/users/${userId}/factors/${factorId}/lifecycle/activate`;
@@ -1091,6 +1132,7 @@ class GeneratedApiClient {
    * @param {String} [queryParams.templateId]
    * @description
    * Verifies an OTP for a `token` or `token:hardware` factor
+   * @returns {Promise<VerifyFactorResponse>}
    */
   verifyFactor(userId, factorId, verifyFactorRequest, queryParameters) {
     let url = `${this.baseUrl}/api/v1/users/${userId}/factors/${factorId}/verify`;
@@ -1117,6 +1159,7 @@ class GeneratedApiClient {
    * @param {String} [queryParams.limit]
    * @description
    * Fetches the groups of which the user is a member.
+   * @returns {Promise<Collection>} A collection that will yield {@link Group} instances.
    */
   listUserGroups(userId, queryParameters) {
     let url = `${this.baseUrl}/api/v1/users/${userId}/groups`;
@@ -1134,6 +1177,7 @@ class GeneratedApiClient {
    * @param {String} [queryParams.sendEmail]
    * @description
    * Activates a user.  This operation can only be performed on users with a `STAGED` status.  Activation of a user is an asynchronous operation.  The user will have the `transitioningToStatus` property with a value of `ACTIVE` during activation to indicate that the user hasn't completed the asynchronous operation.  The user will have a status of `ACTIVE` when the activation process is complete.
+   * @returns {Promise<UserActivationToken>}
    */
   activateUser(userId, queryParameters) {
     let url = `${this.baseUrl}/api/v1/users/${userId}/lifecycle/activate`;
@@ -1173,6 +1217,7 @@ class GeneratedApiClient {
    * @param {String} [queryParams.tempPassword]
    * @description
    * This operation transitions the user to the status of `PASSWORD_EXPIRED` so that the user is required to change their password at their next login.
+   * @returns {Promise<TempPassword>}
    */
   expirePassword(userId, queryParameters) {
     let url = `${this.baseUrl}/api/v1/users/${userId}/lifecycle/expire_password`;
@@ -1213,6 +1258,7 @@ class GeneratedApiClient {
    * @param {String} [queryParams.sendEmail]
    * @description
    * Generates a one-time token (OTT) that can be used to reset a user's password.  The OTT link can be automatically emailed to the user or returned to the API caller and distributed using a custom flow.
+   * @returns {Promise<ResetPasswordToken>}
    */
   resetPassword(userId, queryParameters) {
     let url = `${this.baseUrl}/api/v1/users/${userId}/lifecycle/reset_password`;
@@ -1286,6 +1332,7 @@ class GeneratedApiClient {
    * @param {String} [queryParams.expand]
    * @description
    * Lists all roles assigned to a user.
+   * @returns {Promise<Collection>} A collection that will yield {@link Role} instances.
    */
   listAssignedRoles(userId, queryParameters) {
     let url = `${this.baseUrl}/api/v1/users/${userId}/roles`;
@@ -1302,6 +1349,7 @@ class GeneratedApiClient {
    * @param {Role} role
    * @description
    * Assigns a role to a user.
+   * @returns {Promise<Role>}
    */
   addRoleToUser(userId, role) {
     let url = `${this.baseUrl}/api/v1/users/${userId}/roles`;
@@ -1344,6 +1392,7 @@ class GeneratedApiClient {
    * @param {String} [queryParams.limit]
    * @description
    * Convenience method for /api/v1/users/{userId}/roles/{roleId}/targets/groups
+   * @returns {Promise<Collection>} A collection that will yield {@link Group} instances.
    */
   listGroupTargetsForRole(userId, roleId, queryParameters) {
     let url = `${this.baseUrl}/api/v1/users/${userId}/roles/${roleId}/targets/groups`;

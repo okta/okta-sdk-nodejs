@@ -44,6 +44,7 @@ class AppUser extends Resource {
 
   /**
    * @param {string} appId
+   * @returns {Promise<AppUser>}
    */
   update(appId) {
     return this.client.updateApplicationUser(appId, this.id, this);
