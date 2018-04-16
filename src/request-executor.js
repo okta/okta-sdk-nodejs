@@ -1,5 +1,5 @@
 /*!
- * Copyright (c) 2017-2018, Okta, Inc. and/or its affiliates. All rights reserved.
+ * Copyright (c) 2018-present, Okta, Inc. and/or its affiliates. All rights reserved.
  * The Okta software accompanied by this notice is provided pursuant to the Apache License, Version 2.0 (the "License.")
  *
  * You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0.
@@ -10,9 +10,21 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
+const EventEmitter = require('events').EventEmitter;
+const isoFetch = require('isomorphic-fetch');
 
-module.exports = {
-  Client: require('./client'),
-  RequestExecutor: require('./request-executor'),
-  DefaultRequestExecutor: require('./default-request-executor')
-};
+class RequestExecutor extends EventEmitter {
+  constructor() {
+    super();
+  }
+  fetch(request) {
+    this.emit('request', request);
+    return isoFetch(request.url, request).then(response => {
+      this.emit('response', response);
+      return response;
+    });
+  }
+}
+
+module.exports = RequestExecutor;
+
