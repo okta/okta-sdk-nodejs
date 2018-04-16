@@ -56,6 +56,9 @@ This library is a wrapper for the [Okta Platform API], which should be referred 
   * [subscribe](#subscribeconfig)
 * [Configuration](#configuration)
 * [Caching](#caching)
+* [Error Handling](#error-handling)
+  * [Custom Fetch Implementation](#custom-fetch-implementation)
+  * [Method-level Handling](#method-level-handling)
 
 ### Users
 
@@ -579,6 +582,39 @@ async function customMiddleware(ctx, next) {
 }
 ```
 
+## Error Handling
+
+While interacting with the Okta API, the client may experience the following HTTP errors:
+
+* 429 - This is a rate limiting exception, please see [Rate Limiting at Okta] for complete details on our rate limiting strategy.
+* 503 - Service unavailable.  An unlikely situation, see [Okta Trust] for real-time service updates.
+
+In either case you will want to retry the request.  There are two ways you can handle retries, described below.
+
+### Custom Fetch Implementation
+
+If you are running into many rate limiting errors across several APIs we suggest you implement your own [Fetch interface].  The SDK will delegate all HTTP calls to your fetch interface and you must return a promise that resolves to a [Fetch response].  This allows you to write a backoff strategy for your specific needs.
+
+To provide your own fetch implementation, provide it as the `fetch` option:
+
+```javascript
+const client = new okta.Client({
+  orgUrl: 'https://dev-1234.oktapreview.com/'
+  token: 'xYzabc', // Obtained from Developer Dashboard
+  fetch: (uri, init) => {
+    // Perform the the http request defined by input, init
+    // On error, decide how to backoff and retry
+    // You MUST return a promise that resolves to a Fetch response specification
+  }
+});
+```
+
+We suggest evaluating libraries like [node-backoff] and [node-retry] to help with building your strategy.
+
+### Method-level Handling
+
+If you are using the SDK for only a few methods, you may want to simply handle the error in the callback handler and do a simple retry.  All methods that resolve with an error will have the necessary HTTP header information to make a decision about how to retry.  Please see the [Advanced Subscription](#advanced-subscription) example above for header parsing details.
+
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) if you would like to propose changes to this library.
@@ -591,10 +627,16 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) if you would like to propose changes to t
 [Applications: Add Application]: https://developer.okta.com/docs/api/resources/apps.html#add-application
 [Applications: User Operations]:https://developer.okta.com/docs/api/resources/apps.html#application-user-operations
 [Basic Authentication Application]: https://developer.okta.com/docs/api/resources/apps.html#add-basic-authentication-application
+[Fetch interface]: https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/fetch
+[Fetch response]: https://developer.mozilla.org/en-US/docs/Web/API/Response
 [Groups: Add Group]: https://developer.okta.com/docs/api/resources/groups.html#add-group
+[node-backoff]: https://github.com/MathieuTurcotte/node-backoff
+[node-retry]: https://github.com/tim-kos/node-retry
 [Okta Developer Forum]: https://devforum.okta.com/
 [Okta Platform API]: https://developer.okta.com/docs/api/getting_started/api_test_client.html
+[Okta Trust]: https://trust.okta.com/
 [Pagination]: https://developer.okta.com/docs/api/getting_started/design_principles.html#pagination
+[Rate Limiting at Okta]: https://developer.okta.com/docs/api/getting_started/rate-limits
 [System Log API]: https://developer.okta.com/docs/api/resources/system_log
 [Users API Reference]: https://developer.okta.com/docs/api/resources/users.html
 [Users: Create User]: https://developer.okta.com/docs/api/resources/users.html#create-user
