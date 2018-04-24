@@ -13,6 +13,7 @@
   "scripts": {
     "banners": "./utils/maintain-banners.js",
     "build": "okta-sdk-generator -t templates/ -o . && ./utils/maintain-banners.js",
+    "legal-lint": "legal-lint src/",
     "predocs": "rm -rf ./jsdocs && mkdir jsdocs/ && ./utils/make-jsdoc-readme.js > ./jsdocs/jsdoc-temp.md",
     "docs": "./node_modules/.bin/jsdoc src/ -c ./docs/config.json -d ./jsdocs/ -P ./package.json -R ./jsdocs/jsdoc-temp.md -r",
     "test": "eslint -c src/.eslintrc src/ && eslint -c test/.eslintrc test/ && eslint -c src/.eslintrc utils/ && nyc --reporter=text --reporter=html mocha test/**/*.js --no-timeouts"
@@ -29,6 +30,7 @@
     "parse-link-header": "1.0.0"
   },
   "devDependencies": {
+    "@okta/legal-linter": "github:okta/legal-linter#base-linter-code",
     "chai": "^3.5.0",
     "eslint": "^3.19.0",
     "fake-fs": "^0.5.0",
