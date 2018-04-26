@@ -1,12 +1,5 @@
 #!/bin/bash -vx
 
-echo "Checking node version..."
-node --version | grep v8
-if [[ $? != 0 ]] ; then
-    # Don't run the tests if node version < 8
-    exit 0
-fi
-
 # Revert the cache-min setting, since the internal cache does not apply to
 # these repos (and causes problems in lookups)
 npm config set cache-min 10
@@ -20,4 +13,14 @@ if ! npm install; then
 fi
 
 npm install
-npm test
+npm run test:unit
+
+# Don't run integration tests if node version < 8
+# Due to async/await being used in ITs, we can't run ITs on node version < 8
+echo "Checking node version..."
+node --version | grep v8
+if [[ $? != 0 ]] ; then
+    exit 0
+fi
+
+npm run test:integration

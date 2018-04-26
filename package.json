@@ -15,7 +15,9 @@
     "build": "okta-sdk-generator -t templates/ -o . && ./utils/maintain-banners.js",
     "predocs": "rm -rf ./jsdocs && mkdir jsdocs/ && ./utils/make-jsdoc-readme.js > ./jsdocs/jsdoc-temp.md",
     "docs": "./node_modules/.bin/jsdoc src/ -c ./docs/config.json -d ./jsdocs/ -P ./package.json -R ./jsdocs/jsdoc-temp.md -r",
-    "test": "eslint -c src/.eslintrc src/ && eslint -c test/.eslintrc test/ && eslint -c src/.eslintrc utils/ && nyc --reporter=text --reporter=html mocha test/**/*.js --no-timeouts"
+    "test:integration": "nyc --reporter=text --reporter=html mocha test/it/*.js --no-timeouts",
+    "test:unit": "nyc --reporter=text --reporter=html  mocha test/unit/*.js --no-timeouts",
+    "test": "eslint -c src/.eslintrc src/ && eslint -c test/.eslintrc test/ && eslint -c src/.eslintrc utils/ && npm run test:unit && npm test:integration"
   },
   "keywords": [],
   "license": "Apache-2.0",
