@@ -24,7 +24,7 @@ All usage of this SDK begins with the creation of a client, the client handles t
 const okta = require('@okta/okta-sdk-nodejs');
 
 const client = new okta.Client({
-  orgUrl: 'https://dev-1234.oktapreview.com/'
+  orgUrl: 'https://dev-1234.oktapreview.com/',
   token: 'xYzabc'    // Obtained from Developer Dashboard
 });
 ```
@@ -73,10 +73,10 @@ const newUser = {
     firstName: 'Foo',
     lastName: 'Bar',
     email: 'foo@example.com',
-    login: 'foo@example.com',
+    login: 'foo@example.com'
   },
   credentials: {
-    password : {
+    password: {
       value: 'PasswordAbc123'
     }
   }
@@ -207,8 +207,8 @@ const application = {
   signOnMode: 'BASIC_AUTH',
   settings: {
     app: {
-      url: 'https://example.com/auth.htm'
-      authURL: 'https://example.com/login.html',
+      url: 'https://example.com/auth.htm',
+      authURL: 'https://example.com/login.html'
     }
   }
 };
@@ -388,7 +388,7 @@ client.listUsers().each(user => {
 Returning false in a promise will also end iteration:
 
 ```javascript
-client.listUsers().each((user) => {
+client.listUsers().each(user => {
   console.log(user);
   return Promise.resolve(false);
 })
@@ -400,17 +400,17 @@ client.listUsers().each((user) => {
 Rejecting a promise will end iteration with an error:
 
 ```javascript
-return client.listUsers().each((user) => {
+return client.listUsers().each(user => {
   console.log(user);
   return Promise.reject('foo error');
-}).catch((err)=>{
+}).catch(err => {
   console.log(err); // 'foo error'
 });
 ```
 
 ### `subscribe(config)`
 
-A subscription allows you to continue paginating a collection until new items are available, if the REST API supports it for the collection.  The only supported collection is the [System Log API][] at this time.
+A subscription allows you to continue paginating a collection until new items are available, if the REST API supports it for the collection.  The only supported collection is the [System Log API] at this time.
 
 A subscription fetches pages until the first empty page is reached. From that point, it fetches a new page at an interval in milliseconds defined by config (`{ interval: 5000 }`).  This interval defaults to 5000 milliseconds.  A subscription object is returned.  To terminate polling, call `unsubscribe()` on the subscription object.
 
@@ -430,28 +430,30 @@ const subscription = collection.subscribe({
 
 #### Advanced subscription
 
-Rate-limiting errors are common with subscriptions. Here's one way to handle them:
+[Rate-limiting errors](https://developer.okta.com/docs/api/getting_started/rate-limits) are common with subscriptions. Here's one way to handle them:
 
 ```javascript
+const RATE_LIMIT_ERROR = 429;
+const SERVER_ERRORS = 500;
 const subscription = collection.subscribe({
   interval: 5000, // Time in ms before fetching new logs when all existing logs are read
   next(item) {
     console.log('Process item');
   },
   error(err) {
-    if (err.status == 429) {
+    if (err.status == RATE_LIMIT_ERROR) {
       const retryEpochMs = parseInt(err.headers.get('x-rate-limit-reset'), 10) * 1000;
       const retryDate = new Date(retryEpochMs);
       const nowDate = new Date(err.headers.get('date'));
       const delayMs = retryDate.getTime() - nowDate.getTime();
 
-      console.log('backoff', retryDate, now, delayMs)
+      console.log('backoff', retryDate, now, delayMs);
       return new Promise(resolve => {
         setTimeout(resolve, delayMs);
       });
     }
 
-    if (err.status >= 500) {
+    if (err.status >= SERVER_ERRORS) {
       subscription.unsubscribe();
     }
   },
@@ -502,7 +504,7 @@ const okta = require('@okta/okta-sdk-nodejs');
 const MemoryStore = require('@okta/okta-sdk-nodejs/src/memory-store');
 
 const client = new okta.Client({
-  orgUrl: 'https://dev-1234.oktapreview.com/'
+  orgUrl: 'https://dev-1234.oktapreview.com/',
   token: 'xYzabc', // Obtained from Developer Dashboard
   cacheStore: new MemoryStore({
     keyLimit: 100000,
@@ -536,7 +538,7 @@ The default caching middleware caches any resource that has a `self` link, and i
 const okta = require('@okta/okta-sdk-nodejs');
 
 const client = new okta.Client({
-  orgUrl: 'https://dev-1234.oktapreview.com/'
+  orgUrl: 'https://dev-1234.oktapreview.com/',
   token: 'xYzabc', // Obtained from Developer Dashboard
   cacheMiddleware: null
 });
@@ -554,7 +556,7 @@ async function customMiddleware(ctx, next) {
 }
 
 const client = new okta.Client({
-  orgUrl: 'https://dev-1234.oktapreview.com/'
+  orgUrl: 'https://dev-1234.oktapreview.com/',
   token: 'xYzabc', // Obtained from Developer Dashboard
   cacheMiddleware: customMiddleware
 });
@@ -568,15 +570,16 @@ The context contains:
 * `res` - An object containing details about the response. This is the [same interface as a response you'd receive from `fetch`](https://developer.mozilla.org/en-US/docs/Web/API/Response).
 * `isCollection` - Whether the response is expected to be a collection.
 * `resources` - An array of resource URIs affected by the request.
-* `cacheStore` - A reference to the cache store
+* `cacheStore` - A reference to the cache store.
 
 If `res` is attached to the context before `next` is called, then a request will not be made. In order to attach a `res`, do the following:
 
 ```javascript
+const OK = 200;
 async function customMiddleware(ctx, next) {
   const text = 'someText';
   ctx.res = {
-    status: 200,
+    status: OK,
     text() { return Promise.resolve(text); }
   };
   await next(); // will skip external request
@@ -587,23 +590,23 @@ async function customMiddleware(ctx, next) {
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) if you would like to propose changes to this library.
 
-[Sessions: Create Session with Session Token]: https://developer.okta.com/docs/api/resources/sessions.html#create-session-with-session-token
-[Sessions: Session Properties]: https://developer.okta.com/docs/api/resources/sessions.html#session-properties
-[Sessions: Session Operations]: https://developer.okta.com/docs/api/resources/sessions.html#session-operations
-[Applications]: https://developer.okta.com/docs/api/resources/apps.html
-[Applications: Application User Profile]: https://developer.okta.com/docs/api/resources/apps.html#application-user-profile-object
-[Applications: Add Application]: https://developer.okta.com/docs/api/resources/apps.html#add-application
-[Applications: User Operations]:https://developer.okta.com/docs/api/resources/apps.html#application-user-operations
-[Basic Authentication Application]: https://developer.okta.com/docs/api/resources/apps.html#add-basic-authentication-application
-[Groups: Add Group]: https://developer.okta.com/docs/api/resources/groups.html#add-group
+[Sessions: Create Session with Session Token]: https://developer.okta.com/docs/api/resources/sessions#create-session-with-session-token
+[Sessions: Session Properties]: https://developer.okta.com/docs/api/resources/sessions#session-properties
+[Sessions: Session Operations]: https://developer.okta.com/docs/api/resources/sessions#session-operations
+[Applications]: https://developer.okta.com/docs/api/resources/apps
+[Applications: Application User Profile]: https://developer.okta.com/docs/api/resources/apps#application-user-profile-object
+[Applications: Add Application]: https://developer.okta.com/docs/api/resources/apps#add-application
+[Applications: User Operations]:https://developer.okta.com/docs/api/resources/apps#application-user-operations
+[Basic Authentication Application]: https://developer.okta.com/docs/api/resources/apps#add-basic-authentication-application
+[Groups: Add Group]: https://developer.okta.com/docs/api/resources/groups#add-group
 [Okta Developer Forum]: https://devforum.okta.com/
-[Okta Platform API]: https://developer.okta.com/docs/api/getting_started/api_test_client.html
-[Pagination]: https://developer.okta.com/docs/api/getting_started/design_principles.html#pagination
+[Okta Platform API]: https://developer.okta.com/docs/api/getting_started/api_test_client
+[Pagination]: https://developer.okta.com/docs/api/getting_started/design_principles#pagination
 [System Log API]: https://developer.okta.com/docs/api/resources/system_log
-[Users API Reference]: https://developer.okta.com/docs/api/resources/users.html
-[Users: Create User]: https://developer.okta.com/docs/api/resources/users.html#create-user
-[Users: Get User]: https://developer.okta.com/docs/api/resources/users.html#get-user
-[Users: Lifecycle Operations]: https://developer.okta.com/docs/api/resources/users.html#lifecycle-operations
-[Users: List Users]: https://developer.okta.com/docs/api/resources/users.html#list-users
-[Users: Update User]: https://developer.okta.com/docs/api/resources/users.html#update-user
+[Users API Reference]: https://developer.okta.com/docs/api/resources/users
+[Users: Create User]: https://developer.okta.com/docs/api/resources/users#create-user
+[Users: Get User]: https://developer.okta.com/docs/api/resources/users#get-user
+[Users: Lifecycle Operations]: https://developer.okta.com/docs/api/resources/users#lifecycle-operations
+[Users: List Users]: https://developer.okta.com/docs/api/resources/users#list-users
+[Users: Update User]: https://developer.okta.com/docs/api/resources/users#update-user
 [Okta NodeJS Management SDK JSDoc Site]: https://developer.okta.com/okta-sdk-nodejs/jsdocs/
