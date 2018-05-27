@@ -116,7 +116,7 @@ user.update()
 
 #### Delete a User
 
-Before deleting an Okta user, they must first be deactivated.  Both operations are done with the [Users: Lifecycle Operations] API.  We can chain the `deactivate()` and `delete` operations on the user instance to achieve both calls:
+Before deleting an Okta user, they must first be deactivated.  Both operations are done with the [Users: Lifecycle Operations] API.  We can chain the `deactivate()` and `delete()` operations on the user instance to achieve both calls:
 
 ```javascript
 user.deactivate()
@@ -142,7 +142,7 @@ For more information about this API see [Users: Get User].
 
 #### Search for Users
 
-The [Users: List Users] API provides three ways to search for users, "q", "filter", or "search", and all of these approaches can be achieved by passing them as query parameters to the `client.listUser()` method.  The library will URL encode the values for you.
+The [Users: List Users] API provides three ways to search for users, `q`, `filter`, or `search`, and all of these approaches can be achieved by passing them as query parameters to the `client.listUser()` method.  The library will URL-encode the values for you.
 
 ```javascript
 client.listUsers({
@@ -313,7 +313,7 @@ To query logs, first get a collection and specify your query filter:
 const collection = client.getLogs({ since: '2018-01-25T00:00:00Z' });
 ```
 
-Please refer to the [System Log API Documentation][System Log API] for a full query reference.
+Please refer to the [System Log API] Documentation for a full query reference.
 
 If you wish to paginate the entire result set until there are no more records, simply use `each()` to paginate the collection.  The promise will resolve once the first empty page is reached.
 
@@ -347,7 +347,7 @@ Allows you to visit every item in the collection, while optionally doing work at
 
 #### Serial or Parallel Synchronous Work
 
-If no value is returned, each() will continue to the next item:
+If no value is returned, `each()` will continue to the next item:
 
 ```javascript
 client.listUsers().each(user => {
@@ -373,7 +373,7 @@ client.listUsers().each(user => {
 
 #### Ending Iteration
 
-Returning false will end iteration:
+Returning `false` will end iteration:
 
 ```javascript
 client.listUsers().each(user => {
@@ -385,7 +385,7 @@ client.listUsers().each(user => {
 });
 ```
 
-Returning false in a promise will also end iteration:
+Returning `false` in a promise will also end iteration:
 
 ```javascript
 client.listUsers().each(user => {
