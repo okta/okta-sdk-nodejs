@@ -172,7 +172,7 @@ user.update()
 
 #### Delete a User
 
-Before deleting an Okta user, they must first be deactivated.  Both operations are done with the [Users: Lifecycle Operations] API.  We can chain the `deactivate()` and `delete()` operations on the user instance to achieve both calls:
+Before deleting an Okta user, they must first be deactivated.  Both operations are done with the [Users: Lifecycle Operations] API.  We can chain the `deactivate()` and `delete` operations on the user instance to achieve both calls:
 
 ```javascript
 user.deactivate()
@@ -192,14 +192,6 @@ orgUsersCollection.each(user => {
   console.log(user);
 })
 .then(() => console.log('All users have been listed'));
-```
-
-You can also use async iterators.
-
-```javascript
-for await (let user of client.listUsers()) {
-    console.log(user);
-}
 ```
 
 For more information about this API see [Users: Get User].
@@ -377,7 +369,7 @@ To query logs, first get a collection and specify your query filter:
 const collection = client.getLogs({ since: '2018-01-25T00:00:00Z' });
 ```
 
-Please refer to the [System Log API] Documentation for a full query reference.
+Please refer to the [System Log API Documentation][System Log API] for a full query reference.
 
 If you wish to paginate the entire result set until there are no more records, simply use `each()` to paginate the collection.  The promise will resolve once the first empty page is reached.
 
@@ -583,7 +575,7 @@ const client = new okta.Client({
 `MemoryStore` configuration options:
 
 * `keyLimit` - Max number of keys stored (default is 100000). The oldest keys are deleted as new keys are set.
-* `expirationPoll` - The time, in milliseconds, between memory scans. If the value is *true*, a value of 15000 is used. (default is false, no scanning)
+* `expirationPoll` - The time, in milliseconds, between memory scans. If the value is `true`, a value of 15000 is used. (default is `false`, no scanning)
 
 
 #### Custom Storage
@@ -897,20 +889,20 @@ Run `yarn build` from repository root.
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) if you would like to propose changes to this library.
 
-[Sessions: Create Session with Session Token]: https://developer.okta.com/docs/api/resources/sessions.html#create-session-with-session-token
-[Sessions: Session Properties]: https://developer.okta.com/docs/api/resources/sessions.html#session-properties
-[Sessions: Session Operations]: https://developer.okta.com/docs/api/resources/sessions.html#session-operations
+[Sessions: Create Session with Session Token]: https://developer.okta.com/docs/api/resources/sessions#create-session-with-session-token
+[Sessions: Session Properties]: https://developer.okta.com/docs/api/resources/sessions#session-properties
+[Sessions: Session Operations]: https://developer.okta.com/docs/api/resources/sessions#session-operations
 [Applications]: https://developer.okta.com/docs/api/resources/apps/
 [Applications: Application User Profile]: https://developer.okta.com/docs/api/resources/apps/#application-user-profile-object
 [Applications: Add Application]: https://developer.okta.com/docs/api/resources/apps/#add-application
 [Applications: User Operations]:https://developer.okta.com/docs/api/resources/apps/#application-user-operations
 [Basic Authentication Application]: https://developer.okta.com/docs/api/resources/apps/#add-basic-authentication-application
-[Client]: https://developer.okta.com/okta-sdk-nodejs/jsdocs/Client.html
+[Client]: https://developer.okta.com/okta-sdk-nodejs/jsdocs/Client
 [DefaultRequestExecutor]: src/default-request-executor.js
 [Groups: Add Group]: https://developer.okta.com/docs/api/resources/groups.html#add-group
 [isomorphic-fetch]: https://github.com/matthew-andrews/isomorphic-fetch
 [Okta Developer Forum]: https://devforum.okta.com/
-[Okta Platform API]: https://developer.okta.com/docs/api/getting_started/api_test_client.html
+[Okta Platform API]: https://developer.okta.com/docs/api/getting_started/api_test_client
 [Pagination]: https://developer.okta.com/docs/api/getting_started/design_principles.html#pagination
 [Rate Limiting at Okta]: https://developer.okta.com/docs/api/getting_started/rate-limits
 [RequestExecutor]: src/request-executor.js
