@@ -172,7 +172,7 @@ user.update()
 
 #### Delete a User
 
-Before deleting an Okta user, they must first be deactivated.  Both operations are done with the [Users: Lifecycle Operations] API.  We can chain the `deactivate()` and `delete` operations on the user instance to achieve both calls:
+Before deleting an Okta user, they must first be deactivated.  Both operations are done with the [Users: Lifecycle Operations] API.  We can chain the `deactivate()` and `delete()` operations on the user instance to achieve both calls:
 
 ```javascript
 user.deactivate()
@@ -369,7 +369,7 @@ To query logs, first get a collection and specify your query filter:
 const collection = client.getLogs({ since: '2018-01-25T00:00:00Z' });
 ```
 
-Please refer to the [System Log API Documentation][System Log API] for a full query reference.
+Please refer to the [System Log API] Documentation for a full query reference.
 
 If you wish to paginate the entire result set until there are no more records, simply use `each()` to paginate the collection.  The promise will resolve once the first empty page is reached.
 
