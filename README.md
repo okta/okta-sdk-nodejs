@@ -429,7 +429,7 @@ A subscription allows you to continue paginating a collection until new items ar
 
 A subscription fetches pages until the first empty page is reached. From that point, it fetches a new page at an interval in milliseconds defined by config (`{ interval: 5000 }`).  This interval defaults to 5000 milliseconds.  A subscription object is returned.  To terminate polling, call `unsubscribe()` on the subscription object.
 
-Depending on the polling interview you choose, you may run into rate limiting exceptions.  In that case you should enable our rate limiting retry strategy, see [Rate Limiting](#rate-limiting).
+Depending on the polling interval you choose, you may run into rate limiting exceptions.  In that case you should enable our rate limiting retry strategy, see [Rate Limiting](#rate-limiting).
 
 #### Simple subscription example
 
@@ -444,7 +444,7 @@ const subscription = collection.subscribe({
   }
 });
 
-// In the future, unsubscribe as needed:
+// In the future, unsubscribe when you want to stop polling:
 subscription.unsubscribe()
 ```
 
@@ -571,11 +571,13 @@ async function customMiddleware(ctx, next) {
 
 ## Rate Limiting
 
-The Okta API will return 429 responses if too many requests are made within a given time, please see [Rate Limiting at Okta] for a complete list of which endpoints are rate limited.  When a 429 error is received, the `X-Rate-Limit-Reset` header will tell you the time at which you can retry. There are two ways you can handle 429 responses:
+The Okta API will return 429 responses if too many requests are made within a given time. Please see [Rate Limiting at Okta] for a complete list of which endpoints are rate limited.  When a 429 error is received, the `X-Rate-Limit-Reset` header will tell you the time at which you can retry. This section discusses  methods for handling rate limiting with this SDK.
 
 ### Built-In Retry
 
-You can configure your client to use the default request executor if you wish to automatically retry on 429 errors, please the [Default Request Executor](#default-request-executor) section.  Note: in the next major version the default request executor will be automatically added to the client.
+You can configure your client to use the default request executor if you wish to automatically retry on 429 errors, please the [Default Request Executor](#default-request-executor) section.
+
+> Note: in the next major version the default request executor will be automatically added to the client.
 
 ### Manual Retry
 

@@ -27,10 +27,10 @@ const repoUrl = 'https://github.com/okta/okta-sdk-nodejs';
  * @extends {GeneratedApiClient}
  */
 class Client extends GeneratedApiClient {
-  constructor(clientConfig) {
+  constructor(config) {
     super();
     const configLoader = new ConfigLoader();
-    clientConfig = clientConfig || {};
+    const clientConfig = Object.assign({}, config);
     configLoader.applyDefaults();
     configLoader.apply({
       client: clientConfig || {}

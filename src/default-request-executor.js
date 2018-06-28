@@ -43,7 +43,7 @@ class DefaultOktaRequestExecutor extends RequestExecutor {
     // Validate that we don't have duplicate headers, see OKTA-112507
     // Duplicate headers are returned by fetch as a comma separated list.
     const retryHeader = this.getRateLimitReset(response);
-    return !!(retryHeader && retryHeader.indexOf(',') === - 1);
+    return !!(retryHeader && retryHeader.indexOf(',') === -1);
   }
 
   dateToEpochSeconds(date) {
