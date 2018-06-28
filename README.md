@@ -579,7 +579,7 @@ You can configure your client to use the default request executor if you wish to
 
 ### Manual Retry
 
-If you wish to manually retry the request, you can do so by reading the `X-Rate-Limit-Reset` header on the response 429 response.  This will tell you the time at which you can retry.  Beceause this is an absolute time value, we recommend calculating the wait time by using the `Date` header on the response, as it is in sync with the API servers, whereas your local clock may not be.
+If you wish to manually retry the request, you can do so by reading the `X-Rate-Limit-Reset` header on the response 429 response.  This will tell you the time at which you can retry.  Because this is an absolute time value, we recommend calculating the wait time by using the `Date` header on the response, as it is in sync with the API servers, whereas your local clock may not be.  We also recommend adding 1 second to ensure that you will be retrying after the window has expired.
 
 **Header parsing example**
 
@@ -592,7 +592,7 @@ client.createUser()
       const retryEpochMs = parseInt(err.headers.get('x-rate-limit-reset'), 10) * 1000;
       const retryDate = new Date(retryEpochMs);
       const nowDate = new Date(err.headers.get('date'));
-      const delayMs = retryDate.getTime() - nowDate.getTime();
+      const delayMs = retryDate.getTime() - nowDate.getTime() + 1000;
       // Wait until delayMs has passed before retrying the request
     }
   });
@@ -608,13 +608,12 @@ The SDK ships with the base request executor and a default request executor, des
 
 See [DefaultRequestExecutor] for the class code.
 
-The default executor extends the [base executor](#base-request-executor), and will automatically retry requests if a 429 error is returned, until `maxElapsedTime` is reached.  If the max time is reached the promise is rejected with the response.  This executor will add a random time offset to each retry, bound by `rateLimitRandomOffsetMin` and `rateLimitRandomOffsetMax`.  All properties are passed to the constructor as millisecond values (defaults shown):
+The default executor extends the [base executor](#base-request-executor), and will automatically retry requests if a 429 error is returned, until `maxRetries` (default of 2) or `requestTimeout` is reached (not specified by default). The defaults are shown here:
 
 ```javascript
 const defaultRequestExecutor = new okta.DefaultRequestExecutor({
-  maxElapsedTime: 60000,
-  rateLimitRandomOffsetMin: 1000,
-  rateLimitRandomOffsetMax: 5000
+  maxRetries: 2,
+  requestTimeout: 0 // Specify in milliseconds if needed
 })
 
 const client = new okta.Client({
@@ -624,7 +623,7 @@ const client = new okta.Client({
 });
 ```
 
-We recommend using this class, with it's default values, as we believe they are the best set of tradeoffs for the API.  Because the rate limits are different for different endpoints you may need to create multiple clients with different executor configurations.
+Because the rate limits are different for different endpoints you may need to change the default configuration, or create multiple clients with different executor configurations.
 
 To help with debugging and logging, the default executor will emit `backoff` and `resume` events:
 

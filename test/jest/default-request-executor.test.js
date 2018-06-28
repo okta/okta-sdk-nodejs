@@ -16,15 +16,7 @@ describe('DefaultRequestExecutor', () => {
   describe('constructor', () => {
 
     it('should set the default max elapsed to 60 seconds', () => {
-      expect(new DefaultRequestExecutor().maxElapsedTime).toBe(60000);
-    });
-
-    it('should set the default rate limit retry offset minimum to 1 second', () => {
-      expect(new DefaultRequestExecutor().rateLimitRandomOffsetMin).toBe(1000);
-    });
-
-    it('should set the default rate limit retry offset maximum to 5 seconds', () => {
-      expect(new DefaultRequestExecutor().rateLimitRandomOffsetMax).toBe(5000);
+      expect(new DefaultRequestExecutor().requestTimeout).toBe(0);
     });
   });
 
@@ -127,25 +119,19 @@ describe('DefaultRequestExecutor', () => {
 
   describe('getRetryDelayMs', () => {
 
-    it('should return a retry delay that is within the configured bounds', () => {
+    it('should return a retry delay that is one second longer than the value set in the X-Rate-Limit-Reset header', () => {
       const requestExecutor = new DefaultRequestExecutor();
       const now = new Date();
-      const retryAfter = new Date(now.getTime() + (1000 * 60));// one minute in the future
-      const retryBefore = new Date(retryAfter.getTime() + requestExecutor.rateLimitRandomOffsetMax);
+      const retryAt = new Date(now.getTime() + (1000 * 60));// one minute in the future
       const mockResponse = buildMockResponse({
         headers: {
-          'x-rate-limit-reset' : String(requestExecutor.dateToEpochSeconds(retryAfter)),
+          'x-rate-limit-reset' : String(requestExecutor.dateToEpochSeconds(retryAt)),
           date: now.toGMTString()
         }
       });
-      let retries = 0;
-      while (retries < 100) { // Try this a bunch of times because the offet is random
-        const delayMs = requestExecutor.getRetryDelayMs(mockResponse);
-        const delayDate = new Date(now.getTime() + delayMs);
-        expect(delayDate.getTime()).toBeGreaterThan(retryAfter.getTime());
-        expect(delayDate.getTime()).toBeLessThan(retryBefore.getTime());
-        retries ++;
-      }
+      const delayMs = requestExecutor.getRetryDelayMs(mockResponse);
+      const delayDate = new Date(now.getTime() + delayMs);
+      expect(delayDate.getTime()).toBe(retryAt.getTime() + 1000);
     });
   });
 
@@ -180,6 +166,23 @@ describe('DefaultRequestExecutor', () => {
       expect(returnValue).toEqual(response);
     });
 
+    it('should return 429 responses if the max retries has been reached', async () => {
+      const request = {
+        method: 'GET',
+        headers: {
+          'X-Okta-Retry-Count': '2'
+        },
+      };
+      const mockResponse = buildMockResponse({
+        status: 429,
+        headers: {
+          'x-rate-limit-reset': String(new Date())
+        }
+      });
+      const returnValue = await requestExecutor.parseResponse(request, mockResponse);
+      expect(returnValue).toEqual(mockResponse);
+    });
+
     it('should return 200 responses', async () => {
       const request = { method: 'GET' };
       const response = buildMockResponse({ status: 200 });
@@ -202,25 +205,25 @@ describe('DefaultRequestExecutor', () => {
     });
   });
 
-  describe('requestIsMaxElapsed', () => {
+  describe('requestHasTimedOut', () => {
 
-    it('should return true if the time is within max elapsed', () => {
+    it('should return true if the request has not timed out', () => {
       const requestExecutor = new DefaultRequestExecutor();
       const mockRequest = {
         startTime: new Date()
       };
-      const result = requestExecutor.requestIsMaxElapsed(mockRequest);
+      const result = requestExecutor.requestHasTimedOut(mockRequest);
       expect(result).toBe(false);
     });
 
-    it('should return false if the time is outside max elapsed', () => {
+    it('should return false if the request has timed out', () => {
       const requestExecutor = new DefaultRequestExecutor({
-        maxElapsedTime: 1000
+        requestTimeout: 1000
       });
       const mockRequest = {
         startTime: new Date(new Date().getTime() - 2000)
       };
-      const result = requestExecutor.requestIsMaxElapsed(mockRequest);
+      const result = requestExecutor.requestHasTimedOut(mockRequest);
       expect(result).toBe(true);
     });
   });

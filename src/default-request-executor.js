@@ -15,9 +15,8 @@ const deepCopy = require('deep-copy');
 class DefaultOktaRequestExecutor extends RequestExecutor {
   constructor(config = {}) {
     super();
-    this.maxElapsedTime = config.maxElapsedTime || 60000;
-    this.rateLimitRandomOffsetMin = config.rateLimitRandomOffsetMin || 1000;
-    this.rateLimitRandomOffsetMax = config.rateLimitRandomOffsetMax || 5000;
+    this.requestTimeout = config.requestTimeout || 0;
+    this.maxRetries = config.maxRetries || 2;
     this.retryCountHeader = 'X-Okta-Retry-Count';
     this.retryForHeader = 'X-Okta-Retry-For';
   }
@@ -59,10 +58,6 @@ class DefaultOktaRequestExecutor extends RequestExecutor {
     return response.headers.get('x-okta-request-id');
   }
 
-  getRandomOffset() {
-    return Math.round(Math.random() * this.rateLimitRandomOffsetMax);
-  }
-
   getRateLimitReset(response) {
     return response.headers.get('x-rate-limit-reset');
   }
@@ -73,21 +68,26 @@ class DefaultOktaRequestExecutor extends RequestExecutor {
 
   getRetryDelayMs(response) {
     // Determine wait time by getting the delta X-Rate-Limit-Reset and the Date header
+    // Add 1 second to account for sub second differences between the clocks that create these headers
     const nowDate = new Date(this.getResponseDate(response));
     const retryDate = new Date(parseInt(this.getRateLimitReset(response), 10) * 1000);
-    const offset = this.getRandomOffset();
-    return retryDate.getTime() - nowDate.getTime() + offset;
+    return retryDate.getTime() - nowDate.getTime() + 1000;
   }
 
   parseResponse(request, response) {
-    if (response.status === 429 && this.canRetryRequest(response) && !this.requestIsMaxElapsed(request)) {
+    if (response.status === 429 && this.canRetryRequest(response) && !this.requestHasTimedOut(request) && !(this.maxRetriesReached(request))) {
       return this.retryRequest(request, response);
     }
     return response;
   }
 
-  requestIsMaxElapsed(request) {
-    return request.startTime && ((new Date() - request.startTime) > this.maxElapsedTime);
+  maxRetriesReached(request) {
+    const retryCount = request.headers && request.headers[this.retryCountHeader];
+    return retryCount && parseInt(retryCount, 10) >= this.maxRetries;
+  }
+
+  requestHasTimedOut(request) {
+    return request.startTime && ((new Date() - request.startTime) > this.requestTimeout);
   }
 
   retryRequest(request, response) {
