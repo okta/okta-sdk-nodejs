@@ -87,7 +87,7 @@ class DefaultOktaRequestExecutor extends RequestExecutor {
   }
 
   requestHasTimedOut(request) {
-    return request.startTime && ((new Date() - request.startTime) > this.requestTimeout);
+    return (this.requestTimeout > 0) && request.startTime && ((new Date() - request.startTime) > this.requestTimeout);
   }
 
   retryRequest(request, response) {

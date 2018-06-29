@@ -18,9 +18,9 @@ You can view the entire JsDocs for this project here: https://developer.okta.com
 
 ## Usage
 
-All usage of this SDK begins with the creation of a client, the client handles the authentication and communication with the Okta API.  To create a client, you need to provide it with your Okta Domain and an API token.  To obtain those, see [Getting Started With the Okta APIs](https://developer.okta.com/docs/api/getting_started/api_test_client).
+All usage of this SDK begins with the creation of a client, the client handles the authentication and communication with the Okta API.  To create a client, you need to provide it with your Okta Domain and an API token.  To obtain those, see [Getting Started With the Okta APIs](https://developer.okta.com/code/rest/).
 
-We also opt-in in the [default request executor](#default-request-executor), which will automatically handle rate limiting retries for you:
+We also include an opt-in [default request executor](#default-request-executor) that you can configure, which will automatically handle rate limiting retries for you:
 
 ```javascript
 const okta = require('@okta/okta-sdk-nodejs');
@@ -583,7 +583,7 @@ You can configure your client to use the default request executor if you wish to
 
 If you wish to manually retry the request, you can do so by reading the `X-Rate-Limit-Reset` header on the response 429 response.  This will tell you the time at which you can retry.  Because this is an absolute time value, we recommend calculating the wait time by using the `Date` header on the response, as it is in sync with the API servers, whereas your local clock may not be.  We also recommend adding 1 second to ensure that you will be retrying after the window has expired.
 
-**Header parsing example**
+#### Header parsing example
 
 This example shows you how to determine how long you should wait before retrying the request. You then must decide how many times you would like to retry, and how you would like to call the client method again (not shown):
 

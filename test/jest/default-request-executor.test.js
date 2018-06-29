@@ -15,7 +15,7 @@ describe('DefaultRequestExecutor', () => {
 
   describe('constructor', () => {
 
-    it('should set the default max elapsed to 60 seconds', () => {
+    it('should set the default requestTimeout to 0', () => {
       expect(new DefaultRequestExecutor().requestTimeout).toBe(0);
     });
   });
@@ -144,7 +144,7 @@ describe('DefaultRequestExecutor', () => {
       requestExecutor.retryRequest = jest.fn();
     });
 
-    it('should defer to delayFetch for retry-able 429 responses, within max elapsed time', () => {
+    it('should defer to delayFetch if the request is not timed and not in a max-retry state', () => {
       const uri = '/foo';
       const request = { method: 'GET', uri };
       const mockResponse = buildMockResponse({
@@ -158,12 +158,21 @@ describe('DefaultRequestExecutor', () => {
       expect(requestExecutor.retryRequest.mock.calls[0][1]).toBe(mockResponse);
     });
 
-    it('should return 429 responses if max elapsed has passed', async () => {
-      const startTime = new Date(new Date().getTime() - 61 * 1000); // 61 seconds in the past
-      const request = { method: 'GET', startTime };
-      const response = buildMockResponse({ status: 429 });
-      const returnValue = await requestExecutor.parseResponse(request, response);
-      expect(returnValue).toEqual(response);
+    it('should return 429 responses if the request has timed out', async () => {
+      requestExecutor = new DefaultRequestExecutor({
+        requestTimeout: 1000
+      });
+      requestExecutor.retryRequest = jest.fn();
+      const startTime = new Date(new Date().getTime() - 2000);
+      const request = { method: 'GET', startTime, uri: '/foo' };
+      const mockResponse = buildMockResponse({
+        status: 429,
+        headers: {
+          'x-rate-limit-reset': String(new Date())
+        }
+      });
+      const returnValue = await requestExecutor.parseResponse(request, mockResponse);
+      expect(returnValue).toEqual(mockResponse);
     });
 
     it('should return 429 responses if the max retries has been reached', async () => {
@@ -207,16 +216,29 @@ describe('DefaultRequestExecutor', () => {
 
   describe('requestHasTimedOut', () => {
 
-    it('should return true if the request has not timed out', () => {
-      const requestExecutor = new DefaultRequestExecutor();
+    it('should return false if requestTimeout configuration is 0', () => {
+      const requestExecutor = new DefaultRequestExecutor({
+        requestTimeout: 0
+      });
       const mockRequest = {
-        startTime: new Date()
+        startTime: new Date(new Date().getTime() - 1000)
       };
       const result = requestExecutor.requestHasTimedOut(mockRequest);
       expect(result).toBe(false);
     });
 
-    it('should return false if the request has timed out', () => {
+    it('should return true if the request has taken longer than the configured requestTimeout', () => {
+      const requestExecutor = new DefaultRequestExecutor({
+        requestTimeout: 1000
+      });
+      const mockRequest = {
+        startTime: new Date(new Date().getTime() - 2000)
+      };
+      const result = requestExecutor.requestHasTimedOut(mockRequest);
+      expect(result).toBe(true);
+    });
+
+    it('should return true if the request has timed out', () => {
       const requestExecutor = new DefaultRequestExecutor({
         requestTimeout: 1000
       });
