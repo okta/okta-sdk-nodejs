@@ -26,7 +26,7 @@ We also include an opt-in [default request executor](#default-request-executor) 
 const okta = require('@okta/okta-sdk-nodejs');
 
 const client = new okta.Client({
-  orgUrl: 'https://{yourOktaDomain}/'
+  orgUrl: 'https://{yourOktaDomain}/',
   token: 'xYzabc',    // Obtained from Developer Dashboard
   requestExecutor: new okta.DefaultRequestExecutor() // Will be added by default in 2.0
 });
@@ -581,7 +581,7 @@ You can configure your client to use the default request executor if you wish to
 
 ### Manual Retry
 
-If you wish to manually retry the request, you can do so by reading the `X-Rate-Limit-Reset` header on the response 429 response.  This will tell you the time at which you can retry.  Because this is an absolute time value, we recommend calculating the wait time by using the `Date` header on the response, as it is in sync with the API servers, whereas your local clock may not be.  We also recommend adding 1 second to ensure that you will be retrying after the window has expired.
+If you wish to manually retry the request, you can do so by reading the `X-Rate-Limit-Reset` header on the response 429 response.  This will tell you the time at which you can retry.  Because this is an absolute time value, we recommend calculating the wait time by using the `Date` header on the response, as it is in sync with the API servers, whereas your local clock may not be.  We also recommend adding 1 second to ensure that you will be retrying after the window has expired (there may be a sub-second relative time skew between the `X-Rate-Limit-Reset` and `Date` headers).
 
 #### Header parsing example
 
@@ -602,15 +602,20 @@ client.createUser()
 
 ## Request Executor
 
-This SDK uses the concept of a request executor, a class that is responsible for making HTTP requests to the API and fulfilling the responses for the client. Please see the [RequestExecutor]() class.  The class is a simple proxy to the [isomorphic-fetch]() library.
+This SDK uses the concept of a request executor, a class that is responsible for making HTTP requests to the API and fulfilling the responses for the client. Please see the [RequestExecutor] class.  The class is a simple proxy to the [isomorphic-fetch] library.
 
 The SDK ships with the base request executor and a default request executor, described in detail below.  We suggest using the default request executor, and will be adding this by default in the next major version.
+
+You can create your own executor or extend one of ours, which allows you to define global logic for all HTTP requests made by this library.  Please see the [Building a Custom Request Executor](#building-a-custom-request-executor) section for more information.
 
 ### Default Request Executor
 
 See [DefaultRequestExecutor] for the class code.
 
-The default executor extends the [base executor](#base-request-executor), and will automatically retry requests if a 429 error is returned, until `maxRetries` (default of 2) or `requestTimeout` is reached (not specified by default). The defaults are shown here:
+The default executor extends the [base executor](#base-request-executor) and will automatically retry requests if a 429 error is returned.  Using these configuration options, you can configure your retry tolerance for your specific use case:
+
+* **`maxRetries`** - The number of times to retry, defaults to 2.  Set to 0 if you do not want to limit the number of retries.
+* **`requestTimeout`** - How long to wait before giving up on retires, defined as milliseconds.  Defaults to 0, which disables the request timeout.
 
 ```javascript
 const defaultRequestExecutor = new okta.DefaultRequestExecutor({
@@ -619,7 +624,7 @@ const defaultRequestExecutor = new okta.DefaultRequestExecutor({
 })
 
 const client = new okta.Client({
-  orgUrl: 'https://{yourOktaDomain}/'
+  orgUrl: 'https://{yourOktaDomain}/',
   token: 'xYzabc',    // Obtained from Developer Dashboard
   requestExecutor: defaultRequestExecutor
 });
@@ -631,12 +636,12 @@ To help with debugging and logging, the default executor will emit `backoff` and
 
 ```javascript
 defaultRequestExecutor.on('backoff', (request, response, requestId, delayMs) => {
-  console.log(`Backoff ${delayMs} ${requestId}, ${request.url} `)
-})
+  console.log(`Backoff ${delayMs} ${requestId}, ${request.url}`);
+});
 
 defaultRequestExecutor.on('resume', (request, requestId) => {
-  console.log(`Resume ${requestId} ${request.url} `)
-})
+  console.log(`Resume ${requestId} ${request.url}`);
+});
 ```
 
 The `requestId` and `delayMs` values are pulled from the request and passed as parameters for convenience.
@@ -649,7 +654,7 @@ The base request executor does nothing more than delegate the request to the [is
 
 ```javascript
 const client = new okta.Client({
-  orgUrl: 'https://{yourOktaDomain}/'
+  orgUrl: 'https://{yourOktaDomain}/',
   token: 'xYzabc',    // Obtained from Developer Dashboard
   requestExecutor: new okta.RequestExecutor()
 });
@@ -663,13 +668,12 @@ const client = new okta.Client({
 });
 
 client.requestExecutor.on('request', (request) => {
-  console.log(`Request ${request.url} `)
-})
+  console.log(`Request ${request.url}`);
+});
 
 client.requestExecutor.on('response', (response) => {
-  console.log(`Response ${response.status} `)
-})
-
+  console.log(`Response ${response.status}`);
+});
 ```
 
 ### Building a Custom Request Executor
@@ -677,20 +681,20 @@ client.requestExecutor.on('response', (response) => {
 There are two ways you can design your own executor:
 
 - Extend one of our executors.
-- Create your own class the implements the the `fetch` method in the same way that the base [RequestExecutor](#base-request-executor) does.
+- Create a class that implements the `fetch` method in the same way as [RequestExecutor]
 
 As an example, let's say you want to use our default 429 retry behavior, but you want to add some logging to understand how long requests are taking, including retry time. To do this, you can extend [DefaultRequestExecutor](), then re-implement the `fetch()` method with your custom logic, while still delegating the actual call to DefaultRequestExecutor:
 
 ```javascript
 class DefaultExecutorWithLogging extends okta.DefaultRequestExecutor {
   fetch(request) {
-    const start = new Date()
-    console.log(`Begin request for ${request.url}`)
+    const start = new Date();
+    console.log(`Begin request for ${request.url}`);
     return super.fetch(request).then(response => {
-      const timeMs = new Date() - start
-      console.log(`Request complete for ${request.url} in ${timeMs}ms`)
-      return response; // Or a promise that will return the response
-    })
+      const timeMs = new Date() - start;
+      console.log(`Request complete for ${request.url} in ${timeMs}ms`);
+      return response;
+    });
   }
 }
 

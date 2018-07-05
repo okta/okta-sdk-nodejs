@@ -12,11 +12,20 @@
 
 const RequestExecutor = require('./request-executor');
 const deepCopy = require('deep-copy');
-class DefaultOktaRequestExecutor extends RequestExecutor {
+class DefaultRequestExecutor extends RequestExecutor {
   constructor(config = {}) {
     super();
+
+    if (config.maxRetries && config.maxRetries < 0) {
+      throw new Error(`okta.client.rateLimit.maxRetries provided as ${config.maxRetries} but must be 0 (disabled) or greater than zero`);
+    }
+
+    if (config.requestTimeout && config.requestTimeout < 0) {
+      throw new Error(`okta.client.rateLimit.requestTimeout provided as ${config.requestTimeout} but must be 0 (disabled) or greater than zero`);
+    }
+
     this.requestTimeout = config.requestTimeout || 0;
-    this.maxRetries = config.maxRetries || 2;
+    this.maxRetries = config.maxRetries === undefined ? 2 : config.maxRetries;
     this.retryCountHeader = 'X-Okta-Retry-Count';
     this.retryForHeader = 'X-Okta-Retry-For';
   }
@@ -82,6 +91,9 @@ class DefaultOktaRequestExecutor extends RequestExecutor {
   }
 
   maxRetriesReached(request) {
+    if (this.maxRetries === 0) {
+      return false;
+    }
     const retryCount = request.headers && request.headers[this.retryCountHeader];
     return retryCount && parseInt(retryCount, 10) >= this.maxRetries;
   }
@@ -93,16 +105,15 @@ class DefaultOktaRequestExecutor extends RequestExecutor {
   retryRequest(request, response) {
     const delayMs = this.getRetryDelayMs(response);
     const newRequest = this.buildRetryRequest(request, response);
+    const requestId = this.getOktaRequestId(response);
     return new Promise(resolve => {
-      const requestId = this.getOktaRequestId(response);
       this.emit('backoff', request, response, requestId, delayMs);
-      setTimeout(() => {
-        this.emit('resume', newRequest, requestId);
-        resolve(this.fetch(newRequest));
-      }, delayMs);
+      setTimeout(resolve, delayMs);
+    }).then(() => {
+      this.emit('resume', newRequest, requestId);
+      return this.fetch(newRequest);
     });
   }
 }
 
-module.exports = DefaultOktaRequestExecutor;
-
+module.exports = DefaultRequestExecutor;
