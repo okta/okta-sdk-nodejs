@@ -4,7 +4,6 @@
 # these repos (and causes problems in lookups)
 npm config set cache-min 10
 
-# Use newer, faster npm
 npm install -g npm@4.0.2
 
 if ! npm install; then

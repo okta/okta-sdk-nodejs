@@ -26,9 +26,9 @@ describe('User API tests', () => {
     const newUser = {
       profile: {
         firstName: 'John',
-        lastName: 'Activate',
-        email: 'john-activate@example.com',
-        login: 'john-activate@example.com'
+        lastName: 'List-Factors',
+        email: 'john-list-factors@example.com',
+        login: 'john-list-factors@example.com'
       },
       credentials: {
         password: { value: 'Abcd1234' }

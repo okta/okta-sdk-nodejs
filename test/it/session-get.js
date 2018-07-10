@@ -20,9 +20,9 @@ describe('Sessions API', () => {
     const newUser = {
       profile: {
         firstName: 'John',
-        lastName: 'Session',
-        email: 'john-session@example.com',
-        login: 'john-session@example.com'
+        lastName: 'Get-Session',
+        email: 'john-get-session@example.com',
+        login: 'john-get-session@example.com'
       },
       credentials: {
         password: { value: 'Abcd1234' }
@@ -39,7 +39,7 @@ describe('Sessions API', () => {
 
   it('should allow me to get an existing session', async () => {
     // 1 - create session
-    const transaction = await utils.authenticateUser(client, 'john-session@example.com', 'Abcd1234');
+    const transaction = await utils.authenticateUser(client, 'john-get-session@example.com', 'Abcd1234');
     const session = await client.createSession({
       sessionToken: transaction.sessionToken
     });

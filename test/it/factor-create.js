@@ -26,9 +26,9 @@ describe('Factors API', () => {
     const newUser = {
       profile: {
         firstName: 'John',
-        lastName: 'Activate',
-        email: 'john-activate@example.com',
-        login: 'john-activate@example.com'
+        lastName: 'Create-Factor',
+        email: 'john-create-factor@example.com',
+        login: 'john-create-factor@example.com'
       },
       credentials: {
         password: { value: 'Abcd1234' }
@@ -93,4 +93,3 @@ describe('Factors API', () => {
     expect(createdFactor).to.be.instanceof(models.SmsFactor);
   });
 });
-

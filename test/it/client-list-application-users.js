@@ -33,9 +33,9 @@ describe('client.listApplicationUsers()', () => {
     const user = {
       profile: {
         firstName: 'John',
-        lastName: 'Activate',
-        email: 'john-activate@example.com',
-        login: 'john-activate@example.com'
+        lastName: 'List-App-Users',
+        email: 'john-list-app-users@example.com',
+        login: 'john-list-app-users@example.com'
       },
       credentials: {
         password: { value: 'Abcd1234' }
@@ -73,4 +73,3 @@ describe('client.listApplicationUsers()', () => {
   });
 
 });
-

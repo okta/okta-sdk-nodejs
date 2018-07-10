@@ -32,9 +32,9 @@ describe('client.deleteApplicationUser()', () => {
     const user = {
       profile: {
         firstName: 'John',
-        lastName: 'Activate',
-        email: 'john-activate@example.com',
-        login: 'john-activate@example.com'
+        lastName: 'Delete-App-User',
+        email: 'john-delete-app-user@example.com',
+        login: 'john-delete-app-user@example.com'
       },
       credentials: {
         password: { value: 'Abcd1234' }
@@ -72,4 +72,3 @@ describe('client.deleteApplicationUser()', () => {
   });
 
 });
-

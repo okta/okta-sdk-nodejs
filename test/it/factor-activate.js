@@ -27,9 +27,9 @@ describe('Factors API', () => {
     const newUser = {
       profile: {
         firstName: 'John',
-        lastName: 'Activate',
-        email: 'john-activate@example.com',
-        login: 'john-activate@example.com'
+        lastName: 'Activate-Factors',
+        email: 'john-activate-factors@example.com',
+        login: 'john-activate-factors@example.com'
       },
       credentials: {
         password: { value: 'Abcd1234' }

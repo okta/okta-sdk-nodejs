@@ -19,9 +19,9 @@ describe('Sessions API', () => {
     const newUser = {
       profile: {
         firstName: 'John',
-        lastName: 'Session',
-        email: 'john-session@example.com',
-        login: 'john-session@example.com'
+        lastName: 'End-All-Sessions',
+        email: 'john-end-all-sessions@example.com',
+        login: 'john-end-all-sessions@example.com'
       },
       credentials: {
         password: { value: 'Abcd1234' }
@@ -38,13 +38,13 @@ describe('Sessions API', () => {
 
   it('should allow me to end all existing sessions for a user', async () => {
     // 1 - create session
-    const transaction1 = await utils.authenticateUser(client, 'john-session@example.com', 'Abcd1234');
+    const transaction1 = await utils.authenticateUser(client, 'john-end-all-sessions@example.com', 'Abcd1234');
     const session1 = await client.createSession({
       sessionToken: transaction1.sessionToken
     });
 
     // 2 - create another session
-    const transaction2 = await utils.authenticateUser(client, 'john-session@example.com', 'Abcd1234');
+    const transaction2 = await utils.authenticateUser(client, 'john-end-all-sessions@example.com', 'Abcd1234');
     const session2 = await client.createSession({
       sessionToken: transaction2.sessionToken
     });

@@ -32,9 +32,9 @@ describe('Application.listUsers()', () => {
     const user = {
       profile: {
         firstName: 'John',
-        lastName: 'Activate',
-        email: 'john-activate@example.com',
-        login: 'john-activate@example.com'
+        lastName: 'App-List-Users',
+        email: 'john-app-list-users@example.com',
+        login: 'john-app-list-users@example.com'
       },
       credentials: {
         password: { value: 'Abcd1234' }

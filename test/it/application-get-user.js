@@ -32,9 +32,9 @@ describe('Application.getApplicationUser()', () => {
     const user = {
       profile: {
         firstName: 'John',
-        lastName: 'Activate',
-        email: 'john-activate@example.com',
-        login: 'john-activate@example.com'
+        lastName: 'App-Get-User',
+        email: 'john-app-get-user@example.com',
+        login: 'john-app-get-user@example.com'
       },
       credentials: {
         password: { value: 'Abcd1234' }

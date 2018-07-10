@@ -32,9 +32,9 @@ describe('Application.assignUserToApplication()', () => {
     const user = {
       profile: {
         firstName: 'John',
-        lastName: 'Activate',
-        email: 'john-activate@example.com',
-        login: 'john-activate@example.com'
+        lastName: 'Assign-User',
+        email: 'john-assign-user@example.com',
+        login: 'john-assign-user@example.com'
       },
       credentials: {
         password: { value: 'Abcd1234' }

@@ -33,9 +33,9 @@ describe('client.getApplicationUser()', () => {
     const user = {
       profile: {
         firstName: 'John',
-        lastName: 'Activate',
-        email: 'john-activate@example.com',
-        login: 'john-activate@example.com'
+        lastName: 'Get-App-User',
+        email: 'john-get-app-user@example.com',
+        login: 'john-get-app-user@example.com'
       },
       credentials: {
         password: { value: 'Abcd1234' }
@@ -73,4 +73,3 @@ describe('client.getApplicationUser()', () => {
   });
 
 });
-
