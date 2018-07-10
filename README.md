@@ -581,7 +581,7 @@ You can configure your client to use the default request executor if you wish to
 
 ### Manual Retry
 
-If you wish to manually retry the request, you can do so by reading the `X-Rate-Limit-Reset` header on the response 429 response.  This will tell you the time at which you can retry.  Because this is an absolute time value, we recommend calculating the wait time by using the `Date` header on the response, as it is in sync with the API servers, whereas your local clock may not be.  We also recommend adding 1 second to ensure that you will be retrying after the window has expired (there may be a sub-second relative time skew between the `X-Rate-Limit-Reset` and `Date` headers).
+If you wish to manually retry the request, you can do so by reading the `X-Rate-Limit-Reset` header on the 429 response.  This will tell you the time at which you can retry.  Because this is an absolute time value, we recommend calculating the wait time by using the `Date` header on the response, as it is in sync with the API servers, whereas your local clock may not be.  We also recommend adding 1 second to ensure that you will be retrying after the window has expired (there may be a sub-second relative time skew between the `X-Rate-Limit-Reset` and `Date` headers).
 
 #### Header parsing example
 
@@ -650,7 +650,7 @@ The `requestId` and `delayMs` values are pulled from the request and passed as p
 
 See [RequestExecutor] for the class code.
 
-The base request executor does nothing more than delegate the request to the [isomorphic-fetch]() library, and emit the `request` and `response` events.  This class has no configuration.  The client will use this executor if none is provided.  In the next major version you will need to explicitly pass this executor if you wish to opt-out of the default executor:
+The base request executor does nothing more than delegate the request to the [isomorphic-fetch] library, and emit the `request` and `response` events.  This class has no configuration.  The client will use this executor if none is provided.  In the next major version you will need to explicitly pass this executor if you wish to opt-out of the default executor:
 
 ```javascript
 const client = new okta.Client({
@@ -683,7 +683,7 @@ There are two ways you can design your own executor:
 - Extend one of our executors.
 - Create a class that implements the `fetch` method in the same way as [RequestExecutor]
 
-As an example, let's say you want to use our default 429 retry behavior, but you want to add some logging to understand how long requests are taking, including retry time. To do this, you can extend [DefaultRequestExecutor](), then re-implement the `fetch()` method with your custom logic, while still delegating the actual call to DefaultRequestExecutor:
+As an example, let's say you want to use our default 429 retry behavior, but you want to add some logging to understand how long requests are taking, including retry time. To do this, you can extend [DefaultRequestExecutor], then re-implement the `fetch()` method with your custom logic, while still delegating the actual call to DefaultRequestExecutor:
 
 ```javascript
 class DefaultExecutorWithLogging extends okta.DefaultRequestExecutor {

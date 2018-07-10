@@ -12,6 +12,10 @@ function buildMockResponse(response) {
   return response;
 }
 
+function dateToEpochSeconds(date) {
+  return Math.floor(date.getTime() / 1000);
+}
+
 describe('DefaultRequestExecutor', () => {
 
   describe('constructor', () => {
@@ -172,7 +176,7 @@ describe('DefaultRequestExecutor', () => {
       const retryAt = new Date(now.getTime() + (1000 * 60));// one minute in the future
       const mockResponse = buildMockResponse({
         headers: {
-          'x-rate-limit-reset' : String(requestExecutor.dateToEpochSeconds(retryAt)),
+          'x-rate-limit-reset' : String(dateToEpochSeconds(retryAt)),
           date: now.toUTCString()
         }
       });
@@ -191,7 +195,7 @@ describe('DefaultRequestExecutor', () => {
       requestExecutor.retryRequest = jest.fn();
     });
 
-    it('should defer to retryRequest if the request is not timed and not in a max-retry state', () => {
+    it('should defer to retryRequest if the request is not timed out and not in a max-retry state', () => {
       const uri = '/foo';
       const request = { method: 'GET', uri };
       const mockResponse = buildMockResponse({
@@ -324,7 +328,7 @@ describe('DefaultRequestExecutor', () => {
       const retryAfter = new Date(now.getTime() + 1000); // one second in the future
       const mockResponse = buildMockResponse({
         headers: {
-          'x-rate-limit-reset' : String(requestExecutor.dateToEpochSeconds(retryAfter)),
+          'x-rate-limit-reset' : String(dateToEpochSeconds(retryAfter)),
           date: now.toUTCString()
         }
       });
@@ -351,7 +355,7 @@ describe('DefaultRequestExecutor', () => {
       const retryAfter = new Date(now.getTime() + 1000); // one second in the future
       const mockResponse = buildMockResponse({
         headers: {
-          'x-rate-limit-reset' : String(requestExecutor.dateToEpochSeconds(retryAfter)),
+          'x-rate-limit-reset' : String(dateToEpochSeconds(retryAfter)),
           date: now.toUTCString()
         }
       });
@@ -374,7 +378,7 @@ describe('DefaultRequestExecutor', () => {
       let resumeCalled = false;
       const mockResponse = buildMockResponse({
         headers: {
-          'x-rate-limit-reset' : String(requestExecutor.dateToEpochSeconds(retryAfter)),
+          'x-rate-limit-reset' : String(dateToEpochSeconds(retryAfter)),
           date: now.toUTCString(),
           'x-okta-request-id': 'foo'
         }
