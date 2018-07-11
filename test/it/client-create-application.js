@@ -355,7 +355,8 @@ describe('client.createApplication()', () => {
     }
   });
 
-  it('should allow me to create a custom WS-Fed application', async () => {
+  // Test disabled as it fails on bacon/dev environment (https://oktainc.atlassian.net/browse/OKTA-179297)
+  it.skip('should allow me to create a custom WS-Fed application', async () => {
     const application = {
       name: 'template_wsfed',
       label: 'Sample WS-Fed App',
@@ -476,4 +477,3 @@ describe('client.createApplication()', () => {
     }
   });
 });
-
