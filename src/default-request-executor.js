@@ -33,9 +33,6 @@ class DefaultRequestExecutor extends RequestExecutor {
   buildRetryRequest(request, response) {
     const newRequest = deepCopy(request);
     const requestId = this.getOktaRequestId(response);
-    if (!request.startTime) {
-      newRequest.startTime = new Date();
-    }
     if (!newRequest.headers) {
       newRequest.headers = {};
     }
@@ -56,7 +53,19 @@ class DefaultRequestExecutor extends RequestExecutor {
   }
 
   fetch(request) {
-    return super.fetch(request).then(this.parseResponse.bind(this, request));
+    if (!request.startTime) {
+      request.startTime = new Date();
+    }
+    return new Promise((resolve, reject) => {
+      if (this.requestTimeout > 0 && !request._timeoutRef) {
+        request._timeoutRef = setTimeout(() => {
+          reject(new Error('DefaultRequestExecutor: Request timed out'));
+        }, this.requestTimeout);
+      }
+      super.fetch(request).then(response => {
+        resolve(this.parseResponse(request, response));
+      }).catch(reject);
+    });
   }
 
   getOktaRequestId(response) {
@@ -80,7 +89,7 @@ class DefaultRequestExecutor extends RequestExecutor {
   }
 
   parseResponse(request, response) {
-    if (response.status === 429 && this.canRetryRequest(response) && !this.requestHasTimedOut(request) && !(this.maxRetriesReached(request))) {
+    if (response.status === 429 && this.canRetryRequest(response) && !(this.maxRetriesReached(request))) {
       return this.retryRequest(request, response);
     }
     return response;
@@ -92,10 +101,6 @@ class DefaultRequestExecutor extends RequestExecutor {
     }
     const retryCount = request.headers && request.headers[this.retryCountHeader];
     return retryCount && parseInt(retryCount, 10) >= this.maxRetries;
-  }
-
-  requestHasTimedOut(request) {
-    return (this.requestTimeout > 0) && request.startTime && ((new Date() - request.startTime) > this.requestTimeout);
   }
 
   retryRequest(request, response) {

@@ -74,37 +74,6 @@ describe('DefaultRequestExecutor', () => {
       expect(newRequest.headers[requestExecutor.retryCountHeader]).toBe(2);
     });
 
-    it('should set the start time if not defined', () => {
-      const requestExecutor = new DefaultRequestExecutor();
-      const mockRequest = {
-        method: 'GET',
-        headers: {}
-      };
-      const mockResponse = buildMockResponse({
-        headers: {
-          'x-okta-request-id' : 'foo'
-        }
-      });
-      const newRequest = requestExecutor.buildRetryRequest(mockRequest, mockResponse);
-      expect(newRequest.startTime).toBeInstanceOf(Date);
-    });
-
-    it('should not modify the start time if defined', () => {
-      const requestExecutor = new DefaultRequestExecutor();
-      const startTime = new Date();
-      const mockRequest = {
-        method: 'GET',
-        headers: {},
-        startTime
-      };
-      const mockResponse = buildMockResponse({
-        headers: {
-          'x-okta-request-id' : 'foo'
-        }
-      });
-      const newRequest = requestExecutor.buildRetryRequest(mockRequest, mockResponse);
-      expect(newRequest.startTime).toEqual(startTime);
-    });
   });
 
   describe('canRetryRequest', () => {
@@ -143,6 +112,30 @@ describe('DefaultRequestExecutor', () => {
       RequestExecutor.prototype.fetch = fetchProto; // restore original function
     });
 
+    it('should add a startTime property to the request', () => {
+      RequestExecutor.prototype.fetch = jest.fn().mockImplementation(() => Promise.resolve({ status: 200}));
+      const requestExecutor = new DefaultRequestExecutor();
+      const mockRequest = {
+        method: 'GET',
+        headers: {}
+      };
+      requestExecutor.fetch(mockRequest);
+      expect(mockRequest.startTime).toBeInstanceOf(Date);
+    });
+
+    it('should not modify an existing startTime property on a request ', () => {
+      RequestExecutor.prototype.fetch = jest.fn().mockImplementation(() => Promise.resolve({ status: 200}));
+      const requestExecutor = new DefaultRequestExecutor();
+      const startTime = new Date();
+      const mockRequest = {
+        method: 'GET',
+        headers: {},
+        startTime
+      };
+      requestExecutor.fetch(mockRequest);
+      expect(mockRequest.startTime).toEqual(startTime);
+    });
+
     it('delegates the request to RequestExecutor.fetch() and the response to this.parseResponse()', async () => {
       const request = { url: '/foo' };
       const response = { status: 200 };
@@ -165,6 +158,15 @@ describe('DefaultRequestExecutor', () => {
         expect(e).toBe(err);
       });
       expect(errored).toBe(true);
+    });
+
+    it('rejects if the request times out', async () => {
+      // mock such that fetch will not resolve, and the request should time out:
+      RequestExecutor.prototype.fetch = jest.fn().mockResolvedValue(new Promise(() => {}));
+      const requestExecutor = new DefaultRequestExecutor({
+        requestTimeout: 100
+      });
+      await expect(requestExecutor.fetch({})).rejects.toThrow('DefaultRequestExecutor: Request timed out');
     });
   });
 
@@ -209,22 +211,6 @@ describe('DefaultRequestExecutor', () => {
       expect(requestExecutor.retryRequest.mock.calls[0][1]).toBe(mockResponse);
     });
 
-    it('should return 429 responses if the request has timed out', async () => {
-      requestExecutor = new DefaultRequestExecutor({
-        requestTimeout: 1000
-      });
-      const startTime = new Date(new Date().getTime() - 2000);
-      const request = { method: 'GET', startTime, uri: '/foo' };
-      const mockResponse = buildMockResponse({
-        status: 429,
-        headers: {
-          'x-rate-limit-reset': String(new Date())
-        }
-      });
-      const returnValue = await requestExecutor.parseResponse(request, mockResponse);
-      expect(returnValue).toEqual(mockResponse);
-    });
-
     it('should return 429 responses if the max retries has been reached', async () => {
       const request = {
         method: 'GET',
@@ -264,31 +250,6 @@ describe('DefaultRequestExecutor', () => {
     });
   });
 
-  describe('requestHasTimedOut', () => {
-
-    it('should return false if requestTimeout configuration is 0', () => {
-      const requestExecutor = new DefaultRequestExecutor({
-        requestTimeout: 0
-      });
-      const mockRequest = {
-        startTime: new Date(new Date().getTime() - 1000)
-      };
-      const result = requestExecutor.requestHasTimedOut(mockRequest);
-      expect(result).toBe(false);
-    });
-
-    it('should return true if the request has taken longer than the configured requestTimeout', () => {
-      const requestExecutor = new DefaultRequestExecutor({
-        requestTimeout: 1000
-      });
-      const mockRequest = {
-        startTime: new Date(new Date().getTime() - 2000)
-      };
-      const result = requestExecutor.requestHasTimedOut(mockRequest);
-      expect(result).toBe(true);
-    });
-  });
-
   describe('maxRetriesReached', () => {
 
     it('should return true if maxRetries is greater than 0 and the retry limit is reached', () => {
@@ -296,7 +257,6 @@ describe('DefaultRequestExecutor', () => {
         maxRetries: 1
       });
       const mockRequest = {
-        startTime: new Date(new Date().getTime() - 2000),
         headers: {}
       };
       mockRequest.headers[requestExecutor.retryCountHeader] = '1';
@@ -309,7 +269,6 @@ describe('DefaultRequestExecutor', () => {
         maxRetries: 0
       });
       const mockRequest = {
-        startTime: new Date(new Date().getTime() - 2000),
         headers: {}
       };
       mockRequest.headers[requestExecutor.retryCountHeader] = '2';
@@ -342,9 +301,6 @@ describe('DefaultRequestExecutor', () => {
       const expectedNewRequest = requestExecutor.buildRetryRequest(mockRequest, mockResponse);
       await requestExecutor.retryRequest(mockRequest, mockResponse);
       const actualNewRequest = requestExecutor.fetch.mock.calls[0][0];
-      expect(Math.abs(expectedNewRequest.startTime - actualNewRequest.startTime)).toBeLessThan(1000);
-      delete expectedNewRequest.startTime;
-      delete actualNewRequest.startTime;
       expect(expectedNewRequest).toEqual(actualNewRequest);
     });
 
