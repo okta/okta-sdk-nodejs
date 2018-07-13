@@ -16,7 +16,7 @@ const client = new okta.Client({
 
 let userCount = 0;
 
-describe('client.listUsers()', () => {
+describe('client.list-users()', () => {
   let _user;
 
   before(async () => {
