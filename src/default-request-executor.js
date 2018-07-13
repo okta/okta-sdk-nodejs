@@ -54,19 +54,20 @@ class DefaultRequestExecutor extends RequestExecutor {
   }
 
   fetch(request) {
-    if (!request.startTime) {
-      request.startTime = new Date();
-    }
-    return new Promise((resolve, reject) => {
-      if (this.requestTimeout > 0 && !request._timeoutRef) {
-        request._timeoutRef = setTimeout(() => {
-          reject(new Error('DefaultRequestExecutor: Request timed out'));
-        }, this.requestTimeout);
+    if (request.startTime) {
+      if (this.requestTimeout > 0) {
+        const delta = this.requestTimeout - (new Date() - request.startTime);
+        // We may end up with a delta <= 0 because the actual network request will not be made until sometime after
+        // request.startTime is first set.  If this has happened, use a value of 1 to cause the request to time out
+        // immediately.
+        request.timeout = delta > 0 ? delta : 1;
       }
-      super.fetch(request).then(response => {
-        resolve(this.parseResponse(request, response));
-      }).catch(reject);
-    });
+    } else {
+      request.startTime = new Date();
+      request.timeout = this.requestTimeout;
+    }
+
+    return super.fetch(request).then(this.parseResponse.bind(this, request));
   }
 
   getOktaRequestId(response) {

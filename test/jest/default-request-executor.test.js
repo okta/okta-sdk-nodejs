@@ -16,6 +16,8 @@ function dateToEpochSeconds(date) {
   return Math.floor(date.getTime() / 1000);
 }
 
+jest.unmock('isomorphic-fetch');
+
 describe('DefaultRequestExecutor', () => {
 
   describe('constructor', () => {
@@ -157,11 +159,51 @@ describe('DefaultRequestExecutor', () => {
 
     it('rejects if the request times out', async () => {
       // mock such that fetch will not resolve, and the request should time out:
-      RequestExecutor.prototype.fetch = jest.fn().mockResolvedValue(new Promise(() => {}));
+      const requestExecutor = new DefaultRequestExecutor({
+        requestTimeout: 1
+      });
+      await expect(requestExecutor.fetch({url: 'https://www.okta.com'})).rejects
+      .toMatchObject({message:'network timeout at: https://www.okta.com'});
+    });
+
+    it('sets the node-fetch timeout to requestTimeout for new requests', async () => {
+      const mockParentFetch = jest.fn().mockResolvedValue({ status: 200 });
+      RequestExecutor.prototype.fetch = mockParentFetch;
       const requestExecutor = new DefaultRequestExecutor({
         requestTimeout: 100
       });
-      await expect(requestExecutor.fetch({})).rejects.toThrow('DefaultRequestExecutor: Request timed out');
+      await requestExecutor.fetch({ uri: '/foo '});
+      expect(mockParentFetch.mock.calls[0][0].timeout).toBe(100);
+    });
+
+    it('sets the node-fetch timeout to a delta of the remaining request time for retried requests', async () => {
+      const mockRetriedRequest = {
+        uri: '/foo ',
+        startTime: new Date(Date.now() - 1000)
+      };
+      const mockParentFetch = jest.fn().mockResolvedValue({ status: 200 });
+      RequestExecutor.prototype.fetch = mockParentFetch;
+      const requestExecutor = new DefaultRequestExecutor({
+        requestTimeout: 2000
+      });
+      await requestExecutor.fetch(mockRetriedRequest);
+      // Should be ~1000, give or take a few ms between the date calculations
+      expect(mockParentFetch.mock.calls[0][0].timeout).toBeGreaterThan(998);
+      expect(mockParentFetch.mock.calls[0][0].timeout).toBeLessThan(1002);
+    });
+
+    it('sets the node-fetch timeout to 1 if if the delta becomes <= 0', async () => {
+      const mockRetriedRequest = {
+        uri: '/foo ',
+        startTime: new Date(Date.now() - 100)
+      };
+      const mockParentFetch = jest.fn().mockResolvedValue({ status: 200 });
+      RequestExecutor.prototype.fetch = mockParentFetch;
+      const requestExecutor = new DefaultRequestExecutor({
+        requestTimeout: 100
+      });
+      await requestExecutor.fetch(mockRetriedRequest);
+      expect(mockParentFetch.mock.calls[0][0].timeout).toBe(1);
     });
   });
 
