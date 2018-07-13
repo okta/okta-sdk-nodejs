@@ -113,7 +113,7 @@ describe('DefaultRequestExecutor', () => {
     });
 
     it('should add a startTime property to the request', () => {
-      RequestExecutor.prototype.fetch = jest.fn().mockImplementation(() => Promise.resolve({ status: 200}));
+      RequestExecutor.prototype.fetch = jest.fn().mockResolvedValue({ status: 200});
       const requestExecutor = new DefaultRequestExecutor();
       const mockRequest = {
         method: 'GET',
@@ -124,7 +124,7 @@ describe('DefaultRequestExecutor', () => {
     });
 
     it('should not modify an existing startTime property on a request ', () => {
-      RequestExecutor.prototype.fetch = jest.fn().mockImplementation(() => Promise.resolve({ status: 200}));
+      RequestExecutor.prototype.fetch = jest.fn().mockResolvedValue({ status: 200});
       const requestExecutor = new DefaultRequestExecutor();
       const startTime = new Date();
       const mockRequest = {
@@ -139,7 +139,7 @@ describe('DefaultRequestExecutor', () => {
     it('delegates the request to RequestExecutor.fetch() and the response to this.parseResponse()', async () => {
       const request = { url: '/foo' };
       const response = { status: 200 };
-      RequestExecutor.prototype.fetch = jest.fn().mockImplementation(() => Promise.resolve(response));
+      RequestExecutor.prototype.fetch = jest.fn().mockResolvedValue(response);
       const requestExecutor = new DefaultRequestExecutor();
       requestExecutor.parseResponse = jest.fn();
       await requestExecutor.fetch(request);
@@ -149,15 +149,10 @@ describe('DefaultRequestExecutor', () => {
     });
 
     it('rejects if RequestExecutor.fetch() rejects', async () => {
-      const err = 'http error';
-      let errored = false;
-      RequestExecutor.prototype.fetch = jest.fn().mockImplementation(() => Promise.reject(err));
+      const err = new Error('http error');
+      RequestExecutor.prototype.fetch = jest.fn().mockRejectedValue(err);
       const requestExecutor = new DefaultRequestExecutor();
-      await requestExecutor.fetch({}).catch(e => {
-        errored = true;
-        expect(e).toBe(err);
-      });
-      expect(errored).toBe(true);
+      await expect(requestExecutor.fetch({})).rejects.toThrow(err);
     });
 
     it('rejects if the request times out', async () => {
@@ -315,48 +310,47 @@ describe('DefaultRequestExecutor', () => {
           date: now.toUTCString()
         }
       });
-      const err = 'http error';
-      requestExecutor.fetch = jest.fn().mockImplementation(() => Promise.reject(err));
-      let errored = false;
-      await requestExecutor.retryRequest(mockRequest, mockResponse).catch(e => {
-        errored = true;
-        expect(e).toBe(err);
-      });
-      expect(errored).toBe(true);
+      const err = new Error('http error');
+      requestExecutor.fetch = jest.fn().mockRejectedValue(err);
+      await expect(requestExecutor.retryRequest(mockRequest, mockResponse)).rejects.toThrow(err);
     });
 
     it('should emit backoff and resume events', async () => {
+      const backoffHandler = jest.fn();
+      const resumeHandler = jest.fn();
       const now = new Date();
+      const mockRequestId = 'foo';
       const retryAfter = new Date(now.getTime() + 1000); // one second in the future
-      const requestExecutor = new DefaultRequestExecutor();
+      const expectedRetryRequest = {
+        headers: {
+          'X-Okta-Retry-Count': 1,
+          'X-Okta-Retry-For': mockRequestId
+        },
+        method: 'GET'
+      };
       const mockRequest = { method: 'GET' };
-      let backoffCalled = false;
-      let resumeCalled = false;
       const mockResponse = buildMockResponse({
         headers: {
           'x-rate-limit-reset' : String(dateToEpochSeconds(retryAfter)),
           date: now.toUTCString(),
-          'x-okta-request-id': 'foo'
+          'x-okta-request-id': mockRequestId
         }
       });
-      requestExecutor.fetch = jest.fn(() => Promise.resolve(mockResponse));
-      requestExecutor.on('backoff', (request, response, requestId, delayMs) => {
-        expect(request).toBe(mockRequest);
-        expect(response).toBe(mockResponse);
-        expect(requestId).toBe('foo');
-        expect(delayMs).toBe(retryAfter - now + 1000);
-        backoffCalled = true;
-      });
-      requestExecutor.on('resume', (newRequest, requestId) => {
-        expect(newRequest.headers[requestExecutor.retryCountHeader]).toEqual(1);
-        expect(newRequest.headers[requestExecutor.retryForHeader]).toEqual('foo');
-        expect(requestId).toBe('foo');
-        resumeCalled = true;
-      });
-
+      const requestExecutor = new DefaultRequestExecutor();
+      requestExecutor.fetch = jest.fn().mockResolvedValue(mockResponse);
+      requestExecutor.on('backoff', backoffHandler);
+      requestExecutor.on('resume', resumeHandler);
       await requestExecutor.retryRequest(mockRequest, mockResponse);
-      expect(backoffCalled).toBe(true);
-      expect(resumeCalled).toBe(true);
+      expect(backoffHandler).toHaveBeenCalledWith(
+        mockRequest,
+        mockResponse,
+        mockRequestId,
+        retryAfter - now + 1000
+      );
+      expect(resumeHandler).toHaveBeenCalledWith(
+        expectedRetryRequest,
+        mockRequestId
+      );
     });
   });
 });
