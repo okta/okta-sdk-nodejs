@@ -1,3 +1,5 @@
+const faker = require('faker');
+
 const utils = require('../utils');
 const okta = require('../../');
 const models = require('../../src/models');
@@ -25,10 +27,10 @@ describe('Factors API', () => {
     // 1. Create a user
     const newUser = {
       profile: {
-        firstName: 'John',
-        lastName: 'Create-Factor',
-        email: 'john-create-factor@example.com',
-        login: 'john-create-factor@example.com'
+        firstName: faker.name.firstName(),
+        lastName: faker.name.lastName(),
+        email: faker.internet.email(),
+        login: faker.internet.email()
       },
       credentials: {
         password: { value: 'Abcd1234' }

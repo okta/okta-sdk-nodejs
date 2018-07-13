@@ -1,3 +1,5 @@
+const faker = require('faker');
+
 const expect = require('chai').expect;
 const models = require('../../src/models');
 const utils = require('../utils');
@@ -19,10 +21,10 @@ describe('User API Tests', () => {
   it.skip('should allow the user\'s factor catalog (supported factors) to be listed', async () => {
     const newUser = {
       profile: {
-        firstName: 'John',
-        lastName: 'List-Avail-Factor',
-        email: `john-avail-factor@example.com`,
-        login: `john-avail-factor@example.com`
+        firstName: faker.name.firstName(),
+        lastName: faker.name.lastName(),
+        email: faker.internet.email(),
+        login: faker.internet.email()
       },
       credentials: {
         password: { value: 'Abcd1234' }

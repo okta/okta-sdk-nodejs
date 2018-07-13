@@ -1,3 +1,5 @@
+const faker = require('faker');
+
 const expect = require('chai').expect;
 const utils = require('../utils');
 const okta = require('../../');
@@ -17,10 +19,10 @@ describe('Group-Rule API tests', () => {
     // 1. Create a user and a group
     const newUser = {
       profile: {
-        firstName: 'John',
-        lastName: 'With-Group-Rule',
-        email: 'john-with-group-rule@example.com',
-        login: 'john-with-group-rule@example.com'
+        firstName: faker.name.firstName(),
+        lastName: faker.name.lastName(),
+        email: faker.internet.email(),
+        login: faker.internet.email()
       },
       credentials: {
         password: {value: 'Abcd1234'}
@@ -43,7 +45,7 @@ describe('Group-Rule API tests', () => {
     // 2. Create a group rule and verify rule executes
     const rule = {
       type: 'group_rule',
-      name: 'Test group rule',
+      name: faker.random.word(),
       conditions: {
         people: {
           users: {
@@ -87,7 +89,7 @@ describe('Group-Rule API tests', () => {
     // 4. Deactivate the rule and update it
     await client.deactivateRule(createdRule.id);
 
-    createdRule.name = 'Test group rule updated';
+    createdRule.name = faker.random.word();
     createdRule.conditions.expression.value = 'user.lastName==\"incorrect\"';
     const updatedRule = await createdRule.update();
     await updatedRule.activate();

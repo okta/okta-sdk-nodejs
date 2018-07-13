@@ -1,4 +1,6 @@
 const expect = require('chai').expect;
+const faker = require('faker');
+
 const okta = require('../../');
 const models = require('../../src/models');
 const utils = require('../utils');
@@ -22,10 +24,10 @@ describe('client.list-users()', () => {
   before(async () => {
     let newUser = {
       profile: {
-        firstName: 'John',
-        lastName: 'List-Users',
-        email: 'john-list-users@example.com',
-        login: 'john-list-users@example.com'
+        firstName: faker.name.firstName(),
+        lastName: faker.name.lastName(),
+        email: faker.internet.email(),
+        login: faker.internet.email()
       },
       credentials: {
         password: {value: 'Abcd1234'}

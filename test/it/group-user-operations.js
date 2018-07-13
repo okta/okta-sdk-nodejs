@@ -1,6 +1,9 @@
+const faker = require('faker');
+
 const expect = require('chai').expect;
 const utils = require('../utils');
 const okta = require('../../');
+
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
 if (process.env.OKTA_USE_MOCK) {
@@ -17,10 +20,10 @@ describe('Group-Member API Tests', () => {
     // 1. Create a user and a group
     const newUser = {
       profile: {
-        firstName: 'John',
-        lastName: 'With-Group',
-        email: 'john-with-group@example.com',
-        login: 'john-with-group@example.com'
+        firstName: faker.name.firstName(),
+        lastName: faker.name.lastName(),
+        email: faker.internet.email(),
+        login: faker.internet.email()
       },
       credentials: {
         password: {value: 'Abcd1234'}

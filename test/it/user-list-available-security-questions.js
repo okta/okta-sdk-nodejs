@@ -1,3 +1,5 @@
+const faker = require('faker');
+
 const expect = require('chai').expect;
 const models = require('../../src/models');
 const utils = require('../utils');
@@ -17,10 +19,10 @@ describe('User API Tests', () => {
   it('should allow the user\'s available security questions to be listed', async () => {
     const newUser = {
       profile: {
-        firstName: 'John',
-        lastName: 'Security-Questions',
-        email: 'john-security-questions@example.com',
-        login: 'john-security-questions@example.com'
+        firstName: faker.name.firstName(),
+        lastName: faker.name.lastName(),
+        email: faker.internet.email(),
+        login: faker.internet.email()
       },
       credentials: {
         password: { value: 'Abcd1234' }

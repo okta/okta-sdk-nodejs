@@ -1,3 +1,5 @@
+const faker = require('faker');
+
 const utils = require('../utils');
 const okta = require('../../');
 const models = require('../../src/models');
@@ -19,10 +21,10 @@ describe('Sessions API', () => {
     // 1. Create a user
     const newUser = {
       profile: {
-        firstName: 'John',
-        lastName: 'Get-Session',
-        email: 'john-get-session@example.com',
-        login: 'john-get-session@example.com'
+        firstName: faker.name.firstName(),
+        lastName: faker.name.lastName(),
+        email: faker.internet.email(),
+        login: faker.internet.email()
       },
       credentials: {
         password: { value: 'Abcd1234' }
@@ -39,7 +41,7 @@ describe('Sessions API', () => {
 
   it('should allow me to get an existing session', async () => {
     // 1 - create session
-    const transaction = await utils.authenticateUser(client, 'john-get-session@example.com', 'Abcd1234');
+    const transaction = await utils.authenticateUser(client, createdUser.profile.login, 'Abcd1234');
     const session = await client.createSession({
       sessionToken: transaction.sessionToken
     });

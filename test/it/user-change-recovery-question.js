@@ -1,3 +1,5 @@
+const faker = require('faker');
+
 const expect = require('chai').expect;
 const utils = require('../utils');
 const okta = require('../../');
@@ -17,10 +19,10 @@ describe('User API Tests', () => {
     // 1. Create a user with password & recovery question
     const newUser = {
       profile: {
-        firstName: 'John',
-        lastName: 'Change-Recovery-Question',
-        email: 'john-change-recovery-question@example.com',
-        login: 'john-change-recovery-question@example.com'
+        firstName: faker.name.firstName(),
+        lastName: faker.name.lastName(),
+        email: faker.internet.email(),
+        login: faker.internet.email()
       },
       credentials: {
         password: { value: 'Abcd1234' }

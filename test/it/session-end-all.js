@@ -1,3 +1,5 @@
+const faker = require('faker');
+
 const utils = require('../utils');
 const okta = require('../../');
 const expect = require('chai').expect;
@@ -18,10 +20,10 @@ describe('Sessions API', () => {
     // 1. Create a user
     const newUser = {
       profile: {
-        firstName: 'John',
-        lastName: 'End-All-Sessions',
-        email: 'john-end-all-sessions@example.com',
-        login: 'john-end-all-sessions@example.com'
+        firstName: faker.name.firstName(),
+        lastName: faker.name.lastName(),
+        email: faker.internet.email(),
+        login: faker.internet.email()
       },
       credentials: {
         password: { value: 'Abcd1234' }
@@ -38,13 +40,13 @@ describe('Sessions API', () => {
 
   it('should allow me to end all existing sessions for a user', async () => {
     // 1 - create session
-    const transaction1 = await utils.authenticateUser(client, 'john-end-all-sessions@example.com', 'Abcd1234');
+    const transaction1 = await utils.authenticateUser(client, createdUser.profile.login, 'Abcd1234');
     const session1 = await client.createSession({
       sessionToken: transaction1.sessionToken
     });
 
     // 2 - create another session
-    const transaction2 = await utils.authenticateUser(client, 'john-end-all-sessions@example.com', 'Abcd1234');
+    const transaction2 = await utils.authenticateUser(client, createdUser.profile.login, 'Abcd1234');
     const session2 = await client.createSession({
       sessionToken: transaction2.sessionToken
     });

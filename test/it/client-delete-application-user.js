@@ -1,4 +1,5 @@
 const expect = require('chai').expect;
+const faker = require('faker');
 
 const okta = require('../../');
 const utils = require('../utils');
@@ -31,10 +32,10 @@ describe('client.deleteApplicationUser()', () => {
 
     const user = {
       profile: {
-        firstName: 'John',
-        lastName: 'Delete-App-User',
-        email: 'john-delete-app-user@example.com',
-        login: 'john-delete-app-user@example.com'
+        firstName: faker.name.firstName(),
+        lastName: faker.name.lastName(),
+        email: faker.internet.email(),
+        login: faker.internet.email()
       },
       credentials: {
         password: { value: 'Abcd1234' }

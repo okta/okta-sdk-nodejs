@@ -1,4 +1,5 @@
 const speakeasy = require('speakeasy');
+const faker = require('faker');
 
 const utils = require('../utils');
 const okta = require('../../');
@@ -26,10 +27,10 @@ describe('Factors API', () => {
     // 1. Create a user
     const newUser = {
       profile: {
-        firstName: 'John',
-        lastName: 'Activate-Factors',
-        email: 'john-activate-factors@example.com',
-        login: 'john-activate-factors@example.com'
+        firstName: faker.name.firstName(),
+        lastName: faker.name.lastName(),
+        email: faker.internet.email(),
+        login: faker.internet.email()
       },
       credentials: {
         password: { value: 'Abcd1234' }

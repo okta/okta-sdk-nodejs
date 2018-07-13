@@ -1,4 +1,5 @@
 const expect = require('chai').expect;
+const faker = require('faker');
 
 const okta = require('../../');
 const models = require('../../src/models');
@@ -32,10 +33,10 @@ describe('client.assignUserToApplication()', () => {
 
     const user = {
       profile: {
-        firstName: 'John',
-        lastName: 'Assign-Application',
-        email: 'john-assign-application@example.com',
-        login: 'john-assign-application@example.com'
+        firstName: faker.name.firstName(),
+        lastName: faker.name.lastName(),
+        email: faker.internet.email(),
+        login: faker.internet.email()
       },
       credentials: {
         password: { value: 'Abcd1234' }
