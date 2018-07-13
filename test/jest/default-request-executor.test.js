@@ -133,7 +133,7 @@ describe('DefaultRequestExecutor', () => {
         startTime
       };
       requestExecutor.fetch(mockRequest);
-      expect(mockRequest.startTime).toEqual(startTime);
+      expect(mockRequest.startTime).toBe(startTime);
     });
 
     it('delegates the request to RequestExecutor.fetch() and the response to this.parseResponse()', async () => {

@@ -681,7 +681,7 @@ client.requestExecutor.on('response', (response) => {
 There are two ways you can design your own executor:
 
 - Extend one of our executors.
-- Create a class that implements the `fetch` method in the same way as [RequestExecutor]
+- Create a class that implements the `fetch` method in the same way as [RequestExecutor].
 
 As an example, let's say you want to use our default 429 retry behavior, but you want to add some logging to understand how long requests are taking, including retry time. To do this, you can extend [DefaultRequestExecutor], then re-implement the `fetch()` method with your custom logic, while still delegating the actual call to DefaultRequestExecutor:
 

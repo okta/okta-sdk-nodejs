@@ -12,6 +12,7 @@
 
 const RequestExecutor = require('./request-executor');
 const deepCopy = require('deep-copy');
+
 class DefaultRequestExecutor extends RequestExecutor {
   constructor(config = {}) {
     super();
