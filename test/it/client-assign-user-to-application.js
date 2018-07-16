@@ -31,12 +31,7 @@ describe('client.assignUserToApplication()', () => {
     };
 
     const user = {
-      profile: {
-        firstName: 'John',
-        lastName: 'Activate',
-        email: 'john-activate@example.com',
-        login: 'john-activate@example.com'
-      },
+      profile: utils.getMockProfile(),
       credentials: {
         password: { value: 'Abcd1234' }
       }
@@ -71,4 +66,3 @@ describe('client.assignUserToApplication()', () => {
   });
 
 });
-

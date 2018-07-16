@@ -16,12 +16,7 @@ describe('User API Tests', () => {
   it('should change users recovery question', async () => {
     // 1. Create a user with password & recovery question
     const newUser = {
-      profile: {
-        firstName: 'John',
-        lastName: 'Change-Recovery-Question',
-        email: 'john-change-recovery-question@example.com',
-        login: 'john-change-recovery-question@example.com'
-      },
+      profile: utils.getMockProfile(),
       credentials: {
         password: { value: 'Abcd1234' }
       }

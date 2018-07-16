@@ -1,4 +1,5 @@
 const expect = require('chai').expect;
+
 const okta = require('../../');
 const models = require('../../src/models');
 const utils = require('../utils');
@@ -16,17 +17,12 @@ const client = new okta.Client({
 
 let userCount = 0;
 
-describe('client.listUsers()', () => {
+describe('client.list-users()', () => {
   let _user;
 
   before(async () => {
     let newUser = {
-      profile: {
-        firstName: 'John',
-        lastName: 'List-Users',
-        email: 'john-list-users@example.com',
-        login: 'john-list-users@example.com'
-      },
+      profile: utils.getMockProfile(),
       credentials: {
         password: {value: 'Abcd1234'}
       }

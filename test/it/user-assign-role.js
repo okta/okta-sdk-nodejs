@@ -16,12 +16,7 @@ describe('User Role API Tests', () => {
   it('should assign/unassign role to a user', async () => {
     // 1. Create a user
     const newUser = {
-      profile: {
-        firstName: 'John',
-        lastName: 'Role',
-        email: 'john-role@example.com',
-        login: 'john-role@example.com'
-      },
+      profile: utils.getMockProfile(),
       credentials: {
         password: { value: 'Abcd1234' }
       }
