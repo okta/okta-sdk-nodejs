@@ -1,5 +1,3 @@
-const faker = require('faker');
-
 const utils = require('../utils');
 const okta = require('../../');
 const models = require('../../src/models');
@@ -20,12 +18,7 @@ describe('Sessions API', () => {
   before(async () => {
     // 1. Create a user
     const newUser = {
-      profile: {
-        firstName: faker.name.firstName(),
-        lastName: faker.name.lastName(),
-        email: faker.internet.email(),
-        login: faker.internet.email()
-      },
+      profile: utils.getMockProfile(),
       credentials: {
         password: { value: 'Abcd1234' }
       }

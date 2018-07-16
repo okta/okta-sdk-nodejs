@@ -1,5 +1,3 @@
-const faker = require('faker');
-
 const expect = require('chai').expect;
 const models = require('../../src/models');
 const utils = require('../utils');
@@ -20,12 +18,7 @@ describe('User API Tests', () => {
   // AssertionError: expected { Object (factorType, provider, ...) } to be an instance of Factor
   it.skip('should allow the user\'s factor catalog (supported factors) to be listed', async () => {
     const newUser = {
-      profile: {
-        firstName: faker.name.firstName(),
-        lastName: faker.name.lastName(),
-        email: faker.internet.email(),
-        login: faker.internet.email()
-      },
+      profile: utils.getMockProfile(),
       credentials: {
         password: { value: 'Abcd1234' }
       }
