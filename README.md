@@ -632,7 +632,7 @@ const client = new okta.Client({
 
 Because the rate limits are different for different endpoints you may need to change the default configuration, or create multiple clients with different executor configurations.
 
-To help with debugging and logging, the default executor will emit `backoff` and `resume` events:
+To help with debugging and logging, the default executor will emit a `backoff` event when a retry request has been scheduled, and `resume` event when that request begins:
 
 ```javascript
 defaultRequestExecutor.on('backoff', (request, response, requestId, delayMs) => {

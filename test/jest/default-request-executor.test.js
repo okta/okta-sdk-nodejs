@@ -60,6 +60,23 @@ describe('DefaultRequestExecutor', () => {
       expect(mockRequest.headers[requestExecutor.retryCountHeader]).toBeUndefined();
     });
 
+    it('should not overwrite X-Okta-Retry-For with new request IDs', () => {
+      const mockRequest = {
+        method: 'GET',
+        headers: {
+          'X-Okta-Retry-For' : 'first'
+        }
+      };
+      const mockResponse = buildMockResponse({
+        headers: {
+          'x-okta-request-id' : 'second'
+        }
+      });
+      const requestExecutor = new DefaultRequestExecutor();
+      const newRequest = requestExecutor.buildRetryRequest(mockRequest, mockResponse);
+      expect(newRequest.headers[requestExecutor.retryForHeader]).toBe('first');
+    });
+
     it('should increment the X-Okta-Retry-Count header', () => {
       const requestExecutor = new DefaultRequestExecutor();
       const request = {
@@ -76,9 +93,29 @@ describe('DefaultRequestExecutor', () => {
       expect(newRequest.headers[requestExecutor.retryCountHeader]).toBe(2);
     });
 
+    it('should set request.timeout to the remaining time before requestTimeout is reached', async () => {
+      const requestExecutor = new DefaultRequestExecutor({
+        requestTimeout: 2000
+      });
+      const mockRequest = {
+        method: 'GET',
+        headers: {},
+        startTime: new Date(Date.now() - 1000)
+      };
+      const mockResponse = buildMockResponse({
+        headers: {
+          'x-okta-request-id' : 'foo'
+        }
+      });
+      const newRequest = requestExecutor.buildRetryRequest(mockRequest, mockResponse);
+      // Should be ~1000, give or take a few ms between the date calculations
+      expect(newRequest.timeout).toBeGreaterThan(998);
+      expect(newRequest.timeout).toBeLessThan(1002);
+    });
+
   });
 
-  describe('canRetryRequest', () => {
+  describe('validateRetryResponseHeaders', () => {
 
     it('should return true if X-Rate-Limit-Reset exists', () => {
       const requestExecutor = new DefaultRequestExecutor();
@@ -87,13 +124,13 @@ describe('DefaultRequestExecutor', () => {
           'x-rate-limit-reset': String(new Date())
         }
       });
-      expect(requestExecutor.canRetryRequest(mockResponse)).toBe(true);
+      expect(requestExecutor.validateRetryResponseHeaders(mockResponse)).toBe(true);
     });
 
     it('should return false if X-Rate-Limit-Reset is absent', () => {
       const requestExecutor = new DefaultRequestExecutor();
       const mockResponse = buildMockResponse();
-      expect(requestExecutor.canRetryRequest(mockResponse)).toBe(false);
+      expect(requestExecutor.validateRetryResponseHeaders(mockResponse)).toBe(false);
     });
 
     it('should return false if X-Rate-Limit-Reset exists twice ', () => {
@@ -103,7 +140,7 @@ describe('DefaultRequestExecutor', () => {
           'x-rate-limit-reset': [String(new Date()), String(new Date())].join(',')
         }
       });
-      expect(requestExecutor.canRetryRequest(mockResponse)).toBe(false);
+      expect(requestExecutor.validateRetryResponseHeaders(mockResponse)).toBe(false);
     });
   });
 
@@ -158,7 +195,7 @@ describe('DefaultRequestExecutor', () => {
     });
 
     it('rejects if the request times out', async () => {
-      // mock such that fetch will not resolve, and the request should time out:
+      // mock such that fetch will not resolve, and the request should time out (error thrown by note-fetch):
       const requestExecutor = new DefaultRequestExecutor({
         requestTimeout: 1
       });
@@ -174,36 +211,6 @@ describe('DefaultRequestExecutor', () => {
       });
       await requestExecutor.fetch({ uri: '/foo '});
       expect(mockParentFetch.mock.calls[0][0].timeout).toBe(100);
-    });
-
-    it('sets the node-fetch timeout to a delta of the remaining request time for retried requests', async () => {
-      const mockRetriedRequest = {
-        uri: '/foo ',
-        startTime: new Date(Date.now() - 1000)
-      };
-      const mockParentFetch = jest.fn().mockResolvedValue({ status: 200 });
-      RequestExecutor.prototype.fetch = mockParentFetch;
-      const requestExecutor = new DefaultRequestExecutor({
-        requestTimeout: 2000
-      });
-      await requestExecutor.fetch(mockRetriedRequest);
-      // Should be ~1000, give or take a few ms between the date calculations
-      expect(mockParentFetch.mock.calls[0][0].timeout).toBeGreaterThan(998);
-      expect(mockParentFetch.mock.calls[0][0].timeout).toBeLessThan(1002);
-    });
-
-    it('sets the node-fetch timeout to 1 if if the delta becomes <= 0', async () => {
-      const mockRetriedRequest = {
-        uri: '/foo ',
-        startTime: new Date(Date.now() - 100)
-      };
-      const mockParentFetch = jest.fn().mockResolvedValue({ status: 200 });
-      RequestExecutor.prototype.fetch = mockParentFetch;
-      const requestExecutor = new DefaultRequestExecutor({
-        requestTimeout: 100
-      });
-      await requestExecutor.fetch(mockRetriedRequest);
-      expect(mockParentFetch.mock.calls[0][0].timeout).toBe(1);
     });
   });
 
@@ -246,6 +253,39 @@ describe('DefaultRequestExecutor', () => {
       requestExecutor.parseResponse(request, mockResponse);
       expect(requestExecutor.retryRequest.mock.calls[0][0]).toBe(request);
       expect(requestExecutor.retryRequest.mock.calls[0][1]).toBe(mockResponse);
+    });
+
+    it('should reject if the request has timed out', async () => {
+      // Rare case, but if node-fetch somehow resolves its promise before the request should be aborted we want to fail
+      // Otherwise we will end up trying again when we shouldn't
+      requestExecutor = new DefaultRequestExecutor({
+        requestTimeout: 1000
+      });
+      const startTime = new Date(new Date().getTime() - 2000);
+      const request = { method: 'GET', startTime, uri: '/foo' };
+      const mockResponse = buildMockResponse({
+        status: 429,
+        headers: {
+          'x-rate-limit-reset': String(new Date())
+        }
+      });
+      await expect(requestExecutor.parseResponse(request, mockResponse)).rejects.toThrow('HTTP request time exceeded okta.client.rateLimit.requestTimeout');
+    });
+
+    it('should reject if the the retry time is after the request timeout', async () => {
+      requestExecutor = new DefaultRequestExecutor({
+        requestTimeout: 1000
+      });
+      const startTime = new Date(new Date().getTime() - 500);
+      const request = { method: 'GET', startTime, uri: '/foo' };
+      const mockResponse = buildMockResponse({
+        status: 429,
+        headers: {
+          'x-rate-limit-reset' : String(dateToEpochSeconds(new Date(Date.now() + 2000))),
+          date: new Date().toUTCString()
+        }
+      });
+      await expect(requestExecutor.parseResponse(request, mockResponse)).rejects.toThrow('HTTP 429 retry delay would exceed okta.client.rateLimit.requestTimeout');
     });
 
     it('should return 429 responses if the max retries has been reached', async () => {
@@ -368,10 +408,12 @@ describe('DefaultRequestExecutor', () => {
           'X-Okta-Retry-Count': 1,
           'X-Okta-Retry-For': mockRequestId
         },
-        method: 'GET'
+        method: 'GET',
+        timeout: 0
       };
       const mockRequest = { method: 'GET' };
       const mockResponse = buildMockResponse({
+        status: 429,
         headers: {
           'x-rate-limit-reset' : String(dateToEpochSeconds(retryAfter)),
           date: now.toUTCString(),
@@ -382,7 +424,7 @@ describe('DefaultRequestExecutor', () => {
       requestExecutor.fetch = jest.fn().mockResolvedValue(mockResponse);
       requestExecutor.on('backoff', backoffHandler);
       requestExecutor.on('resume', resumeHandler);
-      await requestExecutor.retryRequest(mockRequest, mockResponse);
+      await requestExecutor.parseResponse(mockRequest, mockResponse);
       expect(backoffHandler).toHaveBeenCalledWith(
         mockRequest,
         mockResponse,

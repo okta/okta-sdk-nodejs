@@ -33,6 +33,8 @@ class DefaultRequestExecutor extends RequestExecutor {
 
   buildRetryRequest(request, response) {
     const newRequest = deepCopy(request);
+    const delta = this.requestTimeout - (new Date() - request.startTime);
+    newRequest.timeout = delta > 0 ? delta : 0;
     const requestId = this.getOktaRequestId(response);
     if (!newRequest.headers) {
       newRequest.headers = {};
@@ -46,7 +48,7 @@ class DefaultRequestExecutor extends RequestExecutor {
     return newRequest;
   }
 
-  canRetryRequest(response) {
+  validateRetryResponseHeaders(response) {
     // Validate that we don't have duplicate headers, see OKTA-112507
     // Duplicate headers are returned by fetch as a comma separated list.
     const retryHeader = this.getRateLimitReset(response);
@@ -54,15 +56,7 @@ class DefaultRequestExecutor extends RequestExecutor {
   }
 
   fetch(request) {
-    if (request.startTime) {
-      if (this.requestTimeout > 0) {
-        const delta = this.requestTimeout - (new Date() - request.startTime);
-        // We may end up with a delta <= 0 because the actual network request will not be made until sometime after
-        // request.startTime is first set.  If this has happened, use a value of 1 to cause the request to time out
-        // immediately.
-        request.timeout = delta > 0 ? delta : 1;
-      }
-    } else {
+    if (!request.startTime) {
       request.startTime = new Date();
       request.timeout = this.requestTimeout;
     }
@@ -91,8 +85,19 @@ class DefaultRequestExecutor extends RequestExecutor {
   }
 
   parseResponse(request, response) {
-    if (response.status === 429 && this.canRetryRequest(response) && !(this.maxRetriesReached(request))) {
-      return this.retryRequest(request, response);
+    if (response.status === 429 && this.validateRetryResponseHeaders(response) && !(this.maxRetriesReached(request))) {
+      const elapsedMs = Date.now() - request.startTime;
+      const delayMs = this.getRetryDelayMs(response);
+      const delayDelta = elapsedMs + delayMs;
+      if (this.requestTimeout > 0) {
+        if (elapsedMs > this.requestTimeout) {
+          return Promise.reject(new Error('HTTP request time exceeded okta.client.rateLimit.requestTimeout'));
+        }
+        if (delayDelta > this.requestTimeout) {
+          return Promise.reject(new Error('HTTP 429 retry delay would exceed okta.client.rateLimit.requestTimeout'));
+        }
+      }
+      return this.retryRequest(request, response, delayMs);
     }
     return response;
   }
@@ -105,8 +110,7 @@ class DefaultRequestExecutor extends RequestExecutor {
     return retryCount && parseInt(retryCount, 10) >= this.maxRetries;
   }
 
-  retryRequest(request, response) {
-    const delayMs = this.getRetryDelayMs(response);
+  retryRequest(request, response, delayMs) {
     const newRequest = this.buildRetryRequest(request, response);
     const requestId = this.getOktaRequestId(response);
     return new Promise(resolve => {
