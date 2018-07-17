@@ -34,7 +34,7 @@ class DefaultRequestExecutor extends RequestExecutor {
   buildRetryRequest(request, response, delayMs) {
     const elapsedMs = Date.now() - request.startTime;
     const newRequest = deepCopy(request);
-    newRequest.timeout = this.requestTimeout - elapsedMs - delayMs;
+    newRequest.timeout = this.requestTimeout > 0 ? this.requestTimeout - elapsedMs - delayMs : 0;
     const requestId = this.getOktaRequestId(response);
     if (!newRequest.headers) {
       newRequest.headers = {};

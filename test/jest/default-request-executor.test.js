@@ -117,6 +117,28 @@ describe('DefaultRequestExecutor', () => {
       expect(newRequest.timeout).toBeLessThan(3002);
     });
 
+    it('should set request.timeout to 0 if requestTimeout is 0', async () => {
+      const requestExecutor = new DefaultRequestExecutor({
+        requestTimeout: 0
+      });
+      const mockRequest = {
+        method: 'GET',
+        headers: {},
+        startTime: new Date(Date.now() - 1000)
+      };
+      const retryAt = new Date(Date.now() + 5000);
+      const mockResponse = buildMockResponse({
+        headers: {
+          'x-okta-request-id' : 'foo',
+          'x-rate-limit-reset': String(dateToEpochSeconds(retryAt)),
+          date: new Date().toUTCString()
+        }
+      });
+      const delayMs = requestExecutor.getRetryDelayMs(mockResponse);
+      const newRequest = requestExecutor.buildRetryRequest(mockRequest, mockResponse, delayMs);
+      expect(newRequest.timeout).toEqual(0);
+    });
+
   });
 
   describe('validateRetryResponseHeaders', () => {
