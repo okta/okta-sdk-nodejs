@@ -95,22 +95,26 @@ describe('DefaultRequestExecutor', () => {
 
     it('should set request.timeout to the remaining time before requestTimeout is reached', async () => {
       const requestExecutor = new DefaultRequestExecutor({
-        requestTimeout: 2000
+        requestTimeout: 10000
       });
       const mockRequest = {
         method: 'GET',
         headers: {},
         startTime: new Date(Date.now() - 1000)
       };
+      const retryAt = new Date(Date.now() + 5000);
       const mockResponse = buildMockResponse({
         headers: {
-          'x-okta-request-id' : 'foo'
+          'x-okta-request-id' : 'foo',
+          'x-rate-limit-reset': String(dateToEpochSeconds(retryAt)),
+          date: new Date().toUTCString()
         }
       });
-      const newRequest = requestExecutor.buildRetryRequest(mockRequest, mockResponse);
-      // Should be ~1000, give or take a few ms between the date calculations
-      expect(newRequest.timeout).toBeGreaterThan(998);
-      expect(newRequest.timeout).toBeLessThan(1002);
+      const delayMs = requestExecutor.getRetryDelayMs(mockResponse);
+      const newRequest = requestExecutor.buildRetryRequest(mockRequest, mockResponse, delayMs);
+      // Should be 3 seconds, not 4, because we always add 1s to the retry time provided in the response headers
+      expect(newRequest.timeout).toBeGreaterThan(2998);
+      expect(newRequest.timeout).toBeLessThan(3002);
     });
 
   });

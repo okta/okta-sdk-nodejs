@@ -31,10 +31,10 @@ class DefaultRequestExecutor extends RequestExecutor {
     this.retryForHeader = 'X-Okta-Retry-For';
   }
 
-  buildRetryRequest(request, response) {
+  buildRetryRequest(request, response, delayMs) {
+    const elapsedMs = Date.now() - request.startTime;
     const newRequest = deepCopy(request);
-    const delta = this.requestTimeout - (new Date() - request.startTime);
-    newRequest.timeout = delta > 0 ? delta : 0;
+    newRequest.timeout = this.requestTimeout - elapsedMs - delayMs;
     const requestId = this.getOktaRequestId(response);
     if (!newRequest.headers) {
       newRequest.headers = {};
@@ -111,7 +111,7 @@ class DefaultRequestExecutor extends RequestExecutor {
   }
 
   retryRequest(request, response, delayMs) {
-    const newRequest = this.buildRetryRequest(request, response);
+    const newRequest = this.buildRetryRequest(request, response, delayMs);
     const requestId = this.getOktaRequestId(response);
     return new Promise(resolve => {
       this.emit('backoff', request, response, requestId, delayMs);
