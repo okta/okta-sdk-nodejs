@@ -31,11 +31,10 @@ class DefaultRequestExecutor extends RequestExecutor {
     this.retryForHeader = 'X-Okta-Retry-For';
   }
 
-  buildRetryRequest(request, response, delayMs) {
+  buildRetryRequest(request, requestId, delayMs) {
     const elapsedMs = Date.now() - request.startTime;
     const newRequest = deepCopy(request);
     newRequest.timeout = this.requestTimeout > 0 ? this.requestTimeout - elapsedMs - delayMs : 0;
-    const requestId = this.getOktaRequestId(response);
     if (!newRequest.headers) {
       newRequest.headers = {};
     }
@@ -90,10 +89,10 @@ class DefaultRequestExecutor extends RequestExecutor {
       const delayMs = this.getRetryDelayMs(response);
       const delayDelta = elapsedMs + delayMs;
       if (this.requestTimeout > 0) {
-        if (elapsedMs > this.requestTimeout) {
+        if (elapsedMs >= this.requestTimeout) {
           return Promise.reject(new Error('HTTP request time exceeded okta.client.rateLimit.requestTimeout'));
         }
-        if (delayDelta > this.requestTimeout) {
+        if (delayDelta >= this.requestTimeout) {
           return Promise.reject(new Error('HTTP 429 retry delay would exceed okta.client.rateLimit.requestTimeout'));
         }
       }
@@ -111,12 +110,12 @@ class DefaultRequestExecutor extends RequestExecutor {
   }
 
   retryRequest(request, response, delayMs) {
-    const newRequest = this.buildRetryRequest(request, response, delayMs);
     const requestId = this.getOktaRequestId(response);
     return new Promise(resolve => {
       this.emit('backoff', request, response, requestId, delayMs);
       setTimeout(resolve, delayMs);
     }).then(() => {
+      const newRequest = this.buildRetryRequest(request, requestId, delayMs);
       this.emit('resume', newRequest, requestId);
       return this.fetch(newRequest);
     });

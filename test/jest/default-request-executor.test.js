@@ -54,7 +54,7 @@ describe('DefaultRequestExecutor', () => {
         }
       });
       const requestExecutor = new DefaultRequestExecutor();
-      const newRequest = requestExecutor.buildRetryRequest(mockRequest, mockResponse);
+      const newRequest = requestExecutor.buildRetryRequest(mockRequest, mockResponse.headers['x-okta-request-id']);
       expect(newRequest.headers[requestExecutor.retryForHeader]).toBe('foo');
       expect(newRequest.headers[requestExecutor.retryCountHeader]).toBe(1);
       expect(mockRequest.headers[requestExecutor.retryCountHeader]).toBeUndefined();
@@ -391,6 +391,7 @@ describe('DefaultRequestExecutor', () => {
       const mockResponse = buildMockResponse({
         headers: {
           'x-rate-limit-reset' : String(dateToEpochSeconds(retryAfter)),
+          'x-okta-request-id': 'foo',
           date: now.toUTCString()
         }
       });
@@ -401,7 +402,7 @@ describe('DefaultRequestExecutor', () => {
         directly compare the startTime property, because it may differ between
         the two objects.
       */
-      const expectedNewRequest = requestExecutor.buildRetryRequest(mockRequest, mockResponse);
+      const expectedNewRequest = requestExecutor.buildRetryRequest(mockRequest, mockResponse.headers['x-okta-request-id']);
       await requestExecutor.retryRequest(mockRequest, mockResponse);
       const actualNewRequest = requestExecutor.fetch.mock.calls[0][0];
       expect(expectedNewRequest).toEqual(actualNewRequest);
