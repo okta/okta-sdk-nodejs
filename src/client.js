@@ -10,11 +10,11 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
-
 const os = require('os');
 const packageJson = require('../package.json');
 
 const ConfigLoader = require('./config-loader');
+const RequestExecutor = require('./request-executor');
 const GeneratedApiClient = require('./generated-client');
 const Http = require('./http');
 const DEFAULT_USER_AGENT = `${packageJson.name}/${packageJson.version} node/${process.versions.node} ${os.platform()}/${os.release()}`;
@@ -27,15 +27,18 @@ const repoUrl = 'https://github.com/okta/okta-sdk-nodejs';
  * @extends {GeneratedApiClient}
  */
 class Client extends GeneratedApiClient {
-  constructor(clientConfig) {
+  constructor(config) {
     super();
     const configLoader = new ConfigLoader();
+    const clientConfig = Object.assign({}, config);
     configLoader.applyDefaults();
     configLoader.apply({
       client: clientConfig || {}
     });
 
     const parsedConfig = configLoader.config;
+
+    this.requestExecutor = clientConfig.requestExecutor || new RequestExecutor();
 
     if (!parsedConfig.client.orgUrl) {
       throw new Error(`Okta Org URL not provided, see ${repoUrl} for usage.`);
@@ -49,7 +52,8 @@ class Client extends GeneratedApiClient {
     this.apiToken = parsedConfig.client.token;
     this.http = new Http({
       cacheStore: clientConfig.cacheStore,
-      cacheMiddleware: clientConfig.cacheMiddleware
+      cacheMiddleware: clientConfig.cacheMiddleware,
+      requestExecutor: this.requestExecutor
     });
     this.http.defaultHeaders.Authorization = `SSWS ${this.apiToken}`;
     this.http.defaultHeaders['User-Agent'] = parsedConfig.client.userAgent ? parsedConfig.client.userAgent + ' ' + DEFAULT_USER_AGENT : DEFAULT_USER_AGENT;
