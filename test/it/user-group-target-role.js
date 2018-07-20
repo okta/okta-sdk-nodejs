@@ -16,12 +16,7 @@ describe('User Role API Tests', () => {
   it('should add/remove Group Target to User Admin Role', async () => {
     // 1. Create a user and a group
     const newUser = {
-      profile: {
-        firstName: 'John',
-        lastName: 'Group-Target',
-        email: 'john-group-target@example.com',
-        login: 'john-group-target@example.com'
-      },
+      profile: utils.getMockProfile(),
       credentials: {
         password: {value: 'Abcd1234'}
       }

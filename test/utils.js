@@ -1,5 +1,6 @@
 const models = require('../src/models');
 const expect = require('chai').expect;
+const faker = require('faker');
 
 function delay(t) {
   return new Promise(function (resolve) {
@@ -165,6 +166,15 @@ async function removeAppByLabel(client, label) {
   });
 }
 
+function getMockProfile() {
+  return {
+    firstName: faker.name.firstName(),
+    lastName: faker.name.lastName(),
+    email: faker.internet.email(),
+    login: faker.internet.email()
+  }
+}
+
 module.exports = {
   delay: delay,
   validateUser: validateUser,
@@ -180,5 +190,6 @@ module.exports = {
   cleanupUser: cleanupUser,
   cleanupGroup: cleanupGroup,
   cleanup: cleanup,
-  removeAppByLabel: removeAppByLabel
+  removeAppByLabel: removeAppByLabel,
+  getMockProfile: getMockProfile
 };

@@ -16,12 +16,7 @@ describe('User API Tests', () => {
   it('should expire a users password', async () => {
     // 1. Create a user
     const newUser = {
-      profile: {
-        firstName: 'John',
-        lastName: 'Expire-Password',
-        email: 'john-expire-password@example.com',
-        login: 'john-expire-password@example.com'
-      },
+      profile: utils.getMockProfile(),
       credentials: {
         password: { value: 'Abcd1234' }
       }

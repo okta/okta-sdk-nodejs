@@ -17,12 +17,7 @@ describe('Sessions API', () => {
   before(async () => {
     // 1. Create a user
     const newUser = {
-      profile: {
-        firstName: 'John',
-        lastName: 'Session',
-        email: 'john-session@example.com',
-        login: 'john-session@example.com'
-      },
+      profile: utils.getMockProfile(),
       credentials: {
         password: { value: 'Abcd1234' }
       }
@@ -38,7 +33,7 @@ describe('Sessions API', () => {
 
   it('should allow me to refresh an existing session', async () => {
     // 1 - create sessionId
-    const transaction = await utils.authenticateUser(client, 'john-session@example.com', 'Abcd1234');
+    const transaction = await utils.authenticateUser(client, createdUser.profile.login, 'Abcd1234');
     const currentSession = await client.createSession({
       sessionToken: transaction.sessionToken
     });

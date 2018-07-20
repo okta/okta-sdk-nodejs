@@ -1,4 +1,6 @@
 const expect = require('chai').expect;
+const faker = require('faker');
+
 const utils = require('../utils');
 const okta = require('../../');
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
@@ -16,12 +18,7 @@ describe('Group-Rule API tests', () => {
   it('should implement the CRUD APIs for group-rule operations', async () => {
     // 1. Create a user and a group
     const newUser = {
-      profile: {
-        firstName: 'John',
-        lastName: 'With-Group-Rule',
-        email: 'john-with-group-rule@example.com',
-        login: 'john-with-group-rule@example.com'
-      },
+      profile: utils.getMockProfile(),
       credentials: {
         password: {value: 'Abcd1234'}
       }
@@ -43,7 +40,7 @@ describe('Group-Rule API tests', () => {
     // 2. Create a group rule and verify rule executes
     const rule = {
       type: 'group_rule',
-      name: 'Test group rule',
+      name: faker.random.word(),
       conditions: {
         people: {
           users: {
@@ -87,7 +84,7 @@ describe('Group-Rule API tests', () => {
     // 4. Deactivate the rule and update it
     await client.deactivateRule(createdRule.id);
 
-    createdRule.name = 'Test group rule updated';
+    createdRule.name = faker.random.word();
     createdRule.conditions.expression.value = 'user.lastName==\"incorrect\"';
     const updatedRule = await createdRule.update();
     await updatedRule.activate();

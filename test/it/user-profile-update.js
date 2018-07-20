@@ -16,12 +16,7 @@ describe('User API Tests', () => {
   it('should update the user profile', async () => {
     // 1. Create a user
     const newUser = {
-      profile: {
-        firstName: 'John',
-        lastName: 'Profile-Update',
-        email: 'john-profile-update@example.com',
-        login: 'john-profile-update@example.com'
-      },
+      profile: utils.getMockProfile(),
       credentials: {
         password: { value: 'Abcd1234' }
       }
