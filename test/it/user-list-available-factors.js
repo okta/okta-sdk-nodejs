@@ -10,7 +10,8 @@ if (process.env.OKTA_USE_MOCK) {
 
 const client = new okta.Client({
   orgUrl: orgUrl,
-  token: process.env.OKTA_CLIENT_TOKEN
+  token: process.env.OKTA_CLIENT_TOKEN,
+  requestExecutor: new okta.DefaultRequestExecutor()
 });
 
 describe('User API Tests', () => {
