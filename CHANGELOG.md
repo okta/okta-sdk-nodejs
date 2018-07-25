@@ -1,5 +1,9 @@
 # Okta Node SDK Changelog
 
+## 1.2.0
+
+- Adds a default request executor that will retry requests when rate limit exceptions have occurred.  Please see the [README](README.md) for full documentation.  This executor is opt-in for now, but will be used by default in the 2.0 release.
+
 ## 1.1.0
 
 - Add an HTTP cache for simple resources fetched by GET.
