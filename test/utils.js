@@ -175,6 +175,20 @@ function getMockProfile() {
   }
 }
 
+function getBookmarkApplication() {
+  return {
+    name: 'bookmark',
+    label: faker.random.words(),
+    signOnMode: 'BOOKMARK',
+    settings: {
+      app: {
+        requestIntegration: false,
+        url: 'https://example.com/bookmark.htm'
+      }
+    }
+  }
+}
+
 module.exports = {
   delay: delay,
   validateUser: validateUser,
@@ -191,5 +205,6 @@ module.exports = {
   cleanupGroup: cleanupGroup,
   cleanup: cleanup,
   removeAppByLabel: removeAppByLabel,
-  getMockProfile: getMockProfile
+  getMockProfile: getMockProfile,
+  getBookmarkApplication: getBookmarkApplication
 };

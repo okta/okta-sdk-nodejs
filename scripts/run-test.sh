@@ -3,7 +3,8 @@
 # Due to async/await being used in tests, we can't run node version < 8
 echo "Checking node version..."
 node --version | grep v8
-if [[ $? != 0 ]] ; then
+RETURN_CODE=$?
+if [ "${RETURN_CODE}" -ne "0" ]; then
     exit 0
 fi
 
