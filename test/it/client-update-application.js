@@ -18,7 +18,17 @@ const client = new okta.Client({
 describe('client.updateApplication()', () => {
 
   it('should allow me to get an application by ID', async () => {
-    const application = utils.getBookmarkApplication();
+    const application = {
+      name: 'bookmark',
+      label: 'my bookmark app',
+      signOnMode: 'BOOKMARK',
+      settings: {
+        app: {
+          requestIntegration: false,
+          url: 'https://example.com/bookmark.htm'
+        }
+      }
+    };
 
     let createdApplication;
 

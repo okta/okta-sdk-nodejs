@@ -18,7 +18,17 @@ const client = new okta.Client({
 describe('client.deleteApplicationGroupAssignment()', () => {
 
   it('should allow me to delete a group-application assignment', async () => {
-    const application = utils.getBookmarkApplication();
+    const application = {
+      name: 'bookmark',
+      label: 'my bookmark app',
+      signOnMode: 'BOOKMARK',
+      settings: {
+        app: {
+          requestIntegration: false,
+          url: 'https://example.com/bookmark.htm'
+        }
+      }
+    };
 
     const group = {
       profile: {

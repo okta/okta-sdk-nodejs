@@ -19,7 +19,17 @@ const client = new okta.Client({
 describe('client.createApplicationGroupAssignment()', () => {
 
   it('should allow me to assign a group to an application', async () => {
-    const application = utils.getBookmarkApplication();
+    const application = {
+      name: 'bookmark',
+      label: 'my bookmark app',
+      signOnMode: 'BOOKMARK',
+      settings: {
+        app: {
+          requestIntegration: false,
+          url: 'https://example.com/bookmark.htm'
+        }
+      }
+    };
 
     const group = {
       profile: {

@@ -20,7 +20,7 @@ const client = new okta.Client({
 describe('client.listApplications()', () => {
   const app1 = {
     name: 'bookmark',
-    label: 'Bookmark App',
+    label: 'my bookmark app',
     signOnMode: 'BOOKMARK',
     settings: {
       app: {
