@@ -18,17 +18,7 @@ const client = new okta.Client({
 describe('Application.activate() / Application.deactivate()', () => {
 
   it('should allow me to activate/deactivate the application', async () => {
-    const application = {
-      name: 'bookmark',
-      label: 'my bookmark app',
-      signOnMode: 'BOOKMARK',
-      settings: {
-        app: {
-          requestIntegration: false,
-          url: 'https://example.com/bookmark.htm'
-        }
-      }
-    };
+    const application = utils.getBookmarkApplication();
 
     let createdApplication;
 
