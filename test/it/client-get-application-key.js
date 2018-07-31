@@ -19,17 +19,7 @@ const client = new okta.Client({
 describe('client.getApplicationKey()', () => {
 
   it('should allow me to get an application key for an application', async () => {
-    const application = {
-      name: 'bookmark',
-      label: 'my bookmark app',
-      signOnMode: 'BOOKMARK',
-      settings: {
-        app: {
-          requestIntegration: false,
-          url: 'https://example.com/bookmark.htm'
-        }
-      }
-    };
+    const application = utils.getBookmarkApplication();
 
     let createdApplication;
 

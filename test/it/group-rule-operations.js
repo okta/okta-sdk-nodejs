@@ -41,7 +41,7 @@ describe('Group-Rule API tests', () => {
     // 2. Create a group rule and verify rule executes
     const rule = {
       type: 'group_rule',
-      name: faker.random.word(),
+      name: faker.random.words(),
       conditions: {
         people: {
           users: {
@@ -85,7 +85,7 @@ describe('Group-Rule API tests', () => {
     // 4. Deactivate the rule and update it
     await client.deactivateRule(createdRule.id);
 
-    createdRule.name = faker.random.word();
+    createdRule.name = faker.random.words();
     createdRule.conditions.expression.value = 'user.lastName==\"incorrect\"';
     const updatedRule = await createdRule.update();
     await updatedRule.activate();
@@ -95,8 +95,8 @@ describe('Group-Rule API tests', () => {
     expect(userInGroup).to.equal(false);
 
     // 5. Delete the group, user and group rule
-    await utils.cleanup(client, createdUser, createdGroup);
     await updatedRule.deactivate();
     await updatedRule.delete();
+    await utils.cleanup(client, createdUser, createdGroup);
   });
 });

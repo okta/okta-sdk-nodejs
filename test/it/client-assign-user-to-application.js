@@ -19,17 +19,7 @@ const client = new okta.Client({
 describe('client.assignUserToApplication()', () => {
 
   it('should allow me to assign a user to a application', async () => {
-    const application = {
-      name: 'bookmark',
-      label: 'my bookmark app',
-      signOnMode: 'BOOKMARK',
-      settings: {
-        app: {
-          requestIntegration: false,
-          url: 'https://example.com/bookmark.htm'
-        }
-      }
-    };
+    const application = utils.getBookmarkApplication();
 
     const user = {
       profile: utils.getMockProfile(),

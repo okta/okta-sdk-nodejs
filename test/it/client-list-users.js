@@ -33,7 +33,7 @@ describe('client.list-users()', () => {
     await utils.cleanup(client, newUser);
 
     // Add an unmapped property to the user profile
-    newUser.profile.nickName = 'johny-list-users';
+    newUser.profile.nickName = utils.getMockProfile().firstName;
 
     _user = await client.createUser(newUser);
   });

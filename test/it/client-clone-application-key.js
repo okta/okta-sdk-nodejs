@@ -19,17 +19,7 @@ const client = new okta.Client({
 describe.skip('client.cloneApplicationKey()', () => {
 
   it('should allow me to clone a key from one app to another app', async () => {
-    const application = {
-      name: 'bookmark',
-      label: 'my bookmark app',
-      signOnMode: 'BOOKMARK',
-      settings: {
-        app: {
-          requestIntegration: false,
-          url: 'https://example.com/bookmark.htm'
-        }
-      }
-    };
+    const application = utils.getBookmarkApplication();
 
     const application2 = {
       name: 'bookmark',
