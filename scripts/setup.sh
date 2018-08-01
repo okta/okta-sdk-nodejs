@@ -1,4 +1,4 @@
-#!/bin/bash -vx
+#!/bin/bash
 
 cd ${OKTA_HOME}/${REPO}
 
@@ -6,8 +6,8 @@ cd ${OKTA_HOME}/${REPO}
 # these repos (and causes problems in lookups)
 npm config set cache-min 10
 
-# Use newer, faster npm
-npm install -g npm@4.0.2
+# Add yarn to the $PATH so npm cli commands do not fail
+export PATH="${PATH}:$(yarn global bin)"
 
 if ! npm install; then
   echo "npm install failed! Exiting..."
