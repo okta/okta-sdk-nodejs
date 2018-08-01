@@ -1,5 +1,4 @@
 #!/bin/bash
-set -e
 
 SOURCE_BRANCH="master"
 TARGET_BRANCH="gh-pages"
@@ -43,9 +42,9 @@ echo "Stored: REPO=${REPO}"
 
 # Clone the existing gh-pages for this repo into jsdoc/
 rm -rf jsdoc
-git clone $REPO jsdoc
+git clone ${REPO} jsdoc
 cd jsdoc
-git checkout $TARGET_BRANCH || createGhPages
+git checkout ${TARGET_BRANCH} || createGhPages
 cd ..
 
 mkdir -p jsdoc/jsdocs/${CURRENT_VERSION}/
@@ -64,4 +63,4 @@ git add -A ./jsdocs/
 git commit -m ":arrow_up: Release jsdocs for version: ${CURRENT_VERSION}"
 
 # Now that we're all set up, we can push.
-git push $SSH_REPO $TARGET_BRANCH
+git push ${SSH_REPO} ${TARGET_BRANCH}
