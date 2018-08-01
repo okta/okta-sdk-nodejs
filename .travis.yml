@@ -5,7 +5,7 @@ node_js:
 sudo: false
 script:
   - if [[ $DEPLOY_DOCS ]]; then bash ./scripts/docs.sh; fi
-  - if [[ $TRAVIS_EVENT_TYPE == "cron" ]]; then bash ./scripts/cron-test.sh; fi
+  - sh ./scripts/run-test.sh
 deploy:
   provider: pages
   skip_cleanup: true
