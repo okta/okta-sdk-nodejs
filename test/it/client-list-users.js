@@ -16,8 +16,6 @@ const client = new okta.Client({
   requestExecutor: new okta.DefaultRequestExecutor()
 });
 
-let userCount = 0;
-
 describe('client.list-users()', () => {
   let _user;
 
@@ -65,24 +63,10 @@ describe('client.list-users()', () => {
 });
 
 describe('client.listUsers().each()', () => {
-  it('should return User models', async () => {
+  it('should allow me to iterate the entire collection and return User models', async () => {
     await client.listUsers().each(user => {
-      userCount++;
       expect(user).to.be.an.instanceof(models.User);
-    });
-  });
-
-  it('should allow me to continue iteration asynchronously, using a promise', () => {
-    let localCount = 0;
-    return client.listUsers().each(() => {
-      localCount++;
-      return new Promise((resolve) => {
-        setTimeout(resolve.bind(null));
-      });
     })
-    .then(() => {
-      expect(localCount).to.equal(userCount);
-    });
   });
 
   it('should allow me to abort iteration synchronously', async () => {
@@ -135,7 +119,7 @@ describe('client.listUsers().next()', () => {
     function iter(result) {
       localCount++;
       if (result.done) {
-        expect(localCount, 'next() count should be same as each() count').to.equal(userCount);
+        expect(localCount, 'next() count should be greater than 1').to.greaterThan(1);
         return result.value;
       }
       return collection.next()
