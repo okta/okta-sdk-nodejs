@@ -22,7 +22,7 @@ describe('ApplicationGroupAssignment.delete(:appId)', () => {
 
     const group = {
       profile: {
-        name: 'test group'
+        name: 'Application delete group'
       }
     };
 

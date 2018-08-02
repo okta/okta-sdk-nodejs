@@ -23,7 +23,7 @@ describe('client.getApplicationGroupAssignment()', () => {
 
     const group = {
       profile: {
-        name: 'test group'
+        name: 'Application client get group'
       }
     };
 
