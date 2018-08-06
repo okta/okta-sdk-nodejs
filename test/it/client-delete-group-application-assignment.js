@@ -22,7 +22,7 @@ describe('client.deleteApplicationGroupAssignment()', () => {
 
     const group = {
       profile: {
-        name: 'test group'
+        name: 'Application delete assignment group'
       }
     };
 
