@@ -27,7 +27,7 @@ describe('client.updateApplication()', () => {
       await utils.removeAppByLabel(client, application.label);
       createdApplication = await client.createApplication(application);
 
-      const updatedLabel = faker.random.words();
+      const updatedLabel = faker.random.word();
       createdApplication.label = updatedLabel;
       await createdApplication.update();
       expect(createdApplication.label).to.equal(updatedLabel);
