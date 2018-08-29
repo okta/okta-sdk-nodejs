@@ -19,7 +19,7 @@ describe('Sessions API', () => {
   before(async () => {
     // 1. Create a user
     const newUser = {
-      profile: utils.getMockProfile(),
+      profile: utils.getMockProfile('session-get'),
       credentials: {
         password: { value: 'Abcd1234' }
       }

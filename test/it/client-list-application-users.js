@@ -22,7 +22,7 @@ describe('client.listApplicationUsers()', () => {
     const application = utils.getBookmarkApplication();
 
     const user = {
-      profile: utils.getMockProfile(),
+      profile: utils.getMockProfile('client-list-application-users'),
       credentials: {
         password: { value: 'Abcd1234' }
       }

@@ -18,7 +18,7 @@ describe('Group-Member API Tests', () => {
   it('should implement the CRUD operations for Group-Member APIs', async () => {
     // 1. Create a user and a group
     const newUser = {
-      profile: utils.getMockProfile(),
+      profile: utils.getMockProfile('group-user-operations'),
       credentials: {
         password: {value: 'Abcd1234'}
       }

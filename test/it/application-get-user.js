@@ -21,7 +21,7 @@ describe('Application.getApplicationUser()', () => {
     const application = utils.getBookmarkApplication();
 
     const user = {
-      profile: utils.getMockProfile(),
+      profile: utils.getMockProfile('application-get-user'),
       credentials: {
         password: { value: 'Abcd1234' }
       }

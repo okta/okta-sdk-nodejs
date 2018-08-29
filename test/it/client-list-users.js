@@ -21,7 +21,7 @@ describe('client.list-users()', () => {
 
   before(async () => {
     let newUser = {
-      profile: utils.getMockProfile(),
+      profile: utils.getMockProfile('client-list-users'),
       credentials: {
         password: {value: 'Abcd1234'}
       }
@@ -31,7 +31,7 @@ describe('client.list-users()', () => {
     await utils.cleanup(client, newUser);
 
     // Add an unmapped property to the user profile
-    newUser.profile.nickName = utils.getMockProfile().firstName;
+    newUser.profile.nickName = 'Nicky';
 
     _user = await client.createUser(newUser);
   });
@@ -106,6 +106,29 @@ describe('client.listUsers().each()', () => {
 });
 
 describe('client.listUsers().next()', () => {
+  let _user;
+
+  before(async () => {
+    let newUser = {
+      profile: utils.getMockProfile('client-list-users'),
+      credentials: {
+        password: {value: 'Abcd1234'}
+      }
+    };
+
+    // Cleanup the user if user exists
+    await utils.cleanup(client, newUser);
+
+    // Add an unmapped property to the user profile
+    newUser.profile.nickName = 'Nicky';
+
+    _user = await client.createUser(newUser);
+  });
+
+  after(async () => {
+    await utils.cleanup(client, _user);
+  });
+
   it('should return User models', () => {
     return client.listUsers().next()
     .then(result => {
