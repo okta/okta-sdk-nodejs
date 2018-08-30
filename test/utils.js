@@ -166,10 +166,10 @@ async function removeAppByLabel(client, label) {
   });
 }
 
-function getMockProfile() {
+function getMockProfile(testName) {
   return {
-    firstName: faker.name.firstName(),
-    lastName: faker.name.lastName(),
+    firstName: testName,
+    lastName: 'okta-sdk-nodejs',
     email: faker.internet.email(),
     login: faker.internet.email()
   }

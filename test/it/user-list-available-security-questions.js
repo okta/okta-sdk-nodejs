@@ -17,7 +17,7 @@ const client = new okta.Client({
 describe('User API Tests', () => {
   it('should allow the user\'s available security questions to be listed', async () => {
     const newUser = {
-      profile: utils.getMockProfile(),
+      profile: utils.getMockProfile('user-list-available-security-questions'),
       credentials: {
         password: { value: 'Abcd1234' }
       }

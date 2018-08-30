@@ -21,7 +21,7 @@ describe('client.deleteApplicationUser()', () => {
     const application = utils.getBookmarkApplication();
 
     const user = {
-      profile: utils.getMockProfile(),
+      profile: utils.getMockProfile('client-delete-application-user'),
       credentials: {
         password: { value: 'Abcd1234' }
       }

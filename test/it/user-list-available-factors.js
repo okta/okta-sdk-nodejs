@@ -19,7 +19,7 @@ describe('User API Tests', () => {
   // AssertionError: expected { Object (factorType, provider, ...) } to be an instance of Factor
   it.skip('should allow the user\'s factor catalog (supported factors) to be listed', async () => {
     const newUser = {
-      profile: utils.getMockProfile(),
+      profile: utils.getMockProfile('user-list-available-factors'),
       credentials: {
         password: { value: 'Abcd1234' }
       }

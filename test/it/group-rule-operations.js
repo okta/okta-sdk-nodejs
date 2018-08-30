@@ -19,7 +19,7 @@ describe('Group-Rule API tests', () => {
   it('should implement the CRUD APIs for group-rule operations', async () => {
     // 1. Create a user and a group
     const newUser = {
-      profile: utils.getMockProfile(),
+      profile: utils.getMockProfile('group-rule-operations'),
       credentials: {
         password: {value: 'Abcd1234'}
       }

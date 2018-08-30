@@ -17,7 +17,7 @@ describe('User API Tests', () => {
   it('should activate a user', async () => {
     // 1. Create a user
     const newUser = {
-      profile: utils.getMockProfile(),
+      profile: utils.getMockProfile('user-activate'),
       credentials: {
         password: { value: 'Abcd1234' }
       }

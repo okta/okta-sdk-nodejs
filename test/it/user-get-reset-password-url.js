@@ -16,7 +16,7 @@ describe('User API Tests', () => {
   it('should get reset password URL', async () => {
     // 1. Create a user
     const newUser = {
-      profile: utils.getMockProfile(),
+      profile: utils.getMockProfile('user-get-reset-password-url'),
       credentials: {
         password: { value: 'Abcd1234' }
       }

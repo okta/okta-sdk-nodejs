@@ -24,7 +24,7 @@ describe('Factors API', () => {
   before(async () => {
     // 1. Create a user
     const newUser = {
-      profile: utils.getMockProfile(),
+      profile: utils.getMockProfile('factor-delete'),
       credentials: {
         password: { value: 'Abcd1234' }
       }

@@ -24,7 +24,7 @@ describe('Factors API', () => {
   before(async () => {
     // 1. Create a user
     const newUser = {
-      profile: utils.getMockProfile(),
+      profile: utils.getMockProfile('factor-verify'),
       credentials: {
         password: { value: 'Abcd1234' }
       }
@@ -32,6 +32,10 @@ describe('Factors API', () => {
     // Cleanup the user if user exists
     await utils.cleanup(client, newUser);
     createdUser = await client.createUser(newUser);
+  });
+
+  after(async () => {
+    return utils.cleanup(client, createdUser);
   });
 
   it('should allow me to verify a Security Question factor', async () => {

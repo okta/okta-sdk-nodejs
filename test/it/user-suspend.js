@@ -17,7 +17,7 @@ describe('User API Tests', () => {
   it('should suspend/unsuspend a user', async () => {
     // 1. Create a user
     const newUser = {
-      profile: utils.getMockProfile(),
+      profile: utils.getMockProfile('user-suspend'),
       credentials: {
         password: { value: 'Abcd1234' }
       }
