@@ -33,6 +33,6 @@ describe('Group API tests', () => {
     expect(groupPresent).to.equal(true);
 
     // 3. Delete the group
-    await utils.cleanup(client, null, createdGroup);
+    await client.deleteGroup(createdGroup.id);
   });
 });

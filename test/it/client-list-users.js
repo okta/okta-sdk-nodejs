@@ -109,7 +109,7 @@ describe('client.listUsers().next()', () => {
   let _user;
 
   before(async () => {
-    let newUser = {
+    const newUser = {
       profile: utils.getMockProfile('client-list-users'),
       credentials: {
         password: {value: 'Abcd1234'}
