@@ -50,7 +50,7 @@ describe('client.list-users()', () => {
     // The search indexing is not instant, so give it some time to settle
 
     await utils.delay(2000);
-    let queryParameters = { search: `profile.nickName eq "${_user.profile.nickName}"` };
+    let queryParameters = { filter: `profile.firstName eq "${_user.profile.firstName}"` };
     await client.listUsers(queryParameters).each(user => {
       foundUser = user;
       foundUserCount++;
