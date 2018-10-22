@@ -3,6 +3,7 @@ const expect = require('chai').expect;
 const okta = require('../../');
 const models = require('../../src/models');
 const utils = require('../utils');
+const faker = require('faker');
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -48,7 +49,7 @@ describe('client.createApplication()', () => {
   it('should allow me to create a basic authentication application', async () => {
     const application = {
       name: 'template_basic_auth',
-      label: 'Sample Basic Auth App',
+      label: `Sample Basic Auth App - ${faker.random.word}`,
       signOnMode: 'BASIC_AUTH',
       settings: {
         app: {
@@ -85,7 +86,7 @@ describe('client.createApplication()', () => {
   it('should allow me to create a SWA plugin application', async () => {
     const application = {
       name: 'template_swa',
-      label: 'Sample Plugin App',
+      label: `Sample Plugin App - - ${faker.random.word}`,
       signOnMode: 'BROWSER_PLUGIN',
       settings: {
         app: {
@@ -127,7 +128,7 @@ describe('client.createApplication()', () => {
   it('should allow me to create a 3-field SWA plugin application', async () => {
     const application = {
       name: 'template_swa3field',
-      label: 'Sample Plugin App 3-field',
+      label: `Sample Plugin App 3-field - ${faker.random.word}`,
       signOnMode: 'BROWSER_PLUGIN',
       settings: {
         app: {
@@ -173,7 +174,7 @@ describe('client.createApplication()', () => {
   it('should allow me to create a SWA no-plugin application', async () => {
     const application = {
       name: 'template_sps',
-      label: 'Example SWA App',
+      label: `Example SWA App - ${faker.random.word}`,
       signOnMode: 'SECURE_PASSWORD_STORE',
       settings: {
         app: {
@@ -223,7 +224,7 @@ describe('client.createApplication()', () => {
 
   it('should allow me to create a custom SWA application', async () => {
     const application = {
-      label: 'Example Custom SWA App',
+      label: `Example Custom SWA App - ${faker.random.word}`,
       visibility: {
         autoSubmitToolbar: false,
         hide: {
@@ -265,7 +266,7 @@ describe('client.createApplication()', () => {
 
   it('should allow me to create a custom SAML application', async () => {
     const application = {
-      label: 'Example Custom SAML 2.0 App',
+      label: `Example Custom SAML 2.0 App - ${faker.random.word}`,
       visibility: {
         autoSubmitToolbar: false,
         hide: {
@@ -350,7 +351,7 @@ describe('client.createApplication()', () => {
   it.skip('should allow me to create a custom WS-Fed application', async () => {
     const application = {
       name: 'template_wsfed',
-      label: 'Sample WS-Fed App',
+      label: `Sample WS-Fed App - ${faker.random.word}`,
       signOnMode: 'WS_FEDERATION',
       settings: {
         app: {
@@ -406,7 +407,7 @@ describe('client.createApplication()', () => {
   it('should allow me to create a OIDC client application', async () => {
     const application = {
       name: 'oidc_client',
-      label: 'Sample Client',
+      label: `Sample Client - ${faker.random.word}`,
       signOnMode: 'OPENID_CONNECT',
       credentials: {
         oauthClient: {
