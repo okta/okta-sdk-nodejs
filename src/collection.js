@@ -57,6 +57,12 @@ class Collection {
     });
   }
 
+  [Symbol.asyncIterator]() {
+    return {
+      next: () => this.next()
+    };
+  }
+
   getNextPage() {
     return this.client.http.http(this.nextUri, null, {isCollection: true})
     .then(res => {
