@@ -18,7 +18,7 @@ class MemoryStore {
     this._store = new Map();
 
     // Purge based on expiration every x milliseconds
-    if (options.expirationPoll !== null) {
+    if (options.expirationPoll) {
       setInterval(() => {
         const now = Date.now();
         for (let entry of this._store.entries()) {
@@ -28,7 +28,7 @@ class MemoryStore {
             this._store.delete(key);
           }
         }
-      }, options.expirationPoll || 15000);
+      }, isNaN(options.expirationPoll) ? 15000 : options.expirationPoll);
     }
   }
 
