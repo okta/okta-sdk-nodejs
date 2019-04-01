@@ -19,7 +19,7 @@ class MemoryStore {
 
     // Purge based on expiration every x milliseconds
     if (options.expirationPoll) {
-      setInterval(() => {
+      this._interval = setInterval(() => {
         const now = Date.now();
         for (let entry of this._store.entries()) {
           const key = entry[0];
