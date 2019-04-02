@@ -27,8 +27,7 @@ const okta = require('@okta/okta-sdk-nodejs');
 
 const client = new okta.Client({
   orgUrl: 'https://{yourOktaDomain}/',
-  token: 'xYzabc',    // Obtained from Developer Dashboard
-  requestExecutor: new okta.DefaultRequestExecutor() // Will be added by default in 2.0
+  token: 'xYzabc'    // Obtained from Developer Dashboard
 });
 ```
 
@@ -491,7 +490,7 @@ To speed up your service, we enable caching by default to prevent unnecessary re
 
 By default, the SDK uses an in-memory cache, `MemoryStore`.
 
-By default, expired keys are only removed on attempted retrieval. If a key is never retrieved, it will remain in the cache, which may grow until it hits maximum size. 
+By default, expired keys are only removed on attempted retrieval. If a key is never retrieved, it will remain in the cache, which may grow until it hits maximum size.
 
 To prevent this behavior, and instead remove expired values from memory proactively, set a value for `expirationPoll` and the `MemoryStore` will periodically scan the *entire* store in memory to remove expired keys.
 
@@ -615,9 +614,9 @@ client.createUser()
 
 ## Request Executor
 
-This SDK uses the concept of a request executor, a class that is responsible for making HTTP requests to the API and fulfilling the responses for the client. Please see the [RequestExecutor] class.  The class is a simple proxy to the [isomorphic-fetch] library.
+This SDK uses the concept of a request executor, the [RequestExecutor] class, which is a base class that is responsible for making HTTP requests to the API and fulfilling the responses for the client. This class is a simple proxy to the [isomorphic-fetch] library.
 
-The SDK ships with the base request executor and a default request executor, described in detail below.  We suggest using the default request executor, and will be adding this by default in the next major version.
+In addition to the base [RequestExecutor], the SDK ships with a "default" request executor, [DefaultRequestExecutor], which is used by default and extends the base with 429 retry logic.
 
 You can create your own executor or extend one of ours, which allows you to define global logic for all HTTP requests made by this library.  Please see the [Building a Custom Request Executor](#building-a-custom-request-executor) section for more information.
 
@@ -631,7 +630,7 @@ The default executor extends the [base executor](#base-request-executor) and wil
 * **`requestTimeout`** - How long to wait before giving up on the request, regardless of how many retries are made.  Defined in milliseconds and defaults to 0, which disables the request timeout.
 
 ```javascript
-const defaultRequestExecutor = new okta.DefaultRequestExecutor({
+const customDefaultRequestExecutor = new okta.DefaultRequestExecutor({
   maxRetries: 2,
   requestTimeout: 0 // Specify in milliseconds if needed
 })
@@ -639,7 +638,7 @@ const defaultRequestExecutor = new okta.DefaultRequestExecutor({
 const client = new okta.Client({
   orgUrl: 'https://{yourOktaDomain}/',
   token: 'xYzabc',    // Obtained from Developer Dashboard
-  requestExecutor: defaultRequestExecutor
+  requestExecutor: customDefaultRequestExecutor
 });
 ```
 
