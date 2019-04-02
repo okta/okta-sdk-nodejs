@@ -481,7 +481,11 @@ To speed up your service, we enable caching by default to prevent unnecessary re
 
 ### Storage
 
-By default, the SDK uses an in-memory cache. Here's how to configure that cache:
+By default, the SDK uses an in-memory cache, `MemoryStore`.
+
+By default, expired keys are only removed on attempted retrieval. If a key is never retrieved, it will remain in the cache, which may grow until it hits maximum size. 
+
+To prevent this behavior, and instead remove expired values from memory proactively, set a value for `expirationPoll` and the `MemoryStore` will periodically scan the *entire* store in memory to remove expired keys.
 
 ```javascript
 const okta = require('@okta/okta-sdk-nodejs');
@@ -492,15 +496,16 @@ const client = new okta.Client({
   token: 'xYzabc', // Obtained from Developer Dashboard
   cacheStore: new MemoryStore({
     keyLimit: 100000,
-    expirationPoll: 15000
+    expirationPoll: true
   })
 });
 ```
 
-Configuration options:
+`MemoryStore` configuration options:
 
 * `keyLimit` - Max number of keys stored (default is 100000). The oldest keys are deleted as new keys are set.
-* `expirationPoll` - Time in ms to purge expired keys (default is 15000). Expired keys are usually removed on attempted retrieval. If a key isn't retrieved, it will remain in the cache forever. To prevent this, we periodically scan the entire store to remove expired keys. If you'd like to remove this poll, set it to `null`.
+* `expirationPoll` - The time, in milliseconds, between memory scans. If the value is *true*, a value of 15000 is used. (default is false, no scanning)
+
 
 #### Custom Storage
 
