@@ -17,5 +17,12 @@ if ! npm install; then
   exit ${FAILED_SETUP}
 fi
 
-npm run test:unit
-npm run test:integration
+if [[ $TRAVIS_EVENT_TYPE = 'push' ]]; then
+  npm run test:integration
+elif [[ $TRAVIS_EVENT_TYPE = 'pull_request' ]]; then
+  # external contributors don't have access to travis env vars. We run only unit tests
+  npm run test:unit
+else # for cron jobs, run both tests
+  npm run test:integration
+  npm run test:unit
+fi
