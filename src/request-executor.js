@@ -19,6 +19,13 @@ class RequestExecutor extends EventEmitter {
     return isoFetch(request.url, request).then(response => {
       this.emit('response', response);
       return response;
+    })
+    .catch(e => {
+      if (e.code === 'ENOTFOUND') {
+        // eslint-disable-next-line no-console
+        console.error(e);
+        process.exit(1);
+      }
     });
   }
 }
