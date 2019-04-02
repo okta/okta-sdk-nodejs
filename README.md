@@ -153,6 +153,14 @@ orgUsersCollection.each(user => {
 .then(() => console.log('All users have been listed'));
 ```
 
+If you're using a version of Node 10 or greater, you can use async iterators.
+
+```javascript
+for await (let user of client.listUsers()) {
+    console.log(user);
+}
+```
+
 For more information about this API see [Users: Get User].
 
 #### Search for Users
