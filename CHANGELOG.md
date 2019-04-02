@@ -2,7 +2,8 @@
 
 ## 2.0.0
 - Drop support for Node 4
-- New behavior for 'expirationPoll' option on MemoryStore. The expiration poll feature is now opt-in. By default there will be *no* memory scan to proactively remove key values. Passing a number or null for 'expirationPoll' will behave as before. Passing a value of *true* will use a default of 15000ms.
+- New behavior for `expirationPoll` option on MemoryStore. The expiration poll feature is now opt-in. By default there will be *no* memory scan to proactively remove key values. Passing a number or null for `expirationPoll` will behave as before. Passing a value of `true` will use a default of 15000ms.
+- The [DefaultRequestExecutor] is now used by default, if no request executor is provided.
 
 ## 1.2.0
 
@@ -33,3 +34,5 @@
 ## 0.1.0
 
 - First release with support for User and Group APIs
+
+[DefaultRequestExecutor]: src/default-request-executor.js

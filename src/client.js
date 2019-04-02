@@ -14,7 +14,7 @@ const os = require('os');
 const packageJson = require('../package.json');
 
 const ConfigLoader = require('./config-loader');
-const RequestExecutor = require('./request-executor');
+const DefaultRequestExecutor = require('./default-request-executor');
 const GeneratedApiClient = require('./generated-client');
 const Http = require('./http');
 const DEFAULT_USER_AGENT = `${packageJson.name}/${packageJson.version} node/${process.versions.node} ${os.platform()}/${os.release()}`;
@@ -38,7 +38,7 @@ class Client extends GeneratedApiClient {
 
     const parsedConfig = configLoader.config;
 
-    this.requestExecutor = clientConfig.requestExecutor || new RequestExecutor();
+    this.requestExecutor = clientConfig.requestExecutor || new DefaultRequestExecutor();
 
     if (!parsedConfig.client.orgUrl) {
       throw new Error(`Okta Org URL not provided, see ${repoUrl} for usage.`);
