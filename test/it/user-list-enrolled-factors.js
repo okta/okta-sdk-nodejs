@@ -44,7 +44,7 @@ describe('User API tests', () => {
       factorType: 'sms',
       provider: 'OKTA',
       profile: {
-        phoneNumber: '415 123 1234'
+        phoneNumber: '150 055 50006'
       }
     };
     const securityQuestionFactor = {
