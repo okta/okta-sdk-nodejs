@@ -33,9 +33,8 @@ const client = new okta.Client({
 
 It is also possible to provide configuration through environment variables or YAML files.  Please see [Configuration](#configuration) for examples.
 
-All interaction with the [Okta Platform API] is done through client methods.  Some examples are below, but for a full list of methods please refer to the JsDoc page for the client:
-
-https://developer.okta.com/okta-sdk-nodejs/jsdocs/Client.html
+All interactions with the [Okta Platform API] is done through client methods.  Some examples are below, but for a full
+ list of methods please refer to the JsDoc page for the [Client].
 
 
 
@@ -727,6 +726,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) if you would like to propose changes to t
 [Applications: Add Application]: https://developer.okta.com/docs/api/resources/apps.html#add-application
 [Applications: User Operations]:https://developer.okta.com/docs/api/resources/apps.html#application-user-operations
 [Basic Authentication Application]: https://developer.okta.com/docs/api/resources/apps.html#add-basic-authentication-application
+[Client]: https://developer.okta.com/okta-sdk-nodejs/jsdocs/Client.html
 [DefaultRequestExecutor]: src/default-request-executor.js
 [Groups: Add Group]: https://developer.okta.com/docs/api/resources/groups.html#add-group
 [isomorphic-fetch]: https://github.com/matthew-andrews/isomorphic-fetch
