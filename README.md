@@ -721,11 +721,11 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) if you would like to propose changes to t
 [Sessions: Create Session with Session Token]: https://developer.okta.com/docs/api/resources/sessions.html#create-session-with-session-token
 [Sessions: Session Properties]: https://developer.okta.com/docs/api/resources/sessions.html#session-properties
 [Sessions: Session Operations]: https://developer.okta.com/docs/api/resources/sessions.html#session-operations
-[Applications]: https://developer.okta.com/docs/api/resources/apps.html
-[Applications: Application User Profile]: https://developer.okta.com/docs/api/resources/apps.html#application-user-profile-object
-[Applications: Add Application]: https://developer.okta.com/docs/api/resources/apps.html#add-application
-[Applications: User Operations]:https://developer.okta.com/docs/api/resources/apps.html#application-user-operations
-[Basic Authentication Application]: https://developer.okta.com/docs/api/resources/apps.html#add-basic-authentication-application
+[Applications]: https://developer.okta.com/docs/api/resources/apps/
+[Applications: Application User Profile]: https://developer.okta.com/docs/api/resources/apps/#application-user-profile-object
+[Applications: Add Application]: https://developer.okta.com/docs/api/resources/apps/#add-application
+[Applications: User Operations]:https://developer.okta.com/docs/api/resources/apps/#application-user-operations
+[Basic Authentication Application]: https://developer.okta.com/docs/api/resources/apps/#add-basic-authentication-application
 [Client]: https://developer.okta.com/okta-sdk-nodejs/jsdocs/Client.html
 [DefaultRequestExecutor]: src/default-request-executor.js
 [Groups: Add Group]: https://developer.okta.com/docs/api/resources/groups.html#add-group
