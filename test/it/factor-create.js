@@ -84,7 +84,7 @@ describe('Factors API', () => {
       factorType: 'sms',
       provider: 'OKTA',
       profile: {
-        phoneNumber: '150 055 50006'
+        phoneNumber: '151 093 56023'
       }
     };
     const createdFactor = await client.addFactor(createdUser.id, factor);
