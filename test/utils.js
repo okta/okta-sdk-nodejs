@@ -189,6 +189,33 @@ function getBookmarkApplication() {
   }
 }
 
+function getOauth2ClientApp() {
+  return {
+    name: 'oidc_client',
+    label: faker.random.words(),
+    signOnMode: 'OPENID_CONNECT',
+    settings: {
+      oauthClient: {
+        client_uri: 'http://localhost:8080',
+        redirect_uris: [
+          'https://example.com/oauth2/callback',
+          'myapp://callback'
+        ],
+        response_types: [
+          'token',
+          'id_token',
+          'code'
+        ],
+        grant_types: [
+          'implicit',
+          'authorization_code'
+        ],
+        application_type: 'native'
+      }
+    }
+  }
+}
+
 module.exports = {
   delay: delay,
   validateUser: validateUser,
@@ -206,5 +233,6 @@ module.exports = {
   cleanup: cleanup,
   removeAppByLabel: removeAppByLabel,
   getMockProfile: getMockProfile,
-  getBookmarkApplication: getBookmarkApplication
+  getBookmarkApplication: getBookmarkApplication,
+  getOauth2ClientApp: getOauth2ClientApp
 };

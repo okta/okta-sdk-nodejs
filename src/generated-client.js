@@ -1,5 +1,5 @@
 /*!
- * Copyright (c) 2017-2018, Okta, Inc. and/or its affiliates. All rights reserved.
+ * Copyright (c) 2017-2019, Okta, Inc. and/or its affiliates. All rights reserved.
  * The Okta software accompanied by this notice is provided pursuant to the Apache License, Version 2.0 (the "License.")
  *
  * You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0.
@@ -733,6 +733,45 @@ class GeneratedApiClient {
     url += queryString ? ('?' + queryString) : '';
 
     return new Collection(this, url, new ModelFactory(models.LogEvent));
+  }
+
+  /**
+   *
+   * @param instanceId {String}
+   * @description
+   * Fetches the default schema for an App User
+   * @returns {Promise<AppUserSchema>}
+   */
+  getAppUserSchema(instanceId) {
+    let url = `${this.baseUrl}/api/v1/meta/schemas/apps/${instanceId}/default`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/meta/schemas/apps/${instanceId}`
+    ];
+
+    const request = this.http.getJson(url, null, {resources});
+    return request.then(jsonRes => new models.AppUserSchema(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param instanceId {String}
+   * @param {AppUserSchema} appUserSchema
+   * @description
+   * Adds, Updates, or Removes one or more custom app user profile properties of the app user schema
+   * @returns {Promise<AppUserSchema>}
+   */
+  editAppUserSchemaProfile(instanceId, appUserSchema) {
+    let url = `${this.baseUrl}/api/v1/meta/schemas/apps/${instanceId}/default`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/meta/schemas/apps/${instanceId}`
+    ];
+
+    const request = this.http.postJson(url, {
+      body: appUserSchema
+    }, {resources});
+    return request.then(jsonRes => new models.AppUserSchema(jsonRes, this));
   }
 
   /**

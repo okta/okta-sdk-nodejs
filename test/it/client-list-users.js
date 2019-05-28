@@ -66,7 +66,7 @@ describe('client.listUsers().each()', () => {
   it('should allow me to iterate the entire collection and return User models', async () => {
     await client.listUsers().each(user => {
       expect(user).to.be.an.instanceof(models.User);
-    })
+    });
   });
 
   it('should allow me to abort iteration synchronously', async () => {

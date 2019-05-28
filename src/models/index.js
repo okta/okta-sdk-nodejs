@@ -1,5 +1,5 @@
 /*!
- * Copyright (c) 2017-2018, Okta, Inc. and/or its affiliates. All rights reserved.
+ * Copyright (c) 2017-2019, Okta, Inc. and/or its affiliates. All rights reserved.
  * The Okta software accompanied by this notice is provided pursuant to the Apache License, Version 2.0 (the "License.")
  *
  * You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0.
@@ -34,6 +34,11 @@ exports.ApplicationSettingsNotifications = require('./ApplicationSettingsNotific
 exports.ApplicationSettingsNotificationsVpn = require('./ApplicationSettingsNotificationsVpn');
 exports.ApplicationSettingsNotificationsVpnNetwork = require('./ApplicationSettingsNotificationsVpnNetwork');
 exports.ApplicationSignOnMode = require('./ApplicationSignOnMode');
+exports.AppUserSchema = require('./AppUserSchema');
+exports.AppUserModelPropertySet = require('./AppUserModelPropertySet');
+exports.AppUserProfileBaseDefinition = require('./AppUserProfileBaseDefinition');
+exports.AppUserProfileCustomDefinition = require('./AppUserProfileCustomDefinition');
+exports.AppUserProfileDefinitions = require('./AppUserProfileDefinitions');
 exports.ApplicationVisibility = require('./ApplicationVisibility');
 exports.ApplicationVisibilityHide = require('./ApplicationVisibilityHide');
 exports.AuthenticationProvider = require('./AuthenticationProvider');
