@@ -25,7 +25,6 @@
   "license": "Apache-2.0",
   "repository": "https://github.com/okta/okta-sdk-nodejs",
   "dependencies": {
-    "@okta/openapi": "^0.13.0",
     "deep-copy": "^1.4.2",
     "flat": "^2.0.1",
     "isomorphic-fetch": "2.2.1",
@@ -34,6 +33,7 @@
     "parse-link-header": "1.0.0"
   },
   "devDependencies": {
+    "@okta/openapi": "^0.13.0",
     "chai": "^3.5.0",
     "eslint": "^3.19.0",
     "eslint-plugin-jest": "^21.17.0",
