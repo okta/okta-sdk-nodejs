@@ -2,7 +2,7 @@
 
 source ${OKTA_HOME}/${REPO}/scripts/setup.sh
 
-REGISTRY="https://artifacts.aue1d.saasure.com/artifactory/api/npm/npm-okta"
+REGISTRY="${ARTIFACTORY_URL}/api/npm/npm-okta"
 
 npm install -g @okta/ci-update-package
 npm install -g @okta/ci-pkginfo
