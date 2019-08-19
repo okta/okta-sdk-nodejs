@@ -1,9 +1,21 @@
 # Okta Node SDK Changelog
 
+## 2.0.1
+
+- [#109](https://github.com/okta/okta-sdk-nodejs/pull/109) Moves openapi to devdeps; fixes test lint
+- [#108](https://github.com/okta/okta-sdk-nodejs/pull/108) Fixes app creation test failures
+- [#102](https://github.com/okta/okta-sdk-nodejs/pull/102) Fixes for Application hyperlinks in jsdocs
+- [#100](https://github.com/okta/okta-sdk-nodejs/pull/100) Some jsdocs fixes
+- [#112](https://github.com/okta/okta-sdk-nodejs/pull/112) Upgrade lodash to 4.17.14
+
 ## 2.0.0
 - Drop support for Node 4
 - New behavior for `expirationPoll` option on MemoryStore. The expiration poll feature is now opt-in. By default there will be *no* memory scan to proactively remove key values. Passing a number or null for `expirationPoll` will behave as before. Passing a value of `true` will use a default of 15000ms.
 - The [DefaultRequestExecutor] is now used by default, if no request executor is provided.
+- Enable async iteration on any Collection (#93)
+- Set node support to 6.9.0 (#95)
+- Enable cache expiration polling only if a truthy value is specified (#89)
+- Fixes failing client create test (#80)
 
 ## 1.2.0
 
