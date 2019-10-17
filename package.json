@@ -33,7 +33,7 @@
     "parse-link-header": "1.0.0"
   },
   "devDependencies": {
-    "@okta/openapi": "^0.13.0",
+    "@okta/openapi": "^1.11.0",
     "chai": "^3.5.0",
     "eslint": "^3.19.0",
     "eslint-plugin-jest": "^21.17.0",

@@ -19,6 +19,7 @@ var Resource = require('../resource');
 /**
  * @class JsonWebKey
  * @extends Resource
+ * @property { hash } _links
  * @property { string } alg
  * @property { dateTime } created
  * @property { string } e

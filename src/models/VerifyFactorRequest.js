@@ -23,6 +23,7 @@ var Resource = require('../resource');
  * @property { string } answer
  * @property { string } nextPassCode
  * @property { string } passCode
+ * @property { integer } tokenLifetimeSeconds
  */
 class VerifyFactorRequest extends Resource {
   constructor(resourceJson, client) {

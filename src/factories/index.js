@@ -17,3 +17,5 @@
 exports.Application = require('./ApplicationFactory');
 exports.BrowserPluginApplication = require('./BrowserPluginApplicationFactory');
 exports.Factor = require('./FactorFactory');
+exports.Policy = require('./PolicyFactory');
+exports.PolicyRule = require('./PolicyRuleFactory');

@@ -21,6 +21,7 @@ const RecoveryQuestionCredential = require('./RecoveryQuestionCredential');
 /**
  * @class UserCredentials
  * @extends Resource
+ * @property { array } emails
  * @property { PasswordCredential } password
  * @property { AuthenticationProvider } provider
  * @property { RecoveryQuestionCredential } recovery_question

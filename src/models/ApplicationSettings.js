@@ -21,6 +21,8 @@ const ApplicationSettingsNotifications = require('./ApplicationSettingsNotificat
  * @class ApplicationSettings
  * @extends Resource
  * @property { ApplicationSettingsApplication } app
+ * @property { boolean } implicitAssignment
+ * @property { string } inlineHookId
  * @property { ApplicationSettingsNotifications } notifications
  */
 class ApplicationSettings extends Resource {

@@ -46,13 +46,17 @@ class User extends Resource {
   }
 
   /**
+   * @param {object} queryParameters
    * @returns {Promise<User>}
    */
-  update() {
-    return this.client.updateUser(this.id, this);
+  update(queryParameters) {
+    return this.client.updateUser(this.id, this, queryParameters);
   }
-  delete() {
-    return this.client.deactivateOrDeleteUser(this.id);
+  /**
+   * @param {object} queryParameters
+   */
+  delete(queryParameters) {
+    return this.client.deactivateOrDeleteUser(this.id, queryParameters);
   }
 
   /**
@@ -72,10 +76,11 @@ class User extends Resource {
 
   /**
    * @param {ChangePasswordRequest} changePasswordRequest
+   * @param {object} queryParameters
    * @returns {Promise<UserCredentials>}
    */
-  changePassword(changePasswordRequest) {
-    return this.client.changePassword(this.id, changePasswordRequest);
+  changePassword(changePasswordRequest, queryParameters) {
+    return this.client.changePassword(this.id, changePasswordRequest, queryParameters);
   }
 
   /**
@@ -159,8 +164,11 @@ class User extends Resource {
     return this.client.activateUser(this.id, queryParameters);
   }
 
-  deactivate() {
-    return this.client.deactivateUser(this.id);
+  /**
+   * @param {object} queryParameters
+   */
+  deactivate(queryParameters) {
+    return this.client.deactivateUser(this.id, queryParameters);
   }
 
   suspend() {

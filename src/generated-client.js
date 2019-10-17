@@ -361,11 +361,16 @@ class GeneratedApiClient {
    *
    * @param appId {String}
    * @param userId {String}
+   * @param {Object} queryParams Map of query parameters to add to this request
+   * @param {String} [queryParams.sendEmail]
    * @description
    * Removes an assignment for a user from an application.
    */
-  deleteApplicationUser(appId, userId) {
+  deleteApplicationUser(appId, userId, queryParameters) {
     let url = `${this.baseUrl}/api/v1/apps/${appId}/users/${userId}`;
+    const queryString = qs.stringify(queryParameters || {});
+
+    url += queryString ? ('?' + queryString) : '';
 
     const resources = [
       `${this.baseUrl}/api/v1/apps/${appId}/users/${userId}`,
@@ -468,6 +473,7 @@ class GeneratedApiClient {
    * @param {Object} queryParams Map of query parameters to add to this request
    * @param {String} [queryParams.limit]
    * @param {String} [queryParams.after]
+   * @param {String} [queryParams.expand]
    * @description
    * Lists all group rules for your organization.
    * @returns {Promise<Collection>} A collection that will yield {@link GroupRule} instances.
@@ -524,12 +530,17 @@ class GeneratedApiClient {
   /**
    *
    * @param ruleId {String}
+   * @param {Object} queryParams Map of query parameters to add to this request
+   * @param {String} [queryParams.expand]
    * @description
    * Fetches a specific group rule by id from your organization
    * @returns {Promise<GroupRule>}
    */
-  getRule(ruleId) {
+  getRule(ruleId, queryParameters) {
     let url = `${this.baseUrl}/api/v1/groups/rules/${ruleId}`;
+    const queryString = qs.stringify(queryParameters || {});
+
+    url += queryString ? ('?' + queryString) : '';
 
     const resources = [
       `${this.baseUrl}/api/v1/groups/rules/${ruleId}`
@@ -544,7 +555,7 @@ class GeneratedApiClient {
    * @param ruleId {String}
    * @param {GroupRule} groupRule
    * @description
-   * Convenience method for /api/v1/groups/rules/{ruleId}
+   * Success
    * @returns {Promise<GroupRule>}
    */
   updateRule(ruleId, groupRule) {
@@ -661,6 +672,7 @@ class GeneratedApiClient {
    * @param {Object} queryParams Map of query parameters to add to this request
    * @param {String} [queryParams.after]
    * @param {String} [queryParams.limit]
+   * @param {String} [queryParams.managedBy]
    * @description
    * Enumerates all [users](/docs/api/resources/users.html#user-model) that are a member of a group.
    * @returns {Promise<Collection>} A collection that will yield {@link User} instances.
@@ -733,6 +745,284 @@ class GeneratedApiClient {
     url += queryString ? ('?' + queryString) : '';
 
     return new Collection(this, url, new ModelFactory(models.LogEvent));
+  }
+
+  /**
+   *
+   * @param {Object} queryParams Map of query parameters to add to this request
+   * @param {String} [queryParams.type]
+   * @param {String} [queryParams.status]
+   * @param {String} [queryParams.after]
+   * @param {String} [queryParams.limit]
+   * @param {String} [queryParams.expand]
+   * @description
+   * Convenience method for /api/v1/policies
+   * @returns {Promise<Collection>} A collection that will yield {@link Policy} instances.
+   */
+  listPolicies(queryParameters) {
+    let url = `${this.baseUrl}/api/v1/policies`;
+    const queryString = qs.stringify(queryParameters || {});
+
+    url += queryString ? ('?' + queryString) : '';
+
+    return new Collection(this, url, new factories.Policy());
+  }
+
+  /**
+   *
+   * @param {Policy} policy
+   * @param {Object} queryParams Map of query parameters to add to this request
+   * @param {String} [queryParams.activate]
+   * @description
+   * Convenience method for /api/v1/policies
+   * @returns {Promise<Policy>}
+   */
+  createPolicy(policy, queryParameters) {
+    let url = `${this.baseUrl}/api/v1/policies`;
+    const queryString = qs.stringify(queryParameters || {});
+
+    url += queryString ? ('?' + queryString) : '';
+
+    const resources = [];
+
+    const request = this.http.postJson(url, {
+      body: policy
+    }, {resources});
+    return request.then(jsonRes => new factories.Policy().createInstance(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param policyId {String}
+   * @description
+   * Convenience method for /api/v1/policies/{policyId}
+   */
+  deletePolicy(policyId) {
+    let url = `${this.baseUrl}/api/v1/policies/${policyId}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/policies/${policyId}`
+    ];
+
+    const request = this.http.delete(url, null, {resources});
+    return request;
+  }
+
+  /**
+   *
+   * @param policyId {String}
+   * @param {Object} queryParams Map of query parameters to add to this request
+   * @param {String} [queryParams.expand]
+   * @description
+   * Convenience method for /api/v1/policies/{policyId}
+   * @returns {Promise<Policy>}
+   */
+  getPolicy(policyId, queryParameters) {
+    let url = `${this.baseUrl}/api/v1/policies/${policyId}`;
+    const queryString = qs.stringify(queryParameters || {});
+
+    url += queryString ? ('?' + queryString) : '';
+
+    const resources = [
+      `${this.baseUrl}/api/v1/policies/${policyId}`
+    ];
+
+    const request = this.http.getJson(url, null, {resources});
+    return request.then(jsonRes => new factories.Policy().createInstance(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param policyId {String}
+   * @param {Policy} policy
+   * @description
+   * Convenience method for /api/v1/policies/{policyId}
+   * @returns {Promise<Policy>}
+   */
+  updatePolicy(policyId, policy) {
+    let url = `${this.baseUrl}/api/v1/policies/${policyId}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/policies/${policyId}`
+    ];
+
+    const request = this.http.putJson(url, {
+      body: policy
+    }, {resources});
+    return request.then(jsonRes => new factories.Policy().createInstance(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param policyId {String}
+   * @description
+   * Convenience method for /api/v1/policies/{policyId}/lifecycle/activate
+   */
+  activatePolicy(policyId) {
+    let url = `${this.baseUrl}/api/v1/policies/${policyId}/lifecycle/activate`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/policies/${policyId}`
+    ];
+
+    const request = this.http.post(url, null, {resources});
+    return request;
+  }
+
+  /**
+   *
+   * @param policyId {String}
+   * @description
+   * Convenience method for /api/v1/policies/{policyId}/lifecycle/deactivate
+   */
+  deactivatePolicy(policyId) {
+    let url = `${this.baseUrl}/api/v1/policies/${policyId}/lifecycle/deactivate`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/policies/${policyId}`
+    ];
+
+    const request = this.http.post(url, null, {resources});
+    return request;
+  }
+
+  /**
+   *
+   * @param policyId {String}
+   * @description
+   * Convenience method for /api/v1/policies/{policyId}/rules
+   * @returns {Promise<Collection>} A collection that will yield {@link PolicyRule} instances.
+   */
+  listPolicyRules(policyId) {
+    let url = `${this.baseUrl}/api/v1/policies/${policyId}/rules`;
+
+    return new Collection(this, url, new factories.PolicyRule());
+  }
+
+  /**
+   *
+   * @param policyId {String}
+   * @param {PolicyRule} policyRule
+   * @param {Object} queryParams Map of query parameters to add to this request
+   * @param {String} [queryParams.activate]
+   * @description
+   * Convenience method for /api/v1/policies/{policyId}/rules
+   * @returns {Promise<PolicyRule>}
+   */
+  addPolicyRule(policyId, policyRule, queryParameters) {
+    let url = `${this.baseUrl}/api/v1/policies/${policyId}/rules`;
+    const queryString = qs.stringify(queryParameters || {});
+
+    url += queryString ? ('?' + queryString) : '';
+
+    const resources = [
+      `${this.baseUrl}/api/v1/policies/${policyId}`
+    ];
+
+    const request = this.http.postJson(url, {
+      body: policyRule
+    }, {resources});
+    return request.then(jsonRes => new factories.PolicyRule().createInstance(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param policyId {String}
+   * @param ruleId {String}
+   * @description
+   * Convenience method for /api/v1/policies/{policyId}/rules/{ruleId}
+   */
+  deletePolicyRule(policyId, ruleId) {
+    let url = `${this.baseUrl}/api/v1/policies/${policyId}/rules/${ruleId}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/policies/${policyId}/rules/${ruleId}`,
+      `${this.baseUrl}/api/v1/policies/${policyId}`
+    ];
+
+    const request = this.http.delete(url, null, {resources});
+    return request;
+  }
+
+  /**
+   *
+   * @param policyId {String}
+   * @param ruleId {String}
+   * @description
+   * Convenience method for /api/v1/policies/{policyId}/rules/{ruleId}
+   * @returns {Promise<PolicyRule>}
+   */
+  getPolicyRule(policyId, ruleId) {
+    let url = `${this.baseUrl}/api/v1/policies/${policyId}/rules/${ruleId}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/policies/${policyId}/rules/${ruleId}`,
+      `${this.baseUrl}/api/v1/policies/${policyId}`
+    ];
+
+    const request = this.http.getJson(url, null, {resources});
+    return request.then(jsonRes => new factories.PolicyRule().createInstance(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param policyId {String}
+   * @param ruleId {String}
+   * @param {PolicyRule} policyRule
+   * @description
+   * Convenience method for /api/v1/policies/{policyId}/rules/{ruleId}
+   * @returns {Promise<PolicyRule>}
+   */
+  updatePolicyRule(policyId, ruleId, policyRule) {
+    let url = `${this.baseUrl}/api/v1/policies/${policyId}/rules/${ruleId}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/policies/${policyId}/rules/${ruleId}`,
+      `${this.baseUrl}/api/v1/policies/${policyId}`
+    ];
+
+    const request = this.http.putJson(url, {
+      body: policyRule
+    }, {resources});
+    return request.then(jsonRes => new factories.PolicyRule().createInstance(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param policyId {String}
+   * @param ruleId {String}
+   * @description
+   * Convenience method for /api/v1/policies/{policyId}/rules/{ruleId}/lifecycle/activate
+   */
+  activatePolicyRule(policyId, ruleId) {
+    let url = `${this.baseUrl}/api/v1/policies/${policyId}/rules/${ruleId}/lifecycle/activate`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/policies/${policyId}/rules/${ruleId}`,
+      `${this.baseUrl}/api/v1/policies/${policyId}`
+    ];
+
+    const request = this.http.post(url, null, {resources});
+    return request;
+  }
+
+  /**
+   *
+   * @param policyId {String}
+   * @param ruleId {String}
+   * @description
+   * Convenience method for /api/v1/policies/{policyId}/rules/{ruleId}/lifecycle/deactivate
+   */
+  deactivatePolicyRule(policyId, ruleId) {
+    let url = `${this.baseUrl}/api/v1/policies/${policyId}/rules/${ruleId}/lifecycle/deactivate`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/policies/${policyId}/rules/${ruleId}`,
+      `${this.baseUrl}/api/v1/policies/${policyId}`
+    ];
+
+    const request = this.http.post(url, null, {resources});
+    return request;
   }
 
   /**
@@ -835,6 +1125,7 @@ class GeneratedApiClient {
    * @param {Object} queryParams Map of query parameters to add to this request
    * @param {String} [queryParams.activate]
    * @param {String} [queryParams.provider]
+   * @param {String} [queryParams.nextLogin]
    * @description
    * Creates a new user in your Okta organization with or without credentials.
    * @returns {Promise<User>}
@@ -856,11 +1147,16 @@ class GeneratedApiClient {
   /**
    *
    * @param userId {String}
+   * @param {Object} queryParams Map of query parameters to add to this request
+   * @param {String} [queryParams.sendEmail]
    * @description
    * Deletes a user permanently.  This operation can only be performed on users that have a `DEPROVISIONED` status.  **This action cannot be recovered!**
    */
-  deactivateOrDeleteUser(userId) {
+  deactivateOrDeleteUser(userId, queryParameters) {
     let url = `${this.baseUrl}/api/v1/users/${userId}`;
+    const queryString = qs.stringify(queryParameters || {});
+
+    url += queryString ? ('?' + queryString) : '';
 
     const resources = [
       `${this.baseUrl}/api/v1/users/${userId}`
@@ -892,12 +1188,17 @@ class GeneratedApiClient {
    *
    * @param userId {String}
    * @param {User} user
+   * @param {Object} queryParams Map of query parameters to add to this request
+   * @param {String} [queryParams.strict]
    * @description
    * Update a user's profile and/or credentials using strict-update semantics.
    * @returns {Promise<User>}
    */
-  updateUser(userId, user) {
+  updateUser(userId, user, queryParameters) {
     let url = `${this.baseUrl}/api/v1/users/${userId}`;
+    const queryString = qs.stringify(queryParameters || {});
+
+    url += queryString ? ('?' + queryString) : '';
 
     const resources = [
       `${this.baseUrl}/api/v1/users/${userId}`
@@ -931,12 +1232,17 @@ class GeneratedApiClient {
    *
    * @param userId {String}
    * @param {ChangePasswordRequest} changePasswordRequest
+   * @param {Object} queryParams Map of query parameters to add to this request
+   * @param {String} [queryParams.strict]
    * @description
    * Changes a user's password by validating the user's current password.  This operation can only be performed on users in `STAGED`, `ACTIVE`, `PASSWORD_EXPIRED`, or `RECOVERY` status that have a valid [password credential](#password-object)
    * @returns {Promise<UserCredentials>}
    */
-  changePassword(userId, changePasswordRequest) {
+  changePassword(userId, changePasswordRequest, queryParameters) {
     let url = `${this.baseUrl}/api/v1/users/${userId}/credentials/change_password`;
+    const queryString = qs.stringify(queryParameters || {});
+
+    url += queryString ? ('?' + queryString) : '';
 
     const resources = [
       `${this.baseUrl}/api/v1/users/${userId}`
@@ -1015,6 +1321,8 @@ class GeneratedApiClient {
    * @param {Object} queryParams Map of query parameters to add to this request
    * @param {String} [queryParams.updatePhone]
    * @param {String} [queryParams.templateId]
+   * @param {String} [queryParams.tokenLifetimeSeconds]
+   * @param {String} [queryParams.activate]
    * @description
    * Enrolls a user with a supported [factor](#list-factors-to-enroll)
    * @returns {Promise<Factor>}
@@ -1130,6 +1438,7 @@ class GeneratedApiClient {
    * @param {VerifyFactorRequest} verifyFactorRequest
    * @param {Object} queryParams Map of query parameters to add to this request
    * @param {String} [queryParams.templateId]
+   * @param {String} [queryParams.tokenLifetimeSeconds]
    * @description
    * Verifies an OTP for a `token` or `token:hardware` factor
    * @returns {Promise<VerifyFactorResponse>}
@@ -1196,11 +1505,16 @@ class GeneratedApiClient {
   /**
    *
    * @param userId {String}
+   * @param {Object} queryParams Map of query parameters to add to this request
+   * @param {String} [queryParams.sendEmail]
    * @description
    * Deactivates a user.  This operation can only be performed on users that do not have a `DEPROVISIONED` status.  Deactivation of a user is an asynchronous operation.  The user will have the `transitioningToStatus` property with a value of `DEPROVISIONED` during deactivation to indicate that the user hasn't completed the asynchronous operation.  The user will have a status of `DEPROVISIONED` when the deactivation process is complete.
    */
-  deactivateUser(userId) {
+  deactivateUser(userId, queryParameters) {
     let url = `${this.baseUrl}/api/v1/users/${userId}/lifecycle/deactivate`;
+    const queryString = qs.stringify(queryParameters || {});
+
+    url += queryString ? ('?' + queryString) : '';
 
     const resources = [
       `${this.baseUrl}/api/v1/users/${userId}`
@@ -1391,7 +1705,7 @@ class GeneratedApiClient {
    * @param {String} [queryParams.after]
    * @param {String} [queryParams.limit]
    * @description
-   * Convenience method for /api/v1/users/{userId}/roles/{roleId}/targets/groups
+   * Success
    * @returns {Promise<Collection>} A collection that will yield {@link Group} instances.
    */
   listGroupTargetsForRole(userId, roleId, queryParameters) {
@@ -1409,7 +1723,7 @@ class GeneratedApiClient {
    * @param roleId {String}
    * @param groupId {String}
    * @description
-   * Convenience method for /api/v1/users/{userId}/roles/{roleId}/targets/groups/{groupId}
+   * Success
    */
   removeGroupTargetFromRole(userId, roleId, groupId) {
     let url = `${this.baseUrl}/api/v1/users/${userId}/roles/${roleId}/targets/groups/${groupId}`;
@@ -1430,7 +1744,7 @@ class GeneratedApiClient {
    * @param roleId {String}
    * @param groupId {String}
    * @description
-   * Convenience method for /api/v1/users/{userId}/roles/{roleId}/targets/groups/{groupId}
+   * Success
    */
   addGroupTargetToRole(userId, roleId, groupId) {
     let url = `${this.baseUrl}/api/v1/users/${userId}/roles/${roleId}/targets/groups/${groupId}`;

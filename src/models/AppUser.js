@@ -51,9 +51,10 @@ class AppUser extends Resource {
   }
   /**
    * @param {string} appId
+   * @param {object} queryParameters
    */
-  delete(appId) {
-    return this.client.deleteApplicationUser(appId, this.id);
+  delete(appId, queryParameters) {
+    return this.client.deleteApplicationUser(appId, this.id, queryParameters);
   }
 }
 

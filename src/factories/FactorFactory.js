@@ -29,6 +29,7 @@ class FactorFactory extends ModelResolutionFactory {
       'token': models.TokenFactor,
       'token:hardware': models.HardwareFactor,
       'token:software:totp': models.TotpFactor,
+      'u2f': models.U2fFactor,
       'web': models.WebFactor,
     };
   }

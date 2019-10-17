@@ -20,7 +20,9 @@ const GroupRuleConditions = require('./GroupRuleConditions');
 /**
  * @class GroupRule
  * @extends Resource
+ * @property { hash } _embedded
  * @property { GroupRuleAction } actions
+ * @property { boolean } allGroupsValid
  * @property { GroupRuleConditions } conditions
  * @property { dateTime } created
  * @property { string } id

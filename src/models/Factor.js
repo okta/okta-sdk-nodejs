@@ -32,6 +32,7 @@ const VerifyFactorRequest = require('./VerifyFactorRequest');
  * @property { boolean } rechallengeExistingFactor
  * @property { string } sessionId
  * @property { FactorStatus } status
+ * @property { integer } tokenLifetimeSeconds
  * @property { string } userId
  * @property { VerifyFactorRequest } verify
  */
