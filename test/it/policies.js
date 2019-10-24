@@ -100,7 +100,7 @@ describe('Policy Scenarios', () => {
     const policy1 = {
       type: 'OKTA_SIGN_ON',
       status: 'ACTIVE',
-      name: 'node-sdk: Sign On GetAllPoliciesByType ',
+      name: 'node-sdk: Sign On GetAllPoliciesByType',
       description: 'The default policy applies in all situations if no other policy applies.',
     };
 
@@ -119,7 +119,7 @@ describe('Policy Scenarios', () => {
 
     let signonCount = 0;
     await client.listPolicies({type: 'OKTA_SIGN_ON'}).each(policy => {
-      if (policy.name !== 'Default Policy') {
+      if (policy.name === 'node-sdk: Sign On GetAllPoliciesByType') {
         expect(policy.name).to.equal(createdPolicy1.name);
         expect(policy.type).to.equal(createdPolicy1.type);
         expect(policy.status).to.equal(createdPolicy1.status);
@@ -132,7 +132,7 @@ describe('Policy Scenarios', () => {
 
     let passwordCount = 0;
     await client.listPolicies({type: 'PASSWORD'}).each(policy => {
-      if (policy.name !== 'Default Policy') {
+      if (policy.name === 'node-sdk: Password GetAllPoliciesByType') {
         expect(policy.name).to.equal(createdPolicy2.name);
         expect(policy.type).to.equal(createdPolicy2.type);
         expect(policy.status).to.equal(createdPolicy2.status);
