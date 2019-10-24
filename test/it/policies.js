@@ -96,7 +96,7 @@ describe('Policy Scenarios', () => {
     expect(createdPolicy.conditions.people.groups.include[0]).to.equal(createdGroup.id);
   });
 
-  it.skip('can get policy by type', async () => {
+  it('can get policy by type', async () => {
     const policy1 = {
       type: 'OKTA_SIGN_ON',
       status: 'ACTIVE',
@@ -119,22 +119,26 @@ describe('Policy Scenarios', () => {
 
     let signonCount = 0;
     await client.listPolicies({type: 'OKTA_SIGN_ON'}).each(policy => {
-      expect(policy.name).to.equal(createdPolicy1.name);
-      expect(policy.type).to.equal(createdPolicy1.type);
-      expect(policy.status).to.equal(createdPolicy1.status);
-      expect(policy.description).to.equal(createdPolicy1.description);
-      signonCount++;
+      if (policy.name !== 'Default Policy') {
+        expect(policy.name).to.equal(createdPolicy1.name);
+        expect(policy.type).to.equal(createdPolicy1.type);
+        expect(policy.status).to.equal(createdPolicy1.status);
+        expect(policy.description).to.equal(createdPolicy1.description);
+        signonCount++;
+      }
     });
     expect(signonCount).to.be.equal(1);
     
 
     let passwordCount = 0;
     await client.listPolicies({type: 'PASSWORD'}).each(policy => {
-      expect(policy.name).to.equal(createdPolicy2.name);
-      expect(policy.type).to.equal(createdPolicy2.type);
-      expect(policy.status).to.equal(createdPolicy2.status);
-      expect(policy.description).to.equal(createdPolicy2.description);
-      passwordCount++;
+      if (policy.name !== 'Default Policy') {
+        expect(policy.name).to.equal(createdPolicy2.name);
+        expect(policy.type).to.equal(createdPolicy2.type);
+        expect(policy.status).to.equal(createdPolicy2.status);
+        expect(policy.description).to.equal(createdPolicy2.description);
+        passwordCount++;
+      }
     });
     expect(passwordCount).to.be.equal(1);
 
