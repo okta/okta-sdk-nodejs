@@ -158,7 +158,7 @@ describe('Policy Scenarios', () => {
     const retrievedPolicy = await client.getPolicy(createdPolicy.id);
     expect(retrievedPolicy).to.not.be.undefined;
 
-    const response = await client.deletePolicy(createdPolicy.id);
+    const response = await retrievedPolicy.delete()
 
     expect(response.status).to.equal(204);
     let policy;
@@ -190,6 +190,64 @@ describe('Policy Scenarios', () => {
     await client.deletePolicy(createdPolicy.id);
 
     expect(retrievedPolicy.name).to.equal('node-sdk: Updated UpdatePolicy');
+  });
+
+  it('can deactivate and activate a policy', async () => {
+    const policy = {
+      type: 'OKTA_SIGN_ON',
+      status: 'ACTIVE',
+      name: 'node-sdk: DeactivateAndActivatePolicy',
+      description: 'The default policy applies in all situations if no other policy applies.',
+    };
+
+    const oktaSignOnPolicy = new models.OktaSignOnPolicy(policy, client);
+    let createdPolicy = await client.createPolicy(oktaSignOnPolicy);
+
+    expect(createdPolicy.status).to.be.equal('ACTIVE');
+
+    await createdPolicy.deactivate();
+    createdPolicy = await client.getPolicy(createdPolicy.id);
+
+    expect(createdPolicy.status).to.be.equal('INACTIVE');
+
+    await createdPolicy.activate();
+    createdPolicy = await client.getPolicy(createdPolicy.id);
+
+    expect(createdPolicy.status).to.be.equal('ACTIVE');
+
+    await createdPolicy.delete();
+
+  });
+
+  it('can create policy with rule', async () => {
+    const policy = {
+      type: 'OKTA_SIGN_ON',
+      status: 'ACTIVE',
+      name: 'node-sdk: CreatePolicyWithRule',
+      description: 'The default policy applies in all situations if no other policy applies.',
+    };
+    const oktaSignOnPolicy = new models.OktaSignOnPolicy(policy, client);
+    const createdPolicy = await client.createPolicy(oktaSignOnPolicy);
+
+    const policyRuleActionSignOn = {
+      access: 'DENY',
+      requireFactor: false
+    };
+    const policyRuleAction = {
+      signon: policyRuleActionSignOn
+    };
+    const policyRule = {
+      name: 'node-sdk: PolicyRule',
+      type: 'SIGN_ON',
+      actions: policyRuleAction
+    };
+
+    const createdPolicyRule = await createdPolicy.createRule(policyRule);
+
+    expect(createdPolicyRule).to.not.be.undefined;
+    expect(createdPolicyRule.name).to.be.equal('node-sdk: PolicyRule');
+
+    await createdPolicy.delete();
   });
 
 });
