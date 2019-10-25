@@ -114,7 +114,7 @@ describe('Policy Scenarios', () => {
     const oktaSignOnPolicy1 = new models.OktaSignOnPolicy(policy1, client);
     const createdPolicy1 = await client.createPolicy(oktaSignOnPolicy1);
 
-    const oktaSignOnPolicy2 = new models.OktaSignOnPolicy(policy2, client);
+    const oktaSignOnPolicy2 = new models.PasswordPolicy(policy2, client);
     const createdPolicy2 = await client.createPolicy(oktaSignOnPolicy2);
 
     let signonCount = 0;
@@ -128,7 +128,6 @@ describe('Policy Scenarios', () => {
       }
     });
     expect(signonCount).to.be.equal(1);
-    
 
     let passwordCount = 0;
     await client.listPolicies({type: 'PASSWORD'}).each(policy => {
@@ -158,7 +157,7 @@ describe('Policy Scenarios', () => {
     const retrievedPolicy = await client.getPolicy(createdPolicy.id);
     expect(retrievedPolicy).to.not.be.undefined;
 
-    const response = await retrievedPolicy.delete()
+    const response = await retrievedPolicy.delete();
 
     expect(response.status).to.equal(204);
     let policy;
