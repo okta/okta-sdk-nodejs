@@ -1,6 +1,9 @@
 # Okta Node SDK Changelog
 
-## 2.0.1
+## 3.0.0
+- Dropping node.js version support for anything less than 8.15
+
+## 2.1.1
 
 - [#109](https://github.com/okta/okta-sdk-nodejs/pull/109) Moves openapi to devdeps; fixes test lint
 - [#108](https://github.com/okta/okta-sdk-nodejs/pull/108) Fixes app creation test failures
