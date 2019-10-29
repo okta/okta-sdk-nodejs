@@ -20,6 +20,8 @@ var Resource = require('../resource');
  * @class Role
  * @extends Resource
  * @property { hash } _embedded
+ * @property { hash } _links
+ * @property { string } assignmentType
  * @property { dateTime } created
  * @property { string } description
  * @property { string } id

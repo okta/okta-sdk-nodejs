@@ -17,31 +17,49 @@ var Resource = require('../resource');
 
 
 /**
- * @class JsonWebKey
+ * @class PolicyRule
  * @extends Resource
- * @property { hash } _links
- * @property { string } alg
  * @property { dateTime } created
- * @property { string } e
- * @property { dateTime } expiresAt
- * @property { array } key_ops
- * @property { string } kid
- * @property { string } kty
+ * @property { string } id
  * @property { dateTime } lastUpdated
- * @property { string } n
+ * @property { integer } priority
  * @property { string } status
- * @property { string } use
- * @property { array } x5c
- * @property { string } x5t
- * @property { string } x5t#S256
- * @property { string } x5u
+ * @property { boolean } system
+ * @property { string } type
  */
-class JsonWebKey extends Resource {
+class PolicyRule extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
 
   }
 
+  /**
+   * @param {string} policyId
+   * @returns {Promise<PolicyRule>}
+   */
+  update(policyId) {
+    return this.client.updatePolicyRule(policyId, this.id, this);
+  }
+  /**
+   * @param {string} policyId
+   */
+  delete(policyId) {
+    return this.client.deletePolicyRule(policyId, this.id);
+  }
+
+  /**
+   * @param {string} policyId
+   */
+  activate(policyId) {
+    return this.client.activatePolicyRule(policyId, this.id);
+  }
+
+  /**
+   * @param {string} policyId
+   */
+  deactivate(policyId) {
+    return this.client.deactivatePolicyRule(policyId, this.id);
+  }
 }
 
-module.exports = JsonWebKey;
+module.exports = PolicyRule;

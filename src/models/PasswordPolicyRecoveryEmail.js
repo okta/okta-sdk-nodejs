@@ -14,34 +14,22 @@
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
 var Resource = require('../resource');
-
+const PasswordPolicyRecoveryEmailProperties = require('./PasswordPolicyRecoveryEmailProperties');
 
 /**
- * @class JsonWebKey
+ * @class PasswordPolicyRecoveryEmail
  * @extends Resource
- * @property { hash } _links
- * @property { string } alg
- * @property { dateTime } created
- * @property { string } e
- * @property { dateTime } expiresAt
- * @property { array } key_ops
- * @property { string } kid
- * @property { string } kty
- * @property { dateTime } lastUpdated
- * @property { string } n
+ * @property { PasswordPolicyRecoveryEmailProperties } properties
  * @property { string } status
- * @property { string } use
- * @property { array } x5c
- * @property { string } x5t
- * @property { string } x5t#S256
- * @property { string } x5u
  */
-class JsonWebKey extends Resource {
+class PasswordPolicyRecoveryEmail extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-
+    if (resourceJson && resourceJson.properties) {
+      this.properties = new PasswordPolicyRecoveryEmailProperties(this.properties);
+    }
   }
 
 }
 
-module.exports = JsonWebKey;
+module.exports = PasswordPolicyRecoveryEmail;

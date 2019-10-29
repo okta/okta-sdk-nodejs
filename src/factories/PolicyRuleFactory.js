@@ -18,25 +18,17 @@ const ModelResolutionFactory = require('../resolution-factory');
 const factories = require('./');
 const models = require('../models');
 
-class FactorFactory extends ModelResolutionFactory {
+class PolicyRuleFactory extends ModelResolutionFactory {
   getMapping() {
     return {
-      'call': models.CallFactor,
-      'email': models.EmailFactor,
-      'push': models.PushFactor,
-      'question': models.SecurityQuestionFactor,
-      'sms': models.SmsFactor,
-      'token': models.TokenFactor,
-      'token:hardware': models.HardwareFactor,
-      'token:software:totp': models.TotpFactor,
-      'u2f': models.U2fFactor,
-      'web': models.WebFactor,
+      'PASSWORD': models.PasswordPolicyRule,
+      'SIGN_ON': models.OktaSignOnPolicyRule,
     };
   }
 
   getResolutionProperty() {
-    return 'factorType';
+    return 'type';
   }
 }
 
-module.exports = FactorFactory;
+module.exports = PolicyRuleFactory;

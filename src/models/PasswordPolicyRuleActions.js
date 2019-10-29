@@ -14,28 +14,29 @@
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
 var Resource = require('../resource');
-const ApplicationSettingsApplication = require('./ApplicationSettingsApplication');
-const ApplicationSettingsNotifications = require('./ApplicationSettingsNotifications');
+const PasswordPolicyRuleAction = require('./PasswordPolicyRuleAction');
 
 /**
- * @class ApplicationSettings
+ * @class PasswordPolicyRuleActions
  * @extends Resource
- * @property { ApplicationSettingsApplication } app
- * @property { boolean } implicitAssignment
- * @property { string } inlineHookId
- * @property { ApplicationSettingsNotifications } notifications
+ * @property { PasswordPolicyRuleAction } passwordChange
+ * @property { PasswordPolicyRuleAction } selfServicePasswordReset
+ * @property { PasswordPolicyRuleAction } selfServiceUnlock
  */
-class ApplicationSettings extends Resource {
+class PasswordPolicyRuleActions extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson.app) {
-      this.app = new ApplicationSettingsApplication(this.app);
+    if (resourceJson && resourceJson.passwordChange) {
+      this.passwordChange = new PasswordPolicyRuleAction(this.passwordChange);
     }
-    if (resourceJson && resourceJson.notifications) {
-      this.notifications = new ApplicationSettingsNotifications(this.notifications);
+    if (resourceJson && resourceJson.selfServicePasswordReset) {
+      this.selfServicePasswordReset = new PasswordPolicyRuleAction(this.selfServicePasswordReset);
+    }
+    if (resourceJson && resourceJson.selfServiceUnlock) {
+      this.selfServiceUnlock = new PasswordPolicyRuleAction(this.selfServiceUnlock);
     }
   }
 
 }
 
-module.exports = ApplicationSettings;
+module.exports = PasswordPolicyRuleActions;

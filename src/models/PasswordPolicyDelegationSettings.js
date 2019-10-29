@@ -14,34 +14,21 @@
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
 var Resource = require('../resource');
-
+const PasswordPolicyDelegationSettingsOptions = require('./PasswordPolicyDelegationSettingsOptions');
 
 /**
- * @class JsonWebKey
+ * @class PasswordPolicyDelegationSettings
  * @extends Resource
- * @property { hash } _links
- * @property { string } alg
- * @property { dateTime } created
- * @property { string } e
- * @property { dateTime } expiresAt
- * @property { array } key_ops
- * @property { string } kid
- * @property { string } kty
- * @property { dateTime } lastUpdated
- * @property { string } n
- * @property { string } status
- * @property { string } use
- * @property { array } x5c
- * @property { string } x5t
- * @property { string } x5t#S256
- * @property { string } x5u
+ * @property { PasswordPolicyDelegationSettingsOptions } options
  */
-class JsonWebKey extends Resource {
+class PasswordPolicyDelegationSettings extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-
+    if (resourceJson && resourceJson.options) {
+      this.options = new PasswordPolicyDelegationSettingsOptions(this.options);
+    }
   }
 
 }
 
-module.exports = JsonWebKey;
+module.exports = PasswordPolicyDelegationSettings;

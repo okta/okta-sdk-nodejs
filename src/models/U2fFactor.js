@@ -13,35 +13,22 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-var Resource = require('../resource');
-
+var Factor = require('./Factor');
+const U2fFactorProfile = require('./U2fFactorProfile');
 
 /**
- * @class JsonWebKey
- * @extends Resource
- * @property { hash } _links
- * @property { string } alg
- * @property { dateTime } created
- * @property { string } e
- * @property { dateTime } expiresAt
- * @property { array } key_ops
- * @property { string } kid
- * @property { string } kty
- * @property { dateTime } lastUpdated
- * @property { string } n
- * @property { string } status
- * @property { string } use
- * @property { array } x5c
- * @property { string } x5t
- * @property { string } x5t#S256
- * @property { string } x5u
+ * @class U2fFactor
+ * @extends Factor
+ * @property { U2fFactorProfile } profile
  */
-class JsonWebKey extends Resource {
+class U2fFactor extends Factor {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-
+    if (resourceJson && resourceJson.profile) {
+      this.profile = new U2fFactorProfile(this.profile);
+    }
   }
 
 }
 
-module.exports = JsonWebKey;
+module.exports = U2fFactor;

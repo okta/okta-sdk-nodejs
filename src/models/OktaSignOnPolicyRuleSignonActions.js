@@ -14,34 +14,26 @@
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
 var Resource = require('../resource');
-
+const OktaSignOnPolicyRuleSignonSessionActions = require('./OktaSignOnPolicyRuleSignonSessionActions');
 
 /**
- * @class JsonWebKey
+ * @class OktaSignOnPolicyRuleSignonActions
  * @extends Resource
- * @property { hash } _links
- * @property { string } alg
- * @property { dateTime } created
- * @property { string } e
- * @property { dateTime } expiresAt
- * @property { array } key_ops
- * @property { string } kid
- * @property { string } kty
- * @property { dateTime } lastUpdated
- * @property { string } n
- * @property { string } status
- * @property { string } use
- * @property { array } x5c
- * @property { string } x5t
- * @property { string } x5t#S256
- * @property { string } x5u
+ * @property { string } access
+ * @property { integer } factorLifetime
+ * @property { string } factorPromptMode
+ * @property { boolean } rememberDeviceByDefault
+ * @property { boolean } requireFactor
+ * @property { OktaSignOnPolicyRuleSignonSessionActions } session
  */
-class JsonWebKey extends Resource {
+class OktaSignOnPolicyRuleSignonActions extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-
+    if (resourceJson && resourceJson.session) {
+      this.session = new OktaSignOnPolicyRuleSignonSessionActions(this.session);
+    }
   }
 
 }
 
-module.exports = JsonWebKey;
+module.exports = OktaSignOnPolicyRuleSignonActions;

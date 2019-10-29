@@ -14,48 +14,70 @@
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
 var Resource = require('../resource');
-const AppUserCredentials = require('./AppUserCredentials');
+
 
 /**
- * @class AppUser
+ * @class Policy
  * @extends Resource
  * @property { hash } _embedded
  * @property { hash } _links
  * @property { dateTime } created
- * @property { AppUserCredentials } credentials
- * @property { string } externalId
+ * @property { string } description
  * @property { string } id
- * @property { dateTime } lastSync
  * @property { dateTime } lastUpdated
- * @property { dateTime } passwordChanged
- * @property { hash } profile
- * @property { string } scope
+ * @property { string } name
+ * @property { integer } priority
  * @property { string } status
- * @property { dateTime } statusChanged
- * @property { string } syncState
+ * @property { boolean } system
+ * @property { PolicyType } type
  */
-class AppUser extends Resource {
+class Policy extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson.credentials) {
-      this.credentials = new AppUserCredentials(this.credentials);
-    }
+
   }
 
   /**
-   * @param {string} appId
-   * @returns {Promise<AppUser>}
+   * @returns {Promise<Policy>}
    */
-  update(appId) {
-    return this.client.updateApplicationUser(appId, this.id, this);
+  update() {
+    return this.client.updatePolicy(this.id, this);
   }
+  delete() {
+    return this.client.deletePolicy(this.id);
+  }
+
+  activate() {
+    return this.client.activatePolicy(this.id);
+  }
+
+  deactivate() {
+    return this.client.deactivatePolicy(this.id);
+  }
+
   /**
-   * @param {string} appId
-   * @param {object} queryParameters
+   * @returns {Promise<Collection>} A collection that will yield {@link PolicyRule} instances.
    */
-  delete(appId, queryParameters) {
-    return this.client.deleteApplicationUser(appId, this.id, queryParameters);
+  listPolicyRules() {
+    return this.client.listPolicyRules(this.id);
+  }
+
+  /**
+   * @param {PolicyRule} policyRule
+   * @param {object} queryParameters
+   * @returns {Promise<PolicyRule>}
+   */
+  createRule(policyRule, queryParameters) {
+    return this.client.addPolicyRule(this.id, policyRule, queryParameters);
+  }
+
+  /**
+   * @param {string} ruleId
+   * @returns {Promise<PolicyRule>}
+   */
+  getPolicyRule(ruleId) {
+    return this.client.getPolicyRule(this.id, ruleId);
   }
 }
 
-module.exports = AppUser;
+module.exports = Policy;

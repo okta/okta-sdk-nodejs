@@ -34,6 +34,7 @@ const ApplicationVisibility = require('./ApplicationVisibility');
  * @property { dateTime } lastUpdated
  * @property { ApplicationLicensing } licensing
  * @property { string } name
+ * @property { hash } profile
  * @property { ApplicationSettings } settings
  * @property { ApplicationSignOnMode } signOnMode
  * @property { string } status

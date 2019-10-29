@@ -13,35 +13,27 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-var Resource = require('../resource');
-
+var Policy = require('./Policy');
+const PasswordPolicyConditions = require('./PasswordPolicyConditions');
+const PasswordPolicySettings = require('./PasswordPolicySettings');
 
 /**
- * @class JsonWebKey
- * @extends Resource
- * @property { hash } _links
- * @property { string } alg
- * @property { dateTime } created
- * @property { string } e
- * @property { dateTime } expiresAt
- * @property { array } key_ops
- * @property { string } kid
- * @property { string } kty
- * @property { dateTime } lastUpdated
- * @property { string } n
- * @property { string } status
- * @property { string } use
- * @property { array } x5c
- * @property { string } x5t
- * @property { string } x5t#S256
- * @property { string } x5u
+ * @class PasswordPolicy
+ * @extends Policy
+ * @property { PasswordPolicyConditions } conditions
+ * @property { PasswordPolicySettings } settings
  */
-class JsonWebKey extends Resource {
+class PasswordPolicy extends Policy {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-
+    if (resourceJson && resourceJson.conditions) {
+      this.conditions = new PasswordPolicyConditions(this.conditions);
+    }
+    if (resourceJson && resourceJson.settings) {
+      this.settings = new PasswordPolicySettings(this.settings);
+    }
   }
 
 }
 
-module.exports = JsonWebKey;
+module.exports = PasswordPolicy;
