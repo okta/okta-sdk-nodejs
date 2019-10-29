@@ -1,6 +1,15 @@
 # Okta Node SDK Changelog
 
+## 3.1.0
+
+- Updates the Okta Openapi to 1.11
+- Adds functionality for Okta Sign In Policy
+- Adds functionality for Password Policy
+- Adds U2F Factor
+- Provides options array to many models
+
 ## 3.0.0
+
 - Dropping node.js version support for anything less than 8.15
 
 ## 2.1.1
