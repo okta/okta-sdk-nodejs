@@ -178,7 +178,7 @@ function getMockProfile(testName) {
 function getBookmarkApplication() {
   return {
     name: 'bookmark',
-    label: faker.random.words(),
+    label: `node-sdk: Bookmark ${faker.random.words()}`.substring(0, 99),
     signOnMode: 'BOOKMARK',
     settings: {
       app: {
