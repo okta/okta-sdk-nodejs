@@ -52,8 +52,12 @@ describe('client.list-users()', () => {
     await utils.delay(2000);
     let queryParameters = { search: `profile.nickName eq "${_user.profile.nickName}"` };
     await client.listUsers(queryParameters).each(user => {
-      foundUser = user;
-      foundUserCount++;
+      // If tests run in parallel (for different node versions on travis), it might match a different user without this check
+      if (user.id === _user.id) {
+        foundUser = user;
+        foundUserCount++;
+        return false; // abort iteration after user is found
+      }
     });
 
     expect(foundUser, 'The user should be found').to.exist;
