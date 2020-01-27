@@ -18,16 +18,13 @@ const client = new okta.Client({
 
 describe('client.listUsers().each()', () => {
   it('should allow me to delete users', async () => {
-    await client.listUsers().each(async(user) => {  
-      if (user.profile.firstName.includes('gzfirst')) {
+    await client.listUsers().each(async(user) => {
+      if (user.profile.firstName.startsWith('gzfirst')) {
       	console.log(user.profile.firstName);
-      	await (utils.cleanup(client, user));
+      	await existingUser.deactivate();
       }
 
       expect(user).to.be.an.instanceof(models.User);
     });
   });
 });
-
-
-
