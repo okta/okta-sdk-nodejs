@@ -8,6 +8,7 @@ if (process.env.OKTA_USE_MOCK) {
 }
 
 const client = new okta.Client({
+  scopes: ['okta.users.manage'],
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
   requestExecutor: new okta.DefaultRequestExecutor()
@@ -34,6 +35,7 @@ describe('User API Tests', () => {
     // Need to wait 1 second here as that is the minimum time resolution of the 'lastUpdated' field
     await utils.delay(1000);
     createdUser.profile.nickName = 'Batman';
+    // TODO: receiving 403: invalid session
     const profileUpdateUser = await createdUser.update();
     expect(profileUpdateUser.lastUpdated).to.be.gt(createdUser.lastUpdated);
 

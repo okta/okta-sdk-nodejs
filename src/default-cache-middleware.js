@@ -15,6 +15,7 @@ const _ = require('lodash');
 module.exports = function defaultCacheMiddleware(ctx, next) {
   let cacheCheck, cacheHit = false;
   if (ctx.req.method.toLowerCase() === 'get' && !ctx.isCollection) {
+    // TODO: use ctx.req.url as cache key and add json() method to cached result: https://oktainc.atlassian.net/browse/OKTA-280090
     cacheCheck = ctx.cacheStore.get(ctx.req.uri)
     .then(body => {
       if (body) {

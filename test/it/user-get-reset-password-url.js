@@ -7,6 +7,7 @@ if (process.env.OKTA_USE_MOCK) {
 }
 
 const client = new okta.Client({
+  scopes: ['okta.users.manage'],
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
   requestExecutor: new okta.DefaultRequestExecutor()
@@ -31,6 +32,7 @@ describe('User API Tests', () => {
 
     // 2. Get the reset password link
     const sendEmail = { sendEmail : 'false' };
+    // TODO: receiving 403: invalid session
     const link = await createdUser.resetPassword(sendEmail);
     expect(link.resetPasswordUrl).to.not.be.null;
 

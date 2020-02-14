@@ -10,15 +10,19 @@ describe('ConfigLoader', () => {
     const loader = new ConfigLoader();
     assert.deepEqual(loader.config, {
       client: {
+        authorizationMode: '',
         orgUrl: '',
-        token: ''
+        token: '',
+        clientId: '',
+        scopes: '',
+        privateKey: ''
       }
     });
   });
   describe('applyDefaults()', () => {
     let fakeFs, loader, previousUrl, previousToken;
 
-    before(() => {
+    beforeEach(() => {
       previousUrl = process.env.OKTA_CLIENT_ORGURL;
       previousToken = process.env.OKTA_CLIENT_TOKEN;
       delete process.env.OKTA_CLIENT_ORGURL;
@@ -28,17 +32,32 @@ describe('ConfigLoader', () => {
       fakeFs.patch();
     });
 
-    after(() => {
+    afterEach(() => {
       process.env.OKTA_CLIENT_ORGURL = previousUrl;
       process.env.OKTA_CLIENT_TOKEN = previousToken;
       fakeFs.unpatch();
+    });
+
+    it('automatically sets "authorizationMode" to "SSWS"', () => {
+      loader.applyDefaults();
+      assert.deepEqual(loader.config, {
+        client: {
+          orgUrl: '',
+          token: '',
+          authorizationMode: 'SSWS',
+          clientId: '',
+          scopes: '',
+          privateKey: ''
+        }
+      });
     });
 
     it('should override defaults with ~/.okta/okta.yaml file', () => {
       fakeFs.file(path.join(os.homedir(), '.okta', 'okta.yaml'), yaml.safeDump({
         okta: {
           client: {
-            orgUrl: 'foo'
+            orgUrl: 'foo',
+            authorizationMode: 'PrivateKey'
           }
         }
       }));
@@ -46,7 +65,11 @@ describe('ConfigLoader', () => {
       assert.deepEqual(loader.config, {
         client: {
           orgUrl: 'foo',
-          token: ''
+          token: '',
+          authorizationMode: 'PrivateKey',
+          clientId: '',
+          scopes: '',
+          privateKey: ''
         }
       });
     });
@@ -63,7 +86,11 @@ describe('ConfigLoader', () => {
       assert.deepEqual(loader.config, {
         client: {
           orgUrl: 'bar',
-          token: ''
+          authorizationMode: 'SSWS',
+          token: '',
+          clientId: '',
+          scopes: '',
+          privateKey: ''
         }
       });
     });
@@ -74,31 +101,44 @@ describe('ConfigLoader', () => {
       assert.deepEqual(loader.config, {
         client: {
           orgUrl: 'barbaz',
-          token: ''
+          authorizationMode: 'SSWS',
+          token: '',
+          clientId: '',
+          scopes: '',
+          privateKey: ''
         }
       });
     });
   });
 
   describe('.apply()', () => {
-    const a = {
-      client: {
-        orgUrl: 'foo',
-        token: 'a'
-      }
-    };
-    const b = {
-      client: {
-        orgUrl: 'bar'
-      }
-    };
-    const expect = {
-      client: {
-        orgUrl: 'bar',
-        token: 'a'
-      }
-    };
     it('should-deep merge objects, overriding new values and preserving old ones', () => {
+      const a = {
+        client: {
+          orgUrl: 'foo',
+          token: 'a',
+          authorizationMode: 'SSWS',
+          clientId: '',
+          scopes: '',
+          privateKey: ''
+        }
+      };
+      const b = {
+        client: {
+          orgUrl: 'bar',
+          authorizationMode: 'PrivateKey'
+        }
+      };
+      const expect = {
+        client: {
+          orgUrl: 'bar',
+          token: 'a',
+          authorizationMode: 'PrivateKey',
+          clientId: '',
+          scopes: '',
+          privateKey: ''
+        }
+      };
       var loader = new ConfigLoader();
       loader.apply(a);
       assert.deepEqual(loader.config, a);
@@ -106,6 +146,29 @@ describe('ConfigLoader', () => {
       assert.deepEqual(loader.config, expect);
       loader.apply({});
       assert.deepEqual(loader.config, expect);
+    });
+    it('Converts arrays to string, using space as separator', () => {
+      const a = {
+        client: {
+          scopes: ['a', 'b', 'c'],
+        }
+      };
+      var loader = new ConfigLoader();
+      loader.apply(a);
+      assert.strictEqual(loader.config.client.scopes, 'a b c');
+    });
+    it('Converts objects to string, using space as separator', () => {
+      const privateKey = {
+        foo: 'bar'
+      };
+      const a = {
+        client: {
+          privateKey
+        }
+      };
+      var loader = new ConfigLoader();
+      loader.apply(a);
+      assert.strictEqual(loader.config.client.privateKey, JSON.stringify(privateKey));
     });
   });
 });

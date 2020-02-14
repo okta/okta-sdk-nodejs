@@ -28,6 +28,31 @@ class Http {
     if (httpConfig.cacheMiddleware !== null) {
       this.cacheMiddleware = httpConfig.cacheMiddleware || defaultCacheMiddleware;
     }
+    this.oauth = httpConfig.oauth;
+  }
+
+  prepareRequest(request) {
+    if (!this.oauth) {
+      return Promise.resolve();
+    }
+
+    let getToken;
+    if (this.accessToken) {
+      getToken = Promise.resolve(this.accessToken);
+    } else {
+      getToken = this.oauth.getAccessToken()
+        .then(this.errorFilter)
+        .then(res => res.json())
+        .then(accessToken => {
+          this.accessToken = accessToken;
+          return accessToken;
+        });
+    }
+
+    return getToken
+        .then(accessToken => {
+          request.headers.Authorization = `Bearer ${accessToken.access_token}`;
+        });
   }
 
   errorFilter(response) {
@@ -57,22 +82,26 @@ class Http {
     request.headers = Object.assign(this.defaultHeaders, request.headers);
     request.method = request.method || 'get';
     if (!this.cacheMiddleware) {
-      return this.requestExecutor.fetch(request)
-      .then(this.errorFilter);
+      return this.prepareRequest(request)
+        .then(() => this.requestExecutor.fetch(request))
+        .then(this.errorFilter);
     }
     const ctx = {
-      uri,
+      uri, // TODO: remove unused property. req.url should be the key.
       isCollection: context.isCollection,
       resources: context.resources,
       req: request,
       cacheStore: this.cacheStore
     };
     return this.cacheMiddleware(ctx, () => {
-      return Promise.resolve(ctx.res ||
-        this.requestExecutor.fetch(request)
+      if (ctx.res) {
+        return;
+      }
+
+      return this.prepareRequest(request)
+        .then(() => this.requestExecutor.fetch(request))
         .then(this.errorFilter)
-        .then(res => ctx.res = res)
-      );
+        .then(res => ctx.res = res);
     })
     .then(() => ctx.res);
   }
