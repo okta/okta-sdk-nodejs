@@ -1,5 +1,9 @@
 # Okta Node SDK Changelog
 
+## 3.2.0
+
+- [#128](https://github.com/okta/okta-sdk-nodejs/pull/128) Adds support for OAuth
+
 ## 3.1.0
 
 - Updates the Okta Openapi to 1.11
