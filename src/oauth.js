@@ -1,4 +1,4 @@
-const makeJwt = require('./jwt').makeJwt;
+const { makeJwt } = require('./jwt');
 
 function formatParams(obj) {
   var str = [];
@@ -21,7 +21,6 @@ function formatParams(obj) {
 class OAuth {
   constructor(client) {
     this.client = client;
-    this.accessToken = null;
     this.jwt = null;
   }
 
@@ -50,8 +49,8 @@ class OAuth {
     if (!this.jwt) {
       return makeJwt(this.client)
         .then(jwt => {
-          this.jwt = jwt;
-          return jwt;
+          this.jwt = jwt.compact();
+          return this.jwt;
         });
     }
     return Promise.resolve(this.jwt);

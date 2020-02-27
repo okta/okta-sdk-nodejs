@@ -1,7 +1,10 @@
+const mockResponse = { status: 200 };
+jest.mock('isomorphic-fetch', () => {
+  return jest.fn().mockReturnValue(Promise.resolve(mockResponse));
+});
+
 const RequestExecutor = require('../../src/request-executor');
 const isoFetch = require('isomorphic-fetch');
-
-jest.mock('isomorphic-fetch');
 
 describe('RequestExecutor', () => {
 
@@ -25,7 +28,7 @@ describe('RequestExecutor', () => {
         requestCalled = true;
       });
       requestExecutor.on('response', (passedResponse) => {
-        expect(passedResponse).toEqual({status: 200}); // same type of response as defined in __mocks__/isomorphic-fetch.js
+        expect(passedResponse).toEqual(mockResponse);
         responseCalled = true;
       });
       await requestExecutor.fetch(request);

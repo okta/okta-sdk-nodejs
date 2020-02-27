@@ -240,7 +240,7 @@ describe('Policy Scenarios', () => {
       signon: policyRuleActionSignOn
     };
 
-    const policyRuleName = `node-sdk: PolicyRule ${faker.random.word()}`.substring(0, 49)
+    const policyRuleName = `node-sdk: PolicyRule ${faker.random.word()}`.substring(0, 49);
     const policyRule = {
       name: policyRuleName,
       type: 'SIGN_ON',

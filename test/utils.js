@@ -172,7 +172,7 @@ function getMockProfile(testName) {
     lastName: 'okta-sdk-nodejs',
     email: faker.internet.email(),
     login: faker.internet.email()
-  }
+  };
 }
 
 function getBookmarkApplication() {
@@ -186,7 +186,7 @@ function getBookmarkApplication() {
         url: 'https://example.com/bookmark.htm'
       }
     }
-  }
+  };
 }
 
 module.exports = {

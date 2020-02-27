@@ -1,15 +1,22 @@
-const njwt = require('njwt');
+const nJwt = require('njwt');
 const Rasha = require('rasha');
+const DEFAULT_ALG = 'RS256';
 
 function getPemAndJwk(privateKey) {
-  // privateKey is a string. It may be a PEM or a JWK
   let jwk;
   let pem;
-  try {
-    jwk = JSON.parse(privateKey);
-  } catch (e) {
-    // If JSON parsing fails, assume it is a PEM key
-    pem = privateKey;
+
+  // Accept JWK as an object
+  if (typeof privateKey === 'object') {
+    jwk = privateKey;
+  } else {
+    // privateKey is a string, it may be in JWK or PEM format
+    try {
+      jwk = JSON.parse(privateKey);
+    } catch (e) {
+      // If JSON parsing fails, assume it is a PEM key
+      pem = privateKey;
+    }
   }
 
   if (jwk) {
@@ -19,6 +26,7 @@ function getPemAndJwk(privateKey) {
     });
   } else {
     return Rasha.import({ pem }).then(function (jwk) {
+      jwk.alg = jwk.alg || DEFAULT_ALG;
       return { pem, jwk };
     });
   }
@@ -34,14 +42,14 @@ function makeJwt(client) {
   return getPemAndJwk(client.privateKey)
     .then(res => {
       const { pem, jwk } = res;
-      const alg = jwk.alg || 'RS256';
-      let jwt = njwt.create(claims, pem, alg)
+      const alg = jwk.alg || DEFAULT_ALG;
+      let jwt = nJwt.create(claims, pem, alg)
         .setIssuedAt(now)
         .setExpiration(plus5Minutes)
         .setIssuer(client.clientId)
         .setSubject(client.clientId);
 
-      jwt = jwt.compact();
+      // JWT object is returned. It needs to be compacted with jwt.compact() before it can be used
       return jwt;
     });
 }

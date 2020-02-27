@@ -38,31 +38,32 @@ class Client extends GeneratedApiClient {
     });
 
     const parsedConfig = configLoader.config;
-
     this.requestExecutor = clientConfig.requestExecutor || new DefaultRequestExecutor();
-
+    const errors = [];
     if (!parsedConfig.client.orgUrl) {
-      throw new Error(`Okta Org URL not provided, see ${repoUrl} for usage.`);
+      errors.push('Okta Org URL not provided');
     }
 
     if (!parsedConfig.client.token) {
-      throw new Error(`Okta API token not provided, see ${repoUrl} for usage.`);
+      errors.push('Okta API token not provided');
     }
 
     if (parsedConfig.client.authorizationMode === 'PrivateKey') {
       if (!parsedConfig.client.clientId) {
-        throw new Error(`Okta Client ID not provided, see ${repoUrl} for usage.`);
+        errors.push('Okta Client ID not provided');
       }
       if (!parsedConfig.client.scopes) {
-        throw new Error(`Scopes not provided, see ${repoUrl} for usage.`);
+        errors.push('Scopes not provided');
       }
       if (!parsedConfig.client.privateKey) {
-        throw new Error(`Private Key not provided, see ${repoUrl} for usage.`);
+        errors.push('Private Key not provided');
       }
     } else if (parsedConfig.client.authorizationMode !== 'SSWS') {
-      throw new Error(`Unknown Authorization Mode, see ${repoUrl} for usage.`);
+      errors.push('Unknown Authorization Mode');
     }
-
+    if (errors.length) {
+      throw new Error(`Found ${errors.length} errors:\n${errors.join('\n')}\nSee ${repoUrl} for usage.`);
+    }
     this.authorizationMode = parsedConfig.client.authorizationMode;
     this.baseUrl = parsedConfig.client.orgUrl.replace(/\/$/, '');
     this.apiToken = parsedConfig.client.token;

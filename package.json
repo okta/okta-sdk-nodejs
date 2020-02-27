@@ -44,6 +44,7 @@
     "globby": "^6.1.0",
     "ink-docstrap": "^1.3.0",
     "jest": "^23.1.0",
+    "jest-date-mock": "^1.0.8",
     "jsdoc": "^3.4.0",
     "mocha": "^3.4.1",
     "nyc": "^10.3.2",
@@ -52,6 +53,7 @@
   },
   "jest": {
     "restoreMocks": true,
-    "rootDir": "./test/jest"
+    "rootDir": "./test/jest",
+    "setupFiles": ["jest-date-mock"]
   }
 }
