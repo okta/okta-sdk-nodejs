@@ -16,8 +16,6 @@ function dateToEpochSeconds(date) {
   return Math.floor(date.getTime() / 1000);
 }
 
-jest.unmock('isomorphic-fetch');
-
 describe('DefaultRequestExecutor', () => {
 
   describe('constructor', () => {

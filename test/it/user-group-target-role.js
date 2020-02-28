@@ -8,6 +8,7 @@ if (process.env.OKTA_USE_MOCK) {
 }
 
 const client = new okta.Client({
+  scopes: ['okta.users.manage', 'okta.roles.manage'],
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
   requestExecutor: new okta.DefaultRequestExecutor()
@@ -31,7 +32,6 @@ describe('User Role API Tests', () => {
 
     // Cleanup the user & group if they exist
     await utils.cleanup(client, newUser, newGroup);
-
     let queryParameters = { activate : 'true' };
     const createdUser = await client.createUser(newUser, queryParameters);
     const createdGroup = await client.createGroup(newGroup);

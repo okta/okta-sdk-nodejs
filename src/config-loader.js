@@ -24,13 +24,24 @@ class ConfigLoader {
     this.prefix = 'OKTA';
     this.config = {
       client: {
+        authorizationMode: '',
         orgUrl: '',
-        token: ''
+        token: '',
+        clientId: '',
+        scopes: '',
+        privateKey: ''
       }
     };
   }
 
   applyDefaults() {
+    // Start with predefined defaults
+    this.apply({
+      client: {
+        authorizationMode: 'SSWS'
+      }
+    });
+    // Apply defaults defined in yaml
     const localYamlPath = path.join(process.cwd(), 'okta.yaml');
     const globalYamlPath = path.join(os.homedir(), '.okta', 'okta.yaml');
     if (fs.existsSync(globalYamlPath)) {
@@ -39,6 +50,7 @@ class ConfigLoader {
     if (fs.existsSync(localYamlPath)) {
       this.applyYamlFile(localYamlPath);
     }
+    // Apply defaults defined in environment vars
     this.applyEnvVars();
   }
 
@@ -51,19 +63,15 @@ class ConfigLoader {
     var flatEnvValues = Object.keys(flattendDefaultConfig)
       .reduce((envVarMap, key) => {
         var envKey = prefix + delimiter + key.toUpperCase();
-
         var value = process.env[envKey];
-
         if (value !== undefined) {
           envVarMap[key] = typeof flattendDefaultConfig[key] === 'number' ?
             parseInt(value, 10) : value;
         }
-
         return envVarMap;
       }, {});
 
     const envConfig = flat.unflatten(flatEnvValues, flatConfig);
-
     this.apply(envConfig);
   }
 
@@ -72,7 +80,20 @@ class ConfigLoader {
   }
 
   apply(config) {
-    _.merge(this.config, config);
+    _.mergeWith(this.config, config, (dest, src) => {
+      if (typeof dest !== 'string') {
+        return;
+      }
+      // If source object is array, convert to string, adding spaces between entries
+      if (Array.isArray(src)) {
+        return src.join(' ');
+      }
+
+      // Convert object to string
+      if (typeof src === 'object') {
+        return JSON.stringify(src);
+      }
+    });
   }
 }
 
