@@ -1,6 +1,6 @@
 {
   "name": "@okta/okta-sdk-nodejs",
-  "version": "3.2.0",
+  "version": "3.3.0",
   "description": "Okta API wrapper for Node.js",
   "engines": {
     "node": ">=8.11"
@@ -54,6 +54,8 @@
   "jest": {
     "restoreMocks": true,
     "rootDir": "./test/jest",
-    "setupFiles": ["jest-date-mock"]
+    "setupFiles": [
+      "jest-date-mock"
+    ]
   }
 }
