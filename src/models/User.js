@@ -50,20 +50,20 @@ class User extends Resource {
    * @returns {Promise<User>}
    */
   update(queryParameters) {
-    return this.client.updateUser(this.id, this, queryParameters);
+    return this.httpClient.updateUser(this.id, this, queryParameters);
   }
   /**
    * @param {object} queryParameters
    */
   delete(queryParameters) {
-    return this.client.deactivateOrDeleteUser(this.id, queryParameters);
+    return this.httpClient.deactivateOrDeleteUser(this.id, queryParameters);
   }
 
   /**
    * @param {object} queryParameters
    */
   endAllSessions(queryParameters) {
-    return this.client.endAllUserSessions(this.id, queryParameters);
+    return this.httpClient.endAllUserSessions(this.id, queryParameters);
   }
 
   /**
@@ -71,7 +71,7 @@ class User extends Resource {
    * @returns {Promise<Collection>} A collection that will yield {@link AppLink} instances.
    */
   listAppLinks(queryParameters) {
-    return this.client.listAppLinks(this.id, queryParameters);
+    return this.httpClient.listAppLinks(this.id, queryParameters);
   }
 
   /**
@@ -80,7 +80,7 @@ class User extends Resource {
    * @returns {Promise<UserCredentials>}
    */
   changePassword(changePasswordRequest, queryParameters) {
-    return this.client.changePassword(this.id, changePasswordRequest, queryParameters);
+    return this.httpClient.changePassword(this.id, changePasswordRequest, queryParameters);
   }
 
   /**
@@ -88,7 +88,7 @@ class User extends Resource {
    * @returns {Promise<UserCredentials>}
    */
   changeRecoveryQuestion(userCredentials) {
-    return this.client.changeRecoveryQuestion(this.id, userCredentials);
+    return this.httpClient.changeRecoveryQuestion(this.id, userCredentials);
   }
 
   /**
@@ -97,7 +97,7 @@ class User extends Resource {
    * @returns {Promise<ForgotPasswordResponse>}
    */
   forgotPassword(userCredentials, queryParameters) {
-    return this.client.forgotPassword(this.id, userCredentials, queryParameters);
+    return this.httpClient.forgotPassword(this.id, userCredentials, queryParameters);
   }
 
   /**
@@ -105,7 +105,7 @@ class User extends Resource {
    * @returns {Promise<Collection>} A collection that will yield {@link Role} instances.
    */
   listRoles(queryParameters) {
-    return this.client.listAssignedRoles(this.id, queryParameters);
+    return this.httpClient.listAssignedRoles(this.id, queryParameters);
   }
 
   /**
@@ -113,14 +113,14 @@ class User extends Resource {
    * @returns {Promise<Role>}
    */
   addRole(role) {
-    return this.client.addRoleToUser(this.id, role);
+    return this.httpClient.addRoleToUser(this.id, role);
   }
 
   /**
    * @param {string} roleId
    */
   removeRole(roleId) {
-    return this.client.removeRoleFromUser(this.id, roleId);
+    return this.httpClient.removeRoleFromUser(this.id, roleId);
   }
 
   /**
@@ -129,7 +129,7 @@ class User extends Resource {
    * @returns {Promise<Collection>} A collection that will yield {@link Group} instances.
    */
   listGroupTargetsForRole(roleId, queryParameters) {
-    return this.client.listGroupTargetsForRole(this.id, roleId, queryParameters);
+    return this.httpClient.listGroupTargetsForRole(this.id, roleId, queryParameters);
   }
 
   /**
@@ -137,7 +137,7 @@ class User extends Resource {
    * @param {string} groupId
    */
   removeGroupTargetFromRole(roleId, groupId) {
-    return this.client.removeGroupTargetFromRole(this.id, roleId, groupId);
+    return this.httpClient.removeGroupTargetFromRole(this.id, roleId, groupId);
   }
 
   /**
@@ -145,7 +145,7 @@ class User extends Resource {
    * @param {string} groupId
    */
   addGroupTargetToRole(roleId, groupId) {
-    return this.client.addGroupTargetToRole(this.id, roleId, groupId);
+    return this.httpClient.addGroupTargetToRole(this.id, roleId, groupId);
   }
 
   /**
@@ -153,7 +153,7 @@ class User extends Resource {
    * @returns {Promise<Collection>} A collection that will yield {@link Group} instances.
    */
   listGroups(queryParameters) {
-    return this.client.listUserGroups(this.id, queryParameters);
+    return this.httpClient.listUserGroups(this.id, queryParameters);
   }
 
   /**
@@ -161,22 +161,22 @@ class User extends Resource {
    * @returns {Promise<UserActivationToken>}
    */
   activate(queryParameters) {
-    return this.client.activateUser(this.id, queryParameters);
+    return this.httpClient.activateUser(this.id, queryParameters);
   }
 
   /**
    * @param {object} queryParameters
    */
   deactivate(queryParameters) {
-    return this.client.deactivateUser(this.id, queryParameters);
+    return this.httpClient.deactivateUser(this.id, queryParameters);
   }
 
   suspend() {
-    return this.client.suspendUser(this.id);
+    return this.httpClient.suspendUser(this.id);
   }
 
   unsuspend() {
-    return this.client.unsuspendUser(this.id);
+    return this.httpClient.unsuspendUser(this.id);
   }
 
   /**
@@ -184,7 +184,7 @@ class User extends Resource {
    * @returns {Promise<ResetPasswordToken>}
    */
   resetPassword(queryParameters) {
-    return this.client.resetPassword(this.id, queryParameters);
+    return this.httpClient.resetPassword(this.id, queryParameters);
   }
 
   /**
@@ -192,22 +192,22 @@ class User extends Resource {
    * @returns {Promise<TempPassword>}
    */
   expirePassword(queryParameters) {
-    return this.client.expirePassword(this.id, queryParameters);
+    return this.httpClient.expirePassword(this.id, queryParameters);
   }
 
   unlock() {
-    return this.client.unlockUser(this.id);
+    return this.httpClient.unlockUser(this.id);
   }
 
   resetFactors() {
-    return this.client.resetAllFactors(this.id);
+    return this.httpClient.resetAllFactors(this.id);
   }
 
   /**
    * @param {string} groupId
    */
   addToGroup(groupId) {
-    return this.client.addUserToGroup(groupId, this.id);
+    return this.httpClient.addUserToGroup(groupId, this.id);
   }
 
   /**
@@ -216,28 +216,28 @@ class User extends Resource {
    * @returns {Promise<Factor>}
    */
   addFactor(factor, queryParameters) {
-    return this.client.addFactor(this.id, factor, queryParameters);
+    return this.httpClient.addFactor(this.id, factor, queryParameters);
   }
 
   /**
    * @returns {Promise<Collection>} A collection that will yield {@link Factor} instances.
    */
   listSupportedFactors() {
-    return this.client.listSupportedFactors(this.id);
+    return this.httpClient.listSupportedFactors(this.id);
   }
 
   /**
    * @returns {Promise<Collection>} A collection that will yield {@link Factor} instances.
    */
   listFactors() {
-    return this.client.listFactors(this.id);
+    return this.httpClient.listFactors(this.id);
   }
 
   /**
    * @returns {Promise<Collection>} A collection that will yield {@link SecurityQuestion} instances.
    */
   listSupportedSecurityQuestions() {
-    return this.client.listSupportedSecurityQuestions(this.id);
+    return this.httpClient.listSupportedSecurityQuestions(this.id);
   }
 
   /**
@@ -245,7 +245,7 @@ class User extends Resource {
    * @returns {Promise<Factor>}
    */
   getFactor(factorId) {
-    return this.client.getFactor(this.id, factorId);
+    return this.httpClient.getFactor(this.id, factorId);
   }
 }
 

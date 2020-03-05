@@ -41,17 +41,17 @@ class Group extends Resource {
    * @returns {Promise<Group>}
    */
   update() {
-    return this.client.updateGroup(this.id, this);
+    return this.httpClient.updateGroup(this.id, this);
   }
   delete() {
-    return this.client.deleteGroup(this.id);
+    return this.httpClient.deleteGroup(this.id);
   }
 
   /**
    * @param {string} userId
    */
   removeUser(userId) {
-    return this.client.removeGroupUser(this.id, userId);
+    return this.httpClient.removeGroupUser(this.id, userId);
   }
 
   /**
@@ -59,7 +59,7 @@ class Group extends Resource {
    * @returns {Promise<Collection>} A collection that will yield {@link User} instances.
    */
   listUsers(queryParameters) {
-    return this.client.listGroupUsers(this.id, queryParameters);
+    return this.httpClient.listGroupUsers(this.id, queryParameters);
   }
 }
 

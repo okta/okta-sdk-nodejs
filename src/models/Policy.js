@@ -41,25 +41,25 @@ class Policy extends Resource {
    * @returns {Promise<Policy>}
    */
   update() {
-    return this.client.updatePolicy(this.id, this);
+    return this.httpClient.updatePolicy(this.id, this);
   }
   delete() {
-    return this.client.deletePolicy(this.id);
+    return this.httpClient.deletePolicy(this.id);
   }
 
   activate() {
-    return this.client.activatePolicy(this.id);
+    return this.httpClient.activatePolicy(this.id);
   }
 
   deactivate() {
-    return this.client.deactivatePolicy(this.id);
+    return this.httpClient.deactivatePolicy(this.id);
   }
 
   /**
    * @returns {Promise<Collection>} A collection that will yield {@link PolicyRule} instances.
    */
   listPolicyRules() {
-    return this.client.listPolicyRules(this.id);
+    return this.httpClient.listPolicyRules(this.id);
   }
 
   /**
@@ -68,7 +68,7 @@ class Policy extends Resource {
    * @returns {Promise<PolicyRule>}
    */
   createRule(policyRule, queryParameters) {
-    return this.client.addPolicyRule(this.id, policyRule, queryParameters);
+    return this.httpClient.addPolicyRule(this.id, policyRule, queryParameters);
   }
 
   /**
@@ -76,7 +76,7 @@ class Policy extends Resource {
    * @returns {Promise<PolicyRule>}
    */
   getPolicyRule(ruleId) {
-    return this.client.getPolicyRule(this.id, ruleId);
+    return this.httpClient.getPolicyRule(this.id, ruleId);
   }
 }
 

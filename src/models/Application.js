@@ -64,18 +64,18 @@ class Application extends Resource {
    * @returns {Promise<Application>}
    */
   update() {
-    return this.client.updateApplication(this.id, this);
+    return this.httpClient.updateApplication(this.id, this);
   }
   delete() {
-    return this.client.deleteApplication(this.id);
+    return this.httpClient.deleteApplication(this.id);
   }
 
   activate() {
-    return this.client.activateApplication(this.id);
+    return this.httpClient.activateApplication(this.id);
   }
 
   deactivate() {
-    return this.client.deactivateApplication(this.id);
+    return this.httpClient.deactivateApplication(this.id);
   }
 
   /**
@@ -83,7 +83,7 @@ class Application extends Resource {
    * @returns {Promise<Collection>} A collection that will yield {@link AppUser} instances.
    */
   listApplicationUsers(queryParameters) {
-    return this.client.listApplicationUsers(this.id, queryParameters);
+    return this.httpClient.listApplicationUsers(this.id, queryParameters);
   }
 
   /**
@@ -91,7 +91,7 @@ class Application extends Resource {
    * @returns {Promise<AppUser>}
    */
   assignUserToApplication(appUser) {
-    return this.client.assignUserToApplication(this.id, appUser);
+    return this.httpClient.assignUserToApplication(this.id, appUser);
   }
 
   /**
@@ -100,7 +100,7 @@ class Application extends Resource {
    * @returns {Promise<AppUser>}
    */
   getApplicationUser(userId, queryParameters) {
-    return this.client.getApplicationUser(this.id, userId, queryParameters);
+    return this.httpClient.getApplicationUser(this.id, userId, queryParameters);
   }
 
   /**
@@ -109,7 +109,7 @@ class Application extends Resource {
    * @returns {Promise<ApplicationGroupAssignment>}
    */
   createApplicationGroupAssignment(groupId, applicationGroupAssignment) {
-    return this.client.createApplicationGroupAssignment(this.id, groupId, applicationGroupAssignment);
+    return this.httpClient.createApplicationGroupAssignment(this.id, groupId, applicationGroupAssignment);
   }
 
   /**
@@ -118,7 +118,7 @@ class Application extends Resource {
    * @returns {Promise<ApplicationGroupAssignment>}
    */
   getApplicationGroupAssignment(groupId, queryParameters) {
-    return this.client.getApplicationGroupAssignment(this.id, groupId, queryParameters);
+    return this.httpClient.getApplicationGroupAssignment(this.id, groupId, queryParameters);
   }
 
   /**
@@ -127,7 +127,7 @@ class Application extends Resource {
    * @returns {Promise<JsonWebKey>}
    */
   cloneApplicationKey(keyId, queryParameters) {
-    return this.client.cloneApplicationKey(this.id, keyId, queryParameters);
+    return this.httpClient.cloneApplicationKey(this.id, keyId, queryParameters);
   }
 
   /**
@@ -135,7 +135,7 @@ class Application extends Resource {
    * @returns {Promise<JsonWebKey>}
    */
   getApplicationKey(keyId) {
-    return this.client.getApplicationKey(this.id, keyId);
+    return this.httpClient.getApplicationKey(this.id, keyId);
   }
 
   /**
@@ -143,14 +143,14 @@ class Application extends Resource {
    * @returns {Promise<Collection>} A collection that will yield {@link ApplicationGroupAssignment} instances.
    */
   listGroupAssignments(queryParameters) {
-    return this.client.listApplicationGroupAssignments(this.id, queryParameters);
+    return this.httpClient.listApplicationGroupAssignments(this.id, queryParameters);
   }
 
   /**
    * @returns {Promise<Collection>} A collection that will yield {@link JsonWebKey} instances.
    */
   listKeys() {
-    return this.client.listApplicationKeys(this.id);
+    return this.httpClient.listApplicationKeys(this.id);
   }
 }
 

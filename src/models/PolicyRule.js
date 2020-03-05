@@ -38,27 +38,27 @@ class PolicyRule extends Resource {
    * @returns {Promise<PolicyRule>}
    */
   update(policyId) {
-    return this.client.updatePolicyRule(policyId, this.id, this);
+    return this.httpClient.updatePolicyRule(policyId, this.id, this);
   }
   /**
    * @param {string} policyId
    */
   delete(policyId) {
-    return this.client.deletePolicyRule(policyId, this.id);
+    return this.httpClient.deletePolicyRule(policyId, this.id);
   }
 
   /**
    * @param {string} policyId
    */
   activate(policyId) {
-    return this.client.activatePolicyRule(policyId, this.id);
+    return this.httpClient.activatePolicyRule(policyId, this.id);
   }
 
   /**
    * @param {string} policyId
    */
   deactivate(policyId) {
-    return this.client.deactivatePolicyRule(policyId, this.id);
+    return this.httpClient.deactivatePolicyRule(policyId, this.id);
   }
 }
 

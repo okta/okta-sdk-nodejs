@@ -51,7 +51,7 @@ class Factor extends Resource {
    * @param {string} userId
    */
   delete(userId) {
-    return this.client.deleteFactor(userId, this.id);
+    return this.httpClient.deleteFactor(userId, this.id);
   }
 
   /**
@@ -60,7 +60,7 @@ class Factor extends Resource {
    * @returns {Promise<Factor>}
    */
   activate(userId, verifyFactorRequest) {
-    return this.client.activateFactor(userId, this.id, verifyFactorRequest);
+    return this.httpClient.activateFactor(userId, this.id, verifyFactorRequest);
   }
 
   /**
@@ -70,7 +70,7 @@ class Factor extends Resource {
    * @returns {Promise<VerifyFactorResponse>}
    */
   verify(userId, verifyFactorRequest, queryParameters) {
-    return this.client.verifyFactor(userId, this.id, verifyFactorRequest, queryParameters);
+    return this.httpClient.verifyFactor(userId, this.id, verifyFactorRequest, queryParameters);
   }
 }
 

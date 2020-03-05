@@ -47,14 +47,14 @@ class AppUser extends Resource {
    * @returns {Promise<AppUser>}
    */
   update(appId) {
-    return this.client.updateApplicationUser(appId, this.id, this);
+    return this.httpClient.updateApplicationUser(appId, this.id, this);
   }
   /**
    * @param {string} appId
    * @param {object} queryParameters
    */
   delete(appId, queryParameters) {
-    return this.client.deleteApplicationUser(appId, this.id, queryParameters);
+    return this.httpClient.deleteApplicationUser(appId, this.id, queryParameters);
   }
 }
 
