@@ -44,18 +44,21 @@ class GroupRule extends Resource {
    * @returns {Promise<GroupRule>}
    */
   update() {
-    return this.client.updateGroupRule(this.id, this);
+    return this.httpClient.updateRule(this.id, this);
   }
-  delete() {
-    return this.client.deleteGroupRule(this.id);
+  /**
+   * @param {object} queryParameters
+   */
+  delete(queryParameters) {
+    return this.httpClient.deleteRule(this.id, queryParameters);
   }
 
   activate() {
-    return this.client.activateGroupRule(this.id);
+    return this.httpClient.activateRule(this.id);
   }
 
   deactivate() {
-    return this.client.deactivateGroupRule(this.id);
+    return this.httpClient.deactivateRule(this.id);
   }
 }
 

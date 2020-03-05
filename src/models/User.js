@@ -55,20 +55,20 @@ class User extends Resource {
    * @returns {Promise<User>}
    */
   update(queryParameters) {
-    return this.client.updateUser(this.id, this, queryParameters);
+    return this.httpClient.updateUser(this.id, this, queryParameters);
   }
   /**
    * @param {object} queryParameters
    */
   delete(queryParameters) {
-    return this.client.deactivateOrDeleteUser(this.id, queryParameters);
+    return this.httpClient.deactivateOrDeleteUser(this.id, queryParameters);
   }
 
   /**
    * @returns {Promise<Collection>} A collection that will yield {@link AppLink} instances.
    */
   listAppLinks() {
-    return this.client.listAppLinks(this.id);
+    return this.httpClient.listAppLinks(this.id);
   }
 
   /**
@@ -77,7 +77,7 @@ class User extends Resource {
    * @returns {Promise<UserCredentials>}
    */
   changePassword(changePasswordRequest, queryParameters) {
-    return this.client.changePassword(this.id, changePasswordRequest, queryParameters);
+    return this.httpClient.changePassword(this.id, changePasswordRequest, queryParameters);
   }
 
   /**
@@ -85,7 +85,7 @@ class User extends Resource {
    * @returns {Promise<UserCredentials>}
    */
   changeRecoveryQuestion(userCredentials) {
-    return this.client.changeRecoveryQuestion(this.id, userCredentials);
+    return this.httpClient.changeRecoveryQuestion(this.id, userCredentials);
   }
 
   /**
@@ -94,7 +94,7 @@ class User extends Resource {
    * @returns {Promise<ForgotPasswordResponse>}
    */
   forgotPasswordSetNewPassword(userCredentials, queryParameters) {
-    return this.client.forgotPasswordSetNewPassword(this.id, userCredentials, queryParameters);
+    return this.httpClient.forgotPasswordSetNewPassword(this.id, userCredentials, queryParameters);
   }
 
   /**
@@ -102,7 +102,7 @@ class User extends Resource {
    * @returns {Promise<ForgotPasswordResponse>}
    */
   forgotPasswordGenerateOneTimeToken(queryParameters) {
-    return this.client.forgotPasswordGenerateOneTimeToken(this.id, queryParameters);
+    return this.httpClient.forgotPasswordGenerateOneTimeToken(this.id, queryParameters);
   }
 
   /**
@@ -111,14 +111,14 @@ class User extends Resource {
    * @returns {Promise<Role>}
    */
   assignRole(assignRoleRequest, queryParameters) {
-    return this.client.assignRoleToUser(this.id, assignRoleRequest, queryParameters);
+    return this.httpClient.assignRoleToUser(this.id, assignRoleRequest, queryParameters);
   }
 
   /**
    * @param {string} roleId
    */
   removeRole(roleId) {
-    return this.client.removeRoleFromUser(this.id, roleId);
+    return this.httpClient.removeRoleFromUser(this.id, roleId);
   }
 
   /**
@@ -127,7 +127,7 @@ class User extends Resource {
    * @returns {Promise<Collection>} A collection that will yield {@link Group} instances.
    */
   listGroupTargets(roleId, queryParameters) {
-    return this.client.listGroupTargetsForRole(this.id, roleId, queryParameters);
+    return this.httpClient.listGroupTargetsForRole(this.id, roleId, queryParameters);
   }
 
   /**
@@ -135,7 +135,7 @@ class User extends Resource {
    * @param {string} groupId
    */
   removeGroupTarget(roleId, groupId) {
-    return this.client.removeGroupTargetFromRole(this.id, roleId, groupId);
+    return this.httpClient.removeGroupTargetFromRole(this.id, roleId, groupId);
   }
 
   /**
@@ -143,7 +143,7 @@ class User extends Resource {
    * @param {string} groupId
    */
   addGroupTarget(roleId, groupId) {
-    return this.client.addGroupTargetToRole(this.id, roleId, groupId);
+    return this.httpClient.addGroupTargetToRole(this.id, roleId, groupId);
   }
 
   /**
@@ -151,21 +151,21 @@ class User extends Resource {
    * @returns {Promise<Collection>} A collection that will yield {@link Role} instances.
    */
   listAssignedRoles(queryParameters) {
-    return this.client.listAssignedRolesForUser(this.id, queryParameters);
+    return this.httpClient.listAssignedRolesForUser(this.id, queryParameters);
   }
 
   /**
    * @param {string} roleId
    */
   addAllAppsAsTarget(roleId) {
-    return this.client.addAllAppsAsTargetToRole(this.id, roleId);
+    return this.httpClient.addAllAppsAsTargetToRole(this.id, roleId);
   }
 
   /**
    * @returns {Promise<Collection>} A collection that will yield {@link Group} instances.
    */
   listGroups() {
-    return this.client.listUserGroups(this.id);
+    return this.httpClient.listUserGroups(this.id);
   }
 
   /**
@@ -173,25 +173,25 @@ class User extends Resource {
    * @returns {Promise<Collection>} A collection that will yield {@link OAuth2ScopeConsentGrant} instances.
    */
   listGrants(queryParameters) {
-    return this.client.listUserGrants(this.id, queryParameters);
+    return this.httpClient.listUserGrants(this.id, queryParameters);
   }
 
   revokeGrants() {
-    return this.client.revokeUserGrants(this.id);
+    return this.httpClient.revokeUserGrants(this.id);
   }
 
   /**
    * @param {string} grantId
    */
   revokeGrant(grantId) {
-    return this.client.revokeUserGrant(this.id, grantId);
+    return this.httpClient.revokeUserGrant(this.id, grantId);
   }
 
   /**
    * @param {string} clientId
    */
   revokeGrantsForUserAndClient(clientId) {
-    return this.client.revokeGrantsForUserAndClient(this.id, clientId);
+    return this.httpClient.revokeGrantsForUserAndClient(this.id, clientId);
   }
 
   /**
@@ -200,7 +200,7 @@ class User extends Resource {
    * @returns {Promise<Collection>} A collection that will yield {@link OAuth2RefreshToken} instances.
    */
   listRefreshTokensForUserAndClient(clientId, queryParameters) {
-    return this.client.listRefreshTokensForUserAndClient(this.id, clientId, queryParameters);
+    return this.httpClient.listRefreshTokensForUserAndClient(this.id, clientId, queryParameters);
   }
 
   /**
@@ -208,7 +208,7 @@ class User extends Resource {
    * @param {string} tokenId
    */
   revokeTokenForUserAndClient(clientId, tokenId) {
-    return this.client.revokeTokenForUserAndClient(this.id, clientId, tokenId);
+    return this.httpClient.revokeTokenForUserAndClient(this.id, clientId, tokenId);
   }
 
   /**
@@ -218,21 +218,21 @@ class User extends Resource {
    * @returns {Promise<OAuth2RefreshToken>}
    */
   getRefreshTokenForUserAndClient(clientId, tokenId, queryParameters) {
-    return this.client.getRefreshTokenForUserAndClient(this.id, clientId, tokenId, queryParameters);
+    return this.httpClient.getRefreshTokenForUserAndClient(this.id, clientId, tokenId, queryParameters);
   }
 
   /**
    * @param {string} clientId
    */
   revokeTokensForUserAndClient(clientId) {
-    return this.client.revokeTokensForUserAndClient(this.id, clientId);
+    return this.httpClient.revokeTokensForUserAndClient(this.id, clientId);
   }
 
   /**
    * @returns {Promise<Collection>} A collection that will yield {@link OAuth2Client} instances.
    */
   listClients() {
-    return this.client.listUserClients(this.id);
+    return this.httpClient.listUserClients(this.id);
   }
 
   /**
@@ -240,7 +240,7 @@ class User extends Resource {
    * @returns {Promise<UserActivationToken>}
    */
   activate(queryParameters) {
-    return this.client.activateUser(this.id, queryParameters);
+    return this.httpClient.activateUser(this.id, queryParameters);
   }
 
   /**
@@ -248,22 +248,22 @@ class User extends Resource {
    * @returns {Promise<UserActivationToken>}
    */
   reactivate(queryParameters) {
-    return this.client.reactivateUser(this.id, queryParameters);
+    return this.httpClient.reactivateUser(this.id, queryParameters);
   }
 
   /**
    * @param {object} queryParameters
    */
   deactivate(queryParameters) {
-    return this.client.deactivateUser(this.id, queryParameters);
+    return this.httpClient.deactivateUser(this.id, queryParameters);
   }
 
   suspend() {
-    return this.client.suspendUser(this.id);
+    return this.httpClient.suspendUser(this.id);
   }
 
   unsuspend() {
-    return this.client.unsuspendUser(this.id);
+    return this.httpClient.unsuspendUser(this.id);
   }
 
   /**
@@ -271,43 +271,43 @@ class User extends Resource {
    * @returns {Promise<ResetPasswordToken>}
    */
   resetPassword(queryParameters) {
-    return this.client.resetPassword(this.id, queryParameters);
+    return this.httpClient.resetPassword(this.id, queryParameters);
   }
 
   /**
    * @returns {Promise<User>}
    */
   expirePassword() {
-    return this.client.expirePassword(this.id);
+    return this.httpClient.expirePassword(this.id);
   }
 
   /**
    * @returns {Promise<TempPassword>}
    */
   expirePasswordAndGetTemporaryPassword() {
-    return this.client.expirePasswordAndGetTemporaryPassword(this.id);
+    return this.httpClient.expirePasswordAndGetTemporaryPassword(this.id);
   }
 
   unlock() {
-    return this.client.unlockUser(this.id);
+    return this.httpClient.unlockUser(this.id);
   }
 
   resetFactors() {
-    return this.client.resetFactors(this.id);
+    return this.httpClient.resetFactors(this.id);
   }
 
   /**
    * @param {string} factorId
    */
   deleteFactor(factorId) {
-    return this.client.deleteFactor(this.id, factorId);
+    return this.httpClient.deleteFactor(this.id, factorId);
   }
 
   /**
    * @param {string} groupId
    */
   addToGroup(groupId) {
-    return this.client.addUserToGroup(groupId, this.id);
+    return this.httpClient.addUserToGroup(groupId, this.id);
   }
 
   /**
@@ -316,28 +316,28 @@ class User extends Resource {
    * @returns {Promise<UserFactor>}
    */
   enrollFactor(userFactor, queryParameters) {
-    return this.client.enrollFactor(this.id, userFactor, queryParameters);
+    return this.httpClient.enrollFactor(this.id, userFactor, queryParameters);
   }
 
   /**
    * @returns {Promise<Collection>} A collection that will yield {@link UserFactor} instances.
    */
   listSupportedFactors() {
-    return this.client.listSupportedFactors(this.id);
+    return this.httpClient.listSupportedFactors(this.id);
   }
 
   /**
    * @returns {Promise<Collection>} A collection that will yield {@link UserFactor} instances.
    */
   listFactors() {
-    return this.client.listFactors(this.id);
+    return this.httpClient.listFactors(this.id);
   }
 
   /**
    * @returns {Promise<Collection>} A collection that will yield {@link SecurityQuestion} instances.
    */
   listSupportedSecurityQuestions() {
-    return this.client.listSupportedSecurityQuestions(this.id);
+    return this.httpClient.listSupportedSecurityQuestions(this.id);
   }
 
   /**
@@ -345,7 +345,7 @@ class User extends Resource {
    * @returns {Promise<UserFactor>}
    */
   getFactor(factorId) {
-    return this.client.getFactor(this.id, factorId);
+    return this.httpClient.getFactor(this.id, factorId);
   }
 
   /**
@@ -353,14 +353,14 @@ class User extends Resource {
    * @param {string} primaryUserId
    */
   setLinkedObject(primaryRelationshipName, primaryUserId) {
-    return this.client.setLinkedObjectForUser(this.id, primaryRelationshipName, primaryUserId);
+    return this.httpClient.setLinkedObjectForUser(this.id, primaryRelationshipName, primaryUserId);
   }
 
   /**
    * @returns {Promise<Collection>} A collection that will yield {@link IdentityProvider} instances.
    */
   listIdentityProviders() {
-    return this.client.listUserIdentityProviders(this.id);
+    return this.httpClient.listUserIdentityProviders(this.id);
   }
 
   /**
@@ -369,21 +369,21 @@ class User extends Resource {
    * @returns {Promise<Collection>} A collection that will yield {@link ResponseLinks} instances.
    */
   getLinkedObjects(relationshipName, queryParameters) {
-    return this.client.getLinkedObjectsForUser(this.id, relationshipName, queryParameters);
+    return this.httpClient.getLinkedObjectsForUser(this.id, relationshipName, queryParameters);
   }
 
   /**
    * @param {object} queryParameters
    */
   clearSessions(queryParameters) {
-    return this.client.clearUserSessions(this.id, queryParameters);
+    return this.httpClient.clearUserSessions(this.id, queryParameters);
   }
 
   /**
    * @param {string} relationshipName
    */
   removeLinkedObject(relationshipName) {
-    return this.client.removeLinkedObjectForUser(this.id, relationshipName);
+    return this.httpClient.removeLinkedObjectForUser(this.id, relationshipName);
   }
 }
 
