@@ -19,7 +19,7 @@
 class Resource {
   constructor(resourceJson, client) {
     Object.assign(this, resourceJson);
-    Object.defineProperty(this, 'client', {
+    Object.defineProperty(this, 'httpClient', {
       value: client
     });
   }

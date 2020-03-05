@@ -40,14 +40,14 @@ class Session extends Resource {
   }
 
   delete() {
-    return this.client.endSession(this.id);
+    return this.httpClient.endSession(this.id);
   }
 
   /**
    * @returns {Promise<Session>}
    */
   refresh() {
-    return this.client.refreshSession(this.id);
+    return this.httpClient.refreshSession(this.id);
   }
 }
 
