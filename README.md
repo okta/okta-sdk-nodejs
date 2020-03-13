@@ -57,6 +57,7 @@ All interactions with the [Okta Platform API] is done through client methods.  S
     * [Assign a Group to an Application](#assign-a-group-to-an-application)
   * [System Log](#system-log)
     * [Get Logs](#get-logs)
+  * [Call other API Endpoints](#call-other-api-endpoints)
 * [Collection](#collection)
   * [each](#each)
   * [subscribe](#subscribeconfig)
@@ -356,6 +357,37 @@ const subscription = collection.subscribe({
     // Triggered when subscription.unsubscribe() is called
   }
 });
+```
+
+### Call other API Endpoints
+
+Not every API endpoint is represented by a method in this library. You can call any Okta management API endpoint using this generic syntax:
+
+```javascript
+const okta = require('@okta/okta-sdk-nodejs');
+
+// Assumes configuration is loaded via yaml or environment variables
+const client = new okta.Client();
+
+// https://developer.okta.com/docs/reference/api/apps/#preview-saml-metadata-for-application
+const applicationId = '{your custom SAML app id}';
+const url = `${client.baseUrl}/api/v1/apps/${applicationId}/sso/saml/metadata`;
+const request = {
+  method: 'get',
+  headers: {
+    'Accept': 'application/xml',
+    'Content-Type': 'application/json',
+  }
+};
+
+client.http.http(url, request)
+  .then(res => res.text())
+  .then(text => {
+    console.log(text);
+  })
+  .catch(err => {
+    console.error(err);
+  });
 ```
 
 ## Collection
