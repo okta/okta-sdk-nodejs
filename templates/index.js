@@ -113,11 +113,8 @@ js.process = ({spec, operations, models, handlebars}) => {
     }
     const importStatements = new Set();
     model.properties.forEach(property => {
-      if (
-        property.$ref 
-        && MODELS_SHOULD_NOT_PROCESS.indexOf(property.model) < 0 
-        && !property.isEnum
-      ) {
+      const shouldProcess = !MODELS_SHOULD_NOT_PROCESS.includes(property.model);
+      if (property.$ref && shouldProcess && !property.isEnum) {
         importStatements.add(`const ${property.model} = require('./${property.model}');`);
       }
     });
@@ -130,11 +127,8 @@ js.process = ({spec, operations, models, handlebars}) => {
     }
     const constructorStatements = [];
     model.properties.forEach(property => {
-      if (
-        property.$ref 
-        && MODELS_SHOULD_NOT_PROCESS.indexOf(property.model) < 0 
-        && !property.isEnum
-      ) {
+      const shouldProcess = !MODELS_SHOULD_NOT_PROCESS.includes(property.model);
+      if (property.$ref && shouldProcess && !property.isEnum) {
         constructorStatements.push(`    if (resourceJson && resourceJson.${property.propertyName}) {`);
         constructorStatements.push(`      this.${property.propertyName} = new ${property.model}(this.${property.propertyName});`);
         constructorStatements.push(`    }`);
