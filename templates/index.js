@@ -29,6 +29,8 @@ js.process = ({spec, operations, models, handlebars}) => {
 
   // Collect all the operations
 
+  const MODELS_SHOULD_NOT_PROCESS = ['object', 'string'];
+
   const templates = [];
 
   const extensibleModels = new Set();
@@ -111,7 +113,8 @@ js.process = ({spec, operations, models, handlebars}) => {
     }
     const importStatements = new Set();
     model.properties.forEach(property => {
-      if (property.$ref && property.model !== 'object' && !property.isEnum) {
+      const shouldProcess = !MODELS_SHOULD_NOT_PROCESS.includes(property.model);
+      if (property.$ref && shouldProcess && !property.isEnum) {
         importStatements.add(`const ${property.model} = require('./${property.model}');`);
       }
     });
@@ -124,7 +127,8 @@ js.process = ({spec, operations, models, handlebars}) => {
     }
     const constructorStatements = [];
     model.properties.forEach(property => {
-      if (property.$ref && property.model !== 'object' && !property.isEnum) {
+      const shouldProcess = !MODELS_SHOULD_NOT_PROCESS.includes(property.model);
+      if (property.$ref && shouldProcess && !property.isEnum) {
         constructorStatements.push(`    if (resourceJson && resourceJson.${property.propertyName}) {`);
         constructorStatements.push(`      this.${property.propertyName} = new ${property.model}(this.${property.propertyName});`);
         constructorStatements.push(`    }`);
@@ -134,12 +138,15 @@ js.process = ({spec, operations, models, handlebars}) => {
   });
 
   handlebars.registerHelper('operationArgumentBuilder', (operation) => {
-
     const args = [];
 
     operation.pathParams.map((arg) => args.push(arg.name));
 
-    if ((operation.method === 'post' || operation.method === 'put') && operation.bodyModel) {
+    if (
+      !operation.isArray 
+      && (operation.method === 'post' || operation.method === 'put') 
+      && operation.bodyModel
+    ) {
       args.push(_.camelCase(operation.bodyModel));
     }
 
@@ -246,7 +253,7 @@ js.process = ({spec, operations, models, handlebars}) => {
       }).forEach(line => lines.push(line));
     }
 
-    if (operation.bodyModel) {
+    if (!operation.isArray && operation.bodyModel) {
       lines.push(`   * @param {${operation.bodyModel}} ${_.camelCase(operation.bodyModel)}`);
     }
 
