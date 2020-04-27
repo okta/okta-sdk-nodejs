@@ -20,7 +20,7 @@ env:
 
 notifications:
   slack:
-    on_pull_requests: false
+    if: type = cron
     on_success: never
     on_failure: always
     rooms:
