@@ -44,7 +44,7 @@ class Client extends GeneratedApiClient {
       errors.push('Okta Org URL not provided');
     }
 
-    if (!parsedConfig.client.token) {
+    if (!parsedConfig.client.token && parsedConfig.client.authorizationMode !== 'PrivateKey') {
       errors.push('Okta API token not provided');
     }
 

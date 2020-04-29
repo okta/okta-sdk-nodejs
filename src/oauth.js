@@ -1,4 +1,5 @@
 const { makeJwt } = require('./jwt');
+const Http = require('./http');
 
 function formatParams(obj) {
   var str = [];
@@ -21,11 +22,16 @@ function formatParams(obj) {
 class OAuth {
   constructor(client) {
     this.client = client;
-    this.jwt = null;
+    this.accessToken = null;
   }
 
   getAccessToken() {
-    return this.getJwt()
+    if (this.accessToken) {
+      return Promise.resolve(this.accessToken);
+    }
+
+    const endpoint = '/oauth2/v1/token';
+    return this.getJwt(endpoint)
       .then(jwt => {
         const params = formatParams({
           grant_type: 'client_credentials',
@@ -34,7 +40,7 @@ class OAuth {
           client_assertion: jwt
         });
         return this.client.requestExecutor.fetch({
-          url: `${this.client.baseUrl}/oauth2/v1/token`,
+          url: `${this.client.baseUrl}${endpoint}`,
           method: 'POST',
           body: params,
           headers: {
@@ -42,18 +48,50 @@ class OAuth {
             'Content-Type': 'application/x-www-form-urlencoded'
           }
         });
+      })
+      .then(Http.errorFilter)
+      .then(res => res.json())
+      .then(accessToken => {
+        this.accessToken = accessToken;
+        return this.accessToken;
       });
   }
 
-  getJwt() {
-    if (!this.jwt) {
-      return makeJwt(this.client)
-        .then(jwt => {
-          this.jwt = jwt.compact();
-          return this.jwt;
-        });
+  introspectAccessToken() {
+    if (!this.accessToken) {
+      return Promise.reject(new Error('No accessToken in cache to be introspected.'));
     }
-    return Promise.resolve(this.jwt);
+
+    const endpoint = '/oauth2/v1/introspect';
+    return this.getJwt(endpoint)
+      .then(jwt => {
+        const params = formatParams({
+          token: this.accessToken,
+          token_type_hint: 'access_token',
+          client_assertion_type: 'urn:ietf:params:oauth:client-assertion-type:jwt-bearer',
+          client_assertion: jwt
+        });
+        return this.client.requestExecutor.fetch({
+          url: `${this.client.baseUrl}${endpoint}`,
+          method: 'POST',
+          body: params,
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/x-www-form-urlencoded'
+          }
+        });
+      })
+      .then(Http.errorFilter)
+      .then(res => res.json());
+  }
+
+  clearCachedAccessToken() {
+    this.accessToken = null;
+  }
+
+  getJwt(endpoint) {
+    return makeJwt(this.client, endpoint)
+      .then(jwt => jwt.compact());
   }
 }
 

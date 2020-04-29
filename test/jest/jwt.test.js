@@ -43,9 +43,9 @@ describe('JWT', () => {
         baseUrl: 'http://localhost'
       };
     });
-    function verifyJWT(jwt) {
+    function verifyJWT(jwt, endpoint) {
       expect(jwt.body).toEqual({
-        aud: 'http://localhost/oauth2/v1/token',
+        aud: `http://localhost${endpoint}`,
         exp: 300,
         iat: 0,
         iss: 'fake-client-id',
@@ -61,7 +61,7 @@ describe('JWT', () => {
       return Rasha.export({ jwk: JWK, 'public': true }).then(function (publicKey) {
         const verifiedJwt = nJwt.verify(compactedJwt, publicKey, 'RS256');
         expect(verifiedJwt.body).toEqual({
-          aud: 'http://localhost/oauth2/v1/token',
+          aud: `http://localhost${endpoint}`,
           jti: jasmine.any(String),
           iat: 0,
           exp: 300,
@@ -76,16 +76,18 @@ describe('JWT', () => {
     }
     it('creates a valid JWT using PEM', () => {
       client.privateKey = PEM;
-      return JWT.makeJwt(client)
+      const endpoint = '/oauth2/v1/token';
+      return JWT.makeJwt(client, endpoint)
         .then(jwt => {
-          return verifyJWT(jwt);
+          return verifyJWT(jwt, endpoint);
         });
     });
     it('creates a valid JWT using JWK', () => {
       client.privateKey = JWK;
-      return JWT.makeJwt(client)
+      const endpoint = '/oauth2/v1/token';
+      return JWT.makeJwt(client, endpoint)
         .then(jwt => {
-          return verifyJWT(jwt);
+          return verifyJWT(jwt, endpoint);
         });
     });
   });

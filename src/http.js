@@ -21,6 +21,26 @@ const defaultCacheMiddleware = require('./default-cache-middleware');
  * @class Http
  */
 class Http {
+  static errorFilter(response) {
+    if (response.status >= 200 && response.status < 300) {
+      return Promise.resolve(response);
+    } else {
+      return response.text()
+        .then(body => {
+          let err;
+
+          // If the response is JSON, assume it's an Okta API error. Otherwise, assume it's some other HTTP error
+
+          try {
+            err = new OktaApiError(response.url, response.status, JSON.parse(body), response.headers);
+          } catch (e) {
+            err = new HttpError(response.url, response.status, body, response.headers);
+          }
+          throw err;
+        });
+    }
+  }
+
   constructor(httpConfig) {
     this.defaultHeaders = {};
     this.requestExecutor = httpConfig.requestExecutor;
@@ -36,43 +56,10 @@ class Http {
       return Promise.resolve();
     }
 
-    let getToken;
-    if (this.accessToken) {
-      getToken = Promise.resolve(this.accessToken);
-    } else {
-      getToken = this.oauth.getAccessToken()
-        .then(this.errorFilter)
-        .then(res => res.json())
-        .then(accessToken => {
-          this.accessToken = accessToken;
-          return accessToken;
-        });
-    }
-
-    return getToken
+    return this.oauth.getAccessToken()
         .then(accessToken => {
           request.headers.Authorization = `Bearer ${accessToken.access_token}`;
         });
-  }
-
-  errorFilter(response) {
-    if (response.status >= 200 && response.status < 300) {
-      return response;
-    } else {
-      return response.text()
-      .then(body => {
-        let err;
-
-        // If the response is JSON, assume it's an Okta API error. Otherwise, assume it's some other HTTP error
-
-        try {
-          err = new OktaApiError(response.url, response.status, JSON.parse(body), response.headers);
-        } catch (e) {
-          err = new HttpError(response.url, response.status, body, response.headers);
-        }
-        throw err;
-      });
-    }
   }
 
   http(uri, request, context) {
@@ -81,11 +68,31 @@ class Http {
     request.url = uri;
     request.headers = Object.assign(this.defaultHeaders, request.headers);
     request.method = request.method || 'get';
+
+    const promise = this.prepareRequest(request)
+      .then(() => this.requestExecutor.fetch(request))
+      .then(Http.errorFilter)
+      .catch(error => {
+        // Handle oauth access token expiration
+        if (this.oauth && error && error.status === 401) {
+          return this.oauth.introspectAccessToken()
+            .then(({ active }) => {
+              if (active === false) {
+                this.oauth.clearCachedAccessToken();
+                return this.http(uri, request, context);
+              }
+              // Access token is still active or other error happen, re-throw
+              throw error;
+            });
+        }
+
+        throw error;
+      });
+
     if (!this.cacheMiddleware) {
-      return this.prepareRequest(request)
-        .then(() => this.requestExecutor.fetch(request))
-        .then(this.errorFilter);
+      return promise;
     }
+
     const ctx = {
       uri, // TODO: remove unused property. req.url should be the key.
       isCollection: context.isCollection,
@@ -98,10 +105,7 @@ class Http {
         return;
       }
 
-      return this.prepareRequest(request)
-        .then(() => this.requestExecutor.fetch(request))
-        .then(this.errorFilter)
-        .then(res => ctx.res = res);
+      return promise.then(res => ctx.res = res);
     })
     .then(() => ctx.res);
   }
