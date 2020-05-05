@@ -40,16 +40,7 @@ describe('ConfigLoader', () => {
 
     it('automatically sets "authorizationMode" to "SSWS"', () => {
       loader.applyDefaults();
-      assert.deepEqual(loader.config, {
-        client: {
-          orgUrl: '',
-          token: '',
-          authorizationMode: 'SSWS',
-          clientId: '',
-          scopes: '',
-          privateKey: ''
-        }
-      });
+      assert.equal(loader.config.client.authorizationMode, 'SSWS');
     });
 
     it('should override defaults with ~/.okta/okta.yaml file', () => {
@@ -62,16 +53,8 @@ describe('ConfigLoader', () => {
         }
       }));
       loader.applyDefaults();
-      assert.deepEqual(loader.config, {
-        client: {
-          orgUrl: 'foo',
-          token: '',
-          authorizationMode: 'PrivateKey',
-          clientId: '',
-          scopes: '',
-          privateKey: ''
-        }
-      });
+      assert.equal(loader.config.client.orgUrl, 'foo');
+      assert.equal(loader.config.client.authorizationMode, 'PrivateKey');
     });
 
     it('should override ~/.okta/okta.yaml with okta.yaml in the process context', () => {
@@ -83,31 +66,15 @@ describe('ConfigLoader', () => {
         }
       }));
       loader.applyDefaults();
-      assert.deepEqual(loader.config, {
-        client: {
-          orgUrl: 'bar',
-          authorizationMode: 'SSWS',
-          token: '',
-          clientId: '',
-          scopes: '',
-          privateKey: ''
-        }
-      });
+      assert.equal(loader.config.client.orgUrl, 'bar');
+      assert.equal(loader.config.client.authorizationMode, 'SSWS');
     });
 
     it('should override property files with environment variables', () => {
       process.env.OKTA_CLIENT_ORGURL = 'barbaz';
       loader.applyDefaults();
-      assert.deepEqual(loader.config, {
-        client: {
-          orgUrl: 'barbaz',
-          authorizationMode: 'SSWS',
-          token: '',
-          clientId: '',
-          scopes: '',
-          privateKey: ''
-        }
-      });
+      assert.equal(loader.config.client.orgUrl, 'barbaz');
+      assert.equal(loader.config.client.authorizationMode, 'SSWS');
     });
   });
 
