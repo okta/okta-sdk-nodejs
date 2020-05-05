@@ -23,12 +23,14 @@ class Collection {
    * @param {ApiClient} client A reference to the top-level api client
    * @param {String} uri E.g. /api/v1/resources
    * @param {Object} Ctor Class of each item in the collection
+   * @param {Request} [request] Fetch API request object
    */
-  constructor(client, uri, factory) {
+  constructor(client, uri, factory, request) {
     this.nextUri = uri;
     this.client = client;
     this.factory = factory;
     this.currentItems = [];
+    this.request = request;
   }
 
   next() {
@@ -64,7 +66,7 @@ class Collection {
   }
 
   getNextPage() {
-    return this.client.http.http(this.nextUri, null, {isCollection: true})
+    return this.client.http.http(this.nextUri, this.request, {isCollection: true})
     .then(res => {
       const link = res.headers.get('link');
       if (link) {

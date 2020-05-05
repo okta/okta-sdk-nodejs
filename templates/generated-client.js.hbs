@@ -28,9 +28,9 @@ class GeneratedApiClient {
 
     {{#if isArray}}
     {{#if responseModelRequiresResolution}}
-    return new Collection(this, url, new factories.{{responseModel}}());
+    return new Collection(this, url, new factories.{{responseModel}}(), {method: '{{method}}'});
     {{else}}
-    return new Collection(this, url, new ModelFactory(models.{{responseModel}}));
+    return new Collection(this, url, new ModelFactory(models.{{responseModel}}), {method: '{{method}}'});
     {{/if}}
     {{else}}
     const resources = {{{getAffectedResources path}}};
