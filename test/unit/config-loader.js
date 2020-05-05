@@ -1,4 +1,5 @@
 const assert = require('chai').assert;
+const sinon = require('sinon');
 const FakeFS = require('fake-fs');
 const os = require('os');
 const path = require('path');
@@ -20,27 +21,34 @@ describe('ConfigLoader', () => {
     });
   });
   describe('applyDefaults()', () => {
-    let fakeFs, loader, previousUrl, previousToken;
+    let fakeFs, loader;
 
     beforeEach(() => {
-      previousUrl = process.env.OKTA_CLIENT_ORGURL;
-      previousToken = process.env.OKTA_CLIENT_TOKEN;
-      delete process.env.OKTA_CLIENT_ORGURL;
-      delete process.env.OKTA_CLIENT_TOKEN;
       loader = new ConfigLoader();
+      loader.applyEnvVars = sinon.spy();
       fakeFs = new FakeFS().bind();
       fakeFs.patch();
     });
 
     afterEach(() => {
-      process.env.OKTA_CLIENT_ORGURL = previousUrl;
-      process.env.OKTA_CLIENT_TOKEN = previousToken;
       fakeFs.unpatch();
     });
 
     it('automatically sets "authorizationMode" to "SSWS"', () => {
+      fakeFs.file(path.join(os.homedir(), '.okta', 'okta.yaml'), yaml.safeDump({}));
+      fakeFs.file(path.join(process.cwd(), 'okta.yaml'), yaml.safeDump({}));
       loader.applyDefaults();
-      assert.equal(loader.config.client.authorizationMode, 'SSWS');
+      assert.deepEqual(loader.config, {
+        client: {
+          authorizationMode: 'SSWS',
+          orgUrl: '',
+          token: '',
+          clientId: '',
+          scopes: '',
+          privateKey: ''
+        }
+      });
+      sinon.assert.calledOnce(loader.applyEnvVars);
     });
 
     it('should override defaults with ~/.okta/okta.yaml file', () => {
@@ -52,12 +60,23 @@ describe('ConfigLoader', () => {
           }
         }
       }));
+      fakeFs.file(path.join(process.cwd(), 'okta.yaml'), yaml.safeDump({}));
       loader.applyDefaults();
-      assert.equal(loader.config.client.orgUrl, 'foo');
-      assert.equal(loader.config.client.authorizationMode, 'PrivateKey');
+      assert.deepEqual(loader.config, {
+        client: {
+          orgUrl: 'foo',
+          token: '',
+          authorizationMode: 'PrivateKey',
+          clientId: '',
+          scopes: '',
+          privateKey: ''
+        }
+      });
+      sinon.assert.calledOnce(loader.applyEnvVars);
     });
 
     it('should override ~/.okta/okta.yaml with okta.yaml in the process context', () => {
+      fakeFs.file(path.join(os.homedir(), '.okta', 'okta.yaml'), yaml.safeDump({}));
       fakeFs.file(path.join(process.cwd(), 'okta.yaml'), yaml.safeDump({
         okta: {
           client: {
@@ -66,15 +85,47 @@ describe('ConfigLoader', () => {
         }
       }));
       loader.applyDefaults();
-      assert.equal(loader.config.client.orgUrl, 'bar');
-      assert.equal(loader.config.client.authorizationMode, 'SSWS');
+      assert.deepEqual(loader.config, {
+        client: {
+          orgUrl: 'bar',
+          authorizationMode: 'SSWS',
+          token: '',
+          clientId: '',
+          scopes: '',
+          privateKey: ''
+        }
+      });
+      sinon.assert.calledOnce(loader.applyEnvVars);
+    });
+  });
+
+  describe('applyEnvVars()', () => {
+    const env  = Object.assign({}, process.env);
+    let loader;
+
+    beforeEach(() => {
+      process.env = {};
+      loader = new ConfigLoader();
+    });
+
+    afterEach(() => {
+      process.env = env;
     });
 
     it('should override property files with environment variables', () => {
       process.env.OKTA_CLIENT_ORGURL = 'barbaz';
-      loader.applyDefaults();
+      loader.applyEnvVars();
+      assert.deepEqual(loader.config, {
+        client: {
+          orgUrl: 'barbaz',
+          token: '',
+          authorizationMode: '',
+          clientId: '',
+          scopes: '',
+          privateKey: ''
+        }
+      });
       assert.equal(loader.config.client.orgUrl, 'barbaz');
-      assert.equal(loader.config.client.authorizationMode, 'SSWS');
     });
   });
 
