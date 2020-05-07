@@ -1,6 +1,6 @@
 const expect = require('chai').expect;
 const deepCopy = require('deep-copy');
-const okta = require('../../');
+const okta = require('../../src');
 const models = require('../../src/models');
 const Collection = require('../../src/collection');
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
@@ -134,25 +134,26 @@ describe('SmsTemplate API', () => {
 
   describe('Update template', () => {
     let template;
+    let updatedTemplate;
     beforeEach(async () => {
       template = await client.createSmsTemplate(generalFakeTemplateObj);
     });
 
     afterEach(async () => {
       await template.delete();
+      // Clean up updated resource here
+      // Since new resource might be created if template type is changed during update.
+      await updatedTemplate.delete();
     });
 
     it('should update all properties in template', async () => {
-      const updatedTemplate = await client.updateSmsTemplate(template.id, {
+      updatedTemplate = await client.updateSmsTemplate(template.id, {
         name: 'fake updated name',
         type: 'fake updated type',
         template: 'Your fake updated verification code is ${code}.'
       });
       expect(updatedTemplate.name).to.equal('fake updated name');
       expect(updatedTemplate.translations).to.be.undefined;
-
-      // Clean
-      updatedTemplate.delete();
     });
   });
 });
