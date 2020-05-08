@@ -45,7 +45,7 @@ describe('Factors API', () => {
       factorType: 'token:software:totp',
       provider: 'OKTA'
     };
-    const createdFactor = await client.addFactor(createdUser.id, factor);
+    const createdFactor = await client.enrollFactor(createdUser.id, factor);
     expect(createdFactor.status).to.be.equal('PENDING_ACTIVATION');
     const passCode = speakeasy.totp({
       secret: createdFactor._embedded.activation.sharedSecret,

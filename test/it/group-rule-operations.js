@@ -65,7 +65,7 @@ describe('Group-Rule API tests', () => {
       }
     };
 
-    const createdRule = await client.createRule(rule);
+    const createdRule = await client.createGroupRule(rule);
     await createdRule.activate();
 
     // We wait for 30 seconds for the rule to activate i.e. userInGroup = true
@@ -74,7 +74,7 @@ describe('Group-Rule API tests', () => {
 
     // 3. List group rules
     let foundRule = false;
-    await client.listRules().each(rule => {
+    await client.listGroupRules().each(rule => {
       if (rule.id === createdRule.id) {
         foundRule = true;
         return false;
@@ -83,7 +83,7 @@ describe('Group-Rule API tests', () => {
     expect(foundRule).to.equal(true);
 
     // 4. Deactivate the rule and update it
-    await client.deactivateRule(createdRule.id);
+    await client.deactivateGroupRule(createdRule.id);
 
     createdRule.name = faker.random.word();
     createdRule.conditions.expression.value = 'user.lastName==\"incorrect\"';

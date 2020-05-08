@@ -1,16 +1,3 @@
-/*!
- * Copyright (c) 2017-2018, Okta, Inc. and/or its affiliates. All rights reserved.
- * The Okta software accompanied by this notice is provided pursuant to the Apache License, Version 2.0 (the "License.")
- *
- * You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0.
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
- * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *
- * See the License for the specific language governing permissions and limitations under the License.
- */
-
-
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
 var Resource = require('../resource');
@@ -151,6 +138,66 @@ class Application extends Resource {
    */
   listKeys() {
     return this.client.listApplicationKeys(this.id);
+  }
+
+  /**
+   * @param {object} queryParameters
+   * @returns {Promise<Collection>} A collection that will yield {@link OAuth2Token} instances.
+   */
+  listOAuth2Tokens(queryParameters) {
+    return this.client.listOAuth2TokensForApplication(this.id, queryParameters);
+  }
+
+  /**
+   * @param {string} tokenId
+   */
+  revokeOAuth2TokenForApplication(tokenId) {
+    return this.client.revokeOAuth2TokenForApplication(this.id, tokenId);
+  }
+
+  /**
+   * @param {string} tokenId
+   * @param {object} queryParameters
+   * @returns {Promise<OAuth2Token>}
+   */
+  getOAuth2Token(tokenId, queryParameters) {
+    return this.client.getOAuth2TokenForApplication(this.id, tokenId, queryParameters);
+  }
+
+  revokeOAuth2Tokens() {
+    return this.client.revokeOAuth2TokensForApplication(this.id);
+  }
+
+  /**
+   * @param {object} queryParameters
+   * @returns {Promise<Collection>} A collection that will yield {@link OAuth2ScopeConsentGrant} instances.
+   */
+  listScopeConsentGrants(queryParameters) {
+    return this.client.listScopeConsentGrants(this.id, queryParameters);
+  }
+
+  /**
+   * @param {OAuth2ScopeConsentGrant} oAuth2ScopeConsentGrant
+   * @returns {Promise<OAuth2ScopeConsentGrant>}
+   */
+  grantConsentToScope(oAuth2ScopeConsentGrant) {
+    return this.client.grantConsentToScope(this.id, oAuth2ScopeConsentGrant);
+  }
+
+  /**
+   * @param {string} grantId
+   */
+  revokeScopeConsentGrant(grantId) {
+    return this.client.revokeScopeConsentGrant(this.id, grantId);
+  }
+
+  /**
+   * @param {string} grantId
+   * @param {object} queryParameters
+   * @returns {Promise<OAuth2ScopeConsentGrant>}
+   */
+  getScopeConsentGrant(grantId, queryParameters) {
+    return this.client.getScopeConsentGrant(this.id, grantId, queryParameters);
   }
 }
 

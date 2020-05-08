@@ -1,5 +1,17 @@
 # Okta Node SDK Changelog
 
+## PENDING
+
+### Breaking Changes
+
+- `addFactor()` changed to `enrollFactor()`
+- `models.*Factor` classes are now `models.*UserFactor`
+- `createRule()` changed to `changeGroupRule()`
+- `listRules()` changed to `listGroupRules()`
+- `deactivateRule()` changed to `deactivateGroupRule()`
+- `user.addRole()` changed to `user.assignRole()`
+- `user.forgotPassword()` changed to `user.forgotPasswordSetNewPassword()`
+
 ## 3.2.0
 
 - [#128](https://github.com/okta/okta-sdk-nodejs/pull/128) Adds support for OAuth
