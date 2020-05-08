@@ -1,16 +1,3 @@
-/*!
- * Copyright (c) 2017-2018, Okta, Inc. and/or its affiliates. All rights reserved.
- * The Okta software accompanied by this notice is provided pursuant to the Apache License, Version 2.0 (the "License.")
- *
- * You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0.
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
- * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *
- * See the License for the specific language governing permissions and limitations under the License.
- */
-
-
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
 const qs = require('querystring');
@@ -137,6 +124,194 @@ class GeneratedApiClient {
    *
    * @param appId {String}
    * @description
+   * Enumerates CSRs for an application
+   * @returns {Promise<Collection>} A collection that will yield {@link CSR} instances.
+   */
+  listCsrsForApplication(appId) {
+    let url = `${this.baseUrl}/api/v1/apps/${appId}/credentials/csrs`;
+
+    return new Collection(this, url, new ModelFactory(models.CSR));
+  }
+
+  /**
+   *
+   * @param appId {String}
+   * @param {CSRMetadata} csrMetadata
+   * @description
+   * Generates a new key pair and returns the Certificate Signing Request for it.
+   * @returns {Promise<CSR>}
+   */
+  generateCsrForApplication(appId, csrMetadata) {
+    let url = `${this.baseUrl}/api/v1/apps/${appId}/credentials/csrs`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/apps/${appId}`
+    ];
+
+    const request = this.http.postJson(url, {
+      body: csrMetadata
+    }, {resources});
+    return request.then(jsonRes => new models.CSR(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param appId {String}
+   * @param csrId {String}
+   * @description
+   * Convenience method for /api/v1/apps/{appId}/credentials/csrs/{csrId}
+   */
+  revokeCSRFromApplication(appId, csrId) {
+    let url = `${this.baseUrl}/api/v1/apps/${appId}/credentials/csrs/${csrId}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/apps/${appId}/credentials/csrs/${csrId}`,
+      `${this.baseUrl}/api/v1/apps/${appId}`
+    ];
+
+    const request = this.http.delete(url, null, {resources});
+    return request;
+  }
+
+  /**
+   *
+   * @param appId {String}
+   * @param csrId {String}
+   * @description
+   * Convenience method for /api/v1/apps/{appId}/credentials/csrs/{csrId}
+   * @returns {Promise<CSR>}
+   */
+  getCsrForApplication(appId, csrId) {
+    let url = `${this.baseUrl}/api/v1/apps/${appId}/credentials/csrs/${csrId}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/apps/${appId}/credentials/csrs/${csrId}`,
+      `${this.baseUrl}/api/v1/apps/${appId}`
+    ];
+
+    const request = this.http.getJson(url, null, {resources});
+    return request.then(jsonRes => new models.CSR(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param appId {String}
+   * @param csrId {String}
+   * @param {string} string
+   * @description
+   * Convenience method for /api/v1/apps/{appId}/credentials/csrs/{csrId}/lifecycle/publish
+   * @returns {Promise<JsonWebKey>}
+   */
+  publishCerCert(appId, csrId, string) {
+    let url = `${this.baseUrl}/api/v1/apps/${appId}/credentials/csrs/${csrId}/lifecycle/publish`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/apps/${appId}/credentials/csrs/${csrId}`,
+      `${this.baseUrl}/api/v1/apps/${appId}`
+    ];
+
+    const request = this.http.postJson(url, {
+      body: string
+    }, {resources});
+    return request.then(jsonRes => new models.JsonWebKey(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param appId {String}
+   * @param csrId {String}
+   * @param {string} string
+   * @description
+   * Convenience method for /api/v1/apps/{appId}/credentials/csrs/{csrId}/lifecycle/publish
+   * @returns {Promise<JsonWebKey>}
+   */
+  publishBinaryCerCert(appId, csrId, string) {
+    let url = `${this.baseUrl}/api/v1/apps/${appId}/credentials/csrs/${csrId}/lifecycle/publish`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/apps/${appId}/credentials/csrs/${csrId}`,
+      `${this.baseUrl}/api/v1/apps/${appId}`
+    ];
+
+    const request = this.http.postJson(url, {
+      body: string
+    }, {resources});
+    return request.then(jsonRes => new models.JsonWebKey(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param appId {String}
+   * @param csrId {String}
+   * @param {string} string
+   * @description
+   * Convenience method for /api/v1/apps/{appId}/credentials/csrs/{csrId}/lifecycle/publish
+   * @returns {Promise<JsonWebKey>}
+   */
+  publishDerCert(appId, csrId, string) {
+    let url = `${this.baseUrl}/api/v1/apps/${appId}/credentials/csrs/${csrId}/lifecycle/publish`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/apps/${appId}/credentials/csrs/${csrId}`,
+      `${this.baseUrl}/api/v1/apps/${appId}`
+    ];
+
+    const request = this.http.postJson(url, {
+      body: string
+    }, {resources});
+    return request.then(jsonRes => new models.JsonWebKey(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param appId {String}
+   * @param csrId {String}
+   * @param {string} string
+   * @description
+   * Convenience method for /api/v1/apps/{appId}/credentials/csrs/{csrId}/lifecycle/publish
+   * @returns {Promise<JsonWebKey>}
+   */
+  publishBinaryDerCert(appId, csrId, string) {
+    let url = `${this.baseUrl}/api/v1/apps/${appId}/credentials/csrs/${csrId}/lifecycle/publish`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/apps/${appId}/credentials/csrs/${csrId}`,
+      `${this.baseUrl}/api/v1/apps/${appId}`
+    ];
+
+    const request = this.http.postJson(url, {
+      body: string
+    }, {resources});
+    return request.then(jsonRes => new models.JsonWebKey(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param appId {String}
+   * @param csrId {String}
+   * @param {string} string
+   * @description
+   * Convenience method for /api/v1/apps/{appId}/credentials/csrs/{csrId}/lifecycle/publish
+   * @returns {Promise<JsonWebKey>}
+   */
+  publishBinaryPemCert(appId, csrId, string) {
+    let url = `${this.baseUrl}/api/v1/apps/${appId}/credentials/csrs/${csrId}/lifecycle/publish`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/apps/${appId}/credentials/csrs/${csrId}`,
+      `${this.baseUrl}/api/v1/apps/${appId}`
+    ];
+
+    const request = this.http.postJson(url, {
+      body: string
+    }, {resources});
+    return request.then(jsonRes => new models.JsonWebKey(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param appId {String}
+   * @description
    * Enumerates key credentials for an application
    * @returns {Promise<Collection>} A collection that will yield {@link JsonWebKey} instances.
    */
@@ -189,6 +364,89 @@ class GeneratedApiClient {
 
     const request = this.http.postJson(url, null, {resources});
     return request.then(jsonRes => new models.JsonWebKey(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param appId {String}
+   * @param {Object} queryParams Map of query parameters to add to this request
+   * @param {String} [queryParams.expand]
+   * @description
+   * Lists all scope consent grants for the application
+   * @returns {Promise<Collection>} A collection that will yield {@link OAuth2ScopeConsentGrant} instances.
+   */
+  listScopeConsentGrants(appId, queryParameters) {
+    let url = `${this.baseUrl}/api/v1/apps/${appId}/grants`;
+    const queryString = qs.stringify(queryParameters || {});
+
+    url += queryString ? ('?' + queryString) : '';
+
+    return new Collection(this, url, new ModelFactory(models.OAuth2ScopeConsentGrant));
+  }
+
+  /**
+   *
+   * @param appId {String}
+   * @param {OAuth2ScopeConsentGrant} oAuth2ScopeConsentGrant
+   * @description
+   * Grants consent for the application to request an OAuth 2.0 Okta scope
+   * @returns {Promise<OAuth2ScopeConsentGrant>}
+   */
+  grantConsentToScope(appId, oAuth2ScopeConsentGrant) {
+    let url = `${this.baseUrl}/api/v1/apps/${appId}/grants`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/apps/${appId}`
+    ];
+
+    const request = this.http.postJson(url, {
+      body: oAuth2ScopeConsentGrant
+    }, {resources});
+    return request.then(jsonRes => new models.OAuth2ScopeConsentGrant(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param appId {String}
+   * @param grantId {String}
+   * @description
+   * Revokes permission for the application to request the given scope
+   */
+  revokeScopeConsentGrant(appId, grantId) {
+    let url = `${this.baseUrl}/api/v1/apps/${appId}/grants/${grantId}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/apps/${appId}/grants/${grantId}`,
+      `${this.baseUrl}/api/v1/apps/${appId}`
+    ];
+
+    const request = this.http.delete(url, null, {resources});
+    return request;
+  }
+
+  /**
+   *
+   * @param appId {String}
+   * @param grantId {String}
+   * @param {Object} queryParams Map of query parameters to add to this request
+   * @param {String} [queryParams.expand]
+   * @description
+   * Fetches a single scope consent grant for the application
+   * @returns {Promise<OAuth2ScopeConsentGrant>}
+   */
+  getScopeConsentGrant(appId, grantId, queryParameters) {
+    let url = `${this.baseUrl}/api/v1/apps/${appId}/grants/${grantId}`;
+    const queryString = qs.stringify(queryParameters || {});
+
+    url += queryString ? ('?' + queryString) : '';
+
+    const resources = [
+      `${this.baseUrl}/api/v1/apps/${appId}/grants/${grantId}`,
+      `${this.baseUrl}/api/v1/apps/${appId}`
+    ];
+
+    const request = this.http.getJson(url, null, {resources});
+    return request.then(jsonRes => new models.OAuth2ScopeConsentGrant(jsonRes, this));
   }
 
   /**
@@ -317,6 +575,109 @@ class GeneratedApiClient {
    *
    * @param appId {String}
    * @param {Object} queryParams Map of query parameters to add to this request
+   * @param {String} [queryParams.kid]
+   * @description
+   * Previews SAML metadata based on a specific key credential for an application
+   */
+  previewSamlMetadataForApplication(appId, queryParameters) {
+    let url = `${this.baseUrl}/api/v1/apps/${appId}/sso/saml/metadata`;
+    const queryString = qs.stringify(queryParameters || {});
+
+    url += queryString ? ('?' + queryString) : '';
+
+    const resources = [
+      `${this.baseUrl}/api/v1/apps/${appId}`
+    ];
+
+    const request = this.http.getJson(url, null, {resources});
+    return request;
+  }
+
+  /**
+   *
+   * @param appId {String}
+   * @description
+   * Revokes all tokens for the specified application
+   */
+  revokeOAuth2TokensForApplication(appId) {
+    let url = `${this.baseUrl}/api/v1/apps/${appId}/tokens`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/apps/${appId}`
+    ];
+
+    const request = this.http.delete(url, null, {resources});
+    return request;
+  }
+
+  /**
+   *
+   * @param appId {String}
+   * @param {Object} queryParams Map of query parameters to add to this request
+   * @param {String} [queryParams.expand]
+   * @param {String} [queryParams.after]
+   * @param {String} [queryParams.limit]
+   * @description
+   * Lists all tokens for the application
+   * @returns {Promise<Collection>} A collection that will yield {@link OAuth2Token} instances.
+   */
+  listOAuth2TokensForApplication(appId, queryParameters) {
+    let url = `${this.baseUrl}/api/v1/apps/${appId}/tokens`;
+    const queryString = qs.stringify(queryParameters || {});
+
+    url += queryString ? ('?' + queryString) : '';
+
+    return new Collection(this, url, new ModelFactory(models.OAuth2Token));
+  }
+
+  /**
+   *
+   * @param appId {String}
+   * @param tokenId {String}
+   * @description
+   * Revokes the specified token for the specified application
+   */
+  revokeOAuth2TokenForApplication(appId, tokenId) {
+    let url = `${this.baseUrl}/api/v1/apps/${appId}/tokens/${tokenId}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/apps/${appId}/tokens/${tokenId}`,
+      `${this.baseUrl}/api/v1/apps/${appId}`
+    ];
+
+    const request = this.http.delete(url, null, {resources});
+    return request;
+  }
+
+  /**
+   *
+   * @param appId {String}
+   * @param tokenId {String}
+   * @param {Object} queryParams Map of query parameters to add to this request
+   * @param {String} [queryParams.expand]
+   * @description
+   * Gets a token for the specified application
+   * @returns {Promise<OAuth2Token>}
+   */
+  getOAuth2TokenForApplication(appId, tokenId, queryParameters) {
+    let url = `${this.baseUrl}/api/v1/apps/${appId}/tokens/${tokenId}`;
+    const queryString = qs.stringify(queryParameters || {});
+
+    url += queryString ? ('?' + queryString) : '';
+
+    const resources = [
+      `${this.baseUrl}/api/v1/apps/${appId}/tokens/${tokenId}`,
+      `${this.baseUrl}/api/v1/apps/${appId}`
+    ];
+
+    const request = this.http.getJson(url, null, {resources});
+    return request.then(jsonRes => new models.OAuth2Token(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param appId {String}
+   * @param {Object} queryParams Map of query parameters to add to this request
    * @param {String} [queryParams.q]
    * @param {String} [queryParams.query_scope]
    * @param {String} [queryParams.after]
@@ -433,10 +794,780 @@ class GeneratedApiClient {
    *
    * @param {Object} queryParams Map of query parameters to add to this request
    * @param {String} [queryParams.q]
+   * @param {String} [queryParams.limit]
+   * @param {String} [queryParams.after]
+   * @description
+   * Success
+   * @returns {Promise<Collection>} A collection that will yield {@link AuthorizationServer} instances.
+   */
+  listAuthorizationServers(queryParameters) {
+    let url = `${this.baseUrl}/api/v1/authorizationServers`;
+    const queryString = qs.stringify(queryParameters || {});
+
+    url += queryString ? ('?' + queryString) : '';
+
+    return new Collection(this, url, new ModelFactory(models.AuthorizationServer));
+  }
+
+  /**
+   *
+   * @param {AuthorizationServer} authorizationServer
+   * @description
+   * Success
+   * @returns {Promise<AuthorizationServer>}
+   */
+  createAuthorizationServer(authorizationServer) {
+    let url = `${this.baseUrl}/api/v1/authorizationServers`;
+
+    const resources = [];
+
+    const request = this.http.postJson(url, {
+      body: authorizationServer
+    }, {resources});
+    return request.then(jsonRes => new models.AuthorizationServer(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param authServerId {String}
+   * @description
+   * Success
+   */
+  deleteAuthorizationServer(authServerId) {
+    let url = `${this.baseUrl}/api/v1/authorizationServers/${authServerId}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}`
+    ];
+
+    const request = this.http.delete(url, null, {resources});
+    return request;
+  }
+
+  /**
+   *
+   * @param authServerId {String}
+   * @description
+   * Success
+   * @returns {Promise<AuthorizationServer>}
+   */
+  getAuthorizationServer(authServerId) {
+    let url = `${this.baseUrl}/api/v1/authorizationServers/${authServerId}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}`
+    ];
+
+    const request = this.http.getJson(url, null, {resources});
+    return request.then(jsonRes => new models.AuthorizationServer(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param authServerId {String}
+   * @param {AuthorizationServer} authorizationServer
+   * @description
+   * Success
+   * @returns {Promise<AuthorizationServer>}
+   */
+  updateAuthorizationServer(authServerId, authorizationServer) {
+    let url = `${this.baseUrl}/api/v1/authorizationServers/${authServerId}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}`
+    ];
+
+    const request = this.http.putJson(url, {
+      body: authorizationServer
+    }, {resources});
+    return request.then(jsonRes => new models.AuthorizationServer(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param authServerId {String}
+   * @description
+   * Success
+   * @returns {Promise<Collection>} A collection that will yield {@link OAuth2Claim} instances.
+   */
+  listOAuth2Claims(authServerId) {
+    let url = `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/claims`;
+
+    return new Collection(this, url, new ModelFactory(models.OAuth2Claim));
+  }
+
+  /**
+   *
+   * @param authServerId {String}
+   * @param {OAuth2Claim} oAuth2Claim
+   * @description
+   * Success
+   * @returns {Promise<OAuth2Claim>}
+   */
+  createOAuth2Claim(authServerId, oAuth2Claim) {
+    let url = `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/claims`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}`
+    ];
+
+    const request = this.http.postJson(url, {
+      body: oAuth2Claim
+    }, {resources});
+    return request.then(jsonRes => new models.OAuth2Claim(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param authServerId {String}
+   * @param claimId {String}
+   * @description
+   * Success
+   */
+  deleteOAuth2Claim(authServerId, claimId) {
+    let url = `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/claims/${claimId}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/claims/${claimId}`,
+      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}`
+    ];
+
+    const request = this.http.delete(url, null, {resources});
+    return request;
+  }
+
+  /**
+   *
+   * @param authServerId {String}
+   * @param claimId {String}
+   * @description
+   * Success
+   * @returns {Promise<OAuth2Claim>}
+   */
+  getOAuth2Claim(authServerId, claimId) {
+    let url = `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/claims/${claimId}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/claims/${claimId}`,
+      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}`
+    ];
+
+    const request = this.http.getJson(url, null, {resources});
+    return request.then(jsonRes => new models.OAuth2Claim(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param authServerId {String}
+   * @param claimId {String}
+   * @param {OAuth2Claim} oAuth2Claim
+   * @description
+   * Success
+   * @returns {Promise<OAuth2Claim>}
+   */
+  updateOAuth2Claim(authServerId, claimId, oAuth2Claim) {
+    let url = `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/claims/${claimId}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/claims/${claimId}`,
+      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}`
+    ];
+
+    const request = this.http.putJson(url, {
+      body: oAuth2Claim
+    }, {resources});
+    return request.then(jsonRes => new models.OAuth2Claim(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param authServerId {String}
+   * @description
+   * Success
+   * @returns {Promise<Collection>} A collection that will yield {@link OAuth2Client} instances.
+   */
+  listOAuth2ClientsForAuthorizationServer(authServerId) {
+    let url = `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/clients`;
+
+    return new Collection(this, url, new ModelFactory(models.OAuth2Client));
+  }
+
+  /**
+   *
+   * @param authServerId {String}
+   * @param clientId {String}
+   * @description
+   * Success
+   */
+  revokeRefreshTokensForAuthorizationServerAndClient(authServerId, clientId) {
+    let url = `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/clients/${clientId}/tokens`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/clients/${clientId}`,
+      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}`
+    ];
+
+    const request = this.http.delete(url, null, {resources});
+    return request;
+  }
+
+  /**
+   *
+   * @param authServerId {String}
+   * @param clientId {String}
+   * @param {Object} queryParams Map of query parameters to add to this request
+   * @param {String} [queryParams.expand]
+   * @param {String} [queryParams.after]
+   * @param {String} [queryParams.limit]
+   * @description
+   * Success
+   * @returns {Promise<Collection>} A collection that will yield {@link OAuth2RefreshToken} instances.
+   */
+  listRefreshTokensForAuthorizationServerAndClient(authServerId, clientId, queryParameters) {
+    let url = `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/clients/${clientId}/tokens`;
+    const queryString = qs.stringify(queryParameters || {});
+
+    url += queryString ? ('?' + queryString) : '';
+
+    return new Collection(this, url, new ModelFactory(models.OAuth2RefreshToken));
+  }
+
+  /**
+   *
+   * @param authServerId {String}
+   * @param clientId {String}
+   * @param tokenId {String}
+   * @description
+   * Success
+   */
+  revokeRefreshTokenForAuthorizationServerAndClient(authServerId, clientId, tokenId) {
+    let url = `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/clients/${clientId}/tokens/${tokenId}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/clients/${clientId}/tokens/${tokenId}`,
+      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/clients/${clientId}`,
+      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}`
+    ];
+
+    const request = this.http.delete(url, null, {resources});
+    return request;
+  }
+
+  /**
+   *
+   * @param authServerId {String}
+   * @param clientId {String}
+   * @param tokenId {String}
+   * @param {Object} queryParams Map of query parameters to add to this request
+   * @param {String} [queryParams.expand]
+   * @description
+   * Success
+   * @returns {Promise<OAuth2RefreshToken>}
+   */
+  getRefreshTokenForAuthorizationServerAndClient(authServerId, clientId, tokenId, queryParameters) {
+    let url = `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/clients/${clientId}/tokens/${tokenId}`;
+    const queryString = qs.stringify(queryParameters || {});
+
+    url += queryString ? ('?' + queryString) : '';
+
+    const resources = [
+      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/clients/${clientId}/tokens/${tokenId}`,
+      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/clients/${clientId}`,
+      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}`
+    ];
+
+    const request = this.http.getJson(url, null, {resources});
+    return request.then(jsonRes => new models.OAuth2RefreshToken(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param authServerId {String}
+   * @description
+   * Success
+   * @returns {Promise<Collection>} A collection that will yield {@link JsonWebKey} instances.
+   */
+  listAuthorizationServerKeys(authServerId) {
+    let url = `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/credentials/keys`;
+
+    return new Collection(this, url, new ModelFactory(models.JsonWebKey));
+  }
+
+  /**
+   *
+   * @param authServerId {String}
+   * @description
+   * Success
+   * @returns {Promise<Collection>} A collection that will yield {@link JsonWebKey} instances.
+   */
+  rotateAuthorizationServerKeys(authServerId) {
+    let url = `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/credentials/lifecycle/keyRotate`;
+
+    return new Collection(this, url, new ModelFactory(models.JsonWebKey));
+  }
+
+  /**
+   *
+   * @param authServerId {String}
+   * @description
+   * Success
+   */
+  activateAuthorizationServer(authServerId) {
+    let url = `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/lifecycle/activate`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}`
+    ];
+
+    const request = this.http.post(url, null, {resources});
+    return request;
+  }
+
+  /**
+   *
+   * @param authServerId {String}
+   * @description
+   * Success
+   */
+  deactivateAuthorizationServer(authServerId) {
+    let url = `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/lifecycle/deactivate`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}`
+    ];
+
+    const request = this.http.post(url, null, {resources});
+    return request;
+  }
+
+  /**
+   *
+   * @param authServerId {String}
+   * @description
+   * Success
+   * @returns {Promise<Collection>} A collection that will yield {@link Policy} instances.
+   */
+  listAuthorizationServerPolicies(authServerId) {
+    let url = `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/policies`;
+
+    return new Collection(this, url, new factories.Policy());
+  }
+
+  /**
+   *
+   * @param authServerId {String}
+   * @param {Policy} policy
+   * @description
+   * Success
+   * @returns {Promise<Policy>}
+   */
+  createAuthorizationServerPolicy(authServerId, policy) {
+    let url = `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/policies`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}`
+    ];
+
+    const request = this.http.postJson(url, {
+      body: policy
+    }, {resources});
+    return request.then(jsonRes => new factories.Policy().createInstance(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param authServerId {String}
+   * @param policyId {String}
+   * @description
+   * Success
+   */
+  deleteAuthorizationServerPolicy(authServerId, policyId) {
+    let url = `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/policies/${policyId}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/policies/${policyId}`,
+      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}`
+    ];
+
+    const request = this.http.delete(url, null, {resources});
+    return request;
+  }
+
+  /**
+   *
+   * @param authServerId {String}
+   * @param policyId {String}
+   * @description
+   * Success
+   * @returns {Promise<Policy>}
+   */
+  getAuthorizationServerPolicy(authServerId, policyId) {
+    let url = `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/policies/${policyId}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/policies/${policyId}`,
+      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}`
+    ];
+
+    const request = this.http.getJson(url, null, {resources});
+    return request.then(jsonRes => new factories.Policy().createInstance(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param authServerId {String}
+   * @param policyId {String}
+   * @param {Policy} policy
+   * @description
+   * Success
+   * @returns {Promise<Policy>}
+   */
+  updateAuthorizationServerPolicy(authServerId, policyId, policy) {
+    let url = `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/policies/${policyId}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/policies/${policyId}`,
+      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}`
+    ];
+
+    const request = this.http.putJson(url, {
+      body: policy
+    }, {resources});
+    return request.then(jsonRes => new factories.Policy().createInstance(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param authServerId {String}
+   * @param {Object} queryParams Map of query parameters to add to this request
+   * @param {String} [queryParams.q]
+   * @param {String} [queryParams.filter]
+   * @param {String} [queryParams.cursor]
+   * @param {String} [queryParams.limit]
+   * @description
+   * Success
+   * @returns {Promise<Collection>} A collection that will yield {@link OAuth2Scope} instances.
+   */
+  listOAuth2Scopes(authServerId, queryParameters) {
+    let url = `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/scopes`;
+    const queryString = qs.stringify(queryParameters || {});
+
+    url += queryString ? ('?' + queryString) : '';
+
+    return new Collection(this, url, new ModelFactory(models.OAuth2Scope));
+  }
+
+  /**
+   *
+   * @param authServerId {String}
+   * @param {OAuth2Scope} oAuth2Scope
+   * @description
+   * Success
+   * @returns {Promise<OAuth2Scope>}
+   */
+  createOAuth2Scope(authServerId, oAuth2Scope) {
+    let url = `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/scopes`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}`
+    ];
+
+    const request = this.http.postJson(url, {
+      body: oAuth2Scope
+    }, {resources});
+    return request.then(jsonRes => new models.OAuth2Scope(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param authServerId {String}
+   * @param scopeId {String}
+   * @description
+   * Success
+   */
+  deleteOAuth2Scope(authServerId, scopeId) {
+    let url = `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/scopes/${scopeId}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/scopes/${scopeId}`,
+      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}`
+    ];
+
+    const request = this.http.delete(url, null, {resources});
+    return request;
+  }
+
+  /**
+   *
+   * @param authServerId {String}
+   * @param scopeId {String}
+   * @description
+   * Success
+   * @returns {Promise<OAuth2Scope>}
+   */
+  getOAuth2Scope(authServerId, scopeId) {
+    let url = `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/scopes/${scopeId}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/scopes/${scopeId}`,
+      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}`
+    ];
+
+    const request = this.http.getJson(url, null, {resources});
+    return request.then(jsonRes => new models.OAuth2Scope(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param authServerId {String}
+   * @param scopeId {String}
+   * @param {OAuth2Scope} oAuth2Scope
+   * @description
+   * Success
+   * @returns {Promise<OAuth2Scope>}
+   */
+  updateOAuth2Scope(authServerId, scopeId, oAuth2Scope) {
+    let url = `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/scopes/${scopeId}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/scopes/${scopeId}`,
+      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}`
+    ];
+
+    const request = this.http.putJson(url, {
+      body: oAuth2Scope
+    }, {resources});
+    return request.then(jsonRes => new models.OAuth2Scope(jsonRes, this));
+  }
+
+  /**
+   *
+   * @description
+   * Success
+   * @returns {Promise<Collection>} A collection that will yield {@link EventHook} instances.
+   */
+  listEventHooks() {
+    let url = `${this.baseUrl}/api/v1/eventHooks`;
+
+    return new Collection(this, url, new ModelFactory(models.EventHook));
+  }
+
+  /**
+   *
+   * @param {EventHook} eventHook
+   * @description
+   * Success
+   * @returns {Promise<EventHook>}
+   */
+  createEventHook(eventHook) {
+    let url = `${this.baseUrl}/api/v1/eventHooks`;
+
+    const resources = [];
+
+    const request = this.http.postJson(url, {
+      body: eventHook
+    }, {resources});
+    return request.then(jsonRes => new models.EventHook(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param eventHookId {String}
+   * @description
+   * Success
+   */
+  deleteEventHook(eventHookId) {
+    let url = `${this.baseUrl}/api/v1/eventHooks/${eventHookId}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/eventHooks/${eventHookId}`
+    ];
+
+    const request = this.http.delete(url, null, {resources});
+    return request;
+  }
+
+  /**
+   *
+   * @param eventHookId {String}
+   * @description
+   * Success
+   * @returns {Promise<EventHook>}
+   */
+  getEventHook(eventHookId) {
+    let url = `${this.baseUrl}/api/v1/eventHooks/${eventHookId}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/eventHooks/${eventHookId}`
+    ];
+
+    const request = this.http.getJson(url, null, {resources});
+    return request.then(jsonRes => new models.EventHook(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param eventHookId {String}
+   * @param {EventHook} eventHook
+   * @description
+   * Success
+   * @returns {Promise<EventHook>}
+   */
+  updateEventHook(eventHookId, eventHook) {
+    let url = `${this.baseUrl}/api/v1/eventHooks/${eventHookId}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/eventHooks/${eventHookId}`
+    ];
+
+    const request = this.http.putJson(url, {
+      body: eventHook
+    }, {resources});
+    return request.then(jsonRes => new models.EventHook(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param eventHookId {String}
+   * @description
+   * Success
+   * @returns {Promise<EventHook>}
+   */
+  activateEventHook(eventHookId) {
+    let url = `${this.baseUrl}/api/v1/eventHooks/${eventHookId}/lifecycle/activate`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/eventHooks/${eventHookId}`
+    ];
+
+    const request = this.http.postJson(url, null, {resources});
+    return request.then(jsonRes => new models.EventHook(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param eventHookId {String}
+   * @description
+   * Success
+   * @returns {Promise<EventHook>}
+   */
+  deactivateEventHook(eventHookId) {
+    let url = `${this.baseUrl}/api/v1/eventHooks/${eventHookId}/lifecycle/deactivate`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/eventHooks/${eventHookId}`
+    ];
+
+    const request = this.http.postJson(url, null, {resources});
+    return request.then(jsonRes => new models.EventHook(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param eventHookId {String}
+   * @description
+   * Success
+   * @returns {Promise<EventHook>}
+   */
+  verifyEventHook(eventHookId) {
+    let url = `${this.baseUrl}/api/v1/eventHooks/${eventHookId}/lifecycle/verify`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/eventHooks/${eventHookId}`
+    ];
+
+    const request = this.http.postJson(url, null, {resources});
+    return request.then(jsonRes => new models.EventHook(jsonRes, this));
+  }
+
+  /**
+   *
+   * @description
+   * Success
+   * @returns {Promise<Collection>} A collection that will yield {@link Feature} instances.
+   */
+  listFeatures() {
+    let url = `${this.baseUrl}/api/v1/features`;
+
+    return new Collection(this, url, new ModelFactory(models.Feature));
+  }
+
+  /**
+   *
+   * @param featureId {String}
+   * @description
+   * Success
+   * @returns {Promise<Feature>}
+   */
+  getFeature(featureId) {
+    let url = `${this.baseUrl}/api/v1/features/${featureId}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/features/${featureId}`
+    ];
+
+    const request = this.http.getJson(url, null, {resources});
+    return request.then(jsonRes => new models.Feature(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param featureId {String}
+   * @description
+   * Success
+   * @returns {Promise<Collection>} A collection that will yield {@link Feature} instances.
+   */
+  listFeatureDependencies(featureId) {
+    let url = `${this.baseUrl}/api/v1/features/${featureId}/dependencies`;
+
+    return new Collection(this, url, new ModelFactory(models.Feature));
+  }
+
+  /**
+   *
+   * @param featureId {String}
+   * @description
+   * Success
+   * @returns {Promise<Collection>} A collection that will yield {@link Feature} instances.
+   */
+  listFeatureDependents(featureId) {
+    let url = `${this.baseUrl}/api/v1/features/${featureId}/dependents`;
+
+    return new Collection(this, url, new ModelFactory(models.Feature));
+  }
+
+  /**
+   *
+   * @param featureId {String}
+   * @param lifecycle {String}
+   * @param {Object} queryParams Map of query parameters to add to this request
+   * @param {String} [queryParams.mode]
+   * @description
+   * Success
+   * @returns {Promise<Feature>}
+   */
+  updateFeatureLifecycle(featureId, lifecycle, queryParameters) {
+    let url = `${this.baseUrl}/api/v1/features/${featureId}/${lifecycle}`;
+    const queryString = qs.stringify(queryParameters || {});
+
+    url += queryString ? ('?' + queryString) : '';
+
+    const resources = [
+      `${this.baseUrl}/api/v1/features/${featureId}/${lifecycle}`,
+      `${this.baseUrl}/api/v1/features/${featureId}`
+    ];
+
+    const request = this.http.postJson(url, null, {resources});
+    return request.then(jsonRes => new models.Feature(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param {Object} queryParams Map of query parameters to add to this request
+   * @param {String} [queryParams.q]
    * @param {String} [queryParams.filter]
    * @param {String} [queryParams.after]
    * @param {String} [queryParams.limit]
-   * @param {String} [queryParams.expand]
    * @description
    * Enumerates groups in your organization with pagination. A subset of groups can be returned that match a supported filter expression or query.
    * @returns {Promise<Collection>} A collection that will yield {@link Group} instances.
@@ -473,12 +1604,13 @@ class GeneratedApiClient {
    * @param {Object} queryParams Map of query parameters to add to this request
    * @param {String} [queryParams.limit]
    * @param {String} [queryParams.after]
+   * @param {String} [queryParams.search]
    * @param {String} [queryParams.expand]
    * @description
    * Lists all group rules for your organization.
    * @returns {Promise<Collection>} A collection that will yield {@link GroupRule} instances.
    */
-  listRules(queryParameters) {
+  listGroupRules(queryParameters) {
     let url = `${this.baseUrl}/api/v1/groups/rules`;
     const queryString = qs.stringify(queryParameters || {});
 
@@ -494,7 +1626,7 @@ class GeneratedApiClient {
    * Creates a group rule to dynamically add users to the specified group if they match the condition
    * @returns {Promise<GroupRule>}
    */
-  createRule(groupRule) {
+  createGroupRule(groupRule) {
     let url = `${this.baseUrl}/api/v1/groups/rules`;
 
     const resources = [];
@@ -508,16 +1640,11 @@ class GeneratedApiClient {
   /**
    *
    * @param ruleId {String}
-   * @param {Object} queryParams Map of query parameters to add to this request
-   * @param {String} [queryParams.removeUsers]
    * @description
    * Removes a specific group rule by id from your organization
    */
-  deleteRule(ruleId, queryParameters) {
+  deleteGroupRule(ruleId) {
     let url = `${this.baseUrl}/api/v1/groups/rules/${ruleId}`;
-    const queryString = qs.stringify(queryParameters || {});
-
-    url += queryString ? ('?' + queryString) : '';
 
     const resources = [
       `${this.baseUrl}/api/v1/groups/rules/${ruleId}`
@@ -536,7 +1663,7 @@ class GeneratedApiClient {
    * Fetches a specific group rule by id from your organization
    * @returns {Promise<GroupRule>}
    */
-  getRule(ruleId, queryParameters) {
+  getGroupRule(ruleId, queryParameters) {
     let url = `${this.baseUrl}/api/v1/groups/rules/${ruleId}`;
     const queryString = qs.stringify(queryParameters || {});
 
@@ -555,10 +1682,10 @@ class GeneratedApiClient {
    * @param ruleId {String}
    * @param {GroupRule} groupRule
    * @description
-   * Success
+   * Updates a group rule. Only `INACTIVE` rules can be updated.
    * @returns {Promise<GroupRule>}
    */
-  updateRule(ruleId, groupRule) {
+  updateGroupRule(ruleId, groupRule) {
     let url = `${this.baseUrl}/api/v1/groups/rules/${ruleId}`;
 
     const resources = [
@@ -577,7 +1704,7 @@ class GeneratedApiClient {
    * @description
    * Activates a specific group rule by id from your organization
    */
-  activateRule(ruleId) {
+  activateGroupRule(ruleId) {
     let url = `${this.baseUrl}/api/v1/groups/rules/${ruleId}/lifecycle/activate`;
 
     const resources = [
@@ -594,7 +1721,7 @@ class GeneratedApiClient {
    * @description
    * Deactivates a specific group rule by id from your organization
    */
-  deactivateRule(ruleId) {
+  deactivateGroupRule(ruleId) {
     let url = `${this.baseUrl}/api/v1/groups/rules/${ruleId}/lifecycle/deactivate`;
 
     const resources = [
@@ -625,17 +1752,12 @@ class GeneratedApiClient {
   /**
    *
    * @param groupId {String}
-   * @param {Object} queryParams Map of query parameters to add to this request
-   * @param {String} [queryParams.expand]
    * @description
    * Lists all group rules for your organization.
    * @returns {Promise<Group>}
    */
-  getGroup(groupId, queryParameters) {
+  getGroup(groupId) {
     let url = `${this.baseUrl}/api/v1/groups/${groupId}`;
-    const queryString = qs.stringify(queryParameters || {});
-
-    url += queryString ? ('?' + queryString) : '';
 
     const resources = [
       `${this.baseUrl}/api/v1/groups/${groupId}`
@@ -672,9 +1794,280 @@ class GeneratedApiClient {
    * @param {Object} queryParams Map of query parameters to add to this request
    * @param {String} [queryParams.after]
    * @param {String} [queryParams.limit]
-   * @param {String} [queryParams.managedBy]
    * @description
-   * Enumerates all [users](/docs/api/resources/users.html#user-model) that are a member of a group.
+   * Enumerates all applications that are assigned to a group.
+   * @returns {Promise<Collection>} A collection that will yield {@link Application} instances.
+   */
+  listAssignedApplicationsForGroup(groupId, queryParameters) {
+    let url = `${this.baseUrl}/api/v1/groups/${groupId}/apps`;
+    const queryString = qs.stringify(queryParameters || {});
+
+    url += queryString ? ('?' + queryString) : '';
+
+    return new Collection(this, url, new factories.Application());
+  }
+
+  /**
+   *
+   * @param groupId {String}
+   * @param {Object} queryParams Map of query parameters to add to this request
+   * @param {String} [queryParams.expand]
+   * @description
+   * Success
+   * @returns {Promise<Collection>} A collection that will yield {@link Role} instances.
+   */
+  listGroupAssignedRoles(groupId, queryParameters) {
+    let url = `${this.baseUrl}/api/v1/groups/${groupId}/roles`;
+    const queryString = qs.stringify(queryParameters || {});
+
+    url += queryString ? ('?' + queryString) : '';
+
+    return new Collection(this, url, new ModelFactory(models.Role));
+  }
+
+  /**
+   *
+   * @param groupId {String}
+   * @param {AssignRoleRequest} assignRoleRequest
+   * @param {Object} queryParams Map of query parameters to add to this request
+   * @param {String} [queryParams.disableNotifications]
+   * @description
+   * Assigns a Role to a Group
+   * @returns {Promise<Role>}
+   */
+  assignRoleToGroup(groupId, assignRoleRequest, queryParameters) {
+    let url = `${this.baseUrl}/api/v1/groups/${groupId}/roles`;
+    const queryString = qs.stringify(queryParameters || {});
+
+    url += queryString ? ('?' + queryString) : '';
+
+    const resources = [
+      `${this.baseUrl}/api/v1/groups/${groupId}`
+    ];
+
+    const request = this.http.postJson(url, {
+      body: assignRoleRequest
+    }, {resources});
+    return request.then(jsonRes => new models.Role(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param groupId {String}
+   * @param roleId {String}
+   * @description
+   * Unassigns a Role from a Group
+   */
+  removeRoleFromGroup(groupId, roleId) {
+    let url = `${this.baseUrl}/api/v1/groups/${groupId}/roles/${roleId}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/groups/${groupId}/roles/${roleId}`,
+      `${this.baseUrl}/api/v1/groups/${groupId}`
+    ];
+
+    const request = this.http.delete(url, null, {resources});
+    return request;
+  }
+
+  /**
+   *
+   * @param groupId {String}
+   * @param roleId {String}
+   * @description
+   * Success
+   * @returns {Promise<Role>}
+   */
+  getRole(groupId, roleId) {
+    let url = `${this.baseUrl}/api/v1/groups/${groupId}/roles/${roleId}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/groups/${groupId}/roles/${roleId}`,
+      `${this.baseUrl}/api/v1/groups/${groupId}`
+    ];
+
+    const request = this.http.getJson(url, null, {resources});
+    return request.then(jsonRes => new models.Role(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param groupId {String}
+   * @param roleId {String}
+   * @param {Object} queryParams Map of query parameters to add to this request
+   * @param {String} [queryParams.after]
+   * @param {String} [queryParams.limit]
+   * @description
+   * Lists all App targets for an `APP_ADMIN` Role assigned to a Group. This methods return list may include full Applications or Instances. The response for an instance will have an `ID` value, while Application will not have an ID.
+   * @returns {Promise<Collection>} A collection that will yield {@link Application} instances.
+   */
+  listApplicationTargetsForApplicationAdministratorRoleForGroup(groupId, roleId, queryParameters) {
+    let url = `${this.baseUrl}/api/v1/groups/${groupId}/roles/${roleId}/targets/catalog/apps`;
+    const queryString = qs.stringify(queryParameters || {});
+
+    url += queryString ? ('?' + queryString) : '';
+
+    return new Collection(this, url, new factories.Application());
+  }
+
+  /**
+   *
+   * @param groupId {String}
+   * @param roleId {String}
+   * @param appName {String}
+   * @description
+   * Success
+   */
+  removeApplicationTargetFromApplicationAdministratorRoleGivenToGroup(groupId, roleId, appName) {
+    let url = `${this.baseUrl}/api/v1/groups/${groupId}/roles/${roleId}/targets/catalog/apps/${appName}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/groups/${groupId}/roles/${roleId}/targets/catalog/apps/${appName}`,
+      `${this.baseUrl}/api/v1/groups/${groupId}/roles/${roleId}`,
+      `${this.baseUrl}/api/v1/groups/${groupId}`
+    ];
+
+    const request = this.http.delete(url, null, {resources});
+    return request;
+  }
+
+  /**
+   *
+   * @param groupId {String}
+   * @param roleId {String}
+   * @param appName {String}
+   * @description
+   * Success
+   */
+  addApplicationTargetToAdminRoleGivenToGroup(groupId, roleId, appName) {
+    let url = `${this.baseUrl}/api/v1/groups/${groupId}/roles/${roleId}/targets/catalog/apps/${appName}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/groups/${groupId}/roles/${roleId}/targets/catalog/apps/${appName}`,
+      `${this.baseUrl}/api/v1/groups/${groupId}/roles/${roleId}`,
+      `${this.baseUrl}/api/v1/groups/${groupId}`
+    ];
+
+    const request = this.http.put(url, null, {resources});
+    return request;
+  }
+
+  /**
+   *
+   * @param groupId {String}
+   * @param roleId {String}
+   * @param appName {String}
+   * @param applicationId {String}
+   * @description
+   * Remove App Instance Target to App Administrator Role given to a Group
+   */
+  removeApplicationTargetFromAdministratorRoleGivenToGroup(groupId, roleId, appName, applicationId) {
+    let url = `${this.baseUrl}/api/v1/groups/${groupId}/roles/${roleId}/targets/catalog/apps/${appName}/${applicationId}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/groups/${groupId}/roles/${roleId}/targets/catalog/apps/${appName}/${applicationId}`,
+      `${this.baseUrl}/api/v1/groups/${groupId}/roles/${roleId}/targets/catalog/apps/${appName}`,
+      `${this.baseUrl}/api/v1/groups/${groupId}/roles/${roleId}`,
+      `${this.baseUrl}/api/v1/groups/${groupId}`
+    ];
+
+    const request = this.http.delete(url, null, {resources});
+    return request;
+  }
+
+  /**
+   *
+   * @param groupId {String}
+   * @param roleId {String}
+   * @param appName {String}
+   * @param applicationId {String}
+   * @description
+   * Add App Instance Target to App Administrator Role given to a Group
+   */
+  addApplicationInstanceTargetToAppAdminRoleGivenToGroup(groupId, roleId, appName, applicationId) {
+    let url = `${this.baseUrl}/api/v1/groups/${groupId}/roles/${roleId}/targets/catalog/apps/${appName}/${applicationId}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/groups/${groupId}/roles/${roleId}/targets/catalog/apps/${appName}/${applicationId}`,
+      `${this.baseUrl}/api/v1/groups/${groupId}/roles/${roleId}/targets/catalog/apps/${appName}`,
+      `${this.baseUrl}/api/v1/groups/${groupId}/roles/${roleId}`,
+      `${this.baseUrl}/api/v1/groups/${groupId}`
+    ];
+
+    const request = this.http.put(url, null, {resources});
+    return request;
+  }
+
+  /**
+   *
+   * @param groupId {String}
+   * @param roleId {String}
+   * @param {Object} queryParams Map of query parameters to add to this request
+   * @param {String} [queryParams.after]
+   * @param {String} [queryParams.limit]
+   * @description
+   * Success
+   * @returns {Promise<Collection>} A collection that will yield {@link Group} instances.
+   */
+  listGroupTargetsForGroupRole(groupId, roleId, queryParameters) {
+    let url = `${this.baseUrl}/api/v1/groups/${groupId}/roles/${roleId}/targets/groups`;
+    const queryString = qs.stringify(queryParameters || {});
+
+    url += queryString ? ('?' + queryString) : '';
+
+    return new Collection(this, url, new ModelFactory(models.Group));
+  }
+
+  /**
+   *
+   * @param groupId {String}
+   * @param roleId {String}
+   * @param targetGroupId {String}
+   * @description
+   * Convenience method for /api/v1/groups/{groupId}/roles/{roleId}/targets/groups/{targetGroupId}
+   */
+  removeGroupTargetFromGroupAdministratorRoleGivenToGroup(groupId, roleId, targetGroupId) {
+    let url = `${this.baseUrl}/api/v1/groups/${groupId}/roles/${roleId}/targets/groups/${targetGroupId}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/groups/${groupId}/roles/${roleId}/targets/groups/${targetGroupId}`,
+      `${this.baseUrl}/api/v1/groups/${groupId}/roles/${roleId}`,
+      `${this.baseUrl}/api/v1/groups/${groupId}`
+    ];
+
+    const request = this.http.delete(url, null, {resources});
+    return request;
+  }
+
+  /**
+   *
+   * @param groupId {String}
+   * @param roleId {String}
+   * @param targetGroupId {String}
+   * @description
+   * Convenience method for /api/v1/groups/{groupId}/roles/{roleId}/targets/groups/{targetGroupId}
+   */
+  addGroupTargetToGroupAdministratorRoleForGroup(groupId, roleId, targetGroupId) {
+    let url = `${this.baseUrl}/api/v1/groups/${groupId}/roles/${roleId}/targets/groups/${targetGroupId}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/groups/${groupId}/roles/${roleId}/targets/groups/${targetGroupId}`,
+      `${this.baseUrl}/api/v1/groups/${groupId}/roles/${roleId}`,
+      `${this.baseUrl}/api/v1/groups/${groupId}`
+    ];
+
+    const request = this.http.put(url, null, {resources});
+    return request;
+  }
+
+  /**
+   *
+   * @param groupId {String}
+   * @param {Object} queryParams Map of query parameters to add to this request
+   * @param {String} [queryParams.after]
+   * @param {String} [queryParams.limit]
+   * @description
+   * Enumerates all users that are a member of a group.
    * @returns {Promise<Collection>} A collection that will yield {@link User} instances.
    */
   listGroupUsers(groupId, queryParameters) {
@@ -691,9 +2084,9 @@ class GeneratedApiClient {
    * @param groupId {String}
    * @param userId {String}
    * @description
-   * Removes a [user](users.html#user-model) from a group with `OKTA_GROUP` type.
+   * Removes a user from a group with 'OKTA_GROUP' type.
    */
-  removeGroupUser(groupId, userId) {
+  removeUserFromGroup(groupId, userId) {
     let url = `${this.baseUrl}/api/v1/groups/${groupId}/users/${userId}`;
 
     const resources = [
@@ -710,7 +2103,7 @@ class GeneratedApiClient {
    * @param groupId {String}
    * @param userId {String}
    * @description
-   * Adds a [user](users.html#user-model) to a group with `OKTA_GROUP` type.
+   * Adds a user to a group with 'OKTA_GROUP' type.
    */
   addUserToGroup(groupId, userId) {
     let url = `${this.baseUrl}/api/v1/groups/${groupId}/users/${userId}`;
@@ -722,6 +2115,713 @@ class GeneratedApiClient {
 
     const request = this.http.put(url, null, {resources});
     return request;
+  }
+
+  /**
+   *
+   * @param {Object} queryParams Map of query parameters to add to this request
+   * @param {String} [queryParams.q]
+   * @param {String} [queryParams.after]
+   * @param {String} [queryParams.limit]
+   * @param {String} [queryParams.type]
+   * @description
+   * Enumerates IdPs in your organization with pagination. A subset of IdPs can be returned that match a supported filter expression or query.
+   * @returns {Promise<Collection>} A collection that will yield {@link IdentityProvider} instances.
+   */
+  listIdentityProviders(queryParameters) {
+    let url = `${this.baseUrl}/api/v1/idps`;
+    const queryString = qs.stringify(queryParameters || {});
+
+    url += queryString ? ('?' + queryString) : '';
+
+    return new Collection(this, url, new ModelFactory(models.IdentityProvider));
+  }
+
+  /**
+   *
+   * @param {IdentityProvider} identityProvider
+   * @description
+   * Adds a new IdP to your organization.
+   * @returns {Promise<IdentityProvider>}
+   */
+  createIdentityProvider(identityProvider) {
+    let url = `${this.baseUrl}/api/v1/idps`;
+
+    const resources = [];
+
+    const request = this.http.postJson(url, {
+      body: identityProvider
+    }, {resources});
+    return request.then(jsonRes => new models.IdentityProvider(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param {Object} queryParams Map of query parameters to add to this request
+   * @param {String} [queryParams.after]
+   * @param {String} [queryParams.limit]
+   * @description
+   * Enumerates IdP key credentials.
+   * @returns {Promise<Collection>} A collection that will yield {@link JsonWebKey} instances.
+   */
+  listIdentityProviderKeys(queryParameters) {
+    let url = `${this.baseUrl}/api/v1/idps/credentials/keys`;
+    const queryString = qs.stringify(queryParameters || {});
+
+    url += queryString ? ('?' + queryString) : '';
+
+    return new Collection(this, url, new ModelFactory(models.JsonWebKey));
+  }
+
+  /**
+   *
+   * @param {JsonWebKey} jsonWebKey
+   * @description
+   * Adds a new X.509 certificate credential to the IdP key store.
+   * @returns {Promise<JsonWebKey>}
+   */
+  createIdentityProviderKey(jsonWebKey) {
+    let url = `${this.baseUrl}/api/v1/idps/credentials/keys`;
+
+    const resources = [];
+
+    const request = this.http.postJson(url, {
+      body: jsonWebKey
+    }, {resources});
+    return request.then(jsonRes => new models.JsonWebKey(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param keyId {String}
+   * @description
+   * Deletes a specific IdP Key Credential by `kid` if it is not currently being used by an Active or Inactive IdP.
+   */
+  deleteIdentityProviderKey(keyId) {
+    let url = `${this.baseUrl}/api/v1/idps/credentials/keys/${keyId}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/idps/credentials/keys/${keyId}`
+    ];
+
+    const request = this.http.delete(url, null, {resources});
+    return request;
+  }
+
+  /**
+   *
+   * @param keyId {String}
+   * @description
+   * Gets a specific IdP Key Credential by `kid`
+   * @returns {Promise<JsonWebKey>}
+   */
+  getIdentityProviderKey(keyId) {
+    let url = `${this.baseUrl}/api/v1/idps/credentials/keys/${keyId}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/idps/credentials/keys/${keyId}`
+    ];
+
+    const request = this.http.getJson(url, null, {resources});
+    return request.then(jsonRes => new models.JsonWebKey(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param idpId {String}
+   * @description
+   * Removes an IdP from your organization.
+   */
+  deleteIdentityProvider(idpId) {
+    let url = `${this.baseUrl}/api/v1/idps/${idpId}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/idps/${idpId}`
+    ];
+
+    const request = this.http.delete(url, null, {resources});
+    return request;
+  }
+
+  /**
+   *
+   * @param idpId {String}
+   * @description
+   * Fetches an IdP by `id`.
+   * @returns {Promise<IdentityProvider>}
+   */
+  getIdentityProvider(idpId) {
+    let url = `${this.baseUrl}/api/v1/idps/${idpId}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/idps/${idpId}`
+    ];
+
+    const request = this.http.getJson(url, null, {resources});
+    return request.then(jsonRes => new models.IdentityProvider(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param idpId {String}
+   * @param {IdentityProvider} identityProvider
+   * @description
+   * Updates the configuration for an IdP.
+   * @returns {Promise<IdentityProvider>}
+   */
+  updateIdentityProvider(idpId, identityProvider) {
+    let url = `${this.baseUrl}/api/v1/idps/${idpId}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/idps/${idpId}`
+    ];
+
+    const request = this.http.putJson(url, {
+      body: identityProvider
+    }, {resources});
+    return request.then(jsonRes => new models.IdentityProvider(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param idpId {String}
+   * @description
+   * Enumerates signing CSRs for an IdP
+   * @returns {Promise<Collection>} A collection that will yield {@link CSR} instances.
+   */
+  listCsrsForIdentityProvider(idpId) {
+    let url = `${this.baseUrl}/api/v1/idps/${idpId}/credentials/csrs`;
+
+    return new Collection(this, url, new ModelFactory(models.CSR));
+  }
+
+  /**
+   *
+   * @param idpId {String}
+   * @param {CSRMetadata} csrMetadata
+   * @description
+   * Generates a new key pair and returns a Certificate Signing Request for it.
+   * @returns {Promise<CSR>}
+   */
+  generateCsrForIdentityProvider(idpId, csrMetadata) {
+    let url = `${this.baseUrl}/api/v1/idps/${idpId}/credentials/csrs`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/idps/${idpId}`
+    ];
+
+    const request = this.http.postJson(url, {
+      body: csrMetadata
+    }, {resources});
+    return request.then(jsonRes => new models.CSR(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param idpId {String}
+   * @param csrId {String}
+   * @description
+   * Revoke a CSR and delete the key pair from the IdP
+   */
+  revokeCsrForIdentityProvider(idpId, csrId) {
+    let url = `${this.baseUrl}/api/v1/idps/${idpId}/credentials/csrs/${csrId}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/idps/${idpId}/credentials/csrs/${csrId}`,
+      `${this.baseUrl}/api/v1/idps/${idpId}`
+    ];
+
+    const request = this.http.delete(url, null, {resources});
+    return request;
+  }
+
+  /**
+   *
+   * @param idpId {String}
+   * @param csrId {String}
+   * @description
+   * Gets a specific CSR model by id
+   * @returns {Promise<CSR>}
+   */
+  getCsrForIdentityProvider(idpId, csrId) {
+    let url = `${this.baseUrl}/api/v1/idps/${idpId}/credentials/csrs/${csrId}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/idps/${idpId}/credentials/csrs/${csrId}`,
+      `${this.baseUrl}/api/v1/idps/${idpId}`
+    ];
+
+    const request = this.http.getJson(url, null, {resources});
+    return request.then(jsonRes => new models.CSR(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param idpId {String}
+   * @param csrId {String}
+   * @param {string} string
+   * @description
+   * Update the CSR with a signed X.509 certificate and add it into the signing key credentials for the IdP.
+   * @returns {Promise<JsonWebKey>}
+   */
+  publishCerCertForIdentityProvider(idpId, csrId, string) {
+    let url = `${this.baseUrl}/api/v1/idps/${idpId}/credentials/csrs/${csrId}/lifecycle/publish`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/idps/${idpId}/credentials/csrs/${csrId}`,
+      `${this.baseUrl}/api/v1/idps/${idpId}`
+    ];
+
+    const request = this.http.postJson(url, {
+      body: string
+    }, {resources});
+    return request.then(jsonRes => new models.JsonWebKey(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param idpId {String}
+   * @param csrId {String}
+   * @param {string} string
+   * @description
+   * Update the CSR with a signed X.509 certificate and add it into the signing key credentials for the IdP.
+   * @returns {Promise<JsonWebKey>}
+   */
+  publishBinaryCerCertForIdentityProvider(idpId, csrId, string) {
+    let url = `${this.baseUrl}/api/v1/idps/${idpId}/credentials/csrs/${csrId}/lifecycle/publish`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/idps/${idpId}/credentials/csrs/${csrId}`,
+      `${this.baseUrl}/api/v1/idps/${idpId}`
+    ];
+
+    const request = this.http.postJson(url, {
+      body: string
+    }, {resources});
+    return request.then(jsonRes => new models.JsonWebKey(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param idpId {String}
+   * @param csrId {String}
+   * @param {string} string
+   * @description
+   * Update the CSR with a signed X.509 certificate and add it into the signing key credentials for the IdP.
+   * @returns {Promise<JsonWebKey>}
+   */
+  publishDerCertForIdentityProvider(idpId, csrId, string) {
+    let url = `${this.baseUrl}/api/v1/idps/${idpId}/credentials/csrs/${csrId}/lifecycle/publish`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/idps/${idpId}/credentials/csrs/${csrId}`,
+      `${this.baseUrl}/api/v1/idps/${idpId}`
+    ];
+
+    const request = this.http.postJson(url, {
+      body: string
+    }, {resources});
+    return request.then(jsonRes => new models.JsonWebKey(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param idpId {String}
+   * @param csrId {String}
+   * @param {string} string
+   * @description
+   * Update the CSR with a signed X.509 certificate and add it into the signing key credentials for the IdP.
+   * @returns {Promise<JsonWebKey>}
+   */
+  publishBinaryDerCertForIdentityProvider(idpId, csrId, string) {
+    let url = `${this.baseUrl}/api/v1/idps/${idpId}/credentials/csrs/${csrId}/lifecycle/publish`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/idps/${idpId}/credentials/csrs/${csrId}`,
+      `${this.baseUrl}/api/v1/idps/${idpId}`
+    ];
+
+    const request = this.http.postJson(url, {
+      body: string
+    }, {resources});
+    return request.then(jsonRes => new models.JsonWebKey(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param idpId {String}
+   * @param csrId {String}
+   * @param {string} string
+   * @description
+   * Update the CSR with a signed X.509 certificate and add it into the signing key credentials for the IdP.
+   * @returns {Promise<JsonWebKey>}
+   */
+  publishBinaryPemCertForIdentityProvider(idpId, csrId, string) {
+    let url = `${this.baseUrl}/api/v1/idps/${idpId}/credentials/csrs/${csrId}/lifecycle/publish`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/idps/${idpId}/credentials/csrs/${csrId}`,
+      `${this.baseUrl}/api/v1/idps/${idpId}`
+    ];
+
+    const request = this.http.postJson(url, {
+      body: string
+    }, {resources});
+    return request.then(jsonRes => new models.JsonWebKey(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param idpId {String}
+   * @description
+   * Enumerates signing key credentials for an IdP
+   * @returns {Promise<Collection>} A collection that will yield {@link JsonWebKey} instances.
+   */
+  listIdentityProviderSigningKeys(idpId) {
+    let url = `${this.baseUrl}/api/v1/idps/${idpId}/credentials/keys`;
+
+    return new Collection(this, url, new ModelFactory(models.JsonWebKey));
+  }
+
+  /**
+   *
+   * @param idpId {String}
+   * @param {Object} queryParams Map of query parameters to add to this request
+   * @param {String} [queryParams.validityYears]
+   * @description
+   * Generates a new X.509 certificate for an IdP signing key credential to be used for signing assertions sent to the IdP
+   * @returns {Promise<JsonWebKey>}
+   */
+  generateIdentityProviderSigningKey(idpId, queryParameters) {
+    let url = `${this.baseUrl}/api/v1/idps/${idpId}/credentials/keys/generate`;
+    const queryString = qs.stringify(queryParameters || {});
+
+    url += queryString ? ('?' + queryString) : '';
+
+    const resources = [
+      `${this.baseUrl}/api/v1/idps/${idpId}`
+    ];
+
+    const request = this.http.postJson(url, null, {resources});
+    return request.then(jsonRes => new models.JsonWebKey(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param idpId {String}
+   * @param keyId {String}
+   * @description
+   * Gets a specific IdP Key Credential by `kid`
+   * @returns {Promise<JsonWebKey>}
+   */
+  getIdentityProviderSigningKey(idpId, keyId) {
+    let url = `${this.baseUrl}/api/v1/idps/${idpId}/credentials/keys/${keyId}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/idps/${idpId}/credentials/keys/${keyId}`,
+      `${this.baseUrl}/api/v1/idps/${idpId}`
+    ];
+
+    const request = this.http.getJson(url, null, {resources});
+    return request.then(jsonRes => new models.JsonWebKey(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param idpId {String}
+   * @param keyId {String}
+   * @param {Object} queryParams Map of query parameters to add to this request
+   * @param {String} [queryParams.targetIdpId]
+   * @description
+   * Clones a X.509 certificate for an IdP signing key credential from a source IdP to target IdP
+   * @returns {Promise<JsonWebKey>}
+   */
+  cloneIdentityProviderKey(idpId, keyId, queryParameters) {
+    let url = `${this.baseUrl}/api/v1/idps/${idpId}/credentials/keys/${keyId}/clone`;
+    const queryString = qs.stringify(queryParameters || {});
+
+    url += queryString ? ('?' + queryString) : '';
+
+    const resources = [
+      `${this.baseUrl}/api/v1/idps/${idpId}/credentials/keys/${keyId}`,
+      `${this.baseUrl}/api/v1/idps/${idpId}`
+    ];
+
+    const request = this.http.postJson(url, null, {resources});
+    return request.then(jsonRes => new models.JsonWebKey(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param idpId {String}
+   * @description
+   * Activates an inactive IdP.
+   * @returns {Promise<IdentityProvider>}
+   */
+  activateIdentityProvider(idpId) {
+    let url = `${this.baseUrl}/api/v1/idps/${idpId}/lifecycle/activate`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/idps/${idpId}`
+    ];
+
+    const request = this.http.postJson(url, null, {resources});
+    return request.then(jsonRes => new models.IdentityProvider(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param idpId {String}
+   * @description
+   * Deactivates an active IdP.
+   * @returns {Promise<IdentityProvider>}
+   */
+  deactivateIdentityProvider(idpId) {
+    let url = `${this.baseUrl}/api/v1/idps/${idpId}/lifecycle/deactivate`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/idps/${idpId}`
+    ];
+
+    const request = this.http.postJson(url, null, {resources});
+    return request.then(jsonRes => new models.IdentityProvider(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param idpId {String}
+   * @description
+   * Find all the users linked to an identity provider
+   * @returns {Promise<Collection>} A collection that will yield {@link IdentityProviderApplicationUser} instances.
+   */
+  listIdentityProviderApplicationUsers(idpId) {
+    let url = `${this.baseUrl}/api/v1/idps/${idpId}/users`;
+
+    return new Collection(this, url, new ModelFactory(models.IdentityProviderApplicationUser));
+  }
+
+  /**
+   *
+   * @param idpId {String}
+   * @param userId {String}
+   * @description
+   * Removes the link between the Okta user and the IdP user.
+   */
+  unlinkUserFromIdentityProvider(idpId, userId) {
+    let url = `${this.baseUrl}/api/v1/idps/${idpId}/users/${userId}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/idps/${idpId}/users/${userId}`,
+      `${this.baseUrl}/api/v1/idps/${idpId}`
+    ];
+
+    const request = this.http.delete(url, null, {resources});
+    return request;
+  }
+
+  /**
+   *
+   * @param idpId {String}
+   * @param userId {String}
+   * @description
+   * Fetches a linked IdP user by ID
+   * @returns {Promise<IdentityProviderApplicationUser>}
+   */
+  getIdentityProviderApplicationUser(idpId, userId) {
+    let url = `${this.baseUrl}/api/v1/idps/${idpId}/users/${userId}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/idps/${idpId}/users/${userId}`,
+      `${this.baseUrl}/api/v1/idps/${idpId}`
+    ];
+
+    const request = this.http.getJson(url, null, {resources});
+    return request.then(jsonRes => new models.IdentityProviderApplicationUser(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param idpId {String}
+   * @param userId {String}
+   * @param {UserIdentityProviderLinkRequest} userIdentityProviderLinkRequest
+   * @description
+   * Links an Okta user to an existing Social Identity Provider. This does not support the SAML2 Identity Provider Type
+   * @returns {Promise<IdentityProviderApplicationUser>}
+   */
+  linkUserToIdentityProvider(idpId, userId, userIdentityProviderLinkRequest) {
+    let url = `${this.baseUrl}/api/v1/idps/${idpId}/users/${userId}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/idps/${idpId}/users/${userId}`,
+      `${this.baseUrl}/api/v1/idps/${idpId}`
+    ];
+
+    const request = this.http.postJson(url, {
+      body: userIdentityProviderLinkRequest
+    }, {resources});
+    return request.then(jsonRes => new models.IdentityProviderApplicationUser(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param idpId {String}
+   * @param userId {String}
+   * @description
+   * Fetches the tokens minted by the Social Authentication Provider when the user authenticates with Okta via Social Auth.
+   * @returns {Promise<Collection>} A collection that will yield {@link SocialAuthToken} instances.
+   */
+  listSocialAuthTokens(idpId, userId) {
+    let url = `${this.baseUrl}/api/v1/idps/${idpId}/users/${userId}/credentials/tokens`;
+
+    return new Collection(this, url, new ModelFactory(models.SocialAuthToken));
+  }
+
+  /**
+   *
+   * @param {Object} queryParams Map of query parameters to add to this request
+   * @param {String} [queryParams.type]
+   * @description
+   * Success
+   * @returns {Promise<Collection>} A collection that will yield {@link InlineHook} instances.
+   */
+  listInlineHooks(queryParameters) {
+    let url = `${this.baseUrl}/api/v1/inlineHooks`;
+    const queryString = qs.stringify(queryParameters || {});
+
+    url += queryString ? ('?' + queryString) : '';
+
+    return new Collection(this, url, new ModelFactory(models.InlineHook));
+  }
+
+  /**
+   *
+   * @param {InlineHook} inlineHook
+   * @description
+   * Success
+   * @returns {Promise<InlineHook>}
+   */
+  createInlineHook(inlineHook) {
+    let url = `${this.baseUrl}/api/v1/inlineHooks`;
+
+    const resources = [];
+
+    const request = this.http.postJson(url, {
+      body: inlineHook
+    }, {resources});
+    return request.then(jsonRes => new models.InlineHook(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param inlineHookId {String}
+   * @description
+   * Deletes the Inline Hook matching the provided id. Once deleted, the Inline Hook is unrecoverable. As a safety precaution, only Inline Hooks with a status of INACTIVE are eligible for deletion.
+   */
+  deleteInlineHook(inlineHookId) {
+    let url = `${this.baseUrl}/api/v1/inlineHooks/${inlineHookId}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/inlineHooks/${inlineHookId}`
+    ];
+
+    const request = this.http.delete(url, null, {resources});
+    return request;
+  }
+
+  /**
+   *
+   * @param inlineHookId {String}
+   * @description
+   * Gets an inline hook by ID
+   * @returns {Promise<InlineHook>}
+   */
+  getInlineHook(inlineHookId) {
+    let url = `${this.baseUrl}/api/v1/inlineHooks/${inlineHookId}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/inlineHooks/${inlineHookId}`
+    ];
+
+    const request = this.http.getJson(url, null, {resources});
+    return request.then(jsonRes => new models.InlineHook(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param inlineHookId {String}
+   * @param {InlineHook} inlineHook
+   * @description
+   * Updates an inline hook by ID
+   * @returns {Promise<InlineHook>}
+   */
+  updateInlineHook(inlineHookId, inlineHook) {
+    let url = `${this.baseUrl}/api/v1/inlineHooks/${inlineHookId}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/inlineHooks/${inlineHookId}`
+    ];
+
+    const request = this.http.putJson(url, {
+      body: inlineHook
+    }, {resources});
+    return request.then(jsonRes => new models.InlineHook(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param inlineHookId {String}
+   * @param {InlineHookPayload} inlineHookPayload
+   * @description
+   * Executes the Inline Hook matching the provided inlineHookId using the request body as the input. This will send the provided data through the Channel and return a response if it matches the correct data contract. This execution endpoint should only be used for testing purposes.
+   * @returns {Promise<InlineHookResponse>}
+   */
+  executeInlineHook(inlineHookId, inlineHookPayload) {
+    let url = `${this.baseUrl}/api/v1/inlineHooks/${inlineHookId}/execute`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/inlineHooks/${inlineHookId}`
+    ];
+
+    const request = this.http.postJson(url, {
+      body: inlineHookPayload
+    }, {resources});
+    return request.then(jsonRes => new models.InlineHookResponse(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param inlineHookId {String}
+   * @description
+   * Activates the Inline Hook matching the provided id
+   * @returns {Promise<InlineHook>}
+   */
+  activateInlineHook(inlineHookId) {
+    let url = `${this.baseUrl}/api/v1/inlineHooks/${inlineHookId}/lifecycle/activate`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/inlineHooks/${inlineHookId}`
+    ];
+
+    const request = this.http.postJson(url, null, {resources});
+    return request.then(jsonRes => new models.InlineHook(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param inlineHookId {String}
+   * @description
+   * Deactivates the Inline Hook matching the provided id
+   * @returns {Promise<InlineHook>}
+   */
+  deactivateInlineHook(inlineHookId) {
+    let url = `${this.baseUrl}/api/v1/inlineHooks/${inlineHookId}/lifecycle/deactivate`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/inlineHooks/${inlineHookId}`
+    ];
+
+    const request = this.http.postJson(url, null, {resources});
+    return request.then(jsonRes => new models.InlineHook(jsonRes, this));
   }
 
   /**
@@ -749,14 +2849,184 @@ class GeneratedApiClient {
 
   /**
    *
+   * @description
+   * Success
+   * @returns {Promise<Collection>} A collection that will yield {@link LinkedObject} instances.
+   */
+  listLinkedObjectDefinitions() {
+    let url = `${this.baseUrl}/api/v1/meta/schemas/user/linkedObjects`;
+
+    return new Collection(this, url, new ModelFactory(models.LinkedObject));
+  }
+
+  /**
+   *
+   * @param {LinkedObject} linkedObject
+   * @description
+   * Success
+   * @returns {Promise<LinkedObject>}
+   */
+  addLinkedObjectDefinition(linkedObject) {
+    let url = `${this.baseUrl}/api/v1/meta/schemas/user/linkedObjects`;
+
+    const resources = [];
+
+    const request = this.http.postJson(url, {
+      body: linkedObject
+    }, {resources});
+    return request.then(jsonRes => new models.LinkedObject(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param linkedObjectName {String}
+   * @description
+   * Success
+   */
+  deleteLinkedObjectDefinition(linkedObjectName) {
+    let url = `${this.baseUrl}/api/v1/meta/schemas/user/linkedObjects/${linkedObjectName}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/meta/schemas/user/linkedObjects/${linkedObjectName}`
+    ];
+
+    const request = this.http.delete(url, null, {resources});
+    return request;
+  }
+
+  /**
+   *
+   * @param linkedObjectName {String}
+   * @description
+   * Success
+   * @returns {Promise<LinkedObject>}
+   */
+  getLinkedObjectDefinition(linkedObjectName) {
+    let url = `${this.baseUrl}/api/v1/meta/schemas/user/linkedObjects/${linkedObjectName}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/meta/schemas/user/linkedObjects/${linkedObjectName}`
+    ];
+
+    const request = this.http.getJson(url, null, {resources});
+    return request.then(jsonRes => new models.LinkedObject(jsonRes, this));
+  }
+
+  /**
+   *
+   * @description
+   * Fetches all User Types in your org
+   * @returns {Promise<Collection>} A collection that will yield {@link UserType} instances.
+   */
+  listUserTypes() {
+    let url = `${this.baseUrl}/api/v1/meta/types/user`;
+
+    return new Collection(this, url, new ModelFactory(models.UserType));
+  }
+
+  /**
+   *
+   * @param {UserType} userType
+   * @description
+   * Creates a new User Type. A default User Type is automatically created along with your org, and you may add another 9 User Types for a maximum of 10.
+   * @returns {Promise<UserType>}
+   */
+  createUserType(userType) {
+    let url = `${this.baseUrl}/api/v1/meta/types/user`;
+
+    const resources = [];
+
+    const request = this.http.postJson(url, {
+      body: userType
+    }, {resources});
+    return request.then(jsonRes => new models.UserType(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param typeId {String}
+   * @description
+   * Deletes a User Type permanently. This operation is not permitted for the default type, nor for any User Type that has existing users
+   */
+  deleteUserType(typeId) {
+    let url = `${this.baseUrl}/api/v1/meta/types/user/${typeId}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/meta/types/user/${typeId}`
+    ];
+
+    const request = this.http.delete(url, null, {resources});
+    return request;
+  }
+
+  /**
+   *
+   * @param typeId {String}
+   * @description
+   * Fetches a User Type by ID. The special identifier `default` may be used to fetch the default User Type.
+   * @returns {Promise<UserType>}
+   */
+  getUserType(typeId) {
+    let url = `${this.baseUrl}/api/v1/meta/types/user/${typeId}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/meta/types/user/${typeId}`
+    ];
+
+    const request = this.http.getJson(url, null, {resources});
+    return request.then(jsonRes => new models.UserType(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param typeId {String}
+   * @param {UserType} userType
+   * @description
+   * Updates an existing User Type
+   * @returns {Promise<UserType>}
+   */
+  updateUserType(typeId, userType) {
+    let url = `${this.baseUrl}/api/v1/meta/types/user/${typeId}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/meta/types/user/${typeId}`
+    ];
+
+    const request = this.http.postJson(url, {
+      body: userType
+    }, {resources});
+    return request.then(jsonRes => new models.UserType(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param typeId {String}
+   * @param {UserType} userType
+   * @description
+   * Replace an existing User Type
+   * @returns {Promise<UserType>}
+   */
+  replaceUserType(typeId, userType) {
+    let url = `${this.baseUrl}/api/v1/meta/types/user/${typeId}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/meta/types/user/${typeId}`
+    ];
+
+    const request = this.http.putJson(url, {
+      body: userType
+    }, {resources});
+    return request.then(jsonRes => new models.UserType(jsonRes, this));
+  }
+
+  /**
+   *
    * @param {Object} queryParams Map of query parameters to add to this request
    * @param {String} [queryParams.type]
    * @param {String} [queryParams.status]
-   * @param {String} [queryParams.after]
-   * @param {String} [queryParams.limit]
    * @param {String} [queryParams.expand]
    * @description
-   * Convenience method for /api/v1/policies
+   * Gets all policies with the specified type.
    * @returns {Promise<Collection>} A collection that will yield {@link Policy} instances.
    */
   listPolicies(queryParameters) {
@@ -774,7 +3044,7 @@ class GeneratedApiClient {
    * @param {Object} queryParams Map of query parameters to add to this request
    * @param {String} [queryParams.activate]
    * @description
-   * Convenience method for /api/v1/policies
+   * Creates a policy.
    * @returns {Promise<Policy>}
    */
   createPolicy(policy, queryParameters) {
@@ -795,7 +3065,7 @@ class GeneratedApiClient {
    *
    * @param policyId {String}
    * @description
-   * Convenience method for /api/v1/policies/{policyId}
+   * Removes a policy.
    */
   deletePolicy(policyId) {
     let url = `${this.baseUrl}/api/v1/policies/${policyId}`;
@@ -814,7 +3084,7 @@ class GeneratedApiClient {
    * @param {Object} queryParams Map of query parameters to add to this request
    * @param {String} [queryParams.expand]
    * @description
-   * Convenience method for /api/v1/policies/{policyId}
+   * Gets a policy.
    * @returns {Promise<Policy>}
    */
   getPolicy(policyId, queryParameters) {
@@ -836,7 +3106,7 @@ class GeneratedApiClient {
    * @param policyId {String}
    * @param {Policy} policy
    * @description
-   * Convenience method for /api/v1/policies/{policyId}
+   * Updates a policy.
    * @returns {Promise<Policy>}
    */
   updatePolicy(policyId, policy) {
@@ -856,7 +3126,7 @@ class GeneratedApiClient {
    *
    * @param policyId {String}
    * @description
-   * Convenience method for /api/v1/policies/{policyId}/lifecycle/activate
+   * Activates a policy.
    */
   activatePolicy(policyId) {
     let url = `${this.baseUrl}/api/v1/policies/${policyId}/lifecycle/activate`;
@@ -873,7 +3143,7 @@ class GeneratedApiClient {
    *
    * @param policyId {String}
    * @description
-   * Convenience method for /api/v1/policies/{policyId}/lifecycle/deactivate
+   * Deactivates a policy.
    */
   deactivatePolicy(policyId) {
     let url = `${this.baseUrl}/api/v1/policies/${policyId}/lifecycle/deactivate`;
@@ -890,7 +3160,7 @@ class GeneratedApiClient {
    *
    * @param policyId {String}
    * @description
-   * Convenience method for /api/v1/policies/{policyId}/rules
+   * Enumerates all policy rules.
    * @returns {Promise<Collection>} A collection that will yield {@link PolicyRule} instances.
    */
   listPolicyRules(policyId) {
@@ -903,17 +3173,12 @@ class GeneratedApiClient {
    *
    * @param policyId {String}
    * @param {PolicyRule} policyRule
-   * @param {Object} queryParams Map of query parameters to add to this request
-   * @param {String} [queryParams.activate]
    * @description
-   * Convenience method for /api/v1/policies/{policyId}/rules
+   * Creates a policy rule.
    * @returns {Promise<PolicyRule>}
    */
-  addPolicyRule(policyId, policyRule, queryParameters) {
+  createPolicyRule(policyId, policyRule) {
     let url = `${this.baseUrl}/api/v1/policies/${policyId}/rules`;
-    const queryString = qs.stringify(queryParameters || {});
-
-    url += queryString ? ('?' + queryString) : '';
 
     const resources = [
       `${this.baseUrl}/api/v1/policies/${policyId}`
@@ -930,7 +3195,7 @@ class GeneratedApiClient {
    * @param policyId {String}
    * @param ruleId {String}
    * @description
-   * Convenience method for /api/v1/policies/{policyId}/rules/{ruleId}
+   * Removes a policy rule.
    */
   deletePolicyRule(policyId, ruleId) {
     let url = `${this.baseUrl}/api/v1/policies/${policyId}/rules/${ruleId}`;
@@ -949,7 +3214,7 @@ class GeneratedApiClient {
    * @param policyId {String}
    * @param ruleId {String}
    * @description
-   * Convenience method for /api/v1/policies/{policyId}/rules/{ruleId}
+   * Gets a policy rule.
    * @returns {Promise<PolicyRule>}
    */
   getPolicyRule(policyId, ruleId) {
@@ -970,7 +3235,7 @@ class GeneratedApiClient {
    * @param ruleId {String}
    * @param {PolicyRule} policyRule
    * @description
-   * Convenience method for /api/v1/policies/{policyId}/rules/{ruleId}
+   * Updates a policy rule.
    * @returns {Promise<PolicyRule>}
    */
   updatePolicyRule(policyId, ruleId, policyRule) {
@@ -992,7 +3257,7 @@ class GeneratedApiClient {
    * @param policyId {String}
    * @param ruleId {String}
    * @description
-   * Convenience method for /api/v1/policies/{policyId}/rules/{ruleId}/lifecycle/activate
+   * Activates a policy rule.
    */
   activatePolicyRule(policyId, ruleId) {
     let url = `${this.baseUrl}/api/v1/policies/${policyId}/rules/${ruleId}/lifecycle/activate`;
@@ -1011,7 +3276,7 @@ class GeneratedApiClient {
    * @param policyId {String}
    * @param ruleId {String}
    * @description
-   * Convenience method for /api/v1/policies/{policyId}/rules/{ruleId}/lifecycle/deactivate
+   * Deactivates a policy rule.
    */
   deactivatePolicyRule(policyId, ruleId) {
     let url = `${this.baseUrl}/api/v1/policies/${policyId}/rules/${ruleId}/lifecycle/deactivate`;
@@ -1099,13 +3364,255 @@ class GeneratedApiClient {
   /**
    *
    * @param {Object} queryParams Map of query parameters to add to this request
+   * @param {String} [queryParams.templateType]
+   * @description
+   * Enumerates custom SMS templates in your organization. A subset of templates can be returned that match a template type.
+   * @returns {Promise<Collection>} A collection that will yield {@link SmsTemplate} instances.
+   */
+  listSmsTemplates(queryParameters) {
+    let url = `${this.baseUrl}/api/v1/templates/sms`;
+    const queryString = qs.stringify(queryParameters || {});
+
+    url += queryString ? ('?' + queryString) : '';
+
+    return new Collection(this, url, new ModelFactory(models.SmsTemplate));
+  }
+
+  /**
+   *
+   * @param {SmsTemplate} smsTemplate
+   * @description
+   * Adds a new custom SMS template to your organization.
+   * @returns {Promise<SmsTemplate>}
+   */
+  createSmsTemplate(smsTemplate) {
+    let url = `${this.baseUrl}/api/v1/templates/sms`;
+
+    const resources = [];
+
+    const request = this.http.postJson(url, {
+      body: smsTemplate
+    }, {resources});
+    return request.then(jsonRes => new models.SmsTemplate(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param templateId {String}
+   * @description
+   * Removes an SMS template.
+   */
+  deleteSmsTemplate(templateId) {
+    let url = `${this.baseUrl}/api/v1/templates/sms/${templateId}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/templates/sms/${templateId}`
+    ];
+
+    const request = this.http.delete(url, null, {resources});
+    return request;
+  }
+
+  /**
+   *
+   * @param templateId {String}
+   * @description
+   * Fetches a specific template by `id`
+   * @returns {Promise<SmsTemplate>}
+   */
+  getSmsTemplate(templateId) {
+    let url = `${this.baseUrl}/api/v1/templates/sms/${templateId}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/templates/sms/${templateId}`
+    ];
+
+    const request = this.http.getJson(url, null, {resources});
+    return request.then(jsonRes => new models.SmsTemplate(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param templateId {String}
+   * @param {SmsTemplate} smsTemplate
+   * @description
+   * Updates only some of the SMS template properties:
+   * @returns {Promise<SmsTemplate>}
+   */
+  partialUpdateSmsTemplate(templateId, smsTemplate) {
+    let url = `${this.baseUrl}/api/v1/templates/sms/${templateId}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/templates/sms/${templateId}`
+    ];
+
+    const request = this.http.postJson(url, {
+      body: smsTemplate
+    }, {resources});
+    return request.then(jsonRes => new models.SmsTemplate(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param templateId {String}
+   * @param {SmsTemplate} smsTemplate
+   * @description
+   * Updates the SMS template.
+   * @returns {Promise<SmsTemplate>}
+   */
+  updateSmsTemplate(templateId, smsTemplate) {
+    let url = `${this.baseUrl}/api/v1/templates/sms/${templateId}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/templates/sms/${templateId}`
+    ];
+
+    const request = this.http.putJson(url, {
+      body: smsTemplate
+    }, {resources});
+    return request.then(jsonRes => new models.SmsTemplate(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param {Object} queryParams Map of query parameters to add to this request
+   * @param {String} [queryParams.q]
+   * @param {String} [queryParams.filter]
+   * @param {String} [queryParams.after]
+   * @param {String} [queryParams.limit]
+   * @description
+   * Success
+   * @returns {Promise<Collection>} A collection that will yield {@link TrustedOrigin} instances.
+   */
+  listOrigins(queryParameters) {
+    let url = `${this.baseUrl}/api/v1/trustedOrigins`;
+    const queryString = qs.stringify(queryParameters || {});
+
+    url += queryString ? ('?' + queryString) : '';
+
+    return new Collection(this, url, new ModelFactory(models.TrustedOrigin));
+  }
+
+  /**
+   *
+   * @param {TrustedOrigin} trustedOrigin
+   * @description
+   * Success
+   * @returns {Promise<TrustedOrigin>}
+   */
+  createOrigin(trustedOrigin) {
+    let url = `${this.baseUrl}/api/v1/trustedOrigins`;
+
+    const resources = [];
+
+    const request = this.http.postJson(url, {
+      body: trustedOrigin
+    }, {resources});
+    return request.then(jsonRes => new models.TrustedOrigin(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param trustedOriginId {String}
+   * @description
+   * Success
+   */
+  deleteOrigin(trustedOriginId) {
+    let url = `${this.baseUrl}/api/v1/trustedOrigins/${trustedOriginId}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/trustedOrigins/${trustedOriginId}`
+    ];
+
+    const request = this.http.delete(url, null, {resources});
+    return request;
+  }
+
+  /**
+   *
+   * @param trustedOriginId {String}
+   * @description
+   * Success
+   * @returns {Promise<TrustedOrigin>}
+   */
+  getOrigin(trustedOriginId) {
+    let url = `${this.baseUrl}/api/v1/trustedOrigins/${trustedOriginId}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/trustedOrigins/${trustedOriginId}`
+    ];
+
+    const request = this.http.getJson(url, null, {resources});
+    return request.then(jsonRes => new models.TrustedOrigin(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param trustedOriginId {String}
+   * @param {TrustedOrigin} trustedOrigin
+   * @description
+   * Success
+   * @returns {Promise<TrustedOrigin>}
+   */
+  updateOrigin(trustedOriginId, trustedOrigin) {
+    let url = `${this.baseUrl}/api/v1/trustedOrigins/${trustedOriginId}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/trustedOrigins/${trustedOriginId}`
+    ];
+
+    const request = this.http.putJson(url, {
+      body: trustedOrigin
+    }, {resources});
+    return request.then(jsonRes => new models.TrustedOrigin(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param trustedOriginId {String}
+   * @description
+   * Success
+   * @returns {Promise<TrustedOrigin>}
+   */
+  activateOrigin(trustedOriginId) {
+    let url = `${this.baseUrl}/api/v1/trustedOrigins/${trustedOriginId}/lifecycle/activate`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/trustedOrigins/${trustedOriginId}`
+    ];
+
+    const request = this.http.postJson(url, null, {resources});
+    return request.then(jsonRes => new models.TrustedOrigin(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param trustedOriginId {String}
+   * @description
+   * Success
+   * @returns {Promise<TrustedOrigin>}
+   */
+  deactivateOrigin(trustedOriginId) {
+    let url = `${this.baseUrl}/api/v1/trustedOrigins/${trustedOriginId}/lifecycle/deactivate`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/trustedOrigins/${trustedOriginId}`
+    ];
+
+    const request = this.http.postJson(url, null, {resources});
+    return request.then(jsonRes => new models.TrustedOrigin(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param {Object} queryParams Map of query parameters to add to this request
    * @param {String} [queryParams.q]
    * @param {String} [queryParams.after]
    * @param {String} [queryParams.limit]
    * @param {String} [queryParams.filter]
-   * @param {String} [queryParams.format]
    * @param {String} [queryParams.search]
-   * @param {String} [queryParams.expand]
+   * @param {String} [queryParams.sortBy]
+   * @param {String} [queryParams.sortOrder]
    * @description
    * Lists users in your organization with pagination in most cases.  A subset of users can be returned that match a supported filter expression or search criteria.
    * @returns {Promise<Collection>} A collection that will yield {@link User} instances.
@@ -1121,7 +3628,7 @@ class GeneratedApiClient {
 
   /**
    *
-   * @param {User} user
+   * @param {CreateUserRequest} createUserRequest
    * @param {Object} queryParams Map of query parameters to add to this request
    * @param {String} [queryParams.activate]
    * @param {String} [queryParams.provider]
@@ -1130,7 +3637,7 @@ class GeneratedApiClient {
    * Creates a new user in your Okta organization with or without credentials.
    * @returns {Promise<User>}
    */
-  createUser(user, queryParameters) {
+  createUser(createUserRequest, queryParameters) {
     let url = `${this.baseUrl}/api/v1/users`;
     const queryString = qs.stringify(queryParameters || {});
 
@@ -1139,9 +3646,49 @@ class GeneratedApiClient {
     const resources = [];
 
     const request = this.http.postJson(url, {
-      body: user
+      body: createUserRequest
     }, {resources});
     return request.then(jsonRes => new models.User(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param {Object} queryParams Map of query parameters to add to this request
+   * @param {String} [queryParams.keepCurrent]
+   * @description
+   * Clears Okta sessions for the currently logged in user. By default, the current session remains active. Use this method in a browser-based application.
+   */
+  clearCurrentUserSessions(queryParameters) {
+    let url = `${this.baseUrl}/api/v1/users/me/lifecycle/delete_sessions`;
+    const queryString = qs.stringify(queryParameters || {});
+
+    url += queryString ? ('?' + queryString) : '';
+
+    const resources = [];
+
+    const request = this.http.post(url, null, {resources});
+    return request;
+  }
+
+  /**
+   *
+   * @param associatedUserId {String}
+   * @param primaryRelationshipName {String}
+   * @param primaryUserId {String}
+   * @description
+   * Convenience method for /api/v1/users/{associatedUserId}/linkedObjects/{primaryRelationshipName}/{primaryUserId}
+   */
+  setLinkedObjectForUser(associatedUserId, primaryRelationshipName, primaryUserId) {
+    let url = `${this.baseUrl}/api/v1/users/${associatedUserId}/linkedObjects/${primaryRelationshipName}/${primaryUserId}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/users/${associatedUserId}/linkedObjects/${primaryRelationshipName}/${primaryUserId}`,
+      `${this.baseUrl}/api/v1/users/${associatedUserId}/linkedObjects/${primaryRelationshipName}`,
+      `${this.baseUrl}/api/v1/users/${associatedUserId}`
+    ];
+
+    const request = this.http.put(url, null, {resources});
+    return request;
   }
 
   /**
@@ -1191,6 +3738,32 @@ class GeneratedApiClient {
    * @param {Object} queryParams Map of query parameters to add to this request
    * @param {String} [queryParams.strict]
    * @description
+   * Fetch a user by `id`, `login`, or `login shortname` if the short name is unambiguous.
+   * @returns {Promise<User>}
+   */
+  partialUpdateUser(userId, user, queryParameters) {
+    let url = `${this.baseUrl}/api/v1/users/${userId}`;
+    const queryString = qs.stringify(queryParameters || {});
+
+    url += queryString ? ('?' + queryString) : '';
+
+    const resources = [
+      `${this.baseUrl}/api/v1/users/${userId}`
+    ];
+
+    const request = this.http.postJson(url, {
+      body: user
+    }, {resources});
+    return request.then(jsonRes => new models.User(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param userId {String}
+   * @param {User} user
+   * @param {Object} queryParams Map of query parameters to add to this request
+   * @param {String} [queryParams.strict]
+   * @description
    * Update a user's profile and/or credentials using strict-update semantics.
    * @returns {Promise<User>}
    */
@@ -1213,19 +3786,157 @@ class GeneratedApiClient {
   /**
    *
    * @param userId {String}
-   * @param {Object} queryParams Map of query parameters to add to this request
-   * @param {String} [queryParams.showAll]
    * @description
    * Fetches appLinks for all direct or indirect (via group membership) assigned applications.
    * @returns {Promise<Collection>} A collection that will yield {@link AppLink} instances.
    */
-  listAppLinks(userId, queryParameters) {
+  listAppLinks(userId) {
     let url = `${this.baseUrl}/api/v1/users/${userId}/appLinks`;
+
+    return new Collection(this, url, new ModelFactory(models.AppLink));
+  }
+
+  /**
+   *
+   * @param userId {String}
+   * @description
+   * Lists all client resources for which the specified user has grants or tokens.
+   * @returns {Promise<Collection>} A collection that will yield {@link OAuth2Client} instances.
+   */
+  listUserClients(userId) {
+    let url = `${this.baseUrl}/api/v1/users/${userId}/clients`;
+
+    return new Collection(this, url, new ModelFactory(models.OAuth2Client));
+  }
+
+  /**
+   *
+   * @param userId {String}
+   * @param clientId {String}
+   * @description
+   * Revokes all grants for the specified user and client
+   */
+  revokeGrantsForUserAndClient(userId, clientId) {
+    let url = `${this.baseUrl}/api/v1/users/${userId}/clients/${clientId}/grants`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/users/${userId}/clients/${clientId}`,
+      `${this.baseUrl}/api/v1/users/${userId}`
+    ];
+
+    const request = this.http.delete(url, null, {resources});
+    return request;
+  }
+
+  /**
+   *
+   * @param userId {String}
+   * @param clientId {String}
+   * @param {Object} queryParams Map of query parameters to add to this request
+   * @param {String} [queryParams.expand]
+   * @param {String} [queryParams.after]
+   * @param {String} [queryParams.limit]
+   * @description
+   * Lists all grants for a specified user and client
+   * @returns {Promise<Collection>} A collection that will yield {@link OAuth2ScopeConsentGrant} instances.
+   */
+  listGrantsForUserAndClient(userId, clientId, queryParameters) {
+    let url = `${this.baseUrl}/api/v1/users/${userId}/clients/${clientId}/grants`;
     const queryString = qs.stringify(queryParameters || {});
 
     url += queryString ? ('?' + queryString) : '';
 
-    return new Collection(this, url, new ModelFactory(models.AppLink));
+    return new Collection(this, url, new ModelFactory(models.OAuth2ScopeConsentGrant));
+  }
+
+  /**
+   *
+   * @param userId {String}
+   * @param clientId {String}
+   * @description
+   * Revokes all refresh tokens issued for the specified User and Client.
+   */
+  revokeTokensForUserAndClient(userId, clientId) {
+    let url = `${this.baseUrl}/api/v1/users/${userId}/clients/${clientId}/tokens`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/users/${userId}/clients/${clientId}`,
+      `${this.baseUrl}/api/v1/users/${userId}`
+    ];
+
+    const request = this.http.delete(url, null, {resources});
+    return request;
+  }
+
+  /**
+   *
+   * @param userId {String}
+   * @param clientId {String}
+   * @param {Object} queryParams Map of query parameters to add to this request
+   * @param {String} [queryParams.expand]
+   * @param {String} [queryParams.after]
+   * @param {String} [queryParams.limit]
+   * @description
+   * Lists all refresh tokens issued for the specified User and Client.
+   * @returns {Promise<Collection>} A collection that will yield {@link OAuth2RefreshToken} instances.
+   */
+  listRefreshTokensForUserAndClient(userId, clientId, queryParameters) {
+    let url = `${this.baseUrl}/api/v1/users/${userId}/clients/${clientId}/tokens`;
+    const queryString = qs.stringify(queryParameters || {});
+
+    url += queryString ? ('?' + queryString) : '';
+
+    return new Collection(this, url, new ModelFactory(models.OAuth2RefreshToken));
+  }
+
+  /**
+   *
+   * @param userId {String}
+   * @param clientId {String}
+   * @param tokenId {String}
+   * @description
+   * Revokes the specified refresh token.
+   */
+  revokeTokenForUserAndClient(userId, clientId, tokenId) {
+    let url = `${this.baseUrl}/api/v1/users/${userId}/clients/${clientId}/tokens/${tokenId}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/users/${userId}/clients/${clientId}/tokens/${tokenId}`,
+      `${this.baseUrl}/api/v1/users/${userId}/clients/${clientId}`,
+      `${this.baseUrl}/api/v1/users/${userId}`
+    ];
+
+    const request = this.http.delete(url, null, {resources});
+    return request;
+  }
+
+  /**
+   *
+   * @param userId {String}
+   * @param clientId {String}
+   * @param tokenId {String}
+   * @param {Object} queryParams Map of query parameters to add to this request
+   * @param {String} [queryParams.expand]
+   * @param {String} [queryParams.limit]
+   * @param {String} [queryParams.after]
+   * @description
+   * Gets a refresh token issued for the specified User and Client.
+   * @returns {Promise<OAuth2RefreshToken>}
+   */
+  getRefreshTokenForUserAndClient(userId, clientId, tokenId, queryParameters) {
+    let url = `${this.baseUrl}/api/v1/users/${userId}/clients/${clientId}/tokens/${tokenId}`;
+    const queryString = qs.stringify(queryParameters || {});
+
+    url += queryString ? ('?' + queryString) : '';
+
+    const resources = [
+      `${this.baseUrl}/api/v1/users/${userId}/clients/${clientId}/tokens/${tokenId}`,
+      `${this.baseUrl}/api/v1/users/${userId}/clients/${clientId}`,
+      `${this.baseUrl}/api/v1/users/${userId}`
+    ];
+
+    const request = this.http.getJson(url, null, {resources});
+    return request.then(jsonRes => new models.OAuth2RefreshToken(jsonRes, this));
   }
 
   /**
@@ -1235,7 +3946,7 @@ class GeneratedApiClient {
    * @param {Object} queryParams Map of query parameters to add to this request
    * @param {String} [queryParams.strict]
    * @description
-   * Changes a user's password by validating the user's current password.  This operation can only be performed on users in `STAGED`, `ACTIVE`, `PASSWORD_EXPIRED`, or `RECOVERY` status that have a valid [password credential](#password-object)
+   * Changes a user's password by validating the user's current password. This operation can only be performed on users in `STAGED`, `ACTIVE`, `PASSWORD_EXPIRED`, or `RECOVERY` status that have a valid password credential
    * @returns {Promise<UserCredentials>}
    */
   changePassword(userId, changePasswordRequest, queryParameters) {
@@ -1259,7 +3970,7 @@ class GeneratedApiClient {
    * @param userId {String}
    * @param {UserCredentials} userCredentials
    * @description
-   * Changes a user's recovery question & answer credential by validating the user's current password.  This operation can only be performed on users in **STAGED**, **ACTIVE** or **RECOVERY** `status` that have a valid [password credential](#password-object)
+   * Changes a user's recovery question & answer credential by validating the user's current password.  This operation can only be performed on users in **STAGED**, **ACTIVE** or **RECOVERY** `status` that have a valid password credential
    * @returns {Promise<UserCredentials>}
    */
   changeRecoveryQuestion(userId, userCredentials) {
@@ -1278,14 +3989,37 @@ class GeneratedApiClient {
   /**
    *
    * @param userId {String}
+   * @param {Object} queryParams Map of query parameters to add to this request
+   * @param {String} [queryParams.sendEmail]
+   * @description
+   * Generates a one-time token (OTT) that can be used to reset a user's password
+   * @returns {Promise<ForgotPasswordResponse>}
+   */
+  forgotPasswordGenerateOneTimeToken(userId, queryParameters) {
+    let url = `${this.baseUrl}/api/v1/users/${userId}/credentials/forgot_password`;
+    const queryString = qs.stringify(queryParameters || {});
+
+    url += queryString ? ('?' + queryString) : '';
+
+    const resources = [
+      `${this.baseUrl}/api/v1/users/${userId}`
+    ];
+
+    const request = this.http.postJson(url, null, {resources});
+    return request.then(jsonRes => new models.ForgotPasswordResponse(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param userId {String}
    * @param {UserCredentials} userCredentials
    * @param {Object} queryParams Map of query parameters to add to this request
    * @param {String} [queryParams.sendEmail]
    * @description
-   * Generates a one-time token (OTT) that can be used to reset a user's password.  The user will be required to validate their security question's answer when visiting the reset link.  This operation can only be performed on users with a valid [recovery question credential](#recovery-question-object) and have an `ACTIVE` status.
+   * Sets a new password for a user by validating the user's answer to their current recovery question
    * @returns {Promise<ForgotPasswordResponse>}
    */
-  forgotPassword(userId, userCredentials, queryParameters) {
+  forgotPasswordSetNewPassword(userId, userCredentials, queryParameters) {
     let url = `${this.baseUrl}/api/v1/users/${userId}/credentials/forgot_password`;
     const queryString = qs.stringify(queryParameters || {});
 
@@ -1306,28 +4040,28 @@ class GeneratedApiClient {
    * @param userId {String}
    * @description
    * Enumerates all the enrolled factors for the specified user
-   * @returns {Promise<Collection>} A collection that will yield {@link Factor} instances.
+   * @returns {Promise<Collection>} A collection that will yield {@link UserFactor} instances.
    */
   listFactors(userId) {
     let url = `${this.baseUrl}/api/v1/users/${userId}/factors`;
 
-    return new Collection(this, url, new factories.Factor());
+    return new Collection(this, url, new factories.UserFactor());
   }
 
   /**
    *
    * @param userId {String}
-   * @param {Factor} factor
+   * @param {UserFactor} userFactor
    * @param {Object} queryParams Map of query parameters to add to this request
    * @param {String} [queryParams.updatePhone]
    * @param {String} [queryParams.templateId]
    * @param {String} [queryParams.tokenLifetimeSeconds]
    * @param {String} [queryParams.activate]
    * @description
-   * Enrolls a user with a supported [factor](#list-factors-to-enroll)
-   * @returns {Promise<Factor>}
+   * Enrolls a user with a supported factor.
+   * @returns {Promise<UserFactor>}
    */
-  addFactor(userId, factor, queryParameters) {
+  enrollFactor(userId, userFactor, queryParameters) {
     let url = `${this.baseUrl}/api/v1/users/${userId}/factors`;
     const queryString = qs.stringify(queryParameters || {});
 
@@ -1338,22 +4072,22 @@ class GeneratedApiClient {
     ];
 
     const request = this.http.postJson(url, {
-      body: factor
+      body: userFactor
     }, {resources});
-    return request.then(jsonRes => new factories.Factor().createInstance(jsonRes, this));
+    return request.then(jsonRes => new factories.UserFactor().createInstance(jsonRes, this));
   }
 
   /**
    *
    * @param userId {String}
    * @description
-   * Enumerates all the [supported factors](#supported-factors-for-providers) that can be enrolled for the specified user
-   * @returns {Promise<Collection>} A collection that will yield {@link Factor} instances.
+   * Enumerates all the supported factors that can be enrolled for the specified user
+   * @returns {Promise<Collection>} A collection that will yield {@link UserFactor} instances.
    */
   listSupportedFactors(userId) {
     let url = `${this.baseUrl}/api/v1/users/${userId}/factors/catalog`;
 
-    return new Collection(this, url, new factories.Factor());
+    return new Collection(this, url, new factories.UserFactor());
   }
 
   /**
@@ -1394,7 +4128,7 @@ class GeneratedApiClient {
    * @param factorId {String}
    * @description
    * Fetches a factor for the specified user
-   * @returns {Promise<Factor>}
+   * @returns {Promise<UserFactor>}
    */
   getFactor(userId, factorId) {
     let url = `${this.baseUrl}/api/v1/users/${userId}/factors/${factorId}`;
@@ -1405,19 +4139,19 @@ class GeneratedApiClient {
     ];
 
     const request = this.http.getJson(url, null, {resources});
-    return request.then(jsonRes => new factories.Factor().createInstance(jsonRes, this));
+    return request.then(jsonRes => new factories.UserFactor().createInstance(jsonRes, this));
   }
 
   /**
    *
    * @param userId {String}
    * @param factorId {String}
-   * @param {VerifyFactorRequest} verifyFactorRequest
+   * @param {ActivateFactorRequest} activateFactorRequest
    * @description
-   * The `sms` and `token:software:totp` [factor types](#factor-type) require activation to complete the enrollment process.
-   * @returns {Promise<Factor>}
+   * The `sms` and `token:software:totp` factor types require activation to complete the enrollment process.
+   * @returns {Promise<UserFactor>}
    */
-  activateFactor(userId, factorId, verifyFactorRequest) {
+  activateFactor(userId, factorId, activateFactorRequest) {
     let url = `${this.baseUrl}/api/v1/users/${userId}/factors/${factorId}/lifecycle/activate`;
 
     const resources = [
@@ -1426,9 +4160,31 @@ class GeneratedApiClient {
     ];
 
     const request = this.http.postJson(url, {
-      body: verifyFactorRequest
+      body: activateFactorRequest
     }, {resources});
-    return request.then(jsonRes => new factories.Factor().createInstance(jsonRes, this));
+    return request.then(jsonRes => new factories.UserFactor().createInstance(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param userId {String}
+   * @param factorId {String}
+   * @param transactionId {String}
+   * @description
+   * Polls factors verification transaction for status.
+   * @returns {Promise<VerifyUserFactorResponse>}
+   */
+  getFactorTransactionStatus(userId, factorId, transactionId) {
+    let url = `${this.baseUrl}/api/v1/users/${userId}/factors/${factorId}/transactions/${transactionId}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/users/${userId}/factors/${factorId}/transactions/${transactionId}`,
+      `${this.baseUrl}/api/v1/users/${userId}/factors/${factorId}`,
+      `${this.baseUrl}/api/v1/users/${userId}`
+    ];
+
+    const request = this.http.getJson(url, null, {resources});
+    return request.then(jsonRes => new models.VerifyUserFactorResponse(jsonRes, this));
   }
 
   /**
@@ -1441,7 +4197,7 @@ class GeneratedApiClient {
    * @param {String} [queryParams.tokenLifetimeSeconds]
    * @description
    * Verifies an OTP for a `token` or `token:hardware` factor
-   * @returns {Promise<VerifyFactorResponse>}
+   * @returns {Promise<VerifyUserFactorResponse>}
    */
   verifyFactor(userId, factorId, verifyFactorRequest, queryParameters) {
     let url = `${this.baseUrl}/api/v1/users/${userId}/factors/${factorId}/verify`;
@@ -1457,26 +4213,115 @@ class GeneratedApiClient {
     const request = this.http.postJson(url, {
       body: verifyFactorRequest
     }, {resources});
-    return request.then(jsonRes => new models.VerifyFactorResponse(jsonRes, this));
+    return request.then(jsonRes => new models.VerifyUserFactorResponse(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param userId {String}
+   * @description
+   * Revokes all grants for a specified user
+   */
+  revokeUserGrants(userId) {
+    let url = `${this.baseUrl}/api/v1/users/${userId}/grants`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/users/${userId}`
+    ];
+
+    const request = this.http.delete(url, null, {resources});
+    return request;
   }
 
   /**
    *
    * @param userId {String}
    * @param {Object} queryParams Map of query parameters to add to this request
+   * @param {String} [queryParams.scopeId]
+   * @param {String} [queryParams.expand]
    * @param {String} [queryParams.after]
    * @param {String} [queryParams.limit]
    * @description
-   * Fetches the groups of which the user is a member.
-   * @returns {Promise<Collection>} A collection that will yield {@link Group} instances.
+   * Lists all grants for the specified user
+   * @returns {Promise<Collection>} A collection that will yield {@link OAuth2ScopeConsentGrant} instances.
    */
-  listUserGroups(userId, queryParameters) {
-    let url = `${this.baseUrl}/api/v1/users/${userId}/groups`;
+  listUserGrants(userId, queryParameters) {
+    let url = `${this.baseUrl}/api/v1/users/${userId}/grants`;
     const queryString = qs.stringify(queryParameters || {});
 
     url += queryString ? ('?' + queryString) : '';
 
+    return new Collection(this, url, new ModelFactory(models.OAuth2ScopeConsentGrant));
+  }
+
+  /**
+   *
+   * @param userId {String}
+   * @param grantId {String}
+   * @description
+   * Revokes one grant for a specified user
+   */
+  revokeUserGrant(userId, grantId) {
+    let url = `${this.baseUrl}/api/v1/users/${userId}/grants/${grantId}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/users/${userId}/grants/${grantId}`,
+      `${this.baseUrl}/api/v1/users/${userId}`
+    ];
+
+    const request = this.http.delete(url, null, {resources});
+    return request;
+  }
+
+  /**
+   *
+   * @param userId {String}
+   * @param grantId {String}
+   * @param {Object} queryParams Map of query parameters to add to this request
+   * @param {String} [queryParams.expand]
+   * @description
+   * Gets a grant for the specified user
+   * @returns {Promise<OAuth2ScopeConsentGrant>}
+   */
+  getUserGrant(userId, grantId, queryParameters) {
+    let url = `${this.baseUrl}/api/v1/users/${userId}/grants/${grantId}`;
+    const queryString = qs.stringify(queryParameters || {});
+
+    url += queryString ? ('?' + queryString) : '';
+
+    const resources = [
+      `${this.baseUrl}/api/v1/users/${userId}/grants/${grantId}`,
+      `${this.baseUrl}/api/v1/users/${userId}`
+    ];
+
+    const request = this.http.getJson(url, null, {resources});
+    return request.then(jsonRes => new models.OAuth2ScopeConsentGrant(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param userId {String}
+   * @description
+   * Fetches the groups of which the user is a member.
+   * @returns {Promise<Collection>} A collection that will yield {@link Group} instances.
+   */
+  listUserGroups(userId) {
+    let url = `${this.baseUrl}/api/v1/users/${userId}/groups`;
+
     return new Collection(this, url, new ModelFactory(models.Group));
+  }
+
+  /**
+   *
+   * @param userId {String}
+   * @description
+   * Lists the IdPs associated with the user.
+   * @returns {Promise<Collection>} A collection that will yield {@link IdentityProvider} instances.
+   */
+  listUserIdentityProviders(userId) {
+    let url = `${this.baseUrl}/api/v1/users/${userId}/idps`;
+
+    return new Collection(this, url, new ModelFactory(models.IdentityProvider));
   }
 
   /**
@@ -1527,17 +4372,30 @@ class GeneratedApiClient {
   /**
    *
    * @param userId {String}
-   * @param {Object} queryParams Map of query parameters to add to this request
-   * @param {String} [queryParams.tempPassword]
    * @description
    * This operation transitions the user to the status of `PASSWORD_EXPIRED` so that the user is required to change their password at their next login.
+   * @returns {Promise<User>}
+   */
+  expirePassword(userId) {
+    let url = `${this.baseUrl}/api/v1/users/${userId}/lifecycle/expire_password?tempPassword&#x3D;false`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/users/${userId}`
+    ];
+
+    const request = this.http.postJson(url, null, {resources});
+    return request.then(jsonRes => new models.User(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param userId {String}
+   * @description
+   * This operation transitions the user to the status of `PASSWORD_EXPIRED` and the user's password is reset to a temporary password that is returned.
    * @returns {Promise<TempPassword>}
    */
-  expirePassword(userId, queryParameters) {
-    let url = `${this.baseUrl}/api/v1/users/${userId}/lifecycle/expire_password`;
-    const queryString = qs.stringify(queryParameters || {});
-
-    url += queryString ? ('?' + queryString) : '';
+  expirePasswordAndGetTemporaryPassword(userId) {
+    let url = `${this.baseUrl}/api/v1/users/${userId}/lifecycle/expire_password?tempPassword&#x3D;true`;
 
     const resources = [
       `${this.baseUrl}/api/v1/users/${userId}`
@@ -1550,10 +4408,33 @@ class GeneratedApiClient {
   /**
    *
    * @param userId {String}
+   * @param {Object} queryParams Map of query parameters to add to this request
+   * @param {String} [queryParams.sendEmail]
+   * @description
+   * Reactivates a user.  This operation can only be performed on users with a `PROVISIONED` status.  This operation restarts the activation workflow if for some reason the user activation was not completed when using the activationToken from [Activate User](#activate-user).
+   * @returns {Promise<UserActivationToken>}
+   */
+  reactivateUser(userId, queryParameters) {
+    let url = `${this.baseUrl}/api/v1/users/${userId}/lifecycle/reactivate`;
+    const queryString = qs.stringify(queryParameters || {});
+
+    url += queryString ? ('?' + queryString) : '';
+
+    const resources = [
+      `${this.baseUrl}/api/v1/users/${userId}`
+    ];
+
+    const request = this.http.postJson(url, null, {resources});
+    return request.then(jsonRes => new models.UserActivationToken(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param userId {String}
    * @description
    * This operation resets all factors for the specified user. All MFA factor enrollments returned to the unenrolled state. The user's status remains ACTIVE. This link is present only if the user is currently enrolled in one or more MFA factors.
    */
-  resetAllFactors(userId) {
+  resetFactors(userId) {
     let url = `${this.baseUrl}/api/v1/users/${userId}/lifecycle/reset_factors`;
 
     const resources = [
@@ -1568,7 +4449,6 @@ class GeneratedApiClient {
    *
    * @param userId {String}
    * @param {Object} queryParams Map of query parameters to add to this request
-   * @param {String} [queryParams.provider]
    * @param {String} [queryParams.sendEmail]
    * @description
    * Generates a one-time token (OTT) that can be used to reset a user's password.  The OTT link can be automatically emailed to the user or returned to the API caller and distributed using a custom flow.
@@ -1642,13 +4522,52 @@ class GeneratedApiClient {
   /**
    *
    * @param userId {String}
+   * @param relationshipName {String}
+   * @description
+   * Delete linked objects for a user, relationshipName can be ONLY a primary relationship name
+   */
+  removeLinkedObjectForUser(userId, relationshipName) {
+    let url = `${this.baseUrl}/api/v1/users/${userId}/linkedObjects/${relationshipName}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/users/${userId}/linkedObjects/${relationshipName}`,
+      `${this.baseUrl}/api/v1/users/${userId}`
+    ];
+
+    const request = this.http.delete(url, null, {resources});
+    return request;
+  }
+
+  /**
+   *
+   * @param userId {String}
+   * @param relationshipName {String}
+   * @param {Object} queryParams Map of query parameters to add to this request
+   * @param {String} [queryParams.after]
+   * @param {String} [queryParams.limit]
+   * @description
+   * Get linked objects for a user, relationshipName can be a primary or associated relationship name
+   * @returns {Promise<Collection>} A collection that will yield {@link ResponseLinks} instances.
+   */
+  getLinkedObjectsForUser(userId, relationshipName, queryParameters) {
+    let url = `${this.baseUrl}/api/v1/users/${userId}/linkedObjects/${relationshipName}`;
+    const queryString = qs.stringify(queryParameters || {});
+
+    url += queryString ? ('?' + queryString) : '';
+
+    return new Collection(this, url, new ModelFactory(models.ResponseLinks));
+  }
+
+  /**
+   *
+   * @param userId {String}
    * @param {Object} queryParams Map of query parameters to add to this request
    * @param {String} [queryParams.expand]
    * @description
    * Lists all roles assigned to a user.
    * @returns {Promise<Collection>} A collection that will yield {@link Role} instances.
    */
-  listAssignedRoles(userId, queryParameters) {
+  listAssignedRolesForUser(userId, queryParameters) {
     let url = `${this.baseUrl}/api/v1/users/${userId}/roles`;
     const queryString = qs.stringify(queryParameters || {});
 
@@ -1660,20 +4579,25 @@ class GeneratedApiClient {
   /**
    *
    * @param userId {String}
-   * @param {Role} role
+   * @param {AssignRoleRequest} assignRoleRequest
+   * @param {Object} queryParams Map of query parameters to add to this request
+   * @param {String} [queryParams.disableNotifications]
    * @description
    * Assigns a role to a user.
    * @returns {Promise<Role>}
    */
-  addRoleToUser(userId, role) {
+  assignRoleToUser(userId, assignRoleRequest, queryParameters) {
     let url = `${this.baseUrl}/api/v1/users/${userId}/roles`;
+    const queryString = qs.stringify(queryParameters || {});
+
+    url += queryString ? ('?' + queryString) : '';
 
     const resources = [
       `${this.baseUrl}/api/v1/users/${userId}`
     ];
 
     const request = this.http.postJson(url, {
-      body: role
+      body: assignRoleRequest
     }, {resources});
     return request.then(jsonRes => new models.Role(jsonRes, this));
   }
@@ -1694,6 +4618,133 @@ class GeneratedApiClient {
     ];
 
     const request = this.http.delete(url, null, {resources});
+    return request;
+  }
+
+  /**
+   *
+   * @param userId {String}
+   * @param roleId {String}
+   * @param {Object} queryParams Map of query parameters to add to this request
+   * @param {String} [queryParams.after]
+   * @param {String} [queryParams.limit]
+   * @description
+   * Lists all App targets for an `APP_ADMIN` Role assigned to a User. This methods return list may include full Applications or Instances. The response for an instance will have an `ID` value, while Application will not have an ID.
+   * @returns {Promise<Collection>} A collection that will yield {@link Application} instances.
+   */
+  listApplicationTargetsForApplicationAdministratorRoleForUser(userId, roleId, queryParameters) {
+    let url = `${this.baseUrl}/api/v1/users/${userId}/roles/${roleId}/targets/catalog/apps`;
+    const queryString = qs.stringify(queryParameters || {});
+
+    url += queryString ? ('?' + queryString) : '';
+
+    return new Collection(this, url, new factories.Application());
+  }
+
+  /**
+   *
+   * @param userId {String}
+   * @param roleId {String}
+   * @description
+   * Success
+   */
+  addAllAppsAsTargetToRole(userId, roleId) {
+    let url = `${this.baseUrl}/api/v1/users/${userId}/roles/${roleId}/targets/catalog/apps`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/users/${userId}/roles/${roleId}`,
+      `${this.baseUrl}/api/v1/users/${userId}`
+    ];
+
+    const request = this.http.put(url, null, {resources});
+    return request;
+  }
+
+  /**
+   *
+   * @param userId {String}
+   * @param roleId {String}
+   * @param appName {String}
+   * @description
+   * Success
+   */
+  removeApplicationTargetFromApplicationAdministratorRoleForUser(userId, roleId, appName) {
+    let url = `${this.baseUrl}/api/v1/users/${userId}/roles/${roleId}/targets/catalog/apps/${appName}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/users/${userId}/roles/${roleId}/targets/catalog/apps/${appName}`,
+      `${this.baseUrl}/api/v1/users/${userId}/roles/${roleId}`,
+      `${this.baseUrl}/api/v1/users/${userId}`
+    ];
+
+    const request = this.http.delete(url, null, {resources});
+    return request;
+  }
+
+  /**
+   *
+   * @param userId {String}
+   * @param roleId {String}
+   * @param appName {String}
+   * @description
+   * Success
+   */
+  addApplicationTargetToAdminRoleForUser(userId, roleId, appName) {
+    let url = `${this.baseUrl}/api/v1/users/${userId}/roles/${roleId}/targets/catalog/apps/${appName}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/users/${userId}/roles/${roleId}/targets/catalog/apps/${appName}`,
+      `${this.baseUrl}/api/v1/users/${userId}/roles/${roleId}`,
+      `${this.baseUrl}/api/v1/users/${userId}`
+    ];
+
+    const request = this.http.put(url, null, {resources});
+    return request;
+  }
+
+  /**
+   *
+   * @param userId {String}
+   * @param roleId {String}
+   * @param appName {String}
+   * @param applicationId {String}
+   * @description
+   * Remove App Instance Target to App Administrator Role given to a User
+   */
+  removeApplicationTargetFromAdministratorRoleForUser(userId, roleId, appName, applicationId) {
+    let url = `${this.baseUrl}/api/v1/users/${userId}/roles/${roleId}/targets/catalog/apps/${appName}/${applicationId}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/users/${userId}/roles/${roleId}/targets/catalog/apps/${appName}/${applicationId}`,
+      `${this.baseUrl}/api/v1/users/${userId}/roles/${roleId}/targets/catalog/apps/${appName}`,
+      `${this.baseUrl}/api/v1/users/${userId}/roles/${roleId}`,
+      `${this.baseUrl}/api/v1/users/${userId}`
+    ];
+
+    const request = this.http.delete(url, null, {resources});
+    return request;
+  }
+
+  /**
+   *
+   * @param userId {String}
+   * @param roleId {String}
+   * @param appName {String}
+   * @param applicationId {String}
+   * @description
+   * Add App Instance Target to App Administrator Role given to a User
+   */
+  addApplicationTargetToAppAdminRoleForUser(userId, roleId, appName, applicationId) {
+    let url = `${this.baseUrl}/api/v1/users/${userId}/roles/${roleId}/targets/catalog/apps/${appName}/${applicationId}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/users/${userId}/roles/${roleId}/targets/catalog/apps/${appName}/${applicationId}`,
+      `${this.baseUrl}/api/v1/users/${userId}/roles/${roleId}/targets/catalog/apps/${appName}`,
+      `${this.baseUrl}/api/v1/users/${userId}/roles/${roleId}`,
+      `${this.baseUrl}/api/v1/users/${userId}`
+    ];
+
+    const request = this.http.put(url, null, {resources});
     return request;
   }
 
@@ -1767,7 +4818,7 @@ class GeneratedApiClient {
    * @description
    * Removes all active identity provider sessions. This forces the user to authenticate on the next operation. Optionally revokes OpenID Connect and OAuth refresh and access tokens issued to the user.
    */
-  endAllUserSessions(userId, queryParameters) {
+  clearUserSessions(userId, queryParameters) {
     let url = `${this.baseUrl}/api/v1/users/${userId}/sessions`;
     const queryString = qs.stringify(queryParameters || {});
 

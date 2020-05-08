@@ -38,7 +38,7 @@ describe('User Role API Tests', () => {
 
     // 2. Assign USER_ADMIN role to the user
     const roleType = { type: 'USER_ADMIN'  };
-    const role = await createdUser.addRole(roleType);
+    const role = await createdUser.assignRole(roleType);
 
     // 3. Add Group Target to User Admin Role
     await createdUser.addGroupTargetToRole(role.id, createdGroup.id);

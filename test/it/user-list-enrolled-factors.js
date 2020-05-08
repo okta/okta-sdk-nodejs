@@ -56,12 +56,13 @@ describe('User API tests', () => {
         answer: 'pizza'
       }
     };
-    await client.addFactor(createdUser.id, smsFactor);
-    await client.addFactor(createdUser.id, securityQuestionFactor);
+    await client.enrollFactor(createdUser.id, smsFactor);
+    await client.enrollFactor(createdUser.id, securityQuestionFactor);
     const collection = await createdUser.listFactors();
     const factors = [];
     await collection.each(factor => factors.push(factor));
-    expect(factors[1]).to.be.instanceof(models.SmsFactor);
-    expect(factors[0]).to.be.instanceof(models.SecurityQuestionFactor);
+    console.warn({factors});
+    expect(factors[1]).to.be.instanceof(models.SmsUserFactor);
+    expect(factors[0]).to.be.instanceof(models.SecurityQuestionUserFactor);
   });
 });

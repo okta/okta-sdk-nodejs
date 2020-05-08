@@ -1,5 +1,17 @@
 # Okta Node SDK Changelog
 
+## PENDING
+
+### Breaking Changes
+
+- `addFactor()` changed to `enrollFactor()`
+- `models.*Factor` classes are now `models.*UserFactor`
+- `createRule()` changed to `changeGroupRule()`
+- `listRules()` changed to `listGroupRules()`
+- `deactivateRule()` changed to `deactivateGroupRule()`
+- `user.addRole()` changed to `user.assignRole()`
+- `user.forgotPassword()` changed to `user.forgotPasswordSetNewPassword()`
+
 ## 3.3.1
 
 - [#138](https://github.com/okta/okta-sdk-nodejs/pull/138) Add strategy to handle access token refresh
