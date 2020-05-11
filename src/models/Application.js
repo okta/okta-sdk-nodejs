@@ -155,6 +155,89 @@ class Application extends Resource {
 
   /**
    * @param {object} queryParameters
+   * @returns {Promise<JsonWebKey>}
+   */
+  generateKey(queryParameters) {
+    return this.client.generateApplicationKey(this.id, queryParameters);
+  }
+
+  /**
+   * @param {CSRMetadata} csrMetadata
+   * @returns {Promise<CSR>}
+   */
+  generateCsr(csrMetadata) {
+    return this.client.generateCsrForApplication(this.id, csrMetadata);
+  }
+
+  /**
+   * @param {string} csrId
+   * @returns {Promise<CSR>}
+   */
+  getCsr(csrId) {
+    return this.client.getCsrForApplication(this.id, csrId);
+  }
+
+  /**
+   * @param {string} csrId
+   */
+  revokeCSR(csrId) {
+    return this.client.revokeCSRFromApplication(this.id, csrId);
+  }
+
+  /**
+   * @returns {Promise<Collection>} A collection that will yield {@link CSR} instances.
+   */
+  listCsrs() {
+    return this.client.listCsrsForApplication(this.id);
+  }
+
+  /**
+   * @param {string} csrId
+   * @param {string} string
+   * @returns {Promise<JsonWebKey>}
+   */
+  publishCerCert(csrId, string) {
+    return this.client.publishCerCert(this.id, csrId, string);
+  }
+
+  /**
+   * @param {string} csrId
+   * @param {string} string
+   * @returns {Promise<JsonWebKey>}
+   */
+  publishBinaryCerCert(csrId, string) {
+    return this.client.publishBinaryCerCert(this.id, csrId, string);
+  }
+
+  /**
+   * @param {string} csrId
+   * @param {string} string
+   * @returns {Promise<JsonWebKey>}
+   */
+  publishDerCert(csrId, string) {
+    return this.client.publishDerCert(this.id, csrId, string);
+  }
+
+  /**
+   * @param {string} csrId
+   * @param {string} string
+   * @returns {Promise<JsonWebKey>}
+   */
+  publishBinaryDerCert(csrId, string) {
+    return this.client.publishBinaryDerCert(this.id, csrId, string);
+  }
+
+  /**
+   * @param {string} csrId
+   * @param {string} string
+   * @returns {Promise<JsonWebKey>}
+   */
+  publishBinaryPemCert(csrId, string) {
+    return this.client.publishBinaryPemCert(this.id, csrId, string);
+  }
+
+  /**
+   * @param {object} queryParameters
    * @returns {Promise<Collection>} A collection that will yield {@link OAuth2Token} instances.
    */
   listOAuth2Tokens(queryParameters) {

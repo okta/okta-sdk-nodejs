@@ -182,6 +182,7 @@ exports.OktaSignOnPolicyRuleSignonActions = require('./OktaSignOnPolicyRuleSigno
 exports.OktaSignOnPolicyRuleSignonSessionActions = require('./OktaSignOnPolicyRuleSignonSessionActions');
 exports.OpenIdConnectApplication = require('./OpenIdConnectApplication');
 exports.OpenIdConnectApplicationConsentMethod = require('./OpenIdConnectApplicationConsentMethod');
+exports.OpenIdConnectApplicationIssuerMode = require('./OpenIdConnectApplicationIssuerMode');
 exports.OpenIdConnectApplicationSettings = require('./OpenIdConnectApplicationSettings');
 exports.OpenIdConnectApplicationSettingsClient = require('./OpenIdConnectApplicationSettingsClient');
 exports.OpenIdConnectApplicationType = require('./OpenIdConnectApplicationType');
