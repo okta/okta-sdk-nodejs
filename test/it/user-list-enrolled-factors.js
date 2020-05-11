@@ -61,7 +61,6 @@ describe('User API tests', () => {
     const collection = await createdUser.listFactors();
     const factors = [];
     await collection.each(factor => factors.push(factor));
-    console.warn({factors});
     expect(factors[1]).to.be.instanceof(models.SmsUserFactor);
     expect(factors[0]).to.be.instanceof(models.SecurityQuestionUserFactor);
   });
