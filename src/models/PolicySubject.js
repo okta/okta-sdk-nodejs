@@ -20,6 +20,7 @@ const PolicyUserNameTemplate = require('./PolicyUserNameTemplate');
  * @class PolicySubject
  * @extends Resource
  * @property { string } filter
+ * @property { array } format
  * @property { string } matchAttribute
  * @property { PolicySubjectMatchType } matchType
  * @property { PolicyUserNameTemplate } userNameTemplate

@@ -337,9 +337,32 @@ class GeneratedApiClient {
   /**
    *
    * @param appId {String}
+   * @param {Object} queryParams Map of query parameters to add to this request
+   * @param {String} [queryParams.validityYears]
+   * @description
+   * Generates a new X.509 certificate for an application key credential
+   * @returns {Promise<JsonWebKey>}
+   */
+  generateApplicationKey(appId, queryParameters) {
+    let url = `${this.baseUrl}/api/v1/apps/${appId}/credentials/keys/generate`;
+    const queryString = qs.stringify(queryParameters || {});
+
+    url += queryString ? ('?' + queryString) : '';
+
+    const resources = [
+      `${this.baseUrl}/api/v1/apps/${appId}`
+    ];
+
+    const request = this.http.postJson(url, null, {resources});
+    return request.then(jsonRes => new models.JsonWebKey(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param appId {String}
    * @param keyId {String}
    * @description
-   * Gets a specific [application key credential](#application-key-credential-model) by `kid`
+   * Gets a specific application key credential by kid
    * @returns {Promise<JsonWebKey>}
    */
   getApplicationKey(appId, keyId) {
@@ -581,28 +604,6 @@ class GeneratedApiClient {
     ];
 
     const request = this.http.post(url, null, {resources});
-    return request;
-  }
-
-  /**
-   *
-   * @param appId {String}
-   * @param {Object} queryParams Map of query parameters to add to this request
-   * @param {String} [queryParams.kid]
-   * @description
-   * Previews SAML metadata based on a specific key credential for an application
-   */
-  previewSamlMetadataForApplication(appId, queryParameters) {
-    let url = `${this.baseUrl}/api/v1/apps/${appId}/sso/saml/metadata`;
-    const queryString = qs.stringify(queryParameters || {});
-
-    url += queryString ? ('?' + queryString) : '';
-
-    const resources = [
-      `${this.baseUrl}/api/v1/apps/${appId}`
-    ];
-
-    const request = this.http.getJson(url, null, {resources});
     return request;
   }
 

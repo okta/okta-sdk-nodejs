@@ -17,22 +17,10 @@ var Resource = require('../resource');
 
 
 /**
- * @class OpenIdConnectApplicationSettingsClient
+ * @class OpenIdConnectApplicationIssuerMode
  * @extends Resource
- * @property { OpenIdConnectApplicationType } application_type
- * @property { string } client_uri
- * @property { OpenIdConnectApplicationConsentMethod } consent_method
- * @property { array } grant_types
- * @property { string } initiate_login_uri
- * @property { OpenIdConnectApplicationIssuerMode } issuer_mode
- * @property { string } logo_uri
- * @property { string } policy_uri
- * @property { array } post_logout_redirect_uris
- * @property { array } redirect_uris
- * @property { array } response_types
- * @property { string } tos_uri
  */
-class OpenIdConnectApplicationSettingsClient extends Resource {
+class OpenIdConnectApplicationIssuerMode extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
 
@@ -40,4 +28,4 @@ class OpenIdConnectApplicationSettingsClient extends Resource {
 
 }
 
-module.exports = OpenIdConnectApplicationSettingsClient;
+module.exports = OpenIdConnectApplicationIssuerMode;
