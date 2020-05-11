@@ -1,5 +1,5 @@
 /*!
- * Copyright (c) 2017-2018, Okta, Inc. and/or its affiliates. All rights reserved.
+ * Copyright (c) 2017-2020, Okta, Inc. and/or its affiliates. All rights reserved.
  * The Okta software accompanied by this notice is provided pursuant to the Apache License, Version 2.0 (the "License.")
  *
  * You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0.
@@ -46,7 +46,7 @@ class GeneratedApiClient {
 
     url += queryString ? ('?' + queryString) : '';
 
-    return new Collection(this, url, new factories.Application());
+    return new Collection(this, url, new factories.Application(), {method: 'get'});
   }
 
   /**
@@ -143,7 +143,7 @@ class GeneratedApiClient {
   listCsrsForApplication(appId) {
     let url = `${this.baseUrl}/api/v1/apps/${appId}/credentials/csrs`;
 
-    return new Collection(this, url, new ModelFactory(models.CSR));
+    return new Collection(this, url, new ModelFactory(models.CSR), {method: 'get'});
   }
 
   /**
@@ -331,7 +331,7 @@ class GeneratedApiClient {
   listApplicationKeys(appId) {
     let url = `${this.baseUrl}/api/v1/apps/${appId}/credentials/keys`;
 
-    return new Collection(this, url, new ModelFactory(models.JsonWebKey));
+    return new Collection(this, url, new ModelFactory(models.JsonWebKey), {method: 'get'});
   }
 
   /**
@@ -394,7 +394,7 @@ class GeneratedApiClient {
 
     url += queryString ? ('?' + queryString) : '';
 
-    return new Collection(this, url, new ModelFactory(models.OAuth2ScopeConsentGrant));
+    return new Collection(this, url, new ModelFactory(models.OAuth2ScopeConsentGrant), {method: 'get'});
   }
 
   /**
@@ -480,7 +480,7 @@ class GeneratedApiClient {
 
     url += queryString ? ('?' + queryString) : '';
 
-    return new Collection(this, url, new ModelFactory(models.ApplicationGroupAssignment));
+    return new Collection(this, url, new ModelFactory(models.ApplicationGroupAssignment), {method: 'get'});
   }
 
   /**
@@ -640,7 +640,7 @@ class GeneratedApiClient {
 
     url += queryString ? ('?' + queryString) : '';
 
-    return new Collection(this, url, new ModelFactory(models.OAuth2Token));
+    return new Collection(this, url, new ModelFactory(models.OAuth2Token), {method: 'get'});
   }
 
   /**
@@ -707,7 +707,7 @@ class GeneratedApiClient {
 
     url += queryString ? ('?' + queryString) : '';
 
-    return new Collection(this, url, new ModelFactory(models.AppUser));
+    return new Collection(this, url, new ModelFactory(models.AppUser), {method: 'get'});
   }
 
   /**
@@ -819,7 +819,7 @@ class GeneratedApiClient {
 
     url += queryString ? ('?' + queryString) : '';
 
-    return new Collection(this, url, new ModelFactory(models.AuthorizationServer));
+    return new Collection(this, url, new ModelFactory(models.AuthorizationServer), {method: 'get'});
   }
 
   /**
@@ -906,7 +906,7 @@ class GeneratedApiClient {
   listOAuth2Claims(authServerId) {
     let url = `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/claims`;
 
-    return new Collection(this, url, new ModelFactory(models.OAuth2Claim));
+    return new Collection(this, url, new ModelFactory(models.OAuth2Claim), {method: 'get'});
   }
 
   /**
@@ -1002,7 +1002,7 @@ class GeneratedApiClient {
   listOAuth2ClientsForAuthorizationServer(authServerId) {
     let url = `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/clients`;
 
-    return new Collection(this, url, new ModelFactory(models.OAuth2Client));
+    return new Collection(this, url, new ModelFactory(models.OAuth2Client), {method: 'get'});
   }
 
   /**
@@ -1042,7 +1042,7 @@ class GeneratedApiClient {
 
     url += queryString ? ('?' + queryString) : '';
 
-    return new Collection(this, url, new ModelFactory(models.OAuth2RefreshToken));
+    return new Collection(this, url, new ModelFactory(models.OAuth2RefreshToken), {method: 'get'});
   }
 
   /**
@@ -1103,7 +1103,7 @@ class GeneratedApiClient {
   listAuthorizationServerKeys(authServerId) {
     let url = `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/credentials/keys`;
 
-    return new Collection(this, url, new ModelFactory(models.JsonWebKey));
+    return new Collection(this, url, new ModelFactory(models.JsonWebKey), {method: 'get'});
   }
 
   /**
@@ -1116,7 +1116,7 @@ class GeneratedApiClient {
   rotateAuthorizationServerKeys(authServerId) {
     let url = `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/credentials/lifecycle/keyRotate`;
 
-    return new Collection(this, url, new ModelFactory(models.JsonWebKey));
+    return new Collection(this, url, new ModelFactory(models.JsonWebKey), {method: 'post'});
   }
 
   /**
@@ -1163,7 +1163,7 @@ class GeneratedApiClient {
   listAuthorizationServerPolicies(authServerId) {
     let url = `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/policies`;
 
-    return new Collection(this, url, new factories.Policy());
+    return new Collection(this, url, new factories.Policy(), {method: 'get'});
   }
 
   /**
@@ -1267,7 +1267,7 @@ class GeneratedApiClient {
 
     url += queryString ? ('?' + queryString) : '';
 
-    return new Collection(this, url, new ModelFactory(models.OAuth2Scope));
+    return new Collection(this, url, new ModelFactory(models.OAuth2Scope), {method: 'get'});
   }
 
   /**
@@ -1362,7 +1362,7 @@ class GeneratedApiClient {
   listEventHooks() {
     let url = `${this.baseUrl}/api/v1/eventHooks`;
 
-    return new Collection(this, url, new ModelFactory(models.EventHook));
+    return new Collection(this, url, new ModelFactory(models.EventHook), {method: 'get'});
   }
 
   /**
@@ -1502,7 +1502,7 @@ class GeneratedApiClient {
   listFeatures() {
     let url = `${this.baseUrl}/api/v1/features`;
 
-    return new Collection(this, url, new ModelFactory(models.Feature));
+    return new Collection(this, url, new ModelFactory(models.Feature), {method: 'get'});
   }
 
   /**
@@ -1533,7 +1533,7 @@ class GeneratedApiClient {
   listFeatureDependencies(featureId) {
     let url = `${this.baseUrl}/api/v1/features/${featureId}/dependencies`;
 
-    return new Collection(this, url, new ModelFactory(models.Feature));
+    return new Collection(this, url, new ModelFactory(models.Feature), {method: 'get'});
   }
 
   /**
@@ -1546,7 +1546,7 @@ class GeneratedApiClient {
   listFeatureDependents(featureId) {
     let url = `${this.baseUrl}/api/v1/features/${featureId}/dependents`;
 
-    return new Collection(this, url, new ModelFactory(models.Feature));
+    return new Collection(this, url, new ModelFactory(models.Feature), {method: 'get'});
   }
 
   /**
@@ -1591,7 +1591,7 @@ class GeneratedApiClient {
 
     url += queryString ? ('?' + queryString) : '';
 
-    return new Collection(this, url, new ModelFactory(models.Group));
+    return new Collection(this, url, new ModelFactory(models.Group), {method: 'get'});
   }
 
   /**
@@ -1629,7 +1629,7 @@ class GeneratedApiClient {
 
     url += queryString ? ('?' + queryString) : '';
 
-    return new Collection(this, url, new ModelFactory(models.GroupRule));
+    return new Collection(this, url, new ModelFactory(models.GroupRule), {method: 'get'});
   }
 
   /**
@@ -1817,7 +1817,7 @@ class GeneratedApiClient {
 
     url += queryString ? ('?' + queryString) : '';
 
-    return new Collection(this, url, new factories.Application());
+    return new Collection(this, url, new factories.Application(), {method: 'get'});
   }
 
   /**
@@ -1835,7 +1835,7 @@ class GeneratedApiClient {
 
     url += queryString ? ('?' + queryString) : '';
 
-    return new Collection(this, url, new ModelFactory(models.Role));
+    return new Collection(this, url, new ModelFactory(models.Role), {method: 'get'});
   }
 
   /**
@@ -1920,7 +1920,7 @@ class GeneratedApiClient {
 
     url += queryString ? ('?' + queryString) : '';
 
-    return new Collection(this, url, new factories.Application());
+    return new Collection(this, url, new factories.Application(), {method: 'get'});
   }
 
   /**
@@ -2028,7 +2028,7 @@ class GeneratedApiClient {
 
     url += queryString ? ('?' + queryString) : '';
 
-    return new Collection(this, url, new ModelFactory(models.Group));
+    return new Collection(this, url, new ModelFactory(models.Group), {method: 'get'});
   }
 
   /**
@@ -2089,7 +2089,7 @@ class GeneratedApiClient {
 
     url += queryString ? ('?' + queryString) : '';
 
-    return new Collection(this, url, new ModelFactory(models.User));
+    return new Collection(this, url, new ModelFactory(models.User), {method: 'get'});
   }
 
   /**
@@ -2147,7 +2147,7 @@ class GeneratedApiClient {
 
     url += queryString ? ('?' + queryString) : '';
 
-    return new Collection(this, url, new ModelFactory(models.IdentityProvider));
+    return new Collection(this, url, new ModelFactory(models.IdentityProvider), {method: 'get'});
   }
 
   /**
@@ -2183,7 +2183,7 @@ class GeneratedApiClient {
 
     url += queryString ? ('?' + queryString) : '';
 
-    return new Collection(this, url, new ModelFactory(models.JsonWebKey));
+    return new Collection(this, url, new ModelFactory(models.JsonWebKey), {method: 'get'});
   }
 
   /**
@@ -2305,7 +2305,7 @@ class GeneratedApiClient {
   listCsrsForIdentityProvider(idpId) {
     let url = `${this.baseUrl}/api/v1/idps/${idpId}/credentials/csrs`;
 
-    return new Collection(this, url, new ModelFactory(models.CSR));
+    return new Collection(this, url, new ModelFactory(models.CSR), {method: 'get'});
   }
 
   /**
@@ -2493,7 +2493,7 @@ class GeneratedApiClient {
   listIdentityProviderSigningKeys(idpId) {
     let url = `${this.baseUrl}/api/v1/idps/${idpId}/credentials/keys`;
 
-    return new Collection(this, url, new ModelFactory(models.JsonWebKey));
+    return new Collection(this, url, new ModelFactory(models.JsonWebKey), {method: 'get'});
   }
 
   /**
@@ -2610,7 +2610,7 @@ class GeneratedApiClient {
   listIdentityProviderApplicationUsers(idpId) {
     let url = `${this.baseUrl}/api/v1/idps/${idpId}/users`;
 
-    return new Collection(this, url, new ModelFactory(models.IdentityProviderApplicationUser));
+    return new Collection(this, url, new ModelFactory(models.IdentityProviderApplicationUser), {method: 'get'});
   }
 
   /**
@@ -2686,7 +2686,7 @@ class GeneratedApiClient {
   listSocialAuthTokens(idpId, userId) {
     let url = `${this.baseUrl}/api/v1/idps/${idpId}/users/${userId}/credentials/tokens`;
 
-    return new Collection(this, url, new ModelFactory(models.SocialAuthToken));
+    return new Collection(this, url, new ModelFactory(models.SocialAuthToken), {method: 'get'});
   }
 
   /**
@@ -2703,7 +2703,7 @@ class GeneratedApiClient {
 
     url += queryString ? ('?' + queryString) : '';
 
-    return new Collection(this, url, new ModelFactory(models.InlineHook));
+    return new Collection(this, url, new ModelFactory(models.InlineHook), {method: 'get'});
   }
 
   /**
@@ -2857,7 +2857,7 @@ class GeneratedApiClient {
 
     url += queryString ? ('?' + queryString) : '';
 
-    return new Collection(this, url, new ModelFactory(models.LogEvent));
+    return new Collection(this, url, new ModelFactory(models.LogEvent), {method: 'get'});
   }
 
   /**
@@ -2869,7 +2869,7 @@ class GeneratedApiClient {
   listLinkedObjectDefinitions() {
     let url = `${this.baseUrl}/api/v1/meta/schemas/user/linkedObjects`;
 
-    return new Collection(this, url, new ModelFactory(models.LinkedObject));
+    return new Collection(this, url, new ModelFactory(models.LinkedObject), {method: 'get'});
   }
 
   /**
@@ -2934,7 +2934,7 @@ class GeneratedApiClient {
   listUserTypes() {
     let url = `${this.baseUrl}/api/v1/meta/types/user`;
 
-    return new Collection(this, url, new ModelFactory(models.UserType));
+    return new Collection(this, url, new ModelFactory(models.UserType), {method: 'get'});
   }
 
   /**
@@ -3048,7 +3048,7 @@ class GeneratedApiClient {
 
     url += queryString ? ('?' + queryString) : '';
 
-    return new Collection(this, url, new factories.Policy());
+    return new Collection(this, url, new factories.Policy(), {method: 'get'});
   }
 
   /**
@@ -3179,7 +3179,7 @@ class GeneratedApiClient {
   listPolicyRules(policyId) {
     let url = `${this.baseUrl}/api/v1/policies/${policyId}/rules`;
 
-    return new Collection(this, url, new factories.PolicyRule());
+    return new Collection(this, url, new factories.PolicyRule(), {method: 'get'});
   }
 
   /**
@@ -3388,7 +3388,7 @@ class GeneratedApiClient {
 
     url += queryString ? ('?' + queryString) : '';
 
-    return new Collection(this, url, new ModelFactory(models.SmsTemplate));
+    return new Collection(this, url, new ModelFactory(models.SmsTemplate), {method: 'get'});
   }
 
   /**
@@ -3503,7 +3503,7 @@ class GeneratedApiClient {
 
     url += queryString ? ('?' + queryString) : '';
 
-    return new Collection(this, url, new ModelFactory(models.TrustedOrigin));
+    return new Collection(this, url, new ModelFactory(models.TrustedOrigin), {method: 'get'});
   }
 
   /**
@@ -3636,7 +3636,7 @@ class GeneratedApiClient {
 
     url += queryString ? ('?' + queryString) : '';
 
-    return new Collection(this, url, new ModelFactory(models.User));
+    return new Collection(this, url, new ModelFactory(models.User), {method: 'get'});
   }
 
   /**
@@ -3806,7 +3806,7 @@ class GeneratedApiClient {
   listAppLinks(userId) {
     let url = `${this.baseUrl}/api/v1/users/${userId}/appLinks`;
 
-    return new Collection(this, url, new ModelFactory(models.AppLink));
+    return new Collection(this, url, new ModelFactory(models.AppLink), {method: 'get'});
   }
 
   /**
@@ -3819,7 +3819,7 @@ class GeneratedApiClient {
   listUserClients(userId) {
     let url = `${this.baseUrl}/api/v1/users/${userId}/clients`;
 
-    return new Collection(this, url, new ModelFactory(models.OAuth2Client));
+    return new Collection(this, url, new ModelFactory(models.OAuth2Client), {method: 'get'});
   }
 
   /**
@@ -3859,7 +3859,7 @@ class GeneratedApiClient {
 
     url += queryString ? ('?' + queryString) : '';
 
-    return new Collection(this, url, new ModelFactory(models.OAuth2ScopeConsentGrant));
+    return new Collection(this, url, new ModelFactory(models.OAuth2ScopeConsentGrant), {method: 'get'});
   }
 
   /**
@@ -3899,7 +3899,7 @@ class GeneratedApiClient {
 
     url += queryString ? ('?' + queryString) : '';
 
-    return new Collection(this, url, new ModelFactory(models.OAuth2RefreshToken));
+    return new Collection(this, url, new ModelFactory(models.OAuth2RefreshToken), {method: 'get'});
   }
 
   /**
@@ -4058,7 +4058,7 @@ class GeneratedApiClient {
   listFactors(userId) {
     let url = `${this.baseUrl}/api/v1/users/${userId}/factors`;
 
-    return new Collection(this, url, new factories.UserFactor());
+    return new Collection(this, url, new factories.UserFactor(), {method: 'get'});
   }
 
   /**
@@ -4100,7 +4100,7 @@ class GeneratedApiClient {
   listSupportedFactors(userId) {
     let url = `${this.baseUrl}/api/v1/users/${userId}/factors/catalog`;
 
-    return new Collection(this, url, new factories.UserFactor());
+    return new Collection(this, url, new factories.UserFactor(), {method: 'get'});
   }
 
   /**
@@ -4113,7 +4113,7 @@ class GeneratedApiClient {
   listSupportedSecurityQuestions(userId) {
     let url = `${this.baseUrl}/api/v1/users/${userId}/factors/questions`;
 
-    return new Collection(this, url, new ModelFactory(models.SecurityQuestion));
+    return new Collection(this, url, new ModelFactory(models.SecurityQuestion), {method: 'get'});
   }
 
   /**
@@ -4264,7 +4264,7 @@ class GeneratedApiClient {
 
     url += queryString ? ('?' + queryString) : '';
 
-    return new Collection(this, url, new ModelFactory(models.OAuth2ScopeConsentGrant));
+    return new Collection(this, url, new ModelFactory(models.OAuth2ScopeConsentGrant), {method: 'get'});
   }
 
   /**
@@ -4321,7 +4321,7 @@ class GeneratedApiClient {
   listUserGroups(userId) {
     let url = `${this.baseUrl}/api/v1/users/${userId}/groups`;
 
-    return new Collection(this, url, new ModelFactory(models.Group));
+    return new Collection(this, url, new ModelFactory(models.Group), {method: 'get'});
   }
 
   /**
@@ -4334,7 +4334,7 @@ class GeneratedApiClient {
   listUserIdentityProviders(userId) {
     let url = `${this.baseUrl}/api/v1/users/${userId}/idps`;
 
-    return new Collection(this, url, new ModelFactory(models.IdentityProvider));
+    return new Collection(this, url, new ModelFactory(models.IdentityProvider), {method: 'get'});
   }
 
   /**
@@ -4568,7 +4568,7 @@ class GeneratedApiClient {
 
     url += queryString ? ('?' + queryString) : '';
 
-    return new Collection(this, url, new ModelFactory(models.ResponseLinks));
+    return new Collection(this, url, new ModelFactory(models.ResponseLinks), {method: 'get'});
   }
 
   /**
@@ -4586,7 +4586,7 @@ class GeneratedApiClient {
 
     url += queryString ? ('?' + queryString) : '';
 
-    return new Collection(this, url, new ModelFactory(models.Role));
+    return new Collection(this, url, new ModelFactory(models.Role), {method: 'get'});
   }
 
   /**
@@ -4651,7 +4651,7 @@ class GeneratedApiClient {
 
     url += queryString ? ('?' + queryString) : '';
 
-    return new Collection(this, url, new factories.Application());
+    return new Collection(this, url, new factories.Application(), {method: 'get'});
   }
 
   /**
@@ -4778,7 +4778,7 @@ class GeneratedApiClient {
 
     url += queryString ? ('?' + queryString) : '';
 
-    return new Collection(this, url, new ModelFactory(models.Group));
+    return new Collection(this, url, new ModelFactory(models.Group), {method: 'get'});
   }
 
   /**
