@@ -8,5 +8,6 @@ if ! npm install; then
   exit ${FAILED_SETUP}
 fi
 
+npm run build
 npm run test:unit
 npm run test:integration
