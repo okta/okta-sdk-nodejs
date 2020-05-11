@@ -3,20 +3,12 @@ const deepCopy = require('deep-copy');
 const okta = require('../../src');
 const models = require('../../src/models');
 const Collection = require('../../src/collection');
+const generalFakeTemplateObj = require('./mocks/template-sms.json')
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
 if (process.env.OKTA_USE_MOCK) {
-  orgUrl = `${orgUrl}/sms-template`;
+  orgUrl = `${orgUrl}/template-sms`;
 }
-
-const generalFakeTemplateObj = {
-  name: 'general fake template',
-  type: 'general fake type',
-  template: 'Your fake verification code is ${code}.',
-  translations: {
-    fr: 'Votre code ${org.name}: ${code}.'
-  }
-};
 
 const client = new okta.Client({
   orgUrl: orgUrl,
@@ -61,7 +53,7 @@ describe('SmsTemplate API', () => {
   describe('Create template', () => {
     let template;
     afterEach(async () => {
-      template.delete();
+      await template.delete();
     });
 
     it('should return correct model', async () => {
