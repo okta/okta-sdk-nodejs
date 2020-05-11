@@ -67,6 +67,27 @@ describe('Collection', () => {
         expect(collected[1]).to.equal(2);
       });
     });
+
+    it('should pass request object to http client if it has been initialized with constructor', async () => {
+      const noop = () => {};
+      const mockRequest = { method: 'post' };
+      const mockClient = {
+        http: {
+          http: (_, request) => {
+            expect(request).to.deep.equal(mockRequest);
+            return Promise.resolve({
+              headers: { get: noop },
+              json: () => Promise.resolve([1, 2, 3])
+            });
+          }
+        }
+      };
+      const mockFactory = {
+        createInstance: (item) => item
+      };
+      const collection = new Collection(mockClient, '/', mockFactory, mockRequest);
+      await collection.each(noop);
+    });
   });
 
   describe('.subscribe()', () => {
