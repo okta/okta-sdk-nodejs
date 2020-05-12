@@ -97,4 +97,11 @@ describe('Idp User API', () => {
       }
     });
   });
+
+  describe('List social auth tokens', () => {
+    it('should return a Collection', async () => {
+      const tokens = await idp.listSocialAuthTokens(user.id);
+      expect(tokens).to.be.instanceOf(Collection);
+    });
+  });
 });
