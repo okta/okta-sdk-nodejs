@@ -3667,25 +3667,6 @@ class GeneratedApiClient {
 
   /**
    *
-   * @param {Object} queryParams Map of query parameters to add to this request
-   * @param {String} [queryParams.keepCurrent]
-   * @description
-   * Clears Okta sessions for the currently logged in user. By default, the current session remains active. Use this method in a browser-based application.
-   */
-  clearCurrentUserSessions(queryParameters) {
-    let url = `${this.baseUrl}/api/v1/users/me/lifecycle/delete_sessions`;
-    const queryString = qs.stringify(queryParameters || {});
-
-    url += queryString ? ('?' + queryString) : '';
-
-    const resources = [];
-
-    const request = this.http.post(url, null, {resources});
-    return request;
-  }
-
-  /**
-   *
    * @param associatedUserId {String}
    * @param primaryRelationshipName {String}
    * @param primaryUserId {String}
