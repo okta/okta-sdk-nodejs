@@ -29,7 +29,7 @@ class PolicySubject extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
     if (resourceJson && resourceJson.userNameTemplate) {
-      this.userNameTemplate = new PolicyUserNameTemplate(this.userNameTemplate);
+      this.userNameTemplate = new PolicyUserNameTemplate(resourceJson.userNameTemplate);
     }
   }
 

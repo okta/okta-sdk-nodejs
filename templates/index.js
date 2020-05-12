@@ -130,7 +130,7 @@ js.process = ({spec, operations, models, handlebars}) => {
       const shouldProcess = !MODELS_SHOULD_NOT_PROCESS.includes(property.model);
       if (property.$ref && shouldProcess && !property.isEnum) {
         constructorStatements.push(`    if (resourceJson && resourceJson.${property.propertyName}) {`);
-        constructorStatements.push(`      this.${property.propertyName} = new ${property.model}(this.${property.propertyName});`);
+        constructorStatements.push(`      this.${property.propertyName} = new ${property.model}(resourceJson.${property.propertyName});`);
         constructorStatements.push(`    }`);
       }
     });

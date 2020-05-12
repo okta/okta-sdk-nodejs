@@ -29,10 +29,10 @@ class ApplicationSettings extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
     if (resourceJson && resourceJson.app) {
-      this.app = new ApplicationSettingsApplication(this.app);
+      this.app = new ApplicationSettingsApplication(resourceJson.app);
     }
     if (resourceJson && resourceJson.notifications) {
-      this.notifications = new ApplicationSettingsNotifications(this.notifications);
+      this.notifications = new ApplicationSettingsNotifications(resourceJson.notifications);
     }
   }
 

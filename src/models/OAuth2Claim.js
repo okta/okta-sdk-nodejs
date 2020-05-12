@@ -35,7 +35,7 @@ class OAuth2Claim extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
     if (resourceJson && resourceJson.conditions) {
-      this.conditions = new OAuth2ClaimConditions(this.conditions);
+      this.conditions = new OAuth2ClaimConditions(resourceJson.conditions);
     }
   }
 

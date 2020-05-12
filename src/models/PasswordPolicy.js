@@ -27,10 +27,10 @@ class PasswordPolicy extends Policy {
   constructor(resourceJson, client) {
     super(resourceJson, client);
     if (resourceJson && resourceJson.conditions) {
-      this.conditions = new PasswordPolicyConditions(this.conditions);
+      this.conditions = new PasswordPolicyConditions(resourceJson.conditions);
     }
     if (resourceJson && resourceJson.settings) {
-      this.settings = new PasswordPolicySettings(this.settings);
+      this.settings = new PasswordPolicySettings(resourceJson.settings);
     }
   }
 

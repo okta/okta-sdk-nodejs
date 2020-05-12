@@ -33,7 +33,7 @@ class InlineHook extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
     if (resourceJson && resourceJson.channel) {
-      this.channel = new InlineHookChannel(this.channel);
+      this.channel = new InlineHookChannel(resourceJson.channel);
     }
   }
 

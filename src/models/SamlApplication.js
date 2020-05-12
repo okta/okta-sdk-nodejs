@@ -25,7 +25,7 @@ class SamlApplication extends Application {
   constructor(resourceJson, client) {
     super(resourceJson, client);
     if (resourceJson && resourceJson.settings) {
-      this.settings = new SamlApplicationSettings(this.settings);
+      this.settings = new SamlApplicationSettings(resourceJson.settings);
     }
   }
 

@@ -28,10 +28,10 @@ class PasswordCredential extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
     if (resourceJson && resourceJson.hash) {
-      this.hash = new PasswordCredentialHash(this.hash);
+      this.hash = new PasswordCredentialHash(resourceJson.hash);
     }
     if (resourceJson && resourceJson.hook) {
-      this.hook = new PasswordCredentialHook(this.hook);
+      this.hook = new PasswordCredentialHook(resourceJson.hook);
     }
   }
 

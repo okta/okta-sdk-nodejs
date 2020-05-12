@@ -40,13 +40,13 @@ class User extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
     if (resourceJson && resourceJson.credentials) {
-      this.credentials = new UserCredentials(this.credentials);
+      this.credentials = new UserCredentials(resourceJson.credentials);
     }
     if (resourceJson && resourceJson.profile) {
-      this.profile = new UserProfile(this.profile);
+      this.profile = new UserProfile(resourceJson.profile);
     }
     if (resourceJson && resourceJson.type) {
-      this.type = new UserType(this.type);
+      this.type = new UserType(resourceJson.type);
     }
   }
 

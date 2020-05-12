@@ -25,7 +25,7 @@ class ApplicationSettingsNotifications extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
     if (resourceJson && resourceJson.vpn) {
-      this.vpn = new ApplicationSettingsNotificationsVpn(this.vpn);
+      this.vpn = new ApplicationSettingsNotificationsVpn(resourceJson.vpn);
     }
   }
 

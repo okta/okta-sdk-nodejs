@@ -27,10 +27,10 @@ class ApplicationCredentials extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
     if (resourceJson && resourceJson.signing) {
-      this.signing = new ApplicationCredentialsSigning(this.signing);
+      this.signing = new ApplicationCredentialsSigning(resourceJson.signing);
     }
     if (resourceJson && resourceJson.userNameTemplate) {
-      this.userNameTemplate = new ApplicationCredentialsUsernameTemplate(this.userNameTemplate);
+      this.userNameTemplate = new ApplicationCredentialsUsernameTemplate(resourceJson.userNameTemplate);
     }
   }
 

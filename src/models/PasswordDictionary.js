@@ -25,7 +25,7 @@ class PasswordDictionary extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
     if (resourceJson && resourceJson.common) {
-      this.common = new PasswordDictionaryCommon(this.common);
+      this.common = new PasswordDictionaryCommon(resourceJson.common);
     }
   }
 

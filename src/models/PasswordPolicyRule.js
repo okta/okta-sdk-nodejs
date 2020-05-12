@@ -28,10 +28,10 @@ class PasswordPolicyRule extends PolicyRule {
   constructor(resourceJson, client) {
     super(resourceJson, client);
     if (resourceJson && resourceJson.actions) {
-      this.actions = new PasswordPolicyRuleActions(this.actions);
+      this.actions = new PasswordPolicyRuleActions(resourceJson.actions);
     }
     if (resourceJson && resourceJson.conditions) {
-      this.conditions = new PasswordPolicyRuleConditions(this.conditions);
+      this.conditions = new PasswordPolicyRuleConditions(resourceJson.conditions);
     }
   }
 

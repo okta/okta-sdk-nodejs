@@ -31,10 +31,10 @@ class LogClient extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
     if (resourceJson && resourceJson.geographicalContext) {
-      this.geographicalContext = new LogGeographicalContext(this.geographicalContext);
+      this.geographicalContext = new LogGeographicalContext(resourceJson.geographicalContext);
     }
     if (resourceJson && resourceJson.userAgent) {
-      this.userAgent = new LogUserAgent(this.userAgent);
+      this.userAgent = new LogUserAgent(resourceJson.userAgent);
     }
   }
 

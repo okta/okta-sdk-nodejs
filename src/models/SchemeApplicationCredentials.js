@@ -30,10 +30,10 @@ class SchemeApplicationCredentials extends ApplicationCredentials {
   constructor(resourceJson, client) {
     super(resourceJson, client);
     if (resourceJson && resourceJson.password) {
-      this.password = new PasswordCredential(this.password);
+      this.password = new PasswordCredential(resourceJson.password);
     }
     if (resourceJson && resourceJson.signing) {
-      this.signing = new ApplicationCredentialsSigning(this.signing);
+      this.signing = new ApplicationCredentialsSigning(resourceJson.signing);
     }
   }
 

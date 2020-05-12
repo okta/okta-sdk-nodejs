@@ -26,7 +26,7 @@ class BookmarkApplication extends Application {
   constructor(resourceJson, client) {
     super(resourceJson, client);
     if (resourceJson && resourceJson.settings) {
-      this.settings = new BookmarkApplicationSettings(this.settings);
+      this.settings = new BookmarkApplicationSettings(resourceJson.settings);
     }
   }
 

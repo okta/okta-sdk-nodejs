@@ -29,7 +29,7 @@ class LogGeographicalContext extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
     if (resourceJson && resourceJson.geolocation) {
-      this.geolocation = new LogGeolocation(this.geolocation);
+      this.geolocation = new LogGeolocation(resourceJson.geolocation);
     }
   }
 
