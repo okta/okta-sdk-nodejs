@@ -143,12 +143,11 @@ class IdentityProvider extends Resource {
   }
 
   /**
-   * @param {string} idpId
    * @param {string} userId
    * @returns {Promise<IdentityProviderApplicationUser>}
    */
-  getUser(idpId, userId) {
-    return this.client.getIdentityProviderApplicationUser(idpId, userId);
+  getUser(userId) {
+    return this.client.getIdentityProviderApplicationUser(this.id, userId);
   }
 
   /**
