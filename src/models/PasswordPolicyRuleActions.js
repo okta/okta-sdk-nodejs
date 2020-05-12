@@ -27,13 +27,13 @@ class PasswordPolicyRuleActions extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
     if (resourceJson && resourceJson.passwordChange) {
-      this.passwordChange = new PasswordPolicyRuleAction(this.passwordChange);
+      this.passwordChange = new PasswordPolicyRuleAction(resourceJson.passwordChange);
     }
     if (resourceJson && resourceJson.selfServicePasswordReset) {
-      this.selfServicePasswordReset = new PasswordPolicyRuleAction(this.selfServicePasswordReset);
+      this.selfServicePasswordReset = new PasswordPolicyRuleAction(resourceJson.selfServicePasswordReset);
     }
     if (resourceJson && resourceJson.selfServiceUnlock) {
-      this.selfServiceUnlock = new PasswordPolicyRuleAction(this.selfServiceUnlock);
+      this.selfServiceUnlock = new PasswordPolicyRuleAction(resourceJson.selfServiceUnlock);
     }
   }
 

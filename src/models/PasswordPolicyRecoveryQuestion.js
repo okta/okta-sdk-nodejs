@@ -26,7 +26,7 @@ class PasswordPolicyRecoveryQuestion extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
     if (resourceJson && resourceJson.properties) {
-      this.properties = new PasswordPolicyRecoveryQuestionProperties(this.properties);
+      this.properties = new PasswordPolicyRecoveryQuestionProperties(resourceJson.properties);
     }
   }
 

@@ -35,7 +35,7 @@ class Session extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
     if (resourceJson && resourceJson.idp) {
-      this.idp = new SessionIdentityProvider(this.idp);
+      this.idp = new SessionIdentityProvider(resourceJson.idp);
     }
   }
 

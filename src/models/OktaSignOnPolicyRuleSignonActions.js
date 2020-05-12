@@ -30,7 +30,7 @@ class OktaSignOnPolicyRuleSignonActions extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
     if (resourceJson && resourceJson.session) {
-      this.session = new OktaSignOnPolicyRuleSignonSessionActions(this.session);
+      this.session = new OktaSignOnPolicyRuleSignonSessionActions(resourceJson.session);
     }
   }
 

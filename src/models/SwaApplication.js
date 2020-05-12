@@ -26,7 +26,7 @@ class SwaApplication extends BrowserPluginApplication {
   constructor(resourceJson, client) {
     super(resourceJson, client);
     if (resourceJson && resourceJson.settings) {
-      this.settings = new SwaApplicationSettings(this.settings);
+      this.settings = new SwaApplicationSettings(resourceJson.settings);
     }
   }
 

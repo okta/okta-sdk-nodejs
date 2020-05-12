@@ -25,7 +25,7 @@ class OAuthApplicationCredentials extends ApplicationCredentials {
   constructor(resourceJson, client) {
     super(resourceJson, client);
     if (resourceJson && resourceJson.oauthClient) {
-      this.oauthClient = new ApplicationCredentialsOAuthClient(this.oauthClient);
+      this.oauthClient = new ApplicationCredentialsOAuthClient(resourceJson.oauthClient);
     }
   }
 

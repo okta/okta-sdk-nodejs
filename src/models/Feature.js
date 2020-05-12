@@ -31,7 +31,7 @@ class Feature extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
     if (resourceJson && resourceJson.stage) {
-      this.stage = new FeatureStage(this.stage);
+      this.stage = new FeatureStage(resourceJson.stage);
     }
   }
 

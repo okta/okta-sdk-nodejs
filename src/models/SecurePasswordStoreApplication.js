@@ -28,10 +28,10 @@ class SecurePasswordStoreApplication extends Application {
   constructor(resourceJson, client) {
     super(resourceJson, client);
     if (resourceJson && resourceJson.credentials) {
-      this.credentials = new SchemeApplicationCredentials(this.credentials);
+      this.credentials = new SchemeApplicationCredentials(resourceJson.credentials);
     }
     if (resourceJson && resourceJson.settings) {
-      this.settings = new SecurePasswordStoreApplicationSettings(this.settings);
+      this.settings = new SecurePasswordStoreApplicationSettings(resourceJson.settings);
     }
   }
 

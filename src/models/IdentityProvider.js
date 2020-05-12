@@ -35,10 +35,10 @@ class IdentityProvider extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
     if (resourceJson && resourceJson.policy) {
-      this.policy = new IdentityProviderPolicy(this.policy);
+      this.policy = new IdentityProviderPolicy(resourceJson.policy);
     }
     if (resourceJson && resourceJson.protocol) {
-      this.protocol = new Protocol(this.protocol);
+      this.protocol = new Protocol(resourceJson.protocol);
     }
   }
 
@@ -143,12 +143,11 @@ class IdentityProvider extends Resource {
   }
 
   /**
-   * @param {string} idpId
    * @param {string} userId
    * @returns {Promise<IdentityProviderApplicationUser>}
    */
-  getUser(idpId, userId) {
-    return this.client.getIdentityProviderApplicationUser(idpId, userId);
+  getUser(userId) {
+    return this.client.getIdentityProviderApplicationUser(this.id, userId);
   }
 
   /**

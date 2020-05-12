@@ -27,7 +27,7 @@ class ApplicationVisibility extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
     if (resourceJson && resourceJson.hide) {
-      this.hide = new ApplicationVisibilityHide(this.hide);
+      this.hide = new ApplicationVisibilityHide(resourceJson.hide);
     }
   }
 

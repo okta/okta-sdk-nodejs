@@ -27,7 +27,7 @@ class EventHookChannelConfig extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
     if (resourceJson && resourceJson.authScheme) {
-      this.authScheme = new EventHookChannelConfigAuthScheme(this.authScheme);
+      this.authScheme = new EventHookChannelConfigAuthScheme(resourceJson.authScheme);
     }
   }
 

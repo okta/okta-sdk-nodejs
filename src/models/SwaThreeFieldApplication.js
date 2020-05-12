@@ -26,7 +26,7 @@ class SwaThreeFieldApplication extends BrowserPluginApplication {
   constructor(resourceJson, client) {
     super(resourceJson, client);
     if (resourceJson && resourceJson.settings) {
-      this.settings = new SwaThreeFieldApplicationSettings(this.settings);
+      this.settings = new SwaThreeFieldApplicationSettings(resourceJson.settings);
     }
   }
 

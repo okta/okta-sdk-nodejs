@@ -36,7 +36,7 @@ class OAuth2RefreshToken extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
     if (resourceJson && resourceJson.createdBy) {
-      this.createdBy = new OAuth2Actor(this.createdBy);
+      this.createdBy = new OAuth2Actor(resourceJson.createdBy);
     }
   }
 

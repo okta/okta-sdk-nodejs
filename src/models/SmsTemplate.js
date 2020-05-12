@@ -31,7 +31,7 @@ class SmsTemplate extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
     if (resourceJson && resourceJson.translations) {
-      this.translations = new SmsTemplateTranslations(this.translations);
+      this.translations = new SmsTemplateTranslations(resourceJson.translations);
     }
   }
 

@@ -28,10 +28,10 @@ class BasicAuthApplication extends Application {
   constructor(resourceJson, client) {
     super(resourceJson, client);
     if (resourceJson && resourceJson.credentials) {
-      this.credentials = new SchemeApplicationCredentials(this.credentials);
+      this.credentials = new SchemeApplicationCredentials(resourceJson.credentials);
     }
     if (resourceJson && resourceJson.settings) {
-      this.settings = new BasicApplicationSettings(this.settings);
+      this.settings = new BasicApplicationSettings(resourceJson.settings);
     }
   }
 

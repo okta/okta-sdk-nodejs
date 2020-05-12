@@ -36,7 +36,7 @@ class Policy extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
     if (resourceJson && resourceJson.conditions) {
-      this.conditions = new PolicyRuleConditions(this.conditions);
+      this.conditions = new PolicyRuleConditions(resourceJson.conditions);
     }
   }
 

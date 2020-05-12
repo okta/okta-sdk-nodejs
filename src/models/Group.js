@@ -33,7 +33,7 @@ class Group extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
     if (resourceJson && resourceJson.profile) {
-      this.profile = new GroupProfile(this.profile);
+      this.profile = new GroupProfile(resourceJson.profile);
     }
   }
 

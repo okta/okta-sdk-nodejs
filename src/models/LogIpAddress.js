@@ -28,7 +28,7 @@ class LogIpAddress extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
     if (resourceJson && resourceJson.geographicalContext) {
-      this.geographicalContext = new LogGeographicalContext(this.geographicalContext);
+      this.geographicalContext = new LogGeographicalContext(resourceJson.geographicalContext);
     }
   }
 

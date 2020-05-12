@@ -27,7 +27,7 @@ class InlineHookChannel extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
     if (resourceJson && resourceJson.config) {
-      this.config = new InlineHookChannelConfig(this.config);
+      this.config = new InlineHookChannelConfig(resourceJson.config);
     }
   }
 

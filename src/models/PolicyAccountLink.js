@@ -26,7 +26,7 @@ class PolicyAccountLink extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
     if (resourceJson && resourceJson.filter) {
-      this.filter = new PolicyAccountLinkFilter(this.filter);
+      this.filter = new PolicyAccountLinkFilter(resourceJson.filter);
     }
   }
 
