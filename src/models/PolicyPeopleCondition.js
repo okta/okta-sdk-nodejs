@@ -27,10 +27,10 @@ class PolicyPeopleCondition extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
     if (resourceJson && resourceJson.groups) {
-      this.groups = new GroupCondition(this.groups);
+      this.groups = new GroupCondition(resourceJson.groups);
     }
     if (resourceJson && resourceJson.users) {
-      this.users = new UserCondition(this.users);
+      this.users = new UserCondition(resourceJson.users);
     }
   }
 

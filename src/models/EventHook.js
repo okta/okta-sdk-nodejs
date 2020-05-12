@@ -35,10 +35,10 @@ class EventHook extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
     if (resourceJson && resourceJson.channel) {
-      this.channel = new EventHookChannel(this.channel);
+      this.channel = new EventHookChannel(resourceJson.channel);
     }
     if (resourceJson && resourceJson.events) {
-      this.events = new EventSubscriptions(this.events);
+      this.events = new EventSubscriptions(resourceJson.events);
     }
   }
 

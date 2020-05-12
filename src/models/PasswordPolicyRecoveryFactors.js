@@ -30,16 +30,16 @@ class PasswordPolicyRecoveryFactors extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
     if (resourceJson && resourceJson.okta_call) {
-      this.okta_call = new PasswordPolicyRecoveryFactorSettings(this.okta_call);
+      this.okta_call = new PasswordPolicyRecoveryFactorSettings(resourceJson.okta_call);
     }
     if (resourceJson && resourceJson.okta_email) {
-      this.okta_email = new PasswordPolicyRecoveryEmail(this.okta_email);
+      this.okta_email = new PasswordPolicyRecoveryEmail(resourceJson.okta_email);
     }
     if (resourceJson && resourceJson.okta_sms) {
-      this.okta_sms = new PasswordPolicyRecoveryFactorSettings(this.okta_sms);
+      this.okta_sms = new PasswordPolicyRecoveryFactorSettings(resourceJson.okta_sms);
     }
     if (resourceJson && resourceJson.recovery_question) {
-      this.recovery_question = new PasswordPolicyRecoveryQuestion(this.recovery_question);
+      this.recovery_question = new PasswordPolicyRecoveryQuestion(resourceJson.recovery_question);
     }
   }
 

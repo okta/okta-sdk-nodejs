@@ -27,7 +27,7 @@ class PushUserFactor extends UserFactor {
   constructor(resourceJson, client) {
     super(resourceJson, client);
     if (resourceJson && resourceJson.profile) {
-      this.profile = new PushUserFactorProfile(this.profile);
+      this.profile = new PushUserFactorProfile(resourceJson.profile);
     }
   }
 

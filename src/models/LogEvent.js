@@ -47,28 +47,28 @@ class LogEvent extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
     if (resourceJson && resourceJson.actor) {
-      this.actor = new LogActor(this.actor);
+      this.actor = new LogActor(resourceJson.actor);
     }
     if (resourceJson && resourceJson.authenticationContext) {
-      this.authenticationContext = new LogAuthenticationContext(this.authenticationContext);
+      this.authenticationContext = new LogAuthenticationContext(resourceJson.authenticationContext);
     }
     if (resourceJson && resourceJson.client) {
-      this.client = new LogClient(this.client);
+      this.client = new LogClient(resourceJson.client);
     }
     if (resourceJson && resourceJson.debugContext) {
-      this.debugContext = new LogDebugContext(this.debugContext);
+      this.debugContext = new LogDebugContext(resourceJson.debugContext);
     }
     if (resourceJson && resourceJson.outcome) {
-      this.outcome = new LogOutcome(this.outcome);
+      this.outcome = new LogOutcome(resourceJson.outcome);
     }
     if (resourceJson && resourceJson.request) {
-      this.request = new LogRequest(this.request);
+      this.request = new LogRequest(resourceJson.request);
     }
     if (resourceJson && resourceJson.securityContext) {
-      this.securityContext = new LogSecurityContext(this.securityContext);
+      this.securityContext = new LogSecurityContext(resourceJson.securityContext);
     }
     if (resourceJson && resourceJson.transaction) {
-      this.transaction = new LogTransaction(this.transaction);
+      this.transaction = new LogTransaction(resourceJson.transaction);
     }
   }
 

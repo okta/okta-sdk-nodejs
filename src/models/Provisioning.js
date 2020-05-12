@@ -29,10 +29,10 @@ class Provisioning extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
     if (resourceJson && resourceJson.conditions) {
-      this.conditions = new ProvisioningConditions(this.conditions);
+      this.conditions = new ProvisioningConditions(resourceJson.conditions);
     }
     if (resourceJson && resourceJson.groups) {
-      this.groups = new ProvisioningGroups(this.groups);
+      this.groups = new ProvisioningGroups(resourceJson.groups);
     }
   }
 

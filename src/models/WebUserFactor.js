@@ -25,7 +25,7 @@ class WebUserFactor extends UserFactor {
   constructor(resourceJson, client) {
     super(resourceJson, client);
     if (resourceJson && resourceJson.profile) {
-      this.profile = new WebUserFactorProfile(this.profile);
+      this.profile = new WebUserFactorProfile(resourceJson.profile);
     }
   }
 

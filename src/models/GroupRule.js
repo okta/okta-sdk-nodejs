@@ -33,10 +33,10 @@ class GroupRule extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
     if (resourceJson && resourceJson.actions) {
-      this.actions = new GroupRuleAction(this.actions);
+      this.actions = new GroupRuleAction(resourceJson.actions);
     }
     if (resourceJson && resourceJson.conditions) {
-      this.conditions = new GroupRuleConditions(this.conditions);
+      this.conditions = new GroupRuleConditions(resourceJson.conditions);
     }
   }
 

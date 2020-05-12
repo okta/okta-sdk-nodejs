@@ -27,10 +27,10 @@ class CSRMetadata extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
     if (resourceJson && resourceJson.subject) {
-      this.subject = new CSRMetadataSubject(this.subject);
+      this.subject = new CSRMetadataSubject(resourceJson.subject);
     }
     if (resourceJson && resourceJson.subjectAltNames) {
-      this.subjectAltNames = new CSRMetadataSubjectAltNames(this.subjectAltNames);
+      this.subjectAltNames = new CSRMetadataSubjectAltNames(resourceJson.subjectAltNames);
     }
   }
 

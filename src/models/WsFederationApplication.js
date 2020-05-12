@@ -26,7 +26,7 @@ class WsFederationApplication extends Application {
   constructor(resourceJson, client) {
     super(resourceJson, client);
     if (resourceJson && resourceJson.settings) {
-      this.settings = new WsFederationApplicationSettings(this.settings);
+      this.settings = new WsFederationApplicationSettings(resourceJson.settings);
     }
   }
 

@@ -28,10 +28,10 @@ class OktaSignOnPolicyRule extends PolicyRule {
   constructor(resourceJson, client) {
     super(resourceJson, client);
     if (resourceJson && resourceJson.actions) {
-      this.actions = new OktaSignOnPolicyRuleActions(this.actions);
+      this.actions = new OktaSignOnPolicyRuleActions(resourceJson.actions);
     }
     if (resourceJson && resourceJson.conditions) {
-      this.conditions = new OktaSignOnPolicyRuleConditions(this.conditions);
+      this.conditions = new OktaSignOnPolicyRuleConditions(resourceJson.conditions);
     }
   }
 

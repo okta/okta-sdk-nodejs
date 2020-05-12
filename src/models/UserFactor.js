@@ -33,7 +33,7 @@ class UserFactor extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
     if (resourceJson && resourceJson.verify) {
-      this.verify = new VerifyFactorRequest(this.verify);
+      this.verify = new VerifyFactorRequest(resourceJson.verify);
     }
   }
 

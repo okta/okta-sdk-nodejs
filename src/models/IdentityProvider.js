@@ -35,10 +35,10 @@ class IdentityProvider extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
     if (resourceJson && resourceJson.policy) {
-      this.policy = new IdentityProviderPolicy(this.policy);
+      this.policy = new IdentityProviderPolicy(resourceJson.policy);
     }
     if (resourceJson && resourceJson.protocol) {
-      this.protocol = new Protocol(this.protocol);
+      this.protocol = new Protocol(resourceJson.protocol);
     }
   }
 

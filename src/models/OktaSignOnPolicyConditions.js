@@ -25,7 +25,7 @@ class OktaSignOnPolicyConditions extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
     if (resourceJson && resourceJson.people) {
-      this.people = new PolicyPeopleCondition(this.people);
+      this.people = new PolicyPeopleCondition(resourceJson.people);
     }
   }
 

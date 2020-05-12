@@ -27,10 +27,10 @@ class GroupRulePeopleCondition extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
     if (resourceJson && resourceJson.groups) {
-      this.groups = new GroupRuleGroupCondition(this.groups);
+      this.groups = new GroupRuleGroupCondition(resourceJson.groups);
     }
     if (resourceJson && resourceJson.users) {
-      this.users = new GroupRuleUserCondition(this.users);
+      this.users = new GroupRuleUserCondition(resourceJson.users);
     }
   }
 

@@ -28,7 +28,7 @@ class DevicePolicyRuleCondition extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
     if (resourceJson && resourceJson.platform) {
-      this.platform = new DevicePolicyRuleConditionPlatform(this.platform);
+      this.platform = new DevicePolicyRuleConditionPlatform(resourceJson.platform);
     }
   }
 

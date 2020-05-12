@@ -31,7 +31,7 @@ class LogAuthenticationContext extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
     if (resourceJson && resourceJson.issuer) {
-      this.issuer = new LogIssuer(this.issuer);
+      this.issuer = new LogIssuer(resourceJson.issuer);
     }
   }
 

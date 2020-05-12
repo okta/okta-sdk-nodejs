@@ -38,7 +38,7 @@ class AppUser extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
     if (resourceJson && resourceJson.credentials) {
-      this.credentials = new AppUserCredentials(this.credentials);
+      this.credentials = new AppUserCredentials(resourceJson.credentials);
     }
   }
 

@@ -33,7 +33,7 @@ class IonField extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
     if (resourceJson && resourceJson.form) {
-      this.form = new IonForm(this.form);
+      this.form = new IonForm(resourceJson.form);
     }
   }
 

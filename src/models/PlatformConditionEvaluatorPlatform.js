@@ -26,7 +26,7 @@ class PlatformConditionEvaluatorPlatform extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
     if (resourceJson && resourceJson.os) {
-      this.os = new PlatformConditionEvaluatorPlatformOperatingSystem(this.os);
+      this.os = new PlatformConditionEvaluatorPlatformOperatingSystem(resourceJson.os);
     }
   }
 

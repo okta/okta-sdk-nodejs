@@ -44,19 +44,19 @@ class Application extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
     if (resourceJson && resourceJson.accessibility) {
-      this.accessibility = new ApplicationAccessibility(this.accessibility);
+      this.accessibility = new ApplicationAccessibility(resourceJson.accessibility);
     }
     if (resourceJson && resourceJson.credentials) {
-      this.credentials = new ApplicationCredentials(this.credentials);
+      this.credentials = new ApplicationCredentials(resourceJson.credentials);
     }
     if (resourceJson && resourceJson.licensing) {
-      this.licensing = new ApplicationLicensing(this.licensing);
+      this.licensing = new ApplicationLicensing(resourceJson.licensing);
     }
     if (resourceJson && resourceJson.settings) {
-      this.settings = new ApplicationSettings(this.settings);
+      this.settings = new ApplicationSettings(resourceJson.settings);
     }
     if (resourceJson && resourceJson.visibility) {
-      this.visibility = new ApplicationVisibility(this.visibility);
+      this.visibility = new ApplicationVisibility(resourceJson.visibility);
     }
   }
 
