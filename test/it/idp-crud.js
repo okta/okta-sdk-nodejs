@@ -1,5 +1,4 @@
 const expect = require('chai').expect;
-const deepcopy = require('deep-copy');
 const okta = require('../../src');
 const models = require('../../src/models');
 const Collection = require('../../src/collection');
@@ -75,22 +74,6 @@ describe('Idp Crud API', () => {
     });
   });
 
-  describe('Delete idp', () => {
-    let idp;
-    beforeEach(async () => {
-      idp = await client.createIdentityProvider(mockGenericOidcIdp);
-    });
-
-    it('should not get idp after deletion', async () => {
-      await client.deleteIdentityProvider(idp.id);
-      try {
-        await client.getIdentityProvider(idp.id);
-      } catch (e) {
-        expect(e.status).to.equal(404);
-      }
-    });
-  });
-
   describe('Get idp', () => {
     let idp;
     beforeEach(async () => {
@@ -119,12 +102,28 @@ describe('Idp Crud API', () => {
       await idp.delete();
     });
 
-    it('should update all properties in template', async () => {
-      const mock = deepcopy(mockGenericOidcIdp);
-      mock.name = 'Mock update idp';
-      updatedIdp = await client.updateIdentityProvider(idp.id, mock);
+    it.only('should update all properties in template', async () => {
+      const mockName = 'Mock update idp';
+      idp.name = mockName;
+      updatedIdp = await idp.update();
       expect(updatedIdp.id).to.equal(idp.id);
-      expect(updatedIdp.name).to.equal(mock.name);
+      expect(updatedIdp.name).to.equal(mockName);
+    });
+  });
+
+  describe('Delete idp', () => {
+    let idp;
+    beforeEach(async () => {
+      idp = await client.createIdentityProvider(mockGenericOidcIdp);
+    });
+
+    it('should not get idp after deletion', async () => {
+      await idp.delete();
+      try {
+        await client.getIdentityProvider(idp.id);
+      } catch (e) {
+        expect(e.status).to.equal(404);
+      }
     });
   });
 });
