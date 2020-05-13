@@ -107,13 +107,6 @@ class IdentityProvider extends Resource {
 
   /**
    * @param {string} keyId
-   */
-  deleteSigningKey(keyId) {
-    return this.client.deleteIdentityProviderKey(keyId);
-  }
-
-  /**
-   * @param {string} keyId
    * @param {object} queryParameters
    * @returns {Promise<JsonWebKey>}
    */
