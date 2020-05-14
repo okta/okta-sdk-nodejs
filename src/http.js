@@ -75,10 +75,10 @@ class Http {
       .catch(error => {
         // Handle oauth access token expiration
         if (this.oauth && error && error.status === 401) {
+          this.oauth.clearCachedAccessToken();
           return this.oauth.introspectAccessToken()
             .then(({ active }) => {
               if (active === false) {
-                this.oauth.clearCachedAccessToken();
                 return this.http(uri, request, context);
               }
               // Access token is still active or other error happen, re-throw
