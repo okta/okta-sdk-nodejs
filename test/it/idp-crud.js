@@ -38,21 +38,15 @@ describe('Idp Crud API', () => {
     });
 
     it('should return a collection of idp by type', async () => {
-      let count = 0;
       await client.listIdentityProviders({ type: 'OIDC' }).each(idp => {
         expect(idp.type).to.equal('OIDC');
-        count++;
       });
-      expect(count).to.equal(1);
     });
 
     it('should return a collection of idp by q', async () => {
-      let count = 0;
       await client.listIdentityProviders({ q: 'OIDC' }).each(idp => {
         expect(idp.type).to.equal('OIDC');
-        count++;
       });
-      expect(count).to.equal(1);
     });
   });
 
@@ -102,7 +96,7 @@ describe('Idp Crud API', () => {
       await idp.delete();
     });
 
-    it.only('should update all properties in template', async () => {
+    it('should update all properties in template', async () => {
       const mockName = 'Mock update idp';
       idp.name = mockName;
       updatedIdp = await idp.update();
