@@ -151,7 +151,11 @@ describe('Linked Object API', () => {
       });
     });
 
-    describe('Delete linked object value', () => {
+    describe.only('Delete linked object value', () => {
+      beforeEach(async () => {
+        await associateUser.setLinkedObject(linkedObject.primary.name, primaryUser.id);
+      });
+
       it('should return 204 after deleting linked object', async () => {
         const res = await client.removeLinkedObjectForUser(associateUser.id, linkedObject.primary.name);
         expect(res.status).to.equal(204);
