@@ -1,0 +1,14 @@
+{
+  "primary": {
+    "name": "mockManager",
+    "title": "Manager",
+    "description": "Manager link property",
+    "type": "USER"
+  },
+  "associated": {
+    "name": "mockSubordinate",
+    "title": "Subordinate",
+    "description": "Subordinate link property",
+    "type": "USER"
+  }
+}
