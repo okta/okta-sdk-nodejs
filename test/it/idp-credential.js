@@ -58,6 +58,7 @@ describe('Idp Lifecycle API', () => {
       it('should create key', async () => {
         key = await client.createIdentityProviderKey(mockJwk);
         expect(key).to.be.exist;
+        expect(key).to.be.instanceOf(models.JsonWebKey);
       });
     });
 
@@ -72,6 +73,7 @@ describe('Idp Lifecycle API', () => {
       it('should get key', async () => {
         key = await client.getIdentityProviderKey(key.kid);
         expect(key).to.be.exist;
+        expect(key).to.be.instanceOf(models.JsonWebKey);
       });
     });
 
