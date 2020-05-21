@@ -29,10 +29,6 @@ describe('Linked Object API', () => {
       it('should return instance of LinkedObject model', async () => {
         linkedObject = await client.addLinkedObjectDefinition(mockLinkedObject);
         expect(linkedObject).to.be.instanceOf(models.LinkedObject);
-      });
-
-      it('should match name from request', async () => {
-        linkedObject = await client.addLinkedObjectDefinition(mockLinkedObject);
         expect(linkedObject.primary.name).to.equal(mockLinkedObject.primary.name);
         expect(linkedObject.associated.name).to.equal(mockLinkedObject.associated.name);
       });
@@ -151,7 +147,7 @@ describe('Linked Object API', () => {
       });
     });
 
-    describe.only('Delete linked object value', () => {
+    describe('Delete linked object value', () => {
       beforeEach(async () => {
         await associateUser.setLinkedObject(linkedObject.primary.name, primaryUser.id);
       });
