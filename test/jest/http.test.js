@@ -402,8 +402,8 @@ describe('Http class', () => {
     });
 
     describe('Oauth', () => {
-      it('should get new token and retry request when accessToken is not active any more', () => {
-        expect.assertions(5);
+      it('should retry to get new token when response staus is 401', () => {
+        expect.assertions(4);
         requestExecutor = {
           fetch: jest.fn().mockImplementation((request) => {
             if (request.headers.Authorization === 'Bearer expired_token') {
@@ -424,31 +424,55 @@ describe('Http class', () => {
           }),
           clearCachedAccessToken: jest.fn().mockImplementation(() => {
             oauth.accessToken = null;
-          }),
-          introspectAccessToken: jest.fn().mockResolvedValueOnce({ active: false })
+          })
         };
         const http = new Http({ requestExecutor, oauth });
         jest.spyOn(http, 'http');
         return http.http('http://fakey.local')
           .then(res => {
-            expect(http.http).toHaveBeenCalledTimes(2);
+            expect(http.http).toHaveBeenCalledTimes(1);
             expect(oauth.getAccessToken).toHaveBeenCalledTimes(2);
-            expect(oauth.introspectAccessToken).toHaveBeenCalledTimes(1);
             expect(oauth.clearCachedAccessToken).toHaveBeenCalledTimes(1);
             expect(res.status).toEqual(200);
           });
       });
-      it('should throw error if status is 401, but access token is still active', () => {
+      it('should retry only one time when response staus is 401', () => {
+        expect.assertions(5);
+        requestExecutor = {
+          fetch: jest.fn().mockImplementation((request) => {
+            if (request.headers.Authorization === 'Bearer invalid_token') {
+              response.status = 401;
+            } else if (request.headers.Authorization === 'Bearer valid_token') {
+              response.status = 200;
+            }
+            return Promise.resolve(response);
+          })
+        };
+        const oauth = {
+          getAccessToken: jest.fn().mockResolvedValue({ access_token: 'invalid_token' }),
+          clearCachedAccessToken: jest.fn()
+        };
+        const http = new Http({ requestExecutor, oauth });
+        jest.spyOn(http, 'http');
+        return http.http('http://fakey.local')
+          .catch(error => {
+            expect(http.http).toHaveBeenCalledTimes(1);
+            expect(oauth.getAccessToken).toHaveBeenCalledTimes(2);
+            expect(oauth.clearCachedAccessToken).toHaveBeenCalledTimes(1);
+            expect(error).toBeInstanceOf(OktaApiError);
+            expect(error.status).toEqual(401);
+          });
+      });
+      it('should throw error from oauth.getAccessToken', () => {
         expect.assertions(1);
         response.status = 401;
         const oauth = {
-          getAccessToken: jest.fn().mockResolvedValueOnce({ access_token: 'fake token' }),
-          introspectAccessToken: jest.fn().mockResolvedValueOnce({ active: true })
+          getAccessToken: jest.fn().mockRejectedValueOnce(new Error('bad jwk'))
         };
         const http = new Http({ requestExecutor, oauth });
         return http.http('http://fakey.local')
           .catch(err => {
-            expect(err).toBeInstanceOf(OktaApiError);
+            expect(err.message).toEqual('bad jwk');
           });
       });
     });

@@ -69,45 +69,44 @@ class Http {
     request.headers = Object.assign(this.defaultHeaders, request.headers);
     request.method = request.method || 'get';
 
-    const promise = this.prepareRequest(request)
-      .then(() => this.requestExecutor.fetch(request))
-      .then(Http.errorFilter)
-      .catch(error => {
-        // Handle oauth access token expiration
-        if (this.oauth && error && error.status === 401) {
-          this.oauth.clearCachedAccessToken();
-          return this.oauth.introspectAccessToken()
-            .then(({ active }) => {
-              if (active === false) {
-                return this.http(uri, request, context);
-              }
-              // Access token is still active or other error happen, re-throw
-              throw error;
-            });
-        }
+    let retriedOnAuthError = false;
+    const execute = () => {
+      const promise = this.prepareRequest(request)
+        .then(() => this.requestExecutor.fetch(request))
+        .then(Http.errorFilter)
+        .catch(error => {
+          // Clear cached token then retry request one more time
+          if (this.oauth && error && error.status === 401 && !retriedOnAuthError) {
+            retriedOnAuthError = true;
+            this.oauth.clearCachedAccessToken();
+            return execute();
+          }
 
-        throw error;
-      });
+          throw error;
+        });
 
-    if (!this.cacheMiddleware) {
-      return promise;
-    }
-
-    const ctx = {
-      uri, // TODO: remove unused property. req.url should be the key.
-      isCollection: context.isCollection,
-      resources: context.resources,
-      req: request,
-      cacheStore: this.cacheStore
-    };
-    return this.cacheMiddleware(ctx, () => {
-      if (ctx.res) {
-        return;
+      if (!this.cacheMiddleware) {
+        return promise;
       }
 
-      return promise.then(res => ctx.res = res);
-    })
-    .then(() => ctx.res);
+      const ctx = {
+        uri, // TODO: remove unused property. req.url should be the key.
+        isCollection: context.isCollection,
+        resources: context.resources,
+        req: request,
+        cacheStore: this.cacheStore
+      };
+      return this.cacheMiddleware(ctx, () => {
+        if (ctx.res) {
+          return;
+        }
+
+        return promise.then(res => ctx.res = res);
+      })
+      .then(() => ctx.res);
+    };
+
+    return execute();
   }
 
   delete(uri, request, context) {

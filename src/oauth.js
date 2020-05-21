@@ -57,34 +57,6 @@ class OAuth {
       });
   }
 
-  introspectAccessToken() {
-    if (!this.accessToken) {
-      return Promise.reject(new Error('No accessToken in cache to be introspected.'));
-    }
-
-    const endpoint = '/oauth2/v1/introspect';
-    return this.getJwt(endpoint)
-      .then(jwt => {
-        const params = formatParams({
-          token: this.accessToken,
-          token_type_hint: 'access_token',
-          client_assertion_type: 'urn:ietf:params:oauth:client-assertion-type:jwt-bearer',
-          client_assertion: jwt
-        });
-        return this.client.requestExecutor.fetch({
-          url: `${this.client.baseUrl}${endpoint}`,
-          method: 'POST',
-          body: params,
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/x-www-form-urlencoded'
-          }
-        });
-      })
-      .then(Http.errorFilter)
-      .then(res => res.json());
-  }
-
   clearCachedAccessToken() {
     this.accessToken = null;
   }
