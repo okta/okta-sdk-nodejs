@@ -1,0 +1,47 @@
+{
+  "type": "OKTA_SIGN_ON",
+  "name": "Mock Policy",
+  "description": "mock policy for testing",
+  "conditions": {
+      "people": {
+          "groups": {
+              "include": []
+          }
+      }
+  },
+  "_links": {
+    "self": {
+      "hints": {
+        "allow": [
+          "GET",
+          "PUT",
+          "DELETE"
+        ]
+      }
+    },
+    "active": {
+      "hints": {
+        "allow": [
+          "POST"
+        ]
+      }
+    },
+    "deactivate": {
+      "hints": {
+        "allow": [
+          "POST"
+        ]
+      }
+    },
+    "rules": {
+      "hints": {
+        "allow": [
+          "GET",
+          "POST",
+          "PUT",
+          "DELETE"
+        ]
+      }
+    }
+  }
+}
