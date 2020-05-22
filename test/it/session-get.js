@@ -35,6 +35,11 @@ describe('Sessions API', () => {
   });
 
   it('should allow me to get an existing session', async () => {
+    if (process.env.OKTA_CLIENT_AUTHORIZATIONMODE === "PrivateKey") {
+      console.log("Test has been skipped. The endpoint does not support PrivateKey.")
+      return;
+    }
+
     // 1 - create session
     const transaction = await utils.authenticateUser(client, createdUser.profile.login, 'Abcd1234');
     const session = await client.createSession({

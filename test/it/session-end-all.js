@@ -34,6 +34,11 @@ describe('Sessions API', () => {
   });
 
   it('should allow me to end all existing sessions for a user', async () => {
+    if (process.env.OKTA_CLIENT_AUTHORIZATIONMODE === "PrivateKey") {
+      console.log("Test has been skipped. The endpoint does not support PrivateKey.")
+      return;
+    }
+
     // 1 - create session
     const transaction1 = await utils.authenticateUser(client, createdUser.profile.login, 'Abcd1234');
     const session1 = await client.createSession({

@@ -20,6 +20,11 @@ const client = new okta.Client({
 describe('client.listApplicationKeys()', () => {
 
   it('should allow me to get the application keys for an application', async () => {
+    if (process.env.OKTA_CLIENT_AUTHORIZATIONMODE === "PrivateKey") {
+      console.log("Test has been skipped. The endpoint does not support PrivateKey.")
+      return;
+    }
+
     const application = utils.getBookmarkApplication();
 
     let createdApplication;
