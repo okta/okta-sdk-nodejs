@@ -1,0 +1,18 @@
+{
+  "type": "SIGN_ON",
+  "name": "Mock deny rule",
+  "conditions": {
+      "network": {
+          "connection": "ANYWHERE"
+      },
+      "authContext": {
+          "authType": "ANY"
+      }
+  },
+  "actions": {
+      "signon": {
+          "access": "DENY",
+          "requireFactor": false
+      }
+  }
+}
