@@ -67,6 +67,12 @@ class Http {
 
         try {
           err = new OktaApiError(response.url, response.status, JSON.parse(body), response.headers);
+          if (err.errorCode === 'E0000011') {
+            // eslint-disable-next-line no-console
+            console.error(err);
+            process.exit(1);
+          }
+
         } catch (e) {
           err = new HttpError(response.url, response.status, body, response.headers);
         }
