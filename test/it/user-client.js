@@ -7,7 +7,7 @@ const mockUser = require('./mocks/user-without-credentials.json');
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
 if (process.env.OKTA_USE_MOCK) {
-  orgUrl = `${orgUrl}/user-applink`;
+  orgUrl = `${orgUrl}/user-client`;
 }
 
 const client = new okta.Client({
