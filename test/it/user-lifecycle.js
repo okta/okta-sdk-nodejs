@@ -95,4 +95,28 @@ describe('User lifecycle API', () => {
       }
     });
   });
+
+  describe('reset factors', () => {
+    beforeEach(async () => {
+      createdUser = await client.createUser(newUser, { activate : 'true' });
+      utils.validateUser(createdUser, newUser);
+    });
+
+    it('should get response with status 200', async () => {
+      const response = await createdUser.resetFactors();
+      expect(response.status).to.be.equal(200);
+    });
+  });
+
+  describe('delete sessions', () => {
+    beforeEach(async () => {
+      createdUser = await client.createUser(newUser, { activate : 'true' });
+      utils.validateUser(createdUser, newUser);
+    });
+
+    it('should get response with status 204', async () => {
+      const response = await createdUser.endAllSessions();
+      expect(response.status).to.be.equal(204);
+    });
+  });
 });
