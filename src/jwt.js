@@ -32,12 +32,12 @@ function getPemAndJwk(privateKey) {
   }
 }
 
-function makeJwt(client) {
+function makeJwt(client, endpoint) {
   const now = Math.floor(new Date().getTime() / 1000); // seconds since epoch
   const plus5Minutes = new Date((now + (5 * 60)) * 1000); // Date object
 
   const claims = {
-    aud: `${client.baseUrl}/oauth2/v1/token`,
+    aud: `${client.baseUrl}${endpoint}`,
   };
   return getPemAndJwk(client.privateKey)
     .then(res => {

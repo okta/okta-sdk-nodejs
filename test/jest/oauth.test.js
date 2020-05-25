@@ -1,6 +1,7 @@
 
 
 const JWT_STRING = 'fake.jwt.string';
+const FAKE_ACCESS_TOKEN = { access_token: 'fake token' };
 const mockJwt = {
   compact: jest.fn().mockReturnValue(JWT_STRING)
 };
@@ -10,12 +11,21 @@ const JWT = {
   })
 };
 jest.setMock('../../src/jwt', JWT);
+const Http = {
+  errorFilter: jest.fn().mockImplementation(() => {
+    return Promise.resolve({
+      json: jest.fn().mockResolvedValue(FAKE_ACCESS_TOKEN)
+    });
+  })
+};
+jest.setMock('../../src/http', Http);
 
 const OAuth = require('../../src/oauth');
 
 describe('OAuth', () => {
   let client;
   let oauth;
+  const endpoint = '/oauth/v1/token';
   beforeEach(() => {
     client = {
       clientId: 'fake-client-id',
@@ -30,39 +40,23 @@ describe('OAuth', () => {
     mockJwt.compact.mockClear();
   });
   describe('constructor', () => {
-    it('initializes jwt to null', () => {
-      expect(oauth.jwt).toBe(null);
+    it('initializes accessToken to null', () => {
+      expect(oauth.accessToken).toBe(null);
     });
   });
   describe('getJwt', () => {
     it('calls "makeJwt"', () => {
-      return oauth.getJwt()
+      return oauth.getJwt(endpoint)
         .then(() => {
-          expect(JWT.makeJwt).toHaveBeenCalledWith(client);
+          expect(JWT.makeJwt).toHaveBeenCalledWith(client, endpoint);
         });
     });
     it('compacts the JWT', () => {
-      return oauth.getJwt()
-      .then(jwt => {
-        expect(mockJwt.compact).toHaveBeenCalled();
-        expect(typeof jwt).toBe('string');
-      });
-    });
-    it('stores the compacted JWT in memory', () => {
-      return oauth.getJwt()
+      return oauth.getJwt(endpoint)
         .then(jwt => {
-          expect(jwt).toBe(JWT_STRING);
-          expect(oauth.jwt).toBe(JWT_STRING);
+          expect(mockJwt.compact).toHaveBeenCalled();
+          expect(typeof jwt).toBe('string');
         });
-    });
-    it('returns JWT from memory if it exists', () => {
-      const jwtStr = 'a.different.jwt';
-      oauth.jwt = jwtStr;
-      return oauth.getJwt()
-      .then(jwt => {
-        expect(jwt).toBe(jwtStr);
-        expect(oauth.jwt).toBe(jwtStr);
-      });
     });
   });
   describe('getAccessToken', () => {
@@ -74,8 +68,9 @@ describe('OAuth', () => {
         });
     });
     it('makes a POST request to the token endpoint', () => {
+      expect.assertions(3);
       return oauth.getAccessToken()
-        .then(() => {
+        .then(accessToken => {
           expect(client.requestExecutor.fetch).toHaveBeenCalledWith({
             url: 'http://localhost/oauth2/v1/token',
             method: 'POST',
@@ -90,6 +85,8 @@ describe('OAuth', () => {
               'Content-Type': 'application/x-www-form-urlencoded'
             }
           });
+          expect(accessToken).toEqual(FAKE_ACCESS_TOKEN);
+          expect(oauth.accessToken).toEqual(FAKE_ACCESS_TOKEN);
         });
     });
   });

@@ -21,6 +21,26 @@ const defaultCacheMiddleware = require('./default-cache-middleware');
  * @class Http
  */
 class Http {
+  static errorFilter(response) {
+    if (response.status >= 200 && response.status < 300) {
+      return Promise.resolve(response);
+    } else {
+      return response.text()
+        .then(body => {
+          let err;
+
+          // If the response is JSON, assume it's an Okta API error. Otherwise, assume it's some other HTTP error
+
+          try {
+            err = new OktaApiError(response.url, response.status, JSON.parse(body), response.headers);
+          } catch (e) {
+            err = new HttpError(response.url, response.status, body, response.headers);
+          }
+          throw err;
+        });
+    }
+  }
+
   constructor(httpConfig) {
     this.defaultHeaders = {};
     this.requestExecutor = httpConfig.requestExecutor;
@@ -36,43 +56,10 @@ class Http {
       return Promise.resolve();
     }
 
-    let getToken;
-    if (this.accessToken) {
-      getToken = Promise.resolve(this.accessToken);
-    } else {
-      getToken = this.oauth.getAccessToken()
-        .then(this.errorFilter)
-        .then(res => res.json())
-        .then(accessToken => {
-          this.accessToken = accessToken;
-          return accessToken;
-        });
-    }
-
-    return getToken
+    return this.oauth.getAccessToken()
         .then(accessToken => {
           request.headers.Authorization = `Bearer ${accessToken.access_token}`;
         });
-  }
-
-  errorFilter(response) {
-    if (response.status >= 200 && response.status < 300) {
-      return response;
-    } else {
-      return response.text()
-      .then(body => {
-        let err;
-
-        // If the response is JSON, assume it's an Okta API error. Otherwise, assume it's some other HTTP error
-
-        try {
-          err = new OktaApiError(response.url, response.status, JSON.parse(body), response.headers);
-        } catch (e) {
-          err = new HttpError(response.url, response.status, body, response.headers);
-        }
-        throw err;
-      });
-    }
   }
 
   http(uri, request, context) {
@@ -81,29 +68,45 @@ class Http {
     request.url = uri;
     request.headers = Object.assign(this.defaultHeaders, request.headers);
     request.method = request.method || 'get';
-    if (!this.cacheMiddleware) {
-      return this.prepareRequest(request)
+
+    let retriedOnAuthError = false;
+    const execute = () => {
+      const promise = this.prepareRequest(request)
         .then(() => this.requestExecutor.fetch(request))
-        .then(this.errorFilter);
-    }
-    const ctx = {
-      uri, // TODO: remove unused property. req.url should be the key.
-      isCollection: context.isCollection,
-      resources: context.resources,
-      req: request,
-      cacheStore: this.cacheStore
-    };
-    return this.cacheMiddleware(ctx, () => {
-      if (ctx.res) {
-        return;
+        .then(Http.errorFilter)
+        .catch(error => {
+          // Clear cached token then retry request one more time
+          if (this.oauth && error && error.status === 401 && !retriedOnAuthError) {
+            retriedOnAuthError = true;
+            this.oauth.clearCachedAccessToken();
+            return execute();
+          }
+
+          throw error;
+        });
+
+      if (!this.cacheMiddleware) {
+        return promise;
       }
 
-      return this.prepareRequest(request)
-        .then(() => this.requestExecutor.fetch(request))
-        .then(this.errorFilter)
-        .then(res => ctx.res = res);
-    })
-    .then(() => ctx.res);
+      const ctx = {
+        uri, // TODO: remove unused property. req.url should be the key.
+        isCollection: context.isCollection,
+        resources: context.resources,
+        req: request,
+        cacheStore: this.cacheStore
+      };
+      return this.cacheMiddleware(ctx, () => {
+        if (ctx.res) {
+          return;
+        }
+
+        return promise.then(res => ctx.res = res);
+      })
+      .then(() => ctx.res);
+    };
+
+    return execute();
   }
 
   delete(uri, request, context) {

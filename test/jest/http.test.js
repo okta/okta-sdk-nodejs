@@ -39,6 +39,72 @@ describe('Http class', () => {
       expect(http.oauth).toBe(oauth);
     });
   });
+  describe('errorFilter', () => {
+    it('should resolve promise for status in 200 - 300 range', () => {
+      expect.assertions(1);
+      const jsonResponse = { data: 'fake data' };
+      const response = {
+        status: 200,
+        json: jest.fn().mockResolvedValueOnce(jsonResponse)
+      };
+      return Promise.resolve(response)
+        .then(Http.errorFilter)
+        .then(res => res.json())
+        .then(res => {
+          expect(res).toEqual(jsonResponse);
+        });
+    });
+    it('should reject with OktaApiError for json response with status equal or greater than 300', () => {
+      expect.assertions(2);
+      const errorObject = {
+        errorCode: 'a fake error'
+      };
+      const response = {
+        status: 401,
+        url: 'http://fakey.local',
+        headers: { fakeHeaders: true },
+        text: jest.fn().mockResolvedValueOnce(JSON.stringify(errorObject))
+      };
+      return Promise.resolve(response)
+        .then(Http.errorFilter)
+        .catch(err => {
+          expect(err).toBeInstanceOf(OktaApiError);
+          expect(err).toEqual({
+            name: 'OktaApiError',
+            status: 401,
+            errorCode: 'a fake error',
+            errorSummary: '',
+            errorCauses: undefined,
+            errorLink: undefined,
+            errorId: undefined,
+            url: 'http://fakey.local',
+            headers: { fakeHeaders: true },
+            message: 'Okta HTTP 401 a fake error '
+          });
+        });
+    });
+    it('should reject with HttpError for text response with status equal or greater than 300', () => {
+      expect.assertions(2);
+      const response = {
+        status: 500,
+        url: 'http://fakey.local',
+        headers: { fakeHeaders: true },
+        text: jest.fn().mockResolvedValueOnce('an unknown error in plain text')
+      };
+      return Promise.resolve(response)
+        .then(Http.errorFilter)
+        .catch(err => {
+          expect(err).toBeInstanceOf(HttpError);
+          expect(err).toEqual({
+            name: 'HttpError',
+            status: 500,
+            url: 'http://fakey.local',
+            headers: { fakeHeaders: true },
+            message: 'HTTP 500 an unknown error in plain text'
+          });
+        });
+    });
+  });
   describe('prepareRequest', () => {
     let request;
     beforeEach(() => {
@@ -47,6 +113,7 @@ describe('Http class', () => {
       };
     });
     it('does not modify request headers if there is no "oauth" object', () => {
+      expect.assertions(1);
       const http = new Http({});
       return http.prepareRequest(request)
         .then(() => {
@@ -54,82 +121,20 @@ describe('Http class', () => {
         });
     });
     describe('OAuth', () => {
-      let oauth;
-      let getAccessTokenResponse;
-      let accessToken;
-      beforeEach(() => {
-        accessToken = {
+      it('should set Authorization header', () => {
+        expect.assertions(2);
+        const accessToken = {
           access_token: 'abcd1234'
         };
-        getAccessTokenResponse = {
-          status: 200,
-          url: 'http://fakey.local',
-          headers: { fakeHeaders: true },
-          json: jest.fn().mockImplementation(() => Promise.resolve(accessToken))
+        const oauth = {
+          getAccessToken: jest.fn().mockResolvedValueOnce(accessToken)
         };
-        oauth = {
-          getAccessToken: jest.fn().mockImplementation(() => Promise.resolve(getAccessTokenResponse))
-        };
-      });
-      it('Sets authorization header if accessToken has been set', () => {
-        const http = new Http({ oauth });
-        http.accessToken = accessToken;
-        return http.prepareRequest(request)
-          .then(() => {
-            expect(request.headers).toEqual({
-              Authorization: `Bearer ${accessToken.access_token}`
-            });
-          });
-      });
-      it('Requests and sets accessToken if it is not set', () => {
         const http = new Http({ oauth });
         return http.prepareRequest(request)
           .then(() => {
             expect(oauth.getAccessToken).toHaveBeenCalled();
-            expect(http.accessToken).toBe(accessToken);
             expect(request.headers).toEqual({
               Authorization: `Bearer ${accessToken.access_token}`
-            });
-          });
-      });
-      it('Handles API errors', () => {
-        const http = new Http({ oauth });
-        getAccessTokenResponse.status = 401;
-        const errorObj = {
-          errorCode: 'a fake error'
-        };
-        getAccessTokenResponse.text = jest.fn().mockReturnValue(Promise.resolve(JSON.stringify(errorObj)));
-        return http.prepareRequest(request)
-          .catch(err => {
-            expect(err).toBeInstanceOf(OktaApiError);
-            expect(err).toEqual({
-              name: 'OktaApiError',
-              status: 401,
-              errorCode: 'a fake error',
-              errorSummary: '',
-              errorCauses: undefined,
-              errorLink: undefined,
-              errorId: undefined,
-              url: 'http://fakey.local',
-              headers: { fakeHeaders: true },
-              message: 'Okta HTTP 401 a fake error '
-            });
-          });
-      });
-      it('Handles unknown errors', () => {
-        const http = new Http({ oauth });
-        getAccessTokenResponse.status = 500;
-        const errorText = 'an uknown error in plain text';
-        getAccessTokenResponse.text = jest.fn().mockReturnValue(Promise.resolve(errorText));
-        return http.prepareRequest(request)
-          .catch(err => {
-            expect(err).toBeInstanceOf(HttpError);
-            expect(err).toEqual({
-              name: 'HttpError',
-              status: 500,
-              url: 'http://fakey.local',
-              headers: { fakeHeaders: true },
-              message: 'HTTP 500 an uknown error in plain text'
             });
           });
       });
@@ -394,6 +399,82 @@ describe('Http class', () => {
             res: jasmine.any(Object)
           }, jasmine.any(Function));
         });
+    });
+
+    describe('Oauth', () => {
+      it('should retry to get new token when response staus is 401', () => {
+        expect.assertions(4);
+        requestExecutor = {
+          fetch: jest.fn().mockImplementation((request) => {
+            if (request.headers.Authorization === 'Bearer expired_token') {
+              response.status = 401;
+            } else if (request.headers.Authorization === 'Bearer valid_token') {
+              response.status = 200;
+            }
+            return Promise.resolve(response);
+          })
+        };
+        const oauth = {
+          accessToken: { access_token: 'expired_token' },
+          getAccessToken: jest.fn().mockImplementation(() => {
+            if (oauth.accessToken) {
+              return Promise.resolve(oauth.accessToken);
+            }
+            return Promise.resolve({ access_token: 'valid_token' });
+          }),
+          clearCachedAccessToken: jest.fn().mockImplementation(() => {
+            oauth.accessToken = null;
+          })
+        };
+        const http = new Http({ requestExecutor, oauth });
+        jest.spyOn(http, 'http');
+        return http.http('http://fakey.local')
+          .then(res => {
+            expect(http.http).toHaveBeenCalledTimes(1);
+            expect(oauth.getAccessToken).toHaveBeenCalledTimes(2);
+            expect(oauth.clearCachedAccessToken).toHaveBeenCalledTimes(1);
+            expect(res.status).toEqual(200);
+          });
+      });
+      it('should retry only one time when response staus is 401', () => {
+        expect.assertions(5);
+        requestExecutor = {
+          fetch: jest.fn().mockImplementation((request) => {
+            if (request.headers.Authorization === 'Bearer invalid_token') {
+              response.status = 401;
+            } else if (request.headers.Authorization === 'Bearer valid_token') {
+              response.status = 200;
+            }
+            return Promise.resolve(response);
+          })
+        };
+        const oauth = {
+          getAccessToken: jest.fn().mockResolvedValue({ access_token: 'invalid_token' }),
+          clearCachedAccessToken: jest.fn()
+        };
+        const http = new Http({ requestExecutor, oauth });
+        jest.spyOn(http, 'http');
+        return http.http('http://fakey.local')
+          .catch(error => {
+            expect(http.http).toHaveBeenCalledTimes(1);
+            expect(oauth.getAccessToken).toHaveBeenCalledTimes(2);
+            expect(oauth.clearCachedAccessToken).toHaveBeenCalledTimes(1);
+            expect(error).toBeInstanceOf(OktaApiError);
+            expect(error.status).toEqual(401);
+          });
+      });
+      it('should throw error from oauth.getAccessToken', () => {
+        expect.assertions(1);
+        response.status = 401;
+        const oauth = {
+          getAccessToken: jest.fn().mockRejectedValueOnce(new Error('bad jwk'))
+        };
+        const http = new Http({ requestExecutor, oauth });
+        return http.http('http://fakey.local')
+          .catch(err => {
+            expect(err.message).toEqual('bad jwk');
+          });
+      });
     });
   });
 });

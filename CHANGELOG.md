@@ -1,5 +1,9 @@
 # Okta Node SDK Changelog
 
+## 3.3.1
+
+- [#138](https://github.com/okta/okta-sdk-nodejs/pull/138) Add strategy to handle access token refresh
+
 ## 3.2.0
 
 - [#128](https://github.com/okta/okta-sdk-nodejs/pull/128) Adds support for OAuth
