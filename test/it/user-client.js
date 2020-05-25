@@ -16,8 +16,8 @@ const client = new okta.Client({
   requestExecutor: new okta.DefaultRequestExecutor()
 });
 
-describe('User applink API', () => {
-  describe('List applinks', () => {
+describe('User client API', () => {
+  describe('List clients', () => {
     let user;
     beforeEach(async () => {
       mockUser.profile.login = faker.internet.email();
@@ -30,7 +30,7 @@ describe('User applink API', () => {
 
     // Only test on if Collection is returned, since no api has been provided to assign applinks to user
     it('should return a Collection', async () => {
-      const applinks = await user.listAppLinks();
+      const applinks = await user.listClients();
       expect(applinks).to.be.instanceOf(Collection);
     });
   });
