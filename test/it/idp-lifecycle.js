@@ -4,7 +4,7 @@ const mockGenericOidcIdp = require('./mocks/generic-oidc-idp.json');
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
 if (process.env.OKTA_USE_MOCK) {
-  orgUrl = `${orgUrl}/idp-user`;
+  orgUrl = `${orgUrl}/idp-lifecycle`;
 }
 
 const client = new okta.Client({

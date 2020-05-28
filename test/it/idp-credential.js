@@ -9,7 +9,7 @@ const mockCsr = require('./mocks/csr.json');
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
 if (process.env.OKTA_USE_MOCK) {
-  orgUrl = `${orgUrl}/idp-user`;
+  orgUrl = `${orgUrl}/idp-credential`;
 }
 
 const client = new okta.Client({
@@ -18,7 +18,7 @@ const client = new okta.Client({
   requestExecutor: new okta.DefaultRequestExecutor()
 });
 
-describe('Idp Lifecycle API', () => {
+describe('Idp credential API', () => {
   let idp;
   beforeEach(async () => {
     idp = await client.createIdentityProvider(mockGenericOidcIdp);
