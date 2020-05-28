@@ -28,7 +28,7 @@ describe('User applink API', () => {
       await utils.cleanupUser(client, user);
     });
 
-    // Only test on if Collection is returned, since no api has been provided to assign applinks to user
+    // Only test on if Collection is returned, since no api has been provided to assign applink to user
     it('should return a Collection', async () => {
       const applinks = await user.listAppLinks();
       expect(applinks).to.be.instanceOf(Collection);

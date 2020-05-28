@@ -7,7 +7,7 @@ const mockUser = require('./mocks/user-without-credentials.json');
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
 if (process.env.OKTA_USE_MOCK) {
-  orgUrl = `${orgUrl}/user-client`;
+  orgUrl = `${orgUrl}/user-grant`;
 }
 
 const client = new okta.Client({
@@ -16,8 +16,8 @@ const client = new okta.Client({
   requestExecutor: new okta.DefaultRequestExecutor()
 });
 
-describe('User client API', () => {
-  describe('List clients', () => {
+describe('User grants API', () => {
+  describe('List grants', () => {
     let user;
     beforeEach(async () => {
       mockUser.profile.login = faker.internet.email();
@@ -28,10 +28,10 @@ describe('User client API', () => {
       await utils.cleanupUser(client, user);
     });
 
-    // Only test on if Collection is returned, since no api has been provided to assign client to user
+    // Only test on if Collection is returned, since no api has been provided to assign grant to user
     it('should return a Collection', async () => {
-      const applinks = await user.listClients();
-      expect(applinks).to.be.instanceOf(Collection);
+      const grants = await user.listGrants();
+      expect(grants).to.be.instanceOf(Collection);
     });
   });
 });
