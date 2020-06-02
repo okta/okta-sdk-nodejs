@@ -215,7 +215,7 @@ class GeneratedApiClient {
    * Convenience method for /api/v1/apps/{appId}/credentials/csrs/{csrId}/lifecycle/publish
    * @returns {Promise<JsonWebKey>}
    */
-  publishCerCert(appId, csrId, string) {
+  publishCerCert(appId, csrId, certificate) {
     let url = `${this.baseUrl}/api/v1/apps/${appId}/credentials/csrs/${csrId}/lifecycle/publish`;
 
     const resources = [
@@ -224,7 +224,7 @@ class GeneratedApiClient {
     ];
 
     const request = this.http.postJson(url, {
-      body: string
+      body: certificate
     }, {resources});
     return request.then(jsonRes => new models.JsonWebKey(jsonRes, this));
   }
@@ -238,7 +238,7 @@ class GeneratedApiClient {
    * Convenience method for /api/v1/apps/{appId}/credentials/csrs/{csrId}/lifecycle/publish
    * @returns {Promise<JsonWebKey>}
    */
-  publishBinaryCerCert(appId, csrId, string) {
+  publishBinaryCerCert(appId, csrId, certificate) {
     let url = `${this.baseUrl}/api/v1/apps/${appId}/credentials/csrs/${csrId}/lifecycle/publish`;
 
     const resources = [
@@ -247,7 +247,7 @@ class GeneratedApiClient {
     ];
 
     const request = this.http.postJson(url, {
-      body: string
+      body: certificate
     }, {resources});
     return request.then(jsonRes => new models.JsonWebKey(jsonRes, this));
   }
@@ -261,7 +261,7 @@ class GeneratedApiClient {
    * Convenience method for /api/v1/apps/{appId}/credentials/csrs/{csrId}/lifecycle/publish
    * @returns {Promise<JsonWebKey>}
    */
-  publishDerCert(appId, csrId, string) {
+  publishDerCert(appId, csrId, certificate) {
     let url = `${this.baseUrl}/api/v1/apps/${appId}/credentials/csrs/${csrId}/lifecycle/publish`;
 
     const resources = [
@@ -270,7 +270,7 @@ class GeneratedApiClient {
     ];
 
     const request = this.http.postJson(url, {
-      body: string
+      body: certificate
     }, {resources});
     return request.then(jsonRes => new models.JsonWebKey(jsonRes, this));
   }
@@ -284,7 +284,7 @@ class GeneratedApiClient {
    * Convenience method for /api/v1/apps/{appId}/credentials/csrs/{csrId}/lifecycle/publish
    * @returns {Promise<JsonWebKey>}
    */
-  publishBinaryDerCert(appId, csrId, string) {
+  publishBinaryDerCert(appId, csrId, certificate) {
     let url = `${this.baseUrl}/api/v1/apps/${appId}/credentials/csrs/${csrId}/lifecycle/publish`;
 
     const resources = [
@@ -293,7 +293,7 @@ class GeneratedApiClient {
     ];
 
     const request = this.http.postJson(url, {
-      body: string
+      body: certificate
     }, {resources});
     return request.then(jsonRes => new models.JsonWebKey(jsonRes, this));
   }
@@ -307,7 +307,7 @@ class GeneratedApiClient {
    * Convenience method for /api/v1/apps/{appId}/credentials/csrs/{csrId}/lifecycle/publish
    * @returns {Promise<JsonWebKey>}
    */
-  publishBinaryPemCert(appId, csrId, string) {
+  publishBinaryPemCert(appId, csrId, certificate) {
     let url = `${this.baseUrl}/api/v1/apps/${appId}/credentials/csrs/${csrId}/lifecycle/publish`;
 
     const resources = [
@@ -316,7 +316,7 @@ class GeneratedApiClient {
     ];
 
     const request = this.http.postJson(url, {
-      body: string
+      body: certificate
     }, {resources});
     return request.then(jsonRes => new models.JsonWebKey(jsonRes, this));
   }
@@ -2378,7 +2378,7 @@ class GeneratedApiClient {
    * Update the CSR with a signed X.509 certificate and add it into the signing key credentials for the IdP.
    * @returns {Promise<JsonWebKey>}
    */
-  publishCerCertForIdentityProvider(idpId, csrId, string) {
+  publishCerCertForIdentityProvider(idpId, csrId, certificate) {
     let url = `${this.baseUrl}/api/v1/idps/${idpId}/credentials/csrs/${csrId}/lifecycle/publish`;
 
     const resources = [
@@ -2387,7 +2387,7 @@ class GeneratedApiClient {
     ];
 
     const request = this.http.postJson(url, {
-      body: string
+      body: certificate
     }, {resources});
     return request.then(jsonRes => new models.JsonWebKey(jsonRes, this));
   }
@@ -2401,7 +2401,7 @@ class GeneratedApiClient {
    * Update the CSR with a signed X.509 certificate and add it into the signing key credentials for the IdP.
    * @returns {Promise<JsonWebKey>}
    */
-  publishBinaryCerCertForIdentityProvider(idpId, csrId, string) {
+  publishBinaryCerCertForIdentityProvider(idpId, csrId, certificate) {
     let url = `${this.baseUrl}/api/v1/idps/${idpId}/credentials/csrs/${csrId}/lifecycle/publish`;
 
     const resources = [
@@ -2410,7 +2410,7 @@ class GeneratedApiClient {
     ];
 
     const request = this.http.postJson(url, {
-      body: string
+      body: certificate
     }, {resources});
     return request.then(jsonRes => new models.JsonWebKey(jsonRes, this));
   }
@@ -2424,7 +2424,7 @@ class GeneratedApiClient {
    * Update the CSR with a signed X.509 certificate and add it into the signing key credentials for the IdP.
    * @returns {Promise<JsonWebKey>}
    */
-  publishDerCertForIdentityProvider(idpId, csrId, string) {
+  publishDerCertForIdentityProvider(idpId, csrId, certificate) {
     let url = `${this.baseUrl}/api/v1/idps/${idpId}/credentials/csrs/${csrId}/lifecycle/publish`;
 
     const resources = [
@@ -2433,7 +2433,7 @@ class GeneratedApiClient {
     ];
 
     const request = this.http.postJson(url, {
-      body: string
+      body: certificate
     }, {resources});
     return request.then(jsonRes => new models.JsonWebKey(jsonRes, this));
   }
@@ -2447,7 +2447,7 @@ class GeneratedApiClient {
    * Update the CSR with a signed X.509 certificate and add it into the signing key credentials for the IdP.
    * @returns {Promise<JsonWebKey>}
    */
-  publishBinaryDerCertForIdentityProvider(idpId, csrId, string) {
+  publishBinaryDerCertForIdentityProvider(idpId, csrId, certificate) {
     let url = `${this.baseUrl}/api/v1/idps/${idpId}/credentials/csrs/${csrId}/lifecycle/publish`;
 
     const resources = [
@@ -2456,7 +2456,7 @@ class GeneratedApiClient {
     ];
 
     const request = this.http.postJson(url, {
-      body: string
+      body: certificate
     }, {resources});
     return request.then(jsonRes => new models.JsonWebKey(jsonRes, this));
   }
@@ -2470,7 +2470,7 @@ class GeneratedApiClient {
    * Update the CSR with a signed X.509 certificate and add it into the signing key credentials for the IdP.
    * @returns {Promise<JsonWebKey>}
    */
-  publishBinaryPemCertForIdentityProvider(idpId, csrId, string) {
+  publishBinaryPemCertForIdentityProvider(idpId, csrId, certificate) {
     let url = `${this.baseUrl}/api/v1/idps/${idpId}/credentials/csrs/${csrId}/lifecycle/publish`;
 
     const resources = [
@@ -2479,7 +2479,7 @@ class GeneratedApiClient {
     ];
 
     const request = this.http.postJson(url, {
-      body: string
+      body: certificate
     }, {resources});
     return request.then(jsonRes => new models.JsonWebKey(jsonRes, this));
   }

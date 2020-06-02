@@ -45,11 +45,11 @@ class GeneratedApiClient {
     {{#if bodyModel}}
     {{#if responseModel}}
     const request = this.http.postJson(url, {
-      body: {{camelCase bodyModel}}
+      body: {{getBodyModelNameInCamelCase this}}
     }, {resources});
     {{else}}
     const request = this.http.post(url, {
-      body: {{camelCase bodyModel}}
+      body: {{getBodyModelNameInCamelCase this}}
     }, {resources});
     {{/if}}
     {{else}}
@@ -64,11 +64,11 @@ class GeneratedApiClient {
     {{#if bodyModel}}
     {{#if responseModel}}
     const request = this.http.putJson(url, {
-      body: {{camelCase bodyModel}}
+      body: {{getBodyModelNameInCamelCase this}}
     }, {resources});
     {{else}}
     const request = this.http.put(url, {
-      body: {{camelCase bodyModel}}
+      body: {{getBodyModelNameInCamelCase this}}
     }, {resources});
     {{/if}}
     {{else}}
