@@ -16,6 +16,18 @@ class ModelResolver {
   }
 }
 
+const getBodyModelNameInCamelCase = operation => {
+  const { bodyModel, parameters } = operation;
+  let bodyModelName = bodyModel;
+  if (bodyModel === 'string') {
+    const bodyParam = parameters.find(param => param.in === 'body');
+    if (bodyParam) {
+      bodyModelName = bodyParam.name;
+    }
+  }
+  return _.camelCase(bodyModelName);
+};
+
 /**
  * This file is used by the @okta/openapi generator.  It defines language-specific
  * post-processing of the JSON spec, as well as handebars helpers.  This file is meant
@@ -138,24 +150,28 @@ js.process = ({spec, operations, models, handlebars}) => {
   });
 
   handlebars.registerHelper('operationArgumentBuilder', (operation) => {
-    const args = [];
+    const { bodyModel, method, pathParams, queryParams, parameters } = operation;
 
-    operation.pathParams.map((arg) => args.push(arg.name));
+    const args = pathParams.reduce((acc, curr) => {
+      acc.push(curr.name);
+      return acc;
+    }, []);
 
-    if (
-      !operation.isArray 
-      && (operation.method === 'post' || operation.method === 'put') 
-      && operation.bodyModel
-    ) {
-      args.push(_.camelCase(operation.bodyModel));
+    if (!operation.isArray && (method === 'post' || method === 'put') && bodyModel) {
+      const bodyModelName = getBodyModelNameInCamelCase(operation);
+      if (bodyModelName) {
+        args.push(bodyModelName);
+      }
     }
 
-    if (operation.queryParams.length) {
+    if (queryParams.length) {
       args.push('queryParameters');
     }
 
     return args.join(', ');
   });
+
+  handlebars.registerHelper('getBodyModelNameInCamelCase', getBodyModelNameInCamelCase);
 
   handlebars.registerHelper('modelMethodPublicArgumentBuilder', (method, modelName) => {
 
