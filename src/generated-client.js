@@ -67,6 +67,7 @@ class GeneratedApiClient {
     const resources = [];
 
     const request = this.http.postJson(url, {
+      headers: { 'Content-Type': 'application/json' },
       body: application
     }, {resources});
     return request.then(jsonRes => new factories.Application().createInstance(jsonRes, this));
@@ -128,6 +129,7 @@ class GeneratedApiClient {
     ];
 
     const request = this.http.putJson(url, {
+      headers: { 'Content-Type': 'application/json' },
       body: application
     }, {resources});
     return request.then(jsonRes => new factories.Application().createInstance(jsonRes, this));
@@ -162,6 +164,7 @@ class GeneratedApiClient {
     ];
 
     const request = this.http.postJson(url, {
+      headers: { 'Content-Type': 'application/json' },
       body: csrMetadata
     }, {resources});
     return request.then(jsonRes => new models.Csr(jsonRes, this));
@@ -224,6 +227,7 @@ class GeneratedApiClient {
     ];
 
     const request = this.http.postJson(url, {
+      headers: { 'Content-Type': 'application/x-x509-ca-cert' },
       body: certificate
     }, {resources});
     return request.then(jsonRes => new models.JsonWebKey(jsonRes, this));
@@ -247,6 +251,7 @@ class GeneratedApiClient {
     ];
 
     const request = this.http.postJson(url, {
+      headers: { 'Content-Type': 'application/x-x509-ca-cert' },
       body: certificate
     }, {resources});
     return request.then(jsonRes => new models.JsonWebKey(jsonRes, this));
@@ -270,6 +275,7 @@ class GeneratedApiClient {
     ];
 
     const request = this.http.postJson(url, {
+      headers: { 'Content-Type': 'application/pkix-cert' },
       body: certificate
     }, {resources});
     return request.then(jsonRes => new models.JsonWebKey(jsonRes, this));
@@ -293,6 +299,7 @@ class GeneratedApiClient {
     ];
 
     const request = this.http.postJson(url, {
+      headers: { 'Content-Type': 'application/pkix-cert' },
       body: certificate
     }, {resources});
     return request.then(jsonRes => new models.JsonWebKey(jsonRes, this));
@@ -316,6 +323,7 @@ class GeneratedApiClient {
     ];
 
     const request = this.http.postJson(url, {
+      headers: { 'Content-Type': 'application/x-pem-file' },
       body: certificate
     }, {resources});
     return request.then(jsonRes => new models.JsonWebKey(jsonRes, this));
@@ -436,6 +444,7 @@ class GeneratedApiClient {
     ];
 
     const request = this.http.postJson(url, {
+      headers: { 'Content-Type': 'application/json' },
       body: oAuth2ScopeConsentGrant
     }, {resources});
     return request.then(jsonRes => new models.OAuth2ScopeConsentGrant(jsonRes, this));
@@ -568,6 +577,7 @@ class GeneratedApiClient {
     ];
 
     const request = this.http.putJson(url, {
+      headers: { 'Content-Type': 'application/json' },
       body: applicationGroupAssignment
     }, {resources});
     return request.then(jsonRes => new models.ApplicationGroupAssignment(jsonRes, this));
@@ -727,6 +737,7 @@ class GeneratedApiClient {
     ];
 
     const request = this.http.postJson(url, {
+      headers: { 'Content-Type': 'application/json' },
       body: appUser
     }, {resources});
     return request.then(jsonRes => new models.AppUser(jsonRes, this));
@@ -799,6 +810,7 @@ class GeneratedApiClient {
     ];
 
     const request = this.http.postJson(url, {
+      headers: { 'Content-Type': 'application/json' },
       body: appUser
     }, {resources});
     return request.then(jsonRes => new models.AppUser(jsonRes, this));
@@ -836,6 +848,7 @@ class GeneratedApiClient {
     const resources = [];
 
     const request = this.http.postJson(url, {
+      headers: { 'Content-Type': 'application/json' },
       body: authorizationServer
     }, {resources});
     return request.then(jsonRes => new models.AuthorizationServer(jsonRes, this));
@@ -892,6 +905,7 @@ class GeneratedApiClient {
     ];
 
     const request = this.http.putJson(url, {
+      headers: { 'Content-Type': 'application/json' },
       body: authorizationServer
     }, {resources});
     return request.then(jsonRes => new models.AuthorizationServer(jsonRes, this));
@@ -926,6 +940,7 @@ class GeneratedApiClient {
     ];
 
     const request = this.http.postJson(url, {
+      headers: { 'Content-Type': 'application/json' },
       body: oAuth2Claim
     }, {resources});
     return request.then(jsonRes => new models.OAuth2Claim(jsonRes, this));
@@ -988,6 +1003,7 @@ class GeneratedApiClient {
     ];
 
     const request = this.http.putJson(url, {
+      headers: { 'Content-Type': 'application/json' },
       body: oAuth2Claim
     }, {resources});
     return request.then(jsonRes => new models.OAuth2Claim(jsonRes, this));
@@ -1183,6 +1199,7 @@ class GeneratedApiClient {
     ];
 
     const request = this.http.postJson(url, {
+      headers: { 'Content-Type': 'application/json' },
       body: policy
     }, {resources});
     return request.then(jsonRes => new factories.Policy().createInstance(jsonRes, this));
@@ -1245,6 +1262,7 @@ class GeneratedApiClient {
     ];
 
     const request = this.http.putJson(url, {
+      headers: { 'Content-Type': 'application/json' },
       body: policy
     }, {resources});
     return request.then(jsonRes => new factories.Policy().createInstance(jsonRes, this));
@@ -1287,6 +1305,7 @@ class GeneratedApiClient {
     ];
 
     const request = this.http.postJson(url, {
+      headers: { 'Content-Type': 'application/json' },
       body: oAuth2Scope
     }, {resources});
     return request.then(jsonRes => new models.OAuth2Scope(jsonRes, this));
@@ -1349,6 +1368,7 @@ class GeneratedApiClient {
     ];
 
     const request = this.http.putJson(url, {
+      headers: { 'Content-Type': 'application/json' },
       body: oAuth2Scope
     }, {resources});
     return request.then(jsonRes => new models.OAuth2Scope(jsonRes, this));
@@ -1379,6 +1399,7 @@ class GeneratedApiClient {
     const resources = [];
 
     const request = this.http.postJson(url, {
+      headers: { 'Content-Type': 'application/json' },
       body: eventHook
     }, {resources});
     return request.then(jsonRes => new models.EventHook(jsonRes, this));
@@ -1435,6 +1456,7 @@ class GeneratedApiClient {
     ];
 
     const request = this.http.putJson(url, {
+      headers: { 'Content-Type': 'application/json' },
       body: eventHook
     }, {resources});
     return request.then(jsonRes => new models.EventHook(jsonRes, this));
@@ -1608,6 +1630,7 @@ class GeneratedApiClient {
     const resources = [];
 
     const request = this.http.postJson(url, {
+      headers: { 'Content-Type': 'application/json' },
       body: group
     }, {resources});
     return request.then(jsonRes => new models.Group(jsonRes, this));
@@ -1646,6 +1669,7 @@ class GeneratedApiClient {
     const resources = [];
 
     const request = this.http.postJson(url, {
+      headers: { 'Content-Type': 'application/json' },
       body: groupRule
     }, {resources});
     return request.then(jsonRes => new models.GroupRule(jsonRes, this));
@@ -1707,6 +1731,7 @@ class GeneratedApiClient {
     ];
 
     const request = this.http.putJson(url, {
+      headers: { 'Content-Type': 'application/json' },
       body: groupRule
     }, {resources});
     return request.then(jsonRes => new models.GroupRule(jsonRes, this));
@@ -1797,6 +1822,7 @@ class GeneratedApiClient {
     ];
 
     const request = this.http.putJson(url, {
+      headers: { 'Content-Type': 'application/json' },
       body: group
     }, {resources});
     return request.then(jsonRes => new models.Group(jsonRes, this));
@@ -1860,6 +1886,7 @@ class GeneratedApiClient {
     ];
 
     const request = this.http.postJson(url, {
+      headers: { 'Content-Type': 'application/json' },
       body: assignRoleRequest
     }, {resources});
     return request.then(jsonRes => new models.Role(jsonRes, this));
@@ -2164,6 +2191,7 @@ class GeneratedApiClient {
     const resources = [];
 
     const request = this.http.postJson(url, {
+      headers: { 'Content-Type': 'application/json' },
       body: identityProvider
     }, {resources});
     return request.then(jsonRes => new models.IdentityProvider(jsonRes, this));
@@ -2200,6 +2228,7 @@ class GeneratedApiClient {
     const resources = [];
 
     const request = this.http.postJson(url, {
+      headers: { 'Content-Type': 'application/json' },
       body: jsonWebKey
     }, {resources});
     return request.then(jsonRes => new models.JsonWebKey(jsonRes, this));
@@ -2291,6 +2320,7 @@ class GeneratedApiClient {
     ];
 
     const request = this.http.putJson(url, {
+      headers: { 'Content-Type': 'application/json' },
       body: identityProvider
     }, {resources});
     return request.then(jsonRes => new models.IdentityProvider(jsonRes, this));
@@ -2325,6 +2355,7 @@ class GeneratedApiClient {
     ];
 
     const request = this.http.postJson(url, {
+      headers: { 'Content-Type': 'application/json' },
       body: csrMetadata
     }, {resources});
     return request.then(jsonRes => new models.Csr(jsonRes, this));
@@ -2387,6 +2418,7 @@ class GeneratedApiClient {
     ];
 
     const request = this.http.postJson(url, {
+      headers: { 'Content-Type': 'application/x-x509-ca-cert' },
       body: certificate
     }, {resources});
     return request.then(jsonRes => new models.JsonWebKey(jsonRes, this));
@@ -2410,6 +2442,7 @@ class GeneratedApiClient {
     ];
 
     const request = this.http.postJson(url, {
+      headers: { 'Content-Type': 'application/x-x509-ca-cert' },
       body: certificate
     }, {resources});
     return request.then(jsonRes => new models.JsonWebKey(jsonRes, this));
@@ -2433,6 +2466,7 @@ class GeneratedApiClient {
     ];
 
     const request = this.http.postJson(url, {
+      headers: { 'Content-Type': 'application/pkix-cert' },
       body: certificate
     }, {resources});
     return request.then(jsonRes => new models.JsonWebKey(jsonRes, this));
@@ -2456,6 +2490,7 @@ class GeneratedApiClient {
     ];
 
     const request = this.http.postJson(url, {
+      headers: { 'Content-Type': 'application/pkix-cert' },
       body: certificate
     }, {resources});
     return request.then(jsonRes => new models.JsonWebKey(jsonRes, this));
@@ -2479,6 +2514,7 @@ class GeneratedApiClient {
     ];
 
     const request = this.http.postJson(url, {
+      headers: { 'Content-Type': 'application/x-pem-file' },
       body: certificate
     }, {resources});
     return request.then(jsonRes => new models.JsonWebKey(jsonRes, this));
@@ -2671,6 +2707,7 @@ class GeneratedApiClient {
     ];
 
     const request = this.http.postJson(url, {
+      headers: { 'Content-Type': 'application/json' },
       body: userIdentityProviderLinkRequest
     }, {resources});
     return request.then(jsonRes => new models.IdentityProviderApplicationUser(jsonRes, this));
@@ -2720,6 +2757,7 @@ class GeneratedApiClient {
     const resources = [];
 
     const request = this.http.postJson(url, {
+      headers: { 'Content-Type': 'application/json' },
       body: inlineHook
     }, {resources});
     return request.then(jsonRes => new models.InlineHook(jsonRes, this));
@@ -2776,6 +2814,7 @@ class GeneratedApiClient {
     ];
 
     const request = this.http.putJson(url, {
+      headers: { 'Content-Type': 'application/json' },
       body: inlineHook
     }, {resources});
     return request.then(jsonRes => new models.InlineHook(jsonRes, this));
@@ -2797,6 +2836,7 @@ class GeneratedApiClient {
     ];
 
     const request = this.http.postJson(url, {
+      headers: { 'Content-Type': 'application/json' },
       body: inlineHookPayload
     }, {resources});
     return request.then(jsonRes => new models.InlineHookResponse(jsonRes, this));
@@ -2886,6 +2926,7 @@ class GeneratedApiClient {
     const resources = [];
 
     const request = this.http.postJson(url, {
+      headers: { 'Content-Type': 'application/json' },
       body: linkedObject
     }, {resources});
     return request.then(jsonRes => new models.LinkedObject(jsonRes, this));
@@ -2951,6 +2992,7 @@ class GeneratedApiClient {
     const resources = [];
 
     const request = this.http.postJson(url, {
+      headers: { 'Content-Type': 'application/json' },
       body: userType
     }, {resources});
     return request.then(jsonRes => new models.UserType(jsonRes, this));
@@ -3007,6 +3049,7 @@ class GeneratedApiClient {
     ];
 
     const request = this.http.postJson(url, {
+      headers: { 'Content-Type': 'application/json' },
       body: userType
     }, {resources});
     return request.then(jsonRes => new models.UserType(jsonRes, this));
@@ -3028,6 +3071,7 @@ class GeneratedApiClient {
     ];
 
     const request = this.http.putJson(url, {
+      headers: { 'Content-Type': 'application/json' },
       body: userType
     }, {resources});
     return request.then(jsonRes => new models.UserType(jsonRes, this));
@@ -3070,6 +3114,7 @@ class GeneratedApiClient {
     const resources = [];
 
     const request = this.http.postJson(url, {
+      headers: { 'Content-Type': 'application/json' },
       body: policy
     }, {resources});
     return request.then(jsonRes => new factories.Policy().createInstance(jsonRes, this));
@@ -3131,6 +3176,7 @@ class GeneratedApiClient {
     ];
 
     const request = this.http.putJson(url, {
+      headers: { 'Content-Type': 'application/json' },
       body: policy
     }, {resources});
     return request.then(jsonRes => new factories.Policy().createInstance(jsonRes, this));
@@ -3199,6 +3245,7 @@ class GeneratedApiClient {
     ];
 
     const request = this.http.postJson(url, {
+      headers: { 'Content-Type': 'application/json' },
       body: policyRule
     }, {resources});
     return request.then(jsonRes => new factories.PolicyRule().createInstance(jsonRes, this));
@@ -3261,6 +3308,7 @@ class GeneratedApiClient {
     ];
 
     const request = this.http.putJson(url, {
+      headers: { 'Content-Type': 'application/json' },
       body: policyRule
     }, {resources});
     return request.then(jsonRes => new factories.PolicyRule().createInstance(jsonRes, this));
@@ -3317,6 +3365,7 @@ class GeneratedApiClient {
     const resources = [];
 
     const request = this.http.postJson(url, {
+      headers: { 'Content-Type': 'application/json' },
       body: createSessionRequest
     }, {resources});
     return request.then(jsonRes => new models.Session(jsonRes, this));
@@ -3405,6 +3454,7 @@ class GeneratedApiClient {
     const resources = [];
 
     const request = this.http.postJson(url, {
+      headers: { 'Content-Type': 'application/json' },
       body: smsTemplate
     }, {resources});
     return request.then(jsonRes => new models.SmsTemplate(jsonRes, this));
@@ -3461,6 +3511,7 @@ class GeneratedApiClient {
     ];
 
     const request = this.http.postJson(url, {
+      headers: { 'Content-Type': 'application/json' },
       body: smsTemplate
     }, {resources});
     return request.then(jsonRes => new models.SmsTemplate(jsonRes, this));
@@ -3482,6 +3533,7 @@ class GeneratedApiClient {
     ];
 
     const request = this.http.putJson(url, {
+      headers: { 'Content-Type': 'application/json' },
       body: smsTemplate
     }, {resources});
     return request.then(jsonRes => new models.SmsTemplate(jsonRes, this));
@@ -3520,6 +3572,7 @@ class GeneratedApiClient {
     const resources = [];
 
     const request = this.http.postJson(url, {
+      headers: { 'Content-Type': 'application/json' },
       body: trustedOrigin
     }, {resources});
     return request.then(jsonRes => new models.TrustedOrigin(jsonRes, this));
@@ -3576,6 +3629,7 @@ class GeneratedApiClient {
     ];
 
     const request = this.http.putJson(url, {
+      headers: { 'Content-Type': 'application/json' },
       body: trustedOrigin
     }, {resources});
     return request.then(jsonRes => new models.TrustedOrigin(jsonRes, this));
@@ -3660,6 +3714,7 @@ class GeneratedApiClient {
     const resources = [];
 
     const request = this.http.postJson(url, {
+      headers: { 'Content-Type': 'application/json' },
       body: createUserRequest
     }, {resources});
     return request.then(jsonRes => new models.User(jsonRes, this));
@@ -3747,6 +3802,7 @@ class GeneratedApiClient {
     ];
 
     const request = this.http.postJson(url, {
+      headers: { 'Content-Type': 'application/json' },
       body: user
     }, {resources});
     return request.then(jsonRes => new models.User(jsonRes, this));
@@ -3773,6 +3829,7 @@ class GeneratedApiClient {
     ];
 
     const request = this.http.putJson(url, {
+      headers: { 'Content-Type': 'application/json' },
       body: user
     }, {resources});
     return request.then(jsonRes => new models.User(jsonRes, this));
@@ -3955,6 +4012,7 @@ class GeneratedApiClient {
     ];
 
     const request = this.http.postJson(url, {
+      headers: { 'Content-Type': 'application/json' },
       body: changePasswordRequest
     }, {resources});
     return request.then(jsonRes => new models.UserCredentials(jsonRes, this));
@@ -3976,6 +4034,7 @@ class GeneratedApiClient {
     ];
 
     const request = this.http.postJson(url, {
+      headers: { 'Content-Type': 'application/json' },
       body: userCredentials
     }, {resources});
     return request.then(jsonRes => new models.UserCredentials(jsonRes, this));
@@ -4025,6 +4084,7 @@ class GeneratedApiClient {
     ];
 
     const request = this.http.postJson(url, {
+      headers: { 'Content-Type': 'application/json' },
       body: userCredentials
     }, {resources});
     return request.then(jsonRes => new models.ForgotPasswordResponse(jsonRes, this));
@@ -4067,6 +4127,7 @@ class GeneratedApiClient {
     ];
 
     const request = this.http.postJson(url, {
+      headers: { 'Content-Type': 'application/json' },
       body: userFactor
     }, {resources});
     return request.then(jsonRes => new factories.UserFactor().createInstance(jsonRes, this));
@@ -4155,6 +4216,7 @@ class GeneratedApiClient {
     ];
 
     const request = this.http.postJson(url, {
+      headers: { 'Content-Type': 'application/json' },
       body: activateFactorRequest
     }, {resources});
     return request.then(jsonRes => new factories.UserFactor().createInstance(jsonRes, this));
@@ -4206,6 +4268,7 @@ class GeneratedApiClient {
     ];
 
     const request = this.http.postJson(url, {
+      headers: { 'Content-Type': 'application/json' },
       body: verifyFactorRequest
     }, {resources});
     return request.then(jsonRes => new models.VerifyUserFactorResponse(jsonRes, this));
@@ -4592,6 +4655,7 @@ class GeneratedApiClient {
     ];
 
     const request = this.http.postJson(url, {
+      headers: { 'Content-Type': 'application/json' },
       body: assignRoleRequest
     }, {resources});
     return request.then(jsonRes => new models.Role(jsonRes, this));
