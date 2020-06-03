@@ -53,15 +53,15 @@ class IdentityProvider extends Resource {
   }
 
   /**
-   * @returns {Promise<Collection>} A collection that will yield {@link CSR} instances.
+   * @returns {Promise<Collection>} A collection that will yield {@link Csr} instances.
    */
   listSigningCsrs() {
     return this.client.listCsrsForIdentityProvider(this.id);
   }
 
   /**
-   * @param {CSRMetadata} csrMetadata
-   * @returns {Promise<CSR>}
+   * @param {CsrMetadata} csrMetadata
+   * @returns {Promise<Csr>}
    */
   generateCsr(csrMetadata) {
     return this.client.generateCsrForIdentityProvider(this.id, csrMetadata);
@@ -76,7 +76,7 @@ class IdentityProvider extends Resource {
 
   /**
    * @param {string} csrId
-   * @returns {Promise<CSR>}
+   * @returns {Promise<Csr>}
    */
   getSigningCsr(csrId) {
     return this.client.getCsrForIdentityProvider(this.id, csrId);

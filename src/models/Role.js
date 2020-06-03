@@ -36,6 +36,55 @@ class Role extends Resource {
 
   }
 
+
+  /**
+   * @param {string} groupId
+   * @param {string} targetGroupId
+   */
+  addAdminGroupTarget(groupId, targetGroupId) {
+    return this.client.addGroupTargetToGroupAdministratorRoleForGroup(groupId, this.id, targetGroupId);
+  }
+
+  /**
+   * @param {string} groupId
+   * @param {string} appName
+   * @param {string} applicationId
+   */
+  addAppInstanceTargetToAdminRole(groupId, appName, applicationId) {
+    return this.client.addApplicationInstanceTargetToAppAdminRoleGivenToGroup(groupId, this.id, appName, applicationId);
+  }
+
+  /**
+   * @param {string} groupId
+   * @param {string} appName
+   */
+  addAppTargetToAdminRole(groupId, appName) {
+    return this.client.addApplicationTargetToAdminRoleGivenToGroup(groupId, this.id, appName);
+  }
+
+  /**
+   * @param {string} userId
+   */
+  addAllAppsAsTargetToRole(userId) {
+    return this.client.addAllAppsAsTargetToRole(userId, this.id);
+  }
+
+  /**
+   * @param {string} userId
+   * @param {string} appName
+   * @param {string} applicationId
+   */
+  addAppTargetToAppAdminRoleForUser(userId, appName, applicationId) {
+    return this.client.addApplicationTargetToAppAdminRoleForUser(userId, this.id, appName, applicationId);
+  }
+
+  /**
+   * @param {string} userId
+   * @param {string} appName
+   */
+  addAppTargetToAdminRoleForUser(userId, appName) {
+    return this.client.addApplicationTargetToAdminRoleForUser(userId, this.id, appName);
+  }
 }
 
 module.exports = Role;

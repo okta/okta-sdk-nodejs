@@ -17,11 +17,11 @@ var Resource = require('../resource');
 
 
 /**
- * @class CSRMetadataSubjectAltNames
+ * @class CsrMetadataSubjectAltNames
  * @extends Resource
  * @property { array } dnsNames
  */
-class CSRMetadataSubjectAltNames extends Resource {
+class CsrMetadataSubjectAltNames extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
 
@@ -29,4 +29,4 @@ class CSRMetadataSubjectAltNames extends Resource {
 
 }
 
-module.exports = CSRMetadataSubjectAltNames;
+module.exports = CsrMetadataSubjectAltNames;

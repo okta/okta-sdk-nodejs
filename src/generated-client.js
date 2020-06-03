@@ -138,21 +138,21 @@ class GeneratedApiClient {
    * @param appId {String}
    * @description
    * Enumerates CSRs for an application
-   * @returns {Promise<Collection>} A collection that will yield {@link CSR} instances.
+   * @returns {Promise<Collection>} A collection that will yield {@link Csr} instances.
    */
   listCsrsForApplication(appId) {
     let url = `${this.baseUrl}/api/v1/apps/${appId}/credentials/csrs`;
 
-    return new Collection(this, url, new ModelFactory(models.CSR), {method: 'get'});
+    return new Collection(this, url, new ModelFactory(models.Csr), {method: 'get'});
   }
 
   /**
    *
    * @param appId {String}
-   * @param {CSRMetadata} csrMetadata
+   * @param {CsrMetadata} csrMetadata
    * @description
    * Generates a new key pair and returns the Certificate Signing Request for it.
-   * @returns {Promise<CSR>}
+   * @returns {Promise<Csr>}
    */
   generateCsrForApplication(appId, csrMetadata) {
     let url = `${this.baseUrl}/api/v1/apps/${appId}/credentials/csrs`;
@@ -164,7 +164,7 @@ class GeneratedApiClient {
     const request = this.http.postJson(url, {
       body: csrMetadata
     }, {resources});
-    return request.then(jsonRes => new models.CSR(jsonRes, this));
+    return request.then(jsonRes => new models.Csr(jsonRes, this));
   }
 
   /**
@@ -174,7 +174,7 @@ class GeneratedApiClient {
    * @description
    * Convenience method for /api/v1/apps/{appId}/credentials/csrs/{csrId}
    */
-  revokeCSRFromApplication(appId, csrId) {
+  revokeCsrFromApplication(appId, csrId) {
     let url = `${this.baseUrl}/api/v1/apps/${appId}/credentials/csrs/${csrId}`;
 
     const resources = [
@@ -192,7 +192,7 @@ class GeneratedApiClient {
    * @param csrId {String}
    * @description
    * Convenience method for /api/v1/apps/{appId}/credentials/csrs/{csrId}
-   * @returns {Promise<CSR>}
+   * @returns {Promise<Csr>}
    */
   getCsrForApplication(appId, csrId) {
     let url = `${this.baseUrl}/api/v1/apps/${appId}/credentials/csrs/${csrId}`;
@@ -203,7 +203,7 @@ class GeneratedApiClient {
     ];
 
     const request = this.http.getJson(url, null, {resources});
-    return request.then(jsonRes => new models.CSR(jsonRes, this));
+    return request.then(jsonRes => new models.Csr(jsonRes, this));
   }
 
   /**
@@ -2301,21 +2301,21 @@ class GeneratedApiClient {
    * @param idpId {String}
    * @description
    * Enumerates signing CSRs for an IdP
-   * @returns {Promise<Collection>} A collection that will yield {@link CSR} instances.
+   * @returns {Promise<Collection>} A collection that will yield {@link Csr} instances.
    */
   listCsrsForIdentityProvider(idpId) {
     let url = `${this.baseUrl}/api/v1/idps/${idpId}/credentials/csrs`;
 
-    return new Collection(this, url, new ModelFactory(models.CSR), {method: 'get'});
+    return new Collection(this, url, new ModelFactory(models.Csr), {method: 'get'});
   }
 
   /**
    *
    * @param idpId {String}
-   * @param {CSRMetadata} csrMetadata
+   * @param {CsrMetadata} csrMetadata
    * @description
    * Generates a new key pair and returns a Certificate Signing Request for it.
-   * @returns {Promise<CSR>}
+   * @returns {Promise<Csr>}
    */
   generateCsrForIdentityProvider(idpId, csrMetadata) {
     let url = `${this.baseUrl}/api/v1/idps/${idpId}/credentials/csrs`;
@@ -2327,7 +2327,7 @@ class GeneratedApiClient {
     const request = this.http.postJson(url, {
       body: csrMetadata
     }, {resources});
-    return request.then(jsonRes => new models.CSR(jsonRes, this));
+    return request.then(jsonRes => new models.Csr(jsonRes, this));
   }
 
   /**
@@ -2355,7 +2355,7 @@ class GeneratedApiClient {
    * @param csrId {String}
    * @description
    * Gets a specific CSR model by id
-   * @returns {Promise<CSR>}
+   * @returns {Promise<Csr>}
    */
   getCsrForIdentityProvider(idpId, csrId) {
     let url = `${this.baseUrl}/api/v1/idps/${idpId}/credentials/csrs/${csrId}`;
@@ -2366,7 +2366,7 @@ class GeneratedApiClient {
     ];
 
     const request = this.http.getJson(url, null, {resources});
-    return request.then(jsonRes => new models.CSR(jsonRes, this));
+    return request.then(jsonRes => new models.Csr(jsonRes, this));
   }
 
   /**

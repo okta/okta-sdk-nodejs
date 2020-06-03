@@ -17,14 +17,14 @@ var Resource = require('../resource');
 
 
 /**
- * @class CSR
+ * @class Csr
  * @extends Resource
  * @property { dateTime } created
  * @property { string } csr
  * @property { string } id
  * @property { string } kty
  */
-class CSR extends Resource {
+class Csr extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
 
@@ -32,4 +32,4 @@ class CSR extends Resource {
 
 }
 
-module.exports = CSR;
+module.exports = Csr;
