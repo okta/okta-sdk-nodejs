@@ -14,26 +14,26 @@
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
 var Resource = require('../resource');
-const CSRMetadataSubject = require('./CSRMetadataSubject');
-const CSRMetadataSubjectAltNames = require('./CSRMetadataSubjectAltNames');
+const CsrMetadataSubject = require('./CsrMetadataSubject');
+const CsrMetadataSubjectAltNames = require('./CsrMetadataSubjectAltNames');
 
 /**
- * @class CSRMetadata
+ * @class CsrMetadata
  * @extends Resource
- * @property { CSRMetadataSubject } subject
- * @property { CSRMetadataSubjectAltNames } subjectAltNames
+ * @property { CsrMetadataSubject } subject
+ * @property { CsrMetadataSubjectAltNames } subjectAltNames
  */
-class CSRMetadata extends Resource {
+class CsrMetadata extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
     if (resourceJson && resourceJson.subject) {
-      this.subject = new CSRMetadataSubject(resourceJson.subject);
+      this.subject = new CsrMetadataSubject(resourceJson.subject);
     }
     if (resourceJson && resourceJson.subjectAltNames) {
-      this.subjectAltNames = new CSRMetadataSubjectAltNames(resourceJson.subjectAltNames);
+      this.subjectAltNames = new CsrMetadataSubjectAltNames(resourceJson.subjectAltNames);
     }
   }
 
 }
 
-module.exports = CSRMetadata;
+module.exports = CsrMetadata;

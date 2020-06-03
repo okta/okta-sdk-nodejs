@@ -162,8 +162,8 @@ class Application extends Resource {
   }
 
   /**
-   * @param {CSRMetadata} csrMetadata
-   * @returns {Promise<CSR>}
+   * @param {CsrMetadata} csrMetadata
+   * @returns {Promise<Csr>}
    */
   generateCsr(csrMetadata) {
     return this.client.generateCsrForApplication(this.id, csrMetadata);
@@ -171,7 +171,7 @@ class Application extends Resource {
 
   /**
    * @param {string} csrId
-   * @returns {Promise<CSR>}
+   * @returns {Promise<Csr>}
    */
   getCsr(csrId) {
     return this.client.getCsrForApplication(this.id, csrId);
@@ -180,12 +180,12 @@ class Application extends Resource {
   /**
    * @param {string} csrId
    */
-  revokeCSR(csrId) {
-    return this.client.revokeCSRFromApplication(this.id, csrId);
+  revokeCsr(csrId) {
+    return this.client.revokeCsrFromApplication(this.id, csrId);
   }
 
   /**
-   * @returns {Promise<Collection>} A collection that will yield {@link CSR} instances.
+   * @returns {Promise<Collection>} A collection that will yield {@link Csr} instances.
    */
   listCsrs() {
     return this.client.listCsrsForApplication(this.id);
