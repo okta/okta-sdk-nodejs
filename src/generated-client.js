@@ -137,7 +137,7 @@ class GeneratedApiClient {
    *
    * @param appId {String}
    * @description
-   * Enumerates CSRs for an application
+   * Enumerates Certificate Signing Requests for an application
    * @returns {Promise<Collection>} A collection that will yield {@link Csr} instances.
    */
   listCsrsForApplication(appId) {
@@ -2300,7 +2300,7 @@ class GeneratedApiClient {
    *
    * @param idpId {String}
    * @description
-   * Enumerates signing CSRs for an IdP
+   * Enumerates Certificate Signing Requests for an IdP
    * @returns {Promise<Collection>} A collection that will yield {@link Csr} instances.
    */
   listCsrsForIdentityProvider(idpId) {
@@ -2335,7 +2335,7 @@ class GeneratedApiClient {
    * @param idpId {String}
    * @param csrId {String}
    * @description
-   * Revoke a CSR and delete the key pair from the IdP
+   * Revoke a Certificate Signing Request and delete the key pair from the IdP
    */
   revokeCsrForIdentityProvider(idpId, csrId) {
     let url = `${this.baseUrl}/api/v1/idps/${idpId}/credentials/csrs/${csrId}`;
@@ -2354,7 +2354,7 @@ class GeneratedApiClient {
    * @param idpId {String}
    * @param csrId {String}
    * @description
-   * Gets a specific CSR model by id
+   * Gets a specific Certificate Signing Request model by id
    * @returns {Promise<Csr>}
    */
   getCsrForIdentityProvider(idpId, csrId) {
@@ -2375,7 +2375,7 @@ class GeneratedApiClient {
    * @param csrId {String}
    * @param {string} string
    * @description
-   * Update the CSR with a signed X.509 certificate and add it into the signing key credentials for the IdP.
+   * Update the Certificate Signing Request with a signed X.509 certificate and add it into the signing key credentials for the IdP.
    * @returns {Promise<JsonWebKey>}
    */
   publishCerCertForIdentityProvider(idpId, csrId, certificate) {
@@ -2398,7 +2398,7 @@ class GeneratedApiClient {
    * @param csrId {String}
    * @param {string} string
    * @description
-   * Update the CSR with a signed X.509 certificate and add it into the signing key credentials for the IdP.
+   * Update the Certificate Signing Request with a signed X.509 certificate and add it into the signing key credentials for the IdP.
    * @returns {Promise<JsonWebKey>}
    */
   publishBinaryCerCertForIdentityProvider(idpId, csrId, certificate) {
@@ -2421,7 +2421,7 @@ class GeneratedApiClient {
    * @param csrId {String}
    * @param {string} string
    * @description
-   * Update the CSR with a signed X.509 certificate and add it into the signing key credentials for the IdP.
+   * Update the Certificate Signing Request with a signed X.509 certificate and add it into the signing key credentials for the IdP.
    * @returns {Promise<JsonWebKey>}
    */
   publishDerCertForIdentityProvider(idpId, csrId, certificate) {
@@ -2444,7 +2444,7 @@ class GeneratedApiClient {
    * @param csrId {String}
    * @param {string} string
    * @description
-   * Update the CSR with a signed X.509 certificate and add it into the signing key credentials for the IdP.
+   * Update the Certificate Signing Request with a signed X.509 certificate and add it into the signing key credentials for the IdP.
    * @returns {Promise<JsonWebKey>}
    */
   publishBinaryDerCertForIdentityProvider(idpId, csrId, certificate) {
@@ -2467,7 +2467,7 @@ class GeneratedApiClient {
    * @param csrId {String}
    * @param {string} string
    * @description
-   * Update the CSR with a signed X.509 certificate and add it into the signing key credentials for the IdP.
+   * Update the Certificate Signing Request with a signed X.509 certificate and add it into the signing key credentials for the IdP.
    * @returns {Promise<JsonWebKey>}
    */
   publishBinaryPemCertForIdentityProvider(idpId, csrId, certificate) {
