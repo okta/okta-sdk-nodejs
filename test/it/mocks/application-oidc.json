@@ -1,0 +1,19 @@
+{
+  "name": "oidc_client",
+  "label": "MOCK_CLIENT_CRED",
+  "signOnMode": "OPENID_CONNECT",
+  "settings": {
+      "oauthClient": {
+          "redirect_uris": [
+              "https://example.com"
+          ],
+          "response_types": [
+              "code"
+          ],
+          "grant_types": [
+              "authorization_code"
+          ],
+          "application_type": "native"
+      }
+  }
+}
