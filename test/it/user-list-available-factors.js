@@ -15,9 +15,7 @@ const client = new okta.Client({
 });
 
 describe('User API Tests', () => {
-  // Disabled Test - Need to update the swagger spec. Currently failing with the following error:
-  // AssertionError: expected { Object (factorType, provider, ...) } to be an instance of Factor
-  it.skip('should allow the user\'s factor catalog (supported factors) to be listed', async () => {
+  it('should allow the user\'s factor catalog (supported factors) to be listed', async () => {
     const newUser = {
       profile: utils.getMockProfile('user-list-available-factors'),
       credentials: {
@@ -32,7 +30,7 @@ describe('User API Tests', () => {
     await createdUser.listSupportedFactors().each(factor => factors.push(factor));
     expect(factors.length).to.be.greaterThan(1);
     factors.forEach(factor =>
-      expect(factor).to.be.instanceof(models.Factor)
+      expect(factor).to.be.instanceof(models.UserFactor)
     );
     return await utils.deleteUser(createdUser);
   });
