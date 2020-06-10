@@ -162,6 +162,21 @@ class User extends Resource {
   }
 
   /**
+   * @param {object} queryParameters
+   * @returns {Promise<Collection>} A collection that will yield {@link Role} instances.
+   */
+  listAssignedRoles(queryParameters) {
+    return this.client.listAssignedRolesForUser(this.id, queryParameters);
+  }
+
+  /**
+   * @param {string} roleId
+   */
+  addAllAppsAsTargetToRole(roleId) {
+    return this.client.addAllAppsAsTargetToRole(this.id, roleId);
+  }
+
+  /**
    * @returns {Promise<Collection>} A collection that will yield {@link Group} instances.
    */
   listGroups() {
@@ -281,6 +296,13 @@ class User extends Resource {
     return this.client.expirePassword(this.id);
   }
 
+  /**
+   * @returns {Promise<TempPassword>}
+   */
+  expirePasswordAndGetTemporaryPassword() {
+    return this.client.expirePasswordAndGetTemporaryPassword(this.id);
+  }
+
   unlock() {
     return this.client.unlockUser(this.id);
   }
@@ -363,6 +385,20 @@ class User extends Resource {
    */
   getLinkedObjects(relationshipName, queryParameters) {
     return this.client.getLinkedObjectsForUser(this.id, relationshipName, queryParameters);
+  }
+
+  /**
+   * @param {object} queryParameters
+   */
+  clearSessions(queryParameters) {
+    return this.client.clearUserSessions(this.id, queryParameters);
+  }
+
+  /**
+   * @param {string} relationshipName
+   */
+  removeLinkedObject(relationshipName) {
+    return this.client.removeLinkedObjectForUser(this.id, relationshipName);
   }
 }
 
