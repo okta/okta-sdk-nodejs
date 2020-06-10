@@ -1,5 +1,6 @@
 const _ = require('lodash');
 const js = module.exports;
+const operationUtils = require('./helpers/operation');
 
 /**
  * Easy lookup of models from the models array
@@ -15,18 +16,6 @@ class ModelResolver {
     return match && match[0];
   }
 }
-
-const getBodyModelNameInCamelCase = operation => {
-  const { bodyModel, parameters } = operation;
-  let bodyModelName = bodyModel;
-  if (bodyModel === 'string') {
-    const bodyParam = parameters.find(param => param.in === 'body');
-    if (bodyParam) {
-      bodyModelName = bodyParam.name;
-    }
-  }
-  return _.camelCase(bodyModelName);
-};
 
 /**
  * This file is used by the @okta/openapi generator.  It defines language-specific
@@ -106,6 +95,11 @@ js.process = ({spec, operations, models, handlebars}) => {
   });
 
   // Add helpers
+
+  // Register Operation helpers
+  Object.keys(operationUtils).forEach(key => handlebars.registerHelper(key, operationUtils[key]));
+
+  // TODO: move helpers to modules
   const paramMatcher = /{(.*?)}/g;
   handlebars.registerHelper('replacePathParams', (path) => {
     // Everywhere there's a {id}, replace it with {opts.id}
@@ -148,30 +142,6 @@ js.process = ({spec, operations, models, handlebars}) => {
     });
     return constructorStatements.join('\n');
   });
-
-  handlebars.registerHelper('operationArgumentBuilder', (operation) => {
-    const { bodyModel, method, pathParams, queryParams, parameters } = operation;
-
-    const args = pathParams.reduce((acc, curr) => {
-      acc.push(curr.name);
-      return acc;
-    }, []);
-
-    if (!operation.isArray && (method === 'post' || method === 'put') && bodyModel) {
-      const bodyModelName = getBodyModelNameInCamelCase(operation);
-      if (bodyModelName) {
-        args.push(bodyModelName);
-      }
-    }
-
-    if (queryParams.length) {
-      args.push('queryParameters');
-    }
-
-    return args.join(', ');
-  });
-
-  handlebars.registerHelper('getBodyModelNameInCamelCase', getBodyModelNameInCamelCase);
 
   handlebars.registerHelper('modelMethodPublicArgumentBuilder', (method, modelName) => {
 
@@ -258,45 +228,6 @@ js.process = ({spec, operations, models, handlebars}) => {
 
     const output = '/**\n   * ' + args.join('\n   * ') + '\n   */\n  ';
     return output;
-  });
-
-  handlebars.registerHelper('jsdocBuilder', (operation) => {
-    const lines = ['*'];
-
-    if (operation.pathParams.length) {
-      operation.pathParams.map(argument => {
-        return `   * @param ${argument.name} {String}`;
-      }).forEach(line => lines.push(line));
-    }
-
-    if (!operation.isArray && operation.bodyModel) {
-      lines.push(`   * @param {${operation.bodyModel}} ${_.camelCase(operation.bodyModel)}`);
-    }
-
-    if (operation.queryParams.length) {
-      lines.push('   * @param {Object} queryParams Map of query parameters to add to this request');
-      operation.queryParams.map((param) => {
-        return `   * @param {String} [queryParams.${param.name}]`;
-      }).forEach(line => lines.push(line));
-    }
-    lines.push('   * @description');
-
-    if (operation.description) {
-      lines.push(`   * ${operation.description}`);
-    } else {
-      // TODO: Once documentation is parsed correctly, this line can be omitted.
-      lines.push(`   * Convenience method for ${operation.path}`);
-    }
-
-    if (operation.responseModel) {
-      if (operation.isArray) {
-        lines.push(`   * @returns {Promise<Collection>} A collection that will yield {@link ${operation.responseModel}} instances.`)
-      } else {
-        lines.push(`   * @returns {Promise<${operation.responseModel}>}`)
-      }
-    }
-
-    return lines.join('\n');
   });
 
   handlebars.registerHelper('getAffectedResources', (path) => {
