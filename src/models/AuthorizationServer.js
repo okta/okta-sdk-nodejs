@@ -64,8 +64,11 @@ class AuthorizationServer extends Resource {
     return this.client.createOAuth2Claim(this.id, oAuth2Claim);
   }
 
-  deleteOAuth2Claim() {
-    return this.client.deleteOAuth2Claim(this.id, this.id);
+  /**
+   * @param {string} claimId
+   */
+  deleteOAuth2Claim(claimId) {
+    return this.client.deleteOAuth2Claim(this.id, claimId);
   }
 
   /**
@@ -164,8 +167,11 @@ class AuthorizationServer extends Resource {
     return this.client.createAuthorizationServerPolicy(this.id, policy);
   }
 
-  deletePolicy() {
-    return this.client.deleteAuthorizationServerPolicy(this.id, this.id);
+  /**
+   * @param {string} policyId
+   */
+  deletePolicy(policyId) {
+    return this.client.deleteAuthorizationServerPolicy(this.id, policyId);
   }
 
   /**
