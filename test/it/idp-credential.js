@@ -110,7 +110,7 @@ describe('Idp credential API', () => {
 
       it('should resolve CSR in collection', async () => {
         await idp.listSigningCsrs().each(csr => {
-          expect(csr).to.be.instanceOf(models.CSR);
+          expect(csr).to.be.instanceOf(models.Csr);
         });
       });
     });

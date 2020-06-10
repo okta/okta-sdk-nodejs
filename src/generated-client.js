@@ -66,9 +66,13 @@ class GeneratedApiClient {
 
     const resources = [];
 
-    const request = this.http.postJson(url, {
-      body: application
-    }, {resources});
+    const request = this.http.postJson(
+      url,
+      {
+        body: application
+      },
+      { resources }
+    );
     return request.then(jsonRes => new factories.Application().createInstance(jsonRes, this));
   }
 
@@ -85,7 +89,11 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/apps/${appId}`
     ];
 
-    const request = this.http.delete(url, null, {resources});
+    const request = this.http.delete(
+      url,
+      null,
+      { resources }
+    );
     return request;
   }
 
@@ -108,7 +116,11 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/apps/${appId}`
     ];
 
-    const request = this.http.getJson(url, null, {resources});
+    const request = this.http.getJson(
+      url,
+      null,
+      { resources }
+    );
     return request.then(jsonRes => new factories.Application().createInstance(jsonRes, this));
   }
 
@@ -127,9 +139,13 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/apps/${appId}`
     ];
 
-    const request = this.http.putJson(url, {
-      body: application
-    }, {resources});
+    const request = this.http.putJson(
+      url,
+      {
+        body: application
+      },
+      { resources }
+    );
     return request.then(jsonRes => new factories.Application().createInstance(jsonRes, this));
   }
 
@@ -161,9 +177,13 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/apps/${appId}`
     ];
 
-    const request = this.http.postJson(url, {
-      body: csrMetadata
-    }, {resources});
+    const request = this.http.postJson(
+      url,
+      {
+        body: csrMetadata
+      },
+      { resources }
+    );
     return request.then(jsonRes => new models.Csr(jsonRes, this));
   }
 
@@ -182,7 +202,11 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/apps/${appId}`
     ];
 
-    const request = this.http.delete(url, null, {resources});
+    const request = this.http.delete(
+      url,
+      null,
+      { resources }
+    );
     return request;
   }
 
@@ -202,7 +226,11 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/apps/${appId}`
     ];
 
-    const request = this.http.getJson(url, null, {resources});
+    const request = this.http.getJson(
+      url,
+      null,
+      { resources }
+    );
     return request.then(jsonRes => new models.Csr(jsonRes, this));
   }
 
@@ -223,9 +251,16 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/apps/${appId}`
     ];
 
-    const request = this.http.postJson(url, {
-      body: certificate
-    }, {resources});
+    const request = this.http.post(
+      url,
+      {
+        headers: {
+          'Content-Type': 'application/x-x509-ca-cert', 'Accept': 'application/json', 'Content-Transfer-Encoding': 'base64',
+        },
+        body: certificate
+      },
+      { resources }
+    ).then(res => res.json());
     return request.then(jsonRes => new models.JsonWebKey(jsonRes, this));
   }
 
@@ -246,9 +281,16 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/apps/${appId}`
     ];
 
-    const request = this.http.postJson(url, {
-      body: certificate
-    }, {resources});
+    const request = this.http.post(
+      url,
+      {
+        headers: {
+          'Content-Type': 'application/x-x509-ca-cert', 'Accept': 'application/json',
+        },
+        body: certificate
+      },
+      { resources }
+    ).then(res => res.json());
     return request.then(jsonRes => new models.JsonWebKey(jsonRes, this));
   }
 
@@ -269,9 +311,16 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/apps/${appId}`
     ];
 
-    const request = this.http.postJson(url, {
-      body: certificate
-    }, {resources});
+    const request = this.http.post(
+      url,
+      {
+        headers: {
+          'Content-Type': 'application/pkix-cert', 'Accept': 'application/json', 'Content-Transfer-Encoding': 'base64',
+        },
+        body: certificate
+      },
+      { resources }
+    ).then(res => res.json());
     return request.then(jsonRes => new models.JsonWebKey(jsonRes, this));
   }
 
@@ -292,9 +341,16 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/apps/${appId}`
     ];
 
-    const request = this.http.postJson(url, {
-      body: certificate
-    }, {resources});
+    const request = this.http.post(
+      url,
+      {
+        headers: {
+          'Content-Type': 'application/pkix-cert', 'Accept': 'application/json',
+        },
+        body: certificate
+      },
+      { resources }
+    ).then(res => res.json());
     return request.then(jsonRes => new models.JsonWebKey(jsonRes, this));
   }
 
@@ -315,9 +371,16 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/apps/${appId}`
     ];
 
-    const request = this.http.postJson(url, {
-      body: certificate
-    }, {resources});
+    const request = this.http.post(
+      url,
+      {
+        headers: {
+          'Content-Type': 'application/x-pem-file', 'Accept': 'application/json',
+        },
+        body: certificate
+      },
+      { resources }
+    ).then(res => res.json());
     return request.then(jsonRes => new models.JsonWebKey(jsonRes, this));
   }
 
@@ -353,7 +416,11 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/apps/${appId}`
     ];
 
-    const request = this.http.postJson(url, null, {resources});
+    const request = this.http.postJson(
+      url,
+      null,
+      { resources }
+    );
     return request.then(jsonRes => new models.JsonWebKey(jsonRes, this));
   }
 
@@ -373,7 +440,11 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/apps/${appId}`
     ];
 
-    const request = this.http.getJson(url, null, {resources});
+    const request = this.http.getJson(
+      url,
+      null,
+      { resources }
+    );
     return request.then(jsonRes => new models.JsonWebKey(jsonRes, this));
   }
 
@@ -398,7 +469,11 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/apps/${appId}`
     ];
 
-    const request = this.http.postJson(url, null, {resources});
+    const request = this.http.postJson(
+      url,
+      null,
+      { resources }
+    );
     return request.then(jsonRes => new models.JsonWebKey(jsonRes, this));
   }
 
@@ -435,9 +510,13 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/apps/${appId}`
     ];
 
-    const request = this.http.postJson(url, {
-      body: oAuth2ScopeConsentGrant
-    }, {resources});
+    const request = this.http.postJson(
+      url,
+      {
+        body: oAuth2ScopeConsentGrant
+      },
+      { resources }
+    );
     return request.then(jsonRes => new models.OAuth2ScopeConsentGrant(jsonRes, this));
   }
 
@@ -456,7 +535,11 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/apps/${appId}`
     ];
 
-    const request = this.http.delete(url, null, {resources});
+    const request = this.http.delete(
+      url,
+      null,
+      { resources }
+    );
     return request;
   }
 
@@ -481,7 +564,11 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/apps/${appId}`
     ];
 
-    const request = this.http.getJson(url, null, {resources});
+    const request = this.http.getJson(
+      url,
+      null,
+      { resources }
+    );
     return request.then(jsonRes => new models.OAuth2ScopeConsentGrant(jsonRes, this));
   }
 
@@ -521,7 +608,11 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/apps/${appId}`
     ];
 
-    const request = this.http.delete(url, null, {resources});
+    const request = this.http.delete(
+      url,
+      null,
+      { resources }
+    );
     return request;
   }
 
@@ -546,7 +637,11 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/apps/${appId}`
     ];
 
-    const request = this.http.getJson(url, null, {resources});
+    const request = this.http.getJson(
+      url,
+      null,
+      { resources }
+    );
     return request.then(jsonRes => new models.ApplicationGroupAssignment(jsonRes, this));
   }
 
@@ -567,9 +662,13 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/apps/${appId}`
     ];
 
-    const request = this.http.putJson(url, {
-      body: applicationGroupAssignment
-    }, {resources});
+    const request = this.http.putJson(
+      url,
+      {
+        body: applicationGroupAssignment
+      },
+      { resources }
+    );
     return request.then(jsonRes => new models.ApplicationGroupAssignment(jsonRes, this));
   }
 
@@ -586,7 +685,15 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/apps/${appId}`
     ];
 
-    const request = this.http.post(url, null, {resources});
+    const request = this.http.post(
+      url,
+      {
+        headers: {
+          'Content-Type': 'application/json', 'Accept': 'application/json',
+        },
+      },
+      { resources }
+    );
     return request;
   }
 
@@ -603,7 +710,15 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/apps/${appId}`
     ];
 
-    const request = this.http.post(url, null, {resources});
+    const request = this.http.post(
+      url,
+      {
+        headers: {
+          'Content-Type': 'application/json', 'Accept': 'application/json',
+        },
+      },
+      { resources }
+    );
     return request;
   }
 
@@ -620,7 +735,11 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/apps/${appId}`
     ];
 
-    const request = this.http.delete(url, null, {resources});
+    const request = this.http.delete(
+      url,
+      null,
+      { resources }
+    );
     return request;
   }
 
@@ -659,7 +778,11 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/apps/${appId}`
     ];
 
-    const request = this.http.delete(url, null, {resources});
+    const request = this.http.delete(
+      url,
+      null,
+      { resources }
+    );
     return request;
   }
 
@@ -684,7 +807,11 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/apps/${appId}`
     ];
 
-    const request = this.http.getJson(url, null, {resources});
+    const request = this.http.getJson(
+      url,
+      null,
+      { resources }
+    );
     return request.then(jsonRes => new models.OAuth2Token(jsonRes, this));
   }
 
@@ -726,9 +853,13 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/apps/${appId}`
     ];
 
-    const request = this.http.postJson(url, {
-      body: appUser
-    }, {resources});
+    const request = this.http.postJson(
+      url,
+      {
+        body: appUser
+      },
+      { resources }
+    );
     return request.then(jsonRes => new models.AppUser(jsonRes, this));
   }
 
@@ -752,7 +883,11 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/apps/${appId}`
     ];
 
-    const request = this.http.delete(url, null, {resources});
+    const request = this.http.delete(
+      url,
+      null,
+      { resources }
+    );
     return request;
   }
 
@@ -777,7 +912,11 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/apps/${appId}`
     ];
 
-    const request = this.http.getJson(url, null, {resources});
+    const request = this.http.getJson(
+      url,
+      null,
+      { resources }
+    );
     return request.then(jsonRes => new models.AppUser(jsonRes, this));
   }
 
@@ -798,9 +937,13 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/apps/${appId}`
     ];
 
-    const request = this.http.postJson(url, {
-      body: appUser
-    }, {resources});
+    const request = this.http.postJson(
+      url,
+      {
+        body: appUser
+      },
+      { resources }
+    );
     return request.then(jsonRes => new models.AppUser(jsonRes, this));
   }
 
@@ -835,9 +978,13 @@ class GeneratedApiClient {
 
     const resources = [];
 
-    const request = this.http.postJson(url, {
-      body: authorizationServer
-    }, {resources});
+    const request = this.http.postJson(
+      url,
+      {
+        body: authorizationServer
+      },
+      { resources }
+    );
     return request.then(jsonRes => new models.AuthorizationServer(jsonRes, this));
   }
 
@@ -854,7 +1001,11 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/authorizationServers/${authServerId}`
     ];
 
-    const request = this.http.delete(url, null, {resources});
+    const request = this.http.delete(
+      url,
+      null,
+      { resources }
+    );
     return request;
   }
 
@@ -872,7 +1023,11 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/authorizationServers/${authServerId}`
     ];
 
-    const request = this.http.getJson(url, null, {resources});
+    const request = this.http.getJson(
+      url,
+      null,
+      { resources }
+    );
     return request.then(jsonRes => new models.AuthorizationServer(jsonRes, this));
   }
 
@@ -891,9 +1046,13 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/authorizationServers/${authServerId}`
     ];
 
-    const request = this.http.putJson(url, {
-      body: authorizationServer
-    }, {resources});
+    const request = this.http.putJson(
+      url,
+      {
+        body: authorizationServer
+      },
+      { resources }
+    );
     return request.then(jsonRes => new models.AuthorizationServer(jsonRes, this));
   }
 
@@ -925,9 +1084,13 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/authorizationServers/${authServerId}`
     ];
 
-    const request = this.http.postJson(url, {
-      body: oAuth2Claim
-    }, {resources});
+    const request = this.http.postJson(
+      url,
+      {
+        body: oAuth2Claim
+      },
+      { resources }
+    );
     return request.then(jsonRes => new models.OAuth2Claim(jsonRes, this));
   }
 
@@ -946,7 +1109,11 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/authorizationServers/${authServerId}`
     ];
 
-    const request = this.http.delete(url, null, {resources});
+    const request = this.http.delete(
+      url,
+      null,
+      { resources }
+    );
     return request;
   }
 
@@ -966,7 +1133,11 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/authorizationServers/${authServerId}`
     ];
 
-    const request = this.http.getJson(url, null, {resources});
+    const request = this.http.getJson(
+      url,
+      null,
+      { resources }
+    );
     return request.then(jsonRes => new models.OAuth2Claim(jsonRes, this));
   }
 
@@ -987,9 +1158,13 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/authorizationServers/${authServerId}`
     ];
 
-    const request = this.http.putJson(url, {
-      body: oAuth2Claim
-    }, {resources});
+    const request = this.http.putJson(
+      url,
+      {
+        body: oAuth2Claim
+      },
+      { resources }
+    );
     return request.then(jsonRes => new models.OAuth2Claim(jsonRes, this));
   }
 
@@ -1021,7 +1196,11 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/authorizationServers/${authServerId}`
     ];
 
-    const request = this.http.delete(url, null, {resources});
+    const request = this.http.delete(
+      url,
+      null,
+      { resources }
+    );
     return request;
   }
 
@@ -1063,7 +1242,11 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/authorizationServers/${authServerId}`
     ];
 
-    const request = this.http.delete(url, null, {resources});
+    const request = this.http.delete(
+      url,
+      null,
+      { resources }
+    );
     return request;
   }
 
@@ -1090,7 +1273,11 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/authorizationServers/${authServerId}`
     ];
 
-    const request = this.http.getJson(url, null, {resources});
+    const request = this.http.getJson(
+      url,
+      null,
+      { resources }
+    );
     return request.then(jsonRes => new models.OAuth2RefreshToken(jsonRes, this));
   }
 
@@ -1133,7 +1320,15 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/authorizationServers/${authServerId}`
     ];
 
-    const request = this.http.post(url, null, {resources});
+    const request = this.http.post(
+      url,
+      {
+        headers: {
+          'Content-Type': 'application/json', 'Accept': 'application/json',
+        },
+      },
+      { resources }
+    );
     return request;
   }
 
@@ -1150,7 +1345,15 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/authorizationServers/${authServerId}`
     ];
 
-    const request = this.http.post(url, null, {resources});
+    const request = this.http.post(
+      url,
+      {
+        headers: {
+          'Content-Type': 'application/json', 'Accept': 'application/json',
+        },
+      },
+      { resources }
+    );
     return request;
   }
 
@@ -1182,9 +1385,13 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/authorizationServers/${authServerId}`
     ];
 
-    const request = this.http.postJson(url, {
-      body: policy
-    }, {resources});
+    const request = this.http.postJson(
+      url,
+      {
+        body: policy
+      },
+      { resources }
+    );
     return request.then(jsonRes => new factories.Policy().createInstance(jsonRes, this));
   }
 
@@ -1203,7 +1410,11 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/authorizationServers/${authServerId}`
     ];
 
-    const request = this.http.delete(url, null, {resources});
+    const request = this.http.delete(
+      url,
+      null,
+      { resources }
+    );
     return request;
   }
 
@@ -1223,7 +1434,11 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/authorizationServers/${authServerId}`
     ];
 
-    const request = this.http.getJson(url, null, {resources});
+    const request = this.http.getJson(
+      url,
+      null,
+      { resources }
+    );
     return request.then(jsonRes => new factories.Policy().createInstance(jsonRes, this));
   }
 
@@ -1244,9 +1459,13 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/authorizationServers/${authServerId}`
     ];
 
-    const request = this.http.putJson(url, {
-      body: policy
-    }, {resources});
+    const request = this.http.putJson(
+      url,
+      {
+        body: policy
+      },
+      { resources }
+    );
     return request.then(jsonRes => new factories.Policy().createInstance(jsonRes, this));
   }
 
@@ -1286,9 +1505,13 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/authorizationServers/${authServerId}`
     ];
 
-    const request = this.http.postJson(url, {
-      body: oAuth2Scope
-    }, {resources});
+    const request = this.http.postJson(
+      url,
+      {
+        body: oAuth2Scope
+      },
+      { resources }
+    );
     return request.then(jsonRes => new models.OAuth2Scope(jsonRes, this));
   }
 
@@ -1307,7 +1530,11 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/authorizationServers/${authServerId}`
     ];
 
-    const request = this.http.delete(url, null, {resources});
+    const request = this.http.delete(
+      url,
+      null,
+      { resources }
+    );
     return request;
   }
 
@@ -1327,7 +1554,11 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/authorizationServers/${authServerId}`
     ];
 
-    const request = this.http.getJson(url, null, {resources});
+    const request = this.http.getJson(
+      url,
+      null,
+      { resources }
+    );
     return request.then(jsonRes => new models.OAuth2Scope(jsonRes, this));
   }
 
@@ -1348,9 +1579,13 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/authorizationServers/${authServerId}`
     ];
 
-    const request = this.http.putJson(url, {
-      body: oAuth2Scope
-    }, {resources});
+    const request = this.http.putJson(
+      url,
+      {
+        body: oAuth2Scope
+      },
+      { resources }
+    );
     return request.then(jsonRes => new models.OAuth2Scope(jsonRes, this));
   }
 
@@ -1378,9 +1613,13 @@ class GeneratedApiClient {
 
     const resources = [];
 
-    const request = this.http.postJson(url, {
-      body: eventHook
-    }, {resources});
+    const request = this.http.postJson(
+      url,
+      {
+        body: eventHook
+      },
+      { resources }
+    );
     return request.then(jsonRes => new models.EventHook(jsonRes, this));
   }
 
@@ -1397,7 +1636,11 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/eventHooks/${eventHookId}`
     ];
 
-    const request = this.http.delete(url, null, {resources});
+    const request = this.http.delete(
+      url,
+      null,
+      { resources }
+    );
     return request;
   }
 
@@ -1415,7 +1658,11 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/eventHooks/${eventHookId}`
     ];
 
-    const request = this.http.getJson(url, null, {resources});
+    const request = this.http.getJson(
+      url,
+      null,
+      { resources }
+    );
     return request.then(jsonRes => new models.EventHook(jsonRes, this));
   }
 
@@ -1434,9 +1681,13 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/eventHooks/${eventHookId}`
     ];
 
-    const request = this.http.putJson(url, {
-      body: eventHook
-    }, {resources});
+    const request = this.http.putJson(
+      url,
+      {
+        body: eventHook
+      },
+      { resources }
+    );
     return request.then(jsonRes => new models.EventHook(jsonRes, this));
   }
 
@@ -1454,7 +1705,11 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/eventHooks/${eventHookId}`
     ];
 
-    const request = this.http.postJson(url, null, {resources});
+    const request = this.http.postJson(
+      url,
+      null,
+      { resources }
+    );
     return request.then(jsonRes => new models.EventHook(jsonRes, this));
   }
 
@@ -1472,7 +1727,11 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/eventHooks/${eventHookId}`
     ];
 
-    const request = this.http.postJson(url, null, {resources});
+    const request = this.http.postJson(
+      url,
+      null,
+      { resources }
+    );
     return request.then(jsonRes => new models.EventHook(jsonRes, this));
   }
 
@@ -1490,7 +1749,11 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/eventHooks/${eventHookId}`
     ];
 
-    const request = this.http.postJson(url, null, {resources});
+    const request = this.http.postJson(
+      url,
+      null,
+      { resources }
+    );
     return request.then(jsonRes => new models.EventHook(jsonRes, this));
   }
 
@@ -1520,7 +1783,11 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/features/${featureId}`
     ];
 
-    const request = this.http.getJson(url, null, {resources});
+    const request = this.http.getJson(
+      url,
+      null,
+      { resources }
+    );
     return request.then(jsonRes => new models.Feature(jsonRes, this));
   }
 
@@ -1571,7 +1838,11 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/features/${featureId}`
     ];
 
-    const request = this.http.postJson(url, null, {resources});
+    const request = this.http.postJson(
+      url,
+      null,
+      { resources }
+    );
     return request.then(jsonRes => new models.Feature(jsonRes, this));
   }
 
@@ -1607,9 +1878,13 @@ class GeneratedApiClient {
 
     const resources = [];
 
-    const request = this.http.postJson(url, {
-      body: group
-    }, {resources});
+    const request = this.http.postJson(
+      url,
+      {
+        body: group
+      },
+      { resources }
+    );
     return request.then(jsonRes => new models.Group(jsonRes, this));
   }
 
@@ -1645,9 +1920,13 @@ class GeneratedApiClient {
 
     const resources = [];
 
-    const request = this.http.postJson(url, {
-      body: groupRule
-    }, {resources});
+    const request = this.http.postJson(
+      url,
+      {
+        body: groupRule
+      },
+      { resources }
+    );
     return request.then(jsonRes => new models.GroupRule(jsonRes, this));
   }
 
@@ -1664,7 +1943,11 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/groups/rules/${ruleId}`
     ];
 
-    const request = this.http.delete(url, null, {resources});
+    const request = this.http.delete(
+      url,
+      null,
+      { resources }
+    );
     return request;
   }
 
@@ -1687,7 +1970,11 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/groups/rules/${ruleId}`
     ];
 
-    const request = this.http.getJson(url, null, {resources});
+    const request = this.http.getJson(
+      url,
+      null,
+      { resources }
+    );
     return request.then(jsonRes => new models.GroupRule(jsonRes, this));
   }
 
@@ -1706,9 +1993,13 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/groups/rules/${ruleId}`
     ];
 
-    const request = this.http.putJson(url, {
-      body: groupRule
-    }, {resources});
+    const request = this.http.putJson(
+      url,
+      {
+        body: groupRule
+      },
+      { resources }
+    );
     return request.then(jsonRes => new models.GroupRule(jsonRes, this));
   }
 
@@ -1725,7 +2016,15 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/groups/rules/${ruleId}`
     ];
 
-    const request = this.http.post(url, null, {resources});
+    const request = this.http.post(
+      url,
+      {
+        headers: {
+          'Content-Type': 'application/json', 'Accept': 'application/json',
+        },
+      },
+      { resources }
+    );
     return request;
   }
 
@@ -1742,7 +2041,15 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/groups/rules/${ruleId}`
     ];
 
-    const request = this.http.post(url, null, {resources});
+    const request = this.http.post(
+      url,
+      {
+        headers: {
+          'Content-Type': 'application/json', 'Accept': 'application/json',
+        },
+      },
+      { resources }
+    );
     return request;
   }
 
@@ -1759,7 +2066,11 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/groups/${groupId}`
     ];
 
-    const request = this.http.delete(url, null, {resources});
+    const request = this.http.delete(
+      url,
+      null,
+      { resources }
+    );
     return request;
   }
 
@@ -1777,7 +2088,11 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/groups/${groupId}`
     ];
 
-    const request = this.http.getJson(url, null, {resources});
+    const request = this.http.getJson(
+      url,
+      null,
+      { resources }
+    );
     return request.then(jsonRes => new models.Group(jsonRes, this));
   }
 
@@ -1796,9 +2111,13 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/groups/${groupId}`
     ];
 
-    const request = this.http.putJson(url, {
-      body: group
-    }, {resources});
+    const request = this.http.putJson(
+      url,
+      {
+        body: group
+      },
+      { resources }
+    );
     return request.then(jsonRes => new models.Group(jsonRes, this));
   }
 
@@ -1859,9 +2178,13 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/groups/${groupId}`
     ];
 
-    const request = this.http.postJson(url, {
-      body: assignRoleRequest
-    }, {resources});
+    const request = this.http.postJson(
+      url,
+      {
+        body: assignRoleRequest
+      },
+      { resources }
+    );
     return request.then(jsonRes => new models.Role(jsonRes, this));
   }
 
@@ -1880,7 +2203,11 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/groups/${groupId}`
     ];
 
-    const request = this.http.delete(url, null, {resources});
+    const request = this.http.delete(
+      url,
+      null,
+      { resources }
+    );
     return request;
   }
 
@@ -1900,7 +2227,11 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/groups/${groupId}`
     ];
 
-    const request = this.http.getJson(url, null, {resources});
+    const request = this.http.getJson(
+      url,
+      null,
+      { resources }
+    );
     return request.then(jsonRes => new models.Role(jsonRes, this));
   }
 
@@ -1941,7 +2272,11 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/groups/${groupId}`
     ];
 
-    const request = this.http.delete(url, null, {resources});
+    const request = this.http.delete(
+      url,
+      null,
+      { resources }
+    );
     return request;
   }
 
@@ -1962,7 +2297,15 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/groups/${groupId}`
     ];
 
-    const request = this.http.put(url, null, {resources});
+    const request = this.http.put(
+      url,
+      {
+        headers: {
+          'Content-Type': 'application/json', 'Accept': 'application/json',
+        },
+      },
+      { resources }
+    );
     return request;
   }
 
@@ -1985,7 +2328,11 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/groups/${groupId}`
     ];
 
-    const request = this.http.delete(url, null, {resources});
+    const request = this.http.delete(
+      url,
+      null,
+      { resources }
+    );
     return request;
   }
 
@@ -2008,7 +2355,15 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/groups/${groupId}`
     ];
 
-    const request = this.http.put(url, null, {resources});
+    const request = this.http.put(
+      url,
+      {
+        headers: {
+          'Content-Type': 'application/json', 'Accept': 'application/json',
+        },
+      },
+      { resources }
+    );
     return request;
   }
 
@@ -2049,7 +2404,11 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/groups/${groupId}`
     ];
 
-    const request = this.http.delete(url, null, {resources});
+    const request = this.http.delete(
+      url,
+      null,
+      { resources }
+    );
     return request;
   }
 
@@ -2070,7 +2429,15 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/groups/${groupId}`
     ];
 
-    const request = this.http.put(url, null, {resources});
+    const request = this.http.put(
+      url,
+      {
+        headers: {
+          'Content-Type': 'application/json', 'Accept': 'application/json',
+        },
+      },
+      { resources }
+    );
     return request;
   }
 
@@ -2108,7 +2475,11 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/groups/${groupId}`
     ];
 
-    const request = this.http.delete(url, null, {resources});
+    const request = this.http.delete(
+      url,
+      null,
+      { resources }
+    );
     return request;
   }
 
@@ -2127,7 +2498,15 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/groups/${groupId}`
     ];
 
-    const request = this.http.put(url, null, {resources});
+    const request = this.http.put(
+      url,
+      {
+        headers: {
+          'Content-Type': 'application/json', 'Accept': 'application/json',
+        },
+      },
+      { resources }
+    );
     return request;
   }
 
@@ -2163,9 +2542,13 @@ class GeneratedApiClient {
 
     const resources = [];
 
-    const request = this.http.postJson(url, {
-      body: identityProvider
-    }, {resources});
+    const request = this.http.postJson(
+      url,
+      {
+        body: identityProvider
+      },
+      { resources }
+    );
     return request.then(jsonRes => new models.IdentityProvider(jsonRes, this));
   }
 
@@ -2199,9 +2582,13 @@ class GeneratedApiClient {
 
     const resources = [];
 
-    const request = this.http.postJson(url, {
-      body: jsonWebKey
-    }, {resources});
+    const request = this.http.postJson(
+      url,
+      {
+        body: jsonWebKey
+      },
+      { resources }
+    );
     return request.then(jsonRes => new models.JsonWebKey(jsonRes, this));
   }
 
@@ -2218,7 +2605,11 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/idps/credentials/keys/${keyId}`
     ];
 
-    const request = this.http.delete(url, null, {resources});
+    const request = this.http.delete(
+      url,
+      null,
+      { resources }
+    );
     return request;
   }
 
@@ -2236,7 +2627,11 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/idps/credentials/keys/${keyId}`
     ];
 
-    const request = this.http.getJson(url, null, {resources});
+    const request = this.http.getJson(
+      url,
+      null,
+      { resources }
+    );
     return request.then(jsonRes => new models.JsonWebKey(jsonRes, this));
   }
 
@@ -2253,7 +2648,11 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/idps/${idpId}`
     ];
 
-    const request = this.http.delete(url, null, {resources});
+    const request = this.http.delete(
+      url,
+      null,
+      { resources }
+    );
     return request;
   }
 
@@ -2271,7 +2670,11 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/idps/${idpId}`
     ];
 
-    const request = this.http.getJson(url, null, {resources});
+    const request = this.http.getJson(
+      url,
+      null,
+      { resources }
+    );
     return request.then(jsonRes => new models.IdentityProvider(jsonRes, this));
   }
 
@@ -2290,9 +2693,13 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/idps/${idpId}`
     ];
 
-    const request = this.http.putJson(url, {
-      body: identityProvider
-    }, {resources});
+    const request = this.http.putJson(
+      url,
+      {
+        body: identityProvider
+      },
+      { resources }
+    );
     return request.then(jsonRes => new models.IdentityProvider(jsonRes, this));
   }
 
@@ -2324,9 +2731,13 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/idps/${idpId}`
     ];
 
-    const request = this.http.postJson(url, {
-      body: csrMetadata
-    }, {resources});
+    const request = this.http.postJson(
+      url,
+      {
+        body: csrMetadata
+      },
+      { resources }
+    );
     return request.then(jsonRes => new models.Csr(jsonRes, this));
   }
 
@@ -2345,7 +2756,11 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/idps/${idpId}`
     ];
 
-    const request = this.http.delete(url, null, {resources});
+    const request = this.http.delete(
+      url,
+      null,
+      { resources }
+    );
     return request;
   }
 
@@ -2365,7 +2780,11 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/idps/${idpId}`
     ];
 
-    const request = this.http.getJson(url, null, {resources});
+    const request = this.http.getJson(
+      url,
+      null,
+      { resources }
+    );
     return request.then(jsonRes => new models.Csr(jsonRes, this));
   }
 
@@ -2386,9 +2805,16 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/idps/${idpId}`
     ];
 
-    const request = this.http.postJson(url, {
-      body: certificate
-    }, {resources});
+    const request = this.http.post(
+      url,
+      {
+        headers: {
+          'Content-Type': 'application/x-x509-ca-cert', 'Accept': 'application/json', 'Content-Transfer-Encoding': 'base64',
+        },
+        body: certificate
+      },
+      { resources }
+    ).then(res => res.json());
     return request.then(jsonRes => new models.JsonWebKey(jsonRes, this));
   }
 
@@ -2409,9 +2835,16 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/idps/${idpId}`
     ];
 
-    const request = this.http.postJson(url, {
-      body: certificate
-    }, {resources});
+    const request = this.http.post(
+      url,
+      {
+        headers: {
+          'Content-Type': 'application/x-x509-ca-cert', 'Accept': 'application/json',
+        },
+        body: certificate
+      },
+      { resources }
+    ).then(res => res.json());
     return request.then(jsonRes => new models.JsonWebKey(jsonRes, this));
   }
 
@@ -2432,9 +2865,16 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/idps/${idpId}`
     ];
 
-    const request = this.http.postJson(url, {
-      body: certificate
-    }, {resources});
+    const request = this.http.post(
+      url,
+      {
+        headers: {
+          'Content-Type': 'application/pkix-cert', 'Accept': 'application/json', 'Content-Transfer-Encoding': 'base64',
+        },
+        body: certificate
+      },
+      { resources }
+    ).then(res => res.json());
     return request.then(jsonRes => new models.JsonWebKey(jsonRes, this));
   }
 
@@ -2455,9 +2895,16 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/idps/${idpId}`
     ];
 
-    const request = this.http.postJson(url, {
-      body: certificate
-    }, {resources});
+    const request = this.http.post(
+      url,
+      {
+        headers: {
+          'Content-Type': 'application/pkix-cert', 'Accept': 'application/json',
+        },
+        body: certificate
+      },
+      { resources }
+    ).then(res => res.json());
     return request.then(jsonRes => new models.JsonWebKey(jsonRes, this));
   }
 
@@ -2478,9 +2925,16 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/idps/${idpId}`
     ];
 
-    const request = this.http.postJson(url, {
-      body: certificate
-    }, {resources});
+    const request = this.http.post(
+      url,
+      {
+        headers: {
+          'Content-Type': 'application/x-pem-file', 'Accept': 'application/json',
+        },
+        body: certificate
+      },
+      { resources }
+    ).then(res => res.json());
     return request.then(jsonRes => new models.JsonWebKey(jsonRes, this));
   }
 
@@ -2516,7 +2970,11 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/idps/${idpId}`
     ];
 
-    const request = this.http.postJson(url, null, {resources});
+    const request = this.http.postJson(
+      url,
+      null,
+      { resources }
+    );
     return request.then(jsonRes => new models.JsonWebKey(jsonRes, this));
   }
 
@@ -2536,7 +2994,11 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/idps/${idpId}`
     ];
 
-    const request = this.http.getJson(url, null, {resources});
+    const request = this.http.getJson(
+      url,
+      null,
+      { resources }
+    );
     return request.then(jsonRes => new models.JsonWebKey(jsonRes, this));
   }
 
@@ -2561,7 +3023,11 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/idps/${idpId}`
     ];
 
-    const request = this.http.postJson(url, null, {resources});
+    const request = this.http.postJson(
+      url,
+      null,
+      { resources }
+    );
     return request.then(jsonRes => new models.JsonWebKey(jsonRes, this));
   }
 
@@ -2579,7 +3045,11 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/idps/${idpId}`
     ];
 
-    const request = this.http.postJson(url, null, {resources});
+    const request = this.http.postJson(
+      url,
+      null,
+      { resources }
+    );
     return request.then(jsonRes => new models.IdentityProvider(jsonRes, this));
   }
 
@@ -2597,7 +3067,11 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/idps/${idpId}`
     ];
 
-    const request = this.http.postJson(url, null, {resources});
+    const request = this.http.postJson(
+      url,
+      null,
+      { resources }
+    );
     return request.then(jsonRes => new models.IdentityProvider(jsonRes, this));
   }
 
@@ -2629,7 +3103,11 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/idps/${idpId}`
     ];
 
-    const request = this.http.delete(url, null, {resources});
+    const request = this.http.delete(
+      url,
+      null,
+      { resources }
+    );
     return request;
   }
 
@@ -2649,7 +3127,11 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/idps/${idpId}`
     ];
 
-    const request = this.http.getJson(url, null, {resources});
+    const request = this.http.getJson(
+      url,
+      null,
+      { resources }
+    );
     return request.then(jsonRes => new models.IdentityProviderApplicationUser(jsonRes, this));
   }
 
@@ -2670,9 +3152,13 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/idps/${idpId}`
     ];
 
-    const request = this.http.postJson(url, {
-      body: userIdentityProviderLinkRequest
-    }, {resources});
+    const request = this.http.postJson(
+      url,
+      {
+        body: userIdentityProviderLinkRequest
+      },
+      { resources }
+    );
     return request.then(jsonRes => new models.IdentityProviderApplicationUser(jsonRes, this));
   }
 
@@ -2719,9 +3205,13 @@ class GeneratedApiClient {
 
     const resources = [];
 
-    const request = this.http.postJson(url, {
-      body: inlineHook
-    }, {resources});
+    const request = this.http.postJson(
+      url,
+      {
+        body: inlineHook
+      },
+      { resources }
+    );
     return request.then(jsonRes => new models.InlineHook(jsonRes, this));
   }
 
@@ -2738,7 +3228,11 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/inlineHooks/${inlineHookId}`
     ];
 
-    const request = this.http.delete(url, null, {resources});
+    const request = this.http.delete(
+      url,
+      null,
+      { resources }
+    );
     return request;
   }
 
@@ -2756,7 +3250,11 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/inlineHooks/${inlineHookId}`
     ];
 
-    const request = this.http.getJson(url, null, {resources});
+    const request = this.http.getJson(
+      url,
+      null,
+      { resources }
+    );
     return request.then(jsonRes => new models.InlineHook(jsonRes, this));
   }
 
@@ -2775,9 +3273,13 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/inlineHooks/${inlineHookId}`
     ];
 
-    const request = this.http.putJson(url, {
-      body: inlineHook
-    }, {resources});
+    const request = this.http.putJson(
+      url,
+      {
+        body: inlineHook
+      },
+      { resources }
+    );
     return request.then(jsonRes => new models.InlineHook(jsonRes, this));
   }
 
@@ -2796,9 +3298,13 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/inlineHooks/${inlineHookId}`
     ];
 
-    const request = this.http.postJson(url, {
-      body: inlineHookPayload
-    }, {resources});
+    const request = this.http.postJson(
+      url,
+      {
+        body: inlineHookPayload
+      },
+      { resources }
+    );
     return request.then(jsonRes => new models.InlineHookResponse(jsonRes, this));
   }
 
@@ -2816,7 +3322,11 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/inlineHooks/${inlineHookId}`
     ];
 
-    const request = this.http.postJson(url, null, {resources});
+    const request = this.http.postJson(
+      url,
+      null,
+      { resources }
+    );
     return request.then(jsonRes => new models.InlineHook(jsonRes, this));
   }
 
@@ -2834,7 +3344,11 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/inlineHooks/${inlineHookId}`
     ];
 
-    const request = this.http.postJson(url, null, {resources});
+    const request = this.http.postJson(
+      url,
+      null,
+      { resources }
+    );
     return request.then(jsonRes => new models.InlineHook(jsonRes, this));
   }
 
@@ -2885,9 +3399,13 @@ class GeneratedApiClient {
 
     const resources = [];
 
-    const request = this.http.postJson(url, {
-      body: linkedObject
-    }, {resources});
+    const request = this.http.postJson(
+      url,
+      {
+        body: linkedObject
+      },
+      { resources }
+    );
     return request.then(jsonRes => new models.LinkedObject(jsonRes, this));
   }
 
@@ -2904,7 +3422,11 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/meta/schemas/user/linkedObjects/${linkedObjectName}`
     ];
 
-    const request = this.http.delete(url, null, {resources});
+    const request = this.http.delete(
+      url,
+      null,
+      { resources }
+    );
     return request;
   }
 
@@ -2922,7 +3444,11 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/meta/schemas/user/linkedObjects/${linkedObjectName}`
     ];
 
-    const request = this.http.getJson(url, null, {resources});
+    const request = this.http.getJson(
+      url,
+      null,
+      { resources }
+    );
     return request.then(jsonRes => new models.LinkedObject(jsonRes, this));
   }
 
@@ -2950,9 +3476,13 @@ class GeneratedApiClient {
 
     const resources = [];
 
-    const request = this.http.postJson(url, {
-      body: userType
-    }, {resources});
+    const request = this.http.postJson(
+      url,
+      {
+        body: userType
+      },
+      { resources }
+    );
     return request.then(jsonRes => new models.UserType(jsonRes, this));
   }
 
@@ -2969,7 +3499,11 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/meta/types/user/${typeId}`
     ];
 
-    const request = this.http.delete(url, null, {resources});
+    const request = this.http.delete(
+      url,
+      null,
+      { resources }
+    );
     return request;
   }
 
@@ -2987,7 +3521,11 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/meta/types/user/${typeId}`
     ];
 
-    const request = this.http.getJson(url, null, {resources});
+    const request = this.http.getJson(
+      url,
+      null,
+      { resources }
+    );
     return request.then(jsonRes => new models.UserType(jsonRes, this));
   }
 
@@ -3006,9 +3544,13 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/meta/types/user/${typeId}`
     ];
 
-    const request = this.http.postJson(url, {
-      body: userType
-    }, {resources});
+    const request = this.http.postJson(
+      url,
+      {
+        body: userType
+      },
+      { resources }
+    );
     return request.then(jsonRes => new models.UserType(jsonRes, this));
   }
 
@@ -3027,9 +3569,13 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/meta/types/user/${typeId}`
     ];
 
-    const request = this.http.putJson(url, {
-      body: userType
-    }, {resources});
+    const request = this.http.putJson(
+      url,
+      {
+        body: userType
+      },
+      { resources }
+    );
     return request.then(jsonRes => new models.UserType(jsonRes, this));
   }
 
@@ -3069,9 +3615,13 @@ class GeneratedApiClient {
 
     const resources = [];
 
-    const request = this.http.postJson(url, {
-      body: policy
-    }, {resources});
+    const request = this.http.postJson(
+      url,
+      {
+        body: policy
+      },
+      { resources }
+    );
     return request.then(jsonRes => new factories.Policy().createInstance(jsonRes, this));
   }
 
@@ -3088,7 +3638,11 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/policies/${policyId}`
     ];
 
-    const request = this.http.delete(url, null, {resources});
+    const request = this.http.delete(
+      url,
+      null,
+      { resources }
+    );
     return request;
   }
 
@@ -3111,7 +3665,11 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/policies/${policyId}`
     ];
 
-    const request = this.http.getJson(url, null, {resources});
+    const request = this.http.getJson(
+      url,
+      null,
+      { resources }
+    );
     return request.then(jsonRes => new factories.Policy().createInstance(jsonRes, this));
   }
 
@@ -3130,9 +3688,13 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/policies/${policyId}`
     ];
 
-    const request = this.http.putJson(url, {
-      body: policy
-    }, {resources});
+    const request = this.http.putJson(
+      url,
+      {
+        body: policy
+      },
+      { resources }
+    );
     return request.then(jsonRes => new factories.Policy().createInstance(jsonRes, this));
   }
 
@@ -3149,7 +3711,15 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/policies/${policyId}`
     ];
 
-    const request = this.http.post(url, null, {resources});
+    const request = this.http.post(
+      url,
+      {
+        headers: {
+          'Content-Type': 'application/json', 'Accept': 'application/json',
+        },
+      },
+      { resources }
+    );
     return request;
   }
 
@@ -3166,7 +3736,15 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/policies/${policyId}`
     ];
 
-    const request = this.http.post(url, null, {resources});
+    const request = this.http.post(
+      url,
+      {
+        headers: {
+          'Content-Type': 'application/json', 'Accept': 'application/json',
+        },
+      },
+      { resources }
+    );
     return request;
   }
 
@@ -3198,9 +3776,13 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/policies/${policyId}`
     ];
 
-    const request = this.http.postJson(url, {
-      body: policyRule
-    }, {resources});
+    const request = this.http.postJson(
+      url,
+      {
+        body: policyRule
+      },
+      { resources }
+    );
     return request.then(jsonRes => new factories.PolicyRule().createInstance(jsonRes, this));
   }
 
@@ -3219,7 +3801,11 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/policies/${policyId}`
     ];
 
-    const request = this.http.delete(url, null, {resources});
+    const request = this.http.delete(
+      url,
+      null,
+      { resources }
+    );
     return request;
   }
 
@@ -3239,7 +3825,11 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/policies/${policyId}`
     ];
 
-    const request = this.http.getJson(url, null, {resources});
+    const request = this.http.getJson(
+      url,
+      null,
+      { resources }
+    );
     return request.then(jsonRes => new factories.PolicyRule().createInstance(jsonRes, this));
   }
 
@@ -3260,9 +3850,13 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/policies/${policyId}`
     ];
 
-    const request = this.http.putJson(url, {
-      body: policyRule
-    }, {resources});
+    const request = this.http.putJson(
+      url,
+      {
+        body: policyRule
+      },
+      { resources }
+    );
     return request.then(jsonRes => new factories.PolicyRule().createInstance(jsonRes, this));
   }
 
@@ -3281,7 +3875,15 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/policies/${policyId}`
     ];
 
-    const request = this.http.post(url, null, {resources});
+    const request = this.http.post(
+      url,
+      {
+        headers: {
+          'Content-Type': 'application/json', 'Accept': 'application/json',
+        },
+      },
+      { resources }
+    );
     return request;
   }
 
@@ -3300,7 +3902,15 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/policies/${policyId}`
     ];
 
-    const request = this.http.post(url, null, {resources});
+    const request = this.http.post(
+      url,
+      {
+        headers: {
+          'Content-Type': 'application/json', 'Accept': 'application/json',
+        },
+      },
+      { resources }
+    );
     return request;
   }
 
@@ -3316,9 +3926,13 @@ class GeneratedApiClient {
 
     const resources = [];
 
-    const request = this.http.postJson(url, {
-      body: createSessionRequest
-    }, {resources});
+    const request = this.http.postJson(
+      url,
+      {
+        body: createSessionRequest
+      },
+      { resources }
+    );
     return request.then(jsonRes => new models.Session(jsonRes, this));
   }
 
@@ -3335,7 +3949,11 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/sessions/${sessionId}`
     ];
 
-    const request = this.http.delete(url, null, {resources});
+    const request = this.http.delete(
+      url,
+      null,
+      { resources }
+    );
     return request;
   }
 
@@ -3353,7 +3971,11 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/sessions/${sessionId}`
     ];
 
-    const request = this.http.getJson(url, null, {resources});
+    const request = this.http.getJson(
+      url,
+      null,
+      { resources }
+    );
     return request.then(jsonRes => new models.Session(jsonRes, this));
   }
 
@@ -3371,7 +3993,11 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/sessions/${sessionId}`
     ];
 
-    const request = this.http.postJson(url, null, {resources});
+    const request = this.http.postJson(
+      url,
+      null,
+      { resources }
+    );
     return request.then(jsonRes => new models.Session(jsonRes, this));
   }
 
@@ -3404,9 +4030,13 @@ class GeneratedApiClient {
 
     const resources = [];
 
-    const request = this.http.postJson(url, {
-      body: smsTemplate
-    }, {resources});
+    const request = this.http.postJson(
+      url,
+      {
+        body: smsTemplate
+      },
+      { resources }
+    );
     return request.then(jsonRes => new models.SmsTemplate(jsonRes, this));
   }
 
@@ -3423,7 +4053,11 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/templates/sms/${templateId}`
     ];
 
-    const request = this.http.delete(url, null, {resources});
+    const request = this.http.delete(
+      url,
+      null,
+      { resources }
+    );
     return request;
   }
 
@@ -3441,7 +4075,11 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/templates/sms/${templateId}`
     ];
 
-    const request = this.http.getJson(url, null, {resources});
+    const request = this.http.getJson(
+      url,
+      null,
+      { resources }
+    );
     return request.then(jsonRes => new models.SmsTemplate(jsonRes, this));
   }
 
@@ -3460,9 +4098,13 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/templates/sms/${templateId}`
     ];
 
-    const request = this.http.postJson(url, {
-      body: smsTemplate
-    }, {resources});
+    const request = this.http.postJson(
+      url,
+      {
+        body: smsTemplate
+      },
+      { resources }
+    );
     return request.then(jsonRes => new models.SmsTemplate(jsonRes, this));
   }
 
@@ -3481,9 +4123,13 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/templates/sms/${templateId}`
     ];
 
-    const request = this.http.putJson(url, {
-      body: smsTemplate
-    }, {resources});
+    const request = this.http.putJson(
+      url,
+      {
+        body: smsTemplate
+      },
+      { resources }
+    );
     return request.then(jsonRes => new models.SmsTemplate(jsonRes, this));
   }
 
@@ -3519,9 +4165,13 @@ class GeneratedApiClient {
 
     const resources = [];
 
-    const request = this.http.postJson(url, {
-      body: trustedOrigin
-    }, {resources});
+    const request = this.http.postJson(
+      url,
+      {
+        body: trustedOrigin
+      },
+      { resources }
+    );
     return request.then(jsonRes => new models.TrustedOrigin(jsonRes, this));
   }
 
@@ -3538,7 +4188,11 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/trustedOrigins/${trustedOriginId}`
     ];
 
-    const request = this.http.delete(url, null, {resources});
+    const request = this.http.delete(
+      url,
+      null,
+      { resources }
+    );
     return request;
   }
 
@@ -3556,7 +4210,11 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/trustedOrigins/${trustedOriginId}`
     ];
 
-    const request = this.http.getJson(url, null, {resources});
+    const request = this.http.getJson(
+      url,
+      null,
+      { resources }
+    );
     return request.then(jsonRes => new models.TrustedOrigin(jsonRes, this));
   }
 
@@ -3575,9 +4233,13 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/trustedOrigins/${trustedOriginId}`
     ];
 
-    const request = this.http.putJson(url, {
-      body: trustedOrigin
-    }, {resources});
+    const request = this.http.putJson(
+      url,
+      {
+        body: trustedOrigin
+      },
+      { resources }
+    );
     return request.then(jsonRes => new models.TrustedOrigin(jsonRes, this));
   }
 
@@ -3595,7 +4257,11 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/trustedOrigins/${trustedOriginId}`
     ];
 
-    const request = this.http.postJson(url, null, {resources});
+    const request = this.http.postJson(
+      url,
+      null,
+      { resources }
+    );
     return request.then(jsonRes => new models.TrustedOrigin(jsonRes, this));
   }
 
@@ -3613,7 +4279,11 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/trustedOrigins/${trustedOriginId}`
     ];
 
-    const request = this.http.postJson(url, null, {resources});
+    const request = this.http.postJson(
+      url,
+      null,
+      { resources }
+    );
     return request.then(jsonRes => new models.TrustedOrigin(jsonRes, this));
   }
 
@@ -3659,9 +4329,13 @@ class GeneratedApiClient {
 
     const resources = [];
 
-    const request = this.http.postJson(url, {
-      body: createUserRequest
-    }, {resources});
+    const request = this.http.postJson(
+      url,
+      {
+        body: createUserRequest
+      },
+      { resources }
+    );
     return request.then(jsonRes => new models.User(jsonRes, this));
   }
 
@@ -3682,7 +4356,15 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/users/${associatedUserId}`
     ];
 
-    const request = this.http.put(url, null, {resources});
+    const request = this.http.put(
+      url,
+      {
+        headers: {
+          'Content-Type': 'application/json', 'Accept': 'application/json',
+        },
+      },
+      { resources }
+    );
     return request;
   }
 
@@ -3704,7 +4386,11 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/users/${userId}`
     ];
 
-    const request = this.http.delete(url, null, {resources});
+    const request = this.http.delete(
+      url,
+      null,
+      { resources }
+    );
     return request;
   }
 
@@ -3722,7 +4408,11 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/users/${userId}`
     ];
 
-    const request = this.http.getJson(url, null, {resources});
+    const request = this.http.getJson(
+      url,
+      null,
+      { resources }
+    );
     return request.then(jsonRes => new models.User(jsonRes, this));
   }
 
@@ -3746,9 +4436,13 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/users/${userId}`
     ];
 
-    const request = this.http.postJson(url, {
-      body: user
-    }, {resources});
+    const request = this.http.postJson(
+      url,
+      {
+        body: user
+      },
+      { resources }
+    );
     return request.then(jsonRes => new models.User(jsonRes, this));
   }
 
@@ -3772,9 +4466,13 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/users/${userId}`
     ];
 
-    const request = this.http.putJson(url, {
-      body: user
-    }, {resources});
+    const request = this.http.putJson(
+      url,
+      {
+        body: user
+      },
+      { resources }
+    );
     return request.then(jsonRes => new models.User(jsonRes, this));
   }
 
@@ -3819,7 +4517,11 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/users/${userId}`
     ];
 
-    const request = this.http.delete(url, null, {resources});
+    const request = this.http.delete(
+      url,
+      null,
+      { resources }
+    );
     return request;
   }
 
@@ -3859,7 +4561,11 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/users/${userId}`
     ];
 
-    const request = this.http.delete(url, null, {resources});
+    const request = this.http.delete(
+      url,
+      null,
+      { resources }
+    );
     return request;
   }
 
@@ -3901,7 +4607,11 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/users/${userId}`
     ];
 
-    const request = this.http.delete(url, null, {resources});
+    const request = this.http.delete(
+      url,
+      null,
+      { resources }
+    );
     return request;
   }
 
@@ -3930,7 +4640,11 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/users/${userId}`
     ];
 
-    const request = this.http.getJson(url, null, {resources});
+    const request = this.http.getJson(
+      url,
+      null,
+      { resources }
+    );
     return request.then(jsonRes => new models.OAuth2RefreshToken(jsonRes, this));
   }
 
@@ -3954,9 +4668,13 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/users/${userId}`
     ];
 
-    const request = this.http.postJson(url, {
-      body: changePasswordRequest
-    }, {resources});
+    const request = this.http.postJson(
+      url,
+      {
+        body: changePasswordRequest
+      },
+      { resources }
+    );
     return request.then(jsonRes => new models.UserCredentials(jsonRes, this));
   }
 
@@ -3975,9 +4693,13 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/users/${userId}`
     ];
 
-    const request = this.http.postJson(url, {
-      body: userCredentials
-    }, {resources});
+    const request = this.http.postJson(
+      url,
+      {
+        body: userCredentials
+      },
+      { resources }
+    );
     return request.then(jsonRes => new models.UserCredentials(jsonRes, this));
   }
 
@@ -4000,7 +4722,11 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/users/${userId}`
     ];
 
-    const request = this.http.postJson(url, null, {resources});
+    const request = this.http.postJson(
+      url,
+      null,
+      { resources }
+    );
     return request.then(jsonRes => new models.ForgotPasswordResponse(jsonRes, this));
   }
 
@@ -4024,9 +4750,13 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/users/${userId}`
     ];
 
-    const request = this.http.postJson(url, {
-      body: userCredentials
-    }, {resources});
+    const request = this.http.postJson(
+      url,
+      {
+        body: userCredentials
+      },
+      { resources }
+    );
     return request.then(jsonRes => new models.ForgotPasswordResponse(jsonRes, this));
   }
 
@@ -4066,9 +4796,13 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/users/${userId}`
     ];
 
-    const request = this.http.postJson(url, {
-      body: userFactor
-    }, {resources});
+    const request = this.http.postJson(
+      url,
+      {
+        body: userFactor
+      },
+      { resources }
+    );
     return request.then(jsonRes => new factories.UserFactor().createInstance(jsonRes, this));
   }
 
@@ -4113,7 +4847,11 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/users/${userId}`
     ];
 
-    const request = this.http.delete(url, null, {resources});
+    const request = this.http.delete(
+      url,
+      null,
+      { resources }
+    );
     return request;
   }
 
@@ -4133,7 +4871,11 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/users/${userId}`
     ];
 
-    const request = this.http.getJson(url, null, {resources});
+    const request = this.http.getJson(
+      url,
+      null,
+      { resources }
+    );
     return request.then(jsonRes => new factories.UserFactor().createInstance(jsonRes, this));
   }
 
@@ -4154,9 +4896,13 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/users/${userId}`
     ];
 
-    const request = this.http.postJson(url, {
-      body: activateFactorRequest
-    }, {resources});
+    const request = this.http.postJson(
+      url,
+      {
+        body: activateFactorRequest
+      },
+      { resources }
+    );
     return request.then(jsonRes => new factories.UserFactor().createInstance(jsonRes, this));
   }
 
@@ -4178,7 +4924,11 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/users/${userId}`
     ];
 
-    const request = this.http.getJson(url, null, {resources});
+    const request = this.http.getJson(
+      url,
+      null,
+      { resources }
+    );
     return request.then(jsonRes => new models.VerifyUserFactorResponse(jsonRes, this));
   }
 
@@ -4205,9 +4955,13 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/users/${userId}`
     ];
 
-    const request = this.http.postJson(url, {
-      body: verifyFactorRequest
-    }, {resources});
+    const request = this.http.postJson(
+      url,
+      {
+        body: verifyFactorRequest
+      },
+      { resources }
+    );
     return request.then(jsonRes => new models.VerifyUserFactorResponse(jsonRes, this));
   }
 
@@ -4224,7 +4978,11 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/users/${userId}`
     ];
 
-    const request = this.http.delete(url, null, {resources});
+    const request = this.http.delete(
+      url,
+      null,
+      { resources }
+    );
     return request;
   }
 
@@ -4264,7 +5022,11 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/users/${userId}`
     ];
 
-    const request = this.http.delete(url, null, {resources});
+    const request = this.http.delete(
+      url,
+      null,
+      { resources }
+    );
     return request;
   }
 
@@ -4289,7 +5051,11 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/users/${userId}`
     ];
 
-    const request = this.http.getJson(url, null, {resources});
+    const request = this.http.getJson(
+      url,
+      null,
+      { resources }
+    );
     return request.then(jsonRes => new models.OAuth2ScopeConsentGrant(jsonRes, this));
   }
 
@@ -4338,7 +5104,11 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/users/${userId}`
     ];
 
-    const request = this.http.postJson(url, null, {resources});
+    const request = this.http.postJson(
+      url,
+      null,
+      { resources }
+    );
     return request.then(jsonRes => new models.UserActivationToken(jsonRes, this));
   }
 
@@ -4360,7 +5130,15 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/users/${userId}`
     ];
 
-    const request = this.http.post(url, null, {resources});
+    const request = this.http.post(
+      url,
+      {
+        headers: {
+          'Content-Type': 'application/json', 'Accept': 'application/json',
+        },
+      },
+      { resources }
+    );
     return request;
   }
 
@@ -4378,7 +5156,11 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/users/${userId}`
     ];
 
-    const request = this.http.postJson(url, null, {resources});
+    const request = this.http.postJson(
+      url,
+      null,
+      { resources }
+    );
     return request.then(jsonRes => new models.User(jsonRes, this));
   }
 
@@ -4396,7 +5178,11 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/users/${userId}`
     ];
 
-    const request = this.http.postJson(url, null, {resources});
+    const request = this.http.postJson(
+      url,
+      null,
+      { resources }
+    );
     return request.then(jsonRes => new models.TempPassword(jsonRes, this));
   }
 
@@ -4419,7 +5205,11 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/users/${userId}`
     ];
 
-    const request = this.http.postJson(url, null, {resources});
+    const request = this.http.postJson(
+      url,
+      null,
+      { resources }
+    );
     return request.then(jsonRes => new models.UserActivationToken(jsonRes, this));
   }
 
@@ -4436,7 +5226,15 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/users/${userId}`
     ];
 
-    const request = this.http.post(url, null, {resources});
+    const request = this.http.post(
+      url,
+      {
+        headers: {
+          'Content-Type': 'application/json', 'Accept': 'application/json',
+        },
+      },
+      { resources }
+    );
     return request;
   }
 
@@ -4459,7 +5257,11 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/users/${userId}`
     ];
 
-    const request = this.http.postJson(url, null, {resources});
+    const request = this.http.postJson(
+      url,
+      null,
+      { resources }
+    );
     return request.then(jsonRes => new models.ResetPasswordToken(jsonRes, this));
   }
 
@@ -4476,7 +5278,15 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/users/${userId}`
     ];
 
-    const request = this.http.post(url, null, {resources});
+    const request = this.http.post(
+      url,
+      {
+        headers: {
+          'Content-Type': 'application/json', 'Accept': 'application/json',
+        },
+      },
+      { resources }
+    );
     return request;
   }
 
@@ -4493,7 +5303,15 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/users/${userId}`
     ];
 
-    const request = this.http.post(url, null, {resources});
+    const request = this.http.post(
+      url,
+      {
+        headers: {
+          'Content-Type': 'application/json', 'Accept': 'application/json',
+        },
+      },
+      { resources }
+    );
     return request;
   }
 
@@ -4510,7 +5328,15 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/users/${userId}`
     ];
 
-    const request = this.http.post(url, null, {resources});
+    const request = this.http.post(
+      url,
+      {
+        headers: {
+          'Content-Type': 'application/json', 'Accept': 'application/json',
+        },
+      },
+      { resources }
+    );
     return request;
   }
 
@@ -4529,7 +5355,11 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/users/${userId}`
     ];
 
-    const request = this.http.delete(url, null, {resources});
+    const request = this.http.delete(
+      url,
+      null,
+      { resources }
+    );
     return request;
   }
 
@@ -4591,9 +5421,13 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/users/${userId}`
     ];
 
-    const request = this.http.postJson(url, {
-      body: assignRoleRequest
-    }, {resources});
+    const request = this.http.postJson(
+      url,
+      {
+        body: assignRoleRequest
+      },
+      { resources }
+    );
     return request.then(jsonRes => new models.Role(jsonRes, this));
   }
 
@@ -4612,7 +5446,11 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/users/${userId}`
     ];
 
-    const request = this.http.delete(url, null, {resources});
+    const request = this.http.delete(
+      url,
+      null,
+      { resources }
+    );
     return request;
   }
 
@@ -4651,7 +5489,15 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/users/${userId}`
     ];
 
-    const request = this.http.put(url, null, {resources});
+    const request = this.http.put(
+      url,
+      {
+        headers: {
+          'Content-Type': 'application/json', 'Accept': 'application/json',
+        },
+      },
+      { resources }
+    );
     return request;
   }
 
@@ -4672,7 +5518,11 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/users/${userId}`
     ];
 
-    const request = this.http.delete(url, null, {resources});
+    const request = this.http.delete(
+      url,
+      null,
+      { resources }
+    );
     return request;
   }
 
@@ -4693,7 +5543,15 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/users/${userId}`
     ];
 
-    const request = this.http.put(url, null, {resources});
+    const request = this.http.put(
+      url,
+      {
+        headers: {
+          'Content-Type': 'application/json', 'Accept': 'application/json',
+        },
+      },
+      { resources }
+    );
     return request;
   }
 
@@ -4716,7 +5574,11 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/users/${userId}`
     ];
 
-    const request = this.http.delete(url, null, {resources});
+    const request = this.http.delete(
+      url,
+      null,
+      { resources }
+    );
     return request;
   }
 
@@ -4739,7 +5601,15 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/users/${userId}`
     ];
 
-    const request = this.http.put(url, null, {resources});
+    const request = this.http.put(
+      url,
+      {
+        headers: {
+          'Content-Type': 'application/json', 'Accept': 'application/json',
+        },
+      },
+      { resources }
+    );
     return request;
   }
 
@@ -4780,7 +5650,11 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/users/${userId}`
     ];
 
-    const request = this.http.delete(url, null, {resources});
+    const request = this.http.delete(
+      url,
+      null,
+      { resources }
+    );
     return request;
   }
 
@@ -4801,7 +5675,15 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/users/${userId}`
     ];
 
-    const request = this.http.put(url, null, {resources});
+    const request = this.http.put(
+      url,
+      {
+        headers: {
+          'Content-Type': 'application/json', 'Accept': 'application/json',
+        },
+      },
+      { resources }
+    );
     return request;
   }
 
@@ -4823,7 +5705,11 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/users/${userId}`
     ];
 
-    const request = this.http.delete(url, null, {resources});
+    const request = this.http.delete(
+      url,
+      null,
+      { resources }
+    );
     return request;
   }
 
