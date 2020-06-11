@@ -35,6 +35,7 @@ describe('Event Hook Lifecycle API', () => {
 
   // Since event hook verification need real hook endpoint to be setup
   // Here we only test on error response to make sure proper endpoint be hit
+  // https://developer.okta.com/docs/reference/api/event-hooks/#verify-event-hook
   it('should get error response with status 400 and code E0000001', async () => {
     try {
       await eventHook.verify();
