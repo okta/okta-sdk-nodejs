@@ -20,7 +20,7 @@ const operationArgumentBuilder = (operation) => {
     return acc;
   }, []);
 
-  if (!operation.isArray && (method === 'post' || method === 'put') && bodyModel) {
+  if ((method === 'post' || method === 'put') && bodyModel) {
     const bodyModelName = getBodyModelNameInCamelCase(operation);
     if (bodyModelName) {
       args.push(bodyModelName);
