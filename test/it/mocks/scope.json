@@ -1,0 +1,5 @@
+{
+  "description": "Drive car",
+  "name": "car:drive",
+  "consent": "REQUIRED"
+}

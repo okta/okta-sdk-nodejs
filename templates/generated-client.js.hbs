@@ -27,11 +27,18 @@ class GeneratedApiClient {
     {{/if}}
 
     {{#if isArray}}
-    {{#if responseModelRequiresResolution}}
-    return new Collection(this, url, new factories.{{responseModel}}(), {method: '{{method}}'});
-    {{else}}
-    return new Collection(this, url, new ModelFactory(models.{{responseModel}}), {method: '{{method}}'});
-    {{/if}}
+    return new Collection(
+      this,
+      url,
+      {{#if responseModelRequiresResolution}}
+      new factories.{{responseModel}}(),
+      {{else}}
+      new ModelFactory(models.{{responseModel}}),
+      {{/if}}
+      {{#if bodyModel}}
+      { method: '{{method}}', body: JSON.stringify({{getBodyModelNameInCamelCase this}}) }
+      {{/if}}
+    );
     {{else}}
     const resources = {{{getAffectedResources path}}};
 
