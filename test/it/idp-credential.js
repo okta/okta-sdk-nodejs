@@ -93,7 +93,9 @@ describe('Idp credential API', () => {
     });
   });
 
-  describe('Signing CSR', () => {
+  // Skip following test suite due to keys limitation per org
+  // TODO: re-visit after unlimited keys FF roll out
+  describe.skip('Signing CSR', () => {
     let csr;
     describe('List signing csrs', () => {
       beforeEach(async () => {
@@ -156,7 +158,9 @@ describe('Idp credential API', () => {
     });
   });
 
-  describe('Signing Key', () => {
+  // Skip following test suite due to keys limitation per org
+  // TODO: re-visit after unlimited CSRs FF roll out
+  describe.skip('Signing Key', () => {
     let key;
     describe('List signing keys', () => {
       beforeEach(async () => {
