@@ -65,13 +65,6 @@ class User extends Resource {
   }
 
   /**
-   * @param {object} queryParameters
-   */
-  endAllSessions(queryParameters) {
-    return this.client.clearUserSessions(this.id, queryParameters);
-  }
-
-  /**
    * @returns {Promise<Collection>} A collection that will yield {@link AppLink} instances.
    */
   listAppLinks() {
@@ -113,14 +106,6 @@ class User extends Resource {
   }
 
   /**
-   * @param {object} queryParameters
-   * @returns {Promise<Collection>} A collection that will yield {@link Role} instances.
-   */
-  listRoles(queryParameters) {
-    return this.client.listAssignedRolesForUser(this.id, queryParameters);
-  }
-
-  /**
    * @param {AssignRoleRequest} assignRoleRequest
    * @param {object} queryParameters
    * @returns {Promise<Role>}
@@ -141,7 +126,7 @@ class User extends Resource {
    * @param {object} queryParameters
    * @returns {Promise<Collection>} A collection that will yield {@link Group} instances.
    */
-  listGroupTargetsForRole(roleId, queryParameters) {
+  listGroupTargets(roleId, queryParameters) {
     return this.client.listGroupTargetsForRole(this.id, roleId, queryParameters);
   }
 
@@ -149,7 +134,7 @@ class User extends Resource {
    * @param {string} roleId
    * @param {string} groupId
    */
-  removeGroupTargetFromRole(roleId, groupId) {
+  removeGroupTarget(roleId, groupId) {
     return this.client.removeGroupTargetFromRole(this.id, roleId, groupId);
   }
 
@@ -157,7 +142,7 @@ class User extends Resource {
    * @param {string} roleId
    * @param {string} groupId
    */
-  addGroupTargetToRole(roleId, groupId) {
+  addGroupTarget(roleId, groupId) {
     return this.client.addGroupTargetToRole(this.id, roleId, groupId);
   }
 
@@ -172,7 +157,7 @@ class User extends Resource {
   /**
    * @param {string} roleId
    */
-  addAllAppsAsTargetToRole(roleId) {
+  addAllAppsAsTarget(roleId) {
     return this.client.addAllAppsAsTargetToRole(this.id, roleId);
   }
 
