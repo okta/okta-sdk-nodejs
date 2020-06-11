@@ -35,6 +35,7 @@ describe('Application OAuth2 grant API', () => {
       });
       expect(grant).to.be.instanceOf(models.OAuth2ScopeConsentGrant);
       expect(grant.issuer).to.equal(client.baseUrl);
+      expect(grant.scopeId).to.equal('okta.users.manage');
     });
   });
 
