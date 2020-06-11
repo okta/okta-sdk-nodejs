@@ -1,0 +1,12 @@
+{
+  "name": "carDriving",
+  "status": "ACTIVE",
+  "claimType": "RESOURCE",
+  "valueType": "EXPRESSION",
+  "value": "\"driving!\"",
+  "conditions": {
+    "scopes": [
+      "car:drive"
+    ]
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "type": "OAUTH_AUTHORIZATION_POLICY",
+  "status": "ACTIVE",
+  "name": "Default Policy",
+  "description": "Default policy description",
+  "priority": 1,
+  "conditions": {
+    "clients": {
+      "include": [
+        "ALL_CLIENTS"
+      ]
+    }
+  }
+}
