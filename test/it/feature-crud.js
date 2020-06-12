@@ -42,7 +42,7 @@ describe('Feature Crud API', () => {
     });
   });
 
-  describe('Update EventHook', () => {
+  describe('Update Feature lifecycle', () => {
     let firstFeatureInList;
     let initialStatus;
     beforeEach(async () => {
