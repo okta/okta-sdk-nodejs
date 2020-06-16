@@ -14,32 +14,30 @@
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
 var Resource = require('../resource');
-const OAuth2Actor = require('./OAuth2Actor');
+
 
 /**
- * @class OAuth2ScopeConsentGrant
+ * @class CatalogApplication
  * @extends Resource
- * @property { hash } _embedded
  * @property { hash } _links
- * @property { string } clientId
- * @property { dateTime } created
- * @property { OAuth2Actor } createdBy
+ * @property { string } category
+ * @property { string } description
+ * @property { string } displayName
+ * @property { array } features
  * @property { string } id
- * @property { string } issuer
  * @property { dateTime } lastUpdated
- * @property { string } scopeId
- * @property { OAuth2ScopeConsentGrantSource } source
- * @property { OAuth2ScopeConsentGrantStatus } status
- * @property { string } userId
+ * @property { string } name
+ * @property { array } signOnModes
+ * @property { CatalogApplicationStatus } status
+ * @property { string } verificationStatus
+ * @property { string } website
  */
-class OAuth2ScopeConsentGrant extends Resource {
+class CatalogApplication extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson.createdBy) {
-      this.createdBy = new OAuth2Actor(resourceJson.createdBy);
-    }
+
   }
 
 }
 
-module.exports = OAuth2ScopeConsentGrant;
+module.exports = CatalogApplication;

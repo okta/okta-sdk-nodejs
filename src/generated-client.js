@@ -2337,7 +2337,7 @@ class GeneratedApiClient {
    * @param {String} [queryParams.limit]
    * @description
    * Lists all App targets for an `APP_ADMIN` Role assigned to a Group. This methods return list may include full Applications or Instances. The response for an instance will have an `ID` value, while Application will not have an ID.
-   * @returns {Promise<Collection>} A collection that will yield {@link Application} instances.
+   * @returns {Promise<Collection>} A collection that will yield {@link CatalogApplication} instances.
    */
   listApplicationTargetsForApplicationAdministratorRoleForGroup(groupId, roleId, queryParameters) {
     let url = `${this.baseUrl}/api/v1/groups/${groupId}/roles/${roleId}/targets/catalog/apps`;
@@ -2348,7 +2348,7 @@ class GeneratedApiClient {
     return new Collection(
       this,
       url,
-      new factories.Application(),
+      new ModelFactory(models.CatalogApplication),
     );
   }
 
@@ -5676,7 +5676,7 @@ class GeneratedApiClient {
    * @param {String} [queryParams.limit]
    * @description
    * Lists all App targets for an `APP_ADMIN` Role assigned to a User. This methods return list may include full Applications or Instances. The response for an instance will have an `ID` value, while Application will not have an ID.
-   * @returns {Promise<Collection>} A collection that will yield {@link Application} instances.
+   * @returns {Promise<Collection>} A collection that will yield {@link CatalogApplication} instances.
    */
   listApplicationTargetsForApplicationAdministratorRoleForUser(userId, roleId, queryParameters) {
     let url = `${this.baseUrl}/api/v1/users/${userId}/roles/${roleId}/targets/catalog/apps`;
@@ -5687,7 +5687,7 @@ class GeneratedApiClient {
     return new Collection(
       this,
       url,
-      new factories.Application(),
+      new ModelFactory(models.CatalogApplication),
     );
   }
 
