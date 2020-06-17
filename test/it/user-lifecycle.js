@@ -115,7 +115,7 @@ describe('User lifecycle API', () => {
     });
 
     it('should get response with status 204', async () => {
-      const response = await createdUser.endAllSessions();
+      const response = await createdUser.clearSessions();
       expect(response.status).to.be.equal(204);
     });
   });

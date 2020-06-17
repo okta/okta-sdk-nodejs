@@ -41,7 +41,7 @@ describe('User Role API Tests', () => {
     const role = await createdUser.assignRole(roleType);
 
     // 3. Add Group Target to User Admin Role
-    await createdUser.addGroupTargetToRole(role.id, createdGroup.id);
+    await createdUser.addGroupTarget(role.id, createdGroup.id);
 
     // 4. List Group Targets for Role
     let groupTargetPresent = await utils.isGroupTargetPresent(createdUser, createdGroup, role);
@@ -59,9 +59,9 @@ describe('User Role API Tests', () => {
     await utils.cleanup(client, null, group);
 
     const adminGroup = await client.createGroup(group);
-    await createdUser.addGroupTargetToRole(role.id, adminGroup.id);
+    await createdUser.addGroupTarget(role.id, adminGroup.id);
 
-    await createdUser.removeGroupTargetFromRole(role.id, createdGroup.id);
+    await createdUser.removeGroupTarget(role.id, createdGroup.id);
     groupTargetPresent = await utils.isGroupTargetPresent(createdUser, createdGroup, role);
     expect(groupTargetPresent).to.equal(false);
 

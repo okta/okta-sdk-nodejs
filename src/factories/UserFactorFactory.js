@@ -31,6 +31,7 @@ class UserFactorFactory extends ModelResolutionFactory {
       'token:software:totp': models.TotpUserFactor,
       'u2f': models.U2fUserFactor,
       'web': models.WebUserFactor,
+      'webauthn': models.WebAuthnUserFactor,
     };
   }
 
