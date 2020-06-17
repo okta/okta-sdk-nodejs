@@ -62,7 +62,7 @@ describe('User role API', () => {
     });
 
     it('should return a Collection of roles', async () => {
-      const roles = await user.listRoles();
+      const roles = await user.listAssignedRoles();
       expect(roles).to.be.instanceOf(Collection);
       await roles.each(roleFromCollection => {
         expect(roleFromCollection).to.be.instanceOf(models.Role);
@@ -97,13 +97,11 @@ describe('User role API', () => {
         await role.addAppTargetToAdminRoleForUser(user.id, application.name);
       });
 
-      it('should return a Collection of Applications', async () => {
+      it('should return a Collection of CatalogApplications', async () => {
         const apps = await client.listApplicationTargetsForApplicationAdministratorRoleForUser(user.id, role.id);
         expect(apps).to.be.instanceOf(Collection);
         await apps.each(app => {
-          // TODO: right now app model is not resolvable due to "signOnModes" field in response cannot be handled in ApplicationFactory
-          // Comment out following assertion for future visit
-          // expect(app).to.be.instanceOf(models.Resource);
+          expect(app).to.be.instanceOf(models.CatalogApplication);
           expect(app.name).to.be.equal(application.name);
         });
       });
@@ -124,14 +122,14 @@ describe('User role API', () => {
 
     describe('Add group target', () => {
       it('should add group target to admin user', async () => {
-        const res = await user.addGroupTargetToRole(role.id, group.id);
+        const res = await user.addGroupTarget(role.id, group.id);
         expect(res.status).to.equal(204);
       });
     });
 
     describe('List group targets', () => {
       beforeEach(async () => {
-        await user.addGroupTargetToRole(role.id, group.id);
+        await user.addGroupTarget(role.id, group.id);
       });
 
       it('should return a Collection of Groups', async () => {

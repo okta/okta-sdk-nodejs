@@ -46,7 +46,7 @@ describe('Sessions API', () => {
     });
 
     // 3 - end all user sessions
-    await createdUser.endAllSessions();
+    await createdUser.clearSessions();
 
     // 4 - attempt to retrieve session1
     let sess1;
