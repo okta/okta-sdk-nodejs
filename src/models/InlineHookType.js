@@ -17,26 +17,10 @@ var Resource = require('../resource');
 
 
 /**
- * @class JsonWebKey
+ * @class InlineHookType
  * @extends Resource
- * @property { hash } _links
- * @property { string } alg
- * @property { dateTime } created
- * @property { string } e
- * @property { dateTime } expiresAt
- * @property { array } key_ops
- * @property { string } kid
- * @property { string } kty
- * @property { dateTime } lastUpdated
- * @property { string } n
- * @property { string } status
- * @property { string } use
- * @property { array } x5c
- * @property { string } x5t
- * @property { string } x5t#S256
- * @property { string } x5u
  */
-class JsonWebKey extends Resource {
+class InlineHookType extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
 
@@ -44,4 +28,4 @@ class JsonWebKey extends Resource {
 
 }
 
-module.exports = JsonWebKey;
+module.exports = InlineHookType;

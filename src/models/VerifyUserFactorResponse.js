@@ -21,7 +21,7 @@ var Resource = require('../resource');
  * @extends Resource
  * @property { hash } _embedded
  * @property { hash } _links
- * @property { string } expiresAt
+ * @property { dateTime } expiresAt
  * @property { string } factorResult
  * @property { string } factorResultMessage
  */

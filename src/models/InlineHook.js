@@ -25,8 +25,8 @@ const InlineHookChannel = require('./InlineHookChannel');
  * @property { string } id
  * @property { dateTime } lastUpdated
  * @property { string } name
- * @property { string } status
- * @property { string } type
+ * @property { InlineHookStatus } status
+ * @property { InlineHookType } type
  * @property { string } version
  */
 class InlineHook extends Resource {
