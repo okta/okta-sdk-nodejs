@@ -1,9 +1,9 @@
 {
   "name": "@okta/okta-sdk-nodejs",
-  "version": "3.4.0",
+  "version": "4.0.0",
   "description": "Okta API wrapper for Node.js",
   "engines": {
-    "node": ">=8.11"
+    "node": ">=10.0"
   },
   "files": [
     "src/",

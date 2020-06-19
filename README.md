@@ -2,7 +2,7 @@
 
 Node.js API Client for the [Okta Platform API].
 
-Requires Node.js version 6.9.0 or higher.
+Requires Node.js version 10.0.0 or higher.
 
 Need help? Contact [developers@okta.com](mailto:developers@okta.com) or use the [Okta Developer Forum].
 
