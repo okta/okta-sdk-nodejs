@@ -2,7 +2,7 @@
 
 ## 4.0.0
 
-- [#147](https://github.com/okta/okta-sdk-nodejs/pull/147)          **Breaking Changes** - OpenAPI update
+- [#147](https://github.com/okta/okta-sdk-nodejs/pull/147) **Breaking Changes** - OpenAPI update
   - `addFactor()` changed to `enrollFactor()`
   - `models.*Factor` classes are now `models.*UserFactor`
   - `createRule()` changed to `changeGroupRule()`
