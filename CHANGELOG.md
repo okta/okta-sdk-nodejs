@@ -1,16 +1,17 @@
 # Okta Node SDK Changelog
 
-## PENDING
+## 4.0.0
 
-### Breaking Changes
+- [#147](https://github.com/okta/okta-sdk-nodejs/pull/147)          **Breaking Changes** - OpenAPI update
+  - `addFactor()` changed to `enrollFactor()`
+  - `models.*Factor` classes are now `models.*UserFactor`
+  - `createRule()` changed to `changeGroupRule()`
+  - `listRules()` changed to `listGroupRules()`
+  - `deactivateRule()` changed to `deactivateGroupRule()`
+  - `user.addRole()` changed to `user.assignRole()`
+  - `user.forgotPassword()` changed to `user.forgotPasswordSetNewPassword()`
 
-- `addFactor()` changed to `enrollFactor()`
-- `models.*Factor` classes are now `models.*UserFactor`
-- `createRule()` changed to `changeGroupRule()`
-- `listRules()` changed to `listGroupRules()`
-- `deactivateRule()` changed to `deactivateGroupRule()`
-- `user.addRole()` changed to `user.assignRole()`
-- `user.forgotPassword()` changed to `user.forgotPasswordSetNewPassword()`
+- [#167](https://github.com/okta/okta-sdk-nodejs/pull/167) Drop support for Node 8
 
 ## 3.3.1
 
