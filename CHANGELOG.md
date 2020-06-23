@@ -2,14 +2,414 @@
 
 ## 4.0.0
 
-- [#147](https://github.com/okta/okta-sdk-nodejs/pull/147) **Breaking Changes** - OpenAPI update
-  - `addFactor()` changed to `enrollFactor()`
-  - `models.*Factor` classes are now `models.*UserFactor`
-  - `createRule()` changed to `changeGroupRule()`
-  - `listRules()` changed to `listGroupRules()`
-  - `deactivateRule()` changed to `deactivateGroupRule()`
-  - `user.addRole()` changed to `user.assignRole()`
-  - `user.forgotPassword()` changed to `user.forgotPasswordSetNewPassword()`
+- [#147](https://github.com/okta/okta-sdk-nodejs/pull/147) Openapi updates
+  - Fixes
+    - Fix model constructor when initialize property models
+    - Pass proper headers for http request
+  - Factory changes
+    - Add `UserFactorFactory`
+  - Model changes
+    - Add `ActivateFactorRequest`
+    - Add `AppAndInstanceConditionEvaluatorAppOrInstance`
+    - Add `AppAndInstancePolicyRuleCondition`
+    - Add `AppInstancePolicyRuleCondition`
+    - `Application`
+      - Add method `initializtion`
+      - Add method `generateCsr`
+      - Add method `getCsr`
+      - Add method `revokeCsr`
+      - Add method `listCsrs`
+      - Add method `publishCerCert`
+      - Add method `publishBinaryCerCert`
+      - Add method `publishDerCert`
+      - Add method `publishBinaryDerCert`
+      - Add method`publishBinaryPemCert`
+      - Add method `listOAuth2Tokens`
+      - Add method`revokeOAuth2TokenForApplication`
+      - Add method `getOAuth2Token`
+      - Add method `revokeOAuth2Tokens`
+      - Add method `listScopeConsentGrants`
+      - Add method `grantConsentToScope`
+      - Add method `revokeScopeConsentGrant`
+      - Add method `getScopeConsentGrant`
+    - Add `ApplicationCredentialsSigningUse`
+    - Add `AssignRoleRequest`
+    - Add `AuthorizationServer`
+    - Add `AuthorizationServerCredentials`
+    - Add `AuthorizationServerCredentialsRotationMode`
+    - Add `AuthorizationServerCredentialsSigningConfig`
+    - Add `AuthorizationServerCredentialsUse`
+    - Add `BeforeScheduledActionPolicyRuleCondition`
+    - Add `Csr`
+    - Add `CsrMetadata`
+    - Add `CsrMetadataSubject`
+    - Add `CsrMetadataSubjectAltNames`
+    - Add `CallUserFactor`
+    - Add `CallUserFactorProfile`
+    - Add `CatalogApplication`
+    - Add `CatalogApplicationStatus`
+    - Add `ClientPolicyCondition`
+    - Add `ContextPolicyRuleCondition`
+    - Add `CreateUserRequest`
+    - Add `DevicePolicyRuleCondition`
+    - Add `DevicePolicyRuleConditionPlatform`
+    - Add `Duration`
+    - Add `EmailUserFactor`
+    - Add `EmailUserFactorProfile`
+    - Add `EnabledStatus`
+    - Add `EventHook`
+    - Add `EventHookChannel`
+    - Add `EventHookChannelConfig`
+    - Add `EventHookChannelConfigAuthScheme`
+    - Add `EventHookChannelConfigAuthSchemeType`
+    - Add `EventHookChannelConfigHeader`
+    - Add `EventSubscriptions`
+    - Add `Feature`
+    - Add `FeatureStage`
+    - Add `FeatureStageState`
+    - Add `FeatureStageValue`
+    - Add `FeatureType`
+    - Add `GrantTypePolicyRuleCondition`
+    - `Group`
+      - Add method `listApplications`
+      - Add method `assignRole`
+    - Add `GroupPolicyRuleCondition`
+    - `GroupRule`
+      - Add method `delete`
+    - Add `GroupType`
+    - Add `HardwareUserFactor`
+    - Add `HardwareUserFactorProfile`
+    - Add `IdentityProvider`
+    - Add `IdentityProviderApplicationUser`
+    - Add `IdentityProviderCredentials`
+    - Add `IdentityProviderCredentialsClient`
+    - Add `IdentityProviderCredentialsSigning`
+    - Add `IdentityProviderCredentialsTrust`
+    - Add `IdentityProviderPolicy`
+    - Add `IdentityProviderPolicyRuleCondition`
+    - Add `InactivityPolicyRuleCondition`
+    - Add `InlineHook`
+    - Add `InlineHookChannel`
+    - Add `InlineHookChannelConfig`
+    - Add `InlineHookChannelConfigAuthScheme`
+    - Add `InlineHookChannelConfigHeaders`
+    - Add `InlineHookPayload`
+    - Add `InlineHookResponse`
+    - Add `InlineHookResponseCommandValue`
+    - Add `InlineHookResponseCommands`
+    - Add `InlineHookStatus`
+    - Add `InlineHookType`
+    - Add `IonField`
+    - Add `IonForm`
+    - Add `JwkUse`
+    - Add `LifecycleExpirationPolicyRuleCondition`
+    - Add `LinkedObject`
+    - Add `LinkedObjectDetails`
+    - Add `LinkedObjectDetailsType`
+    - Add `MDMEnrollmentPolicyRuleCondition`
+    - Add `OAuth2Actor`
+    - Add `OAuth2Claim`
+    - Add `OAuth2ClaimConditions`
+    - Add `OAuth2Client`
+    - Add `OAuth2Actor`
+    - Add `OAuth2Scope`
+    - Add `OAuth2ScopeConsentGrant`
+    - Add `OAuth2ScopeConsentGrantSource`
+    - Add `OAuth2ScopeConsentGrantStatus`
+    - Add `OAuth2ScopesMediationPolicyRuleCondition`
+    - Add `OAuth2Token`
+    - Add `OAuthAuthorizationPolicy`
+    - Add `OpenIdConnectApplicationIssuerMode`
+    - `PasswordCredential`
+      - Add property `hash`
+      - Add property `hook`
+    - Add `PasswordCredentialHash`
+    - Add `PasswordCredentialHashAlgorithm`
+    - Add `PasswordCredentialHook`
+    - Add `PasswordExpirationPolicyRuleCondition`
+    - Add `PlatformConditionEvaluatorPlatform`
+    - Add `PlatformConditionEvaluatorPlatformOperatingSystem`
+    - Add `PlatformConditionEvaluatorPlatformOperatingSystemVersion`
+    - Add `PlatformPolicyRuleCondition`
+    - `Policy`
+      - Add method `createRule`
+    - Add `PolicyAccountLink`
+    - Add `PolicyAccountLinkFilter`
+    - Add `PolicyAccountLinkFilterGroups`
+    - Add `PolicyRuleConditions`
+    - Add `PolicySubject`
+    - Add `PolicySubjectMatchType`
+    - Add `PolicyUserNameTemplate`
+    - Add `Protocol`
+    - Add `ProtocolAlgorithmType`
+    - Add `ProtocolAlgorithmTypeSignature`
+    - Add `ProtocolAlgorithms`
+    - Add `ProtocolEndpoint`
+    - Add `ProtocolEndpoints`
+    - Add `ProtocolRelayState`
+    - Add `ProtocolRelayStateFormat`
+    - Add `ProtocolSettings`
+    - Add `Provisioning`
+    - Add `ProvisioningConditions`
+    - Add `ProvisioningDeprovisionedCondition`
+    - Add `ProvisioningGroups`
+    - Add `ProvisioningSuspendedCondition`
+    - Add `PushUserFactor`
+    - Add `PushUserFactorProfile`
+    - Add `ResponseLinks`
+    - Add `RiskPolicyRuleCondition`
+    - Add `RiskScorePolicyRuleCondition`
+    - `Role`
+      - Add method `addAdminGroupTarget`
+      - Add method `addAppInstanceTargetToAdminRole`
+      - Add method `addAppTargetToAdminRole`
+      - Add method `addAllAppsAsTargetToRole`
+      - Add method `addAppTargetToAppAdminRoleForUser`
+      - Add method `addAppTargetToAdminRoleForUser`
+    - Add `RoleAssignmentType`
+    - Add `RoleType`
+    - Add `ScheduledUserLifecycleAction`
+    - Add `Scope`
+    - Add `ScopeType`
+    - Add `SecurityQuestionUserFactor`
+    - Add `SecurityQuestionUserFactorProfile`
+    - Add `SmsTemplate`
+    - Add `SmsTemplateTranslations`
+    - Add `SmsTemplateType`
+    - Add `SmsUserFactor`
+    - Add `SmsUserFactorProfile`
+    - Add `SocialAuthToken`
+    - Add `TokenUserFactor`
+    - Add `TokenUserFactorProfile`
+    - Add `TotpUserFactor`
+    - Add `TotpUserFactorProfile`
+    - Add `TrustedOrigin`
+    - Add `U2fUserFactor`
+    - Add `U2fUserFactorProfile`
+    - `User`
+      - Add property `type`
+      - Change method `endAllSessions` to `clearSessions`
+      - Remove param `queryParameters` from `listAppLinks`
+      - Remove method `forgotPassword`
+      - Add method `forgotPasswordSetNewPassword`
+      - Add method `forgotPasswordGenerateOneTimeToken`
+      - Change method `addRole` to `assignRole`
+      - Change method `listGroupTargetsForRole` to `listGroupTargets`
+      - Change method `removeGroupTargetFromRole` to `removeGroupTarget`
+      - Change method `addGroupTargetToRole` to `addGroupTarget`
+      - Add method `listAssignedRoles`
+      - Add method `addAllAppsAsTarget`
+      - Remove param `queryParameters` from `listGroups`
+      - Add method `listGrants`
+      - Add method `revokeGrants`
+      - Add method `revokeGrant`
+      - Add method `revokeGrantsForUserAndClient`
+      - Add method `listRefreshTokensForUserAndClient`
+      - Add method `revokeTokenForUserAndClient`
+      - Add method `getRefreshTokenForUserAndClient`
+      - Add method `revokeTokensForUserAndClient`
+      - Add method `listClients`
+      - Add method `reactivate`
+      - Remove param `queryParameters` from `expirePassword`
+      - Add method `expirePasswordAndGetTemporaryPassword`
+      - Add method `deleteFactor`
+      - Change method `addFactor` to `enrollFactor`
+      - Add method `setLinkedObject`
+      - Add method `listIdentityProviders`
+      - Add method `getLinkedObjects`
+      - Add method `removeLinkedObject`
+    - Add `UserFactor`
+    - Add `UserIdentifierConditionEvaluatorPattern`
+    - Add `UserIdentifierPolicyRuleCondition`
+    - Add `UserIdentityProviderLinkRequest`
+    - Add `UserLifecycleAttributePolicyRuleCondition`
+    - Add `UserPolicyRuleCondition`
+    - Add `UserStatusPolicyRuleCondition`
+    - Add `UserType`
+    - Add `VerifyUserFactorResponse`
+    - Add `WebAuthnUserFactor`
+    - Add `WebAuthnUserFactorProfile`
+    - Add `WebUserFactor`
+    - Add `WebUserFactorProfile`
+  - Client changes
+    - Add method `listCsrsForApplication`
+    - Add method `generateCsrForApplication`
+    - Add method `revokeCsrFromApplication`
+    - Add method `getCsrForApplication`
+    - Add method `publishCerCert`
+    - Add method `publishBinaryCerCert`
+    - Add method `publishDerCert`
+    - Add method `publishBinaryDerCert`
+    - Add method `publishBinaryPemCert`
+    - Add method `generateApplicationKey`
+    - Add method `listScopeConsentGrants`
+    - Add method `grantConsentToScope`
+    - Add method `revokeScopeConsentGrant`
+    - Add method `getScopeConsentGrant`
+    - Add method `revokeOAuth2TokensForApplication`
+    - Add method `listOAuth2TokensForApplication`
+    - Add method `revokeOAuth2TokenForApplication`
+    - Add method `getOAuth2TokenForApplication`
+    - Add method `listAuthorizationServers`
+    - Add method `createAuthorizationServer`
+    - Add method `deleteAuthorizationServer`
+    - Add method `getAuthorizationServer`
+    - Add method `updateAuthorizationServer`
+    - Add method `listOAuth2Claims`
+    - Add method `createOAuth2Claim`
+    - Add method `deleteOAuth2Claim`
+    - Add method `getOAuth2Claim`
+    - Add method `updateOAuth2Claim`
+    - Add method `listOAuth2ClientsForAuthorizationServer`
+    - Add method `revokeRefreshTokensForAuthorizationServerAndClient`
+    - Add method `listRefreshTokensForAuthorizationServerAndClient`
+    - Add method `revokeRefreshTokenForAuthorizationServerAndClient`
+    - Add method `getRefreshTokenForAuthorizationServerAndClient`
+    - Add method `listAuthorizationServerKeys`
+    - Add method `rotateAuthorizationServerKeys`
+    - Add method `activateAuthorizationServer`
+    - Add method `deactivateAuthorizationServer`
+    - Add method `listAuthorizationServerPolicies`
+    - Add method `createAuthorizationServerPolicy`
+    - Add method `deleteAuthorizationServerPolicy`
+    - Add method `getAuthorizationServerPolicy`
+    - Add method `updateAuthorizationServerPolicy`
+    - Add method `listOAuth2Scopes`
+    - Add method `createOAuth2Scope`
+    - Add method `deleteOAuth2Scope`
+    - Add method `getOAuth2Scope`
+    - Add method `updateOAuth2Scope`
+    - Add method `listEventHooks`
+    - Add method `createEventHook`
+    - Add method `deleteEventHook`
+    - Add method `getEventHook`
+    - Add method `updateEventHook`
+    - Add method `activateEventHook`
+    - Add method `deactivateEventHook`
+    - Add method `verifyEventHook`
+    - Add method `listFeatures`
+    - Add method `getFeature`
+    - Add method `listFeatureDependencies`
+    - Add method `listFeatureDependents`
+    - Add method `updateFeatureLifecycle`
+    - Change `listRules` to `listGroupRules`
+    - Change `createRule` to `createGroupRule`
+    - Change `deleteRule` to `deleteGroupRule`
+    - Change `getRule` to `getGroupRule`
+    - Change `updateRule` to `updateGroupRule`
+    - Change `activateRule` to `activateGroupRule`
+    - Change `deactivateRule` to `deactivateGroupRule`
+    - Add method `listAssignedApplicationsForGroup`
+    - Add method `listGroupAssignedRoles`
+    - Add method `assignRoleToGroup`
+    - Add method `removeRoleFromGroup`
+    - Add method `getRole`
+    - Add method `listApplicationTargetsForApplicationAdministratorRoleForGroup`
+    - Add method `removeApplicationTargetFromApplicationAdministratorRoleGivenToGroup`
+    - Add method `addApplicationTargetToAdminRoleGivenToGroup`
+    - Add method `removeApplicationTargetFromAdministratorRoleGivenToGroup`
+    - Add method `addApplicationInstanceTargetToAppAdminRoleGivenToGroup`
+    - Add method `listGroupTargetsForGroupRole`
+    - Add method `removeGroupTargetFromGroupAdministratorRoleGivenToGroup`
+    - Add method `addGroupTargetToGroupAdministratorRoleForGroup`
+    - Change `removeGroupUser` to `removeUserFromGroup`
+    - Add method `listIdentityProviders`
+    - Add method `createIdentityProvider`
+    - Add method `listIdentityProviderKeys`
+    - Add method `createIdentityProviderKey`
+    - Add method `deleteIdentityProviderKey`
+    - Add method `getIdentityProviderKey`
+    - Add method `deleteIdentityProvider`
+    - Add method `getIdentityProvider`
+    - Add method `updateIdentityProvider`
+    - Add method `listCsrsForIdentityProvider`
+    - Add method `generateCsrForIdentityProvider`
+    - Add method `revokeCsrForIdentityProvider`
+    - Add method `getCsrForIdentityProvider`
+    - Add method `publishCerCertForIdentityProvider`
+    - Add method `publishBinaryCerCertForIdentityProvider`
+    - Add method `publishDerCertForIdentityProvider`
+    - Add method `publishBinaryDerCertForIdentityProvider`
+    - Add method `publishBinaryPemCertForIdentityProvider`
+    - Add method `listIdentityProviderSigningKeys`
+    - Add method `generateIdentityProviderSigningKey`
+    - Add method `getIdentityProviderSigningKey`
+    - Add method `cloneIdentityProviderKey`
+    - Add method `activateIdentityProvider`
+    - Add method `deactivateIdentityProvider`
+    - Add method `listIdentityProviderApplicationUsers`
+    - Add method `unlinkUserFromIdentityProvider`
+    - Add method `getIdentityProviderApplicationUser`
+    - Add method `linkUserToIdentityProvider`
+    - Add method `listSocialAuthTokens`
+    - Add method `listInlineHooks`
+    - Add method `createInlineHook`
+    - Add method `deleteInlineHook`
+    - Add method `getInlineHook`
+    - Add method `updateInlineHook`
+    - Add method `executeInlineHook`
+    - Add method `activateInlineHook`
+    - Add method `deactivateInlineHook`
+    - Add method `listLinkedObjectDefinitions`
+    - Add method `addLinkedObjectDefinition`
+    - Add method `deleteLinkedObjectDefinition`
+    - Add method `getLinkedObjectDefinition`
+    - Add method `listUserTypes`
+    - Add method `createUserType`
+    - Add method `deleteUserType`
+    - Add method `getUserType`
+    - Add method `updateUserType`
+    - Add method `replaceUserType`
+    - Change `addPolicyRule` to `createPolicyRule`
+    - Add method `listSmsTemplates`
+    - Add method `createSmsTemplate`
+    - Add method `deleteSmsTemplate`
+    - Add method `getSmsTemplate`
+    - Add method `partialUpdateSmsTemplate`
+    - Add method `updateSmsTemplate`
+    - Add method `listOrigins`
+    - Add method `createOrigin`
+    - Add method `deleteOrigin`
+    - Add method `getOrigin`
+    - Add method `updateOrigin`
+    - Add method `activateOrigin`
+    - Add method `deactivateOrigin`
+    - Add method `setLinkedObjectForUser`
+    - Add method `partialUpdateUser`
+    - Remove param `queryParameters` from `listAppLinks`
+    - Add method `listUserClients`
+    - Add method `revokeGrantsForUserAndClient`
+    - Add method `listGrantsForUserAndClient`
+    - Add method `revokeTokensForUserAndClient`
+    - Add method `listRefreshTokensForUserAndClient`
+    - Add method `revokeTokenForUserAndClient`
+    - Add method `getRefreshTokenForUserAndClient`
+    - Remove method `forgotPassword`
+    - Add method `forgotPasswordGenerateOneTimeToken`
+    - Add method `forgotPasswordSetNewPassword`
+    - Change `addFactor` to `enrollFactor`
+    - Add method `getFactorTransactionStatus`
+    - Add method `revokeUserGrants`
+    - Add method `listUserGrants`
+    - Add method `revokeUserGrant`
+    - Add method `getUserGrant`
+    - Remove param `queryParameters` from `listUserGroups`
+    - Add method `listUserIdentityProviders`
+    - Remove param `queryParameters` from `expirePassword`
+    - Add method `expirePasswordAndGetTemporaryPassword`
+    - Add method `reactivateUser`
+    - Change `resetAllFactors` to `resetFactors`
+    - Add method `removeLinkedObjectForUser`
+    - Add method `getLinkedObjectsForUser`
+    - Change `listAssignedRoles` to `listAssignedRolesForUser`
+    - Change `addRoleToUser` to `assignRoleToUser`
+    - Add method `listApplicationTargetsForApplicationAdministratorRoleForUser`
+    - Add method `addAllAppsAsTargetToRole`
+    - Add method `removeApplicationTargetFromApplicationAdministratorRoleForUser`
+    - Add method `addApplicationTargetToAdminRoleForUser`
+    - Add method `removeApplicationTargetFromAdministratorRoleForUser`
+    - Add method `addApplicationTargetToAppAdminRoleForUser`
+    - Change `endAllUserSessions` to `clearUserSessions`
 
 - [#167](https://github.com/okta/okta-sdk-nodejs/pull/167) Drop support for Node 8
 
