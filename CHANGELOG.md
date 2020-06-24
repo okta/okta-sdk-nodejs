@@ -2,7 +2,9 @@
 
 ## 4.0.0
 
-- [#147](https://github.com/okta/okta-sdk-nodejs/pull/147) Openapi updates
+- [#167](https://github.com/okta/okta-sdk-nodejs/pull/167) Drop support for Node 8
+
+- [#147](https://github.com/okta/okta-sdk-nodejs/pull/147) Major release to update APIs with latest `@okta/openapi` (v2.0.0) that includes new endpoints and changed method names. Please see list below for detailed information:
   - Fixes
     - Fix model constructor when initialize property models
     - Pass proper headers for http request
@@ -410,8 +412,6 @@
     - Add method `removeApplicationTargetFromAdministratorRoleForUser`
     - Add method `addApplicationTargetToAppAdminRoleForUser`
     - Change `endAllUserSessions` to `clearUserSessions`
-
-- [#167](https://github.com/okta/okta-sdk-nodejs/pull/167) Drop support for Node 8
 
 ## 3.3.1
 
