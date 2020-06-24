@@ -1,7 +1,7 @@
 const expect = require('chai').expect;
 const okta = require('../../');
 const Collection = require('../../src/collection');
-const mockApplication = require('./mocks/application-oidc.json');
+const getMockApplication = require('./mocks/application-oidc');
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -20,7 +20,7 @@ const client = new okta.Client({
 describe('Application OAuth2 token API', () => {
   let application;
   beforeEach(async () => {
-    application = await client.createApplication(mockApplication);
+    application = await client.createApplication(getMockApplication());
   });
   afterEach(async () => {
     await application.deactivate();

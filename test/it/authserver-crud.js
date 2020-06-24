@@ -2,7 +2,7 @@ const expect = require('chai').expect;
 const okta = require('../../src');
 const models = require('../../src/models');
 const Collection = require('../../src/collection');
-const mockAuthorizationServer = require('./mocks/authorization-server.json');
+const getMockAuthorizationServer = require('./mocks/authorization-server');
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
 if (process.env.OKTA_USE_MOCK) {
@@ -23,6 +23,7 @@ describe.skip('Authorization Server Crud API', () => {
     });
 
     it('should return correct model', async () => {
+      const mockAuthorizationServer = getMockAuthorizationServer();
       authServer = await client.createAuthorizationServer(mockAuthorizationServer);
       expect(authServer).to.be.instanceOf(models.AuthorizationServer);
       expect(authServer.id).to.be.exist;
@@ -33,7 +34,7 @@ describe.skip('Authorization Server Crud API', () => {
   describe('List Authorization Server', () => {
     let authServer;
     beforeEach(async () => {
-      authServer = await client.createAuthorizationServer(mockAuthorizationServer);
+      authServer = await client.createAuthorizationServer(getMockAuthorizationServer());
     });
     afterEach(async () => {
       await authServer.delete();
@@ -44,7 +45,7 @@ describe.skip('Authorization Server Crud API', () => {
       expect(collection).to.be.instanceOf(Collection);
       const authServers = await collection.getNextPage();
       expect(authServers).to.be.an('array').that.is.not.empty;
-      const authServerFromCollection = authServers.find(as => as.name === mockAuthorizationServer.name);
+      const authServerFromCollection = authServers.find(as => as.name === authServer.name);
       expect(authServerFromCollection).to.be.exist;
     });
   });
@@ -52,7 +53,7 @@ describe.skip('Authorization Server Crud API', () => {
   describe('Get Authorization Server', () => {
     let authServer;
     beforeEach(async () => {
-      authServer = await client.createAuthorizationServer(mockAuthorizationServer);
+      authServer = await client.createAuthorizationServer(getMockAuthorizationServer());
     });
 
     afterEach(async () => {
@@ -62,14 +63,14 @@ describe.skip('Authorization Server Crud API', () => {
     it('should get Authorization Server by id', async () => {
       const authServerFromGet = await client.getAuthorizationServer(authServer.id);
       expect(authServerFromGet).to.be.instanceOf(models.AuthorizationServer);
-      expect(authServerFromGet.name).to.equal(mockAuthorizationServer.name);
+      expect(authServerFromGet.name).to.equal(authServer.name);
     });
   });
 
   describe('Update Authorization Server', () => {
     let authServer;
     beforeEach(async () => {
-      authServer = await client.createAuthorizationServer(mockAuthorizationServer);
+      authServer = await client.createAuthorizationServer(getMockAuthorizationServer());
     });
     afterEach(async () => {
       await authServer.delete();
@@ -87,7 +88,7 @@ describe.skip('Authorization Server Crud API', () => {
   describe('Delete Authorization Server', () => {
     let authServer;
     beforeEach(async () => {
-      authServer = await client.createAuthorizationServer(mockAuthorizationServer);
+      authServer = await client.createAuthorizationServer(getMockAuthorizationServer());
     });
 
     it('should not get authserver after deletion', async () => {

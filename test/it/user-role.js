@@ -2,8 +2,8 @@ const expect = require('chai').expect;
 const okta = require('../../src');
 const models = require('../../src/models');
 const Collection = require('../../src/collection');
-const mockGroup = require('./mocks/group.json');
-const mockUser = require('./mocks/user-without-credentials.json');
+const getMockGroup = require('./mocks/group');
+const getMockUser = require('./mocks/user-without-credentials');
 const utils = require('../utils');
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -19,17 +19,17 @@ const client = new okta.Client({
 
 describe('User role API', () => {
   let user;
-  beforeEach(async () => {
-    user = await client.createUser(mockUser, { activate: false });
+  before(async () => {
+    user = await client.createUser(getMockUser(), { activate: false });
   });
-  afterEach(async () => {
+  after(async () => {
     await utils.cleanupUser(client, user);
   });
 
   describe('Role assignment', () => {
     let role;
     afterEach(async () => {
-      user.removeRole(role.id);
+      await user.removeRole(role.id);
     });
 
     it('should assign role to user', async () => {
@@ -58,7 +58,7 @@ describe('User role API', () => {
       role = await user.assignRole({ type: 'APP_ADMIN' });
     });
     afterEach(async () => {
-      user.removeRole(role.id);
+      await user.removeRole(role.id);
     });
 
     it('should return a Collection of roles', async () => {
@@ -113,7 +113,7 @@ describe('User role API', () => {
     let group;
     beforeEach(async () => {
       role = await user.assignRole({ type: 'USER_ADMIN' });
-      group = await client.createGroup(mockGroup);
+      group = await client.createGroup(getMockGroup());
     });
     afterEach(async () => {
       await user.removeRole(role.id);

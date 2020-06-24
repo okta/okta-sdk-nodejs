@@ -1,10 +1,9 @@
 const expect = require('chai').expect;
-const deepcopy = require('deep-copy');
 const okta = require('../../src');
 const models = require('../../src/models');
 const Collection = require('../../src/collection');
-const mockGroup = require('./mocks/group.json');
-const mockOktaSignOnPolicy = require('./mocks/okta-sign-on-policy.json');
+const getMockGroup = require('./mocks/group');
+const getMockOktaSignOnPolicy = require('./mocks/okta-sign-on-policy');
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
 if (process.env.OKTA_USE_MOCK) {
@@ -21,8 +20,8 @@ describe('Policy Crud API', () => {
   let group;
   let mockPolicy;
   beforeEach(async () => {
-    group = await client.createGroup(mockGroup);
-    mockPolicy = deepcopy(mockOktaSignOnPolicy);
+    group = await client.createGroup(getMockGroup());
+    mockPolicy = getMockOktaSignOnPolicy();
     mockPolicy.conditions.people.groups.include.push(group.id);
   });
   afterEach(async () => {

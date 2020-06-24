@@ -2,8 +2,8 @@ const expect = require('chai').expect;
 const okta = require('../../src');
 const models = require('../../src/models');
 const Collection = require('../../src/collection');
-const mockAuthorizationServer = require('./mocks/authorization-server.json');
-const mockPolicy = require('./mocks/policy-oauth-authorization.json');
+const getMockAuthorizationServer = require('./mocks/authorization-server');
+const getMockPolicy = require('./mocks/policy-oauth-authorization');
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
 if (process.env.OKTA_USE_MOCK) {
@@ -19,7 +19,7 @@ const client = new okta.Client({
 describe.skip('Authorization Server Policies API', () => {
   let authServer;
   before(async () => {
-    authServer = await client.createAuthorizationServer(mockAuthorizationServer);
+    authServer = await client.createAuthorizationServer(getMockAuthorizationServer());
   });
   after(async () => {
     await authServer.delete();
@@ -28,7 +28,7 @@ describe.skip('Authorization Server Policies API', () => {
   describe('List all policies', () => {
     let policy;
     beforeEach(async () => {
-      policy = await authServer.createPolicy(mockPolicy);
+      policy = await authServer.createPolicy(getMockPolicy());
     });
     afterEach(async () => {
       await authServer.deletePolicy(policy.id);
@@ -40,7 +40,7 @@ describe.skip('Authorization Server Policies API', () => {
       const policies = [];
       await collection.each(p => policies.push(p));
       expect(policies).is.not.empty;
-      const policyFindByName = policies.find(p => p.name === mockPolicy.name);
+      const policyFindByName = policies.find(p => p.name === policy.name);
       expect(policyFindByName).to.be.exist;
       expect(policyFindByName).to.be.instanceOf(models.Policy);
     });
@@ -53,6 +53,7 @@ describe.skip('Authorization Server Policies API', () => {
     });
 
     it('should get policy from auth server with created policy id', async () => {
+      const mockPolicy = getMockPolicy();
       policy = await authServer.createPolicy(mockPolicy);
       expect(policy).to.be.exist;
       expect(policy.name).to.equal(mockPolicy.name);
@@ -62,7 +63,7 @@ describe.skip('Authorization Server Policies API', () => {
   describe('Get a policy', () => {
     let policy;
     beforeEach(async () => {
-      policy = await authServer.createPolicy(mockPolicy);
+      policy = await authServer.createPolicy(getMockPolicy());
     });
     afterEach(async () => {
       await authServer.deletePolicy(policy.id);
@@ -78,7 +79,7 @@ describe.skip('Authorization Server Policies API', () => {
   describe('Update policy', () => {
     let policy;
     beforeEach(async () => {
-      policy = await authServer.createPolicy(mockPolicy);
+      policy = await authServer.createPolicy(getMockPolicy());
     });
     afterEach(async () => {
       await authServer.deletePolicy(policy.id);
@@ -96,7 +97,7 @@ describe.skip('Authorization Server Policies API', () => {
   describe('Delete policy', () => {
     let policy;
     beforeEach(async () => {
-      policy = await authServer.createPolicy(mockPolicy);
+      policy = await authServer.createPolicy(getMockPolicy());
     });
 
     it('should not get policy after deletion', async () => {

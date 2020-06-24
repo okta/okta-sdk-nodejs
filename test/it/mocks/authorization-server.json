@@ -1,7 +1,0 @@
-{
-  "name": "Mock Authorization Server",
-  "description": "Mock Authorization Server Description",
-  "audiences": [
-    "https://api.resource.com"
-  ]
-}

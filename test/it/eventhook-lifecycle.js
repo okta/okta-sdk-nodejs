@@ -1,6 +1,6 @@
 const expect = require('chai').expect;
 const okta = require('../../src');
-const mockEventHook = require('./mocks/eventhook.json');
+const getMockEventHook = require('./mocks/eventhook');
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
 if (process.env.OKTA_USE_MOCK) {
@@ -16,7 +16,7 @@ const client = new okta.Client({
 describe('Event Hook Lifecycle API', () => {
   let eventHook;
   beforeEach(async () => {
-    eventHook = await client.createEventHook(mockEventHook);
+    eventHook = await client.createEventHook(getMockEventHook());
   });
   afterEach(async () => {
     await eventHook.deactivate();

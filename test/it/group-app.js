@@ -3,7 +3,7 @@ const okta = require('../../src');
 const models = require('../../src/models');
 const Collection = require('../../src/collection');
 const utils = require('../utils');
-const mockGroup = require('./mocks/group.json');
+const getMockGroup = require('./mocks/group');
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
 if (process.env.OKTA_USE_MOCK) {
@@ -24,7 +24,7 @@ describe('Group App API', () => {
     beforeEach(async () => {
       const mockApplication = utils.getBookmarkApplication();
       application = await client.createApplication(mockApplication);
-      group = await client.createGroup(mockGroup);
+      group = await client.createGroup(getMockGroup());
       groupAssignment = await application.createApplicationGroupAssignment(group.id);
     });
     afterEach(async () => {

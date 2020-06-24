@@ -3,7 +3,7 @@ const deepcopy = require('deep-copy');
 const okta = require('../../src');
 const models = require('../../src/models');
 const Collection = require('../../src/collection');
-const mockGenericOidcIdp = require('./mocks/generic-oidc-idp.json');
+const getMockGenericOidcIdp = require('./mocks/generic-oidc-idp');
 const mockJwk = require('./mocks/jwk.json');
 const mockCsr = require('./mocks/csr.json');
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
@@ -20,11 +20,11 @@ const client = new okta.Client({
 
 describe('Idp credential API', () => {
   let idp;
-  beforeEach(async () => {
-    idp = await client.createIdentityProvider(mockGenericOidcIdp);
+  before(async () => {
+    idp = await client.createIdentityProvider(getMockGenericOidcIdp());
   });
 
-  afterEach(async () => {
+  after(async () => {
     await idp.delete();
   });
 
@@ -201,8 +201,7 @@ describe('Idp credential API', () => {
     describe('Clone key', () => {
       let anotherIdp;
       beforeEach(async () => {
-        const anotherMockGenericOidcIdp = deepcopy(mockGenericOidcIdp);
-        anotherMockGenericOidcIdp.name = 'Another Mock OpenID Connect IdP';
+        const anotherMockGenericOidcIdp = getMockGenericOidcIdp();
         anotherIdp = await client.createIdentityProvider(anotherMockGenericOidcIdp);
         key = await idp.generateSigningKey({ validityYears: 2 });
       });
