@@ -23,7 +23,6 @@ var Resource = require('../resource');
  * @property { dateTime } lastRotated
  * @property { dateTime } nextRotation
  * @property { string } rotationMode
- * @property { ApplicationCredentialsSigningUse } use
  */
 class ApplicationCredentialsSigning extends Resource {
   constructor(resourceJson, client) {

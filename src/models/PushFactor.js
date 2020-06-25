@@ -25,7 +25,7 @@ class PushFactor extends Factor {
   constructor(resourceJson, client) {
     super(resourceJson, client);
     if (resourceJson && resourceJson.profile) {
-      this.profile = new PushFactorProfile(this.profile);
+      this.profile = new PushFactorProfile(resourceJson.profile);
     }
   }
 

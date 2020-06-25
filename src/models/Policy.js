@@ -14,14 +14,13 @@
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
 var Resource = require('../resource');
-const PolicyRuleConditions = require('./PolicyRuleConditions');
+
 
 /**
  * @class Policy
  * @extends Resource
  * @property { hash } _embedded
  * @property { hash } _links
- * @property { PolicyRuleConditions } conditions
  * @property { dateTime } created
  * @property { string } description
  * @property { string } id
@@ -35,9 +34,7 @@ const PolicyRuleConditions = require('./PolicyRuleConditions');
 class Policy extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson.conditions) {
-      this.conditions = new PolicyRuleConditions(resourceJson.conditions);
-    }
+
   }
 
   /**
@@ -67,10 +64,11 @@ class Policy extends Resource {
 
   /**
    * @param {PolicyRule} policyRule
+   * @param {object} queryParameters
    * @returns {Promise<PolicyRule>}
    */
-  createRule(policyRule) {
-    return this.client.createPolicyRule(this.id, policyRule);
+  createRule(policyRule, queryParameters) {
+    return this.client.addPolicyRule(this.id, policyRule, queryParameters);
   }
 
   /**

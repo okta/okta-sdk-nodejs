@@ -25,7 +25,7 @@ class TokenFactor extends Factor {
   constructor(resourceJson, client) {
     super(resourceJson, client);
     if (resourceJson && resourceJson.profile) {
-      this.profile = new TokenFactorProfile(this.profile);
+      this.profile = new TokenFactorProfile(resourceJson.profile);
     }
   }
 

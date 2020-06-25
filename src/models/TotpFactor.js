@@ -25,7 +25,7 @@ class TotpFactor extends Factor {
   constructor(resourceJson, client) {
     super(resourceJson, client);
     if (resourceJson && resourceJson.profile) {
-      this.profile = new TotpFactorProfile(this.profile);
+      this.profile = new TotpFactorProfile(resourceJson.profile);
     }
   }
 

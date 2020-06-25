@@ -25,7 +25,7 @@ class SmsFactor extends Factor {
   constructor(resourceJson, client) {
     super(resourceJson, client);
     if (resourceJson && resourceJson.profile) {
-      this.profile = new SmsFactorProfile(this.profile);
+      this.profile = new SmsFactorProfile(resourceJson.profile);
     }
   }
 

@@ -25,7 +25,7 @@ class U2fFactor extends Factor {
   constructor(resourceJson, client) {
     super(resourceJson, client);
     if (resourceJson && resourceJson.profile) {
-      this.profile = new U2fFactorProfile(this.profile);
+      this.profile = new U2fFactorProfile(resourceJson.profile);
     }
   }
 

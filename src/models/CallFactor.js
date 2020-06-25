@@ -25,7 +25,7 @@ class CallFactor extends Factor {
   constructor(resourceJson, client) {
     super(resourceJson, client);
     if (resourceJson && resourceJson.profile) {
-      this.profile = new CallFactorProfile(this.profile);
+      this.profile = new CallFactorProfile(resourceJson.profile);
     }
   }
 

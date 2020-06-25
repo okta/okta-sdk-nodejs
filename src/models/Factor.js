@@ -40,10 +40,10 @@ class Factor extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
     if (resourceJson && resourceJson.profile) {
-      this.profile = new FactorProfile(this.profile);
+      this.profile = new FactorProfile(resourceJson.profile);
     }
     if (resourceJson && resourceJson.verify) {
-      this.verify = new VerifyFactorRequest(this.verify);
+      this.verify = new VerifyFactorRequest(resourceJson.verify);
     }
   }
 

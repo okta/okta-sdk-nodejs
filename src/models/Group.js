@@ -27,7 +27,7 @@ const GroupProfile = require('./GroupProfile');
  * @property { dateTime } lastUpdated
  * @property { array } objectClass
  * @property { GroupProfile } profile
- * @property { GroupType } type
+ * @property { string } type
  */
 class Group extends Resource {
   constructor(resourceJson, client) {
@@ -51,7 +51,7 @@ class Group extends Resource {
    * @param {string} userId
    */
   removeUser(userId) {
-    return this.client.removeUserFromGroup(this.id, userId);
+    return this.client.removeGroupUser(this.id, userId);
   }
 
   /**
@@ -60,23 +60,6 @@ class Group extends Resource {
    */
   listUsers(queryParameters) {
     return this.client.listGroupUsers(this.id, queryParameters);
-  }
-
-  /**
-   * @param {object} queryParameters
-   * @returns {Promise<Collection>} A collection that will yield {@link Application} instances.
-   */
-  listApplications(queryParameters) {
-    return this.client.listAssignedApplicationsForGroup(this.id, queryParameters);
-  }
-
-  /**
-   * @param {AssignRoleRequest} assignRoleRequest
-   * @param {object} queryParameters
-   * @returns {Promise<Role>}
-   */
-  assignRole(assignRoleRequest, queryParameters) {
-    return this.client.assignRoleToGroup(this.id, assignRoleRequest, queryParameters);
   }
 }
 
