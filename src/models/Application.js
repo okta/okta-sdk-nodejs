@@ -152,6 +152,149 @@ class Application extends Resource {
   listKeys() {
     return this.client.listApplicationKeys(this.id);
   }
+
+  /**
+   * @param {object} queryParameters
+   * @returns {Promise<JsonWebKey>}
+   */
+  generateKey(queryParameters) {
+    return this.client.generateApplicationKey(this.id, queryParameters);
+  }
+
+  /**
+   * @param {CsrMetadata} csrMetadata
+   * @returns {Promise<Csr>}
+   */
+  generateCsr(csrMetadata) {
+    return this.client.generateCsrForApplication(this.id, csrMetadata);
+  }
+
+  /**
+   * @param {string} csrId
+   * @returns {Promise<Csr>}
+   */
+  getCsr(csrId) {
+    return this.client.getCsrForApplication(this.id, csrId);
+  }
+
+  /**
+   * @param {string} csrId
+   */
+  revokeCsr(csrId) {
+    return this.client.revokeCsrFromApplication(this.id, csrId);
+  }
+
+  /**
+   * @returns {Promise<Collection>} A collection that will yield {@link Csr} instances.
+   */
+  listCsrs() {
+    return this.client.listCsrsForApplication(this.id);
+  }
+
+  /**
+   * @param {string} csrId
+   * @param {string} string
+   * @returns {Promise<JsonWebKey>}
+   */
+  publishCerCert(csrId, string) {
+    return this.client.publishCerCert(this.id, csrId, string);
+  }
+
+  /**
+   * @param {string} csrId
+   * @param {string} string
+   * @returns {Promise<JsonWebKey>}
+   */
+  publishBinaryCerCert(csrId, string) {
+    return this.client.publishBinaryCerCert(this.id, csrId, string);
+  }
+
+  /**
+   * @param {string} csrId
+   * @param {string} string
+   * @returns {Promise<JsonWebKey>}
+   */
+  publishDerCert(csrId, string) {
+    return this.client.publishDerCert(this.id, csrId, string);
+  }
+
+  /**
+   * @param {string} csrId
+   * @param {string} string
+   * @returns {Promise<JsonWebKey>}
+   */
+  publishBinaryDerCert(csrId, string) {
+    return this.client.publishBinaryDerCert(this.id, csrId, string);
+  }
+
+  /**
+   * @param {string} csrId
+   * @param {string} string
+   * @returns {Promise<JsonWebKey>}
+   */
+  publishBinaryPemCert(csrId, string) {
+    return this.client.publishBinaryPemCert(this.id, csrId, string);
+  }
+
+  /**
+   * @param {object} queryParameters
+   * @returns {Promise<Collection>} A collection that will yield {@link OAuth2Token} instances.
+   */
+  listOAuth2Tokens(queryParameters) {
+    return this.client.listOAuth2TokensForApplication(this.id, queryParameters);
+  }
+
+  /**
+   * @param {string} tokenId
+   */
+  revokeOAuth2TokenForApplication(tokenId) {
+    return this.client.revokeOAuth2TokenForApplication(this.id, tokenId);
+  }
+
+  /**
+   * @param {string} tokenId
+   * @param {object} queryParameters
+   * @returns {Promise<OAuth2Token>}
+   */
+  getOAuth2Token(tokenId, queryParameters) {
+    return this.client.getOAuth2TokenForApplication(this.id, tokenId, queryParameters);
+  }
+
+  revokeOAuth2Tokens() {
+    return this.client.revokeOAuth2TokensForApplication(this.id);
+  }
+
+  /**
+   * @param {object} queryParameters
+   * @returns {Promise<Collection>} A collection that will yield {@link OAuth2ScopeConsentGrant} instances.
+   */
+  listScopeConsentGrants(queryParameters) {
+    return this.client.listScopeConsentGrants(this.id, queryParameters);
+  }
+
+  /**
+   * @param {OAuth2ScopeConsentGrant} oAuth2ScopeConsentGrant
+   * @returns {Promise<OAuth2ScopeConsentGrant>}
+   */
+  grantConsentToScope(oAuth2ScopeConsentGrant) {
+    return this.client.grantConsentToScope(this.id, oAuth2ScopeConsentGrant);
+  }
+
+  /**
+   * @param {string} grantId
+   */
+  revokeScopeConsentGrant(grantId) {
+    return this.client.revokeScopeConsentGrant(this.id, grantId);
+  }
+
+  /**
+   * @param {string} grantId
+   * @param {object} queryParameters
+   * @returns {Promise<OAuth2ScopeConsentGrant>}
+   */
+  getScopeConsentGrant(grantId, queryParameters) {
+    return this.client.getScopeConsentGrant(this.id, grantId, queryParameters);
+  }
 }
 
 module.exports = Application;

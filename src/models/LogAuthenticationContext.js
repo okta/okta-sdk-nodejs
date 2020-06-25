@@ -21,8 +21,8 @@ const LogIssuer = require('./LogIssuer');
  * @extends Resource
  * @property { LogAuthenticationProvider } authenticationProvider
  * @property { integer } authenticationStep
- * @property { array } credentialProvider
- * @property { array } credentialType
+ * @property { LogCredentialProvider } credentialProvider
+ * @property { LogCredentialType } credentialType
  * @property { string } externalSessionId
  * @property { string } interface
  * @property { LogIssuer } issuer

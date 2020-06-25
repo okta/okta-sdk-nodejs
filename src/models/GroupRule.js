@@ -20,9 +20,7 @@ const GroupRuleConditions = require('./GroupRuleConditions');
 /**
  * @class GroupRule
  * @extends Resource
- * @property { hash } _embedded
  * @property { GroupRuleAction } actions
- * @property { boolean } allGroupsValid
  * @property { GroupRuleConditions } conditions
  * @property { dateTime } created
  * @property { string } id
@@ -46,21 +44,18 @@ class GroupRule extends Resource {
    * @returns {Promise<GroupRule>}
    */
   update() {
-    return this.client.updateRule(this.id, this);
+    return this.client.updateGroupRule(this.id, this);
   }
-  /**
-   * @param {object} queryParameters
-   */
-  delete(queryParameters) {
-    return this.client.deleteRule(this.id, queryParameters);
+  delete() {
+    return this.client.deleteGroupRule(this.id);
   }
 
   activate() {
-    return this.client.activateRule(this.id);
+    return this.client.activateGroupRule(this.id);
   }
 
   deactivate() {
-    return this.client.deactivateRule(this.id);
+    return this.client.deactivateGroupRule(this.id);
   }
 }
 

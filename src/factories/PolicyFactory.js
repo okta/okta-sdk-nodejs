@@ -21,6 +21,8 @@ const models = require('../models');
 class PolicyFactory extends ModelResolutionFactory {
   getMapping() {
     return {
+      'IDP_DISCOVERY': models.IdentityProviderPolicy,
+      'OAUTH_AUTHORIZATION_POLICY': models.OAuthAuthorizationPolicy,
       'OKTA_SIGN_ON': models.OktaSignOnPolicy,
       'PASSWORD': models.PasswordPolicy,
     };

@@ -23,6 +23,8 @@ var Resource = require('../resource');
  * @property { string } client_uri
  * @property { OpenIdConnectApplicationConsentMethod } consent_method
  * @property { array } grant_types
+ * @property { string } initiate_login_uri
+ * @property { OpenIdConnectApplicationIssuerMode } issuer_mode
  * @property { string } logo_uri
  * @property { string } policy_uri
  * @property { array } post_logout_redirect_uris
