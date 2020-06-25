@@ -16,7 +16,7 @@ const client = new okta.Client({
   requestExecutor: new okta.DefaultRequestExecutor()
 });
 
-describe.skip('Authorization Server Policies API', () => {
+describe('Authorization Server Policies API', () => {
   let authServer;
   before(async () => {
     authServer = await client.createAuthorizationServer(mockAuthorizationServer);

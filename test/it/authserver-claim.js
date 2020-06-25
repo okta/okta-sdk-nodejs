@@ -17,7 +17,7 @@ const client = new okta.Client({
   requestExecutor: new okta.DefaultRequestExecutor()
 });
 
-describe.skip('Authorization Server Claim API', () => {
+describe('Authorization Server Claim API', () => {
   let authServer;
   let scope;
   before(async () => {

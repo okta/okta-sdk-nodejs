@@ -15,7 +15,7 @@ const client = new okta.Client({
   requestExecutor: new okta.DefaultRequestExecutor()
 });
 
-describe.skip('Authorization Server Crud API', () => {
+describe('Authorization Server Crud API', () => {
   describe('Create Auth Server', () => {
     let authServer;
     afterEach(async () => {

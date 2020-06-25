@@ -13,7 +13,7 @@ const client = new okta.Client({
   requestExecutor: new okta.DefaultRequestExecutor()
 });
 
-describe.skip('Authorization Server Lifecycle API', () => {
+describe('Authorization Server Lifecycle API', () => {
   let authServer;
   beforeEach(async () => {
     authServer = await client.createAuthorizationServer(mockAuthorizationServer);
