@@ -343,7 +343,7 @@ client.endSession(session.id)
 To end all sessions for a user, you must know the ID of the user:
 
 ```javascript
-client.endAllUserSessions(user.id)
+client.clearUserSessions(user.id)
 .then(() => {
   console.log('All user sessions have ended');
 });
