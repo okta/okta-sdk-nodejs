@@ -1,6 +1,6 @@
 const expect = require('chai').expect;
 const okta = require('../../src');
-const mockGenericOidcIdp = require('./mocks/generic-oidc-idp.json');
+const getMockGenericOidcIdp = require('./mocks/generic-oidc-idp');
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
 if (process.env.OKTA_USE_MOCK) {
@@ -16,7 +16,7 @@ const client = new okta.Client({
 describe('Idp Lifecycle API', () => {
   let idp;
   beforeEach(async () => {
-    idp = await client.createIdentityProvider(mockGenericOidcIdp);
+    idp = await client.createIdentityProvider(getMockGenericOidcIdp());
   });
 
   afterEach(async () => {

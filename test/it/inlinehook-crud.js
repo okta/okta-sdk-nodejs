@@ -2,7 +2,7 @@ const expect = require('chai').expect;
 const okta = require('../../src');
 const models = require('../../src/models');
 const Collection = require('../../src/collection');
-const mockInlineHook = require('./mocks/inlinehook.json');
+const getMockInlineHook = require('./mocks/inlinehook');
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
 if (process.env.OKTA_USE_MOCK) {
@@ -24,6 +24,7 @@ describe('Inline Hook Crud API', () => {
     });
 
     it('should return correct model', async () => {
+      const mockInlineHook = getMockInlineHook();
       inlineHook = await client.createInlineHook(mockInlineHook);
       expect(inlineHook).to.be.instanceOf(models.InlineHook);
       expect(inlineHook.id).to.be.exist;
@@ -34,7 +35,7 @@ describe('Inline Hook Crud API', () => {
   describe('List Inline Hooks', () => {
     let inlineHook;
     beforeEach(async () => {
-      inlineHook = await client.createInlineHook(mockInlineHook);
+      inlineHook = await client.createInlineHook(getMockInlineHook());
     });
     afterEach(async () => {
       await inlineHook.deactivate();
@@ -57,7 +58,7 @@ describe('Inline Hook Crud API', () => {
   describe('Get InlineHook', () => {
     let inlineHook;
     beforeEach(async () => {
-      inlineHook = await client.createInlineHook(mockInlineHook);
+      inlineHook = await client.createInlineHook(getMockInlineHook());
     });
     afterEach(async () => {
       await inlineHook.deactivate();
@@ -67,14 +68,14 @@ describe('Inline Hook Crud API', () => {
     it('should get InlineHook by id', async () => {
       const inlineHookFromGet = await client.getInlineHook(inlineHook.id);
       expect(inlineHookFromGet).to.be.instanceOf(models.InlineHook);
-      expect(inlineHookFromGet.name).to.equal(mockInlineHook.name);
+      expect(inlineHookFromGet.name).to.equal(inlineHook.name);
     });
   });
 
   describe('Update InlineHook', () => {
     let inlineHook;
     beforeEach(async () => {
-      inlineHook = await client.createInlineHook(mockInlineHook);
+      inlineHook = await client.createInlineHook(getMockInlineHook());
     });
     afterEach(async () => {
       await inlineHook.deactivate();
@@ -95,7 +96,7 @@ describe('Inline Hook Crud API', () => {
   describe('Delete InlineHook', () => {
     let inlineHook;
     beforeEach(async () => {
-      inlineHook = await client.createInlineHook(mockInlineHook);
+      inlineHook = await client.createInlineHook(getMockInlineHook());
     });
 
     it('should not get inlineHook after deletion', async () => {

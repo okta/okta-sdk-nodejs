@@ -2,7 +2,7 @@ const expect = require('chai').expect;
 const okta = require('../../src');
 const models = require('../../src/models');
 const Collection = require('../../src/collection');
-const mockGenericOidcIdp = require('./mocks/generic-oidc-idp.json');
+const getMockGenericOidcIdp = require('./mocks/generic-oidc-idp');
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
 if (process.env.OKTA_USE_MOCK) {
@@ -19,20 +19,17 @@ describe('Idp Crud API', () => {
   describe('List idps', () => {
     let idp;
     beforeEach(async () => {
-      idp = await client.createIdentityProvider(mockGenericOidcIdp);
+      idp = await client.createIdentityProvider(getMockGenericOidcIdp());
     });
 
     afterEach(async () => {
       await idp.delete();
     });
 
-    it('should return a Collection', async () => {
+    it('should return a Collection of IdentityProvider', async () => {
       const idps = await client.listIdentityProviders();
       expect(idps).to.be.instanceOf(Collection);
-    });
-
-    it('should resolve IdentityProvider in collection', async () => {
-      await client.listIdentityProviders().each(idp => {
+      await idps.each(idp => {
         expect(idp).to.be.instanceOf(models.IdentityProvider);
       });
     });
@@ -56,13 +53,10 @@ describe('Idp Crud API', () => {
       await idp.delete();
     });
 
-    it('should return correct model', async () => {
+    it('should create instance of IdentityProvider', async () => {
+      const mockGenericOidcIdp = getMockGenericOidcIdp();
       idp = await client.createIdentityProvider(mockGenericOidcIdp);
       expect(idp).to.be.instanceOf(models.IdentityProvider);
-    });
-
-    it('should return correct data with id assigned', async () => {
-      idp = await client.createIdentityProvider(mockGenericOidcIdp);
       expect(idp).to.have.property('id');
       expect(idp.name).to.equal(mockGenericOidcIdp.name);
     });
@@ -71,7 +65,7 @@ describe('Idp Crud API', () => {
   describe('Get idp', () => {
     let idp;
     beforeEach(async () => {
-      idp = await client.createIdentityProvider(mockGenericOidcIdp);
+      idp = await client.createIdentityProvider(getMockGenericOidcIdp());
     });
 
     afterEach(async () => {
@@ -81,7 +75,7 @@ describe('Idp Crud API', () => {
     it('should get IdentityProvider by id', async () => {
       const idpFromGet = await client.getIdentityProvider(idp.id);
       expect(idpFromGet).to.be.instanceOf(models.IdentityProvider);
-      expect(idpFromGet.name).to.equal(mockGenericOidcIdp.name);
+      expect(idpFromGet.name).to.equal(idp.name);
     });
   });
 
@@ -89,7 +83,7 @@ describe('Idp Crud API', () => {
     let idp;
     let updatedIdp;
     beforeEach(async () => {
-      idp = await client.createIdentityProvider(mockGenericOidcIdp);
+      idp = await client.createIdentityProvider(getMockGenericOidcIdp());
     });
 
     afterEach(async () => {
@@ -108,7 +102,7 @@ describe('Idp Crud API', () => {
   describe('Delete idp', () => {
     let idp;
     beforeEach(async () => {
-      idp = await client.createIdentityProvider(mockGenericOidcIdp);
+      idp = await client.createIdentityProvider(getMockGenericOidcIdp());
     });
 
     it('should not get idp after deletion', async () => {

@@ -1,9 +1,8 @@
 const expect = require('chai').expect;
-const faker = require('faker');
 const okta = require('../../src');
 const Collection = require('../../src/collection');
 const utils = require('../utils');
-const mockUser = require('./mocks/user-without-credentials.json');
+const getMockUser = require('./mocks/user-without-credentials');
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
 if (process.env.OKTA_USE_MOCK) {
@@ -20,9 +19,7 @@ describe('User applink API', () => {
   describe('List applinks', () => {
     let user;
     beforeEach(async () => {
-      mockUser.profile.login = faker.internet.email();
-      mockUser.profile.email = mockUser.profile.login;
-      user = await client.createUser(mockUser, { activate: false });
+      user = await client.createUser(getMockUser(), { activate: false });
     });
     afterEach(async () => {
       await utils.cleanupUser(client, user);

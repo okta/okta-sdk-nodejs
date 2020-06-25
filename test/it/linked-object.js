@@ -2,7 +2,7 @@ const expect = require('chai').expect;
 const okta = require('../../src');
 const models = require('../../src/models');
 const Collection = require('../../src/collection');
-const mockLinkedObject = require('./mocks/linked-object.json');
+const getMockLinkedObject = require('./mocks/linked-object');
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
 if (process.env.OKTA_USE_MOCK) {
@@ -24,6 +24,7 @@ describe('Linked Object API', () => {
       });
 
       it('should return instance of LinkedObject model', async () => {
+        const mockLinkedObject = getMockLinkedObject();
         linkedObject = await client.addLinkedObjectDefinition(mockLinkedObject);
         expect(linkedObject).to.be.instanceOf(models.LinkedObject);
         expect(linkedObject.primary.name).to.equal(mockLinkedObject.primary.name);
@@ -34,7 +35,7 @@ describe('Linked Object API', () => {
     describe('Get a linked object definition by name', () => {
       let linkedObjectFromGet;
       beforeEach(async () => {
-        linkedObject = await client.addLinkedObjectDefinition(mockLinkedObject);
+        linkedObject = await client.addLinkedObjectDefinition(getMockLinkedObject());
       });
       afterEach(async () => {
         await linkedObject.delete(linkedObject.primary.name);
@@ -43,19 +44,19 @@ describe('Linked Object API', () => {
       it('should return LinkedObject by primary name', async () => {
         linkedObjectFromGet = await client.getLinkedObjectDefinition(linkedObject.primary.name);
         expect(linkedObjectFromGet).to.be.instanceOf(models.LinkedObject);
-        expect(linkedObjectFromGet.primary.name).to.equal(mockLinkedObject.primary.name);
+        expect(linkedObjectFromGet.primary.name).to.equal(linkedObject.primary.name);
       });
 
       it('should return LinkedObject by associated name', async () => {
         linkedObjectFromGet = await client.getLinkedObjectDefinition(linkedObject.associated.name);
         expect(linkedObjectFromGet).to.be.instanceOf(models.LinkedObject);
-        expect(linkedObjectFromGet.associated.name).to.equal(mockLinkedObject.associated.name);
+        expect(linkedObjectFromGet.associated.name).to.equal(linkedObject.associated.name);
       });
     });
 
     describe('List all linked object definitions', () => {
       beforeEach(async () => {
-        linkedObject = await client.addLinkedObjectDefinition(mockLinkedObject);
+        linkedObject = await client.addLinkedObjectDefinition(getMockLinkedObject());
       });
       afterEach(async () => {
         await linkedObject.delete(linkedObject.primary.name);
@@ -75,7 +76,7 @@ describe('Linked Object API', () => {
 
     describe('Delete linked object definition', () => {
       beforeEach(async () => {
-        linkedObject = await client.addLinkedObjectDefinition(mockLinkedObject);
+        linkedObject = await client.addLinkedObjectDefinition(getMockLinkedObject());
       });
 
       it('should not get linkedObject after deletion', async () => {

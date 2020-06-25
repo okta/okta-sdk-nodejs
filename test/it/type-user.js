@@ -1,9 +1,9 @@
 const expect = require('chai').expect;
-const deepcopy = require('deep-copy');
+const faker = require('faker');
 const okta = require('../../src');
 const models = require('../../src/models');
 const Collection = require('../../src/collection');
-const mockUserType = require('./mocks/user-type.json');
+const getMockUserType = require('./mocks/user-type');
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
 if (process.env.OKTA_USE_MOCK) {
@@ -21,19 +21,16 @@ describe('User Type API', () => {
 
   describe('List userTypes', () => {
     beforeEach(async () => {
-      userType = await client.createUserType(mockUserType);
+      userType = await client.createUserType(getMockUserType());
     });
     afterEach(async () => {
       await userType.delete();
     });
 
-    it('should return a Collection', async () => {
+    it('should return a Collection of UserType', async () => {
       const userTypes = await client.listUserTypes();
       expect(userTypes).to.be.instanceOf(Collection);
-    });
-
-    it('should resolve UserType in collection', async () => {
-      await client.listUserTypes().each(userType => {
+      await userTypes.each(userType => {
         expect(userType).to.be.instanceOf(models.UserType);
       });
     });
@@ -44,13 +41,10 @@ describe('User Type API', () => {
       await userType.delete();
     });
 
-    it('should return correct model', async () => {
+    it('should return UserType instance', async () => {
+      const mockUserType = getMockUserType();
       userType = await client.createUserType(mockUserType);
       expect(userType).to.be.instanceOf(models.UserType);
-    });
-
-    it('should return correct data with id assigned', async () => {
-      userType = await client.createUserType(mockUserType);
       expect(userType).to.have.property('id');
       expect(userType.name).to.equal(mockUserType.name);
     });
@@ -58,7 +52,7 @@ describe('User Type API', () => {
 
   describe('Get userType', () => {
     beforeEach(async () => {
-      userType = await client.createUserType(mockUserType);
+      userType = await client.createUserType(getMockUserType());
     });
     afterEach(async () => {
       await userType.delete();
@@ -67,39 +61,39 @@ describe('User Type API', () => {
     it('should get userType by id', async () => {
       const userTypeFromGet = await client.getUserType(userType.id);
       expect(userTypeFromGet).to.be.instanceOf(models.UserType);
-      expect(userTypeFromGet.name).to.equal(mockUserType.name);
+      expect(userTypeFromGet.name).to.equal(userType.name);
     });
   });
 
   describe('Update userType', () => {
+    let mockType;
     beforeEach(async () => {
-      userType = await client.createUserType(mockUserType);
+      mockType = getMockUserType();
+      userType = await client.createUserType(mockType);
     });
     afterEach(async () => {
       await userType.delete();
     });
 
     it('should update name for userType', async () => {
-      const mockName = 'Mock update useType';
-      userType.displayName = mockName;
+      userType.displayName = faker.random.word();
       const updatedUserType = await userType.update();
       expect(updatedUserType.id).to.equal(userType.id);
-      expect(updatedUserType.displayName).to.equal(mockName);
+      expect(updatedUserType.displayName).to.equal(userType.displayName);
     });
 
     it('should replace userType with a new resource', async () => {
-      const mockUserTypeForReplacement = deepcopy(mockUserType);
-      mockUserTypeForReplacement.displayName = 'mock replace displayname';
-      mockUserTypeForReplacement.description = 'mock replace description';
-      const replacedUserType = await client.replaceUserType(userType.id, mockUserTypeForReplacement);
+      mockType.displayName = faker.random.word();
+      const replacedUserType = await client.replaceUserType(userType.id, mockType);
       expect(replacedUserType).to.be.instanceOf(models.UserType);
       expect(replacedUserType.id).to.be.equal(userType.id);
+      expect(replacedUserType.name).to.be.equal(mockType.name);
     });
   });
 
   describe('Delete userType', () => {
     beforeEach(async () => {
-      userType = await client.createUserType(mockUserType);
+      userType = await client.createUserType(getMockUserType());
     });
 
     it('should status 204 after deletion', async () => {

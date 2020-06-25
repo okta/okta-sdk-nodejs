@@ -1,7 +1,7 @@
 const expect = require('chai').expect;
 const okta = require('../../src');
 const models = require('../../src/models');
-const mockGroup = require('./mocks/group.json');
+const getMockGroup = require('./mocks/group');
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
 if (process.env.OKTA_USE_MOCK) {
@@ -18,7 +18,7 @@ describe('Group role API', () => {
   describe('Role assignment', () => {
     let group;
     beforeEach(async () => {
-      group = await client.createGroup(mockGroup);
+      group = await client.createGroup(getMockGroup());
     });
     afterEach(async () => {
       await group.delete();

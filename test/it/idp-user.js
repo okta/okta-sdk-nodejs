@@ -2,8 +2,8 @@ const expect = require('chai').expect;
 const okta = require('../../src');
 const models = require('../../src/models');
 const Collection = require('../../src/collection');
-const mockGenericOidcIdp = require('./mocks/generic-oidc-idp.json');
-const mockUser = require('./mocks/user-without-credentials.json');
+const getMockGenericOidcIdp = require('./mocks/generic-oidc-idp');
+const getMockUser = require('./mocks/user-without-credentials');
 const utils = require('../utils');
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -20,12 +20,12 @@ const client = new okta.Client({
 describe('Idp User API', () => {
   let idp;
   let user;
-  beforeEach(async () => {
-    idp = await client.createIdentityProvider(mockGenericOidcIdp);
-    user = await client.createUser(mockUser, { activate: false });
+  before(async () => {
+    idp = await client.createIdentityProvider(getMockGenericOidcIdp());
+    user = await client.createUser(getMockUser(), { activate: false });
   });
 
-  afterEach(async () => {
+  after(async () => {
     await idp.delete();
     await utils.cleanupUser(client, user);
   });

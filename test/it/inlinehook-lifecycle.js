@@ -1,6 +1,6 @@
 const expect = require('chai').expect;
 const okta = require('../../src');
-const mockInlineHook = require('./mocks/inlinehook.json');
+const getMockInlineHook = require('./mocks/inlinehook');
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
 if (process.env.OKTA_USE_MOCK) {
@@ -16,7 +16,7 @@ const client = new okta.Client({
 describe('Inline Hook Lifecycle API', () => {
   let inlineHook;
   beforeEach(async () => {
-    inlineHook = await client.createInlineHook(mockInlineHook);
+    inlineHook = await client.createInlineHook(getMockInlineHook());
   });
   afterEach(async () => {
     await inlineHook.deactivate();

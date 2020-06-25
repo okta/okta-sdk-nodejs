@@ -1,8 +1,0 @@
-{
-  "name": "general fake template",
-  "type": "general fake type",
-  "template": "Your fake verification code is ${code}.",
-  "translations": {
-    "fr": "Votre code ${org.name}: ${code}."
-  }
-}

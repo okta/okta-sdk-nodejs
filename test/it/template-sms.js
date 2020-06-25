@@ -1,9 +1,8 @@
 const expect = require('chai').expect;
-const deepCopy = require('deep-copy');
 const okta = require('../../src');
 const models = require('../../src/models');
 const Collection = require('../../src/collection');
-const generalFakeTemplateObj = require('./mocks/template-sms.json')
+const getGeneralFakeTemplateObj = require('./mocks/template-sms');
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
 if (process.env.OKTA_USE_MOCK) {
@@ -21,7 +20,7 @@ describe('SmsTemplate API', () => {
     let template;
     let fakeTemplateObj;
     beforeEach(async () => {
-      fakeTemplateObj = deepCopy(generalFakeTemplateObj);
+      fakeTemplateObj = getGeneralFakeTemplateObj();
       template = await client.createSmsTemplate(fakeTemplateObj);
     });
 
@@ -57,21 +56,18 @@ describe('SmsTemplate API', () => {
     });
 
     it('should return correct model', async () => {
-      template = await client.createSmsTemplate(generalFakeTemplateObj);
+      const mockTemplate = getGeneralFakeTemplateObj();
+      template = await client.createSmsTemplate(mockTemplate);
       expect(template).to.be.instanceOf(models.SmsTemplate);
-    });
-
-    it('should return correct data with id assigned', async () => {
-      template = await client.createSmsTemplate(generalFakeTemplateObj);
       expect(template).to.have.property('id');
-      expect(template.name).to.equal(generalFakeTemplateObj.name);
+      expect(template.name).to.equal(mockTemplate.name);
     });
   });
 
   describe('Delete template', () => {
     let template;
     beforeEach(async () => {
-      template = await client.createSmsTemplate(generalFakeTemplateObj);
+      template = await client.createSmsTemplate(getGeneralFakeTemplateObj());
     });
 
     afterEach(async () => {
@@ -91,7 +87,7 @@ describe('SmsTemplate API', () => {
   describe('Get template', () => {
     let template;
     beforeEach(async () => {
-      template = await client.createSmsTemplate(generalFakeTemplateObj);
+      template = await client.createSmsTemplate(getGeneralFakeTemplateObj());
     });
 
     afterEach(async () => {
@@ -101,14 +97,14 @@ describe('SmsTemplate API', () => {
     it('should get SmsTemplate by id', async () => {
       const templateFromGet = await client.getSmsTemplate(template.id);
       expect(templateFromGet).to.be.instanceOf(models.SmsTemplate);
-      expect(templateFromGet.name).to.equal(generalFakeTemplateObj.name);
+      expect(templateFromGet.name).to.equal(template.name);
     });
   });
 
   describe('Partial Update template', () => {
     let template;
     beforeEach(async () => {
-      template = await client.createSmsTemplate(generalFakeTemplateObj);
+      template = await client.createSmsTemplate(getGeneralFakeTemplateObj());
     });
 
     afterEach(async () => {
@@ -120,7 +116,7 @@ describe('SmsTemplate API', () => {
       expect(updatedTemplate).to.be.instanceOf(models.SmsTemplate);
       expect(updatedTemplate.id).to.equal(template.id);
       expect(updatedTemplate.name).to.equal('fake updated name');
-      expect(updatedTemplate.template).to.equal(generalFakeTemplateObj.template);
+      expect(updatedTemplate.template).to.equal(template.template);
     });
   });
 
@@ -128,7 +124,7 @@ describe('SmsTemplate API', () => {
     let template;
     let updatedTemplate;
     beforeEach(async () => {
-      template = await client.createSmsTemplate(generalFakeTemplateObj);
+      template = await client.createSmsTemplate(getGeneralFakeTemplateObj());
     });
 
     afterEach(async () => {

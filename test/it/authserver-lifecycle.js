@@ -1,6 +1,6 @@
 const expect = require('chai').expect;
 const okta = require('../../src');
-const mockAuthorizationServer = require('./mocks/authorization-server.json');
+const getMockAuthorizationServer = require('./mocks/authorization-server');
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
 if (process.env.OKTA_USE_MOCK) {
@@ -16,7 +16,7 @@ const client = new okta.Client({
 describe('Authorization Server Lifecycle API', () => {
   let authServer;
   beforeEach(async () => {
-    authServer = await client.createAuthorizationServer(mockAuthorizationServer);
+    authServer = await client.createAuthorizationServer(getMockAuthorizationServer());
   });
   afterEach(async () => {
     await authServer.delete();

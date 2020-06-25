@@ -1,11 +1,10 @@
 const expect = require('chai').expect;
-const deepcopy = require('deep-copy');
 const okta = require('../../src');
 const models = require('../../src/models');
 const Collection = require('../../src/collection');
 const utils = require('../utils');
-const mockLinkedObject = require('./mocks/linked-object.json');
-const mockUser = require('./mocks/user-without-credentials.json');
+const getMockLinkedObject = require('./mocks/linked-object');
+const getMockUser = require('./mocks/user-without-credentials');
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
 if (process.env.OKTA_USE_MOCK) {
@@ -23,17 +22,9 @@ describe('User linked object API', () => {
   let associateUser;
   let linkedObject;
   beforeEach(async () => {
-    const mockPrimaryUser = deepcopy(mockUser);
-    mockPrimaryUser.profile.firstName = 'mockPrimary';
-    mockPrimaryUser.profile.email = 'mockprimary@test.com';
-    mockPrimaryUser.profile.login = 'mockprimary@test.com';
-    primaryUser = await client.createUser(mockPrimaryUser, { activate: false });
-    const mockAssociateUser = deepcopy(mockUser);
-    mockAssociateUser.profile.firstName = 'mockAssociate';
-    mockAssociateUser.profile.email = 'mockassociate@test.com';
-    mockAssociateUser.profile.login = 'mocksssociate@test.com';
-    associateUser = await client.createUser(mockAssociateUser, { activate: false });
-    linkedObject = await client.addLinkedObjectDefinition(mockLinkedObject);
+    primaryUser = await client.createUser(getMockUser(), { activate: false });
+    associateUser = await client.createUser(getMockUser(), { activate: false });
+    linkedObject = await client.addLinkedObjectDefinition(getMockLinkedObject());
   });
   afterEach(async () => {
     await linkedObject.delete(linkedObject.primary.name);
