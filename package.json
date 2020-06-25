@@ -12,6 +12,7 @@
   "main": "src/index.js",
   "scripts": {
     "banners": "./utils/maintain-banners.js",
+    "prebuild": "rm -rf ./src/models ./src/factories ./src/generated-client.js",
     "build": "okta-sdk-generator -t templates/ -o .",
     "eslint": "eslint -c src/.eslintrc src/ && eslint -c test/.eslintrc test/it test/unit && eslint -c test/jest/.eslintrc test/jest/ && eslint -c src/.eslintrc utils/",
     "jest": "jest --coverage test/jest/*.js",
