@@ -9,7 +9,7 @@
     - Fix model constructor when initialize property models
     - Pass proper headers for http request
   - Factory changes
-    - Add `UserFactorFactory`
+    - Change `FactorFactory` to `UserFactorFactory`
   - Model changes
     - Add `ActivateFactorRequest`
     - Add `AppAndInstanceConditionEvaluatorAppOrInstance`
@@ -46,8 +46,8 @@
     - Add `CsrMetadata`
     - Add `CsrMetadataSubject`
     - Add `CsrMetadataSubjectAltNames`
-    - Add `CallUserFactor`
-    - Add `CallUserFactorProfile`
+    - Change `CallFactor` to `CallUserFactor`
+    - Change `CallFactorProfile` to `CallUserFactorProfile`
     - Add `CatalogApplication`
     - Add `CatalogApplicationStatus`
     - Add `ClientPolicyCondition`
@@ -56,8 +56,11 @@
     - Add `DevicePolicyRuleCondition`
     - Add `DevicePolicyRuleConditionPlatform`
     - Add `Duration`
-    - Add `EmailUserFactor`
-    - Add `EmailUserFactorProfile`
+    - Remove `EmailAddress`
+    - Remove `EmailStatus`
+    - Remove `EmailType`
+    - Change `EmailFactor` to `EmailUserFactor`
+    - Change `EmailFactorProfile` to `EmailUserFactorProfile`
     - Add `EnabledStatus`
     - Add `EventHook`
     - Add `EventHookChannel`
@@ -66,6 +69,7 @@
     - Add `EventHookChannelConfigAuthSchemeType`
     - Add `EventHookChannelConfigHeader`
     - Add `EventSubscriptions`
+    - Change `Factor` to `UserFactor`
     - Add `Feature`
     - Add `FeatureStage`
     - Add `FeatureStageState`
@@ -79,8 +83,9 @@
     - `GroupRule`
       - Add method `delete`
     - Add `GroupType`
-    - Add `HardwareUserFactor`
-    - Add `HardwareUserFactorProfile`
+    - Remove `GroupStats`
+    - Change `HardwareFactor` to `HardwareUserFactor`
+    - Change `HardwareFactorProfile` to `HardwareUserFactorProfile`
     - Add `IdentityProvider`
     - Add `IdentityProviderApplicationUser`
     - Add `IdentityProviderCredentials`
@@ -156,8 +161,8 @@
     - Add `ProvisioningDeprovisionedCondition`
     - Add `ProvisioningGroups`
     - Add `ProvisioningSuspendedCondition`
-    - Add `PushUserFactor`
-    - Add `PushUserFactorProfile`
+    - Change `PushFactor` to `PushUserFactor`
+    - Change `PushFactorProfile` to `PushUserFactorProfile`
     - Add `ResponseLinks`
     - Add `RiskPolicyRuleCondition`
     - Add `RiskScorePolicyRuleCondition`
@@ -173,21 +178,21 @@
     - Add `ScheduledUserLifecycleAction`
     - Add `Scope`
     - Add `ScopeType`
-    - Add `SecurityQuestionUserFactor`
-    - Add `SecurityQuestionUserFactorProfile`
+    - Change `SecurityQuestionFactor` to `SecurityQuestionUserFactor`
+    - Change `SecurityQuestionFactorProfile` to `SecurityQuestionUserFactorProfile`
     - Add `SmsTemplate`
     - Add `SmsTemplateTranslations`
     - Add `SmsTemplateType`
-    - Add `SmsUserFactor`
-    - Add `SmsUserFactorProfile`
+    - Change `SmsFactor` to `SmsUserFactor`
+    - Change `SmsFactorProfile` to `SmsUserFactorProfile`
     - Add `SocialAuthToken`
-    - Add `TokenUserFactor`
-    - Add `TokenUserFactorProfile`
-    - Add `TotpUserFactor`
-    - Add `TotpUserFactorProfile`
+    - Change `TokenFactor` to `TokenUserFactor`
+    - Change `TokenFactorProfile` to `TokenUserFactorProfile`
+    - Change `TotpFactor` to `TotpUserFactor`
+    - Change `TotpFactorProfile` to `TotpUserFactorProfile`
     - Add `TrustedOrigin`
-    - Add `U2fUserFactor`
-    - Add `U2fUserFactorProfile`
+    - Change `U2fFactor` to `U2fUserFactor`
+    - Change `U2fFactorProfile` to `U2fUserFactorProfile`
     - `User`
       - Add property `type`
       - Change method `endAllSessions` to `clearSessions`
@@ -220,7 +225,6 @@
       - Add method `listIdentityProviders`
       - Add method `getLinkedObjects`
       - Add method `removeLinkedObject`
-    - Add `UserFactor`
     - Add `UserIdentifierConditionEvaluatorPattern`
     - Add `UserIdentifierPolicyRuleCondition`
     - Add `UserIdentityProviderLinkRequest`
@@ -228,11 +232,12 @@
     - Add `UserPolicyRuleCondition`
     - Add `UserStatusPolicyRuleCondition`
     - Add `UserType`
-    - Add `VerifyUserFactorResponse`
+    - Remove `Verify`
+    - Change `VerifyFactorResponse` to `VerifyUserFactorResponse`
     - Add `WebAuthnUserFactor`
     - Add `WebAuthnUserFactorProfile`
-    - Add `WebUserFactor`
-    - Add `WebUserFactorProfile`
+    - Change `WebFactor` to `WebUserFactor`
+    - Change `WebFactorProfile` to `WebUserFactorProfile`
   - Client changes
     - Add method `listCsrsForApplication`
     - Add method `generateCsrForApplication`
