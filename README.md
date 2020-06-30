@@ -93,6 +93,7 @@ The `privateKey` can be passed in the following ways:
 * [Request Executor](#request-executor)
   * [Default Request Executor](#default-request-executor)
   * [Base Request Executor](#base-request-executor)
+* [Migrating between versions](#migrating-between-versions)
 
 
 ## Examples
@@ -769,6 +770,14 @@ const client = new okta.Client({
   requestExecutor: new DefaultExecutorWithLogging()
 })
 ```
+
+## Migrating between versions
+
+### From 3.x to 4.0
+
+The version 4.0 of this SDK dropped support for Node 8, which is EOL (End-of-Life) since 2019-12-31. Current supported minimum Node version is 10.0.0.
+
+This version 4.0 release also updated APIs latest `@okta/openapi` (v2.0.0) that includes new endpoints and changed method names. Please see [CHANGELOG.md](CHANGELOG.md#4.0.0) for detailed information.
 
 ## Contributing
 
