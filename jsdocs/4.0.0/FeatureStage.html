@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>Okta API wrapper for Node.js Class: FeatureStage</title>
+
+	<!--[if lt IE 9]>
+	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+	<link type="text/css" rel="stylesheet" href="styles/sunlight.default.css">
+
+	<link type="text/css" rel="stylesheet" href="styles/site.paper.css">
+
+</head>
+
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top ">
+<div class="container">
+	<div class="navbar-header">
+		<a class="navbar-brand" href="index.html">Okta API wrapper for Node.js</a>
+		<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#topNavigation">
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+        </button>
+	</div>
+	<div class="navbar-collapse collapse" id="topNavigation">
+		<ul class="nav navbar-nav">
+			
+			<li class="dropdown">
+				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
+				<ul class="dropdown-menu ">
+					<li><a href="ActivateFactorRequest.html">ActivateFactorRequest</a></li><li><a href="AppAndInstanceConditionEvaluatorAppOrInstance.html">AppAndInstanceConditionEvaluatorAppOrInstance</a></li><li><a href="AppAndInstancePolicyRuleCondition.html">AppAndInstancePolicyRuleCondition</a></li><li><a href="AppInstancePolicyRuleCondition.html">AppInstancePolicyRuleCondition</a></li><li><a href="Application.html">Application</a></li><li><a href="ApplicationAccessibility.html">ApplicationAccessibility</a></li><li><a href="ApplicationCredentials.html">ApplicationCredentials</a></li><li><a href="ApplicationCredentialsOAuthClient.html">ApplicationCredentialsOAuthClient</a></li><li><a href="ApplicationCredentialsScheme.html">ApplicationCredentialsScheme</a></li><li><a href="ApplicationCredentialsSigning.html">ApplicationCredentialsSigning</a></li><li><a href="ApplicationCredentialsSigningUse.html">ApplicationCredentialsSigningUse</a></li><li><a href="ApplicationCredentialsUsernameTemplate.html">ApplicationCredentialsUsernameTemplate</a></li><li><a href="ApplicationGroupAssignment.html">ApplicationGroupAssignment</a></li><li><a href="ApplicationLicensing.html">ApplicationLicensing</a></li><li><a href="ApplicationSettings.html">ApplicationSettings</a></li><li><a href="ApplicationSettingsApplication.html">ApplicationSettingsApplication</a></li><li><a href="ApplicationSettingsNotifications.html">ApplicationSettingsNotifications</a></li><li><a href="ApplicationSettingsNotificationsVpn.html">ApplicationSettingsNotificationsVpn</a></li><li><a href="ApplicationSettingsNotificationsVpnNetwork.html">ApplicationSettingsNotificationsVpnNetwork</a></li><li><a href="ApplicationSignOnMode.html">ApplicationSignOnMode</a></li><li><a href="ApplicationVisibility.html">ApplicationVisibility</a></li><li><a href="ApplicationVisibilityHide.html">ApplicationVisibilityHide</a></li><li><a href="AppLink.html">AppLink</a></li><li><a href="AppUser.html">AppUser</a></li><li><a href="AppUserCredentials.html">AppUserCredentials</a></li><li><a href="AppUserPasswordCredential.html">AppUserPasswordCredential</a></li><li><a href="AssignRoleRequest.html">AssignRoleRequest</a></li><li><a href="AuthenticationProvider.html">AuthenticationProvider</a></li><li><a href="AuthenticationProviderType.html">AuthenticationProviderType</a></li><li><a href="AuthorizationServer.html">AuthorizationServer</a></li><li><a href="AuthorizationServerCredentials.html">AuthorizationServerCredentials</a></li><li><a href="AuthorizationServerCredentialsRotationMode.html">AuthorizationServerCredentialsRotationMode</a></li><li><a href="AuthorizationServerCredentialsSigningConfig.html">AuthorizationServerCredentialsSigningConfig</a></li><li><a href="AuthorizationServerCredentialsUse.html">AuthorizationServerCredentialsUse</a></li><li><a href="AutoLoginApplication.html">AutoLoginApplication</a></li><li><a href="AutoLoginApplicationSettings.html">AutoLoginApplicationSettings</a></li><li><a href="AutoLoginApplicationSettingsSignOn.html">AutoLoginApplicationSettingsSignOn</a></li><li><a href="BasicApplicationSettings.html">BasicApplicationSettings</a></li><li><a href="BasicApplicationSettingsApplication.html">BasicApplicationSettingsApplication</a></li><li><a href="BasicAuthApplication.html">BasicAuthApplication</a></li><li><a href="BeforeScheduledActionPolicyRuleCondition.html">BeforeScheduledActionPolicyRuleCondition</a></li><li><a href="BookmarkApplication.html">BookmarkApplication</a></li><li><a href="BookmarkApplicationSettings.html">BookmarkApplicationSettings</a></li><li><a href="BookmarkApplicationSettingsApplication.html">BookmarkApplicationSettingsApplication</a></li><li><a href="BrowserPluginApplication.html">BrowserPluginApplication</a></li><li><a href="CallUserFactor.html">CallUserFactor</a></li><li><a href="CallUserFactorProfile.html">CallUserFactorProfile</a></li><li><a href="CatalogApplication.html">CatalogApplication</a></li><li><a href="CatalogApplicationStatus.html">CatalogApplicationStatus</a></li><li><a href="ChangePasswordRequest.html">ChangePasswordRequest</a></li><li><a href="Client.html">Client</a></li><li><a href="ClientPolicyCondition.html">ClientPolicyCondition</a></li><li><a href="Collection.html">Collection</a></li><li><a href="ContextPolicyRuleCondition.html">ContextPolicyRuleCondition</a></li><li><a href="CreateSessionRequest.html">CreateSessionRequest</a></li><li><a href="CreateUserRequest.html">CreateUserRequest</a></li><li><a href="Csr.html">Csr</a></li><li><a href="CsrMetadata.html">CsrMetadata</a></li><li><a href="CsrMetadataSubject.html">CsrMetadataSubject</a></li><li><a href="CsrMetadataSubjectAltNames.html">CsrMetadataSubjectAltNames</a></li><li><a href="DevicePolicyRuleCondition.html">DevicePolicyRuleCondition</a></li><li><a href="DevicePolicyRuleConditionPlatform.html">DevicePolicyRuleConditionPlatform</a></li><li><a href="Duration.html">Duration</a></li><li><a href="EmailUserFactor.html">EmailUserFactor</a></li><li><a href="EmailUserFactorProfile.html">EmailUserFactorProfile</a></li><li><a href="EnabledStatus.html">EnabledStatus</a></li><li><a href="EventHook.html">EventHook</a></li><li><a href="EventHookChannel.html">EventHookChannel</a></li><li><a href="EventHookChannelConfig.html">EventHookChannelConfig</a></li><li><a href="EventHookChannelConfigAuthScheme.html">EventHookChannelConfigAuthScheme</a></li><li><a href="EventHookChannelConfigAuthSchemeType.html">EventHookChannelConfigAuthSchemeType</a></li><li><a href="EventHookChannelConfigHeader.html">EventHookChannelConfigHeader</a></li><li><a href="EventSubscriptions.html">EventSubscriptions</a></li><li><a href="FactorProvider.html">FactorProvider</a></li><li><a href="FactorResultType.html">FactorResultType</a></li><li><a href="FactorStatus.html">FactorStatus</a></li><li><a href="FactorType.html">FactorType</a></li><li><a href="Feature.html">Feature</a></li><li><a href="FeatureStage.html">FeatureStage</a></li><li><a href="FeatureStageState.html">FeatureStageState</a></li><li><a href="FeatureStageValue.html">FeatureStageValue</a></li><li><a href="FeatureType.html">FeatureType</a></li><li><a href="ForgotPasswordResponse.html">ForgotPasswordResponse</a></li><li><a href="GeneratedApiClient.html">GeneratedApiClient</a></li><li><a href="GrantTypePolicyRuleCondition.html">GrantTypePolicyRuleCondition</a></li><li><a href="Group.html">Group</a></li><li><a href="GroupCondition.html">GroupCondition</a></li><li><a href="GroupPolicyRuleCondition.html">GroupPolicyRuleCondition</a></li><li><a href="GroupProfile.html">GroupProfile</a></li><li><a href="GroupRule.html">GroupRule</a></li><li><a href="GroupRuleAction.html">GroupRuleAction</a></li><li><a href="GroupRuleConditions.html">GroupRuleConditions</a></li><li><a href="GroupRuleExpression.html">GroupRuleExpression</a></li><li><a href="GroupRuleGroupAssignment.html">GroupRuleGroupAssignment</a></li><li><a href="GroupRuleGroupCondition.html">GroupRuleGroupCondition</a></li><li><a href="GroupRulePeopleCondition.html">GroupRulePeopleCondition</a></li><li><a href="GroupRuleStatus.html">GroupRuleStatus</a></li><li><a href="GroupRuleUserCondition.html">GroupRuleUserCondition</a></li><li><a href="GroupType.html">GroupType</a></li><li><a href="HardwareUserFactor.html">HardwareUserFactor</a></li><li><a href="HardwareUserFactorProfile.html">HardwareUserFactorProfile</a></li><li><a href="Http.html">Http</a></li><li><a href="IdentityProvider.html">IdentityProvider</a></li><li><a href="IdentityProviderApplicationUser.html">IdentityProviderApplicationUser</a></li><li><a href="IdentityProviderCredentials.html">IdentityProviderCredentials</a></li><li><a href="IdentityProviderCredentialsClient.html">IdentityProviderCredentialsClient</a></li><li><a href="IdentityProviderCredentialsSigning.html">IdentityProviderCredentialsSigning</a></li><li><a href="IdentityProviderCredentialsTrust.html">IdentityProviderCredentialsTrust</a></li><li><a href="IdentityProviderPolicy.html">IdentityProviderPolicy</a></li><li><a href="IdentityProviderPolicyRuleCondition.html">IdentityProviderPolicyRuleCondition</a></li><li><a href="InactivityPolicyRuleCondition.html">InactivityPolicyRuleCondition</a></li><li><a href="InlineHook.html">InlineHook</a></li><li><a href="InlineHookChannel.html">InlineHookChannel</a></li><li><a href="InlineHookChannelConfig.html">InlineHookChannelConfig</a></li><li><a href="InlineHookChannelConfigAuthScheme.html">InlineHookChannelConfigAuthScheme</a></li><li><a href="InlineHookChannelConfigHeaders.html">InlineHookChannelConfigHeaders</a></li><li><a href="InlineHookPayload.html">InlineHookPayload</a></li><li><a href="InlineHookResponse.html">InlineHookResponse</a></li><li><a href="InlineHookResponseCommands.html">InlineHookResponseCommands</a></li><li><a href="InlineHookResponseCommandValue.html">InlineHookResponseCommandValue</a></li><li><a href="InlineHookStatus.html">InlineHookStatus</a></li><li><a href="InlineHookType.html">InlineHookType</a></li><li><a href="IonField.html">IonField</a></li><li><a href="IonForm.html">IonForm</a></li><li><a href="JsonWebKey.html">JsonWebKey</a></li><li><a href="JwkUse.html">JwkUse</a></li><li><a href="LifecycleExpirationPolicyRuleCondition.html">LifecycleExpirationPolicyRuleCondition</a></li><li><a href="LinkedObject.html">LinkedObject</a></li><li><a href="LinkedObjectDetails.html">LinkedObjectDetails</a></li><li><a href="LinkedObjectDetailsType.html">LinkedObjectDetailsType</a></li><li><a href="LogActor.html">LogActor</a></li><li><a href="LogAuthenticationContext.html">LogAuthenticationContext</a></li><li><a href="LogAuthenticationProvider.html">LogAuthenticationProvider</a></li><li><a href="LogClient.html">LogClient</a></li><li><a href="LogCredentialProvider.html">LogCredentialProvider</a></li><li><a href="LogCredentialType.html">LogCredentialType</a></li><li><a href="LogDebugContext.html">LogDebugContext</a></li><li><a href="LogEvent.html">LogEvent</a></li><li><a href="LogGeographicalContext.html">LogGeographicalContext</a></li><li><a href="LogGeolocation.html">LogGeolocation</a></li><li><a href="LogIpAddress.html">LogIpAddress</a></li><li><a href="LogIssuer.html">LogIssuer</a></li><li><a href="LogOutcome.html">LogOutcome</a></li><li><a href="LogRequest.html">LogRequest</a></li><li><a href="LogSecurityContext.html">LogSecurityContext</a></li><li><a href="LogSeverity.html">LogSeverity</a></li><li><a href="LogTarget.html">LogTarget</a></li><li><a href="LogTransaction.html">LogTransaction</a></li><li><a href="LogUserAgent.html">LogUserAgent</a></li><li><a href="MDMEnrollmentPolicyRuleCondition.html">MDMEnrollmentPolicyRuleCondition</a></li><li><a href="OAuth2Actor.html">OAuth2Actor</a></li><li><a href="OAuth2Claim.html">OAuth2Claim</a></li><li><a href="OAuth2ClaimConditions.html">OAuth2ClaimConditions</a></li><li><a href="OAuth2Client.html">OAuth2Client</a></li><li><a href="OAuth2RefreshToken.html">OAuth2RefreshToken</a></li><li><a href="OAuth2Scope.html">OAuth2Scope</a></li><li><a href="OAuth2ScopeConsentGrant.html">OAuth2ScopeConsentGrant</a></li><li><a href="OAuth2ScopeConsentGrantSource.html">OAuth2ScopeConsentGrantSource</a></li><li><a href="OAuth2ScopeConsentGrantStatus.html">OAuth2ScopeConsentGrantStatus</a></li><li><a href="OAuth2ScopesMediationPolicyRuleCondition.html">OAuth2ScopesMediationPolicyRuleCondition</a></li><li><a href="OAuth2Token.html">OAuth2Token</a></li><li><a href="OAuthApplicationCredentials.html">OAuthApplicationCredentials</a></li><li><a href="OAuthAuthorizationPolicy.html">OAuthAuthorizationPolicy</a></li><li><a href="OAuthEndpointAuthenticationMethod.html">OAuthEndpointAuthenticationMethod</a></li><li><a href="OAuthGrantType.html">OAuthGrantType</a></li><li><a href="OAuthResponseType.html">OAuthResponseType</a></li><li><a href="OktaSignOnPolicy.html">OktaSignOnPolicy</a></li><li><a href="OktaSignOnPolicyConditions.html">OktaSignOnPolicyConditions</a></li><li><a href="OktaSignOnPolicyRule.html">OktaSignOnPolicyRule</a></li><li><a href="OktaSignOnPolicyRuleActions.html">OktaSignOnPolicyRuleActions</a></li><li><a href="OktaSignOnPolicyRuleConditions.html">OktaSignOnPolicyRuleConditions</a></li><li><a href="OktaSignOnPolicyRuleSignonActions.html">OktaSignOnPolicyRuleSignonActions</a></li><li><a href="OktaSignOnPolicyRuleSignonSessionActions.html">OktaSignOnPolicyRuleSignonSessionActions</a></li><li><a href="OpenIdConnectApplication.html">OpenIdConnectApplication</a></li><li><a href="OpenIdConnectApplicationConsentMethod.html">OpenIdConnectApplicationConsentMethod</a></li><li><a href="OpenIdConnectApplicationIssuerMode.html">OpenIdConnectApplicationIssuerMode</a></li><li><a href="OpenIdConnectApplicationSettings.html">OpenIdConnectApplicationSettings</a></li><li><a href="OpenIdConnectApplicationSettingsClient.html">OpenIdConnectApplicationSettingsClient</a></li><li><a href="OpenIdConnectApplicationType.html">OpenIdConnectApplicationType</a></li><li><a href="PasswordCredential.html">PasswordCredential</a></li><li><a href="PasswordCredentialHash.html">PasswordCredentialHash</a></li><li><a href="PasswordCredentialHashAlgorithm.html">PasswordCredentialHashAlgorithm</a></li><li><a href="PasswordCredentialHook.html">PasswordCredentialHook</a></li><li><a href="PasswordDictionary.html">PasswordDictionary</a></li><li><a href="PasswordDictionaryCommon.html">PasswordDictionaryCommon</a></li><li><a href="PasswordExpirationPolicyRuleCondition.html">PasswordExpirationPolicyRuleCondition</a></li><li><a href="PasswordPolicy.html">PasswordPolicy</a></li><li><a href="PasswordPolicyAuthenticationProviderCondition.html">PasswordPolicyAuthenticationProviderCondition</a></li><li><a href="PasswordPolicyConditions.html">PasswordPolicyConditions</a></li><li><a href="PasswordPolicyDelegationSettings.html">PasswordPolicyDelegationSettings</a></li><li><a href="PasswordPolicyDelegationSettingsOptions.html">PasswordPolicyDelegationSettingsOptions</a></li><li><a href="PasswordPolicyPasswordSettings.html">PasswordPolicyPasswordSettings</a></li><li><a href="PasswordPolicyPasswordSettingsAge.html">PasswordPolicyPasswordSettingsAge</a></li><li><a href="PasswordPolicyPasswordSettingsComplexity.html">PasswordPolicyPasswordSettingsComplexity</a></li><li><a href="PasswordPolicyPasswordSettingsLockout.html">PasswordPolicyPasswordSettingsLockout</a></li><li><a href="PasswordPolicyRecoveryEmail.html">PasswordPolicyRecoveryEmail</a></li><li><a href="PasswordPolicyRecoveryEmailProperties.html">PasswordPolicyRecoveryEmailProperties</a></li><li><a href="PasswordPolicyRecoveryEmailRecoveryToken.html">PasswordPolicyRecoveryEmailRecoveryToken</a></li><li><a href="PasswordPolicyRecoveryFactors.html">PasswordPolicyRecoveryFactors</a></li><li><a href="PasswordPolicyRecoveryFactorSettings.html">PasswordPolicyRecoveryFactorSettings</a></li><li><a href="PasswordPolicyRecoveryQuestion.html">PasswordPolicyRecoveryQuestion</a></li><li><a href="PasswordPolicyRecoveryQuestionComplexity.html">PasswordPolicyRecoveryQuestionComplexity</a></li><li><a href="PasswordPolicyRecoveryQuestionProperties.html">PasswordPolicyRecoveryQuestionProperties</a></li><li><a href="PasswordPolicyRecoverySettings.html">PasswordPolicyRecoverySettings</a></li><li><a href="PasswordPolicyRule.html">PasswordPolicyRule</a></li><li><a href="PasswordPolicyRuleAction.html">PasswordPolicyRuleAction</a></li><li><a href="PasswordPolicyRuleActions.html">PasswordPolicyRuleActions</a></li><li><a href="PasswordPolicyRuleConditions.html">PasswordPolicyRuleConditions</a></li><li><a href="PasswordPolicySettings.html">PasswordPolicySettings</a></li><li><a href="PlatformConditionEvaluatorPlatform.html">PlatformConditionEvaluatorPlatform</a></li><li><a href="PlatformConditionEvaluatorPlatformOperatingSystem.html">PlatformConditionEvaluatorPlatformOperatingSystem</a></li><li><a href="PlatformConditionEvaluatorPlatformOperatingSystemVersion.html">PlatformConditionEvaluatorPlatformOperatingSystemVersion</a></li><li><a href="PlatformPolicyRuleCondition.html">PlatformPolicyRuleCondition</a></li><li><a href="Policy.html">Policy</a></li><li><a href="PolicyAccountLink.html">PolicyAccountLink</a></li><li><a href="PolicyAccountLinkFilter.html">PolicyAccountLinkFilter</a></li><li><a href="PolicyAccountLinkFilterGroups.html">PolicyAccountLinkFilterGroups</a></li><li><a href="PolicyNetworkCondition.html">PolicyNetworkCondition</a></li><li><a href="PolicyPeopleCondition.html">PolicyPeopleCondition</a></li><li><a href="PolicyRule.html">PolicyRule</a></li><li><a href="PolicyRuleAuthContextCondition.html">PolicyRuleAuthContextCondition</a></li><li><a href="PolicyRuleConditions.html">PolicyRuleConditions</a></li><li><a href="PolicySubject.html">PolicySubject</a></li><li><a href="PolicySubjectMatchType.html">PolicySubjectMatchType</a></li><li><a href="PolicyType.html">PolicyType</a></li><li><a href="PolicyUserNameTemplate.html">PolicyUserNameTemplate</a></li><li><a href="Protocol.html">Protocol</a></li><li><a href="ProtocolAlgorithms.html">ProtocolAlgorithms</a></li><li><a href="ProtocolAlgorithmType.html">ProtocolAlgorithmType</a></li><li><a href="ProtocolAlgorithmTypeSignature.html">ProtocolAlgorithmTypeSignature</a></li><li><a href="ProtocolEndpoint.html">ProtocolEndpoint</a></li><li><a href="ProtocolEndpoints.html">ProtocolEndpoints</a></li><li><a href="ProtocolRelayState.html">ProtocolRelayState</a></li><li><a href="ProtocolRelayStateFormat.html">ProtocolRelayStateFormat</a></li><li><a href="ProtocolSettings.html">ProtocolSettings</a></li><li><a href="Provisioning.html">Provisioning</a></li><li><a href="ProvisioningConditions.html">ProvisioningConditions</a></li><li><a href="ProvisioningDeprovisionedCondition.html">ProvisioningDeprovisionedCondition</a></li><li><a href="ProvisioningGroups.html">ProvisioningGroups</a></li><li><a href="ProvisioningSuspendedCondition.html">ProvisioningSuspendedCondition</a></li><li><a href="PushUserFactor.html">PushUserFactor</a></li><li><a href="PushUserFactorProfile.html">PushUserFactorProfile</a></li><li><a href="RecoveryQuestionCredential.html">RecoveryQuestionCredential</a></li><li><a href="ResetPasswordToken.html">ResetPasswordToken</a></li><li><a href="Resource.html">Resource</a></li><li><a href="ResponseLinks.html">ResponseLinks</a></li><li><a href="RiskPolicyRuleCondition.html">RiskPolicyRuleCondition</a></li><li><a href="RiskScorePolicyRuleCondition.html">RiskScorePolicyRuleCondition</a></li><li><a href="Role.html">Role</a></li><li><a href="RoleAssignmentType.html">RoleAssignmentType</a></li><li><a href="RoleStatus.html">RoleStatus</a></li><li><a href="RoleType.html">RoleType</a></li><li><a href="SamlApplication.html">SamlApplication</a></li><li><a href="SamlApplicationSettings.html">SamlApplicationSettings</a></li><li><a href="SamlApplicationSettingsSignOn.html">SamlApplicationSettingsSignOn</a></li><li><a href="SamlAttributeStatement.html">SamlAttributeStatement</a></li><li><a href="ScheduledUserLifecycleAction.html">ScheduledUserLifecycleAction</a></li><li><a href="SchemeApplicationCredentials.html">SchemeApplicationCredentials</a></li><li><a href="Scope.html">Scope</a></li><li><a href="ScopeType.html">ScopeType</a></li><li><a href="SecurePasswordStoreApplication.html">SecurePasswordStoreApplication</a></li><li><a href="SecurePasswordStoreApplicationSettings.html">SecurePasswordStoreApplicationSettings</a></li><li><a href="SecurePasswordStoreApplicationSettingsApplication.html">SecurePasswordStoreApplicationSettingsApplication</a></li><li><a href="SecurityQuestion.html">SecurityQuestion</a></li><li><a href="SecurityQuestionUserFactor.html">SecurityQuestionUserFactor</a></li><li><a href="SecurityQuestionUserFactorProfile.html">SecurityQuestionUserFactorProfile</a></li><li><a href="Session.html">Session</a></li><li><a href="SessionAuthenticationMethod.html">SessionAuthenticationMethod</a></li><li><a href="SessionIdentityProvider.html">SessionIdentityProvider</a></li><li><a href="SessionIdentityProviderType.html">SessionIdentityProviderType</a></li><li><a href="SessionStatus.html">SessionStatus</a></li><li><a href="SmsTemplate.html">SmsTemplate</a></li><li><a href="SmsTemplateTranslations.html">SmsTemplateTranslations</a></li><li><a href="SmsTemplateType.html">SmsTemplateType</a></li><li><a href="SmsUserFactor.html">SmsUserFactor</a></li><li><a href="SmsUserFactorProfile.html">SmsUserFactorProfile</a></li><li><a href="SocialAuthToken.html">SocialAuthToken</a></li><li><a href="SwaApplication.html">SwaApplication</a></li><li><a href="SwaApplicationSettings.html">SwaApplicationSettings</a></li><li><a href="SwaApplicationSettingsApplication.html">SwaApplicationSettingsApplication</a></li><li><a href="SwaThreeFieldApplication.html">SwaThreeFieldApplication</a></li><li><a href="SwaThreeFieldApplicationSettings.html">SwaThreeFieldApplicationSettings</a></li><li><a href="SwaThreeFieldApplicationSettingsApplication.html">SwaThreeFieldApplicationSettingsApplication</a></li><li><a href="TempPassword.html">TempPassword</a></li><li><a href="TokenUserFactor.html">TokenUserFactor</a></li><li><a href="TokenUserFactorProfile.html">TokenUserFactorProfile</a></li><li><a href="TotpUserFactor.html">TotpUserFactor</a></li><li><a href="TotpUserFactorProfile.html">TotpUserFactorProfile</a></li><li><a href="TrustedOrigin.html">TrustedOrigin</a></li><li><a href="U2fUserFactor.html">U2fUserFactor</a></li><li><a href="U2fUserFactorProfile.html">U2fUserFactorProfile</a></li><li><a href="User.html">User</a></li><li><a href="UserActivationToken.html">UserActivationToken</a></li><li><a href="UserCondition.html">UserCondition</a></li><li><a href="UserCredentials.html">UserCredentials</a></li><li><a href="UserFactor.html">UserFactor</a></li><li><a href="UserIdentifierConditionEvaluatorPattern.html">UserIdentifierConditionEvaluatorPattern</a></li><li><a href="UserIdentifierPolicyRuleCondition.html">UserIdentifierPolicyRuleCondition</a></li><li><a href="UserIdentityProviderLinkRequest.html">UserIdentityProviderLinkRequest</a></li><li><a href="UserLifecycleAttributePolicyRuleCondition.html">UserLifecycleAttributePolicyRuleCondition</a></li><li><a href="UserNextLogin.html">UserNextLogin</a></li><li><a href="UserPolicyRuleCondition.html">UserPolicyRuleCondition</a></li><li><a href="UserProfile.html">UserProfile</a></li><li><a href="UserStatus.html">UserStatus</a></li><li><a href="UserStatusPolicyRuleCondition.html">UserStatusPolicyRuleCondition</a></li><li><a href="UserType.html">UserType</a></li><li><a href="VerifyFactorRequest.html">VerifyFactorRequest</a></li><li><a href="VerifyUserFactorResponse.html">VerifyUserFactorResponse</a></li><li><a href="WebAuthnUserFactor.html">WebAuthnUserFactor</a></li><li><a href="WebAuthnUserFactorProfile.html">WebAuthnUserFactorProfile</a></li><li><a href="WebUserFactor.html">WebUserFactor</a></li><li><a href="WebUserFactorProfile.html">WebUserFactorProfile</a></li><li><a href="WsFederationApplication.html">WsFederationApplication</a></li><li><a href="WsFederationApplicationSettings.html">WsFederationApplicationSettings</a></li><li><a href="WsFederationApplicationSettingsApplication.html">WsFederationApplicationSettingsApplication</a></li>
+				</ul>
+			</li>
+			
+			<li class="dropdown">
+				<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Global<b class="caret"></b></a>
+				<ul class="dropdown-menu ">
+					<li><a href="global.html#HttpError">HttpError</a></li><li><a href="global.html#OktaApiError">OktaApiError</a></li>
+				</ul>
+			</li>
+			
+		</ul>
+        
+            <div class="col-sm-3 col-md-3">
+                <form class="navbar-form" role="search">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search" name="q" id="search-input">
+                        <div class="input-group-btn">
+                            <button class="btn btn-default" id="search-submit"><i class="glyphicon glyphicon-search"></i></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        
+	</div>
+
+</div>
+</div>
+
+
+<div class="container" id="toc-content">
+<div class="row">
+
+	
+	<div class="col-md-8">
+	
+		<div id="main">
+			
+
+	<h1 class="page-title">Class: FeatureStage</h1>
+<section>
+
+<header>
+    
+        <h2>
+        FeatureStage
+        </h2>
+        
+    
+</header>
+
+
+<article>
+    <div class="container-overview">
+    
+        
+<hr>
+<dt>
+    <h4 class="name" id="FeatureStage"><span class="type-signature"></span>new FeatureStage()</h4>
+    
+    
+</dt>
+<dd>
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+    <h5 class="subsection-title">Properties:</h5>
+
+    <dl>
+
+<table class="props table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>state</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="FeatureStageState.html">FeatureStageState</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>value</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="FeatureStageValue.html">FeatureStageValue</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+</dl>
+
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+    
+    </div>
+
+    
+        <h3 class="subsection-title">Extends</h3>
+
+        
+
+
+    <ul>
+        <li><a href="Resource.html">Resource</a></li>
+    </ul>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+		</div>
+	</div>
+
+	<div class="clearfix"></div>
+
+	
+		<div class="col-md-3">
+			<div id="toc" class="col-md-3 hidden-xs hidden-sm hidden-md"></div>
+		</div>
+	
+
+</div>
+</div>
+
+
+    <div class="modal fade" id="searchResults">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Search results</h4>
+          </div>
+          <div class="modal-body"></div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div>
+
+
+<footer>
+
+
+<span class="jsdoc-message">
+	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a>
+	
+	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
+</span>
+</footer>
+
+<script src="scripts/docstrap.lib.js"></script>
+<script src="scripts/toc.js"></script>
+
+    <script type="text/javascript" src="scripts/fulltext-search-ui.js"></script>
+
+
+<script>
+$( function () {
+	$( "[id*='$']" ).each( function () {
+		var $this = $( this );
+
+		$this.attr( "id", $this.attr( "id" ).replace( "$", "__" ) );
+	} );
+
+	$( ".tutorial-section pre, .readme-section pre, pre.prettyprint.source" ).each( function () {
+		var $this = $( this );
+
+		var example = $this.find( "code" );
+		exampleText = example.html();
+		var lang = /{@lang (.*?)}/.exec( exampleText );
+		if ( lang && lang[1] ) {
+			exampleText = exampleText.replace( lang[0], "" );
+			example.html( exampleText );
+			lang = lang[1];
+		} else {
+			var langClassMatch = example.parent()[0].className.match(/lang\-(\S+)/);
+			lang = langClassMatch ? langClassMatch[1] : "javascript";
+		}
+
+		if ( lang ) {
+
+			$this
+			.addClass( "sunlight-highlight-" + lang )
+			.addClass( "linenums" )
+			.html( example.html() );
+
+		}
+	} );
+
+	Sunlight.highlightAll( {
+		lineNumbers : true,
+		showMenu : true,
+		enableDoclinks : true
+	} );
+
+	$.catchAnchorLinks( {
+        navbarOffset: 10
+	} );
+	$( "#toc" ).toc( {
+		anchorName  : function ( i, heading, prefix ) {
+			return $( heading ).attr( "id" ) || ( prefix + i );
+		},
+		selectors   : "#toc-content h1,#toc-content h2,#toc-content h3,#toc-content h4",
+		showAndHide : false,
+		smoothScrolling: true
+	} );
+
+	$( "#main span[id^='toc']" ).addClass( "toc-shim" );
+	$( '.dropdown-toggle' ).dropdown();
+
+    $( "table" ).each( function () {
+      var $this = $( this );
+      $this.addClass('table');
+    } );
+
+} );
+</script>
+
+
+
+<!--Navigation and Symbol Display-->
+
+
+<!--Google Analytics-->
+
+
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            SearcherDisplay.init();
+        });
+    </script>
+
+
+</body>
+</html>
