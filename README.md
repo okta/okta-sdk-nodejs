@@ -777,11 +777,11 @@ const client = new okta.Client({
 
 The version 4.0 of this SDK dropped support for Node 8, which is EOL (End-of-Life) since 2019-12-31. Current supported minimum Node version is 10.0.0.
 
-This version 4.0 release also updated APIs latest `@okta/openapi` (v2.0.0) that includes added, changed and deprecated factories/models/client methods. Change details are listed in [CHANGELOG.md](CHANGELOG.md#400)  
+This version 4.0 release also updated APIs latest `@okta/openapi` (v2.0.0) that includes added, changed and deprecated factories/models/client methods. Change details are listed in [CHANGELOG.md](CHANGELOG.md#400). For each change item:
 
-- `Add` stand for newly added factories/models/client methods.
-- `Change` (**breaking changes**) stand for renamed factories/models/client methods.
-- `Remove` (**breaking changes**) stand for deprecated factories/models/client methods.
+- `Add` stands for newly added factories/models/client methods.
+- `Change` (**breaking changes**) stands for renamed factories/models/client methods.
+- `Remove` (**breaking changes**) stands for deprecated factories/models/client methods.
 
 #### Main breaking changes
 
