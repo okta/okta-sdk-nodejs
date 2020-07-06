@@ -48,7 +48,7 @@ describe('Factors API', () => {
         answer
       }
     };
-    const createdFactor = await client.addFactor(createdUser.id, factor);
+    const createdFactor = await client.enrollFactor(createdUser.id, factor);
     const response = await createdFactor.verify(createdUser.id, { answer });
     expect(response.factorResult).to.be.equal('SUCCESS');
   });

@@ -43,7 +43,7 @@ describe('Factors API', () => {
       factorType: 'token:software:totp',
       provider: 'OKTA'
     };
-    const createdFactor = await client.addFactor(createdUser.id, newFactor);
+    const createdFactor = await client.enrollFactor(createdUser.id, newFactor);
     const response = await createdFactor.delete(createdUser.id);
     expect(response.status).to.equal(204);
     let factor;

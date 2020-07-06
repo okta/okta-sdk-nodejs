@@ -1,5 +1,5 @@
 /*!
- * Copyright (c) 2017-2018, Okta, Inc. and/or its affiliates. All rights reserved.
+ * Copyright (c) 2017-2020, Okta, Inc. and/or its affiliates. All rights reserved.
  * The Okta software accompanied by this notice is provided pursuant to the Apache License, Version 2.0 (the "License.")
  *
  * You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0.
@@ -29,13 +29,13 @@ class PasswordPolicySettings extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
     if (resourceJson && resourceJson.delegation) {
-      this.delegation = new PasswordPolicyDelegationSettings(this.delegation);
+      this.delegation = new PasswordPolicyDelegationSettings(resourceJson.delegation);
     }
     if (resourceJson && resourceJson.password) {
-      this.password = new PasswordPolicyPasswordSettings(this.password);
+      this.password = new PasswordPolicyPasswordSettings(resourceJson.password);
     }
     if (resourceJson && resourceJson.recovery) {
-      this.recovery = new PasswordPolicyRecoverySettings(this.recovery);
+      this.recovery = new PasswordPolicyRecoverySettings(resourceJson.recovery);
     }
   }
 

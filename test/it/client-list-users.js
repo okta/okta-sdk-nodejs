@@ -21,7 +21,7 @@ describe('client.list-users()', () => {
 
   before(async () => {
     let newUser = {
-      profile: utils.getMockProfile('client-list-users'),
+      profile: utils.getMockProfile('client-list-users-1'),
       credentials: {
         password: {value: 'Abcd1234'}
       }
@@ -114,7 +114,7 @@ describe('client.listUsers().next()', () => {
 
   before(async () => {
     const newUser = {
-      profile: utils.getMockProfile('client-list-users'),
+      profile: utils.getMockProfile('client-list-users-2'),
       credentials: {
         password: {value: 'Abcd1234'}
       }

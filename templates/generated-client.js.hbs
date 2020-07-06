@@ -27,58 +27,39 @@ class GeneratedApiClient {
     {{/if}}
 
     {{#if isArray}}
-    {{#if responseModelRequiresResolution}}
-    return new Collection(this, url, new factories.{{responseModel}}(), {method: '{{method}}'});
-    {{else}}
-    return new Collection(this, url, new ModelFactory(models.{{responseModel}}), {method: '{{method}}'});
-    {{/if}}
+    return new Collection(
+      this,
+      url,
+      {{#if responseModelRequiresResolution}}
+      new factories.{{responseModel}}(),
+      {{else}}
+      new ModelFactory(models.{{responseModel}}),
+      {{/if}}
+      {{#if bodyModel}}
+      { method: '{{method}}', body: JSON.stringify({{getBodyModelNameInCamelCase this}}) }
+      {{/if}}
+    );
     {{else}}
     const resources = {{{getAffectedResources path}}};
 
-    {{#if (eq method 'delete')}}
-    const request = this.http.delete(url, null, {resources});
-    {{/if}}
-    {{#if (eq method 'get')}}
-    const request = this.http.getJson(url, null, {resources});
-    {{/if}}
-    {{#if (eq method 'post')}}
-    {{#if bodyModel}}
-    {{#if responseModel}}
-    const request = this.http.postJson(url, {
-      body: {{camelCase bodyModel}}
-    }, {resources});
-    {{else}}
-    const request = this.http.post(url, {
-      body: {{camelCase bodyModel}}
-    }, {resources});
-    {{/if}}
-    {{else}}
-    {{#if responseModel}}
-    const request = this.http.postJson(url, null, {resources});
-    {{else}}
-    const request = this.http.post(url, null, {resources});
-    {{/if}}
-    {{/if}}
-    {{/if}}
-    {{#if (eq method 'put')}}
-    {{#if bodyModel}}
-    {{#if responseModel}}
-    const request = this.http.putJson(url, {
-      body: {{camelCase bodyModel}}
-    }, {resources});
-    {{else}}
-    const request = this.http.put(url, {
-      body: {{camelCase bodyModel}}
-    }, {resources});
-    {{/if}}
-    {{else}}
-    {{#if responseModel}}
-    const request = this.http.putJson(url, null, {resources});
-    {{else}}
-    const request = this.http.put(url, null, {resources});
-    {{/if}}
-    {{/if}}
-    {{/if}}
+    const request = this.http.{{getHttpMethod this}}(
+      url,
+      {{#if (hasRequest this)}}
+      {
+        {{#if (hasHeaders this)}}
+        headers: {
+          {{#if consumes}}'Content-Type': '{{consumes}}',{{/if}}{{#if produces}} 'Accept': '{{produces}}',{{/if}}{{#if encoding}} 'Content-Transfer-Encoding': '{{encoding}}',{{/if}}
+        },
+        {{/if}}
+        {{#if bodyModel}}
+        body: {{getBodyModelNameInCamelCase this}}
+        {{/if}}
+      },
+      {{else}}
+      null,
+      {{/if}}
+      { resources }
+    ){{#if (shouldResolveJson this)}}.then(res => res.json()){{/if}};
     {{#if responseModel}}
     {{#if responseModelRequiresResolution}}
     return request.then(jsonRes => new factories.{{responseModel}}().createInstance(jsonRes, this));

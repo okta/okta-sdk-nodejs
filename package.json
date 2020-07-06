@@ -1,9 +1,9 @@
 {
   "name": "@okta/okta-sdk-nodejs",
-  "version": "3.4.0",
+  "version": "4.0.0",
   "description": "Okta API wrapper for Node.js",
   "engines": {
-    "node": ">=8.11"
+    "node": ">=10.0"
   },
   "files": [
     "src/",
@@ -12,10 +12,11 @@
   "main": "src/index.js",
   "scripts": {
     "banners": "./utils/maintain-banners.js",
+    "prebuild": "rimraf ./src/models ./src/factories ./src/generated-client.js",
     "build": "okta-sdk-generator -t templates/ -o .",
     "eslint": "eslint -c src/.eslintrc src/ && eslint -c test/.eslintrc test/it test/unit && eslint -c test/jest/.eslintrc test/jest/ && eslint -c src/.eslintrc utils/",
     "jest": "jest --coverage test/jest/*.js",
-    "predocs": "rm -rf ./jsdocs && mkdir jsdocs/ && ./utils/make-jsdoc-readme.js > ./jsdocs/jsdoc-temp.md",
+    "predocs": "rimraf ./jsdocs && mkdir jsdocs/ && ./utils/make-jsdoc-readme.js > ./jsdocs/jsdoc-temp.md",
     "docs": "./node_modules/.bin/jsdoc src/ -c ./docs/config.json -d ./jsdocs/ -P ./package.json -R ./jsdocs/jsdoc-temp.md -r",
     "test:integration": "nyc --reporter=text --reporter=html mocha test/it/*.js --no-timeouts",
     "test:unit": "nyc --reporter=text --reporter=html mocha test/unit/*.js --no-timeouts",
@@ -35,7 +36,7 @@
     "rasha": "^1.2.5"
   },
   "devDependencies": {
-    "@okta/openapi": "^1.11.0",
+    "@okta/openapi": "^2.0.0",
     "chai": "^3.5.0",
     "eslint": "^3.19.0",
     "eslint-plugin-jest": "^21.17.0",
@@ -48,6 +49,7 @@
     "jsdoc": "^3.4.0",
     "mocha": "^3.4.1",
     "nyc": "^10.3.2",
+    "rimraf": "^3.0.2",
     "sinon": "^7.3.1",
     "speakeasy": "^2.0.0"
   },

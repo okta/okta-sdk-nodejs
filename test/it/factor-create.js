@@ -47,10 +47,10 @@ describe('Factors API', () => {
         phoneNumber: '415 123 1234'
       }
     };
-    const createdFactor = await client.addFactor(createdUser.id, factor);
+    const createdFactor = await client.enrollFactor(createdUser.id, factor);
     expect(createdFactor.factorType).to.equal('call');
-    expect(createdFactor).to.be.instanceof(models.Factor);
-    expect(createdFactor).to.be.instanceof(models.CallFactor);
+    expect(createdFactor).to.be.instanceof(models.UserFactor);
+    expect(createdFactor).to.be.instanceof(models.CallUserFactor);
   });
 
   it('should allow me to create a Push factor', async () => {
@@ -58,10 +58,10 @@ describe('Factors API', () => {
       factorType: 'push',
       provider: 'OKTA'
     };
-    const createdFactor = await client.addFactor(createdUser.id, factor);
+    const createdFactor = await client.enrollFactor(createdUser.id, factor);
     expect(createdFactor.factorType).to.equal('push');
-    expect(createdFactor).to.be.instanceof(models.Factor);
-    expect(createdFactor).to.be.instanceof(models.PushFactor);
+    expect(createdFactor).to.be.instanceof(models.UserFactor);
+    expect(createdFactor).to.be.instanceof(models.PushUserFactor);
   });
 
   it('should allow me to create a Security Question factor', async () => {
@@ -73,10 +73,10 @@ describe('Factors API', () => {
         answer: 'pizza'
       }
     };
-    const createdFactor = await client.addFactor(createdUser.id, factor);
+    const createdFactor = await client.enrollFactor(createdUser.id, factor);
     expect(createdFactor.factorType).to.equal('question');
-    expect(createdFactor).to.be.instanceof(models.Factor);
-    expect(createdFactor).to.be.instanceof(models.SecurityQuestionFactor);
+    expect(createdFactor).to.be.instanceof(models.UserFactor);
+    expect(createdFactor).to.be.instanceof(models.SecurityQuestionUserFactor);
   });
 
   it('should allow me to create a SMS factor', async () => {
@@ -87,9 +87,9 @@ describe('Factors API', () => {
         phoneNumber: '162 840 01133‬'
       }
     };
-    const createdFactor = await client.addFactor(createdUser.id, factor);
+    const createdFactor = await client.enrollFactor(createdUser.id, factor);
     expect(createdFactor.factorType).to.equal('sms');
-    expect(createdFactor).to.be.instanceof(models.Factor);
-    expect(createdFactor).to.be.instanceof(models.SmsFactor);
+    expect(createdFactor).to.be.instanceof(models.UserFactor);
+    expect(createdFactor).to.be.instanceof(models.SmsUserFactor);
   });
 });

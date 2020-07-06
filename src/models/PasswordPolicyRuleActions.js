@@ -1,5 +1,5 @@
 /*!
- * Copyright (c) 2017-2018, Okta, Inc. and/or its affiliates. All rights reserved.
+ * Copyright (c) 2017-2020, Okta, Inc. and/or its affiliates. All rights reserved.
  * The Okta software accompanied by this notice is provided pursuant to the Apache License, Version 2.0 (the "License.")
  *
  * You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0.
@@ -27,13 +27,13 @@ class PasswordPolicyRuleActions extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
     if (resourceJson && resourceJson.passwordChange) {
-      this.passwordChange = new PasswordPolicyRuleAction(this.passwordChange);
+      this.passwordChange = new PasswordPolicyRuleAction(resourceJson.passwordChange);
     }
     if (resourceJson && resourceJson.selfServicePasswordReset) {
-      this.selfServicePasswordReset = new PasswordPolicyRuleAction(this.selfServicePasswordReset);
+      this.selfServicePasswordReset = new PasswordPolicyRuleAction(resourceJson.selfServicePasswordReset);
     }
     if (resourceJson && resourceJson.selfServiceUnlock) {
-      this.selfServiceUnlock = new PasswordPolicyRuleAction(this.selfServiceUnlock);
+      this.selfServiceUnlock = new PasswordPolicyRuleAction(resourceJson.selfServiceUnlock);
     }
   }
 

@@ -1,5 +1,5 @@
 /*!
- * Copyright (c) 2017-2018, Okta, Inc. and/or its affiliates. All rights reserved.
+ * Copyright (c) 2017-2020, Okta, Inc. and/or its affiliates. All rights reserved.
  * The Okta software accompanied by this notice is provided pursuant to the Apache License, Version 2.0 (the "License.")
  *
  * You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0.
@@ -25,7 +25,7 @@ class SamlApplicationSettings extends ApplicationSettings {
   constructor(resourceJson, client) {
     super(resourceJson, client);
     if (resourceJson && resourceJson.signOn) {
-      this.signOn = new SamlApplicationSettingsSignOn(this.signOn);
+      this.signOn = new SamlApplicationSettingsSignOn(resourceJson.signOn);
     }
   }
 

@@ -95,7 +95,7 @@ async function isGroupPresent(client, expectedGroup, queryParameters) {
 
 async function doesUserHaveRole(user, roleType) {
   let hasRole = false;
-  await user.listRoles().each(role => {
+  await user.listAssignedRoles().each(role => {
     expect(role).to.be.an.instanceof(models.Role);
     if (role.type === roleType) {
       hasRole = true;
@@ -107,7 +107,7 @@ async function doesUserHaveRole(user, roleType) {
 
 async function isGroupTargetPresent(user, userGroup, role) {
   let groupTargetPresent = false;
-  const groupTargets = user.listGroupTargetsForRole(role.id);
+  const groupTargets = user.listGroupTargets(role.id);
   await groupTargets.each(group => {
     if (group.profile.name === userGroup.profile.name) {
       groupTargetPresent = true;

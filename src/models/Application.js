@@ -1,5 +1,5 @@
 /*!
- * Copyright (c) 2017-2018, Okta, Inc. and/or its affiliates. All rights reserved.
+ * Copyright (c) 2017-2020, Okta, Inc. and/or its affiliates. All rights reserved.
  * The Okta software accompanied by this notice is provided pursuant to the Apache License, Version 2.0 (the "License.")
  *
  * You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0.
@@ -44,19 +44,19 @@ class Application extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
     if (resourceJson && resourceJson.accessibility) {
-      this.accessibility = new ApplicationAccessibility(this.accessibility);
+      this.accessibility = new ApplicationAccessibility(resourceJson.accessibility);
     }
     if (resourceJson && resourceJson.credentials) {
-      this.credentials = new ApplicationCredentials(this.credentials);
+      this.credentials = new ApplicationCredentials(resourceJson.credentials);
     }
     if (resourceJson && resourceJson.licensing) {
-      this.licensing = new ApplicationLicensing(this.licensing);
+      this.licensing = new ApplicationLicensing(resourceJson.licensing);
     }
     if (resourceJson && resourceJson.settings) {
-      this.settings = new ApplicationSettings(this.settings);
+      this.settings = new ApplicationSettings(resourceJson.settings);
     }
     if (resourceJson && resourceJson.visibility) {
-      this.visibility = new ApplicationVisibility(this.visibility);
+      this.visibility = new ApplicationVisibility(resourceJson.visibility);
     }
   }
 
@@ -151,6 +151,149 @@ class Application extends Resource {
    */
   listKeys() {
     return this.client.listApplicationKeys(this.id);
+  }
+
+  /**
+   * @param {object} queryParameters
+   * @returns {Promise<JsonWebKey>}
+   */
+  generateKey(queryParameters) {
+    return this.client.generateApplicationKey(this.id, queryParameters);
+  }
+
+  /**
+   * @param {CsrMetadata} csrMetadata
+   * @returns {Promise<Csr>}
+   */
+  generateCsr(csrMetadata) {
+    return this.client.generateCsrForApplication(this.id, csrMetadata);
+  }
+
+  /**
+   * @param {string} csrId
+   * @returns {Promise<Csr>}
+   */
+  getCsr(csrId) {
+    return this.client.getCsrForApplication(this.id, csrId);
+  }
+
+  /**
+   * @param {string} csrId
+   */
+  revokeCsr(csrId) {
+    return this.client.revokeCsrFromApplication(this.id, csrId);
+  }
+
+  /**
+   * @returns {Promise<Collection>} A collection that will yield {@link Csr} instances.
+   */
+  listCsrs() {
+    return this.client.listCsrsForApplication(this.id);
+  }
+
+  /**
+   * @param {string} csrId
+   * @param {string} string
+   * @returns {Promise<JsonWebKey>}
+   */
+  publishCerCert(csrId, string) {
+    return this.client.publishCerCert(this.id, csrId, string);
+  }
+
+  /**
+   * @param {string} csrId
+   * @param {string} string
+   * @returns {Promise<JsonWebKey>}
+   */
+  publishBinaryCerCert(csrId, string) {
+    return this.client.publishBinaryCerCert(this.id, csrId, string);
+  }
+
+  /**
+   * @param {string} csrId
+   * @param {string} string
+   * @returns {Promise<JsonWebKey>}
+   */
+  publishDerCert(csrId, string) {
+    return this.client.publishDerCert(this.id, csrId, string);
+  }
+
+  /**
+   * @param {string} csrId
+   * @param {string} string
+   * @returns {Promise<JsonWebKey>}
+   */
+  publishBinaryDerCert(csrId, string) {
+    return this.client.publishBinaryDerCert(this.id, csrId, string);
+  }
+
+  /**
+   * @param {string} csrId
+   * @param {string} string
+   * @returns {Promise<JsonWebKey>}
+   */
+  publishBinaryPemCert(csrId, string) {
+    return this.client.publishBinaryPemCert(this.id, csrId, string);
+  }
+
+  /**
+   * @param {object} queryParameters
+   * @returns {Promise<Collection>} A collection that will yield {@link OAuth2Token} instances.
+   */
+  listOAuth2Tokens(queryParameters) {
+    return this.client.listOAuth2TokensForApplication(this.id, queryParameters);
+  }
+
+  /**
+   * @param {string} tokenId
+   */
+  revokeOAuth2TokenForApplication(tokenId) {
+    return this.client.revokeOAuth2TokenForApplication(this.id, tokenId);
+  }
+
+  /**
+   * @param {string} tokenId
+   * @param {object} queryParameters
+   * @returns {Promise<OAuth2Token>}
+   */
+  getOAuth2Token(tokenId, queryParameters) {
+    return this.client.getOAuth2TokenForApplication(this.id, tokenId, queryParameters);
+  }
+
+  revokeOAuth2Tokens() {
+    return this.client.revokeOAuth2TokensForApplication(this.id);
+  }
+
+  /**
+   * @param {object} queryParameters
+   * @returns {Promise<Collection>} A collection that will yield {@link OAuth2ScopeConsentGrant} instances.
+   */
+  listScopeConsentGrants(queryParameters) {
+    return this.client.listScopeConsentGrants(this.id, queryParameters);
+  }
+
+  /**
+   * @param {OAuth2ScopeConsentGrant} oAuth2ScopeConsentGrant
+   * @returns {Promise<OAuth2ScopeConsentGrant>}
+   */
+  grantConsentToScope(oAuth2ScopeConsentGrant) {
+    return this.client.grantConsentToScope(this.id, oAuth2ScopeConsentGrant);
+  }
+
+  /**
+   * @param {string} grantId
+   */
+  revokeScopeConsentGrant(grantId) {
+    return this.client.revokeScopeConsentGrant(this.id, grantId);
+  }
+
+  /**
+   * @param {string} grantId
+   * @param {object} queryParameters
+   * @returns {Promise<OAuth2ScopeConsentGrant>}
+   */
+  getScopeConsentGrant(grantId, queryParameters) {
+    return this.client.getScopeConsentGrant(this.id, grantId, queryParameters);
   }
 }
 

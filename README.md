@@ -2,7 +2,7 @@
 
 Node.js API Client for the [Okta Platform API].
 
-Requires Node.js version 6.9.0 or higher.
+Requires Node.js version 10.0.0 or higher.
 
 Need help? Contact [developers@okta.com](mailto:developers@okta.com) or use the [Okta Developer Forum].
 
@@ -93,6 +93,7 @@ The `privateKey` can be passed in the following ways:
 * [Request Executor](#request-executor)
   * [Default Request Executor](#default-request-executor)
   * [Base Request Executor](#base-request-executor)
+* [Migrating between versions](#migrating-between-versions)
 
 
 ## Examples
@@ -343,7 +344,7 @@ client.endSession(session.id)
 To end all sessions for a user, you must know the ID of the user:
 
 ```javascript
-client.endAllUserSessions(user.id)
+client.clearUserSessions(user.id)
 .then(() => {
   console.log('All user sessions have ended');
 });
@@ -769,6 +770,25 @@ const client = new okta.Client({
   requestExecutor: new DefaultExecutorWithLogging()
 })
 ```
+
+## Migrating between versions
+
+### From 3.x to 4.0
+
+The version 4.0 of this SDK dropped support for Node 8, which is EOL (End-of-Life) since 2019-12-31. Current supported minimum Node version is 10.0.0.
+
+This version 4.0 release also updated APIs latest `@okta/openapi` (v2.0.0) that includes added, changed and deprecated factories/models/client methods. Change details are listed in [CHANGELOG.md](CHANGELOG.md#400). For each change item:
+
+- `Add` stands for newly added factories/models/client methods.
+- `Change` (**breaking changes**) stands for renamed factories/models/client methods.
+- `Remove` (**breaking changes**) stands for deprecated factories/models/client methods.
+
+#### Main breaking changes
+
+- Renamed `Factor` related factories/models/client methods to `UserFactor`
+- Renamed `client.endAllUserSessions` to `client.clearUserSessions`
+- Model and Client methods change for `User` related operations
+- Model and Client methods change for `Rule` related operations
 
 ## Contributing
 

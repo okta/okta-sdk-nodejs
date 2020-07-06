@@ -1,5 +1,5 @@
 /*!
- * Copyright (c) 2017-2018, Okta, Inc. and/or its affiliates. All rights reserved.
+ * Copyright (c) 2017-2020, Okta, Inc. and/or its affiliates. All rights reserved.
  * The Okta software accompanied by this notice is provided pursuant to the Apache License, Version 2.0 (the "License.")
  *
  * You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0.
@@ -21,7 +21,6 @@ const RecoveryQuestionCredential = require('./RecoveryQuestionCredential');
 /**
  * @class UserCredentials
  * @extends Resource
- * @property { array } emails
  * @property { PasswordCredential } password
  * @property { AuthenticationProvider } provider
  * @property { RecoveryQuestionCredential } recovery_question
@@ -30,13 +29,13 @@ class UserCredentials extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
     if (resourceJson && resourceJson.password) {
-      this.password = new PasswordCredential(this.password);
+      this.password = new PasswordCredential(resourceJson.password);
     }
     if (resourceJson && resourceJson.provider) {
-      this.provider = new AuthenticationProvider(this.provider);
+      this.provider = new AuthenticationProvider(resourceJson.provider);
     }
     if (resourceJson && resourceJson.recovery_question) {
-      this.recovery_question = new RecoveryQuestionCredential(this.recovery_question);
+      this.recovery_question = new RecoveryQuestionCredential(resourceJson.recovery_question);
     }
   }
 

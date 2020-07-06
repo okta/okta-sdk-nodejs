@@ -1,5 +1,6 @@
 const _ = require('lodash');
 const js = module.exports;
+const operationUtils = require('./helpers/operation');
 
 /**
  * Easy lookup of models from the models array
@@ -94,6 +95,11 @@ js.process = ({spec, operations, models, handlebars}) => {
   });
 
   // Add helpers
+
+  // Register Operation helpers
+  Object.keys(operationUtils).forEach(key => handlebars.registerHelper(key, operationUtils[key]));
+
+  // TODO: move helpers to modules
   const paramMatcher = /{(.*?)}/g;
   handlebars.registerHelper('replacePathParams', (path) => {
     // Everywhere there's a {id}, replace it with {opts.id}
@@ -130,31 +136,11 @@ js.process = ({spec, operations, models, handlebars}) => {
       const shouldProcess = !MODELS_SHOULD_NOT_PROCESS.includes(property.model);
       if (property.$ref && shouldProcess && !property.isEnum) {
         constructorStatements.push(`    if (resourceJson && resourceJson.${property.propertyName}) {`);
-        constructorStatements.push(`      this.${property.propertyName} = new ${property.model}(this.${property.propertyName});`);
+        constructorStatements.push(`      this.${property.propertyName} = new ${property.model}(resourceJson.${property.propertyName});`);
         constructorStatements.push(`    }`);
       }
     });
     return constructorStatements.join('\n');
-  });
-
-  handlebars.registerHelper('operationArgumentBuilder', (operation) => {
-    const args = [];
-
-    operation.pathParams.map((arg) => args.push(arg.name));
-
-    if (
-      !operation.isArray 
-      && (operation.method === 'post' || operation.method === 'put') 
-      && operation.bodyModel
-    ) {
-      args.push(_.camelCase(operation.bodyModel));
-    }
-
-    if (operation.queryParams.length) {
-      args.push('queryParameters');
-    }
-
-    return args.join(', ');
   });
 
   handlebars.registerHelper('modelMethodPublicArgumentBuilder', (method, modelName) => {
@@ -242,45 +228,6 @@ js.process = ({spec, operations, models, handlebars}) => {
 
     const output = '/**\n   * ' + args.join('\n   * ') + '\n   */\n  ';
     return output;
-  });
-
-  handlebars.registerHelper('jsdocBuilder', (operation) => {
-    const lines = ['*'];
-
-    if (operation.pathParams.length) {
-      operation.pathParams.map(argument => {
-        return `   * @param ${argument.name} {String}`;
-      }).forEach(line => lines.push(line));
-    }
-
-    if (!operation.isArray && operation.bodyModel) {
-      lines.push(`   * @param {${operation.bodyModel}} ${_.camelCase(operation.bodyModel)}`);
-    }
-
-    if (operation.queryParams.length) {
-      lines.push('   * @param {Object} queryParams Map of query parameters to add to this request');
-      operation.queryParams.map((param) => {
-        return `   * @param {String} [queryParams.${param.name}]`;
-      }).forEach(line => lines.push(line));
-    }
-    lines.push('   * @description');
-
-    if (operation.description) {
-      lines.push(`   * ${operation.description}`);
-    } else {
-      // TODO: Once documentation is parsed correctly, this line can be omitted.
-      lines.push(`   * Convenience method for ${operation.path}`);
-    }
-
-    if (operation.responseModel) {
-      if (operation.isArray) {
-        lines.push(`   * @returns {Promise<Collection>} A collection that will yield {@link ${operation.responseModel}} instances.`)
-      } else {
-        lines.push(`   * @returns {Promise<${operation.responseModel}>}`)
-      }
-    }
-
-    return lines.join('\n');
   });
 
   handlebars.registerHelper('getAffectedResources', (path) => {

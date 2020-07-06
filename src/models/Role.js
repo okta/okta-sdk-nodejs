@@ -1,5 +1,5 @@
 /*!
- * Copyright (c) 2017-2018, Okta, Inc. and/or its affiliates. All rights reserved.
+ * Copyright (c) 2017-2020, Okta, Inc. and/or its affiliates. All rights reserved.
  * The Okta software accompanied by this notice is provided pursuant to the Apache License, Version 2.0 (the "License.")
  *
  * You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0.
@@ -21,14 +21,14 @@ var Resource = require('../resource');
  * @extends Resource
  * @property { hash } _embedded
  * @property { hash } _links
- * @property { string } assignmentType
+ * @property { RoleAssignmentType } assignmentType
  * @property { dateTime } created
  * @property { string } description
  * @property { string } id
  * @property { string } label
  * @property { dateTime } lastUpdated
  * @property { RoleStatus } status
- * @property { string } type
+ * @property { RoleType } type
  */
 class Role extends Resource {
   constructor(resourceJson, client) {
@@ -36,6 +36,55 @@ class Role extends Resource {
 
   }
 
+
+  /**
+   * @param {string} groupId
+   * @param {string} targetGroupId
+   */
+  addAdminGroupTarget(groupId, targetGroupId) {
+    return this.client.addGroupTargetToGroupAdministratorRoleForGroup(groupId, this.id, targetGroupId);
+  }
+
+  /**
+   * @param {string} groupId
+   * @param {string} appName
+   * @param {string} applicationId
+   */
+  addAppInstanceTargetToAdminRole(groupId, appName, applicationId) {
+    return this.client.addApplicationInstanceTargetToAppAdminRoleGivenToGroup(groupId, this.id, appName, applicationId);
+  }
+
+  /**
+   * @param {string} groupId
+   * @param {string} appName
+   */
+  addAppTargetToAdminRole(groupId, appName) {
+    return this.client.addApplicationTargetToAdminRoleGivenToGroup(groupId, this.id, appName);
+  }
+
+  /**
+   * @param {string} userId
+   */
+  addAllAppsAsTargetToRole(userId) {
+    return this.client.addAllAppsAsTargetToRole(userId, this.id);
+  }
+
+  /**
+   * @param {string} userId
+   * @param {string} appName
+   * @param {string} applicationId
+   */
+  addAppTargetToAppAdminRoleForUser(userId, appName, applicationId) {
+    return this.client.addApplicationTargetToAppAdminRoleForUser(userId, this.id, appName, applicationId);
+  }
+
+  /**
+   * @param {string} userId
+   * @param {string} appName
+   */
+  addAppTargetToAdminRoleForUser(userId, appName) {
+    return this.client.addApplicationTargetToAdminRoleForUser(userId, this.id, appName);
+  }
 }
 
 module.exports = Role;
