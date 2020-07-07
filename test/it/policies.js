@@ -87,6 +87,7 @@ describe('Policy Scenarios', () => {
     const oktaSignOnPolicy = new models.OktaSignOnPolicy(policy, client);
     const createdPolicy = await client.createPolicy(oktaSignOnPolicy);
     await client.deletePolicy(createdPolicy.id);
+    await client.deleteGroup(createdGroup.id);
 
     expect(createdPolicy).to.not.be.undefined;
     expect(createdPolicy.name).to.equal(policy.name);

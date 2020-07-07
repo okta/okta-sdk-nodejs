@@ -16,7 +16,7 @@ const client = new okta.Client({
   requestExecutor: new okta.DefaultRequestExecutor()
 });
 
-describe('Authorization Server Policies API', () => {
+describe('Authorization Server Scope API', () => {
   let authServer;
   before(async () => {
     authServer = await client.createAuthorizationServer(getMockAuthorizationServer());
@@ -25,7 +25,7 @@ describe('Authorization Server Policies API', () => {
     await authServer.delete();
   });
 
-  describe('List all policies', () => {
+  describe('List all scopes', () => {
     let scope;
     beforeEach(async () => {
       scope = await authServer.createOAuth2Scope(mockScope);
@@ -34,7 +34,7 @@ describe('Authorization Server Policies API', () => {
       await authServer.deleteOAuth2Scope(scope.id);
     });
 
-    it('should return a collection of policies', async () => {
+    it('should return a collection of scopes', async () => {
       const collection = authServer.listOAuth2Scopes();
       expect(collection).to.be.instanceOf(Collection);
       const scopes = [];
