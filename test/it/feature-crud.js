@@ -46,7 +46,15 @@ describe('Feature Crud API', () => {
     let firstFeatureInList;
     let initialStatus;
     beforeEach(async () => {
-      firstFeatureInList = (await client.listFeatures().next()).value;
+      // Disabling a BETA feature in a dev org throws 405 error
+      // Hence we need a non-BETA feature for testing
+      await client.listFeatures().each((feature) => {
+        if (feature.stage.value !== 'BETA') {
+          firstFeatureInList = feature;
+          return false;
+        }
+      });
+
       if (firstFeatureInList) {
         initialStatus = firstFeatureInList.status;
       }
@@ -75,7 +83,12 @@ describe('Feature Crud API', () => {
   describe('List feature dependencies', () => {
     let firstFeatureInList;
     beforeEach(async () => {
-      firstFeatureInList = (await client.listFeatures().next()).value;
+      await client.listFeatures().each((feature) => {
+        if (feature.stage.value !== 'BETA') {
+          firstFeatureInList = feature;
+          return false;
+        }
+      });
     });
 
     it('should return a collection of Features', async () => {
