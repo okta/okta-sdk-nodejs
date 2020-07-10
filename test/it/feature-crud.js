@@ -14,6 +14,17 @@ const client = new okta.Client({
   requestExecutor: new okta.DefaultRequestExecutor()
 });
 
+const getFirstNonBetaFeature = async () => {
+  let firstFeatureInList;
+  await client.listFeatures().each((feature) => {
+    if (feature.stage.value !== 'BETA') {
+      firstFeatureInList = feature;
+      return false;
+    }
+  });
+  return firstFeatureInList;
+};
+
 // Features are self-services provided from OKTA
 // Here we use exsiting features per org for testing
 describe('Feature Crud API', () => {
@@ -48,13 +59,7 @@ describe('Feature Crud API', () => {
     beforeEach(async () => {
       // Disabling a BETA feature in a dev org throws 405 error
       // Hence we need a non-BETA feature for testing
-      await client.listFeatures().each((feature) => {
-        if (feature.stage.value !== 'BETA') {
-          firstFeatureInList = feature;
-          return false;
-        }
-      });
-
+      firstFeatureInList = await getFirstNonBetaFeature();
       if (firstFeatureInList) {
         initialStatus = firstFeatureInList.status;
       }
@@ -74,29 +79,28 @@ describe('Feature Crud API', () => {
     });
 
     it('should disable feature', async () => {
-      const feature = await firstFeatureInList.updateLifecycle('disable');
-      expect(feature.id).to.equal(firstFeatureInList.id);
-      expect(feature.status).to.equal('DISABLED');
+      if (firstFeatureInList) {
+        const feature = await firstFeatureInList.updateLifecycle('disable');
+        expect(feature.id).to.equal(firstFeatureInList.id);
+        expect(feature.status).to.equal('DISABLED');
+      }
     });
   });
 
   describe('List feature dependencies', () => {
     let firstFeatureInList;
     beforeEach(async () => {
-      await client.listFeatures().each((feature) => {
-        if (feature.stage.value !== 'BETA') {
-          firstFeatureInList = feature;
-          return false;
-        }
-      });
+      firstFeatureInList = await getFirstNonBetaFeature();
     });
 
     it('should return a collection of Features', async () => {
-      const collection = await firstFeatureInList.getDependencies();
-      expect(collection).to.be.instanceOf(Collection);
-      await collection.each(dependency => {
-        expect(dependency).to.be.instanceOf(models.Feature);
-      });
+      if (firstFeatureInList) {
+        const collection = await firstFeatureInList.getDependencies();
+        expect(collection).to.be.instanceOf(Collection);
+        await collection.each(dependency => {
+          expect(dependency).to.be.instanceOf(models.Feature);
+        });
+      }
     });
   });
 
@@ -107,11 +111,13 @@ describe('Feature Crud API', () => {
     });
 
     it('should return a collection of Features', async () => {
-      const collection = await firstFeatureInList.getDependents();
-      expect(collection).to.be.instanceOf(Collection);
-      await collection.each(dependent => {
-        expect(dependent).to.be.instanceOf(models.Feature);
-      });
+      if (firstFeatureInList) {
+        const collection = await firstFeatureInList.getDependents();
+        expect(collection).to.be.instanceOf(Collection);
+        await collection.each(dependent => {
+          expect(dependent).to.be.instanceOf(models.Feature);
+        });
+      }
     });
   });
 });
