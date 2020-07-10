@@ -66,7 +66,13 @@ describe('Feature Crud API', () => {
     });
     afterEach(async () => {
       if (firstFeatureInList) {
-        await firstFeatureInList.updateLifecycle(initialStatus === 'ENABLED' ? 'enable' : 'disable');
+        try {
+          await firstFeatureInList.updateLifecycle(initialStatus === 'ENABLED' ? 'enable' : 'disable');
+        } catch (err) {
+          if (err.status === 405 && err.status === 400) {
+            console.log(err);
+          }
+        }
       }
     });
 
