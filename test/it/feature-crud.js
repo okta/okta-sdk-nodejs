@@ -71,6 +71,8 @@ describe('Feature Crud API', () => {
         } catch (err) {
           if (err.status === 405 && err.status === 400) {
             console.log(err);
+          } else {
+            throw err;
           }
         }
       }
