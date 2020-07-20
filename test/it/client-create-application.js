@@ -49,7 +49,7 @@ describe('client.createApplication()', () => {
   it('should allow me to create a basic authentication application', async () => {
     const application = {
       name: 'template_basic_auth',
-      label: `Sample Basic Auth App - ${faker.random.word()}`,
+      label: `node-sdk: Sample Basic Auth App - ${faker.random.word()}`.substring(0, 49),
       signOnMode: 'BASIC_AUTH',
       settings: {
         app: {
@@ -86,7 +86,7 @@ describe('client.createApplication()', () => {
   it('should allow me to create a SWA plugin application', async () => {
     const application = {
       name: 'template_swa',
-      label: `Sample Plugin App - ${faker.random.word()}`,
+      label: `node-sdk: Sample Plugin App - ${faker.random.word()}`.substring(0, 49),
       signOnMode: 'BROWSER_PLUGIN',
       settings: {
         app: {
@@ -128,7 +128,7 @@ describe('client.createApplication()', () => {
   it('should allow me to create a 3-field SWA plugin application', async () => {
     const application = {
       name: 'template_swa3field',
-      label: `Sample Plugin App 3-field - ${faker.random.word()}`,
+      label: `node-sdk: Sample Plugin App 3-field - ${faker.random.word()}`.substring(0, 49),
       signOnMode: 'BROWSER_PLUGIN',
       settings: {
         app: {
@@ -174,7 +174,7 @@ describe('client.createApplication()', () => {
   it('should allow me to create a SWA no-plugin application', async () => {
     const application = {
       name: 'template_sps',
-      label: `Example SWA App - ${faker.random.word()}`,
+      label: `node-sdk: Example SWA App - ${faker.random.word()}`.substring(0, 49),
       signOnMode: 'SECURE_PASSWORD_STORE',
       settings: {
         app: {
@@ -351,7 +351,7 @@ describe('client.createApplication()', () => {
   it.skip('should allow me to create a custom WS-Fed application', async () => {
     const application = {
       name: 'template_wsfed',
-      label: `Sample WS-Fed App - ${faker.random.word()}`,
+      label: `node-sdk: Sample WS-Fed App - ${faker.random.word()}`.substring(0, 49),
       signOnMode: 'WS_FEDERATION',
       settings: {
         app: {
@@ -407,7 +407,7 @@ describe('client.createApplication()', () => {
   it('should allow me to create a OIDC client application', async () => {
     const application = {
       name: 'oidc_client',
-      label: `Sample Client - ${faker.random.word()}`,
+      label: `node-sdk: Sample Client - ${faker.random.word()}`.substring(0, 49),
       signOnMode: 'OPENID_CONNECT',
       credentials: {
         oauthClient: {

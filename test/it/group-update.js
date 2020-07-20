@@ -1,3 +1,5 @@
+const faker = require('faker');
+
 const utils = require('../utils');
 const okta = require('../../');
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
@@ -17,7 +19,7 @@ describe('Group API tests', () => {
     // 1. Create a new group
     let newGroup = {
       profile: {
-        name: 'Update Test Group'
+        name: `node-sdk: Update test Group ${faker.random.word()}`.substring(0, 49)
       }
     };
 

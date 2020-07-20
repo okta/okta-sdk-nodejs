@@ -1,4 +1,5 @@
 const expect = require('chai').expect;
+const faker = require('faker');
 
 const okta = require('../../');
 const models = require('../../src/models');
@@ -23,7 +24,7 @@ describe('client.createApplicationGroupAssignment()', () => {
 
     const group = {
       profile: {
-        name: 'Application create assignment group'
+        name: `node-sdk: Application create assignment group ${faker.random.word()}`.substring(0, 49)
       }
     };
 

@@ -1,3 +1,5 @@
+const faker = require('faker');
+
 const expect = require('chai').expect;
 const utils = require('../utils');
 const okta = require('../../');
@@ -26,7 +28,7 @@ describe('Group-Member API Tests', () => {
 
     const newGroup = {
       profile: {
-        name: 'Group-Member API Test Group'
+        name: `node-sdk: Group-Member API Test Group ${faker.random.word()}`.substring(0, 49)
       }
     };
 

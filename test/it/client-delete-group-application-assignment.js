@@ -1,4 +1,5 @@
 const expect = require('chai').expect;
+const faker = require('faker');
 
 const okta = require('../../');
 const utils = require('../utils');
@@ -22,7 +23,7 @@ describe('client.deleteApplicationGroupAssignment()', () => {
 
     const group = {
       profile: {
-        name: 'Application delete assignment group'
+        name: `node-sdk: Application delete assignment group ${faker.random.word()}`.substring(0, 49)
       }
     };
 

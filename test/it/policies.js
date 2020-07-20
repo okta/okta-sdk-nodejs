@@ -58,7 +58,7 @@ describe('Policy Scenarios', () => {
       // 1. Create a new group
     const newGroup = {
       profile: {
-        name: `Get Test Group ${faker.random.word()}`
+        name: `Get Test Group ${faker.random.word()}`.substring(0, 49)
       }
     };
 
