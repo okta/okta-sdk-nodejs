@@ -1,3 +1,5 @@
+const faker = require('faker');
+
 const expect = require('chai').expect;
 const utils = require('../utils');
 const okta = require('../../');
@@ -26,7 +28,7 @@ describe('User Role API Tests', () => {
 
     const newGroup = {
       profile: {
-        name: 'Group-Target Test Group'
+        name: `node-sdk: Group Target Test Group ${faker.random.word()}`.substring(0, 49)
       }
     };
 
@@ -52,7 +54,7 @@ describe('User Role API Tests', () => {
     // To get around this, create a new group and add this group target to user admin role
     const group = {
       profile: {
-        name: 'Group-Target User Admin Test Group'
+        name: `node-sdk: Group-Target User Admin Test Group ${faker.random.word()}`.substring(0, 49)
       }
     };
 

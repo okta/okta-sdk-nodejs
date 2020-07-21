@@ -1,3 +1,5 @@
+const faker = require('faker');
+
 const expect = require('chai').expect;
 const utils = require('../utils');
 const okta = require('../../');
@@ -16,9 +18,10 @@ const client = new okta.Client({
 describe('Group API tests', () => {
   it('should search for the given group', async () => {
     // 1. Create a new group
+    const groupName = `node-sdk: Search test Group ${faker.random.word()}`.substring(0, 49);
     const newGroup = {
       profile: {
-        name: 'Search Test Group'
+        name: groupName
       }
     };
 
@@ -29,7 +32,7 @@ describe('Group API tests', () => {
     utils.validateGroup(createdGroup, newGroup);
 
     // 2. Search the group by name
-    let queryParameters = { q : 'Search Test Group' };
+    let queryParameters = { q : groupName };
     let groupPresent = await utils.isGroupPresent(client, createdGroup, queryParameters);
     expect(groupPresent).to.equal(true);
 

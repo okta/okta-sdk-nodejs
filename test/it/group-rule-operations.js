@@ -27,7 +27,7 @@ describe('Group-Rule API tests', () => {
 
     const newGroup = {
       profile: {
-        name: 'Group-Rule API Test Group'
+        name: `node-sdk: Group-Rule API Test Group ${faker.random.word()}`.substring(0, 49),
       }
     };
 
@@ -41,7 +41,7 @@ describe('Group-Rule API tests', () => {
     // 2. Create a group rule and verify rule executes
     const rule = {
       type: 'group_rule',
-      name: faker.random.word(),
+      name: faker.random.word().substring(0, 49),
       conditions: {
         people: {
           users: {
