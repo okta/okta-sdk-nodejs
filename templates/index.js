@@ -110,7 +110,7 @@ js.process = ({spec, operations, models, handlebars}) => {
         path = path.replace(match, `\${${param}`);
       }
     }
-    return path;
+    return new handlebars.SafeString(path);
   });
 
   handlebars.registerHelper('modelImportBuilder', (model) => {

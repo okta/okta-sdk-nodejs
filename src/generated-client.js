@@ -5355,7 +5355,7 @@ class GeneratedApiClient {
    * @returns {Promise<User>}
    */
   expirePassword(userId) {
-    let url = `${this.baseUrl}/api/v1/users/${userId}/lifecycle/expire_password?tempPassword&#x3D;false`;
+    let url = `${this.baseUrl}/api/v1/users/${userId}/lifecycle/expire_password?tempPassword=false`;
 
     const resources = [
       `${this.baseUrl}/api/v1/users/${userId}`
@@ -5377,7 +5377,7 @@ class GeneratedApiClient {
    * @returns {Promise<TempPassword>}
    */
   expirePasswordAndGetTemporaryPassword(userId) {
-    let url = `${this.baseUrl}/api/v1/users/${userId}/lifecycle/expire_password?tempPassword&#x3D;true`;
+    let url = `${this.baseUrl}/api/v1/users/${userId}/lifecycle/expire_password?tempPassword=true`;
 
     const resources = [
       `${this.baseUrl}/api/v1/users/${userId}`
