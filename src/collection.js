@@ -51,11 +51,11 @@ class Collection {
       }
 
       self.getNextPage()
-      .then(collection => {
-        self.currentItems = collection;
-        return nextItem();
-      })
-      .catch(reject);
+        .then(collection => {
+          self.currentItems = collection;
+          return nextItem();
+        })
+        .catch(reject);
     });
   }
 
@@ -67,18 +67,18 @@ class Collection {
 
   getNextPage() {
     return this.client.http.http(this.nextUri, this.request, {isCollection: true})
-    .then(res => {
-      const link = res.headers.get('link');
-      if (link) {
-        const parsed = parseLinkHeader(link);
-        if (parsed.next) {
-          this.nextUri = parsed.next.url;
-          return res.json();
+      .then(res => {
+        const link = res.headers.get('link');
+        if (link) {
+          const parsed = parseLinkHeader(link);
+          if (parsed.next) {
+            this.nextUri = parsed.next.url;
+            return res.json();
+          }
         }
-      }
-      this.nextUri = undefined;
-      return res.json();
-    });
+        this.nextUri = undefined;
+        return res.json();
+      });
   }
 
   /**
@@ -90,32 +90,32 @@ class Collection {
     const self = this;
     function nextItem() {
       return self.next()
-      .then(nextResult => {
-        if (!nextResult.value) {
-          return;
-        }
-        const result = iterator(nextResult.value);
+        .then(nextResult => {
+          if (!nextResult.value) {
+            return;
+          }
+          const result = iterator(nextResult.value);
 
-        // if it's a Promise
-        if (result && result.then) {
-          return result.then(shouldContinue => {
-            if (shouldContinue !== false && !nextResult.done) {
-              return nextItem();
-            }
-          });
+          // if it's a Promise
+          if (result && result.then) {
+            return result.then(shouldContinue => {
+              if (shouldContinue !== false && !nextResult.done) {
+                return nextItem();
+              }
+            });
 
-        // if they want to short-circuit
-        } else if (result === false) {
-          return;
+            // if they want to short-circuit
+          } else if (result === false) {
+            return;
 
-        // if there are no more items
-        } else if (nextResult.done) {
-          return;
-        }
+            // if there are no more items
+          } else if (nextResult.done) {
+            return;
+          }
 
-        // if it's synchronous and not short-circuited
-        return nextItem();
-      });
+          // if it's synchronous and not short-circuited
+          return nextItem();
+        });
     }
 
     return nextItem();
@@ -148,30 +148,30 @@ class Collection {
         return;
       }
       return self.next()
-      .then(nextResult => {
-        if (closed) {
-          return;
-        }
+        .then(nextResult => {
+          if (closed) {
+            return;
+          }
 
-        if (!nextResult.value) {
-          return setTimeout(nextItem, interval);
-        }
-        const result = config.next(nextResult.value);
+          if (!nextResult.value) {
+            return setTimeout(nextItem, interval);
+          }
+          const result = config.next(nextResult.value);
 
-        // if it's a Promise
-        if (result && result.then) {
-          return result.then(() => nextItem());
-        } else {
-          nextItem();
-        }
-      })
-      .catch(err => {
-        const errResult = config.error(err);
-        if (errResult && errResult.then) {
-          return errResult.then(() => nextItem());
-        }
-        return nextItem();
-      });
+          // if it's a Promise
+          if (result && result.then) {
+            return result.then(() => nextItem());
+          } else {
+            nextItem();
+          }
+        })
+        .catch(err => {
+          const errResult = config.error(err);
+          if (errResult && errResult.then) {
+            return errResult.then(() => nextItem());
+          }
+          return nextItem();
+        });
     }
 
     nextItem();

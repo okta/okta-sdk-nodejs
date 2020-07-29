@@ -13,25 +13,25 @@
 
 function OktaResponseHeaders(responseHeadersMap) {
   return Object.entries(responseHeadersMap)
-  .reduce((acc, arr) => {
-    const key = arr[0];
-    const value = arr[1][0];
-    switch (key) {
-      case 'x-okta-request-id':
-        acc[key] = value;
-        break;
-      case 'x-rate-limit-limit':
-        acc[key] = parseInt(value, 10);
-        break;
-      case 'x-rate-limit-remaining':
-        acc[key] = parseInt(value, 10);
-        break;
-      case 'x-rate-limit-reset':
-        acc[key] = parseInt(value, 10);
-        break;
-    }
-    return acc;
-  }, {});
+    .reduce((acc, arr) => {
+      const key = arr[0];
+      const value = arr[1][0];
+      switch (key) {
+        case 'x-okta-request-id':
+          acc[key] = value;
+          break;
+        case 'x-rate-limit-limit':
+          acc[key] = parseInt(value, 10);
+          break;
+        case 'x-rate-limit-remaining':
+          acc[key] = parseInt(value, 10);
+          break;
+        case 'x-rate-limit-reset':
+          acc[key] = parseInt(value, 10);
+          break;
+      }
+      return acc;
+    }, {});
 }
 
 module.exports = OktaResponseHeaders;

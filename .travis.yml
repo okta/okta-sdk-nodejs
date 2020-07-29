@@ -1,7 +1,8 @@
 language: node_js
 node_js:
-- '10'
-- '12'
+  - '10'
+  - '12'
+  - '14'
 sudo: false
 script:
   - if [[ $DEPLOY_DOCS ]]; then bash ./scripts/docs.sh; fi
@@ -23,4 +24,4 @@ notifications:
     on_success: never
     on_failure: always
     rooms:
-     - secure: "YoSSxftifz8V8BIGXQSAJTg+mkKs+QVYrnSJ7U4r1M4oP8QUgzBhgv8oBoA35uUA9YqLUi5kYqF7ClRiGg/UAzECEb9svH3Y1ipCvTr/Sz7DEOA960ZgqiEduP8YZARPxJo6aGUR1t8ZF9t1mVK9lFiNchuvZ6+GqKhxpvCkojE3bFZj+0QIw1OuTFdApR7j+ZTazCB9iE6Wx92Jfad0KS47C9jr7+7IF03eSN7VOsLUNQlP659TTeUMbHZ0IcmhalazTtgDiSRuUjYfBTzhKB/gYAVFfccNNx7fQGUHUu29Qm6JKenyZq1BxNNw/CAMvwFePmBukdVaVTdn5YVLe1v3uERnzYd/vbGHdTW8t1Dh13zXtZA4mERRDpSOeyp1MSmJDBg7iKG4UmtpcpuTHQr/1n12BV2wjMLw3VYdQym8t/uYFsnaKcJf9CSR2Rz9B1laLDIxAgzcyjksupKSmMuT1FQiKDAGQCov5UBxvGpSz7MP4fgSe7/de2ypxnLZvrmgWsuriLXgKgXjtGhhr/BKhXkwZc7rmxjJ0ZJodmLIbePG7ylFH/e4B2rBwApMTr518/Zh6uQIXExxmUq9fNb5c9ObReU04DVded6uqy2bnIQMdjZ3oevuXCdwZiIjAyKpLx3WSsYs3pTfLgLkyGhNkwoqO/NTew7bt6T9l40="
+      - secure: 'YoSSxftifz8V8BIGXQSAJTg+mkKs+QVYrnSJ7U4r1M4oP8QUgzBhgv8oBoA35uUA9YqLUi5kYqF7ClRiGg/UAzECEb9svH3Y1ipCvTr/Sz7DEOA960ZgqiEduP8YZARPxJo6aGUR1t8ZF9t1mVK9lFiNchuvZ6+GqKhxpvCkojE3bFZj+0QIw1OuTFdApR7j+ZTazCB9iE6Wx92Jfad0KS47C9jr7+7IF03eSN7VOsLUNQlP659TTeUMbHZ0IcmhalazTtgDiSRuUjYfBTzhKB/gYAVFfccNNx7fQGUHUu29Qm6JKenyZq1BxNNw/CAMvwFePmBukdVaVTdn5YVLe1v3uERnzYd/vbGHdTW8t1Dh13zXtZA4mERRDpSOeyp1MSmJDBg7iKG4UmtpcpuTHQr/1n12BV2wjMLw3VYdQym8t/uYFsnaKcJf9CSR2Rz9B1laLDIxAgzcyjksupKSmMuT1FQiKDAGQCov5UBxvGpSz7MP4fgSe7/de2ypxnLZvrmgWsuriLXgKgXjtGhhr/BKhXkwZc7rmxjJ0ZJodmLIbePG7ylFH/e4B2rBwApMTr518/Zh6uQIXExxmUq9fNb5c9ObReU04DVded6uqy2bnIQMdjZ3oevuXCdwZiIjAyKpLx3WSsYs3pTfLgLkyGhNkwoqO/NTew7bt6T9l40='

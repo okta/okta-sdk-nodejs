@@ -17,45 +17,45 @@ module.exports = function defaultCacheMiddleware(ctx, next) {
   if (ctx.req.method.toLowerCase() === 'get' && !ctx.isCollection) {
     // TODO: use ctx.req.url as cache key and add json() method to cached result: https://oktainc.atlassian.net/browse/OKTA-280090
     cacheCheck = ctx.cacheStore.get(ctx.req.uri)
-    .then(body => {
-      if (body) {
-        cacheHit = true;
-        ctx.res = {
-          status: 200,
-          text() {
-            return Promise.resolve(body);
-          }
-        };
-      }
-    });
-  }
-  return Promise.resolve(cacheCheck)
-  .then(() => next())
-  .then(() => {
-    if (cacheHit || ctx.isCollection) {
-      return;
-    }
-    if (ctx.req.method.toLowerCase() === 'get') {
-      // store response in cache
-      return ctx.res.clone().text()
-      .then(text => {
-        try {
-          const selfHref = _.get(JSON.parse(text), '_links.self.href');
-          if (selfHref) {
-            ctx.cacheStore.set(selfHref, text);
-          }
-        } catch (e) {
-          // TODO: add custom logger
+      .then(body => {
+        if (body) {
+          cacheHit = true;
+          ctx.res = {
+            status: 200,
+            text() {
+              return Promise.resolve(body);
+            }
+          };
         }
       });
-    } else {
-      // clear cache for affected resources
-      const affected = [];
-      const resources = ctx.resources || [];
-      for (let resource of resources) {
-        affected.push(ctx.cacheStore.delete(resource));
+  }
+  return Promise.resolve(cacheCheck)
+    .then(() => next())
+    .then(() => {
+      if (cacheHit || ctx.isCollection) {
+        return;
       }
-      return Promise.all(affected);
-    }
-  });
+      if (ctx.req.method.toLowerCase() === 'get') {
+      // store response in cache
+        return ctx.res.clone().text()
+          .then(text => {
+            try {
+              const selfHref = _.get(JSON.parse(text), '_links.self.href');
+              if (selfHref) {
+                ctx.cacheStore.set(selfHref, text);
+              }
+            } catch (e) {
+              // TODO: add custom logger
+            }
+          });
+      } else {
+      // clear cache for affected resources
+        const affected = [];
+        const resources = ctx.resources || [];
+        for (let resource of resources) {
+          affected.push(ctx.cacheStore.delete(resource));
+        }
+        return Promise.all(affected);
+      }
+    });
 };
