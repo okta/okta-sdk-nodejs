@@ -1,3 +1,5 @@
+const faker = require('faker');
+
 const utils = require('../utils');
 const okta = require('../../');
 const expect = require('chai').expect;
@@ -9,7 +11,8 @@ if (process.env.OKTA_USE_MOCK) {
 
 const client = new okta.Client({
   orgUrl: orgUrl,
-  token: process.env.OKTA_CLIENT_TOKEN
+  token: process.env.OKTA_CLIENT_TOKEN,
+  requestExecutor: new okta.DefaultRequestExecutor()
 });
 
 describe('Group API tests', () => {
@@ -17,7 +20,7 @@ describe('Group API tests', () => {
     // 1. Create a new group
     const newGroup = {
       profile: {
-        name: 'Get Test Group'
+        name: `node-sdk: Get test Group ${faker.random.word()}`.substring(0, 49)
       }
     };
 

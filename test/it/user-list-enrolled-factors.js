@@ -9,8 +9,10 @@ if (process.env.OKTA_USE_MOCK) {
 }
 
 const client = new okta.Client({
+  scopes: ['okta.users.manage'],
   orgUrl: orgUrl,
-  token: process.env.OKTA_CLIENT_TOKEN
+  token: process.env.OKTA_CLIENT_TOKEN,
+  requestExecutor: new okta.DefaultRequestExecutor()
 });
 
 /**
@@ -24,12 +26,7 @@ describe('User API tests', () => {
   before(async () => {
     // 1. Create a user
     const newUser = {
-      profile: {
-        firstName: 'John',
-        lastName: 'Activate',
-        email: 'john-activate@example.com',
-        login: 'john-activate@example.com'
-      },
+      profile: utils.getMockProfile('user-list-enrolled-factors'),
       credentials: {
         password: { value: 'Abcd1234' }
       }
@@ -48,7 +45,7 @@ describe('User API tests', () => {
       factorType: 'sms',
       provider: 'OKTA',
       profile: {
-        phoneNumber: '415 123 1234'
+        phoneNumber: '162 840 01133‬'
       }
     };
     const securityQuestionFactor = {
@@ -59,12 +56,12 @@ describe('User API tests', () => {
         answer: 'pizza'
       }
     };
-    await client.addFactor(createdUser.id, smsFactor);
-    await client.addFactor(createdUser.id, securityQuestionFactor);
+    await client.enrollFactor(createdUser.id, smsFactor);
+    await client.enrollFactor(createdUser.id, securityQuestionFactor);
     const collection = await createdUser.listFactors();
     const factors = [];
     await collection.each(factor => factors.push(factor));
-    expect(factors[1]).to.be.instanceof(models.SmsFactor);
-    expect(factors[0]).to.be.instanceof(models.SecurityQuestionFactor);
+    expect(factors[1]).to.be.instanceof(models.SmsUserFactor);
+    expect(factors[0]).to.be.instanceof(models.SecurityQuestionUserFactor);
   });
 });

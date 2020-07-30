@@ -1,4 +1,5 @@
 const expect = require('chai').expect;
+const faker = require('faker');
 
 const okta = require('../../');
 const utils = require('../utils');
@@ -10,28 +11,20 @@ if (process.env.OKTA_USE_MOCK) {
 }
 
 const client = new okta.Client({
+  scopes: ['okta.apps.manage'],
   orgUrl: orgUrl,
-  token: process.env.OKTA_CLIENT_TOKEN
+  token: process.env.OKTA_CLIENT_TOKEN,
+  requestExecutor: new okta.DefaultRequestExecutor()
 });
 
 describe('ApplicationGroupAssignment.delete(:appId)', () => {
 
   it('should allow me to delete the group assignment', async () => {
-    const application = {
-      name: 'bookmark',
-      label: 'my bookmark app',
-      signOnMode: 'BOOKMARK',
-      settings: {
-        app: {
-          requestIntegration: false,
-          url: 'https://example.com/bookmark.htm'
-        }
-      }
-    };
+    const application = utils.getBookmarkApplication();
 
     const group = {
       profile: {
-        name: 'test group'
+        name: `node-sdk: Application delete Group ${faker.random.word()}`.substring(0, 49)
       }
     };
 

@@ -1,4 +1,6 @@
 const expect = require('chai').expect;
+const faker = require('faker');
+
 const utils = require('../utils');
 const okta = require('../../');
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
@@ -9,19 +11,15 @@ if (process.env.OKTA_USE_MOCK) {
 
 const client = new okta.Client({
   orgUrl: orgUrl,
-  token: process.env.OKTA_CLIENT_TOKEN
+  token: process.env.OKTA_CLIENT_TOKEN,
+  requestExecutor: new okta.DefaultRequestExecutor()
 });
 
 describe('Group-Rule API tests', () => {
   it('should implement the CRUD APIs for group-rule operations', async () => {
     // 1. Create a user and a group
     const newUser = {
-      profile: {
-        firstName: 'John',
-        lastName: 'With-Group-Rule',
-        email: 'john-with-group-rule@example.com',
-        login: 'john-with-group-rule@example.com'
-      },
+      profile: utils.getMockProfile('group-rule-operations'),
       credentials: {
         password: {value: 'Abcd1234'}
       }
@@ -29,7 +27,7 @@ describe('Group-Rule API tests', () => {
 
     const newGroup = {
       profile: {
-        name: 'Group-Rule API Test Group'
+        name: `node-sdk: Group-Rule API Test Group ${faker.random.word()}`.substring(0, 49),
       }
     };
 
@@ -43,7 +41,7 @@ describe('Group-Rule API tests', () => {
     // 2. Create a group rule and verify rule executes
     const rule = {
       type: 'group_rule',
-      name: 'Test group rule',
+      name: faker.random.word().substring(0, 49),
       conditions: {
         people: {
           users: {
@@ -67,7 +65,7 @@ describe('Group-Rule API tests', () => {
       }
     };
 
-    const createdRule = await client.createRule(rule);
+    const createdRule = await client.createGroupRule(rule);
     await createdRule.activate();
 
     // We wait for 30 seconds for the rule to activate i.e. userInGroup = true
@@ -76,7 +74,7 @@ describe('Group-Rule API tests', () => {
 
     // 3. List group rules
     let foundRule = false;
-    await client.listRules().each(rule => {
+    await client.listGroupRules().each(rule => {
       if (rule.id === createdRule.id) {
         foundRule = true;
         return false;
@@ -85,9 +83,9 @@ describe('Group-Rule API tests', () => {
     expect(foundRule).to.equal(true);
 
     // 4. Deactivate the rule and update it
-    await client.deactivateRule(createdRule.id);
+    await client.deactivateGroupRule(createdRule.id);
 
-    createdRule.name = 'Test group rule updated';
+    createdRule.name = faker.random.word();
     createdRule.conditions.expression.value = 'user.lastName==\"incorrect\"';
     const updatedRule = await createdRule.update();
     await updatedRule.activate();
@@ -97,8 +95,8 @@ describe('Group-Rule API tests', () => {
     expect(userInGroup).to.equal(false);
 
     // 5. Delete the group, user and group rule
-    await utils.cleanup(client, createdUser, createdGroup);
     await updatedRule.deactivate();
     await updatedRule.delete();
+    await utils.cleanup(client, createdUser, createdGroup);
   });
 });

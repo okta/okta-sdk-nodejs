@@ -10,7 +10,8 @@ if (process.env.OKTA_USE_MOCK) {
 
 const client = new okta.Client({
   orgUrl: orgUrl,
-  token: process.env.OKTA_CLIENT_TOKEN
+  token: process.env.OKTA_CLIENT_TOKEN,
+  requestExecutor: new okta.DefaultRequestExecutor()
 });
 
 /**
@@ -24,12 +25,7 @@ describe('Factors API', () => {
   before(async () => {
     // 1. Create a user
     const newUser = {
-      profile: {
-        firstName: 'John',
-        lastName: 'Activate',
-        email: 'john-activate@example.com',
-        login: 'john-activate@example.com'
-      },
+      profile: utils.getMockProfile('factor-create'),
       credentials: {
         password: { value: 'Abcd1234' }
       }
@@ -37,6 +33,10 @@ describe('Factors API', () => {
     // Cleanup the user if user exists
     await utils.cleanup(client, newUser);
     createdUser = await client.createUser(newUser);
+  });
+
+  after(async () => {
+    return utils.cleanup(client, createdUser);
   });
 
   it('should allow me to create a Call factor', async () => {
@@ -47,10 +47,10 @@ describe('Factors API', () => {
         phoneNumber: '415 123 1234'
       }
     };
-    const createdFactor = await client.addFactor(createdUser.id, factor);
+    const createdFactor = await client.enrollFactor(createdUser.id, factor);
     expect(createdFactor.factorType).to.equal('call');
-    expect(createdFactor).to.be.instanceof(models.Factor);
-    expect(createdFactor).to.be.instanceof(models.CallFactor);
+    expect(createdFactor).to.be.instanceof(models.UserFactor);
+    expect(createdFactor).to.be.instanceof(models.CallUserFactor);
   });
 
   it('should allow me to create a Push factor', async () => {
@@ -58,10 +58,10 @@ describe('Factors API', () => {
       factorType: 'push',
       provider: 'OKTA'
     };
-    const createdFactor = await client.addFactor(createdUser.id, factor);
+    const createdFactor = await client.enrollFactor(createdUser.id, factor);
     expect(createdFactor.factorType).to.equal('push');
-    expect(createdFactor).to.be.instanceof(models.Factor);
-    expect(createdFactor).to.be.instanceof(models.PushFactor);
+    expect(createdFactor).to.be.instanceof(models.UserFactor);
+    expect(createdFactor).to.be.instanceof(models.PushUserFactor);
   });
 
   it('should allow me to create a Security Question factor', async () => {
@@ -73,10 +73,10 @@ describe('Factors API', () => {
         answer: 'pizza'
       }
     };
-    const createdFactor = await client.addFactor(createdUser.id, factor);
+    const createdFactor = await client.enrollFactor(createdUser.id, factor);
     expect(createdFactor.factorType).to.equal('question');
-    expect(createdFactor).to.be.instanceof(models.Factor);
-    expect(createdFactor).to.be.instanceof(models.SecurityQuestionFactor);
+    expect(createdFactor).to.be.instanceof(models.UserFactor);
+    expect(createdFactor).to.be.instanceof(models.SecurityQuestionUserFactor);
   });
 
   it('should allow me to create a SMS factor', async () => {
@@ -84,13 +84,12 @@ describe('Factors API', () => {
       factorType: 'sms',
       provider: 'OKTA',
       profile: {
-        phoneNumber: '415 123 1234'
+        phoneNumber: '162 840 01133‬'
       }
     };
-    const createdFactor = await client.addFactor(createdUser.id, factor);
+    const createdFactor = await client.enrollFactor(createdUser.id, factor);
     expect(createdFactor.factorType).to.equal('sms');
-    expect(createdFactor).to.be.instanceof(models.Factor);
-    expect(createdFactor).to.be.instanceof(models.SmsFactor);
+    expect(createdFactor).to.be.instanceof(models.UserFactor);
+    expect(createdFactor).to.be.instanceof(models.SmsUserFactor);
   });
 });
-

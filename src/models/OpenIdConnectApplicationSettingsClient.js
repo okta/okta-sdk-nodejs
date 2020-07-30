@@ -1,5 +1,5 @@
 /*!
- * Copyright (c) 2017-2018, Okta, Inc. and/or its affiliates. All rights reserved.
+ * Copyright (c) 2017-2020, Okta, Inc. and/or its affiliates. All rights reserved.
  * The Okta software accompanied by this notice is provided pursuant to the Apache License, Version 2.0 (the "License.")
  *
  * You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0.
@@ -23,8 +23,11 @@ var Resource = require('../resource');
  * @property { string } client_uri
  * @property { OpenIdConnectApplicationConsentMethod } consent_method
  * @property { array } grant_types
+ * @property { string } initiate_login_uri
+ * @property { OpenIdConnectApplicationIssuerMode } issuer_mode
  * @property { string } logo_uri
  * @property { string } policy_uri
+ * @property { array } post_logout_redirect_uris
  * @property { array } redirect_uris
  * @property { array } response_types
  * @property { string } tos_uri

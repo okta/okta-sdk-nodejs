@@ -24,6 +24,9 @@ async function next(ctx, body = '{}') {
   };
 }
 
+// TODO: use request.url per fetch spec: https://developer.mozilla.org/en-US/docs/Web/API/Request
+// https://oktainc.atlassian.net/browse/OKTA-280090
+
 describe('Default cache middleware', () => {
   it('caches GET items with a \'self\' link', async () => {
     const cacheStore = new MemoryStore();

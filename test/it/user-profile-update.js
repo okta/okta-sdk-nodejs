@@ -8,20 +8,17 @@ if (process.env.OKTA_USE_MOCK) {
 }
 
 const client = new okta.Client({
+  scopes: ['okta.users.manage'],
   orgUrl: orgUrl,
-  token: process.env.OKTA_CLIENT_TOKEN
+  token: process.env.OKTA_CLIENT_TOKEN,
+  requestExecutor: new okta.DefaultRequestExecutor()
 });
 
 describe('User API Tests', () => {
   it('should update the user profile', async () => {
     // 1. Create a user
     const newUser = {
-      profile: {
-        firstName: 'John',
-        lastName: 'Profile-Update',
-        email: 'john-profile-update@example.com',
-        login: 'john-profile-update@example.com'
-      },
+      profile: utils.getMockProfile('user-profile-update'),
       credentials: {
         password: { value: 'Abcd1234' }
       }
@@ -38,6 +35,7 @@ describe('User API Tests', () => {
     // Need to wait 1 second here as that is the minimum time resolution of the 'lastUpdated' field
     await utils.delay(1000);
     createdUser.profile.nickName = 'Batman';
+    // TODO: receiving 403: invalid session
     const profileUpdateUser = await createdUser.update();
     expect(profileUpdateUser.lastUpdated).to.be.gt(createdUser.lastUpdated);
 

@@ -10,18 +10,14 @@ if (process.env.OKTA_USE_MOCK) {
 
 const client = new okta.Client({
   orgUrl: orgUrl,
-  token: process.env.OKTA_CLIENT_TOKEN
+  token: process.env.OKTA_CLIENT_TOKEN,
+  requestExecutor: new okta.DefaultRequestExecutor()
 });
 
 describe('User API Tests', () => {
   it('should allow the user\'s factor catalog (supported factors) to be listed', async () => {
     const newUser = {
-      profile: {
-        firstName: 'John',
-        lastName: 'Activate',
-        email: 'john-activate@example.com',
-        login: 'john-activate@example.com'
-      },
+      profile: utils.getMockProfile('user-list-available-factors'),
       credentials: {
         password: { value: 'Abcd1234' }
       }
@@ -33,7 +29,9 @@ describe('User API Tests', () => {
     const factors = [];
     await createdUser.listSupportedFactors().each(factor => factors.push(factor));
     expect(factors.length).to.be.greaterThan(1);
-    factors.forEach(factor => expect(factor).to.be.instanceof(models.Factor));
+    factors.forEach(factor =>
+      expect(factor).to.be.instanceof(models.UserFactor)
+    );
     return await utils.deleteUser(createdUser);
   });
 });

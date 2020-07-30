@@ -10,18 +10,14 @@ if (process.env.OKTA_USE_MOCK) {
 
 const client = new okta.Client({
   orgUrl: orgUrl,
-  token: process.env.OKTA_CLIENT_TOKEN
+  token: process.env.OKTA_CLIENT_TOKEN,
+  requestExecutor: new okta.DefaultRequestExecutor()
 });
 
 describe('User API Tests', () => {
   it('should allow the user\'s available security questions to be listed', async () => {
     const newUser = {
-      profile: {
-        firstName: 'John',
-        lastName: 'Activate',
-        email: 'john-activate@example.com',
-        login: 'john-activate@example.com'
-      },
+      profile: utils.getMockProfile('user-list-available-security-questions'),
       credentials: {
         password: { value: 'Abcd1234' }
       }

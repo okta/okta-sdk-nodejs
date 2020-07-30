@@ -1,5 +1,5 @@
 /*!
- * Copyright (c) 2017-2018, Okta, Inc. and/or its affiliates. All rights reserved.
+ * Copyright (c) 2017-2020, Okta, Inc. and/or its affiliates. All rights reserved.
  * The Okta software accompanied by this notice is provided pursuant to the Apache License, Version 2.0 (the "License.")
  *
  * You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0.
@@ -18,8 +18,8 @@ class MemoryStore {
     this._store = new Map();
 
     // Purge based on expiration every x milliseconds
-    if (options.expirationPoll !== null) {
-      setInterval(() => {
+    if (options.expirationPoll) {
+      this._interval = setInterval(() => {
         const now = Date.now();
         for (let entry of this._store.entries()) {
           const key = entry[0];
@@ -28,7 +28,7 @@ class MemoryStore {
             this._store.delete(key);
           }
         }
-      }, options.expirationPoll || 15000);
+      }, isNaN(options.expirationPoll) ? 15000 : options.expirationPoll);
     }
   }
 

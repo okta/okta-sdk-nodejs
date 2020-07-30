@@ -8,20 +8,17 @@ if (process.env.OKTA_USE_MOCK) {
 }
 
 const client = new okta.Client({
+  scopes: ['okta.users.manage'],
   orgUrl: orgUrl,
-  token: process.env.OKTA_CLIENT_TOKEN
+  token: process.env.OKTA_CLIENT_TOKEN,
+  requestExecutor: new okta.DefaultRequestExecutor()
 });
 
 describe('User API Tests', () => {
   it('should change users recovery question', async () => {
     // 1. Create a user with password & recovery question
     const newUser = {
-      profile: {
-        firstName: 'John',
-        lastName: 'Change-Recovery-Question',
-        email: 'john-change-recovery-question@example.com',
-        login: 'john-change-recovery-question@example.com'
-      },
+      profile: utils.getMockProfile('user-change-recovery-question'),
       credentials: {
         password: { value: 'Abcd1234' }
       }
@@ -55,7 +52,7 @@ describe('User API Tests', () => {
 
     // Need to wait 1 second here as that is the minimum time resolution of the 'passwordChanged' field
     await utils.delay(1000);
-    await createdUser.forgotPassword(userCredentials);
+    await createdUser.forgotPasswordSetNewPassword(userCredentials);
 
     // 4. Verify that password was updated
     const updatedUser = await client.getUser(createdUser.id);

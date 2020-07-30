@@ -2,7 +2,7 @@
 
 Node.js API Client for the [Okta Platform API].
 
-Requires Node.js version 4.8.3 or higher.
+Requires Node.js version 10.0.0 or higher.
 
 Need help? Contact [developers@okta.com](mailto:developers@okta.com) or use the [Okta Developer Forum].
 
@@ -18,48 +18,87 @@ You can view the entire JsDocs for this project here: https://developer.okta.com
 
 ## Usage
 
-All usage of this SDK begins with the creation of a client, the client handles the authentication and communication with the Okta API.  To create a client, you need to provide it the URL of your Okta Org, and an API Token that you have provisioned for yourself (this can be done by visiting API -> Tokens in your Okta Developer Dashboard):
+All usage of this SDK begins with the creation of a client, the client handles the authentication and communication with the Okta API.  To create a client, you need to provide it with your Okta Domain and an API token.  To obtain those, see [Getting Started With the Okta APIs](https://developer.okta.com/code/rest/).
+
+We also include an opt-in [default request executor](#default-request-executor) that you can configure, which will automatically handle rate limiting retries for you:
 
 ```javascript
 const okta = require('@okta/okta-sdk-nodejs');
 
 const client = new okta.Client({
-  orgUrl: 'https://dev-1234.oktapreview.com/',
+  orgUrl: 'https://dev-1234.okta.com/',
   token: 'xYzabc'    // Obtained from Developer Dashboard
 });
 ```
 
 It is also possible to provide configuration through environment variables or YAML files.  Please see [Configuration](#configuration) for examples.
 
-All interaction with the [Okta Platform API] is done through client methods.  Some examples are below, but for a full list of methods please refer to the JsDoc page for the client:
+All interactions with the [Okta Platform API] is done through client methods.  Some examples are below, but for a full
+ list of methods please refer to the JsDoc page for the [Client].
 
-https://developer.okta.com/okta-sdk-nodejs/jsdocs/Client.html
+### OAuth 2.0 Authentication
 
-## Examples
+Okta allows you to interact with Okta APIs using scoped OAuth 2.0 access tokens. Each access token enables the bearer to perform specific actions on specific Okta endpoints, with that ability controlled by which scopes the access token contains. 
 
-This library is a wrapper for the [Okta Platform API], which should be referred to as the source-of-truth for what is and isn't possible with the API.  In the following sections we show you how to use your client to perform some common operations with the [Okta Platform API].
+This SDK supports this feature only for service-to-service applications. Please read [this guide](https://developer.okta.com/docs/guides/implement-oauth-for-okta/overview/) to learn more about how to register a new service application using a private and public key pair.
 
-* [Users](#users)
-  * [Create a User](#create-a-user)
-  * [Get a User](#get-a-user)
-  * [Update a User](#update-a-user)
-  * [Delete a User](#delete-a-user)
-  * [List All Org Users](#list-all-org-users)
-  * [Search for Users](#search-for-users)
-* [Groups](#groups)
-  * [Create a Group](#create-a-group)
-  * [Assign a User to a Group](#assign-a-user-to-a-group)
-* [Applications](#applications)
-  * [Create an Application](#create-an-application)
-  * [Assign a User to an Application](#assign-a-user-to-an-application)
-  * [Assign a Group to an Application](#assign-a-group-to-an-application)
-* [System Log](#system-log)
-  * [Get Logs](#get-logs)
+When using this approach you won't need an API Token because the SDK will request an access token for you. In order to use OAuth 2.0, construct a client instance by passing the following parameters:
+
+```js
+const client = new okta.Client({
+  orgUrl: 'https://{yourOktaDomain}/',
+  client: {
+      authorizationMode: 'PrivateKey',
+      clientId: '{oauth application ID}',
+      scopes: ['okta.users.manage'],
+      privateKey: '{JWK}' // <-- see notes below
+  }
+});
+```
+
+The `privateKey` can be passed in the following ways:
+- As a JSON encoded string of a JWK object
+- A string in PEM format
+- As a JSON object, in JWK format
+
+
+## Table of Contents
+
+* [Examples](#examples)
+  * [Users](#users)
+    * [Create a User](#create-a-user)
+    * [Get a User](#get-a-user)
+    * [Update a User](#update-a-user)
+    * [Delete a User](#delete-a-user)
+    * [List All Org Users](#list-all-org-users)
+    * [Search for Users](#search-for-users)
+  * [Groups](#groups)
+    * [Create a Group](#create-a-group)
+    * [Assign a User to a Group](#assign-a-user-to-a-group)
+  * [Applications](#applications)
+    * [Create an Application](#create-an-application)
+    * [Assign a User to an Application](#assign-a-user-to-an-application)
+    * [Assign a Group to an Application](#assign-a-group-to-an-application)
+  * [System Log](#system-log)
+    * [Get Logs](#get-logs)
+  * [Call other API Endpoints](#call-other-api-endpoints)
 * [Collection](#collection)
   * [each](#each)
   * [subscribe](#subscribeconfig)
 * [Configuration](#configuration)
 * [Caching](#caching)
+* [Rate Limiting](#rate-limiting)
+  * [Built-In Retry](#built-in-retry)
+  * [Manual Retry](#manual-retry)
+* [Request Executor](#request-executor)
+  * [Default Request Executor](#default-request-executor)
+  * [Base Request Executor](#base-request-executor)
+* [Migrating between versions](#migrating-between-versions)
+
+
+## Examples
+
+This library is a wrapper for the [Okta Platform API], which should be referred to as the source-of-truth for what is and isn't possible with the API.  In the following sections we show you how to use your client to perform some common operations with the [Okta Platform API].
 
 ### Users
 
@@ -136,6 +175,14 @@ orgUsersCollection.each(user => {
   console.log(user);
 })
 .then(() => console.log('All users have been listed'));
+```
+
+If you're using a version of Node 10 or greater, you can use async iterators.
+
+```javascript
+for await (let user of client.listUsers()) {
+    console.log(user);
+}
 ```
 
 For more information about this API see [Users: Get User].
@@ -297,7 +344,7 @@ client.endSession(session.id)
 To end all sessions for a user, you must know the ID of the user:
 
 ```javascript
-client.endAllUserSessions(user.id)
+client.clearUserSessions(user.id)
 .then(() => {
   console.log('All user sessions have ended');
 });
@@ -335,6 +382,37 @@ const subscription = collection.subscribe({
     // Triggered when subscription.unsubscribe() is called
   }
 });
+```
+
+### Call other API Endpoints
+
+Not every API endpoint is represented by a method in this library. You can call any Okta management API endpoint using this generic syntax:
+
+```javascript
+const okta = require('@okta/okta-sdk-nodejs');
+
+// Assumes configuration is loaded via yaml or environment variables
+const client = new okta.Client();
+
+// https://developer.okta.com/docs/reference/api/apps/#preview-saml-metadata-for-application
+const applicationId = '{your custom SAML app id}';
+const url = `${client.baseUrl}/api/v1/apps/${applicationId}/sso/saml/metadata`;
+const request = {
+  method: 'get',
+  headers: {
+    'Accept': 'application/xml',
+    'Content-Type': 'application/json',
+  }
+};
+
+client.http.http(url, request)
+  .then(res => res.text())
+  .then(text => {
+    console.log(text);
+  })
+  .catch(err => {
+    console.error(err);
+  });
 ```
 
 ## Collection
@@ -414,54 +492,22 @@ A subscription allows you to continue paginating a collection until new items ar
 
 A subscription fetches pages until the first empty page is reached. From that point, it fetches a new page at an interval in milliseconds defined by config (`{ interval: 5000 }`).  This interval defaults to 5000 milliseconds.  A subscription object is returned.  To terminate polling, call `unsubscribe()` on the subscription object.
 
-#### Simple subscription
+Depending on the polling interval you choose, you may run into rate limiting exceptions.  In that case you should enable our rate limiting retry strategy, see [Rate Limiting](#rate-limiting).
 
+#### Simple subscription example
 ```javascript
 const subscription = collection.subscribe({
+  interval: 5000,
   next(item) {
-    console.log('Process item');
+    console.log(item);
   },
   error(err) {
-    console.log('Handle error');
-    console.log('Call subscription.unsubscribe() to terminate');
+    // handle error
   }
 });
-```
 
-#### Advanced subscription
-
-[Rate-limiting errors](https://developer.okta.com/docs/api/getting_started/rate-limits) are common with subscriptions. Here's one way to handle them:
-
-```javascript
-const RATE_LIMIT_ERROR = 429;
-const SERVER_ERRORS = 500;
-const subscription = collection.subscribe({
-  interval: 5000, // Time in ms before fetching new logs when all existing logs are read
-  next(item) {
-    console.log('Process item');
-  },
-  error(err) {
-    if (err.status == RATE_LIMIT_ERROR) {
-      const retryEpochMs = parseInt(err.headers.get('x-rate-limit-reset'), 10) * 1000;
-      const retryDate = new Date(retryEpochMs);
-      const nowDate = new Date(err.headers.get('date'));
-      const delayMs = retryDate.getTime() - nowDate.getTime();
-
-      console.log('backoff', retryDate, now, delayMs);
-      return new Promise(resolve => {
-        setTimeout(resolve, delayMs);
-      });
-    }
-
-    if (err.status >= SERVER_ERRORS) {
-      subscription.unsubscribe();
-    }
-  },
-  complete() {
-    console.log('subscription.unsubscribe() was called');
-    console.log('next() will no longer be triggered');
-  }
-});
+// In the future, unsubscribe when you want to stop polling:
+subscription.unsubscribe()
 ```
 
 ## Configuration
@@ -497,7 +543,11 @@ To speed up your service, we enable caching by default to prevent unnecessary re
 
 ### Storage
 
-By default, the SDK uses an in-memory cache. Here's how to configure that cache:
+By default, the SDK uses an in-memory cache, `MemoryStore`.
+
+By default, expired keys are only removed on attempted retrieval. If a key is never retrieved, it will remain in the cache, which may grow until it hits maximum size.
+
+To prevent this behavior, and instead remove expired values from memory proactively, set a value for `expirationPoll` and the `MemoryStore` will periodically scan the *entire* store in memory to remove expired keys.
 
 ```javascript
 const okta = require('@okta/okta-sdk-nodejs');
@@ -508,15 +558,16 @@ const client = new okta.Client({
   token: 'xYzabc', // Obtained from Developer Dashboard
   cacheStore: new MemoryStore({
     keyLimit: 100000,
-    expirationPoll: 15000
+    expirationPoll: true
   })
 });
 ```
 
-Configuration options:
+`MemoryStore` configuration options:
 
 * `keyLimit` - Max number of keys stored (default is 100000). The oldest keys are deleted as new keys are set.
-* `expirationPoll` - Time in ms to purge expired keys (default is 15000). Expired keys are usually removed on attempted retrieval. If a key isn't retrieved, it will remain in the cache forever. To prevent this, we periodically scan the entire store to remove expired keys. If you'd like to remove this poll, set it to `null`.
+* `expirationPoll` - The time, in milliseconds, between memory scans. If the value is *true*, a value of 15000 is used. (default is false, no scanning)
+
 
 #### Custom Storage
 
@@ -586,22 +637,180 @@ async function customMiddleware(ctx, next) {
 }
 ```
 
+## Rate Limiting
+
+The Okta API will return 429 responses if too many requests are made within a given time. Please see [Rate Limiting at Okta] for a complete list of which endpoints are rate limited.  When a 429 error is received, the `X-Rate-Limit-Reset` header will tell you the time at which you can retry. This section discusses  methods for handling rate limiting with this SDK.
+
+### Built-In Retry
+
+You can configure your client to use the default request executor if you wish to automatically retry on 429 errors, please the [Default Request Executor](#default-request-executor) section.
+
+> Note: in the next major version the default request executor will be automatically added to the client.
+
+### Manual Retry
+
+If you wish to manually retry the request, you can do so by reading the `X-Rate-Limit-Reset` header on the 429 response.  This will tell you the time at which you can retry.  Because this is an absolute time value, we recommend calculating the wait time by using the `Date` header on the response, as it is in sync with the API servers, whereas your local clock may not be.  We also recommend adding 1 second to ensure that you will be retrying after the window has expired (there may be a sub-second relative time skew between the `X-Rate-Limit-Reset` and `Date` headers).
+
+#### Header parsing example
+
+This example shows you how to determine how long you should wait before retrying the request. You then must decide how many times you would like to retry, and how you would like to call the client method again (not shown):
+
+```javascript
+client.createUser()
+  .catch(err => {
+    if (err.status == 429) {
+      const retryEpochMs = parseInt(err.headers.get('x-rate-limit-reset'), 10) * 1000;
+      const retryDate = new Date(retryEpochMs);
+      const nowDate = new Date(err.headers.get('date'));
+      const delayMs = retryDate.getTime() - nowDate.getTime() + 1000;
+      // Wait until delayMs has passed before retrying the request
+    }
+  });
+```
+
+## Request Executor
+
+This SDK uses the concept of a request executor, the [RequestExecutor] class, which is a base class that is responsible for making HTTP requests to the API and fulfilling the responses for the client. This class is a simple proxy to the [isomorphic-fetch] library.
+
+In addition to the base [RequestExecutor], the SDK ships with a "default" request executor, [DefaultRequestExecutor], which is used by default and extends the base with 429 retry logic.
+
+You can create your own executor or extend one of ours, which allows you to define global logic for all HTTP requests made by this library.  Please see the [Building a Custom Request Executor](#building-a-custom-request-executor) section for more information.
+
+### Default Request Executor
+
+See [DefaultRequestExecutor] for the class code.
+
+The default executor extends the [base executor](#base-request-executor) and will automatically retry requests if a 429 error is returned.  Using these configuration options, you can configure your retry tolerance for your specific use case:
+
+* **`maxRetries`** - The number of times to retry, defaults to 2.  Set to 0 if you do not want to limit the number of retries.
+* **`requestTimeout`** - How long to wait before giving up on the request, regardless of how many retries are made.  Defined in milliseconds and defaults to 0, which disables the request timeout.
+
+```javascript
+const customDefaultRequestExecutor = new okta.DefaultRequestExecutor({
+  maxRetries: 2,
+  requestTimeout: 0 // Specify in milliseconds if needed
+})
+
+const client = new okta.Client({
+  orgUrl: 'https://{yourOktaDomain}/',
+  token: 'xYzabc',    // Obtained from Developer Dashboard
+  requestExecutor: customDefaultRequestExecutor
+});
+```
+
+Because the rate limits are different for different endpoints you may need to change the default configuration, or create multiple clients with different executor configurations.
+
+To help with debugging and logging, the default executor will emit a `backoff` event when a retry request has been scheduled, and `resume` event when that request begins:
+
+```javascript
+defaultRequestExecutor.on('backoff', (request, response, requestId, delayMs) => {
+  console.log(`Backoff ${delayMs} ${requestId}, ${request.url}`);
+});
+
+defaultRequestExecutor.on('resume', (request, requestId) => {
+  console.log(`Resume ${requestId} ${request.url}`);
+});
+```
+
+The `requestId` and `delayMs` values are pulled from the request and passed as parameters for convenience.
+
+### Base Request Executor
+
+See [RequestExecutor] for the class code.
+
+The base request executor does nothing more than delegate the request to the [isomorphic-fetch] library, and emit the `request` and `response` events.  This class has no configuration.  The client will use this executor if none is provided.  In the next major version you will need to explicitly pass this executor if you wish to opt-out of the default executor:
+
+```javascript
+const client = new okta.Client({
+  orgUrl: 'https://{yourOktaDomain}/',
+  token: 'xYzabc',    // Obtained from Developer Dashboard
+  requestExecutor: new okta.RequestExecutor()
+});
+```
+
+The base executor also emits `request` and `response` events, these can be useful for debugging and request logging:
+
+```javascript
+const client = new okta.Client({
+  // uses the base executor by default
+});
+
+client.requestExecutor.on('request', (request) => {
+  console.log(`Request ${request.url}`);
+});
+
+client.requestExecutor.on('response', (response) => {
+  console.log(`Response ${response.status}`);
+});
+```
+
+### Building a Custom Request Executor
+
+There are two ways you can design your own executor:
+
+- Extend one of our executors.
+- Create a class that implements the `fetch` method in the same way as [RequestExecutor].
+
+As an example, let's say you want to use our default 429 retry behavior, but you want to add some logging to understand how long requests are taking, including retry time. To do this, you can extend [DefaultRequestExecutor], then re-implement the `fetch()` method with your custom logic, while still delegating the actual call to DefaultRequestExecutor:
+
+```javascript
+class DefaultExecutorWithLogging extends okta.DefaultRequestExecutor {
+  fetch(request) {
+    const start = new Date();
+    console.log(`Begin request for ${request.url}`);
+    return super.fetch(request).then(response => {
+      const timeMs = new Date() - start;
+      console.log(`Request complete for ${request.url} in ${timeMs}ms`);
+      return response;
+    });
+  }
+}
+
+const client = new okta.Client({
+  requestExecutor: new DefaultExecutorWithLogging()
+})
+```
+
+## Migrating between versions
+
+### From 3.x to 4.0
+
+The version 4.0 of this SDK dropped support for Node 8, which is EOL (End-of-Life) since 2019-12-31. Current supported minimum Node version is 10.0.0.
+
+This version 4.0 release also updated APIs latest `@okta/openapi` (v2.0.0) that includes added, changed and deprecated factories/models/client methods. Change details are listed in [CHANGELOG.md](CHANGELOG.md#400). For each change item:
+
+- `Add` stands for newly added factories/models/client methods.
+- `Change` (**breaking changes**) stands for renamed factories/models/client methods.
+- `Remove` (**breaking changes**) stands for deprecated factories/models/client methods.
+
+#### Main breaking changes
+
+- Renamed `Factor` related factories/models/client methods to `UserFactor`
+- Renamed `client.endAllUserSessions` to `client.clearUserSessions`
+- Model and Client methods change for `User` related operations
+- Model and Client methods change for `Rule` related operations
+
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) if you would like to propose changes to this library.
 
-[Sessions: Create Session with Session Token]: https://developer.okta.com/docs/api/resources/sessions#create-session-with-session-token
-[Sessions: Session Properties]: https://developer.okta.com/docs/api/resources/sessions#session-properties
-[Sessions: Session Operations]: https://developer.okta.com/docs/api/resources/sessions#session-operations
-[Applications]: https://developer.okta.com/docs/api/resources/apps
-[Applications: Application User Profile]: https://developer.okta.com/docs/api/resources/apps#application-user-profile-object
-[Applications: Add Application]: https://developer.okta.com/docs/api/resources/apps#add-application
-[Applications: User Operations]:https://developer.okta.com/docs/api/resources/apps#application-user-operations
-[Basic Authentication Application]: https://developer.okta.com/docs/api/resources/apps#add-basic-authentication-application
-[Groups: Add Group]: https://developer.okta.com/docs/api/resources/groups#add-group
+[Sessions: Create Session with Session Token]: https://developer.okta.com/docs/api/resources/sessions.html#create-session-with-session-token
+[Sessions: Session Properties]: https://developer.okta.com/docs/api/resources/sessions.html#session-properties
+[Sessions: Session Operations]: https://developer.okta.com/docs/api/resources/sessions.html#session-operations
+[Applications]: https://developer.okta.com/docs/api/resources/apps/
+[Applications: Application User Profile]: https://developer.okta.com/docs/api/resources/apps/#application-user-profile-object
+[Applications: Add Application]: https://developer.okta.com/docs/api/resources/apps/#add-application
+[Applications: User Operations]:https://developer.okta.com/docs/api/resources/apps/#application-user-operations
+[Basic Authentication Application]: https://developer.okta.com/docs/api/resources/apps/#add-basic-authentication-application
+[Client]: https://developer.okta.com/okta-sdk-nodejs/jsdocs/Client.html
+[DefaultRequestExecutor]: src/default-request-executor.js
+[Groups: Add Group]: https://developer.okta.com/docs/api/resources/groups.html#add-group
+[isomorphic-fetch]: https://github.com/matthew-andrews/isomorphic-fetch
 [Okta Developer Forum]: https://devforum.okta.com/
-[Okta Platform API]: https://developer.okta.com/docs/api/getting_started/api_test_client
-[Pagination]: https://developer.okta.com/docs/api/getting_started/design_principles#pagination
+[Okta Platform API]: https://developer.okta.com/docs/api/getting_started/api_test_client.html
+[Pagination]: https://developer.okta.com/docs/api/getting_started/design_principles.html#pagination
+[Rate Limiting at Okta]: https://developer.okta.com/docs/api/getting_started/rate-limits
+[RequestExecutor]: src/request-executor.js
 [System Log API]: https://developer.okta.com/docs/api/resources/system_log
 [Users API Reference]: https://developer.okta.com/docs/api/resources/users
 [Users: Create User]: https://developer.okta.com/docs/api/resources/users#create-user

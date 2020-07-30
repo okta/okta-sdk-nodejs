@@ -11,31 +11,17 @@ if (process.env.OKTA_USE_MOCK) {
 
 const client = new okta.Client({
   orgUrl: orgUrl,
-  token: process.env.OKTA_CLIENT_TOKEN
+  token: process.env.OKTA_CLIENT_TOKEN,
+  requestExecutor: new okta.DefaultRequestExecutor()
 });
 
 describe('client.deleteApplicationUser()', () => {
 
   it('should allow me to remove a user from a application', async () => {
-    const application = {
-      name: 'bookmark',
-      label: 'my bookmark app',
-      signOnMode: 'BOOKMARK',
-      settings: {
-        app: {
-          requestIntegration: false,
-          url: 'https://example.com/bookmark.htm'
-        }
-      }
-    };
+    const application = utils.getBookmarkApplication();
 
     const user = {
-      profile: {
-        firstName: 'John',
-        lastName: 'Activate',
-        email: 'john-activate@example.com',
-        login: 'john-activate@example.com'
-      },
+      profile: utils.getMockProfile('client-delete-application-user'),
       credentials: {
         password: { value: 'Abcd1234' }
       }
@@ -72,4 +58,3 @@ describe('client.deleteApplicationUser()', () => {
   });
 
 });
-

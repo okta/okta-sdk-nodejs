@@ -11,24 +11,16 @@ if (process.env.OKTA_USE_MOCK) {
 }
 
 const client = new okta.Client({
+  scopes: ['okta.apps.manage'],
   orgUrl: orgUrl,
-  token: process.env.OKTA_CLIENT_TOKEN
+  token: process.env.OKTA_CLIENT_TOKEN,
+  requestExecutor: new okta.DefaultRequestExecutor()
 });
 
 describe.skip('Application.generateApplicationKey()', () => {
 
   it('should allow me to generate keys for an application', async () => {
-    const application = {
-      name: 'bookmark',
-      label: 'my bookmark app',
-      signOnMode: 'BOOKMARK',
-      settings: {
-        app: {
-          requestIntegration: false,
-          url: 'https://example.com/bookmark.htm'
-        }
-      }
-    };
+    const application = utils.getBookmarkApplication();
 
     let createdApplication;
 
