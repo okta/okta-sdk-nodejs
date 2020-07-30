@@ -1,3 +1,5 @@
+const faker = require('faker');
+
 const expect = require('chai').expect;
 const utils = require('../utils');
 const okta = require('../../');
@@ -9,7 +11,8 @@ if (process.env.OKTA_USE_MOCK) {
 
 const client = new okta.Client({
   orgUrl: orgUrl,
-  token: process.env.OKTA_CLIENT_TOKEN
+  token: process.env.OKTA_CLIENT_TOKEN,
+  requestExecutor: new okta.DefaultRequestExecutor()
 });
 
 describe('Group API tests', () => {
@@ -17,7 +20,7 @@ describe('Group API tests', () => {
     // 1. Create a new group
     const newGroup = {
       profile: {
-        name: 'List Test Group'
+        name: `node-sdk: List test Group ${faker.random.word()}`.substring(0, 49)
       }
     };
 
@@ -32,6 +35,6 @@ describe('Group API tests', () => {
     expect(groupPresent).to.equal(true);
 
     // 3. Delete the group
-    await utils.cleanup(client, null, createdGroup);
+    await client.deleteGroup(createdGroup.id);
   });
 });

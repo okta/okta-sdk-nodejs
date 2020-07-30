@@ -1,4 +1,5 @@
 const expect = require('chai').expect;
+const faker = require('faker');
 
 const okta = require('../../');
 const utils = require('../utils');
@@ -11,34 +12,27 @@ if (process.env.OKTA_USE_MOCK) {
 
 const client = new okta.Client({
   orgUrl: orgUrl,
-  token: process.env.OKTA_CLIENT_TOKEN
+  token: process.env.OKTA_CLIENT_TOKEN,
+  requestExecutor: new okta.DefaultRequestExecutor()
 });
 
 describe('client.updateApplication()', () => {
 
   it('should allow me to get an application by ID', async () => {
-    const application = {
-      name: 'bookmark',
-      label: 'my bookmark app',
-      signOnMode: 'BOOKMARK',
-      settings: {
-        app: {
-          requestIntegration: false,
-          url: 'https://example.com/bookmark.htm'
-        }
-      }
-    };
+    const application = utils.getBookmarkApplication();
 
     let createdApplication;
 
     try {
       await utils.removeAppByLabel(client, application.label);
       createdApplication = await client.createApplication(application);
-      createdApplication.label = 'updated';
+
+      const updatedLabel = faker.random.word();
+      createdApplication.label = updatedLabel;
       await createdApplication.update();
-      expect(createdApplication.label).to.equal('updated');
+      expect(createdApplication.label).to.equal(updatedLabel);
       const fetchedApplication = await client.getApplication(createdApplication.id);
-      expect(fetchedApplication.label).to.equal('updated');
+      expect(fetchedApplication.label).to.equal(updatedLabel);
     } finally {
       if (createdApplication) {
         await createdApplication.deactivate();

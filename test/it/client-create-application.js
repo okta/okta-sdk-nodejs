@@ -3,6 +3,7 @@ const expect = require('chai').expect;
 const okta = require('../../');
 const models = require('../../src/models');
 const utils = require('../utils');
+const faker = require('faker');
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -12,23 +13,14 @@ if (process.env.OKTA_USE_MOCK) {
 
 const client = new okta.Client({
   orgUrl: orgUrl,
-  token: process.env.OKTA_CLIENT_TOKEN
+  token: process.env.OKTA_CLIENT_TOKEN,
+  requestExecutor: new okta.DefaultRequestExecutor()
 });
 
 describe('client.createApplication()', () => {
 
   it('should allow me to create a bookmark application', async () => {
-    const application = {
-      name: 'bookmark',
-      label: 'my bookmark app',
-      signOnMode: 'BOOKMARK',
-      settings: {
-        app: {
-          requestIntegration: false,
-          url: 'https://example.com/bookmark.htm'
-        }
-      }
-    };
+    const application = utils.getBookmarkApplication();
 
     let createdApplication;
 
@@ -57,7 +49,7 @@ describe('client.createApplication()', () => {
   it('should allow me to create a basic authentication application', async () => {
     const application = {
       name: 'template_basic_auth',
-      label: 'Sample Basic Auth App',
+      label: `node-sdk: Sample Basic Auth App - ${faker.random.word()}`.substring(0, 49),
       signOnMode: 'BASIC_AUTH',
       settings: {
         app: {
@@ -94,7 +86,7 @@ describe('client.createApplication()', () => {
   it('should allow me to create a SWA plugin application', async () => {
     const application = {
       name: 'template_swa',
-      label: 'Sample Plugin App',
+      label: `node-sdk: Sample Plugin App - ${faker.random.word()}`.substring(0, 49),
       signOnMode: 'BROWSER_PLUGIN',
       settings: {
         app: {
@@ -136,7 +128,7 @@ describe('client.createApplication()', () => {
   it('should allow me to create a 3-field SWA plugin application', async () => {
     const application = {
       name: 'template_swa3field',
-      label: 'Sample Plugin App 3-field',
+      label: `node-sdk: Sample Plugin App 3-field - ${faker.random.word()}`.substring(0, 49),
       signOnMode: 'BROWSER_PLUGIN',
       settings: {
         app: {
@@ -182,7 +174,7 @@ describe('client.createApplication()', () => {
   it('should allow me to create a SWA no-plugin application', async () => {
     const application = {
       name: 'template_sps',
-      label: 'Example SWA App',
+      label: `node-sdk: Example SWA App - ${faker.random.word()}`.substring(0, 49),
       signOnMode: 'SECURE_PASSWORD_STORE',
       settings: {
         app: {
@@ -232,7 +224,7 @@ describe('client.createApplication()', () => {
 
   it('should allow me to create a custom SWA application', async () => {
     const application = {
-      label: 'Example Custom SWA App',
+      label: `Example Custom SWA App - ${faker.random.word()}`,
       visibility: {
         autoSubmitToolbar: false,
         hide: {
@@ -274,7 +266,7 @@ describe('client.createApplication()', () => {
 
   it('should allow me to create a custom SAML application', async () => {
     const application = {
-      label: 'Example Custom SAML 2.0 App',
+      label: `Example Custom SAML 2.0 App - ${faker.random.word()}`,
       visibility: {
         autoSubmitToolbar: false,
         hide: {
@@ -355,10 +347,11 @@ describe('client.createApplication()', () => {
     }
   });
 
-  it('should allow me to create a custom WS-Fed application', async () => {
+  // Test disabled as it fails on bacon/dev environment (https://oktainc.atlassian.net/browse/OKTA-179297)
+  it.skip('should allow me to create a custom WS-Fed application', async () => {
     const application = {
       name: 'template_wsfed',
-      label: 'Sample WS-Fed App',
+      label: `node-sdk: Sample WS-Fed App - ${faker.random.word()}`.substring(0, 49),
       signOnMode: 'WS_FEDERATION',
       settings: {
         app: {
@@ -414,11 +407,10 @@ describe('client.createApplication()', () => {
   it('should allow me to create a OIDC client application', async () => {
     const application = {
       name: 'oidc_client',
-      label: 'Sample Client',
+      label: `node-sdk: Sample Client - ${faker.random.word()}`.substring(0, 49),
       signOnMode: 'OPENID_CONNECT',
       credentials: {
         oauthClient: {
-          client_id: '0oa1hm4POxgJM6CPu0g4',
           autoKeyRotation: true,
           token_endpoint_auth_method: 'client_secret_post'
         }
@@ -457,7 +449,7 @@ describe('client.createApplication()', () => {
       expect(createdApplication.signOnMode).to.equal(application.signOnMode);
       expect(createdApplication.credentials).to.be.instanceof(models.OAuthApplicationCredentials);
       expect(createdApplication.credentials.oauthClient).to.be.instanceof(models.ApplicationCredentialsOAuthClient);
-      expect(createdApplication.credentials.oauthClient.client_id).to.equal(application.credentials.oauthClient.client_id);
+      expect(createdApplication.credentials.oauthClient.client_id).to.not.be.null;
       expect(createdApplication.credentials.oauthClient.client_secret).to.not.be.undefined;
       expect(createdApplication.credentials.oauthClient.token_endpoint_auth_method).to.equal(application.credentials.oauthClient.token_endpoint_auth_method);
       expect(createdApplication.settings).to.be.instanceof(models.ApplicationSettings);
@@ -476,4 +468,3 @@ describe('client.createApplication()', () => {
     }
   });
 });
-

@@ -1,5 +1,5 @@
 /*!
- * Copyright (c) 2017-2018, Okta, Inc. and/or its affiliates. All rights reserved.
+ * Copyright (c) 2017-2020, Okta, Inc. and/or its affiliates. All rights reserved.
  * The Okta software accompanied by this notice is provided pursuant to the Apache License, Version 2.0 (the "License.")
  *
  * You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0.
@@ -33,10 +33,10 @@ class GroupRule extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
     if (resourceJson && resourceJson.actions) {
-      this.actions = new GroupRuleAction(this.actions);
+      this.actions = new GroupRuleAction(resourceJson.actions);
     }
     if (resourceJson && resourceJson.conditions) {
-      this.conditions = new GroupRuleConditions(this.conditions);
+      this.conditions = new GroupRuleConditions(resourceJson.conditions);
     }
   }
 
@@ -44,21 +44,18 @@ class GroupRule extends Resource {
    * @returns {Promise<GroupRule>}
    */
   update() {
-    return this.client.updateRule(this.id, this);
+    return this.client.updateGroupRule(this.id, this);
   }
-  /**
-   * @param {object} queryParameters
-   */
-  delete(queryParameters) {
-    return this.client.deleteRule(this.id, queryParameters);
+  delete() {
+    return this.client.deleteGroupRule(this.id);
   }
 
   activate() {
-    return this.client.activateRule(this.id);
+    return this.client.activateGroupRule(this.id);
   }
 
   deactivate() {
-    return this.client.deactivateRule(this.id);
+    return this.client.deactivateGroupRule(this.id);
   }
 }
 

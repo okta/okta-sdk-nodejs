@@ -8,20 +8,17 @@ if (process.env.OKTA_USE_MOCK) {
 }
 
 const client = new okta.Client({
+  scopes: ['okta.users.manage', 'okta.roles.manage'],
   orgUrl: orgUrl,
-  token: process.env.OKTA_CLIENT_TOKEN
+  token: process.env.OKTA_CLIENT_TOKEN,
+  requestExecutor: new okta.DefaultRequestExecutor()
 });
 
 describe('User Role API Tests', () => {
   it('should assign/unassign role to a user', async () => {
     // 1. Create a user
     const newUser = {
-      profile: {
-        firstName: 'John',
-        lastName: 'Role',
-        email: 'john-role@example.com',
-        login: 'john-role@example.com'
-      },
+      profile: utils.getMockProfile('user-assign-role'),
       credentials: {
         password: { value: 'Abcd1234' }
       }
@@ -36,7 +33,7 @@ describe('User Role API Tests', () => {
 
     // 2. Assign USER_ADMIN role to the user
     const roleType = { type: 'USER_ADMIN'  };
-    const role = await createdUser.addRole(roleType);
+    const role = await createdUser.assignRole(roleType);
 
     // 3. List roles for the user and verify added role
     let hasRole = await utils.doesUserHaveRole(createdUser, 'USER_ADMIN');

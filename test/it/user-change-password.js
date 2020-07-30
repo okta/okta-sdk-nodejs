@@ -8,20 +8,17 @@ if (process.env.OKTA_USE_MOCK) {
 }
 
 const client = new okta.Client({
+  scopes: ['okta.users.manage'],
   orgUrl: orgUrl,
-  token: process.env.OKTA_CLIENT_TOKEN
+  token: process.env.OKTA_CLIENT_TOKEN,
+  requestExecutor: new okta.DefaultRequestExecutor()
 });
 
 describe('User API Tests', () => {
   it('should change a users password', async () => {
     // 1. Create a user
     const newUser = {
-      profile: {
-        firstName: 'John',
-        lastName: 'Change-Password',
-        email: 'john-change-password@example.com',
-        login: 'john-change-password@example.com'
-      },
+      profile: utils.getMockProfile('user-change-password'),
       credentials: {
         password: { value: 'Abcd1234' }
       }

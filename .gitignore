@@ -11,3 +11,5 @@ jsdoc/
 
 .envrc
 .DS_Store
+.idea
+okta.yaml

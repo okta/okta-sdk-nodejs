@@ -9,7 +9,8 @@ if (process.env.OKTA_USE_MOCK) {
 
 const client = new okta.Client({
   orgUrl: orgUrl,
-  token: process.env.OKTA_CLIENT_TOKEN
+  token: process.env.OKTA_CLIENT_TOKEN,
+  requestExecutor: new okta.DefaultRequestExecutor()
 });
 
 /**
@@ -23,12 +24,7 @@ describe('Factors API', () => {
   before(async () => {
     // 1. Create a user
     const newUser = {
-      profile: {
-        firstName: 'John',
-        lastName: 'Activate',
-        email: 'john-activate@example.com',
-        login: 'john-activate@example.com'
-      },
+      profile: utils.getMockProfile('factor-verify'),
       credentials: {
         password: { value: 'Abcd1234' }
       }
@@ -36,6 +32,10 @@ describe('Factors API', () => {
     // Cleanup the user if user exists
     await utils.cleanup(client, newUser);
     createdUser = await client.createUser(newUser);
+  });
+
+  after(async () => {
+    return utils.cleanup(client, createdUser);
   });
 
   it('should allow me to verify a Security Question factor', async () => {
@@ -48,7 +48,7 @@ describe('Factors API', () => {
         answer
       }
     };
-    const createdFactor = await client.addFactor(createdUser.id, factor);
+    const createdFactor = await client.enrollFactor(createdUser.id, factor);
     const response = await createdFactor.verify(createdUser.id, { answer });
     expect(response.factorResult).to.be.equal('SUCCESS');
   });

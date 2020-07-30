@@ -1,5 +1,5 @@
 /*!
- * Copyright (c) 2017-2018, Okta, Inc. and/or its affiliates. All rights reserved.
+ * Copyright (c) 2017-2020, Okta, Inc. and/or its affiliates. All rights reserved.
  * The Okta software accompanied by this notice is provided pursuant to the Apache License, Version 2.0 (the "License.")
  *
  * You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0.
@@ -9,9 +9,6 @@
  *
  * See the License for the specific language governing permissions and limitations under the License.
  */
-
-
-const fetch = require('isomorphic-fetch');
 
 const OktaApiError = require('./api-error');
 const HttpError = require('./http-error');
@@ -24,58 +21,92 @@ const defaultCacheMiddleware = require('./default-cache-middleware');
  * @class Http
  */
 class Http {
+  static errorFilter(response) {
+    if (response.status >= 200 && response.status < 300) {
+      return Promise.resolve(response);
+    } else {
+      return response.text()
+        .then(body => {
+          let err;
+
+          // If the response is JSON, assume it's an Okta API error. Otherwise, assume it's some other HTTP error
+
+          try {
+            err = new OktaApiError(response.url, response.status, JSON.parse(body), response.headers);
+          } catch (e) {
+            err = new HttpError(response.url, response.status, body, response.headers);
+          }
+          throw err;
+        });
+    }
+  }
+
   constructor(httpConfig) {
     this.defaultHeaders = {};
+    this.requestExecutor = httpConfig.requestExecutor;
     this.cacheStore = httpConfig.cacheStore || new MemoryStore();
     if (httpConfig.cacheMiddleware !== null) {
       this.cacheMiddleware = httpConfig.cacheMiddleware || defaultCacheMiddleware;
     }
+    this.oauth = httpConfig.oauth;
   }
 
-  errorFilter(response) {
-    if (response.status >= 200 && response.status < 300) {
-      return response;
-    } else {
-      return response.text()
-      .then(body => {
-        let err;
-
-        // If the response is JSON, assume it's an Okta API error. Otherwise, assume it's some other HTTP error
-
-        try {
-          err = new OktaApiError(response.url, response.status, JSON.parse(body), response.headers);
-        } catch (e) {
-          err = new HttpError(response.url, response.status, body, response.headers);
-        }
-        throw err;
-      });
+  prepareRequest(request) {
+    if (!this.oauth) {
+      return Promise.resolve();
     }
+
+    return this.oauth.getAccessToken()
+        .then(accessToken => {
+          request.headers.Authorization = `Bearer ${accessToken.access_token}`;
+        });
   }
 
   http(uri, request, context) {
     request = request || {};
     context = context || {};
+    request.url = uri;
     request.headers = Object.assign(this.defaultHeaders, request.headers);
     request.method = request.method || 'get';
-    if (!this.cacheMiddleware) {
-      return fetch(uri, request)
-      .then(this.errorFilter);
-    }
-    const ctx = {
-      uri,
-      isCollection: context.isCollection,
-      resources: context.resources,
-      req: request,
-      cacheStore: this.cacheStore
+
+    let retriedOnAuthError = false;
+    const execute = () => {
+      const promise = this.prepareRequest(request)
+        .then(() => this.requestExecutor.fetch(request))
+        .then(Http.errorFilter)
+        .catch(error => {
+          // Clear cached token then retry request one more time
+          if (this.oauth && error && error.status === 401 && !retriedOnAuthError) {
+            retriedOnAuthError = true;
+            this.oauth.clearCachedAccessToken();
+            return execute();
+          }
+
+          throw error;
+        });
+
+      if (!this.cacheMiddleware) {
+        return promise;
+      }
+
+      const ctx = {
+        uri, // TODO: remove unused property. req.url should be the key.
+        isCollection: context.isCollection,
+        resources: context.resources,
+        req: request,
+        cacheStore: this.cacheStore
+      };
+      return this.cacheMiddleware(ctx, () => {
+        if (ctx.res) {
+          return;
+        }
+
+        return promise.then(res => ctx.res = res);
+      })
+      .then(() => ctx.res);
     };
-    return this.cacheMiddleware(ctx, () => {
-      return Promise.resolve(ctx.res ||
-        fetch(uri, request)
-        .then(this.errorFilter)
-        .then(res => ctx.res = res)
-      );
-    })
-    .then(() => ctx.res);
+
+    return execute();
   }
 
   delete(uri, request, context) {

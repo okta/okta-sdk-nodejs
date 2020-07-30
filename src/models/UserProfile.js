@@ -1,5 +1,5 @@
 /*!
- * Copyright (c) 2017-2018, Okta, Inc. and/or its affiliates. All rights reserved.
+ * Copyright (c) 2017-2020, Okta, Inc. and/or its affiliates. All rights reserved.
  * The Okta software accompanied by this notice is provided pursuant to the Apache License, Version 2.0 (the "License.")
  *
  * You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0.
@@ -19,12 +19,37 @@ var Resource = require('../resource');
 /**
  * @class UserProfile
  * @extends Resource
+ * @property { string } city
+ * @property { string } costCenter
+ * @property { string } countryCode
+ * @property { string } department
+ * @property { string } displayName
+ * @property { string } division
  * @property { string } email
+ * @property { string } employeeNumber
  * @property { string } firstName
+ * @property { string } honorificPrefix
+ * @property { string } honorificSuffix
  * @property { string } lastName
+ * @property { string } locale
  * @property { string } login
+ * @property { string } manager
+ * @property { string } managerId
+ * @property { string } middleName
  * @property { string } mobilePhone
+ * @property { string } nickName
+ * @property { string } organization
+ * @property { string } postalAddress
+ * @property { string } preferredLanguage
+ * @property { string } primaryPhone
+ * @property { string } profileUrl
  * @property { string } secondEmail
+ * @property { string } state
+ * @property { string } streetAddress
+ * @property { string } timezone
+ * @property { string } title
+ * @property { string } userType
+ * @property { string } zipCode
  */
 class UserProfile extends Resource {
   constructor(resourceJson, client) {

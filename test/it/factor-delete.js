@@ -9,7 +9,8 @@ if (process.env.OKTA_USE_MOCK) {
 
 const client = new okta.Client({
   orgUrl: orgUrl,
-  token: process.env.OKTA_CLIENT_TOKEN
+  token: process.env.OKTA_CLIENT_TOKEN,
+  requestExecutor: new okta.DefaultRequestExecutor()
 });
 
 /**
@@ -23,12 +24,7 @@ describe('Factors API', () => {
   before(async () => {
     // 1. Create a user
     const newUser = {
-      profile: {
-        firstName: 'John',
-        lastName: 'Activate',
-        email: 'john-activate@example.com',
-        login: 'john-activate@example.com'
-      },
+      profile: utils.getMockProfile('factor-delete'),
       credentials: {
         password: { value: 'Abcd1234' }
       }
@@ -47,7 +43,7 @@ describe('Factors API', () => {
       factorType: 'token:software:totp',
       provider: 'OKTA'
     };
-    const createdFactor = await client.addFactor(createdUser.id, newFactor);
+    const createdFactor = await client.enrollFactor(createdUser.id, newFactor);
     const response = await createdFactor.delete(createdUser.id);
     expect(response.status).to.equal(204);
     let factor;

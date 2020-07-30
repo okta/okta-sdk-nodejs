@@ -9,7 +9,8 @@ if (process.env.OKTA_USE_MOCK) {
 
 const client = new okta.Client({
   orgUrl: orgUrl,
-  token: process.env.OKTA_CLIENT_TOKEN
+  token: process.env.OKTA_CLIENT_TOKEN,
+  requestExecutor: new okta.DefaultRequestExecutor()
 });
 
 describe('Sessions API', () => {
@@ -17,12 +18,7 @@ describe('Sessions API', () => {
   before(async () => {
     // 1. Create a user
     const newUser = {
-      profile: {
-        firstName: 'John',
-        lastName: 'Session',
-        email: 'john-session@example.com',
-        login: 'john-session@example.com'
-      },
+      profile: utils.getMockProfile('session-end-all'),
       credentials: {
         password: { value: 'Abcd1234' }
       }
@@ -38,19 +34,19 @@ describe('Sessions API', () => {
 
   it('should allow me to end all existing sessions for a user', async () => {
     // 1 - create session
-    const transaction1 = await utils.authenticateUser(client, 'john-session@example.com', 'Abcd1234');
+    const transaction1 = await utils.authenticateUser(client, createdUser.profile.login, 'Abcd1234');
     const session1 = await client.createSession({
       sessionToken: transaction1.sessionToken
     });
 
     // 2 - create another session
-    const transaction2 = await utils.authenticateUser(client, 'john-session@example.com', 'Abcd1234');
+    const transaction2 = await utils.authenticateUser(client, createdUser.profile.login, 'Abcd1234');
     const session2 = await client.createSession({
       sessionToken: transaction2.sessionToken
     });
 
     // 3 - end all user sessions
-    await createdUser.endAllSessions();
+    await createdUser.clearSessions();
 
     // 4 - attempt to retrieve session1
     let sess1;

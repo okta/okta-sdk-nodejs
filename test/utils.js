@@ -1,5 +1,6 @@
 const models = require('../src/models');
 const expect = require('chai').expect;
+const faker = require('faker');
 
 function delay(t) {
   return new Promise(function (resolve) {
@@ -94,7 +95,7 @@ async function isGroupPresent(client, expectedGroup, queryParameters) {
 
 async function doesUserHaveRole(user, roleType) {
   let hasRole = false;
-  await user.listRoles().each(role => {
+  await user.listAssignedRoles().each(role => {
     expect(role).to.be.an.instanceof(models.Role);
     if (role.type === roleType) {
       hasRole = true;
@@ -106,7 +107,7 @@ async function doesUserHaveRole(user, roleType) {
 
 async function isGroupTargetPresent(user, userGroup, role) {
   let groupTargetPresent = false;
-  const groupTargets = user.listGroupTargetsForRole(role.id);
+  const groupTargets = user.listGroupTargets(role.id);
   await groupTargets.each(group => {
     if (group.profile.name === userGroup.profile.name) {
       groupTargetPresent = true;
@@ -165,6 +166,29 @@ async function removeAppByLabel(client, label) {
   });
 }
 
+function getMockProfile(testName) {
+  return {
+    firstName: testName,
+    lastName: 'okta-sdk-nodejs',
+    email: faker.internet.email(),
+    login: faker.internet.email()
+  };
+}
+
+function getBookmarkApplication() {
+  return {
+    name: 'bookmark',
+    label: `node-sdk: Bookmark ${faker.random.words()}`.substring(0, 99),
+    signOnMode: 'BOOKMARK',
+    settings: {
+      app: {
+        requestIntegration: false,
+        url: 'https://example.com/bookmark.htm'
+      }
+    }
+  };
+}
+
 module.exports = {
   delay: delay,
   validateUser: validateUser,
@@ -180,5 +204,7 @@ module.exports = {
   cleanupUser: cleanupUser,
   cleanupGroup: cleanupGroup,
   cleanup: cleanup,
-  removeAppByLabel: removeAppByLabel
+  removeAppByLabel: removeAppByLabel,
+  getMockProfile: getMockProfile,
+  getBookmarkApplication: getBookmarkApplication
 };

@@ -1,5 +1,5 @@
 /*!
- * Copyright (c) 2017-2018, Okta, Inc. and/or its affiliates. All rights reserved.
+ * Copyright (c) 2017-2020, Okta, Inc. and/or its affiliates. All rights reserved.
  * The Okta software accompanied by this notice is provided pursuant to the Apache License, Version 2.0 (the "License.")
  *
  * You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0.
@@ -23,12 +23,14 @@ class Collection {
    * @param {ApiClient} client A reference to the top-level api client
    * @param {String} uri E.g. /api/v1/resources
    * @param {Object} Ctor Class of each item in the collection
+   * @param {Request} [request] Fetch API request object
    */
-  constructor(client, uri, factory) {
+  constructor(client, uri, factory, request) {
     this.nextUri = uri;
     this.client = client;
     this.factory = factory;
     this.currentItems = [];
+    this.request = request;
   }
 
   next() {
@@ -57,8 +59,14 @@ class Collection {
     });
   }
 
+  [Symbol.asyncIterator]() {
+    return {
+      next: () => this.next()
+    };
+  }
+
   getNextPage() {
-    return this.client.http.http(this.nextUri, null, {isCollection: true})
+    return this.client.http.http(this.nextUri, this.request, {isCollection: true})
     .then(res => {
       const link = res.headers.get('link');
       if (link) {

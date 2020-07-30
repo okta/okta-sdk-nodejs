@@ -1,3 +1,5 @@
+const faker = require('faker');
+
 const expect = require('chai').expect;
 const utils = require('../utils');
 const okta = require('../../');
@@ -8,20 +10,17 @@ if (process.env.OKTA_USE_MOCK) {
 }
 
 const client = new okta.Client({
+  scopes: ['okta.users.manage', 'okta.roles.manage'],
   orgUrl: orgUrl,
-  token: process.env.OKTA_CLIENT_TOKEN
+  token: process.env.OKTA_CLIENT_TOKEN,
+  requestExecutor: new okta.DefaultRequestExecutor()
 });
 
 describe('User Role API Tests', () => {
   it('should add/remove Group Target to User Admin Role', async () => {
     // 1. Create a user and a group
     const newUser = {
-      profile: {
-        firstName: 'John',
-        lastName: 'Group-Target',
-        email: 'john-group-target@example.com',
-        login: 'john-group-target@example.com'
-      },
+      profile: utils.getMockProfile('user-group-target-role'),
       credentials: {
         password: {value: 'Abcd1234'}
       }
@@ -29,23 +28,22 @@ describe('User Role API Tests', () => {
 
     const newGroup = {
       profile: {
-        name: 'Group-Target Test Group'
+        name: `node-sdk: Group Target Test Group ${faker.random.word()}`.substring(0, 49)
       }
     };
 
     // Cleanup the user & group if they exist
     await utils.cleanup(client, newUser, newGroup);
-
     let queryParameters = { activate : 'true' };
     const createdUser = await client.createUser(newUser, queryParameters);
     const createdGroup = await client.createGroup(newGroup);
 
     // 2. Assign USER_ADMIN role to the user
     const roleType = { type: 'USER_ADMIN'  };
-    const role = await createdUser.addRole(roleType);
+    const role = await createdUser.assignRole(roleType);
 
     // 3. Add Group Target to User Admin Role
-    await createdUser.addGroupTargetToRole(role.id, createdGroup.id);
+    await createdUser.addGroupTarget(role.id, createdGroup.id);
 
     // 4. List Group Targets for Role
     let groupTargetPresent = await utils.isGroupTargetPresent(createdUser, createdGroup, role);
@@ -56,16 +54,16 @@ describe('User Role API Tests', () => {
     // To get around this, create a new group and add this group target to user admin role
     const group = {
       profile: {
-        name: 'Group-Target User Admin Test Group'
+        name: `node-sdk: Group-Target User Admin Test Group ${faker.random.word()}`.substring(0, 49)
       }
     };
 
     await utils.cleanup(client, null, group);
 
     const adminGroup = await client.createGroup(group);
-    await createdUser.addGroupTargetToRole(role.id, adminGroup.id);
+    await createdUser.addGroupTarget(role.id, adminGroup.id);
 
-    await createdUser.removeGroupTargetFromRole(role.id, createdGroup.id);
+    await createdUser.removeGroupTarget(role.id, createdGroup.id);
     groupTargetPresent = await utils.isGroupTargetPresent(createdUser, createdGroup, role);
     expect(groupTargetPresent).to.equal(false);
 
