@@ -26,7 +26,7 @@ We also include an opt-in [default request executor](#default-request-executor) 
 const okta = require('@okta/okta-sdk-nodejs');
 
 const client = new okta.Client({
-  orgUrl: 'https://{yourOktaDomain}/',
+  orgUrl: 'https://dev-1234.oktapreview.com/',
   token: 'xYzabc'    // Obtained from Developer Dashboard
 });
 ```
@@ -38,7 +38,7 @@ All interactions with the [Okta Platform API] is done through client methods.  S
 
 ### OAuth 2.0 Authentication
 
-Okta allows you to interact with Okta APIs using scoped OAuth 2.0 access tokens. Each access token enables the bearer to perform specific actions on specific Okta endpoints, with that ability controlled by which scopes the access token contains. 
+Okta allows you to interact with Okta APIs using scoped OAuth 2.0 access tokens. Each access token enables the bearer to perform specific actions on specific Okta endpoints, with that ability controlled by which scopes the access token contains.
 
 This SDK supports this feature only for service-to-service applications. Please read [this guide](https://developer.okta.com/docs/guides/implement-oauth-for-okta/overview/) to learn more about how to register a new service application using a private and public key pair.
 
@@ -46,7 +46,7 @@ When using this approach you won't need an API Token because the SDK will reques
 
 ```js
 const client = new okta.Client({
-  orgUrl: 'https://{yourOktaDomain}/',
+  orgUrl: 'https://dev-1234.oktapreview.com/',
   client: {
       authorizationMode: 'PrivateKey',
       clientId: '{oauth application ID}',
@@ -112,10 +112,10 @@ const newUser = {
     firstName: 'Foo',
     lastName: 'Bar',
     email: 'foo@example.com',
-    login: 'foo@example.com',
+    login: 'foo@example.com'
   },
   credentials: {
-    password : {
+    password: {
       value: 'PasswordAbc123'
     }
   }
@@ -155,7 +155,7 @@ user.update()
 
 #### Delete a User
 
-Before deleting an Okta user, they must first be deactivated.  Both operations are done with the [Users: Lifecycle Operations] API.  We can chain the `deactivate()` and `delete` operations on the user instance to achieve both calls:
+Before deleting an Okta user, they must first be deactivated.  Both operations are done with the [Users: Lifecycle Operations] API.  We can chain the `deactivate()` and `delete()` operations on the user instance to achieve both calls:
 
 ```javascript
 user.deactivate()
@@ -189,7 +189,7 @@ For more information about this API see [Users: Get User].
 
 #### Search for Users
 
-The [Users: List Users] API provides three ways to search for users, "q", "filter", or "search", and all of these approaches can be achieved by passing them as query parameters to the `client.listUser()` method.  The library will URL encode the values for you.
+The [Users: List Users] API provides three ways to search for users, `q`, `filter`, or `search`, and all of these approaches can be achieved by passing them as query parameters to the `client.listUser()` method.  The library will URL-encode the values for you.
 
 ```javascript
 client.listUsers({
@@ -254,8 +254,8 @@ const application = {
   signOnMode: 'BASIC_AUTH',
   settings: {
     app: {
-      url: 'https://example.com/auth.htm'
-      authURL: 'https://example.com/login.html',
+      url: 'https://example.com/auth.htm',
+      authURL: 'https://example.com/login.html'
     }
   }
 };
@@ -360,7 +360,7 @@ To query logs, first get a collection and specify your query filter:
 const collection = client.getLogs({ since: '2018-01-25T00:00:00Z' });
 ```
 
-Please refer to the [System Log API Documentation][System Log API] for a full query reference.
+Please refer to the [System Log API] Documentation for a full query reference.
 
 If you wish to paginate the entire result set until there are no more records, simply use `each()` to paginate the collection.  The promise will resolve once the first empty page is reached.
 
@@ -425,7 +425,7 @@ Allows you to visit every item in the collection, while optionally doing work at
 
 #### Serial or Parallel Synchronous Work
 
-If no value is returned, each() will continue to the next item:
+If no value is returned, `each()` will continue to the next item:
 
 ```javascript
 client.listUsers().each(user => {
@@ -451,7 +451,7 @@ client.listUsers().each(user => {
 
 #### Ending Iteration
 
-Returning false will end iteration:
+Returning `false` will end iteration:
 
 ```javascript
 client.listUsers().each(user => {
@@ -463,10 +463,10 @@ client.listUsers().each(user => {
 });
 ```
 
-Returning false in a promise will also end iteration:
+Returning `false` in a promise will also end iteration:
 
 ```javascript
-client.listUsers().each((user) => {
+client.listUsers().each(user => {
   console.log(user);
   return Promise.resolve(false);
 })
@@ -478,24 +478,23 @@ client.listUsers().each((user) => {
 Rejecting a promise will end iteration with an error:
 
 ```javascript
-return client.listUsers().each((user) => {
+return client.listUsers().each(user => {
   console.log(user);
   return Promise.reject('foo error');
-}).catch((err)=>{
+}).catch(err => {
   console.log(err); // 'foo error'
 });
 ```
 
 ### `subscribe(config)`
 
-A subscription allows you to continue paginating a collection until new items are available, if the REST API supports it for the collection.  The only supported collection is the [System Log API][] at this time.
+A subscription allows you to continue paginating a collection until new items are available, if the REST API supports it for the collection.  The only supported collection is the [System Log API] at this time.
 
 A subscription fetches pages until the first empty page is reached. From that point, it fetches a new page at an interval in milliseconds defined by config (`{ interval: 5000 }`).  This interval defaults to 5000 milliseconds.  A subscription object is returned.  To terminate polling, call `unsubscribe()` on the subscription object.
 
 Depending on the polling interval you choose, you may run into rate limiting exceptions.  In that case you should enable our rate limiting retry strategy, see [Rate Limiting](#rate-limiting).
 
 #### Simple subscription example
-
 ```javascript
 const subscription = collection.subscribe({
   interval: 5000,
@@ -555,7 +554,7 @@ const okta = require('@okta/okta-sdk-nodejs');
 const MemoryStore = require('@okta/okta-sdk-nodejs/src/memory-store');
 
 const client = new okta.Client({
-  orgUrl: 'https://dev-1234.oktapreview.com/'
+  orgUrl: 'https://dev-1234.oktapreview.com/',
   token: 'xYzabc', // Obtained from Developer Dashboard
   cacheStore: new MemoryStore({
     keyLimit: 100000,
@@ -590,7 +589,7 @@ The default caching middleware caches any resource that has a `self` link, and i
 const okta = require('@okta/okta-sdk-nodejs');
 
 const client = new okta.Client({
-  orgUrl: 'https://dev-1234.oktapreview.com/'
+  orgUrl: 'https://dev-1234.oktapreview.com/',
   token: 'xYzabc', // Obtained from Developer Dashboard
   cacheMiddleware: null
 });
@@ -608,7 +607,7 @@ async function customMiddleware(ctx, next) {
 }
 
 const client = new okta.Client({
-  orgUrl: 'https://dev-1234.oktapreview.com/'
+  orgUrl: 'https://dev-1234.oktapreview.com/',
   token: 'xYzabc', // Obtained from Developer Dashboard
   cacheMiddleware: customMiddleware
 });
@@ -622,15 +621,16 @@ The context contains:
 * `res` - An object containing details about the response. This is the [same interface as a response you'd receive from `fetch`](https://developer.mozilla.org/en-US/docs/Web/API/Response).
 * `isCollection` - Whether the response is expected to be a collection.
 * `resources` - An array of resource URIs affected by the request.
-* `cacheStore` - A reference to the cache store
+* `cacheStore` - A reference to the cache store.
 
 If `res` is attached to the context before `next` is called, then a request will not be made. In order to attach a `res`, do the following:
 
 ```javascript
+const OK = 200;
 async function customMiddleware(ctx, next) {
   const text = 'someText';
   ctx.res = {
-    status: 200,
+    status: OK,
     text() { return Promise.resolve(text); }
   };
   await next(); // will skip external request
@@ -692,7 +692,7 @@ const customDefaultRequestExecutor = new okta.DefaultRequestExecutor({
 })
 
 const client = new okta.Client({
-  orgUrl: 'https://{yourOktaDomain}/',
+  orgUrl: 'https://dev-1234.oktapreview.com/',
   token: 'xYzabc',    // Obtained from Developer Dashboard
   requestExecutor: customDefaultRequestExecutor
 });
@@ -722,7 +722,7 @@ The base request executor does nothing more than delegate the request to the [is
 
 ```javascript
 const client = new okta.Client({
-  orgUrl: 'https://{yourOktaDomain}/',
+  orgUrl: 'https://dev-1234.oktapreview.com/',
   token: 'xYzabc',    // Obtained from Developer Dashboard
   requestExecutor: new okta.RequestExecutor()
 });
@@ -812,10 +812,10 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) if you would like to propose changes to t
 [Rate Limiting at Okta]: https://developer.okta.com/docs/api/getting_started/rate-limits
 [RequestExecutor]: src/request-executor.js
 [System Log API]: https://developer.okta.com/docs/api/resources/system_log
-[Users API Reference]: https://developer.okta.com/docs/api/resources/users.html
-[Users: Create User]: https://developer.okta.com/docs/api/resources/users.html#create-user
-[Users: Get User]: https://developer.okta.com/docs/api/resources/users.html#get-user
-[Users: Lifecycle Operations]: https://developer.okta.com/docs/api/resources/users.html#lifecycle-operations
-[Users: List Users]: https://developer.okta.com/docs/api/resources/users.html#list-users
-[Users: Update User]: https://developer.okta.com/docs/api/resources/users.html#update-user
+[Users API Reference]: https://developer.okta.com/docs/api/resources/users
+[Users: Create User]: https://developer.okta.com/docs/api/resources/users#create-user
+[Users: Get User]: https://developer.okta.com/docs/api/resources/users#get-user
+[Users: Lifecycle Operations]: https://developer.okta.com/docs/api/resources/users#lifecycle-operations
+[Users: List Users]: https://developer.okta.com/docs/api/resources/users#list-users
+[Users: Update User]: https://developer.okta.com/docs/api/resources/users#update-user
 [Okta NodeJS Management SDK JSDoc Site]: https://developer.okta.com/okta-sdk-nodejs/jsdocs/
