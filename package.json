@@ -20,7 +20,7 @@
     "docs": "./node_modules/.bin/jsdoc src/ -c ./docs/config.json -d ./jsdocs/ -P ./package.json -R ./jsdocs/jsdoc-temp.md -r",
     "test:integration": "nyc --reporter=text --reporter=html mocha test/it/*.js --no-timeouts",
     "test:unit": "nyc --reporter=text --reporter=html mocha test/unit/*.js --no-timeouts",
-    "test": "npm run eslint && npm run test:unit && npm run test:integration && npm run jest"
+    "test": "npm run test:unit && npm run test:integration && npm run jest"
   },
   "keywords": [],
   "license": "Apache-2.0",
