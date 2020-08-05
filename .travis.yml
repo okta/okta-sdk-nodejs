@@ -1,21 +1,27 @@
+sudo: false
+
 language: node_js
 node_js:
-- '10'
-- '12'
-sudo: false
+  - 10
+  - 12
+
 script:
-  - if [[ $DEPLOY_DOCS ]]; then bash ./scripts/docs.sh; fi
-  - sh ./scripts/run-test.sh
-deploy:
-  provider: pages
-  skip_cleanup: true
-  github_token: $GITHUB_TOKEN
-  on:
-    condition: $DEPLOY_DOCS = true
-    tags: true
-env:
-  matrix:
-    secure: r8OGdpfg+XYSakj6YvFyOm5ll7Dm1h1SW17fhUvmSAFin1nvlTWGiORgt0Jhe6OqKHN97WHRZz6ZWjVPbcHlKQD1Py5u4o7IENXf5BOAX7jKESFXv5Ecbg65b4oQJbUuHDtQzA1hbQwSzU012eByqJhEwQ0hnoJYGP9PUhCg+NaGHpjLiMCf8KpjrugUntFc2zox0CD5MFC60VvtflIe3ix3T5Vupt1evyQ11Nt25++Sd/D212WxVxGWOaSbEr8IQ1QEkwOKXV1k6Vq5dHbaJ+OujVPGSm2HiiJGc/KW7wxjTr/LfEg8WngQpocrws3+gYAWmL28IO+oggitBOFi9Fzy/1xEQHnD3mtbx3P7iFWqMqx6QOadRZyGOrlpkACURpnL0gY76tdhcgs8HtvQO2G/Ht7hhmDkaXXxuImFjiSIe6ruYRzpK691CE3Kw4BmYTq+RDZayYq82l/5uamZbwSzxfQ3J+ZQazSCl9nqFVqV7b8NNM9Xlo3CFy8r5KLZechSIwXQzi/c6YpsoJ5unbLX1T36pGeIXULmcPBNgHstt9IjdJGVjvpolG56bW8G3B12gVoTdCigtUgDvjAYRRF052EsBpU/YCAIA2UZockbfdRPprMqVUGgeOC0vH/OfIWFcVwqudofrzYXRJA3ykXBoYaVwwWEC1i02cn0EUY=
+  - echo "Running tests against $(node -v) ..."
+
+jobs:
+  include:
+  stage: deploy
+    provider: pages
+    skip_cleanup: true
+    github_token: $GITHUB_TOKEN
+    script: ./scripts/docs.sh
+    on:
+      condition: $DEPLOY_DOCS = true
+      tags: true
+
+# env:
+#   matrix:
+#     secure: r8OGdpfg+XYSakj6YvFyOm5ll7Dm1h1SW17fhUvmSAFin1nvlTWGiORgt0Jhe6OqKHN97WHRZz6ZWjVPbcHlKQD1Py5u4o7IENXf5BOAX7jKESFXv5Ecbg65b4oQJbUuHDtQzA1hbQwSzU012eByqJhEwQ0hnoJYGP9PUhCg+NaGHpjLiMCf8KpjrugUntFc2zox0CD5MFC60VvtflIe3ix3T5Vupt1evyQ11Nt25++Sd/D212WxVxGWOaSbEr8IQ1QEkwOKXV1k6Vq5dHbaJ+OujVPGSm2HiiJGc/KW7wxjTr/LfEg8WngQpocrws3+gYAWmL28IO+oggitBOFi9Fzy/1xEQHnD3mtbx3P7iFWqMqx6QOadRZyGOrlpkACURpnL0gY76tdhcgs8HtvQO2G/Ht7hhmDkaXXxuImFjiSIe6ruYRzpK691CE3Kw4BmYTq+RDZayYq82l/5uamZbwSzxfQ3J+ZQazSCl9nqFVqV7b8NNM9Xlo3CFy8r5KLZechSIwXQzi/c6YpsoJ5unbLX1T36pGeIXULmcPBNgHstt9IjdJGVjvpolG56bW8G3B12gVoTdCigtUgDvjAYRRF052EsBpU/YCAIA2UZockbfdRPprMqVUGgeOC0vH/OfIWFcVwqudofrzYXRJA3ykXBoYaVwwWEC1i02cn0EUY=
 
 notifications:
   slack:
