@@ -1,4 +1,5 @@
 const expect = require('chai').expect;
+const faker = require('faker');
 
 const collection = require('../../src/collection');
 const okta = require('../../');
@@ -20,7 +21,7 @@ const client = new okta.Client({
 describe('client.listApplications()', () => {
   const app1 = {
     name: 'bookmark',
-    label: 'Bookmark App',
+    label: `node-sdk: Bookmark App ${faker.random.word()}`.substring(0, 49),
     signOnMode: 'BOOKMARK',
     settings: {
       app: {
@@ -31,7 +32,7 @@ describe('client.listApplications()', () => {
   };
   const app2 = {
     name: 'template_basic_auth',
-    label: 'Sample Basic Auth App',
+    label: `node-sdk: Sample Basic Auth App ${faker.random.word()}`.substring(0, 49),
     signOnMode: 'BASIC_AUTH',
     settings: {
       app: {
