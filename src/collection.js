@@ -41,7 +41,7 @@ class Collection {
         const item = self.currentItems.shift();
         const result = {
           value: item ? self.factory.createInstance(item, self.client) : null,
-          done: !self.currentItems.length && !self.nextUri
+          done: !self.currentItems.length && !self.nextUri && !item
         };
         resolve(result);
       }
@@ -66,6 +66,7 @@ class Collection {
   }
 
   getNextPage() {
+    if (!this.nextUri) return Promise.resolve([]);
     return this.client.http.http(this.nextUri, this.request, {isCollection: true})
     .then(res => {
       const link = res.headers.get('link');
