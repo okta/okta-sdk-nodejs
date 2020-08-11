@@ -72,7 +72,10 @@ class Collection {
   }
 
   getNextPage() {
-    if (!this.nextUri) return Promise.resolve([]);
+    if (!this.nextUri) {
+      return Promise.resolve([]);
+    }
+
     return this.client.http.http(this.nextUri, this.request, {isCollection: true})
       .then(res => {
         const link = res.headers.get('link');
