@@ -1,5 +1,13 @@
 # Okta Node SDK Changelog
 
+## 4.1.1
+
+- [#191](https://github.com/okta/okta-sdk-nodejs/pull/191) Fixes for...of iteration bug in collection module
+
+## ~~4.1.0~~
+
+- Where's 4.1.0?? Due to a nuance of our CD system, this one was skipped :)
+
 ## 4.0.0
 
 - [#167](https://github.com/okta/okta-sdk-nodejs/pull/167) Drop support for Node 8
