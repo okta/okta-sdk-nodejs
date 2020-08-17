@@ -1,6 +1,7 @@
 const expect = require('chai').expect;
 const okta = require('../../src');
 const models = require('../../src/models');
+const faker = require('faker');
 const Collection = require('../../src/collection');
 const getMockInlineHook = require('./mocks/inlinehook');
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
@@ -83,7 +84,7 @@ describe('Inline Hook Crud API', () => {
     });
 
     it('should update name for created inlineHook', async () => {
-      inlineHook.name = 'Mock OIDC/OAuth token inline hook updated';
+      inlineHook.name = `node-sdk: Mock inline hook updated ${faker.random.word()}`.substring(0, 49);
       inlineHook.channel.config.headers[0].value = 'my-header-value-updated';
       inlineHook.channel.config.authScheme.value = 'my-shared-secret-updated';
       const updatedInlineHook = await inlineHook.update();
