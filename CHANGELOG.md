@@ -2,12 +2,36 @@
 
 ## 4.2.0
 
+- [#190](https://github.com/okta/okta-sdk-nodejs/pull/190) [#194](https://github.com/okta/okta-sdk-nodejs/pull/194) Updates tests
+
+- [#196](https://github.com/okta/okta-sdk-nodejs/pull/196) Updates dependency "flat"
+
+- [#203](https://github.com/okta/okta-sdk-nodejs/pull/203) Upgrade isomorphic-fetch for security vuln
+
 - [#205](https://github.com/okta/okta-sdk-nodejs/pull/205)
   - Supports required params validation
   - Adds models:
     - AcsEndpoint
     - CustomHotpUserFactor
     - CustomHotpUserFactorProfile
+
+## 4.1.2
+
+- [#203](https://github.com/okta/okta-sdk-nodejs/pull/203) Upgrade isomorphic-fetch for security vuln
+
+- [#206](https://github.com/okta/okta-sdk-nodejs/pull/206) Updates dependency "flat"
+
+## 4.1.1
+
+- [#191](https://github.com/okta/okta-sdk-nodejs/pull/191) Fixes for...of iteration bug in collection module
+
+- [#180](https://github.com/okta/okta-sdk-nodejs/pull/180) Fix generated url encoding issue for expirePasswordAndGetTemporaryPassword
+
+## 4.1.0
+
+- [#174](https://github.com/okta/okta-sdk-nodejs/pull/174) [#175](https://github.com/okta/okta-sdk-nodejs/pull/175) [#176](https://github.com/okta/okta-sdk-nodejs/pull/176) [#178](https://github.com/okta/okta-sdk-nodejs/pull/178) Updates and adds tests
+
+- [#182](https://github.com/okta/okta-sdk-nodejs/pull/182)  Updates README for consistency and formatting
 
 ## 4.0.0
 
