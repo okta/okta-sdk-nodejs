@@ -1,7 +1,7 @@
 const faker = require('faker');
 
 module.exports = () => ({
-  name: faker.random.word(),
+  name: faker.random.word().substring(0, 49),
   events: {
     type: 'EVENT_TYPE',
     items: [

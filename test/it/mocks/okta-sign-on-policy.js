@@ -2,7 +2,7 @@ const faker = require('faker');
 
 module.exports = () => ({
   type: 'OKTA_SIGN_ON',
-  name: faker.random.word(),
+  name: faker.random.word().substring(0, 49),
   description: faker.random.word(),
   conditions: {
     people: {
