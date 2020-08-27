@@ -8,12 +8,18 @@ if (process.env.OKTA_USE_MOCK) {
 }
 
 const client = new okta.Client({
+  scopes: ['okta.users.manage'],
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
   requestExecutor: new okta.DefaultRequestExecutor()
 });
 
 describe('Sessions API', () => {
+  if (process.env.OKTA_CLIENT_AUTHORIZATIONMODE === "PrivateKey") {
+    console.log("Test has been skipped. The endpoint does not support PrivateKey.")
+    return;
+  }
+
   let createdUser;
   before(async () => {
     // 1. Create a user

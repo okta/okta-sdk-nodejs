@@ -2,7 +2,7 @@ const faker = require('faker');
 
 module.exports = () => ({
   name: 'oidc_client',
-  label: faker.random.word(),
+  label: faker.random.word().substring(0, 49),
   signOnMode: 'OPENID_CONNECT',
   settings: {
     oauthClient: {

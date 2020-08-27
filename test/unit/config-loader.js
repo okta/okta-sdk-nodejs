@@ -7,6 +7,13 @@ const yaml = require('js-yaml');
 const ConfigLoader = require('../../src/config-loader');
 
 describe('ConfigLoader', () => {
+  before(() => {
+    delete process.env.OKTA_CLIENT_AUTHORIZATIONMODE;
+    delete process.env.OKTA_CLIENT_CLIENTID;
+    delete process.env.OKTA_CLIENT_PRIVATEKEY;
+    delete process.env.OKTA_CLIENT_TOKEN;
+  });
+
   it('should have an empty structure by default', () => {
     const loader = new ConfigLoader();
     assert.deepEqual(loader.config, {
