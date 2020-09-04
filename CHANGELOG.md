@@ -3,10 +3,7 @@
 ## 4.1.1
 
 - [#191](https://github.com/okta/okta-sdk-nodejs/pull/191) Fixes for...of iteration bug in collection module
-
-## ~~4.1.0~~
-
-- Where's 4.1.0?? Due to a nuance of our CD system, this one was skipped :)
+- [#180](https://github.com/okta/okta-sdk-nodejs/pull/180) Fix generated url encoding issue for expirePasswordAndGetTemporaryPassword
 
 ## 4.0.0
 
