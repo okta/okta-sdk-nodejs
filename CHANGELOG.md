@@ -1,7 +1,8 @@
 # Okta Node SDK Changelog
 
-## 4.0.1
+## 4.1.1
 
+- [#191](https://github.com/okta/okta-sdk-nodejs/pull/191) Fixes for...of iteration bug in collection module
 - [#180](https://github.com/okta/okta-sdk-nodejs/pull/180) Fix generated url encoding issue for expirePasswordAndGetTemporaryPassword
 
 ## 4.0.0
