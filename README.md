@@ -47,12 +47,10 @@ When using this approach you won't need an API Token because the SDK will reques
 ```js
 const client = new okta.Client({
   orgUrl: 'https://dev-1234.oktapreview.com/',
-  client: {
-      authorizationMode: 'PrivateKey',
-      clientId: '{oauth application ID}',
-      scopes: ['okta.users.manage'],
-      privateKey: '{JWK}' // <-- see notes below
-  }
+  authorizationMode: 'PrivateKey',
+  clientId: '{oauth application ID}',
+  scopes: ['okta.users.manage'],
+  privateKey: '{JWK}' // <-- see notes below
 });
 ```
 
