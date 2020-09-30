@@ -30,7 +30,7 @@
   "dependencies": {
     "deep-copy": "^1.4.2",
     "flat": "^5.0.2",
-    "isomorphic-fetch": "2.2.1",
+    "isomorphic-fetch": "^3.0.0",
     "js-yaml": "^3.13.0",
     "lodash": "^4.17.14",
     "njwt": "^1.0.0",
