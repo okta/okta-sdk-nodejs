@@ -4566,7 +4566,11 @@ class GeneratedApiClient {
    * Fetches a user from your Okta organization.
    * @returns {Promise<User>}
    */
-  getUser(userId) {
+  getUser(userId) {    
+    if(userId === ''){
+      return Promise.reject(new Error("getUser parameter userId cannot be an empty string"));
+    }
+
     let url = `${this.baseUrl}/api/v1/users/${userId}`;
 
     const resources = [
