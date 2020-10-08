@@ -12,7 +12,7 @@ const getBodyModelNameInCamelCase = operation => {
   return _.camelCase(bodyModelName);
 };
 
-const operationArgumentBuilder = (operation) => {
+const getOperationArgument = operation => {
   const { bodyModel, method, pathParams, queryParams } = operation;
 
   const args = pathParams.reduce((acc, curr) => {
@@ -31,11 +31,19 @@ const operationArgumentBuilder = (operation) => {
     args.push('queryParameters');
   }
 
+  return args;
+}
+
+const operationArgumentBuilder = (operation) => {
+  const args = getOperationArgument(operation);
   return args.join(', ');
 }
 
 const getRequiredOperationParams = operation => { 
-  return operation.parameters.filter(param => param.required);
+  const args = getOperationArgument(operation);
+  return operation.parameters.filter(({ name, required }) => {
+    return args.includes(name) && required;
+  });
 }
 
 const getHttpMethod = ({ consumes, produces, method, responseModel }) => {
