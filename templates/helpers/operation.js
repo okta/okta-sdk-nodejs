@@ -34,6 +34,10 @@ const operationArgumentBuilder = (operation) => {
   return args.join(', ');
 }
 
+const getRequiredOperationParams = operation => { 
+  return operation.parameters.filter(param => param.required);
+}
+
 const getHttpMethod = ({ consumes, produces, method, responseModel }) => {
   let res;
   switch (method) {
@@ -119,6 +123,7 @@ const jsdocBuilder = (operation) => {
 module.exports = {
   getBodyModelNameInCamelCase,
   operationArgumentBuilder,
+  getRequiredOperationParams,
   hasRequest,
   hasHeaders,
   getHttpMethod,
