@@ -1,6 +1,12 @@
 #!/bin/bash
 
-source ${OKTA_HOME}/${REPO}/scripts/setup.sh
+# Add yarn to the $PATH so npm cli commands do not fail
+export PATH="${PATH}:$(yarn global bin)"
+
+if ! yarn install --frozen-lockfile; then
+  echo "yarn install failed! Exiting..."
+  exit ${FAILED_SETUP}
+fi
 
 yarn test:unit
 yarn test:integration
