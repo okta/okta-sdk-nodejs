@@ -2,7 +2,12 @@
 
 ## Pending
 
-- [#205](https://github.com/okta/okta-sdk-nodejs/pull/205) Supports required params validation
+- [#205](https://github.com/okta/okta-sdk-nodejs/pull/205)
+  - Supports required params validation
+  - Adds models:
+    - AcsEndpoint
+    - CustomHotpUserFactor
+    - CustomHotpUserFactorProfile
 
 ## 4.0.0
 
