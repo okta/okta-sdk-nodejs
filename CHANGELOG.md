@@ -1,5 +1,9 @@
 # Okta Node SDK Changelog
 
+## 3.3.2
+
+- [#204](https://github.com/okta/okta-sdk-nodejs/pull/204) Updates dependency "flat"
+
 ## 3.3.1
 
 - [#138](https://github.com/okta/okta-sdk-nodejs/pull/138) Add strategy to handle access token refresh
