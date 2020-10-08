@@ -9,7 +9,7 @@ npm config set cache-min 10
 # Add yarn to the $PATH so npm cli commands do not fail
 export PATH="${PATH}:$(yarn global bin)"
 
-if ! npm install; then
-  echo "npm install failed! Exiting..."
+if ! yarn install --frozen-lockfile; then
+  echo "yarn install failed! Exiting..."
   exit ${FAILED_SETUP}
 fi

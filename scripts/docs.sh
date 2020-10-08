@@ -20,7 +20,7 @@ function formatDocs {
 
 function buildDocs {
     echo "==== Building Docs ===="
-    npm run docs
+    yarn docs
 }
 
 function createGhPages {
