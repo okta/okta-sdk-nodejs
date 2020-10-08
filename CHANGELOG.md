@@ -1,5 +1,9 @@
 # Okta Node SDK Changelog
 
+## Pending
+
+- [#205](https://github.com/okta/okta-sdk-nodejs/pull/205) Supports required params validation
+
 ## 4.0.0
 
 - [#167](https://github.com/okta/okta-sdk-nodejs/pull/167) Drop support for Node 8
