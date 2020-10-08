@@ -15,6 +15,7 @@
  *  THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION
  */
 
+exports.AcsEndpoint = require('./AcsEndpoint');
 exports.ActivateFactorRequest = require('./ActivateFactorRequest');
 exports.AppAndInstanceConditionEvaluatorAppOrInstance = require('./AppAndInstanceConditionEvaluatorAppOrInstance');
 exports.AppAndInstancePolicyRuleCondition = require('./AppAndInstancePolicyRuleCondition');
@@ -73,6 +74,8 @@ exports.Csr = require('./Csr');
 exports.CsrMetadata = require('./CsrMetadata');
 exports.CsrMetadataSubject = require('./CsrMetadataSubject');
 exports.CsrMetadataSubjectAltNames = require('./CsrMetadataSubjectAltNames');
+exports.CustomHotpUserFactor = require('./CustomHotpUserFactor');
+exports.CustomHotpUserFactorProfile = require('./CustomHotpUserFactorProfile');
 exports.DevicePolicyRuleCondition = require('./DevicePolicyRuleCondition');
 exports.DevicePolicyRuleConditionPlatform = require('./DevicePolicyRuleConditionPlatform');
 exports.Duration = require('./Duration');

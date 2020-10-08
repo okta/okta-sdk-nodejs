@@ -17,15 +17,11 @@ var Resource = require('../resource');
 
 
 /**
- * @class PasswordCredentialHash
+ * @class CustomHotpUserFactorProfile
  * @extends Resource
- * @property { PasswordCredentialHashAlgorithm } algorithm
- * @property { string } salt
- * @property { string } saltOrder
- * @property { string } value
- * @property { integer } workFactor
+ * @property { string } sharedSecret
  */
-class PasswordCredentialHash extends Resource {
+class CustomHotpUserFactorProfile extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
 
@@ -33,4 +29,4 @@ class PasswordCredentialHash extends Resource {
 
 }
 
-module.exports = PasswordCredentialHash;
+module.exports = CustomHotpUserFactorProfile;

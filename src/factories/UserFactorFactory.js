@@ -23,6 +23,7 @@ class UserFactorFactory extends ModelResolutionFactory {
     return {
       'call': models.CallUserFactor,
       'email': models.EmailUserFactor,
+      'hotp': models.CustomHotpUserFactor,
       'push': models.PushUserFactor,
       'question': models.SecurityQuestionUserFactor,
       'sms': models.SmsUserFactor,

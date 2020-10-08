@@ -813,9 +813,6 @@ class GeneratedApiClient {
     if (!groupId) {
       return Promise.reject(new Error('OKTA API createApplicationGroupAssignment parameter groupId is required.'));
     }
-    if (!applicationGroupAssignment) {
-      return Promise.reject(new Error('OKTA API createApplicationGroupAssignment parameter applicationGroupAssignment is required.'));
-    }
     let url = `${this.baseUrl}/api/v1/apps/${appId}/groups/${groupId}`;
 
     const resources = [
