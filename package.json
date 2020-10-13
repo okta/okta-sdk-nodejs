@@ -38,7 +38,7 @@
     "rasha": "^1.2.5"
   },
   "devDependencies": {
-    "@okta/openapi": "^2.0.0",
+    "@okta/openapi": "^2.1.0",
     "chai": "^3.5.0",
     "eslint": "^3.19.0",
     "eslint-plugin-jest": "^21.17.0",

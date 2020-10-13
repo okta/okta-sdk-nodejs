@@ -19,6 +19,8 @@ var Resource = require('../resource');
 /**
  * @class SamlApplicationSettingsSignOn
  * @extends Resource
+ * @property { array } acsEndpoints
+ * @property { boolean } allowMultipleAcsEndpoints
  * @property { boolean } assertionSigned
  * @property { array } attributeStatements
  * @property { string } audience
