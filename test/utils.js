@@ -118,6 +118,10 @@ async function isGroupTargetPresent(user, userGroup, role) {
 }
 
 async function cleanupUser(client, user) {
+  if (!user.profile.login) {
+    return;
+  }
+
   try {
     const existingUser = await client.getUser(user.profile.login);
     await existingUser.deactivate();

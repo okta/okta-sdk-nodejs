@@ -13,24 +13,23 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-var Resource = require('../resource');
-
+var UserFactor = require('./UserFactor');
+const CustomHotpUserFactorProfile = require('./CustomHotpUserFactorProfile');
 
 /**
- * @class PasswordCredentialHash
- * @extends Resource
- * @property { PasswordCredentialHashAlgorithm } algorithm
- * @property { string } salt
- * @property { string } saltOrder
- * @property { string } value
- * @property { integer } workFactor
+ * @class CustomHotpUserFactor
+ * @extends UserFactor
+ * @property { string } factorProfileId
+ * @property { CustomHotpUserFactorProfile } profile
  */
-class PasswordCredentialHash extends Resource {
+class CustomHotpUserFactor extends UserFactor {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-
+    if (resourceJson && resourceJson.profile) {
+      this.profile = new CustomHotpUserFactorProfile(resourceJson.profile);
+    }
   }
 
 }
 
-module.exports = PasswordCredentialHash;
+module.exports = CustomHotpUserFactor;

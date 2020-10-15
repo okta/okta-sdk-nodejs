@@ -19,6 +19,11 @@ class GeneratedApiClient {
    {{{jsdocBuilder this}}}
    */
   {{operationId}}({{operationArgumentBuilder this}}) {
+    {{#each (getRequiredOperationParams this)}}
+    if (!{{name}}) {
+      return Promise.reject(new Error('OKTA API {{../operationId}} parameter {{name}} is required.'));
+    }
+    {{/each}}
     let url = `${this.baseUrl}{{replacePathParams path}}`;
     {{#if queryParams.length}}
     const queryString = qs.stringify(queryParameters || {});
