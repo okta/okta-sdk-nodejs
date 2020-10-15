@@ -1,5 +1,9 @@
 # Okta Node SDK Changelog
 
+## 4.1.2
+
+- [#203](https://github.com/okta/okta-sdk-nodejs/pull/203) Upgrade isomorphic-fetch for security vuln
+
 ## 4.1.1
 
 - [#191](https://github.com/okta/okta-sdk-nodejs/pull/191) Fixes for...of iteration bug in collection module
