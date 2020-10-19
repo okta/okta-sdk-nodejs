@@ -52,7 +52,7 @@ class Collection {
       }
 
       if (!self.nextUri) {
-        resolve({ done: true });
+        resolve({ done: true, value: null });
         return;
       }
 

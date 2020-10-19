@@ -297,6 +297,31 @@ describe('Collection', () => {
     it('should return { done: true } only _after_ all items in the collection have been returned', async () => {
       const mockClient = {
         http: {
+          http: () => {
+            return Promise.resolve({
+              headers: {
+                get: () => {}
+              },
+              json: () => {
+                return Promise.resolve([1, 2, 3]);
+              }
+            });
+          }
+        }
+      };
+      const mockFactory = {
+        createInstance: (item) => item
+      };
+      const collection = new Collection(mockClient, '/', mockFactory);
+      expect(await collection.next()).to.deep.equal({ value: 1, done: false });
+      expect(await collection.next()).to.deep.equal({ value: 2, done: false });
+      expect(await collection.next()).to.deep.equal({ value: 3, done: false });
+      expect(await collection.next()).to.deep.equal({ done: true, value: null });
+    });
+
+    it('should return { done: true } only _after_ all items in the collection have been returned when paginating', async () => {
+      const mockClient = {
+        http: {
           http: (uri) => {
             return Promise.resolve({
               headers: {
@@ -311,7 +336,7 @@ describe('Collection', () => {
                   return Promise.resolve([1]);
                 }
                 if (uri === '/next') {
-                  return Promise.resolve([2]);
+                  return Promise.resolve([2, 3]);
                 }
               }
             });
@@ -324,7 +349,8 @@ describe('Collection', () => {
       const collection = new Collection(mockClient, '/', mockFactory);
       expect(await collection.next()).to.deep.equal({ value: 1, done: false });
       expect(await collection.next()).to.deep.equal({ value: 2, done: false });
-      expect(await collection.next()).to.deep.equal({ done: true });
+      expect(await collection.next()).to.deep.equal({ value: 3, done: false });
+      expect(await collection.next()).to.deep.equal({ done: true, value: null });
     });
   });
 });
