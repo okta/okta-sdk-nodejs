@@ -292,4 +292,39 @@ describe('Collection', () => {
       expect(orderOfEvents).to.deep.equal(['errored', 'pushed']);
     });
   });
+
+  describe('.next()', () => {
+    it('should return { done: true } only _after_ all items in the collection have been returned', async () => {
+      const mockClient = {
+        http: {
+          http: (uri) => {
+            return Promise.resolve({
+              headers: {
+                get: () => {
+                  if (uri === '/') {
+                    return '</next>; rel="next"';
+                  }
+                },
+              },
+              json: () => {
+                if (uri === '/') {
+                  return Promise.resolve([1]);
+                }
+                if (uri === '/next') {
+                  return Promise.resolve([2]);
+                }
+              }
+            });
+          }
+        }
+      };
+      const mockFactory = {
+        createInstance: (item) => item
+      };
+      const collection = new Collection(mockClient, '/', mockFactory);
+      expect(await collection.next()).to.deep.equal({ value: 1, done: false });
+      expect(await collection.next()).to.deep.equal({ value: 2, done: false });
+      expect(await collection.next()).to.deep.equal({ done: true });
+    });
+  });
 });
