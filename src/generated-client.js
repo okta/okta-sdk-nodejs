@@ -2311,6 +2311,7 @@ class GeneratedApiClient {
    * @param {String} [queryParams.filter]
    * @param {String} [queryParams.after]
    * @param {String} [queryParams.limit]
+   * @param {String} [queryParams.expand]
    * @description
    * Enumerates groups in your organization with pagination. A subset of groups can be returned that match a supported filter expression or query.
    * @returns {Promise<Collection>} A collection that will yield {@link Group} instances.
