@@ -1,5 +1,14 @@
 # Okta Node SDK Changelog
 
+## 4.3.0
+
+- [#210](https://github.com/okta/okta-sdk-nodejs/pull/210)
+  - Adds properties `RefreshToken` and `Jwks` to `OpenIdConnectApplicationSettingsClient` model
+  - Adds models:
+    - OpenIdConnectApplicationSettingsClientKeys
+    - OpenIdConnectApplicationSettingsRefreshToken
+    - OpenIdConnectRefreshTokenRotationType
+
 ## 4.2.0
 
 - [#190](https://github.com/okta/okta-sdk-nodejs/pull/190) [#194](https://github.com/okta/okta-sdk-nodejs/pull/194) Updates tests
