@@ -23,12 +23,12 @@ class UserFactorFactory extends ModelResolutionFactory {
     return {
       'call': models.CallUserFactor,
       'email': models.EmailUserFactor,
-      'hotp': models.CustomHotpUserFactor,
       'push': models.PushUserFactor,
       'question': models.SecurityQuestionUserFactor,
       'sms': models.SmsUserFactor,
       'token': models.TokenUserFactor,
       'token:hardware': models.HardwareUserFactor,
+      'token:hotp': models.CustomHotpUserFactor,
       'token:software:totp': models.TotpUserFactor,
       'u2f': models.U2fUserFactor,
       'web': models.WebUserFactor,

@@ -17,16 +17,11 @@ var Resource = require('../resource');
 
 
 /**
- * @class SamlAttributeStatement
+ * @class OpenIdConnectApplicationSettingsClientKeys
  * @extends Resource
- * @property { string } filterType
- * @property { string } filterValue
- * @property { string } name
- * @property { string } namespace
- * @property { string } type
- * @property { array } values
+ * @property { array } keys
  */
-class SamlAttributeStatement extends Resource {
+class OpenIdConnectApplicationSettingsClientKeys extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
 
@@ -34,4 +29,4 @@ class SamlAttributeStatement extends Resource {
 
 }
 
-module.exports = SamlAttributeStatement;
+module.exports = OpenIdConnectApplicationSettingsClientKeys;
