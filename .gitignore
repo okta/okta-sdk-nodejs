@@ -13,4 +13,5 @@ jsdoc/
 .DS_Store
 .idea
 okta.yaml
+test-reports/
 

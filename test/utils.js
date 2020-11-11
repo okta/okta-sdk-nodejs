@@ -136,6 +136,7 @@ async function cleanupGroup(client, expectedGroup) {
   await client.listGroups(queryParameters).each(async (group) => {
     expect(group).to.be.an.instanceof(models.Group);
     // If search doesn't return any results, listGroups() returns empty collection
+    // eslint-disable-next-line no-prototype-builtins
     if (group.hasOwnProperty('profile')) {
       if (group.profile.name === expectedGroup.profile.name) {
         await group.delete();

@@ -1,7 +1,7 @@
 const faker = require('faker');
 
 module.exports = () => ({
-  name: faker.random.word().substring(0, 49),
+  name: faker.random.words().substring(0, 99),
   description: faker.random.word(),
   audiences: [
     'https://api.resource.com'

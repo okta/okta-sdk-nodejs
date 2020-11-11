@@ -6,7 +6,7 @@ node_js:
   - 14
 
 script:
-  - sh ./scripts/run-test.sh
+  - sh ./scripts/travis.sh
 
 deploy:
   provider: pages
