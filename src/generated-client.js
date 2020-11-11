@@ -6367,7 +6367,7 @@ class GeneratedApiClient {
     if (!userId) {
       return Promise.reject(new Error('OKTA API expirePassword parameter userId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/users/${userId}/lifecycle/expire_password?tempPassword&#x3D;false`;
+    let url = `${this.baseUrl}/api/v1/users/${userId}/lifecycle/expire_password?tempPassword=false`;
 
     const resources = [
       `${this.baseUrl}/api/v1/users/${userId}`
@@ -6392,7 +6392,7 @@ class GeneratedApiClient {
     if (!userId) {
       return Promise.reject(new Error('OKTA API expirePasswordAndGetTemporaryPassword parameter userId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/users/${userId}/lifecycle/expire_password?tempPassword&#x3D;true`;
+    let url = `${this.baseUrl}/api/v1/users/${userId}/lifecycle/expire_password?tempPassword=true`;
 
     const resources = [
       `${this.baseUrl}/api/v1/users/${userId}`
