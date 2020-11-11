@@ -19,6 +19,7 @@ describe('Authorization Server Lifecycle API', () => {
     authServer = await client.createAuthorizationServer(getMockAuthorizationServer());
   });
   afterEach(async () => {
+    await authServer.deactivate();
     await authServer.delete();
   });
 
