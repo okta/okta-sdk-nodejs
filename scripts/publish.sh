@@ -4,7 +4,10 @@ source ${OKTA_HOME}/${REPO}/scripts/setup.sh
 
 REGISTRY="${ARTIFACTORY_URL}/api/npm/npm-topic"
 
-npm install -g @okta/ci-append-sha
+yarn global add @okta/ci-append-sha
+
+# Add yarn to the $PATH so npm cli commands do not fail
+export PATH="${PATH}:$(yarn global bin)"
 
 export TEST_SUITE_TYPE="build"
 

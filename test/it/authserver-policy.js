@@ -22,6 +22,7 @@ describe('Authorization Server Policies API', () => {
     authServer = await client.createAuthorizationServer(getMockAuthorizationServer());
   });
   after(async () => {
+    await authServer.deactivate();
     await authServer.delete();
   });
 

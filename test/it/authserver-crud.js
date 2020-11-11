@@ -19,6 +19,7 @@ describe('Authorization Server Crud API', () => {
   describe('Create Auth Server', () => {
     let authServer;
     afterEach(async () => {
+      await authServer.deactivate();
       await authServer.delete();
     });
 
@@ -37,6 +38,7 @@ describe('Authorization Server Crud API', () => {
       authServer = await client.createAuthorizationServer(getMockAuthorizationServer());
     });
     afterEach(async () => {
+      await authServer.deactivate();
       await authServer.delete();
     });
 
@@ -57,6 +59,7 @@ describe('Authorization Server Crud API', () => {
     });
 
     afterEach(async () => {
+      await authServer.deactivate();
       await authServer.delete();
     });
 
@@ -73,6 +76,7 @@ describe('Authorization Server Crud API', () => {
       authServer = await client.createAuthorizationServer(getMockAuthorizationServer());
     });
     afterEach(async () => {
+      await authServer.deactivate();
       await authServer.delete();
     });
 
@@ -92,6 +96,7 @@ describe('Authorization Server Crud API', () => {
     });
 
     it('should not get authserver after deletion', async () => {
+      await authServer.deactivate();
       const res = await authServer.delete();
       expect(res.status).to.equal(204);
       try {
