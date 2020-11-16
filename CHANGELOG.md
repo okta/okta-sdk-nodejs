@@ -1,5 +1,9 @@
 # Okta Node SDK Changelog
 
+## 4.2.1
+
+- [#180](https://github.com/okta/okta-sdk-nodejs/pull/180) Fix generated url encoding issue for expirePasswordAndGetTemporaryPassword
+
 ## 4.2.0
 
 - [#190](https://github.com/okta/okta-sdk-nodejs/pull/190) [#194](https://github.com/okta/okta-sdk-nodejs/pull/194) Updates tests
