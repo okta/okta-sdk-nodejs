@@ -10,10 +10,8 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
-
 function OktaResponseHeaders(responseHeadersMap) {
-  return Object.entries(responseHeadersMap)
-  .reduce((acc, arr) => {
+  return Object.entries(responseHeadersMap).reduce((acc, arr) => {
     const key = arr[0];
     const value = arr[1][0];
     switch (key) {

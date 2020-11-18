@@ -39,7 +39,7 @@ describe('User lifecycle API', () => {
     it('should activate a user', async () => {
       const sendEmail = { sendEmail : 'false' };
       await createdUser.activate(sendEmail);
-      const queryParameters = { filter: 'status eq \"ACTIVE\"' };
+      const queryParameters = { filter: 'status eq "ACTIVE"' };
       const userPresent = await utils.isUserPresent(client, createdUser, queryParameters);
       expect(userPresent).to.equal(true);
     });
@@ -68,12 +68,12 @@ describe('User lifecycle API', () => {
     it('should suspend/unsuspend a user', async () => {
       await createdUser.suspend();
 
-      let queryParameters = { filter: 'status eq \"SUSPENDED\"' };
+      let queryParameters = { filter: 'status eq "SUSPENDED"' };
       let userPresent = await utils.isUserPresent(client, createdUser, queryParameters);
       expect(userPresent).to.equal(true);
 
       await createdUser.unsuspend();
-      queryParameters = { filter: 'status eq \"ACTIVE\"' };
+      queryParameters = { filter: 'status eq "ACTIVE"' };
       userPresent = await utils.isUserPresent(client, createdUser, queryParameters);
       expect(userPresent).to.equal(true);
     });

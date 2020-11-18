@@ -25,19 +25,28 @@ class Http {
     if (response.status >= 200 && response.status < 300) {
       return Promise.resolve(response);
     } else {
-      return response.text()
-        .then(body => {
-          let err;
+      return response.text().then((body) => {
+        let err;
 
-          // If the response is JSON, assume it's an Okta API error. Otherwise, assume it's some other HTTP error
+        // If the response is JSON, assume it's an Okta API error. Otherwise, assume it's some other HTTP error
 
-          try {
-            err = new OktaApiError(response.url, response.status, JSON.parse(body), response.headers);
-          } catch (e) {
-            err = new HttpError(response.url, response.status, body, response.headers);
-          }
-          throw err;
-        });
+        try {
+          err = new OktaApiError(
+            response.url,
+            response.status,
+            JSON.parse(body),
+            response.headers
+          );
+        } catch (e) {
+          err = new HttpError(
+            response.url,
+            response.status,
+            body,
+            response.headers
+          );
+        }
+        throw err;
+      });
     }
   }
 
@@ -46,7 +55,8 @@ class Http {
     this.requestExecutor = httpConfig.requestExecutor;
     this.cacheStore = httpConfig.cacheStore || new MemoryStore();
     if (httpConfig.cacheMiddleware !== null) {
-      this.cacheMiddleware = httpConfig.cacheMiddleware || defaultCacheMiddleware;
+      this.cacheMiddleware =
+        httpConfig.cacheMiddleware || defaultCacheMiddleware;
     }
     this.oauth = httpConfig.oauth;
   }
@@ -56,10 +66,9 @@ class Http {
       return Promise.resolve();
     }
 
-    return this.oauth.getAccessToken()
-        .then(accessToken => {
-          request.headers.Authorization = `Bearer ${accessToken.access_token}`;
-        });
+    return this.oauth.getAccessToken().then((accessToken) => {
+      request.headers.Authorization = `Bearer ${accessToken.access_token}`;
+    });
   }
 
   http(uri, request, context) {
@@ -74,9 +83,14 @@ class Http {
       const promise = this.prepareRequest(request)
         .then(() => this.requestExecutor.fetch(request))
         .then(Http.errorFilter)
-        .catch(error => {
+        .catch((error) => {
           // Clear cached token then retry request one more time
-          if (this.oauth && error && error.status === 401 && !retriedOnAuthError) {
+          if (
+            this.oauth &&
+            error &&
+            error.status === 401 &&
+            !retriedOnAuthError
+          ) {
             retriedOnAuthError = true;
             this.oauth.clearCachedAccessToken();
             return execute();
@@ -94,33 +108,38 @@ class Http {
         isCollection: context.isCollection,
         resources: context.resources,
         req: request,
-        cacheStore: this.cacheStore
+        cacheStore: this.cacheStore,
       };
       return this.cacheMiddleware(ctx, () => {
         if (ctx.res) {
           return;
         }
 
-        return promise.then(res => ctx.res = res);
-      })
-      .then(() => ctx.res);
+        return promise.then((res) => (ctx.res = res));
+      }).then(() => ctx.res);
     };
 
     return execute();
   }
 
   delete(uri, request, context) {
-    return this.http(uri, Object.assign(request || {}, { method: 'delete' }), context);
+    return this.http(
+      uri,
+      Object.assign(request || {}, { method: 'delete' }),
+      context
+    );
   }
 
   json(uri, request, context) {
     request = request || {};
-    request.headers = Object.assign({
-      'Content-Type': 'application/json',
-      'Accept': 'application/json'
-    }, request.headers);
-    return this.http(uri, request, context)
-    .then(res => res.json());
+    request.headers = Object.assign(
+      {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+      request.headers
+    );
+    return this.http(uri, request, context).then((res) => res.json());
   }
 
   getJson(uri, request, context) {
@@ -137,8 +156,7 @@ class Http {
 
   postJson(uri, request, context) {
     request = request || {};
-    request.method = 'post',
-    request.body = JSON.stringify(request.body);
+    (request.method = 'post'), (request.body = JSON.stringify(request.body));
     return this.json(uri, request, context);
   }
 

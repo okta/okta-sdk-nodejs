@@ -31,9 +31,9 @@ describe('Application.update()', () => {
       const updatedLabel = faker.random.word();
       createdApplication.label = updatedLabel;
       await createdApplication.update()
-      .then(response => {
-        expect(response.label).to.equal(updatedLabel);
-      });
+        .then(response => {
+          expect(response.label).to.equal(updatedLabel);
+        });
 
     } finally {
       if (createdApplication) {
