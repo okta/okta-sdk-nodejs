@@ -49,7 +49,7 @@ describe('JWT', () => {
         exp: 300,
         iat: 0,
         iss: 'fake-client-id',
-        jti: jasmine.any(String),
+        jti: expect.any(String),
         sub: 'fake-client-id'
       });
       expect(jwt.header).toEqual({
@@ -62,7 +62,7 @@ describe('JWT', () => {
         const verifiedJwt = nJwt.verify(compactedJwt, publicKey, 'RS256');
         expect(verifiedJwt.body).toEqual({
           aud: `http://localhost${endpoint}`,
-          jti: jasmine.any(String),
+          jti: expect.any(String),
           iat: 0,
           exp: 300,
           iss: 'fake-client-id',

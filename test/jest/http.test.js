@@ -354,7 +354,7 @@ describe('Http class', () => {
       testWithCacheMiddleware();
 
       // TODO: fix cache middleware: https://oktainc.atlassian.net/browse/OKTA-280090
-      xit('Returns a cached result on subsequent call', () => {
+      it.skip('Returns a cached result on subsequent call', () => {
         const http = new Http({ requestExecutor });
         expect(http.cacheMiddleware).toBeDefined();
         return http.http('http://fakey.local')
@@ -390,14 +390,14 @@ describe('Http class', () => {
             resources: ['a', 'b'],
             isCollection: true,
             uri: 'http://fakey.local',
-            cacheStore: jasmine.any(Object),
+            cacheStore: expect.any(Object),
             req: {
               headers: {},
               method: 'get',
               url: 'http://fakey.local',
             },
-            res: jasmine.any(Object)
-          }, jasmine.any(Function));
+            res: expect.any(Object)
+          }, expect.any(Function));
         });
     });
 

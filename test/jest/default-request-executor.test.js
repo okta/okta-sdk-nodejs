@@ -30,12 +30,12 @@ describe('DefaultRequestExecutor', () => {
 
     it('should throw if requestTimeout is less than 0', () => {
       expect(() => new DefaultRequestExecutor({ requestTimeout: -1}))
-      .toThrow('okta.client.rateLimit.requestTimeout provided as -1 but must be 0 (disabled) or greater than zero');
+        .toThrow('okta.client.rateLimit.requestTimeout provided as -1 but must be 0 (disabled) or greater than zero');
     });
 
     it('should throw if maxRetries is less than 0', () => {
       expect(() => new DefaultRequestExecutor({ maxRetries: -1}))
-      .toThrow('okta.client.rateLimit.maxRetries provided as -1 but must be 0 (disabled) or greater than zero');
+        .toThrow('okta.client.rateLimit.maxRetries provided as -1 but must be 0 (disabled) or greater than zero');
     });
   });
 
@@ -157,7 +157,7 @@ describe('DefaultRequestExecutor', () => {
       expect(requestExecutor.validateRetryResponseHeaders(mockResponse)).toBe(false);
     });
 
-    it('should return false if X-Rate-Limit-Reset exists twice ', () => {
+    it('should return false if X-Rate-Limit-Reset exists twice', () => {
       const requestExecutor = new DefaultRequestExecutor();
       const mockResponse = buildMockResponse({
         headers: {
@@ -186,7 +186,7 @@ describe('DefaultRequestExecutor', () => {
       expect(mockRequest.startTime).toBeInstanceOf(Date);
     });
 
-    it('should not modify an existing startTime property on a request ', () => {
+    it('should not modify an existing startTime property on a request', () => {
       RequestExecutor.prototype.fetch = jest.fn().mockResolvedValue({ status: 200});
       const requestExecutor = new DefaultRequestExecutor();
       const startTime = new Date();
@@ -224,7 +224,7 @@ describe('DefaultRequestExecutor', () => {
         requestTimeout: 1
       });
       await expect(requestExecutor.fetch({url: 'https://www.okta.com'})).rejects
-      .toMatchObject({message:'network timeout at: https://www.okta.com'});
+        .toMatchObject({message:'network timeout at: https://www.okta.com'});
     });
 
     it('sets the node-fetch timeout to requestTimeout for new requests', async () => {

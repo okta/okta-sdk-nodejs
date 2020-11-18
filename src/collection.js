@@ -10,14 +10,12 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
-
 const parseLinkHeader = require('parse-link-header');
 
 /**
  * Provides an interface to iterate over all objects in a collection that has pagination via Link headers
  */
 class Collection {
-
   /**
    * Creates an instance of Collection.
    * @param {ApiClient} client A reference to the top-level api client
@@ -41,7 +39,7 @@ class Collection {
         const item = self.currentItems.shift();
         const result = {
           value: item ? self.factory.createInstance(item, self.client) : null,
-          done: !self.currentItems.length && !self.nextUri
+          done: !self.currentItems.length && !self.nextUri,
         };
         resolve(result);
       }
@@ -50,35 +48,37 @@ class Collection {
         return nextItem();
       }
 
-      self.getNextPage()
-      .then(collection => {
-        self.currentItems = collection;
-        return nextItem();
-      })
-      .catch(reject);
+      self
+        .getNextPage()
+        .then((collection) => {
+          self.currentItems = collection;
+          return nextItem();
+        })
+        .catch(reject);
     });
   }
 
   [Symbol.asyncIterator]() {
     return {
-      next: () => this.next()
+      next: () => this.next(),
     };
   }
 
   getNextPage() {
-    return this.client.http.http(this.nextUri, this.request, {isCollection: true})
-    .then(res => {
-      const link = res.headers.get('link');
-      if (link) {
-        const parsed = parseLinkHeader(link);
-        if (parsed.next) {
-          this.nextUri = parsed.next.url;
-          return res.json();
+    return this.client.http
+      .http(this.nextUri, this.request, { isCollection: true })
+      .then((res) => {
+        const link = res.headers.get('link');
+        if (link) {
+          const parsed = parseLinkHeader(link);
+          if (parsed.next) {
+            this.nextUri = parsed.next.url;
+            return res.json();
+          }
         }
-      }
-      this.nextUri = undefined;
-      return res.json();
-    });
+        this.nextUri = undefined;
+        return res.json();
+      });
   }
 
   /**
@@ -89,8 +89,7 @@ class Collection {
   each(iterator) {
     const self = this;
     function nextItem() {
-      return self.next()
-      .then(nextResult => {
+      return self.next().then((nextResult) => {
         if (!nextResult.value) {
           return;
         }
@@ -98,17 +97,17 @@ class Collection {
 
         // if it's a Promise
         if (result && result.then) {
-          return result.then(shouldContinue => {
+          return result.then((shouldContinue) => {
             if (shouldContinue !== false && !nextResult.done) {
               return nextItem();
             }
           });
 
-        // if they want to short-circuit
+          // if they want to short-circuit
         } else if (result === false) {
           return;
 
-        // if there are no more items
+          // if there are no more items
         } else if (nextResult.done) {
           return;
         }
@@ -147,31 +146,32 @@ class Collection {
       if (closed) {
         return;
       }
-      return self.next()
-      .then(nextResult => {
-        if (closed) {
-          return;
-        }
+      return self
+        .next()
+        .then((nextResult) => {
+          if (closed) {
+            return;
+          }
 
-        if (!nextResult.value) {
-          return setTimeout(nextItem, interval);
-        }
-        const result = config.next(nextResult.value);
+          if (!nextResult.value) {
+            return setTimeout(nextItem, interval);
+          }
+          const result = config.next(nextResult.value);
 
-        // if it's a Promise
-        if (result && result.then) {
-          return result.then(() => nextItem());
-        } else {
-          nextItem();
-        }
-      })
-      .catch(err => {
-        const errResult = config.error(err);
-        if (errResult && errResult.then) {
-          return errResult.then(() => nextItem());
-        }
-        return nextItem();
-      });
+          // if it's a Promise
+          if (result && result.then) {
+            return result.then(() => nextItem());
+          } else {
+            nextItem();
+          }
+        })
+        .catch((err) => {
+          const errResult = config.error(err);
+          if (errResult && errResult.then) {
+            return errResult.then(() => nextItem());
+          }
+          return nextItem();
+        });
     }
 
     nextItem();
@@ -180,7 +180,7 @@ class Collection {
       unsubscribe() {
         closed = true;
         config.complete();
-      }
+      },
     };
   }
 }
