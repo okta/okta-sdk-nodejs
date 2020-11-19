@@ -36,16 +36,22 @@ class Collection {
 
     return new Promise((resolve, reject) => {
       function nextItem() {
-        const item = self.currentItems.shift();
+        const done = !self.currentItems.length && !self.nextUri;
+        const item = self.currentItems.length && self.currentItems.shift();
         const result = {
           value: item ? self.factory.createInstance(item, self.client) : null,
-          done: !self.currentItems.length && !self.nextUri,
+          done,
         };
         resolve(result);
       }
 
       if (self.currentItems.length) {
         return nextItem();
+      }
+
+      if (!self.nextUri) {
+        resolve({ done: true, value: null });
+        return;
       }
 
       self
