@@ -5,8 +5,13 @@ node_js:
   - 12
   - 14
 
+cache:
+  yarn: true
+  directories:
+    - node_modules
+
 script:
-  - sh ./scripts/run-test.sh
+  - yarn test:ci
 
 deploy:
   provider: pages
