@@ -1,6 +1,14 @@
 # Okta Node SDK Changelog
 
+## 4.3.1
+
+### Bug Fixes
+
+- [#213](https://github.com/okta/okta-sdk-nodejs/pull/213) Fixes off-by-one error in Collection iterator
+
 ## 4.3.0
+
+### Features
 
 - [#210](https://github.com/okta/okta-sdk-nodejs/pull/210)
   - Adds properties `RefreshToken` and `Jwks` to `OpenIdConnectApplicationSettingsClient` model
