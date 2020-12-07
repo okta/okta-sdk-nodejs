@@ -224,7 +224,7 @@ describe('DefaultRequestExecutor', () => {
         requestTimeout: 1
       });
       await expect(requestExecutor.fetch({url: 'https://www.okta.com'})).rejects
-      .toMatchObject({message:'network timeout at: https://www.okta.com'});
+      .toMatchObject({message:'network timeout at: https://www.okta.com/'});
     });
 
     it('sets the node-fetch timeout to requestTimeout for new requests', async () => {

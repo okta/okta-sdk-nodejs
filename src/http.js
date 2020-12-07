@@ -71,7 +71,7 @@ class Http {
 
     let retriedOnAuthError = false;
     const execute = () => {
-      const promise = this.prepareRequest(request)
+      const promise = () => this.prepareRequest(request)
         .then(() => this.requestExecutor.fetch(request))
         .then(Http.errorFilter)
         .catch(error => {
@@ -86,11 +86,11 @@ class Http {
         });
 
       if (!this.cacheMiddleware) {
-        return promise;
+        return promise();
       }
 
       const ctx = {
-        uri, // TODO: remove unused property. req.url should be the key.
+        uri, // TODO: remove unused property. req.url should be the key. OKTA-351525
         isCollection: context.isCollection,
         resources: context.resources,
         req: request,
@@ -101,7 +101,7 @@ class Http {
           return;
         }
 
-        return promise.then(res => ctx.res = res);
+        return promise().then(res => ctx.res = res);
       })
       .then(() => ctx.res);
     };

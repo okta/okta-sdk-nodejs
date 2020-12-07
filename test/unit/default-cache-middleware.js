@@ -24,22 +24,19 @@ async function next(ctx, body = '{}') {
   };
 }
 
-// TODO: use request.url per fetch spec: https://developer.mozilla.org/en-US/docs/Web/API/Request
-// https://oktainc.atlassian.net/browse/OKTA-280090
-
 describe('Default cache middleware', () => {
   it('caches GET items with a \'self\' link', async () => {
     const cacheStore = new MemoryStore();
     const ctx = {
       req: {
         method: 'get',
-        uri: 'http://example.com/item'
+        url: 'http://example.com/item'
       },
       cacheStore
     };
     const body = JSON.stringify(_.set({}, '_links.self.href', 'http://example.com/item'));
     await middleware(ctx, () => next(ctx, body));
-    expect(await cacheStore.get(ctx.req.uri)).to.equal(body);
+    expect(await cacheStore.get(ctx.req.url)).to.equal(body);
     // make sure the middleware doesn't flush the stream
     expect(await ctx.res.text()).to.equal(body);
   });
@@ -49,14 +46,16 @@ describe('Default cache middleware', () => {
     const ctx = {
       req: {
         method: 'get',
-        uri: 'http://example.com/item'
+        url: 'http://example.com/item'
       },
       cacheStore
     };
-    const body = JSON.stringify(_.set({}, '_links.self.href', 'http://example.com/item'));
-    await cacheStore.set(ctx.req.uri, body);
+    const bodyObj = _.set({}, '_links.self.href', 'http://example.com/item');
+    const bodyStr = JSON.stringify(bodyObj);
+    await cacheStore.set(ctx.req.url, bodyStr);
     await middleware(ctx, () => next(ctx));
-    expect(await ctx.res.text()).to.equal(body);
+    expect(await ctx.res.json()).to.eql(bodyObj);
+    expect(await ctx.res.text()).to.equal(bodyStr);
   });
 
   it('doesn\'t cache GET items without a \'self\' link', async () => {
