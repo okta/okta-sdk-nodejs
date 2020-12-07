@@ -353,8 +353,7 @@ describe('Http class', () => {
     describe('default cache middleware', () => {
       testWithCacheMiddleware();
 
-      // TODO: fix cache middleware: https://oktainc.atlassian.net/browse/OKTA-280090
-      xit('Returns a cached result on subsequent call', () => {
+      it('Returns a cached result on subsequent call', () => {
         const http = new Http({ requestExecutor });
         expect(http.cacheMiddleware).toBeDefined();
         return http.http('http://fakey.local')
