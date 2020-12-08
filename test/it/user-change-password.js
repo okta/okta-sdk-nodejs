@@ -43,7 +43,7 @@ describe('User API Tests', () => {
 
     // 3. Verify that password was updated
     const updatedUser = await client.getUser(createdUser.id);
-    expect(updatedUser.passwordChanged).to.be.gt(createdUser.passwordChanged);
+    expect(new Date(updatedUser.passwordChanged)).to.be.gt(new Date(createdUser.passwordChanged));
 
     // 4. Delete the user
     await utils.cleanup(client, createdUser);
