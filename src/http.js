@@ -71,7 +71,7 @@ class Http {
 
     let retriedOnAuthError = false;
     const execute = () => {
-      const promise = () => this.prepareRequest(request)
+      const getRequestPromise = () => this.prepareRequest(request)
         .then(() => this.requestExecutor.fetch(request))
         .then(Http.errorFilter)
         .catch(error => {
@@ -86,7 +86,7 @@ class Http {
         });
 
       if (!this.cacheMiddleware) {
-        return promise();
+        return getRequestPromise();
       }
 
       const ctx = {
@@ -101,7 +101,7 @@ class Http {
           return;
         }
 
-        return promise().then(res => ctx.res = res);
+        return getRequestPromise().then(res => ctx.res = res);
       })
       .then(() => ctx.res);
     };
