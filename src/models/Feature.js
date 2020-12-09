@@ -42,21 +42,21 @@ class Feature extends Resource {
    * @returns {Promise<Feature>}
    */
   updateLifecycle(lifecycle, queryParameters) {
-    return this.client.updateFeatureLifecycle(this.id, lifecycle, queryParameters);
+    return this.httpClient.updateFeatureLifecycle(this.id, lifecycle, queryParameters);
   }
 
   /**
    * @returns {Promise<Collection>} A collection that will yield {@link Feature} instances.
    */
   getDependents() {
-    return this.client.listFeatureDependents(this.id);
+    return this.httpClient.listFeatureDependents(this.id);
   }
 
   /**
    * @returns {Promise<Collection>} A collection that will yield {@link Feature} instances.
    */
   getDependencies() {
-    return this.client.listFeatureDependencies(this.id);
+    return this.httpClient.listFeatureDependencies(this.id);
   }
 }
 

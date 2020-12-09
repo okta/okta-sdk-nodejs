@@ -40,10 +40,10 @@ class UserType extends Resource {
    * @returns {Promise<UserType>}
    */
   update() {
-    return this.client.updateUserType(this.id, this);
+    return this.httpClient.updateUserType(this.id, this);
   }
   delete() {
-    return this.client.deleteUserType(this.id);
+    return this.httpClient.deleteUserType(this.id);
   }
 }
 

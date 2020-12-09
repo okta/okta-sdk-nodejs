@@ -46,31 +46,31 @@ class EventHook extends Resource {
    * @returns {Promise<EventHook>}
    */
   update() {
-    return this.client.updateEventHook(this.id, this);
+    return this.httpClient.updateEventHook(this.id, this);
   }
   delete() {
-    return this.client.deleteEventHook(this.id);
+    return this.httpClient.deleteEventHook(this.id);
   }
 
   /**
    * @returns {Promise<EventHook>}
    */
   activate() {
-    return this.client.activateEventHook(this.id);
+    return this.httpClient.activateEventHook(this.id);
   }
 
   /**
    * @returns {Promise<EventHook>}
    */
   deactivate() {
-    return this.client.deactivateEventHook(this.id);
+    return this.httpClient.deactivateEventHook(this.id);
   }
 
   /**
    * @returns {Promise<EventHook>}
    */
   verify() {
-    return this.client.verifyEventHook(this.id);
+    return this.httpClient.verifyEventHook(this.id);
   }
 }
 

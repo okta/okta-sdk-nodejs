@@ -38,7 +38,7 @@ class LinkedObject extends Resource {
    * @param {string} linkedObjectName
    */
   delete(linkedObjectName) {
-    return this.client.deleteLinkedObjectDefinition(linkedObjectName);
+    return this.httpClient.deleteLinkedObjectDefinition(linkedObjectName);
   }
 }
 
