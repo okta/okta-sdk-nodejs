@@ -4,7 +4,7 @@
 
 - [218](https://github.com/okta/okta-sdk-nodejs/pull/218)
   - Uses `req.url` as key to cache response
-  - Addes `json()` function to the default cache middleware response
+  - Adds `json()` function to the default cache middleware response
 
 ## 4.3.1
 
