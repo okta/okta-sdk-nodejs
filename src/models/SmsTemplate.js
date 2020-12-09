@@ -39,17 +39,17 @@ class SmsTemplate extends Resource {
    * @returns {Promise<SmsTemplate>}
    */
   update() {
-    return this.client.updateSmsTemplate(this.id, this);
+    return this.httpClient.updateSmsTemplate(this.id, this);
   }
   delete() {
-    return this.client.deleteSmsTemplate(this.id);
+    return this.httpClient.deleteSmsTemplate(this.id);
   }
 
   /**
    * @returns {Promise<SmsTemplate>}
    */
   partialUpdate() {
-    return this.client.partialUpdateSmsTemplate(this.id, this);
+    return this.httpClient.partialUpdateSmsTemplate(this.id, this);
   }
 }
 

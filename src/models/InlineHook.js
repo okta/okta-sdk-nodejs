@@ -41,24 +41,24 @@ class InlineHook extends Resource {
    * @returns {Promise<InlineHook>}
    */
   update() {
-    return this.client.updateInlineHook(this.id, this);
+    return this.httpClient.updateInlineHook(this.id, this);
   }
   delete() {
-    return this.client.deleteInlineHook(this.id);
+    return this.httpClient.deleteInlineHook(this.id);
   }
 
   /**
    * @returns {Promise<InlineHook>}
    */
   activate() {
-    return this.client.activateInlineHook(this.id);
+    return this.httpClient.activateInlineHook(this.id);
   }
 
   /**
    * @returns {Promise<InlineHook>}
    */
   deactivate() {
-    return this.client.deactivateInlineHook(this.id);
+    return this.httpClient.deactivateInlineHook(this.id);
   }
 
   /**
@@ -66,7 +66,7 @@ class InlineHook extends Resource {
    * @returns {Promise<InlineHookResponse>}
    */
   execute(inlineHookPayload) {
-    return this.client.executeInlineHook(this.id, inlineHookPayload);
+    return this.httpClient.executeInlineHook(this.id, inlineHookPayload);
   }
 }
 

@@ -42,7 +42,7 @@ class Role extends Resource {
    * @param {string} targetGroupId
    */
   addAdminGroupTarget(groupId, targetGroupId) {
-    return this.client.addGroupTargetToGroupAdministratorRoleForGroup(groupId, this.id, targetGroupId);
+    return this.httpClient.addGroupTargetToGroupAdministratorRoleForGroup(groupId, this.id, targetGroupId);
   }
 
   /**
@@ -51,7 +51,7 @@ class Role extends Resource {
    * @param {string} applicationId
    */
   addAppInstanceTargetToAdminRole(groupId, appName, applicationId) {
-    return this.client.addApplicationInstanceTargetToAppAdminRoleGivenToGroup(groupId, this.id, appName, applicationId);
+    return this.httpClient.addApplicationInstanceTargetToAppAdminRoleGivenToGroup(groupId, this.id, appName, applicationId);
   }
 
   /**
@@ -59,14 +59,14 @@ class Role extends Resource {
    * @param {string} appName
    */
   addAppTargetToAdminRole(groupId, appName) {
-    return this.client.addApplicationTargetToAdminRoleGivenToGroup(groupId, this.id, appName);
+    return this.httpClient.addApplicationTargetToAdminRoleGivenToGroup(groupId, this.id, appName);
   }
 
   /**
    * @param {string} userId
    */
   addAllAppsAsTargetToRole(userId) {
-    return this.client.addAllAppsAsTargetToRole(userId, this.id);
+    return this.httpClient.addAllAppsAsTargetToRole(userId, this.id);
   }
 
   /**
@@ -75,7 +75,7 @@ class Role extends Resource {
    * @param {string} applicationId
    */
   addAppTargetToAppAdminRoleForUser(userId, appName, applicationId) {
-    return this.client.addApplicationTargetToAppAdminRoleForUser(userId, this.id, appName, applicationId);
+    return this.httpClient.addApplicationTargetToAppAdminRoleForUser(userId, this.id, appName, applicationId);
   }
 
   /**
@@ -83,7 +83,7 @@ class Role extends Resource {
    * @param {string} appName
    */
   addAppTargetToAdminRoleForUser(userId, appName) {
-    return this.client.addApplicationTargetToAdminRoleForUser(userId, this.id, appName);
+    return this.httpClient.addApplicationTargetToAdminRoleForUser(userId, this.id, appName);
   }
 }
 

@@ -40,10 +40,10 @@ class TrustedOrigin extends Resource {
    * @returns {Promise<TrustedOrigin>}
    */
   update() {
-    return this.client.updateOrigin(this.id, this);
+    return this.httpClient.updateOrigin(this.id, this);
   }
   delete() {
-    return this.client.deleteOrigin(this.id);
+    return this.httpClient.deleteOrigin(this.id);
   }
 }
 
