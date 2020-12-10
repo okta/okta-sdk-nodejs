@@ -35,8 +35,8 @@ describe('Sessions API', () => {
   });
 
   it('should allow me to get an existing session', async () => {
-    if (process.env.OKTA_CLIENT_AUTHORIZATIONMODE === "PrivateKey") {
-      console.log("Test has been skipped. The endpoint does not support PrivateKey.")
+    if (process.env.OKTA_CLIENT_AUTHORIZATIONMODE === 'PrivateKey') {
+      console.log('Test has been skipped. The endpoint does not support PrivateKey.');
       return;
     }
 

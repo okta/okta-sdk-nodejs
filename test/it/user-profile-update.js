@@ -37,7 +37,7 @@ describe('User API Tests', () => {
     createdUser.profile.nickName = 'Batman';
     // TODO: receiving 403: invalid session
     const profileUpdateUser = await createdUser.update();
-    expect(profileUpdateUser.lastUpdated).to.be.gt(createdUser.lastUpdated);
+    expect(new Date(profileUpdateUser.lastUpdated)).to.be.gt(new Date(createdUser.lastUpdated));
 
     const updatedUser = await client.getUser(createdUser.id);
     expect(updatedUser.profile.nickName).to.equal('Batman');

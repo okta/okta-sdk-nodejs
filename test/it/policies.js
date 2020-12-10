@@ -56,7 +56,7 @@ describe('Policy Scenarios', () => {
   });
 
   it('create sign on policy with group condition', async () => {
-      // 1. Create a new group
+    // 1. Create a new group
     const newGroup = {
       profile: {
         name: `Get Test Group ${faker.random.word()}`.substring(0, 49)

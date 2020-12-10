@@ -224,8 +224,8 @@ describe('client.createApplication()', () => {
   });
 
   it('should allow me to create a custom SWA application', async () => {
-    if (process.env.OKTA_CLIENT_AUTHORIZATIONMODE === "PrivateKey") {
-      console.log("Test has been skipped. The endpoint does not support PrivateKey.")
+    if (process.env.OKTA_CLIENT_AUTHORIZATIONMODE === 'PrivateKey') {
+      console.log('Test has been skipped. The endpoint does not support PrivateKey.');
       return;
     }
 
@@ -271,8 +271,8 @@ describe('client.createApplication()', () => {
   });
 
   it('should allow me to create a custom SAML application', async () => {
-    if (process.env.OKTA_CLIENT_AUTHORIZATIONMODE === "PrivateKey") {
-      console.log("Test has been skipped. The endpoint does not support PrivateKey.")
+    if (process.env.OKTA_CLIENT_AUTHORIZATIONMODE === 'PrivateKey') {
+      console.log('Test has been skipped. The endpoint does not support PrivateKey.');
       return;
     }
 

@@ -38,9 +38,9 @@ describe('client.deleteApplicationGroupAssignment()', () => {
       createdGroup = await client.createGroup(group);
       await client.createApplicationGroupAssignment(createdApplication.id, createdGroup.id);
       await client.deleteApplicationGroupAssignment(createdApplication.id, createdGroup.id)
-      .then((res) => {
-        expect(res.status).to.equal(204);
-      });
+        .then((res) => {
+          expect(res.status).to.equal(204);
+        });
     } finally {
       if (createdApplication) {
         await createdApplication.deactivate();

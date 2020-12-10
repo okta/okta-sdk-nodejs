@@ -87,7 +87,7 @@ describe('Group-Rule API tests', () => {
     await client.deactivateGroupRule(createdRule.id);
 
     createdRule.name = faker.random.word();
-    createdRule.conditions.expression.value = 'user.lastName==\"incorrect\"';
+    createdRule.conditions.expression.value = 'user.lastName=="incorrect"';
     const updatedRule = await createdRule.update();
     await updatedRule.activate();
 
