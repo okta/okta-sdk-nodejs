@@ -91,9 +91,9 @@ describe('client.listUsers().each()', () => {
         setTimeout(resolve.bind(null, false), 1000);
       });
     })
-    .then(() => {
-      expect(localCount).to.equal(1);
-    });
+      .then(() => {
+        expect(localCount).to.equal(1);
+      });
   });
 
   it('should stop iteration if the iterator rejects a promise', () => {
@@ -136,9 +136,9 @@ describe('client.listUsers().next()', () => {
 
   it('should return User models', () => {
     return client.listUsers().next()
-    .then(result => {
-      expect(result.value).to.be.an.instanceof(models.User);
-    });
+      .then(result => {
+        expect(result.value).to.be.an.instanceof(models.User);
+      });
   });
 
   it('should allow me to visit every user', () => {
@@ -151,9 +151,9 @@ describe('client.listUsers().next()', () => {
         return result.value;
       }
       return collection.next()
-      .then(iter);
+        .then(iter);
     }
     return collection.next()
-    .then(iter);
+      .then(iter);
   });
 });

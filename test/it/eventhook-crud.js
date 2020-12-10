@@ -48,7 +48,7 @@ describe('Event Hook Crud API', () => {
       let ehFound = false;
       await collection.each(eh => {
         expect(eh).to.be.instanceOf(models.EventHook);
-        if (eh.name == eventHook.name) {
+        if (eh.name === eventHook.name) {
           ehFound = true;
           return false;
         }

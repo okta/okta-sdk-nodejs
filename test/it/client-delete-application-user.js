@@ -41,9 +41,9 @@ describe('client.deleteApplicationUser()', () => {
         id: createdUser.id
       });
       await client.deleteApplicationUser(createdApplication.id, createdAppUser.id)
-      .then(result => {
-        expect(result.status).to.equal(204);
-      });
+        .then(result => {
+          expect(result.status).to.equal(204);
+        });
     } finally {
       if (createdApplication) {
         await createdApplication.deactivate();

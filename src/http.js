@@ -57,9 +57,9 @@ class Http {
     }
 
     return this.oauth.getAccessToken()
-        .then(accessToken => {
-          request.headers.Authorization = `Bearer ${accessToken.access_token}`;
-        });
+      .then(accessToken => {
+        request.headers.Authorization = `Bearer ${accessToken.access_token}`;
+      });
   }
 
   http(uri, request, context) {
@@ -103,7 +103,7 @@ class Http {
 
         return getRequestPromise().then(res => ctx.res = res);
       })
-      .then(() => ctx.res);
+        .then(() => ctx.res);
     };
 
     return execute();
@@ -120,7 +120,7 @@ class Http {
       'Accept': 'application/json'
     }, request.headers);
     return this.http(uri, request, context)
-    .then(res => res.json());
+      .then(res => res.json());
   }
 
   getJson(uri, request, context) {

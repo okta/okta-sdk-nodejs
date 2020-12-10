@@ -389,14 +389,14 @@ describe('Http class', () => {
             resources: ['a', 'b'],
             isCollection: true,
             uri: 'http://fakey.local',
-            cacheStore: jasmine.any(Object),
+            cacheStore: expect.any(Object),
             req: {
               headers: {},
               method: 'get',
               url: 'http://fakey.local',
             },
-            res: jasmine.any(Object)
-          }, jasmine.any(Function));
+            res: expect.any(Object)
+          }, expect.any(Function));
         });
     });
 

@@ -43,7 +43,7 @@ class DefaultRequestExecutor extends RequestExecutor {
     }
     newRequest.headers[this.retryCountHeader] =
       newRequest.headers[this.retryCountHeader] ?
-      newRequest.headers[this.retryCountHeader] + 1 : 1;
+        newRequest.headers[this.retryCountHeader] + 1 : 1;
     return newRequest;
   }
 

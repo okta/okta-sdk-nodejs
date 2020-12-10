@@ -18,6 +18,7 @@ function formatParams(obj) {
   var str = [];
   if (obj !== null) {
     for (var key in obj) {
+      // eslint-disable-next-line no-prototype-builtins
       if (obj.hasOwnProperty(key) &&
           obj[key] !== undefined &&
           obj[key] !== null) {

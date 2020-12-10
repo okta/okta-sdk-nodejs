@@ -10,16 +10,19 @@ describe('JWT', () => {
       expect(res.pem).toBe(PEM);
       expect(res.jwk).toEqual(JWK);
     }
+    // eslint-disable-next-line jest/expect-expect
     it('can produce a JWK from a PEM', () => {
       const privateKey = PEM;
       return JWT.getPemAndJwk(privateKey)
         .then(res => validateResult(res));
     });
+    // eslint-disable-next-line jest/expect-expect
     it('can produce a PEM from a JWK string', () => {
       const privateKey = JSON.stringify(JWK);
       return JWT.getPemAndJwk(privateKey)
         .then(res => validateResult(res));
     });
+    // eslint-disable-next-line jest/expect-expect
     it('can produce a PEM from a JWK object', () => {
       const privateKey = JWK;
       return JWT.getPemAndJwk(privateKey)
@@ -49,7 +52,7 @@ describe('JWT', () => {
         exp: 300,
         iat: 0,
         iss: 'fake-client-id',
-        jti: jasmine.any(String),
+        jti: expect.any(String),
         sub: 'fake-client-id'
       });
       expect(jwt.header).toEqual({
@@ -62,7 +65,7 @@ describe('JWT', () => {
         const verifiedJwt = nJwt.verify(compactedJwt, publicKey, 'RS256');
         expect(verifiedJwt.body).toEqual({
           aud: `http://localhost${endpoint}`,
-          jti: jasmine.any(String),
+          jti: expect.any(String),
           iat: 0,
           exp: 300,
           iss: 'fake-client-id',
@@ -74,6 +77,7 @@ describe('JWT', () => {
         });
       });
     }
+    // eslint-disable-next-line jest/expect-expect
     it('creates a valid JWT using PEM', () => {
       client.privateKey = PEM;
       const endpoint = '/oauth2/v1/token';
@@ -82,6 +86,7 @@ describe('JWT', () => {
           return verifyJWT(jwt, endpoint);
         });
     });
+    // eslint-disable-next-line jest/expect-expect
     it('creates a valid JWT using JWK', () => {
       client.privateKey = JWK;
       const endpoint = '/oauth2/v1/token';

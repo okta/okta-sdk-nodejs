@@ -41,9 +41,9 @@ describe('Application.getApplicationUser()', () => {
         id: createdUser.id
       });
       await createdApplication.getApplicationUser(createdAppUser.id)
-      .then(appUser => {
-        expect(appUser.id).to.equal(createdAppUser.id);
-      });
+        .then(appUser => {
+          expect(appUser.id).to.equal(createdAppUser.id);
+        });
     } finally {
       if (createdApplication) {
         await createdApplication.deactivate();
