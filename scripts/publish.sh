@@ -16,7 +16,7 @@ else
   TARGET_BRANCH=${BRANCH}
 fi
 
-if ! ci-append-sha; then
+if ! yarn ci-append-sha; then
   echo "ci-append-sha failed! Exiting..."
   exit $FAILED_SETUP
 fi
