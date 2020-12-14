@@ -6,6 +6,9 @@ REGISTRY="${ARTIFACTORY_URL}/api/npm/npm-topic"
 
 yarn global add @okta/ci-append-sha
 
+# Add yarn to the $PATH so npm cli commands do not fail
+export PATH="${PATH}:$(yarn global bin)"
+
 export TEST_SUITE_TYPE="build"
 
 if [ -n "${action_branch}" ]; then
