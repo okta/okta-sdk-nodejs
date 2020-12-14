@@ -4,7 +4,7 @@ source ${OKTA_HOME}/${REPO}/scripts/setup.sh
 
 REGISTRY="${ARTIFACTORY_URL}/api/npm/npm-topic"
 
-npm install -g @okta/ci-append-sha
+yarn global add @okta/ci-append-sha
 
 export TEST_SUITE_TYPE="build"
 
