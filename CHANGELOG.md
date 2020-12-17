@@ -1,10 +1,16 @@
 # Okta Node SDK Changelog
 
+## 4.5.0
+
+- [#220](https://github.com/okta/okta-sdk-nodejs/pull/220) Rename private instance variable
+
 ## 4.4.0
 
-- [218](https://github.com/okta/okta-sdk-nodejs/pull/218)
+- [#218](https://github.com/okta/okta-sdk-nodejs/pull/218)
   - Uses `req.url` as key to cache response
   - Adds `json()` function to the default cache middleware response
+
+- [#217](https://github.com/okta/okta-sdk-nodejs/pull/217) Upgrade dependencies to latest versions, include node 14 into CI test platforms
 
 ## 4.3.1
 
