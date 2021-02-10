@@ -1,6 +1,6 @@
 const _ = require('lodash');
 
-const getBodyModelNameInCamelCase = operation => {
+const getBodyModelName = operation => {
   const { bodyModel, parameters } = operation;
   let bodyModelName = bodyModel;
   if (bodyModel === 'string') {
@@ -9,8 +9,10 @@ const getBodyModelNameInCamelCase = operation => {
       bodyModelName = bodyParam.name;
     }
   }
-  return _.camelCase(bodyModelName);
+  return bodyModelName;
 };
+
+const getBodyModelNameInCamelCase = operation => _.camelCase(getBodyModelName(operation));
 
 const getOperationArgument = operation => {
   const { bodyModel, method, pathParams, queryParams } = operation;
@@ -128,6 +130,57 @@ const jsdocBuilder = (operation) => {
   return lines.join('\n');
 };
 
+const typeScriptTypeDefinitionBuilder = (operation) => {
+  let parameters = {};
+  if (operation.pathParams.length) {
+    parameters = operation.pathParams.reduce((memo, parameter) => {
+      return {
+        ...memo,
+        [parameter.name]: 'string'
+      }
+    }, {})
+  }
+
+  if (!operation.isArray && operation.bodyModel) {
+    const bodyModelName = getBodyModelName(operation);
+    if (bodyModelName) {
+      parameters = {
+        ...parameters,
+        [_.camelCase(bodyModelName)]: operation.bodyModel
+      };
+    }
+  }
+
+  let queryParameters;
+  if (operation.queryParams.length) {
+    queryParameters = operation.queryParams.map(({name}) => name)
+
+    let queryParametersString = '{ \n';
+    queryParameters.forEach(parameter => {
+      queryParametersString += `    ${parameter}: string,\n`
+    })
+    queryParametersString += '  }'
+
+    parameters = {
+      ...parameters,
+      queryParameters: queryParametersString
+    }
+  }
+  let returnType;
+  if (operation.responseModel) {
+    if (operation.isArray) {
+      returnType = 'Promise<Collection>';
+    } else {
+      returnType = `Promise<${operation.responseModel}>`;
+    }
+  }
+  const parametersString = Object.keys(parameters).reduce((memo, key, index, collection) => {
+    let isFinalParameter = index === collection.length - 1;
+    return memo + `${key}: ${parameters[key]}${isFinalParameter ? '' : ', '}`
+  }, '');
+  return `${operation.operationId}(${parametersString}): ${returnType};`;
+};
+
 module.exports = {
   getBodyModelNameInCamelCase,
   operationArgumentBuilder,
@@ -136,5 +189,6 @@ module.exports = {
   hasHeaders,
   getHttpMethod,
   shouldResolveJson,
-  jsdocBuilder
+  jsdocBuilder,
+  typeScriptTypeDefinitionBuilder,
 }
