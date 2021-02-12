@@ -19,7 +19,7 @@
     "predocs": "rimraf ./jsdocs && mkdir jsdocs/ && ./utils/make-jsdoc-readme.js > ./jsdocs/jsdoc-temp.md",
     "docs": "./node_modules/.bin/jsdoc src/ -c ./docs/config.json -d ./jsdocs/ -P ./package.json -R ./jsdocs/jsdoc-temp.md -r",
     "test:integration": "yarn test:integration:oauth && yarn test:integration:ssws",
-    "test:integration:ssws": "MOCHA_FILE=./test-reports/it-results.xml OKTA_CLIENT_AUTHORIZATIONMODE=SSWS mocha test/it/*.js --no-timeouts",
+    "test:integration:ssws": "MOCHA_FILE=./test-reports/it-results.xml OKTA_CLIENT_AUTHORIZATIONMODE=SSWS mocha --reporter=mocha-junit-reporter test/it/*.js --no-timeouts",
     "test:integration:oauth": "OKTA_CLIENT_AUTHORIZATIONMODE=PrivateKey nyc --reporter=text --reporter=html mocha test/it/user-get.js --no-timeouts",
     "test:unit": "MOCHA_FILE=./test-reports/junit-results.xml nyc --reporter=text --reporter=html mocha --reporter=mocha-junit-reporter test/unit/*.js --no-timeouts",
     "test": "npm run eslint && npm run test:unit && npm run test:integration && npm run jest"
