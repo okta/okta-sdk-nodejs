@@ -10,6 +10,7 @@
     "README.md"
   ],
   "main": "src/index.js",
+  "types": "src/types/index.d.ts",
   "scripts": {
     "banners": "./utils/maintain-banners.js",
     "prebuild": "rimraf ./src/models ./src/factories ./src/generated-client.js",
