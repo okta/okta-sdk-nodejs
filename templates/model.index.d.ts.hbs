@@ -10,12 +10,10 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
-{{{operationsArgumentsImportBuilder operations null}}}
 
-declare class GeneratedApiClient {
-{{#each operations}}
-  {{{typeScriptTypeDefinitionBuilder this}}}
+/**
+ *  THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION
+ */
+{{#each models}}
+export * from './{{modelName}}';
 {{/each}}
-}
-
-export = GeneratedApiClient;

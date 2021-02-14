@@ -10,12 +10,12 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
-{{{operationsArgumentsImportBuilder operations null}}}
+import ModelResolutionFactory from '../resolution-factory';
 
-declare class GeneratedApiClient {
-{{#each operations}}
-  {{{typeScriptTypeDefinitionBuilder this}}}
-{{/each}}
+declare class {{parentModelName}}Factory extends ModelResolutionFactory {
+  getMapping(): object;
+
+  getResolutionProperty(): string;
 }
 
-export = GeneratedApiClient;
+export = {{parentModelName}}Factory;
