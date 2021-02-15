@@ -132,6 +132,52 @@ const jsdocBuilder = (operation) => {
   return lines.join('\n');
 };
 
+const typeScriptOperationSignatureBuilder = operation => {
+  const [args, returnType] = getOperationArgumentsAndReturnType(operation);
+  return `${operation.operationId}(${formatArguments(args).join(', ')}): ${formatReturnType(returnType)};`;
+};
+
+const typeScriptModelMethodSignatureBuilder = (method, modelName) => {
+  const [args, returnType] = getModelMethodArgumentsAndReturnType(method, modelName);
+  return `(${formatArguments(args).join(', ')}): ${formatReturnType(returnType)};`;
+};
+
+const typeScriptClientImportBuilder = operations => {
+  const operationsImportTypes = operations.reduce((acc, operation) => {
+    const [args, returnType] = getOperationArgumentsAndReturnType(operation);
+    return [
+      ...acc,
+      ...args.values(),
+      returnType,
+    ]
+  }, []);
+
+  const importStatements = formatImportStatements(operationsImportTypes);
+  return importStatements.join('\n');
+};
+
+const typeScriptModelImportBuilder = model => {
+  const {properties, methods} = model;
+  if (!properties && !methods) {
+    return;
+  }
+
+  const methodsImportTypes = model.methods.reduce((acc, method) => {
+    const [args, returnType] = getModelMethodArgumentsAndReturnType(method, model.modelName);
+    return [
+      ...acc,
+      ...args.values(),
+      returnType,
+    ]
+  }, []);
+
+  const propertiesImportTypes =
+    properties.filter(property => property.$ref).map(property => property.model);
+
+  const importStatements = formatImportStatements(new Set([...methodsImportTypes, ...propertiesImportTypes]));
+  return importStatements.join('\n');
+};
+
 const getOperationArgumentsAndReturnType = operation => {
   const { bodyModel, method, pathParams, queryParams } = operation;
   const args = new Map();
@@ -184,6 +230,20 @@ const getModelMethodArgumentsAndReturnType = (method, modelName) => {
   return [args, returnType];
 };
 
+const formatReturnType = returnType => returnType === 'undefined' ? 'undefined' : `Promise<${returnType}>`;
+
+const formatArguments = args => {
+  const typedArgs = [];
+  for (let [arg, argType] of args) {
+    if (Array.isArray(argType)) {
+      typedArgs.push(`${arg}: ${formatObjectLiteralType(argType)}`)
+    } else {
+      typedArgs.push(`${arg}: ${argType}`)
+    }
+  }
+  return typedArgs;
+}
+
 const formatObjectLiteralType = typeProps => {
   let objectLiteralType = '{ \n';
   typeProps.forEach(prop => {
@@ -193,63 +253,7 @@ const formatObjectLiteralType = typeProps => {
   return objectLiteralType;
 }
 
-const typeScriptOperationSignatureBuilder = (operation) => {
-  const [args, returnType] = getOperationArgumentsAndReturnType(operation);
-
-  const typedArgs = [];
-  for (let [arg, argType] of args) {
-    if (Array.isArray(argType)) {
-      typedArgs.push(`${arg}: ${formatObjectLiteralType(argType)}`)
-    } else {
-      typedArgs.push(`${arg}: ${argType}`)
-    }
-  }
-
-  return `${operation.operationId}(${typedArgs.join(', ')}): ${returnType === 'undefined' ? 'undefined' : `Promise<${returnType}>;`}`;
-};
-
-const typeScriptClientImportBuilder = (operations) => {
-  const operationsImportTypes = operations.reduce((acc, operation) => {
-    const [args, returnType] = getOperationArgumentsAndReturnType(operation);
-    return [
-      ...acc,
-      ...args.values(),
-      returnType,
-    ]
-  }, []);
-
-  const importStatements = [];
-  operationsImportTypes.forEach(type => {
-    if (!MODELS_SHOULD_NOT_PROCESS.includes(type) && !Array.isArray(type)) {
-      if (type === 'Collection') {
-        importStatements.push(`import Collection from '../collection';`);
-      } else {
-        importStatements.push(`import ${type} from './${type}';`);
-      }
-    }
-  });
-  return importStatements.join('\n');
-};
-
-const typeScriptModelImportBuilder = model => {
-  const {properties, methods} = model;
-  if (!properties && !methods) {
-    return;
-  }
-
-  const methodsImportTypes = model.methods.reduce((acc, method) => {
-    const [args, returnType] = getModelMethodArgumentsAndReturnType(method, model.modelName);
-    return [
-      ...acc,
-      ...args.values(),
-      returnType,
-    ]
-  }, []);
-
-  const propertiesImportTypes =
-    properties.filter(property => property.$ref).map(property => property.model);
-
-  const importTypes = new Set([...methodsImportTypes, ...propertiesImportTypes]);
+const formatImportStatements = importTypes => {
   const importStatements = [];
   importTypes.forEach(type => {
     if (!MODELS_SHOULD_NOT_PROCESS.includes(type) && !Array.isArray(type)) {
@@ -260,25 +264,8 @@ const typeScriptModelImportBuilder = model => {
       }
     }
   });
-  return importStatements.join('\n');
-};
-
- 
-const typeScriptModelMethodSignatureBuilder = (method, modelName) => {
-  console.log(method.operation.operationId)
-  const [args, returnType] = getModelMethodArgumentsAndReturnType(method, modelName);
-
-  const typedArgs = [];
-  for (let [arg, argType] of args) {
-    if (Array.isArray(argType)) {
-      typedArgs.push(`${arg}: ${formatObjectLiteralType(argType)}`)
-    } else {
-      typedArgs.push(`${arg}: ${argType}`)
-    }
-  }
-
-  return `(${typedArgs.join(', ')}): ${returnType === 'undefined' ? 'undefined' : `Promise<${returnType}>;`}`;
-};
+  return importStatements;
+}
 
 
 module.exports = {
