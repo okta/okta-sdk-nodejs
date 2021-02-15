@@ -130,43 +130,29 @@ const jsdocBuilder = (operation) => {
   return lines.join('\n');
 };
 
-const typeScriptTypeDefinitionBuilder = (operation) => {
-  let parameters = {};
-  if (operation.pathParams.length) {
-    parameters = operation.pathParams.reduce((memo, parameter) => {
-      return {
-        ...memo,
-        [parameter.name]: 'string'
-      }
-    }, {})
-  }
+const getOperationTypeScriptSignature = operation => {
+  const { bodyModel, method, pathParams, queryParams } = operation;
+  const args = new Map();
 
-  if (!operation.isArray && operation.bodyModel) {
+  pathParams.forEach(pathParam => {
+    args.set(pathParam.name, 'string')
+  });
+
+  if ((method === 'post' || method === 'put') && bodyModel) {
     const bodyModelName = getBodyModelName(operation);
     if (bodyModelName) {
-      parameters = {
-        ...parameters,
-        [_.camelCase(bodyModelName)]: operation.bodyModel
-      };
+      args.set(_.camelCase(bodyModelName), operation.bodyModel);
     }
   }
 
-  let queryParameters;
-  if (operation.queryParams.length) {
-    queryParameters = operation.queryParams.map(({name}) => name)
-
-    let queryParametersString = '{ \n';
-    queryParameters.forEach(parameter => {
-      queryParametersString += `    ${parameter}: string,\n`
-    })
-    queryParametersString += '  }'
-
-    parameters = {
-      ...parameters,
-      queryParameters: queryParametersString
-    }
+  if (queryParams.length) {
+    args.set('queryParameters', queryParams.reduce((acc, param) => {
+      acc.push(param.name);
+      return acc;
+    }, []));
   }
-  let returnType;
+
+  let returnType = 'undefined';
   if (operation.responseModel) {
     if (operation.isArray) {
       returnType = 'Promise<Collection>';
@@ -174,11 +160,34 @@ const typeScriptTypeDefinitionBuilder = (operation) => {
       returnType = `Promise<${operation.responseModel}>`;
     }
   }
-  const parametersString = Object.keys(parameters).reduce((memo, key, index, collection) => {
-    let isFinalParameter = index === collection.length - 1;
-    return memo + `${key}: ${parameters[key]}${isFinalParameter ? '' : ', '}`
-  }, '');
-  return `${operation.operationId}(${parametersString}): ${returnType};`;
+
+  return [args, returnType];
+};
+
+
+const formatObjectLiteralType = typeProps => {
+  let objectLiteralType = '{ \n';
+  typeProps.forEach(prop => {
+    objectLiteralType += `    ${prop}: string,\n`
+  })
+  objectLiteralType += '  }';
+  console.log(objectLiteralType)
+  return objectLiteralType;
+}
+
+const typeScriptSignatureBuilder = (operation) => {
+  const [args, returnType] = getOperationTypeScriptSignature(operation);
+
+  const typedArgs = [];
+  for (let [arg, argType] of args) {
+    if (Array.isArray(argType)) {
+      typedArgs.push(`${arg}: ${formatObjectLiteralType(argType)}`)
+    } else {
+      typedArgs.push(`${arg}: ${argType}`)
+    }
+  }
+
+  return `${operation.operationId}(${typedArgs.join(', ')}): ${returnType};`;
 };
 
 module.exports = {
@@ -190,5 +199,5 @@ module.exports = {
   getHttpMethod,
   shouldResolveJson,
   jsdocBuilder,
-  typeScriptTypeDefinitionBuilder,
+  typeScriptSignatureBuilder,
 }
