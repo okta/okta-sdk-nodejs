@@ -18,7 +18,7 @@ import {{extends}} from './{{extends}}';
 {{else}}
 import Resource from '../../resource';
 {{/if}}
-{{{modelImportBuilder this 'ts'}}}
+{{{typeScriptModelImportBuilder this}}}
 
 {{#if extends}}
 declare class {{modelName}} extends {{extends}} {
@@ -39,14 +39,14 @@ declare class {{modelName}} extends Resource {
 
   {{#each crud}}
   {{#if (eq alias 'update')}}
-  {{alias}}{{{modelMethodPublicArgumentTypeScriptTypingBuilder this ../modelName}}}
+  {{alias}}{{{typeScriptModelMethodSignatureBuilder this ../modelName}}}
   {{/if}}
   {{#if (eq alias 'delete')}}
-  {{alias}}{{{modelMethodPublicArgumentTypeScriptTypingBuilder this ../modelName}}}
+  {{alias}}{{{typeScriptModelMethodSignatureBuilder this ../modelName}}}
   {{/if}}
   {{/each}}
   {{#each methods}}
-  {{alias}}{{{modelMethodPublicArgumentTypeScriptTypingBuilder this ../modelName}}}
+  {{alias}}{{{typeScriptModelMethodSignatureBuilder this ../modelName}}}
   {{/each}}
 }
 

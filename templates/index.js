@@ -163,59 +163,15 @@ js.process = ({spec, operations, models, handlebars}) => {
     return new handlebars.SafeString(path);
   });
 
-  const operationsArgumentsImportBuilder = (operations, model) => {
-    const importStatements = new Set();
-    const pathPrefix = model ? '' : '/models'
-    operations.forEach(operation => {
-      if (!MODELS_SHOULD_NOT_PROCESS.includes(operation.bodyModel) && 
-          (operation.method === 'post' || operation.method === 'put') && 
-          operation.bodyModel ) {
-            if (model && operation.bodyModel !== model.modelName) {
-              importStatements.add(`import ${operation.bodyModel} from'.${pathPrefix}/${operation.bodyModel}';`);
-            } else if (!model) {
-              importStatements.add(`import ${operation.bodyModel} from'.${pathPrefix}/${operation.bodyModel}';`);
-            }
-      }
-
-      if (operation.responseModel) {
-        if (operation.isArray) {
-          importStatements.add(`import Collection from '../collection';`);
-        } else if(model && operation.responseModel !== model.modelName) {
-          importStatements.add(`import ${operation.responseModel} from'.${pathPrefix}/${operation.responseModel}';`);
-        } else if (!model){
-          importStatements.add(`import ${operation.responseModel} from'.${pathPrefix}/${operation.responseModel}';`);
-        }
-      }
-    });
-
-    return model ? importStatements : Array.from(importStatements).join('\n');
-  };
-
-  handlebars.registerHelper('operationsArgumentsImportBuilder', operationsArgumentsImportBuilder);
-
-  handlebars.registerHelper('modelImportBuilder', (model, importSyntax='cjs') => {
+  handlebars.registerHelper('modelImportBuilder', model => {
     if (!model.properties) {
       return;
     }
-    let importStatements = new Set();
-
-    if (importSyntax === 'ts') {
-      const operations = model.methods.map(method => method.operation);
-      importStatements = new Set([...operationsArgumentsImportBuilder(operations, model)]);
-    }
-
+    const importStatements = new Set();
     model.properties.forEach(property => {
       const shouldProcess = !MODELS_SHOULD_NOT_PROCESS.includes(property.model);
-      if (property.$ref && shouldProcess) {
-        if (importSyntax === 'ts') {
-          if (model.methods.length > 1) {
-          }
-          importStatements.add(`import ${property.model} from'./${property.model}';`);
-        } else {
-          if (!property.isEnum) {
-            importStatements.add(`const ${property.model} = require('./${property.model}');`);
-          }
-        }
+      if (property.$ref && shouldProcess && !property.isEnum) {
+        importStatements.add(`const ${property.model} = require('./${property.model}');`);
       }
     });
     return Array.from(importStatements).join('\n');
@@ -330,39 +286,6 @@ js.process = ({spec, operations, models, handlebars}) => {
       dateTime: 'string',
       password: 'string',
     }[swaggerType] || swaggerType;
-  });
-
-  handlebars.registerHelper('modelMethodPublicArgumentTypeScriptTypingBuilder', (method, modelName) => {
-    const args = [];
-
-    const operation = method.operation;
-
-    operation.pathParams.forEach(param => {
-      const matchingArgument = method.arguments.filter(argument => argument.dest === param.name)[0];
-      if (!matchingArgument || !matchingArgument.src){
-        args.push(`${param.name}: ${param.type}`);
-      }
-    });
-
-    if ((operation.method === 'post' || operation.method === 'put') && operation.bodyModel && (operation.bodyModel !== modelName)) {
-      args.push(`${_.camelCase(operation.bodyModel)}: ${operation.bodyModel}`);
-    }
-
-    if (operation.queryParams.length) {
-      args.push('queryParameters: object');
-    }
-
-    let returnType = 'undefined';
-    if (operation.responseModel) {
-      if (operation.isArray) {
-       returnType = 'Promise<Collection>';
-      } else {
-        returnType = `Promise<${operation.responseModel}>`;
-      }
-    }
-
-    const output = `(${args.join(', ')}): ${returnType};`;
-    return output;
   });
 
   handlebars.registerHelper('getAffectedResources', (path) => {
