@@ -1,5 +1,7 @@
 const _ = require('lodash');
 
+const MODELS_SHOULD_NOT_PROCESS = ['object', 'string', 'undefined'];
+
 const getBodyModelName = operation => {
   const { bodyModel, parameters } = operation;
   let bodyModelName = bodyModel;
@@ -130,7 +132,7 @@ const jsdocBuilder = (operation) => {
   return lines.join('\n');
 };
 
-const getOperationTypeScriptSignature = operation => {
+const getOperationArgumentsAndReturnType = operation => {
   const { bodyModel, method, pathParams, queryParams } = operation;
   const args = new Map();
 
@@ -155,15 +157,32 @@ const getOperationTypeScriptSignature = operation => {
   let returnType = 'undefined';
   if (operation.responseModel) {
     if (operation.isArray) {
-      returnType = 'Promise<Collection>';
+      returnType = 'Collection';
     } else {
-      returnType = `Promise<${operation.responseModel}>`;
+      returnType = operation.responseModel;
     }
   }
 
   return [args, returnType];
 };
 
+const getModelMethodArgumentsAndReturnType = (method, modelName) => {
+  const { operation, arguments } = method;
+  const [args, returnType] = getOperationArgumentsAndReturnType(operation);
+
+  operation.pathParams.forEach(param => {
+    const matchingArgument = arguments.find(argument => argument.dest === param.name);
+    if (matchingArgument){
+      args.delete(param.name);
+    }
+  });
+
+  const bodyModelName = getBodyModelName(operation);
+  if (bodyModelName && bodyModelName === modelName) {
+    args.delete(_.camelCase(operation.bodyModel));
+  }
+  return [args, returnType];
+};
 
 const formatObjectLiteralType = typeProps => {
   let objectLiteralType = '{ \n';
@@ -171,12 +190,11 @@ const formatObjectLiteralType = typeProps => {
     objectLiteralType += `    ${prop}: string,\n`
   })
   objectLiteralType += '  }';
-  console.log(objectLiteralType)
   return objectLiteralType;
 }
 
-const typeScriptSignatureBuilder = (operation) => {
-  const [args, returnType] = getOperationTypeScriptSignature(operation);
+const typeScriptOperationSignatureBuilder = (operation) => {
+  const [args, returnType] = getOperationArgumentsAndReturnType(operation);
 
   const typedArgs = [];
   for (let [arg, argType] of args) {
@@ -187,8 +205,81 @@ const typeScriptSignatureBuilder = (operation) => {
     }
   }
 
-  return `${operation.operationId}(${typedArgs.join(', ')}): ${returnType};`;
+  return `${operation.operationId}(${typedArgs.join(', ')}): ${returnType === 'undefined' ? 'undefined' : `Promise<${returnType}>;`}`;
 };
+
+const typeScriptClientImportBuilder = (operations) => {
+  const operationsImportTypes = operations.reduce((acc, operation) => {
+    const [args, returnType] = getOperationArgumentsAndReturnType(operation);
+    return [
+      ...acc,
+      ...args.values(),
+      returnType,
+    ]
+  }, []);
+
+  const importStatements = [];
+  operationsImportTypes.forEach(type => {
+    if (!MODELS_SHOULD_NOT_PROCESS.includes(type) && !Array.isArray(type)) {
+      if (type === 'Collection') {
+        importStatements.push(`import Collection from '../collection';`);
+      } else {
+        importStatements.push(`import ${type} from './${type}';`);
+      }
+    }
+  });
+  return importStatements.join('\n');
+};
+
+const typeScriptModelImportBuilder = model => {
+  const {properties, methods} = model;
+  if (!properties && !methods) {
+    return;
+  }
+
+  const methodsImportTypes = model.methods.reduce((acc, method) => {
+    const [args, returnType] = getModelMethodArgumentsAndReturnType(method, model.modelName);
+    return [
+      ...acc,
+      ...args.values(),
+      returnType,
+    ]
+  }, []);
+
+  const propertiesImportTypes =
+    properties.filter(property => property.$ref).map(property => property.model);
+
+  const importTypes = new Set([...methodsImportTypes, ...propertiesImportTypes]);
+  const importStatements = [];
+  importTypes.forEach(type => {
+    if (!MODELS_SHOULD_NOT_PROCESS.includes(type) && !Array.isArray(type)) {
+      if (type === 'Collection') {
+        importStatements.push(`import Collection from '../collection';`);
+      } else {
+        importStatements.push(`import ${type} from './${type}';`);
+      }
+    }
+  });
+  return importStatements.join('\n');
+};
+
+ 
+const typeScriptModelMethodSignatureBuilder = (method, modelName) => {
+  console.log(method.operation.operationId)
+  const [args, returnType] = getModelMethodArgumentsAndReturnType(method, modelName);
+
+  const typedArgs = [];
+  for (let [arg, argType] of args) {
+    if (Array.isArray(argType)) {
+      typedArgs.push(`${arg}: ${formatObjectLiteralType(argType)}`)
+    } else {
+      typedArgs.push(`${arg}: ${argType}`)
+    }
+  }
+
+  return `(${typedArgs.join(', ')}): ${returnType === 'undefined' ? 'undefined' : `Promise<${returnType}>;`}`;
+};
+
 
 module.exports = {
   getBodyModelNameInCamelCase,
@@ -199,5 +290,8 @@ module.exports = {
   getHttpMethod,
   shouldResolveJson,
   jsdocBuilder,
-  typeScriptSignatureBuilder,
+  typeScriptOperationSignatureBuilder,
+  typeScriptModelImportBuilder,
+  typeScriptModelMethodSignatureBuilder,
+  typeScriptClientImportBuilder,
 }
