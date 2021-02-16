@@ -134,12 +134,12 @@ const jsdocBuilder = (operation) => {
 
 const typeScriptOperationSignatureBuilder = operation => {
   const [args, returnType] = getOperationArgumentsAndReturnType(operation);
-  return `${operation.operationId}(${formatArguments(args).join(', ')}): ${formatReturnType(returnType)};`;
+  return `${operation.operationId}(${formatArguments(args).join(', ')}): Promise<${returnType}>;`;
 };
 
 const typeScriptModelMethodSignatureBuilder = (method, modelName) => {
   const [args, returnType] = getModelMethodArgumentsAndReturnType(method, modelName);
-  return `(${formatArguments(args).join(', ')}): ${formatReturnType(returnType)};`;
+  return `(${formatArguments(args).join(', ')}): Promise<${returnType}>;`;
 };
 
 const typeScriptClientImportBuilder = operations => {
@@ -152,7 +152,9 @@ const typeScriptClientImportBuilder = operations => {
     ]
   }, []);
 
-  const importStatements = formatImportStatements(operationsImportTypes);
+  const importStatements = formatImportStatements(new Set([...operationsImportTypes]), {
+    isModelToModelImport: false
+  });
   return importStatements.join('\n');
 };
 
@@ -230,8 +232,6 @@ const getModelMethodArgumentsAndReturnType = (method, modelName) => {
   return [args, returnType];
 };
 
-const formatReturnType = returnType => returnType === 'undefined' ? 'undefined' : `Promise<${returnType}>`;
-
 const formatArguments = args => {
   const typedArgs = [];
   for (let [arg, argType] of args) {
@@ -253,19 +253,50 @@ const formatObjectLiteralType = typeProps => {
   return objectLiteralType;
 }
 
-const formatImportStatements = importTypes => {
+const formatImportStatements = (importTypes, formattingOptions = {
+  isModelToModelImport: true
+}) => {
   const importStatements = [];
+  const { isModelToModelImport } = formattingOptions;
   importTypes.forEach(type => {
     if (!MODELS_SHOULD_NOT_PROCESS.includes(type) && !Array.isArray(type)) {
       if (type === 'Collection') {
-        importStatements.push(`import Collection from '../collection';`);
+        importStatements.push(`import Collection from '${isModelToModelImport ? '..' : '.'}/collection';`);
       } else {
-        importStatements.push(`import ${type} from './${type}';`);
+        importStatements.push(`import ${type} from '${isModelToModelImport ? './' : './models/'}${type}';`);
       }
     }
   });
   return importStatements;
 }
+
+const convertSwaggerToTSType = swaggerType => {
+  return {
+    array: '[]',
+    integer: 'number',
+    hash: '{\n\    [name: string]: unknown;\n\  }',
+    dateTime: 'string',
+    password: 'string',
+  }[swaggerType] || swaggerType;
+};
+
+const sanitizeModelPropertyName = propertyName => {
+  const restrictedChars = ['#'];
+  const knownConflictingPropertyNames = ['verify'];
+  let sanitizedPropertyName = propertyName;
+
+  const containsRestrictedChars = restrictedChars.find(char => propertyName.includes(char));
+
+  if (knownConflictingPropertyNames.includes(propertyName)) {
+    sanitizedPropertyName = `_${propertyName}`;
+  }
+
+  if (containsRestrictedChars) {
+    sanitizedPropertyName = `'${propertyName}'`;
+  }
+
+  return sanitizedPropertyName;
+};
 
 
 module.exports = {
@@ -281,4 +312,6 @@ module.exports = {
   typeScriptModelImportBuilder,
   typeScriptModelMethodSignatureBuilder,
   typeScriptClientImportBuilder,
+  convertSwaggerToTSType,
+  sanitizeModelPropertyName
 }

@@ -131,24 +131,6 @@ js.process = ({spec, operations, models, handlebars}) => {
   // Register Operation helpers
   Object.keys(operationUtils).forEach(key => handlebars.registerHelper(key, operationUtils[key]));
 
-  handlebars.registerHelper('sanitizeModelPropertyName', propertyName => {
-    const restrictedChars = ['#'];
-    const knownConflictingPropertyNames = ['verify'];
-    let sanitizedPropertyName = propertyName;
-
-    const containsRestrictedChars = restrictedChars.find(char => propertyName.includes(char));
-
-    if (knownConflictingPropertyNames.includes(propertyName)) {
-      sanitizedPropertyName = `_${propertyName}`;
-    }
-
-    if (containsRestrictedChars) {
-      sanitizedPropertyName = `'${propertyName}'`;
-    }
-
-    return sanitizedPropertyName;
-  });
-
   // TODO: move helpers to modules
   const paramMatcher = /{(.*?)}/g;
   handlebars.registerHelper('replacePathParams', (path) => {
@@ -276,16 +258,6 @@ js.process = ({spec, operations, models, handlebars}) => {
 
     const output = '/**\n   * ' + args.join('\n   * ') + '\n   */\n  ';
     return output;
-  });
-
-  handlebars.registerHelper('convertSwaggerToTSType', (swaggerType) => {
-    return {
-      array: '[]',
-      integer: 'number',
-      hash: '{\n\  [name: string]: unknown;\n\  }',
-      dateTime: 'string',
-      password: 'string',
-    }[swaggerType] || swaggerType;
   });
 
   handlebars.registerHelper('getAffectedResources', (path) => {
