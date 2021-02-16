@@ -145,7 +145,7 @@ js.process = ({spec, operations, models, handlebars}) => {
     return new handlebars.SafeString(path);
   });
 
-  handlebars.registerHelper('modelImportBuilder', model => {
+  handlebars.registerHelper('modelImportBuilder', (model) => {
     if (!model.properties) {
       return;
     }
@@ -177,6 +177,7 @@ js.process = ({spec, operations, models, handlebars}) => {
 
   handlebars.registerHelper('modelMethodPublicArgumentBuilder', (method, modelName) => {
     const args = [];
+
     const operation = method.operation;
 
     operation.pathParams.forEach(param => {
