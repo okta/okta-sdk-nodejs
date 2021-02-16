@@ -52,8 +52,8 @@ function cleanTestGroups() {
   };
 
   return client.http.http(url, request)
-    .then(response => response.text())
-    .then(bodyResponse => JSON.parse(bodyResponse))
+    .then(responce => responce.text())
+    .then(bodyResponce => JSON.parse(bodyResponce))
     .then(user => {
       user.forEach(element =>{
         (element.profile.name.startsWith('node-sdk')) ?
