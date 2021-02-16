@@ -268,7 +268,7 @@ const formatImportStatements = (importTypes, formattingOptions = {
       }
     }
   });
-  return importStatements.join('/n');
+  return importStatements.join('\n');
 }
 
 const convertSwaggerToTSType = swaggerType => {
