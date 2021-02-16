@@ -155,7 +155,7 @@ const typeScriptClientImportBuilder = operations => {
   const importStatements = formatImportStatements(new Set([...operationsImportTypes]), {
     isModelToModelImport: false
   });
-  return importStatements.join('\n');
+  return importStatements;
 };
 
 const typeScriptModelImportBuilder = model => {
@@ -176,8 +176,9 @@ const typeScriptModelImportBuilder = model => {
   const propertiesImportTypes =
     properties.filter(property => property.$ref).map(property => property.model);
 
-  const importStatements = formatImportStatements(new Set([...methodsImportTypes, ...propertiesImportTypes]));
-  return importStatements.join('\n');
+  const uniqueImportTypes = new Set([...methodsImportTypes, ...propertiesImportTypes]);
+  uniqueImportTypes.delete(model.modelName);
+  return formatImportStatements(uniqueImportTypes);
 };
 
 const getOperationArgumentsAndReturnType = operation => {
@@ -267,13 +268,14 @@ const formatImportStatements = (importTypes, formattingOptions = {
       }
     }
   });
-  return importStatements;
+  return importStatements.join('/n');
 }
 
 const convertSwaggerToTSType = swaggerType => {
   return {
     array: '[]',
     integer: 'number',
+    double: 'number',
     hash: '{\n\    [name: string]: unknown;\n\  }',
     dateTime: 'string',
     password: 'string',
