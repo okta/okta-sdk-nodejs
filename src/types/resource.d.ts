@@ -1,4 +1,3 @@
-export = Resource;
 /*!
  * Copyright (c) 2017-2021, Okta, Inc. and/or its affiliates. All rights reserved.
  * The Okta software accompanied by this notice is provided pursuant to the Apache License, Version 2.0 (the "License.")
@@ -14,3 +13,5 @@ export = Resource;
 declare class Resource {
     constructor(resourceJson: any, client: any);
 }
+
+export default Resource;
