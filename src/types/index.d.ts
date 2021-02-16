@@ -10,10 +10,8 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
-const factories = {
-{{#each models}}
-  {{modelName}}: import('./{{modelName}}Factory'),
-{{/each}}
-}
+import Client from './generated-client';
 
-export = factories;
+export {
+  Client,
+}
