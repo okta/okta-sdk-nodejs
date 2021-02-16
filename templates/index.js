@@ -90,15 +90,6 @@ js.process = ({spec, operations, models, handlebars}) => {
           propertyName: model.resolutionStrategy.propertyName
         }
       });
-      templates.push({
-        src: 'factory.d.ts.hbs',
-        dest: `src/types/factories/${model.modelName}Factory.d.ts`,
-        context: {
-          parentModelName: model.modelName,
-          mapping,
-          propertyName: model.resolutionStrategy.propertyName
-        }
-      });
     }
   }
 
@@ -117,12 +108,6 @@ js.process = ({spec, operations, models, handlebars}) => {
   templates.push({
     src: 'factories.index.js.hbs',
     dest: 'src/factories/index.js',
-    context: { models: models.filter(model => model.requiresResolution) }
-  });
-
-  templates.push({
-    src: 'factories.index.d.ts.hbs',
-    dest: 'src/types/factories/index.d.ts',
     context: { models: models.filter(model => model.requiresResolution) }
   });
 
