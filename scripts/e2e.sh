@@ -17,6 +17,7 @@ if ! yarn test:integration; then
   exit ${PUBLISH_TYPE_AND_RESULT_DIR_BUT_ALWAYS_FAIL}
 fi
 
+mkdir test-reports
 ls -al ${OKTA_HOME}/${REPO}/test-reports
 
 echo ${TEST_SUITE_TYPE} > ${TEST_SUITE_TYPE_FILE}
