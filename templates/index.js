@@ -137,7 +137,8 @@ js.process = ({spec, operations, models, handlebars}) => {
     const importStatements = new Set();
     model.properties.forEach(property => {
       const shouldProcess = !MODELS_SHOULD_NOT_PROCESS.includes(property.model);
-      if (property.$ref && shouldProcess && !property.isEnum) {
+      const isRestricted = operationUtils.isRestrictedPropertyOverride(model.modelName, property.propertyName);
+      if (property.$ref && shouldProcess && !property.isEnum && !isRestricted) {
         importStatements.add(`const ${property.model} = require('./${property.model}');`);
       }
     });
@@ -151,7 +152,8 @@ js.process = ({spec, operations, models, handlebars}) => {
     const constructorStatements = [];
     model.properties.forEach(property => {
       const shouldProcess = !MODELS_SHOULD_NOT_PROCESS.includes(property.model);
-      if (property.$ref && shouldProcess && !property.isEnum) {
+      const isRestricted = operationUtils.isRestrictedPropertyOverride(model.modelName, property.propertyName);
+      if (property.$ref && shouldProcess && !property.isEnum && !isRestricted) {
         constructorStatements.push(`    if (resourceJson && resourceJson.${property.propertyName}) {`);
         constructorStatements.push(`      this.${property.propertyName} = new ${property.model}(resourceJson.${property.propertyName});`);
         constructorStatements.push(`    }`);

@@ -1,6 +1,17 @@
 const _ = require('lodash');
 
 const MODELS_SHOULD_NOT_PROCESS = ['object', 'string', 'undefined'];
+const RESTRICTED_PROPERTY_OVERRIDES = {
+  OktaSignOnPolicy: ['conditions'],
+  PasswordPolicy: ['conditions'],
+  BookmarkApplication: ['name'],
+  BasicAuthApplication: ['name'],
+  OpenIdConnectApplication: ['name'],
+  WsFederationApplication: ['name'],
+  SwaThreeFieldApplication: ['name'],
+  SwaApplication: ['name'],
+  SecurePasswordStoreApplication: ['name'],
+};
 
 const getBodyModelName = operation => {
   const { bodyModel, parameters } = operation;
@@ -173,8 +184,13 @@ const typeScriptModelImportBuilder = model => {
     ]
   }, []);
 
-  const propertiesImportTypes =
-    properties.filter(property => property.$ref).map(property => property.model);
+  const propertiesImportTypes = [];
+  properties.forEach(property => {
+    const shouldProcess = !MODELS_SHOULD_NOT_PROCESS.includes(property.model);
+    const isRestricted = isRestrictedPropertyOverride(model.modelName, property.propertyName);
+    if (property.$ref && shouldProcess && !isRestricted)
+      propertiesImportTypes.push(property.model)
+  });
 
   const uniqueImportTypes = new Set([...methodsImportTypes, ...propertiesImportTypes]);
   uniqueImportTypes.delete(model.modelName);
@@ -300,6 +316,9 @@ const sanitizeModelPropertyName = propertyName => {
   return sanitizedPropertyName;
 };
 
+const isRestrictedPropertyOverride = (modelName, propertyName) => {
+  return RESTRICTED_PROPERTY_OVERRIDES[modelName] && RESTRICTED_PROPERTY_OVERRIDES[modelName].includes(propertyName);
+}
 
 module.exports = {
   getBodyModelNameInCamelCase,
@@ -315,5 +334,6 @@ module.exports = {
   typeScriptModelMethodSignatureBuilder,
   typeScriptClientImportBuilder,
   convertSwaggerToTSType,
-  sanitizeModelPropertyName
+  sanitizeModelPropertyName,
+  isRestrictedPropertyOverride,
 }
