@@ -56,9 +56,9 @@ function cleanTestGroups() {
     .then(bodyResponce => JSON.parse(bodyResponce))
     .then(user => {
       user.forEach(element =>{
-        (element.profile.name.startsWith('node-sdk')) ?
-          utils.cleanupGroup(client, element) :
-          console.log(`Skipped group to remove ${element.profile.name}`)
+        (element.profile.name === 'Everyone') ?
+           console.log(`Skipped group to remove ${element.profile.name}`) :
+           utils.cleanupGroup(client, element)
       });
     })
     .catch(err => {
