@@ -15,21 +15,42 @@ const client = new okta.Client({
 });
 
 describe('Clean all test resources', () => {
-  //Remove all test users
-  //cleanTestUsers();
 
-  //Remove all test groups
-  //cleanTestGroups();
+//  cleanAuthorizationServers();
 
-  //Remove all test applications
-  //cleanApplications();
+//  cleanTestUsers();
+
+//  cleanTestGroups();
+
+//  cleanApplications();
+
+//  cleanInlineHooks();
+
 });
+
+async function cleanInlineHooks(){
+    const collection = await client.listInlineHooks();
+    collection.each(async (inlineHook) => {
+
+        await inlineHook.deactivate();
+        await inlineHook.delete();
+    })
+}
+
+
+function cleanAuthorizationServers() {
+    client.listAuthorizationServers().each(
+        authorizationServer => {
+            authorizationServer.delete();
+        }
+    );
+}
 
 function cleanApplications() {
   client.listApplications().each(application =>{
-    (application.label.startsWith('node-sdk')) ?
-      utils.removeAppByLabel() :
-      console.log(`Skipped application to remove ${application.label}`)
+    (application.label === 'Node SDK Service App' || application.label === 'Bacon Service Client') ?
+       console.log(`Skipped application to remove ${application.label}`) :
+       utils.removeAppByLabel(client, application.label)
   });
 }
 
