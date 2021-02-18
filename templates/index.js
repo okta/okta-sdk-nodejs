@@ -30,8 +30,6 @@ js.process = ({spec, operations, models, handlebars}) => {
 
   // Collect all the operations
 
-  const MODELS_SHOULD_NOT_PROCESS = ['object', 'string'];
-
   const templates = [];
 
   const extensibleModels = new Set();
@@ -136,9 +134,8 @@ js.process = ({spec, operations, models, handlebars}) => {
     }
     const importStatements = new Set();
     model.properties.forEach(property => {
-      const shouldProcess = !MODELS_SHOULD_NOT_PROCESS.includes(property.model);
-      const isRestricted = operationUtils.isRestrictedPropertyOverride(model.modelName, property.propertyName);
-      if (property.$ref && shouldProcess && !property.isEnum && !isRestricted) {
+      const shouldProcess = operationUtils.isImportablePropertyType(property, model.modelName);
+      if (shouldProcess && !property.isEnum) {
         importStatements.add(`const ${property.model} = require('./${property.model}');`);
       }
     });
@@ -151,9 +148,8 @@ js.process = ({spec, operations, models, handlebars}) => {
     }
     const constructorStatements = [];
     model.properties.forEach(property => {
-      const shouldProcess = !MODELS_SHOULD_NOT_PROCESS.includes(property.model);
-      const isRestricted = operationUtils.isRestrictedPropertyOverride(model.modelName, property.propertyName);
-      if (property.$ref && shouldProcess && !property.isEnum && !isRestricted) {
+      const shouldProcess = operationUtils.isImportablePropertyType(property, model.modelName);
+      if (shouldProcess && !property.isEnum) {
         constructorStatements.push(`    if (resourceJson && resourceJson.${property.propertyName}) {`);
         constructorStatements.push(`      this.${property.propertyName} = new ${property.model}(resourceJson.${property.propertyName});`);
         constructorStatements.push(`    }`);
@@ -190,7 +186,9 @@ js.process = ({spec, operations, models, handlebars}) => {
     const args = [];
 
     const operation = method.operation;
-
+    if (modelName === 'UserFactor') {
+      console.log(method)
+    }
     operation.pathParams.forEach(param => {
       const matchingArgument = method.arguments.filter(argument => argument.dest === param.name)[0];
       if (matchingArgument && matchingArgument.src){
