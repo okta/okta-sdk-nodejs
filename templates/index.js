@@ -186,9 +186,7 @@ js.process = ({spec, operations, models, handlebars}) => {
     const args = [];
 
     const operation = method.operation;
-    if (modelName === 'UserFactor') {
-      console.log(method)
-    }
+
     operation.pathParams.forEach(param => {
       const matchingArgument = method.arguments.filter(argument => argument.dest === param.name)[0];
       if (matchingArgument && matchingArgument.src) {
