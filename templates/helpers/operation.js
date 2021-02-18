@@ -169,10 +169,10 @@ const typeScriptClientImportBuilder = operations => {
       ...importableTypes,
     ]
   }, []);
-  const importStatements = formatImportStatements(new Set([...operationsImportTypes]), {
+
+  return formatImportStatements(new Set([...operationsImportTypes]), {
     isModelToModelImport: false
   });
-  return importStatements;
 };
 
 const typeScriptModelImportBuilder = model => {
@@ -196,9 +196,10 @@ const typeScriptModelImportBuilder = model => {
       propertiesImportTypes.push(property.model)
   });
 
-  const uniqueImportTypes = new Set([...methodsImportTypes, ...propertiesImportTypes]);
-  uniqueImportTypes.delete(model.modelName);
-  return formatImportStatements(uniqueImportTypes);
+  const importTypes = new Set([...methodsImportTypes, ...propertiesImportTypes]);
+  // model methods returning model type
+  importTypes.delete(model.modelName);
+  return formatImportStatements(importTypes);
 };
 
 const getOperationArgumentsAndReturnType = operation => {
