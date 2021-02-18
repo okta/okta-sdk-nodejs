@@ -14,6 +14,7 @@ export TEST_RESULT_FILE_DIR="${REPO}/test-reports"
 
 if ! yarn test:integration; then
   echo "Integration tests failed! Exiting..."
+  yarn aftertest
   exit ${PUBLISH_TYPE_AND_RESULT_DIR_BUT_ALWAYS_FAIL}
 fi
 

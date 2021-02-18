@@ -16,15 +16,15 @@ const client = new okta.Client({
 
 describe('Clean all test resources', () => {
 
-//  cleanAuthorizationServers();
+  cleanAuthorizationServers();
 
-//  cleanTestUsers();
+  cleanTestUsers();
 
-//  cleanTestGroups();
+  cleanTestGroups();
 
-//  cleanApplications();
+  cleanApplications();
 
-//  cleanInlineHooks();
+  cleanInlineHooks();
 
 });
 
