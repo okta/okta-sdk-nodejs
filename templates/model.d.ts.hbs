@@ -31,10 +31,10 @@ declare class {{modelName}} extends Resource {
 {{#unless (isRestrictedPropertyOverride ../modelName this.propertyName)}}
 {{#if this.$ref}}
 {{#if (ne this.model "object") }}
-  {{{sanitizeModelPropertyName this.propertyName}}}: {{model}};
+  {{{sanitizeModelPropertyName ../modelName this.propertyName}}}: {{model}};
 {{/if}}
 {{else}}
-  {{{sanitizeModelPropertyName this.propertyName}}}: {{convertSwaggerToTSType this.commonType}};
+  {{{sanitizeModelPropertyName ../modelName this.propertyName}}}: {{convertSwaggerToTSType this.commonType}};
 {{/if}}
 {{/unless}}
 {{/each}}

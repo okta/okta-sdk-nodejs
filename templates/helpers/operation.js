@@ -1,7 +1,9 @@
 const _ = require('lodash');
 
 const MODELS_SHOULD_NOT_PROCESS = ['object', 'string', 'undefined'];
-const RESTRICTED_PROPERTY_OVERRIDES = {
+
+// BEGIN work around spec mismatches and upstream parsing incosistencies
+const RESTRICTED_MODEL_PROPERTY_OVERRIDES = {
   OktaSignOnPolicy: ['conditions'],
   PasswordPolicy: ['conditions'],
   BookmarkApplication: ['name'],
@@ -12,6 +14,11 @@ const RESTRICTED_PROPERTY_OVERRIDES = {
   SwaApplication: ['name'],
   SecurePasswordStoreApplication: ['name'],
 };
+const KNOWN_CONFLICTING_PROPERTY_NAMES = {
+  UserFactor: ['verify'],
+};
+const PROPERTY_NAME_CHARACTERS_REQUIRE_ESCAPING = ['#'];
+// END work around spec mismatches and upstream parsing incosistencies
 
 const getBodyModelName = operation => {
   const { bodyModel, parameters } = operation;
@@ -145,24 +152,23 @@ const jsdocBuilder = (operation) => {
 
 const typeScriptOperationSignatureBuilder = operation => {
   const [args, returnType] = getOperationArgumentsAndReturnType(operation);
-  return `${operation.operationId}(${formatArguments(args).join(', ')}): Promise<${returnType}>;`;
+  return `${operation.operationId}(${formatTypeScriptArguments(args)}): Promise<${returnType}>;`;
 };
 
 const typeScriptModelMethodSignatureBuilder = (method, modelName) => {
   const [args, returnType] = getModelMethodArgumentsAndReturnType(method, modelName);
-  return `(${formatArguments(args).join(', ')}): Promise<${returnType}>;`;
+  return `(${formatTypeScriptArguments(args)}): Promise<${returnType}>;`;
 };
 
 const typeScriptClientImportBuilder = operations => {
   const operationsImportTypes = operations.reduce((acc, operation) => {
     const [args, returnType] = getOperationArgumentsAndReturnType(operation);
+    const importableTypes = [...args.values(), returnType].filter(isImportableType);
     return [
       ...acc,
-      ...args.values(),
-      returnType,
+      ...importableTypes,
     ]
   }, []);
-
   const importStatements = formatImportStatements(new Set([...operationsImportTypes]), {
     isModelToModelImport: false
   });
@@ -177,18 +183,16 @@ const typeScriptModelImportBuilder = model => {
 
   const methodsImportTypes = model.methods.reduce((acc, method) => {
     const [args, returnType] = getModelMethodArgumentsAndReturnType(method, model.modelName);
+    const importableTypes = [...args.values(), returnType].filter(isImportableType);
     return [
       ...acc,
-      ...args.values(),
-      returnType,
+      ...importableTypes,
     ]
   }, []);
 
   const propertiesImportTypes = [];
   properties.forEach(property => {
-    const shouldProcess = !MODELS_SHOULD_NOT_PROCESS.includes(property.model);
-    const isRestricted = isRestrictedPropertyOverride(model.modelName, property.propertyName);
-    if (property.$ref && shouldProcess && !isRestricted)
+    if (isImportablePropertyType(property, model.modelName))
       propertiesImportTypes.push(property.model)
   });
 
@@ -249,7 +253,7 @@ const getModelMethodArgumentsAndReturnType = (method, modelName) => {
   return [args, returnType];
 };
 
-const formatArguments = args => {
+const formatTypeScriptArguments = args => {
   const typedArgs = [];
   for (let [arg, argType] of args) {
     if (Array.isArray(argType)) {
@@ -258,7 +262,7 @@ const formatArguments = args => {
       typedArgs.push(`${arg}: ${argType}`)
     }
   }
-  return typedArgs;
+  return typedArgs.join(', ');
 }
 
 const formatObjectLiteralType = typeProps => {
@@ -270,18 +274,15 @@ const formatObjectLiteralType = typeProps => {
   return objectLiteralType;
 }
 
-const formatImportStatements = (importTypes, formattingOptions = {
-  isModelToModelImport: true
-}) => {
+const formatImportStatements = (importTypes, {
+  isModelToModelImport = true
+} = {}) => {
   const importStatements = [];
-  const { isModelToModelImport } = formattingOptions;
   importTypes.forEach(type => {
-    if (!MODELS_SHOULD_NOT_PROCESS.includes(type) && !Array.isArray(type)) {
-      if (type === 'Collection') {
-        importStatements.push(`import Collection from '${isModelToModelImport ? '..' : '.'}/collection';`);
-      } else {
-        importStatements.push(`import ${type} from '${isModelToModelImport ? './' : './models/'}${type}';`);
-      }
+    if (type === 'Collection') {
+      importStatements.push(`import Collection from '${isModelToModelImport ? '..' : '.'}/collection';`);
+    } else {
+      importStatements.push(`import ${type} from '${isModelToModelImport ? './' : './models/'}${type}';`);
     }
   });
   return importStatements.join('\n');
@@ -298,14 +299,26 @@ const convertSwaggerToTSType = swaggerType => {
   }[swaggerType] || swaggerType;
 };
 
-const sanitizeModelPropertyName = propertyName => {
-  const restrictedChars = ['#'];
-  const knownConflictingPropertyNames = ['verify'];
+const isImportablePropertyType = (property, hostModelName) => {
+  const isRestricted = isRestrictedPropertyOverride(hostModelName, property.propertyName);
+  return property.$ref && isImportableType(property.model) && !isRestricted;
+}
+
+const isRestrictedPropertyOverride = (modelName, propertyName) => {
+  return RESTRICTED_MODEL_PROPERTY_OVERRIDES[modelName] &&
+    RESTRICTED_MODEL_PROPERTY_OVERRIDES[modelName].includes(propertyName);
+}
+const isImportableType = type =>
+  !MODELS_SHOULD_NOT_PROCESS.includes(type) && !Array.isArray(type)
+
+const sanitizeModelPropertyName = (modelName, propertyName) => {
   let sanitizedPropertyName = propertyName;
 
-  const containsRestrictedChars = restrictedChars.find(char => propertyName.includes(char));
+  const containsRestrictedChars =
+    PROPERTY_NAME_CHARACTERS_REQUIRE_ESCAPING.find(char => propertyName.includes(char));
 
-  if (knownConflictingPropertyNames.includes(propertyName)) {
+  if (KNOWN_CONFLICTING_PROPERTY_NAMES[modelName] &&
+      KNOWN_CONFLICTING_PROPERTY_NAMES[modelName].includes(propertyName)) {
     sanitizedPropertyName = `_${propertyName}`;
   }
 
@@ -315,10 +328,6 @@ const sanitizeModelPropertyName = propertyName => {
 
   return sanitizedPropertyName;
 };
-
-const isRestrictedPropertyOverride = (modelName, propertyName) => {
-  return RESTRICTED_PROPERTY_OVERRIDES[modelName] && RESTRICTED_PROPERTY_OVERRIDES[modelName].includes(propertyName);
-}
 
 module.exports = {
   getBodyModelNameInCamelCase,
@@ -335,5 +344,6 @@ module.exports = {
   typeScriptClientImportBuilder,
   convertSwaggerToTSType,
   sanitizeModelPropertyName,
+  isImportablePropertyType,
   isRestrictedPropertyOverride,
 }
