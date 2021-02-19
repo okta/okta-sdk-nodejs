@@ -1,0 +1,16 @@
+{
+  "parserOptions": {
+    "ecmaVersion": 8
+  },
+  "rules": {
+    "no-use-before-define": ["error", {"functions": false, "variables": false}]
+  },
+  "env": {
+    "node": true,
+    "es6": true
+  },
+  "extends": [
+    "../src/.eslintrc",
+    "eslint:recommended"
+  ]
+}
