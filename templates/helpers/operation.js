@@ -54,19 +54,19 @@ const getOperationArgument = operation => {
   }
 
   return args;
-}
+};
 
 const operationArgumentBuilder = (operation) => {
   const args = getOperationArgument(operation);
   return args.join(', ');
-}
+};
 
-const getRequiredOperationParams = operation => { 
+const getRequiredOperationParams = operation => {
   const args = getOperationArgument(operation);
   return operation.parameters.filter(({ name, required }) => {
     return args.includes(name) && required;
   });
-}
+};
 
 const getHttpMethod = ({ consumes, produces, method, responseModel }) => {
   let res;
@@ -99,15 +99,15 @@ const hasRequest = (operation) => {
 };
 
 const hasHeaders = (operation) => {
-  const { consumes, produces, bodyModel } = operation;
+  const { consumes, produces } = operation;
   const httpMethod = getHttpMethod(operation);
   return httpMethod.indexOf('Json') === -1 && (consumes.length || produces.length);
 };
 
 const shouldResolveJson = (operation) => {
-  return hasHeaders(operation) 
-    && hasRequest(operation) 
-    && operation.responseModel 
+  return hasHeaders(operation)
+    && hasRequest(operation)
+    && operation.responseModel
     && operation.produces.includes('application/json');
 };
 
@@ -141,9 +141,9 @@ const jsdocBuilder = (operation) => {
 
   if (operation.responseModel) {
     if (operation.isArray) {
-      lines.push(`   * @returns {Promise<Collection>} A collection that will yield {@link ${operation.responseModel}} instances.`)
+      lines.push(`   * @returns {Promise<Collection>} A collection that will yield {@link ${operation.responseModel}} instances.`);
     } else {
-      lines.push(`   * @returns {Promise<${operation.responseModel}>}`)
+      lines.push(`   * @returns {Promise<${operation.responseModel}>}`);
     }
   }
 
@@ -167,7 +167,7 @@ const typeScriptClientImportBuilder = operations => {
     return [
       ...acc,
       ...importableTypes,
-    ]
+    ];
   }, []);
 
   return formatImportStatements(new Set([...operationsImportTypes]), {
@@ -187,13 +187,14 @@ const typeScriptModelImportBuilder = model => {
     return [
       ...acc,
       ...importableTypes,
-    ]
+    ];
   }, []);
 
   const propertiesImportTypes = [];
   properties.forEach(property => {
-    if (isImportablePropertyType(property, model.modelName))
-      propertiesImportTypes.push(property.model)
+    if (isImportablePropertyType(property, model.modelName)) {
+      propertiesImportTypes.push(property.model);
+    }
   });
 
   const importTypes = new Set([...methodsImportTypes, ...propertiesImportTypes]);
@@ -207,7 +208,7 @@ const getOperationArgumentsAndReturnType = operation => {
   const args = new Map();
 
   pathParams.forEach(pathParam => {
-    args.set(pathParam.name, 'string')
+    args.set(pathParam.name, 'string');
   });
 
   if ((method === 'post' || method === 'put') && bodyModel) {
@@ -237,12 +238,12 @@ const getOperationArgumentsAndReturnType = operation => {
 };
 
 const getModelMethodArgumentsAndReturnType = (method, modelName) => {
-  const { operation, arguments } = method;
+  const { operation } = method;
   const [args, returnType] = getOperationArgumentsAndReturnType(operation);
 
   operation.pathParams.forEach(param => {
-    const matchingArgument = arguments.find(argument => argument.dest === param.name);
-    if (matchingArgument){
+    const matchingArgument = method.arguments.find(argument => argument.dest === param.name);
+    if (matchingArgument) {
       args.delete(param.name);
     }
   });
@@ -258,22 +259,22 @@ const formatTypeScriptArguments = args => {
   const typedArgs = [];
   for (let [arg, argType] of args) {
     if (Array.isArray(argType)) {
-      typedArgs.push(`${arg}: ${formatObjectLiteralType(argType)}`)
+      typedArgs.push(`${arg}: ${formatObjectLiteralType(argType)}`);
     } else {
-      typedArgs.push(`${arg}: ${argType}`)
+      typedArgs.push(`${arg}: ${argType}`);
     }
   }
   return typedArgs.join(', ');
-}
+};
 
 const formatObjectLiteralType = typeProps => {
   let objectLiteralType = '{ \n';
   typeProps.forEach(prop => {
-    objectLiteralType += `    ${prop}: string,\n`
-  })
+    objectLiteralType += `    ${prop}: string,\n`;
+  });
   objectLiteralType += '  }';
   return objectLiteralType;
-}
+};
 
 const formatImportStatements = (importTypes, {
   isModelToModelImport = true
@@ -287,14 +288,14 @@ const formatImportStatements = (importTypes, {
     }
   });
   return importStatements.join('\n');
-}
+};
 
 const convertSwaggerToTSType = swaggerType => {
   return {
     array: '[]',
     integer: 'number',
     double: 'number',
-    hash: '{\n\    [name: string]: unknown;\n\  }',
+    hash: '{\n    [name: string]: unknown;\n  }',
     dateTime: 'string',
     password: 'string',
   }[swaggerType] || swaggerType;
@@ -303,14 +304,14 @@ const convertSwaggerToTSType = swaggerType => {
 const isImportablePropertyType = (property, hostModelName) => {
   const isRestricted = isRestrictedPropertyOverride(hostModelName, property.propertyName);
   return property.$ref && isImportableType(property.model) && !isRestricted;
-}
+};
 
 const isRestrictedPropertyOverride = (modelName, propertyName) => {
   return RESTRICTED_MODEL_PROPERTY_OVERRIDES[modelName] &&
     RESTRICTED_MODEL_PROPERTY_OVERRIDES[modelName].includes(propertyName);
-}
+};
 const isImportableType = type =>
-  !MODELS_SHOULD_NOT_PROCESS.includes(type) && !Array.isArray(type)
+  !MODELS_SHOULD_NOT_PROCESS.includes(type) && !Array.isArray(type);
 
 const sanitizeModelPropertyName = (modelName, propertyName) => {
   let sanitizedPropertyName = propertyName;
@@ -347,4 +348,4 @@ module.exports = {
   sanitizeModelPropertyName,
   isImportablePropertyType,
   isRestrictedPropertyOverride,
-}
+};
