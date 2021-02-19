@@ -13,7 +13,6 @@
 
 const _ = require('lodash');
 const fs = require('fs');
-const flat = require('flat');
 const os = require('os');
 const path = require('path');
 const yaml = require('js-yaml');
@@ -58,7 +57,7 @@ class ConfigLoader {
     const delimiter = '_';
     const prefix = this.prefix;
     const flatConfig = { delimiter: delimiter };
-    const flattendDefaultConfig = flat.flatten(this.config, flatConfig);
+    const flattendDefaultConfig = this.flatten(this.config, flatConfig);
 
     var flatEnvValues = Object.keys(flattendDefaultConfig)
       .reduce((envVarMap, key) => {
@@ -71,12 +70,53 @@ class ConfigLoader {
         return envVarMap;
       }, {});
 
-    const envConfig = flat.unflatten(flatEnvValues, flatConfig);
+    const envConfig = this.unflatten(flatEnvValues, flatConfig);
     this.apply(envConfig);
   }
 
   applyYamlFile(path) {
     this.apply(yaml.safeLoad(fs.readFileSync(path)).okta);
+  }
+
+  flatten(config, flatConfig) {
+    let res = {};
+    const step = (key, val) => {
+      if (_.isPlainObject(val)) {
+        const prefix = key ? key + flatConfig.delimiter : '';
+        Object.keys(val).forEach(function (k) {
+          step(prefix + k, val[k]);
+        });
+      } else {
+        res[key] = val;
+      }
+    };
+    step(null, config);
+    return res;
+  }
+
+  unflatten(config, flatConfig) {
+    const keysToIgnore = ['__proto__', 'constructor', 'prototype'];
+    let res = {};
+    for (const key in config) {
+      const val = config[key];
+      const keyParts = key.split(flatConfig.delimiter);
+      let target = res;
+      for (let i = 0 ; i < keyParts.length ; i++) {
+        const k = keyParts[i];
+        if (keysToIgnore.includes(k)) {
+          break;
+        }
+        if (i < keyParts.length - 1) {
+          if (target[k] === undefined) {
+            target[k] = {};
+          }
+          target = target[k];
+        } else {
+          target[k] = val;
+        }
+      }
+    }
+    return res;
   }
 
   apply(config) {
