@@ -2,7 +2,12 @@ const _ = require('lodash');
 
 const MODELS_SHOULD_NOT_PROCESS = ['object', 'string', 'undefined'];
 
-// BEGIN work around spec mismatches and upstream parsing incosistencies
+// BEGIN Work around spec mismatches and upstream parsing inconsistencies.
+// The below map is used to block redefining(overriding) properties listed as values in models specified as keys.
+// It is also consulted with for excluding the blocklisted properties from intialization in constructor,
+// adding to jsDoc parameters and skipping imports.
+// This is done to avoid property type conflicts between parent and descendant models.
+// These models' respective superclasses are expected to provide a correct property type.
 const RESTRICTED_MODEL_PROPERTY_OVERRIDES = {
   OktaSignOnPolicy: ['conditions'],
   PasswordPolicy: ['conditions'],
@@ -18,7 +23,7 @@ const KNOWN_CONFLICTING_PROPERTY_NAMES = {
   UserFactor: ['verify'],
 };
 const PROPERTY_NAME_CHARACTERS_REQUIRE_ESCAPING = ['#'];
-// END work around spec mismatches and upstream parsing incosistencies
+// END Work around spec mismatches and upstream parsing inconsistencies.
 
 const getBodyModelName = operation => {
   const { bodyModel, parameters } = operation;
