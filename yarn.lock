@@ -4291,6 +4291,11 @@ safe-buffer@~5.1.1:
   resolved "https://registry.yarnpkg.com/safe-buffer/-/safe-buffer-5.1.2.tgz#991ec69d296e0313747d59bdfd2b745c35f8828d"
   integrity sha512-Gd2UZBJDkXlY7GbJxfsE8/nvKkUEU1G38c1siN6QP6a9PT9MmHB8GnpscSmMJSoF8LOIrt8ud/wPtojys4G6+g==
 
+safe-flat@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/safe-flat/-/safe-flat-2.0.2.tgz#8fc26e0c5addcf3b294efbdb602e95633f44ee5c"
+  integrity sha512-4plwd0jT25AB/gnVhEsjM9dt4wOZhp3Lk8xOmJ8tW8niJ2gB/QSKSvhqVY8zFQukAnPJhvn8BNc8mCSZxoVQ+A==
+
 safe-regex@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/safe-regex/-/safe-regex-1.1.0.tgz#40a3669f3b077d1e943d44629e157dd48023bf2e"

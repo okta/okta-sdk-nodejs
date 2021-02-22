@@ -35,7 +35,8 @@
     "mocha-junit-reporter": "^2.0.0",
     "njwt": "^1.0.0",
     "parse-link-header": "^1.0.1",
-    "rasha": "^1.2.5"
+    "rasha": "^1.2.5",
+    "safe-flat": "^2.0.2"
   },
   "devDependencies": {
     "@okta/openapi": "^2.1.6",
