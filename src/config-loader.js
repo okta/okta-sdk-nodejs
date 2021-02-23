@@ -13,10 +13,10 @@
 
 const _ = require('lodash');
 const fs = require('fs');
-const flat = require('flat');
 const os = require('os');
 const path = require('path');
 const yaml = require('js-yaml');
+const flat = require('safe-flat');
 
 class ConfigLoader {
 
@@ -57,8 +57,7 @@ class ConfigLoader {
   applyEnvVars() {
     const delimiter = '_';
     const prefix = this.prefix;
-    const flatConfig = { delimiter: delimiter };
-    const flattendDefaultConfig = flat.flatten(this.config, flatConfig);
+    const flattendDefaultConfig = flat.flatten(this.config, delimiter);
 
     var flatEnvValues = Object.keys(flattendDefaultConfig)
       .reduce((envVarMap, key) => {
@@ -71,7 +70,7 @@ class ConfigLoader {
         return envVarMap;
       }, {});
 
-    const envConfig = flat.unflatten(flatEnvValues, flatConfig);
+    const envConfig = flat.unflatten(flatEnvValues, delimiter);
     this.apply(envConfig);
   }
 
