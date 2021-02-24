@@ -39,4 +39,6 @@ declare class Feature extends Resource {
   getDependencies(): Promise<Collection>;
 }
 
-export default Feature;
+export {
+  Feature
+};

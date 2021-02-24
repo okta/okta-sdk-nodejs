@@ -23,4 +23,6 @@ declare class RiskPolicyRuleCondition extends Resource {
 
 }
 
-export default RiskPolicyRuleCondition;
+export {
+  RiskPolicyRuleCondition
+};

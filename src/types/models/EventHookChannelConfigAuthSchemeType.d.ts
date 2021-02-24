@@ -22,4 +22,6 @@ declare class EventHookChannelConfigAuthSchemeType extends Resource {
 
 }
 
-export default EventHookChannelConfigAuthSchemeType;
+export {
+  EventHookChannelConfigAuthSchemeType
+};

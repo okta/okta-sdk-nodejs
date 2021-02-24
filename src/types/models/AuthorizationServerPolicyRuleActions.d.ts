@@ -23,4 +23,6 @@ declare class AuthorizationServerPolicyRuleActions extends Resource {
 
 }
 
-export default AuthorizationServerPolicyRuleActions;
+export {
+  AuthorizationServerPolicyRuleActions
+};

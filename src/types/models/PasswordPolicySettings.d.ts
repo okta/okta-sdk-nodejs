@@ -27,4 +27,6 @@ declare class PasswordPolicySettings extends Resource {
 
 }
 
-export default PasswordPolicySettings;
+export {
+  PasswordPolicySettings
+};

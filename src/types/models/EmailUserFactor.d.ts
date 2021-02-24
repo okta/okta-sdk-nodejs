@@ -23,4 +23,6 @@ declare class EmailUserFactor extends UserFactor {
 
 }
 
-export default EmailUserFactor;
+export {
+  EmailUserFactor
+};

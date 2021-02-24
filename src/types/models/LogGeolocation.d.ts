@@ -24,4 +24,6 @@ declare class LogGeolocation extends Resource {
 
 }
 
-export default LogGeolocation;
+export {
+  LogGeolocation
+};

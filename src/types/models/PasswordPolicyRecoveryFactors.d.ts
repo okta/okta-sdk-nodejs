@@ -28,4 +28,6 @@ declare class PasswordPolicyRecoveryFactors extends Resource {
 
 }
 
-export default PasswordPolicyRecoveryFactors;
+export {
+  PasswordPolicyRecoveryFactors
+};

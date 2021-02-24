@@ -24,4 +24,6 @@ declare class EventSubscriptions extends Resource {
 
 }
 
-export default EventSubscriptions;
+export {
+  EventSubscriptions
+};

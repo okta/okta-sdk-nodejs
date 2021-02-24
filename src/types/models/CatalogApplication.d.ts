@@ -36,4 +36,6 @@ declare class CatalogApplication extends Resource {
 
 }
 
-export default CatalogApplication;
+export {
+  CatalogApplication
+};

@@ -27,4 +27,6 @@ declare class LogSecurityContext extends Resource {
 
 }
 
-export default LogSecurityContext;
+export {
+  LogSecurityContext
+};

@@ -25,4 +25,6 @@ declare class BeforeScheduledActionPolicyRuleCondition extends Resource {
 
 }
 
-export default BeforeScheduledActionPolicyRuleCondition;
+export {
+  BeforeScheduledActionPolicyRuleCondition
+};

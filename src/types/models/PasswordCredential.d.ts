@@ -26,4 +26,6 @@ declare class PasswordCredential extends Resource {
 
 }
 
-export default PasswordCredential;
+export {
+  PasswordCredential
+};

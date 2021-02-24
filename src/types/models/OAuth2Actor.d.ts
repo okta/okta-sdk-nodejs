@@ -24,4 +24,6 @@ declare class OAuth2Actor extends Resource {
 
 }
 
-export default OAuth2Actor;
+export {
+  OAuth2Actor
+};

@@ -25,4 +25,6 @@ declare class SecurityQuestionUserFactorProfile extends Resource {
 
 }
 
-export default SecurityQuestionUserFactorProfile;
+export {
+  SecurityQuestionUserFactorProfile
+};

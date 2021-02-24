@@ -23,4 +23,6 @@ declare class CreateSessionRequest extends Resource {
 
 }
 
-export default CreateSessionRequest;
+export {
+  CreateSessionRequest
+};

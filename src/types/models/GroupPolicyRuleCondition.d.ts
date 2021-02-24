@@ -24,4 +24,6 @@ declare class GroupPolicyRuleCondition extends Resource {
 
 }
 
-export default GroupPolicyRuleCondition;
+export {
+  GroupPolicyRuleCondition
+};

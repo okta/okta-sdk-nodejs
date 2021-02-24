@@ -30,4 +30,6 @@ declare class VerifyFactorRequest extends Resource {
 
 }
 
-export default VerifyFactorRequest;
+export {
+  VerifyFactorRequest
+};

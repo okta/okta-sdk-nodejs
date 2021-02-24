@@ -40,4 +40,6 @@ declare class OpenIdConnectApplicationSettingsClient extends Resource {
 
 }
 
-export default OpenIdConnectApplicationSettingsClient;
+export {
+  OpenIdConnectApplicationSettingsClient
+};

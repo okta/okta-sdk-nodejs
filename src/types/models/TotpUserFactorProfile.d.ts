@@ -23,4 +23,6 @@ declare class TotpUserFactorProfile extends Resource {
 
 }
 
-export default TotpUserFactorProfile;
+export {
+  TotpUserFactorProfile
+};

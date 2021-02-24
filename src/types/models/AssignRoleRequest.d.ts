@@ -23,4 +23,6 @@ declare class AssignRoleRequest extends Resource {
 
 }
 
-export default AssignRoleRequest;
+export {
+  AssignRoleRequest
+};

@@ -19,9 +19,10 @@ import SwaApplicationSettings from './SwaApplicationSettings';
 declare class SwaApplication extends BrowserPluginApplication {
   constructor(resourceJson: string, client: any);
 
-  name: object;
   settings: SwaApplicationSettings;
 
 }
 
-export default SwaApplication;
+export {
+  SwaApplication
+};

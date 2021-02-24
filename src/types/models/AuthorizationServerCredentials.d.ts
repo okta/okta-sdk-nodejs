@@ -23,4 +23,6 @@ declare class AuthorizationServerCredentials extends Resource {
 
 }
 
-export default AuthorizationServerCredentials;
+export {
+  AuthorizationServerCredentials
+};

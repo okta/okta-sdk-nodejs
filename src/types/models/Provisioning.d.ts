@@ -27,4 +27,6 @@ declare class Provisioning extends Resource {
 
 }
 
-export default Provisioning;
+export {
+  Provisioning
+};

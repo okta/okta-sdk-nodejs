@@ -23,4 +23,6 @@ declare class PasswordPolicyRecoveryQuestionProperties extends Resource {
 
 }
 
-export default PasswordPolicyRecoveryQuestionProperties;
+export {
+  PasswordPolicyRecoveryQuestionProperties
+};

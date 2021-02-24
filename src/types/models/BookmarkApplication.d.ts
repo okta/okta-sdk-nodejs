@@ -19,9 +19,10 @@ import BookmarkApplicationSettings from './BookmarkApplicationSettings';
 declare class BookmarkApplication extends Application {
   constructor(resourceJson: string, client: any);
 
-  name: object;
   settings: BookmarkApplicationSettings;
 
 }
 
-export default BookmarkApplication;
+export {
+  BookmarkApplication
+};

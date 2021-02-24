@@ -23,4 +23,6 @@ declare class OAuthApplicationCredentials extends ApplicationCredentials {
 
 }
 
-export default OAuthApplicationCredentials;
+export {
+  OAuthApplicationCredentials
+};

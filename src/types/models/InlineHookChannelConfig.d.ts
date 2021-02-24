@@ -25,4 +25,6 @@ declare class InlineHookChannelConfig extends Resource {
 
 }
 
-export default InlineHookChannelConfig;
+export {
+  InlineHookChannelConfig
+};

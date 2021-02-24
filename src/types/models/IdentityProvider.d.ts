@@ -62,4 +62,6 @@ declare class IdentityProvider extends Resource {
   listSocialAuthTokens(userId: string): Promise<Collection>;
 }
 
-export default IdentityProvider;
+export {
+  IdentityProvider
+};

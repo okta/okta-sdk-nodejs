@@ -25,4 +25,6 @@ declare class GroupRulePeopleCondition extends Resource {
 
 }
 
-export default GroupRulePeopleCondition;
+export {
+  GroupRulePeopleCondition
+};

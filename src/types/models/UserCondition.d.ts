@@ -24,4 +24,6 @@ declare class UserCondition extends Resource {
 
 }
 
-export default UserCondition;
+export {
+  UserCondition
+};

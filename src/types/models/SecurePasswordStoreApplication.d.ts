@@ -21,9 +21,10 @@ declare class SecurePasswordStoreApplication extends Application {
   constructor(resourceJson: string, client: any);
 
   credentials: SchemeApplicationCredentials;
-  name: object;
   settings: SecurePasswordStoreApplicationSettings;
 
 }
 
-export default SecurePasswordStoreApplication;
+export {
+  SecurePasswordStoreApplication
+};

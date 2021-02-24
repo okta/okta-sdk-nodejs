@@ -23,4 +23,6 @@ declare class UserIdentityProviderLinkRequest extends Resource {
 
 }
 
-export default UserIdentityProviderLinkRequest;
+export {
+  UserIdentityProviderLinkRequest
+};

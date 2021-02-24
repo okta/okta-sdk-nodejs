@@ -24,4 +24,6 @@ declare class ApplicationVisibilityHide extends Resource {
 
 }
 
-export default ApplicationVisibilityHide;
+export {
+  ApplicationVisibilityHide
+};

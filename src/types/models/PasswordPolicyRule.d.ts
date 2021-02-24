@@ -26,4 +26,6 @@ declare class PasswordPolicyRule extends PolicyRule {
 
 }
 
-export default PasswordPolicyRule;
+export {
+  PasswordPolicyRule
+};

@@ -22,4 +22,6 @@ declare class ResponseLinks extends Resource {
 
 }
 
-export default ResponseLinks;
+export {
+  ResponseLinks
+};

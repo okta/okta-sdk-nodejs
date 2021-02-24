@@ -23,4 +23,6 @@ declare class CustomHotpUserFactorProfile extends Resource {
 
 }
 
-export default CustomHotpUserFactorProfile;
+export {
+  CustomHotpUserFactorProfile
+};

@@ -24,4 +24,6 @@ declare class GroupRuleUserCondition extends Resource {
 
 }
 
-export default GroupRuleUserCondition;
+export {
+  GroupRuleUserCondition
+};

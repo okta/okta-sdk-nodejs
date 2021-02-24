@@ -25,4 +25,6 @@ declare class LogDebugContext extends Resource {
 
 }
 
-export default LogDebugContext;
+export {
+  LogDebugContext
+};

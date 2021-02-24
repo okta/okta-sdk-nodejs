@@ -23,4 +23,6 @@ declare class WebUserFactorProfile extends Resource {
 
 }
 
-export default WebUserFactorProfile;
+export {
+  WebUserFactorProfile
+};

@@ -28,4 +28,6 @@ declare class SamlAttributeStatement extends Resource {
 
 }
 
-export default SamlAttributeStatement;
+export {
+  SamlAttributeStatement
+};

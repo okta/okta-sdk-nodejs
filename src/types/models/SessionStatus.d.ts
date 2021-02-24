@@ -22,4 +22,6 @@ declare class SessionStatus extends Resource {
 
 }
 
-export default SessionStatus;
+export {
+  SessionStatus
+};

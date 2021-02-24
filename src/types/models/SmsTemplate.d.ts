@@ -33,4 +33,6 @@ declare class SmsTemplate extends Resource {
   partialUpdate(): Promise<SmsTemplate>;
 }
 
-export default SmsTemplate;
+export {
+  SmsTemplate
+};

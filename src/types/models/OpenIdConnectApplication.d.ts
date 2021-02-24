@@ -21,9 +21,10 @@ declare class OpenIdConnectApplication extends Application {
   constructor(resourceJson: string, client: any);
 
   credentials: OAuthApplicationCredentials;
-  name: object;
   settings: OpenIdConnectApplicationSettings;
 
 }
 
-export default OpenIdConnectApplication;
+export {
+  OpenIdConnectApplication
+};

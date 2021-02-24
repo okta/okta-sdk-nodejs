@@ -23,4 +23,6 @@ declare class HardwareUserFactor extends UserFactor {
 
 }
 
-export default HardwareUserFactor;
+export {
+  HardwareUserFactor
+};

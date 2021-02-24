@@ -26,4 +26,6 @@ declare class LinkedObjectDetails extends Resource {
 
 }
 
-export default LinkedObjectDetails;
+export {
+  LinkedObjectDetails
+};

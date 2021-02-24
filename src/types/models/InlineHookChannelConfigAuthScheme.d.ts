@@ -25,4 +25,6 @@ declare class InlineHookChannelConfigAuthScheme extends Resource {
 
 }
 
-export default InlineHookChannelConfigAuthScheme;
+export {
+  InlineHookChannelConfigAuthScheme
+};

@@ -25,4 +25,6 @@ declare class ApplicationSettingsNotificationsVpn extends Resource {
 
 }
 
-export default ApplicationSettingsNotificationsVpn;
+export {
+  ApplicationSettingsNotificationsVpn
+};

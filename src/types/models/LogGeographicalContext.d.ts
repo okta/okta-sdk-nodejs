@@ -27,4 +27,6 @@ declare class LogGeographicalContext extends Resource {
 
 }
 
-export default LogGeographicalContext;
+export {
+  LogGeographicalContext
+};

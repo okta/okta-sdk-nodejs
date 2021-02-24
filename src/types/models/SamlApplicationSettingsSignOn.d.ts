@@ -45,4 +45,6 @@ declare class SamlApplicationSettingsSignOn extends Resource {
 
 }
 
-export default SamlApplicationSettingsSignOn;
+export {
+  SamlApplicationSettingsSignOn
+};

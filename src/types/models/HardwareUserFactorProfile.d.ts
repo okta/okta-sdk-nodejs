@@ -23,4 +23,6 @@ declare class HardwareUserFactorProfile extends Resource {
 
 }
 
-export default HardwareUserFactorProfile;
+export {
+  HardwareUserFactorProfile
+};

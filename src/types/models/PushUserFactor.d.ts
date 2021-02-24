@@ -26,4 +26,6 @@ declare class PushUserFactor extends UserFactor {
 
 }
 
-export default PushUserFactor;
+export {
+  PushUserFactor
+};

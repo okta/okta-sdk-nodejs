@@ -40,4 +40,6 @@ declare class JsonWebKey extends Resource {
 
 }
 
-export default JsonWebKey;
+export {
+  JsonWebKey
+};

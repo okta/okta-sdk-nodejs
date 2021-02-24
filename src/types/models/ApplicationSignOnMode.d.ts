@@ -22,4 +22,6 @@ declare class ApplicationSignOnMode extends Resource {
 
 }
 
-export default ApplicationSignOnMode;
+export {
+  ApplicationSignOnMode
+};

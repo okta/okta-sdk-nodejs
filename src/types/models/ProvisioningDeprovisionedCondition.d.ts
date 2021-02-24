@@ -23,4 +23,6 @@ declare class ProvisioningDeprovisionedCondition extends Resource {
 
 }
 
-export default ProvisioningDeprovisionedCondition;
+export {
+  ProvisioningDeprovisionedCondition
+};

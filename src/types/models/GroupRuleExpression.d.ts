@@ -24,4 +24,6 @@ declare class GroupRuleExpression extends Resource {
 
 }
 
-export default GroupRuleExpression;
+export {
+  GroupRuleExpression
+};

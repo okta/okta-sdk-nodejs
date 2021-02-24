@@ -25,4 +25,6 @@ declare class AutoLoginApplication extends Application {
 
 }
 
-export default AutoLoginApplication;
+export {
+  AutoLoginApplication
+};

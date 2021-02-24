@@ -25,4 +25,6 @@ declare class LifecycleExpirationPolicyRuleCondition extends Resource {
 
 }
 
-export default LifecycleExpirationPolicyRuleCondition;
+export {
+  LifecycleExpirationPolicyRuleCondition
+};

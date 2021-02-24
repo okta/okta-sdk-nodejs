@@ -22,4 +22,6 @@ declare class LogCredentialType extends Resource {
 
 }
 
-export default LogCredentialType;
+export {
+  LogCredentialType
+};

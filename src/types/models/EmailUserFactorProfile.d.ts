@@ -23,4 +23,6 @@ declare class EmailUserFactorProfile extends Resource {
 
 }
 
-export default EmailUserFactorProfile;
+export {
+  EmailUserFactorProfile
+};

@@ -25,4 +25,6 @@ declare class TokenAuthorizationServerPolicyRuleAction extends Resource {
 
 }
 
-export default TokenAuthorizationServerPolicyRuleAction;
+export {
+  TokenAuthorizationServerPolicyRuleAction
+};

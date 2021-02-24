@@ -27,4 +27,6 @@ declare class ActivateFactorRequest extends Resource {
 
 }
 
-export default ActivateFactorRequest;
+export {
+  ActivateFactorRequest
+};

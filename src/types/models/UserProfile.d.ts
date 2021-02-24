@@ -53,4 +53,6 @@ declare class UserProfile extends Resource {
 
 }
 
-export default UserProfile;
+export {
+  UserProfile
+};

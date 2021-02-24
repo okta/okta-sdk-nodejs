@@ -23,4 +23,6 @@ declare class IdentityProviderCredentialsSigning extends Resource {
 
 }
 
-export default IdentityProviderCredentialsSigning;
+export {
+  IdentityProviderCredentialsSigning
+};

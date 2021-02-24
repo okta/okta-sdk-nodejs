@@ -38,4 +38,6 @@ declare class OAuth2RefreshToken extends Resource {
 
 }
 
-export default OAuth2RefreshToken;
+export {
+  OAuth2RefreshToken
+};

@@ -24,4 +24,6 @@ declare class CallUserFactorProfile extends Resource {
 
 }
 
-export default CallUserFactorProfile;
+export {
+  CallUserFactorProfile
+};

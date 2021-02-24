@@ -22,4 +22,6 @@ declare class OAuthResponseType extends Resource {
 
 }
 
-export default OAuthResponseType;
+export {
+  OAuthResponseType
+};

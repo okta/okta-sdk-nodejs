@@ -23,4 +23,6 @@ declare class WsFederationApplicationSettings extends ApplicationSettings {
 
 }
 
-export default WsFederationApplicationSettings;
+export {
+  WsFederationApplicationSettings
+};

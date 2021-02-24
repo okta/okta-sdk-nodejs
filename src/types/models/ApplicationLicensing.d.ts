@@ -23,4 +23,6 @@ declare class ApplicationLicensing extends Resource {
 
 }
 
-export default ApplicationLicensing;
+export {
+  ApplicationLicensing
+};

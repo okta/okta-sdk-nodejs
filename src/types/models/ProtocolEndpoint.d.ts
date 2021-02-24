@@ -26,4 +26,6 @@ declare class ProtocolEndpoint extends Resource {
 
 }
 
-export default ProtocolEndpoint;
+export {
+  ProtocolEndpoint
+};

@@ -25,4 +25,6 @@ declare class CsrMetadata extends Resource {
 
 }
 
-export default CsrMetadata;
+export {
+  CsrMetadata
+};

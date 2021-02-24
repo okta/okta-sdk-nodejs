@@ -38,4 +38,6 @@ declare class Session extends Resource {
   refresh(): Promise<Session>;
 }
 
-export default Session;
+export {
+  Session
+};

@@ -22,4 +22,6 @@ declare class OAuthAuthorizationPolicy extends Policy {
 
 }
 
-export default OAuthAuthorizationPolicy;
+export {
+  OAuthAuthorizationPolicy
+};

@@ -23,4 +23,6 @@ declare class ProtocolSettings extends Resource {
 
 }
 
-export default ProtocolSettings;
+export {
+  ProtocolSettings
+};

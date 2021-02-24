@@ -40,4 +40,6 @@ declare class EventHook extends Resource {
   verify(): Promise<EventHook>;
 }
 
-export default EventHook;
+export {
+  EventHook
+};

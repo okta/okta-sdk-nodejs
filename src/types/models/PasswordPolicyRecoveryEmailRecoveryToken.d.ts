@@ -23,4 +23,6 @@ declare class PasswordPolicyRecoveryEmailRecoveryToken extends Resource {
 
 }
 
-export default PasswordPolicyRecoveryEmailRecoveryToken;
+export {
+  PasswordPolicyRecoveryEmailRecoveryToken
+};
