@@ -24,4 +24,6 @@ declare class Duration extends Resource {
 
 }
 
-export default Duration;
+export {
+  Duration
+};

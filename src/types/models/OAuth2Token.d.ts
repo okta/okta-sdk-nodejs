@@ -37,4 +37,6 @@ declare class OAuth2Token extends Resource {
 
 }
 
-export default OAuth2Token;
+export {
+  OAuth2Token
+};

@@ -31,4 +31,6 @@ declare class IonForm extends Resource {
 
 }
 
-export default IonForm;
+export {
+  IonForm
+};

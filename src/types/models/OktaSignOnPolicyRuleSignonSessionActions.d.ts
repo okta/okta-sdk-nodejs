@@ -25,4 +25,6 @@ declare class OktaSignOnPolicyRuleSignonSessionActions extends Resource {
 
 }
 
-export default OktaSignOnPolicyRuleSignonSessionActions;
+export {
+  OktaSignOnPolicyRuleSignonSessionActions
+};

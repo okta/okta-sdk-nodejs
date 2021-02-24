@@ -23,4 +23,6 @@ declare class ProtocolRelayState extends Resource {
 
 }
 
-export default ProtocolRelayState;
+export {
+  ProtocolRelayState
+};

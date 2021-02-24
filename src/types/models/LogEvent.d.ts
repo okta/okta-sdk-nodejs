@@ -46,4 +46,6 @@ declare class LogEvent extends Resource {
 
 }
 
-export default LogEvent;
+export {
+  LogEvent
+};

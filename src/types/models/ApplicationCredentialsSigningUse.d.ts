@@ -22,4 +22,6 @@ declare class ApplicationCredentialsSigningUse extends Resource {
 
 }
 
-export default ApplicationCredentialsSigningUse;
+export {
+  ApplicationCredentialsSigningUse
+};

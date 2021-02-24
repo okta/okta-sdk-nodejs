@@ -22,4 +22,6 @@ declare class CatalogApplicationStatus extends Resource {
 
 }
 
-export default CatalogApplicationStatus;
+export {
+  CatalogApplicationStatus
+};

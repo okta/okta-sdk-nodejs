@@ -26,4 +26,6 @@ declare class LogIpAddress extends Resource {
 
 }
 
-export default LogIpAddress;
+export {
+  LogIpAddress
+};

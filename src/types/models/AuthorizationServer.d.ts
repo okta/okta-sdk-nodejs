@@ -78,4 +78,6 @@ declare class AuthorizationServer extends Resource {
   updateOAuth2Scope(scopeId: string, oAuth2Scope: OAuth2Scope): Promise<OAuth2Scope>;
 }
 
-export default AuthorizationServer;
+export {
+  AuthorizationServer
+};

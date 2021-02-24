@@ -26,4 +26,6 @@ declare class OktaSignOnPolicyRule extends PolicyRule {
 
 }
 
-export default OktaSignOnPolicyRule;
+export {
+  OktaSignOnPolicyRule
+};

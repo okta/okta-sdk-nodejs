@@ -24,4 +24,6 @@ declare class PlatformConditionEvaluatorPlatformOperatingSystemVersion extends R
 
 }
 
-export default PlatformConditionEvaluatorPlatformOperatingSystemVersion;
+export {
+  PlatformConditionEvaluatorPlatformOperatingSystemVersion
+};

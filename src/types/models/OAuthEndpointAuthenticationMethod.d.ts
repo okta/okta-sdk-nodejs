@@ -22,4 +22,6 @@ declare class OAuthEndpointAuthenticationMethod extends Resource {
 
 }
 
-export default OAuthEndpointAuthenticationMethod;
+export {
+  OAuthEndpointAuthenticationMethod
+};

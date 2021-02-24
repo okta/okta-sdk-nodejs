@@ -29,4 +29,6 @@ declare class OAuth2Client extends Resource {
 
 }
 
-export default OAuth2Client;
+export {
+  OAuth2Client
+};

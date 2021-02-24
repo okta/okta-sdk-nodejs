@@ -23,4 +23,6 @@ declare class GrantTypePolicyRuleCondition extends Resource {
 
 }
 
-export default GrantTypePolicyRuleCondition;
+export {
+  GrantTypePolicyRuleCondition
+};

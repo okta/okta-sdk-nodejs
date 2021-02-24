@@ -23,4 +23,6 @@ declare class SmsUserFactorProfile extends Resource {
 
 }
 
-export default SmsUserFactorProfile;
+export {
+  SmsUserFactorProfile
+};

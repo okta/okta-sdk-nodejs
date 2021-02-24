@@ -22,4 +22,6 @@ declare class GroupRuleStatus extends Resource {
 
 }
 
-export default GroupRuleStatus;
+export {
+  GroupRuleStatus
+};

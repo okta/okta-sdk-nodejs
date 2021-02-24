@@ -46,4 +46,6 @@ declare class UserFactor extends Resource {
   }): Promise<VerifyUserFactorResponse>;
 }
 
-export default UserFactor;
+export {
+  UserFactor
+};

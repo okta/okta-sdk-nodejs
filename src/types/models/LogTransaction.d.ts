@@ -27,4 +27,6 @@ declare class LogTransaction extends Resource {
 
 }
 
-export default LogTransaction;
+export {
+  LogTransaction
+};

@@ -24,4 +24,6 @@ declare class PolicyAccountLink extends Resource {
 
 }
 
-export default PolicyAccountLink;
+export {
+  PolicyAccountLink
+};

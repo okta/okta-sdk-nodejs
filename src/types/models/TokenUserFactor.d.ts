@@ -23,4 +23,6 @@ declare class TokenUserFactor extends UserFactor {
 
 }
 
-export default TokenUserFactor;
+export {
+  TokenUserFactor
+};

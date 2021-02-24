@@ -27,4 +27,6 @@ declare class SwaApplicationSettingsApplication extends ApplicationSettingsAppli
 
 }
 
-export default SwaApplicationSettingsApplication;
+export {
+  SwaApplicationSettingsApplication
+};

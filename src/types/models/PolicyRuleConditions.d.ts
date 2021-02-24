@@ -63,4 +63,6 @@ declare class PolicyRuleConditions extends Resource {
 
 }
 
-export default PolicyRuleConditions;
+export {
+  PolicyRuleConditions
+};

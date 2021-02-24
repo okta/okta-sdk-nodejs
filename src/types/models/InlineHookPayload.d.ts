@@ -22,4 +22,6 @@ declare class InlineHookPayload extends Resource {
 
 }
 
-export default InlineHookPayload;
+export {
+  InlineHookPayload
+};

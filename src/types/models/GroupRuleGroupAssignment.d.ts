@@ -23,4 +23,6 @@ declare class GroupRuleGroupAssignment extends Resource {
 
 }
 
-export default GroupRuleGroupAssignment;
+export {
+  GroupRuleGroupAssignment
+};

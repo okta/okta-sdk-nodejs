@@ -23,4 +23,6 @@ declare class ForgotPasswordResponse extends Resource {
 
 }
 
-export default ForgotPasswordResponse;
+export {
+  ForgotPasswordResponse
+};

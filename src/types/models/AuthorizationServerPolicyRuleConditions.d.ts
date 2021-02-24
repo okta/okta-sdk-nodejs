@@ -29,4 +29,6 @@ declare class AuthorizationServerPolicyRuleConditions extends Resource {
 
 }
 
-export default AuthorizationServerPolicyRuleConditions;
+export {
+  AuthorizationServerPolicyRuleConditions
+};

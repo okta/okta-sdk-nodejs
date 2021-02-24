@@ -27,4 +27,6 @@ declare class ApplicationSettings extends Resource {
 
 }
 
-export default ApplicationSettings;
+export {
+  ApplicationSettings
+};

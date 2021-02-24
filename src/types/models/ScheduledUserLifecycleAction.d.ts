@@ -23,4 +23,6 @@ declare class ScheduledUserLifecycleAction extends Resource {
 
 }
 
-export default ScheduledUserLifecycleAction;
+export {
+  ScheduledUserLifecycleAction
+};

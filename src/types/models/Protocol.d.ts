@@ -35,4 +35,6 @@ declare class Protocol extends Resource {
 
 }
 
-export default Protocol;
+export {
+  Protocol
+};

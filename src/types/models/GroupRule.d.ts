@@ -36,4 +36,6 @@ declare class GroupRule extends Resource {
   deactivate(): Promise<undefined>;
 }
 
-export default GroupRule;
+export {
+  GroupRule
+};

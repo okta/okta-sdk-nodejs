@@ -23,4 +23,6 @@ declare class SamlApplicationSettings extends ApplicationSettings {
 
 }
 
-export default SamlApplicationSettings;
+export {
+  SamlApplicationSettings
+};

@@ -23,4 +23,6 @@ declare class WebAuthnUserFactor extends UserFactor {
 
 }
 
-export default WebAuthnUserFactor;
+export {
+  WebAuthnUserFactor
+};

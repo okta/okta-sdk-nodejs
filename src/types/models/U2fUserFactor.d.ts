@@ -23,4 +23,6 @@ declare class U2fUserFactor extends UserFactor {
 
 }
 
-export default U2fUserFactor;
+export {
+  U2fUserFactor
+};

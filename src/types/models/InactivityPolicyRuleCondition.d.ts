@@ -24,4 +24,6 @@ declare class InactivityPolicyRuleCondition extends Resource {
 
 }
 
-export default InactivityPolicyRuleCondition;
+export {
+  InactivityPolicyRuleCondition
+};

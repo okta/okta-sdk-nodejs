@@ -37,4 +37,6 @@ declare class AuthorizationServerPolicyRule extends Resource {
   deactivate(): Promise<undefined>;
 }
 
-export default AuthorizationServerPolicyRule;
+export {
+  AuthorizationServerPolicyRule
+};

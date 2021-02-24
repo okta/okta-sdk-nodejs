@@ -22,4 +22,6 @@ declare class ScopeType extends Resource {
 
 }
 
-export default ScopeType;
+export {
+  ScopeType
+};

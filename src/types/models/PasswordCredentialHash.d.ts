@@ -27,4 +27,6 @@ declare class PasswordCredentialHash extends Resource {
 
 }
 
-export default PasswordCredentialHash;
+export {
+  PasswordCredentialHash
+};

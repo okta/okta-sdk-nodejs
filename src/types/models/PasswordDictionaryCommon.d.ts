@@ -23,4 +23,6 @@ declare class PasswordDictionaryCommon extends Resource {
 
 }
 
-export default PasswordDictionaryCommon;
+export {
+  PasswordDictionaryCommon
+};

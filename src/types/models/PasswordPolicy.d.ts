@@ -14,15 +14,15 @@
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
 import Policy from './Policy';
-import PasswordPolicyConditions from './PasswordPolicyConditions';
 import PasswordPolicySettings from './PasswordPolicySettings';
 
 declare class PasswordPolicy extends Policy {
   constructor(resourceJson: string, client: any);
 
-  conditions: PasswordPolicyConditions;
   settings: PasswordPolicySettings;
 
 }
 
-export default PasswordPolicy;
+export {
+  PasswordPolicy
+};

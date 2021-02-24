@@ -29,4 +29,6 @@ declare class SchemeApplicationCredentials extends ApplicationCredentials {
 
 }
 
-export default SchemeApplicationCredentials;
+export {
+  SchemeApplicationCredentials
+};

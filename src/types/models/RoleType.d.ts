@@ -22,4 +22,6 @@ declare class RoleType extends Resource {
 
 }
 
-export default RoleType;
+export {
+  RoleType
+};

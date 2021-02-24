@@ -23,4 +23,6 @@ declare class TotpUserFactor extends UserFactor {
 
 }
 
-export default TotpUserFactor;
+export {
+  TotpUserFactor
+};

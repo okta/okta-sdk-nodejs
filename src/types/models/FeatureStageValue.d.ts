@@ -22,4 +22,6 @@ declare class FeatureStageValue extends Resource {
 
 }
 
-export default FeatureStageValue;
+export {
+  FeatureStageValue
+};

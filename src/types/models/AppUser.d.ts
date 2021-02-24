@@ -46,4 +46,6 @@ declare class AppUser extends Resource {
   }): Promise<undefined>;
 }
 
-export default AppUser;
+export {
+  AppUser
+};

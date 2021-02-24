@@ -14,13 +14,14 @@
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
 import Policy from './Policy';
-import OktaSignOnPolicyConditions from './OktaSignOnPolicyConditions';
+
 
 declare class OktaSignOnPolicy extends Policy {
   constructor(resourceJson: string, client: any);
 
-  conditions: OktaSignOnPolicyConditions;
 
 }
 
-export default OktaSignOnPolicy;
+export {
+  OktaSignOnPolicy
+};

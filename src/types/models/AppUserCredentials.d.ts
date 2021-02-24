@@ -24,4 +24,6 @@ declare class AppUserCredentials extends Resource {
 
 }
 
-export default AppUserCredentials;
+export {
+  AppUserCredentials
+};

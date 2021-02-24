@@ -26,4 +26,6 @@ declare class Csr extends Resource {
 
 }
 
-export default Csr;
+export {
+  Csr
+};

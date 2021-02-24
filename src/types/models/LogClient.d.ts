@@ -29,4 +29,6 @@ declare class LogClient extends Resource {
 
 }
 
-export default LogClient;
+export {
+  LogClient
+};

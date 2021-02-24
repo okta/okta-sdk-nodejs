@@ -29,4 +29,6 @@ declare class LogTarget extends Resource {
 
 }
 
-export default LogTarget;
+export {
+  LogTarget
+};

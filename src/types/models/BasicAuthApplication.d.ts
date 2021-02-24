@@ -21,9 +21,10 @@ declare class BasicAuthApplication extends Application {
   constructor(resourceJson: string, client: any);
 
   credentials: SchemeApplicationCredentials;
-  name: object;
   settings: BasicApplicationSettings;
 
 }
 
-export default BasicAuthApplication;
+export {
+  BasicAuthApplication
+};

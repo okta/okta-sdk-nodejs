@@ -22,4 +22,6 @@ declare class AuthorizationServerCredentialsRotationMode extends Resource {
 
 }
 
-export default AuthorizationServerCredentialsRotationMode;
+export {
+  AuthorizationServerCredentialsRotationMode
+};

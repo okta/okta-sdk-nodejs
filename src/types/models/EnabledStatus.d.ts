@@ -22,4 +22,6 @@ declare class EnabledStatus extends Resource {
 
 }
 
-export default EnabledStatus;
+export {
+  EnabledStatus
+};

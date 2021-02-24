@@ -23,4 +23,6 @@ declare class OAuth2ClaimConditions extends Resource {
 
 }
 
-export default OAuth2ClaimConditions;
+export {
+  OAuth2ClaimConditions
+};

@@ -28,4 +28,6 @@ declare class LinkedObject extends Resource {
   delete(): Promise<undefined>;
 }
 
-export default LinkedObject;
+export {
+  LinkedObject
+};

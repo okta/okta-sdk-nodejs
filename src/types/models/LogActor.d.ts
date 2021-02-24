@@ -29,4 +29,6 @@ declare class LogActor extends Resource {
 
 }
 
-export default LogActor;
+export {
+  LogActor
+};

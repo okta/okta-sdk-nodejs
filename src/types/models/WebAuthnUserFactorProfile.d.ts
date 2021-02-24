@@ -24,4 +24,6 @@ declare class WebAuthnUserFactorProfile extends Resource {
 
 }
 
-export default WebAuthnUserFactorProfile;
+export {
+  WebAuthnUserFactorProfile
+};

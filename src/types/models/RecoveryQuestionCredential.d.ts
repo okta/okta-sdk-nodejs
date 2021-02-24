@@ -24,4 +24,6 @@ declare class RecoveryQuestionCredential extends Resource {
 
 }
 
-export default RecoveryQuestionCredential;
+export {
+  RecoveryQuestionCredential
+};

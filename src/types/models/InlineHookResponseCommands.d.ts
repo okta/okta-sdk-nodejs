@@ -24,4 +24,6 @@ declare class InlineHookResponseCommands extends Resource {
 
 }
 
-export default InlineHookResponseCommands;
+export {
+  InlineHookResponseCommands
+};

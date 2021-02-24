@@ -48,4 +48,6 @@ declare class Policy extends Resource {
   getPolicyRule(ruleId: string): Promise<PolicyRule>;
 }
 
-export default Policy;
+export {
+  Policy
+};

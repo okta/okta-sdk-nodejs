@@ -23,4 +23,6 @@ declare class PasswordCredentialHook extends Resource {
 
 }
 
-export default PasswordCredentialHook;
+export {
+  PasswordCredentialHook
+};

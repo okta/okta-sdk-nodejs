@@ -30,4 +30,6 @@ declare class PasswordPolicyPasswordSettingsComplexity extends Resource {
 
 }
 
-export default PasswordPolicyPasswordSettingsComplexity;
+export {
+  PasswordPolicyPasswordSettingsComplexity
+};

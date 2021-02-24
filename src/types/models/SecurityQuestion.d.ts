@@ -25,4 +25,6 @@ declare class SecurityQuestion extends Resource {
 
 }
 
-export default SecurityQuestion;
+export {
+  SecurityQuestion
+};

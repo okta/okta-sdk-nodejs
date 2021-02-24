@@ -23,4 +23,6 @@ declare class LogRequest extends Resource {
 
 }
 
-export default LogRequest;
+export {
+  LogRequest
+};

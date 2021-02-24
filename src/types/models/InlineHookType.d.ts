@@ -22,4 +22,6 @@ declare class InlineHookType extends Resource {
 
 }
 
-export default InlineHookType;
+export {
+  InlineHookType
+};

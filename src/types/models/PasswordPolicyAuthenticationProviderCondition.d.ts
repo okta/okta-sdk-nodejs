@@ -24,4 +24,6 @@ declare class PasswordPolicyAuthenticationProviderCondition extends Resource {
 
 }
 
-export default PasswordPolicyAuthenticationProviderCondition;
+export {
+  PasswordPolicyAuthenticationProviderCondition
+};

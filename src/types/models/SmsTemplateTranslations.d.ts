@@ -22,4 +22,6 @@ declare class SmsTemplateTranslations extends Resource {
 
 }
 
-export default SmsTemplateTranslations;
+export {
+  SmsTemplateTranslations
+};

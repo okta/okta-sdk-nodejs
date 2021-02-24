@@ -23,4 +23,6 @@ declare class UserStatusPolicyRuleCondition extends Resource {
 
 }
 
-export default UserStatusPolicyRuleCondition;
+export {
+  UserStatusPolicyRuleCondition
+};

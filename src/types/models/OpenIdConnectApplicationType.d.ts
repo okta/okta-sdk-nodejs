@@ -22,4 +22,6 @@ declare class OpenIdConnectApplicationType extends Resource {
 
 }
 
-export default OpenIdConnectApplicationType;
+export {
+  OpenIdConnectApplicationType
+};
