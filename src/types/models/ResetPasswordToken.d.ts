@@ -24,6 +24,5 @@ declare class ResetPasswordToken extends Resource {
 
 }
 
-export {
-  ResetPasswordToken
-};
+
+export default ResetPasswordToken;

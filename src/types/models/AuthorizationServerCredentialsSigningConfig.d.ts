@@ -29,6 +29,5 @@ declare class AuthorizationServerCredentialsSigningConfig extends Resource {
 
 }
 
-export {
-  AuthorizationServerCredentialsSigningConfig
-};
+
+export default AuthorizationServerCredentialsSigningConfig;

@@ -24,6 +24,5 @@ declare class ClientPolicyCondition extends Resource {
 
 }
 
-export {
-  ClientPolicyCondition
-};
+
+export default ClientPolicyCondition;

@@ -23,6 +23,5 @@ declare class OAuthGrantType extends Resource {
 
 }
 
-export {
-  OAuthGrantType
-};
+
+export default OAuthGrantType;

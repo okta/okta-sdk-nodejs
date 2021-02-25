@@ -24,6 +24,5 @@ declare class OAuth2ScopesMediationPolicyRuleCondition extends Resource {
 
 }
 
-export {
-  OAuth2ScopesMediationPolicyRuleCondition
-};
+
+export default OAuth2ScopesMediationPolicyRuleCondition;

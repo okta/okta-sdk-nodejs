@@ -24,6 +24,5 @@ declare class OktaSignOnPolicyRuleActions extends Resource {
 
 }
 
-export {
-  OktaSignOnPolicyRuleActions
-};
+
+export default OktaSignOnPolicyRuleActions;

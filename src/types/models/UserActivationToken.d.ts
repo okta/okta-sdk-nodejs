@@ -25,6 +25,5 @@ declare class UserActivationToken extends Resource {
 
 }
 
-export {
-  UserActivationToken
-};
+
+export default UserActivationToken;

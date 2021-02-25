@@ -27,6 +27,5 @@ declare class ApplicationCredentialsOAuthClient extends Resource {
 
 }
 
-export {
-  ApplicationCredentialsOAuthClient
-};
+
+export default ApplicationCredentialsOAuthClient;

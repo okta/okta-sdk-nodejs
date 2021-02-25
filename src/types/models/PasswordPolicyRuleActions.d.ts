@@ -26,6 +26,5 @@ declare class PasswordPolicyRuleActions extends Resource {
 
 }
 
-export {
-  PasswordPolicyRuleActions
-};
+
+export default PasswordPolicyRuleActions;

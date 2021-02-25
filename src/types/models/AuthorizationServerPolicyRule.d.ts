@@ -39,6 +39,5 @@ declare class AuthorizationServerPolicyRule extends Resource {
   deactivate(): Promise<Response>;
 }
 
-export {
-  AuthorizationServerPolicyRule
-};
+
+export default AuthorizationServerPolicyRule;

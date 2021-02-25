@@ -25,6 +25,5 @@ declare class LogIssuer extends Resource {
 
 }
 
-export {
-  LogIssuer
-};
+
+export default LogIssuer;

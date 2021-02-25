@@ -23,6 +23,5 @@ declare class SmsTemplateType extends Resource {
 
 }
 
-export {
-  SmsTemplateType
-};
+
+export default SmsTemplateType;

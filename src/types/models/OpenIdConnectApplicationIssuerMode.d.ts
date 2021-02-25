@@ -23,6 +23,5 @@ declare class OpenIdConnectApplicationIssuerMode extends Resource {
 
 }
 
-export {
-  OpenIdConnectApplicationIssuerMode
-};
+
+export default OpenIdConnectApplicationIssuerMode;

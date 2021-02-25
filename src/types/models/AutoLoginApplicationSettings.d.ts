@@ -24,6 +24,5 @@ declare class AutoLoginApplicationSettings extends ApplicationSettings {
 
 }
 
-export {
-  AutoLoginApplicationSettings
-};
+
+export default AutoLoginApplicationSettings;

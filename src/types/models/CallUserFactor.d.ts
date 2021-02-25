@@ -24,6 +24,5 @@ declare class CallUserFactor extends UserFactor {
 
 }
 
-export {
-  CallUserFactor
-};
+
+export default CallUserFactor;

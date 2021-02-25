@@ -34,6 +34,5 @@ declare class PolicyRule extends Resource {
   deactivate(): Promise<Response>;
 }
 
-export {
-  PolicyRule
-};
+
+export default PolicyRule;

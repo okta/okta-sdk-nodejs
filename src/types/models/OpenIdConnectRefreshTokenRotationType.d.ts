@@ -23,6 +23,5 @@ declare class OpenIdConnectRefreshTokenRotationType extends Resource {
 
 }
 
-export {
-  OpenIdConnectRefreshTokenRotationType
-};
+
+export default OpenIdConnectRefreshTokenRotationType;

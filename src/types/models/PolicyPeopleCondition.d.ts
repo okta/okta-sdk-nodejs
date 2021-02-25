@@ -26,6 +26,5 @@ declare class PolicyPeopleCondition extends Resource {
 
 }
 
-export {
-  PolicyPeopleCondition
-};
+
+export default PolicyPeopleCondition;

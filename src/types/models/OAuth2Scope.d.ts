@@ -31,6 +31,5 @@ declare class OAuth2Scope extends Resource {
 
 }
 
-export {
-  OAuth2Scope
-};
+
+export default OAuth2Scope;

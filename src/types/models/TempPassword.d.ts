@@ -24,6 +24,5 @@ declare class TempPassword extends Resource {
 
 }
 
-export {
-  TempPassword
-};
+
+export default TempPassword;

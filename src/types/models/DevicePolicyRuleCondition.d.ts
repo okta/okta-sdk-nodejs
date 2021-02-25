@@ -27,6 +27,5 @@ declare class DevicePolicyRuleCondition extends Resource {
 
 }
 
-export {
-  DevicePolicyRuleCondition
-};
+
+export default DevicePolicyRuleCondition;

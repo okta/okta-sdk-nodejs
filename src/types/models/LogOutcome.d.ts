@@ -25,6 +25,5 @@ declare class LogOutcome extends Resource {
 
 }
 
-export {
-  LogOutcome
-};
+
+export default LogOutcome;
