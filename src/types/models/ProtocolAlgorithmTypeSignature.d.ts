@@ -24,6 +24,5 @@ declare class ProtocolAlgorithmTypeSignature extends Resource {
 
 }
 
-export {
-  ProtocolAlgorithmTypeSignature
-};
+
+export default ProtocolAlgorithmTypeSignature;

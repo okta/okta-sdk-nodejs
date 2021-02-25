@@ -19,13 +19,12 @@ import LogGeographicalContext from './LogGeographicalContext';
 declare class LogIpAddress extends Resource {
   constructor(resourceJson: string, client: any);
 
-  geographicalContext: LogGeographicalContext;
-  ip: string;
-  source: string;
-  version: string;
+  readonly geographicalContext: LogGeographicalContext;
+  readonly ip: string;
+  readonly source: string;
+  readonly version: string;
 
 }
 
-export {
-  LogIpAddress
-};
+
+export default LogIpAddress;

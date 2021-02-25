@@ -24,6 +24,5 @@ declare class Scope extends Resource {
 
 }
 
-export {
-  Scope
-};
+
+export default Scope;

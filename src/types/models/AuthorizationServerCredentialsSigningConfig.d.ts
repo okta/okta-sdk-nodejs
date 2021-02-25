@@ -21,13 +21,12 @@ declare class AuthorizationServerCredentialsSigningConfig extends Resource {
   constructor(resourceJson: string, client: any);
 
   kid: string;
-  lastRotated: string;
-  nextRotation: string;
+  readonly lastRotated: string;
+  readonly nextRotation: string;
   rotationMode: AuthorizationServerCredentialsRotationMode;
   use: AuthorizationServerCredentialsUse;
 
 }
 
-export {
-  AuthorizationServerCredentialsSigningConfig
-};
+
+export default AuthorizationServerCredentialsSigningConfig;

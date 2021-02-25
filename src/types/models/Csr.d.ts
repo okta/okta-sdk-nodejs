@@ -19,13 +19,12 @@ import Resource from '../resource';
 declare class Csr extends Resource {
   constructor(resourceJson: string, client: any);
 
-  created: string;
-  csr: string;
-  id: string;
-  kty: string;
+  readonly created: string;
+  readonly csr: string;
+  readonly id: string;
+  readonly kty: string;
 
 }
 
-export {
-  Csr
-};
+
+export default Csr;

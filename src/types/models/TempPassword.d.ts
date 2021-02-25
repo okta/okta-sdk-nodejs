@@ -19,10 +19,9 @@ import Resource from '../resource';
 declare class TempPassword extends Resource {
   constructor(resourceJson: string, client: any);
 
-  tempPassword: string;
+  readonly tempPassword: string;
 
 }
 
-export {
-  TempPassword
-};
+
+export default TempPassword;

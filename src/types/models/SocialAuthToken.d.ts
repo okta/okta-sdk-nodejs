@@ -19,8 +19,8 @@ import Resource from '../resource';
 declare class SocialAuthToken extends Resource {
   constructor(resourceJson: string, client: any);
 
-  expiresAt: string;
-  id: string;
+  readonly expiresAt: string;
+  readonly id: string;
   scopes: [];
   token: string;
   tokenAuthScheme: string;
@@ -28,6 +28,5 @@ declare class SocialAuthToken extends Resource {
 
 }
 
-export {
-  SocialAuthToken
-};
+
+export default SocialAuthToken;

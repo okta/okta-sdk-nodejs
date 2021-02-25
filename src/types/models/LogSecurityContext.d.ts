@@ -19,14 +19,13 @@ import Resource from '../resource';
 declare class LogSecurityContext extends Resource {
   constructor(resourceJson: string, client: any);
 
-  asNumber: number;
-  asOrg: string;
-  domain: string;
-  isProxy: boolean;
-  isp: string;
+  readonly asNumber: number;
+  readonly asOrg: string;
+  readonly domain: string;
+  readonly isProxy: boolean;
+  readonly isp: string;
 
 }
 
-export {
-  LogSecurityContext
-};
+
+export default LogSecurityContext;

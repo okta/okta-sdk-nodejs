@@ -19,18 +19,17 @@ import Resource from '../resource';
 declare class VerifyUserFactorResponse extends Resource {
   constructor(resourceJson: string, client: any);
 
-  _embedded: {
+  readonly _embedded: {
     [name: string]: unknown;
   };
-  _links: {
+  readonly _links: {
     [name: string]: unknown;
   };
-  expiresAt: string;
+  readonly expiresAt: string;
   factorResult: string;
   factorResultMessage: string;
 
 }
 
-export {
-  VerifyUserFactorResponse
-};
+
+export default VerifyUserFactorResponse;

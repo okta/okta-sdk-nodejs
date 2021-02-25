@@ -19,11 +19,10 @@ import Resource from '../resource';
 declare class LogOutcome extends Resource {
   constructor(resourceJson: string, client: any);
 
-  reason: string;
-  result: string;
+  readonly reason: string;
+  readonly result: string;
 
 }
 
-export {
-  LogOutcome
-};
+
+export default LogOutcome;

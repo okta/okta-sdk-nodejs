@@ -24,6 +24,5 @@ declare class AcsEndpoint extends Resource {
 
 }
 
-export {
-  AcsEndpoint
-};
+
+export default AcsEndpoint;

@@ -25,6 +25,5 @@ declare class ApplicationCredentials extends Resource {
 
 }
 
-export {
-  ApplicationCredentials
-};
+
+export default ApplicationCredentials;

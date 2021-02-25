@@ -20,10 +20,9 @@ declare class PasswordPolicyRecoveryEmail extends Resource {
   constructor(resourceJson: string, client: any);
 
   properties: PasswordPolicyRecoveryEmailProperties;
-  status: string;
+  readonly status: string;
 
 }
 
-export {
-  PasswordPolicyRecoveryEmail
-};
+
+export default PasswordPolicyRecoveryEmail;

@@ -25,59 +25,58 @@ import AuthorizationServerCredentials from './AuthorizationServerCredentials';
 declare class AuthorizationServer extends Resource {
   constructor(resourceJson: string, client: any);
 
-  _links: {
+  readonly _links: {
     [name: string]: unknown;
   };
   audiences: [];
-  created: string;
+  readonly created: string;
   credentials: AuthorizationServerCredentials;
   description: string;
-  id: string;
+  readonly id: string;
   issuer: string;
   issuerMode: string;
-  lastUpdated: string;
+  readonly lastUpdated: string;
   name: string;
   status: string;
 
   update(): Promise<AuthorizationServer>;
   delete(): Promise<undefined>;
-  listOAuth2Claims(): Promise<Collection>;
+  listOAuth2Claims(): Collection;
   createOAuth2Claim(oAuth2Claim: OAuth2Claim): Promise<OAuth2Claim>;
   deleteOAuth2Claim(claimId: string): Promise<undefined>;
   getOAuth2Claim(claimId: string): Promise<OAuth2Claim>;
   updateOAuth2Claim(claimId: string, oAuth2Claim: OAuth2Claim): Promise<OAuth2Claim>;
-  listOAuth2Clients(): Promise<Collection>;
+  listOAuth2Clients(): Collection;
   revokeRefreshTokensForClient(clientId: string): Promise<undefined>;
-  listRefreshTokensForClient(clientId: string, queryParameters: { 
+  listRefreshTokensForClient(clientId: string, queryParameters?: { 
     expand: string,
     after: string,
     limit: string,
-  }): Promise<Collection>;
-  getRefreshTokenForClient(clientId: string, tokenId: string, queryParameters: { 
+  }): Collection;
+  getRefreshTokenForClient(clientId: string, tokenId: string, queryParameters?: { 
     expand: string,
   }): Promise<OAuth2RefreshToken>;
   revokeRefreshTokenForClient(clientId: string, tokenId: string): Promise<undefined>;
-  listKeys(): Promise<Collection>;
-  rotateKeys(jwkUse: JwkUse): Promise<Collection>;
+  listKeys(): Collection;
+  rotateKeys(jwkUse: JwkUse): Collection;
   activate(): Promise<undefined>;
   deactivate(): Promise<undefined>;
-  listPolicies(): Promise<Collection>;
+  listPolicies(): Collection;
   createPolicy(authorizationServerPolicy: AuthorizationServerPolicy): Promise<AuthorizationServerPolicy>;
   deletePolicy(policyId: string): Promise<undefined>;
   getPolicy(policyId: string): Promise<AuthorizationServerPolicy>;
   updatePolicy(policyId: string, authorizationServerPolicy: AuthorizationServerPolicy): Promise<AuthorizationServerPolicy>;
-  listOAuth2Scopes(queryParameters: { 
+  listOAuth2Scopes(queryParameters?: { 
     q: string,
     filter: string,
     cursor: string,
     limit: string,
-  }): Promise<Collection>;
+  }): Collection;
   createOAuth2Scope(oAuth2Scope: OAuth2Scope): Promise<OAuth2Scope>;
   deleteOAuth2Scope(scopeId: string): Promise<undefined>;
   getOAuth2Scope(scopeId: string): Promise<OAuth2Scope>;
   updateOAuth2Scope(scopeId: string, oAuth2Scope: OAuth2Scope): Promise<OAuth2Scope>;
 }
 
-export {
-  AuthorizationServer
-};
+
+export default AuthorizationServer;

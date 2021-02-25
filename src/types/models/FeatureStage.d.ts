@@ -25,6 +25,5 @@ declare class FeatureStage extends Resource {
 
 }
 
-export {
-  FeatureStage
-};
+
+export default FeatureStage;

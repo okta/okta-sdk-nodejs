@@ -19,19 +19,19 @@ import Resource from '../resource';
 declare class JsonWebKey extends Resource {
   constructor(resourceJson: string, client: any);
 
-  _links: {
+  readonly _links: {
     [name: string]: unknown;
   };
   alg: string;
-  created: string;
+  readonly created: string;
   e: string;
-  expiresAt: string;
+  readonly expiresAt: string;
   key_ops: [];
   kid: string;
   kty: string;
-  lastUpdated: string;
+  readonly lastUpdated: string;
   n: string;
-  status: string;
+  readonly status: string;
   use: string;
   x5c: [];
   x5t: string;
@@ -40,6 +40,5 @@ declare class JsonWebKey extends Resource {
 
 }
 
-export {
-  JsonWebKey
-};
+
+export default JsonWebKey;

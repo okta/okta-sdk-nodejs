@@ -20,13 +20,12 @@ declare class ApplicationCredentialsSigning extends Resource {
   constructor(resourceJson: string, client: any);
 
   kid: string;
-  lastRotated: string;
-  nextRotation: string;
+  readonly lastRotated: string;
+  readonly nextRotation: string;
   rotationMode: string;
   use: ApplicationCredentialsSigningUse;
 
 }
 
-export {
-  ApplicationCredentialsSigning
-};
+
+export default ApplicationCredentialsSigning;

@@ -20,24 +20,23 @@ import SessionStatus from './SessionStatus';
 declare class Session extends Resource {
   constructor(resourceJson: string, client: any);
 
-  _links: {
+  readonly _links: {
     [name: string]: unknown;
   };
-  amr: [];
-  createdAt: string;
-  expiresAt: string;
-  id: string;
-  idp: SessionIdentityProvider;
-  lastFactorVerification: string;
-  lastPasswordVerification: string;
-  login: string;
-  status: SessionStatus;
-  userId: string;
+  readonly amr: [];
+  readonly createdAt: string;
+  readonly expiresAt: string;
+  readonly id: string;
+  readonly idp: SessionIdentityProvider;
+  readonly lastFactorVerification: string;
+  readonly lastPasswordVerification: string;
+  readonly login: string;
+  readonly status: SessionStatus;
+  readonly userId: string;
 
   delete(): Promise<undefined>;
   refresh(): Promise<Session>;
 }
 
-export {
-  Session
-};
+
+export default Session;

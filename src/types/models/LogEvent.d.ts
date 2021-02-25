@@ -27,25 +27,24 @@ import LogTransaction from './LogTransaction';
 declare class LogEvent extends Resource {
   constructor(resourceJson: string, client: any);
 
-  actor: LogActor;
-  authenticationContext: LogAuthenticationContext;
-  client: LogClient;
-  debugContext: LogDebugContext;
-  displayMessage: string;
-  eventType: string;
-  legacyEventType: string;
-  outcome: LogOutcome;
-  published: string;
-  request: LogRequest;
-  securityContext: LogSecurityContext;
-  severity: LogSeverity;
-  target: [];
-  transaction: LogTransaction;
-  uuid: string;
-  version: string;
+  readonly actor: LogActor;
+  readonly authenticationContext: LogAuthenticationContext;
+  readonly client: LogClient;
+  readonly debugContext: LogDebugContext;
+  readonly displayMessage: string;
+  readonly eventType: string;
+  readonly legacyEventType: string;
+  readonly outcome: LogOutcome;
+  readonly published: string;
+  readonly request: LogRequest;
+  readonly securityContext: LogSecurityContext;
+  readonly severity: LogSeverity;
+  readonly target: [];
+  readonly transaction: LogTransaction;
+  readonly uuid: string;
+  readonly version: string;
 
 }
 
-export {
-  LogEvent
-};
+
+export default LogEvent;

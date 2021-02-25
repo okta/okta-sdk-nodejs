@@ -19,7 +19,7 @@ import LinkedObjectDetails from './LinkedObjectDetails';
 declare class LinkedObject extends Resource {
   constructor(resourceJson: string, client: any);
 
-  _links: {
+  readonly _links: {
     [name: string]: unknown;
   };
   associated: LinkedObjectDetails;
@@ -28,6 +28,5 @@ declare class LinkedObject extends Resource {
   delete(): Promise<undefined>;
 }
 
-export {
-  LinkedObject
-};
+
+export default LinkedObject;

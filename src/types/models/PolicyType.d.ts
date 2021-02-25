@@ -22,6 +22,5 @@ declare class PolicyType extends Resource {
 
 }
 
-export {
-  PolicyType
-};
+
+export default PolicyType;

@@ -22,23 +22,22 @@ import FeatureType from './FeatureType';
 declare class Feature extends Resource {
   constructor(resourceJson: string, client: any);
 
-  _links: {
+  readonly _links: {
     [name: string]: unknown;
   };
   description: string;
-  id: string;
+  readonly id: string;
   name: string;
   stage: FeatureStage;
   status: EnabledStatus;
   type: FeatureType;
 
-  updateLifecycle(lifecycle: string, queryParameters: { 
+  updateLifecycle(lifecycle: string, queryParameters?: { 
     mode: string,
   }): Promise<Feature>;
-  getDependents(): Promise<Collection>;
-  getDependencies(): Promise<Collection>;
+  getDependents(): Collection;
+  getDependencies(): Collection;
 }
 
-export {
-  Feature
-};
+
+export default Feature;

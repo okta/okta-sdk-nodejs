@@ -23,6 +23,5 @@ declare class PasswordPolicyDelegationSettings extends Resource {
 
 }
 
-export {
-  PasswordPolicyDelegationSettings
-};
+
+export default PasswordPolicyDelegationSettings;

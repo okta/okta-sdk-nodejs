@@ -19,11 +19,10 @@ import Resource from '../resource';
 declare class UserActivationToken extends Resource {
   constructor(resourceJson: string, client: any);
 
-  activationToken: string;
-  activationUrl: string;
+  readonly activationToken: string;
+  readonly activationUrl: string;
 
 }
 
-export {
-  UserActivationToken
-};
+
+export default UserActivationToken;

@@ -22,6 +22,5 @@ declare class FactorStatus extends Resource {
 
 }
 
-export {
-  FactorStatus
-};
+
+export default FactorStatus;

@@ -23,6 +23,5 @@ declare class WebUserFactor extends UserFactor {
 
 }
 
-export {
-  WebUserFactor
-};
+
+export default WebUserFactor;

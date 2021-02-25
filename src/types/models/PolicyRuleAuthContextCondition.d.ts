@@ -23,6 +23,5 @@ declare class PolicyRuleAuthContextCondition extends Resource {
 
 }
 
-export {
-  PolicyRuleAuthContextCondition
-};
+
+export default PolicyRuleAuthContextCondition;

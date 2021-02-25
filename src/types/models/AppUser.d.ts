@@ -19,33 +19,32 @@ import AppUserCredentials from './AppUserCredentials';
 declare class AppUser extends Resource {
   constructor(resourceJson: string, client: any);
 
-  _embedded: {
+  readonly _embedded: {
     [name: string]: unknown;
   };
-  _links: {
+  readonly _links: {
     [name: string]: unknown;
   };
-  created: string;
+  readonly created: string;
   credentials: AppUserCredentials;
-  externalId: string;
+  readonly externalId: string;
   id: string;
-  lastSync: string;
-  lastUpdated: string;
-  passwordChanged: string;
+  readonly lastSync: string;
+  readonly lastUpdated: string;
+  readonly passwordChanged: string;
   profile: {
     [name: string]: unknown;
   };
   scope: string;
-  status: string;
-  statusChanged: string;
-  syncState: string;
+  readonly status: string;
+  readonly statusChanged: string;
+  readonly syncState: string;
 
   update(): Promise<AppUser>;
-  delete(queryParameters: { 
+  delete(queryParameters?: { 
     sendEmail: string,
   }): Promise<undefined>;
 }
 
-export {
-  AppUser
-};
+
+export default AppUser;

@@ -27,6 +27,5 @@ declare class UserCredentials extends Resource {
 
 }
 
-export {
-  UserCredentials
-};
+
+export default UserCredentials;

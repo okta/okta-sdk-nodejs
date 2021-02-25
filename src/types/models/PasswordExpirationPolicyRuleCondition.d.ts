@@ -24,6 +24,5 @@ declare class PasswordExpirationPolicyRuleCondition extends Resource {
 
 }
 
-export {
-  PasswordExpirationPolicyRuleCondition
-};
+
+export default PasswordExpirationPolicyRuleCondition;

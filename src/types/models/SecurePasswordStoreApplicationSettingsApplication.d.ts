@@ -31,6 +31,5 @@ declare class SecurePasswordStoreApplicationSettingsApplication extends Applicat
 
 }
 
-export {
-  SecurePasswordStoreApplicationSettingsApplication
-};
+
+export default SecurePasswordStoreApplicationSettingsApplication;

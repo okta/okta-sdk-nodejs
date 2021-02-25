@@ -19,14 +19,13 @@ import LogGeolocation from './LogGeolocation';
 declare class LogGeographicalContext extends Resource {
   constructor(resourceJson: string, client: any);
 
-  city: string;
-  country: string;
-  geolocation: LogGeolocation;
-  postalCode: string;
-  state: string;
+  readonly city: string;
+  readonly country: string;
+  readonly geolocation: LogGeolocation;
+  readonly postalCode: string;
+  readonly state: string;
 
 }
 
-export {
-  LogGeographicalContext
-};
+
+export default LogGeographicalContext;

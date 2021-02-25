@@ -22,17 +22,17 @@ import PolicyType from './PolicyType';
 declare class AuthorizationServerPolicy extends Resource {
   constructor(resourceJson: string, client: any);
 
-  _embedded: {
+  readonly _embedded: {
     [name: string]: unknown;
   };
-  _links: {
+  readonly _links: {
     [name: string]: unknown;
   };
   conditions: PolicyRuleConditions;
-  created: string;
+  readonly created: string;
   description: string;
-  id: string;
-  lastUpdated: string;
+  readonly id: string;
+  readonly lastUpdated: string;
   name: string;
   priority: number;
   status: string;
@@ -41,12 +41,11 @@ declare class AuthorizationServerPolicy extends Resource {
 
   update(authServerId: string): Promise<AuthorizationServerPolicy>;
   delete(authServerId: string): Promise<undefined>;
-  listPolicyRules(authServerId: string): Promise<Collection>;
+  listPolicyRules(authServerId: string): Collection;
   createPolicyRule(authServerId: string, authorizationServerPolicyRule: AuthorizationServerPolicyRule): Promise<AuthorizationServerPolicyRule>;
   getPolicyRule(authServerId: string, ruleId: string): Promise<AuthorizationServerPolicyRule>;
   deletePolicyRule(authServerId: string, ruleId: string): Promise<undefined>;
 }
 
-export {
-  AuthorizationServerPolicy
-};
+
+export default AuthorizationServerPolicy;

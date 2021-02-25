@@ -19,19 +19,18 @@ import Resource from '../resource';
 declare class AppLink extends Resource {
   constructor(resourceJson: string, client: any);
 
-  appAssignmentId: string;
-  appInstanceId: string;
-  appName: string;
-  credentialsSetup: boolean;
-  hidden: boolean;
-  id: string;
-  label: string;
-  linkUrl: string;
-  logoUrl: string;
-  sortOrder: number;
+  readonly appAssignmentId: string;
+  readonly appInstanceId: string;
+  readonly appName: string;
+  readonly credentialsSetup: boolean;
+  readonly hidden: boolean;
+  readonly id: string;
+  readonly label: string;
+  readonly linkUrl: string;
+  readonly logoUrl: string;
+  readonly sortOrder: number;
 
 }
 
-export {
-  AppLink
-};
+
+export default AppLink;

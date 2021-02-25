@@ -32,92 +32,91 @@ import ApplicationVisibility from './ApplicationVisibility';
 declare class Application extends Resource {
   constructor(resourceJson: string, client: any);
 
-  _embedded: {
+  readonly _embedded: {
     [name: string]: unknown;
   };
-  _links: {
+  readonly _links: {
     [name: string]: unknown;
   };
   accessibility: ApplicationAccessibility;
-  created: string;
+  readonly created: string;
   credentials: ApplicationCredentials;
   features: [];
-  id: string;
+  readonly id: string;
   label: string;
-  lastUpdated: string;
+  readonly lastUpdated: string;
   licensing: ApplicationLicensing;
-  name: string;
+  readonly name: string;
   profile: {
     [name: string]: unknown;
   };
   settings: ApplicationSettings;
   signOnMode: ApplicationSignOnMode;
-  status: string;
+  readonly status: string;
   visibility: ApplicationVisibility;
 
   update(): Promise<Application>;
   delete(): Promise<undefined>;
   activate(): Promise<undefined>;
   deactivate(): Promise<undefined>;
-  listApplicationUsers(queryParameters: { 
+  listApplicationUsers(queryParameters?: { 
     q: string,
     query_scope: string,
     after: string,
     limit: string,
     filter: string,
     expand: string,
-  }): Promise<Collection>;
+  }): Collection;
   assignUserToApplication(appUser: AppUser): Promise<AppUser>;
-  getApplicationUser(userId: string, queryParameters: { 
+  getApplicationUser(userId: string, queryParameters?: { 
     expand: string,
   }): Promise<AppUser>;
   createApplicationGroupAssignment(groupId: string, applicationGroupAssignment: ApplicationGroupAssignment): Promise<ApplicationGroupAssignment>;
-  getApplicationGroupAssignment(groupId: string, queryParameters: { 
+  getApplicationGroupAssignment(groupId: string, queryParameters?: { 
     expand: string,
   }): Promise<ApplicationGroupAssignment>;
-  cloneApplicationKey(keyId: string, queryParameters: { 
+  cloneApplicationKey(keyId: string, queryParameters?: { 
     targetAid: string,
   }): Promise<JsonWebKey>;
   getApplicationKey(keyId: string): Promise<JsonWebKey>;
-  listGroupAssignments(queryParameters: { 
+  listGroupAssignments(queryParameters?: { 
     q: string,
     after: string,
     limit: string,
     expand: string,
-  }): Promise<Collection>;
-  listKeys(): Promise<Collection>;
-  generateKey(queryParameters: { 
+  }): Collection;
+  listKeys(): Collection;
+  generateKey(queryParameters?: { 
     validityYears: string,
   }): Promise<JsonWebKey>;
   generateCsr(csrMetadata: CsrMetadata): Promise<Csr>;
   getCsr(csrId: string): Promise<Csr>;
   revokeCsr(csrId: string): Promise<undefined>;
-  listCsrs(): Promise<Collection>;
+  listCsrs(): Collection;
   publishCerCert(csrId: string, certificate: string): Promise<JsonWebKey>;
   publishBinaryCerCert(csrId: string, certificate: string): Promise<JsonWebKey>;
   publishDerCert(csrId: string, certificate: string): Promise<JsonWebKey>;
   publishBinaryDerCert(csrId: string, certificate: string): Promise<JsonWebKey>;
   publishBinaryPemCert(csrId: string, certificate: string): Promise<JsonWebKey>;
-  listOAuth2Tokens(queryParameters: { 
+  listOAuth2Tokens(queryParameters?: { 
     expand: string,
     after: string,
     limit: string,
-  }): Promise<Collection>;
+  }): Collection;
   revokeOAuth2TokenForApplication(tokenId: string): Promise<undefined>;
-  getOAuth2Token(tokenId: string, queryParameters: { 
+  getOAuth2Token(tokenId: string, queryParameters?: { 
     expand: string,
   }): Promise<OAuth2Token>;
   revokeOAuth2Tokens(): Promise<undefined>;
-  listScopeConsentGrants(queryParameters: { 
+  listScopeConsentGrants(queryParameters?: { 
     expand: string,
-  }): Promise<Collection>;
+  }): Collection;
   grantConsentToScope(oAuth2ScopeConsentGrant: OAuth2ScopeConsentGrant): Promise<OAuth2ScopeConsentGrant>;
   revokeScopeConsentGrant(grantId: string): Promise<undefined>;
-  getScopeConsentGrant(grantId: string, queryParameters: { 
+  getScopeConsentGrant(grantId: string, queryParameters?: { 
     expand: string,
   }): Promise<OAuth2ScopeConsentGrant>;
 }
 
-export {
-  Application
-};
+
+export default Application;

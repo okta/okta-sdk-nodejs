@@ -24,6 +24,5 @@ declare class PlatformConditionEvaluatorPlatform extends Resource {
 
 }
 
-export {
-  PlatformConditionEvaluatorPlatform
-};
+
+export default PlatformConditionEvaluatorPlatform;

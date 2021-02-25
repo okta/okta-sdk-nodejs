@@ -19,14 +19,14 @@ import OAuth2ClaimConditions from './OAuth2ClaimConditions';
 declare class OAuth2Claim extends Resource {
   constructor(resourceJson: string, client: any);
 
-  _links: {
+  readonly _links: {
     [name: string]: unknown;
   };
   alwaysIncludeInToken: boolean;
   claimType: string;
   conditions: OAuth2ClaimConditions;
   group_filter_type: string;
-  id: string;
+  readonly id: string;
   name: string;
   status: string;
   system: boolean;
@@ -35,6 +35,5 @@ declare class OAuth2Claim extends Resource {
 
 }
 
-export {
-  OAuth2Claim
-};
+
+export default OAuth2Claim;

@@ -20,15 +20,14 @@ import LogUserAgent from './LogUserAgent';
 declare class LogClient extends Resource {
   constructor(resourceJson: string, client: any);
 
-  device: string;
-  geographicalContext: LogGeographicalContext;
-  id: string;
-  ipAddress: string;
-  userAgent: LogUserAgent;
-  zone: string;
+  readonly device: string;
+  readonly geographicalContext: LogGeographicalContext;
+  readonly id: string;
+  readonly ipAddress: string;
+  readonly userAgent: LogUserAgent;
+  readonly zone: string;
 
 }
 
-export {
-  LogClient
-};
+
+export default LogClient;

@@ -25,6 +25,5 @@ declare class UserIdentifierPolicyRuleCondition extends Resource {
 
 }
 
-export {
-  UserIdentifierPolicyRuleCondition
-};
+
+export default UserIdentifierPolicyRuleCondition;

@@ -19,12 +19,11 @@ import Resource from '../resource';
 declare class AppAndInstanceConditionEvaluatorAppOrInstance extends Resource {
   constructor(resourceJson: string, client: any);
 
-  id: string;
+  readonly id: string;
   name: string;
   type: string;
 
 }
 
-export {
-  AppAndInstanceConditionEvaluatorAppOrInstance
-};
+
+export default AppAndInstanceConditionEvaluatorAppOrInstance;

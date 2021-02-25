@@ -23,13 +23,13 @@ import InlineHookType from './InlineHookType';
 declare class InlineHook extends Resource {
   constructor(resourceJson: string, client: any);
 
-  _links: {
+  readonly _links: {
     [name: string]: unknown;
   };
   channel: InlineHookChannel;
-  created: string;
-  id: string;
-  lastUpdated: string;
+  readonly created: string;
+  readonly id: string;
+  readonly lastUpdated: string;
   name: string;
   status: InlineHookStatus;
   type: InlineHookType;
@@ -42,6 +42,5 @@ declare class InlineHook extends Resource {
   execute(inlineHookPayload: InlineHookPayload): Promise<InlineHookResponse>;
 }
 
-export {
-  InlineHook
-};
+
+export default InlineHook;

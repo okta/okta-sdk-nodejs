@@ -19,11 +19,10 @@ import SessionIdentityProviderType from './SessionIdentityProviderType';
 declare class SessionIdentityProvider extends Resource {
   constructor(resourceJson: string, client: any);
 
-  id: string;
-  type: SessionIdentityProviderType;
+  readonly id: string;
+  readonly type: SessionIdentityProviderType;
 
 }
 
-export {
-  SessionIdentityProvider
-};
+
+export default SessionIdentityProvider;

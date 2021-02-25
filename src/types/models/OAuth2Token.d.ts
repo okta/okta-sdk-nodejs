@@ -19,24 +19,23 @@ import Resource from '../resource';
 declare class OAuth2Token extends Resource {
   constructor(resourceJson: string, client: any);
 
-  _embedded: {
+  readonly _embedded: {
     [name: string]: unknown;
   };
-  _links: {
+  readonly _links: {
     [name: string]: unknown;
   };
   clientId: string;
-  created: string;
-  expiresAt: string;
-  id: string;
+  readonly created: string;
+  readonly expiresAt: string;
+  readonly id: string;
   issuer: string;
-  lastUpdated: string;
+  readonly lastUpdated: string;
   scopes: [];
   status: string;
   userId: string;
 
 }
 
-export {
-  OAuth2Token
-};
+
+export default OAuth2Token;

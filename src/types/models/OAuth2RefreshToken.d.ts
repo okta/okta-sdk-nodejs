@@ -19,25 +19,24 @@ import OAuth2Actor from './OAuth2Actor';
 declare class OAuth2RefreshToken extends Resource {
   constructor(resourceJson: string, client: any);
 
-  _embedded: {
+  readonly _embedded: {
     [name: string]: unknown;
   };
-  _links: {
+  readonly _links: {
     [name: string]: unknown;
   };
   clientId: string;
-  created: string;
+  readonly created: string;
   createdBy: OAuth2Actor;
-  expiresAt: string;
-  id: string;
+  readonly expiresAt: string;
+  readonly id: string;
   issuer: string;
-  lastUpdated: string;
+  readonly lastUpdated: string;
   scopes: [];
   status: string;
   userId: string;
 
 }
 
-export {
-  OAuth2RefreshToken
-};
+
+export default OAuth2RefreshToken;

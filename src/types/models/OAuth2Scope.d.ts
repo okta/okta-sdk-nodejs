@@ -23,13 +23,12 @@ declare class OAuth2Scope extends Resource {
   default: boolean;
   description: string;
   displayName: string;
-  id: string;
+  readonly id: string;
   metadataPublish: string;
   name: string;
   system: boolean;
 
 }
 
-export {
-  OAuth2Scope
-};
+
+export default OAuth2Scope;

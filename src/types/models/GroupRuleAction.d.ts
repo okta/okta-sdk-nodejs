@@ -23,6 +23,5 @@ declare class GroupRuleAction extends Resource {
 
 }
 
-export {
-  GroupRuleAction
-};
+
+export default GroupRuleAction;
