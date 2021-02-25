@@ -20,15 +20,15 @@ import EventSubscriptions from './EventSubscriptions';
 declare class EventHook extends Resource {
   constructor(resourceJson: string, client: any);
 
-  _links: {
+  readonly _links: {
     [name: string]: unknown;
   };
   channel: EventHookChannel;
-  created: string;
+  readonly created: string;
   createdBy: string;
   events: EventSubscriptions;
-  id: string;
-  lastUpdated: string;
+  readonly id: string;
+  readonly lastUpdated: string;
   name: string;
   status: string;
   verificationStatus: string;
@@ -40,6 +40,5 @@ declare class EventHook extends Resource {
   verify(): Promise<EventHook>;
 }
 
-export {
-  EventHook
-};
+
+export default EventHook;

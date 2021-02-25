@@ -19,9 +19,9 @@ import Resource from '../resource';
 declare class PolicyRule extends Resource {
   constructor(resourceJson: string, client: any);
 
-  created: string;
-  id: string;
-  lastUpdated: string;
+  readonly created: string;
+  readonly id: string;
+  readonly lastUpdated: string;
   priority: number;
   status: string;
   system: boolean;
@@ -33,6 +33,5 @@ declare class PolicyRule extends Resource {
   deactivate(): Promise<undefined>;
 }
 
-export {
-  PolicyRule
-};
+
+export default PolicyRule;

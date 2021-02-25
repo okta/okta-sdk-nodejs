@@ -22,6 +22,5 @@ declare class LogCredentialProvider extends Resource {
 
 }
 
-export {
-  LogCredentialProvider
-};
+
+export default LogCredentialProvider;

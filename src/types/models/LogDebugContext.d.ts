@@ -19,12 +19,11 @@ import Resource from '../resource';
 declare class LogDebugContext extends Resource {
   constructor(resourceJson: string, client: any);
 
-  debugData: {
+  readonly debugData: {
     [name: string]: unknown;
   };
 
 }
 
-export {
-  LogDebugContext
-};
+
+export default LogDebugContext;

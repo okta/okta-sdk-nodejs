@@ -19,16 +19,15 @@ import Resource from '../resource';
 declare class OAuth2Client extends Resource {
   constructor(resourceJson: string, client: any);
 
-  _links: {
+  readonly _links: {
     [name: string]: unknown;
   };
-  client_id: string;
-  client_name: string;
-  client_uri: string;
-  logo_uri: string;
+  readonly client_id: string;
+  readonly client_name: string;
+  readonly client_uri: string;
+  readonly logo_uri: string;
 
 }
 
-export {
-  OAuth2Client
-};
+
+export default OAuth2Client;

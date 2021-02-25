@@ -19,13 +19,13 @@ import Resource from '../resource';
 declare class TrustedOrigin extends Resource {
   constructor(resourceJson: string, client: any);
 
-  _links: {
+  readonly _links: {
     [name: string]: unknown;
   };
-  created: string;
+  readonly created: string;
   createdBy: string;
-  id: string;
-  lastUpdated: string;
+  readonly id: string;
+  readonly lastUpdated: string;
   lastUpdatedBy: string;
   name: string;
   origin: string;
@@ -36,6 +36,5 @@ declare class TrustedOrigin extends Resource {
   delete(): Promise<undefined>;
 }
 
-export {
-  TrustedOrigin
-};
+
+export default TrustedOrigin;

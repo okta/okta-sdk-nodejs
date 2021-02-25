@@ -19,10 +19,9 @@ import Resource from '../resource';
 declare class ResetPasswordToken extends Resource {
   constructor(resourceJson: string, client: any);
 
-  resetPasswordUrl: string;
+  readonly resetPasswordUrl: string;
 
 }
 
-export {
-  ResetPasswordToken
-};
+
+export default ResetPasswordToken;

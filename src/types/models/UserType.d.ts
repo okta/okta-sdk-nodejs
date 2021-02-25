@@ -19,23 +19,22 @@ import Resource from '../resource';
 declare class UserType extends Resource {
   constructor(resourceJson: string, client: any);
 
-  _links: {
+  readonly _links: {
     [name: string]: unknown;
   };
-  created: string;
-  createdBy: string;
-  default: boolean;
+  readonly created: string;
+  readonly createdBy: string;
+  readonly default: boolean;
   description: string;
   displayName: string;
   id: string;
-  lastUpdated: string;
-  lastUpdatedBy: string;
+  readonly lastUpdated: string;
+  readonly lastUpdatedBy: string;
   name: string;
 
   update(): Promise<UserType>;
   delete(): Promise<undefined>;
 }
 
-export {
-  UserType
-};
+
+export default UserType;

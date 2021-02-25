@@ -19,11 +19,10 @@ import PasswordPolicyRecoveryQuestionProperties from './PasswordPolicyRecoveryQu
 declare class PasswordPolicyRecoveryQuestion extends Resource {
   constructor(resourceJson: string, client: any);
 
-  properties: PasswordPolicyRecoveryQuestionProperties;
-  status: string;
+  readonly properties: PasswordPolicyRecoveryQuestionProperties;
+  readonly status: string;
 
 }
 
-export {
-  PasswordPolicyRecoveryQuestion
-};
+
+export default PasswordPolicyRecoveryQuestion;

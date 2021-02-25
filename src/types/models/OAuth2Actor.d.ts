@@ -19,11 +19,10 @@ import Resource from '../resource';
 declare class OAuth2Actor extends Resource {
   constructor(resourceJson: string, client: any);
 
-  id: string;
+  readonly id: string;
   type: string;
 
 }
 
-export {
-  OAuth2Actor
-};
+
+export default OAuth2Actor;

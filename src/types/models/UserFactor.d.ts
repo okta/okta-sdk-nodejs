@@ -24,28 +24,27 @@ import FactorStatus from './FactorStatus';
 declare class UserFactor extends Resource {
   constructor(resourceJson: string, client: any);
 
-  _embedded: {
+  readonly _embedded: {
     [name: string]: unknown;
   };
-  _links: {
+  readonly _links: {
     [name: string]: unknown;
   };
-  created: string;
+  readonly created: string;
   factorType: FactorType;
-  id: string;
-  lastUpdated: string;
+  readonly id: string;
+  readonly lastUpdated: string;
   provider: FactorProvider;
-  status: FactorStatus;
+  readonly status: FactorStatus;
   _verify: VerifyFactorRequest;
 
   delete(): Promise<undefined>;
   activate(activateFactorRequest: ActivateFactorRequest): Promise<UserFactor>;
-  verify(verifyFactorRequest: VerifyFactorRequest, queryParameters: { 
+  verify(verifyFactorRequest: VerifyFactorRequest, queryParameters?: { 
     templateId: string,
     tokenLifetimeSeconds: string,
   }): Promise<VerifyUserFactorResponse>;
 }
 
-export {
-  UserFactor
-};
+
+export default UserFactor;

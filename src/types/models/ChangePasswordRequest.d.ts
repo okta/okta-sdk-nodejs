@@ -24,6 +24,5 @@ declare class ChangePasswordRequest extends Resource {
 
 }
 
-export {
-  ChangePasswordRequest
-};
+
+export default ChangePasswordRequest;

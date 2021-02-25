@@ -27,10 +27,9 @@ declare class IonForm extends Resource {
   refresh: number;
   rel: [];
   relatesTo: [];
-  value: [];
+  readonly value: [];
 
 }
 
-export {
-  IonForm
-};
+
+export default IonForm;

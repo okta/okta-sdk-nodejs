@@ -19,11 +19,10 @@ import Resource from '../resource';
 declare class LogIssuer extends Resource {
   constructor(resourceJson: string, client: any);
 
-  id: string;
-  type: string;
+  readonly id: string;
+  readonly type: string;
 
 }
 
-export {
-  LogIssuer
-};
+
+export default LogIssuer;

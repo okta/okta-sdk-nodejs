@@ -21,19 +21,19 @@ import RoleType from './RoleType';
 declare class Role extends Resource {
   constructor(resourceJson: string, client: any);
 
-  _embedded: {
+  readonly _embedded: {
     [name: string]: unknown;
   };
-  _links: {
+  readonly _links: {
     [name: string]: unknown;
   };
   assignmentType: RoleAssignmentType;
-  created: string;
+  readonly created: string;
   description: string;
-  id: string;
-  label: string;
-  lastUpdated: string;
-  status: RoleStatus;
+  readonly id: string;
+  readonly label: string;
+  readonly lastUpdated: string;
+  readonly status: RoleStatus;
   type: RoleType;
 
   addAdminGroupTarget(targetGroupId: string): Promise<undefined>;
@@ -44,6 +44,5 @@ declare class Role extends Resource {
   addAppTargetToAdminRoleForUser(appName: string): Promise<undefined>;
 }
 
-export {
-  Role
-};
+
+export default Role;

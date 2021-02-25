@@ -19,16 +19,15 @@ import Resource from '../resource';
 declare class LogTarget extends Resource {
   constructor(resourceJson: string, client: any);
 
-  alternateId: string;
-  detailEntry: {
+  readonly alternateId: string;
+  readonly detailEntry: {
     [name: string]: unknown;
   };
-  displayName: string;
-  id: string;
-  type: string;
+  readonly displayName: string;
+  readonly id: string;
+  readonly type: string;
 
 }
 
-export {
-  LogTarget
-};
+
+export default LogTarget;

@@ -23,6 +23,5 @@ declare class OpenIdConnectApplicationSettings extends ApplicationSettings {
 
 }
 
-export {
-  OpenIdConnectApplicationSettings
-};
+
+export default OpenIdConnectApplicationSettings;

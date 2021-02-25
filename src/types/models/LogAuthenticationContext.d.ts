@@ -22,16 +22,15 @@ import LogIssuer from './LogIssuer';
 declare class LogAuthenticationContext extends Resource {
   constructor(resourceJson: string, client: any);
 
-  authenticationProvider: LogAuthenticationProvider;
-  authenticationStep: number;
+  readonly authenticationProvider: LogAuthenticationProvider;
+  readonly authenticationStep: number;
   credentialProvider: LogCredentialProvider;
   credentialType: LogCredentialType;
-  externalSessionId: string;
-  interface: string;
-  issuer: LogIssuer;
+  readonly externalSessionId: string;
+  readonly interface: string;
+  readonly issuer: LogIssuer;
 
 }
 
-export {
-  LogAuthenticationContext
-};
+
+export default LogAuthenticationContext;

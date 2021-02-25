@@ -24,6 +24,5 @@ declare class GroupCondition extends Resource {
 
 }
 
-export {
-  GroupCondition
-};
+
+export default GroupCondition;

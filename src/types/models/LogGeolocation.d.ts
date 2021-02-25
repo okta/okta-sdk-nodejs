@@ -19,11 +19,10 @@ import Resource from '../resource';
 declare class LogGeolocation extends Resource {
   constructor(resourceJson: string, client: any);
 
-  lat: number;
-  lon: number;
+  readonly lat: number;
+  readonly lon: number;
 
 }
 
-export {
-  LogGeolocation
-};
+
+export default LogGeolocation;

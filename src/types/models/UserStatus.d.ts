@@ -22,6 +22,5 @@ declare class UserStatus extends Resource {
 
 }
 
-export {
-  UserStatus
-};
+
+export default UserStatus;

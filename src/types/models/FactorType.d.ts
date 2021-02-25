@@ -22,6 +22,5 @@ declare class FactorType extends Resource {
 
 }
 
-export {
-  FactorType
-};
+
+export default FactorType;

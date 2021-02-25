@@ -23,11 +23,11 @@ declare class GroupRule extends Resource {
 
   actions: GroupRuleAction;
   conditions: GroupRuleConditions;
-  created: string;
-  id: string;
-  lastUpdated: string;
+  readonly created: string;
+  readonly id: string;
+  readonly lastUpdated: string;
   name: string;
-  status: GroupRuleStatus;
+  readonly status: GroupRuleStatus;
   type: string;
 
   update(): Promise<GroupRule>;
@@ -36,6 +36,5 @@ declare class GroupRule extends Resource {
   deactivate(): Promise<undefined>;
 }
 
-export {
-  GroupRule
-};
+
+export default GroupRule;

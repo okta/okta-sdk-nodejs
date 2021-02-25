@@ -19,10 +19,9 @@ import Resource from '../resource';
 declare class LogRequest extends Resource {
   constructor(resourceJson: string, client: any);
 
-  ipChain: [];
+  readonly ipChain: [];
 
 }
 
-export {
-  LogRequest
-};
+
+export default LogRequest;

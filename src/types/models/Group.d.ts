@@ -23,36 +23,35 @@ import GroupType from './GroupType';
 declare class Group extends Resource {
   constructor(resourceJson: string, client: any);
 
-  _embedded: {
+  readonly _embedded: {
     [name: string]: unknown;
   };
-  _links: {
+  readonly _links: {
     [name: string]: unknown;
   };
-  created: string;
-  id: string;
-  lastMembershipUpdated: string;
-  lastUpdated: string;
-  objectClass: [];
+  readonly created: string;
+  readonly id: string;
+  readonly lastMembershipUpdated: string;
+  readonly lastUpdated: string;
+  readonly objectClass: [];
   profile: GroupProfile;
-  type: GroupType;
+  readonly type: GroupType;
 
   update(): Promise<Group>;
   delete(): Promise<undefined>;
   removeUser(userId: string): Promise<undefined>;
-  listUsers(queryParameters: { 
+  listUsers(queryParameters?: { 
     after: string,
     limit: string,
-  }): Promise<Collection>;
-  listApplications(queryParameters: { 
+  }): Collection;
+  listApplications(queryParameters?: { 
     after: string,
     limit: string,
-  }): Promise<Collection>;
-  assignRole(assignRoleRequest: AssignRoleRequest, queryParameters: { 
+  }): Collection;
+  assignRole(assignRoleRequest: AssignRoleRequest, queryParameters?: { 
     disableNotifications: string,
   }): Promise<Role>;
 }
 
-export {
-  Group
-};
+
+export default Group;

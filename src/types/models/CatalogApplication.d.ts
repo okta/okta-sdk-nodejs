@@ -19,15 +19,15 @@ import CatalogApplicationStatus from './CatalogApplicationStatus';
 declare class CatalogApplication extends Resource {
   constructor(resourceJson: string, client: any);
 
-  _links: {
+  readonly _links: {
     [name: string]: unknown;
   };
   category: string;
   description: string;
   displayName: string;
   features: [];
-  id: string;
-  lastUpdated: string;
+  readonly id: string;
+  readonly lastUpdated: string;
   name: string;
   signOnModes: [];
   status: CatalogApplicationStatus;
@@ -36,6 +36,5 @@ declare class CatalogApplication extends Resource {
 
 }
 
-export {
-  CatalogApplication
-};
+
+export default CatalogApplication;

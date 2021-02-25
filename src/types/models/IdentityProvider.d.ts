@@ -26,13 +26,13 @@ import Protocol from './Protocol';
 declare class IdentityProvider extends Resource {
   constructor(resourceJson: string, client: any);
 
-  _links: {
+  readonly _links: {
     [name: string]: unknown;
   };
-  created: string;
-  id: string;
+  readonly created: string;
+  readonly id: string;
   issuerMode: string;
-  lastUpdated: string;
+  readonly lastUpdated: string;
   name: string;
   policy: IdentityProviderPolicy;
   protocol: Protocol;
@@ -41,27 +41,26 @@ declare class IdentityProvider extends Resource {
 
   update(): Promise<IdentityProvider>;
   delete(): Promise<undefined>;
-  listSigningCsrs(): Promise<Collection>;
+  listSigningCsrs(): Collection;
   generateCsr(csrMetadata: CsrMetadata): Promise<Csr>;
   deleteSigningCsr(csrId: string): Promise<undefined>;
   getSigningCsr(csrId: string): Promise<Csr>;
-  listSigningKeys(): Promise<Collection>;
-  generateSigningKey(queryParameters: { 
+  listSigningKeys(): Collection;
+  generateSigningKey(queryParameters?: { 
     validityYears: string,
   }): Promise<JsonWebKey>;
   getSigningKey(keyId: string): Promise<JsonWebKey>;
-  cloneKey(keyId: string, queryParameters: { 
+  cloneKey(keyId: string, queryParameters?: { 
     targetIdpId: string,
   }): Promise<JsonWebKey>;
   activate(): Promise<IdentityProvider>;
   deactivate(): Promise<IdentityProvider>;
-  listUsers(): Promise<Collection>;
+  listUsers(): Collection;
   unlinkUser(userId: string): Promise<undefined>;
   getUser(userId: string): Promise<IdentityProviderApplicationUser>;
   linkUser(userId: string, userIdentityProviderLinkRequest: UserIdentityProviderLinkRequest): Promise<IdentityProviderApplicationUser>;
-  listSocialAuthTokens(userId: string): Promise<Collection>;
+  listSocialAuthTokens(userId: string): Collection;
 }
 
-export {
-  IdentityProvider
-};
+
+export default IdentityProvider;

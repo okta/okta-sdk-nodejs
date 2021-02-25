@@ -20,9 +20,9 @@ import SmsTemplateType from './SmsTemplateType';
 declare class SmsTemplate extends Resource {
   constructor(resourceJson: string, client: any);
 
-  created: string;
-  id: string;
-  lastUpdated: string;
+  readonly created: string;
+  readonly id: string;
+  readonly lastUpdated: string;
   name: string;
   template: string;
   translations: SmsTemplateTranslations;
@@ -33,6 +33,5 @@ declare class SmsTemplate extends Resource {
   partialUpdate(): Promise<SmsTemplate>;
 }
 
-export {
-  SmsTemplate
-};
+
+export default SmsTemplate;

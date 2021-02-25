@@ -19,10 +19,9 @@ import Resource from '../resource';
 declare class PasswordPolicyRecoveryQuestionComplexity extends Resource {
   constructor(resourceJson: string, client: any);
 
-  minLength: number;
+  readonly minLength: number;
 
 }
 
-export {
-  PasswordPolicyRecoveryQuestionComplexity
-};
+
+export default PasswordPolicyRecoveryQuestionComplexity;

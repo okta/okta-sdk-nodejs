@@ -21,18 +21,18 @@ import OAuth2ScopeConsentGrantStatus from './OAuth2ScopeConsentGrantStatus';
 declare class OAuth2ScopeConsentGrant extends Resource {
   constructor(resourceJson: string, client: any);
 
-  _embedded: {
+  readonly _embedded: {
     [name: string]: unknown;
   };
-  _links: {
+  readonly _links: {
     [name: string]: unknown;
   };
   clientId: string;
-  created: string;
+  readonly created: string;
   createdBy: OAuth2Actor;
-  id: string;
+  readonly id: string;
   issuer: string;
-  lastUpdated: string;
+  readonly lastUpdated: string;
   scopeId: string;
   source: OAuth2ScopeConsentGrantSource;
   status: OAuth2ScopeConsentGrantStatus;
@@ -40,6 +40,5 @@ declare class OAuth2ScopeConsentGrant extends Resource {
 
 }
 
-export {
-  OAuth2ScopeConsentGrant
-};
+
+export default OAuth2ScopeConsentGrant;

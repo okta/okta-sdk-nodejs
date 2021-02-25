@@ -23,6 +23,5 @@ declare class BookmarkApplication extends Application {
 
 }
 
-export {
-  BookmarkApplication
-};
+
+export default BookmarkApplication;

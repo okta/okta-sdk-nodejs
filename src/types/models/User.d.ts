@@ -32,91 +32,91 @@ import UserType from './UserType';
 declare class User extends Resource {
   constructor(resourceJson: string, client: any);
 
-  _embedded: {
+  readonly _embedded: {
     [name: string]: unknown;
   };
-  _links: {
+  readonly _links: {
     [name: string]: unknown;
   };
-  activated: string;
-  created: string;
+  readonly activated: string;
+  readonly created: string;
   credentials: UserCredentials;
-  id: string;
-  lastLogin: string;
-  lastUpdated: string;
-  passwordChanged: string;
+  readonly id: string;
+  readonly lastLogin: string;
+  readonly lastUpdated: string;
+  readonly passwordChanged: string;
   profile: UserProfile;
-  status: UserStatus;
-  statusChanged: string;
-  transitioningToStatus: UserStatus;
+  readonly status: UserStatus;
+  readonly statusChanged: string;
+  readonly transitioningToStatus: UserStatus;
   type: UserType;
 
-  update(queryParameters: { 
+  update(queryParameters?: { 
     strict: string,
   }): Promise<User>;
-  delete(queryParameters: { 
+  delete(queryParameters?: { 
     sendEmail: string,
   }): Promise<undefined>;
-  listAppLinks(): Promise<Collection>;
-  changePassword(changePasswordRequest: ChangePasswordRequest, queryParameters: { 
+  listAppLinks(): Collection;
+  changePassword(changePasswordRequest: ChangePasswordRequest, queryParameters?: { 
     strict: string,
   }): Promise<UserCredentials>;
   changeRecoveryQuestion(userCredentials: UserCredentials): Promise<UserCredentials>;
-  forgotPasswordSetNewPassword(userCredentials: UserCredentials, queryParameters: { 
+  forgotPasswordSetNewPassword(userCredentials: UserCredentials, queryParameters?: { 
     sendEmail: string,
   }): Promise<ForgotPasswordResponse>;
-  forgotPasswordGenerateOneTimeToken(queryParameters: { 
+  forgotPasswordGenerateOneTimeToken(queryParameters?: { 
     sendEmail: string,
   }): Promise<ForgotPasswordResponse>;
-  assignRole(assignRoleRequest: AssignRoleRequest, queryParameters: { 
+  assignRole(assignRoleRequest: AssignRoleRequest, queryParameters?: { 
     disableNotifications: string,
   }): Promise<Role>;
   removeRole(roleId: string): Promise<undefined>;
-  listGroupTargets(roleId: string, queryParameters: { 
+  listGroupTargets(roleId: string, queryParameters?: { 
     after: string,
     limit: string,
-  }): Promise<Collection>;
+  }): Collection;
   removeGroupTarget(roleId: string, groupId: string): Promise<undefined>;
   addGroupTarget(roleId: string, groupId: string): Promise<undefined>;
-  listAssignedRoles(queryParameters: { 
+  listAssignedRoles(queryParameters?: { 
     expand: string,
-  }): Promise<Collection>;
+  }): Collection;
   addAllAppsAsTarget(roleId: string): Promise<undefined>;
-  listGroups(): Promise<Collection>;
-  listGrants(queryParameters: { 
+  listGroups(): Collection;
+  listGrants(queryParameters?: { 
     scopeId: string,
     expand: string,
     after: string,
     limit: string,
-  }): Promise<Collection>;
+  }): Collection;
   revokeGrants(): Promise<undefined>;
   revokeGrant(grantId: string): Promise<undefined>;
   revokeGrantsForUserAndClient(clientId: string): Promise<undefined>;
-  listRefreshTokensForUserAndClient(clientId: string, queryParameters: { 
+  listRefreshTokensForUserAndClient(clientId: string, queryParameters?: { 
     expand: string,
     after: string,
     limit: string,
-  }): Promise<Collection>;
+  }): Collection;
   revokeTokenForUserAndClient(clientId: string, tokenId: string): Promise<undefined>;
-  getRefreshTokenForUserAndClient(clientId: string, tokenId: string, queryParameters: { 
+  getRefreshTokenForUserAndClient(clientId: string, tokenId: string, queryParameters?: { 
     expand: string,
     limit: string,
     after: string,
   }): Promise<OAuth2RefreshToken>;
   revokeTokensForUserAndClient(clientId: string): Promise<undefined>;
-  listClients(): Promise<Collection>;
-  activate(queryParameters: { 
+  listClients(): Collection;
+  activate(queryParameters?: { 
     sendEmail: string,
   }): Promise<UserActivationToken>;
-  reactivate(queryParameters: { 
+  reactivate(queryParameters?: { 
     sendEmail: string,
   }): Promise<UserActivationToken>;
-  deactivate(queryParameters: { 
+  deactivate(queryParameters?: { 
     sendEmail: string,
   }): Promise<undefined>;
   suspend(): Promise<undefined>;
   unsuspend(): Promise<undefined>;
-  resetPassword(queryParameters: { 
+  resetPassword(queryParameters?: { 
     sendEmail: string,
   }): Promise<ResetPasswordToken>;
   expirePassword(): Promise<User>;
@@ -125,28 +125,27 @@ declare class User extends Resource {
   resetFactors(): Promise<undefined>;
   deleteFactor(factorId: string): Promise<undefined>;
   addToGroup(groupId: string): Promise<undefined>;
-  enrollFactor(userFactor: UserFactor, queryParameters: { 
+  enrollFactor(userFactor: UserFactor, queryParameters?: { 
     updatePhone: string,
     templateId: string,
     tokenLifetimeSeconds: string,
     activate: string,
   }): Promise<UserFactor>;
-  listSupportedFactors(): Promise<Collection>;
-  listFactors(): Promise<Collection>;
-  listSupportedSecurityQuestions(): Promise<Collection>;
+  listSupportedFactors(): Collection;
+  listFactors(): Collection;
+  listSupportedSecurityQuestions(): Collection;
   getFactor(factorId: string): Promise<UserFactor>;
   setLinkedObject(primaryRelationshipName: string, primaryUserId: string): Promise<undefined>;
-  listIdentityProviders(): Promise<Collection>;
-  getLinkedObjects(relationshipName: string, queryParameters: { 
+  listIdentityProviders(): Collection;
+  getLinkedObjects(relationshipName: string, queryParameters?: { 
     after: string,
     limit: string,
-  }): Promise<Collection>;
-  clearSessions(queryParameters: { 
+  }): Collection;
+  clearSessions(queryParameters?: { 
     oauthTokens: string,
   }): Promise<undefined>;
   removeLinkedObject(relationshipName: string): Promise<undefined>;
 }
 
-export {
-  User
-};
+
+export default User;

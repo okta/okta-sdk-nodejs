@@ -19,12 +19,11 @@ import Resource from '../resource';
 declare class LogUserAgent extends Resource {
   constructor(resourceJson: string, client: any);
 
-  browser: string;
-  os: string;
-  rawUserAgent: string;
+  readonly browser: string;
+  readonly os: string;
+  readonly rawUserAgent: string;
 
 }
 
-export {
-  LogUserAgent
-};
+
+export default LogUserAgent;

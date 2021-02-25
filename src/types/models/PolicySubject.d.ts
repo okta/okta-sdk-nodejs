@@ -28,6 +28,5 @@ declare class PolicySubject extends Resource {
 
 }
 
-export {
-  PolicySubject
-};
+
+export default PolicySubject;

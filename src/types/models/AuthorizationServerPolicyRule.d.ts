@@ -22,9 +22,9 @@ declare class AuthorizationServerPolicyRule extends Resource {
 
   actions: AuthorizationServerPolicyRuleActions;
   conditions: AuthorizationServerPolicyRuleConditions;
-  created: string;
-  id: string;
-  lastUpdated: string;
+  readonly created: string;
+  readonly id: string;
+  readonly lastUpdated: string;
   name: string;
   priority: number;
   status: string;
@@ -37,6 +37,5 @@ declare class AuthorizationServerPolicyRule extends Resource {
   deactivate(): Promise<undefined>;
 }
 
-export {
-  AuthorizationServerPolicyRule
-};
+
+export default AuthorizationServerPolicyRule;

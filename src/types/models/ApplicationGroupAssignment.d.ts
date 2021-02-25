@@ -19,14 +19,14 @@ import Resource from '../resource';
 declare class ApplicationGroupAssignment extends Resource {
   constructor(resourceJson: string, client: any);
 
-  _embedded: {
+  readonly _embedded: {
     [name: string]: unknown;
   };
-  _links: {
+  readonly _links: {
     [name: string]: unknown;
   };
-  id: string;
-  lastUpdated: string;
+  readonly id: string;
+  readonly lastUpdated: string;
   priority: number;
   profile: {
     [name: string]: unknown;
@@ -35,6 +35,5 @@ declare class ApplicationGroupAssignment extends Resource {
   delete(): Promise<undefined>;
 }
 
-export {
-  ApplicationGroupAssignment
-};
+
+export default ApplicationGroupAssignment;

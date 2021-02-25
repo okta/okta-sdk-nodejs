@@ -19,10 +19,9 @@ import PasswordPolicyRecoveryQuestionComplexity from './PasswordPolicyRecoveryQu
 declare class PasswordPolicyRecoveryQuestionProperties extends Resource {
   constructor(resourceJson: string, client: any);
 
-  complexity: PasswordPolicyRecoveryQuestionComplexity;
+  readonly complexity: PasswordPolicyRecoveryQuestionComplexity;
 
 }
 
-export {
-  PasswordPolicyRecoveryQuestionProperties
-};
+
+export default PasswordPolicyRecoveryQuestionProperties;

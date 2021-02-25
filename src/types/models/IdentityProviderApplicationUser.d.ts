@@ -19,15 +19,15 @@ import Resource from '../resource';
 declare class IdentityProviderApplicationUser extends Resource {
   constructor(resourceJson: string, client: any);
 
-  _embedded: {
+  readonly _embedded: {
     [name: string]: unknown;
   };
-  _links: {
+  readonly _links: {
     [name: string]: unknown;
   };
   created: string;
   externalId: string;
-  id: string;
+  readonly id: string;
   lastUpdated: string;
   profile: {
     [name: string]: unknown;
@@ -35,6 +35,5 @@ declare class IdentityProviderApplicationUser extends Resource {
 
 }
 
-export {
-  IdentityProviderApplicationUser
-};
+
+export default IdentityProviderApplicationUser;

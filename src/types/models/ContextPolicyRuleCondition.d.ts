@@ -23,6 +23,5 @@ declare class ContextPolicyRuleCondition extends Resource {
 
 }
 
-export {
-  ContextPolicyRuleCondition
-};
+
+export default ContextPolicyRuleCondition;

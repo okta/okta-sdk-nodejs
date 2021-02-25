@@ -22,6 +22,5 @@ declare class LogSeverity extends Resource {
 
 }
 
-export {
-  LogSeverity
-};
+
+export default LogSeverity;

@@ -22,17 +22,17 @@ import PolicyType from './PolicyType';
 declare class Policy extends Resource {
   constructor(resourceJson: string, client: any);
 
-  _embedded: {
+  readonly _embedded: {
     [name: string]: unknown;
   };
-  _links: {
+  readonly _links: {
     [name: string]: unknown;
   };
   conditions: PolicyRuleConditions;
-  created: string;
+  readonly created: string;
   description: string;
-  id: string;
-  lastUpdated: string;
+  readonly id: string;
+  readonly lastUpdated: string;
   name: string;
   priority: number;
   status: string;
@@ -43,11 +43,10 @@ declare class Policy extends Resource {
   delete(): Promise<undefined>;
   activate(): Promise<undefined>;
   deactivate(): Promise<undefined>;
-  listPolicyRules(): Promise<Collection>;
+  listPolicyRules(): Collection;
   createRule(policyRule: PolicyRule): Promise<PolicyRule>;
   getPolicyRule(ruleId: string): Promise<PolicyRule>;
 }
 
-export {
-  Policy
-};
+
+export default Policy;

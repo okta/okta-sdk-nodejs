@@ -19,14 +19,13 @@ import Resource from '../resource';
 declare class LogTransaction extends Resource {
   constructor(resourceJson: string, client: any);
 
-  detail: {
+  readonly detail: {
     [name: string]: unknown;
   };
-  id: string;
-  type: string;
+  readonly id: string;
+  readonly type: string;
 
 }
 
-export {
-  LogTransaction
-};
+
+export default LogTransaction;
