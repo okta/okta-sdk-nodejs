@@ -157,18 +157,19 @@ const jsdocBuilder = (operation) => {
 
 const typeScriptOperationSignatureBuilder = operation => {
   const [args, returnType] = getOperationArgumentsAndReturnType(operation);
-  return `${operation.operationId}(${formatTypeScriptArguments(args)}): Promise<${returnType}>;`;
+  return `${operation.operationId}(${formatTypeScriptArguments(args)}): ${formatReturnType(returnType)};`;
 };
 
 const typeScriptModelMethodSignatureBuilder = (method, modelName) => {
   const [args, returnType] = getModelMethodArgumentsAndReturnType(method, modelName);
-  return `(${formatTypeScriptArguments(args)}): Promise<${returnType}>;`;
+  return `(${formatTypeScriptArguments(args)}): ${formatReturnType(returnType)};`;
 };
 
 const typeScriptClientImportBuilder = operations => {
   const operationsImportTypes = operations.reduce((acc, operation) => {
     const [args, returnType] = getOperationArgumentsAndReturnType(operation);
-    const importableTypes = [...args.values(), returnType].filter(isImportableType);
+    const argTypes = Array.from(args.values()).map(arg => arg.type);
+    const importableTypes = [...argTypes, returnType].filter(isImportableType);
     return [
       ...acc,
       ...importableTypes,
@@ -188,7 +189,8 @@ const typeScriptModelImportBuilder = model => {
 
   const methodsImportTypes = model.methods.reduce((acc, method) => {
     const [args, returnType] = getModelMethodArgumentsAndReturnType(method, model.modelName);
-    const importableTypes = [...args.values(), returnType].filter(isImportableType);
+    const argTypes = Array.from(args.values()).map(arg => arg.type);
+    const importableTypes = [...argTypes, returnType].filter(isImportableType);
     return [
       ...acc,
       ...importableTypes,
@@ -213,21 +215,27 @@ const getOperationArgumentsAndReturnType = operation => {
   const args = new Map();
 
   pathParams.forEach(pathParam => {
-    args.set(pathParam.name, 'string');
+    args.set(pathParam.name, {
+      isRequired: pathParam.required,
+      type: 'string',
+    });
   });
 
   if ((method === 'post' || method === 'put') && bodyModel) {
     const bodyModelName = getBodyModelName(operation);
     if (bodyModelName) {
-      args.set(_.camelCase(bodyModelName), operation.bodyModel);
+      args.set(_.camelCase(bodyModelName), {
+        isRequired: true,
+        type: operation.bodyModel
+      });
     }
   }
 
   if (queryParams.length) {
-    args.set('queryParameters', queryParams.reduce((acc, param) => {
-      acc.push(param.name);
-      return acc;
-    }, []));
+    args.set('queryParameters', {
+      isRequired: false,
+      type: queryParams.map(param => param.name)
+    });
   }
 
   let returnType = 'undefined';
@@ -262,15 +270,21 @@ const getModelMethodArgumentsAndReturnType = (method, modelName) => {
 
 const formatTypeScriptArguments = args => {
   const typedArgs = [];
-  for (let [arg, argType] of args) {
-    if (Array.isArray(argType)) {
-      typedArgs.push(`${arg}: ${formatObjectLiteralType(argType)}`);
+  for (let [argName, {type, isRequired}] of args) {
+    let argument = `${argName}${isRequired ? '' : '?'}`;
+    if (Array.isArray(type)) {
+      argument = `${argument}: ${formatObjectLiteralType(type)}`;
     } else {
-      typedArgs.push(`${arg}: ${argType}`);
+      argument = `${argument}: ${type}`;
     }
+    typedArgs.push(argument);
   }
   return typedArgs.join(', ');
 };
+
+
+const formatReturnType = returnType =>
+  returnType === 'Collection' ? 'Collection' : `Promise<${returnType}>`;
 
 const formatObjectLiteralType = typeProps => {
   let objectLiteralType = '{ \n';
@@ -297,11 +311,11 @@ const formatImportStatements = (importTypes, {
 
 const convertSwaggerToTSType = swaggerType => {
   return {
-    array: '[]',
+    array: 'Array<T>',
     integer: 'number',
     double: 'number',
     hash: '{\n    [name: string]: unknown;\n  }',
-    dateTime: 'string',
+    dateTime: 'string', // needs converting to Date?
     password: 'string',
   }[swaggerType] || swaggerType;
 };
