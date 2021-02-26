@@ -311,7 +311,7 @@ const formatImportStatements = (importTypes, {
 
 const convertSwaggerToTSType = swaggerType => {
   return {
-    array: 'Array<T>',
+    array: '[]',
     integer: 'number',
     double: 'number',
     hash: '{\n    [name: string]: unknown;\n  }',
