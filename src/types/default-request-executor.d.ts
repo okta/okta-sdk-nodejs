@@ -1,4 +1,3 @@
-import Request from "./request";
 /*!
  * Copyright (c) 2017-2021, Okta, Inc. and/or its affiliates. All rights reserved.
  * The Okta software accompanied by this notice is provided pursuant to the Apache License, Version 2.0 (the "License.")
@@ -25,9 +24,9 @@ declare class DefaultRequestExecutor extends RequestExecutor {
     getRateLimitReset(response: any): any;
     getResponseDate(response: any): any;
     getRetryDelayMs(response: any): number;
-    parseResponse(request: Request, response: any): any;
-    maxRetriesReached(request: Request): boolean;
-    retryRequest(request: Request, response: any, delayMs: any): Promise<any>;
+    parseResponse(request: any, response: any): any;
+    maxRetriesReached(request: any): boolean;
+    retryRequest(request: any, response: any, delayMs: any): Promise<any>;
 }
 
 export default DefaultRequestExecutor;

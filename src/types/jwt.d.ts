@@ -9,7 +9,6 @@
  *
  * See the License for the specific language governing permissions and limitations under the License.
  */
-import Client from './client';
 
-export function makeJwt(client: Client, endpoint: any): any;
+export function makeJwt(client: any, endpoint: any): any;
 export function getPemAndJwk(privateKey: any): any;
