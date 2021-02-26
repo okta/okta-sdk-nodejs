@@ -1,3 +1,4 @@
+import Client from './client';
 /*!
  * Copyright (c) 2017-2021, Okta, Inc. and/or its affiliates. All rights reserved.
  * The Okta software accompanied by this notice is provided pursuant to the Apache License, Version 2.0 (the "License.")
@@ -11,12 +12,15 @@
  */
 
 import Request from './request';
+import ModelFactory from './model-factory';
+import ModelResolutionFactory from './resolution-factory';
+
 
 declare class Collection {
-    constructor(client: any, uri: string, factory: any, request?: Request);
+    constructor(client: Client, uri: string, factory: ModelFactory | ModelResolutionFactory, request?: Request);
     nextUri: string;
-    client: any;
-    factory: any;
+    client: Client;
+    factory: ModelFactory | ModelResolutionFactory;
     currentItems: any[];
     request: Request;
     next(): Promise<any>;

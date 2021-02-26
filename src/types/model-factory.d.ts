@@ -10,22 +10,11 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
-import GeneratedApiClient from "./generated-client";
-import Oauth from "./oauth";
-import Http from "./http";
-import RequestExecutor from "./request-executor";
-
-declare class Client extends GeneratedApiClient {
-    constructor(config: object);
-    requestExecutor: RequestExecutor;
-    authorizationMode: string;
-    baseUrl: string;
-    apiToken: string;
-    clientId: string;
-    scopes: string[];
-    privateKey: string;
-    oauth: Oauth;
-    http: Http;
+declare class ModelFactory {
+    constructor(Ctor: any);
+    Ctor: any;
+    createInstance(resource: any, client: any): any;
 }
 
-export default Client;
+export default ModelFactory;
+

@@ -11,9 +11,9 @@
  */
 
 declare class ModelResolutionFactory {
-    getMapping(): {};
-    getResolutionProperty(): string;
-    createInstance(resource: any, client: any, ...args: any[]): any;
+  getMapping(): {};
+  getResolutionProperty(): string;
+  createInstance(resource: any, client: any, ...args: any[]): any;
 }
 
 export default ModelResolutionFactory;
