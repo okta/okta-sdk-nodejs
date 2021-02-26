@@ -22,5 +22,7 @@ declare class OktaSignOnPolicy extends Policy {
 
 }
 
-
+export {
+  OktaSignOnPolicy
+};
 export default OktaSignOnPolicy;

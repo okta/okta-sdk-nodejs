@@ -24,5 +24,7 @@ declare class CustomHotpUserFactor extends UserFactor {
 
 }
 
-
+export {
+  CustomHotpUserFactor
+};
 export default CustomHotpUserFactor;

@@ -32,5 +32,7 @@ declare class LogAuthenticationContext extends Resource {
 
 }
 
-
+export {
+  LogAuthenticationContext
+};
 export default LogAuthenticationContext;

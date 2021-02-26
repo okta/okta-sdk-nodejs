@@ -24,5 +24,7 @@ declare class AuthenticationProvider extends Resource {
 
 }
 
-
+export {
+  AuthenticationProvider
+};
 export default AuthenticationProvider;

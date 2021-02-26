@@ -25,5 +25,7 @@ declare class ProvisioningConditions extends Resource {
 
 }
 
-
+export {
+  ProvisioningConditions
+};
 export default ProvisioningConditions;

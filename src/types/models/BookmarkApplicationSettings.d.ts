@@ -23,5 +23,7 @@ declare class BookmarkApplicationSettings extends ApplicationSettings {
 
 }
 
-
+export {
+  BookmarkApplicationSettings
+};
 export default BookmarkApplicationSettings;

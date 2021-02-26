@@ -28,5 +28,7 @@ declare class SocialAuthToken extends Resource {
 
 }
 
-
+export {
+  SocialAuthToken
+};
 export default SocialAuthToken;

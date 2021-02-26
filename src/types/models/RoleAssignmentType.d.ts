@@ -22,5 +22,7 @@ declare class RoleAssignmentType extends Resource {
 
 }
 
-
+export {
+  RoleAssignmentType
+};
 export default RoleAssignmentType;

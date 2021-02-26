@@ -24,5 +24,7 @@ declare class DevicePolicyRuleConditionPlatform extends Resource {
 
 }
 
-
+export {
+  DevicePolicyRuleConditionPlatform
+};
 export default DevicePolicyRuleConditionPlatform;

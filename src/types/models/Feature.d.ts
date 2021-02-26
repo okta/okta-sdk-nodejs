@@ -39,5 +39,7 @@ declare class Feature extends Resource {
   getDependencies(): Collection;
 }
 
-
+export {
+  Feature
+};
 export default Feature;

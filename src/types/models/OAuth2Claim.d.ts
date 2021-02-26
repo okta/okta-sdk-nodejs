@@ -35,5 +35,7 @@ declare class OAuth2Claim extends Resource {
 
 }
 
-
+export {
+  OAuth2Claim
+};
 export default OAuth2Claim;

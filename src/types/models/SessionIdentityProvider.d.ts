@@ -24,5 +24,7 @@ declare class SessionIdentityProvider extends Resource {
 
 }
 
-
+export {
+  SessionIdentityProvider
+};
 export default SessionIdentityProvider;

@@ -23,5 +23,7 @@ declare class TokenUserFactorProfile extends Resource {
 
 }
 
-
+export {
+  TokenUserFactorProfile
+};
 export default TokenUserFactorProfile;

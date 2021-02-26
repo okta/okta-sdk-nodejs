@@ -118,5 +118,7 @@ declare class Application extends Resource {
   }): Promise<OAuth2ScopeConsentGrant>;
 }
 
-
+export {
+  Application
+};
 export default Application;

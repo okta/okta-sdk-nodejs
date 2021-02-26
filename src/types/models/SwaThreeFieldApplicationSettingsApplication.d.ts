@@ -29,5 +29,7 @@ declare class SwaThreeFieldApplicationSettingsApplication extends ApplicationSet
 
 }
 
-
+export {
+  SwaThreeFieldApplicationSettingsApplication
+};
 export default SwaThreeFieldApplicationSettingsApplication;

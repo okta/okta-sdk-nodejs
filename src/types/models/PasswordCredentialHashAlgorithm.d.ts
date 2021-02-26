@@ -22,5 +22,7 @@ declare class PasswordCredentialHashAlgorithm extends Resource {
 
 }
 
-
+export {
+  PasswordCredentialHashAlgorithm
+};
 export default PasswordCredentialHashAlgorithm;

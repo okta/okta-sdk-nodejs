@@ -28,5 +28,7 @@ declare class SamlAttributeStatement extends Resource {
 
 }
 
-
+export {
+  SamlAttributeStatement
+};
 export default SamlAttributeStatement;

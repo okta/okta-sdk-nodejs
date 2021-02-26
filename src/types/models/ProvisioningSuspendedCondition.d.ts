@@ -23,5 +23,7 @@ declare class ProvisioningSuspendedCondition extends Resource {
 
 }
 
-
+export {
+  ProvisioningSuspendedCondition
+};
 export default ProvisioningSuspendedCondition;

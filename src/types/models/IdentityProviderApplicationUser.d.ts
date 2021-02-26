@@ -35,5 +35,7 @@ declare class IdentityProviderApplicationUser extends Resource {
 
 }
 
-
+export {
+  IdentityProviderApplicationUser
+};
 export default IdentityProviderApplicationUser;

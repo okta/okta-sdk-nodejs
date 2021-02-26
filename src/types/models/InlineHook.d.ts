@@ -42,5 +42,7 @@ declare class InlineHook extends Resource {
   execute(inlineHookPayload: InlineHookPayload): Promise<InlineHookResponse>;
 }
 
-
+export {
+  InlineHook
+};
 export default InlineHook;

@@ -23,5 +23,7 @@ declare class CsrMetadataSubjectAltNames extends Resource {
 
 }
 
-
+export {
+  CsrMetadataSubjectAltNames
+};
 export default CsrMetadataSubjectAltNames;

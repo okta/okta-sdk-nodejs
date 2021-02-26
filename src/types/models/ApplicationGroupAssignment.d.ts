@@ -35,5 +35,7 @@ declare class ApplicationGroupAssignment extends Resource {
   delete(): Promise<undefined>;
 }
 
-
+export {
+  ApplicationGroupAssignment
+};
 export default ApplicationGroupAssignment;

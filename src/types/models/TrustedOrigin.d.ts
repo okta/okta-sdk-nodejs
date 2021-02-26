@@ -36,5 +36,7 @@ declare class TrustedOrigin extends Resource {
   delete(): Promise<undefined>;
 }
 
-
+export {
+  TrustedOrigin
+};
 export default TrustedOrigin;
