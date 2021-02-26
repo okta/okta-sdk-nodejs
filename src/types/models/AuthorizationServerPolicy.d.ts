@@ -47,5 +47,7 @@ declare class AuthorizationServerPolicy extends Resource {
   deletePolicyRule(authServerId: string, ruleId: string): Promise<undefined>;
 }
 
-
+export {
+  AuthorizationServerPolicy
+};
 export default AuthorizationServerPolicy;

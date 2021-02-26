@@ -24,5 +24,7 @@ declare class PlatformPolicyRuleCondition extends Resource {
 
 }
 
-
+export {
+  PlatformPolicyRuleCondition
+};
 export default PlatformPolicyRuleCondition;

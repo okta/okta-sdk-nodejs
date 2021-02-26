@@ -33,5 +33,7 @@ declare class IonField extends Resource {
 
 }
 
-
+export {
+  IonField
+};
 export default IonField;

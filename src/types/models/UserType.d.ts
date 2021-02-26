@@ -36,5 +36,7 @@ declare class UserType extends Resource {
   delete(): Promise<undefined>;
 }
 
-
+export {
+  UserType
+};
 export default UserType;

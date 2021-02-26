@@ -44,5 +44,7 @@ declare class Role extends Resource {
   addAppTargetToAdminRoleForUser(appName: string): Promise<undefined>;
 }
 
-
+export {
+  Role
+};
 export default Role;

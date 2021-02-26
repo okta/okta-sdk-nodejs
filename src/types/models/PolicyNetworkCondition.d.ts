@@ -25,5 +25,7 @@ declare class PolicyNetworkCondition extends Resource {
 
 }
 
-
+export {
+  PolicyNetworkCondition
+};
 export default PolicyNetworkCondition;

@@ -23,5 +23,7 @@ declare class PasswordPolicy extends Policy {
 
 }
 
-
+export {
+  PasswordPolicy
+};
 export default PasswordPolicy;

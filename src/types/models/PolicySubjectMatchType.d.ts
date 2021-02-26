@@ -22,5 +22,7 @@ declare class PolicySubjectMatchType extends Resource {
 
 }
 
-
+export {
+  PolicySubjectMatchType
+};
 export default PolicySubjectMatchType;

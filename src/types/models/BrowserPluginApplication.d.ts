@@ -23,5 +23,7 @@ declare class BrowserPluginApplication extends Application {
 
 }
 
-
+export {
+  BrowserPluginApplication
+};
 export default BrowserPluginApplication;

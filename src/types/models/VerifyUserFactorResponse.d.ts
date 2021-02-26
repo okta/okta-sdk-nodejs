@@ -31,5 +31,7 @@ declare class VerifyUserFactorResponse extends Resource {
 
 }
 
-
+export {
+  VerifyUserFactorResponse
+};
 export default VerifyUserFactorResponse;

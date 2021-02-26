@@ -22,5 +22,7 @@ declare class UserNextLogin extends Resource {
 
 }
 
-
+export {
+  UserNextLogin
+};
 export default UserNextLogin;

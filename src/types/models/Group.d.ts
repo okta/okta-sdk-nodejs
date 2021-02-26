@@ -53,5 +53,7 @@ declare class Group extends Resource {
   }): Promise<Role>;
 }
 
-
+export {
+  Group
+};
 export default Group;

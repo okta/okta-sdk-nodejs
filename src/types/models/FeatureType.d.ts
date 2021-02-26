@@ -22,5 +22,7 @@ declare class FeatureType extends Resource {
 
 }
 
-
+export {
+  FeatureType
+};
 export default FeatureType;

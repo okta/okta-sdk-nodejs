@@ -24,5 +24,7 @@ declare class OpenIdConnectApplicationSettingsRefreshToken extends Resource {
 
 }
 
-
+export {
+  OpenIdConnectApplicationSettingsRefreshToken
+};
 export default OpenIdConnectApplicationSettingsRefreshToken;

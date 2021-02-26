@@ -22,5 +22,7 @@ declare class LogAuthenticationProvider extends Resource {
 
 }
 
-
+export {
+  LogAuthenticationProvider
+};
 export default LogAuthenticationProvider;

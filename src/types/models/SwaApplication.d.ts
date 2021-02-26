@@ -23,5 +23,7 @@ declare class SwaApplication extends BrowserPluginApplication {
 
 }
 
-
+export {
+  SwaApplication
+};
 export default SwaApplication;

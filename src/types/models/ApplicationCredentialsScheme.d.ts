@@ -22,5 +22,7 @@ declare class ApplicationCredentialsScheme extends Resource {
 
 }
 
-
+export {
+  ApplicationCredentialsScheme
+};
 export default ApplicationCredentialsScheme;

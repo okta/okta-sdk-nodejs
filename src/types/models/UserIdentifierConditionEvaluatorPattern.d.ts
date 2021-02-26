@@ -24,5 +24,7 @@ declare class UserIdentifierConditionEvaluatorPattern extends Resource {
 
 }
 
-
+export {
+  UserIdentifierConditionEvaluatorPattern
+};
 export default UserIdentifierConditionEvaluatorPattern;

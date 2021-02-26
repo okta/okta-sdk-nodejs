@@ -26,5 +26,7 @@ declare class PasswordPolicyPasswordSettingsLockout extends Resource {
 
 }
 
-
+export {
+  PasswordPolicyPasswordSettingsLockout
+};
 export default PasswordPolicyPasswordSettingsLockout;

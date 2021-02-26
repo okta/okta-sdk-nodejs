@@ -25,5 +25,7 @@ declare class OpenIdConnectApplication extends Application {
 
 }
 
-
+export {
+  OpenIdConnectApplication
+};
 export default OpenIdConnectApplication;

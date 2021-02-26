@@ -147,5 +147,7 @@ declare class User extends Resource {
   removeLinkedObject(relationshipName: string): Promise<undefined>;
 }
 
-
+export {
+  User
+};
 export default User;

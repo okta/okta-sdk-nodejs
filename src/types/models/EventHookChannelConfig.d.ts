@@ -25,5 +25,7 @@ declare class EventHookChannelConfig extends Resource {
 
 }
 
-
+export {
+  EventHookChannelConfig
+};
 export default EventHookChannelConfig;

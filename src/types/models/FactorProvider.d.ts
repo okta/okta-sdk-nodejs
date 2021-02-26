@@ -22,5 +22,7 @@ declare class FactorProvider extends Resource {
 
 }
 
-
+export {
+  FactorProvider
+};
 export default FactorProvider;
