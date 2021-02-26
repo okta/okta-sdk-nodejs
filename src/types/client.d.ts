@@ -13,11 +13,10 @@
 import GeneratedApiClient from "./generated-client";
 import Oauth from "./oauth";
 import Http from "./http";
-import RequestExecutor from "./request-executor";
 
 declare class Client extends GeneratedApiClient {
-    constructor(config: object);
-    requestExecutor: RequestExecutor;
+    constructor(config: any);
+    requestExecutor: any;
     authorizationMode: string;
     baseUrl: string;
     apiToken: string;

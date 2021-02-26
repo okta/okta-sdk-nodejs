@@ -10,5 +10,5 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
-declare function defaultCacheMiddleware(ctx: object, next: Function): Promise<any>;
-export default defaultCacheMiddleware;
+declare function _exports(ctx: any, next: any): Promise<any>;
+export default _exports;

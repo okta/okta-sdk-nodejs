@@ -14,7 +14,7 @@ import EventEmitter_1 = require("events");
 import EventEmitter = EventEmitter_1.EventEmitter;
 
 declare class RequestExecutor extends EventEmitter {
-  fetch(request: any): any;
+    fetch(request: any): any;
 }
 
 export default RequestExecutor;

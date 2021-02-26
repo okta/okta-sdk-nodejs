@@ -24,8 +24,8 @@ declare class ConfigLoader {
     };
     applyDefaults(): void;
     applyEnvVars(): void;
-    applyYamlFile(path: string): void;
-    apply(config: object): void;
+    applyYamlFile(path: any): void;
+    apply(config: any): void;
 }
 
 export default ConfigLoader;
