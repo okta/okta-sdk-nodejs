@@ -13,9 +13,6 @@
 import ModelResolutionFactory from '../resolution-factory';
 
 declare class BrowserPluginApplicationFactory extends ModelResolutionFactory {
-  getMapping(): object;
-
-  getResolutionProperty(): string;
 }
 
 export default BrowserPluginApplicationFactory;

@@ -13,9 +13,6 @@
 import ModelResolutionFactory from '../resolution-factory';
 
 declare class PolicyFactory extends ModelResolutionFactory {
-  getMapping(): object;
-
-  getResolutionProperty(): string;
 }
 
 export default PolicyFactory;
