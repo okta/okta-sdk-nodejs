@@ -11,7 +11,7 @@
  */
 
 declare class Resource {
-    constructor(resourceJson: any, client: any);
+  constructor(resourceJson: any, client: any);
 }
 
 export default Resource;
