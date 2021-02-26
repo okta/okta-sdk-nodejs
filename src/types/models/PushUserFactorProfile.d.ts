@@ -29,5 +29,7 @@ declare class PushUserFactorProfile extends Resource {
 
 }
 
-
+export {
+  PushUserFactorProfile
+};
 export default PushUserFactorProfile;

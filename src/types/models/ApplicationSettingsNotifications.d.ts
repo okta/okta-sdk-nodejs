@@ -24,5 +24,7 @@ declare class ApplicationSettingsNotifications extends Resource {
 
 }
 
-
+export {
+  ApplicationSettingsNotifications
+};
 export default ApplicationSettingsNotifications;

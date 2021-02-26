@@ -26,5 +26,7 @@ declare class ApplicationAccessibility extends Resource {
 
 }
 
-
+export {
+  ApplicationAccessibility
+};
 export default ApplicationAccessibility;

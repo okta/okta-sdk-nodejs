@@ -25,5 +25,7 @@ declare class AppInstancePolicyRuleCondition extends Resource {
 
 }
 
-
+export {
+  AppInstancePolicyRuleCondition
+};
 export default AppInstancePolicyRuleCondition;

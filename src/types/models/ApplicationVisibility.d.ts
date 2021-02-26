@@ -26,5 +26,7 @@ declare class ApplicationVisibility extends Resource {
 
 }
 
-
+export {
+  ApplicationVisibility
+};
 export default ApplicationVisibility;

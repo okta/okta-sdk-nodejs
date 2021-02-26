@@ -24,5 +24,7 @@ declare class SecurityQuestionUserFactor extends UserFactor {
 
 }
 
-
+export {
+  SecurityQuestionUserFactor
+};
 export default SecurityQuestionUserFactor;

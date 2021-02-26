@@ -23,5 +23,7 @@ declare class FeatureStageState extends Resource {
 
 }
 
-
+export {
+  FeatureStageState
+};
 export default FeatureStageState;

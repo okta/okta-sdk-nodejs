@@ -24,5 +24,7 @@ declare class PolicyUserNameTemplate extends Resource {
 
 }
 
-
+export {
+  PolicyUserNameTemplate
+};
 export default PolicyUserNameTemplate;

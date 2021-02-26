@@ -26,5 +26,7 @@ declare class PlatformConditionEvaluatorPlatformOperatingSystem extends Resource
 
 }
 
-
+export {
+  PlatformConditionEvaluatorPlatformOperatingSystem
+};
 export default PlatformConditionEvaluatorPlatformOperatingSystem;

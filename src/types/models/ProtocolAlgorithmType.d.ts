@@ -24,5 +24,7 @@ declare class ProtocolAlgorithmType extends Resource {
 
 }
 
-
+export {
+  ProtocolAlgorithmType
+};
 export default ProtocolAlgorithmType;

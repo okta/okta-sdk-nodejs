@@ -28,5 +28,7 @@ declare class IdentityProviderCredentials extends Resource {
 
 }
 
-
+export {
+  IdentityProviderCredentials
+};
 export default IdentityProviderCredentials;

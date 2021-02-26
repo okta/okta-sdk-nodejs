@@ -25,5 +25,7 @@ declare class UserLifecycleAttributePolicyRuleCondition extends Resource {
 
 }
 
-
+export {
+  UserLifecycleAttributePolicyRuleCondition
+};
 export default UserLifecycleAttributePolicyRuleCondition;

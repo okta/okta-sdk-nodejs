@@ -25,5 +25,7 @@ declare class AutoLoginApplicationSettingsSignOn extends Resource {
 
 }
 
-
+export {
+  AutoLoginApplicationSettingsSignOn
+};
 export default AutoLoginApplicationSettingsSignOn;

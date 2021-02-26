@@ -24,5 +24,7 @@ declare class PolicyAccountLinkFilterGroups extends Resource {
 
 }
 
-
+export {
+  PolicyAccountLinkFilterGroups
+};
 export default PolicyAccountLinkFilterGroups;

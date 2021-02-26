@@ -23,5 +23,7 @@ declare class ProtocolRelayStateFormat extends Resource {
 
 }
 
-
+export {
+  ProtocolRelayStateFormat
+};
 export default ProtocolRelayStateFormat;

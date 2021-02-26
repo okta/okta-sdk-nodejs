@@ -25,5 +25,7 @@ declare class PasswordPolicyRecoveryQuestion extends Resource {
 
 }
 
-
+export {
+  PasswordPolicyRecoveryQuestion
+};
 export default PasswordPolicyRecoveryQuestion;

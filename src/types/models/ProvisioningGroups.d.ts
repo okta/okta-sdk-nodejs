@@ -27,5 +27,7 @@ declare class ProvisioningGroups extends Resource {
 
 }
 
-
+export {
+  ProvisioningGroups
+};
 export default ProvisioningGroups;

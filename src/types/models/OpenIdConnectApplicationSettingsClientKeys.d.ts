@@ -24,5 +24,7 @@ declare class OpenIdConnectApplicationSettingsClientKeys extends Resource {
 
 }
 
-
+export {
+  OpenIdConnectApplicationSettingsClientKeys
+};
 export default OpenIdConnectApplicationSettingsClientKeys;

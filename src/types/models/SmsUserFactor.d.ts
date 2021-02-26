@@ -24,5 +24,7 @@ declare class SmsUserFactor extends UserFactor {
 
 }
 
-
+export {
+  SmsUserFactor
+};
 export default SmsUserFactor;

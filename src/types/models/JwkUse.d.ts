@@ -24,5 +24,7 @@ declare class JwkUse extends Resource {
 
 }
 
-
+export {
+  JwkUse
+};
 export default JwkUse;

@@ -29,5 +29,7 @@ declare class IdentityProviderPolicy extends Policy {
 
 }
 
-
+export {
+  IdentityProviderPolicy
+};
 export default IdentityProviderPolicy;

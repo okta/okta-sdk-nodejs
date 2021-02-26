@@ -26,5 +26,7 @@ declare class ApplicationCredentialsUsernameTemplate extends Resource {
 
 }
 
-
+export {
+  ApplicationCredentialsUsernameTemplate
+};
 export default ApplicationCredentialsUsernameTemplate;

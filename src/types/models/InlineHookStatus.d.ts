@@ -23,5 +23,7 @@ declare class InlineHookStatus extends Resource {
 
 }
 
-
+export {
+  InlineHookStatus
+};
 export default InlineHookStatus;

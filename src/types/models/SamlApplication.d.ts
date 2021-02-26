@@ -24,5 +24,7 @@ declare class SamlApplication extends Application {
 
 }
 
-
+export {
+  SamlApplication
+};
 export default SamlApplication;

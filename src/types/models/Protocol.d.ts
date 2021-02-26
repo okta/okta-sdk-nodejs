@@ -36,5 +36,7 @@ declare class Protocol extends Resource {
 
 }
 
-
+export {
+  Protocol
+};
 export default Protocol;

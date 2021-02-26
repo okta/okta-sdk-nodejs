@@ -26,5 +26,7 @@ declare class AppAndInstanceConditionEvaluatorAppOrInstance extends Resource {
 
 }
 
-
+export {
+  AppAndInstanceConditionEvaluatorAppOrInstance
+};
 export default AppAndInstanceConditionEvaluatorAppOrInstance;

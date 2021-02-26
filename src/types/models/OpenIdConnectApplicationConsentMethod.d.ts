@@ -23,5 +23,7 @@ declare class OpenIdConnectApplicationConsentMethod extends Resource {
 
 }
 
-
+export {
+  OpenIdConnectApplicationConsentMethod
+};
 export default OpenIdConnectApplicationConsentMethod;
