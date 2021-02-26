@@ -1,4 +1,3 @@
-import Client from './client';
 /*!
  * Copyright (c) 2017-2021, Okta, Inc. and/or its affiliates. All rights reserved.
  * The Okta software accompanied by this notice is provided pursuant to the Apache License, Version 2.0 (the "License.")
@@ -14,7 +13,8 @@ import Client from './client';
 import Request from './request';
 import ModelFactory from './model-factory';
 import ModelResolutionFactory from './resolution-factory';
-
+import Client from './client';
+import Resource from './resource';
 
 declare class Collection {
     constructor(client: Client, uri: string, factory: ModelFactory | ModelResolutionFactory, request?: Request);
