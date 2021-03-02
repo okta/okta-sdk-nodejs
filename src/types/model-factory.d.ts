@@ -10,10 +10,12 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
+import Client from "./client";
+
 declare class ModelFactory {
-    constructor(Ctor: any);
-    Ctor: any;
-    createInstance(resource: any, client: any): any;
+    constructor(Ctor: new () => T);
+    Ctor: new () => T;
+    createInstance(resource: string, client: Client): T;
 }
 
 export default ModelFactory;

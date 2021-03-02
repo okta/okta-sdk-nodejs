@@ -9,6 +9,6 @@
  *
  * See the License for the specific language governing permissions and limitations under the License.
  */
-declare function OktaResponseHeaders(responseHeadersMap: any): {};
+declare function OktaResponseHeaders(responseHeadersMap: Record<string, unknown>): Record<string, string|number>;
 
 export default OktaResponseHeaders;
