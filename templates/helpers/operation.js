@@ -316,6 +316,7 @@ const convertSwaggerToTSType = swaggerType => {
     hash: '{[name: string]: unknown}',
     dateTime: 'string',
     password: 'string',
+    object: 'Record<string, unknown>'
   }[swaggerType] || swaggerType;
 };
 
