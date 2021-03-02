@@ -16,7 +16,7 @@ import Http from "./http";
 import RequestExecutor from "./request-executor";
 
 declare class Client extends GeneratedApiClient {
-    constructor(config: object);
+    constructor(config: Record<string, unknown>);
     requestExecutor: RequestExecutor;
     authorizationMode: string;
     baseUrl: string;

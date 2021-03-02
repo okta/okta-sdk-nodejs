@@ -28,12 +28,12 @@ declare class Collection {
         next: () => Promise<any>;
     };
     getNextPage(): any;
-    each(iterator: Function): any;
+    each(iterator: (resource: Resource) => Promise | false): any;
     subscribe(config: {
         interval: number;
-        next: Function;
-        error: Function;
-        complete: Function;
+        next: () => Promise<Resource>|Promise<{done: boolean, value: null}>;
+        error: (Error) => void;
+        complete: () => void;
     }): {
         unsubscribe(): void;
     };

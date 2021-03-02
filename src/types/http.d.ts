@@ -13,7 +13,7 @@
 declare class Http {
     static errorFilter(response: any): any;
     constructor(httpConfig: any);
-    defaultHeaders: {};
+    defaultHeaders: Record<string, unknown>;
     requestExecutor: any;
     cacheStore: any;
     cacheMiddleware: any;

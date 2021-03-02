@@ -15,9 +15,9 @@ import Client from "./client";
 
 
 declare class ModelResolutionFactory {
-    getMapping(): Record<string, Resource>;
+    getMapping(): Record<string, typeof Resource>;
     getResolutionProperty(): string;
-    createInstance(resource: Record<string, unknown>, client: Client, ...args: any[]): any;
+    createInstance(resource: Record<string, unknown>, client: Client): Resource;
 }
 
 export default ModelResolutionFactory;

@@ -1,4 +1,3 @@
-import Request from "./request";
 /*!
  * Copyright (c) 2017-2021, Okta, Inc. and/or its affiliates. All rights reserved.
  * The Okta software accompanied by this notice is provided pursuant to the Apache License, Version 2.0 (the "License.")
@@ -14,12 +13,12 @@ import RequestExecutor from ("./request-executor");
 
 
 declare class DefaultRequestExecutor extends RequestExecutor {
-    constructor(config?: {});
+    constructor(config?: Record<string, unknown>);
     requestTimeout: any;
     maxRetries: any;
     retryCountHeader: string;
     retryForHeader: string;
-    buildRetryRequest(request: any, requestId: any, delayMs: any): any;
+    buildRetryRequest(request: Request, requestId: any, delayMs: any): any;
     validateRetryResponseHeaders(response: any): boolean;
     getOktaRequestId(response: any): any;
     getRateLimitReset(response: any): any;
