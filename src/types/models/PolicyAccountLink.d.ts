@@ -28,4 +28,3 @@ declare class PolicyAccountLink extends Resource {
 export {
   PolicyAccountLink
 };
-export default PolicyAccountLink;

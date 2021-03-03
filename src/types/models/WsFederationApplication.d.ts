@@ -27,4 +27,3 @@ declare class WsFederationApplication extends Application {
 export {
   WsFederationApplication
 };
-export default WsFederationApplication;

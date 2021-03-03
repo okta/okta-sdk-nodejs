@@ -29,4 +29,3 @@ declare class BasicAuthApplication extends Application {
 export {
   BasicAuthApplication
 };
-export default BasicAuthApplication;

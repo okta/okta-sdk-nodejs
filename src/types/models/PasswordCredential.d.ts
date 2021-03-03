@@ -30,4 +30,3 @@ declare class PasswordCredential extends Resource {
 export {
   PasswordCredential
 };
-export default PasswordCredential;

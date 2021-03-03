@@ -37,4 +37,3 @@ declare class PolicyRule extends Resource {
 export {
   PolicyRule
 };
-export default PolicyRule;

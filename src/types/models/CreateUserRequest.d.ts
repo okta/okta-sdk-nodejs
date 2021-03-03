@@ -32,4 +32,3 @@ declare class CreateUserRequest extends Resource {
 export {
   CreateUserRequest
 };
-export default CreateUserRequest;

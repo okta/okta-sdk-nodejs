@@ -27,4 +27,3 @@ declare class SwaThreeFieldApplication extends BrowserPluginApplication {
 export {
   SwaThreeFieldApplication
 };
-export default SwaThreeFieldApplication;

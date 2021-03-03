@@ -35,4 +35,3 @@ declare class UserPolicyRuleCondition extends Resource {
 export {
   UserPolicyRuleCondition
 };
-export default UserPolicyRuleCondition;

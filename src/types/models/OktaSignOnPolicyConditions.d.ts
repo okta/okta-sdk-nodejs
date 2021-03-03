@@ -27,4 +27,3 @@ declare class OktaSignOnPolicyConditions extends Resource {
 export {
   OktaSignOnPolicyConditions
 };
-export default OktaSignOnPolicyConditions;

@@ -28,4 +28,3 @@ declare class MDMEnrollmentPolicyRuleCondition extends Resource {
 export {
   MDMEnrollmentPolicyRuleCondition
 };
-export default MDMEnrollmentPolicyRuleCondition;

@@ -30,4 +30,3 @@ declare class LogIpAddress extends Resource {
 export {
   LogIpAddress
 };
-export default LogIpAddress;

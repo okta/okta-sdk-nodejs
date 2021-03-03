@@ -27,4 +27,3 @@ declare class BasicApplicationSettings extends ApplicationSettings {
 export {
   BasicApplicationSettings
 };
-export default BasicApplicationSettings;

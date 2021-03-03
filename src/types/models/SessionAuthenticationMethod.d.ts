@@ -26,4 +26,3 @@ declare class SessionAuthenticationMethod extends Resource {
 export {
   SessionAuthenticationMethod
 };
-export default SessionAuthenticationMethod;

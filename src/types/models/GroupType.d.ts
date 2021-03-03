@@ -26,4 +26,3 @@ declare class GroupType extends Resource {
 export {
   GroupType
 };
-export default GroupType;

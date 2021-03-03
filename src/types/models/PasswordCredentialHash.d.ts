@@ -31,4 +31,3 @@ declare class PasswordCredentialHash extends Resource {
 export {
   PasswordCredentialHash
 };
-export default PasswordCredentialHash;
