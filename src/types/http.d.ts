@@ -26,9 +26,9 @@ declare class Http {
     static errorFilter(response: Response): Promise<Response>;
     constructor(httpConfig: {
         requestExecutor: RequestExecutor,
+        oauth: OAuth,
         cacheStore?: MemoryStore | unknown,
         cacheMiddleware?: defaultCacheMiddlewareFunctionType | unknown,
-        oauth: OAuth,
     });
     defaultHeaders: Record<string, unknown>;
     requestExecutor: RequestExecutor;
