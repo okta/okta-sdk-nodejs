@@ -17,7 +17,7 @@ import UserFactor from './UserFactor';
 import HardwareUserFactorProfile from './HardwareUserFactorProfile';
 
 declare class HardwareUserFactor extends UserFactor {
-  constructor(resourceJson: string, client: any);
+  constructor(resourceJson: Record<string, unknown>, client: Client);
 
   profile: HardwareUserFactorProfile;
 

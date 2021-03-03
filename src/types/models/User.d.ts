@@ -14,6 +14,7 @@
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
 import Resource from '../resource';
+import Client from '../client';
 import Collection from '../collection';
 import ChangePasswordRequest from './ChangePasswordRequest';
 import UserCredentials from './UserCredentials';
@@ -30,7 +31,7 @@ import UserStatus from './UserStatus';
 import UserType from './UserType';
 
 declare class User extends Resource {
-  constructor(resourceJson: string, client: any);
+  constructor(resourceJson: Record<string, unknown>, client: Client);
 
   readonly _embedded: {
     [name: string]: unknown;

@@ -14,11 +14,12 @@
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
 import Resource from '../resource';
+import Client from '../client';
 import GroupRuleGroupCondition from './GroupRuleGroupCondition';
 import GroupRuleUserCondition from './GroupRuleUserCondition';
 
 declare class GroupRulePeopleCondition extends Resource {
-  constructor(resourceJson: string, client: any);
+  constructor(resourceJson: Record<string, unknown>, client: Client);
 
   groups: GroupRuleGroupCondition;
   users: GroupRuleUserCondition;

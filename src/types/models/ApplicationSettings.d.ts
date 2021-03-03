@@ -14,11 +14,12 @@
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
 import Resource from '../resource';
+import Client from '../client';
 import ApplicationSettingsApplication from './ApplicationSettingsApplication';
 import ApplicationSettingsNotifications from './ApplicationSettingsNotifications';
 
 declare class ApplicationSettings extends Resource {
-  constructor(resourceJson: string, client: any);
+  constructor(resourceJson: Record<string, unknown>, client: Client);
 
   app: ApplicationSettingsApplication;
   implicitAssignment: boolean;

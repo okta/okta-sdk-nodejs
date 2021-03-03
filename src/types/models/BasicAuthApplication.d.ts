@@ -18,7 +18,7 @@ import SchemeApplicationCredentials from './SchemeApplicationCredentials';
 import BasicApplicationSettings from './BasicApplicationSettings';
 
 declare class BasicAuthApplication extends Application {
-  constructor(resourceJson: string, client: any);
+  constructor(resourceJson: Record<string, unknown>, client: Client);
 
   credentials: SchemeApplicationCredentials;
   settings: BasicApplicationSettings;

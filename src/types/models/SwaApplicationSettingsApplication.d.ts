@@ -17,7 +17,7 @@ import ApplicationSettingsApplication from './ApplicationSettingsApplication';
 
 
 declare class SwaApplicationSettingsApplication extends ApplicationSettingsApplication {
-  constructor(resourceJson: string, client: any);
+  constructor(resourceJson: Record<string, unknown>, client: Client);
 
   buttonField: string;
   loginUrlRegex: string;

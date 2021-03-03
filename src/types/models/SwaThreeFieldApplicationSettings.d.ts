@@ -17,7 +17,7 @@ import ApplicationSettings from './ApplicationSettings';
 import SwaThreeFieldApplicationSettingsApplication from './SwaThreeFieldApplicationSettingsApplication';
 
 declare class SwaThreeFieldApplicationSettings extends ApplicationSettings {
-  constructor(resourceJson: string, client: any);
+  constructor(resourceJson: Record<string, unknown>, client: Client);
 
   app: SwaThreeFieldApplicationSettingsApplication;
 

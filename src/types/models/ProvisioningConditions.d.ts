@@ -14,11 +14,12 @@
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
 import Resource from '../resource';
+import Client from '../client';
 import ProvisioningDeprovisionedCondition from './ProvisioningDeprovisionedCondition';
 import ProvisioningSuspendedCondition from './ProvisioningSuspendedCondition';
 
 declare class ProvisioningConditions extends Resource {
-  constructor(resourceJson: string, client: any);
+  constructor(resourceJson: Record<string, unknown>, client: Client);
 
   deprovisioned: ProvisioningDeprovisionedCondition;
   suspended: ProvisioningSuspendedCondition;

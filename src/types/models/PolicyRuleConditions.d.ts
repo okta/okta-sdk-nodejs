@@ -14,6 +14,7 @@
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
 import Resource from '../resource';
+import Client from '../client';
 import AppAndInstancePolicyRuleCondition from './AppAndInstancePolicyRuleCondition';
 import AppInstancePolicyRuleCondition from './AppInstancePolicyRuleCondition';
 import PolicyRuleAuthContextCondition from './PolicyRuleAuthContextCondition';
@@ -37,7 +38,7 @@ import UserStatusPolicyRuleCondition from './UserStatusPolicyRuleCondition';
 import UserPolicyRuleCondition from './UserPolicyRuleCondition';
 
 declare class PolicyRuleConditions extends Resource {
-  constructor(resourceJson: string, client: any);
+  constructor(resourceJson: Record<string, unknown>, client: Client);
 
   app: AppAndInstancePolicyRuleCondition;
   apps: AppInstancePolicyRuleCondition;

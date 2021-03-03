@@ -17,7 +17,7 @@ import ApplicationSettings from './ApplicationSettings';
 import AutoLoginApplicationSettingsSignOn from './AutoLoginApplicationSettingsSignOn';
 
 declare class AutoLoginApplicationSettings extends ApplicationSettings {
-  constructor(resourceJson: string, client: any);
+  constructor(resourceJson: Record<string, unknown>, client: Client);
 
   signOn: AutoLoginApplicationSettingsSignOn;
 

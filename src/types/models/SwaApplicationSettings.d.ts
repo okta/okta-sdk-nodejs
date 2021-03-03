@@ -17,7 +17,7 @@ import ApplicationSettings from './ApplicationSettings';
 import SwaApplicationSettingsApplication from './SwaApplicationSettingsApplication';
 
 declare class SwaApplicationSettings extends ApplicationSettings {
-  constructor(resourceJson: string, client: any);
+  constructor(resourceJson: Record<string, unknown>, client: Client);
 
   app: SwaApplicationSettingsApplication;
 

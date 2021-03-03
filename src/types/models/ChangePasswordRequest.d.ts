@@ -14,10 +14,11 @@
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
 import Resource from '../resource';
+import Client from '../client';
 import PasswordCredential from './PasswordCredential';
 
 declare class ChangePasswordRequest extends Resource {
-  constructor(resourceJson: string, client: any);
+  constructor(resourceJson: Record<string, unknown>, client: Client);
 
   newPassword: PasswordCredential;
   oldPassword: PasswordCredential;

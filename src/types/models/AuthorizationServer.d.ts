@@ -14,6 +14,7 @@
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
 import Resource from '../resource';
+import Client from '../client';
 import Collection from '../collection';
 import OAuth2Claim from './OAuth2Claim';
 import OAuth2RefreshToken from './OAuth2RefreshToken';
@@ -23,7 +24,7 @@ import OAuth2Scope from './OAuth2Scope';
 import AuthorizationServerCredentials from './AuthorizationServerCredentials';
 
 declare class AuthorizationServer extends Resource {
-  constructor(resourceJson: string, client: any);
+  constructor(resourceJson: Record<string, unknown>, client: Client);
 
   readonly _links: {
     [name: string]: unknown;

@@ -14,12 +14,13 @@
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
 import Resource from '../resource';
+import Client from '../client';
 import PasswordPolicyDelegationSettings from './PasswordPolicyDelegationSettings';
 import PasswordPolicyPasswordSettings from './PasswordPolicyPasswordSettings';
 import PasswordPolicyRecoverySettings from './PasswordPolicyRecoverySettings';
 
 declare class PasswordPolicySettings extends Resource {
-  constructor(resourceJson: string, client: any);
+  constructor(resourceJson: Record<string, unknown>, client: Client);
 
   delegation: PasswordPolicyDelegationSettings;
   password: PasswordPolicyPasswordSettings;

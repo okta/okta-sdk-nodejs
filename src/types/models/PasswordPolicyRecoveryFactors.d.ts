@@ -14,12 +14,13 @@
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
 import Resource from '../resource';
+import Client from '../client';
 import PasswordPolicyRecoveryFactorSettings from './PasswordPolicyRecoveryFactorSettings';
 import PasswordPolicyRecoveryEmail from './PasswordPolicyRecoveryEmail';
 import PasswordPolicyRecoveryQuestion from './PasswordPolicyRecoveryQuestion';
 
 declare class PasswordPolicyRecoveryFactors extends Resource {
-  constructor(resourceJson: string, client: any);
+  constructor(resourceJson: Record<string, unknown>, client: Client);
 
   okta_call: PasswordPolicyRecoveryFactorSettings;
   okta_email: PasswordPolicyRecoveryEmail;

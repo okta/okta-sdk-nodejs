@@ -18,7 +18,7 @@ import SchemeApplicationCredentials from './SchemeApplicationCredentials';
 import AutoLoginApplicationSettings from './AutoLoginApplicationSettings';
 
 declare class AutoLoginApplication extends Application {
-  constructor(resourceJson: string, client: any);
+  constructor(resourceJson: Record<string, unknown>, client: Client);
 
   credentials: SchemeApplicationCredentials;
   settings: AutoLoginApplicationSettings;

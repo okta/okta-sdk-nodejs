@@ -17,7 +17,7 @@ import UserFactor from './UserFactor';
 import TokenUserFactorProfile from './TokenUserFactorProfile';
 
 declare class TokenUserFactor extends UserFactor {
-  constructor(resourceJson: string, client: any);
+  constructor(resourceJson: Record<string, unknown>, client: Client);
 
   profile: TokenUserFactorProfile;
 

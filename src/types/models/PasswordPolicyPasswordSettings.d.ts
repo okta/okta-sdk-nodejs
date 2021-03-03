@@ -14,12 +14,13 @@
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
 import Resource from '../resource';
+import Client from '../client';
 import PasswordPolicyPasswordSettingsAge from './PasswordPolicyPasswordSettingsAge';
 import PasswordPolicyPasswordSettingsComplexity from './PasswordPolicyPasswordSettingsComplexity';
 import PasswordPolicyPasswordSettingsLockout from './PasswordPolicyPasswordSettingsLockout';
 
 declare class PasswordPolicyPasswordSettings extends Resource {
-  constructor(resourceJson: string, client: any);
+  constructor(resourceJson: Record<string, unknown>, client: Client);
 
   age: PasswordPolicyPasswordSettingsAge;
   complexity: PasswordPolicyPasswordSettingsComplexity;

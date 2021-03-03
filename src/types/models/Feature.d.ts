@@ -14,13 +14,14 @@
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
 import Resource from '../resource';
+import Client from '../client';
 import Collection from '../collection';
 import FeatureStage from './FeatureStage';
 import EnabledStatus from './EnabledStatus';
 import FeatureType from './FeatureType';
 
 declare class Feature extends Resource {
-  constructor(resourceJson: string, client: any);
+  constructor(resourceJson: Record<string, unknown>, client: Client);
 
   readonly _links: {
     [name: string]: unknown;

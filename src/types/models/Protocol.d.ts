@@ -14,6 +14,7 @@
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
 import Resource from '../resource';
+import Client from '../client';
 import ProtocolAlgorithms from './ProtocolAlgorithms';
 import IdentityProviderCredentials from './IdentityProviderCredentials';
 import ProtocolEndpoints from './ProtocolEndpoints';
@@ -22,7 +23,7 @@ import ProtocolRelayState from './ProtocolRelayState';
 import ProtocolSettings from './ProtocolSettings';
 
 declare class Protocol extends Resource {
-  constructor(resourceJson: string, client: any);
+  constructor(resourceJson: Record<string, unknown>, client: Client);
 
   algorithms: ProtocolAlgorithms;
   credentials: IdentityProviderCredentials;

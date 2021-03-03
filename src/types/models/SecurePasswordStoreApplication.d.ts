@@ -18,7 +18,7 @@ import SchemeApplicationCredentials from './SchemeApplicationCredentials';
 import SecurePasswordStoreApplicationSettings from './SecurePasswordStoreApplicationSettings';
 
 declare class SecurePasswordStoreApplication extends Application {
-  constructor(resourceJson: string, client: any);
+  constructor(resourceJson: Record<string, unknown>, client: Client);
 
   credentials: SchemeApplicationCredentials;
   settings: SecurePasswordStoreApplicationSettings;

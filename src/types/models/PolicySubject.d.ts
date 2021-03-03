@@ -14,11 +14,12 @@
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
 import Resource from '../resource';
+import Client from '../client';
 import PolicySubjectMatchType from './PolicySubjectMatchType';
 import PolicyUserNameTemplate from './PolicyUserNameTemplate';
 
 declare class PolicySubject extends Resource {
-  constructor(resourceJson: string, client: any);
+  constructor(resourceJson: Record<string, unknown>, client: Client);
 
   filter: string;
   format: [];

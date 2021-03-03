@@ -17,7 +17,7 @@ import Application from './Application';
 import SamlApplicationSettings from './SamlApplicationSettings';
 
 declare class SamlApplication extends Application {
-  constructor(resourceJson: string, client: any);
+  constructor(resourceJson: Record<string, unknown>, client: Client);
 
   settings: SamlApplicationSettings;
 

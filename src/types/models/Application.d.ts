@@ -14,6 +14,7 @@
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
 import Resource from '../resource';
+import Client from '../client';
 import Collection from '../collection';
 import AppUser from './AppUser';
 import ApplicationGroupAssignment from './ApplicationGroupAssignment';
@@ -30,7 +31,7 @@ import ApplicationSignOnMode from './ApplicationSignOnMode';
 import ApplicationVisibility from './ApplicationVisibility';
 
 declare class Application extends Resource {
-  constructor(resourceJson: string, client: any);
+  constructor(resourceJson: Record<string, unknown>, client: Client);
 
   readonly _embedded: {
     [name: string]: unknown;

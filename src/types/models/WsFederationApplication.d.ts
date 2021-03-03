@@ -17,7 +17,7 @@ import Application from './Application';
 import WsFederationApplicationSettings from './WsFederationApplicationSettings';
 
 declare class WsFederationApplication extends Application {
-  constructor(resourceJson: string, client: any);
+  constructor(resourceJson: Record<string, unknown>, client: Client);
 
   settings: WsFederationApplicationSettings;
 

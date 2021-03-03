@@ -14,12 +14,13 @@
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
 import Resource from '../resource';
+import Client from '../client';
 import UserCredentials from './UserCredentials';
 import UserProfile from './UserProfile';
 import UserType from './UserType';
 
 declare class CreateUserRequest extends Resource {
-  constructor(resourceJson: string, client: any);
+  constructor(resourceJson: Record<string, unknown>, client: Client);
 
   credentials: UserCredentials;
   groupIds: [];

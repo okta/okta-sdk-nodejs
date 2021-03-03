@@ -14,10 +14,11 @@
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
 import Resource from '../resource';
+import Client from '../client';
 import GroupRuleGroupAssignment from './GroupRuleGroupAssignment';
 
 declare class GroupRuleAction extends Resource {
-  constructor(resourceJson: string, client: any);
+  constructor(resourceJson: Record<string, unknown>, client: Client);
 
   assignUserToGroups: GroupRuleGroupAssignment;
 

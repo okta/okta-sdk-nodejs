@@ -17,7 +17,7 @@ import UserFactor from './UserFactor';
 import SmsUserFactorProfile from './SmsUserFactorProfile';
 
 declare class SmsUserFactor extends UserFactor {
-  constructor(resourceJson: string, client: any);
+  constructor(resourceJson: Record<string, unknown>, client: Client);
 
   profile: SmsUserFactorProfile;
 

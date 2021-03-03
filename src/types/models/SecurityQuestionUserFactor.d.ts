@@ -17,7 +17,7 @@ import UserFactor from './UserFactor';
 import SecurityQuestionUserFactorProfile from './SecurityQuestionUserFactorProfile';
 
 declare class SecurityQuestionUserFactor extends UserFactor {
-  constructor(resourceJson: string, client: any);
+  constructor(resourceJson: Record<string, unknown>, client: Client);
 
   profile: SecurityQuestionUserFactorProfile;
 

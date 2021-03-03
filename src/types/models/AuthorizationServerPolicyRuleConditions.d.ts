@@ -14,13 +14,14 @@
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
 import Resource from '../resource';
+import Client from '../client';
 import ClientPolicyCondition from './ClientPolicyCondition';
 import GrantTypePolicyRuleCondition from './GrantTypePolicyRuleCondition';
 import PolicyPeopleCondition from './PolicyPeopleCondition';
 import OAuth2ScopesMediationPolicyRuleCondition from './OAuth2ScopesMediationPolicyRuleCondition';
 
 declare class AuthorizationServerPolicyRuleConditions extends Resource {
-  constructor(resourceJson: string, client: any);
+  constructor(resourceJson: Record<string, unknown>, client: Client);
 
   clients: ClientPolicyCondition;
   grantTypes: GrantTypePolicyRuleCondition;

@@ -14,11 +14,12 @@
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
 import Resource from '../resource';
+import Client from '../client';
 import PolicyNetworkCondition from './PolicyNetworkCondition';
 import PolicyPeopleCondition from './PolicyPeopleCondition';
 
 declare class PasswordPolicyRuleConditions extends Resource {
-  constructor(resourceJson: string, client: any);
+  constructor(resourceJson: Record<string, unknown>, client: Client);
 
   network: PolicyNetworkCondition;
   people: PolicyPeopleCondition;

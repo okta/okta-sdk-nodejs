@@ -17,7 +17,7 @@ import UserFactor from './UserFactor';
 import U2fUserFactorProfile from './U2fUserFactorProfile';
 
 declare class U2fUserFactor extends UserFactor {
-  constructor(resourceJson: string, client: any);
+  constructor(resourceJson: Record<string, unknown>, client: Client);
 
   profile: U2fUserFactorProfile;
 

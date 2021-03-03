@@ -17,7 +17,7 @@ import UserFactor from './UserFactor';
 import TotpUserFactorProfile from './TotpUserFactorProfile';
 
 declare class TotpUserFactor extends UserFactor {
-  constructor(resourceJson: string, client: any);
+  constructor(resourceJson: Record<string, unknown>, client: Client);
 
   profile: TotpUserFactorProfile;
 
