@@ -19,7 +19,7 @@ declare class MemoryStore {
     _store: Map<string, unknown>;
     _interval: NodeJS.Timeout;
     get(key: string): Promise<string>;
-    set(key: string, string: string, options: {ttl: number } | undefined): Promise<string>;
+    set(key: string, string: string, options?: {ttl: number } | undefined): Promise<string>;
     delete(key: string): Promise<void>;
 }
 
