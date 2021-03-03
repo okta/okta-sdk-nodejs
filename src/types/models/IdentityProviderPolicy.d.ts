@@ -14,6 +14,7 @@
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
 import Policy from './Policy';
+import Client from '../client';
 import PolicyAccountLink from './PolicyAccountLink';
 import Provisioning from './Provisioning';
 import PolicySubject from './PolicySubject';

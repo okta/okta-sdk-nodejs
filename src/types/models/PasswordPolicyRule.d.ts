@@ -14,6 +14,7 @@
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
 import PolicyRule from './PolicyRule';
+import Client from '../client';
 import PasswordPolicyRuleActions from './PasswordPolicyRuleActions';
 import PasswordPolicyRuleConditions from './PasswordPolicyRuleConditions';
 

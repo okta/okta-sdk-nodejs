@@ -14,6 +14,7 @@
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
 import ApplicationCredentials from './ApplicationCredentials';
+import Client from '../client';
 import ApplicationCredentialsOAuthClient from './ApplicationCredentialsOAuthClient';
 
 declare class OAuthApplicationCredentials extends ApplicationCredentials {

@@ -14,6 +14,7 @@
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
 import UserFactor from './UserFactor';
+import Client from '../client';
 import WebAuthnUserFactorProfile from './WebAuthnUserFactorProfile';
 
 declare class WebAuthnUserFactor extends UserFactor {
