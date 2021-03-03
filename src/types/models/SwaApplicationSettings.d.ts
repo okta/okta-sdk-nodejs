@@ -14,6 +14,7 @@
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
 import ApplicationSettings from './ApplicationSettings';
+import Client from '../client';
 import SwaApplicationSettingsApplication from './SwaApplicationSettingsApplication';
 
 declare class SwaApplicationSettings extends ApplicationSettings {

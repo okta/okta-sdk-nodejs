@@ -14,6 +14,7 @@
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
 import ApplicationCredentials from './ApplicationCredentials';
+import Client from '../client';
 import PasswordCredential from './PasswordCredential';
 import ApplicationCredentialsScheme from './ApplicationCredentialsScheme';
 import ApplicationCredentialsSigning from './ApplicationCredentialsSigning';
