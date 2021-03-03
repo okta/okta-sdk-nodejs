@@ -13,9 +13,9 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-import ApplicationSettings from './ApplicationSettings';
+import { ApplicationSettings } from './ApplicationSettings';
 import Client from '../client';
-import WsFederationApplicationSettingsApplication from './WsFederationApplicationSettingsApplication';
+import { WsFederationApplicationSettingsApplication } from './WsFederationApplicationSettingsApplication';
 
 declare class WsFederationApplicationSettings extends ApplicationSettings {
   constructor(resourceJson: Record<string, unknown>, client: Client);
@@ -27,4 +27,3 @@ declare class WsFederationApplicationSettings extends ApplicationSettings {
 export {
   WsFederationApplicationSettings
 };
-export default WsFederationApplicationSettings;

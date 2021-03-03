@@ -13,9 +13,9 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-import ApplicationSettings from './ApplicationSettings';
+import { ApplicationSettings } from './ApplicationSettings';
 import Client from '../client';
-import SwaThreeFieldApplicationSettingsApplication from './SwaThreeFieldApplicationSettingsApplication';
+import { SwaThreeFieldApplicationSettingsApplication } from './SwaThreeFieldApplicationSettingsApplication';
 
 declare class SwaThreeFieldApplicationSettings extends ApplicationSettings {
   constructor(resourceJson: Record<string, unknown>, client: Client);
@@ -27,4 +27,3 @@ declare class SwaThreeFieldApplicationSettings extends ApplicationSettings {
 export {
   SwaThreeFieldApplicationSettings
 };
-export default SwaThreeFieldApplicationSettings;

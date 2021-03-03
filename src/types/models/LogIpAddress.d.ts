@@ -15,7 +15,7 @@
 
 import Resource from '../resource';
 import Client from '../client';
-import LogGeographicalContext from './LogGeographicalContext';
+import { LogGeographicalContext } from './LogGeographicalContext';
 
 declare class LogIpAddress extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
@@ -30,4 +30,3 @@ declare class LogIpAddress extends Resource {
 export {
   LogIpAddress
 };
-export default LogIpAddress;

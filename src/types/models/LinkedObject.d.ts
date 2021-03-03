@@ -15,7 +15,7 @@
 
 import Resource from '../resource';
 import Client from '../client';
-import LinkedObjectDetails from './LinkedObjectDetails';
+import { LinkedObjectDetails } from './LinkedObjectDetails';
 
 declare class LinkedObject extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
@@ -32,4 +32,3 @@ declare class LinkedObject extends Resource {
 export {
   LinkedObject
 };
-export default LinkedObject;

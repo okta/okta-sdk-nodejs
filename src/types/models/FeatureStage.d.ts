@@ -15,8 +15,8 @@
 
 import Resource from '../resource';
 import Client from '../client';
-import FeatureStageState from './FeatureStageState';
-import FeatureStageValue from './FeatureStageValue';
+import { FeatureStageState } from './FeatureStageState';
+import { FeatureStageValue } from './FeatureStageValue';
 
 declare class FeatureStage extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
@@ -29,4 +29,3 @@ declare class FeatureStage extends Resource {
 export {
   FeatureStage
 };
-export default FeatureStage;

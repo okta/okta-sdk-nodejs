@@ -13,9 +13,9 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-import ApplicationCredentials from './ApplicationCredentials';
+import { ApplicationCredentials } from './ApplicationCredentials';
 import Client from '../client';
-import ApplicationCredentialsOAuthClient from './ApplicationCredentialsOAuthClient';
+import { ApplicationCredentialsOAuthClient } from './ApplicationCredentialsOAuthClient';
 
 declare class OAuthApplicationCredentials extends ApplicationCredentials {
   constructor(resourceJson: Record<string, unknown>, client: Client);
@@ -27,4 +27,3 @@ declare class OAuthApplicationCredentials extends ApplicationCredentials {
 export {
   OAuthApplicationCredentials
 };
-export default OAuthApplicationCredentials;

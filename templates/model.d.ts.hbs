@@ -14,7 +14,7 @@
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
 {{#if extends~}}
-import {{extends}} from './{{extends}}';
+import { {{extends}} } from './{{extends}}';
 {{else}}
 import Resource from '../resource';
 {{/if}}
@@ -56,4 +56,3 @@ declare class {{modelName}} extends Resource {
 export {
   {{modelName}}
 };
-export default {{modelName}};

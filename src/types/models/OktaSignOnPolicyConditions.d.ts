@@ -15,7 +15,7 @@
 
 import Resource from '../resource';
 import Client from '../client';
-import PolicyPeopleCondition from './PolicyPeopleCondition';
+import { PolicyPeopleCondition } from './PolicyPeopleCondition';
 
 declare class OktaSignOnPolicyConditions extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
@@ -27,4 +27,3 @@ declare class OktaSignOnPolicyConditions extends Resource {
 export {
   OktaSignOnPolicyConditions
 };
-export default OktaSignOnPolicyConditions;

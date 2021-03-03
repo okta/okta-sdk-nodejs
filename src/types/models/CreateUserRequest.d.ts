@@ -15,9 +15,9 @@
 
 import Resource from '../resource';
 import Client from '../client';
-import UserCredentials from './UserCredentials';
-import UserProfile from './UserProfile';
-import UserType from './UserType';
+import { UserCredentials } from './UserCredentials';
+import { UserProfile } from './UserProfile';
+import { UserType } from './UserType';
 
 declare class CreateUserRequest extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
@@ -32,4 +32,3 @@ declare class CreateUserRequest extends Resource {
 export {
   CreateUserRequest
 };
-export default CreateUserRequest;

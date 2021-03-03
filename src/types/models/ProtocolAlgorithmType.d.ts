@@ -15,7 +15,7 @@
 
 import Resource from '../resource';
 import Client from '../client';
-import ProtocolAlgorithmTypeSignature from './ProtocolAlgorithmTypeSignature';
+import { ProtocolAlgorithmTypeSignature } from './ProtocolAlgorithmTypeSignature';
 
 declare class ProtocolAlgorithmType extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
@@ -27,4 +27,3 @@ declare class ProtocolAlgorithmType extends Resource {
 export {
   ProtocolAlgorithmType
 };
-export default ProtocolAlgorithmType;

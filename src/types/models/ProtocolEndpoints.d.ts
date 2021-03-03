@@ -15,7 +15,7 @@
 
 import Resource from '../resource';
 import Client from '../client';
-import ProtocolEndpoint from './ProtocolEndpoint';
+import { ProtocolEndpoint } from './ProtocolEndpoint';
 
 declare class ProtocolEndpoints extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
@@ -34,4 +34,3 @@ declare class ProtocolEndpoints extends Resource {
 export {
   ProtocolEndpoints
 };
-export default ProtocolEndpoints;

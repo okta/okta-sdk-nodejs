@@ -15,9 +15,9 @@
 
 import Resource from '../resource';
 import Client from '../client';
-import OAuth2Actor from './OAuth2Actor';
-import OAuth2ScopeConsentGrantSource from './OAuth2ScopeConsentGrantSource';
-import OAuth2ScopeConsentGrantStatus from './OAuth2ScopeConsentGrantStatus';
+import { OAuth2Actor } from './OAuth2Actor';
+import { OAuth2ScopeConsentGrantSource } from './OAuth2ScopeConsentGrantSource';
+import { OAuth2ScopeConsentGrantStatus } from './OAuth2ScopeConsentGrantStatus';
 
 declare class OAuth2ScopeConsentGrant extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
@@ -44,4 +44,3 @@ declare class OAuth2ScopeConsentGrant extends Resource {
 export {
   OAuth2ScopeConsentGrant
 };
-export default OAuth2ScopeConsentGrant;

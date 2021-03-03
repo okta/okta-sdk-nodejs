@@ -13,9 +13,9 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-import ApplicationSettings from './ApplicationSettings';
+import { ApplicationSettings } from './ApplicationSettings';
 import Client from '../client';
-import BasicApplicationSettingsApplication from './BasicApplicationSettingsApplication';
+import { BasicApplicationSettingsApplication } from './BasicApplicationSettingsApplication';
 
 declare class BasicApplicationSettings extends ApplicationSettings {
   constructor(resourceJson: Record<string, unknown>, client: Client);
@@ -27,4 +27,3 @@ declare class BasicApplicationSettings extends ApplicationSettings {
 export {
   BasicApplicationSettings
 };
-export default BasicApplicationSettings;

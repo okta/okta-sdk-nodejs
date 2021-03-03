@@ -15,7 +15,7 @@
 
 import Resource from '../resource';
 import Client from '../client';
-import OAuthEndpointAuthenticationMethod from './OAuthEndpointAuthenticationMethod';
+import { OAuthEndpointAuthenticationMethod } from './OAuthEndpointAuthenticationMethod';
 
 declare class ApplicationCredentialsOAuthClient extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
@@ -30,4 +30,3 @@ declare class ApplicationCredentialsOAuthClient extends Resource {
 export {
   ApplicationCredentialsOAuthClient
 };
-export default ApplicationCredentialsOAuthClient;

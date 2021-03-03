@@ -28,4 +28,3 @@ declare class GroupProfile extends Resource {
 export {
   GroupProfile
 };
-export default GroupProfile;

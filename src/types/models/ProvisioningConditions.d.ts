@@ -15,8 +15,8 @@
 
 import Resource from '../resource';
 import Client from '../client';
-import ProvisioningDeprovisionedCondition from './ProvisioningDeprovisionedCondition';
-import ProvisioningSuspendedCondition from './ProvisioningSuspendedCondition';
+import { ProvisioningDeprovisionedCondition } from './ProvisioningDeprovisionedCondition';
+import { ProvisioningSuspendedCondition } from './ProvisioningSuspendedCondition';
 
 declare class ProvisioningConditions extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
@@ -29,4 +29,3 @@ declare class ProvisioningConditions extends Resource {
 export {
   ProvisioningConditions
 };
-export default ProvisioningConditions;

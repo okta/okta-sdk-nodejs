@@ -13,10 +13,10 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-import UserFactor from './UserFactor';
+import { UserFactor } from './UserFactor';
 import Client from '../client';
-import FactorResultType from './FactorResultType';
-import PushUserFactorProfile from './PushUserFactorProfile';
+import { FactorResultType } from './FactorResultType';
+import { PushUserFactorProfile } from './PushUserFactorProfile';
 
 declare class PushUserFactor extends UserFactor {
   constructor(resourceJson: Record<string, unknown>, client: Client);
@@ -30,4 +30,3 @@ declare class PushUserFactor extends UserFactor {
 export {
   PushUserFactor
 };
-export default PushUserFactor;

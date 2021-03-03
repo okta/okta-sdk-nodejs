@@ -15,15 +15,15 @@
 
 import Resource from '../resource';
 import Client from '../client';
-import LogActor from './LogActor';
-import LogAuthenticationContext from './LogAuthenticationContext';
-import LogClient from './LogClient';
-import LogDebugContext from './LogDebugContext';
-import LogOutcome from './LogOutcome';
-import LogRequest from './LogRequest';
-import LogSecurityContext from './LogSecurityContext';
-import LogSeverity from './LogSeverity';
-import LogTransaction from './LogTransaction';
+import { LogActor } from './LogActor';
+import { LogAuthenticationContext } from './LogAuthenticationContext';
+import { LogClient } from './LogClient';
+import { LogDebugContext } from './LogDebugContext';
+import { LogOutcome } from './LogOutcome';
+import { LogRequest } from './LogRequest';
+import { LogSecurityContext } from './LogSecurityContext';
+import { LogSeverity } from './LogSeverity';
+import { LogTransaction } from './LogTransaction';
 
 declare class LogEvent extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
@@ -50,4 +50,3 @@ declare class LogEvent extends Resource {
 export {
   LogEvent
 };
-export default LogEvent;

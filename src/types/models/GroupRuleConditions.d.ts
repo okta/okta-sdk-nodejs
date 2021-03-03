@@ -15,8 +15,8 @@
 
 import Resource from '../resource';
 import Client from '../client';
-import GroupRuleExpression from './GroupRuleExpression';
-import GroupRulePeopleCondition from './GroupRulePeopleCondition';
+import { GroupRuleExpression } from './GroupRuleExpression';
+import { GroupRulePeopleCondition } from './GroupRulePeopleCondition';
 
 declare class GroupRuleConditions extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
@@ -29,4 +29,3 @@ declare class GroupRuleConditions extends Resource {
 export {
   GroupRuleConditions
 };
-export default GroupRuleConditions;

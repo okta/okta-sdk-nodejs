@@ -13,9 +13,9 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-import ApplicationSettings from './ApplicationSettings';
+import { ApplicationSettings } from './ApplicationSettings';
 import Client from '../client';
-import AutoLoginApplicationSettingsSignOn from './AutoLoginApplicationSettingsSignOn';
+import { AutoLoginApplicationSettingsSignOn } from './AutoLoginApplicationSettingsSignOn';
 
 declare class AutoLoginApplicationSettings extends ApplicationSettings {
   constructor(resourceJson: Record<string, unknown>, client: Client);
@@ -27,4 +27,3 @@ declare class AutoLoginApplicationSettings extends ApplicationSettings {
 export {
   AutoLoginApplicationSettings
 };
-export default AutoLoginApplicationSettings;

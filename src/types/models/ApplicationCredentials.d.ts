@@ -15,8 +15,8 @@
 
 import Resource from '../resource';
 import Client from '../client';
-import ApplicationCredentialsSigning from './ApplicationCredentialsSigning';
-import ApplicationCredentialsUsernameTemplate from './ApplicationCredentialsUsernameTemplate';
+import { ApplicationCredentialsSigning } from './ApplicationCredentialsSigning';
+import { ApplicationCredentialsUsernameTemplate } from './ApplicationCredentialsUsernameTemplate';
 
 declare class ApplicationCredentials extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
@@ -29,4 +29,3 @@ declare class ApplicationCredentials extends Resource {
 export {
   ApplicationCredentials
 };
-export default ApplicationCredentials;

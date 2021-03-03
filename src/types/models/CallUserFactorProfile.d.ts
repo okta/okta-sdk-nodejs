@@ -28,4 +28,3 @@ declare class CallUserFactorProfile extends Resource {
 export {
   CallUserFactorProfile
 };
-export default CallUserFactorProfile;

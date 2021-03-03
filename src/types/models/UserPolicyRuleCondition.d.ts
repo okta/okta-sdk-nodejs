@@ -15,10 +15,10 @@
 
 import Resource from '../resource';
 import Client from '../client';
-import InactivityPolicyRuleCondition from './InactivityPolicyRuleCondition';
-import LifecycleExpirationPolicyRuleCondition from './LifecycleExpirationPolicyRuleCondition';
-import PasswordExpirationPolicyRuleCondition from './PasswordExpirationPolicyRuleCondition';
-import UserLifecycleAttributePolicyRuleCondition from './UserLifecycleAttributePolicyRuleCondition';
+import { InactivityPolicyRuleCondition } from './InactivityPolicyRuleCondition';
+import { LifecycleExpirationPolicyRuleCondition } from './LifecycleExpirationPolicyRuleCondition';
+import { PasswordExpirationPolicyRuleCondition } from './PasswordExpirationPolicyRuleCondition';
+import { UserLifecycleAttributePolicyRuleCondition } from './UserLifecycleAttributePolicyRuleCondition';
 
 declare class UserPolicyRuleCondition extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
@@ -35,4 +35,3 @@ declare class UserPolicyRuleCondition extends Resource {
 export {
   UserPolicyRuleCondition
 };
-export default UserPolicyRuleCondition;

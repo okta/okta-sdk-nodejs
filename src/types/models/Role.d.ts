@@ -15,9 +15,9 @@
 
 import Resource from '../resource';
 import Client from '../client';
-import RoleAssignmentType from './RoleAssignmentType';
-import RoleStatus from './RoleStatus';
-import RoleType from './RoleType';
+import { RoleAssignmentType } from './RoleAssignmentType';
+import { RoleStatus } from './RoleStatus';
+import { RoleType } from './RoleType';
 
 declare class Role extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
@@ -48,4 +48,3 @@ declare class Role extends Resource {
 export {
   Role
 };
-export default Role;

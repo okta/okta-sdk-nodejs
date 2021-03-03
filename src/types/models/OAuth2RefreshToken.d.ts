@@ -15,7 +15,7 @@
 
 import Resource from '../resource';
 import Client from '../client';
-import OAuth2Actor from './OAuth2Actor';
+import { OAuth2Actor } from './OAuth2Actor';
 
 declare class OAuth2RefreshToken extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
@@ -42,4 +42,3 @@ declare class OAuth2RefreshToken extends Resource {
 export {
   OAuth2RefreshToken
 };
-export default OAuth2RefreshToken;

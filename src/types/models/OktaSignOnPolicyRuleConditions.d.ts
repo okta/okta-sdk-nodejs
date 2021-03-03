@@ -15,9 +15,9 @@
 
 import Resource from '../resource';
 import Client from '../client';
-import PolicyRuleAuthContextCondition from './PolicyRuleAuthContextCondition';
-import PolicyNetworkCondition from './PolicyNetworkCondition';
-import PolicyPeopleCondition from './PolicyPeopleCondition';
+import { PolicyRuleAuthContextCondition } from './PolicyRuleAuthContextCondition';
+import { PolicyNetworkCondition } from './PolicyNetworkCondition';
+import { PolicyPeopleCondition } from './PolicyPeopleCondition';
 
 declare class OktaSignOnPolicyRuleConditions extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
@@ -31,4 +31,3 @@ declare class OktaSignOnPolicyRuleConditions extends Resource {
 export {
   OktaSignOnPolicyRuleConditions
 };
-export default OktaSignOnPolicyRuleConditions;

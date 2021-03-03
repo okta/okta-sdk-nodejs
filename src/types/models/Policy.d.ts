@@ -16,9 +16,9 @@
 import Resource from '../resource';
 import Client from '../client';
 import Collection from '../collection';
-import PolicyRule from './PolicyRule';
-import PolicyRuleConditions from './PolicyRuleConditions';
-import PolicyType from './PolicyType';
+import { PolicyRule } from './PolicyRule';
+import { PolicyRuleConditions } from './PolicyRuleConditions';
+import { PolicyType } from './PolicyType';
 
 declare class Policy extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
@@ -52,4 +52,3 @@ declare class Policy extends Resource {
 export {
   Policy
 };
-export default Policy;

@@ -15,7 +15,7 @@
 
 import Resource from '../resource';
 import Client from '../client';
-import AuthorizationServerCredentialsSigningConfig from './AuthorizationServerCredentialsSigningConfig';
+import { AuthorizationServerCredentialsSigningConfig } from './AuthorizationServerCredentialsSigningConfig';
 
 declare class AuthorizationServerCredentials extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
@@ -27,4 +27,3 @@ declare class AuthorizationServerCredentials extends Resource {
 export {
   AuthorizationServerCredentials
 };
-export default AuthorizationServerCredentials;

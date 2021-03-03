@@ -39,4 +39,3 @@ declare class ApplicationGroupAssignment extends Resource {
 export {
   ApplicationGroupAssignment
 };
-export default ApplicationGroupAssignment;

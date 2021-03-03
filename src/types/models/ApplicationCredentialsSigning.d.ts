@@ -15,7 +15,7 @@
 
 import Resource from '../resource';
 import Client from '../client';
-import ApplicationCredentialsSigningUse from './ApplicationCredentialsSigningUse';
+import { ApplicationCredentialsSigningUse } from './ApplicationCredentialsSigningUse';
 
 declare class ApplicationCredentialsSigning extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
@@ -31,4 +31,3 @@ declare class ApplicationCredentialsSigning extends Resource {
 export {
   ApplicationCredentialsSigning
 };
-export default ApplicationCredentialsSigning;

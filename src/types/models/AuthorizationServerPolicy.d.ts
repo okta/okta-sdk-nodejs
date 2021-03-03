@@ -16,9 +16,9 @@
 import Resource from '../resource';
 import Client from '../client';
 import Collection from '../collection';
-import AuthorizationServerPolicyRule from './AuthorizationServerPolicyRule';
-import PolicyRuleConditions from './PolicyRuleConditions';
-import PolicyType from './PolicyType';
+import { AuthorizationServerPolicyRule } from './AuthorizationServerPolicyRule';
+import { PolicyRuleConditions } from './PolicyRuleConditions';
+import { PolicyType } from './PolicyType';
 
 declare class AuthorizationServerPolicy extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
@@ -51,4 +51,3 @@ declare class AuthorizationServerPolicy extends Resource {
 export {
   AuthorizationServerPolicy
 };
-export default AuthorizationServerPolicy;

@@ -15,7 +15,7 @@
 
 import Resource from '../resource';
 import Client from '../client';
-import ScopeType from './ScopeType';
+import { ScopeType } from './ScopeType';
 
 declare class Scope extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
@@ -28,4 +28,3 @@ declare class Scope extends Resource {
 export {
   Scope
 };
-export default Scope;

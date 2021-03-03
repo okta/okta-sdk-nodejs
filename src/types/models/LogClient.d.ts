@@ -15,8 +15,8 @@
 
 import Resource from '../resource';
 import Client from '../client';
-import LogGeographicalContext from './LogGeographicalContext';
-import LogUserAgent from './LogUserAgent';
+import { LogGeographicalContext } from './LogGeographicalContext';
+import { LogUserAgent } from './LogUserAgent';
 
 declare class LogClient extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
@@ -33,4 +33,3 @@ declare class LogClient extends Resource {
 export {
   LogClient
 };
-export default LogClient;

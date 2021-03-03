@@ -15,7 +15,7 @@
 
 import Resource from '../resource';
 import Client from '../client';
-import ProtocolRelayStateFormat from './ProtocolRelayStateFormat';
+import { ProtocolRelayStateFormat } from './ProtocolRelayStateFormat';
 
 declare class ProtocolRelayState extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
@@ -27,4 +27,3 @@ declare class ProtocolRelayState extends Resource {
 export {
   ProtocolRelayState
 };
-export default ProtocolRelayState;

@@ -13,11 +13,11 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-import Policy from './Policy';
+import { Policy } from './Policy';
 import Client from '../client';
-import PolicyAccountLink from './PolicyAccountLink';
-import Provisioning from './Provisioning';
-import PolicySubject from './PolicySubject';
+import { PolicyAccountLink } from './PolicyAccountLink';
+import { Provisioning } from './Provisioning';
+import { PolicySubject } from './PolicySubject';
 
 declare class IdentityProviderPolicy extends Policy {
   constructor(resourceJson: Record<string, unknown>, client: Client);
@@ -32,4 +32,3 @@ declare class IdentityProviderPolicy extends Policy {
 export {
   IdentityProviderPolicy
 };
-export default IdentityProviderPolicy;

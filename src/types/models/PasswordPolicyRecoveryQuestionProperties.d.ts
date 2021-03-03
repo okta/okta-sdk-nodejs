@@ -15,7 +15,7 @@
 
 import Resource from '../resource';
 import Client from '../client';
-import PasswordPolicyRecoveryQuestionComplexity from './PasswordPolicyRecoveryQuestionComplexity';
+import { PasswordPolicyRecoveryQuestionComplexity } from './PasswordPolicyRecoveryQuestionComplexity';
 
 declare class PasswordPolicyRecoveryQuestionProperties extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
@@ -27,4 +27,3 @@ declare class PasswordPolicyRecoveryQuestionProperties extends Resource {
 export {
   PasswordPolicyRecoveryQuestionProperties
 };
-export default PasswordPolicyRecoveryQuestionProperties;

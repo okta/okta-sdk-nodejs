@@ -16,13 +16,13 @@
 import Resource from '../resource';
 import Client from '../client';
 import Collection from '../collection';
-import CsrMetadata from './CsrMetadata';
-import Csr from './Csr';
-import JsonWebKey from './JsonWebKey';
-import IdentityProviderApplicationUser from './IdentityProviderApplicationUser';
-import UserIdentityProviderLinkRequest from './UserIdentityProviderLinkRequest';
-import IdentityProviderPolicy from './IdentityProviderPolicy';
-import Protocol from './Protocol';
+import { CsrMetadata } from './CsrMetadata';
+import { Csr } from './Csr';
+import { JsonWebKey } from './JsonWebKey';
+import { IdentityProviderApplicationUser } from './IdentityProviderApplicationUser';
+import { UserIdentityProviderLinkRequest } from './UserIdentityProviderLinkRequest';
+import { IdentityProviderPolicy } from './IdentityProviderPolicy';
+import { Protocol } from './Protocol';
 
 declare class IdentityProvider extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
@@ -66,4 +66,3 @@ declare class IdentityProvider extends Resource {
 export {
   IdentityProvider
 };
-export default IdentityProvider;

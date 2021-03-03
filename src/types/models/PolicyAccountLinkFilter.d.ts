@@ -15,7 +15,7 @@
 
 import Resource from '../resource';
 import Client from '../client';
-import PolicyAccountLinkFilterGroups from './PolicyAccountLinkFilterGroups';
+import { PolicyAccountLinkFilterGroups } from './PolicyAccountLinkFilterGroups';
 
 declare class PolicyAccountLinkFilter extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
@@ -27,4 +27,3 @@ declare class PolicyAccountLinkFilter extends Resource {
 export {
   PolicyAccountLinkFilter
 };
-export default PolicyAccountLinkFilter;

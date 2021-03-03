@@ -15,7 +15,7 @@
 
 import Resource from '../resource';
 import Client from '../client';
-import EventHookChannelConfig from './EventHookChannelConfig';
+import { EventHookChannelConfig } from './EventHookChannelConfig';
 
 declare class EventHookChannel extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
@@ -29,4 +29,3 @@ declare class EventHookChannel extends Resource {
 export {
   EventHookChannel
 };
-export default EventHookChannel;

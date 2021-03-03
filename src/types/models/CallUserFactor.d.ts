@@ -13,9 +13,9 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-import UserFactor from './UserFactor';
+import { UserFactor } from './UserFactor';
 import Client from '../client';
-import CallUserFactorProfile from './CallUserFactorProfile';
+import { CallUserFactorProfile } from './CallUserFactorProfile';
 
 declare class CallUserFactor extends UserFactor {
   constructor(resourceJson: Record<string, unknown>, client: Client);
@@ -27,4 +27,3 @@ declare class CallUserFactor extends UserFactor {
 export {
   CallUserFactor
 };
-export default CallUserFactor;

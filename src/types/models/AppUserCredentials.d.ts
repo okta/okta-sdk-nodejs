@@ -15,7 +15,7 @@
 
 import Resource from '../resource';
 import Client from '../client';
-import AppUserPasswordCredential from './AppUserPasswordCredential';
+import { AppUserPasswordCredential } from './AppUserPasswordCredential';
 
 declare class AppUserCredentials extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
@@ -28,4 +28,3 @@ declare class AppUserCredentials extends Resource {
 export {
   AppUserCredentials
 };
-export default AppUserCredentials;

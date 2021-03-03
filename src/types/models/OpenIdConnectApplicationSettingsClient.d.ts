@@ -15,11 +15,11 @@
 
 import Resource from '../resource';
 import Client from '../client';
-import OpenIdConnectApplicationType from './OpenIdConnectApplicationType';
-import OpenIdConnectApplicationConsentMethod from './OpenIdConnectApplicationConsentMethod';
-import OpenIdConnectApplicationIssuerMode from './OpenIdConnectApplicationIssuerMode';
-import OpenIdConnectApplicationSettingsClientKeys from './OpenIdConnectApplicationSettingsClientKeys';
-import OpenIdConnectApplicationSettingsRefreshToken from './OpenIdConnectApplicationSettingsRefreshToken';
+import { OpenIdConnectApplicationType } from './OpenIdConnectApplicationType';
+import { OpenIdConnectApplicationConsentMethod } from './OpenIdConnectApplicationConsentMethod';
+import { OpenIdConnectApplicationIssuerMode } from './OpenIdConnectApplicationIssuerMode';
+import { OpenIdConnectApplicationSettingsClientKeys } from './OpenIdConnectApplicationSettingsClientKeys';
+import { OpenIdConnectApplicationSettingsRefreshToken } from './OpenIdConnectApplicationSettingsRefreshToken';
 
 declare class OpenIdConnectApplicationSettingsClient extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
@@ -44,4 +44,3 @@ declare class OpenIdConnectApplicationSettingsClient extends Resource {
 export {
   OpenIdConnectApplicationSettingsClient
 };
-export default OpenIdConnectApplicationSettingsClient;

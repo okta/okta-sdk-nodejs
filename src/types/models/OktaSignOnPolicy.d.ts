@@ -13,7 +13,7 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-import Policy from './Policy';
+import { Policy } from './Policy';
 import Client from '../client';
 
 
@@ -26,4 +26,3 @@ declare class OktaSignOnPolicy extends Policy {
 export {
   OktaSignOnPolicy
 };
-export default OktaSignOnPolicy;

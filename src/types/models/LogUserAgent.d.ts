@@ -29,4 +29,3 @@ declare class LogUserAgent extends Resource {
 export {
   LogUserAgent
 };
-export default LogUserAgent;

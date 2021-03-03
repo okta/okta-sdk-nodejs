@@ -13,9 +13,9 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-import BrowserPluginApplication from './BrowserPluginApplication';
+import { BrowserPluginApplication } from './BrowserPluginApplication';
 import Client from '../client';
-import SwaThreeFieldApplicationSettings from './SwaThreeFieldApplicationSettings';
+import { SwaThreeFieldApplicationSettings } from './SwaThreeFieldApplicationSettings';
 
 declare class SwaThreeFieldApplication extends BrowserPluginApplication {
   constructor(resourceJson: Record<string, unknown>, client: Client);
@@ -27,4 +27,3 @@ declare class SwaThreeFieldApplication extends BrowserPluginApplication {
 export {
   SwaThreeFieldApplication
 };
-export default SwaThreeFieldApplication;

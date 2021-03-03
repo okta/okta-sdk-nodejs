@@ -15,8 +15,8 @@
 
 import Resource from '../resource';
 import Client from '../client';
-import Duration from './Duration';
-import ScheduledUserLifecycleAction from './ScheduledUserLifecycleAction';
+import { Duration } from './Duration';
+import { ScheduledUserLifecycleAction } from './ScheduledUserLifecycleAction';
 
 declare class BeforeScheduledActionPolicyRuleCondition extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
@@ -29,4 +29,3 @@ declare class BeforeScheduledActionPolicyRuleCondition extends Resource {
 export {
   BeforeScheduledActionPolicyRuleCondition
 };
-export default BeforeScheduledActionPolicyRuleCondition;

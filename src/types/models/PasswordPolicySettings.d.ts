@@ -15,9 +15,9 @@
 
 import Resource from '../resource';
 import Client from '../client';
-import PasswordPolicyDelegationSettings from './PasswordPolicyDelegationSettings';
-import PasswordPolicyPasswordSettings from './PasswordPolicyPasswordSettings';
-import PasswordPolicyRecoverySettings from './PasswordPolicyRecoverySettings';
+import { PasswordPolicyDelegationSettings } from './PasswordPolicyDelegationSettings';
+import { PasswordPolicyPasswordSettings } from './PasswordPolicyPasswordSettings';
+import { PasswordPolicyRecoverySettings } from './PasswordPolicyRecoverySettings';
 
 declare class PasswordPolicySettings extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
@@ -31,4 +31,3 @@ declare class PasswordPolicySettings extends Resource {
 export {
   PasswordPolicySettings
 };
-export default PasswordPolicySettings;

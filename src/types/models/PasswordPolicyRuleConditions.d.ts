@@ -15,8 +15,8 @@
 
 import Resource from '../resource';
 import Client from '../client';
-import PolicyNetworkCondition from './PolicyNetworkCondition';
-import PolicyPeopleCondition from './PolicyPeopleCondition';
+import { PolicyNetworkCondition } from './PolicyNetworkCondition';
+import { PolicyPeopleCondition } from './PolicyPeopleCondition';
 
 declare class PasswordPolicyRuleConditions extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
@@ -29,4 +29,3 @@ declare class PasswordPolicyRuleConditions extends Resource {
 export {
   PasswordPolicyRuleConditions
 };
-export default PasswordPolicyRuleConditions;

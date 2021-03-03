@@ -16,10 +16,10 @@
 import Resource from '../resource';
 import Client from '../client';
 import Collection from '../collection';
-import AssignRoleRequest from './AssignRoleRequest';
-import Role from './Role';
-import GroupProfile from './GroupProfile';
-import GroupType from './GroupType';
+import { AssignRoleRequest } from './AssignRoleRequest';
+import { Role } from './Role';
+import { GroupProfile } from './GroupProfile';
+import { GroupType } from './GroupType';
 
 declare class Group extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
@@ -57,4 +57,3 @@ declare class Group extends Resource {
 export {
   Group
 };
-export default Group;

@@ -15,10 +15,10 @@
 
 import Resource from '../resource';
 import Client from '../client';
-import ClientPolicyCondition from './ClientPolicyCondition';
-import GrantTypePolicyRuleCondition from './GrantTypePolicyRuleCondition';
-import PolicyPeopleCondition from './PolicyPeopleCondition';
-import OAuth2ScopesMediationPolicyRuleCondition from './OAuth2ScopesMediationPolicyRuleCondition';
+import { ClientPolicyCondition } from './ClientPolicyCondition';
+import { GrantTypePolicyRuleCondition } from './GrantTypePolicyRuleCondition';
+import { PolicyPeopleCondition } from './PolicyPeopleCondition';
+import { OAuth2ScopesMediationPolicyRuleCondition } from './OAuth2ScopesMediationPolicyRuleCondition';
 
 declare class AuthorizationServerPolicyRuleConditions extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
@@ -33,4 +33,3 @@ declare class AuthorizationServerPolicyRuleConditions extends Resource {
 export {
   AuthorizationServerPolicyRuleConditions
 };
-export default AuthorizationServerPolicyRuleConditions;

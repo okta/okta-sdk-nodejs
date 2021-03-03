@@ -28,4 +28,3 @@ declare class IdentityProviderPolicyRuleCondition extends Resource {
 export {
   IdentityProviderPolicyRuleCondition
 };
-export default IdentityProviderPolicyRuleCondition;

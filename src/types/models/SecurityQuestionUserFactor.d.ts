@@ -13,9 +13,9 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-import UserFactor from './UserFactor';
+import { UserFactor } from './UserFactor';
 import Client from '../client';
-import SecurityQuestionUserFactorProfile from './SecurityQuestionUserFactorProfile';
+import { SecurityQuestionUserFactorProfile } from './SecurityQuestionUserFactorProfile';
 
 declare class SecurityQuestionUserFactor extends UserFactor {
   constructor(resourceJson: Record<string, unknown>, client: Client);
@@ -27,4 +27,3 @@ declare class SecurityQuestionUserFactor extends UserFactor {
 export {
   SecurityQuestionUserFactor
 };
-export default SecurityQuestionUserFactor;

@@ -13,9 +13,9 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-import UserFactor from './UserFactor';
+import { UserFactor } from './UserFactor';
 import Client from '../client';
-import EmailUserFactorProfile from './EmailUserFactorProfile';
+import { EmailUserFactorProfile } from './EmailUserFactorProfile';
 
 declare class EmailUserFactor extends UserFactor {
   constructor(resourceJson: Record<string, unknown>, client: Client);
@@ -27,4 +27,3 @@ declare class EmailUserFactor extends UserFactor {
 export {
   EmailUserFactor
 };
-export default EmailUserFactor;

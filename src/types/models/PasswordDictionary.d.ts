@@ -15,7 +15,7 @@
 
 import Resource from '../resource';
 import Client from '../client';
-import PasswordDictionaryCommon from './PasswordDictionaryCommon';
+import { PasswordDictionaryCommon } from './PasswordDictionaryCommon';
 
 declare class PasswordDictionary extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
@@ -27,4 +27,3 @@ declare class PasswordDictionary extends Resource {
 export {
   PasswordDictionary
 };
-export default PasswordDictionary;

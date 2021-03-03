@@ -16,19 +16,19 @@
 import Resource from '../resource';
 import Client from '../client';
 import Collection from '../collection';
-import AppUser from './AppUser';
-import ApplicationGroupAssignment from './ApplicationGroupAssignment';
-import JsonWebKey from './JsonWebKey';
-import CsrMetadata from './CsrMetadata';
-import Csr from './Csr';
-import OAuth2Token from './OAuth2Token';
-import OAuth2ScopeConsentGrant from './OAuth2ScopeConsentGrant';
-import ApplicationAccessibility from './ApplicationAccessibility';
-import ApplicationCredentials from './ApplicationCredentials';
-import ApplicationLicensing from './ApplicationLicensing';
-import ApplicationSettings from './ApplicationSettings';
-import ApplicationSignOnMode from './ApplicationSignOnMode';
-import ApplicationVisibility from './ApplicationVisibility';
+import { AppUser } from './AppUser';
+import { ApplicationGroupAssignment } from './ApplicationGroupAssignment';
+import { JsonWebKey } from './JsonWebKey';
+import { CsrMetadata } from './CsrMetadata';
+import { Csr } from './Csr';
+import { OAuth2Token } from './OAuth2Token';
+import { OAuth2ScopeConsentGrant } from './OAuth2ScopeConsentGrant';
+import { ApplicationAccessibility } from './ApplicationAccessibility';
+import { ApplicationCredentials } from './ApplicationCredentials';
+import { ApplicationLicensing } from './ApplicationLicensing';
+import { ApplicationSettings } from './ApplicationSettings';
+import { ApplicationSignOnMode } from './ApplicationSignOnMode';
+import { ApplicationVisibility } from './ApplicationVisibility';
 
 declare class Application extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
@@ -122,4 +122,3 @@ declare class Application extends Resource {
 export {
   Application
 };
-export default Application;

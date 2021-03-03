@@ -27,4 +27,3 @@ declare class U2fUserFactorProfile extends Resource {
 export {
   U2fUserFactorProfile
 };
-export default U2fUserFactorProfile;

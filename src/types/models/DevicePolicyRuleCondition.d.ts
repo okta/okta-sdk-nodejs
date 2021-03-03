@@ -15,7 +15,7 @@
 
 import Resource from '../resource';
 import Client from '../client';
-import DevicePolicyRuleConditionPlatform from './DevicePolicyRuleConditionPlatform';
+import { DevicePolicyRuleConditionPlatform } from './DevicePolicyRuleConditionPlatform';
 
 declare class DevicePolicyRuleCondition extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
@@ -30,4 +30,3 @@ declare class DevicePolicyRuleCondition extends Resource {
 export {
   DevicePolicyRuleCondition
 };
-export default DevicePolicyRuleCondition;

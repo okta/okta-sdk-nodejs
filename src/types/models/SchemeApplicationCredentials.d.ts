@@ -13,11 +13,11 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-import ApplicationCredentials from './ApplicationCredentials';
+import { ApplicationCredentials } from './ApplicationCredentials';
 import Client from '../client';
-import PasswordCredential from './PasswordCredential';
-import ApplicationCredentialsScheme from './ApplicationCredentialsScheme';
-import ApplicationCredentialsSigning from './ApplicationCredentialsSigning';
+import { PasswordCredential } from './PasswordCredential';
+import { ApplicationCredentialsScheme } from './ApplicationCredentialsScheme';
+import { ApplicationCredentialsSigning } from './ApplicationCredentialsSigning';
 
 declare class SchemeApplicationCredentials extends ApplicationCredentials {
   constructor(resourceJson: Record<string, unknown>, client: Client);
@@ -33,4 +33,3 @@ declare class SchemeApplicationCredentials extends ApplicationCredentials {
 export {
   SchemeApplicationCredentials
 };
-export default SchemeApplicationCredentials;

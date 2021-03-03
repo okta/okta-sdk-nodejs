@@ -15,8 +15,8 @@
 
 import Resource from '../resource';
 import Client from '../client';
-import PasswordCredentialHash from './PasswordCredentialHash';
-import PasswordCredentialHook from './PasswordCredentialHook';
+import { PasswordCredentialHash } from './PasswordCredentialHash';
+import { PasswordCredentialHook } from './PasswordCredentialHook';
 
 declare class PasswordCredential extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
@@ -30,4 +30,3 @@ declare class PasswordCredential extends Resource {
 export {
   PasswordCredential
 };
-export default PasswordCredential;

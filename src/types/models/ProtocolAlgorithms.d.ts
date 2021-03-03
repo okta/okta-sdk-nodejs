@@ -15,7 +15,7 @@
 
 import Resource from '../resource';
 import Client from '../client';
-import ProtocolAlgorithmType from './ProtocolAlgorithmType';
+import { ProtocolAlgorithmType } from './ProtocolAlgorithmType';
 
 declare class ProtocolAlgorithms extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
@@ -28,4 +28,3 @@ declare class ProtocolAlgorithms extends Resource {
 export {
   ProtocolAlgorithms
 };
-export default ProtocolAlgorithms;

@@ -15,7 +15,7 @@
 
 import Resource from '../resource';
 import Client from '../client';
-import OpenIdConnectRefreshTokenRotationType from './OpenIdConnectRefreshTokenRotationType';
+import { OpenIdConnectRefreshTokenRotationType } from './OpenIdConnectRefreshTokenRotationType';
 
 declare class OpenIdConnectApplicationSettingsRefreshToken extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
@@ -28,4 +28,3 @@ declare class OpenIdConnectApplicationSettingsRefreshToken extends Resource {
 export {
   OpenIdConnectApplicationSettingsRefreshToken
 };
-export default OpenIdConnectApplicationSettingsRefreshToken;

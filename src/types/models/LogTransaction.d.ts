@@ -31,4 +31,3 @@ declare class LogTransaction extends Resource {
 export {
   LogTransaction
 };
-export default LogTransaction;
