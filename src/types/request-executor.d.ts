@@ -10,11 +10,15 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
+import { Response } from 'node-fetch';
 import EventEmitter_1 = require("events");
 import EventEmitter = EventEmitter_1.EventEmitter;
 
+import RequestOptions from "./request-options";
+
+
 declare class RequestExecutor extends EventEmitter {
-  fetch(request: any): any;
+  fetch(requestOptions: RequestOptions): Promise<Response>;
 }
 
 export default RequestExecutor;

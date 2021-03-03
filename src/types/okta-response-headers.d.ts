@@ -9,6 +9,16 @@
  *
  * See the License for the specific language governing permissions and limitations under the License.
  */
-declare function OktaResponseHeaders(responseHeadersMap: Record<string, unknown>): Record<string, string|number>;
+export interface OktaResponseHeadersReturnType {
+  [key: string]: string | number | undefined,
+  'x-okta-request-id'?: string,
+  'x-rate-limit-limit'?: number,
+  'x-rate-limit-remaining'?: number,
+  'x-rate-limit-reset'?: number
+}
+
+export type OktaResponseHeadersFunctionType = (responseHeadersMap: Record<string, unknown>) => OktaResponseHeadersReturnType;
+
+declare function OktaResponseHeaders(responseHeadersMap: Record<string, unknown>): OktaResponseHeadersReturnType;
 
 export default OktaResponseHeaders;

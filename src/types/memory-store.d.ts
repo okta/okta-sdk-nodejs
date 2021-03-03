@@ -11,13 +11,16 @@
  */
 
 declare class MemoryStore {
-    constructor(options: any);
-    _keyLimit: any;
-    _store: Map<any, any>;
+    constructor(options: {
+        keyLimit?: number,
+        expirationPoll?: number,
+    });
+    _keyLimit: number;
+    _store: Map<string, unknown>;
     _interval: NodeJS.Timeout;
-    get(key: any): Promise<any>;
-    set(key: any, string: any, options: any): Promise<any>;
-    delete(key: any): Promise<any>;
+    get(key: string): Promise<string>;
+    set(key: string, string: string, options: {ttl: number } | undefined): Promise<string>;
+    delete(key: string): Promise<void>;
 }
 
 export default MemoryStore;
