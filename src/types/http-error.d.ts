@@ -9,13 +9,14 @@
  *
  * See the License for the specific language governing permissions and limitations under the License.
  */
+import { Headers } from 'node-fetch';
 
 declare class HttpError extends Error{
-    constructor(url: string, status: number | string, responseBody: string, headers: any);
+    constructor(url: string, status: number | string, responseBody: string, headers: Headers);
     name: string;
     status: string | number;
     url: string;
-    headers: any;
+    headers: Headers;
     stack: string;
     message: string;
 }

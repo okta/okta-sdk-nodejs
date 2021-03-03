@@ -9,24 +9,30 @@
  *
  * See the License for the specific language governing permissions and limitations under the License.
  */
-import RequestExecutor from ("./request-executor");
+
+import { Response } from 'node-fetch';
+import RequestExecutor from "./request-executor";
+import RequestOptions from "./request-options";
 
 
 declare class DefaultRequestExecutor extends RequestExecutor {
-    constructor(config?: Record<string, unknown>);
-    requestTimeout: any;
-    maxRetries: any;
+    constructor(config?: {
+        maxRetries: number,
+        requestTimeout: number,
+    });
+    requestTimeout: number;
+    maxRetries: number;
     retryCountHeader: string;
     retryForHeader: string;
-    buildRetryRequest(request: Request, requestId: any, delayMs: any): any;
-    validateRetryResponseHeaders(response: any): boolean;
-    getOktaRequestId(response: any): any;
-    getRateLimitReset(response: any): any;
-    getResponseDate(response: any): any;
-    getRetryDelayMs(response: any): number;
-    parseResponse(request: Request, response: any): any;
+    buildRetryRequest(request: RequestOptions, requestId: string, delayMs: number): RequestOptions;
+    validateRetryResponseHeaders(response: Response): boolean;
+    getOktaRequestId(response: Response): string;
+    getRateLimitReset(response: Response): string;
+    getResponseDate(response: Response): string;
+    getRetryDelayMs(response: Response): number;
+    parseResponse(request: Request, response: Response): Response | Promise<Response> | Promise<Error>;
     maxRetriesReached(request: Request): boolean;
-    retryRequest(request: Request, response: any, delayMs: any): Promise<any>;
+    retryRequest(request: RequestOptions, response: Response, delayMs: number): Promise<Response>;
 }
 
 export default DefaultRequestExecutor;
