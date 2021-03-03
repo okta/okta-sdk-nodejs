@@ -15,7 +15,7 @@
 
 import Resource from '../resource';
 import Client from '../client';
-import GroupRuleGroupAssignment from './GroupRuleGroupAssignment';
+import { GroupRuleGroupAssignment } from './GroupRuleGroupAssignment';
 
 declare class GroupRuleAction extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
@@ -27,4 +27,3 @@ declare class GroupRuleAction extends Resource {
 export {
   GroupRuleAction
 };
-export default GroupRuleAction;

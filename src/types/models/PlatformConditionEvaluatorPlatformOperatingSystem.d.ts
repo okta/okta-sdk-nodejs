@@ -15,7 +15,7 @@
 
 import Resource from '../resource';
 import Client from '../client';
-import PlatformConditionEvaluatorPlatformOperatingSystemVersion from './PlatformConditionEvaluatorPlatformOperatingSystemVersion';
+import { PlatformConditionEvaluatorPlatformOperatingSystemVersion } from './PlatformConditionEvaluatorPlatformOperatingSystemVersion';
 
 declare class PlatformConditionEvaluatorPlatformOperatingSystem extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
@@ -29,4 +29,3 @@ declare class PlatformConditionEvaluatorPlatformOperatingSystem extends Resource
 export {
   PlatformConditionEvaluatorPlatformOperatingSystem
 };
-export default PlatformConditionEvaluatorPlatformOperatingSystem;

@@ -16,19 +16,19 @@
 import Resource from '../resource';
 import Client from '../client';
 import Collection from '../collection';
-import ChangePasswordRequest from './ChangePasswordRequest';
-import UserCredentials from './UserCredentials';
-import ForgotPasswordResponse from './ForgotPasswordResponse';
-import AssignRoleRequest from './AssignRoleRequest';
-import Role from './Role';
-import OAuth2RefreshToken from './OAuth2RefreshToken';
-import UserActivationToken from './UserActivationToken';
-import ResetPasswordToken from './ResetPasswordToken';
-import TempPassword from './TempPassword';
-import UserFactor from './UserFactor';
-import UserProfile from './UserProfile';
-import UserStatus from './UserStatus';
-import UserType from './UserType';
+import { ChangePasswordRequest } from './ChangePasswordRequest';
+import { UserCredentials } from './UserCredentials';
+import { ForgotPasswordResponse } from './ForgotPasswordResponse';
+import { AssignRoleRequest } from './AssignRoleRequest';
+import { Role } from './Role';
+import { OAuth2RefreshToken } from './OAuth2RefreshToken';
+import { UserActivationToken } from './UserActivationToken';
+import { ResetPasswordToken } from './ResetPasswordToken';
+import { TempPassword } from './TempPassword';
+import { UserFactor } from './UserFactor';
+import { UserProfile } from './UserProfile';
+import { UserStatus } from './UserStatus';
+import { UserType } from './UserType';
 
 declare class User extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
@@ -151,4 +151,3 @@ declare class User extends Resource {
 export {
   User
 };
-export default User;

@@ -40,4 +40,3 @@ declare class UserType extends Resource {
 export {
   UserType
 };
-export default UserType;

@@ -15,9 +15,9 @@
 
 import Resource from '../resource';
 import Client from '../client';
-import PasswordCredential from './PasswordCredential';
-import AuthenticationProvider from './AuthenticationProvider';
-import RecoveryQuestionCredential from './RecoveryQuestionCredential';
+import { PasswordCredential } from './PasswordCredential';
+import { AuthenticationProvider } from './AuthenticationProvider';
+import { RecoveryQuestionCredential } from './RecoveryQuestionCredential';
 
 declare class UserCredentials extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
@@ -31,4 +31,3 @@ declare class UserCredentials extends Resource {
 export {
   UserCredentials
 };
-export default UserCredentials;

@@ -15,7 +15,7 @@
 
 import Resource from '../resource';
 import Client from '../client';
-import ApplicationSettingsNotificationsVpn from './ApplicationSettingsNotificationsVpn';
+import { ApplicationSettingsNotificationsVpn } from './ApplicationSettingsNotificationsVpn';
 
 declare class ApplicationSettingsNotifications extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
@@ -27,4 +27,3 @@ declare class ApplicationSettingsNotifications extends Resource {
 export {
   ApplicationSettingsNotifications
 };
-export default ApplicationSettingsNotifications;

@@ -15,7 +15,7 @@
 
 import Resource from '../resource';
 import Client from '../client';
-import PasswordPolicyRuleAction from './PasswordPolicyRuleAction';
+import { PasswordPolicyRuleAction } from './PasswordPolicyRuleAction';
 
 declare class PasswordPolicyRuleActions extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
@@ -29,4 +29,3 @@ declare class PasswordPolicyRuleActions extends Resource {
 export {
   PasswordPolicyRuleActions
 };
-export default PasswordPolicyRuleActions;

@@ -13,9 +13,9 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-import ApplicationSettings from './ApplicationSettings';
+import { ApplicationSettings } from './ApplicationSettings';
 import Client from '../client';
-import OpenIdConnectApplicationSettingsClient from './OpenIdConnectApplicationSettingsClient';
+import { OpenIdConnectApplicationSettingsClient } from './OpenIdConnectApplicationSettingsClient';
 
 declare class OpenIdConnectApplicationSettings extends ApplicationSettings {
   constructor(resourceJson: Record<string, unknown>, client: Client);
@@ -27,4 +27,3 @@ declare class OpenIdConnectApplicationSettings extends ApplicationSettings {
 export {
   OpenIdConnectApplicationSettings
 };
-export default OpenIdConnectApplicationSettings;

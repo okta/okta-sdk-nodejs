@@ -15,12 +15,12 @@
 
 import Resource from '../resource';
 import Client from '../client';
-import ActivateFactorRequest from './ActivateFactorRequest';
-import VerifyFactorRequest from './VerifyFactorRequest';
-import VerifyUserFactorResponse from './VerifyUserFactorResponse';
-import FactorType from './FactorType';
-import FactorProvider from './FactorProvider';
-import FactorStatus from './FactorStatus';
+import { ActivateFactorRequest } from './ActivateFactorRequest';
+import { VerifyFactorRequest } from './VerifyFactorRequest';
+import { VerifyUserFactorResponse } from './VerifyUserFactorResponse';
+import { FactorType } from './FactorType';
+import { FactorProvider } from './FactorProvider';
+import { FactorStatus } from './FactorStatus';
 
 declare class UserFactor extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
@@ -50,4 +50,3 @@ declare class UserFactor extends Resource {
 export {
   UserFactor
 };
-export default UserFactor;

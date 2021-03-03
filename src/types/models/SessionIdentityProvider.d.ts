@@ -15,7 +15,7 @@
 
 import Resource from '../resource';
 import Client from '../client';
-import SessionIdentityProviderType from './SessionIdentityProviderType';
+import { SessionIdentityProviderType } from './SessionIdentityProviderType';
 
 declare class SessionIdentityProvider extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
@@ -28,4 +28,3 @@ declare class SessionIdentityProvider extends Resource {
 export {
   SessionIdentityProvider
 };
-export default SessionIdentityProvider;

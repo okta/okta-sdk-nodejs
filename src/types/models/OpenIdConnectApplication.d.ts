@@ -13,10 +13,10 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-import Application from './Application';
+import { Application } from './Application';
 import Client from '../client';
-import OAuthApplicationCredentials from './OAuthApplicationCredentials';
-import OpenIdConnectApplicationSettings from './OpenIdConnectApplicationSettings';
+import { OAuthApplicationCredentials } from './OAuthApplicationCredentials';
+import { OpenIdConnectApplicationSettings } from './OpenIdConnectApplicationSettings';
 
 declare class OpenIdConnectApplication extends Application {
   constructor(resourceJson: Record<string, unknown>, client: Client);
@@ -29,4 +29,3 @@ declare class OpenIdConnectApplication extends Application {
 export {
   OpenIdConnectApplication
 };
-export default OpenIdConnectApplication;

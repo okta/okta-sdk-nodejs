@@ -15,7 +15,7 @@
 
 import Resource from '../resource';
 import Client from '../client';
-import CatalogApplicationStatus from './CatalogApplicationStatus';
+import { CatalogApplicationStatus } from './CatalogApplicationStatus';
 
 declare class CatalogApplication extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
@@ -40,4 +40,3 @@ declare class CatalogApplication extends Resource {
 export {
   CatalogApplication
 };
-export default CatalogApplication;

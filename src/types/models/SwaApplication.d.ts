@@ -13,9 +13,9 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-import BrowserPluginApplication from './BrowserPluginApplication';
+import { BrowserPluginApplication } from './BrowserPluginApplication';
 import Client from '../client';
-import SwaApplicationSettings from './SwaApplicationSettings';
+import { SwaApplicationSettings } from './SwaApplicationSettings';
 
 declare class SwaApplication extends BrowserPluginApplication {
   constructor(resourceJson: Record<string, unknown>, client: Client);
@@ -27,4 +27,3 @@ declare class SwaApplication extends BrowserPluginApplication {
 export {
   SwaApplication
 };
-export default SwaApplication;

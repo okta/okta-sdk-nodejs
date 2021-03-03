@@ -16,12 +16,12 @@
 import Resource from '../resource';
 import Client from '../client';
 import Collection from '../collection';
-import OAuth2Claim from './OAuth2Claim';
-import OAuth2RefreshToken from './OAuth2RefreshToken';
-import JwkUse from './JwkUse';
-import AuthorizationServerPolicy from './AuthorizationServerPolicy';
-import OAuth2Scope from './OAuth2Scope';
-import AuthorizationServerCredentials from './AuthorizationServerCredentials';
+import { OAuth2Claim } from './OAuth2Claim';
+import { OAuth2RefreshToken } from './OAuth2RefreshToken';
+import { JwkUse } from './JwkUse';
+import { AuthorizationServerPolicy } from './AuthorizationServerPolicy';
+import { OAuth2Scope } from './OAuth2Scope';
+import { AuthorizationServerCredentials } from './AuthorizationServerCredentials';
 
 declare class AuthorizationServer extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
@@ -82,4 +82,3 @@ declare class AuthorizationServer extends Resource {
 export {
   AuthorizationServer
 };
-export default AuthorizationServer;

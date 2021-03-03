@@ -15,7 +15,7 @@
 
 import Resource from '../resource';
 import Client from '../client';
-import IonForm from './IonForm';
+import { IonForm } from './IonForm';
 
 declare class IonField extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
@@ -37,4 +37,3 @@ declare class IonField extends Resource {
 export {
   IonField
 };
-export default IonField;

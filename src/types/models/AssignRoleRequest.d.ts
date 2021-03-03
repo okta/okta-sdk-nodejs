@@ -15,7 +15,7 @@
 
 import Resource from '../resource';
 import Client from '../client';
-import RoleType from './RoleType';
+import { RoleType } from './RoleType';
 
 declare class AssignRoleRequest extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
@@ -27,4 +27,3 @@ declare class AssignRoleRequest extends Resource {
 export {
   AssignRoleRequest
 };
-export default AssignRoleRequest;

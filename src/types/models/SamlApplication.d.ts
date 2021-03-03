@@ -13,9 +13,9 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-import Application from './Application';
+import { Application } from './Application';
 import Client from '../client';
-import SamlApplicationSettings from './SamlApplicationSettings';
+import { SamlApplicationSettings } from './SamlApplicationSettings';
 
 declare class SamlApplication extends Application {
   constructor(resourceJson: Record<string, unknown>, client: Client);
@@ -27,4 +27,3 @@ declare class SamlApplication extends Application {
 export {
   SamlApplication
 };
-export default SamlApplication;

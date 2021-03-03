@@ -15,9 +15,9 @@
 
 import Resource from '../resource';
 import Client from '../client';
-import IdentityProviderCredentialsClient from './IdentityProviderCredentialsClient';
-import IdentityProviderCredentialsSigning from './IdentityProviderCredentialsSigning';
-import IdentityProviderCredentialsTrust from './IdentityProviderCredentialsTrust';
+import { IdentityProviderCredentialsClient } from './IdentityProviderCredentialsClient';
+import { IdentityProviderCredentialsSigning } from './IdentityProviderCredentialsSigning';
+import { IdentityProviderCredentialsTrust } from './IdentityProviderCredentialsTrust';
 
 declare class IdentityProviderCredentials extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
@@ -31,4 +31,3 @@ declare class IdentityProviderCredentials extends Resource {
 export {
   IdentityProviderCredentials
 };
-export default IdentityProviderCredentials;

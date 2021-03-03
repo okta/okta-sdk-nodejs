@@ -26,4 +26,3 @@ declare class OAuth2ScopeConsentGrantStatus extends Resource {
 export {
   OAuth2ScopeConsentGrantStatus
 };
-export default OAuth2ScopeConsentGrantStatus;

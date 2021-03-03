@@ -15,8 +15,8 @@
 
 import Resource from '../resource';
 import Client from '../client';
-import ProvisioningConditions from './ProvisioningConditions';
-import ProvisioningGroups from './ProvisioningGroups';
+import { ProvisioningConditions } from './ProvisioningConditions';
+import { ProvisioningGroups } from './ProvisioningGroups';
 
 declare class Provisioning extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
@@ -31,4 +31,3 @@ declare class Provisioning extends Resource {
 export {
   Provisioning
 };
-export default Provisioning;

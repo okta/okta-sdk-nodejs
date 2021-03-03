@@ -13,10 +13,10 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-import PolicyRule from './PolicyRule';
+import { PolicyRule } from './PolicyRule';
 import Client from '../client';
-import OktaSignOnPolicyRuleActions from './OktaSignOnPolicyRuleActions';
-import OktaSignOnPolicyRuleConditions from './OktaSignOnPolicyRuleConditions';
+import { OktaSignOnPolicyRuleActions } from './OktaSignOnPolicyRuleActions';
+import { OktaSignOnPolicyRuleConditions } from './OktaSignOnPolicyRuleConditions';
 
 declare class OktaSignOnPolicyRule extends PolicyRule {
   constructor(resourceJson: Record<string, unknown>, client: Client);
@@ -30,4 +30,3 @@ declare class OktaSignOnPolicyRule extends PolicyRule {
 export {
   OktaSignOnPolicyRule
 };
-export default OktaSignOnPolicyRule;

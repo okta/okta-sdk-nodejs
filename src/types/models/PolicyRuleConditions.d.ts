@@ -15,27 +15,27 @@
 
 import Resource from '../resource';
 import Client from '../client';
-import AppAndInstancePolicyRuleCondition from './AppAndInstancePolicyRuleCondition';
-import AppInstancePolicyRuleCondition from './AppInstancePolicyRuleCondition';
-import PolicyRuleAuthContextCondition from './PolicyRuleAuthContextCondition';
-import PasswordPolicyAuthenticationProviderCondition from './PasswordPolicyAuthenticationProviderCondition';
-import BeforeScheduledActionPolicyRuleCondition from './BeforeScheduledActionPolicyRuleCondition';
-import ClientPolicyCondition from './ClientPolicyCondition';
-import ContextPolicyRuleCondition from './ContextPolicyRuleCondition';
-import DevicePolicyRuleCondition from './DevicePolicyRuleCondition';
-import GrantTypePolicyRuleCondition from './GrantTypePolicyRuleCondition';
-import GroupPolicyRuleCondition from './GroupPolicyRuleCondition';
-import IdentityProviderPolicyRuleCondition from './IdentityProviderPolicyRuleCondition';
-import MDMEnrollmentPolicyRuleCondition from './MDMEnrollmentPolicyRuleCondition';
-import PolicyNetworkCondition from './PolicyNetworkCondition';
-import PolicyPeopleCondition from './PolicyPeopleCondition';
-import PlatformPolicyRuleCondition from './PlatformPolicyRuleCondition';
-import RiskPolicyRuleCondition from './RiskPolicyRuleCondition';
-import RiskScorePolicyRuleCondition from './RiskScorePolicyRuleCondition';
-import OAuth2ScopesMediationPolicyRuleCondition from './OAuth2ScopesMediationPolicyRuleCondition';
-import UserIdentifierPolicyRuleCondition from './UserIdentifierPolicyRuleCondition';
-import UserStatusPolicyRuleCondition from './UserStatusPolicyRuleCondition';
-import UserPolicyRuleCondition from './UserPolicyRuleCondition';
+import { AppAndInstancePolicyRuleCondition } from './AppAndInstancePolicyRuleCondition';
+import { AppInstancePolicyRuleCondition } from './AppInstancePolicyRuleCondition';
+import { PolicyRuleAuthContextCondition } from './PolicyRuleAuthContextCondition';
+import { PasswordPolicyAuthenticationProviderCondition } from './PasswordPolicyAuthenticationProviderCondition';
+import { BeforeScheduledActionPolicyRuleCondition } from './BeforeScheduledActionPolicyRuleCondition';
+import { ClientPolicyCondition } from './ClientPolicyCondition';
+import { ContextPolicyRuleCondition } from './ContextPolicyRuleCondition';
+import { DevicePolicyRuleCondition } from './DevicePolicyRuleCondition';
+import { GrantTypePolicyRuleCondition } from './GrantTypePolicyRuleCondition';
+import { GroupPolicyRuleCondition } from './GroupPolicyRuleCondition';
+import { IdentityProviderPolicyRuleCondition } from './IdentityProviderPolicyRuleCondition';
+import { MDMEnrollmentPolicyRuleCondition } from './MDMEnrollmentPolicyRuleCondition';
+import { PolicyNetworkCondition } from './PolicyNetworkCondition';
+import { PolicyPeopleCondition } from './PolicyPeopleCondition';
+import { PlatformPolicyRuleCondition } from './PlatformPolicyRuleCondition';
+import { RiskPolicyRuleCondition } from './RiskPolicyRuleCondition';
+import { RiskScorePolicyRuleCondition } from './RiskScorePolicyRuleCondition';
+import { OAuth2ScopesMediationPolicyRuleCondition } from './OAuth2ScopesMediationPolicyRuleCondition';
+import { UserIdentifierPolicyRuleCondition } from './UserIdentifierPolicyRuleCondition';
+import { UserStatusPolicyRuleCondition } from './UserStatusPolicyRuleCondition';
+import { UserPolicyRuleCondition } from './UserPolicyRuleCondition';
 
 declare class PolicyRuleConditions extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
@@ -67,4 +67,3 @@ declare class PolicyRuleConditions extends Resource {
 export {
   PolicyRuleConditions
 };
-export default PolicyRuleConditions;

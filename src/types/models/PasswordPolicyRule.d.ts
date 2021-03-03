@@ -13,10 +13,10 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-import PolicyRule from './PolicyRule';
+import { PolicyRule } from './PolicyRule';
 import Client from '../client';
-import PasswordPolicyRuleActions from './PasswordPolicyRuleActions';
-import PasswordPolicyRuleConditions from './PasswordPolicyRuleConditions';
+import { PasswordPolicyRuleActions } from './PasswordPolicyRuleActions';
+import { PasswordPolicyRuleConditions } from './PasswordPolicyRuleConditions';
 
 declare class PasswordPolicyRule extends PolicyRule {
   constructor(resourceJson: Record<string, unknown>, client: Client);
@@ -30,4 +30,3 @@ declare class PasswordPolicyRule extends PolicyRule {
 export {
   PasswordPolicyRule
 };
-export default PasswordPolicyRule;

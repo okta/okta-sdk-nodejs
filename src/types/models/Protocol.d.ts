@@ -15,12 +15,12 @@
 
 import Resource from '../resource';
 import Client from '../client';
-import ProtocolAlgorithms from './ProtocolAlgorithms';
-import IdentityProviderCredentials from './IdentityProviderCredentials';
-import ProtocolEndpoints from './ProtocolEndpoints';
-import ProtocolEndpoint from './ProtocolEndpoint';
-import ProtocolRelayState from './ProtocolRelayState';
-import ProtocolSettings from './ProtocolSettings';
+import { ProtocolAlgorithms } from './ProtocolAlgorithms';
+import { IdentityProviderCredentials } from './IdentityProviderCredentials';
+import { ProtocolEndpoints } from './ProtocolEndpoints';
+import { ProtocolEndpoint } from './ProtocolEndpoint';
+import { ProtocolRelayState } from './ProtocolRelayState';
+import { ProtocolSettings } from './ProtocolSettings';
 
 declare class Protocol extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
@@ -39,4 +39,3 @@ declare class Protocol extends Resource {
 export {
   Protocol
 };
-export default Protocol;

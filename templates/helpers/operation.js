@@ -303,7 +303,7 @@ const formatImportStatements = (importTypes, {
     if (type === 'Collection') {
       importStatements.push(`import Collection from '${isModelToModelImport ? '..' : '.'}/collection';`);
     } else {
-      importStatements.push(`import ${type} from '${isModelToModelImport ? './' : './models/'}${type}';`);
+      importStatements.push(`import { ${type} } from '${isModelToModelImport ? './' : './models/'}${type}';`);
     }
   });
   return importStatements.join('\n');

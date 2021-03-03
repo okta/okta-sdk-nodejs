@@ -15,7 +15,7 @@
 
 import Resource from '../resource';
 import Client from '../client';
-import TokenAuthorizationServerPolicyRuleAction from './TokenAuthorizationServerPolicyRuleAction';
+import { TokenAuthorizationServerPolicyRuleAction } from './TokenAuthorizationServerPolicyRuleAction';
 
 declare class AuthorizationServerPolicyRuleActions extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
@@ -27,4 +27,3 @@ declare class AuthorizationServerPolicyRuleActions extends Resource {
 export {
   AuthorizationServerPolicyRuleActions
 };
-export default AuthorizationServerPolicyRuleActions;

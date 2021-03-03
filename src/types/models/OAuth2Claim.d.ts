@@ -15,7 +15,7 @@
 
 import Resource from '../resource';
 import Client from '../client';
-import OAuth2ClaimConditions from './OAuth2ClaimConditions';
+import { OAuth2ClaimConditions } from './OAuth2ClaimConditions';
 
 declare class OAuth2Claim extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
@@ -39,4 +39,3 @@ declare class OAuth2Claim extends Resource {
 export {
   OAuth2Claim
 };
-export default OAuth2Claim;

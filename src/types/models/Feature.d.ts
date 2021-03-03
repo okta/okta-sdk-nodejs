@@ -16,9 +16,9 @@
 import Resource from '../resource';
 import Client from '../client';
 import Collection from '../collection';
-import FeatureStage from './FeatureStage';
-import EnabledStatus from './EnabledStatus';
-import FeatureType from './FeatureType';
+import { FeatureStage } from './FeatureStage';
+import { EnabledStatus } from './EnabledStatus';
+import { FeatureType } from './FeatureType';
 
 declare class Feature extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
@@ -43,4 +43,3 @@ declare class Feature extends Resource {
 export {
   Feature
 };
-export default Feature;

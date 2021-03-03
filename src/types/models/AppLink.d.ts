@@ -36,4 +36,3 @@ declare class AppLink extends Resource {
 export {
   AppLink
 };
-export default AppLink;

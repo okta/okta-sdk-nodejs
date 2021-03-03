@@ -13,9 +13,9 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-import ApplicationSettings from './ApplicationSettings';
+import { ApplicationSettings } from './ApplicationSettings';
 import Client from '../client';
-import BookmarkApplicationSettingsApplication from './BookmarkApplicationSettingsApplication';
+import { BookmarkApplicationSettingsApplication } from './BookmarkApplicationSettingsApplication';
 
 declare class BookmarkApplicationSettings extends ApplicationSettings {
   constructor(resourceJson: Record<string, unknown>, client: Client);
@@ -27,4 +27,3 @@ declare class BookmarkApplicationSettings extends ApplicationSettings {
 export {
   BookmarkApplicationSettings
 };
-export default BookmarkApplicationSettings;

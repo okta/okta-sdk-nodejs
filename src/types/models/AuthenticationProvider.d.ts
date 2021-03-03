@@ -15,7 +15,7 @@
 
 import Resource from '../resource';
 import Client from '../client';
-import AuthenticationProviderType from './AuthenticationProviderType';
+import { AuthenticationProviderType } from './AuthenticationProviderType';
 
 declare class AuthenticationProvider extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
@@ -28,4 +28,3 @@ declare class AuthenticationProvider extends Resource {
 export {
   AuthenticationProvider
 };
-export default AuthenticationProvider;

@@ -13,9 +13,9 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-import ApplicationSettings from './ApplicationSettings';
+import { ApplicationSettings } from './ApplicationSettings';
 import Client from '../client';
-import SwaApplicationSettingsApplication from './SwaApplicationSettingsApplication';
+import { SwaApplicationSettingsApplication } from './SwaApplicationSettingsApplication';
 
 declare class SwaApplicationSettings extends ApplicationSettings {
   constructor(resourceJson: Record<string, unknown>, client: Client);
@@ -27,4 +27,3 @@ declare class SwaApplicationSettings extends ApplicationSettings {
 export {
   SwaApplicationSettings
 };
-export default SwaApplicationSettings;

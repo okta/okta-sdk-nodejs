@@ -33,4 +33,3 @@ declare class LogTarget extends Resource {
 export {
   LogTarget
 };
-export default LogTarget;

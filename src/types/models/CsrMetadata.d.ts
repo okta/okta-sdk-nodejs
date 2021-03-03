@@ -15,8 +15,8 @@
 
 import Resource from '../resource';
 import Client from '../client';
-import CsrMetadataSubject from './CsrMetadataSubject';
-import CsrMetadataSubjectAltNames from './CsrMetadataSubjectAltNames';
+import { CsrMetadataSubject } from './CsrMetadataSubject';
+import { CsrMetadataSubjectAltNames } from './CsrMetadataSubjectAltNames';
 
 declare class CsrMetadata extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
@@ -29,4 +29,3 @@ declare class CsrMetadata extends Resource {
 export {
   CsrMetadata
 };
-export default CsrMetadata;

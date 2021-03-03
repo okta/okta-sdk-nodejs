@@ -15,8 +15,8 @@
 
 import Resource from '../resource';
 import Client from '../client';
-import AuthorizationServerCredentialsRotationMode from './AuthorizationServerCredentialsRotationMode';
-import AuthorizationServerCredentialsUse from './AuthorizationServerCredentialsUse';
+import { AuthorizationServerCredentialsRotationMode } from './AuthorizationServerCredentialsRotationMode';
+import { AuthorizationServerCredentialsUse } from './AuthorizationServerCredentialsUse';
 
 declare class AuthorizationServerCredentialsSigningConfig extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
@@ -32,4 +32,3 @@ declare class AuthorizationServerCredentialsSigningConfig extends Resource {
 export {
   AuthorizationServerCredentialsSigningConfig
 };
-export default AuthorizationServerCredentialsSigningConfig;

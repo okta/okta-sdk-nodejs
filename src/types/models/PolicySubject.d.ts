@@ -15,8 +15,8 @@
 
 import Resource from '../resource';
 import Client from '../client';
-import PolicySubjectMatchType from './PolicySubjectMatchType';
-import PolicyUserNameTemplate from './PolicyUserNameTemplate';
+import { PolicySubjectMatchType } from './PolicySubjectMatchType';
+import { PolicyUserNameTemplate } from './PolicyUserNameTemplate';
 
 declare class PolicySubject extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
@@ -32,4 +32,3 @@ declare class PolicySubject extends Resource {
 export {
   PolicySubject
 };
-export default PolicySubject;

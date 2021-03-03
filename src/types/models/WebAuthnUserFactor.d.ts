@@ -13,9 +13,9 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-import UserFactor from './UserFactor';
+import { UserFactor } from './UserFactor';
 import Client from '../client';
-import WebAuthnUserFactorProfile from './WebAuthnUserFactorProfile';
+import { WebAuthnUserFactorProfile } from './WebAuthnUserFactorProfile';
 
 declare class WebAuthnUserFactor extends UserFactor {
   constructor(resourceJson: Record<string, unknown>, client: Client);
@@ -27,4 +27,3 @@ declare class WebAuthnUserFactor extends UserFactor {
 export {
   WebAuthnUserFactor
 };
-export default WebAuthnUserFactor;

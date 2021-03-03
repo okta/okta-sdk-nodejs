@@ -15,9 +15,9 @@
 
 import Resource from '../resource';
 import Client from '../client';
-import GroupRuleAction from './GroupRuleAction';
-import GroupRuleConditions from './GroupRuleConditions';
-import GroupRuleStatus from './GroupRuleStatus';
+import { GroupRuleAction } from './GroupRuleAction';
+import { GroupRuleConditions } from './GroupRuleConditions';
+import { GroupRuleStatus } from './GroupRuleStatus';
 
 declare class GroupRule extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
@@ -40,4 +40,3 @@ declare class GroupRule extends Resource {
 export {
   GroupRule
 };
-export default GroupRule;

@@ -13,9 +13,9 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-import ApplicationSettings from './ApplicationSettings';
+import { ApplicationSettings } from './ApplicationSettings';
 import Client from '../client';
-import SecurePasswordStoreApplicationSettingsApplication from './SecurePasswordStoreApplicationSettingsApplication';
+import { SecurePasswordStoreApplicationSettingsApplication } from './SecurePasswordStoreApplicationSettingsApplication';
 
 declare class SecurePasswordStoreApplicationSettings extends ApplicationSettings {
   constructor(resourceJson: Record<string, unknown>, client: Client);
@@ -27,4 +27,3 @@ declare class SecurePasswordStoreApplicationSettings extends ApplicationSettings
 export {
   SecurePasswordStoreApplicationSettings
 };
-export default SecurePasswordStoreApplicationSettings;

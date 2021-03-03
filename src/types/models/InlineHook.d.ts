@@ -15,11 +15,11 @@
 
 import Resource from '../resource';
 import Client from '../client';
-import InlineHookPayload from './InlineHookPayload';
-import InlineHookResponse from './InlineHookResponse';
-import InlineHookChannel from './InlineHookChannel';
-import InlineHookStatus from './InlineHookStatus';
-import InlineHookType from './InlineHookType';
+import { InlineHookPayload } from './InlineHookPayload';
+import { InlineHookResponse } from './InlineHookResponse';
+import { InlineHookChannel } from './InlineHookChannel';
+import { InlineHookStatus } from './InlineHookStatus';
+import { InlineHookType } from './InlineHookType';
 
 declare class InlineHook extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
@@ -46,4 +46,3 @@ declare class InlineHook extends Resource {
 export {
   InlineHook
 };
-export default InlineHook;

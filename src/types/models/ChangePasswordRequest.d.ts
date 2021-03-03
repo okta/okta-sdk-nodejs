@@ -15,7 +15,7 @@
 
 import Resource from '../resource';
 import Client from '../client';
-import PasswordCredential from './PasswordCredential';
+import { PasswordCredential } from './PasswordCredential';
 
 declare class ChangePasswordRequest extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
@@ -28,4 +28,3 @@ declare class ChangePasswordRequest extends Resource {
 export {
   ChangePasswordRequest
 };
-export default ChangePasswordRequest;

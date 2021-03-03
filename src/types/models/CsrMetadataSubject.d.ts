@@ -32,4 +32,3 @@ declare class CsrMetadataSubject extends Resource {
 export {
   CsrMetadataSubject
 };
-export default CsrMetadataSubject;

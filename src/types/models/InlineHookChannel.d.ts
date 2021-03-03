@@ -15,7 +15,7 @@
 
 import Resource from '../resource';
 import Client from '../client';
-import InlineHookChannelConfig from './InlineHookChannelConfig';
+import { InlineHookChannelConfig } from './InlineHookChannelConfig';
 
 declare class InlineHookChannel extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
@@ -29,4 +29,3 @@ declare class InlineHookChannel extends Resource {
 export {
   InlineHookChannel
 };
-export default InlineHookChannel;

@@ -13,9 +13,9 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-import UserFactor from './UserFactor';
+import { UserFactor } from './UserFactor';
 import Client from '../client';
-import TotpUserFactorProfile from './TotpUserFactorProfile';
+import { TotpUserFactorProfile } from './TotpUserFactorProfile';
 
 declare class TotpUserFactor extends UserFactor {
   constructor(resourceJson: Record<string, unknown>, client: Client);
@@ -27,4 +27,3 @@ declare class TotpUserFactor extends UserFactor {
 export {
   TotpUserFactor
 };
-export default TotpUserFactor;

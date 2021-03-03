@@ -13,9 +13,9 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-import UserFactor from './UserFactor';
+import { UserFactor } from './UserFactor';
 import Client from '../client';
-import SmsUserFactorProfile from './SmsUserFactorProfile';
+import { SmsUserFactorProfile } from './SmsUserFactorProfile';
 
 declare class SmsUserFactor extends UserFactor {
   constructor(resourceJson: Record<string, unknown>, client: Client);
@@ -27,4 +27,3 @@ declare class SmsUserFactor extends UserFactor {
 export {
   SmsUserFactor
 };
-export default SmsUserFactor;

@@ -40,4 +40,3 @@ declare class TrustedOrigin extends Resource {
 export {
   TrustedOrigin
 };
-export default TrustedOrigin;

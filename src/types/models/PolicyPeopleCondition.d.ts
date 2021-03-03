@@ -15,8 +15,8 @@
 
 import Resource from '../resource';
 import Client from '../client';
-import GroupCondition from './GroupCondition';
-import UserCondition from './UserCondition';
+import { GroupCondition } from './GroupCondition';
+import { UserCondition } from './UserCondition';
 
 declare class PolicyPeopleCondition extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
@@ -29,4 +29,3 @@ declare class PolicyPeopleCondition extends Resource {
 export {
   PolicyPeopleCondition
 };
-export default PolicyPeopleCondition;

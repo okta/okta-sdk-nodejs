@@ -13,10 +13,10 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-import Application from './Application';
+import { Application } from './Application';
 import Client from '../client';
-import SchemeApplicationCredentials from './SchemeApplicationCredentials';
-import AutoLoginApplicationSettings from './AutoLoginApplicationSettings';
+import { SchemeApplicationCredentials } from './SchemeApplicationCredentials';
+import { AutoLoginApplicationSettings } from './AutoLoginApplicationSettings';
 
 declare class AutoLoginApplication extends Application {
   constructor(resourceJson: Record<string, unknown>, client: Client);
@@ -29,4 +29,3 @@ declare class AutoLoginApplication extends Application {
 export {
   AutoLoginApplication
 };
-export default AutoLoginApplication;

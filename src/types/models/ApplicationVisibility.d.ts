@@ -15,7 +15,7 @@
 
 import Resource from '../resource';
 import Client from '../client';
-import ApplicationVisibilityHide from './ApplicationVisibilityHide';
+import { ApplicationVisibilityHide } from './ApplicationVisibilityHide';
 
 declare class ApplicationVisibility extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
@@ -31,4 +31,3 @@ declare class ApplicationVisibility extends Resource {
 export {
   ApplicationVisibility
 };
-export default ApplicationVisibility;

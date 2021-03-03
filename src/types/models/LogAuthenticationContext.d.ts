@@ -15,10 +15,10 @@
 
 import Resource from '../resource';
 import Client from '../client';
-import LogAuthenticationProvider from './LogAuthenticationProvider';
-import LogCredentialProvider from './LogCredentialProvider';
-import LogCredentialType from './LogCredentialType';
-import LogIssuer from './LogIssuer';
+import { LogAuthenticationProvider } from './LogAuthenticationProvider';
+import { LogCredentialProvider } from './LogCredentialProvider';
+import { LogCredentialType } from './LogCredentialType';
+import { LogIssuer } from './LogIssuer';
 
 declare class LogAuthenticationContext extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
@@ -36,4 +36,3 @@ declare class LogAuthenticationContext extends Resource {
 export {
   LogAuthenticationContext
 };
-export default LogAuthenticationContext;

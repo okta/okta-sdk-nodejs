@@ -13,9 +13,9 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-import Application from './Application';
+import { Application } from './Application';
 import Client from '../client';
-import SchemeApplicationCredentials from './SchemeApplicationCredentials';
+import { SchemeApplicationCredentials } from './SchemeApplicationCredentials';
 
 declare class BrowserPluginApplication extends Application {
   constructor(resourceJson: Record<string, unknown>, client: Client);
@@ -27,4 +27,3 @@ declare class BrowserPluginApplication extends Application {
 export {
   BrowserPluginApplication
 };
-export default BrowserPluginApplication;
