@@ -14,6 +14,7 @@
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
 import Resource from '../resource';
+import Client from '../client';
 import ActivateFactorRequest from './ActivateFactorRequest';
 import VerifyFactorRequest from './VerifyFactorRequest';
 import VerifyUserFactorResponse from './VerifyUserFactorResponse';
@@ -22,7 +23,7 @@ import FactorProvider from './FactorProvider';
 import FactorStatus from './FactorStatus';
 
 declare class UserFactor extends Resource {
-  constructor(resourceJson: string, client: any);
+  constructor(resourceJson: Record<string, unknown>, client: Client);
 
   readonly _embedded: {
     [name: string]: unknown;

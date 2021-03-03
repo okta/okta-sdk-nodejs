@@ -14,12 +14,13 @@
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
 import Resource from '../resource';
+import Client from '../client';
 import PasswordCredential from './PasswordCredential';
 import AuthenticationProvider from './AuthenticationProvider';
 import RecoveryQuestionCredential from './RecoveryQuestionCredential';
 
 declare class UserCredentials extends Resource {
-  constructor(resourceJson: string, client: any);
+  constructor(resourceJson: Record<string, unknown>, client: Client);
 
   password: PasswordCredential;
   provider: AuthenticationProvider;

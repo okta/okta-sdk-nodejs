@@ -14,13 +14,14 @@
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
 import Resource from '../resource';
+import Client from '../client';
 import Collection from '../collection';
 import AuthorizationServerPolicyRule from './AuthorizationServerPolicyRule';
 import PolicyRuleConditions from './PolicyRuleConditions';
 import PolicyType from './PolicyType';
 
 declare class AuthorizationServerPolicy extends Resource {
-  constructor(resourceJson: string, client: any);
+  constructor(resourceJson: Record<string, unknown>, client: Client);
 
   readonly _embedded: {
     [name: string]: unknown;

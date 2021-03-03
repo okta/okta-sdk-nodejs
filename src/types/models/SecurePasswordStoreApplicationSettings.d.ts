@@ -17,7 +17,7 @@ import ApplicationSettings from './ApplicationSettings';
 import SecurePasswordStoreApplicationSettingsApplication from './SecurePasswordStoreApplicationSettingsApplication';
 
 declare class SecurePasswordStoreApplicationSettings extends ApplicationSettings {
-  constructor(resourceJson: string, client: any);
+  constructor(resourceJson: Record<string, unknown>, client: Client);
 
   app: SecurePasswordStoreApplicationSettingsApplication;
 

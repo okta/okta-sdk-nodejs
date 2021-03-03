@@ -14,12 +14,13 @@
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
 import Resource from '../resource';
+import Client from '../client';
 import GroupRuleAction from './GroupRuleAction';
 import GroupRuleConditions from './GroupRuleConditions';
 import GroupRuleStatus from './GroupRuleStatus';
 
 declare class GroupRule extends Resource {
-  constructor(resourceJson: string, client: any);
+  constructor(resourceJson: Record<string, unknown>, client: Client);
 
   actions: GroupRuleAction;
   conditions: GroupRuleConditions;

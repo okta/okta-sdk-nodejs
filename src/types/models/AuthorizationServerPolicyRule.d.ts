@@ -14,11 +14,12 @@
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
 import Resource from '../resource';
+import Client from '../client';
 import AuthorizationServerPolicyRuleActions from './AuthorizationServerPolicyRuleActions';
 import AuthorizationServerPolicyRuleConditions from './AuthorizationServerPolicyRuleConditions';
 
 declare class AuthorizationServerPolicyRule extends Resource {
-  constructor(resourceJson: string, client: any);
+  constructor(resourceJson: Record<string, unknown>, client: Client);
 
   actions: AuthorizationServerPolicyRuleActions;
   conditions: AuthorizationServerPolicyRuleConditions;

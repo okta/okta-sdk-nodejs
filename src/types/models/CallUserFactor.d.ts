@@ -17,7 +17,7 @@ import UserFactor from './UserFactor';
 import CallUserFactorProfile from './CallUserFactorProfile';
 
 declare class CallUserFactor extends UserFactor {
-  constructor(resourceJson: string, client: any);
+  constructor(resourceJson: Record<string, unknown>, client: Client);
 
   profile: CallUserFactorProfile;
 

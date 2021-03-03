@@ -14,6 +14,7 @@
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
 import Resource from '../resource';
+import Client from '../client';
 import Collection from '../collection';
 import AssignRoleRequest from './AssignRoleRequest';
 import Role from './Role';
@@ -21,7 +22,7 @@ import GroupProfile from './GroupProfile';
 import GroupType from './GroupType';
 
 declare class Group extends Resource {
-  constructor(resourceJson: string, client: any);
+  constructor(resourceJson: Record<string, unknown>, client: Client);
 
   readonly _embedded: {
     [name: string]: unknown;

@@ -19,7 +19,7 @@ import ApplicationCredentialsScheme from './ApplicationCredentialsScheme';
 import ApplicationCredentialsSigning from './ApplicationCredentialsSigning';
 
 declare class SchemeApplicationCredentials extends ApplicationCredentials {
-  constructor(resourceJson: string, client: any);
+  constructor(resourceJson: Record<string, unknown>, client: Client);
 
   password: PasswordCredential;
   revealPassword: boolean;

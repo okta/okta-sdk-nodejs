@@ -18,7 +18,7 @@ import PasswordPolicyRuleActions from './PasswordPolicyRuleActions';
 import PasswordPolicyRuleConditions from './PasswordPolicyRuleConditions';
 
 declare class PasswordPolicyRule extends PolicyRule {
-  constructor(resourceJson: string, client: any);
+  constructor(resourceJson: Record<string, unknown>, client: Client);
 
   actions: PasswordPolicyRuleActions;
   conditions: PasswordPolicyRuleConditions;

@@ -14,11 +14,12 @@
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
 import Resource from '../resource';
+import Client from '../client';
 import CsrMetadataSubject from './CsrMetadataSubject';
 import CsrMetadataSubjectAltNames from './CsrMetadataSubjectAltNames';
 
 declare class CsrMetadata extends Resource {
-  constructor(resourceJson: string, client: any);
+  constructor(resourceJson: Record<string, unknown>, client: Client);
 
   subject: CsrMetadataSubject;
   subjectAltNames: CsrMetadataSubjectAltNames;

@@ -17,7 +17,7 @@ import ApplicationCredentials from './ApplicationCredentials';
 import ApplicationCredentialsOAuthClient from './ApplicationCredentialsOAuthClient';
 
 declare class OAuthApplicationCredentials extends ApplicationCredentials {
-  constructor(resourceJson: string, client: any);
+  constructor(resourceJson: Record<string, unknown>, client: Client);
 
   oauthClient: ApplicationCredentialsOAuthClient;
 

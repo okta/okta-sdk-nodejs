@@ -17,7 +17,7 @@ import BrowserPluginApplication from './BrowserPluginApplication';
 import SwaThreeFieldApplicationSettings from './SwaThreeFieldApplicationSettings';
 
 declare class SwaThreeFieldApplication extends BrowserPluginApplication {
-  constructor(resourceJson: string, client: any);
+  constructor(resourceJson: Record<string, unknown>, client: Client);
 
   settings: SwaThreeFieldApplicationSettings;
 

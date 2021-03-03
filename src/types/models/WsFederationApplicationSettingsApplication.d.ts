@@ -17,7 +17,7 @@ import ApplicationSettingsApplication from './ApplicationSettingsApplication';
 
 
 declare class WsFederationApplicationSettingsApplication extends ApplicationSettingsApplication {
-  constructor(resourceJson: string, client: any);
+  constructor(resourceJson: Record<string, unknown>, client: Client);
 
   attributeStatements: string;
   audienceRestriction: string;

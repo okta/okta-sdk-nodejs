@@ -14,11 +14,12 @@
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
 import Resource from '../resource';
+import Client from '../client';
 import GroupCondition from './GroupCondition';
 import UserCondition from './UserCondition';
 
 declare class PolicyPeopleCondition extends Resource {
-  constructor(resourceJson: string, client: any);
+  constructor(resourceJson: Record<string, unknown>, client: Client);
 
   groups: GroupCondition;
   users: UserCondition;

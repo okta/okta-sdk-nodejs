@@ -17,7 +17,7 @@ import ApplicationSettingsApplication from './ApplicationSettingsApplication';
 
 
 declare class BookmarkApplicationSettingsApplication extends ApplicationSettingsApplication {
-  constructor(resourceJson: string, client: any);
+  constructor(resourceJson: Record<string, unknown>, client: Client);
 
   requestIntegration: boolean;
   url: string;

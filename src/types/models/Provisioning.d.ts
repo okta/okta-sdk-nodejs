@@ -14,11 +14,12 @@
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
 import Resource from '../resource';
+import Client from '../client';
 import ProvisioningConditions from './ProvisioningConditions';
 import ProvisioningGroups from './ProvisioningGroups';
 
 declare class Provisioning extends Resource {
-  constructor(resourceJson: string, client: any);
+  constructor(resourceJson: Record<string, unknown>, client: Client);
 
   action: string;
   conditions: ProvisioningConditions;

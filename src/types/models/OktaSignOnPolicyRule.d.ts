@@ -18,7 +18,7 @@ import OktaSignOnPolicyRuleActions from './OktaSignOnPolicyRuleActions';
 import OktaSignOnPolicyRuleConditions from './OktaSignOnPolicyRuleConditions';
 
 declare class OktaSignOnPolicyRule extends PolicyRule {
-  constructor(resourceJson: string, client: any);
+  constructor(resourceJson: Record<string, unknown>, client: Client);
 
   actions: OktaSignOnPolicyRuleActions;
   conditions: OktaSignOnPolicyRuleConditions;

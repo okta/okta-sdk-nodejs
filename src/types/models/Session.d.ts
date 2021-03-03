@@ -14,11 +14,12 @@
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
 import Resource from '../resource';
+import Client from '../client';
 import SessionIdentityProvider from './SessionIdentityProvider';
 import SessionStatus from './SessionStatus';
 
 declare class Session extends Resource {
-  constructor(resourceJson: string, client: any);
+  constructor(resourceJson: Record<string, unknown>, client: Client);
 
   readonly _links: {
     [name: string]: unknown;

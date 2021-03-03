@@ -17,7 +17,7 @@ import ApplicationSettings from './ApplicationSettings';
 import SamlApplicationSettingsSignOn from './SamlApplicationSettingsSignOn';
 
 declare class SamlApplicationSettings extends ApplicationSettings {
-  constructor(resourceJson: string, client: any);
+  constructor(resourceJson: Record<string, unknown>, client: Client);
 
   signOn: SamlApplicationSettingsSignOn;
 

@@ -14,11 +14,12 @@
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
 import Resource from '../resource';
+import Client from '../client';
 import LogGeographicalContext from './LogGeographicalContext';
 import LogUserAgent from './LogUserAgent';
 
 declare class LogClient extends Resource {
-  constructor(resourceJson: string, client: any);
+  constructor(resourceJson: Record<string, unknown>, client: Client);
 
   readonly device: string;
   readonly geographicalContext: LogGeographicalContext;

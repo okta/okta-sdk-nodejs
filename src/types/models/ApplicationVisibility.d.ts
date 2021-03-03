@@ -14,10 +14,11 @@
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
 import Resource from '../resource';
+import Client from '../client';
 import ApplicationVisibilityHide from './ApplicationVisibilityHide';
 
 declare class ApplicationVisibility extends Resource {
-  constructor(resourceJson: string, client: any);
+  constructor(resourceJson: Record<string, unknown>, client: Client);
 
   appLinks: {
     [name: string]: unknown;

@@ -17,7 +17,7 @@ import ApplicationSettings from './ApplicationSettings';
 import OpenIdConnectApplicationSettingsClient from './OpenIdConnectApplicationSettingsClient';
 
 declare class OpenIdConnectApplicationSettings extends ApplicationSettings {
-  constructor(resourceJson: string, client: any);
+  constructor(resourceJson: Record<string, unknown>, client: Client);
 
   oauthClient: OpenIdConnectApplicationSettingsClient;
 

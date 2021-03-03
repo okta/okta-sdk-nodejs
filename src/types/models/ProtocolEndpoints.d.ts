@@ -14,10 +14,11 @@
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
 import Resource from '../resource';
+import Client from '../client';
 import ProtocolEndpoint from './ProtocolEndpoint';
 
 declare class ProtocolEndpoints extends Resource {
-  constructor(resourceJson: string, client: any);
+  constructor(resourceJson: Record<string, unknown>, client: Client);
 
   acs: ProtocolEndpoint;
   authorization: ProtocolEndpoint;

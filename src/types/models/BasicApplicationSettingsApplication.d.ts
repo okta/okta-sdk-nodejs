@@ -17,7 +17,7 @@ import ApplicationSettingsApplication from './ApplicationSettingsApplication';
 
 
 declare class BasicApplicationSettingsApplication extends ApplicationSettingsApplication {
-  constructor(resourceJson: string, client: any);
+  constructor(resourceJson: Record<string, unknown>, client: Client);
 
   authURL: string;
   url: string;

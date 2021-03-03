@@ -17,7 +17,7 @@ import UserFactor from './UserFactor';
 import CustomHotpUserFactorProfile from './CustomHotpUserFactorProfile';
 
 declare class CustomHotpUserFactor extends UserFactor {
-  constructor(resourceJson: string, client: any);
+  constructor(resourceJson: Record<string, unknown>, client: Client);
 
   factorProfileId: string;
   profile: CustomHotpUserFactorProfile;

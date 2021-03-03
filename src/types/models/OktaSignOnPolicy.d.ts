@@ -17,7 +17,7 @@ import Policy from './Policy';
 
 
 declare class OktaSignOnPolicy extends Policy {
-  constructor(resourceJson: string, client: any);
+  constructor(resourceJson: Record<string, unknown>, client: Client);
 
 
 }

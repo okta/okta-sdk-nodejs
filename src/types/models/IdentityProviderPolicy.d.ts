@@ -19,7 +19,7 @@ import Provisioning from './Provisioning';
 import PolicySubject from './PolicySubject';
 
 declare class IdentityProviderPolicy extends Policy {
-  constructor(resourceJson: string, client: any);
+  constructor(resourceJson: Record<string, unknown>, client: Client);
 
   accountLink: PolicyAccountLink;
   maxClockSkew: number;

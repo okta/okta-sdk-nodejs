@@ -17,7 +17,7 @@ import Policy from './Policy';
 import PasswordPolicySettings from './PasswordPolicySettings';
 
 declare class PasswordPolicy extends Policy {
-  constructor(resourceJson: string, client: any);
+  constructor(resourceJson: Record<string, unknown>, client: Client);
 
   settings: PasswordPolicySettings;
 

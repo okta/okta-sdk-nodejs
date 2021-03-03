@@ -14,6 +14,7 @@
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
 import Resource from '../resource';
+import Client from '../client';
 import LogActor from './LogActor';
 import LogAuthenticationContext from './LogAuthenticationContext';
 import LogClient from './LogClient';
@@ -25,7 +26,7 @@ import LogSeverity from './LogSeverity';
 import LogTransaction from './LogTransaction';
 
 declare class LogEvent extends Resource {
-  constructor(resourceJson: string, client: any);
+  constructor(resourceJson: Record<string, unknown>, client: Client);
 
   readonly actor: LogActor;
   readonly authenticationContext: LogAuthenticationContext;

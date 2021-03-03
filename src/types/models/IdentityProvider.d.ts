@@ -14,6 +14,7 @@
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
 import Resource from '../resource';
+import Client from '../client';
 import Collection from '../collection';
 import CsrMetadata from './CsrMetadata';
 import Csr from './Csr';
@@ -24,7 +25,7 @@ import IdentityProviderPolicy from './IdentityProviderPolicy';
 import Protocol from './Protocol';
 
 declare class IdentityProvider extends Resource {
-  constructor(resourceJson: string, client: any);
+  constructor(resourceJson: Record<string, unknown>, client: Client);
 
   readonly _links: {
     [name: string]: unknown;

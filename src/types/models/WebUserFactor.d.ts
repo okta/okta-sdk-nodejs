@@ -17,7 +17,7 @@ import UserFactor from './UserFactor';
 import WebUserFactorProfile from './WebUserFactorProfile';
 
 declare class WebUserFactor extends UserFactor {
-  constructor(resourceJson: string, client: any);
+  constructor(resourceJson: Record<string, unknown>, client: Client);
 
   profile: WebUserFactorProfile;
 

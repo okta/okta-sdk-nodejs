@@ -14,6 +14,7 @@
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
 import Resource from '../resource';
+import Client from '../client';
 import OpenIdConnectApplicationType from './OpenIdConnectApplicationType';
 import OpenIdConnectApplicationConsentMethod from './OpenIdConnectApplicationConsentMethod';
 import OpenIdConnectApplicationIssuerMode from './OpenIdConnectApplicationIssuerMode';
@@ -21,7 +22,7 @@ import OpenIdConnectApplicationSettingsClientKeys from './OpenIdConnectApplicati
 import OpenIdConnectApplicationSettingsRefreshToken from './OpenIdConnectApplicationSettingsRefreshToken';
 
 declare class OpenIdConnectApplicationSettingsClient extends Resource {
-  constructor(resourceJson: string, client: any);
+  constructor(resourceJson: Record<string, unknown>, client: Client);
 
   application_type: OpenIdConnectApplicationType;
   client_uri: string;

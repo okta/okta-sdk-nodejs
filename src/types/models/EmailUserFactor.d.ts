@@ -17,7 +17,7 @@ import UserFactor from './UserFactor';
 import EmailUserFactorProfile from './EmailUserFactorProfile';
 
 declare class EmailUserFactor extends UserFactor {
-  constructor(resourceJson: string, client: any);
+  constructor(resourceJson: Record<string, unknown>, client: Client);
 
   profile: EmailUserFactorProfile;
 

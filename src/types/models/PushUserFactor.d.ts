@@ -18,7 +18,7 @@ import FactorResultType from './FactorResultType';
 import PushUserFactorProfile from './PushUserFactorProfile';
 
 declare class PushUserFactor extends UserFactor {
-  constructor(resourceJson: string, client: any);
+  constructor(resourceJson: Record<string, unknown>, client: Client);
 
   expiresAt: string;
   factorResult: FactorResultType;

@@ -14,12 +14,13 @@
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
 import Resource from '../resource';
+import Client from '../client';
 import RoleAssignmentType from './RoleAssignmentType';
 import RoleStatus from './RoleStatus';
 import RoleType from './RoleType';
 
 declare class Role extends Resource {
-  constructor(resourceJson: string, client: any);
+  constructor(resourceJson: Record<string, unknown>, client: Client);
 
   readonly _embedded: {
     [name: string]: unknown;

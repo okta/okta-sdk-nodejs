@@ -14,11 +14,12 @@
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
 import Resource from '../resource';
+import Client from '../client';
 import PasswordPolicyAuthenticationProviderCondition from './PasswordPolicyAuthenticationProviderCondition';
 import PolicyPeopleCondition from './PolicyPeopleCondition';
 
 declare class PasswordPolicyConditions extends Resource {
-  constructor(resourceJson: string, client: any);
+  constructor(resourceJson: Record<string, unknown>, client: Client);
 
   authProvider: PasswordPolicyAuthenticationProviderCondition;
   people: PolicyPeopleCondition;

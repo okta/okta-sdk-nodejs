@@ -14,10 +14,11 @@
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
 import Resource from '../resource';
+import Client from '../client';
 import PasswordPolicyRecoveryQuestionProperties from './PasswordPolicyRecoveryQuestionProperties';
 
 declare class PasswordPolicyRecoveryQuestion extends Resource {
-  constructor(resourceJson: string, client: any);
+  constructor(resourceJson: Record<string, unknown>, client: Client);
 
   readonly properties: PasswordPolicyRecoveryQuestionProperties;
   readonly status: string;

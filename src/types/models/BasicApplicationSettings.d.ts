@@ -17,7 +17,7 @@ import ApplicationSettings from './ApplicationSettings';
 import BasicApplicationSettingsApplication from './BasicApplicationSettingsApplication';
 
 declare class BasicApplicationSettings extends ApplicationSettings {
-  constructor(resourceJson: string, client: any);
+  constructor(resourceJson: Record<string, unknown>, client: Client);
 
   app: BasicApplicationSettingsApplication;
 

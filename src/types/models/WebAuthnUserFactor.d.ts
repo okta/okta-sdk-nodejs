@@ -17,7 +17,7 @@ import UserFactor from './UserFactor';
 import WebAuthnUserFactorProfile from './WebAuthnUserFactorProfile';
 
 declare class WebAuthnUserFactor extends UserFactor {
-  constructor(resourceJson: string, client: any);
+  constructor(resourceJson: Record<string, unknown>, client: Client);
 
   profile: WebAuthnUserFactorProfile;
 

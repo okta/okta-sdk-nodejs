@@ -17,7 +17,7 @@ import BrowserPluginApplication from './BrowserPluginApplication';
 import SwaApplicationSettings from './SwaApplicationSettings';
 
 declare class SwaApplication extends BrowserPluginApplication {
-  constructor(resourceJson: string, client: any);
+  constructor(resourceJson: Record<string, unknown>, client: Client);
 
   settings: SwaApplicationSettings;
 

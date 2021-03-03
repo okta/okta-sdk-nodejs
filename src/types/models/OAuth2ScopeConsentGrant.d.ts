@@ -14,12 +14,13 @@
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
 import Resource from '../resource';
+import Client from '../client';
 import OAuth2Actor from './OAuth2Actor';
 import OAuth2ScopeConsentGrantSource from './OAuth2ScopeConsentGrantSource';
 import OAuth2ScopeConsentGrantStatus from './OAuth2ScopeConsentGrantStatus';
 
 declare class OAuth2ScopeConsentGrant extends Resource {
-  constructor(resourceJson: string, client: any);
+  constructor(resourceJson: Record<string, unknown>, client: Client);
 
   readonly _embedded: {
     [name: string]: unknown;

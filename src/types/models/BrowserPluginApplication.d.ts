@@ -17,7 +17,7 @@ import Application from './Application';
 import SchemeApplicationCredentials from './SchemeApplicationCredentials';
 
 declare class BrowserPluginApplication extends Application {
-  constructor(resourceJson: string, client: any);
+  constructor(resourceJson: Record<string, unknown>, client: Client);
 
   credentials: SchemeApplicationCredentials;
 
