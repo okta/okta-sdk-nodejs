@@ -10,5 +10,25 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
-declare function defaultCacheMiddleware(ctx: Record<string, unknown>, next: () => Promise<Resource>): Promise<any>;
+import { Response } from 'node-fetch';
+import MemoryStore from "./memory-store";
+import RequestOptions from "./request-options";
+
+
+export type defaultCacheMiddlewareFunctionType = (ctx: {
+  isCollection?: boolean,
+  resources?: string[],
+  res?: Response,
+  req: RequestOptions,
+  cacheStore: MemoryStore | unknown,
+}, next: () => Promise<Response>) => Promise<Response>;
+
+declare function defaultCacheMiddleware(ctx: {
+  isCollection?: boolean,
+  resources?: string[],
+  res?: Response,
+  req: RequestOptions,
+  cacheStore: MemoryStore | unknown,
+}, next: () => Promise<Response>): Promise<Response>;
+
 export default defaultCacheMiddleware;

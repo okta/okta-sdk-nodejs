@@ -12,13 +12,42 @@
 
 import Client from "./client";
 
+
+export interface TokenEndpointResponse {
+  access_token: string,
+  token_type: string,
+  expires_in: number,
+  scope: string,
+}
+
+// import from okta-auth-js?
+export interface JWTObject {
+    header: JWTHeader;
+    payload: UserClaims;
+    signature: string;
+}
+
+interface JWTHeader {
+    alg: string;
+    typ?: string;
+    kid?: string;
+    jku?: string;
+    x5u?: string;
+    x5t?: string;
+}
+
+interface UserClaims {
+    sub: string;
+    [properties: string]: unknown;
+}
+
 declare class OAuth {
     constructor(client: Client);
     client: Client;
-    accessToken: any;
-    getAccessToken(): any;
+    accessToken: TokenEndpointResponse;
+    getAccessToken(): Promise<TokenEndpointResponse>;
     clearCachedAccessToken(): void;
-    getJwt(endpoint: string): any;
+    getJwt(endpoint: string): JWTObject;
 }
 
 export default OAuth;

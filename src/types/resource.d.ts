@@ -13,7 +13,7 @@
 import Client from "./client";
 
 declare class Resource {
-  constructor(resourceJson: Record<string, Unknown>, client: Client);
+  constructor(resourceJson: Record<string, unknown>, client: Client);
 }
 
 export default Resource;

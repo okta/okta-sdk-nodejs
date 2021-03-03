@@ -10,19 +10,19 @@
  *
  * See the License for the specific language governing permissions and limitations under the License.
  */
-
+import { Headers } from 'node-fetch';
 
 declare class OktaApiError extends Error {
-    constructor(url: string, status: number | string, responseBody: any, headers: any);
+    constructor(url: string, status: number, responseBody: Record<string, unknown>, headers: Headers);
     name: string;
-    status: string | number;
-    errorCode: any;
-    errorSummary: any;
-    errorCauses: any;
-    errorLink: any;
-    errorId: any;
+    status: number;
+    errorCode: string | number;
+    errorSummary: string;
+    errorCauses: string;
+    errorLink: string;
+    errorId: string;
     url: string;
-    headers: any;
+    headers: Headers;
     stack: string;
     message: string;
 }

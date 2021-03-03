@@ -11,11 +11,12 @@
  */
 
 import Client from "./client";
+import Resource from "./resource";
 
 declare class ModelFactory {
-    constructor(Ctor: new () => T);
-    Ctor: new () => T;
-    createInstance(resource: string, client: Client): T;
+    constructor(Ctor: typeof Resource);
+    Ctor: typeof Resource;
+    createInstance(resource: Record<string, unknown>, client: Client): Resource;
 }
 
 export default ModelFactory;

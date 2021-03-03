@@ -10,29 +10,35 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
-import Request from './request';
+import RequestOptions from './request-options';
 import ModelFactory from './model-factory';
 import ModelResolutionFactory from './resolution-factory';
 import Client from './client';
 import Resource from './resource';
 
 declare class Collection {
-    constructor(client: Client, uri: string, factory: ModelFactory | ModelResolutionFactory, request?: Request);
+    constructor(client: Client, uri: string, factory: ModelFactory | ModelResolutionFactory, request?: RequestOptions);
     nextUri: string;
     client: Client;
     factory: ModelFactory | ModelResolutionFactory;
-    currentItems: any[];
-    request: Request;
-    next(): Promise<any>;
+    currentItems: Record<string, unknown>[];
+    request: RequestOptions;
+    next(): Promise<{
+      done: boolean,
+      value: Resource | null
+    }>;
     [Symbol.asyncIterator](): {
-        next: () => Promise<any>;
+        next: () => Promise<{
+            done: boolean,
+            value: Resource | null
+          }>;
     };
-    getNextPage(): any;
-    each(iterator: (resource: Resource) => Promise | false): any;
+    getNextPage(): Promise<Record<string, unknown>>;
+    each(iterator: (item: Resource) => void | Promise<unknown> | boolean): Promise<unknown>;
     subscribe(config: {
         interval: number;
-        next: () => Promise<Resource>|Promise<{done: boolean, value: null}>;
-        error: (Error) => void;
+        next: (item: Resource) => void | Promise<unknown>;
+        error: (e: Error) => Promise<unknown>;
         complete: () => void;
     }): {
         unsubscribe(): void;
