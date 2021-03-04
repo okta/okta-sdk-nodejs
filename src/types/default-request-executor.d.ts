@@ -30,8 +30,8 @@ declare class DefaultRequestExecutor extends RequestExecutor {
     getRateLimitReset(response: Response): string;
     getResponseDate(response: Response): string;
     getRetryDelayMs(response: Response): number;
-    parseResponse(request: Request, response: Response): Response | Promise<Response> | Promise<Error>;
-    maxRetriesReached(request: Request): boolean;
+    parseResponse(request: RequestOptions, response: Response): Response | Promise<Response | Error>;
+    maxRetriesReached(request: RequestOptions): boolean;
     retryRequest(request: RequestOptions, response: Response, delayMs: number): Promise<Response>;
 }
 

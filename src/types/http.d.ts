@@ -14,7 +14,7 @@ import OAuth from "./oauth";
 import { Response } from 'node-fetch';
 import MemoryStore from './memory-store';
 import RequestExecutor from './request-executor';
-import { defaultCacheMiddlewareFunctionType } from './default-cache-middleware';
+import defaultCacheMiddleware from './default-cache-middleware';
 import RequestOptions from "./request-options";
 
 declare interface RequestContext {
@@ -28,12 +28,12 @@ declare class Http {
         requestExecutor: RequestExecutor,
         oauth: OAuth,
         cacheStore?: MemoryStore | unknown,
-        cacheMiddleware?: defaultCacheMiddlewareFunctionType | unknown,
+        cacheMiddleware?: typeof defaultCacheMiddleware | unknown,
     });
     defaultHeaders: Record<string, unknown>;
     requestExecutor: RequestExecutor;
     cacheStore: MemoryStore | unknown;
-    cacheMiddleware: defaultCacheMiddlewareFunctionType | unknown;
+    cacheMiddleware: typeof defaultCacheMiddleware | unknown;
     oauth: OAuth;
     prepareRequest(request: RequestOptions): Promise<RequestOptions>;
     http(uri: string, request?: RequestOptions, context?: {
