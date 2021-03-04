@@ -22,12 +22,8 @@ import { RoleType } from './RoleType';
 declare class Role extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
 
-  readonly _embedded: {
-    [name: string]: unknown;
-  };
-  readonly _links: {
-    [name: string]: unknown;
-  };
+  readonly _embedded: {[name: string]: unknown};
+  readonly _links: {[name: string]: unknown};
   assignmentType: RoleAssignmentType;
   readonly created: string;
   description: string;

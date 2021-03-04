@@ -20,12 +20,8 @@ import { AppUserCredentials } from './AppUserCredentials';
 declare class AppUser extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
 
-  readonly _embedded: {
-    [name: string]: unknown;
-  };
-  readonly _links: {
-    [name: string]: unknown;
-  };
+  readonly _embedded: {[name: string]: unknown};
+  readonly _links: {[name: string]: unknown};
   readonly created: string;
   credentials: AppUserCredentials;
   readonly externalId: string;
@@ -33,9 +29,7 @@ declare class AppUser extends Resource {
   readonly lastSync: string;
   readonly lastUpdated: string;
   readonly passwordChanged: string;
-  profile: {
-    [name: string]: unknown;
-  };
+  profile: {[name: string]: unknown};
   scope: string;
   readonly status: string;
   readonly statusChanged: string;

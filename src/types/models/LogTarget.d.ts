@@ -21,9 +21,7 @@ declare class LogTarget extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
 
   readonly alternateId: string;
-  readonly detailEntry: {
-    [name: string]: unknown;
-  };
+  readonly detailEntry: {[name: string]: unknown};
   readonly displayName: string;
   readonly id: string;
   readonly type: string;

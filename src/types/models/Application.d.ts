@@ -33,12 +33,8 @@ import { ApplicationVisibility } from './ApplicationVisibility';
 declare class Application extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
 
-  readonly _embedded: {
-    [name: string]: unknown;
-  };
-  readonly _links: {
-    [name: string]: unknown;
-  };
+  readonly _embedded: {[name: string]: unknown};
+  readonly _links: {[name: string]: unknown};
   accessibility: ApplicationAccessibility;
   readonly created: string;
   credentials: ApplicationCredentials;
@@ -48,9 +44,7 @@ declare class Application extends Resource {
   readonly lastUpdated: string;
   licensing: ApplicationLicensing;
   readonly name: string;
-  profile: {
-    [name: string]: unknown;
-  };
+  profile: {[name: string]: unknown};
   settings: ApplicationSettings;
   signOnMode: ApplicationSignOnMode;
   readonly status: string;

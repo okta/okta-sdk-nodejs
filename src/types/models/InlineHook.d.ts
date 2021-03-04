@@ -24,9 +24,7 @@ import { InlineHookType } from './InlineHookType';
 declare class InlineHook extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
 
-  readonly _links: {
-    [name: string]: unknown;
-  };
+  readonly _links: {[name: string]: unknown};
   channel: InlineHookChannel;
   readonly created: string;
   readonly id: string;

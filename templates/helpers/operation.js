@@ -314,8 +314,8 @@ const convertSwaggerToTSType = swaggerType => {
     array: '[]',
     integer: 'number',
     double: 'number',
-    hash: '{\n    [name: string]: unknown;\n  }',
-    dateTime: 'string', // needs converting to Date?
+    hash: '{[name: string]: unknown}',
+    dateTime: 'string',
     password: 'string',
   }[swaggerType] || swaggerType;
 };

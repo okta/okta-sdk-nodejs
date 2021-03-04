@@ -23,9 +23,7 @@ import { FeatureType } from './FeatureType';
 declare class Feature extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
 
-  readonly _links: {
-    [name: string]: unknown;
-  };
+  readonly _links: {[name: string]: unknown};
   description: string;
   readonly id: string;
   name: string;

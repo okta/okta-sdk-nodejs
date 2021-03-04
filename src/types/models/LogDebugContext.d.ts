@@ -20,9 +20,7 @@ import Client from '../client';
 declare class LogDebugContext extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
 
-  readonly debugData: {
-    [name: string]: unknown;
-  };
+  readonly debugData: {[name: string]: unknown};
 
 }
 

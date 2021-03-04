@@ -21,9 +21,7 @@ import { SessionStatus } from './SessionStatus';
 declare class Session extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
 
-  readonly _links: {
-    [name: string]: unknown;
-  };
+  readonly _links: {[name: string]: unknown};
   readonly amr: [];
   readonly createdAt: string;
   readonly expiresAt: string;

@@ -20,18 +20,12 @@ import Client from '../client';
 declare class ApplicationGroupAssignment extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
 
-  readonly _embedded: {
-    [name: string]: unknown;
-  };
-  readonly _links: {
-    [name: string]: unknown;
-  };
+  readonly _embedded: {[name: string]: unknown};
+  readonly _links: {[name: string]: unknown};
   readonly id: string;
   readonly lastUpdated: string;
   priority: number;
-  profile: {
-    [name: string]: unknown;
-  };
+  profile: {[name: string]: unknown};
 
   delete(): Promise<undefined>;
 }

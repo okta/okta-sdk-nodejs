@@ -15,4 +15,3 @@ import Client from './generated-client';
 export {
   Client
 };
-export * from './models';

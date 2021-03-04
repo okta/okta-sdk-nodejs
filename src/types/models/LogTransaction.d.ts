@@ -20,9 +20,7 @@ import Client from '../client';
 declare class LogTransaction extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
 
-  readonly detail: {
-    [name: string]: unknown;
-  };
+  readonly detail: {[name: string]: unknown};
   readonly id: string;
   readonly type: string;
 

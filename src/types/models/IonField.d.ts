@@ -27,9 +27,7 @@ declare class IonField extends Resource {
   required: boolean;
   secret: boolean;
   type: string;
-  value: {
-    [name: string]: unknown;
-  };
+  value: {[name: string]: unknown};
   visible: boolean;
 
 }
