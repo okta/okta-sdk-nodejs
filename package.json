@@ -15,7 +15,7 @@
     "banners": "./utils/maintain-banners.js",
     "prebuild": "rimraf ./src/models ./src/factories ./src/generated-client.js",
     "build": "okta-sdk-generator -t templates/ -o .",
-    "eslint": "eslint -c src/.eslintrc src/ && eslint -c test/.eslintrc test/it test/unit && eslint -c test/jest/.eslintrc test/jest/ && eslint -c src/.eslintrc utils/ && eslint -c templates/.eslintrc templates",
+    "eslint": "eslint -c src/.eslintrc src/ && eslint -c test/.eslintrc test/it test/unit && eslint -c test/jest/.eslintrc test/jest/ && eslint -c src/.eslintrc utils/",
     "jest": "JEST_JUNIT_OUTPUT_DIR=./test-reports jest --coverage --ci --testResultsProcessor=jest-junit test/jest/*.js",
     "predocs": "rimraf ./jsdocs && mkdir jsdocs/ && ./utils/make-jsdoc-readme.js > ./jsdocs/jsdoc-temp.md",
     "docs": "./node_modules/.bin/jsdoc src/ -c ./docs/config.json -d ./jsdocs/ -P ./package.json -R ./jsdocs/jsdoc-temp.md -r",
