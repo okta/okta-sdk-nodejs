@@ -104,20 +104,8 @@ js.process = ({spec, operations, models, handlebars}) => {
   });
 
   templates.push({
-    src: 'model.index.d.ts.hbs',
-    dest: 'src/types/models/index.d.ts',
-    context: { models }
-  });
-
-  templates.push({
     src: 'factories.index.js.hbs',
     dest: 'src/factories/index.js',
-    context: { models: models.filter(model => model.requiresResolution) }
-  });
-
-  templates.push({
-    src: 'factories.index.d.ts.hbs',
-    dest: 'src/types/factories/index.d.ts',
     context: { models: models.filter(model => model.requiresResolution) }
   });
 
