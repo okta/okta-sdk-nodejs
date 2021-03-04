@@ -109,12 +109,6 @@ js.process = ({spec, operations, models, handlebars}) => {
     context: { models: models.filter(model => model.requiresResolution) }
   });
 
-  templates.push({
-    src: 'factories.index.d.ts.hbs',
-    dest: 'src/types/factories/index.d.ts',
-    context: { models: models.filter(model => model.requiresResolution) }
-  });
-
   // Add helpers
 
   // Register Operation helpers
