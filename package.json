@@ -23,7 +23,8 @@
     "test:integration:ssws": "MOCHA_FILE=./test-reports/it-results.xml OKTA_CLIENT_AUTHORIZATIONMODE=SSWS nyc --reporter=text --reporter=html mocha --reporter=mocha-junit-reporter --reporter-options toConsole=true --retries 2 test/it/*.js --no-timeouts",
     "test:integration:oauth": "OKTA_CLIENT_AUTHORIZATIONMODE=PrivateKey nyc --reporter=text --reporter=html mocha test/it/user-get.js --no-timeouts",
     "test:unit": "MOCHA_FILE=./test-reports/junit-results.xml nyc --reporter=text --reporter=html mocha --reporter=mocha-junit-reporter test/unit/*.js --no-timeouts",
-    "test": "npm run eslint && npm run test:unit && npm run test:integration && npm run jest",
+    "test:types": "tsd",
+    "test": "npm run eslint && npm run test:types && && npm run test:unit && npm run test:integration && npm run jest",
     "aftertest": "mocha test/delete-resources.js --no-timeouts"
   },
   "keywords": [],
