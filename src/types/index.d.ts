@@ -11,7 +11,11 @@
  */
 
 import Client from './client';
+import DefaultRequestExecutor from './default-request-executor';
+import RequestExecutor from './request-executor';
 
 export {
-  Client
+  Client,
+  DefaultRequestExecutor,
+  RequestExecutor,
 };
