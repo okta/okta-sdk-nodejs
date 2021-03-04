@@ -20,9 +20,7 @@ import { CatalogApplicationStatus } from './CatalogApplicationStatus';
 declare class CatalogApplication extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
 
-  readonly _links: {
-    [name: string]: unknown;
-  };
+  readonly _links: {[name: string]: unknown};
   category: string;
   description: string;
   displayName: string;

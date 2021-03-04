@@ -23,12 +23,8 @@ import { PolicyType } from './PolicyType';
 declare class AuthorizationServerPolicy extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
 
-  readonly _embedded: {
-    [name: string]: unknown;
-  };
-  readonly _links: {
-    [name: string]: unknown;
-  };
+  readonly _embedded: {[name: string]: unknown};
+  readonly _links: {[name: string]: unknown};
   conditions: PolicyRuleConditions;
   readonly created: string;
   description: string;

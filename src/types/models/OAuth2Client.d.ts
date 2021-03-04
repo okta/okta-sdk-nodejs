@@ -20,9 +20,7 @@ import Client from '../client';
 declare class OAuth2Client extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
 
-  readonly _links: {
-    [name: string]: unknown;
-  };
+  readonly _links: {[name: string]: unknown};
   readonly client_id: string;
   readonly client_name: string;
   readonly client_uri: string;

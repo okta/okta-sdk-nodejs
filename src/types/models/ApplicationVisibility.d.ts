@@ -20,9 +20,7 @@ import { ApplicationVisibilityHide } from './ApplicationVisibilityHide';
 declare class ApplicationVisibility extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
 
-  appLinks: {
-    [name: string]: unknown;
-  };
+  appLinks: {[name: string]: unknown};
   autoSubmitToolbar: boolean;
   hide: ApplicationVisibilityHide;
 

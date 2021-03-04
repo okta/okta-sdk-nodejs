@@ -20,9 +20,7 @@ import { OAuth2ClaimConditions } from './OAuth2ClaimConditions';
 declare class OAuth2Claim extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
 
-  readonly _links: {
-    [name: string]: unknown;
-  };
+  readonly _links: {[name: string]: unknown};
   alwaysIncludeInToken: boolean;
   claimType: string;
   conditions: OAuth2ClaimConditions;

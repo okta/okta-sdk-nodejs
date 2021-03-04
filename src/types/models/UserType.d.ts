@@ -20,9 +20,7 @@ import Client from '../client';
 declare class UserType extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
 
-  readonly _links: {
-    [name: string]: unknown;
-  };
+  readonly _links: {[name: string]: unknown};
   readonly created: string;
   readonly createdBy: string;
   readonly default: boolean;

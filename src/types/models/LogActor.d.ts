@@ -21,9 +21,7 @@ declare class LogActor extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
 
   readonly alternateId: string;
-  readonly detail: {
-    [name: string]: unknown;
-  };
+  readonly detail: {[name: string]: unknown};
   readonly displayName: string;
   readonly id: string;
   readonly type: string;

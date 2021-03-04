@@ -26,9 +26,7 @@ import { AuthorizationServerCredentials } from './AuthorizationServerCredentials
 declare class AuthorizationServer extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
 
-  readonly _links: {
-    [name: string]: unknown;
-  };
+  readonly _links: {[name: string]: unknown};
   audiences: [];
   readonly created: string;
   credentials: AuthorizationServerCredentials;

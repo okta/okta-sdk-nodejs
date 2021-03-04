@@ -27,9 +27,7 @@ import { Protocol } from './Protocol';
 declare class IdentityProvider extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
 
-  readonly _links: {
-    [name: string]: unknown;
-  };
+  readonly _links: {[name: string]: unknown};
   readonly created: string;
   readonly id: string;
   issuerMode: string;

@@ -21,9 +21,7 @@ import { EventSubscriptions } from './EventSubscriptions';
 declare class EventHook extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
 
-  readonly _links: {
-    [name: string]: unknown;
-  };
+  readonly _links: {[name: string]: unknown};
   channel: EventHookChannel;
   readonly created: string;
   createdBy: string;

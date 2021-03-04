@@ -20,12 +20,8 @@ import { OAuth2Actor } from './OAuth2Actor';
 declare class OAuth2RefreshToken extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
 
-  readonly _embedded: {
-    [name: string]: unknown;
-  };
-  readonly _links: {
-    [name: string]: unknown;
-  };
+  readonly _embedded: {[name: string]: unknown};
+  readonly _links: {[name: string]: unknown};
   clientId: string;
   readonly created: string;
   createdBy: OAuth2Actor;

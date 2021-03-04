@@ -20,9 +20,7 @@ import { LinkedObjectDetails } from './LinkedObjectDetails';
 declare class LinkedObject extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
 
-  readonly _links: {
-    [name: string]: unknown;
-  };
+  readonly _links: {[name: string]: unknown};
   associated: LinkedObjectDetails;
   primary: LinkedObjectDetails;
 
