@@ -24,7 +24,7 @@
     "test:integration:oauth": "OKTA_CLIENT_AUTHORIZATIONMODE=PrivateKey nyc --reporter=text --reporter=html mocha test/it/user-get.js --no-timeouts",
     "test:unit": "MOCHA_FILE=./test-reports/junit-results.xml nyc --reporter=text --reporter=html mocha --reporter=mocha-junit-reporter test/unit/*.js --no-timeouts",
     "test:types": "tsd",
-    "test": "npm run eslint && npm run test:types && && npm run test:unit && npm run test:integration && npm run jest",
+    "test": "npm run eslint && npm run test:types && npm run test:unit && npm run test:integration && npm run jest",
     "aftertest": "mocha test/delete-resources.js --no-timeouts"
   },
   "keywords": [],
