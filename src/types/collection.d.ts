@@ -38,7 +38,7 @@ declare class Collection {
     subscribe(config: {
         interval: number;
         next: (item: Resource) => void | Promise<unknown>;
-        error: (e: Error) => Promise<unknown>;
+        error: (e: Error) => void | Promise<unknown>;
         complete: () => void;
     }): {
         unsubscribe(): void;

@@ -12,6 +12,9 @@ import Http from './http';
 import RequestOptions from './request-options';
 import HttpError from './http-error';
 import DefaultRequestExecutor from './default-request-executor';
+import defaultCacheMiddleware from './default-cache-middleware';
+import Collection from './collection';
+import OktaApiError from './api-error';
 
 
 expectType<Resource>(new Resource({resourceId: 'value'}, new Client({})));
@@ -54,3 +57,38 @@ expectType<Promise<Response>>(httpClient.putJson('https://foo'));
 const httpError = new HttpError('https://foo', 'notok', 'error: notok', {} as Headers);
 expectType<Headers>(httpError.headers);
 expectType<string|number>(httpError.status);
+
+const defaultRequestExecutor = new DefaultRequestExecutor();
+expectType<RequestOptions>(defaultRequestExecutor.buildRetryRequest({} as RequestOptions, 'requestId', 100));
+expectType<string>(defaultRequestExecutor.getOktaRequestId({} as Response));
+expectType<string>(defaultRequestExecutor.getRateLimitReset({} as Response));
+expectType<string>(defaultRequestExecutor.getResponseDate({} as Response));
+expectType<number>(defaultRequestExecutor.getRetryDelayMs({} as Response));
+expectType<Response | Promise<Response | Error>>(defaultRequestExecutor.parseResponse({} as RequestOptions, {} as Response));
+expectType<boolean>(defaultRequestExecutor.maxRetriesReached({} as RequestOptions));
+expectType<Promise<Response>>(defaultRequestExecutor.retryRequest({} as RequestOptions, {} as Response, 100));
+
+const cacheMiddleware = defaultCacheMiddleware;
+expectType<Promise<Response>>(cacheMiddleware({
+    req: {} as RequestOptions,
+    cacheStore: {}
+  },
+  () => Promise.resolve({} as Response)
+));
+
+const collection = new Collection(new Client({}), 'https://foo', new ModelFactory(Resource));
+expectType<Promise<unknown>>(collection.each(
+  (item) => Promise.resolve(item)
+));
+expectType<Promise<Record<string, unknown>>>(collection.getNextPage());
+expectType<Promise<{done: boolean, value: Resource | null}>>(collection.next());
+collection.subscribe({
+  interval: 100,
+  next: () => void(0),
+  error: e => Promise.resolve(),
+  complete: () => void(0)
+});
+
+const apiError = new OktaApiError('https://foo', 403, {errorSummary: 'notok'}, {} as Headers);
+expectType<string>(apiError.errorSummary);
+expectType<string>(apiError.errorCauses);
