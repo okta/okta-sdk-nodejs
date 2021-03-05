@@ -10,7 +10,7 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
-import Client from "./client";
+import Client from './client';
 
 
 export interface TokenEndpointResponse {
@@ -22,32 +22,33 @@ export interface TokenEndpointResponse {
 
 // import from okta-auth-js?
 export interface JWTObject {
-    header: JWTHeader;
-    payload: UserClaims;
-    signature: string;
+  header: JWTHeader;
+  payload: UserClaims;
+  signature: string;
 }
 
 interface JWTHeader {
-    alg: string;
-    typ?: string;
-    kid?: string;
-    jku?: string;
-    x5u?: string;
-    x5t?: string;
+  alg: string;
+  typ?: string;
+  kid?: string;
+  jku?: string;
+  x5u?: string;
+  x5t?: string;
 }
 
 interface UserClaims {
-    sub: string;
-    [properties: string]: unknown;
+  sub: string;
+  [properties: string]: unknown;
 }
 
 declare class OAuth {
-    constructor(client: Client);
-    client: Client;
-    accessToken: TokenEndpointResponse;
-    getAccessToken(): Promise<TokenEndpointResponse>;
-    clearCachedAccessToken(): void;
-    getJwt(endpoint: string): JWTObject;
+  constructor(client: Client);
+
+  client: Client;
+  accessToken: TokenEndpointResponse;
+  getAccessToken(): Promise<TokenEndpointResponse>;
+  clearCachedAccessToken(): void;
+  getJwt(endpoint: string): JWTObject;
 }
 
 export default OAuth;

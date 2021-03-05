@@ -10,46 +10,46 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
-import OAuth from "./oauth";
+import OAuth from './oauth';
 import { Response } from 'node-fetch';
 import MemoryStore from './memory-store';
 import RequestExecutor from './request-executor';
 import defaultCacheMiddleware from './default-cache-middleware';
-import RequestOptions from "./request-options";
+import RequestOptions from './request-options';
 
-declare interface RequestContext {
+interface RequestContext {
   isCollection?: boolean,
   resources?: string[],
 }
 
 declare class Http {
-    static errorFilter(response: Response): Promise<Response>;
-    constructor(httpConfig: {
-        requestExecutor: RequestExecutor,
-        oauth: OAuth,
-        cacheStore?: MemoryStore | unknown,
-        cacheMiddleware?: typeof defaultCacheMiddleware | unknown,
-    });
-    defaultHeaders: Record<string, unknown>;
-    requestExecutor: RequestExecutor;
-    cacheStore: MemoryStore | unknown;
-    cacheMiddleware: typeof defaultCacheMiddleware | unknown;
-    oauth: OAuth;
-    prepareRequest(request: RequestOptions): Promise<RequestOptions>;
-    http(uri: string, request?: RequestOptions, context?: {
-        isCollection: boolean,
-        resources: string[],
-    }): Promise<Response>;
-    delete(uri: string, request?: RequestOptions, context?: {
-        isCollection: boolean,
-        resources: string[],
-    }): Promise<Response>;
-    json(uri: string, request?: RequestOptions, context?: RequestContext): Promise<Record<string, unknown>>;
-    getJson(uri: string, request?: RequestOptions, context?: RequestContext): Promise<Record<string, unknown>>;
-    post(uri: string, request?: RequestOptions, context?: RequestContext): Promise<Response>;
-    postJson(uri: string, request?: RequestOptions, context?: RequestContext): Promise<Response>;
-    putJson(uri: string, request?: RequestOptions, context?: RequestContext): Promise<Response>;
-    put(uri: string, request?: RequestOptions, context?: RequestContext): Promise<Response>;
+  static errorFilter(response: Response): Promise<Response>;
+  constructor(httpConfig: {
+    requestExecutor: RequestExecutor,
+    oauth: OAuth,
+    cacheStore?: MemoryStore | unknown,
+    cacheMiddleware?: typeof defaultCacheMiddleware | unknown,
+  });
+  defaultHeaders: Record<string, unknown>;
+  requestExecutor: RequestExecutor;
+  cacheStore: MemoryStore | unknown;
+  cacheMiddleware: typeof defaultCacheMiddleware | unknown;
+  oauth: OAuth;
+  prepareRequest(request: RequestOptions): Promise<RequestOptions>;
+  http(uri: string, request?: RequestOptions, context?: {
+      isCollection: boolean,
+      resources: string[],
+  }): Promise<Response>;
+  delete(uri: string, request?: RequestOptions, context?: {
+      isCollection: boolean,
+      resources: string[],
+  }): Promise<Response>;
+  json(uri: string, request?: RequestOptions, context?: RequestContext): Promise<Record<string, unknown>>;
+  getJson(uri: string, request?: RequestOptions, context?: RequestContext): Promise<Record<string, unknown>>;
+  post(uri: string, request?: RequestOptions, context?: RequestContext): Promise<Response>;
+  postJson(uri: string, request?: RequestOptions, context?: RequestContext): Promise<Response>;
+  putJson(uri: string, request?: RequestOptions, context?: RequestContext): Promise<Response>;
+  put(uri: string, request?: RequestOptions, context?: RequestContext): Promise<Response>;
 }
 
 export default Http;

@@ -5,6 +5,45 @@
     "ecmaVersion": 6,
     "sourceType": "module"
   },
+  "rules": {
+    "curly": [
+      2
+    ],
+    "eol-last": ["error", "always"],
+    "indent": [
+      2,
+      2
+    ],
+    "linebreak-style": [
+      2,
+      "unix"
+    ],
+    "no-trailing-spaces": [
+      2
+    ],
+    "quotes": [
+      2,
+      "single"
+    ],
+    "semi": [
+      2,
+      "always"
+    ],
+    "brace-style": 2,
+    "block-spacing": [
+      2,
+      "always"
+    ],
+    "keyword-spacing": [2, {"before": true, "after": true, "overrides": {}}],
+    "space-before-blocks": 2,
+    "space-before-function-paren": [2, {"anonymous": "always", "named": "never"}],
+    "comma-spacing": [2, {"before": false, "after": true}],
+    "comma-style": [2, "last"],
+    "array-bracket-spacing": [2, "never"],
+    "no-spaced-func": [2],
+    "space-in-parens": [2, "never"],
+    "space-infix-ops": 2
+  },
   "plugins": [
     "@typescript-eslint"
   ],

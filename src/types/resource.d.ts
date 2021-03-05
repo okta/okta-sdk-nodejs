@@ -10,7 +10,7 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
-import Client from "./client";
+import Client from './client';
 
 declare class Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);

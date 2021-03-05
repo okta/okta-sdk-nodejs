@@ -11,28 +11,29 @@
  */
 
 import { Response } from 'node-fetch';
-import RequestExecutor from "./request-executor";
-import RequestOptions from "./request-options";
+import RequestExecutor from './request-executor';
+import RequestOptions from './request-options';
 
 
 declare class DefaultRequestExecutor extends RequestExecutor {
-    constructor(config?: {
-        maxRetries: number,
-        requestTimeout: number,
-    });
-    requestTimeout: number;
-    maxRetries: number;
-    retryCountHeader: string;
-    retryForHeader: string;
-    buildRetryRequest(request: RequestOptions, requestId: string, delayMs: number): RequestOptions;
-    validateRetryResponseHeaders(response: Response): boolean;
-    getOktaRequestId(response: Response): string;
-    getRateLimitReset(response: Response): string;
-    getResponseDate(response: Response): string;
-    getRetryDelayMs(response: Response): number;
-    parseResponse(request: RequestOptions, response: Response): Response | Promise<Response | Error>;
-    maxRetriesReached(request: RequestOptions): boolean;
-    retryRequest(request: RequestOptions, response: Response, delayMs: number): Promise<Response>;
+  constructor(config?: {
+    maxRetries: number,
+    requestTimeout: number,
+  });
+
+  requestTimeout: number;
+  maxRetries: number;
+  retryCountHeader: string;
+  retryForHeader: string;
+  buildRetryRequest(request: RequestOptions, requestId: string, delayMs: number): RequestOptions;
+  validateRetryResponseHeaders(response: Response): boolean;
+  getOktaRequestId(response: Response): string;
+  getRateLimitReset(response: Response): string;
+  getResponseDate(response: Response): string;
+  getRetryDelayMs(response: Response): number;
+  parseResponse(request: RequestOptions, response: Response): Response | Promise<Response | Error>;
+  maxRetriesReached(request: RequestOptions): boolean;
+  retryRequest(request: RequestOptions, response: Response, delayMs: number): Promise<Response>;
 }
 
 export default DefaultRequestExecutor;

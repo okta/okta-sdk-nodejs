@@ -11,8 +11,8 @@
  */
 
 import { Response } from 'node-fetch';
-import MemoryStore from "./memory-store";
-import RequestOptions from "./request-options";
+import MemoryStore from './memory-store';
+import RequestOptions from './request-options';
 
 declare function defaultCacheMiddleware(ctx: {
   isCollection?: boolean,

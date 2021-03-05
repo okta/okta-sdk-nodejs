@@ -11,10 +11,10 @@
  */
 
 import { Response } from 'node-fetch';
-import EventEmitter_1 = require("events");
+import EventEmitter_1 = require('events');
 import EventEmitter = EventEmitter_1.EventEmitter;
 
-import RequestOptions from "./request-options";
+import RequestOptions from './request-options';
 
 
 declare class RequestExecutor extends EventEmitter {

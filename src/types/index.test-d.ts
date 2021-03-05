@@ -69,12 +69,13 @@ expectType<boolean>(defaultRequestExecutor.maxRetriesReached({} as RequestOption
 expectType<Promise<Response>>(defaultRequestExecutor.retryRequest({} as RequestOptions, {} as Response, 100));
 
 const cacheMiddleware = defaultCacheMiddleware;
-expectType<Promise<Response>>(cacheMiddleware({
+expectType<Promise<Response>>(
+  cacheMiddleware({
     req: {} as RequestOptions,
     cacheStore: {}
   },
-  () => Promise.resolve({} as Response)
-));
+  () => Promise.resolve({} as Response))
+);
 
 const collection = new Collection(new Client({}), 'https://foo', new ModelFactory(Resource));
 expectType<Promise<unknown>>(collection.each(
