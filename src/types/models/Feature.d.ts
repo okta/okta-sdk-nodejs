@@ -15,7 +15,6 @@
 
 import Resource from '../resource';
 import Client from '../client';
-import Collection from '../collection';
 import { FeatureStage } from './FeatureStage';
 import { EnabledStatus } from './EnabledStatus';
 import { FeatureType } from './FeatureType';
