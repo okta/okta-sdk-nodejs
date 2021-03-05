@@ -11,14 +11,15 @@
  */
 import { Headers } from 'node-fetch';
 
-declare class HttpError extends Error{
-    constructor(url: string, status: number | string, responseBody: string, headers: Headers);
-    name: string;
-    status: string | number;
-    url: string;
-    headers: Headers;
-    stack: string;
-    message: string;
+declare class HttpError extends Error {
+  constructor(url: string, status: number | string, responseBody: string, headers: Headers);
+
+  name: string;
+  status: string | number;
+  url: string;
+  headers: Headers;
+  stack: string;
+  message: string;
 }
 
 export default HttpError;

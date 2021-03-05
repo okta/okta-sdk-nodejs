@@ -17,32 +17,33 @@ import Client from './client';
 import Resource from './resource';
 
 declare class Collection {
-    constructor(client: Client, uri: string, factory: ModelFactory | ModelResolutionFactory, request?: RequestOptions);
-    nextUri: string;
-    client: Client;
-    factory: ModelFactory | ModelResolutionFactory;
-    currentItems: Record<string, unknown>[];
-    request: RequestOptions;
-    next(): Promise<{
+  constructor(client: Client, uri: string, factory: ModelFactory | ModelResolutionFactory, request?: RequestOptions);
+
+  nextUri: string;
+  client: Client;
+  factory: ModelFactory | ModelResolutionFactory;
+  currentItems: Record<string, unknown>[];
+  request: RequestOptions;
+  next(): Promise<{
+    done: boolean,
+    value: Resource | null
+  }>;
+  [Symbol.asyncIterator](): {
+    next: () => Promise<{
       done: boolean,
       value: Resource | null
     }>;
-    [Symbol.asyncIterator](): {
-        next: () => Promise<{
-            done: boolean,
-            value: Resource | null
-          }>;
-    };
-    getNextPage(): Promise<Record<string, unknown>>;
-    each(iterator: (item: Resource) => void | Promise<unknown> | boolean): Promise<unknown>;
-    subscribe(config: {
-        interval: number;
-        next: (item: Resource) => void | Promise<unknown>;
-        error: (e: Error) => void | Promise<unknown>;
-        complete: () => void;
-    }): {
-        unsubscribe(): void;
-    };
+  };
+  getNextPage(): Promise<Record<string, unknown>>;
+  each(iterator: (item: Resource) => void | Promise<unknown> | boolean): Promise<unknown>;
+  subscribe(config: {
+    interval: number;
+    next: (item: Resource) => void | Promise<unknown>;
+    error: (e: Error) => void | Promise<unknown>;
+    complete: () => void;
+  }): {
+    unsubscribe(): void;
+  };
 }
 
 export default Collection;

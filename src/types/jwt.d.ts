@@ -26,6 +26,7 @@ interface Jwk {
 
 export class Jwt {
   constructor(claims: Record<string, string>, enforceDefaultFields: boolean);
+
   compact(): string;
   isExpired(): boolean;
   isNotBefore(): boolean;

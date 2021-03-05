@@ -11,21 +11,21 @@
  */
 
 declare class ConfigLoader {
-    prefix: string;
-    config: {
-        client: {
-            authorizationMode: string;
-            orgUrl: string;
-            token: string;
-            clientId: string;
-            scopes: string;
-            privateKey: string;
-        };
+  prefix: string;
+  config: {
+    client: {
+      authorizationMode: string;
+      orgUrl: string;
+      token: string;
+      clientId: string;
+      scopes: string;
+      privateKey: string;
     };
-    applyDefaults(): void;
-    applyEnvVars(): void;
-    applyYamlFile(path: string): void;
-    apply(config: Record<string, unknown>): void;
+  };
+  applyDefaults(): void;
+  applyEnvVars(): void;
+  applyYamlFile(path: string): void;
+  apply(config: Record<string, unknown>): void;
 }
 
 export default ConfigLoader;

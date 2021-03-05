@@ -10,22 +10,23 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
-import GeneratedApiClient from "./generated-client";
-import Oauth from "./oauth";
-import Http from "./http";
-import RequestExecutor from "./request-executor";
+import GeneratedApiClient from './generated-client';
+import Oauth from './oauth';
+import Http from './http';
+import RequestExecutor from './request-executor';
 
 declare class Client extends GeneratedApiClient {
-    constructor(config: Record<string, unknown>);
-    requestExecutor: RequestExecutor;
-    authorizationMode: string;
-    baseUrl: string;
-    apiToken: string;
-    clientId: string;
-    scopes: string[];
-    privateKey: string;
-    oauth: Oauth;
-    http: Http;
+  constructor(config: Record<string, unknown>);
+
+  requestExecutor: RequestExecutor;
+  authorizationMode: string;
+  baseUrl: string;
+  apiToken: string;
+  clientId: string;
+  scopes: string[];
+  privateKey: string;
+  oauth: Oauth;
+  http: Http;
 }
 
 export default Client;

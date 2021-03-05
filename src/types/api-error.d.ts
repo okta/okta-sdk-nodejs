@@ -13,18 +13,18 @@
 import { Headers } from 'node-fetch';
 
 declare class OktaApiError extends Error {
-    constructor(url: string, status: number, responseBody: Record<string, unknown>, headers: Headers);
-    name: string;
-    status: number;
-    errorCode: string | number;
-    errorSummary: string;
-    errorCauses: string;
-    errorLink: string;
-    errorId: string;
-    url: string;
-    headers: Headers;
-    stack: string;
-    message: string;
+  constructor(url: string, status: number, responseBody: Record<string, unknown>, headers: Headers);
+  name: string;
+  status: number;
+  errorCode: string | number;
+  errorSummary: string;
+  errorCauses: string;
+  errorLink: string;
+  errorId: string;
+  url: string;
+  headers: Headers;
+  stack: string;
+  message: string;
 }
 
 export default OktaApiError;
