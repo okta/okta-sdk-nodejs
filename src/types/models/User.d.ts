@@ -48,39 +48,39 @@ declare class User extends Resource {
   readonly transitioningToStatus: UserStatus;
   type: UserType;
 
-  update(queryParameters?: { 
+  update(queryParameters?: {
     strict: string,
   }): Promise<User>;
-  delete(queryParameters?: { 
+  delete(queryParameters?: {
     sendEmail: string,
   }): Promise<undefined>;
   listAppLinks(): Collection;
-  changePassword(changePasswordRequest: ChangePasswordRequest, queryParameters?: { 
+  changePassword(changePasswordRequest: ChangePasswordRequest, queryParameters?: {
     strict: string,
   }): Promise<UserCredentials>;
   changeRecoveryQuestion(userCredentials: UserCredentials): Promise<UserCredentials>;
-  forgotPasswordSetNewPassword(userCredentials: UserCredentials, queryParameters?: { 
+  forgotPasswordSetNewPassword(userCredentials: UserCredentials, queryParameters?: {
     sendEmail: string,
   }): Promise<ForgotPasswordResponse>;
-  forgotPasswordGenerateOneTimeToken(queryParameters?: { 
+  forgotPasswordGenerateOneTimeToken(queryParameters?: {
     sendEmail: string,
   }): Promise<ForgotPasswordResponse>;
-  assignRole(assignRoleRequest: AssignRoleRequest, queryParameters?: { 
+  assignRole(assignRoleRequest: AssignRoleRequest, queryParameters?: {
     disableNotifications: string,
   }): Promise<Role>;
   removeRole(roleId: string): Promise<undefined>;
-  listGroupTargets(roleId: string, queryParameters?: { 
+  listGroupTargets(roleId: string, queryParameters?: {
     after: string,
     limit: string,
   }): Collection;
   removeGroupTarget(roleId: string, groupId: string): Promise<undefined>;
   addGroupTarget(roleId: string, groupId: string): Promise<undefined>;
-  listAssignedRoles(queryParameters?: { 
+  listAssignedRoles(queryParameters?: {
     expand: string,
   }): Collection;
   addAllAppsAsTarget(roleId: string): Promise<undefined>;
   listGroups(): Collection;
-  listGrants(queryParameters?: { 
+  listGrants(queryParameters?: {
     scopeId: string,
     expand: string,
     after: string,
@@ -89,31 +89,31 @@ declare class User extends Resource {
   revokeGrants(): Promise<undefined>;
   revokeGrant(grantId: string): Promise<undefined>;
   revokeGrantsForUserAndClient(clientId: string): Promise<undefined>;
-  listRefreshTokensForUserAndClient(clientId: string, queryParameters?: { 
+  listRefreshTokensForUserAndClient(clientId: string, queryParameters?: {
     expand: string,
     after: string,
     limit: string,
   }): Collection;
   revokeTokenForUserAndClient(clientId: string, tokenId: string): Promise<undefined>;
-  getRefreshTokenForUserAndClient(clientId: string, tokenId: string, queryParameters?: { 
+  getRefreshTokenForUserAndClient(clientId: string, tokenId: string, queryParameters?: {
     expand: string,
     limit: string,
     after: string,
   }): Promise<OAuth2RefreshToken>;
   revokeTokensForUserAndClient(clientId: string): Promise<undefined>;
   listClients(): Collection;
-  activate(queryParameters?: { 
+  activate(queryParameters?: {
     sendEmail: string,
   }): Promise<UserActivationToken>;
-  reactivate(queryParameters?: { 
+  reactivate(queryParameters?: {
     sendEmail: string,
   }): Promise<UserActivationToken>;
-  deactivate(queryParameters?: { 
+  deactivate(queryParameters?: {
     sendEmail: string,
   }): Promise<undefined>;
   suspend(): Promise<undefined>;
   unsuspend(): Promise<undefined>;
-  resetPassword(queryParameters?: { 
+  resetPassword(queryParameters?: {
     sendEmail: string,
   }): Promise<ResetPasswordToken>;
   expirePassword(): Promise<User>;
@@ -122,7 +122,7 @@ declare class User extends Resource {
   resetFactors(): Promise<undefined>;
   deleteFactor(factorId: string): Promise<undefined>;
   addToGroup(groupId: string): Promise<undefined>;
-  enrollFactor(userFactor: UserFactor, queryParameters?: { 
+  enrollFactor(userFactor: UserFactor, queryParameters?: {
     updatePhone: string,
     templateId: string,
     tokenLifetimeSeconds: string,
@@ -134,11 +134,11 @@ declare class User extends Resource {
   getFactor(factorId: string): Promise<UserFactor>;
   setLinkedObject(primaryRelationshipName: string, primaryUserId: string): Promise<undefined>;
   listIdentityProviders(): Collection;
-  getLinkedObjects(relationshipName: string, queryParameters?: { 
+  getLinkedObjects(relationshipName: string, queryParameters?: {
     after: string,
     limit: string,
   }): Collection;
-  clearSessions(queryParameters?: { 
+  clearSessions(queryParameters?: {
     oauthTokens: string,
   }): Promise<undefined>;
   removeLinkedObject(relationshipName: string): Promise<undefined>;
