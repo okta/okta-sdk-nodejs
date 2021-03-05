@@ -47,12 +47,12 @@ declare class AuthorizationServer extends Resource {
   updateOAuth2Claim(claimId: string, oAuth2Claim: OAuth2Claim): Promise<OAuth2Claim>;
   listOAuth2Clients(): Collection;
   revokeRefreshTokensForClient(clientId: string): Promise<undefined>;
-  listRefreshTokensForClient(clientId: string, queryParameters?: { 
+  listRefreshTokensForClient(clientId: string, queryParameters?: {
     expand: string,
     after: string,
     limit: string,
   }): Collection;
-  getRefreshTokenForClient(clientId: string, tokenId: string, queryParameters?: { 
+  getRefreshTokenForClient(clientId: string, tokenId: string, queryParameters?: {
     expand: string,
   }): Promise<OAuth2RefreshToken>;
   revokeRefreshTokenForClient(clientId: string, tokenId: string): Promise<undefined>;
@@ -65,7 +65,7 @@ declare class AuthorizationServer extends Resource {
   deletePolicy(policyId: string): Promise<undefined>;
   getPolicy(policyId: string): Promise<AuthorizationServerPolicy>;
   updatePolicy(policyId: string, authorizationServerPolicy: AuthorizationServerPolicy): Promise<AuthorizationServerPolicy>;
-  listOAuth2Scopes(queryParameters?: { 
+  listOAuth2Scopes(queryParameters?: {
     q: string,
     filter: string,
     cursor: string,

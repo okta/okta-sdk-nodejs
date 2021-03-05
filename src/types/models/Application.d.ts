@@ -54,7 +54,7 @@ declare class Application extends Resource {
   delete(): Promise<undefined>;
   activate(): Promise<undefined>;
   deactivate(): Promise<undefined>;
-  listApplicationUsers(queryParameters?: { 
+  listApplicationUsers(queryParameters?: {
     q: string,
     query_scope: string,
     after: string,
@@ -63,25 +63,25 @@ declare class Application extends Resource {
     expand: string,
   }): Collection;
   assignUserToApplication(appUser: AppUser): Promise<AppUser>;
-  getApplicationUser(userId: string, queryParameters?: { 
+  getApplicationUser(userId: string, queryParameters?: {
     expand: string,
   }): Promise<AppUser>;
   createApplicationGroupAssignment(groupId: string, applicationGroupAssignment: ApplicationGroupAssignment): Promise<ApplicationGroupAssignment>;
-  getApplicationGroupAssignment(groupId: string, queryParameters?: { 
+  getApplicationGroupAssignment(groupId: string, queryParameters?: {
     expand: string,
   }): Promise<ApplicationGroupAssignment>;
-  cloneApplicationKey(keyId: string, queryParameters?: { 
+  cloneApplicationKey(keyId: string, queryParameters?: {
     targetAid: string,
   }): Promise<JsonWebKey>;
   getApplicationKey(keyId: string): Promise<JsonWebKey>;
-  listGroupAssignments(queryParameters?: { 
+  listGroupAssignments(queryParameters?: {
     q: string,
     after: string,
     limit: string,
     expand: string,
   }): Collection;
   listKeys(): Collection;
-  generateKey(queryParameters?: { 
+  generateKey(queryParameters?: {
     validityYears: string,
   }): Promise<JsonWebKey>;
   generateCsr(csrMetadata: CsrMetadata): Promise<Csr>;
@@ -93,22 +93,22 @@ declare class Application extends Resource {
   publishDerCert(csrId: string, certificate: string): Promise<JsonWebKey>;
   publishBinaryDerCert(csrId: string, certificate: string): Promise<JsonWebKey>;
   publishBinaryPemCert(csrId: string, certificate: string): Promise<JsonWebKey>;
-  listOAuth2Tokens(queryParameters?: { 
+  listOAuth2Tokens(queryParameters?: {
     expand: string,
     after: string,
     limit: string,
   }): Collection;
   revokeOAuth2TokenForApplication(tokenId: string): Promise<undefined>;
-  getOAuth2Token(tokenId: string, queryParameters?: { 
+  getOAuth2Token(tokenId: string, queryParameters?: {
     expand: string,
   }): Promise<OAuth2Token>;
   revokeOAuth2Tokens(): Promise<undefined>;
-  listScopeConsentGrants(queryParameters?: { 
+  listScopeConsentGrants(queryParameters?: {
     expand: string,
   }): Collection;
   grantConsentToScope(oAuth2ScopeConsentGrant: OAuth2ScopeConsentGrant): Promise<OAuth2ScopeConsentGrant>;
   revokeScopeConsentGrant(grantId: string): Promise<undefined>;
-  getScopeConsentGrant(grantId: string, queryParameters?: { 
+  getScopeConsentGrant(grantId: string, queryParameters?: {
     expand: string,
   }): Promise<OAuth2ScopeConsentGrant>;
 }

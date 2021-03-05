@@ -36,7 +36,7 @@ declare class AppUser extends Resource {
   readonly syncState: string;
 
   update(): Promise<AppUser>;
-  delete(queryParameters?: { 
+  delete(queryParameters?: {
     sendEmail: string,
   }): Promise<undefined>;
 }

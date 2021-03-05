@@ -37,15 +37,15 @@ declare class Group extends Resource {
   update(): Promise<Group>;
   delete(): Promise<undefined>;
   removeUser(userId: string): Promise<undefined>;
-  listUsers(queryParameters?: { 
+  listUsers(queryParameters?: {
     after: string,
     limit: string,
   }): Collection;
-  listApplications(queryParameters?: { 
+  listApplications(queryParameters?: {
     after: string,
     limit: string,
   }): Collection;
-  assignRole(assignRoleRequest: AssignRoleRequest, queryParameters?: { 
+  assignRole(assignRoleRequest: AssignRoleRequest, queryParameters?: {
     disableNotifications: string,
   }): Promise<Role>;
 }

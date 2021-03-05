@@ -10,6 +10,9 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
+
+/* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
+
 import ModelResolutionFactory from '../resolution-factory';
 
 declare class UserFactorFactory extends ModelResolutionFactory {

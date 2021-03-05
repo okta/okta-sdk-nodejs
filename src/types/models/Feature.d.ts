@@ -31,7 +31,7 @@ declare class Feature extends Resource {
   status: EnabledStatus;
   type: FeatureType;
 
-  updateLifecycle(lifecycle: string, queryParameters?: { 
+  updateLifecycle(lifecycle: string, queryParameters?: {
     mode: string,
   }): Promise<Feature>;
   getDependents(): Collection;

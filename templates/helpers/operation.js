@@ -287,7 +287,7 @@ const formatReturnType = returnType =>
   returnType === 'Collection' ? 'Collection' : `Promise<${returnType}>`;
 
 const formatObjectLiteralType = typeProps => {
-  let objectLiteralType = '{ \n';
+  let objectLiteralType = '{\n';
   typeProps.forEach(prop => {
     objectLiteralType += `    ${prop}: string,\n`;
   });
