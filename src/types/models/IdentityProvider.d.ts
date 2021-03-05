@@ -15,12 +15,12 @@
 
 import Resource from '../resource';
 import Client from '../client';
-import Collection from '../collection';
-import { CsrMetadata } from './CsrMetadata';
 import { Csr } from './Csr';
+import { CsrMetadata } from './CsrMetadata';
 import { JsonWebKey } from './JsonWebKey';
 import { IdentityProviderApplicationUser } from './IdentityProviderApplicationUser';
 import { UserIdentityProviderLinkRequest } from './UserIdentityProviderLinkRequest';
+import { SocialAuthToken } from './SocialAuthToken';
 import { IdentityProviderPolicy } from './IdentityProviderPolicy';
 import { Protocol } from './Protocol';
 
@@ -40,11 +40,11 @@ declare class IdentityProvider extends Resource {
 
   update(): Promise<IdentityProvider>;
   delete(): Promise<undefined>;
-  listSigningCsrs(): Collection;
+  listSigningCsrs(): Collection<Csr>;
   generateCsr(csrMetadata: CsrMetadata): Promise<Csr>;
   deleteSigningCsr(csrId: string): Promise<undefined>;
   getSigningCsr(csrId: string): Promise<Csr>;
-  listSigningKeys(): Collection;
+  listSigningKeys(): Collection<JsonWebKey>;
   generateSigningKey(queryParameters?: {
     validityYears: string,
   }): Promise<JsonWebKey>;
@@ -54,11 +54,11 @@ declare class IdentityProvider extends Resource {
   }): Promise<JsonWebKey>;
   activate(): Promise<IdentityProvider>;
   deactivate(): Promise<IdentityProvider>;
-  listUsers(): Collection;
+  listUsers(): Collection<IdentityProviderApplicationUser>;
   unlinkUser(userId: string): Promise<undefined>;
   getUser(userId: string): Promise<IdentityProviderApplicationUser>;
   linkUser(userId: string, userIdentityProviderLinkRequest: UserIdentityProviderLinkRequest): Promise<IdentityProviderApplicationUser>;
-  listSocialAuthTokens(userId: string): Collection;
+  listSocialAuthTokens(userId: string): Collection<SocialAuthToken>;
 }
 
 export {

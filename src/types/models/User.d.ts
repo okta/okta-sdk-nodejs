@@ -15,17 +15,23 @@
 
 import Resource from '../resource';
 import Client from '../client';
-import Collection from '../collection';
+import { AppLink } from './AppLink';
 import { ChangePasswordRequest } from './ChangePasswordRequest';
 import { UserCredentials } from './UserCredentials';
 import { ForgotPasswordResponse } from './ForgotPasswordResponse';
 import { AssignRoleRequest } from './AssignRoleRequest';
 import { Role } from './Role';
+import { Group } from './Group';
+import { OAuth2ScopeConsentGrant } from './OAuth2ScopeConsentGrant';
 import { OAuth2RefreshToken } from './OAuth2RefreshToken';
+import { OAuth2Client } from './OAuth2Client';
 import { UserActivationToken } from './UserActivationToken';
 import { ResetPasswordToken } from './ResetPasswordToken';
 import { TempPassword } from './TempPassword';
 import { UserFactor } from './UserFactor';
+import { SecurityQuestion } from './SecurityQuestion';
+import { IdentityProvider } from './IdentityProvider';
+import { ResponseLinks } from './ResponseLinks';
 import { UserProfile } from './UserProfile';
 import { UserStatus } from './UserStatus';
 import { UserType } from './UserType';
@@ -54,7 +60,7 @@ declare class User extends Resource {
   delete(queryParameters?: {
     sendEmail: string,
   }): Promise<undefined>;
-  listAppLinks(): Collection;
+  listAppLinks(): Collection<AppLink>;
   changePassword(changePasswordRequest: ChangePasswordRequest, queryParameters?: {
     strict: string,
   }): Promise<UserCredentials>;
@@ -72,20 +78,20 @@ declare class User extends Resource {
   listGroupTargets(roleId: string, queryParameters?: {
     after: string,
     limit: string,
-  }): Collection;
+  }): Collection<Group>;
   removeGroupTarget(roleId: string, groupId: string): Promise<undefined>;
   addGroupTarget(roleId: string, groupId: string): Promise<undefined>;
   listAssignedRoles(queryParameters?: {
     expand: string,
-  }): Collection;
+  }): Collection<Role>;
   addAllAppsAsTarget(roleId: string): Promise<undefined>;
-  listGroups(): Collection;
+  listGroups(): Collection<Group>;
   listGrants(queryParameters?: {
     scopeId: string,
     expand: string,
     after: string,
     limit: string,
-  }): Collection;
+  }): Collection<OAuth2ScopeConsentGrant>;
   revokeGrants(): Promise<undefined>;
   revokeGrant(grantId: string): Promise<undefined>;
   revokeGrantsForUserAndClient(clientId: string): Promise<undefined>;
@@ -93,7 +99,7 @@ declare class User extends Resource {
     expand: string,
     after: string,
     limit: string,
-  }): Collection;
+  }): Collection<OAuth2RefreshToken>;
   revokeTokenForUserAndClient(clientId: string, tokenId: string): Promise<undefined>;
   getRefreshTokenForUserAndClient(clientId: string, tokenId: string, queryParameters?: {
     expand: string,
@@ -101,7 +107,7 @@ declare class User extends Resource {
     after: string,
   }): Promise<OAuth2RefreshToken>;
   revokeTokensForUserAndClient(clientId: string): Promise<undefined>;
-  listClients(): Collection;
+  listClients(): Collection<OAuth2Client>;
   activate(queryParameters?: {
     sendEmail: string,
   }): Promise<UserActivationToken>;
@@ -128,16 +134,16 @@ declare class User extends Resource {
     tokenLifetimeSeconds: string,
     activate: string,
   }): Promise<UserFactor>;
-  listSupportedFactors(): Collection;
-  listFactors(): Collection;
-  listSupportedSecurityQuestions(): Collection;
+  listSupportedFactors(): Collection<UserFactor>;
+  listFactors(): Collection<UserFactor>;
+  listSupportedSecurityQuestions(): Collection<SecurityQuestion>;
   getFactor(factorId: string): Promise<UserFactor>;
   setLinkedObject(primaryRelationshipName: string, primaryUserId: string): Promise<undefined>;
-  listIdentityProviders(): Collection;
+  listIdentityProviders(): Collection<IdentityProvider>;
   getLinkedObjects(relationshipName: string, queryParameters?: {
     after: string,
     limit: string,
-  }): Collection;
+  }): Collection<ResponseLinks>;
   clearSessions(queryParameters?: {
     oauthTokens: string,
   }): Promise<undefined>;

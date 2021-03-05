@@ -15,7 +15,6 @@
 
 import Resource from '../resource';
 import Client from '../client';
-import Collection from '../collection';
 import { AuthorizationServerPolicyRule } from './AuthorizationServerPolicyRule';
 import { PolicyRuleConditions } from './PolicyRuleConditions';
 import { PolicyType } from './PolicyType';
@@ -38,7 +37,7 @@ declare class AuthorizationServerPolicy extends Resource {
 
   update(authServerId: string): Promise<AuthorizationServerPolicy>;
   delete(authServerId: string): Promise<undefined>;
-  listPolicyRules(authServerId: string): Collection;
+  listPolicyRules(authServerId: string): Collection<AuthorizationServerPolicyRule>;
   createPolicyRule(authServerId: string, authorizationServerPolicyRule: AuthorizationServerPolicyRule): Promise<AuthorizationServerPolicyRule>;
   getPolicyRule(authServerId: string, ruleId: string): Promise<AuthorizationServerPolicyRule>;
   deletePolicyRule(authServerId: string, ruleId: string): Promise<undefined>;

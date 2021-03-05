@@ -15,7 +15,8 @@
 
 import Resource from '../resource';
 import Client from '../client';
-import Collection from '../collection';
+import { User } from './User';
+import { Application } from './Application';
 import { AssignRoleRequest } from './AssignRoleRequest';
 import { Role } from './Role';
 import { GroupProfile } from './GroupProfile';
@@ -40,11 +41,11 @@ declare class Group extends Resource {
   listUsers(queryParameters?: {
     after: string,
     limit: string,
-  }): Collection;
+  }): Collection<User>;
   listApplications(queryParameters?: {
     after: string,
     limit: string,
-  }): Collection;
+  }): Collection<Application>;
   assignRole(assignRoleRequest: AssignRoleRequest, queryParameters?: {
     disableNotifications: string,
   }): Promise<Role>;

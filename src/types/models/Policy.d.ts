@@ -15,7 +15,6 @@
 
 import Resource from '../resource';
 import Client from '../client';
-import Collection from '../collection';
 import { PolicyRule } from './PolicyRule';
 import { PolicyRuleConditions } from './PolicyRuleConditions';
 import { PolicyType } from './PolicyType';
@@ -40,7 +39,7 @@ declare class Policy extends Resource {
   delete(): Promise<undefined>;
   activate(): Promise<undefined>;
   deactivate(): Promise<undefined>;
-  listPolicyRules(): Collection;
+  listPolicyRules(): Collection<PolicyRule>;
   createRule(policyRule: PolicyRule): Promise<PolicyRule>;
   getPolicyRule(ruleId: string): Promise<PolicyRule>;
 }

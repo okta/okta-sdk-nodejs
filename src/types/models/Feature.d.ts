@@ -15,7 +15,6 @@
 
 import Resource from '../resource';
 import Client from '../client';
-import Collection from '../collection';
 import { FeatureStage } from './FeatureStage';
 import { EnabledStatus } from './EnabledStatus';
 import { FeatureType } from './FeatureType';
@@ -34,8 +33,8 @@ declare class Feature extends Resource {
   updateLifecycle(lifecycle: string, queryParameters?: {
     mode: string,
   }): Promise<Feature>;
-  getDependents(): Collection;
-  getDependencies(): Collection;
+  getDependents(): Collection<Feature>;
+  getDependencies(): Collection<Feature>;
 }
 
 export {
