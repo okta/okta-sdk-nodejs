@@ -169,7 +169,7 @@ const typeScriptClientImportBuilder = operations => {
   const operationsImportTypes = operations.reduce((acc, operation) => {
     const [args, returnType] = getOperationArgumentsAndReturnType(operation);
     const argTypes = Array.from(args.values()).map(arg => arg.type);
-    const importableTypes = [...argTypes, returnType].filter(isImportableType);
+    const importableTypes = [...argTypes, returnType.genericParameterType].filter(isImportableType);
     return [
       ...acc,
       ...importableTypes,
@@ -190,7 +190,7 @@ const typeScriptModelImportBuilder = model => {
   const methodsImportTypes = model.methods.reduce((acc, method) => {
     const [args, returnType] = getModelMethodArgumentsAndReturnType(method, model.modelName);
     const argTypes = Array.from(args.values()).map(arg => arg.type);
-    const importableTypes = [...argTypes, returnType].filter(isImportableType);
+    const importableTypes = [...argTypes, returnType.genericParameterType].filter(isImportableType);
     return [
       ...acc,
       ...importableTypes,
@@ -238,16 +238,15 @@ const getOperationArgumentsAndReturnType = operation => {
     });
   }
 
-  let returnType = 'undefined';
+  let genericType = 'Promise';
+  let genericParameterType = 'undefined';
   if (operation.responseModel) {
+    genericParameterType = operation.responseModel;
     if (operation.isArray) {
-      returnType = 'Collection';
-    } else {
-      returnType = operation.responseModel;
+      genericType = 'Collection';
     }
   }
-
-  return [args, returnType];
+  return [args, {genericType, genericParameterType}];
 };
 
 const getModelMethodArgumentsAndReturnType = (method, modelName) => {
@@ -283,8 +282,8 @@ const formatTypeScriptArguments = args => {
 };
 
 
-const formatReturnType = returnType =>
-  returnType === 'Collection' ? 'Collection' : `Promise<${returnType}>`;
+const formatReturnType = ({genericType, genericParameterType}) =>
+  `${genericType}<${genericParameterType}>`;
 
 const formatObjectLiteralType = typeProps => {
   let objectLiteralType = '{\n';

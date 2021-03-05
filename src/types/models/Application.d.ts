@@ -15,7 +15,6 @@
 
 import Resource from '../resource';
 import Client from '../client';
-import Collection from '../collection';
 import { AppUser } from './AppUser';
 import { ApplicationGroupAssignment } from './ApplicationGroupAssignment';
 import { JsonWebKey } from './JsonWebKey';
@@ -61,7 +60,7 @@ declare class Application extends Resource {
     limit: string,
     filter: string,
     expand: string,
-  }): Collection;
+  }): Collection<AppUser>;
   assignUserToApplication(appUser: AppUser): Promise<AppUser>;
   getApplicationUser(userId: string, queryParameters?: {
     expand: string,
@@ -79,15 +78,15 @@ declare class Application extends Resource {
     after: string,
     limit: string,
     expand: string,
-  }): Collection;
-  listKeys(): Collection;
+  }): Collection<ApplicationGroupAssignment>;
+  listKeys(): Collection<JsonWebKey>;
   generateKey(queryParameters?: {
     validityYears: string,
   }): Promise<JsonWebKey>;
   generateCsr(csrMetadata: CsrMetadata): Promise<Csr>;
   getCsr(csrId: string): Promise<Csr>;
   revokeCsr(csrId: string): Promise<undefined>;
-  listCsrs(): Collection;
+  listCsrs(): Collection<Csr>;
   publishCerCert(csrId: string, certificate: string): Promise<JsonWebKey>;
   publishBinaryCerCert(csrId: string, certificate: string): Promise<JsonWebKey>;
   publishDerCert(csrId: string, certificate: string): Promise<JsonWebKey>;
@@ -97,7 +96,7 @@ declare class Application extends Resource {
     expand: string,
     after: string,
     limit: string,
-  }): Collection;
+  }): Collection<OAuth2Token>;
   revokeOAuth2TokenForApplication(tokenId: string): Promise<undefined>;
   getOAuth2Token(tokenId: string, queryParameters?: {
     expand: string,
@@ -105,7 +104,7 @@ declare class Application extends Resource {
   revokeOAuth2Tokens(): Promise<undefined>;
   listScopeConsentGrants(queryParameters?: {
     expand: string,
-  }): Collection;
+  }): Collection<OAuth2ScopeConsentGrant>;
   grantConsentToScope(oAuth2ScopeConsentGrant: OAuth2ScopeConsentGrant): Promise<OAuth2ScopeConsentGrant>;
   revokeScopeConsentGrant(grantId: string): Promise<undefined>;
   getScopeConsentGrant(grantId: string, queryParameters?: {
