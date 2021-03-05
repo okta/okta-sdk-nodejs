@@ -14,9 +14,8 @@ import RequestOptions from './request-options';
 import ModelFactory from './model-factory';
 import ModelResolutionFactory from './resolution-factory';
 import Client from './client';
-import Resource from './resource';
 
-declare class Collection {
+declare class Collection<T> {
   constructor(client: Client, uri: string, factory: ModelFactory | ModelResolutionFactory, request?: RequestOptions);
 
   nextUri: string;
@@ -26,19 +25,19 @@ declare class Collection {
   request: RequestOptions;
   next(): Promise<{
     done: boolean,
-    value: Resource | null
+    value: T | null
   }>;
   [Symbol.asyncIterator](): {
     next: () => Promise<{
       done: boolean,
-      value: Resource | null
+      value: T | null
     }>;
   };
   getNextPage(): Promise<Record<string, unknown>>;
-  each(iterator: (item: Resource) => void | Promise<unknown> | boolean): Promise<unknown>;
+  each(iterator: (item: T) => void | Promise<unknown> | boolean): Promise<unknown>;
   subscribe(config: {
     interval: number;
-    next: (item: Resource) => void | Promise<unknown>;
+    next: (item: T) => void | Promise<unknown>;
     error: (e: Error) => void | Promise<unknown>;
     complete: () => void;
   }): {
