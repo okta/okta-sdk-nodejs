@@ -15,6 +15,7 @@
 
 import Resource from '../resource';
 import Client from '../client';
+import Collection from '../collection';
 import { Csr } from './Csr';
 import { CsrMetadata } from './CsrMetadata';
 import { JsonWebKey } from './JsonWebKey';

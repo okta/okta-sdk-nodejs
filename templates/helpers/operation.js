@@ -1,6 +1,6 @@
 const _ = require('lodash');
 
-const MODELS_SHOULD_NOT_PROCESS = ['object', 'string', 'undefined'];
+const MODELS_SHOULD_NOT_PROCESS = ['object', 'string', 'undefined', 'Promise'];
 
 // BEGIN Work around spec mismatches and upstream parsing inconsistencies.
 // The below map is used to block redefining(overriding) properties listed as values in models specified as keys.
@@ -168,8 +168,9 @@ const typeScriptModelMethodSignatureBuilder = (method, modelName) => {
 const typeScriptClientImportBuilder = operations => {
   const operationsImportTypes = operations.reduce((acc, operation) => {
     const [args, returnType] = getOperationArgumentsAndReturnType(operation);
-    const argTypes = Array.from(args.values()).map(arg => arg.type);
-    const importableTypes = [...argTypes, returnType.genericParameterType].filter(isImportableType);
+    const typeNames = convertTypeObjectsToTypeNames(args, returnType);
+    const importableTypes = typeNames.filter(isImportableType);
+
     return [
       ...acc,
       ...importableTypes,
@@ -189,8 +190,8 @@ const typeScriptModelImportBuilder = model => {
 
   const methodsImportTypes = model.methods.reduce((acc, method) => {
     const [args, returnType] = getModelMethodArgumentsAndReturnType(method, model.modelName);
-    const argTypes = Array.from(args.values()).map(arg => arg.type);
-    const importableTypes = [...argTypes, returnType.genericParameterType].filter(isImportableType);
+    const typeNames = convertTypeObjectsToTypeNames(args, returnType);
+    const importableTypes = typeNames.filter(isImportableType);
     return [
       ...acc,
       ...importableTypes,
@@ -267,6 +268,11 @@ const getModelMethodArgumentsAndReturnType = (method, modelName) => {
   return [args, returnType];
 };
 
+const convertTypeObjectsToTypeNames = (args, returnType) => {
+  const argTypes = Array.from(args.values()).map(arg => arg.type);
+  return [...argTypes, returnType.genericType, returnType.genericParameterType];
+};
+
 const formatTypeScriptArguments = args => {
   const typedArgs = [];
   for (let [argName, {type, isRequired}] of args) {
@@ -280,7 +286,6 @@ const formatTypeScriptArguments = args => {
   }
   return typedArgs.join(', ');
 };
-
 
 const formatReturnType = ({genericType, genericParameterType}) =>
   `${genericType}<${genericParameterType}>`;

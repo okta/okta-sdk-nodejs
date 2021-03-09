@@ -13,6 +13,7 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
+import Collection from './collection';
 import { Application } from './models/Application';
 import { Csr } from './models/Csr';
 import { CsrMetadata } from './models/CsrMetadata';

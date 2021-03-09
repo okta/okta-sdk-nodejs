@@ -15,6 +15,7 @@
 
 import Resource from '../resource';
 import Client from '../client';
+import Collection from '../collection';
 import { AppUser } from './AppUser';
 import { ApplicationGroupAssignment } from './ApplicationGroupAssignment';
 import { JsonWebKey } from './JsonWebKey';

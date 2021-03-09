@@ -15,6 +15,7 @@
 
 import Resource from '../resource';
 import Client from '../client';
+import Collection from '../collection';
 import { AppLink } from './AppLink';
 import { ChangePasswordRequest } from './ChangePasswordRequest';
 import { UserCredentials } from './UserCredentials';

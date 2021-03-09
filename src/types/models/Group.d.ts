@@ -15,6 +15,7 @@
 
 import Resource from '../resource';
 import Client from '../client';
+import Collection from '../collection';
 import { User } from './User';
 import { Application } from './Application';
 import { AssignRoleRequest } from './AssignRoleRequest';
