@@ -72,7 +72,7 @@ const cacheMiddleware = defaultCacheMiddleware;
 expectType<Promise<Response>>(
   cacheMiddleware({
     req: {} as RequestOptions,
-    cacheStore: {}
+    cacheStore: new MemoryStore()
   },
   () => Promise.resolve({} as Response))
 );
@@ -85,8 +85,8 @@ expectType<Promise<Record<string, unknown>>>(collection.getNextPage());
 expectType<Promise<{done: boolean, value: Resource | null}>>(collection.next());
 collection.subscribe({
   interval: 100,
-  next: () => void(0),
-  error: e => Promise.resolve(),
+  next: (item: Resource) => void(0),
+  error: (e: Error) => void(0),
   complete: () => void(0)
 });
 

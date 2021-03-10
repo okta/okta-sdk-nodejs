@@ -26,7 +26,7 @@ interface ConfigProperties {
   authorizationMode?: string,
   privateKey?: string | Record<string, unknown>
   cacheStore?: CacheStorage,
-  cacheMiddleware?: typeof defaultCacheMiddleware
+  cacheMiddleware?: typeof defaultCacheMiddleware | unknown
 }
 
 declare class Client extends GeneratedApiClient {

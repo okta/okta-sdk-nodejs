@@ -18,7 +18,7 @@ export interface CacheStorage {
 }
 
 declare class MemoryStore implements CacheStorage {
-  constructor(options: {
+  constructor(options?: {
     keyLimit?: number,
     expirationPoll?: number,
   });

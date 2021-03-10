@@ -11,7 +11,7 @@
  */
 
 import { Response } from 'node-fetch';
-import MemoryStore from './memory-store';
+import { CacheStorage } from './memory-store';
 import RequestOptions from './request-options';
 
 declare function defaultCacheMiddleware(ctx: {
@@ -19,7 +19,7 @@ declare function defaultCacheMiddleware(ctx: {
   resources?: string[],
   res?: Response,
   req: RequestOptions,
-  cacheStore: MemoryStore | unknown,
+  cacheStore: CacheStorage,
 }, next: () => unknown):  Promise<Response>;
 
 export default defaultCacheMiddleware;

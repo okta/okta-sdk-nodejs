@@ -13,7 +13,7 @@
 import OAuth from './oauth';
 import { Response } from 'node-fetch';
 import { CacheStorage } from './memory-store';
-import RequestExecutor from './request-executor';
+import { IRequestExecutor } from './request-executor';
 import defaultCacheMiddleware from './default-cache-middleware';
 import RequestOptions from './request-options';
 
@@ -25,13 +25,13 @@ interface RequestContext {
 declare class Http {
   static errorFilter(response: Response): Promise<Response>;
   constructor(httpConfig: {
-    requestExecutor: RequestExecutor,
+    requestExecutor: IRequestExecutor,
     oauth: OAuth,
     cacheStore?: CacheStorage,
     cacheMiddleware?: typeof defaultCacheMiddleware | unknown,
   });
   defaultHeaders: Record<string, unknown>;
-  requestExecutor: RequestExecutor;
+  requestExecutor: IRequestExecutor;
   cacheStore: CacheStorage;
   cacheMiddleware: typeof defaultCacheMiddleware | unknown;
   oauth: OAuth;
