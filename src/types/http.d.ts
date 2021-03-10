@@ -12,7 +12,7 @@
 
 import OAuth from './oauth';
 import { Response } from 'node-fetch';
-import MemoryStore from './memory-store';
+import { CacheStorage } from './memory-store';
 import RequestExecutor from './request-executor';
 import defaultCacheMiddleware from './default-cache-middleware';
 import RequestOptions from './request-options';
@@ -27,12 +27,12 @@ declare class Http {
   constructor(httpConfig: {
     requestExecutor: RequestExecutor,
     oauth: OAuth,
-    cacheStore?: MemoryStore | unknown,
+    cacheStore?: CacheStorage,
     cacheMiddleware?: typeof defaultCacheMiddleware | unknown,
   });
   defaultHeaders: Record<string, unknown>;
   requestExecutor: RequestExecutor;
-  cacheStore: MemoryStore | unknown;
+  cacheStore: CacheStorage;
   cacheMiddleware: typeof defaultCacheMiddleware | unknown;
   oauth: OAuth;
   prepareRequest(request: RequestOptions): Promise<RequestOptions>;
