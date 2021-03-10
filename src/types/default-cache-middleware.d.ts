@@ -20,6 +20,6 @@ declare function defaultCacheMiddleware(ctx: {
   res?: Response,
   req: RequestOptions,
   cacheStore: MemoryStore | unknown,
-}, next: () => Promise<Response>): Promise<Response>;
+}, next: () => unknown):  Promise<Response>;
 
 export default defaultCacheMiddleware;
