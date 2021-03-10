@@ -55,34 +55,34 @@ declare class Application extends Resource {
   activate(): Promise<undefined>;
   deactivate(): Promise<undefined>;
   listApplicationUsers(queryParameters?: {
-    q: string,
-    query_scope: string,
-    after: string,
-    limit: string,
-    filter: string,
-    expand: string,
+    q?: string,
+    query_scope?: string,
+    after?: string,
+    limit?: number,
+    filter?: string,
+    expand?: string,
   }): Collection<AppUser>;
   assignUserToApplication(appUser: AppUser): Promise<AppUser>;
   getApplicationUser(userId: string, queryParameters?: {
-    expand: string,
+    expand?: string,
   }): Promise<AppUser>;
   createApplicationGroupAssignment(groupId: string, applicationGroupAssignment: ApplicationGroupAssignment): Promise<ApplicationGroupAssignment>;
   getApplicationGroupAssignment(groupId: string, queryParameters?: {
-    expand: string,
+    expand?: string,
   }): Promise<ApplicationGroupAssignment>;
-  cloneApplicationKey(keyId: string, queryParameters?: {
+  cloneApplicationKey(keyId: string, queryParameters: {
     targetAid: string,
   }): Promise<JsonWebKey>;
   getApplicationKey(keyId: string): Promise<JsonWebKey>;
   listGroupAssignments(queryParameters?: {
-    q: string,
-    after: string,
-    limit: string,
-    expand: string,
+    q?: string,
+    after?: string,
+    limit?: number,
+    expand?: string,
   }): Collection<ApplicationGroupAssignment>;
   listKeys(): Collection<JsonWebKey>;
   generateKey(queryParameters?: {
-    validityYears: string,
+    validityYears?: number,
   }): Promise<JsonWebKey>;
   generateCsr(csrMetadata: CsrMetadata): Promise<Csr>;
   getCsr(csrId: string): Promise<Csr>;
@@ -94,22 +94,22 @@ declare class Application extends Resource {
   publishBinaryDerCert(csrId: string, certificate: string): Promise<JsonWebKey>;
   publishBinaryPemCert(csrId: string, certificate: string): Promise<JsonWebKey>;
   listOAuth2Tokens(queryParameters?: {
-    expand: string,
-    after: string,
-    limit: string,
+    expand?: string,
+    after?: string,
+    limit?: number,
   }): Collection<OAuth2Token>;
   revokeOAuth2TokenForApplication(tokenId: string): Promise<undefined>;
   getOAuth2Token(tokenId: string, queryParameters?: {
-    expand: string,
+    expand?: string,
   }): Promise<OAuth2Token>;
   revokeOAuth2Tokens(): Promise<undefined>;
   listScopeConsentGrants(queryParameters?: {
-    expand: string,
+    expand?: string,
   }): Collection<OAuth2ScopeConsentGrant>;
   grantConsentToScope(oAuth2ScopeConsentGrant: OAuth2ScopeConsentGrant): Promise<OAuth2ScopeConsentGrant>;
   revokeScopeConsentGrant(grantId: string): Promise<undefined>;
   getScopeConsentGrant(grantId: string, queryParameters?: {
-    expand: string,
+    expand?: string,
   }): Promise<OAuth2ScopeConsentGrant>;
 }
 

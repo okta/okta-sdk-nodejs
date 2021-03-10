@@ -37,7 +37,7 @@ declare class AppUser extends Resource {
 
   update(): Promise<AppUser>;
   delete(queryParameters?: {
-    sendEmail: string,
+    sendEmail?: boolean,
   }): Promise<undefined>;
 }
 

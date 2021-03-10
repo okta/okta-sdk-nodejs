@@ -38,8 +38,8 @@ declare class UserFactor extends Resource {
   delete(): Promise<undefined>;
   activate(activateFactorRequest: ActivateFactorRequest): Promise<UserFactor>;
   verify(verifyFactorRequest: VerifyFactorRequest, queryParameters?: {
-    templateId: string,
-    tokenLifetimeSeconds: string,
+    templateId?: string,
+    tokenLifetimeSeconds?: number,
   }): Promise<VerifyUserFactorResponse>;
 }
 

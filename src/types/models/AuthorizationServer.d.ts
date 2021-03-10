@@ -50,12 +50,12 @@ declare class AuthorizationServer extends Resource {
   listOAuth2Clients(): Collection<OAuth2Client>;
   revokeRefreshTokensForClient(clientId: string): Promise<undefined>;
   listRefreshTokensForClient(clientId: string, queryParameters?: {
-    expand: string,
-    after: string,
-    limit: string,
+    expand?: string,
+    after?: string,
+    limit?: number,
   }): Collection<OAuth2RefreshToken>;
   getRefreshTokenForClient(clientId: string, tokenId: string, queryParameters?: {
-    expand: string,
+    expand?: string,
   }): Promise<OAuth2RefreshToken>;
   revokeRefreshTokenForClient(clientId: string, tokenId: string): Promise<undefined>;
   listKeys(): Collection<JsonWebKey>;
@@ -68,10 +68,10 @@ declare class AuthorizationServer extends Resource {
   getPolicy(policyId: string): Promise<AuthorizationServerPolicy>;
   updatePolicy(policyId: string, authorizationServerPolicy: AuthorizationServerPolicy): Promise<AuthorizationServerPolicy>;
   listOAuth2Scopes(queryParameters?: {
-    q: string,
-    filter: string,
-    cursor: string,
-    limit: string,
+    q?: string,
+    filter?: string,
+    cursor?: string,
+    limit?: number,
   }): Collection<OAuth2Scope>;
   createOAuth2Scope(oAuth2Scope: OAuth2Scope): Promise<OAuth2Scope>;
   deleteOAuth2Scope(scopeId: string): Promise<undefined>;

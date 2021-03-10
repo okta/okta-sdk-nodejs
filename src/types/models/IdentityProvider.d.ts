@@ -46,11 +46,11 @@ declare class IdentityProvider extends Resource {
   deleteSigningCsr(csrId: string): Promise<undefined>;
   getSigningCsr(csrId: string): Promise<Csr>;
   listSigningKeys(): Collection<JsonWebKey>;
-  generateSigningKey(queryParameters?: {
-    validityYears: string,
+  generateSigningKey(queryParameters: {
+    validityYears: number,
   }): Promise<JsonWebKey>;
   getSigningKey(keyId: string): Promise<JsonWebKey>;
-  cloneKey(keyId: string, queryParameters?: {
+  cloneKey(keyId: string, queryParameters: {
     targetIdpId: string,
   }): Promise<JsonWebKey>;
   activate(): Promise<IdentityProvider>;

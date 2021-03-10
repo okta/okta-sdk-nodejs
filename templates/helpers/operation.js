@@ -233,9 +233,10 @@ const getOperationArgumentsAndReturnType = operation => {
   }
 
   if (queryParams.length) {
+    const isRequired = queryParams.reduce((acc, param) => acc |= param.required, false);
     args.set('queryParameters', {
-      isRequired: false,
-      type: queryParams.map(param => param.name)
+      isRequired,
+      type: queryParams,
     });
   }
 
@@ -293,7 +294,9 @@ const formatReturnType = ({genericType, genericParameterType}) =>
 const formatObjectLiteralType = typeProps => {
   let objectLiteralType = '{\n';
   typeProps.forEach(prop => {
-    objectLiteralType += `    ${prop}: string,\n`;
+    const isRequired = prop.required ? '' : '?';
+    const propType = convertSwaggerToTSType(prop.type);
+    objectLiteralType += `    ${prop.name}${isRequired}: ${propType},\n`;
   });
   objectLiteralType += '  }';
   return objectLiteralType;
