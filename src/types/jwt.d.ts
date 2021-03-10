@@ -11,19 +11,6 @@
  */
 import Client from './client';
 
-interface Jwk {
-  p: string
-  kty: string
-  q: string
-  d: string
-  e: string
-  qi: string
-  dp: string
-  alg: string
-  dq: string
-  n: string
-}
-
 export class Jwt {
   constructor(claims: Record<string, string>, enforceDefaultFields: boolean);
 
@@ -46,4 +33,4 @@ export class Jwt {
 }
 
 export function makeJwt(client: Client, endpoint: string): Jwt;
-export function getPemAndJwk(privateKey: string | Record<string, unknown>): Jwk;
+export function getPemAndJwk(privateKey: string | Record<string, unknown>): {jwk: Record<string, string>, pem: string};

@@ -17,23 +17,23 @@ import Collection from './collection';
 import OktaApiError from './api-error';
 
 
-expectType<Resource>(new Resource({resourceId: 'value'}, new Client({})));
+expectType<Resource>(new Resource({resourceId: 'value'}, new Client()));
 
 expectType<OktaResponseHeadersReturnType>(OktaResponseHeaders({'set-language': 'en'}));
 
 const modelResolutionFactory = new ModelResolutionFactory();
-expectType<Resource>(modelResolutionFactory.createInstance({}, new Client({})));
+expectType<Resource>(modelResolutionFactory.createInstance({}, new Client()));
 
 const requestExecutor = new RequestExecutor();
 expectType<Promise<Response>>(requestExecutor.fetch({method: 'GET'}));
 
-const tokenClient = new OAuth(new Client({}));
+const tokenClient = new OAuth(new Client());
 expectType<Promise<TokenEndpointResponse>>(tokenClient.getAccessToken());
 expectType<JWTObject>(tokenClient.getJwt('https://foo/token'));
 expectType<void>(tokenClient.clearCachedAccessToken());
 
 const modelFactory = new ModelFactory(Resource);
-expectType<Resource>(modelFactory.createInstance({}, new Client({})));
+expectType<Resource>(modelFactory.createInstance({}, new Client()));
 
 const memoryStore = new MemoryStore({});
 expectType<Promise<void>>(memoryStore.delete('key'));
@@ -42,7 +42,7 @@ expectType<Promise<string>>(memoryStore.set('key', 'value'));
 
 const httpClient = new Http({
   requestExecutor: new RequestExecutor(),
-  oauth: new OAuth(new Client({}))
+  oauth: new OAuth(new Client())
 });
 expectType<Promise<Response>>(httpClient.delete('https://foo'));
 expectType<Promise<Record<string, unknown>>>(httpClient.getJson('https://foo'));
@@ -77,7 +77,7 @@ expectType<Promise<Response>>(
   () => Promise.resolve({} as Response))
 );
 
-const collection = new Collection(new Client({}), 'https://foo', new ModelFactory(Resource));
+const collection = new Collection<Resource>(new Client(), 'https://foo', new ModelFactory(Resource));
 expectType<Promise<unknown>>(collection.each(
   (item) => Promise.resolve(item)
 ));

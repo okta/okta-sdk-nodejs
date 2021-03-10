@@ -10,7 +10,14 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
-declare class MemoryStore {
+/** Interface methods required for cache storage implementations. */
+export interface CacheStorage {
+  get(key: string): Promise<string>;
+  set(key: string, value: string, options?: Record<string, string | number>): Promise<string>;
+  delete(key: string): Promise<void>;
+}
+
+declare class MemoryStore implements CacheStorage {
   constructor(options: {
     keyLimit?: number,
     expirationPoll?: number,
@@ -20,7 +27,7 @@ declare class MemoryStore {
   _store: Map<string, unknown>;
   _interval: NodeJS.Timeout;
   get(key: string): Promise<string>;
-  set(key: string, string: string, options?: {ttl: number } | undefined): Promise<string>;
+  set(key: string, string: string, options?: {ttl: number }): Promise<string>;
   delete(key: string): Promise<void>;
 }
 

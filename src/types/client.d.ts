@@ -14,9 +14,23 @@ import GeneratedApiClient from './generated-client';
 import Oauth from './oauth';
 import Http from './http';
 import RequestExecutor from './request-executor';
+import defaultCacheMiddleware from './default-cache-middleware';
+import { CacheStorage } from './memory-store';
+
+interface ConfigProperties {
+  orgUrl?: string,
+  token?: string,
+  clientId?: string,
+  scopes?: string[],
+  requestExecutor?: RequestExecutor,
+  authorizationMode?: string,
+  privateKey?: string | Record<string, unknown>
+  cacheStore?: CacheStorage,
+  cacheMiddleware?: typeof defaultCacheMiddleware
+}
 
 declare class Client extends GeneratedApiClient {
-  constructor(config: Record<string, unknown>);
+  constructor(config?: ConfigProperties);
 
   requestExecutor: RequestExecutor;
   authorizationMode: string;
