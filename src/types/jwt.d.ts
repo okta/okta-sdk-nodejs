@@ -26,9 +26,9 @@ export class Jwt {
   setJti(jti: string): Jwt;
   setNotBefore(nbf: Date | number): Jwt;
   setSigningAlgorithm(alg: string): Jwt;
-  setSigningKey(key: string | ArrayBuffer | Buffer | DataView | CryptoKey): Jwt;
+  setSigningKey(key: string | ArrayBuffer | Buffer): Jwt;
   setSubject(sub: string): Jwt;
-  sign(payload: Record<string, unknown>, algorithm: string, cryptoInput: string | ArrayBuffer | Buffer | DataView | CryptoKey): string;
+  sign(payload: Record<string, unknown>, algorithm: string, cryptoInput: string | ArrayBuffer | Buffer): string;
   toString(): string;
 }
 
