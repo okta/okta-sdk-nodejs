@@ -15,6 +15,7 @@
 
 import Resource from '../resource';
 import Client from '../client';
+import Response from 'node-fetch';
 import { SmsTemplateTranslations } from './SmsTemplateTranslations';
 import { SmsTemplateType } from './SmsTemplateType';
 
@@ -30,7 +31,7 @@ declare class SmsTemplate extends Resource {
   type: SmsTemplateType;
 
   update(): Promise<SmsTemplate>;
-  delete(): Promise<undefined>;
+  delete(): Promise<Response>;
   partialUpdate(): Promise<SmsTemplate>;
 }
 

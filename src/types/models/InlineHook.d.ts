@@ -17,6 +17,7 @@ import Resource from '../resource';
 import Client from '../client';
 import { InlineHookPayload } from './InlineHookPayload';
 import { InlineHookResponse } from './InlineHookResponse';
+import Response from 'node-fetch';
 import { InlineHookChannel } from './InlineHookChannel';
 import { InlineHookStatus } from './InlineHookStatus';
 import { InlineHookType } from './InlineHookType';
@@ -35,7 +36,7 @@ declare class InlineHook extends Resource {
   version: string;
 
   update(): Promise<InlineHook>;
-  delete(): Promise<undefined>;
+  delete(): Promise<Response>;
   activate(): Promise<InlineHook>;
   deactivate(): Promise<InlineHook>;
   execute(inlineHookPayload: InlineHookPayload): Promise<InlineHookResponse>;

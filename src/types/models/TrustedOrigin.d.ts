@@ -15,7 +15,7 @@
 
 import Resource from '../resource';
 import Client from '../client';
-
+import Response from 'node-fetch';
 
 declare class TrustedOrigin extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
@@ -32,7 +32,7 @@ declare class TrustedOrigin extends Resource {
   status: string;
 
   update(): Promise<TrustedOrigin>;
-  delete(): Promise<undefined>;
+  delete(): Promise<Response>;
 }
 
 export {

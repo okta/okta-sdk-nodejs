@@ -15,6 +15,7 @@
 
 import Resource from '../resource';
 import Client from '../client';
+import Response from 'node-fetch';
 import { EventHookChannel } from './EventHookChannel';
 import { EventSubscriptions } from './EventSubscriptions';
 
@@ -33,7 +34,7 @@ declare class EventHook extends Resource {
   verificationStatus: string;
 
   update(): Promise<EventHook>;
-  delete(): Promise<undefined>;
+  delete(): Promise<Response>;
   activate(): Promise<EventHook>;
   deactivate(): Promise<EventHook>;
   verify(): Promise<EventHook>;

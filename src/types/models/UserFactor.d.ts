@@ -18,6 +18,7 @@ import Client from '../client';
 import { ActivateFactorRequest } from './ActivateFactorRequest';
 import { VerifyFactorRequest } from './VerifyFactorRequest';
 import { VerifyUserFactorResponse } from './VerifyUserFactorResponse';
+import Response from 'node-fetch';
 import { FactorType } from './FactorType';
 import { FactorProvider } from './FactorProvider';
 import { FactorStatus } from './FactorStatus';
@@ -35,7 +36,7 @@ declare class UserFactor extends Resource {
   readonly status: FactorStatus;
   _verify: VerifyFactorRequest;
 
-  delete(): Promise<undefined>;
+  delete(): Promise<Response>;
   activate(activateFactorRequest: ActivateFactorRequest): Promise<UserFactor>;
   verify(verifyFactorRequest: VerifyFactorRequest, queryParameters?: {
     templateId?: string,

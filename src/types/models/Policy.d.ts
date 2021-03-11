@@ -15,6 +15,7 @@
 
 import Resource from '../resource';
 import Client from '../client';
+import Response from 'node-fetch';
 import Collection from '../collection';
 import { PolicyRule } from './PolicyRule';
 import { PolicyRuleConditions } from './PolicyRuleConditions';
@@ -37,9 +38,9 @@ declare class Policy extends Resource {
   type: PolicyType;
 
   update(): Promise<Policy>;
-  delete(): Promise<undefined>;
-  activate(): Promise<undefined>;
-  deactivate(): Promise<undefined>;
+  delete(): Promise<Response>;
+  activate(): Promise<Response>;
+  deactivate(): Promise<Response>;
   listPolicyRules(): Collection<PolicyRule>;
   createRule(policyRule: PolicyRule): Promise<PolicyRule>;
   getPolicyRule(ruleId: string): Promise<PolicyRule>;

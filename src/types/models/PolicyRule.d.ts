@@ -15,7 +15,7 @@
 
 import Resource from '../resource';
 import Client from '../client';
-
+import Response from 'node-fetch';
 
 declare class PolicyRule extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
@@ -29,9 +29,9 @@ declare class PolicyRule extends Resource {
   type: string;
 
   update(): Promise<PolicyRule>;
-  delete(): Promise<undefined>;
-  activate(): Promise<undefined>;
-  deactivate(): Promise<undefined>;
+  delete(): Promise<Response>;
+  activate(): Promise<Response>;
+  deactivate(): Promise<Response>;
 }
 
 export {

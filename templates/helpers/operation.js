@@ -170,11 +170,7 @@ const typeScriptClientImportBuilder = operations => {
     const [args, returnType] = getOperationArgumentsAndReturnType(operation);
     const typeNames = convertTypeObjectsToTypeNames(args, returnType);
     const importableTypes = typeNames.filter(isImportableType);
-
-    return [
-      ...acc,
-      ...importableTypes,
-    ];
+    return acc.concat(importableTypes);
   }, []);
 
   return formatImportStatements(new Set([...operationsImportTypes]), {
@@ -192,11 +188,17 @@ const typeScriptModelImportBuilder = model => {
     const [args, returnType] = getModelMethodArgumentsAndReturnType(method, model.modelName);
     const typeNames = convertTypeObjectsToTypeNames(args, returnType);
     const importableTypes = typeNames.filter(isImportableType);
-    return [
-      ...acc,
-      ...importableTypes,
-    ];
+    return acc.concat(importableTypes);
   }, []);
+
+  // CRUD operations return Promise<Resource> or Promise<Response> - we want Response to be included into imports.
+  const crudImportTypes = model.crud.reduce((acc, crud) => {
+    const [args, returnType] = getOperationArgumentsAndReturnType(crud.operation);
+    const typeNames = convertTypeObjectsToTypeNames(args, returnType);
+    const importableTypes = typeNames.filter(isImportableType);
+    return acc.concat(importableTypes);
+  }, []);
+
 
   const propertiesImportTypes = [];
   properties.forEach(property => {
@@ -205,7 +207,7 @@ const typeScriptModelImportBuilder = model => {
     }
   });
 
-  const importTypes = new Set([...methodsImportTypes, ...propertiesImportTypes]);
+  const importTypes = new Set([...methodsImportTypes, ...crudImportTypes, ...propertiesImportTypes]);
   // model methods returning model type
   importTypes.delete(model.modelName);
   return formatImportStatements(importTypes);
@@ -241,7 +243,7 @@ const getOperationArgumentsAndReturnType = operation => {
   }
 
   let genericType = 'Promise';
-  let genericParameterType = 'undefined';
+  let genericParameterType = 'Response';
   if (operation.responseModel) {
     genericParameterType = operation.responseModel;
     if (operation.isArray) {
@@ -307,7 +309,9 @@ const formatImportStatements = (importTypes, {
 } = {}) => {
   const importStatements = [];
   importTypes.forEach(type => {
-    if (type === 'Collection') {
+    if (type === 'Response') {
+      importStatements.push('import Response from \'node-fetch\';');
+    } else if (type === 'Collection') {
       importStatements.push(`import Collection from '${isModelToModelImport ? '..' : '.'}/collection';`);
     } else {
       importStatements.push(`import { ${type} } from '${isModelToModelImport ? './' : './models/'}${type}';`);

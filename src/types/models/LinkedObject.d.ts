@@ -15,6 +15,7 @@
 
 import Resource from '../resource';
 import Client from '../client';
+import Response from 'node-fetch';
 import { LinkedObjectDetails } from './LinkedObjectDetails';
 
 declare class LinkedObject extends Resource {
@@ -24,7 +25,7 @@ declare class LinkedObject extends Resource {
   associated: LinkedObjectDetails;
   primary: LinkedObjectDetails;
 
-  delete(): Promise<undefined>;
+  delete(): Promise<Response>;
 }
 
 export {

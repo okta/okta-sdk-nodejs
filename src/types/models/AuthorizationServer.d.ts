@@ -17,6 +17,7 @@ import Resource from '../resource';
 import Client from '../client';
 import Collection from '../collection';
 import { OAuth2Claim } from './OAuth2Claim';
+import Response from 'node-fetch';
 import { OAuth2Client } from './OAuth2Client';
 import { OAuth2RefreshToken } from './OAuth2RefreshToken';
 import { JsonWebKey } from './JsonWebKey';
@@ -41,14 +42,14 @@ declare class AuthorizationServer extends Resource {
   status: string;
 
   update(): Promise<AuthorizationServer>;
-  delete(): Promise<undefined>;
+  delete(): Promise<Response>;
   listOAuth2Claims(): Collection<OAuth2Claim>;
   createOAuth2Claim(oAuth2Claim: OAuth2Claim): Promise<OAuth2Claim>;
-  deleteOAuth2Claim(claimId: string): Promise<undefined>;
+  deleteOAuth2Claim(claimId: string): Promise<Response>;
   getOAuth2Claim(claimId: string): Promise<OAuth2Claim>;
   updateOAuth2Claim(claimId: string, oAuth2Claim: OAuth2Claim): Promise<OAuth2Claim>;
   listOAuth2Clients(): Collection<OAuth2Client>;
-  revokeRefreshTokensForClient(clientId: string): Promise<undefined>;
+  revokeRefreshTokensForClient(clientId: string): Promise<Response>;
   listRefreshTokensForClient(clientId: string, queryParameters?: {
     expand?: string,
     after?: string,
@@ -57,14 +58,14 @@ declare class AuthorizationServer extends Resource {
   getRefreshTokenForClient(clientId: string, tokenId: string, queryParameters?: {
     expand?: string,
   }): Promise<OAuth2RefreshToken>;
-  revokeRefreshTokenForClient(clientId: string, tokenId: string): Promise<undefined>;
+  revokeRefreshTokenForClient(clientId: string, tokenId: string): Promise<Response>;
   listKeys(): Collection<JsonWebKey>;
   rotateKeys(jwkUse: JwkUse): Collection<JsonWebKey>;
-  activate(): Promise<undefined>;
-  deactivate(): Promise<undefined>;
+  activate(): Promise<Response>;
+  deactivate(): Promise<Response>;
   listPolicies(): Collection<AuthorizationServerPolicy>;
   createPolicy(authorizationServerPolicy: AuthorizationServerPolicy): Promise<AuthorizationServerPolicy>;
-  deletePolicy(policyId: string): Promise<undefined>;
+  deletePolicy(policyId: string): Promise<Response>;
   getPolicy(policyId: string): Promise<AuthorizationServerPolicy>;
   updatePolicy(policyId: string, authorizationServerPolicy: AuthorizationServerPolicy): Promise<AuthorizationServerPolicy>;
   listOAuth2Scopes(queryParameters?: {
@@ -74,7 +75,7 @@ declare class AuthorizationServer extends Resource {
     limit?: number,
   }): Collection<OAuth2Scope>;
   createOAuth2Scope(oAuth2Scope: OAuth2Scope): Promise<OAuth2Scope>;
-  deleteOAuth2Scope(scopeId: string): Promise<undefined>;
+  deleteOAuth2Scope(scopeId: string): Promise<Response>;
   getOAuth2Scope(scopeId: string): Promise<OAuth2Scope>;
   updateOAuth2Scope(scopeId: string, oAuth2Scope: OAuth2Scope): Promise<OAuth2Scope>;
 }

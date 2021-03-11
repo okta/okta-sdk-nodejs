@@ -15,6 +15,7 @@
 
 import Resource from '../resource';
 import Client from '../client';
+import Response from 'node-fetch';
 import { AppUserCredentials } from './AppUserCredentials';
 
 declare class AppUser extends Resource {
@@ -38,7 +39,7 @@ declare class AppUser extends Resource {
   update(): Promise<AppUser>;
   delete(queryParameters?: {
     sendEmail?: boolean,
-  }): Promise<undefined>;
+  }): Promise<Response>;
 }
 
 export {

@@ -22,6 +22,7 @@ import { UserCredentials } from './UserCredentials';
 import { ForgotPasswordResponse } from './ForgotPasswordResponse';
 import { AssignRoleRequest } from './AssignRoleRequest';
 import { Role } from './Role';
+import Response from 'node-fetch';
 import { Group } from './Group';
 import { OAuth2ScopeConsentGrant } from './OAuth2ScopeConsentGrant';
 import { OAuth2RefreshToken } from './OAuth2RefreshToken';
@@ -33,6 +34,7 @@ import { UserFactor } from './UserFactor';
 import { SecurityQuestion } from './SecurityQuestion';
 import { IdentityProvider } from './IdentityProvider';
 import { ResponseLinks } from './ResponseLinks';
+import { CreateUserRequest } from './CreateUserRequest';
 import { UserProfile } from './UserProfile';
 import { UserStatus } from './UserStatus';
 import { UserType } from './UserType';
@@ -60,7 +62,7 @@ declare class User extends Resource {
   }): Promise<User>;
   delete(queryParameters?: {
     sendEmail?: boolean,
-  }): Promise<undefined>;
+  }): Promise<Response>;
   listAppLinks(): Collection<AppLink>;
   changePassword(changePasswordRequest: ChangePasswordRequest, queryParameters?: {
     strict?: boolean,
@@ -75,17 +77,17 @@ declare class User extends Resource {
   assignRole(assignRoleRequest: AssignRoleRequest, queryParameters?: {
     disableNotifications?: string,
   }): Promise<Role>;
-  removeRole(roleId: string): Promise<undefined>;
+  removeRole(roleId: string): Promise<Response>;
   listGroupTargets(roleId: string, queryParameters?: {
     after?: string,
     limit?: number,
   }): Collection<Group>;
-  removeGroupTarget(roleId: string, groupId: string): Promise<undefined>;
-  addGroupTarget(roleId: string, groupId: string): Promise<undefined>;
+  removeGroupTarget(roleId: string, groupId: string): Promise<Response>;
+  addGroupTarget(roleId: string, groupId: string): Promise<Response>;
   listAssignedRoles(queryParameters?: {
     expand?: string,
   }): Collection<Role>;
-  addAllAppsAsTarget(roleId: string): Promise<undefined>;
+  addAllAppsAsTarget(roleId: string): Promise<Response>;
   listGroups(): Collection<Group>;
   listGrants(queryParameters?: {
     scopeId?: string,
@@ -93,21 +95,21 @@ declare class User extends Resource {
     after?: string,
     limit?: number,
   }): Collection<OAuth2ScopeConsentGrant>;
-  revokeGrants(): Promise<undefined>;
-  revokeGrant(grantId: string): Promise<undefined>;
-  revokeGrantsForUserAndClient(clientId: string): Promise<undefined>;
+  revokeGrants(): Promise<Response>;
+  revokeGrant(grantId: string): Promise<Response>;
+  revokeGrantsForUserAndClient(clientId: string): Promise<Response>;
   listRefreshTokensForUserAndClient(clientId: string, queryParameters?: {
     expand?: string,
     after?: string,
     limit?: number,
   }): Collection<OAuth2RefreshToken>;
-  revokeTokenForUserAndClient(clientId: string, tokenId: string): Promise<undefined>;
+  revokeTokenForUserAndClient(clientId: string, tokenId: string): Promise<Response>;
   getRefreshTokenForUserAndClient(clientId: string, tokenId: string, queryParameters?: {
     expand?: string,
     limit?: number,
     after?: string,
   }): Promise<OAuth2RefreshToken>;
-  revokeTokensForUserAndClient(clientId: string): Promise<undefined>;
+  revokeTokensForUserAndClient(clientId: string): Promise<Response>;
   listClients(): Collection<OAuth2Client>;
   activate(queryParameters: {
     sendEmail: boolean,
@@ -117,18 +119,18 @@ declare class User extends Resource {
   }): Promise<UserActivationToken>;
   deactivate(queryParameters?: {
     sendEmail?: boolean,
-  }): Promise<undefined>;
-  suspend(): Promise<undefined>;
-  unsuspend(): Promise<undefined>;
+  }): Promise<Response>;
+  suspend(): Promise<Response>;
+  unsuspend(): Promise<Response>;
   resetPassword(queryParameters: {
     sendEmail: boolean,
   }): Promise<ResetPasswordToken>;
   expirePassword(): Promise<User>;
   expirePasswordAndGetTemporaryPassword(): Promise<TempPassword>;
-  unlock(): Promise<undefined>;
-  resetFactors(): Promise<undefined>;
-  deleteFactor(factorId: string): Promise<undefined>;
-  addToGroup(groupId: string): Promise<undefined>;
+  unlock(): Promise<Response>;
+  resetFactors(): Promise<Response>;
+  deleteFactor(factorId: string): Promise<Response>;
+  addToGroup(groupId: string): Promise<Response>;
   enrollFactor(userFactor: UserFactor, queryParameters?: {
     updatePhone?: boolean,
     templateId?: string,
@@ -139,7 +141,7 @@ declare class User extends Resource {
   listFactors(): Collection<UserFactor>;
   listSupportedSecurityQuestions(): Collection<SecurityQuestion>;
   getFactor(factorId: string): Promise<UserFactor>;
-  setLinkedObject(primaryRelationshipName: string, primaryUserId: string): Promise<undefined>;
+  setLinkedObject(primaryRelationshipName: string, primaryUserId: string): Promise<Response>;
   listIdentityProviders(): Collection<IdentityProvider>;
   getLinkedObjects(relationshipName: string, queryParameters?: {
     after?: string,
@@ -147,8 +149,8 @@ declare class User extends Resource {
   }): Collection<ResponseLinks>;
   clearSessions(queryParameters?: {
     oauthTokens?: boolean,
-  }): Promise<undefined>;
-  removeLinkedObject(relationshipName: string): Promise<undefined>;
+  }): Promise<Response>;
+  removeLinkedObject(relationshipName: string): Promise<Response>;
 }
 
 export {

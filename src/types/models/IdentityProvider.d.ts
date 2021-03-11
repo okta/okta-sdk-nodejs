@@ -18,6 +18,7 @@ import Client from '../client';
 import Collection from '../collection';
 import { Csr } from './Csr';
 import { CsrMetadata } from './CsrMetadata';
+import Response from 'node-fetch';
 import { JsonWebKey } from './JsonWebKey';
 import { IdentityProviderApplicationUser } from './IdentityProviderApplicationUser';
 import { UserIdentityProviderLinkRequest } from './UserIdentityProviderLinkRequest';
@@ -40,10 +41,10 @@ declare class IdentityProvider extends Resource {
   type: string;
 
   update(): Promise<IdentityProvider>;
-  delete(): Promise<undefined>;
+  delete(): Promise<Response>;
   listSigningCsrs(): Collection<Csr>;
   generateCsr(csrMetadata: CsrMetadata): Promise<Csr>;
-  deleteSigningCsr(csrId: string): Promise<undefined>;
+  deleteSigningCsr(csrId: string): Promise<Response>;
   getSigningCsr(csrId: string): Promise<Csr>;
   listSigningKeys(): Collection<JsonWebKey>;
   generateSigningKey(queryParameters: {
@@ -56,7 +57,7 @@ declare class IdentityProvider extends Resource {
   activate(): Promise<IdentityProvider>;
   deactivate(): Promise<IdentityProvider>;
   listUsers(): Collection<IdentityProviderApplicationUser>;
-  unlinkUser(userId: string): Promise<undefined>;
+  unlinkUser(userId: string): Promise<Response>;
   getUser(userId: string): Promise<IdentityProviderApplicationUser>;
   linkUser(userId: string, userIdentityProviderLinkRequest: UserIdentityProviderLinkRequest): Promise<IdentityProviderApplicationUser>;
   listSocialAuthTokens(userId: string): Collection<SocialAuthToken>;

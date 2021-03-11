@@ -17,6 +17,7 @@ import Resource from '../resource';
 import Client from '../client';
 import Collection from '../collection';
 import { AuthorizationServerPolicyRule } from './AuthorizationServerPolicyRule';
+import Response from 'node-fetch';
 import { PolicyRuleConditions } from './PolicyRuleConditions';
 import { PolicyType } from './PolicyType';
 
@@ -37,11 +38,11 @@ declare class AuthorizationServerPolicy extends Resource {
   type: PolicyType;
 
   update(authServerId: string): Promise<AuthorizationServerPolicy>;
-  delete(authServerId: string): Promise<undefined>;
+  delete(authServerId: string): Promise<Response>;
   listPolicyRules(authServerId: string): Collection<AuthorizationServerPolicyRule>;
   createPolicyRule(authServerId: string, authorizationServerPolicyRule: AuthorizationServerPolicyRule): Promise<AuthorizationServerPolicyRule>;
   getPolicyRule(authServerId: string, ruleId: string): Promise<AuthorizationServerPolicyRule>;
-  deletePolicyRule(authServerId: string, ruleId: string): Promise<undefined>;
+  deletePolicyRule(authServerId: string, ruleId: string): Promise<Response>;
 }
 
 export {

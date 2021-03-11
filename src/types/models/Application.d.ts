@@ -15,6 +15,7 @@
 
 import Resource from '../resource';
 import Client from '../client';
+import Response from 'node-fetch';
 import Collection from '../collection';
 import { AppUser } from './AppUser';
 import { ApplicationGroupAssignment } from './ApplicationGroupAssignment';
@@ -51,9 +52,9 @@ declare class Application extends Resource {
   visibility: ApplicationVisibility;
 
   update(): Promise<Application>;
-  delete(): Promise<undefined>;
-  activate(): Promise<undefined>;
-  deactivate(): Promise<undefined>;
+  delete(): Promise<Response>;
+  activate(): Promise<Response>;
+  deactivate(): Promise<Response>;
   listApplicationUsers(queryParameters?: {
     q?: string,
     query_scope?: string,
@@ -86,7 +87,7 @@ declare class Application extends Resource {
   }): Promise<JsonWebKey>;
   generateCsr(csrMetadata: CsrMetadata): Promise<Csr>;
   getCsr(csrId: string): Promise<Csr>;
-  revokeCsr(csrId: string): Promise<undefined>;
+  revokeCsr(csrId: string): Promise<Response>;
   listCsrs(): Collection<Csr>;
   publishCerCert(csrId: string, certificate: string): Promise<JsonWebKey>;
   publishBinaryCerCert(csrId: string, certificate: string): Promise<JsonWebKey>;
@@ -98,16 +99,16 @@ declare class Application extends Resource {
     after?: string,
     limit?: number,
   }): Collection<OAuth2Token>;
-  revokeOAuth2TokenForApplication(tokenId: string): Promise<undefined>;
+  revokeOAuth2TokenForApplication(tokenId: string): Promise<Response>;
   getOAuth2Token(tokenId: string, queryParameters?: {
     expand?: string,
   }): Promise<OAuth2Token>;
-  revokeOAuth2Tokens(): Promise<undefined>;
+  revokeOAuth2Tokens(): Promise<Response>;
   listScopeConsentGrants(queryParameters?: {
     expand?: string,
   }): Collection<OAuth2ScopeConsentGrant>;
   grantConsentToScope(oAuth2ScopeConsentGrant: OAuth2ScopeConsentGrant): Promise<OAuth2ScopeConsentGrant>;
-  revokeScopeConsentGrant(grantId: string): Promise<undefined>;
+  revokeScopeConsentGrant(grantId: string): Promise<Response>;
   getScopeConsentGrant(grantId: string, queryParameters?: {
     expand?: string,
   }): Promise<OAuth2ScopeConsentGrant>;

@@ -15,6 +15,7 @@
 
 import Resource from '../resource';
 import Client from '../client';
+import Response from 'node-fetch';
 import Collection from '../collection';
 import { User } from './User';
 import { Application } from './Application';
@@ -37,8 +38,8 @@ declare class Group extends Resource {
   readonly type: GroupType;
 
   update(): Promise<Group>;
-  delete(): Promise<undefined>;
-  removeUser(userId: string): Promise<undefined>;
+  delete(): Promise<Response>;
+  removeUser(userId: string): Promise<Response>;
   listUsers(queryParameters?: {
     after?: string,
     limit?: number,

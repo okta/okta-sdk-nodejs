@@ -15,6 +15,7 @@
 
 import Resource from '../resource';
 import Client from '../client';
+import Response from 'node-fetch';
 import { RoleAssignmentType } from './RoleAssignmentType';
 import { RoleStatus } from './RoleStatus';
 import { RoleType } from './RoleType';
@@ -33,12 +34,12 @@ declare class Role extends Resource {
   readonly status: RoleStatus;
   type: RoleType;
 
-  addAdminGroupTarget(targetGroupId: string): Promise<undefined>;
-  addAppInstanceTargetToAdminRole(appName: string, applicationId: string): Promise<undefined>;
-  addAppTargetToAdminRole(appName: string): Promise<undefined>;
-  addAllAppsAsTargetToRole(): Promise<undefined>;
-  addAppTargetToAppAdminRoleForUser(appName: string, applicationId: string): Promise<undefined>;
-  addAppTargetToAdminRoleForUser(appName: string): Promise<undefined>;
+  addAdminGroupTarget(targetGroupId: string): Promise<Response>;
+  addAppInstanceTargetToAdminRole(appName: string, applicationId: string): Promise<Response>;
+  addAppTargetToAdminRole(appName: string): Promise<Response>;
+  addAllAppsAsTargetToRole(): Promise<Response>;
+  addAppTargetToAppAdminRoleForUser(appName: string, applicationId: string): Promise<Response>;
+  addAppTargetToAdminRoleForUser(appName: string): Promise<Response>;
 }
 
 export {

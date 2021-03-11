@@ -15,6 +15,7 @@
 
 import Resource from '../resource';
 import Client from '../client';
+import Response from 'node-fetch';
 import { GroupRuleAction } from './GroupRuleAction';
 import { GroupRuleConditions } from './GroupRuleConditions';
 import { GroupRuleStatus } from './GroupRuleStatus';
@@ -32,9 +33,9 @@ declare class GroupRule extends Resource {
   type: string;
 
   update(): Promise<GroupRule>;
-  delete(): Promise<undefined>;
-  activate(): Promise<undefined>;
-  deactivate(): Promise<undefined>;
+  delete(): Promise<Response>;
+  activate(): Promise<Response>;
+  deactivate(): Promise<Response>;
 }
 
 export {

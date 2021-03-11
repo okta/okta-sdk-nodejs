@@ -15,6 +15,7 @@
 
 import Resource from '../resource';
 import Client from '../client';
+import Response from 'node-fetch';
 import { AuthorizationServerPolicyRuleActions } from './AuthorizationServerPolicyRuleActions';
 import { AuthorizationServerPolicyRuleConditions } from './AuthorizationServerPolicyRuleConditions';
 
@@ -33,9 +34,9 @@ declare class AuthorizationServerPolicyRule extends Resource {
   type: string;
 
   update(authServerId: string): Promise<AuthorizationServerPolicyRule>;
-  delete(authServerId: string): Promise<undefined>;
-  activate(): Promise<undefined>;
-  deactivate(): Promise<undefined>;
+  delete(authServerId: string): Promise<Response>;
+  activate(): Promise<Response>;
+  deactivate(): Promise<Response>;
 }
 
 export {
