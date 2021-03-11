@@ -3,7 +3,6 @@
     "jest/globals": true
   },
   "extends": [
-    "../.eslintrc",
     "plugin:jest/recommended"
   ],
   "plugins": [
