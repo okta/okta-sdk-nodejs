@@ -12,6 +12,19 @@
 
 import Client from './client';
 
+interface JWTHeader {
+  alg: string;
+  typ?: string;
+  kid?: string;
+  jku?: string;
+  x5u?: string;
+  x5t?: string;
+}
+
+interface UserClaims {
+  sub: string;
+  [properties: string]: unknown;
+}
 
 export interface TokenEndpointResponse {
   access_token: string,
@@ -27,19 +40,7 @@ export interface JWTObject {
   signature: string;
 }
 
-interface JWTHeader {
-  alg: string;
-  typ?: string;
-  kid?: string;
-  jku?: string;
-  x5u?: string;
-  x5t?: string;
-}
 
-interface UserClaims {
-  sub: string;
-  [properties: string]: unknown;
-}
 
 declare class OAuth {
   constructor(client: Client);
