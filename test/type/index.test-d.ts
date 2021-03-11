@@ -1,20 +1,20 @@
 import { expectType } from 'tsd';
 import { Response, Headers } from 'node-fetch';
-import Resource from './resource';
-import OktaResponseHeaders, { OktaResponseHeadersReturnType} from './okta-response-headers';
-import Client from './client';
-import ModelResolutionFactory from './resolution-factory';
-import RequestExecutor from './request-executor';
-import OAuth, { JWTObject, TokenEndpointResponse } from './oauth';
-import ModelFactory from './model-factory';
-import MemoryStore from './memory-store';
-import Http from './http';
-import RequestOptions from './request-options';
-import HttpError from './http-error';
-import DefaultRequestExecutor from './default-request-executor';
-import defaultCacheMiddleware from './default-cache-middleware';
-import Collection from './collection';
-import OktaApiError from './api-error';
+import Resource from '../../src/types/resource';
+import OktaResponseHeaders, { OktaResponseHeadersReturnType} from '../../src/types/okta-response-headers';
+import Client from '../../src/types/client';
+import ModelResolutionFactory from '../../src/types/resolution-factory';
+import RequestExecutor from '../../src/types/request-executor';
+import OAuth, { JWTObject, TokenEndpointResponse } from '../../src/types/oauth';
+import ModelFactory from '../../src/types/model-factory';
+import MemoryStore from '../../src/types/memory-store';
+import Http from '../../src/types/http';
+import RequestOptions from '../../src/types/request-options';
+import HttpError from '../../src/types/http-error';
+import DefaultRequestExecutor from '../../src/types/default-request-executor';
+import defaultCacheMiddleware from '../../src/types/default-cache-middleware';
+import Collection from '../../src/types/collection';
+import OktaApiError from '../../src/types/api-error';
 
 
 expectType<Resource>(new Resource({resourceId: 'value'}, new Client()));

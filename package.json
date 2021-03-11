@@ -71,5 +71,8 @@
     "setupFiles": [
       "jest-date-mock"
     ]
-  }
+  },
+  "tsd": {
+		"directory": "test/type"
+	}
 }
