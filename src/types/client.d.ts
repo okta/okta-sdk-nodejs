@@ -13,7 +13,7 @@
 import GeneratedApiClient from './generated-client';
 import Oauth from './oauth';
 import Http from './http';
-import RequestExecutor from './request-executor';
+import { IRequestExecutor } from './request-executor';
 import defaultCacheMiddleware from './default-cache-middleware';
 import { CacheStorage } from './memory-store';
 
@@ -22,7 +22,7 @@ interface ConfigProperties {
   token?: string,
   clientId?: string,
   scopes?: string[],
-  requestExecutor?: RequestExecutor,
+  requestExecutor?: IRequestExecutor,
   authorizationMode?: string,
   privateKey?: string | Record<string, unknown>
   cacheStore?: CacheStorage,
@@ -32,7 +32,7 @@ interface ConfigProperties {
 declare class Client extends GeneratedApiClient {
   constructor(config?: ConfigProperties);
 
-  requestExecutor: RequestExecutor;
+  requestExecutor: IRequestExecutor;
   authorizationMode: string;
   baseUrl: string;
   apiToken: string;
