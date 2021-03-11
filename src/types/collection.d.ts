@@ -34,11 +34,11 @@ declare class Collection<T> {
     }>;
   };
   getNextPage(): Promise<Record<string, unknown>>;
-  each(iterator: (item: T) => void | Promise<unknown> | boolean): Promise<unknown>;
+  each(iterator: (item: T) =>  Promise<unknown> | boolean | unknown): Promise<unknown>;
   subscribe(config: {
     interval: number;
-    next: (item: T) => void | Promise<unknown>;
-    error: (e: Error) => void | Promise<unknown>;
+    next: (item: T) => unknown | Promise<unknown>;
+    error: (e: Error) => unknown | Promise<unknown>;
     complete: () => void;
   }): {
     unsubscribe(): void;
