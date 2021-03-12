@@ -73,6 +73,6 @@
     ]
   },
   "tsd": {
-		"directory": "test/type"
-	}
+    "directory": "test/type"
+  }
 }
