@@ -15,7 +15,7 @@
 
 import Resource from '../resource';
 import Client from '../client';
-import Response from 'node-fetch';
+import { Response } from 'node-fetch';
 import { AuthorizationServerPolicyRuleActions } from './AuthorizationServerPolicyRuleActions';
 import { AuthorizationServerPolicyRuleConditions } from './AuthorizationServerPolicyRuleConditions';
 
@@ -42,3 +42,4 @@ declare class AuthorizationServerPolicyRule extends Resource {
 export {
   AuthorizationServerPolicyRule
 };
+export default AuthorizationServerPolicyRule;

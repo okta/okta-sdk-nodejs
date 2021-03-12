@@ -191,14 +191,15 @@ const typeScriptModelImportBuilder = model => {
     return acc.concat(importableTypes);
   }, []);
 
+
   // CRUD operations return Promise<Resource> or Promise<Response> - we want Response to be included into imports.
-  const crudImportTypes = model.crud.reduce((acc, crud) => {
+  const selfInvocableOperations = model.crud.filter(crud => ['update', 'delete'].includes(crud.alias));
+  const crudImportTypes = selfInvocableOperations.reduce((acc, crud) => {
     const [args, returnType] = getOperationArgumentsAndReturnType(crud.operation);
     const typeNames = convertTypeObjectsToTypeNames(args, returnType);
     const importableTypes = typeNames.filter(isImportableType);
     return acc.concat(importableTypes);
   }, []);
-
 
   const propertiesImportTypes = [];
   properties.forEach(property => {
@@ -310,7 +311,7 @@ const formatImportStatements = (importTypes, {
   const importStatements = [];
   importTypes.forEach(type => {
     if (type === 'Response') {
-      importStatements.push('import Response from \'node-fetch\';');
+      importStatements.push('import { Response } from \'node-fetch\';');
     } else if (type === 'Collection') {
       importStatements.push(`import Collection from '${isModelToModelImport ? '..' : '.'}/collection';`);
     } else {
@@ -328,6 +329,7 @@ const convertSwaggerToTSType = swaggerType => {
     hash: '{[name: string]: unknown}',
     dateTime: 'string',
     password: 'string',
+    object: 'Record<string, unknown>'
   }[swaggerType] || swaggerType;
 };
 

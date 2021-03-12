@@ -15,7 +15,7 @@
 
 import Resource from '../resource';
 import Client from '../client';
-import Response from 'node-fetch';
+import { Response } from 'node-fetch';
 import { SessionIdentityProvider } from './SessionIdentityProvider';
 import { SessionStatus } from './SessionStatus';
 

@@ -17,7 +17,7 @@ import Resource from '../resource';
 import Client from '../client';
 import Collection from '../collection';
 import { OAuth2Claim } from './OAuth2Claim';
-import Response from 'node-fetch';
+import { Response } from 'node-fetch';
 import { OAuth2Client } from './OAuth2Client';
 import { OAuth2RefreshToken } from './OAuth2RefreshToken';
 import { JsonWebKey } from './JsonWebKey';

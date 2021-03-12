@@ -15,7 +15,7 @@
 
 import Collection from './collection';
 import { Application } from './models/Application';
-import Response from 'node-fetch';
+import { Response } from 'node-fetch';
 import { Csr } from './models/Csr';
 import { CsrMetadata } from './models/CsrMetadata';
 import { JsonWebKey } from './models/JsonWebKey';

@@ -18,7 +18,7 @@ import Client from '../client';
 import { ActivateFactorRequest } from './ActivateFactorRequest';
 import { VerifyFactorRequest } from './VerifyFactorRequest';
 import { VerifyUserFactorResponse } from './VerifyUserFactorResponse';
-import Response from 'node-fetch';
+import { Response } from 'node-fetch';
 import { FactorType } from './FactorType';
 import { FactorProvider } from './FactorProvider';
 import { FactorStatus } from './FactorStatus';

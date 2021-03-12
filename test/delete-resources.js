@@ -14,43 +14,28 @@ const client = new okta.Client({
   requestExecutor: new okta.DefaultRequestExecutor()
 });
 
-describe('Clean all test resources', () => {
+async function cleanInlineHooks() {
+  const collection = await client.listInlineHooks();
+  collection.each(async (inlineHook) => {
 
-  cleanAuthorizationServers();
-
-  cleanTestUsers();
-
-  cleanTestGroups();
-
-  cleanApplications();
-
-  cleanInlineHooks();
-
-});
-
-async function cleanInlineHooks(){
-    const collection = await client.listInlineHooks();
-    collection.each(async (inlineHook) => {
-
-        await inlineHook.deactivate();
-        await inlineHook.delete();
-    })
+    await inlineHook.deactivate();
+    await inlineHook.delete();
+  });
 }
 
-
 function cleanAuthorizationServers() {
-    client.listAuthorizationServers().each(
-        authorizationServer => {
-            authorizationServer.delete();
-        }
-    );
+  client.listAuthorizationServers().each(
+    authorizationServer => {
+      authorizationServer.delete();
+    }
+  );
 }
 
 function cleanApplications() {
   client.listApplications().each(application =>{
     (application.label === 'Node SDK Service App' || application.label === 'Bacon Service Client') ?
-       console.log(`Skipped application to remove ${application.label}`) :
-       utils.removeAppByLabel(client, application.label)
+      console.log(`Skipped application to remove ${application.label}`) :
+      utils.removeAppByLabel(client, application.label);
   });
 }
 
@@ -58,7 +43,7 @@ function cleanTestUsers() {
   client.listUsers().each(user => {
     (user.profile.email.endsWith('okta.com')) ?
       console.log(`Skipped user to remove ${user.profile.email}`) :
-      utils.deleteUser(user)
+      utils.deleteUser(user);
   });
 }
 
@@ -78,11 +63,25 @@ function cleanTestGroups() {
     .then(user => {
       user.forEach(element =>{
         (element.profile.name === 'Everyone') ?
-           console.log(`Skipped group to remove ${element.profile.name}`) :
-           utils.cleanupGroup(client, element)
+          console.log(`Skipped group to remove ${element.profile.name}`) :
+          utils.cleanupGroup(client, element);
       });
     })
     .catch(err => {
       console.error(err);
     });
 }
+
+describe('Clean all test resources', () => {
+
+  cleanAuthorizationServers();
+
+  cleanTestUsers();
+
+  cleanTestGroups();
+
+  cleanApplications();
+
+  cleanInlineHooks();
+
+});

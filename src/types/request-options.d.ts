@@ -10,8 +10,11 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
-declare interface Request {
-  api<T>(url: string): Promise<T>;
+import { RequestInit } from 'node-fetch';
+
+/** An extension of node-fetch's request options. */
+interface RequestOptions extends RequestInit {
+  startTime?: Date
 }
 
-export default Request;
+export default RequestOptions;

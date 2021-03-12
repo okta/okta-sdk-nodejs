@@ -10,29 +10,39 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
-import Request from './request';
+import RequestOptions from './request-options';
+import ModelFactory from './model-factory';
+import ModelResolutionFactory from './resolution-factory';
+import Client from './client';
 
-declare class Collection {
-    constructor(client: any, uri: string, factory: any, request?: Request);
-    nextUri: string;
-    client: any;
-    factory: any;
-    currentItems: any[];
-    request: Request;
-    next(): Promise<any>;
-    [Symbol.asyncIterator](): {
-        next: () => Promise<any>;
-    };
-    getNextPage(): any;
-    each(iterator: Function): any;
-    subscribe(config: {
-        interval: number;
-        next: Function;
-        error: Function;
-        complete: Function;
-    }): {
-        unsubscribe(): void;
-    };
+declare class Collection<T> {
+  constructor(client: Client, uri: string, factory: ModelFactory | ModelResolutionFactory, request?: RequestOptions);
+
+  nextUri: string;
+  client: Client;
+  factory: ModelFactory | ModelResolutionFactory;
+  currentItems: Record<string, unknown>[];
+  request: RequestOptions;
+  next(): Promise<{
+    done: boolean,
+    value: T | null
+  }>;
+  [Symbol.asyncIterator](): {
+    next: () => Promise<{
+      done: boolean,
+      value: T | null
+    }>;
+  };
+  getNextPage(): Promise<Record<string, unknown>>;
+  each(iterator: (item: T) =>  Promise<unknown> | boolean | unknown): Promise<unknown>;
+  subscribe(config: {
+    interval: number;
+    next: (item: T) => unknown | Promise<unknown>;
+    error: (e: Error) => unknown | Promise<unknown>;
+    complete: () => void;
+  }): {
+    unsubscribe(): void;
+  };
 }
 
 export default Collection;

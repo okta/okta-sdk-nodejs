@@ -18,7 +18,7 @@ import Client from '../client';
 import Collection from '../collection';
 import { Csr } from './Csr';
 import { CsrMetadata } from './CsrMetadata';
-import Response from 'node-fetch';
+import { Response } from 'node-fetch';
 import { JsonWebKey } from './JsonWebKey';
 import { IdentityProviderApplicationUser } from './IdentityProviderApplicationUser';
 import { UserIdentityProviderLinkRequest } from './UserIdentityProviderLinkRequest';

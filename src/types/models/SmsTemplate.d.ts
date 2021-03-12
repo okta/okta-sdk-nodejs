@@ -15,7 +15,7 @@
 
 import Resource from '../resource';
 import Client from '../client';
-import Response from 'node-fetch';
+import { Response } from 'node-fetch';
 import { SmsTemplateTranslations } from './SmsTemplateTranslations';
 import { SmsTemplateType } from './SmsTemplateType';
 
@@ -38,3 +38,4 @@ declare class SmsTemplate extends Resource {
 export {
   SmsTemplate
 };
+export default SmsTemplate;

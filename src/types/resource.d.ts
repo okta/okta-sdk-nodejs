@@ -10,8 +10,10 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
+import Client from './client';
+
 declare class Resource {
-    constructor(resourceJson: any, client: any);
+  constructor(resourceJson: Record<string, unknown>, client: Client);
 }
 
 export default Resource;
