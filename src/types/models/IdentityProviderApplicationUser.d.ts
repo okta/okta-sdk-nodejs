@@ -11,9 +11,25 @@
  */
 
 
-/**
- *  THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION
- */
-{{#each models}}
-export * from './{{modelName}}';
-{{/each}}
+/* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
+
+import Resource from '../resource';
+import Client from '../client';
+
+
+declare class IdentityProviderApplicationUser extends Resource {
+  constructor(resourceJson: Record<string, unknown>, client: Client);
+
+  readonly _embedded: {[name: string]: unknown};
+  readonly _links: {[name: string]: unknown};
+  created: string;
+  externalId: string;
+  readonly id: string;
+  lastUpdated: string;
+  profile: {[name: string]: unknown};
+
+}
+
+export {
+  IdentityProviderApplicationUser
+};

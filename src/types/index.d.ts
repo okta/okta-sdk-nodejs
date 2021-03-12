@@ -11,9 +11,7 @@
  */
 
 import Client from './generated-client';
-import * as Models from './models';
 
 export {
-  Client,
-  Models,
-}
+  Client
+};

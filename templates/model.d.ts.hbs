@@ -1,23 +1,12 @@
-/*!
- * Copyright (c) 2017-2021, Okta, Inc. and/or its affiliates. All rights reserved.
- * The Okta software accompanied by this notice is provided pursuant to the Apache License, Version 2.0 (the "License.")
- *
- * You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0.
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
- * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *
- * See the License for the specific language governing permissions and limitations under the License.
- */
-
-
+{{!-- The template file is not auto-generated - this banner is to be included into destination files --}}
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
 {{#if extends~}}
-import {{extends}} from './{{extends}}';
+import { {{extends}} } from './{{extends}}';
 {{else}}
 import Resource from '../resource';
 {{/if}}
+import Client from '../client';
 {{{typeScriptModelImportBuilder this}}}
 
 {{#if extends}}
@@ -25,16 +14,16 @@ declare class {{modelName}} extends {{extends}} {
 {{else}}
 declare class {{modelName}} extends Resource {
 {{/if}}
-  constructor(resourceJson: string, client: any);
+  constructor(resourceJson: Record<string, unknown>, client: Client);
 
 {{#each properties}}
 {{#unless (isRestrictedPropertyOverride ../modelName this.propertyName)}}
 {{#if this.$ref}}
 {{#if (ne this.model "object") }}
-  {{{sanitizeModelPropertyName ../modelName this.propertyName}}}: {{model}};
+  {{#if this.readOnly}}readonly {{/if}}{{{sanitizeModelPropertyName ../modelName this.propertyName}}}: {{model}};
 {{/if}}
 {{else}}
-  {{{sanitizeModelPropertyName ../modelName this.propertyName}}}: {{convertSwaggerToTSType this.commonType}};
+  {{#if this.readOnly}}readonly {{/if}}{{{sanitizeModelPropertyName ../modelName this.propertyName}}}: {{{convertSwaggerToTSType this.commonType}}};
 {{/if}}
 {{/unless}}
 {{/each}}
@@ -52,4 +41,6 @@ declare class {{modelName}} extends Resource {
   {{/each}}
 }
 
-export default {{modelName}};
+export {
+  {{modelName}}
+};

@@ -1,6 +1,6 @@
 const _ = require('lodash');
 
-const MODELS_SHOULD_NOT_PROCESS = ['object', 'string', 'undefined'];
+const MODELS_SHOULD_NOT_PROCESS = ['object', 'string', 'undefined', 'Promise'];
 
 // BEGIN Work around spec mismatches and upstream parsing inconsistencies.
 // The below map is used to block redefining(overriding) properties listed as values in models specified as keys.
@@ -157,22 +157,20 @@ const jsdocBuilder = (operation) => {
 
 const typeScriptOperationSignatureBuilder = operation => {
   const [args, returnType] = getOperationArgumentsAndReturnType(operation);
-  return `${operation.operationId}(${formatTypeScriptArguments(args)}): Promise<${returnType}>;`;
+  return `${operation.operationId}(${formatTypeScriptArguments(args)}): ${formatReturnType(returnType)};`;
 };
 
 const typeScriptModelMethodSignatureBuilder = (method, modelName) => {
   const [args, returnType] = getModelMethodArgumentsAndReturnType(method, modelName);
-  return `(${formatTypeScriptArguments(args)}): Promise<${returnType}>;`;
+  return `(${formatTypeScriptArguments(args)}): ${formatReturnType(returnType)};`;
 };
 
 const typeScriptClientImportBuilder = operations => {
   const operationsImportTypes = operations.reduce((acc, operation) => {
     const [args, returnType] = getOperationArgumentsAndReturnType(operation);
-    const importableTypes = [...args.values(), returnType].filter(isImportableType);
-    return [
-      ...acc,
-      ...importableTypes,
-    ];
+    const typeNames = convertTypeObjectsToTypeNames(args, returnType);
+    const importableTypes = typeNames.filter(isImportableType);
+    return acc.concat(importableTypes);
   }, []);
 
   return formatImportStatements(new Set([...operationsImportTypes]), {
@@ -188,12 +186,19 @@ const typeScriptModelImportBuilder = model => {
 
   const methodsImportTypes = model.methods.reduce((acc, method) => {
     const [args, returnType] = getModelMethodArgumentsAndReturnType(method, model.modelName);
-    const importableTypes = [...args.values(), returnType].filter(isImportableType);
-    return [
-      ...acc,
-      ...importableTypes,
-    ];
+    const typeNames = convertTypeObjectsToTypeNames(args, returnType);
+    const importableTypes = typeNames.filter(isImportableType);
+    return acc.concat(importableTypes);
   }, []);
+
+  // CRUD operations return Promise<Resource> or Promise<Response> - we want Response to be included into imports.
+  const crudImportTypes = model.crud.reduce((acc, crud) => {
+    const [args, returnType] = getOperationArgumentsAndReturnType(crud.operation);
+    const typeNames = convertTypeObjectsToTypeNames(args, returnType);
+    const importableTypes = typeNames.filter(isImportableType);
+    return acc.concat(importableTypes);
+  }, []);
+
 
   const propertiesImportTypes = [];
   properties.forEach(property => {
@@ -202,7 +207,7 @@ const typeScriptModelImportBuilder = model => {
     }
   });
 
-  const importTypes = new Set([...methodsImportTypes, ...propertiesImportTypes]);
+  const importTypes = new Set([...methodsImportTypes, ...crudImportTypes, ...propertiesImportTypes]);
   // model methods returning model type
   importTypes.delete(model.modelName);
   return formatImportStatements(importTypes);
@@ -213,33 +218,39 @@ const getOperationArgumentsAndReturnType = operation => {
   const args = new Map();
 
   pathParams.forEach(pathParam => {
-    args.set(pathParam.name, 'string');
+    args.set(pathParam.name, {
+      isRequired: pathParam.required,
+      type: 'string',
+    });
   });
 
   if ((method === 'post' || method === 'put') && bodyModel) {
     const bodyModelName = getBodyModelName(operation);
     if (bodyModelName) {
-      args.set(_.camelCase(bodyModelName), operation.bodyModel);
+      args.set(_.camelCase(bodyModelName), {
+        isRequired: true,
+        type: operation.bodyModel
+      });
     }
   }
 
   if (queryParams.length) {
-    args.set('queryParameters', queryParams.reduce((acc, param) => {
-      acc.push(param.name);
-      return acc;
-    }, []));
+    const isRequired = queryParams.reduce((acc, param) => acc |= param.required, false);
+    args.set('queryParameters', {
+      isRequired,
+      type: queryParams,
+    });
   }
 
-  let returnType = 'undefined';
+  let genericType = 'Promise';
+  let genericParameterType = 'Response';
   if (operation.responseModel) {
+    genericParameterType = operation.responseModel;
     if (operation.isArray) {
-      returnType = 'Collection';
-    } else {
-      returnType = operation.responseModel;
+      genericType = 'Collection';
     }
   }
-
-  return [args, returnType];
+  return [args, {genericType, genericParameterType}];
 };
 
 const getModelMethodArgumentsAndReturnType = (method, modelName) => {
@@ -260,22 +271,34 @@ const getModelMethodArgumentsAndReturnType = (method, modelName) => {
   return [args, returnType];
 };
 
+const convertTypeObjectsToTypeNames = (args, returnType) => {
+  const argTypes = Array.from(args.values()).map(arg => arg.type);
+  return [...argTypes, returnType.genericType, returnType.genericParameterType];
+};
+
 const formatTypeScriptArguments = args => {
   const typedArgs = [];
-  for (let [arg, argType] of args) {
-    if (Array.isArray(argType)) {
-      typedArgs.push(`${arg}: ${formatObjectLiteralType(argType)}`);
+  for (let [argName, {type, isRequired}] of args) {
+    let argument = `${argName}${isRequired ? '' : '?'}`;
+    if (Array.isArray(type)) {
+      argument = `${argument}: ${formatObjectLiteralType(type)}`;
     } else {
-      typedArgs.push(`${arg}: ${argType}`);
+      argument = `${argument}: ${type}`;
     }
+    typedArgs.push(argument);
   }
   return typedArgs.join(', ');
 };
 
+const formatReturnType = ({genericType, genericParameterType}) =>
+  `${genericType}<${genericParameterType}>`;
+
 const formatObjectLiteralType = typeProps => {
-  let objectLiteralType = '{ \n';
+  let objectLiteralType = '{\n';
   typeProps.forEach(prop => {
-    objectLiteralType += `    ${prop}: string,\n`;
+    const isRequired = prop.required ? '' : '?';
+    const propType = convertSwaggerToTSType(prop.type);
+    objectLiteralType += `    ${prop.name}${isRequired}: ${propType},\n`;
   });
   objectLiteralType += '  }';
   return objectLiteralType;
@@ -286,10 +309,12 @@ const formatImportStatements = (importTypes, {
 } = {}) => {
   const importStatements = [];
   importTypes.forEach(type => {
-    if (type === 'Collection') {
+    if (type === 'Response') {
+      importStatements.push('import Response from \'node-fetch\';');
+    } else if (type === 'Collection') {
       importStatements.push(`import Collection from '${isModelToModelImport ? '..' : '.'}/collection';`);
     } else {
-      importStatements.push(`import ${type} from '${isModelToModelImport ? './' : './models/'}${type}';`);
+      importStatements.push(`import { ${type} } from '${isModelToModelImport ? './' : './models/'}${type}';`);
     }
   });
   return importStatements.join('\n');
@@ -300,7 +325,7 @@ const convertSwaggerToTSType = swaggerType => {
     array: '[]',
     integer: 'number',
     double: 'number',
-    hash: '{\n    [name: string]: unknown;\n  }',
+    hash: '{[name: string]: unknown}',
     dateTime: 'string',
     password: 'string',
   }[swaggerType] || swaggerType;
