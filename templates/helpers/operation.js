@@ -1,6 +1,31 @@
 const _ = require('lodash');
 
-const getBodyModelNameInCamelCase = operation => {
+const MODELS_SHOULD_NOT_PROCESS = ['object', 'string', 'undefined'];
+
+// BEGIN Work around spec mismatches and upstream parsing inconsistencies.
+// The below map is used to block redefining(overriding) properties listed as values in models specified as keys.
+// It is also consulted with for excluding the blocklisted properties from intialization in constructor,
+// adding to jsDoc parameters and skipping imports.
+// This is done to avoid property type conflicts between parent and descendant models.
+// These models' respective superclasses are expected to provide a correct property type.
+const RESTRICTED_MODEL_PROPERTY_OVERRIDES = {
+  OktaSignOnPolicy: ['conditions'],
+  PasswordPolicy: ['conditions'],
+  BookmarkApplication: ['name'],
+  BasicAuthApplication: ['name'],
+  OpenIdConnectApplication: ['name'],
+  WsFederationApplication: ['name'],
+  SwaThreeFieldApplication: ['name'],
+  SwaApplication: ['name'],
+  SecurePasswordStoreApplication: ['name'],
+};
+const KNOWN_CONFLICTING_PROPERTY_NAMES = {
+  UserFactor: ['verify'],
+};
+const PROPERTY_NAME_CHARACTERS_REQUIRE_ESCAPING = ['#'];
+// END Work around spec mismatches and upstream parsing inconsistencies.
+
+const getBodyModelName = operation => {
   const { bodyModel, parameters } = operation;
   let bodyModelName = bodyModel;
   if (bodyModel === 'string') {
@@ -9,8 +34,10 @@ const getBodyModelNameInCamelCase = operation => {
       bodyModelName = bodyParam.name;
     }
   }
-  return _.camelCase(bodyModelName);
+  return bodyModelName;
 };
+
+const getBodyModelNameInCamelCase = operation => _.camelCase(getBodyModelName(operation));
 
 const getOperationArgument = operation => {
   const { bodyModel, method, pathParams, queryParams } = operation;
@@ -32,19 +59,19 @@ const getOperationArgument = operation => {
   }
 
   return args;
-}
+};
 
 const operationArgumentBuilder = (operation) => {
   const args = getOperationArgument(operation);
   return args.join(', ');
-}
+};
 
-const getRequiredOperationParams = operation => { 
+const getRequiredOperationParams = operation => {
   const args = getOperationArgument(operation);
   return operation.parameters.filter(({ name, required }) => {
     return args.includes(name) && required;
   });
-}
+};
 
 const getHttpMethod = ({ consumes, produces, method, responseModel }) => {
   let res;
@@ -77,15 +104,15 @@ const hasRequest = (operation) => {
 };
 
 const hasHeaders = (operation) => {
-  const { consumes, produces, bodyModel } = operation;
+  const { consumes, produces } = operation;
   const httpMethod = getHttpMethod(operation);
   return httpMethod.indexOf('Json') === -1 && (consumes.length || produces.length);
 };
 
 const shouldResolveJson = (operation) => {
-  return hasHeaders(operation) 
-    && hasRequest(operation) 
-    && operation.responseModel 
+  return hasHeaders(operation)
+    && hasRequest(operation)
+    && operation.responseModel
     && operation.produces.includes('application/json');
 };
 
@@ -119,13 +146,194 @@ const jsdocBuilder = (operation) => {
 
   if (operation.responseModel) {
     if (operation.isArray) {
-      lines.push(`   * @returns {Promise<Collection>} A collection that will yield {@link ${operation.responseModel}} instances.`)
+      lines.push(`   * @returns {Promise<Collection>} A collection that will yield {@link ${operation.responseModel}} instances.`);
     } else {
-      lines.push(`   * @returns {Promise<${operation.responseModel}>}`)
+      lines.push(`   * @returns {Promise<${operation.responseModel}>}`);
     }
   }
 
   return lines.join('\n');
+};
+
+const typeScriptOperationSignatureBuilder = operation => {
+  const [args, returnType] = getOperationArgumentsAndReturnType(operation);
+  return `${operation.operationId}(${formatTypeScriptArguments(args)}): Promise<${returnType}>;`;
+};
+
+const typeScriptModelMethodSignatureBuilder = (method, modelName) => {
+  const [args, returnType] = getModelMethodArgumentsAndReturnType(method, modelName);
+  return `(${formatTypeScriptArguments(args)}): Promise<${returnType}>;`;
+};
+
+const typeScriptClientImportBuilder = operations => {
+  const operationsImportTypes = operations.reduce((acc, operation) => {
+    const [args, returnType] = getOperationArgumentsAndReturnType(operation);
+    const importableTypes = [...args.values(), returnType].filter(isImportableType);
+    return [
+      ...acc,
+      ...importableTypes,
+    ];
+  }, []);
+
+  return formatImportStatements(new Set([...operationsImportTypes]), {
+    isModelToModelImport: false
+  });
+};
+
+const typeScriptModelImportBuilder = model => {
+  const {properties, methods} = model;
+  if (!properties && !methods) {
+    return;
+  }
+
+  const methodsImportTypes = model.methods.reduce((acc, method) => {
+    const [args, returnType] = getModelMethodArgumentsAndReturnType(method, model.modelName);
+    const importableTypes = [...args.values(), returnType].filter(isImportableType);
+    return [
+      ...acc,
+      ...importableTypes,
+    ];
+  }, []);
+
+  const propertiesImportTypes = [];
+  properties.forEach(property => {
+    if (isImportablePropertyType(property, model.modelName)) {
+      propertiesImportTypes.push(property.model);
+    }
+  });
+
+  const importTypes = new Set([...methodsImportTypes, ...propertiesImportTypes]);
+  // model methods returning model type
+  importTypes.delete(model.modelName);
+  return formatImportStatements(importTypes);
+};
+
+const getOperationArgumentsAndReturnType = operation => {
+  const { bodyModel, method, pathParams, queryParams } = operation;
+  const args = new Map();
+
+  pathParams.forEach(pathParam => {
+    args.set(pathParam.name, 'string');
+  });
+
+  if ((method === 'post' || method === 'put') && bodyModel) {
+    const bodyModelName = getBodyModelName(operation);
+    if (bodyModelName) {
+      args.set(_.camelCase(bodyModelName), operation.bodyModel);
+    }
+  }
+
+  if (queryParams.length) {
+    args.set('queryParameters', queryParams.reduce((acc, param) => {
+      acc.push(param.name);
+      return acc;
+    }, []));
+  }
+
+  let returnType = 'undefined';
+  if (operation.responseModel) {
+    if (operation.isArray) {
+      returnType = 'Collection';
+    } else {
+      returnType = operation.responseModel;
+    }
+  }
+
+  return [args, returnType];
+};
+
+const getModelMethodArgumentsAndReturnType = (method, modelName) => {
+  const { operation } = method;
+  const [args, returnType] = getOperationArgumentsAndReturnType(operation);
+
+  operation.pathParams.forEach(param => {
+    const matchingArgument = method.arguments.find(argument => argument.dest === param.name);
+    if (matchingArgument) {
+      args.delete(param.name);
+    }
+  });
+
+  const bodyModelName = getBodyModelName(operation);
+  if (bodyModelName && bodyModelName === modelName) {
+    args.delete(_.camelCase(operation.bodyModel));
+  }
+  return [args, returnType];
+};
+
+const formatTypeScriptArguments = args => {
+  const typedArgs = [];
+  for (let [arg, argType] of args) {
+    if (Array.isArray(argType)) {
+      typedArgs.push(`${arg}: ${formatObjectLiteralType(argType)}`);
+    } else {
+      typedArgs.push(`${arg}: ${argType}`);
+    }
+  }
+  return typedArgs.join(', ');
+};
+
+const formatObjectLiteralType = typeProps => {
+  let objectLiteralType = '{ \n';
+  typeProps.forEach(prop => {
+    objectLiteralType += `    ${prop}: string,\n`;
+  });
+  objectLiteralType += '  }';
+  return objectLiteralType;
+};
+
+const formatImportStatements = (importTypes, {
+  isModelToModelImport = true
+} = {}) => {
+  const importStatements = [];
+  importTypes.forEach(type => {
+    if (type === 'Collection') {
+      importStatements.push(`import Collection from '${isModelToModelImport ? '..' : '.'}/collection';`);
+    } else {
+      importStatements.push(`import ${type} from '${isModelToModelImport ? './' : './models/'}${type}';`);
+    }
+  });
+  return importStatements.join('\n');
+};
+
+const convertSwaggerToTSType = swaggerType => {
+  return {
+    array: '[]',
+    integer: 'number',
+    double: 'number',
+    hash: '{\n    [name: string]: unknown;\n  }',
+    dateTime: 'string',
+    password: 'string',
+  }[swaggerType] || swaggerType;
+};
+
+const isImportablePropertyType = (property, hostModelName) => {
+  const isRestricted = isRestrictedPropertyOverride(hostModelName, property.propertyName);
+  return property.$ref && isImportableType(property.model) && !isRestricted;
+};
+
+const isRestrictedPropertyOverride = (modelName, propertyName) => {
+  return RESTRICTED_MODEL_PROPERTY_OVERRIDES[modelName] &&
+    RESTRICTED_MODEL_PROPERTY_OVERRIDES[modelName].includes(propertyName);
+};
+const isImportableType = type =>
+  !MODELS_SHOULD_NOT_PROCESS.includes(type) && !Array.isArray(type);
+
+const sanitizeModelPropertyName = (modelName, propertyName) => {
+  let sanitizedPropertyName = propertyName;
+
+  const containsRestrictedChars =
+    PROPERTY_NAME_CHARACTERS_REQUIRE_ESCAPING.find(char => propertyName.includes(char));
+
+  if (KNOWN_CONFLICTING_PROPERTY_NAMES[modelName] &&
+      KNOWN_CONFLICTING_PROPERTY_NAMES[modelName].includes(propertyName)) {
+    sanitizedPropertyName = `_${propertyName}`;
+  }
+
+  if (containsRestrictedChars) {
+    sanitizedPropertyName = `'${propertyName}'`;
+  }
+
+  return sanitizedPropertyName;
 };
 
 module.exports = {
@@ -136,5 +344,13 @@ module.exports = {
   hasHeaders,
   getHttpMethod,
   shouldResolveJson,
-  jsdocBuilder
-}
+  jsdocBuilder,
+  typeScriptOperationSignatureBuilder,
+  typeScriptModelImportBuilder,
+  typeScriptModelMethodSignatureBuilder,
+  typeScriptClientImportBuilder,
+  convertSwaggerToTSType,
+  sanitizeModelPropertyName,
+  isImportablePropertyType,
+  isRestrictedPropertyOverride,
+};

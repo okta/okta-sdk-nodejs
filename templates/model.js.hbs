@@ -30,7 +30,9 @@ var Resource = require('../resource');
 {{#each properties}}
 {{#if this.$ref}}
 {{#if (ne this.model "object") }}
+{{#unless (isRestrictedPropertyOverride ../modelName this.propertyName)}}
  * @property { {{model}} } {{this.propertyName}}
+ {{/unless}}
 {{/if}}
 {{else}}
  * @property { {{this.commonType}} } {{this.propertyName}}
