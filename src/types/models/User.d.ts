@@ -34,7 +34,6 @@ import { UserFactor } from './UserFactor';
 import { SecurityQuestion } from './SecurityQuestion';
 import { IdentityProvider } from './IdentityProvider';
 import { ResponseLinks } from './ResponseLinks';
-import { CreateUserRequest } from './CreateUserRequest';
 import { UserProfile } from './UserProfile';
 import { UserStatus } from './UserStatus';
 import { UserType } from './UserType';
