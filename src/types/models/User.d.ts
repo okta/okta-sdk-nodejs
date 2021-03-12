@@ -22,7 +22,7 @@ import { UserCredentials } from './UserCredentials';
 import { ForgotPasswordResponse } from './ForgotPasswordResponse';
 import { AssignRoleRequest } from './AssignRoleRequest';
 import { Role } from './Role';
-import Response from 'node-fetch';
+import { Response } from 'node-fetch';
 import { Group } from './Group';
 import { OAuth2ScopeConsentGrant } from './OAuth2ScopeConsentGrant';
 import { OAuth2RefreshToken } from './OAuth2RefreshToken';

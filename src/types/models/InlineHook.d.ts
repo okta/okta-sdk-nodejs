@@ -17,7 +17,7 @@ import Resource from '../resource';
 import Client from '../client';
 import { InlineHookPayload } from './InlineHookPayload';
 import { InlineHookResponse } from './InlineHookResponse';
-import Response from 'node-fetch';
+import { Response } from 'node-fetch';
 import { InlineHookChannel } from './InlineHookChannel';
 import { InlineHookStatus } from './InlineHookStatus';
 import { InlineHookType } from './InlineHookType';

@@ -15,7 +15,7 @@
 
 import Resource from '../resource';
 import Client from '../client';
-import Response from 'node-fetch';
+import { Response } from 'node-fetch';
 import Collection from '../collection';
 import { User } from './User';
 import { Application } from './Application';

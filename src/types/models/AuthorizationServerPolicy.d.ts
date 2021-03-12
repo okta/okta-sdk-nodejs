@@ -17,7 +17,7 @@ import Resource from '../resource';
 import Client from '../client';
 import Collection from '../collection';
 import { AuthorizationServerPolicyRule } from './AuthorizationServerPolicyRule';
-import Response from 'node-fetch';
+import { Response } from 'node-fetch';
 import { PolicyRuleConditions } from './PolicyRuleConditions';
 import { PolicyType } from './PolicyType';
 

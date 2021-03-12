@@ -15,7 +15,7 @@
 
 import Resource from '../resource';
 import Client from '../client';
-import Response from 'node-fetch';
+import { Response } from 'node-fetch';
 import { GroupRuleAction } from './GroupRuleAction';
 import { GroupRuleConditions } from './GroupRuleConditions';
 import { GroupRuleStatus } from './GroupRuleStatus';

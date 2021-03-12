@@ -310,7 +310,7 @@ const formatImportStatements = (importTypes, {
   const importStatements = [];
   importTypes.forEach(type => {
     if (type === 'Response') {
-      importStatements.push('import Response from \'node-fetch\';');
+      importStatements.push('import { Response } from \'node-fetch\';');
     } else if (type === 'Collection') {
       importStatements.push(`import Collection from '${isModelToModelImport ? '..' : '.'}/collection';`);
     } else {
