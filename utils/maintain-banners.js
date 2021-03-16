@@ -5,7 +5,10 @@ const globby = require('globby');
 const path = require('path');
 
 const bannerSourcePath = path.join(__dirname, '..', 'templates', 'license-banner.txt');
-const files = globby.sync(path.join(__dirname, '..', 'src', '**/*.js'));
+const files = globby.sync([
+  path.join(__dirname, '..', 'src', '**/*.js'),
+  path.join(__dirname, '..', 'src/types', '**/*.d.ts')
+]);
 const bannerSource = fs.readFileSync(bannerSourcePath).toString();
 const copyrightRegex = /(Copyright \(c\) )([0-9]+)-?([0-9]+)?/;
 const match = bannerSource.match(copyrightRegex);

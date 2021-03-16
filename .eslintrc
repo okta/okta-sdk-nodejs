@@ -1,5 +1,5 @@
 {
-  "parserOptions": { 
+  "parserOptions": {
     "ecmaVersion": 2017
   },
   "rules": {
@@ -67,14 +67,6 @@
     "no-spaced-func": [2],
     "space-in-parens": [2, "never"],
     "space-infix-ops": 2
-  },
-  "globals": {
-    "after": true,
-    "afterEach": true,
-    "before": true,
-    "beforeEach": true,
-    "describe": true,
-    "it": true
   },
   "env": {
     "es6": true,

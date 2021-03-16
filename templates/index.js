@@ -9,7 +9,7 @@ const operationUtils = require('./helpers/operation');
  */
 class ModelResolver {
   constructor(models) {
-    this.models = models
+    this.models = models;
   }
   getByName(name) {
     const match = this.models.filter(model => model.modelName === name);
@@ -30,13 +30,7 @@ js.process = ({spec, operations, models, handlebars}) => {
 
   // Collect all the operations
 
-  const MODELS_SHOULD_NOT_PROCESS = ['object', 'string'];
-
   const templates = [];
-
-  const extensibleModels = new Set();
-
-  const modelGraph = {} ;
 
   const modelResolver = new ModelResolver(models);
 
@@ -49,6 +43,11 @@ js.process = ({spec, operations, models, handlebars}) => {
         operation.responseModelRequiresResolution = true;
       }
     }
+  });
+  templates.push({
+    src: 'generated-client.d.ts.hbs',
+    dest: 'src/types/generated-client.d.ts',
+    context: {operations, spec}
   });
 
   templates.push({
@@ -65,6 +64,12 @@ js.process = ({spec, operations, models, handlebars}) => {
       context: model
     });
 
+    templates.push({
+      src: 'model.d.ts.hbs',
+      dest: `src/types/models/${model.modelName}.d.ts`,
+      context: model
+    });
+
     if (model.resolutionStrategy) {
       const mapping = Object.entries(model.resolutionStrategy.valueToModelMapping).map(([propertyValue, className]) => {
         const classModel = models.filter(model => model.modelName === className)[0];
@@ -73,6 +78,16 @@ js.process = ({spec, operations, models, handlebars}) => {
       templates.push({
         src: 'factory.js.hbs',
         dest: `src/factories/${model.modelName}Factory.js`,
+        context: {
+          parentModelName: model.modelName,
+          mapping,
+          propertyName: model.resolutionStrategy.propertyName
+        }
+      });
+
+      templates.push({
+        src: 'factory.d.ts.hbs',
+        dest: `src/types/factories/${model.modelName}Factory.d.ts`,
         context: {
           parentModelName: model.modelName,
           mapping,
@@ -119,8 +134,8 @@ js.process = ({spec, operations, models, handlebars}) => {
     }
     const importStatements = new Set();
     model.properties.forEach(property => {
-      const shouldProcess = !MODELS_SHOULD_NOT_PROCESS.includes(property.model);
-      if (property.$ref && shouldProcess && !property.isEnum) {
+      const shouldProcess = operationUtils.isImportablePropertyType(property, model.modelName);
+      if (shouldProcess && !property.isEnum) {
         importStatements.add(`const ${property.model} = require('./${property.model}');`);
       }
     });
@@ -133,25 +148,24 @@ js.process = ({spec, operations, models, handlebars}) => {
     }
     const constructorStatements = [];
     model.properties.forEach(property => {
-      const shouldProcess = !MODELS_SHOULD_NOT_PROCESS.includes(property.model);
-      if (property.$ref && shouldProcess && !property.isEnum) {
+      const shouldProcess = operationUtils.isImportablePropertyType(property, model.modelName);
+      if (shouldProcess && !property.isEnum) {
         constructorStatements.push(`    if (resourceJson && resourceJson.${property.propertyName}) {`);
         constructorStatements.push(`      this.${property.propertyName} = new ${property.model}(resourceJson.${property.propertyName});`);
-        constructorStatements.push(`    }`);
+        constructorStatements.push('    }');
       }
     });
     return constructorStatements.join('\n');
   });
 
   handlebars.registerHelper('modelMethodPublicArgumentBuilder', (method, modelName) => {
-
     const args = [];
 
     const operation = method.operation;
 
     operation.pathParams.forEach(param => {
       const matchingArgument = method.arguments.filter(argument => argument.dest === param.name)[0];
-      if (!matchingArgument || !matchingArgument.src){
+      if (!matchingArgument || !matchingArgument.src) {
         args.push(param.name);
       }
     });
@@ -175,7 +189,7 @@ js.process = ({spec, operations, models, handlebars}) => {
 
     operation.pathParams.forEach(param => {
       const matchingArgument = method.arguments.filter(argument => argument.dest === param.name)[0];
-      if (matchingArgument && matchingArgument.src){
+      if (matchingArgument && matchingArgument.src) {
         args.push(`this.${matchingArgument.src}`);
       } else {
         args.push(param.name);
@@ -201,7 +215,7 @@ js.process = ({spec, operations, models, handlebars}) => {
 
     operation.pathParams.forEach(param => {
       const matchingArgument = method.arguments.filter(argument => argument.dest === param.name)[0];
-      if (!matchingArgument || !matchingArgument.src){
+      if (!matchingArgument || !matchingArgument.src) {
         args.push(`@param {${param.type}} ${param.name}`);
       }
     });
@@ -216,9 +230,9 @@ js.process = ({spec, operations, models, handlebars}) => {
 
     if (operation.responseModel) {
       if (operation.isArray) {
-        args.push(`@returns {Promise<Collection>} A collection that will yield {@link ${operation.responseModel}} instances.`)
+        args.push(`@returns {Promise<Collection>} A collection that will yield {@link ${operation.responseModel}} instances.`);
       } else {
-        args.push(`@returns {Promise<${operation.responseModel}>}`)
+        args.push(`@returns {Promise<${operation.responseModel}>}`);
       }
     }
 
@@ -233,7 +247,7 @@ js.process = ({spec, operations, models, handlebars}) => {
   handlebars.registerHelper('getAffectedResources', (path) => {
     const resources = [];
     let pl = path.length;
-    while(pl--) {
+    while (pl--) {
       if (path[pl] === '}') {
         const resourcePath = path.slice(0, pl + 1).replace(/{/g, '${');
         resources.push('${this.baseUrl}' + resourcePath);

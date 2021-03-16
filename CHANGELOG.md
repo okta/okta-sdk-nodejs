@@ -2,7 +2,9 @@
 
 ## 4.5.0
 
-- [#220](https://github.com/okta/okta-sdk-nodejs/pull/220) Rename private instance variable
+### Features
+
+- [#231](https://github.com/okta/okta-sdk-nodejs/pull/231) Adds TypeScript type definitions
 
 ## 4.4.0
 
