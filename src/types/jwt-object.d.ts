@@ -10,14 +10,30 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
-import Client from './client';
-import DefaultRequestExecutor from './default-request-executor';
-import RequestExecutor from './request-executor';
+interface JWTHeader {
+  alg: string;
+  typ?: string;
+  kid?: string;
+  jku?: string;
+  x5u?: string;
+  x5t?: string;
+}
 
-declare const _default : {
-  Client: typeof Client,
-  DefaultRequestExecutor: typeof DefaultRequestExecutor,
-  RequestExecutor: typeof RequestExecutor,
-};
+interface UserClaims {
+  sub: string;
+  [properties: string]: unknown;
+}
 
-export = _default;
+// import from okta-auth-js?
+export interface JWTObject {
+  header: JWTHeader;
+  payload: UserClaims;
+  signature: string;
+}
+
+export interface TokenEndpointResponse {
+  access_token: string,
+  token_type: string,
+  expires_in: number,
+  scope: string,
+}

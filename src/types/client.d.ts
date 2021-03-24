@@ -11,7 +11,7 @@
  */
 
 import GeneratedApiClient from './generated-client';
-import Oauth from './oauth';
+import OAuth from './oauth';
 import Http from './http';
 import { IRequestExecutor } from './request-executor';
 import defaultCacheMiddleware from './default-cache-middleware';
@@ -39,7 +39,7 @@ declare class Client extends GeneratedApiClient {
   clientId: string;
   scopes: string[];
   privateKey: string;
-  oauth: Oauth;
+  oauth: OAuth;
   http: Http;
 }
 

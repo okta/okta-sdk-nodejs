@@ -10,14 +10,12 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
-import Client from './client';
-import DefaultRequestExecutor from './default-request-executor';
-import RequestExecutor from './request-executor';
 
-declare const _default : {
-  Client: typeof Client,
-  DefaultRequestExecutor: typeof DefaultRequestExecutor,
-  RequestExecutor: typeof RequestExecutor,
-};
+/** Interface methods required for cache storage implementations. */
+interface CacheStorage {
+  get(key: string): Promise<string>;
+  set(key: string, value: string, options?: Record<string, string | number>): Promise<string>;
+  delete(key: string): Promise<void>;
+}
 
-export = _default;
+export default CacheStorage;

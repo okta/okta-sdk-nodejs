@@ -1,6 +1,6 @@
 import { expectError, expectType } from 'tsd';
 import { Response } from 'node-fetch';
-import { Client } from '../../src/types';
+import Client from '../../src/types/client';
 import Collection from '../../src/types/collection';
 import { Application } from '../../src/types/models/Application';
 
