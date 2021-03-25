@@ -13,8 +13,8 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-import Resource from '../resource';
-import Client from '../client';
+import { Resource } from '../resource';
+import { Client } from '../client';
 import { OAuth2Actor } from './OAuth2Actor';
 import { OAuth2ScopeConsentGrantSource } from './OAuth2ScopeConsentGrantSource';
 import { OAuth2ScopeConsentGrantStatus } from './OAuth2ScopeConsentGrantStatus';

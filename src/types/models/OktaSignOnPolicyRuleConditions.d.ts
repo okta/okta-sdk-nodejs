@@ -13,8 +13,8 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-import Resource from '../resource';
-import Client from '../client';
+import { Resource } from '../resource';
+import { Client } from '../client';
 import { PolicyRuleAuthContextCondition } from './PolicyRuleAuthContextCondition';
 import { PolicyNetworkCondition } from './PolicyNetworkCondition';
 import { PolicyPeopleCondition } from './PolicyPeopleCondition';

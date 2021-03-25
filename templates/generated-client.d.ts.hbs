@@ -3,10 +3,8 @@
 
 {{{typeScriptClientImportBuilder operations}}}
 
-declare class GeneratedApiClient {
+export declare class GeneratedApiClient {
 {{#each operations}}
   {{{typeScriptOperationSignatureBuilder this}}}
 {{/each}}
 }
-
-export default GeneratedApiClient;

@@ -1,7 +1,7 @@
 import { expectType } from 'tsd';
 import { Response } from 'node-fetch';
-import RequestOptions from '../../src/types/request-options';
-import DefaultRequestExecutor from '../../src/types/default-request-executor';
+import { RequestOptions } from '../../src/types/request-options';
+import { DefaultRequestExecutor } from '../../src/types/default-request-executor';
 
 
 const defaultRequestExecutor = new DefaultRequestExecutor();

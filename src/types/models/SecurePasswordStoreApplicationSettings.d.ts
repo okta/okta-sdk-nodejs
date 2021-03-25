@@ -14,7 +14,7 @@
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
 import { ApplicationSettings } from './ApplicationSettings';
-import Client from '../client';
+import { Client } from '../client';
 import { SecurePasswordStoreApplicationSettingsApplication } from './SecurePasswordStoreApplicationSettingsApplication';
 
 declare class SecurePasswordStoreApplicationSettings extends ApplicationSettings {

@@ -10,7 +10,7 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
-import Client from './client';
+import { Client } from './client';
 
 interface JWTHeader {
   alg: string;
@@ -42,7 +42,7 @@ export interface JWTObject {
 
 
 
-declare class OAuth {
+export declare class OAuth {
   constructor(client: Client);
 
   client: Client;
@@ -51,5 +51,3 @@ declare class OAuth {
   clearCachedAccessToken(): void;
   getJwt(endpoint: string): JWTObject;
 }
-
-export default OAuth;

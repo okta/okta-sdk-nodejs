@@ -14,7 +14,7 @@
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
 import { Application } from './Application';
-import Client from '../client';
+import { Client } from '../client';
 import { BookmarkApplicationSettings } from './BookmarkApplicationSettings';
 
 declare class BookmarkApplication extends Application {

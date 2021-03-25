@@ -13,9 +13,9 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-import Resource from '../resource';
-import Client from '../client';
-import Collection from '../collection';
+import { Resource } from '../resource';
+import { Client } from '../client';
+import { Collection } from '../collection';
 import { OAuth2Claim } from './OAuth2Claim';
 import { Response } from 'node-fetch';
 import { OAuth2Client } from './OAuth2Client';

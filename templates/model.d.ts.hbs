@@ -4,9 +4,9 @@
 {{#if extends~}}
 import { {{extends}} } from './{{extends}}';
 {{else}}
-import Resource from '../resource';
+import { Resource } from '../resource';
 {{/if}}
-import Client from '../client';
+import { Client } from '../client';
 {{{typeScriptModelImportBuilder this}}}
 
 {{#if extends}}

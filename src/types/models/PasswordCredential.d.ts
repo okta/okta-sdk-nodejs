@@ -13,8 +13,8 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-import Resource from '../resource';
-import Client from '../client';
+import { Resource } from '../resource';
+import { Client } from '../client';
 import { PasswordCredentialHash } from './PasswordCredentialHash';
 import { PasswordCredentialHook } from './PasswordCredentialHook';
 

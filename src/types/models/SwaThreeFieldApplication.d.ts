@@ -14,7 +14,7 @@
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
 import { BrowserPluginApplication } from './BrowserPluginApplication';
-import Client from '../client';
+import { Client } from '../client';
 import { SwaThreeFieldApplicationSettings } from './SwaThreeFieldApplicationSettings';
 
 declare class SwaThreeFieldApplication extends BrowserPluginApplication {

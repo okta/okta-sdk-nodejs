@@ -13,10 +13,10 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-import Resource from '../resource';
-import Client from '../client';
+import { Resource } from '../resource';
+import { Client } from '../client';
 import { Response } from 'node-fetch';
-import Collection from '../collection';
+import { Collection } from '../collection';
 import { User } from './User';
 import { Application } from './Application';
 import { AssignRoleRequest } from './AssignRoleRequest';

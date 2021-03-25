@@ -17,7 +17,7 @@ export interface CacheStorage {
   delete(key: string): Promise<void>;
 }
 
-declare class MemoryStore implements CacheStorage {
+export declare class MemoryStore implements CacheStorage {
   constructor(options?: {
     keyLimit?: number,
     expirationPoll?: number,
@@ -30,5 +30,3 @@ declare class MemoryStore implements CacheStorage {
   set(key: string, string: string, options?: {ttl: number }): Promise<string>;
   delete(key: string): Promise<void>;
 }
-
-export default MemoryStore;

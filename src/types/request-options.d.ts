@@ -13,8 +13,6 @@
 import { RequestInit } from 'node-fetch';
 
 /** An extension of node-fetch's request options. */
-interface RequestOptions extends RequestInit {
+export interface RequestOptions extends RequestInit {
   startTime?: Date
 }
-
-export default RequestOptions;

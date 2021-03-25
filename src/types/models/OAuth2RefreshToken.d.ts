@@ -13,8 +13,8 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-import Resource from '../resource';
-import Client from '../client';
+import { Resource } from '../resource';
+import { Client } from '../client';
 import { OAuth2Actor } from './OAuth2Actor';
 
 declare class OAuth2RefreshToken extends Resource {

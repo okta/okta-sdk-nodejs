@@ -14,7 +14,7 @@
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
 import { ApplicationSettings } from './ApplicationSettings';
-import Client from '../client';
+import { Client } from '../client';
 import { OpenIdConnectApplicationSettingsClient } from './OpenIdConnectApplicationSettingsClient';
 
 declare class OpenIdConnectApplicationSettings extends ApplicationSettings {

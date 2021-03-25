@@ -1,10 +1,10 @@
 import { expectType } from 'tsd';
 import { Response } from 'node-fetch';
-import Client from '../../src/types/client';
-import RequestExecutor from '../../src/types/request-executor';
-import OAuth from '../../src/types/oauth';
-import RequestOptions from '../../src/types/request-options';
-import Http from '../../src/types/http';
+import { Client } from '../../src/types/client';
+import { RequestExecutor } from '../../src/types/request-executor';
+import { OAuth } from '../../src/types/oauth';
+import { RequestOptions } from '../../src/types/request-options';
+import { Http } from '../../src/types/http';
 
 
 const httpClient = new Http({

@@ -11,7 +11,7 @@
  */
 import { Headers } from 'node-fetch';
 
-declare class HttpError extends Error {
+export declare class HttpError extends Error {
   constructor(url: string, status: number | string, responseBody: string, headers: Headers);
 
   name: string;
@@ -21,5 +21,3 @@ declare class HttpError extends Error {
   stack: string;
   message: string;
 }
-
-export default HttpError;

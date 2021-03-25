@@ -14,7 +14,7 @@
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
 import { Application } from './Application';
-import Client from '../client';
+import { Client } from '../client';
 import { SchemeApplicationCredentials } from './SchemeApplicationCredentials';
 
 declare class BrowserPluginApplication extends Application {
