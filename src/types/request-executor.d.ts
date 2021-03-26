@@ -14,15 +14,13 @@ import { Response } from 'node-fetch';
 import EventEmitter_1 = require('events');
 import EventEmitter = EventEmitter_1.EventEmitter;
 
-import RequestOptions from './request-options';
+import { RequestOptions } from './request-options';
 
 
 export interface IRequestExecutor {
   fetch(requestOptions: RequestOptions): Promise<Response>;
 }
 
-declare class RequestExecutor extends EventEmitter implements IRequestExecutor {
+export declare class RequestExecutor extends EventEmitter implements IRequestExecutor {
   fetch(requestOptions: RequestOptions): Promise<Response>;
 }
-
-export default RequestExecutor;

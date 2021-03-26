@@ -14,7 +14,7 @@
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
 import { Policy } from './Policy';
-import Client from '../client';
+import { Client } from '../client';
 import { PasswordPolicySettings } from './PasswordPolicySettings';
 
 declare class PasswordPolicy extends Policy {

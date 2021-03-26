@@ -10,14 +10,12 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
-import Resource from './resource';
-import Client from './client';
+import { Resource } from './resource';
+import { Client } from './client';
 
 
-declare class ModelResolutionFactory {
+export declare class ModelResolutionFactory {
   getMapping(): Record<string, typeof Resource>;
   getResolutionProperty(): string;
   createInstance(resource: Record<string, unknown>, client: Client): Resource;
 }
-
-export default ModelResolutionFactory;

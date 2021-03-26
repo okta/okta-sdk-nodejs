@@ -1,8 +1,8 @@
 import { expectType } from 'tsd';
-import Resource from '../../src/types/resource';
-import Client from '../../src/types/client';
-import ModelFactory from '../../src/types/model-factory';
-import Collection from '../../src/types/collection';
+import { Resource } from '../../src/types/resource';
+import { Client } from '../../src/types/client';
+import { ModelFactory } from '../../src/types/model-factory';
+import { Collection } from '../../src/types/collection';
 
 
 const collection = new Collection<Resource>(

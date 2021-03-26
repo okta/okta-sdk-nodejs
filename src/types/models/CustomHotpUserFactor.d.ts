@@ -14,7 +14,7 @@
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
 import { UserFactor } from './UserFactor';
-import Client from '../client';
+import { Client } from '../client';
 import { CustomHotpUserFactorProfile } from './CustomHotpUserFactorProfile';
 
 declare class CustomHotpUserFactor extends UserFactor {

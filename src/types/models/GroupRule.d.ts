@@ -13,8 +13,8 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-import Resource from '../resource';
-import Client from '../client';
+import { Resource } from '../resource';
+import { Client } from '../client';
 import { Response } from 'node-fetch';
 import { GroupRuleAction } from './GroupRuleAction';
 import { GroupRuleConditions } from './GroupRuleConditions';
@@ -41,4 +41,3 @@ declare class GroupRule extends Resource {
 export {
   GroupRule
 };
-export default GroupRule;

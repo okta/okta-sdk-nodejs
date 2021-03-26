@@ -10,12 +10,12 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
-import RequestOptions from './request-options';
-import ModelFactory from './model-factory';
-import ModelResolutionFactory from './resolution-factory';
-import Client from './client';
+import { RequestOptions } from './request-options';
+import { ModelFactory } from './model-factory';
+import { ModelResolutionFactory } from './resolution-factory';
+import { Client } from './client';
 
-declare class Collection<T> {
+export declare class Collection<T> {
   constructor(client: Client, uri: string, factory: ModelFactory | ModelResolutionFactory, request?: RequestOptions);
 
   nextUri: string;
@@ -44,5 +44,3 @@ declare class Collection<T> {
     unsubscribe(): void;
   };
 }
-
-export default Collection;

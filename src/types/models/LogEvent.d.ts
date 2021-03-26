@@ -13,8 +13,8 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-import Resource from '../resource';
-import Client from '../client';
+import { Resource } from '../resource';
+import { Client } from '../client';
 import { LogActor } from './LogActor';
 import { LogAuthenticationContext } from './LogAuthenticationContext';
 import { LogClient } from './LogClient';

@@ -14,7 +14,7 @@
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
 import { UserFactor } from './UserFactor';
-import Client from '../client';
+import { Client } from '../client';
 import { FactorResultType } from './FactorResultType';
 import { PushUserFactorProfile } from './PushUserFactorProfile';
 

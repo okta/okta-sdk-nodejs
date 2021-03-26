@@ -11,11 +11,11 @@
  */
 
 import { Response } from 'node-fetch';
-import RequestExecutor from './request-executor';
-import RequestOptions from './request-options';
+import { RequestExecutor } from './request-executor';
+import { RequestOptions } from './request-options';
 
 
-declare class DefaultRequestExecutor extends RequestExecutor {
+export declare class DefaultRequestExecutor extends RequestExecutor {
   constructor(config?: {
     maxRetries: number,
     requestTimeout: number,
@@ -35,5 +35,3 @@ declare class DefaultRequestExecutor extends RequestExecutor {
   maxRetriesReached(request: RequestOptions): boolean;
   retryRequest(request: RequestOptions, response: Response, delayMs: number): Promise<Response>;
 }
-
-export default DefaultRequestExecutor;

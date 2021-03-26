@@ -10,7 +10,7 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
-declare class ConfigLoader {
+export declare class ConfigLoader {
   prefix: string;
   config: {
     client: {
@@ -27,5 +27,3 @@ declare class ConfigLoader {
   applyYamlFile(path: string): void;
   apply(config: Record<string, unknown>): void;
 }
-
-export default ConfigLoader;

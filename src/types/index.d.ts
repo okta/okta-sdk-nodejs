@@ -10,12 +10,7 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
-import Client from './client';
-import DefaultRequestExecutor from './default-request-executor';
-import RequestExecutor from './request-executor';
 
-export {
-  Client,
-  DefaultRequestExecutor,
-  RequestExecutor,
-};
+export * from './client';
+export * from './request-executor';
+export * from './default-request-executor';

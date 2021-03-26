@@ -1,5 +1,5 @@
 import { expectType } from 'tsd';
-import MemoryStore from '../../src/types/memory-store';
+import { MemoryStore } from '../../src/types/memory-store';
 
 
 const memoryStore = new MemoryStore({});

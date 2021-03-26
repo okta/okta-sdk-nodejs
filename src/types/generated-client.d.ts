@@ -13,7 +13,7 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-import Collection from './collection';
+import { Collection } from './collection';
 import { Application } from './models/Application';
 import { Response } from 'node-fetch';
 import { Csr } from './models/Csr';
@@ -70,7 +70,7 @@ import { TempPassword } from './models/TempPassword';
 import { ResetPasswordToken } from './models/ResetPasswordToken';
 import { ResponseLinks } from './models/ResponseLinks';
 
-declare class GeneratedApiClient {
+export declare class GeneratedApiClient {
   listApplications(queryParameters?: {
     q?: string,
     after?: string,
@@ -522,5 +522,3 @@ declare class GeneratedApiClient {
     oauthTokens?: boolean,
   }): Promise<Response>;
 }
-
-export default GeneratedApiClient;

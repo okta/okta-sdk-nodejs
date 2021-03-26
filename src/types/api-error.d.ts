@@ -12,7 +12,7 @@
  */
 import { Headers } from 'node-fetch';
 
-declare class OktaApiError extends Error {
+export declare class OktaApiError extends Error {
   constructor(url: string, status: number, responseBody: Record<string, unknown>, headers: Headers);
   name: string;
   status: number;
@@ -26,5 +26,3 @@ declare class OktaApiError extends Error {
   stack: string;
   message: string;
 }
-
-export default OktaApiError;

@@ -9,4 +9,5 @@ if ! yarn install --frozen-lockfile; then
 fi
 
 yarn eslint
+yarn test:types
 yarn test:unit

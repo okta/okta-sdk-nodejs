@@ -1,5 +1,5 @@
 import { expectType } from 'tsd';
-import ConfigLoader from '../../src/types/config-loader';
+import { ConfigLoader } from '../../src/types/config-loader';
 
 
 const configLoader = new ConfigLoader();

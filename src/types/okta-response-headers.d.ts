@@ -18,6 +18,4 @@ export interface OktaResponseHeadersReturnType {
   'x-rate-limit-reset'?: number
 }
 
-declare function OktaResponseHeaders(responseHeadersMap: Record<string, unknown>): OktaResponseHeadersReturnType;
-
-export default OktaResponseHeaders;
+export declare function OktaResponseHeaders(responseHeadersMap: Record<string, unknown>): OktaResponseHeadersReturnType;

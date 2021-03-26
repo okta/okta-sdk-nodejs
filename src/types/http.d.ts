@@ -10,28 +10,28 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
-import OAuth from './oauth';
+import { OAuth } from './oauth';
 import { Response } from 'node-fetch';
+import { RequestExecutor } from './request-executor';
 import { CacheStorage } from './memory-store';
-import { IRequestExecutor } from './request-executor';
-import defaultCacheMiddleware from './default-cache-middleware';
-import RequestOptions from './request-options';
+import { defaultCacheMiddleware } from './default-cache-middleware';
+import { RequestOptions } from './request-options';
 
 interface RequestContext {
   isCollection?: boolean,
   resources?: string[],
 }
 
-declare class Http {
+export declare class Http {
   static errorFilter(response: Response): Promise<Response>;
   constructor(httpConfig: {
-    requestExecutor: IRequestExecutor,
+    requestExecutor: RequestExecutor,
     oauth: OAuth,
     cacheStore?: CacheStorage,
     cacheMiddleware?: typeof defaultCacheMiddleware | unknown,
   });
   defaultHeaders: Record<string, unknown>;
-  requestExecutor: IRequestExecutor;
+  requestExecutor: RequestExecutor;
   cacheStore: CacheStorage;
   cacheMiddleware: typeof defaultCacheMiddleware | unknown;
   oauth: OAuth;
@@ -51,6 +51,3 @@ declare class Http {
   putJson(uri: string, request?: RequestOptions, context?: RequestContext): Promise<Response>;
   put(uri: string, request?: RequestOptions, context?: RequestContext): Promise<Response>;
 }
-
-export default Http;
-

@@ -14,7 +14,7 @@
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
 import { ApplicationSettingsApplication } from './ApplicationSettingsApplication';
-import Client from '../client';
+import { Client } from '../client';
 
 
 declare class WsFederationApplicationSettingsApplication extends ApplicationSettingsApplication {

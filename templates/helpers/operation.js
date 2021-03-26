@@ -313,7 +313,7 @@ const formatImportStatements = (importTypes, {
     if (type === 'Response') {
       importStatements.push('import { Response } from \'node-fetch\';');
     } else if (type === 'Collection') {
-      importStatements.push(`import Collection from '${isModelToModelImport ? '..' : '.'}/collection';`);
+      importStatements.push(`import { Collection } from '${isModelToModelImport ? '..' : '.'}/collection';`);
     } else {
       importStatements.push(`import { ${type} } from '${isModelToModelImport ? './' : './models/'}${type}';`);
     }
