@@ -15,6 +15,7 @@
 
 import { ApplicationSettings } from './ApplicationSettings';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { OpenIdConnectApplicationSettingsClient } from './OpenIdConnectApplicationSettingsClient';
 
 declare class OpenIdConnectApplicationSettings extends ApplicationSettings {
@@ -24,6 +25,9 @@ declare class OpenIdConnectApplicationSettings extends ApplicationSettings {
 
 }
 
+type OpenIdConnectApplicationSettingsOptions = OptionalKnownProperties<OpenIdConnectApplicationSettings>;
+
 export {
-  OpenIdConnectApplicationSettings
+  OpenIdConnectApplicationSettings,
+  OpenIdConnectApplicationSettingsOptions
 };

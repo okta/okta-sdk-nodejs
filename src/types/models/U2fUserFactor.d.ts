@@ -15,6 +15,7 @@
 
 import { UserFactor } from './UserFactor';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { U2fUserFactorProfile } from './U2fUserFactorProfile';
 
 declare class U2fUserFactor extends UserFactor {
@@ -24,6 +25,9 @@ declare class U2fUserFactor extends UserFactor {
 
 }
 
+type U2fUserFactorOptions = OptionalKnownProperties<U2fUserFactor>;
+
 export {
-  U2fUserFactor
+  U2fUserFactor,
+  U2fUserFactorOptions
 };

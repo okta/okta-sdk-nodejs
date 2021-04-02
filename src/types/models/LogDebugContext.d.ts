@@ -15,6 +15,7 @@
 
 import { Resource } from '../resource';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 
 
 declare class LogDebugContext extends Resource {
@@ -24,6 +25,9 @@ declare class LogDebugContext extends Resource {
 
 }
 
+type LogDebugContextOptions = OptionalKnownProperties<LogDebugContext>;
+
 export {
-  LogDebugContext
+  LogDebugContext,
+  LogDebugContextOptions
 };

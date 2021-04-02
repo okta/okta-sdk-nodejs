@@ -15,6 +15,7 @@
 
 import { Policy } from './Policy';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 
 
 declare class OktaSignOnPolicy extends Policy {
@@ -23,6 +24,9 @@ declare class OktaSignOnPolicy extends Policy {
 
 }
 
+type OktaSignOnPolicyOptions = OptionalKnownProperties<OktaSignOnPolicy>;
+
 export {
-  OktaSignOnPolicy
+  OktaSignOnPolicy,
+  OktaSignOnPolicyOptions
 };

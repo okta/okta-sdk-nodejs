@@ -15,6 +15,7 @@
 
 import { Resource } from '../resource';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { ProvisioningConditions } from './ProvisioningConditions';
 import { ProvisioningGroups } from './ProvisioningGroups';
 
@@ -28,6 +29,9 @@ declare class Provisioning extends Resource {
 
 }
 
+type ProvisioningOptions = OptionalKnownProperties<Provisioning>;
+
 export {
-  Provisioning
+  Provisioning,
+  ProvisioningOptions
 };

@@ -15,6 +15,7 @@
 
 import { Policy } from './Policy';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { PasswordPolicySettings } from './PasswordPolicySettings';
 
 declare class PasswordPolicy extends Policy {
@@ -24,6 +25,9 @@ declare class PasswordPolicy extends Policy {
 
 }
 
+type PasswordPolicyOptions = OptionalKnownProperties<PasswordPolicy>;
+
 export {
-  PasswordPolicy
+  PasswordPolicy,
+  PasswordPolicyOptions
 };

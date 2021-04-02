@@ -15,6 +15,7 @@
 
 import { Resource } from '../resource';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { PasswordDictionary } from './PasswordDictionary';
 
 declare class PasswordPolicyPasswordSettingsComplexity extends Resource {
@@ -31,6 +32,9 @@ declare class PasswordPolicyPasswordSettingsComplexity extends Resource {
 
 }
 
+type PasswordPolicyPasswordSettingsComplexityOptions = OptionalKnownProperties<PasswordPolicyPasswordSettingsComplexity>;
+
 export {
-  PasswordPolicyPasswordSettingsComplexity
+  PasswordPolicyPasswordSettingsComplexity,
+  PasswordPolicyPasswordSettingsComplexityOptions
 };

@@ -15,6 +15,7 @@
 
 import { Resource } from '../resource';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 
 
 declare class ForgotPasswordResponse extends Resource {
@@ -24,6 +25,9 @@ declare class ForgotPasswordResponse extends Resource {
 
 }
 
+type ForgotPasswordResponseOptions = OptionalKnownProperties<ForgotPasswordResponse>;
+
 export {
-  ForgotPasswordResponse
+  ForgotPasswordResponse,
+  ForgotPasswordResponseOptions
 };

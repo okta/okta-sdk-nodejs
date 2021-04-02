@@ -15,7 +15,8 @@
 
 import { Resource } from '../resource';
 import { Client } from '../client';
-import { PasswordPolicyDelegationSettingsOptions } from './PasswordPolicyDelegationSettingsOptions';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
+
 
 declare class PasswordPolicyDelegationSettings extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
@@ -24,6 +25,9 @@ declare class PasswordPolicyDelegationSettings extends Resource {
 
 }
 
+type PasswordPolicyDelegationSettingsOptions = OptionalKnownProperties<PasswordPolicyDelegationSettings>;
+
 export {
-  PasswordPolicyDelegationSettings
+  PasswordPolicyDelegationSettings,
+  PasswordPolicyDelegationSettingsOptions
 };

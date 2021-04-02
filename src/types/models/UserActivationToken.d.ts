@@ -15,6 +15,7 @@
 
 import { Resource } from '../resource';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 
 
 declare class UserActivationToken extends Resource {
@@ -25,6 +26,9 @@ declare class UserActivationToken extends Resource {
 
 }
 
+type UserActivationTokenOptions = OptionalKnownProperties<UserActivationToken>;
+
 export {
-  UserActivationToken
+  UserActivationToken,
+  UserActivationTokenOptions
 };

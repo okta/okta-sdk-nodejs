@@ -15,6 +15,7 @@
 
 import { Resource } from '../resource';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { AuthenticationProviderType } from './AuthenticationProviderType';
 
 declare class AuthenticationProvider extends Resource {
@@ -25,6 +26,9 @@ declare class AuthenticationProvider extends Resource {
 
 }
 
+type AuthenticationProviderOptions = OptionalKnownProperties<AuthenticationProvider>;
+
 export {
-  AuthenticationProvider
+  AuthenticationProvider,
+  AuthenticationProviderOptions
 };

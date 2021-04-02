@@ -15,6 +15,7 @@
 
 import { UserFactor } from './UserFactor';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { SmsUserFactorProfile } from './SmsUserFactorProfile';
 
 declare class SmsUserFactor extends UserFactor {
@@ -24,6 +25,9 @@ declare class SmsUserFactor extends UserFactor {
 
 }
 
+type SmsUserFactorOptions = OptionalKnownProperties<SmsUserFactor>;
+
 export {
-  SmsUserFactor
+  SmsUserFactor,
+  SmsUserFactorOptions
 };

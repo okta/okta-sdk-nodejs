@@ -15,6 +15,7 @@
 
 import { Resource } from '../resource';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 
 
 declare class RiskPolicyRuleCondition extends Resource {
@@ -24,6 +25,9 @@ declare class RiskPolicyRuleCondition extends Resource {
 
 }
 
+type RiskPolicyRuleConditionOptions = OptionalKnownProperties<RiskPolicyRuleCondition>;
+
 export {
-  RiskPolicyRuleCondition
+  RiskPolicyRuleCondition,
+  RiskPolicyRuleConditionOptions
 };

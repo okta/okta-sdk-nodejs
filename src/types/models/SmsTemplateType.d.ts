@@ -23,6 +23,9 @@ declare class SmsTemplateType extends Resource {
 
 }
 
+type SmsTemplateTypeOptions = Record<string, unknown>;
+
 export {
-  SmsTemplateType
+  SmsTemplateType,
+  SmsTemplateTypeOptions
 };

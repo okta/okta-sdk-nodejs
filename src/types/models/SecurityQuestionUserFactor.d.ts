@@ -15,6 +15,7 @@
 
 import { UserFactor } from './UserFactor';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { SecurityQuestionUserFactorProfile } from './SecurityQuestionUserFactorProfile';
 
 declare class SecurityQuestionUserFactor extends UserFactor {
@@ -24,6 +25,9 @@ declare class SecurityQuestionUserFactor extends UserFactor {
 
 }
 
+type SecurityQuestionUserFactorOptions = OptionalKnownProperties<SecurityQuestionUserFactor>;
+
 export {
-  SecurityQuestionUserFactor
+  SecurityQuestionUserFactor,
+  SecurityQuestionUserFactorOptions
 };

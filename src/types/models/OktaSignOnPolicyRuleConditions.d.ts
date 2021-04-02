@@ -15,6 +15,7 @@
 
 import { Resource } from '../resource';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { PolicyRuleAuthContextCondition } from './PolicyRuleAuthContextCondition';
 import { PolicyNetworkCondition } from './PolicyNetworkCondition';
 import { PolicyPeopleCondition } from './PolicyPeopleCondition';
@@ -28,6 +29,9 @@ declare class OktaSignOnPolicyRuleConditions extends Resource {
 
 }
 
+type OktaSignOnPolicyRuleConditionsOptions = OptionalKnownProperties<OktaSignOnPolicyRuleConditions>;
+
 export {
-  OktaSignOnPolicyRuleConditions
+  OktaSignOnPolicyRuleConditions,
+  OktaSignOnPolicyRuleConditionsOptions
 };

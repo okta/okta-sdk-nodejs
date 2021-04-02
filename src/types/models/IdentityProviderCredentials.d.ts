@@ -15,6 +15,7 @@
 
 import { Resource } from '../resource';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { IdentityProviderCredentialsClient } from './IdentityProviderCredentialsClient';
 import { IdentityProviderCredentialsSigning } from './IdentityProviderCredentialsSigning';
 import { IdentityProviderCredentialsTrust } from './IdentityProviderCredentialsTrust';
@@ -28,6 +29,9 @@ declare class IdentityProviderCredentials extends Resource {
 
 }
 
+type IdentityProviderCredentialsOptions = OptionalKnownProperties<IdentityProviderCredentials>;
+
 export {
-  IdentityProviderCredentials
+  IdentityProviderCredentials,
+  IdentityProviderCredentialsOptions
 };

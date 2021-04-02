@@ -15,6 +15,7 @@
 
 import { Resource } from '../resource';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 
 
 declare class OAuth2ClaimConditions extends Resource {
@@ -24,6 +25,9 @@ declare class OAuth2ClaimConditions extends Resource {
 
 }
 
+type OAuth2ClaimConditionsOptions = OptionalKnownProperties<OAuth2ClaimConditions>;
+
 export {
-  OAuth2ClaimConditions
+  OAuth2ClaimConditions,
+  OAuth2ClaimConditionsOptions
 };

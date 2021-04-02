@@ -15,6 +15,7 @@
 
 import { Resource } from '../resource';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 
 
 declare class PasswordPolicyRuleAction extends Resource {
@@ -24,6 +25,9 @@ declare class PasswordPolicyRuleAction extends Resource {
 
 }
 
+type PasswordPolicyRuleActionOptions = OptionalKnownProperties<PasswordPolicyRuleAction>;
+
 export {
-  PasswordPolicyRuleAction
+  PasswordPolicyRuleAction,
+  PasswordPolicyRuleActionOptions
 };

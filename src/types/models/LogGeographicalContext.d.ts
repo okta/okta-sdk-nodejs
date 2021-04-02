@@ -15,6 +15,7 @@
 
 import { Resource } from '../resource';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { LogGeolocation } from './LogGeolocation';
 
 declare class LogGeographicalContext extends Resource {
@@ -28,6 +29,9 @@ declare class LogGeographicalContext extends Resource {
 
 }
 
+type LogGeographicalContextOptions = OptionalKnownProperties<LogGeographicalContext>;
+
 export {
-  LogGeographicalContext
+  LogGeographicalContext,
+  LogGeographicalContextOptions
 };

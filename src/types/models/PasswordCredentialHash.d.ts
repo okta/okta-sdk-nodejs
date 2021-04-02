@@ -15,6 +15,7 @@
 
 import { Resource } from '../resource';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { PasswordCredentialHashAlgorithm } from './PasswordCredentialHashAlgorithm';
 
 declare class PasswordCredentialHash extends Resource {
@@ -28,6 +29,9 @@ declare class PasswordCredentialHash extends Resource {
 
 }
 
+type PasswordCredentialHashOptions = OptionalKnownProperties<PasswordCredentialHash>;
+
 export {
-  PasswordCredentialHash
+  PasswordCredentialHash,
+  PasswordCredentialHashOptions
 };

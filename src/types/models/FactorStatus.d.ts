@@ -23,6 +23,9 @@ declare class FactorStatus extends Resource {
 
 }
 
+type FactorStatusOptions = Record<string, unknown>;
+
 export {
-  FactorStatus
+  FactorStatus,
+  FactorStatusOptions
 };

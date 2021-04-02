@@ -15,6 +15,7 @@
 
 import { Resource } from '../resource';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 
 
 declare class JwkUse extends Resource {
@@ -24,6 +25,9 @@ declare class JwkUse extends Resource {
 
 }
 
+type JwkUseOptions = OptionalKnownProperties<JwkUse>;
+
 export {
-  JwkUse
+  JwkUse,
+  JwkUseOptions
 };

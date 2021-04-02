@@ -15,6 +15,7 @@
 
 import { Resource } from '../resource';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 
 
 declare class PasswordPolicyPasswordSettingsLockout extends Resource {
@@ -27,6 +28,9 @@ declare class PasswordPolicyPasswordSettingsLockout extends Resource {
 
 }
 
+type PasswordPolicyPasswordSettingsLockoutOptions = OptionalKnownProperties<PasswordPolicyPasswordSettingsLockout>;
+
 export {
-  PasswordPolicyPasswordSettingsLockout
+  PasswordPolicyPasswordSettingsLockout,
+  PasswordPolicyPasswordSettingsLockoutOptions
 };

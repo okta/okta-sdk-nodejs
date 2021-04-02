@@ -15,6 +15,7 @@
 
 import { Resource } from '../resource';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { Duration } from './Duration';
 import { ScheduledUserLifecycleAction } from './ScheduledUserLifecycleAction';
 
@@ -26,6 +27,9 @@ declare class BeforeScheduledActionPolicyRuleCondition extends Resource {
 
 }
 
+type BeforeScheduledActionPolicyRuleConditionOptions = OptionalKnownProperties<BeforeScheduledActionPolicyRuleCondition>;
+
 export {
-  BeforeScheduledActionPolicyRuleCondition
+  BeforeScheduledActionPolicyRuleCondition,
+  BeforeScheduledActionPolicyRuleConditionOptions
 };

@@ -15,6 +15,7 @@
 
 import { Resource } from '../resource';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 
 
 declare class EventSubscriptions extends Resource {
@@ -25,6 +26,9 @@ declare class EventSubscriptions extends Resource {
 
 }
 
+type EventSubscriptionsOptions = OptionalKnownProperties<EventSubscriptions>;
+
 export {
-  EventSubscriptions
+  EventSubscriptions,
+  EventSubscriptionsOptions
 };

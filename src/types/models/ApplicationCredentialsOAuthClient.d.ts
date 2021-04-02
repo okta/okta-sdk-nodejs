@@ -15,6 +15,7 @@
 
 import { Resource } from '../resource';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { OAuthEndpointAuthenticationMethod } from './OAuthEndpointAuthenticationMethod';
 
 declare class ApplicationCredentialsOAuthClient extends Resource {
@@ -27,6 +28,9 @@ declare class ApplicationCredentialsOAuthClient extends Resource {
 
 }
 
+type ApplicationCredentialsOAuthClientOptions = OptionalKnownProperties<ApplicationCredentialsOAuthClient>;
+
 export {
-  ApplicationCredentialsOAuthClient
+  ApplicationCredentialsOAuthClient,
+  ApplicationCredentialsOAuthClientOptions
 };

@@ -15,6 +15,7 @@
 
 import { BrowserPluginApplication } from './BrowserPluginApplication';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { SwaThreeFieldApplicationSettings } from './SwaThreeFieldApplicationSettings';
 
 declare class SwaThreeFieldApplication extends BrowserPluginApplication {
@@ -24,6 +25,9 @@ declare class SwaThreeFieldApplication extends BrowserPluginApplication {
 
 }
 
+type SwaThreeFieldApplicationOptions = OptionalKnownProperties<SwaThreeFieldApplication>;
+
 export {
-  SwaThreeFieldApplication
+  SwaThreeFieldApplication,
+  SwaThreeFieldApplicationOptions
 };

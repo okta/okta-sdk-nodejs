@@ -15,6 +15,7 @@
 
 import { Resource } from '../resource';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { Response } from 'node-fetch';
 import { AuthorizationServerPolicyRuleActions } from './AuthorizationServerPolicyRuleActions';
 import { AuthorizationServerPolicyRuleConditions } from './AuthorizationServerPolicyRuleConditions';
@@ -39,6 +40,9 @@ declare class AuthorizationServerPolicyRule extends Resource {
   deactivate(): Promise<Response>;
 }
 
+type AuthorizationServerPolicyRuleOptions = OptionalKnownProperties<AuthorizationServerPolicyRule>;
+
 export {
-  AuthorizationServerPolicyRule
+  AuthorizationServerPolicyRule,
+  AuthorizationServerPolicyRuleOptions
 };

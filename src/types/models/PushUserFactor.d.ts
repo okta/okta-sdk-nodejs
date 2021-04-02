@@ -15,6 +15,7 @@
 
 import { UserFactor } from './UserFactor';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { FactorResultType } from './FactorResultType';
 import { PushUserFactorProfile } from './PushUserFactorProfile';
 
@@ -27,6 +28,9 @@ declare class PushUserFactor extends UserFactor {
 
 }
 
+type PushUserFactorOptions = OptionalKnownProperties<PushUserFactor>;
+
 export {
-  PushUserFactor
+  PushUserFactor,
+  PushUserFactorOptions
 };

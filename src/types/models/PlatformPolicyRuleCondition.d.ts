@@ -15,6 +15,7 @@
 
 import { Resource } from '../resource';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 
 
 declare class PlatformPolicyRuleCondition extends Resource {
@@ -25,6 +26,9 @@ declare class PlatformPolicyRuleCondition extends Resource {
 
 }
 
+type PlatformPolicyRuleConditionOptions = OptionalKnownProperties<PlatformPolicyRuleCondition>;
+
 export {
-  PlatformPolicyRuleCondition
+  PlatformPolicyRuleCondition,
+  PlatformPolicyRuleConditionOptions
 };

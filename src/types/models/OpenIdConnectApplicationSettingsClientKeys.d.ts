@@ -15,6 +15,7 @@
 
 import { Resource } from '../resource';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 
 
 declare class OpenIdConnectApplicationSettingsClientKeys extends Resource {
@@ -24,6 +25,9 @@ declare class OpenIdConnectApplicationSettingsClientKeys extends Resource {
 
 }
 
+type OpenIdConnectApplicationSettingsClientKeysOptions = OptionalKnownProperties<OpenIdConnectApplicationSettingsClientKeys>;
+
 export {
-  OpenIdConnectApplicationSettingsClientKeys
+  OpenIdConnectApplicationSettingsClientKeys,
+  OpenIdConnectApplicationSettingsClientKeysOptions
 };

@@ -23,6 +23,9 @@ declare class ScopeType extends Resource {
 
 }
 
+type ScopeTypeOptions = Record<string, unknown>;
+
 export {
-  ScopeType
+  ScopeType,
+  ScopeTypeOptions
 };

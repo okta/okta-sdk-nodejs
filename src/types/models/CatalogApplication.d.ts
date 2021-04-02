@@ -15,6 +15,7 @@
 
 import { Resource } from '../resource';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { CatalogApplicationStatus } from './CatalogApplicationStatus';
 
 declare class CatalogApplication extends Resource {
@@ -35,6 +36,9 @@ declare class CatalogApplication extends Resource {
 
 }
 
+type CatalogApplicationOptions = OptionalKnownProperties<CatalogApplication>;
+
 export {
-  CatalogApplication
+  CatalogApplication,
+  CatalogApplicationOptions
 };

@@ -15,6 +15,7 @@
 
 import { Resource } from '../resource';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 
 
 declare class SamlApplicationSettingsSignOn extends Resource {
@@ -46,6 +47,9 @@ declare class SamlApplicationSettingsSignOn extends Resource {
 
 }
 
+type SamlApplicationSettingsSignOnOptions = OptionalKnownProperties<SamlApplicationSettingsSignOn>;
+
 export {
-  SamlApplicationSettingsSignOn
+  SamlApplicationSettingsSignOn,
+  SamlApplicationSettingsSignOnOptions
 };

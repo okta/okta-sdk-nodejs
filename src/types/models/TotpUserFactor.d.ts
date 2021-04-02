@@ -15,6 +15,7 @@
 
 import { UserFactor } from './UserFactor';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { TotpUserFactorProfile } from './TotpUserFactorProfile';
 
 declare class TotpUserFactor extends UserFactor {
@@ -24,6 +25,9 @@ declare class TotpUserFactor extends UserFactor {
 
 }
 
+type TotpUserFactorOptions = OptionalKnownProperties<TotpUserFactor>;
+
 export {
-  TotpUserFactor
+  TotpUserFactor,
+  TotpUserFactorOptions
 };

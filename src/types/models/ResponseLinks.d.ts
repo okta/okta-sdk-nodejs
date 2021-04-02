@@ -23,6 +23,9 @@ declare class ResponseLinks extends Resource {
 
 }
 
+type ResponseLinksOptions = Record<string, unknown>;
+
 export {
-  ResponseLinks
+  ResponseLinks,
+  ResponseLinksOptions
 };

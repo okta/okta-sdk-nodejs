@@ -15,6 +15,7 @@
 
 import { UserFactor } from './UserFactor';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { EmailUserFactorProfile } from './EmailUserFactorProfile';
 
 declare class EmailUserFactor extends UserFactor {
@@ -24,6 +25,9 @@ declare class EmailUserFactor extends UserFactor {
 
 }
 
+type EmailUserFactorOptions = OptionalKnownProperties<EmailUserFactor>;
+
 export {
-  EmailUserFactor
+  EmailUserFactor,
+  EmailUserFactorOptions
 };

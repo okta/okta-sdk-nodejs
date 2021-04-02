@@ -15,6 +15,7 @@
 
 import { Resource } from '../resource';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { PlatformConditionEvaluatorPlatformOperatingSystem } from './PlatformConditionEvaluatorPlatformOperatingSystem';
 
 declare class PlatformConditionEvaluatorPlatform extends Resource {
@@ -25,6 +26,9 @@ declare class PlatformConditionEvaluatorPlatform extends Resource {
 
 }
 
+type PlatformConditionEvaluatorPlatformOptions = OptionalKnownProperties<PlatformConditionEvaluatorPlatform>;
+
 export {
-  PlatformConditionEvaluatorPlatform
+  PlatformConditionEvaluatorPlatform,
+  PlatformConditionEvaluatorPlatformOptions
 };

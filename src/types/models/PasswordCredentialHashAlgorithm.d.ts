@@ -23,6 +23,9 @@ declare class PasswordCredentialHashAlgorithm extends Resource {
 
 }
 
+type PasswordCredentialHashAlgorithmOptions = Record<string, unknown>;
+
 export {
-  PasswordCredentialHashAlgorithm
+  PasswordCredentialHashAlgorithm,
+  PasswordCredentialHashAlgorithmOptions
 };

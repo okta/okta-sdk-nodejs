@@ -15,6 +15,7 @@
 
 import { Resource } from '../resource';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 
 
 declare class PlatformConditionEvaluatorPlatformOperatingSystemVersion extends Resource {
@@ -25,6 +26,9 @@ declare class PlatformConditionEvaluatorPlatformOperatingSystemVersion extends R
 
 }
 
+type PlatformConditionEvaluatorPlatformOperatingSystemVersionOptions = OptionalKnownProperties<PlatformConditionEvaluatorPlatformOperatingSystemVersion>;
+
 export {
-  PlatformConditionEvaluatorPlatformOperatingSystemVersion
+  PlatformConditionEvaluatorPlatformOperatingSystemVersion,
+  PlatformConditionEvaluatorPlatformOperatingSystemVersionOptions
 };

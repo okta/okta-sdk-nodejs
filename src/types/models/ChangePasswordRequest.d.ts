@@ -15,6 +15,7 @@
 
 import { Resource } from '../resource';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { PasswordCredential } from './PasswordCredential';
 
 declare class ChangePasswordRequest extends Resource {
@@ -25,6 +26,9 @@ declare class ChangePasswordRequest extends Resource {
 
 }
 
+type ChangePasswordRequestOptions = OptionalKnownProperties<ChangePasswordRequest>;
+
 export {
-  ChangePasswordRequest
+  ChangePasswordRequest,
+  ChangePasswordRequestOptions
 };

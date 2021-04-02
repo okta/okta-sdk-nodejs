@@ -15,6 +15,7 @@
 
 import { Resource } from '../resource';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { GroupRuleGroupAssignment } from './GroupRuleGroupAssignment';
 
 declare class GroupRuleAction extends Resource {
@@ -24,6 +25,9 @@ declare class GroupRuleAction extends Resource {
 
 }
 
+type GroupRuleActionOptions = OptionalKnownProperties<GroupRuleAction>;
+
 export {
-  GroupRuleAction
+  GroupRuleAction,
+  GroupRuleActionOptions
 };

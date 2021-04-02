@@ -15,6 +15,7 @@
 
 import { Resource } from '../resource';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 
 
 declare class ActivateFactorRequest extends Resource {
@@ -28,6 +29,9 @@ declare class ActivateFactorRequest extends Resource {
 
 }
 
+type ActivateFactorRequestOptions = OptionalKnownProperties<ActivateFactorRequest>;
+
 export {
-  ActivateFactorRequest
+  ActivateFactorRequest,
+  ActivateFactorRequestOptions
 };

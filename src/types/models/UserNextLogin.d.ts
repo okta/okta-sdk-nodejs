@@ -23,6 +23,9 @@ declare class UserNextLogin extends Resource {
 
 }
 
+type UserNextLoginOptions = Record<string, unknown>;
+
 export {
-  UserNextLogin
+  UserNextLogin,
+  UserNextLoginOptions
 };

@@ -23,6 +23,9 @@ declare class InlineHookPayload extends Resource {
 
 }
 
+type InlineHookPayloadOptions = Record<string, unknown>;
+
 export {
-  InlineHookPayload
+  InlineHookPayload,
+  InlineHookPayloadOptions
 };

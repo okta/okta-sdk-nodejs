@@ -15,6 +15,7 @@
 
 import { Resource } from '../resource';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 
 
 declare class PolicyNetworkCondition extends Resource {
@@ -26,6 +27,9 @@ declare class PolicyNetworkCondition extends Resource {
 
 }
 
+type PolicyNetworkConditionOptions = OptionalKnownProperties<PolicyNetworkCondition>;
+
 export {
-  PolicyNetworkCondition
+  PolicyNetworkCondition,
+  PolicyNetworkConditionOptions
 };

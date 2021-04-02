@@ -15,6 +15,7 @@
 
 import { Resource } from '../resource';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { ApplicationSettingsNotificationsVpnNetwork } from './ApplicationSettingsNotificationsVpnNetwork';
 
 declare class ApplicationSettingsNotificationsVpn extends Resource {
@@ -26,6 +27,9 @@ declare class ApplicationSettingsNotificationsVpn extends Resource {
 
 }
 
+type ApplicationSettingsNotificationsVpnOptions = OptionalKnownProperties<ApplicationSettingsNotificationsVpn>;
+
 export {
-  ApplicationSettingsNotificationsVpn
+  ApplicationSettingsNotificationsVpn,
+  ApplicationSettingsNotificationsVpnOptions
 };

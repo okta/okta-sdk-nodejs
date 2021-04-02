@@ -15,6 +15,7 @@
 
 import { Resource } from '../resource';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 
 
 declare class AppLink extends Resource {
@@ -33,6 +34,9 @@ declare class AppLink extends Resource {
 
 }
 
+type AppLinkOptions = OptionalKnownProperties<AppLink>;
+
 export {
-  AppLink
+  AppLink,
+  AppLinkOptions
 };

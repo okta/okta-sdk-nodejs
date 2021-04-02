@@ -15,6 +15,7 @@
 
 import { Resource } from '../resource';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { PasswordPolicyDelegationSettings } from './PasswordPolicyDelegationSettings';
 import { PasswordPolicyPasswordSettings } from './PasswordPolicyPasswordSettings';
 import { PasswordPolicyRecoverySettings } from './PasswordPolicyRecoverySettings';
@@ -28,6 +29,9 @@ declare class PasswordPolicySettings extends Resource {
 
 }
 
+type PasswordPolicySettingsOptions = OptionalKnownProperties<PasswordPolicySettings>;
+
 export {
-  PasswordPolicySettings
+  PasswordPolicySettings,
+  PasswordPolicySettingsOptions
 };

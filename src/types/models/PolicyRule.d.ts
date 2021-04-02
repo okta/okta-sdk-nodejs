@@ -15,6 +15,7 @@
 
 import { Resource } from '../resource';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { Response } from 'node-fetch';
 
 declare class PolicyRule extends Resource {
@@ -34,6 +35,9 @@ declare class PolicyRule extends Resource {
   deactivate(): Promise<Response>;
 }
 
+type PolicyRuleOptions = OptionalKnownProperties<PolicyRule>;
+
 export {
-  PolicyRule
+  PolicyRule,
+  PolicyRuleOptions
 };

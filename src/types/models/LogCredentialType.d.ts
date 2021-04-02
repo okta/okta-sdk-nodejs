@@ -23,6 +23,9 @@ declare class LogCredentialType extends Resource {
 
 }
 
+type LogCredentialTypeOptions = Record<string, unknown>;
+
 export {
-  LogCredentialType
+  LogCredentialType,
+  LogCredentialTypeOptions
 };

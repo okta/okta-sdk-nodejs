@@ -15,6 +15,7 @@
 
 import { ApplicationSettings } from './ApplicationSettings';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { SecurePasswordStoreApplicationSettingsApplication } from './SecurePasswordStoreApplicationSettingsApplication';
 
 declare class SecurePasswordStoreApplicationSettings extends ApplicationSettings {
@@ -24,6 +25,9 @@ declare class SecurePasswordStoreApplicationSettings extends ApplicationSettings
 
 }
 
+type SecurePasswordStoreApplicationSettingsOptions = OptionalKnownProperties<SecurePasswordStoreApplicationSettings>;
+
 export {
-  SecurePasswordStoreApplicationSettings
+  SecurePasswordStoreApplicationSettings,
+  SecurePasswordStoreApplicationSettingsOptions
 };

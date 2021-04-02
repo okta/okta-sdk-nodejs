@@ -15,6 +15,7 @@
 
 import { Resource } from '../resource';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 
 
 declare class U2fUserFactorProfile extends Resource {
@@ -24,6 +25,9 @@ declare class U2fUserFactorProfile extends Resource {
 
 }
 
+type U2fUserFactorProfileOptions = OptionalKnownProperties<U2fUserFactorProfile>;
+
 export {
-  U2fUserFactorProfile
+  U2fUserFactorProfile,
+  U2fUserFactorProfileOptions
 };

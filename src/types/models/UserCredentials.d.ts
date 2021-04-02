@@ -15,6 +15,7 @@
 
 import { Resource } from '../resource';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { PasswordCredential } from './PasswordCredential';
 import { AuthenticationProvider } from './AuthenticationProvider';
 import { RecoveryQuestionCredential } from './RecoveryQuestionCredential';
@@ -28,6 +29,9 @@ declare class UserCredentials extends Resource {
 
 }
 
+type UserCredentialsOptions = OptionalKnownProperties<UserCredentials>;
+
 export {
-  UserCredentials
+  UserCredentials,
+  UserCredentialsOptions
 };

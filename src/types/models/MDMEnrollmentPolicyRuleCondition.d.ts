@@ -15,6 +15,7 @@
 
 import { Resource } from '../resource';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 
 
 declare class MDMEnrollmentPolicyRuleCondition extends Resource {
@@ -25,6 +26,9 @@ declare class MDMEnrollmentPolicyRuleCondition extends Resource {
 
 }
 
+type MDMEnrollmentPolicyRuleConditionOptions = OptionalKnownProperties<MDMEnrollmentPolicyRuleCondition>;
+
 export {
-  MDMEnrollmentPolicyRuleCondition
+  MDMEnrollmentPolicyRuleCondition,
+  MDMEnrollmentPolicyRuleConditionOptions
 };

@@ -15,6 +15,7 @@
 
 import { Resource } from '../resource';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { PasswordPolicyRecoveryFactors } from './PasswordPolicyRecoveryFactors';
 
 declare class PasswordPolicyRecoverySettings extends Resource {
@@ -24,6 +25,9 @@ declare class PasswordPolicyRecoverySettings extends Resource {
 
 }
 
+type PasswordPolicyRecoverySettingsOptions = OptionalKnownProperties<PasswordPolicyRecoverySettings>;
+
 export {
-  PasswordPolicyRecoverySettings
+  PasswordPolicyRecoverySettings,
+  PasswordPolicyRecoverySettingsOptions
 };

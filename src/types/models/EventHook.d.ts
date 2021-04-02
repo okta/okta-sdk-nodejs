@@ -15,6 +15,7 @@
 
 import { Resource } from '../resource';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { Response } from 'node-fetch';
 import { EventHookChannel } from './EventHookChannel';
 import { EventSubscriptions } from './EventSubscriptions';
@@ -40,6 +41,9 @@ declare class EventHook extends Resource {
   verify(): Promise<EventHook>;
 }
 
+type EventHookOptions = OptionalKnownProperties<EventHook>;
+
 export {
-  EventHook
+  EventHook,
+  EventHookOptions
 };

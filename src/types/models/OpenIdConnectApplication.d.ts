@@ -15,6 +15,7 @@
 
 import { Application } from './Application';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { OAuthApplicationCredentials } from './OAuthApplicationCredentials';
 import { OpenIdConnectApplicationSettings } from './OpenIdConnectApplicationSettings';
 
@@ -26,6 +27,9 @@ declare class OpenIdConnectApplication extends Application {
 
 }
 
+type OpenIdConnectApplicationOptions = OptionalKnownProperties<OpenIdConnectApplication>;
+
 export {
-  OpenIdConnectApplication
+  OpenIdConnectApplication,
+  OpenIdConnectApplicationOptions
 };

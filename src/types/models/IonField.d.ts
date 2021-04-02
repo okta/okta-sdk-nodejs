@@ -15,6 +15,7 @@
 
 import { Resource } from '../resource';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { IonForm } from './IonForm';
 
 declare class IonField extends Resource {
@@ -32,6 +33,9 @@ declare class IonField extends Resource {
 
 }
 
+type IonFieldOptions = OptionalKnownProperties<IonField>;
+
 export {
-  IonField
+  IonField,
+  IonFieldOptions
 };

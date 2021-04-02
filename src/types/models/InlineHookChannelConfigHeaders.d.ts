@@ -15,6 +15,7 @@
 
 import { Resource } from '../resource';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 
 
 declare class InlineHookChannelConfigHeaders extends Resource {
@@ -25,6 +26,9 @@ declare class InlineHookChannelConfigHeaders extends Resource {
 
 }
 
+type InlineHookChannelConfigHeadersOptions = OptionalKnownProperties<InlineHookChannelConfigHeaders>;
+
 export {
-  InlineHookChannelConfigHeaders
+  InlineHookChannelConfigHeaders,
+  InlineHookChannelConfigHeadersOptions
 };

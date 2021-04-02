@@ -15,6 +15,7 @@
 
 import { Resource } from '../resource';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 
 
 declare class ApplicationVisibilityHide extends Resource {
@@ -25,6 +26,9 @@ declare class ApplicationVisibilityHide extends Resource {
 
 }
 
+type ApplicationVisibilityHideOptions = OptionalKnownProperties<ApplicationVisibilityHide>;
+
 export {
-  ApplicationVisibilityHide
+  ApplicationVisibilityHide,
+  ApplicationVisibilityHideOptions
 };
