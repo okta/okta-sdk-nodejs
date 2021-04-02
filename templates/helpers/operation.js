@@ -226,11 +226,14 @@ const getOperationArgumentsAndReturnType = operation => {
   });
 
   if ((method === 'post' || method === 'put') && bodyModel) {
-    const bodyModelName = getBodyModelName(operation);
-    if (bodyModelName) {
-      args.set(_.camelCase(bodyModelName), {
+    const bodyParamName = getBodyModelName(operation);
+    if (bodyParamName) {
+      const modelPropertiesType = operation.bodyModel === 'string' ?
+        operation.bodyModel : `Partial<Record<keyof ${operation.bodyModel}, unknown>>`;
+      args.set(_.camelCase(bodyParamName), {
         isRequired: true,
-        type: operation.bodyModel
+        type: operation.bodyModel,
+        modelPropertiesType
       });
     }
   }
@@ -279,12 +282,12 @@ const convertTypeObjectsToTypeNames = (args, returnType) => {
 
 const formatTypeScriptArguments = args => {
   const typedArgs = [];
-  for (let [argName, {type, isRequired}] of args) {
+  for (let [argName, {type, modelPropertiesType, isRequired}] of args) {
     let argument = `${argName}${isRequired ? '' : '?'}`;
     if (Array.isArray(type)) {
       argument = `${argument}: ${formatObjectLiteralType(type)}`;
     } else {
-      argument = `${argument}: ${type}`;
+      argument = `${argument}: ${modelPropertiesType || type}`;
     }
     typedArgs.push(argument);
   }
