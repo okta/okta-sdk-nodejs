@@ -26,9 +26,9 @@ declare class LogOutcome extends Resource {
 
 }
 
-type LogOutcomeOptions = OptionalKnownProperties<LogOutcome>;
+type LogOutcomeOptionsType = OptionalKnownProperties<LogOutcome>;
 
 export {
   LogOutcome,
-  LogOutcomeOptions
+  LogOutcomeOptionsType
 };

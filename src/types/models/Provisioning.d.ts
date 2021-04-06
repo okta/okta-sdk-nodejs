@@ -29,9 +29,9 @@ declare class Provisioning extends Resource {
 
 }
 
-type ProvisioningOptions = OptionalKnownProperties<Provisioning>;
+type ProvisioningOptionsType = OptionalKnownProperties<Provisioning>;
 
 export {
   Provisioning,
-  ProvisioningOptions
+  ProvisioningOptionsType
 };

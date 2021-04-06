@@ -26,9 +26,9 @@ declare class PlatformPolicyRuleCondition extends Resource {
 
 }
 
-type PlatformPolicyRuleConditionOptions = OptionalKnownProperties<PlatformPolicyRuleCondition>;
+type PlatformPolicyRuleConditionOptionsType = OptionalKnownProperties<PlatformPolicyRuleCondition>;
 
 export {
   PlatformPolicyRuleCondition,
-  PlatformPolicyRuleConditionOptions
+  PlatformPolicyRuleConditionOptionsType
 };

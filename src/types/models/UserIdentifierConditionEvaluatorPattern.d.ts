@@ -26,9 +26,9 @@ declare class UserIdentifierConditionEvaluatorPattern extends Resource {
 
 }
 
-type UserIdentifierConditionEvaluatorPatternOptions = OptionalKnownProperties<UserIdentifierConditionEvaluatorPattern>;
+type UserIdentifierConditionEvaluatorPatternOptionsType = OptionalKnownProperties<UserIdentifierConditionEvaluatorPattern>;
 
 export {
   UserIdentifierConditionEvaluatorPattern,
-  UserIdentifierConditionEvaluatorPatternOptions
+  UserIdentifierConditionEvaluatorPatternOptionsType
 };

@@ -23,9 +23,9 @@ declare class OpenIdConnectApplicationType extends Resource {
 
 }
 
-type OpenIdConnectApplicationTypeOptions = Record<string, unknown>;
+type OpenIdConnectApplicationTypeOptionsType = Record<string, unknown>;
 
 export {
   OpenIdConnectApplicationType,
-  OpenIdConnectApplicationTypeOptions
+  OpenIdConnectApplicationTypeOptionsType
 };

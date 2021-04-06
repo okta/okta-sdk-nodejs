@@ -29,9 +29,9 @@ declare class SwaApplicationSettingsApplication extends ApplicationSettingsAppli
 
 }
 
-type SwaApplicationSettingsApplicationOptions = OptionalKnownProperties<SwaApplicationSettingsApplication>;
+type SwaApplicationSettingsApplicationOptionsType = OptionalKnownProperties<SwaApplicationSettingsApplication>;
 
 export {
   SwaApplicationSettingsApplication,
-  SwaApplicationSettingsApplicationOptions
+  SwaApplicationSettingsApplicationOptionsType
 };

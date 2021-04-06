@@ -26,9 +26,9 @@ declare class GroupPolicyRuleCondition extends Resource {
 
 }
 
-type GroupPolicyRuleConditionOptions = OptionalKnownProperties<GroupPolicyRuleCondition>;
+type GroupPolicyRuleConditionOptionsType = OptionalKnownProperties<GroupPolicyRuleCondition>;
 
 export {
   GroupPolicyRuleCondition,
-  GroupPolicyRuleConditionOptions
+  GroupPolicyRuleConditionOptionsType
 };

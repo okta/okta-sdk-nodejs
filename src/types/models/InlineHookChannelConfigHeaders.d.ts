@@ -26,9 +26,9 @@ declare class InlineHookChannelConfigHeaders extends Resource {
 
 }
 
-type InlineHookChannelConfigHeadersOptions = OptionalKnownProperties<InlineHookChannelConfigHeaders>;
+type InlineHookChannelConfigHeadersOptionsType = OptionalKnownProperties<InlineHookChannelConfigHeaders>;
 
 export {
   InlineHookChannelConfigHeaders,
-  InlineHookChannelConfigHeadersOptions
+  InlineHookChannelConfigHeadersOptionsType
 };

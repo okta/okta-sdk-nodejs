@@ -25,9 +25,9 @@ declare class PasswordPolicyDelegationSettingsOptions extends Resource {
 
 }
 
-type PasswordPolicyDelegationSettingsOptionsOptions = OptionalKnownProperties<PasswordPolicyDelegationSettingsOptions>;
+type PasswordPolicyDelegationSettingsOptionsOptionsType = OptionalKnownProperties<PasswordPolicyDelegationSettingsOptions>;
 
 export {
   PasswordPolicyDelegationSettingsOptions,
-  PasswordPolicyDelegationSettingsOptionsOptions
+  PasswordPolicyDelegationSettingsOptionsOptionsType
 };

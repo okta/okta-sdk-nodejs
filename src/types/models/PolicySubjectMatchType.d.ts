@@ -23,9 +23,9 @@ declare class PolicySubjectMatchType extends Resource {
 
 }
 
-type PolicySubjectMatchTypeOptions = Record<string, unknown>;
+type PolicySubjectMatchTypeOptionsType = Record<string, unknown>;
 
 export {
   PolicySubjectMatchType,
-  PolicySubjectMatchTypeOptions
+  PolicySubjectMatchTypeOptionsType
 };

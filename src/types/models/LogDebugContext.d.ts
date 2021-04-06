@@ -25,9 +25,9 @@ declare class LogDebugContext extends Resource {
 
 }
 
-type LogDebugContextOptions = OptionalKnownProperties<LogDebugContext>;
+type LogDebugContextOptionsType = OptionalKnownProperties<LogDebugContext>;
 
 export {
   LogDebugContext,
-  LogDebugContextOptions
+  LogDebugContextOptionsType
 };

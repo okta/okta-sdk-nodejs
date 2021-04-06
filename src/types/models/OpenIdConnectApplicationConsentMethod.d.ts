@@ -23,9 +23,9 @@ declare class OpenIdConnectApplicationConsentMethod extends Resource {
 
 }
 
-type OpenIdConnectApplicationConsentMethodOptions = Record<string, unknown>;
+type OpenIdConnectApplicationConsentMethodOptionsType = Record<string, unknown>;
 
 export {
   OpenIdConnectApplicationConsentMethod,
-  OpenIdConnectApplicationConsentMethodOptions
+  OpenIdConnectApplicationConsentMethodOptionsType
 };

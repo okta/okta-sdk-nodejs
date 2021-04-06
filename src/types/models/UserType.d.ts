@@ -36,9 +36,9 @@ declare class UserType extends Resource {
   delete(): Promise<Response>;
 }
 
-type UserTypeOptions = OptionalKnownProperties<UserType>;
+type UserTypeOptionsType = OptionalKnownProperties<UserType>;
 
 export {
   UserType,
-  UserTypeOptions
+  UserTypeOptionsType
 };

@@ -33,9 +33,9 @@ declare class UserPolicyRuleCondition extends Resource {
 
 }
 
-type UserPolicyRuleConditionOptions = OptionalKnownProperties<UserPolicyRuleCondition>;
+type UserPolicyRuleConditionOptionsType = OptionalKnownProperties<UserPolicyRuleCondition>;
 
 export {
   UserPolicyRuleCondition,
-  UserPolicyRuleConditionOptions
+  UserPolicyRuleConditionOptionsType
 };

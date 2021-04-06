@@ -28,9 +28,9 @@ declare class LinkedObjectDetails extends Resource {
 
 }
 
-type LinkedObjectDetailsOptions = OptionalKnownProperties<LinkedObjectDetails>;
+type LinkedObjectDetailsOptionsType = OptionalKnownProperties<LinkedObjectDetails>;
 
 export {
   LinkedObjectDetails,
-  LinkedObjectDetailsOptions
+  LinkedObjectDetailsOptionsType
 };

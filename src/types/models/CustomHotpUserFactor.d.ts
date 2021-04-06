@@ -26,9 +26,9 @@ declare class CustomHotpUserFactor extends UserFactor {
 
 }
 
-type CustomHotpUserFactorOptions = OptionalKnownProperties<CustomHotpUserFactor>;
+type CustomHotpUserFactorOptionsType = OptionalKnownProperties<CustomHotpUserFactor>;
 
 export {
   CustomHotpUserFactor,
-  CustomHotpUserFactorOptions
+  CustomHotpUserFactorOptionsType
 };

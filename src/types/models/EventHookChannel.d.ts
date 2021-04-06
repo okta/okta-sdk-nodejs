@@ -27,9 +27,9 @@ declare class EventHookChannel extends Resource {
 
 }
 
-type EventHookChannelOptions = OptionalKnownProperties<EventHookChannel>;
+type EventHookChannelOptionsType = OptionalKnownProperties<EventHookChannel>;
 
 export {
   EventHookChannel,
-  EventHookChannelOptions
+  EventHookChannelOptionsType
 };

@@ -47,9 +47,9 @@ declare class SamlApplicationSettingsSignOn extends Resource {
 
 }
 
-type SamlApplicationSettingsSignOnOptions = OptionalKnownProperties<SamlApplicationSettingsSignOn>;
+type SamlApplicationSettingsSignOnOptionsType = OptionalKnownProperties<SamlApplicationSettingsSignOn>;
 
 export {
   SamlApplicationSettingsSignOn,
-  SamlApplicationSettingsSignOnOptions
+  SamlApplicationSettingsSignOnOptionsType
 };

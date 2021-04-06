@@ -25,9 +25,9 @@ declare class CustomHotpUserFactorProfile extends Resource {
 
 }
 
-type CustomHotpUserFactorProfileOptions = OptionalKnownProperties<CustomHotpUserFactorProfile>;
+type CustomHotpUserFactorProfileOptionsType = OptionalKnownProperties<CustomHotpUserFactorProfile>;
 
 export {
   CustomHotpUserFactorProfile,
-  CustomHotpUserFactorProfileOptions
+  CustomHotpUserFactorProfileOptionsType
 };

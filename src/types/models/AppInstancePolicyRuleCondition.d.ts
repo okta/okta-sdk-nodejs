@@ -26,9 +26,9 @@ declare class AppInstancePolicyRuleCondition extends Resource {
 
 }
 
-type AppInstancePolicyRuleConditionOptions = OptionalKnownProperties<AppInstancePolicyRuleCondition>;
+type AppInstancePolicyRuleConditionOptionsType = OptionalKnownProperties<AppInstancePolicyRuleCondition>;
 
 export {
   AppInstancePolicyRuleCondition,
-  AppInstancePolicyRuleConditionOptions
+  AppInstancePolicyRuleConditionOptionsType
 };

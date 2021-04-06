@@ -26,9 +26,9 @@ declare class EventSubscriptions extends Resource {
 
 }
 
-type EventSubscriptionsOptions = OptionalKnownProperties<EventSubscriptions>;
+type EventSubscriptionsOptionsType = OptionalKnownProperties<EventSubscriptions>;
 
 export {
   EventSubscriptions,
-  EventSubscriptionsOptions
+  EventSubscriptionsOptionsType
 };

@@ -25,9 +25,9 @@ declare class SamlApplicationSettings extends ApplicationSettings {
 
 }
 
-type SamlApplicationSettingsOptions = OptionalKnownProperties<SamlApplicationSettings>;
+type SamlApplicationSettingsOptionsType = OptionalKnownProperties<SamlApplicationSettings>;
 
 export {
   SamlApplicationSettings,
-  SamlApplicationSettingsOptions
+  SamlApplicationSettingsOptionsType
 };

@@ -29,9 +29,9 @@ declare class LogActor extends Resource {
 
 }
 
-type LogActorOptions = OptionalKnownProperties<LogActor>;
+type LogActorOptionsType = OptionalKnownProperties<LogActor>;
 
 export {
   LogActor,
-  LogActorOptions
+  LogActorOptionsType
 };

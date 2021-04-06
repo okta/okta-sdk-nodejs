@@ -16,11 +16,6 @@ import EventEmitter = EventEmitter_1.EventEmitter;
 
 import { RequestOptions } from './request-options';
 
-
-export interface IRequestExecutor {
-  fetch(requestOptions: RequestOptions): Promise<Response>;
-}
-
-export declare class RequestExecutor extends EventEmitter implements IRequestExecutor {
+export declare class RequestExecutor extends EventEmitter {
   fetch(requestOptions: RequestOptions): Promise<Response>;
 }

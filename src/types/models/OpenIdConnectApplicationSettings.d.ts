@@ -25,9 +25,9 @@ declare class OpenIdConnectApplicationSettings extends ApplicationSettings {
 
 }
 
-type OpenIdConnectApplicationSettingsOptions = OptionalKnownProperties<OpenIdConnectApplicationSettings>;
+type OpenIdConnectApplicationSettingsOptionsType = OptionalKnownProperties<OpenIdConnectApplicationSettings>;
 
 export {
   OpenIdConnectApplicationSettings,
-  OpenIdConnectApplicationSettingsOptions
+  OpenIdConnectApplicationSettingsOptionsType
 };

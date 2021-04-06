@@ -26,9 +26,9 @@ declare class GroupProfile extends Resource {
 
 }
 
-type GroupProfileOptions = OptionalKnownProperties<GroupProfile>;
+type GroupProfileOptionsType = OptionalKnownProperties<GroupProfile>;
 
 export {
   GroupProfile,
-  GroupProfileOptions
+  GroupProfileOptionsType
 };

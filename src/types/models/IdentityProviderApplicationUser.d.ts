@@ -31,9 +31,9 @@ declare class IdentityProviderApplicationUser extends Resource {
 
 }
 
-type IdentityProviderApplicationUserOptions = OptionalKnownProperties<IdentityProviderApplicationUser>;
+type IdentityProviderApplicationUserOptionsType = OptionalKnownProperties<IdentityProviderApplicationUser>;
 
 export {
   IdentityProviderApplicationUser,
-  IdentityProviderApplicationUserOptions
+  IdentityProviderApplicationUserOptionsType
 };

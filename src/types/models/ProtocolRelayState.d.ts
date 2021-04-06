@@ -25,9 +25,9 @@ declare class ProtocolRelayState extends Resource {
 
 }
 
-type ProtocolRelayStateOptions = OptionalKnownProperties<ProtocolRelayState>;
+type ProtocolRelayStateOptionsType = OptionalKnownProperties<ProtocolRelayState>;
 
 export {
   ProtocolRelayState,
-  ProtocolRelayStateOptions
+  ProtocolRelayStateOptionsType
 };

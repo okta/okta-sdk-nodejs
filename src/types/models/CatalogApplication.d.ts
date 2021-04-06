@@ -36,9 +36,9 @@ declare class CatalogApplication extends Resource {
 
 }
 
-type CatalogApplicationOptions = OptionalKnownProperties<CatalogApplication>;
+type CatalogApplicationOptionsType = OptionalKnownProperties<CatalogApplication>;
 
 export {
   CatalogApplication,
-  CatalogApplicationOptions
+  CatalogApplicationOptionsType
 };

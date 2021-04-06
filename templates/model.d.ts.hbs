@@ -45,12 +45,12 @@ declare class {{modelName}} extends Resource {
 }
 
 {{#if properties.length}}
-type {{modelName}}Options = OptionalKnownProperties<{{modelName}}>;
+type {{modelName}}OptionsType = OptionalKnownProperties<{{modelName}}>;
 {{else}}
-type {{modelName}}Options = Record<string, unknown>;
+type {{modelName}}OptionsType = Record<string, unknown>;
 {{/if}}
 
 export {
   {{modelName}},
-  {{modelName}}Options
+  {{modelName}}OptionsType
 };

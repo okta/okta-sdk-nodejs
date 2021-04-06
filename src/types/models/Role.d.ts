@@ -43,9 +43,9 @@ declare class Role extends Resource {
   addAppTargetToAdminRoleForUser(appName: string): Promise<Response>;
 }
 
-type RoleOptions = OptionalKnownProperties<Role>;
+type RoleOptionsType = OptionalKnownProperties<Role>;
 
 export {
   Role,
-  RoleOptions
+  RoleOptionsType
 };

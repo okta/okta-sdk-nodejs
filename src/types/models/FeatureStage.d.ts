@@ -27,9 +27,9 @@ declare class FeatureStage extends Resource {
 
 }
 
-type FeatureStageOptions = OptionalKnownProperties<FeatureStage>;
+type FeatureStageOptionsType = OptionalKnownProperties<FeatureStage>;
 
 export {
   FeatureStage,
-  FeatureStageOptions
+  FeatureStageOptionsType
 };

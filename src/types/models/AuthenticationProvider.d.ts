@@ -26,9 +26,9 @@ declare class AuthenticationProvider extends Resource {
 
 }
 
-type AuthenticationProviderOptions = OptionalKnownProperties<AuthenticationProvider>;
+type AuthenticationProviderOptionsType = OptionalKnownProperties<AuthenticationProvider>;
 
 export {
   AuthenticationProvider,
-  AuthenticationProviderOptions
+  AuthenticationProviderOptionsType
 };

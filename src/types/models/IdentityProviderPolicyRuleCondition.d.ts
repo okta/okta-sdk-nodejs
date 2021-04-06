@@ -26,9 +26,9 @@ declare class IdentityProviderPolicyRuleCondition extends Resource {
 
 }
 
-type IdentityProviderPolicyRuleConditionOptions = OptionalKnownProperties<IdentityProviderPolicyRuleCondition>;
+type IdentityProviderPolicyRuleConditionOptionsType = OptionalKnownProperties<IdentityProviderPolicyRuleCondition>;
 
 export {
   IdentityProviderPolicyRuleCondition,
-  IdentityProviderPolicyRuleConditionOptions
+  IdentityProviderPolicyRuleConditionOptionsType
 };

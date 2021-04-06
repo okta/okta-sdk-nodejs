@@ -25,9 +25,9 @@ declare class LogRequest extends Resource {
 
 }
 
-type LogRequestOptions = OptionalKnownProperties<LogRequest>;
+type LogRequestOptionsType = OptionalKnownProperties<LogRequest>;
 
 export {
   LogRequest,
-  LogRequestOptions
+  LogRequestOptionsType
 };

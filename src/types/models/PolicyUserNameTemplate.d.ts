@@ -25,9 +25,9 @@ declare class PolicyUserNameTemplate extends Resource {
 
 }
 
-type PolicyUserNameTemplateOptions = OptionalKnownProperties<PolicyUserNameTemplate>;
+type PolicyUserNameTemplateOptionsType = OptionalKnownProperties<PolicyUserNameTemplate>;
 
 export {
   PolicyUserNameTemplate,
-  PolicyUserNameTemplateOptions
+  PolicyUserNameTemplateOptionsType
 };

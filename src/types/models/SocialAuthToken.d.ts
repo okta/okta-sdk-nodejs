@@ -30,9 +30,9 @@ declare class SocialAuthToken extends Resource {
 
 }
 
-type SocialAuthTokenOptions = OptionalKnownProperties<SocialAuthToken>;
+type SocialAuthTokenOptionsType = OptionalKnownProperties<SocialAuthToken>;
 
 export {
   SocialAuthToken,
-  SocialAuthTokenOptions
+  SocialAuthTokenOptionsType
 };

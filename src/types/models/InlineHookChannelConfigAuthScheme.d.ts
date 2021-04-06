@@ -27,9 +27,9 @@ declare class InlineHookChannelConfigAuthScheme extends Resource {
 
 }
 
-type InlineHookChannelConfigAuthSchemeOptions = OptionalKnownProperties<InlineHookChannelConfigAuthScheme>;
+type InlineHookChannelConfigAuthSchemeOptionsType = OptionalKnownProperties<InlineHookChannelConfigAuthScheme>;
 
 export {
   InlineHookChannelConfigAuthScheme,
-  InlineHookChannelConfigAuthSchemeOptions
+  InlineHookChannelConfigAuthSchemeOptionsType
 };

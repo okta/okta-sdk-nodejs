@@ -27,9 +27,9 @@ declare class TokenAuthorizationServerPolicyRuleAction extends Resource {
 
 }
 
-type TokenAuthorizationServerPolicyRuleActionOptions = OptionalKnownProperties<TokenAuthorizationServerPolicyRuleAction>;
+type TokenAuthorizationServerPolicyRuleActionOptionsType = OptionalKnownProperties<TokenAuthorizationServerPolicyRuleAction>;
 
 export {
   TokenAuthorizationServerPolicyRuleAction,
-  TokenAuthorizationServerPolicyRuleActionOptions
+  TokenAuthorizationServerPolicyRuleActionOptionsType
 };

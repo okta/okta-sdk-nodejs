@@ -32,9 +32,9 @@ declare class PasswordPolicyPasswordSettingsComplexity extends Resource {
 
 }
 
-type PasswordPolicyPasswordSettingsComplexityOptions = OptionalKnownProperties<PasswordPolicyPasswordSettingsComplexity>;
+type PasswordPolicyPasswordSettingsComplexityOptionsType = OptionalKnownProperties<PasswordPolicyPasswordSettingsComplexity>;
 
 export {
   PasswordPolicyPasswordSettingsComplexity,
-  PasswordPolicyPasswordSettingsComplexityOptions
+  PasswordPolicyPasswordSettingsComplexityOptionsType
 };

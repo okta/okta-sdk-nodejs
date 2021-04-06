@@ -31,9 +31,9 @@ declare class SchemeApplicationCredentials extends ApplicationCredentials {
 
 }
 
-type SchemeApplicationCredentialsOptions = OptionalKnownProperties<SchemeApplicationCredentials>;
+type SchemeApplicationCredentialsOptionsType = OptionalKnownProperties<SchemeApplicationCredentials>;
 
 export {
   SchemeApplicationCredentials,
-  SchemeApplicationCredentialsOptions
+  SchemeApplicationCredentialsOptionsType
 };

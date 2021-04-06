@@ -30,9 +30,9 @@ declare class OktaSignOnPolicyRuleSignonActions extends Resource {
 
 }
 
-type OktaSignOnPolicyRuleSignonActionsOptions = OptionalKnownProperties<OktaSignOnPolicyRuleSignonActions>;
+type OktaSignOnPolicyRuleSignonActionsOptionsType = OptionalKnownProperties<OktaSignOnPolicyRuleSignonActions>;
 
 export {
   OktaSignOnPolicyRuleSignonActions,
-  OktaSignOnPolicyRuleSignonActionsOptions
+  OktaSignOnPolicyRuleSignonActionsOptionsType
 };

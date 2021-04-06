@@ -25,9 +25,9 @@ declare class OAuth2ScopesMediationPolicyRuleCondition extends Resource {
 
 }
 
-type OAuth2ScopesMediationPolicyRuleConditionOptions = OptionalKnownProperties<OAuth2ScopesMediationPolicyRuleCondition>;
+type OAuth2ScopesMediationPolicyRuleConditionOptionsType = OptionalKnownProperties<OAuth2ScopesMediationPolicyRuleCondition>;
 
 export {
   OAuth2ScopesMediationPolicyRuleCondition,
-  OAuth2ScopesMediationPolicyRuleConditionOptions
+  OAuth2ScopesMediationPolicyRuleConditionOptionsType
 };

@@ -27,9 +27,9 @@ declare class GroupRulePeopleCondition extends Resource {
 
 }
 
-type GroupRulePeopleConditionOptions = OptionalKnownProperties<GroupRulePeopleCondition>;
+type GroupRulePeopleConditionOptionsType = OptionalKnownProperties<GroupRulePeopleCondition>;
 
 export {
   GroupRulePeopleCondition,
-  GroupRulePeopleConditionOptions
+  GroupRulePeopleConditionOptionsType
 };

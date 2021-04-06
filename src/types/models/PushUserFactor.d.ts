@@ -28,9 +28,9 @@ declare class PushUserFactor extends UserFactor {
 
 }
 
-type PushUserFactorOptions = OptionalKnownProperties<PushUserFactor>;
+type PushUserFactorOptionsType = OptionalKnownProperties<PushUserFactor>;
 
 export {
   PushUserFactor,
-  PushUserFactorOptions
+  PushUserFactorOptionsType
 };

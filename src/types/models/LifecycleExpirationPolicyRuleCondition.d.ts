@@ -27,9 +27,9 @@ declare class LifecycleExpirationPolicyRuleCondition extends Resource {
 
 }
 
-type LifecycleExpirationPolicyRuleConditionOptions = OptionalKnownProperties<LifecycleExpirationPolicyRuleCondition>;
+type LifecycleExpirationPolicyRuleConditionOptionsType = OptionalKnownProperties<LifecycleExpirationPolicyRuleCondition>;
 
 export {
   LifecycleExpirationPolicyRuleCondition,
-  LifecycleExpirationPolicyRuleConditionOptions
+  LifecycleExpirationPolicyRuleConditionOptionsType
 };

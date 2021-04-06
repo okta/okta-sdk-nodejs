@@ -23,9 +23,9 @@ declare class LogSeverity extends Resource {
 
 }
 
-type LogSeverityOptions = Record<string, unknown>;
+type LogSeverityOptionsType = Record<string, unknown>;
 
 export {
   LogSeverity,
-  LogSeverityOptions
+  LogSeverityOptionsType
 };

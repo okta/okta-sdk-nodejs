@@ -23,9 +23,9 @@ declare class EnabledStatus extends Resource {
 
 }
 
-type EnabledStatusOptions = Record<string, unknown>;
+type EnabledStatusOptionsType = Record<string, unknown>;
 
 export {
   EnabledStatus,
-  EnabledStatusOptions
+  EnabledStatusOptionsType
 };

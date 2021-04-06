@@ -25,9 +25,9 @@ declare class AuthorizationServerCredentials extends Resource {
 
 }
 
-type AuthorizationServerCredentialsOptions = OptionalKnownProperties<AuthorizationServerCredentials>;
+type AuthorizationServerCredentialsOptionsType = OptionalKnownProperties<AuthorizationServerCredentials>;
 
 export {
   AuthorizationServerCredentials,
-  AuthorizationServerCredentialsOptions
+  AuthorizationServerCredentialsOptionsType
 };

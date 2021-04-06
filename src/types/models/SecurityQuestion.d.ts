@@ -27,9 +27,9 @@ declare class SecurityQuestion extends Resource {
 
 }
 
-type SecurityQuestionOptions = OptionalKnownProperties<SecurityQuestion>;
+type SecurityQuestionOptionsType = OptionalKnownProperties<SecurityQuestion>;
 
 export {
   SecurityQuestion,
-  SecurityQuestionOptions
+  SecurityQuestionOptionsType
 };

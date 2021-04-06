@@ -26,9 +26,9 @@ declare class Duration extends Resource {
 
 }
 
-type DurationOptions = OptionalKnownProperties<Duration>;
+type DurationOptionsType = OptionalKnownProperties<Duration>;
 
 export {
   Duration,
-  DurationOptions
+  DurationOptionsType
 };

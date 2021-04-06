@@ -23,9 +23,9 @@ declare class OAuth2ScopeConsentGrantSource extends Resource {
 
 }
 
-type OAuth2ScopeConsentGrantSourceOptions = Record<string, unknown>;
+type OAuth2ScopeConsentGrantSourceOptionsType = Record<string, unknown>;
 
 export {
   OAuth2ScopeConsentGrantSource,
-  OAuth2ScopeConsentGrantSourceOptions
+  OAuth2ScopeConsentGrantSourceOptionsType
 };

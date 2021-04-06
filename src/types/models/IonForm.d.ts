@@ -33,9 +33,9 @@ declare class IonForm extends Resource {
 
 }
 
-type IonFormOptions = OptionalKnownProperties<IonForm>;
+type IonFormOptionsType = OptionalKnownProperties<IonForm>;
 
 export {
   IonForm,
-  IonFormOptions
+  IonFormOptionsType
 };

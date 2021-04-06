@@ -39,9 +39,9 @@ declare class Session extends Resource {
   refresh(): Promise<Session>;
 }
 
-type SessionOptions = OptionalKnownProperties<Session>;
+type SessionOptionsType = OptionalKnownProperties<Session>;
 
 export {
   Session,
-  SessionOptions
+  SessionOptionsType
 };

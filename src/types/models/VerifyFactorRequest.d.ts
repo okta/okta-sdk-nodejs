@@ -32,9 +32,9 @@ declare class VerifyFactorRequest extends Resource {
 
 }
 
-type VerifyFactorRequestOptions = OptionalKnownProperties<VerifyFactorRequest>;
+type VerifyFactorRequestOptionsType = OptionalKnownProperties<VerifyFactorRequest>;
 
 export {
   VerifyFactorRequest,
-  VerifyFactorRequestOptions
+  VerifyFactorRequestOptionsType
 };

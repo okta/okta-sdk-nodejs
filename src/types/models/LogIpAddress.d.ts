@@ -28,9 +28,9 @@ declare class LogIpAddress extends Resource {
 
 }
 
-type LogIpAddressOptions = OptionalKnownProperties<LogIpAddress>;
+type LogIpAddressOptionsType = OptionalKnownProperties<LogIpAddress>;
 
 export {
   LogIpAddress,
-  LogIpAddressOptions
+  LogIpAddressOptionsType
 };

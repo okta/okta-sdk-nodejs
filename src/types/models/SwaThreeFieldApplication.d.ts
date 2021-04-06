@@ -25,9 +25,9 @@ declare class SwaThreeFieldApplication extends BrowserPluginApplication {
 
 }
 
-type SwaThreeFieldApplicationOptions = OptionalKnownProperties<SwaThreeFieldApplication>;
+type SwaThreeFieldApplicationOptionsType = OptionalKnownProperties<SwaThreeFieldApplication>;
 
 export {
   SwaThreeFieldApplication,
-  SwaThreeFieldApplicationOptions
+  SwaThreeFieldApplicationOptionsType
 };

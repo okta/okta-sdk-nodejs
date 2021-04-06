@@ -23,9 +23,9 @@ declare class OpenIdConnectRefreshTokenRotationType extends Resource {
 
 }
 
-type OpenIdConnectRefreshTokenRotationTypeOptions = Record<string, unknown>;
+type OpenIdConnectRefreshTokenRotationTypeOptionsType = Record<string, unknown>;
 
 export {
   OpenIdConnectRefreshTokenRotationType,
-  OpenIdConnectRefreshTokenRotationTypeOptions
+  OpenIdConnectRefreshTokenRotationTypeOptionsType
 };

@@ -19,7 +19,7 @@ import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { Response } from 'node-fetch';
 import { Collection } from '../collection';
 import { PolicyRule } from './PolicyRule';
-import { PolicyRuleOptions } from './PolicyRule';
+import { PolicyRuleOptionsType } from './PolicyRule';
 import { PolicyRuleConditions } from './PolicyRuleConditions';
 import { PolicyType } from './PolicyType';
 
@@ -44,13 +44,13 @@ declare class Policy extends Resource {
   activate(): Promise<Response>;
   deactivate(): Promise<Response>;
   listPolicyRules(): Collection<PolicyRule>;
-  createRule(policyRule: PolicyRuleOptions): Promise<PolicyRule>;
+  createRule(policyRule: PolicyRuleOptionsType): Promise<PolicyRule>;
   getPolicyRule(ruleId: string): Promise<PolicyRule>;
 }
 
-type PolicyOptions = OptionalKnownProperties<Policy>;
+type PolicyOptionsType = OptionalKnownProperties<Policy>;
 
 export {
   Policy,
-  PolicyOptions
+  PolicyOptionsType
 };

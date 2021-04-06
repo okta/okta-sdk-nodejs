@@ -19,15 +19,15 @@ import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { Response } from 'node-fetch';
 import { Collection } from '../collection';
 import { AppUser } from './AppUser';
-import { AppUserOptions } from './AppUser';
-import { ApplicationGroupAssignmentOptions } from './ApplicationGroupAssignment';
+import { AppUserOptionsType } from './AppUser';
+import { ApplicationGroupAssignmentOptionsType } from './ApplicationGroupAssignment';
 import { ApplicationGroupAssignment } from './ApplicationGroupAssignment';
 import { JsonWebKey } from './JsonWebKey';
-import { CsrMetadataOptions } from './CsrMetadata';
+import { CsrMetadataOptionsType } from './CsrMetadata';
 import { Csr } from './Csr';
 import { OAuth2Token } from './OAuth2Token';
 import { OAuth2ScopeConsentGrant } from './OAuth2ScopeConsentGrant';
-import { OAuth2ScopeConsentGrantOptions } from './OAuth2ScopeConsentGrant';
+import { OAuth2ScopeConsentGrantOptionsType } from './OAuth2ScopeConsentGrant';
 import { ApplicationAccessibility } from './ApplicationAccessibility';
 import { ApplicationCredentials } from './ApplicationCredentials';
 import { ApplicationLicensing } from './ApplicationLicensing';
@@ -67,11 +67,11 @@ declare class Application extends Resource {
     filter?: string,
     expand?: string,
   }): Collection<AppUser>;
-  assignUserToApplication(appUser: AppUserOptions): Promise<AppUser>;
+  assignUserToApplication(appUser: AppUserOptionsType): Promise<AppUser>;
   getApplicationUser(userId: string, queryParameters?: {
     expand?: string,
   }): Promise<AppUser>;
-  createApplicationGroupAssignment(groupId: string, applicationGroupAssignment: ApplicationGroupAssignmentOptions): Promise<ApplicationGroupAssignment>;
+  createApplicationGroupAssignment(groupId: string, applicationGroupAssignment: ApplicationGroupAssignmentOptionsType): Promise<ApplicationGroupAssignment>;
   getApplicationGroupAssignment(groupId: string, queryParameters?: {
     expand?: string,
   }): Promise<ApplicationGroupAssignment>;
@@ -89,7 +89,7 @@ declare class Application extends Resource {
   generateKey(queryParameters?: {
     validityYears?: number,
   }): Promise<JsonWebKey>;
-  generateCsr(csrMetadata: CsrMetadataOptions): Promise<Csr>;
+  generateCsr(csrMetadata: CsrMetadataOptionsType): Promise<Csr>;
   getCsr(csrId: string): Promise<Csr>;
   revokeCsr(csrId: string): Promise<Response>;
   listCsrs(): Collection<Csr>;
@@ -111,16 +111,16 @@ declare class Application extends Resource {
   listScopeConsentGrants(queryParameters?: {
     expand?: string,
   }): Collection<OAuth2ScopeConsentGrant>;
-  grantConsentToScope(oAuth2ScopeConsentGrant: OAuth2ScopeConsentGrantOptions): Promise<OAuth2ScopeConsentGrant>;
+  grantConsentToScope(oAuth2ScopeConsentGrant: OAuth2ScopeConsentGrantOptionsType): Promise<OAuth2ScopeConsentGrant>;
   revokeScopeConsentGrant(grantId: string): Promise<Response>;
   getScopeConsentGrant(grantId: string, queryParameters?: {
     expand?: string,
   }): Promise<OAuth2ScopeConsentGrant>;
 }
 
-type ApplicationOptions = OptionalKnownProperties<Application>;
+type ApplicationOptionsType = OptionalKnownProperties<Application>;
 
 export {
   Application,
-  ApplicationOptions
+  ApplicationOptionsType
 };

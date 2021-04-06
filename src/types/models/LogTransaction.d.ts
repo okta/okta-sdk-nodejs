@@ -27,9 +27,9 @@ declare class LogTransaction extends Resource {
 
 }
 
-type LogTransactionOptions = OptionalKnownProperties<LogTransaction>;
+type LogTransactionOptionsType = OptionalKnownProperties<LogTransaction>;
 
 export {
   LogTransaction,
-  LogTransactionOptions
+  LogTransactionOptionsType
 };

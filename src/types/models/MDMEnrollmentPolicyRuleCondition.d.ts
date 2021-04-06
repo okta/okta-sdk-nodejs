@@ -26,9 +26,9 @@ declare class MDMEnrollmentPolicyRuleCondition extends Resource {
 
 }
 
-type MDMEnrollmentPolicyRuleConditionOptions = OptionalKnownProperties<MDMEnrollmentPolicyRuleCondition>;
+type MDMEnrollmentPolicyRuleConditionOptionsType = OptionalKnownProperties<MDMEnrollmentPolicyRuleCondition>;
 
 export {
   MDMEnrollmentPolicyRuleCondition,
-  MDMEnrollmentPolicyRuleConditionOptions
+  MDMEnrollmentPolicyRuleConditionOptionsType
 };

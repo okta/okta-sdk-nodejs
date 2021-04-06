@@ -31,9 +31,9 @@ declare class ApplicationGroupAssignment extends Resource {
   delete(): Promise<Response>;
 }
 
-type ApplicationGroupAssignmentOptions = OptionalKnownProperties<ApplicationGroupAssignment>;
+type ApplicationGroupAssignmentOptionsType = OptionalKnownProperties<ApplicationGroupAssignment>;
 
 export {
   ApplicationGroupAssignment,
-  ApplicationGroupAssignmentOptions
+  ApplicationGroupAssignmentOptionsType
 };

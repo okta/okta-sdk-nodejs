@@ -29,9 +29,9 @@ declare class OAuth2Client extends Resource {
 
 }
 
-type OAuth2ClientOptions = OptionalKnownProperties<OAuth2Client>;
+type OAuth2ClientOptionsType = OptionalKnownProperties<OAuth2Client>;
 
 export {
   OAuth2Client,
-  OAuth2ClientOptions
+  OAuth2ClientOptionsType
 };

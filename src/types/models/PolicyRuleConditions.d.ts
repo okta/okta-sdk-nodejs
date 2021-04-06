@@ -65,9 +65,9 @@ declare class PolicyRuleConditions extends Resource {
 
 }
 
-type PolicyRuleConditionsOptions = OptionalKnownProperties<PolicyRuleConditions>;
+type PolicyRuleConditionsOptionsType = OptionalKnownProperties<PolicyRuleConditions>;
 
 export {
   PolicyRuleConditions,
-  PolicyRuleConditionsOptions
+  PolicyRuleConditionsOptionsType
 };

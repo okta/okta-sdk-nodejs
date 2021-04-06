@@ -25,9 +25,9 @@ declare class SecurePasswordStoreApplicationSettings extends ApplicationSettings
 
 }
 
-type SecurePasswordStoreApplicationSettingsOptions = OptionalKnownProperties<SecurePasswordStoreApplicationSettings>;
+type SecurePasswordStoreApplicationSettingsOptionsType = OptionalKnownProperties<SecurePasswordStoreApplicationSettings>;
 
 export {
   SecurePasswordStoreApplicationSettings,
-  SecurePasswordStoreApplicationSettingsOptions
+  SecurePasswordStoreApplicationSettingsOptionsType
 };

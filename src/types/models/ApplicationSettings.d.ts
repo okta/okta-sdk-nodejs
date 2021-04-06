@@ -29,9 +29,9 @@ declare class ApplicationSettings extends Resource {
 
 }
 
-type ApplicationSettingsOptions = OptionalKnownProperties<ApplicationSettings>;
+type ApplicationSettingsOptionsType = OptionalKnownProperties<ApplicationSettings>;
 
 export {
   ApplicationSettings,
-  ApplicationSettingsOptions
+  ApplicationSettingsOptionsType
 };

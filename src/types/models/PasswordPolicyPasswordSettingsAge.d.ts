@@ -28,9 +28,9 @@ declare class PasswordPolicyPasswordSettingsAge extends Resource {
 
 }
 
-type PasswordPolicyPasswordSettingsAgeOptions = OptionalKnownProperties<PasswordPolicyPasswordSettingsAge>;
+type PasswordPolicyPasswordSettingsAgeOptionsType = OptionalKnownProperties<PasswordPolicyPasswordSettingsAge>;
 
 export {
   PasswordPolicyPasswordSettingsAge,
-  PasswordPolicyPasswordSettingsAgeOptions
+  PasswordPolicyPasswordSettingsAgeOptionsType
 };

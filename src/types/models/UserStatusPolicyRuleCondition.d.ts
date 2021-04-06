@@ -25,9 +25,9 @@ declare class UserStatusPolicyRuleCondition extends Resource {
 
 }
 
-type UserStatusPolicyRuleConditionOptions = OptionalKnownProperties<UserStatusPolicyRuleCondition>;
+type UserStatusPolicyRuleConditionOptionsType = OptionalKnownProperties<UserStatusPolicyRuleCondition>;
 
 export {
   UserStatusPolicyRuleCondition,
-  UserStatusPolicyRuleConditionOptions
+  UserStatusPolicyRuleConditionOptionsType
 };

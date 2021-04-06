@@ -25,9 +25,9 @@ declare class ResetPasswordToken extends Resource {
 
 }
 
-type ResetPasswordTokenOptions = OptionalKnownProperties<ResetPasswordToken>;
+type ResetPasswordTokenOptionsType = OptionalKnownProperties<ResetPasswordToken>;
 
 export {
   ResetPasswordToken,
-  ResetPasswordTokenOptions
+  ResetPasswordTokenOptionsType
 };

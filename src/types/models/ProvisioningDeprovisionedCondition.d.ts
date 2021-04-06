@@ -25,9 +25,9 @@ declare class ProvisioningDeprovisionedCondition extends Resource {
 
 }
 
-type ProvisioningDeprovisionedConditionOptions = OptionalKnownProperties<ProvisioningDeprovisionedCondition>;
+type ProvisioningDeprovisionedConditionOptionsType = OptionalKnownProperties<ProvisioningDeprovisionedCondition>;
 
 export {
   ProvisioningDeprovisionedCondition,
-  ProvisioningDeprovisionedConditionOptions
+  ProvisioningDeprovisionedConditionOptionsType
 };

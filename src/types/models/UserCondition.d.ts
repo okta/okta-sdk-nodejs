@@ -26,9 +26,9 @@ declare class UserCondition extends Resource {
 
 }
 
-type UserConditionOptions = OptionalKnownProperties<UserCondition>;
+type UserConditionOptionsType = OptionalKnownProperties<UserCondition>;
 
 export {
   UserCondition,
-  UserConditionOptions
+  UserConditionOptionsType
 };

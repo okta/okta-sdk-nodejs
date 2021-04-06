@@ -39,9 +39,9 @@ declare class GroupRule extends Resource {
   deactivate(): Promise<Response>;
 }
 
-type GroupRuleOptions = OptionalKnownProperties<GroupRule>;
+type GroupRuleOptionsType = OptionalKnownProperties<GroupRule>;
 
 export {
   GroupRule,
-  GroupRuleOptions
+  GroupRuleOptionsType
 };

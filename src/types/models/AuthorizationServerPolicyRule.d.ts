@@ -40,9 +40,9 @@ declare class AuthorizationServerPolicyRule extends Resource {
   deactivate(): Promise<Response>;
 }
 
-type AuthorizationServerPolicyRuleOptions = OptionalKnownProperties<AuthorizationServerPolicyRule>;
+type AuthorizationServerPolicyRuleOptionsType = OptionalKnownProperties<AuthorizationServerPolicyRule>;
 
 export {
   AuthorizationServerPolicyRule,
-  AuthorizationServerPolicyRuleOptions
+  AuthorizationServerPolicyRuleOptionsType
 };

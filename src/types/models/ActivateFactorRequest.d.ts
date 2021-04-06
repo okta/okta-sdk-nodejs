@@ -29,9 +29,9 @@ declare class ActivateFactorRequest extends Resource {
 
 }
 
-type ActivateFactorRequestOptions = OptionalKnownProperties<ActivateFactorRequest>;
+type ActivateFactorRequestOptionsType = OptionalKnownProperties<ActivateFactorRequest>;
 
 export {
   ActivateFactorRequest,
-  ActivateFactorRequestOptions
+  ActivateFactorRequestOptionsType
 };

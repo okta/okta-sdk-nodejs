@@ -23,9 +23,9 @@ declare class PolicyType extends Resource {
 
 }
 
-type PolicyTypeOptions = Record<string, unknown>;
+type PolicyTypeOptionsType = Record<string, unknown>;
 
 export {
   PolicyType,
-  PolicyTypeOptions
+  PolicyTypeOptionsType
 };

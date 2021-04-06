@@ -31,9 +31,9 @@ declare class SwaThreeFieldApplicationSettingsApplication extends ApplicationSet
 
 }
 
-type SwaThreeFieldApplicationSettingsApplicationOptions = OptionalKnownProperties<SwaThreeFieldApplicationSettingsApplication>;
+type SwaThreeFieldApplicationSettingsApplicationOptionsType = OptionalKnownProperties<SwaThreeFieldApplicationSettingsApplication>;
 
 export {
   SwaThreeFieldApplicationSettingsApplication,
-  SwaThreeFieldApplicationSettingsApplicationOptions
+  SwaThreeFieldApplicationSettingsApplicationOptionsType
 };

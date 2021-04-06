@@ -26,9 +26,9 @@ declare class AutoLoginApplicationSettingsSignOn extends Resource {
 
 }
 
-type AutoLoginApplicationSettingsSignOnOptions = OptionalKnownProperties<AutoLoginApplicationSettingsSignOn>;
+type AutoLoginApplicationSettingsSignOnOptionsType = OptionalKnownProperties<AutoLoginApplicationSettingsSignOn>;
 
 export {
   AutoLoginApplicationSettingsSignOn,
-  AutoLoginApplicationSettingsSignOnOptions
+  AutoLoginApplicationSettingsSignOnOptionsType
 };

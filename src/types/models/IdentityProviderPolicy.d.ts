@@ -30,9 +30,9 @@ declare class IdentityProviderPolicy extends Policy {
 
 }
 
-type IdentityProviderPolicyOptions = OptionalKnownProperties<IdentityProviderPolicy>;
+type IdentityProviderPolicyOptionsType = OptionalKnownProperties<IdentityProviderPolicy>;
 
 export {
   IdentityProviderPolicy,
-  IdentityProviderPolicyOptions
+  IdentityProviderPolicyOptionsType
 };

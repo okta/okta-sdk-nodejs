@@ -25,9 +25,9 @@ declare class PasswordDictionary extends Resource {
 
 }
 
-type PasswordDictionaryOptions = OptionalKnownProperties<PasswordDictionary>;
+type PasswordDictionaryOptionsType = OptionalKnownProperties<PasswordDictionary>;
 
 export {
   PasswordDictionary,
-  PasswordDictionaryOptions
+  PasswordDictionaryOptionsType
 };

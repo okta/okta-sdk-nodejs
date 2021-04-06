@@ -35,9 +35,9 @@ declare class OAuth2Claim extends Resource {
 
 }
 
-type OAuth2ClaimOptions = OptionalKnownProperties<OAuth2Claim>;
+type OAuth2ClaimOptionsType = OptionalKnownProperties<OAuth2Claim>;
 
 export {
   OAuth2Claim,
-  OAuth2ClaimOptions
+  OAuth2ClaimOptionsType
 };

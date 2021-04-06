@@ -15,80 +15,80 @@
 
 import { Collection } from './collection';
 import { Application } from './models/Application';
-import { ApplicationOptions } from './models/Application';
+import { ApplicationOptionsType } from './models/Application';
 import { Response } from 'node-fetch';
 import { Csr } from './models/Csr';
-import { CsrMetadataOptions } from './models/CsrMetadata';
+import { CsrMetadataOptionsType } from './models/CsrMetadata';
 import { JsonWebKey } from './models/JsonWebKey';
 import { OAuth2ScopeConsentGrant } from './models/OAuth2ScopeConsentGrant';
-import { OAuth2ScopeConsentGrantOptions } from './models/OAuth2ScopeConsentGrant';
+import { OAuth2ScopeConsentGrantOptionsType } from './models/OAuth2ScopeConsentGrant';
 import { ApplicationGroupAssignment } from './models/ApplicationGroupAssignment';
-import { ApplicationGroupAssignmentOptions } from './models/ApplicationGroupAssignment';
+import { ApplicationGroupAssignmentOptionsType } from './models/ApplicationGroupAssignment';
 import { OAuth2Token } from './models/OAuth2Token';
 import { AppUser } from './models/AppUser';
-import { AppUserOptions } from './models/AppUser';
+import { AppUserOptionsType } from './models/AppUser';
 import { AuthorizationServer } from './models/AuthorizationServer';
-import { AuthorizationServerOptions } from './models/AuthorizationServer';
+import { AuthorizationServerOptionsType } from './models/AuthorizationServer';
 import { OAuth2Claim } from './models/OAuth2Claim';
-import { OAuth2ClaimOptions } from './models/OAuth2Claim';
+import { OAuth2ClaimOptionsType } from './models/OAuth2Claim';
 import { OAuth2Client } from './models/OAuth2Client';
 import { OAuth2RefreshToken } from './models/OAuth2RefreshToken';
-import { JwkUseOptions } from './models/JwkUse';
+import { JwkUseOptionsType } from './models/JwkUse';
 import { AuthorizationServerPolicy } from './models/AuthorizationServerPolicy';
-import { AuthorizationServerPolicyOptions } from './models/AuthorizationServerPolicy';
+import { AuthorizationServerPolicyOptionsType } from './models/AuthorizationServerPolicy';
 import { AuthorizationServerPolicyRule } from './models/AuthorizationServerPolicyRule';
-import { AuthorizationServerPolicyRuleOptions } from './models/AuthorizationServerPolicyRule';
+import { AuthorizationServerPolicyRuleOptionsType } from './models/AuthorizationServerPolicyRule';
 import { OAuth2Scope } from './models/OAuth2Scope';
-import { OAuth2ScopeOptions } from './models/OAuth2Scope';
+import { OAuth2ScopeOptionsType } from './models/OAuth2Scope';
 import { EventHook } from './models/EventHook';
-import { EventHookOptions } from './models/EventHook';
+import { EventHookOptionsType } from './models/EventHook';
 import { Feature } from './models/Feature';
 import { Group } from './models/Group';
-import { GroupOptions } from './models/Group';
+import { GroupOptionsType } from './models/Group';
 import { GroupRule } from './models/GroupRule';
-import { GroupRuleOptions } from './models/GroupRule';
+import { GroupRuleOptionsType } from './models/GroupRule';
 import { Role } from './models/Role';
-import { AssignRoleRequestOptions } from './models/AssignRoleRequest';
+import { AssignRoleRequestOptionsType } from './models/AssignRoleRequest';
 import { CatalogApplication } from './models/CatalogApplication';
 import { User } from './models/User';
 import { IdentityProvider } from './models/IdentityProvider';
-import { IdentityProviderOptions } from './models/IdentityProvider';
-import { JsonWebKeyOptions } from './models/JsonWebKey';
+import { IdentityProviderOptionsType } from './models/IdentityProvider';
+import { JsonWebKeyOptionsType } from './models/JsonWebKey';
 import { IdentityProviderApplicationUser } from './models/IdentityProviderApplicationUser';
-import { UserIdentityProviderLinkRequestOptions } from './models/UserIdentityProviderLinkRequest';
+import { UserIdentityProviderLinkRequestOptionsType } from './models/UserIdentityProviderLinkRequest';
 import { SocialAuthToken } from './models/SocialAuthToken';
 import { InlineHook } from './models/InlineHook';
-import { InlineHookOptions } from './models/InlineHook';
-import { InlineHookPayloadOptions } from './models/InlineHookPayload';
+import { InlineHookOptionsType } from './models/InlineHook';
+import { InlineHookPayloadOptionsType } from './models/InlineHookPayload';
 import { InlineHookResponse } from './models/InlineHookResponse';
 import { LogEvent } from './models/LogEvent';
 import { LinkedObject } from './models/LinkedObject';
-import { LinkedObjectOptions } from './models/LinkedObject';
+import { LinkedObjectOptionsType } from './models/LinkedObject';
 import { UserType } from './models/UserType';
-import { UserTypeOptions } from './models/UserType';
-import { PolicyOptions } from './models/Policy';
+import { UserTypeOptionsType } from './models/UserType';
+import { PolicyOptionsType } from './models/Policy';
 import { Policy } from './models/Policy';
 import { PolicyRule } from './models/PolicyRule';
-import { PolicyRuleOptions } from './models/PolicyRule';
-import { CreateSessionRequestOptions } from './models/CreateSessionRequest';
+import { PolicyRuleOptionsType } from './models/PolicyRule';
+import { CreateSessionRequestOptionsType } from './models/CreateSessionRequest';
 import { Session } from './models/Session';
 import { SmsTemplate } from './models/SmsTemplate';
-import { SmsTemplateOptions } from './models/SmsTemplate';
+import { SmsTemplateOptionsType } from './models/SmsTemplate';
 import { TrustedOrigin } from './models/TrustedOrigin';
-import { TrustedOriginOptions } from './models/TrustedOrigin';
-import { CreateUserRequestOptions } from './models/CreateUserRequest';
-import { UserOptions } from './models/User';
+import { TrustedOriginOptionsType } from './models/TrustedOrigin';
+import { CreateUserRequestOptionsType } from './models/CreateUserRequest';
+import { UserOptionsType } from './models/User';
 import { AppLink } from './models/AppLink';
-import { ChangePasswordRequestOptions } from './models/ChangePasswordRequest';
+import { ChangePasswordRequestOptionsType } from './models/ChangePasswordRequest';
 import { UserCredentials } from './models/UserCredentials';
-import { UserCredentialsOptions } from './models/UserCredentials';
+import { UserCredentialsOptionsType } from './models/UserCredentials';
 import { ForgotPasswordResponse } from './models/ForgotPasswordResponse';
 import { UserFactor } from './models/UserFactor';
-import { UserFactorOptions } from './models/UserFactor';
+import { UserFactorOptionsType } from './models/UserFactor';
 import { SecurityQuestion } from './models/SecurityQuestion';
-import { ActivateFactorRequestOptions } from './models/ActivateFactorRequest';
+import { ActivateFactorRequestOptionsType } from './models/ActivateFactorRequest';
 import { VerifyUserFactorResponse } from './models/VerifyUserFactorResponse';
-import { VerifyFactorRequestOptions } from './models/VerifyFactorRequest';
+import { VerifyFactorRequestOptionsType } from './models/VerifyFactorRequest';
 import { UserActivationToken } from './models/UserActivationToken';
 import { TempPassword } from './models/TempPassword';
 import { ResetPasswordToken } from './models/ResetPasswordToken';
@@ -103,16 +103,16 @@ export declare class GeneratedApiClient {
     expand?: string,
     includeNonDeleted?: boolean,
   }): Collection<Application>;
-  createApplication(application: ApplicationOptions, queryParameters?: {
+  createApplication(application: ApplicationOptionsType, queryParameters?: {
     activate?: boolean,
   }): Promise<Application>;
   deleteApplication(appId: string): Promise<Response>;
   getApplication(appId: string, queryParameters?: {
     expand?: string,
   }): Promise<Application>;
-  updateApplication(appId: string, application: ApplicationOptions): Promise<Application>;
+  updateApplication(appId: string, application: ApplicationOptionsType): Promise<Application>;
   listCsrsForApplication(appId: string): Collection<Csr>;
-  generateCsrForApplication(appId: string, csrMetadata: CsrMetadataOptions): Promise<Csr>;
+  generateCsrForApplication(appId: string, csrMetadata: CsrMetadataOptionsType): Promise<Csr>;
   revokeCsrFromApplication(appId: string, csrId: string): Promise<Response>;
   getCsrForApplication(appId: string, csrId: string): Promise<Csr>;
   publishCerCert(appId: string, csrId: string, certificate: string): Promise<JsonWebKey>;
@@ -131,7 +131,7 @@ export declare class GeneratedApiClient {
   listScopeConsentGrants(appId: string, queryParameters?: {
     expand?: string,
   }): Collection<OAuth2ScopeConsentGrant>;
-  grantConsentToScope(appId: string, oAuth2ScopeConsentGrant: OAuth2ScopeConsentGrantOptions): Promise<OAuth2ScopeConsentGrant>;
+  grantConsentToScope(appId: string, oAuth2ScopeConsentGrant: OAuth2ScopeConsentGrantOptionsType): Promise<OAuth2ScopeConsentGrant>;
   revokeScopeConsentGrant(appId: string, grantId: string): Promise<Response>;
   getScopeConsentGrant(appId: string, grantId: string, queryParameters?: {
     expand?: string,
@@ -146,7 +146,7 @@ export declare class GeneratedApiClient {
   getApplicationGroupAssignment(appId: string, groupId: string, queryParameters?: {
     expand?: string,
   }): Promise<ApplicationGroupAssignment>;
-  createApplicationGroupAssignment(appId: string, groupId: string, applicationGroupAssignment: ApplicationGroupAssignmentOptions): Promise<ApplicationGroupAssignment>;
+  createApplicationGroupAssignment(appId: string, groupId: string, applicationGroupAssignment: ApplicationGroupAssignmentOptionsType): Promise<ApplicationGroupAssignment>;
   activateApplication(appId: string): Promise<Response>;
   deactivateApplication(appId: string): Promise<Response>;
   revokeOAuth2TokensForApplication(appId: string): Promise<Response>;
@@ -167,28 +167,28 @@ export declare class GeneratedApiClient {
     filter?: string,
     expand?: string,
   }): Collection<AppUser>;
-  assignUserToApplication(appId: string, appUser: AppUserOptions): Promise<AppUser>;
+  assignUserToApplication(appId: string, appUser: AppUserOptionsType): Promise<AppUser>;
   deleteApplicationUser(appId: string, userId: string, queryParameters?: {
     sendEmail?: boolean,
   }): Promise<Response>;
   getApplicationUser(appId: string, userId: string, queryParameters?: {
     expand?: string,
   }): Promise<AppUser>;
-  updateApplicationUser(appId: string, userId: string, appUser: AppUserOptions): Promise<AppUser>;
+  updateApplicationUser(appId: string, userId: string, appUser: AppUserOptionsType): Promise<AppUser>;
   listAuthorizationServers(queryParameters?: {
     q?: string,
     limit?: string,
     after?: string,
   }): Collection<AuthorizationServer>;
-  createAuthorizationServer(authorizationServer: AuthorizationServerOptions): Promise<AuthorizationServer>;
+  createAuthorizationServer(authorizationServer: AuthorizationServerOptionsType): Promise<AuthorizationServer>;
   deleteAuthorizationServer(authServerId: string): Promise<Response>;
   getAuthorizationServer(authServerId: string): Promise<AuthorizationServer>;
-  updateAuthorizationServer(authServerId: string, authorizationServer: AuthorizationServerOptions): Promise<AuthorizationServer>;
+  updateAuthorizationServer(authServerId: string, authorizationServer: AuthorizationServerOptionsType): Promise<AuthorizationServer>;
   listOAuth2Claims(authServerId: string): Collection<OAuth2Claim>;
-  createOAuth2Claim(authServerId: string, oAuth2Claim: OAuth2ClaimOptions): Promise<OAuth2Claim>;
+  createOAuth2Claim(authServerId: string, oAuth2Claim: OAuth2ClaimOptionsType): Promise<OAuth2Claim>;
   deleteOAuth2Claim(authServerId: string, claimId: string): Promise<Response>;
   getOAuth2Claim(authServerId: string, claimId: string): Promise<OAuth2Claim>;
-  updateOAuth2Claim(authServerId: string, claimId: string, oAuth2Claim: OAuth2ClaimOptions): Promise<OAuth2Claim>;
+  updateOAuth2Claim(authServerId: string, claimId: string, oAuth2Claim: OAuth2ClaimOptionsType): Promise<OAuth2Claim>;
   listOAuth2ClientsForAuthorizationServer(authServerId: string): Collection<OAuth2Client>;
   revokeRefreshTokensForAuthorizationServerAndClient(authServerId: string, clientId: string): Promise<Response>;
   listRefreshTokensForAuthorizationServerAndClient(authServerId: string, clientId: string, queryParameters?: {
@@ -201,34 +201,34 @@ export declare class GeneratedApiClient {
     expand?: string,
   }): Promise<OAuth2RefreshToken>;
   listAuthorizationServerKeys(authServerId: string): Collection<JsonWebKey>;
-  rotateAuthorizationServerKeys(authServerId: string, jwkUse: JwkUseOptions): Collection<JsonWebKey>;
+  rotateAuthorizationServerKeys(authServerId: string, jwkUse: JwkUseOptionsType): Collection<JsonWebKey>;
   activateAuthorizationServer(authServerId: string): Promise<Response>;
   deactivateAuthorizationServer(authServerId: string): Promise<Response>;
   listAuthorizationServerPolicies(authServerId: string): Collection<AuthorizationServerPolicy>;
-  createAuthorizationServerPolicy(authServerId: string, authorizationServerPolicy: AuthorizationServerPolicyOptions): Promise<AuthorizationServerPolicy>;
+  createAuthorizationServerPolicy(authServerId: string, authorizationServerPolicy: AuthorizationServerPolicyOptionsType): Promise<AuthorizationServerPolicy>;
   deleteAuthorizationServerPolicy(authServerId: string, policyId: string): Promise<Response>;
   getAuthorizationServerPolicy(authServerId: string, policyId: string): Promise<AuthorizationServerPolicy>;
-  updateAuthorizationServerPolicy(authServerId: string, policyId: string, authorizationServerPolicy: AuthorizationServerPolicyOptions): Promise<AuthorizationServerPolicy>;
+  updateAuthorizationServerPolicy(authServerId: string, policyId: string, authorizationServerPolicy: AuthorizationServerPolicyOptionsType): Promise<AuthorizationServerPolicy>;
   listAuthorizationServerPolicyRules(policyId: string, authServerId: string): Collection<AuthorizationServerPolicyRule>;
-  createAuthorizationServerPolicyRule(policyId: string, authServerId: string, authorizationServerPolicyRule: AuthorizationServerPolicyRuleOptions): Promise<AuthorizationServerPolicyRule>;
+  createAuthorizationServerPolicyRule(policyId: string, authServerId: string, authorizationServerPolicyRule: AuthorizationServerPolicyRuleOptionsType): Promise<AuthorizationServerPolicyRule>;
   deleteAuthorizationServerPolicyRule(policyId: string, authServerId: string, ruleId: string): Promise<Response>;
   getAuthorizationServerPolicyRule(policyId: string, authServerId: string, ruleId: string): Promise<AuthorizationServerPolicyRule>;
-  updateAuthorizationServerPolicyRule(policyId: string, authServerId: string, ruleId: string, authorizationServerPolicyRule: AuthorizationServerPolicyRuleOptions): Promise<AuthorizationServerPolicyRule>;
+  updateAuthorizationServerPolicyRule(policyId: string, authServerId: string, ruleId: string, authorizationServerPolicyRule: AuthorizationServerPolicyRuleOptionsType): Promise<AuthorizationServerPolicyRule>;
   listOAuth2Scopes(authServerId: string, queryParameters?: {
     q?: string,
     filter?: string,
     cursor?: string,
     limit?: number,
   }): Collection<OAuth2Scope>;
-  createOAuth2Scope(authServerId: string, oAuth2Scope: OAuth2ScopeOptions): Promise<OAuth2Scope>;
+  createOAuth2Scope(authServerId: string, oAuth2Scope: OAuth2ScopeOptionsType): Promise<OAuth2Scope>;
   deleteOAuth2Scope(authServerId: string, scopeId: string): Promise<Response>;
   getOAuth2Scope(authServerId: string, scopeId: string): Promise<OAuth2Scope>;
-  updateOAuth2Scope(authServerId: string, scopeId: string, oAuth2Scope: OAuth2ScopeOptions): Promise<OAuth2Scope>;
+  updateOAuth2Scope(authServerId: string, scopeId: string, oAuth2Scope: OAuth2ScopeOptionsType): Promise<OAuth2Scope>;
   listEventHooks(): Collection<EventHook>;
-  createEventHook(eventHook: EventHookOptions): Promise<EventHook>;
+  createEventHook(eventHook: EventHookOptionsType): Promise<EventHook>;
   deleteEventHook(eventHookId: string): Promise<Response>;
   getEventHook(eventHookId: string): Promise<EventHook>;
-  updateEventHook(eventHookId: string, eventHook: EventHookOptions): Promise<EventHook>;
+  updateEventHook(eventHookId: string, eventHook: EventHookOptionsType): Promise<EventHook>;
   activateEventHook(eventHookId: string): Promise<EventHook>;
   deactivateEventHook(eventHookId: string): Promise<EventHook>;
   verifyEventHook(eventHookId: string): Promise<EventHook>;
@@ -246,24 +246,24 @@ export declare class GeneratedApiClient {
     limit?: number,
     expand?: string,
   }): Collection<Group>;
-  createGroup(group: GroupOptions): Promise<Group>;
+  createGroup(group: GroupOptionsType): Promise<Group>;
   listGroupRules(queryParameters?: {
     limit?: number,
     after?: string,
     search?: string,
     expand?: string,
   }): Collection<GroupRule>;
-  createGroupRule(groupRule: GroupRuleOptions): Promise<GroupRule>;
+  createGroupRule(groupRule: GroupRuleOptionsType): Promise<GroupRule>;
   deleteGroupRule(ruleId: string): Promise<Response>;
   getGroupRule(ruleId: string, queryParameters?: {
     expand?: string,
   }): Promise<GroupRule>;
-  updateGroupRule(ruleId: string, groupRule: GroupRuleOptions): Promise<GroupRule>;
+  updateGroupRule(ruleId: string, groupRule: GroupRuleOptionsType): Promise<GroupRule>;
   activateGroupRule(ruleId: string): Promise<Response>;
   deactivateGroupRule(ruleId: string): Promise<Response>;
   deleteGroup(groupId: string): Promise<Response>;
   getGroup(groupId: string): Promise<Group>;
-  updateGroup(groupId: string, group: GroupOptions): Promise<Group>;
+  updateGroup(groupId: string, group: GroupOptionsType): Promise<Group>;
   listAssignedApplicationsForGroup(groupId: string, queryParameters?: {
     after?: string,
     limit?: number,
@@ -271,7 +271,7 @@ export declare class GeneratedApiClient {
   listGroupAssignedRoles(groupId: string, queryParameters?: {
     expand?: string,
   }): Collection<Role>;
-  assignRoleToGroup(groupId: string, assignRoleRequest: AssignRoleRequestOptions, queryParameters?: {
+  assignRoleToGroup(groupId: string, assignRoleRequest: AssignRoleRequestOptionsType, queryParameters?: {
     disableNotifications?: string,
   }): Promise<Role>;
   removeRoleFromGroup(groupId: string, roleId: string): Promise<Response>;
@@ -302,19 +302,19 @@ export declare class GeneratedApiClient {
     limit?: number,
     type?: string,
   }): Collection<IdentityProvider>;
-  createIdentityProvider(identityProvider: IdentityProviderOptions): Promise<IdentityProvider>;
+  createIdentityProvider(identityProvider: IdentityProviderOptionsType): Promise<IdentityProvider>;
   listIdentityProviderKeys(queryParameters?: {
     after?: string,
     limit?: number,
   }): Collection<JsonWebKey>;
-  createIdentityProviderKey(jsonWebKey: JsonWebKeyOptions): Promise<JsonWebKey>;
+  createIdentityProviderKey(jsonWebKey: JsonWebKeyOptionsType): Promise<JsonWebKey>;
   deleteIdentityProviderKey(keyId: string): Promise<Response>;
   getIdentityProviderKey(keyId: string): Promise<JsonWebKey>;
   deleteIdentityProvider(idpId: string): Promise<Response>;
   getIdentityProvider(idpId: string): Promise<IdentityProvider>;
-  updateIdentityProvider(idpId: string, identityProvider: IdentityProviderOptions): Promise<IdentityProvider>;
+  updateIdentityProvider(idpId: string, identityProvider: IdentityProviderOptionsType): Promise<IdentityProvider>;
   listCsrsForIdentityProvider(idpId: string): Collection<Csr>;
-  generateCsrForIdentityProvider(idpId: string, csrMetadata: CsrMetadataOptions): Promise<Csr>;
+  generateCsrForIdentityProvider(idpId: string, csrMetadata: CsrMetadataOptionsType): Promise<Csr>;
   revokeCsrForIdentityProvider(idpId: string, csrId: string): Promise<Response>;
   getCsrForIdentityProvider(idpId: string, csrId: string): Promise<Csr>;
   publishCerCertForIdentityProvider(idpId: string, csrId: string, certificate: string): Promise<JsonWebKey>;
@@ -335,16 +335,16 @@ export declare class GeneratedApiClient {
   listIdentityProviderApplicationUsers(idpId: string): Collection<IdentityProviderApplicationUser>;
   unlinkUserFromIdentityProvider(idpId: string, userId: string): Promise<Response>;
   getIdentityProviderApplicationUser(idpId: string, userId: string): Promise<IdentityProviderApplicationUser>;
-  linkUserToIdentityProvider(idpId: string, userId: string, userIdentityProviderLinkRequest: UserIdentityProviderLinkRequestOptions): Promise<IdentityProviderApplicationUser>;
+  linkUserToIdentityProvider(idpId: string, userId: string, userIdentityProviderLinkRequest: UserIdentityProviderLinkRequestOptionsType): Promise<IdentityProviderApplicationUser>;
   listSocialAuthTokens(idpId: string, userId: string): Collection<SocialAuthToken>;
   listInlineHooks(queryParameters?: {
     type?: string,
   }): Collection<InlineHook>;
-  createInlineHook(inlineHook: InlineHookOptions): Promise<InlineHook>;
+  createInlineHook(inlineHook: InlineHookOptionsType): Promise<InlineHook>;
   deleteInlineHook(inlineHookId: string): Promise<Response>;
   getInlineHook(inlineHookId: string): Promise<InlineHook>;
-  updateInlineHook(inlineHookId: string, inlineHook: InlineHookOptions): Promise<InlineHook>;
-  executeInlineHook(inlineHookId: string, inlineHookPayload: InlineHookPayloadOptions): Promise<InlineHookResponse>;
+  updateInlineHook(inlineHookId: string, inlineHook: InlineHookOptionsType): Promise<InlineHook>;
+  executeInlineHook(inlineHookId: string, inlineHookPayload: InlineHookPayloadOptionsType): Promise<InlineHookResponse>;
   activateInlineHook(inlineHookId: string): Promise<InlineHook>;
   deactivateInlineHook(inlineHookId: string): Promise<InlineHook>;
   getLogs(queryParameters?: {
@@ -357,59 +357,59 @@ export declare class GeneratedApiClient {
     after?: string,
   }): Collection<LogEvent>;
   listLinkedObjectDefinitions(): Collection<LinkedObject>;
-  addLinkedObjectDefinition(linkedObject: LinkedObjectOptions): Promise<LinkedObject>;
+  addLinkedObjectDefinition(linkedObject: LinkedObjectOptionsType): Promise<LinkedObject>;
   deleteLinkedObjectDefinition(linkedObjectName: string): Promise<Response>;
   getLinkedObjectDefinition(linkedObjectName: string): Promise<LinkedObject>;
   listUserTypes(): Collection<UserType>;
-  createUserType(userType: UserTypeOptions): Promise<UserType>;
+  createUserType(userType: UserTypeOptionsType): Promise<UserType>;
   deleteUserType(typeId: string): Promise<Response>;
   getUserType(typeId: string): Promise<UserType>;
-  updateUserType(typeId: string, userType: UserTypeOptions): Promise<UserType>;
-  replaceUserType(typeId: string, userType: UserTypeOptions): Promise<UserType>;
+  updateUserType(typeId: string, userType: UserTypeOptionsType): Promise<UserType>;
+  replaceUserType(typeId: string, userType: UserTypeOptionsType): Promise<UserType>;
   listPolicies(queryParameters: {
     type: string,
     status?: string,
     expand?: string,
   }): Collection<AuthorizationServerPolicy>;
-  createPolicy(policy: PolicyOptions, queryParameters?: {
+  createPolicy(policy: PolicyOptionsType, queryParameters?: {
     activate?: boolean,
   }): Promise<Policy>;
   deletePolicy(policyId: string): Promise<Response>;
   getPolicy(policyId: string, queryParameters?: {
     expand?: string,
   }): Promise<Policy>;
-  updatePolicy(policyId: string, policy: PolicyOptions): Promise<Policy>;
+  updatePolicy(policyId: string, policy: PolicyOptionsType): Promise<Policy>;
   activatePolicy(policyId: string): Promise<Response>;
   deactivatePolicy(policyId: string): Promise<Response>;
   listPolicyRules(policyId: string): Collection<PolicyRule>;
-  createPolicyRule(policyId: string, policyRule: PolicyRuleOptions): Promise<PolicyRule>;
+  createPolicyRule(policyId: string, policyRule: PolicyRuleOptionsType): Promise<PolicyRule>;
   deletePolicyRule(policyId: string, ruleId: string): Promise<Response>;
   getPolicyRule(policyId: string, ruleId: string): Promise<PolicyRule>;
-  updatePolicyRule(policyId: string, ruleId: string, policyRule: PolicyRuleOptions): Promise<PolicyRule>;
+  updatePolicyRule(policyId: string, ruleId: string, policyRule: PolicyRuleOptionsType): Promise<PolicyRule>;
   activatePolicyRule(policyId: string, ruleId: string): Promise<Response>;
   deactivatePolicyRule(policyId: string, ruleId: string): Promise<Response>;
-  createSession(createSessionRequest: CreateSessionRequestOptions): Promise<Session>;
+  createSession(createSessionRequest: CreateSessionRequestOptionsType): Promise<Session>;
   endSession(sessionId: string): Promise<Response>;
   getSession(sessionId: string): Promise<Session>;
   refreshSession(sessionId: string): Promise<Session>;
   listSmsTemplates(queryParameters?: {
     templateType?: string,
   }): Collection<SmsTemplate>;
-  createSmsTemplate(smsTemplate: SmsTemplateOptions): Promise<SmsTemplate>;
+  createSmsTemplate(smsTemplate: SmsTemplateOptionsType): Promise<SmsTemplate>;
   deleteSmsTemplate(templateId: string): Promise<Response>;
   getSmsTemplate(templateId: string): Promise<SmsTemplate>;
-  partialUpdateSmsTemplate(templateId: string, smsTemplate: SmsTemplateOptions): Promise<SmsTemplate>;
-  updateSmsTemplate(templateId: string, smsTemplate: SmsTemplateOptions): Promise<SmsTemplate>;
+  partialUpdateSmsTemplate(templateId: string, smsTemplate: SmsTemplateOptionsType): Promise<SmsTemplate>;
+  updateSmsTemplate(templateId: string, smsTemplate: SmsTemplateOptionsType): Promise<SmsTemplate>;
   listOrigins(queryParameters?: {
     q?: string,
     filter?: string,
     after?: string,
     limit?: number,
   }): Collection<TrustedOrigin>;
-  createOrigin(trustedOrigin: TrustedOriginOptions): Promise<TrustedOrigin>;
+  createOrigin(trustedOrigin: TrustedOriginOptionsType): Promise<TrustedOrigin>;
   deleteOrigin(trustedOriginId: string): Promise<Response>;
   getOrigin(trustedOriginId: string): Promise<TrustedOrigin>;
-  updateOrigin(trustedOriginId: string, trustedOrigin: TrustedOriginOptions): Promise<TrustedOrigin>;
+  updateOrigin(trustedOriginId: string, trustedOrigin: TrustedOriginOptionsType): Promise<TrustedOrigin>;
   activateOrigin(trustedOriginId: string): Promise<TrustedOrigin>;
   deactivateOrigin(trustedOriginId: string): Promise<TrustedOrigin>;
   listUsers(queryParameters?: {
@@ -421,7 +421,7 @@ export declare class GeneratedApiClient {
     sortBy?: string,
     sortOrder?: string,
   }): Collection<User>;
-  createUser(createUserRequest: CreateUserRequestOptions, queryParameters?: {
+  createUser(createUserRequest: CreateUserRequestOptionsType, queryParameters?: {
     activate?: boolean,
     provider?: boolean,
     nextLogin?: string,
@@ -431,10 +431,10 @@ export declare class GeneratedApiClient {
     sendEmail?: boolean,
   }): Promise<Response>;
   getUser(userId: string): Promise<User>;
-  partialUpdateUser(userId: string, user: UserOptions, queryParameters?: {
+  partialUpdateUser(userId: string, user: UserOptionsType, queryParameters?: {
     strict?: boolean,
   }): Promise<User>;
-  updateUser(userId: string, user: UserOptions, queryParameters?: {
+  updateUser(userId: string, user: UserOptionsType, queryParameters?: {
     strict?: boolean,
   }): Promise<User>;
   listAppLinks(userId: string): Collection<AppLink>;
@@ -457,18 +457,18 @@ export declare class GeneratedApiClient {
     limit?: number,
     after?: string,
   }): Promise<OAuth2RefreshToken>;
-  changePassword(userId: string, changePasswordRequest: ChangePasswordRequestOptions, queryParameters?: {
+  changePassword(userId: string, changePasswordRequest: ChangePasswordRequestOptionsType, queryParameters?: {
     strict?: boolean,
   }): Promise<UserCredentials>;
-  changeRecoveryQuestion(userId: string, userCredentials: UserCredentialsOptions): Promise<UserCredentials>;
+  changeRecoveryQuestion(userId: string, userCredentials: UserCredentialsOptionsType): Promise<UserCredentials>;
   forgotPasswordGenerateOneTimeToken(userId: string, queryParameters?: {
     sendEmail?: boolean,
   }): Promise<ForgotPasswordResponse>;
-  forgotPasswordSetNewPassword(userId: string, userCredentials: UserCredentialsOptions, queryParameters?: {
+  forgotPasswordSetNewPassword(userId: string, userCredentials: UserCredentialsOptionsType, queryParameters?: {
     sendEmail?: boolean,
   }): Promise<ForgotPasswordResponse>;
   listFactors(userId: string): Collection<UserFactor>;
-  enrollFactor(userId: string, userFactor: UserFactorOptions, queryParameters?: {
+  enrollFactor(userId: string, userFactor: UserFactorOptionsType, queryParameters?: {
     updatePhone?: boolean,
     templateId?: string,
     tokenLifetimeSeconds?: number,
@@ -478,9 +478,9 @@ export declare class GeneratedApiClient {
   listSupportedSecurityQuestions(userId: string): Collection<SecurityQuestion>;
   deleteFactor(userId: string, factorId: string): Promise<Response>;
   getFactor(userId: string, factorId: string): Promise<UserFactor>;
-  activateFactor(userId: string, factorId: string, activateFactorRequest: ActivateFactorRequestOptions): Promise<UserFactor>;
+  activateFactor(userId: string, factorId: string, activateFactorRequest: ActivateFactorRequestOptionsType): Promise<UserFactor>;
   getFactorTransactionStatus(userId: string, factorId: string, transactionId: string): Promise<VerifyUserFactorResponse>;
-  verifyFactor(userId: string, factorId: string, verifyFactorRequest: VerifyFactorRequestOptions, queryParameters?: {
+  verifyFactor(userId: string, factorId: string, verifyFactorRequest: VerifyFactorRequestOptionsType, queryParameters?: {
     templateId?: string,
     tokenLifetimeSeconds?: number,
   }): Promise<VerifyUserFactorResponse>;
@@ -523,7 +523,7 @@ export declare class GeneratedApiClient {
   listAssignedRolesForUser(userId: string, queryParameters?: {
     expand?: string,
   }): Collection<Role>;
-  assignRoleToUser(userId: string, assignRoleRequest: AssignRoleRequestOptions, queryParameters?: {
+  assignRoleToUser(userId: string, assignRoleRequest: AssignRoleRequestOptionsType, queryParameters?: {
     disableNotifications?: string,
   }): Promise<Role>;
   removeRoleFromUser(userId: string, roleId: string): Promise<Response>;

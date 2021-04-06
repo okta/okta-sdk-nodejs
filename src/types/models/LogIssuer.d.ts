@@ -26,9 +26,9 @@ declare class LogIssuer extends Resource {
 
 }
 
-type LogIssuerOptions = OptionalKnownProperties<LogIssuer>;
+type LogIssuerOptionsType = OptionalKnownProperties<LogIssuer>;
 
 export {
   LogIssuer,
-  LogIssuerOptions
+  LogIssuerOptionsType
 };

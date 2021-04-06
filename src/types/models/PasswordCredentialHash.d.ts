@@ -29,9 +29,9 @@ declare class PasswordCredentialHash extends Resource {
 
 }
 
-type PasswordCredentialHashOptions = OptionalKnownProperties<PasswordCredentialHash>;
+type PasswordCredentialHashOptionsType = OptionalKnownProperties<PasswordCredentialHash>;
 
 export {
   PasswordCredentialHash,
-  PasswordCredentialHashOptions
+  PasswordCredentialHashOptionsType
 };

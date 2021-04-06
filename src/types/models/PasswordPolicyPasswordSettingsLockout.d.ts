@@ -28,9 +28,9 @@ declare class PasswordPolicyPasswordSettingsLockout extends Resource {
 
 }
 
-type PasswordPolicyPasswordSettingsLockoutOptions = OptionalKnownProperties<PasswordPolicyPasswordSettingsLockout>;
+type PasswordPolicyPasswordSettingsLockoutOptionsType = OptionalKnownProperties<PasswordPolicyPasswordSettingsLockout>;
 
 export {
   PasswordPolicyPasswordSettingsLockout,
-  PasswordPolicyPasswordSettingsLockoutOptions
+  PasswordPolicyPasswordSettingsLockoutOptionsType
 };

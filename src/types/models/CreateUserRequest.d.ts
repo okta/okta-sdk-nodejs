@@ -30,9 +30,9 @@ declare class CreateUserRequest extends Resource {
 
 }
 
-type CreateUserRequestOptions = OptionalKnownProperties<CreateUserRequest>;
+type CreateUserRequestOptionsType = OptionalKnownProperties<CreateUserRequest>;
 
 export {
   CreateUserRequest,
-  CreateUserRequestOptions
+  CreateUserRequestOptionsType
 };

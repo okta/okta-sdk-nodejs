@@ -28,9 +28,9 @@ declare class ApplicationCredentialsOAuthClient extends Resource {
 
 }
 
-type ApplicationCredentialsOAuthClientOptions = OptionalKnownProperties<ApplicationCredentialsOAuthClient>;
+type ApplicationCredentialsOAuthClientOptionsType = OptionalKnownProperties<ApplicationCredentialsOAuthClient>;
 
 export {
   ApplicationCredentialsOAuthClient,
-  ApplicationCredentialsOAuthClientOptions
+  ApplicationCredentialsOAuthClientOptionsType
 };

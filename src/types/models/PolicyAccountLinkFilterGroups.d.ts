@@ -25,9 +25,9 @@ declare class PolicyAccountLinkFilterGroups extends Resource {
 
 }
 
-type PolicyAccountLinkFilterGroupsOptions = OptionalKnownProperties<PolicyAccountLinkFilterGroups>;
+type PolicyAccountLinkFilterGroupsOptionsType = OptionalKnownProperties<PolicyAccountLinkFilterGroups>;
 
 export {
   PolicyAccountLinkFilterGroups,
-  PolicyAccountLinkFilterGroupsOptions
+  PolicyAccountLinkFilterGroupsOptionsType
 };

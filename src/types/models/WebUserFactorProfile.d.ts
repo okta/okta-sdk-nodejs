@@ -25,9 +25,9 @@ declare class WebUserFactorProfile extends Resource {
 
 }
 
-type WebUserFactorProfileOptions = OptionalKnownProperties<WebUserFactorProfile>;
+type WebUserFactorProfileOptionsType = OptionalKnownProperties<WebUserFactorProfile>;
 
 export {
   WebUserFactorProfile,
-  WebUserFactorProfileOptions
+  WebUserFactorProfileOptionsType
 };

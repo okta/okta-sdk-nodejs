@@ -25,9 +25,9 @@ declare class HardwareUserFactor extends UserFactor {
 
 }
 
-type HardwareUserFactorOptions = OptionalKnownProperties<HardwareUserFactor>;
+type HardwareUserFactorOptionsType = OptionalKnownProperties<HardwareUserFactor>;
 
 export {
   HardwareUserFactor,
-  HardwareUserFactorOptions
+  HardwareUserFactorOptionsType
 };

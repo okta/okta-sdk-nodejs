@@ -43,9 +43,9 @@ declare class AppUser extends Resource {
   }): Promise<Response>;
 }
 
-type AppUserOptions = OptionalKnownProperties<AppUser>;
+type AppUserOptionsType = OptionalKnownProperties<AppUser>;
 
 export {
   AppUser,
-  AppUserOptions
+  AppUserOptionsType
 };

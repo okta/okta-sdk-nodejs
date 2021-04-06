@@ -25,9 +25,9 @@ declare class SmsUserFactorProfile extends Resource {
 
 }
 
-type SmsUserFactorProfileOptions = OptionalKnownProperties<SmsUserFactorProfile>;
+type SmsUserFactorProfileOptionsType = OptionalKnownProperties<SmsUserFactorProfile>;
 
 export {
   SmsUserFactorProfile,
-  SmsUserFactorProfileOptions
+  SmsUserFactorProfileOptionsType
 };

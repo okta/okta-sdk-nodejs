@@ -191,7 +191,6 @@ const typeScriptModelImportBuilder = model => {
     return acc.concat(importableTypes);
   }, []);
 
- 
   // CRUD operations return Promise<Resource> or Promise<Response> - we want Response to be included into imports.
   const selfInvocableOperations = model.crud.filter(crud => ['update', 'delete'].includes(crud.alias));
   const crudImportTypes = selfInvocableOperations.reduce((acc, crud) => {
@@ -211,7 +210,7 @@ const typeScriptModelImportBuilder = model => {
   const importTypes = new Set([...methodsImportTypes, ...crudImportTypes, ...propertiesImportTypes]);
   // model methods returning model type and CRUD operations referencing self
   importTypes.delete(model.modelName);
-  importTypes.delete(`${model.modelName}Options`);
+  importTypes.delete(`${model.modelName}OptionsType`);
 
   return formatImportStatements(importTypes);
 };
@@ -231,7 +230,7 @@ const getOperationArgumentsAndReturnType = operation => {
     const bodyParamName = getBodyModelName(operation);
     if (bodyParamName) {
       const modelPropertiesType = operation.bodyModel === 'string' ?
-        operation.bodyModel :  `${operation.bodyModel}Options`;
+        operation.bodyModel :  `${operation.bodyModel}OptionsType`;
       args.set(_.camelCase(bodyParamName), {
         isRequired: true,
         type: modelPropertiesType,
@@ -261,7 +260,6 @@ const getOperationArgumentsAndReturnType = operation => {
 const getModelMethodArgumentsAndReturnType = (method, modelName) => {
   const { operation } = method;
   const [args, returnType] = getOperationArgumentsAndReturnType(operation);
- 
 
   operation.pathParams.forEach(param => {
     const matchingArgument = method.arguments.find(argument => argument.dest === param.name);
@@ -320,7 +318,7 @@ const formatImportStatements = (importTypes, {
     } else if (type === 'Collection') {
       importStatements.push(`import { Collection } from '${isModelToModelImport ? '..' : '.'}/collection';`);
     } else {
-      importStatements.push(`import { ${type} } from '${isModelToModelImport ? './' : './models/'}${type.replace('Options', '')}';`);
+      importStatements.push(`import { ${type} } from '${isModelToModelImport ? './' : './models/'}${type.replace('OptionsType', '')}';`);
     }
   });
   return importStatements.join('\n');

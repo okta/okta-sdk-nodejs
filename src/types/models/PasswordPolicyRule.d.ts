@@ -28,9 +28,9 @@ declare class PasswordPolicyRule extends PolicyRule {
 
 }
 
-type PasswordPolicyRuleOptions = OptionalKnownProperties<PasswordPolicyRule>;
+type PasswordPolicyRuleOptionsType = OptionalKnownProperties<PasswordPolicyRule>;
 
 export {
   PasswordPolicyRule,
-  PasswordPolicyRuleOptions
+  PasswordPolicyRuleOptionsType
 };

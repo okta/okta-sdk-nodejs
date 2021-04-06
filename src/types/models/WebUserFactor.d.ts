@@ -25,9 +25,9 @@ declare class WebUserFactor extends UserFactor {
 
 }
 
-type WebUserFactorOptions = OptionalKnownProperties<WebUserFactor>;
+type WebUserFactorOptionsType = OptionalKnownProperties<WebUserFactor>;
 
 export {
   WebUserFactor,
-  WebUserFactorOptions
+  WebUserFactorOptionsType
 };

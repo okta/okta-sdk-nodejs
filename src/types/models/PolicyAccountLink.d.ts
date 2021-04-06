@@ -26,9 +26,9 @@ declare class PolicyAccountLink extends Resource {
 
 }
 
-type PolicyAccountLinkOptions = OptionalKnownProperties<PolicyAccountLink>;
+type PolicyAccountLinkOptionsType = OptionalKnownProperties<PolicyAccountLink>;
 
 export {
   PolicyAccountLink,
-  PolicyAccountLinkOptions
+  PolicyAccountLinkOptionsType
 };

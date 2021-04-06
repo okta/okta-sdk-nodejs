@@ -31,9 +31,9 @@ declare class AuthorizationServerPolicyRuleConditions extends Resource {
 
 }
 
-type AuthorizationServerPolicyRuleConditionsOptions = OptionalKnownProperties<AuthorizationServerPolicyRuleConditions>;
+type AuthorizationServerPolicyRuleConditionsOptionsType = OptionalKnownProperties<AuthorizationServerPolicyRuleConditions>;
 
 export {
   AuthorizationServerPolicyRuleConditions,
-  AuthorizationServerPolicyRuleConditionsOptions
+  AuthorizationServerPolicyRuleConditionsOptionsType
 };

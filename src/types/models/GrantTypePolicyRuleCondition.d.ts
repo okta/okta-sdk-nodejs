@@ -25,9 +25,9 @@ declare class GrantTypePolicyRuleCondition extends Resource {
 
 }
 
-type GrantTypePolicyRuleConditionOptions = OptionalKnownProperties<GrantTypePolicyRuleCondition>;
+type GrantTypePolicyRuleConditionOptionsType = OptionalKnownProperties<GrantTypePolicyRuleCondition>;
 
 export {
   GrantTypePolicyRuleCondition,
-  GrantTypePolicyRuleConditionOptions
+  GrantTypePolicyRuleConditionOptionsType
 };

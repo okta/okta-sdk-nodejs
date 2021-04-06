@@ -18,11 +18,11 @@ import { Client } from '../client';
 import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { Collection } from '../collection';
 import { Csr } from './Csr';
-import { CsrMetadataOptions } from './CsrMetadata';
+import { CsrMetadataOptionsType } from './CsrMetadata';
 import { Response } from 'node-fetch';
 import { JsonWebKey } from './JsonWebKey';
 import { IdentityProviderApplicationUser } from './IdentityProviderApplicationUser';
-import { UserIdentityProviderLinkRequestOptions } from './UserIdentityProviderLinkRequest';
+import { UserIdentityProviderLinkRequestOptionsType } from './UserIdentityProviderLinkRequest';
 import { SocialAuthToken } from './SocialAuthToken';
 import { IdentityProviderPolicy } from './IdentityProviderPolicy';
 import { Protocol } from './Protocol';
@@ -44,7 +44,7 @@ declare class IdentityProvider extends Resource {
   update(): Promise<IdentityProvider>;
   delete(): Promise<Response>;
   listSigningCsrs(): Collection<Csr>;
-  generateCsr(csrMetadata: CsrMetadataOptions): Promise<Csr>;
+  generateCsr(csrMetadata: CsrMetadataOptionsType): Promise<Csr>;
   deleteSigningCsr(csrId: string): Promise<Response>;
   getSigningCsr(csrId: string): Promise<Csr>;
   listSigningKeys(): Collection<JsonWebKey>;
@@ -60,13 +60,13 @@ declare class IdentityProvider extends Resource {
   listUsers(): Collection<IdentityProviderApplicationUser>;
   unlinkUser(userId: string): Promise<Response>;
   getUser(userId: string): Promise<IdentityProviderApplicationUser>;
-  linkUser(userId: string, userIdentityProviderLinkRequest: UserIdentityProviderLinkRequestOptions): Promise<IdentityProviderApplicationUser>;
+  linkUser(userId: string, userIdentityProviderLinkRequest: UserIdentityProviderLinkRequestOptionsType): Promise<IdentityProviderApplicationUser>;
   listSocialAuthTokens(userId: string): Collection<SocialAuthToken>;
 }
 
-type IdentityProviderOptions = OptionalKnownProperties<IdentityProvider>;
+type IdentityProviderOptionsType = OptionalKnownProperties<IdentityProvider>;
 
 export {
   IdentityProvider,
-  IdentityProviderOptions
+  IdentityProviderOptionsType
 };

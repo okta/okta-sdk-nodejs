@@ -48,9 +48,9 @@ declare class LogEvent extends Resource {
 
 }
 
-type LogEventOptions = OptionalKnownProperties<LogEvent>;
+type LogEventOptionsType = OptionalKnownProperties<LogEvent>;
 
 export {
   LogEvent,
-  LogEventOptions
+  LogEventOptionsType
 };

@@ -25,9 +25,9 @@ declare class TotpUserFactorProfile extends Resource {
 
 }
 
-type TotpUserFactorProfileOptions = OptionalKnownProperties<TotpUserFactorProfile>;
+type TotpUserFactorProfileOptionsType = OptionalKnownProperties<TotpUserFactorProfile>;
 
 export {
   TotpUserFactorProfile,
-  TotpUserFactorProfileOptions
+  TotpUserFactorProfileOptionsType
 };

@@ -30,9 +30,9 @@ declare class SamlAttributeStatement extends Resource {
 
 }
 
-type SamlAttributeStatementOptions = OptionalKnownProperties<SamlAttributeStatement>;
+type SamlAttributeStatementOptionsType = OptionalKnownProperties<SamlAttributeStatement>;
 
 export {
   SamlAttributeStatement,
-  SamlAttributeStatementOptions
+  SamlAttributeStatementOptionsType
 };

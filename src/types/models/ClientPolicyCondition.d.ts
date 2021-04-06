@@ -25,9 +25,9 @@ declare class ClientPolicyCondition extends Resource {
 
 }
 
-type ClientPolicyConditionOptions = OptionalKnownProperties<ClientPolicyCondition>;
+type ClientPolicyConditionOptionsType = OptionalKnownProperties<ClientPolicyCondition>;
 
 export {
   ClientPolicyCondition,
-  ClientPolicyConditionOptions
+  ClientPolicyConditionOptionsType
 };

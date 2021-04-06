@@ -25,9 +25,9 @@ declare class RiskPolicyRuleCondition extends Resource {
 
 }
 
-type RiskPolicyRuleConditionOptions = OptionalKnownProperties<RiskPolicyRuleCondition>;
+type RiskPolicyRuleConditionOptionsType = OptionalKnownProperties<RiskPolicyRuleCondition>;
 
 export {
   RiskPolicyRuleCondition,
-  RiskPolicyRuleConditionOptions
+  RiskPolicyRuleConditionOptionsType
 };

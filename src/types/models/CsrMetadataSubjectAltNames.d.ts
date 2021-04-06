@@ -25,9 +25,9 @@ declare class CsrMetadataSubjectAltNames extends Resource {
 
 }
 
-type CsrMetadataSubjectAltNamesOptions = OptionalKnownProperties<CsrMetadataSubjectAltNames>;
+type CsrMetadataSubjectAltNamesOptionsType = OptionalKnownProperties<CsrMetadataSubjectAltNames>;
 
 export {
   CsrMetadataSubjectAltNames,
-  CsrMetadataSubjectAltNamesOptions
+  CsrMetadataSubjectAltNamesOptionsType
 };

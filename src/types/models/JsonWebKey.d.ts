@@ -40,9 +40,9 @@ declare class JsonWebKey extends Resource {
 
 }
 
-type JsonWebKeyOptions = OptionalKnownProperties<JsonWebKey>;
+type JsonWebKeyOptionsType = OptionalKnownProperties<JsonWebKey>;
 
 export {
   JsonWebKey,
-  JsonWebKeyOptions
+  JsonWebKeyOptionsType
 };

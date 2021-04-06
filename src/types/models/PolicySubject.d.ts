@@ -30,9 +30,9 @@ declare class PolicySubject extends Resource {
 
 }
 
-type PolicySubjectOptions = OptionalKnownProperties<PolicySubject>;
+type PolicySubjectOptionsType = OptionalKnownProperties<PolicySubject>;
 
 export {
   PolicySubject,
-  PolicySubjectOptions
+  PolicySubjectOptionsType
 };

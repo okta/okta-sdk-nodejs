@@ -25,9 +25,9 @@ declare class SmsUserFactor extends UserFactor {
 
 }
 
-type SmsUserFactorOptions = OptionalKnownProperties<SmsUserFactor>;
+type SmsUserFactorOptionsType = OptionalKnownProperties<SmsUserFactor>;
 
 export {
   SmsUserFactor,
-  SmsUserFactorOptions
+  SmsUserFactorOptionsType
 };

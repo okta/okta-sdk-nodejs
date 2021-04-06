@@ -32,9 +32,9 @@ declare class ProtocolEndpoints extends Resource {
 
 }
 
-type ProtocolEndpointsOptions = OptionalKnownProperties<ProtocolEndpoints>;
+type ProtocolEndpointsOptionsType = OptionalKnownProperties<ProtocolEndpoints>;
 
 export {
   ProtocolEndpoints,
-  ProtocolEndpointsOptions
+  ProtocolEndpointsOptionsType
 };

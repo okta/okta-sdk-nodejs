@@ -35,9 +35,9 @@ declare class OAuth2Token extends Resource {
 
 }
 
-type OAuth2TokenOptions = OptionalKnownProperties<OAuth2Token>;
+type OAuth2TokenOptionsType = OptionalKnownProperties<OAuth2Token>;
 
 export {
   OAuth2Token,
-  OAuth2TokenOptions
+  OAuth2TokenOptionsType
 };

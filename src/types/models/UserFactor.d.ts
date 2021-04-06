@@ -16,8 +16,8 @@
 import { Resource } from '../resource';
 import { Client } from '../client';
 import { OptionalKnownProperties } from '../optional-known-properties-type';
-import { ActivateFactorRequestOptions } from './ActivateFactorRequest';
-import { VerifyFactorRequestOptions } from './VerifyFactorRequest';
+import { ActivateFactorRequestOptionsType } from './ActivateFactorRequest';
+import { VerifyFactorRequestOptionsType } from './VerifyFactorRequest';
 import { VerifyUserFactorResponse } from './VerifyUserFactorResponse';
 import { Response } from 'node-fetch';
 import { FactorType } from './FactorType';
@@ -39,16 +39,16 @@ declare class UserFactor extends Resource {
   _verify: VerifyFactorRequest;
 
   delete(): Promise<Response>;
-  activate(activateFactorRequest: ActivateFactorRequestOptions): Promise<UserFactor>;
-  verify(verifyFactorRequest: VerifyFactorRequestOptions, queryParameters?: {
+  activate(activateFactorRequest: ActivateFactorRequestOptionsType): Promise<UserFactor>;
+  verify(verifyFactorRequest: VerifyFactorRequestOptionsType, queryParameters?: {
     templateId?: string,
     tokenLifetimeSeconds?: number,
   }): Promise<VerifyUserFactorResponse>;
 }
 
-type UserFactorOptions = OptionalKnownProperties<UserFactor>;
+type UserFactorOptionsType = OptionalKnownProperties<UserFactor>;
 
 export {
   UserFactor,
-  UserFactorOptions
+  UserFactorOptionsType
 };

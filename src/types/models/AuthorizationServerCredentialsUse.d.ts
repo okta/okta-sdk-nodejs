@@ -23,9 +23,9 @@ declare class AuthorizationServerCredentialsUse extends Resource {
 
 }
 
-type AuthorizationServerCredentialsUseOptions = Record<string, unknown>;
+type AuthorizationServerCredentialsUseOptionsType = Record<string, unknown>;
 
 export {
   AuthorizationServerCredentialsUse,
-  AuthorizationServerCredentialsUseOptions
+  AuthorizationServerCredentialsUseOptionsType
 };
