@@ -790,7 +790,34 @@ logEvents.each((entry: LogEvent) => {
 }).then(() => {
   // res.send(JSON.stringify([...actors], null, 4));
 };)
+```
 
+Providing request body parameters:
+```typescript
+import { Application, ApplicationOptionsType } from '@okta/okta-sdk-nodejs/src/types/models/Application';
+import { Client } from '@okta/okta-sdk-nodejs'
+import { LogEvent } from '@okta/okta-sdk-nodejs/src/types/models/LogEvent';
+
+const client = new Client({
+  orgUrl:'https://dev-org.okta.com',
+  token: 'apiToken',
+});
+
+const bookmarkAppOptions: ApplicationOptionsType = {
+  "name": "bookmark",
+  "label": "Sample Bookmark App",
+  "signOnMode": "BOOKMARK",
+  "settings": {
+    "app": {
+      "requestIntegration": false,
+      "url": "https://example.com/bookmark.htm"
+    }
+  }
+};
+
+client.createApplication(bookmarkApp).then((createdApp: Application) => {
+  console.log(createdApp);
+});
 ```
 
 ## Migrating between versions
