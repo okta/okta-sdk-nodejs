@@ -23,6 +23,9 @@ declare class RoleType extends Resource {
 
 }
 
+type RoleTypeOptions = Record<string, unknown>;
+
 export {
-  RoleType
+  RoleType,
+  RoleTypeOptions
 };

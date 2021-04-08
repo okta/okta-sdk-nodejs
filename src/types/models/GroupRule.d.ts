@@ -15,6 +15,7 @@
 
 import { Resource } from '../resource';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { Response } from 'node-fetch';
 import { GroupRuleAction } from './GroupRuleAction';
 import { GroupRuleConditions } from './GroupRuleConditions';
@@ -38,6 +39,9 @@ declare class GroupRule extends Resource {
   deactivate(): Promise<Response>;
 }
 
+type GroupRuleOptions = OptionalKnownProperties<GroupRule>;
+
 export {
-  GroupRule
+  GroupRule,
+  GroupRuleOptions
 };

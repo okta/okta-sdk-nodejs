@@ -15,6 +15,7 @@
 
 import { Resource } from '../resource';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 
 
 declare class GroupCondition extends Resource {
@@ -25,6 +26,9 @@ declare class GroupCondition extends Resource {
 
 }
 
+type GroupConditionOptions = OptionalKnownProperties<GroupCondition>;
+
 export {
-  GroupCondition
+  GroupCondition,
+  GroupConditionOptions
 };

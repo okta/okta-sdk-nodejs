@@ -15,6 +15,7 @@
 
 import { Application } from './Application';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { SchemeApplicationCredentials } from './SchemeApplicationCredentials';
 
 declare class BrowserPluginApplication extends Application {
@@ -24,6 +25,9 @@ declare class BrowserPluginApplication extends Application {
 
 }
 
+type BrowserPluginApplicationOptions = OptionalKnownProperties<BrowserPluginApplication>;
+
 export {
-  BrowserPluginApplication
+  BrowserPluginApplication,
+  BrowserPluginApplicationOptions
 };

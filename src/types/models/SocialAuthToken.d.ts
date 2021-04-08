@@ -15,6 +15,7 @@
 
 import { Resource } from '../resource';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 
 
 declare class SocialAuthToken extends Resource {
@@ -29,6 +30,9 @@ declare class SocialAuthToken extends Resource {
 
 }
 
+type SocialAuthTokenOptions = OptionalKnownProperties<SocialAuthToken>;
+
 export {
-  SocialAuthToken
+  SocialAuthToken,
+  SocialAuthTokenOptions
 };

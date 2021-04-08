@@ -15,6 +15,7 @@
 
 import { Resource } from '../resource';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 
 
 declare class ApplicationCredentialsUsernameTemplate extends Resource {
@@ -26,6 +27,9 @@ declare class ApplicationCredentialsUsernameTemplate extends Resource {
 
 }
 
+type ApplicationCredentialsUsernameTemplateOptions = OptionalKnownProperties<ApplicationCredentialsUsernameTemplate>;
+
 export {
-  ApplicationCredentialsUsernameTemplate
+  ApplicationCredentialsUsernameTemplate,
+  ApplicationCredentialsUsernameTemplateOptions
 };

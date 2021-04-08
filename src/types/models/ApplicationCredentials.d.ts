@@ -15,6 +15,7 @@
 
 import { Resource } from '../resource';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { ApplicationCredentialsSigning } from './ApplicationCredentialsSigning';
 import { ApplicationCredentialsUsernameTemplate } from './ApplicationCredentialsUsernameTemplate';
 
@@ -26,6 +27,9 @@ declare class ApplicationCredentials extends Resource {
 
 }
 
+type ApplicationCredentialsOptions = OptionalKnownProperties<ApplicationCredentials>;
+
 export {
-  ApplicationCredentials
+  ApplicationCredentials,
+  ApplicationCredentialsOptions
 };

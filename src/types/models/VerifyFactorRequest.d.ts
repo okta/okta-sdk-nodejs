@@ -15,6 +15,7 @@
 
 import { Resource } from '../resource';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 
 
 declare class VerifyFactorRequest extends Resource {
@@ -31,6 +32,9 @@ declare class VerifyFactorRequest extends Resource {
 
 }
 
+type VerifyFactorRequestOptions = OptionalKnownProperties<VerifyFactorRequest>;
+
 export {
-  VerifyFactorRequest
+  VerifyFactorRequest,
+  VerifyFactorRequestOptions
 };

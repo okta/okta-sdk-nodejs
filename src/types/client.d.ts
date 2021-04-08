@@ -13,7 +13,7 @@
 import { GeneratedApiClient } from './generated-client';
 import { OAuth } from './oauth';
 import { Http } from './http';
-import { IRequestExecutor } from './request-executor';
+import { RequestExecutor } from './request-executor';
 import { defaultCacheMiddleware } from './default-cache-middleware';
 import { CacheStorage } from './memory-store';
 
@@ -24,14 +24,14 @@ export declare class Client extends GeneratedApiClient {
     token?: string,
     clientId?: string,
     scopes?: string[],
-    requestExecutor?: IRequestExecutor,
+    requestExecutor?: RequestExecutor,
     authorizationMode?: string,
     privateKey?: string | Record<string, unknown>
     cacheStore?: CacheStorage,
     cacheMiddleware?: typeof defaultCacheMiddleware | unknown
   });
 
-  requestExecutor: IRequestExecutor;
+  requestExecutor: RequestExecutor;
   authorizationMode: string;
   baseUrl: string;
   apiToken: string;

@@ -15,6 +15,7 @@
 
 import { Resource } from '../resource';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 
 
 declare class WebAuthnUserFactorProfile extends Resource {
@@ -25,6 +26,9 @@ declare class WebAuthnUserFactorProfile extends Resource {
 
 }
 
+type WebAuthnUserFactorProfileOptions = OptionalKnownProperties<WebAuthnUserFactorProfile>;
+
 export {
-  WebAuthnUserFactorProfile
+  WebAuthnUserFactorProfile,
+  WebAuthnUserFactorProfileOptions
 };

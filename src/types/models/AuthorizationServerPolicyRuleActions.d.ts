@@ -15,6 +15,7 @@
 
 import { Resource } from '../resource';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { TokenAuthorizationServerPolicyRuleAction } from './TokenAuthorizationServerPolicyRuleAction';
 
 declare class AuthorizationServerPolicyRuleActions extends Resource {
@@ -24,6 +25,9 @@ declare class AuthorizationServerPolicyRuleActions extends Resource {
 
 }
 
+type AuthorizationServerPolicyRuleActionsOptions = OptionalKnownProperties<AuthorizationServerPolicyRuleActions>;
+
 export {
-  AuthorizationServerPolicyRuleActions
+  AuthorizationServerPolicyRuleActions,
+  AuthorizationServerPolicyRuleActionsOptions
 };

@@ -15,6 +15,7 @@
 
 import { UserFactor } from './UserFactor';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { CallUserFactorProfile } from './CallUserFactorProfile';
 
 declare class CallUserFactor extends UserFactor {
@@ -24,6 +25,9 @@ declare class CallUserFactor extends UserFactor {
 
 }
 
+type CallUserFactorOptions = OptionalKnownProperties<CallUserFactor>;
+
 export {
-  CallUserFactor
+  CallUserFactor,
+  CallUserFactorOptions
 };

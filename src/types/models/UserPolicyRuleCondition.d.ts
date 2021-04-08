@@ -15,6 +15,7 @@
 
 import { Resource } from '../resource';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { InactivityPolicyRuleCondition } from './InactivityPolicyRuleCondition';
 import { LifecycleExpirationPolicyRuleCondition } from './LifecycleExpirationPolicyRuleCondition';
 import { PasswordExpirationPolicyRuleCondition } from './PasswordExpirationPolicyRuleCondition';
@@ -32,6 +33,9 @@ declare class UserPolicyRuleCondition extends Resource {
 
 }
 
+type UserPolicyRuleConditionOptions = OptionalKnownProperties<UserPolicyRuleCondition>;
+
 export {
-  UserPolicyRuleCondition
+  UserPolicyRuleCondition,
+  UserPolicyRuleConditionOptions
 };

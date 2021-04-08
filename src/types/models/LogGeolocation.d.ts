@@ -15,6 +15,7 @@
 
 import { Resource } from '../resource';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 
 
 declare class LogGeolocation extends Resource {
@@ -25,6 +26,9 @@ declare class LogGeolocation extends Resource {
 
 }
 
+type LogGeolocationOptions = OptionalKnownProperties<LogGeolocation>;
+
 export {
-  LogGeolocation
+  LogGeolocation,
+  LogGeolocationOptions
 };

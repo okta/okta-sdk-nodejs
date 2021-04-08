@@ -15,6 +15,7 @@
 
 import { UserFactor } from './UserFactor';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { CustomHotpUserFactorProfile } from './CustomHotpUserFactorProfile';
 
 declare class CustomHotpUserFactor extends UserFactor {
@@ -25,6 +26,9 @@ declare class CustomHotpUserFactor extends UserFactor {
 
 }
 
+type CustomHotpUserFactorOptions = OptionalKnownProperties<CustomHotpUserFactor>;
+
 export {
-  CustomHotpUserFactor
+  CustomHotpUserFactor,
+  CustomHotpUserFactorOptions
 };

@@ -15,6 +15,7 @@
 
 import { Resource } from '../resource';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 
 
 declare class TokenUserFactorProfile extends Resource {
@@ -24,6 +25,9 @@ declare class TokenUserFactorProfile extends Resource {
 
 }
 
+type TokenUserFactorProfileOptions = OptionalKnownProperties<TokenUserFactorProfile>;
+
 export {
-  TokenUserFactorProfile
+  TokenUserFactorProfile,
+  TokenUserFactorProfileOptions
 };

@@ -15,6 +15,7 @@
 
 import { ApplicationSettings } from './ApplicationSettings';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { AutoLoginApplicationSettingsSignOn } from './AutoLoginApplicationSettingsSignOn';
 
 declare class AutoLoginApplicationSettings extends ApplicationSettings {
@@ -24,6 +25,9 @@ declare class AutoLoginApplicationSettings extends ApplicationSettings {
 
 }
 
+type AutoLoginApplicationSettingsOptions = OptionalKnownProperties<AutoLoginApplicationSettings>;
+
 export {
-  AutoLoginApplicationSettings
+  AutoLoginApplicationSettings,
+  AutoLoginApplicationSettingsOptions
 };

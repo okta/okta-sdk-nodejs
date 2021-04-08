@@ -15,6 +15,7 @@
 
 import { ApplicationSettings } from './ApplicationSettings';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { SwaApplicationSettingsApplication } from './SwaApplicationSettingsApplication';
 
 declare class SwaApplicationSettings extends ApplicationSettings {
@@ -24,6 +25,9 @@ declare class SwaApplicationSettings extends ApplicationSettings {
 
 }
 
+type SwaApplicationSettingsOptions = OptionalKnownProperties<SwaApplicationSettings>;
+
 export {
-  SwaApplicationSettings
+  SwaApplicationSettings,
+  SwaApplicationSettingsOptions
 };

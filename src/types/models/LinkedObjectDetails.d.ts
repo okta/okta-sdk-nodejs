@@ -15,6 +15,7 @@
 
 import { Resource } from '../resource';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { LinkedObjectDetailsType } from './LinkedObjectDetailsType';
 
 declare class LinkedObjectDetails extends Resource {
@@ -27,6 +28,9 @@ declare class LinkedObjectDetails extends Resource {
 
 }
 
+type LinkedObjectDetailsOptions = OptionalKnownProperties<LinkedObjectDetails>;
+
 export {
-  LinkedObjectDetails
+  LinkedObjectDetails,
+  LinkedObjectDetailsOptions
 };

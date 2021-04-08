@@ -15,6 +15,7 @@
 
 import { Resource } from '../resource';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { PolicyPeopleCondition } from './PolicyPeopleCondition';
 
 declare class OktaSignOnPolicyConditions extends Resource {
@@ -24,6 +25,9 @@ declare class OktaSignOnPolicyConditions extends Resource {
 
 }
 
+type OktaSignOnPolicyConditionsOptions = OptionalKnownProperties<OktaSignOnPolicyConditions>;
+
 export {
-  OktaSignOnPolicyConditions
+  OktaSignOnPolicyConditions,
+  OktaSignOnPolicyConditionsOptions
 };

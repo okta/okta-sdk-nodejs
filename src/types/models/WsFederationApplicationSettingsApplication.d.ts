@@ -15,6 +15,7 @@
 
 import { ApplicationSettingsApplication } from './ApplicationSettingsApplication';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 
 
 declare class WsFederationApplicationSettingsApplication extends ApplicationSettingsApplication {
@@ -35,6 +36,9 @@ declare class WsFederationApplicationSettingsApplication extends ApplicationSett
 
 }
 
+type WsFederationApplicationSettingsApplicationOptions = OptionalKnownProperties<WsFederationApplicationSettingsApplication>;
+
 export {
-  WsFederationApplicationSettingsApplication
+  WsFederationApplicationSettingsApplication,
+  WsFederationApplicationSettingsApplicationOptions
 };

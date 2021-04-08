@@ -15,6 +15,7 @@
 
 import { UserFactor } from './UserFactor';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { WebUserFactorProfile } from './WebUserFactorProfile';
 
 declare class WebUserFactor extends UserFactor {
@@ -24,6 +25,9 @@ declare class WebUserFactor extends UserFactor {
 
 }
 
+type WebUserFactorOptions = OptionalKnownProperties<WebUserFactor>;
+
 export {
-  WebUserFactor
+  WebUserFactor,
+  WebUserFactorOptions
 };

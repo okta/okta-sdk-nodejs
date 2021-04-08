@@ -15,6 +15,7 @@
 
 import { Resource } from '../resource';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 
 
 declare class OAuth2Scope extends Resource {
@@ -31,6 +32,9 @@ declare class OAuth2Scope extends Resource {
 
 }
 
+type OAuth2ScopeOptions = OptionalKnownProperties<OAuth2Scope>;
+
 export {
-  OAuth2Scope
+  OAuth2Scope,
+  OAuth2ScopeOptions
 };

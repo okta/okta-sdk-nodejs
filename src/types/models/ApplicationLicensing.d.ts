@@ -15,6 +15,7 @@
 
 import { Resource } from '../resource';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 
 
 declare class ApplicationLicensing extends Resource {
@@ -24,6 +25,9 @@ declare class ApplicationLicensing extends Resource {
 
 }
 
+type ApplicationLicensingOptions = OptionalKnownProperties<ApplicationLicensing>;
+
 export {
-  ApplicationLicensing
+  ApplicationLicensing,
+  ApplicationLicensingOptions
 };

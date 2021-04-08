@@ -15,6 +15,7 @@
 
 import { Resource } from '../resource';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { ApplicationSettingsApplication } from './ApplicationSettingsApplication';
 import { ApplicationSettingsNotifications } from './ApplicationSettingsNotifications';
 
@@ -28,6 +29,9 @@ declare class ApplicationSettings extends Resource {
 
 }
 
+type ApplicationSettingsOptions = OptionalKnownProperties<ApplicationSettings>;
+
 export {
-  ApplicationSettings
+  ApplicationSettings,
+  ApplicationSettingsOptions
 };

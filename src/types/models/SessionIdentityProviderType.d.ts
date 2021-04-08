@@ -23,6 +23,9 @@ declare class SessionIdentityProviderType extends Resource {
 
 }
 
+type SessionIdentityProviderTypeOptions = Record<string, unknown>;
+
 export {
-  SessionIdentityProviderType
+  SessionIdentityProviderType,
+  SessionIdentityProviderTypeOptions
 };

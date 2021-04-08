@@ -15,6 +15,7 @@
 
 import { Resource } from '../resource';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 
 
 declare class TotpUserFactorProfile extends Resource {
@@ -24,6 +25,9 @@ declare class TotpUserFactorProfile extends Resource {
 
 }
 
+type TotpUserFactorProfileOptions = OptionalKnownProperties<TotpUserFactorProfile>;
+
 export {
-  TotpUserFactorProfile
+  TotpUserFactorProfile,
+  TotpUserFactorProfileOptions
 };

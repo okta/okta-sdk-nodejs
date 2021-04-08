@@ -15,6 +15,7 @@
 
 import { Resource } from '../resource';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 
 
 declare class SamlAttributeStatement extends Resource {
@@ -29,6 +30,9 @@ declare class SamlAttributeStatement extends Resource {
 
 }
 
+type SamlAttributeStatementOptions = OptionalKnownProperties<SamlAttributeStatement>;
+
 export {
-  SamlAttributeStatement
+  SamlAttributeStatement,
+  SamlAttributeStatementOptions
 };

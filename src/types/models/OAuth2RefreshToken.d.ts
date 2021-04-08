@@ -15,6 +15,7 @@
 
 import { Resource } from '../resource';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { OAuth2Actor } from './OAuth2Actor';
 
 declare class OAuth2RefreshToken extends Resource {
@@ -35,6 +36,9 @@ declare class OAuth2RefreshToken extends Resource {
 
 }
 
+type OAuth2RefreshTokenOptions = OptionalKnownProperties<OAuth2RefreshToken>;
+
 export {
-  OAuth2RefreshToken
+  OAuth2RefreshToken,
+  OAuth2RefreshTokenOptions
 };

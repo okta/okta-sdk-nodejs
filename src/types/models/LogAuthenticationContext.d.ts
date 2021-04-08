@@ -15,6 +15,7 @@
 
 import { Resource } from '../resource';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { LogAuthenticationProvider } from './LogAuthenticationProvider';
 import { LogCredentialProvider } from './LogCredentialProvider';
 import { LogCredentialType } from './LogCredentialType';
@@ -33,6 +34,9 @@ declare class LogAuthenticationContext extends Resource {
 
 }
 
+type LogAuthenticationContextOptions = OptionalKnownProperties<LogAuthenticationContext>;
+
 export {
-  LogAuthenticationContext
+  LogAuthenticationContext,
+  LogAuthenticationContextOptions
 };

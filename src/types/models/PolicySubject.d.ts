@@ -15,6 +15,7 @@
 
 import { Resource } from '../resource';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { PolicySubjectMatchType } from './PolicySubjectMatchType';
 import { PolicyUserNameTemplate } from './PolicyUserNameTemplate';
 
@@ -29,6 +30,9 @@ declare class PolicySubject extends Resource {
 
 }
 
+type PolicySubjectOptions = OptionalKnownProperties<PolicySubject>;
+
 export {
-  PolicySubject
+  PolicySubject,
+  PolicySubjectOptions
 };

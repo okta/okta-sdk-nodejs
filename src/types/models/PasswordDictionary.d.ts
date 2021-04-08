@@ -15,6 +15,7 @@
 
 import { Resource } from '../resource';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { PasswordDictionaryCommon } from './PasswordDictionaryCommon';
 
 declare class PasswordDictionary extends Resource {
@@ -24,6 +25,9 @@ declare class PasswordDictionary extends Resource {
 
 }
 
+type PasswordDictionaryOptions = OptionalKnownProperties<PasswordDictionary>;
+
 export {
-  PasswordDictionary
+  PasswordDictionary,
+  PasswordDictionaryOptions
 };

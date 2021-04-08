@@ -15,6 +15,7 @@
 
 import { Resource } from '../resource';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 
 
 declare class PolicyRuleAuthContextCondition extends Resource {
@@ -24,6 +25,9 @@ declare class PolicyRuleAuthContextCondition extends Resource {
 
 }
 
+type PolicyRuleAuthContextConditionOptions = OptionalKnownProperties<PolicyRuleAuthContextCondition>;
+
 export {
-  PolicyRuleAuthContextCondition
+  PolicyRuleAuthContextCondition,
+  PolicyRuleAuthContextConditionOptions
 };

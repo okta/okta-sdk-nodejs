@@ -15,6 +15,7 @@
 
 import { Resource } from '../resource';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { RoleType } from './RoleType';
 
 declare class AssignRoleRequest extends Resource {
@@ -24,6 +25,9 @@ declare class AssignRoleRequest extends Resource {
 
 }
 
+type AssignRoleRequestOptions = OptionalKnownProperties<AssignRoleRequest>;
+
 export {
-  AssignRoleRequest
+  AssignRoleRequest,
+  AssignRoleRequestOptions
 };

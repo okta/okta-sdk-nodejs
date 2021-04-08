@@ -23,6 +23,9 @@ declare class FeatureStageValue extends Resource {
 
 }
 
+type FeatureStageValueOptions = Record<string, unknown>;
+
 export {
-  FeatureStageValue
+  FeatureStageValue,
+  FeatureStageValueOptions
 };

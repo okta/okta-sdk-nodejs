@@ -15,6 +15,7 @@
 
 import { Resource } from '../resource';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 
 
 declare class UserCondition extends Resource {
@@ -25,6 +26,9 @@ declare class UserCondition extends Resource {
 
 }
 
+type UserConditionOptions = OptionalKnownProperties<UserCondition>;
+
 export {
-  UserCondition
+  UserCondition,
+  UserConditionOptions
 };

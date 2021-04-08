@@ -15,6 +15,7 @@
 
 import { Resource } from '../resource';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 
 
 declare class PasswordPolicyPasswordSettingsAge extends Resource {
@@ -27,6 +28,9 @@ declare class PasswordPolicyPasswordSettingsAge extends Resource {
 
 }
 
+type PasswordPolicyPasswordSettingsAgeOptions = OptionalKnownProperties<PasswordPolicyPasswordSettingsAge>;
+
 export {
-  PasswordPolicyPasswordSettingsAge
+  PasswordPolicyPasswordSettingsAge,
+  PasswordPolicyPasswordSettingsAgeOptions
 };

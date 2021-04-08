@@ -15,6 +15,7 @@
 
 import { Resource } from '../resource';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 
 
 declare class ProtocolSettings extends Resource {
@@ -24,6 +25,9 @@ declare class ProtocolSettings extends Resource {
 
 }
 
+type ProtocolSettingsOptions = OptionalKnownProperties<ProtocolSettings>;
+
 export {
-  ProtocolSettings
+  ProtocolSettings,
+  ProtocolSettingsOptions
 };

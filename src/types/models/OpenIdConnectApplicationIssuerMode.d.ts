@@ -23,6 +23,9 @@ declare class OpenIdConnectApplicationIssuerMode extends Resource {
 
 }
 
+type OpenIdConnectApplicationIssuerModeOptions = Record<string, unknown>;
+
 export {
-  OpenIdConnectApplicationIssuerMode
+  OpenIdConnectApplicationIssuerMode,
+  OpenIdConnectApplicationIssuerModeOptions
 };

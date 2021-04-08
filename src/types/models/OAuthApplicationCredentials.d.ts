@@ -15,6 +15,7 @@
 
 import { ApplicationCredentials } from './ApplicationCredentials';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { ApplicationCredentialsOAuthClient } from './ApplicationCredentialsOAuthClient';
 
 declare class OAuthApplicationCredentials extends ApplicationCredentials {
@@ -24,6 +25,9 @@ declare class OAuthApplicationCredentials extends ApplicationCredentials {
 
 }
 
+type OAuthApplicationCredentialsOptions = OptionalKnownProperties<OAuthApplicationCredentials>;
+
 export {
-  OAuthApplicationCredentials
+  OAuthApplicationCredentials,
+  OAuthApplicationCredentialsOptions
 };

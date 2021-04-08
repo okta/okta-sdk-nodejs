@@ -11,23 +11,4 @@
  */
 
 
-/* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
-
-import { Resource } from '../resource';
-import { Client } from '../client';
-import { OptionalKnownProperties } from '../optional-known-properties-type';
-
-
-declare class ClientPolicyCondition extends Resource {
-  constructor(resourceJson: Record<string, unknown>, client: Client);
-
-  include: [];
-
-}
-
-type ClientPolicyConditionOptions = OptionalKnownProperties<ClientPolicyCondition>;
-
-export {
-  ClientPolicyCondition,
-  ClientPolicyConditionOptions
-};
+export type OptionalKnownProperties<T> = Partial<Record<keyof T, unknown>>;

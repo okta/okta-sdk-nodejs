@@ -15,6 +15,7 @@
 
 import { Resource } from '../resource';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { InlineHookChannelConfig } from './InlineHookChannelConfig';
 
 declare class InlineHookChannel extends Resource {
@@ -26,6 +27,9 @@ declare class InlineHookChannel extends Resource {
 
 }
 
+type InlineHookChannelOptions = OptionalKnownProperties<InlineHookChannel>;
+
 export {
-  InlineHookChannel
+  InlineHookChannel,
+  InlineHookChannelOptions
 };

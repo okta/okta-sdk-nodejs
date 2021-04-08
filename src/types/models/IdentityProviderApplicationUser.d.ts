@@ -15,6 +15,7 @@
 
 import { Resource } from '../resource';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 
 
 declare class IdentityProviderApplicationUser extends Resource {
@@ -30,6 +31,9 @@ declare class IdentityProviderApplicationUser extends Resource {
 
 }
 
+type IdentityProviderApplicationUserOptions = OptionalKnownProperties<IdentityProviderApplicationUser>;
+
 export {
-  IdentityProviderApplicationUser
+  IdentityProviderApplicationUser,
+  IdentityProviderApplicationUserOptions
 };

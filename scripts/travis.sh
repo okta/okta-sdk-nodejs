@@ -1,4 +1,5 @@
-#!/bin/bash
+#!/bin/bash 
+set -e
 
 # Add yarn to the $PATH so npm cli commands do not fail
 export PATH="${PATH}:$(yarn global bin)"

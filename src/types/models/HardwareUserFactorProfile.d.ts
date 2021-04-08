@@ -15,6 +15,7 @@
 
 import { Resource } from '../resource';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 
 
 declare class HardwareUserFactorProfile extends Resource {
@@ -24,6 +25,9 @@ declare class HardwareUserFactorProfile extends Resource {
 
 }
 
+type HardwareUserFactorProfileOptions = OptionalKnownProperties<HardwareUserFactorProfile>;
+
 export {
-  HardwareUserFactorProfile
+  HardwareUserFactorProfile,
+  HardwareUserFactorProfileOptions
 };

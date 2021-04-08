@@ -23,6 +23,9 @@ declare class RoleStatus extends Resource {
 
 }
 
+type RoleStatusOptions = Record<string, unknown>;
+
 export {
-  RoleStatus
+  RoleStatus,
+  RoleStatusOptions
 };

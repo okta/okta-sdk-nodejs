@@ -15,6 +15,7 @@
 
 import { Resource } from '../resource';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { Response } from 'node-fetch';
 import { RoleAssignmentType } from './RoleAssignmentType';
 import { RoleStatus } from './RoleStatus';
@@ -42,6 +43,9 @@ declare class Role extends Resource {
   addAppTargetToAdminRoleForUser(appName: string): Promise<Response>;
 }
 
+type RoleOptions = OptionalKnownProperties<Role>;
+
 export {
-  Role
+  Role,
+  RoleOptions
 };

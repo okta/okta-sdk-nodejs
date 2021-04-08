@@ -15,6 +15,7 @@
 
 import { Resource } from '../resource';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { Response } from 'node-fetch';
 import { SmsTemplateTranslations } from './SmsTemplateTranslations';
 import { SmsTemplateType } from './SmsTemplateType';
@@ -35,6 +36,9 @@ declare class SmsTemplate extends Resource {
   partialUpdate(): Promise<SmsTemplate>;
 }
 
+type SmsTemplateOptions = OptionalKnownProperties<SmsTemplate>;
+
 export {
-  SmsTemplate
+  SmsTemplate,
+  SmsTemplateOptions
 };

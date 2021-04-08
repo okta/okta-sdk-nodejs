@@ -769,6 +769,57 @@ const client = new okta.Client({
 })
 ```
 
+### TypeScript usage examples (>=4.5.0)
+```typescript
+
+import { Client } from '@okta/okta-sdk-nodejs'
+import { LogEvent } from '@okta/okta-sdk-nodejs/src/types/models/LogEvent';
+
+const client = new Client({
+  orgUrl:'https://dev-org.okta.com',
+  token: 'apiToken',
+});
+
+const logEvents = client.getLogs({
+  since: '2021-03-11'
+});
+
+const actors: Set<string> = new Set();
+logEvents.each((entry: LogEvent) => {
+  actors.add(entry.actor.displayName);
+}).then(() => {
+  // res.send(JSON.stringify([...actors], null, 4));
+};)
+```
+
+Providing request body parameters:
+```typescript
+import { Application, ApplicationOptions } from '@okta/okta-sdk-nodejs/src/types/models/Application';
+import { Client } from '@okta/okta-sdk-nodejs'
+import { LogEvent } from '@okta/okta-sdk-nodejs/src/types/models/LogEvent';
+
+const client = new Client({
+  orgUrl:'https://dev-org.okta.com',
+  token: 'apiToken',
+});
+
+const bookmarkAppOptions: ApplicationOptions = {
+  "name": "bookmark",
+  "label": "Sample Bookmark App",
+  "signOnMode": "BOOKMARK",
+  "settings": {
+    "app": {
+      "requestIntegration": false,
+      "url": "https://example.com/bookmark.htm"
+    }
+  }
+};
+
+client.createApplication(bookmarkAppOptions).then((createdApp: Application) => {
+  console.log(createdApp);
+});
+```
+
 ## Migrating between versions
 
 ### From 3.x to 4.0

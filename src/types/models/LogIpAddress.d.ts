@@ -15,6 +15,7 @@
 
 import { Resource } from '../resource';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { LogGeographicalContext } from './LogGeographicalContext';
 
 declare class LogIpAddress extends Resource {
@@ -27,6 +28,9 @@ declare class LogIpAddress extends Resource {
 
 }
 
+type LogIpAddressOptions = OptionalKnownProperties<LogIpAddress>;
+
 export {
-  LogIpAddress
+  LogIpAddress,
+  LogIpAddressOptions
 };

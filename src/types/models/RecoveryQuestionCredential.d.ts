@@ -15,6 +15,7 @@
 
 import { Resource } from '../resource';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 
 
 declare class RecoveryQuestionCredential extends Resource {
@@ -25,6 +26,9 @@ declare class RecoveryQuestionCredential extends Resource {
 
 }
 
+type RecoveryQuestionCredentialOptions = OptionalKnownProperties<RecoveryQuestionCredential>;
+
 export {
-  RecoveryQuestionCredential
+  RecoveryQuestionCredential,
+  RecoveryQuestionCredentialOptions
 };

@@ -15,6 +15,7 @@
 
 import { ApplicationSettings } from './ApplicationSettings';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { SamlApplicationSettingsSignOn } from './SamlApplicationSettingsSignOn';
 
 declare class SamlApplicationSettings extends ApplicationSettings {
@@ -24,6 +25,9 @@ declare class SamlApplicationSettings extends ApplicationSettings {
 
 }
 
+type SamlApplicationSettingsOptions = OptionalKnownProperties<SamlApplicationSettings>;
+
 export {
-  SamlApplicationSettings
+  SamlApplicationSettings,
+  SamlApplicationSettingsOptions
 };

@@ -15,6 +15,7 @@
 
 import { ApplicationSettings } from './ApplicationSettings';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { BasicApplicationSettingsApplication } from './BasicApplicationSettingsApplication';
 
 declare class BasicApplicationSettings extends ApplicationSettings {
@@ -24,6 +25,9 @@ declare class BasicApplicationSettings extends ApplicationSettings {
 
 }
 
+type BasicApplicationSettingsOptions = OptionalKnownProperties<BasicApplicationSettings>;
+
 export {
-  BasicApplicationSettings
+  BasicApplicationSettings,
+  BasicApplicationSettingsOptions
 };

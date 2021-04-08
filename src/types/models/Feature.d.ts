@@ -15,6 +15,7 @@
 
 import { Resource } from '../resource';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { Collection } from '../collection';
 import { FeatureStage } from './FeatureStage';
 import { EnabledStatus } from './EnabledStatus';
@@ -38,6 +39,9 @@ declare class Feature extends Resource {
   getDependencies(): Collection<Feature>;
 }
 
+type FeatureOptions = OptionalKnownProperties<Feature>;
+
 export {
-  Feature
+  Feature,
+  FeatureOptions
 };

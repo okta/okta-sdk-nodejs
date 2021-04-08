@@ -15,6 +15,7 @@
 
 import { Resource } from '../resource';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { OpenIdConnectRefreshTokenRotationType } from './OpenIdConnectRefreshTokenRotationType';
 
 declare class OpenIdConnectApplicationSettingsRefreshToken extends Resource {
@@ -25,6 +26,9 @@ declare class OpenIdConnectApplicationSettingsRefreshToken extends Resource {
 
 }
 
+type OpenIdConnectApplicationSettingsRefreshTokenOptions = OptionalKnownProperties<OpenIdConnectApplicationSettingsRefreshToken>;
+
 export {
-  OpenIdConnectApplicationSettingsRefreshToken
+  OpenIdConnectApplicationSettingsRefreshToken,
+  OpenIdConnectApplicationSettingsRefreshTokenOptions
 };
