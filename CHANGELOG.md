@@ -1,5 +1,11 @@
 # Okta Node SDK Changelog
 
+## 4.5.1
+
+### Bug Fixes
+
+- [#235](https://github.com/okta/okta-sdk-nodejs/pull/235) Fixes method signatures in TypeScript definitions
+
 ## 4.5.0
 
 ### Features
