@@ -815,7 +815,7 @@ const bookmarkAppOptions: ApplicationOptions = {
   }
 };
 
-client.createApplication(bookmarkApp).then((createdApp: Application) => {
+client.createApplication(bookmarkAppOptions).then((createdApp: Application) => {
   console.log(createdApp);
 });
 ```
