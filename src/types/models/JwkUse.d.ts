@@ -25,9 +25,9 @@ declare class JwkUse extends Resource {
 
 }
 
-type JwkUseOptionsType = OptionalKnownProperties<JwkUse>;
+type JwkUseOptions = OptionalKnownProperties<JwkUse>;
 
 export {
   JwkUse,
-  JwkUseOptionsType
+  JwkUseOptions
 };

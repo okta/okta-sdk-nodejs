@@ -26,9 +26,9 @@ declare class PlatformConditionEvaluatorPlatformOperatingSystemVersion extends R
 
 }
 
-type PlatformConditionEvaluatorPlatformOperatingSystemVersionOptionsType = OptionalKnownProperties<PlatformConditionEvaluatorPlatformOperatingSystemVersion>;
+type PlatformConditionEvaluatorPlatformOperatingSystemVersionOptions = OptionalKnownProperties<PlatformConditionEvaluatorPlatformOperatingSystemVersion>;
 
 export {
   PlatformConditionEvaluatorPlatformOperatingSystemVersion,
-  PlatformConditionEvaluatorPlatformOperatingSystemVersionOptionsType
+  PlatformConditionEvaluatorPlatformOperatingSystemVersionOptions
 };

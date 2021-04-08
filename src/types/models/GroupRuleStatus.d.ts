@@ -23,9 +23,9 @@ declare class GroupRuleStatus extends Resource {
 
 }
 
-type GroupRuleStatusOptionsType = Record<string, unknown>;
+type GroupRuleStatusOptions = Record<string, unknown>;
 
 export {
   GroupRuleStatus,
-  GroupRuleStatusOptionsType
+  GroupRuleStatusOptions
 };

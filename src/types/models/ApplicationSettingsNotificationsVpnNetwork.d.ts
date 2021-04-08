@@ -27,9 +27,9 @@ declare class ApplicationSettingsNotificationsVpnNetwork extends Resource {
 
 }
 
-type ApplicationSettingsNotificationsVpnNetworkOptionsType = OptionalKnownProperties<ApplicationSettingsNotificationsVpnNetwork>;
+type ApplicationSettingsNotificationsVpnNetworkOptions = OptionalKnownProperties<ApplicationSettingsNotificationsVpnNetwork>;
 
 export {
   ApplicationSettingsNotificationsVpnNetwork,
-  ApplicationSettingsNotificationsVpnNetworkOptionsType
+  ApplicationSettingsNotificationsVpnNetworkOptions
 };

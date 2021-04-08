@@ -23,9 +23,9 @@ declare class OAuthResponseType extends Resource {
 
 }
 
-type OAuthResponseTypeOptionsType = Record<string, unknown>;
+type OAuthResponseTypeOptions = Record<string, unknown>;
 
 export {
   OAuthResponseType,
-  OAuthResponseTypeOptionsType
+  OAuthResponseTypeOptions
 };

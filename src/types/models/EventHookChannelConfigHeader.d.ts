@@ -26,9 +26,9 @@ declare class EventHookChannelConfigHeader extends Resource {
 
 }
 
-type EventHookChannelConfigHeaderOptionsType = OptionalKnownProperties<EventHookChannelConfigHeader>;
+type EventHookChannelConfigHeaderOptions = OptionalKnownProperties<EventHookChannelConfigHeader>;
 
 export {
   EventHookChannelConfigHeader,
-  EventHookChannelConfigHeaderOptionsType
+  EventHookChannelConfigHeaderOptions
 };

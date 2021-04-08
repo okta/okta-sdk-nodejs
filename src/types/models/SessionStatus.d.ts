@@ -23,9 +23,9 @@ declare class SessionStatus extends Resource {
 
 }
 
-type SessionStatusOptionsType = Record<string, unknown>;
+type SessionStatusOptions = Record<string, unknown>;
 
 export {
   SessionStatus,
-  SessionStatusOptionsType
+  SessionStatusOptions
 };

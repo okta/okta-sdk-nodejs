@@ -25,9 +25,9 @@ declare class SwaApplication extends BrowserPluginApplication {
 
 }
 
-type SwaApplicationOptionsType = OptionalKnownProperties<SwaApplication>;
+type SwaApplicationOptions = OptionalKnownProperties<SwaApplication>;
 
 export {
   SwaApplication,
-  SwaApplicationOptionsType
+  SwaApplicationOptions
 };

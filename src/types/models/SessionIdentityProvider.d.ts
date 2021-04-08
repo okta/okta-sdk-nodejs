@@ -26,9 +26,9 @@ declare class SessionIdentityProvider extends Resource {
 
 }
 
-type SessionIdentityProviderOptionsType = OptionalKnownProperties<SessionIdentityProvider>;
+type SessionIdentityProviderOptions = OptionalKnownProperties<SessionIdentityProvider>;
 
 export {
   SessionIdentityProvider,
-  SessionIdentityProviderOptionsType
+  SessionIdentityProviderOptions
 };

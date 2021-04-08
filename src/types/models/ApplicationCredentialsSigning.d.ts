@@ -29,9 +29,9 @@ declare class ApplicationCredentialsSigning extends Resource {
 
 }
 
-type ApplicationCredentialsSigningOptionsType = OptionalKnownProperties<ApplicationCredentialsSigning>;
+type ApplicationCredentialsSigningOptions = OptionalKnownProperties<ApplicationCredentialsSigning>;
 
 export {
   ApplicationCredentialsSigning,
-  ApplicationCredentialsSigningOptionsType
+  ApplicationCredentialsSigningOptions
 };

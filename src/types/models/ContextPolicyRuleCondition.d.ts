@@ -25,9 +25,9 @@ declare class ContextPolicyRuleCondition extends Resource {
 
 }
 
-type ContextPolicyRuleConditionOptionsType = OptionalKnownProperties<ContextPolicyRuleCondition>;
+type ContextPolicyRuleConditionOptions = OptionalKnownProperties<ContextPolicyRuleCondition>;
 
 export {
   ContextPolicyRuleCondition,
-  ContextPolicyRuleConditionOptionsType
+  ContextPolicyRuleConditionOptions
 };

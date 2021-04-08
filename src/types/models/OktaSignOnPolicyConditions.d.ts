@@ -25,9 +25,9 @@ declare class OktaSignOnPolicyConditions extends Resource {
 
 }
 
-type OktaSignOnPolicyConditionsOptionsType = OptionalKnownProperties<OktaSignOnPolicyConditions>;
+type OktaSignOnPolicyConditionsOptions = OptionalKnownProperties<OktaSignOnPolicyConditions>;
 
 export {
   OktaSignOnPolicyConditions,
-  OktaSignOnPolicyConditionsOptionsType
+  OktaSignOnPolicyConditionsOptions
 };

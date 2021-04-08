@@ -28,9 +28,9 @@ declare class DevicePolicyRuleCondition extends Resource {
 
 }
 
-type DevicePolicyRuleConditionOptionsType = OptionalKnownProperties<DevicePolicyRuleCondition>;
+type DevicePolicyRuleConditionOptions = OptionalKnownProperties<DevicePolicyRuleCondition>;
 
 export {
   DevicePolicyRuleCondition,
-  DevicePolicyRuleConditionOptionsType
+  DevicePolicyRuleConditionOptions
 };

@@ -23,9 +23,9 @@ declare class AuthorizationServerCredentialsRotationMode extends Resource {
 
 }
 
-type AuthorizationServerCredentialsRotationModeOptionsType = Record<string, unknown>;
+type AuthorizationServerCredentialsRotationModeOptions = Record<string, unknown>;
 
 export {
   AuthorizationServerCredentialsRotationMode,
-  AuthorizationServerCredentialsRotationModeOptionsType
+  AuthorizationServerCredentialsRotationModeOptions
 };

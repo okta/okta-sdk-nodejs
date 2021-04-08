@@ -25,9 +25,9 @@ declare class HardwareUserFactorProfile extends Resource {
 
 }
 
-type HardwareUserFactorProfileOptionsType = OptionalKnownProperties<HardwareUserFactorProfile>;
+type HardwareUserFactorProfileOptions = OptionalKnownProperties<HardwareUserFactorProfile>;
 
 export {
   HardwareUserFactorProfile,
-  HardwareUserFactorProfileOptionsType
+  HardwareUserFactorProfileOptions
 };

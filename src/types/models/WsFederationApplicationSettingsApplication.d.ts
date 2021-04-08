@@ -36,9 +36,9 @@ declare class WsFederationApplicationSettingsApplication extends ApplicationSett
 
 }
 
-type WsFederationApplicationSettingsApplicationOptionsType = OptionalKnownProperties<WsFederationApplicationSettingsApplication>;
+type WsFederationApplicationSettingsApplicationOptions = OptionalKnownProperties<WsFederationApplicationSettingsApplication>;
 
 export {
   WsFederationApplicationSettingsApplication,
-  WsFederationApplicationSettingsApplicationOptionsType
+  WsFederationApplicationSettingsApplicationOptions
 };

@@ -26,9 +26,9 @@ declare class OpenIdConnectApplicationSettingsRefreshToken extends Resource {
 
 }
 
-type OpenIdConnectApplicationSettingsRefreshTokenOptionsType = OptionalKnownProperties<OpenIdConnectApplicationSettingsRefreshToken>;
+type OpenIdConnectApplicationSettingsRefreshTokenOptions = OptionalKnownProperties<OpenIdConnectApplicationSettingsRefreshToken>;
 
 export {
   OpenIdConnectApplicationSettingsRefreshToken,
-  OpenIdConnectApplicationSettingsRefreshTokenOptionsType
+  OpenIdConnectApplicationSettingsRefreshTokenOptions
 };

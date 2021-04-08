@@ -18,16 +18,16 @@ import { Client } from '../client';
 import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { Collection } from '../collection';
 import { OAuth2Claim } from './OAuth2Claim';
-import { OAuth2ClaimOptionsType } from './OAuth2Claim';
+import { OAuth2ClaimOptions } from './OAuth2Claim';
 import { Response } from 'node-fetch';
 import { OAuth2Client } from './OAuth2Client';
 import { OAuth2RefreshToken } from './OAuth2RefreshToken';
 import { JsonWebKey } from './JsonWebKey';
-import { JwkUseOptionsType } from './JwkUse';
+import { JwkUseOptions } from './JwkUse';
 import { AuthorizationServerPolicy } from './AuthorizationServerPolicy';
-import { AuthorizationServerPolicyOptionsType } from './AuthorizationServerPolicy';
+import { AuthorizationServerPolicyOptions } from './AuthorizationServerPolicy';
 import { OAuth2Scope } from './OAuth2Scope';
-import { OAuth2ScopeOptionsType } from './OAuth2Scope';
+import { OAuth2ScopeOptions } from './OAuth2Scope';
 import { AuthorizationServerCredentials } from './AuthorizationServerCredentials';
 
 declare class AuthorizationServer extends Resource {
@@ -48,10 +48,10 @@ declare class AuthorizationServer extends Resource {
   update(): Promise<AuthorizationServer>;
   delete(): Promise<Response>;
   listOAuth2Claims(): Collection<OAuth2Claim>;
-  createOAuth2Claim(oAuth2Claim: OAuth2ClaimOptionsType): Promise<OAuth2Claim>;
+  createOAuth2Claim(oAuth2Claim: OAuth2ClaimOptions): Promise<OAuth2Claim>;
   deleteOAuth2Claim(claimId: string): Promise<Response>;
   getOAuth2Claim(claimId: string): Promise<OAuth2Claim>;
-  updateOAuth2Claim(claimId: string, oAuth2Claim: OAuth2ClaimOptionsType): Promise<OAuth2Claim>;
+  updateOAuth2Claim(claimId: string, oAuth2Claim: OAuth2ClaimOptions): Promise<OAuth2Claim>;
   listOAuth2Clients(): Collection<OAuth2Client>;
   revokeRefreshTokensForClient(clientId: string): Promise<Response>;
   listRefreshTokensForClient(clientId: string, queryParameters?: {
@@ -64,29 +64,29 @@ declare class AuthorizationServer extends Resource {
   }): Promise<OAuth2RefreshToken>;
   revokeRefreshTokenForClient(clientId: string, tokenId: string): Promise<Response>;
   listKeys(): Collection<JsonWebKey>;
-  rotateKeys(jwkUse: JwkUseOptionsType): Collection<JsonWebKey>;
+  rotateKeys(jwkUse: JwkUseOptions): Collection<JsonWebKey>;
   activate(): Promise<Response>;
   deactivate(): Promise<Response>;
   listPolicies(): Collection<AuthorizationServerPolicy>;
-  createPolicy(authorizationServerPolicy: AuthorizationServerPolicyOptionsType): Promise<AuthorizationServerPolicy>;
+  createPolicy(authorizationServerPolicy: AuthorizationServerPolicyOptions): Promise<AuthorizationServerPolicy>;
   deletePolicy(policyId: string): Promise<Response>;
   getPolicy(policyId: string): Promise<AuthorizationServerPolicy>;
-  updatePolicy(policyId: string, authorizationServerPolicy: AuthorizationServerPolicyOptionsType): Promise<AuthorizationServerPolicy>;
+  updatePolicy(policyId: string, authorizationServerPolicy: AuthorizationServerPolicyOptions): Promise<AuthorizationServerPolicy>;
   listOAuth2Scopes(queryParameters?: {
     q?: string,
     filter?: string,
     cursor?: string,
     limit?: number,
   }): Collection<OAuth2Scope>;
-  createOAuth2Scope(oAuth2Scope: OAuth2ScopeOptionsType): Promise<OAuth2Scope>;
+  createOAuth2Scope(oAuth2Scope: OAuth2ScopeOptions): Promise<OAuth2Scope>;
   deleteOAuth2Scope(scopeId: string): Promise<Response>;
   getOAuth2Scope(scopeId: string): Promise<OAuth2Scope>;
-  updateOAuth2Scope(scopeId: string, oAuth2Scope: OAuth2ScopeOptionsType): Promise<OAuth2Scope>;
+  updateOAuth2Scope(scopeId: string, oAuth2Scope: OAuth2ScopeOptions): Promise<OAuth2Scope>;
 }
 
-type AuthorizationServerOptionsType = OptionalKnownProperties<AuthorizationServer>;
+type AuthorizationServerOptions = OptionalKnownProperties<AuthorizationServer>;
 
 export {
   AuthorizationServer,
-  AuthorizationServerOptionsType
+  AuthorizationServerOptions
 };

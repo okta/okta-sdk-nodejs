@@ -27,9 +27,9 @@ declare class CsrMetadata extends Resource {
 
 }
 
-type CsrMetadataOptionsType = OptionalKnownProperties<CsrMetadata>;
+type CsrMetadataOptions = OptionalKnownProperties<CsrMetadata>;
 
 export {
   CsrMetadata,
-  CsrMetadataOptionsType
+  CsrMetadataOptions
 };

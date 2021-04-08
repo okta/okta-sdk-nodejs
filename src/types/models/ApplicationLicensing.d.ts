@@ -25,9 +25,9 @@ declare class ApplicationLicensing extends Resource {
 
 }
 
-type ApplicationLicensingOptionsType = OptionalKnownProperties<ApplicationLicensing>;
+type ApplicationLicensingOptions = OptionalKnownProperties<ApplicationLicensing>;
 
 export {
   ApplicationLicensing,
-  ApplicationLicensingOptionsType
+  ApplicationLicensingOptions
 };

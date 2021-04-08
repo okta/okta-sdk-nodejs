@@ -19,11 +19,15 @@ const RESTRICTED_MODEL_PROPERTY_OVERRIDES = {
   SwaApplication: ['name'],
   SecurePasswordStoreApplication: ['name'],
 };
+// END Work around spec mismatches and upstream parsing inconsistencies.
+
 const KNOWN_CONFLICTING_PROPERTY_NAMES = {
   UserFactor: ['verify'],
 };
+
 const PROPERTY_NAME_CHARACTERS_REQUIRE_ESCAPING = ['#'];
-// END Work around spec mismatches and upstream parsing inconsistencies.
+const OPTIONS_TYPE_SUFFIX = 'Options';
+const NO_OPTIONS_TYPE_MODELS = ['PasswordPolicyDelegationSettings'];
 
 const getBodyModelName = operation => {
   const { bodyModel, parameters } = operation;
@@ -208,9 +212,9 @@ const typeScriptModelImportBuilder = model => {
   });
 
   const importTypes = new Set([...methodsImportTypes, ...crudImportTypes, ...propertiesImportTypes]);
-  // model methods returning model type and CRUD operations referencing self
+  // model methods returning self type and CRUD operations with self type arguments
   importTypes.delete(model.modelName);
-  importTypes.delete(`${model.modelName}OptionsType`);
+  importTypes.delete(`${model.modelName}${OPTIONS_TYPE_SUFFIX}`);
 
   return formatImportStatements(importTypes);
 };
@@ -230,7 +234,7 @@ const getOperationArgumentsAndReturnType = operation => {
     const bodyParamName = getBodyModelName(operation);
     if (bodyParamName) {
       const modelPropertiesType = operation.bodyModel === 'string' ?
-        operation.bodyModel :  `${operation.bodyModel}OptionsType`;
+        operation.bodyModel :  `${operation.bodyModel}${OPTIONS_TYPE_SUFFIX}`;
       args.set(_.camelCase(bodyParamName), {
         isRequired: true,
         type: modelPropertiesType,
@@ -318,7 +322,7 @@ const formatImportStatements = (importTypes, {
     } else if (type === 'Collection') {
       importStatements.push(`import { Collection } from '${isModelToModelImport ? '..' : '.'}/collection';`);
     } else {
-      importStatements.push(`import { ${type} } from '${isModelToModelImport ? './' : './models/'}${type.replace('OptionsType', '')}';`);
+      importStatements.push(`import { ${type} } from '${isModelToModelImport ? './' : './models/'}${type.replace(OPTIONS_TYPE_SUFFIX, '')}';`);
     }
   });
   return importStatements.join('\n');
@@ -366,6 +370,10 @@ const sanitizeModelPropertyName = (modelName, propertyName) => {
   return sanitizedPropertyName;
 };
 
+const shouldGenerateOptionsType = modelName => {
+  return !NO_OPTIONS_TYPE_MODELS.includes(modelName);
+};
+
 module.exports = {
   getBodyModelNameInCamelCase,
   operationArgumentBuilder,
@@ -383,4 +391,5 @@ module.exports = {
   sanitizeModelPropertyName,
   isImportablePropertyType,
   isRestrictedPropertyOverride,
+  shouldGenerateOptionsType,
 };

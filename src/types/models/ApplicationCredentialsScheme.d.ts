@@ -23,9 +23,9 @@ declare class ApplicationCredentialsScheme extends Resource {
 
 }
 
-type ApplicationCredentialsSchemeOptionsType = Record<string, unknown>;
+type ApplicationCredentialsSchemeOptions = Record<string, unknown>;
 
 export {
   ApplicationCredentialsScheme,
-  ApplicationCredentialsSchemeOptionsType
+  ApplicationCredentialsSchemeOptions
 };

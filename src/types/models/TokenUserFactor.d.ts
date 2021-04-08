@@ -25,9 +25,9 @@ declare class TokenUserFactor extends UserFactor {
 
 }
 
-type TokenUserFactorOptionsType = OptionalKnownProperties<TokenUserFactor>;
+type TokenUserFactorOptions = OptionalKnownProperties<TokenUserFactor>;
 
 export {
   TokenUserFactor,
-  TokenUserFactorOptionsType
+  TokenUserFactorOptions
 };

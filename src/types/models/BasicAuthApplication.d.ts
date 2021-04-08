@@ -27,9 +27,9 @@ declare class BasicAuthApplication extends Application {
 
 }
 
-type BasicAuthApplicationOptionsType = OptionalKnownProperties<BasicAuthApplication>;
+type BasicAuthApplicationOptions = OptionalKnownProperties<BasicAuthApplication>;
 
 export {
   BasicAuthApplication,
-  BasicAuthApplicationOptionsType
+  BasicAuthApplicationOptions
 };

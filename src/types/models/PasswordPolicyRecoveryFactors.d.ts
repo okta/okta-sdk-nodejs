@@ -30,9 +30,9 @@ declare class PasswordPolicyRecoveryFactors extends Resource {
 
 }
 
-type PasswordPolicyRecoveryFactorsOptionsType = OptionalKnownProperties<PasswordPolicyRecoveryFactors>;
+type PasswordPolicyRecoveryFactorsOptions = OptionalKnownProperties<PasswordPolicyRecoveryFactors>;
 
 export {
   PasswordPolicyRecoveryFactors,
-  PasswordPolicyRecoveryFactorsOptionsType
+  PasswordPolicyRecoveryFactorsOptions
 };

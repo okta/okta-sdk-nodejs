@@ -23,9 +23,9 @@ declare class ApplicationCredentialsSigningUse extends Resource {
 
 }
 
-type ApplicationCredentialsSigningUseOptionsType = Record<string, unknown>;
+type ApplicationCredentialsSigningUseOptions = Record<string, unknown>;
 
 export {
   ApplicationCredentialsSigningUse,
-  ApplicationCredentialsSigningUseOptionsType
+  ApplicationCredentialsSigningUseOptions
 };

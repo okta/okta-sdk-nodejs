@@ -25,9 +25,9 @@ declare class TempPassword extends Resource {
 
 }
 
-type TempPasswordOptionsType = OptionalKnownProperties<TempPassword>;
+type TempPasswordOptions = OptionalKnownProperties<TempPassword>;
 
 export {
   TempPassword,
-  TempPasswordOptionsType
+  TempPasswordOptions
 };

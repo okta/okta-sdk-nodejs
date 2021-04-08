@@ -26,9 +26,9 @@ declare class GroupRuleExpression extends Resource {
 
 }
 
-type GroupRuleExpressionOptionsType = OptionalKnownProperties<GroupRuleExpression>;
+type GroupRuleExpressionOptions = OptionalKnownProperties<GroupRuleExpression>;
 
 export {
   GroupRuleExpression,
-  GroupRuleExpressionOptionsType
+  GroupRuleExpressionOptions
 };

@@ -26,9 +26,9 @@ declare class UserActivationToken extends Resource {
 
 }
 
-type UserActivationTokenOptionsType = OptionalKnownProperties<UserActivationToken>;
+type UserActivationTokenOptions = OptionalKnownProperties<UserActivationToken>;
 
 export {
   UserActivationToken,
-  UserActivationTokenOptionsType
+  UserActivationTokenOptions
 };

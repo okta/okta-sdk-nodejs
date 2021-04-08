@@ -23,9 +23,9 @@ declare class FeatureType extends Resource {
 
 }
 
-type FeatureTypeOptionsType = Record<string, unknown>;
+type FeatureTypeOptions = Record<string, unknown>;
 
 export {
   FeatureType,
-  FeatureTypeOptionsType
+  FeatureTypeOptions
 };

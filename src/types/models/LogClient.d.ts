@@ -31,9 +31,9 @@ declare class LogClient extends Resource {
 
 }
 
-type LogClientOptionsType = OptionalKnownProperties<LogClient>;
+type LogClientOptions = OptionalKnownProperties<LogClient>;
 
 export {
   LogClient,
-  LogClientOptionsType
+  LogClientOptions
 };

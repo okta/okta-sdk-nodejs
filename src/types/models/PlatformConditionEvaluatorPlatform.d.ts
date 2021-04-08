@@ -26,9 +26,9 @@ declare class PlatformConditionEvaluatorPlatform extends Resource {
 
 }
 
-type PlatformConditionEvaluatorPlatformOptionsType = OptionalKnownProperties<PlatformConditionEvaluatorPlatform>;
+type PlatformConditionEvaluatorPlatformOptions = OptionalKnownProperties<PlatformConditionEvaluatorPlatform>;
 
 export {
   PlatformConditionEvaluatorPlatform,
-  PlatformConditionEvaluatorPlatformOptionsType
+  PlatformConditionEvaluatorPlatformOptions
 };

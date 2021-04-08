@@ -39,9 +39,9 @@ declare class Feature extends Resource {
   getDependencies(): Collection<Feature>;
 }
 
-type FeatureOptionsType = OptionalKnownProperties<Feature>;
+type FeatureOptions = OptionalKnownProperties<Feature>;
 
 export {
   Feature,
-  FeatureOptionsType
+  FeatureOptions
 };

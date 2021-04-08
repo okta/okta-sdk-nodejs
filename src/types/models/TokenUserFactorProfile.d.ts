@@ -25,9 +25,9 @@ declare class TokenUserFactorProfile extends Resource {
 
 }
 
-type TokenUserFactorProfileOptionsType = OptionalKnownProperties<TokenUserFactorProfile>;
+type TokenUserFactorProfileOptions = OptionalKnownProperties<TokenUserFactorProfile>;
 
 export {
   TokenUserFactorProfile,
-  TokenUserFactorProfileOptionsType
+  TokenUserFactorProfileOptions
 };

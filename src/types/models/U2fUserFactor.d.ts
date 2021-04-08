@@ -25,9 +25,9 @@ declare class U2fUserFactor extends UserFactor {
 
 }
 
-type U2fUserFactorOptionsType = OptionalKnownProperties<U2fUserFactor>;
+type U2fUserFactorOptions = OptionalKnownProperties<U2fUserFactor>;
 
 export {
   U2fUserFactor,
-  U2fUserFactorOptionsType
+  U2fUserFactorOptions
 };

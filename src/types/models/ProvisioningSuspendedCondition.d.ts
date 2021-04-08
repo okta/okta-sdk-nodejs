@@ -25,9 +25,9 @@ declare class ProvisioningSuspendedCondition extends Resource {
 
 }
 
-type ProvisioningSuspendedConditionOptionsType = OptionalKnownProperties<ProvisioningSuspendedCondition>;
+type ProvisioningSuspendedConditionOptions = OptionalKnownProperties<ProvisioningSuspendedCondition>;
 
 export {
   ProvisioningSuspendedCondition,
-  ProvisioningSuspendedConditionOptionsType
+  ProvisioningSuspendedConditionOptions
 };

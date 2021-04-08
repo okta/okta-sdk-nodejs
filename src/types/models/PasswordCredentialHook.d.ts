@@ -25,9 +25,9 @@ declare class PasswordCredentialHook extends Resource {
 
 }
 
-type PasswordCredentialHookOptionsType = OptionalKnownProperties<PasswordCredentialHook>;
+type PasswordCredentialHookOptions = OptionalKnownProperties<PasswordCredentialHook>;
 
 export {
   PasswordCredentialHook,
-  PasswordCredentialHookOptionsType
+  PasswordCredentialHookOptions
 };

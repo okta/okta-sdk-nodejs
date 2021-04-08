@@ -27,9 +27,9 @@ declare class BeforeScheduledActionPolicyRuleCondition extends Resource {
 
 }
 
-type BeforeScheduledActionPolicyRuleConditionOptionsType = OptionalKnownProperties<BeforeScheduledActionPolicyRuleCondition>;
+type BeforeScheduledActionPolicyRuleConditionOptions = OptionalKnownProperties<BeforeScheduledActionPolicyRuleCondition>;
 
 export {
   BeforeScheduledActionPolicyRuleCondition,
-  BeforeScheduledActionPolicyRuleConditionOptionsType
+  BeforeScheduledActionPolicyRuleConditionOptions
 };

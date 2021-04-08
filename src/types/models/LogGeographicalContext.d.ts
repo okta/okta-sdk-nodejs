@@ -29,9 +29,9 @@ declare class LogGeographicalContext extends Resource {
 
 }
 
-type LogGeographicalContextOptionsType = OptionalKnownProperties<LogGeographicalContext>;
+type LogGeographicalContextOptions = OptionalKnownProperties<LogGeographicalContext>;
 
 export {
   LogGeographicalContext,
-  LogGeographicalContextOptionsType
+  LogGeographicalContextOptions
 };

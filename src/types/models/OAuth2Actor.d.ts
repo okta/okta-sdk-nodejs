@@ -26,9 +26,9 @@ declare class OAuth2Actor extends Resource {
 
 }
 
-type OAuth2ActorOptionsType = OptionalKnownProperties<OAuth2Actor>;
+type OAuth2ActorOptions = OptionalKnownProperties<OAuth2Actor>;
 
 export {
   OAuth2Actor,
-  OAuth2ActorOptionsType
+  OAuth2ActorOptions
 };

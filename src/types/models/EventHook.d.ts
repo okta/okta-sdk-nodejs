@@ -41,9 +41,9 @@ declare class EventHook extends Resource {
   verify(): Promise<EventHook>;
 }
 
-type EventHookOptionsType = OptionalKnownProperties<EventHook>;
+type EventHookOptions = OptionalKnownProperties<EventHook>;
 
 export {
   EventHook,
-  EventHookOptionsType
+  EventHookOptions
 };

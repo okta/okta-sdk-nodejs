@@ -29,9 +29,9 @@ declare class LogSecurityContext extends Resource {
 
 }
 
-type LogSecurityContextOptionsType = OptionalKnownProperties<LogSecurityContext>;
+type LogSecurityContextOptions = OptionalKnownProperties<LogSecurityContext>;
 
 export {
   LogSecurityContext,
-  LogSecurityContextOptionsType
+  LogSecurityContextOptions
 };

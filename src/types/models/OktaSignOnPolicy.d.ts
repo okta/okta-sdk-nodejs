@@ -24,9 +24,9 @@ declare class OktaSignOnPolicy extends Policy {
 
 }
 
-type OktaSignOnPolicyOptionsType = OptionalKnownProperties<OktaSignOnPolicy>;
+type OktaSignOnPolicyOptions = OptionalKnownProperties<OktaSignOnPolicy>;
 
 export {
   OktaSignOnPolicy,
-  OktaSignOnPolicyOptionsType
+  OktaSignOnPolicyOptions
 };

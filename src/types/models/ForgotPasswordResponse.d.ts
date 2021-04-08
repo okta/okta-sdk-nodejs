@@ -25,9 +25,9 @@ declare class ForgotPasswordResponse extends Resource {
 
 }
 
-type ForgotPasswordResponseOptionsType = OptionalKnownProperties<ForgotPasswordResponse>;
+type ForgotPasswordResponseOptions = OptionalKnownProperties<ForgotPasswordResponse>;
 
 export {
   ForgotPasswordResponse,
-  ForgotPasswordResponseOptionsType
+  ForgotPasswordResponseOptions
 };

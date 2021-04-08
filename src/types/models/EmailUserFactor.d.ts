@@ -25,9 +25,9 @@ declare class EmailUserFactor extends UserFactor {
 
 }
 
-type EmailUserFactorOptionsType = OptionalKnownProperties<EmailUserFactor>;
+type EmailUserFactorOptions = OptionalKnownProperties<EmailUserFactor>;
 
 export {
   EmailUserFactor,
-  EmailUserFactorOptionsType
+  EmailUserFactorOptions
 };

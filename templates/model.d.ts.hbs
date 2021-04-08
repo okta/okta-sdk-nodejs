@@ -7,8 +7,10 @@ import { {{extends}} } from './{{extends}}';
 import { Resource } from '../resource';
 {{/if}}
 import { Client } from '../client';
+{{#if (shouldGenerateOptionsType modelName)}}
 {{#if properties.length}}
 import { OptionalKnownProperties } from '../optional-known-properties-type';
+{{/if}}
 {{/if}}
 {{{typeScriptModelImportBuilder this}}}
 
@@ -44,13 +46,15 @@ declare class {{modelName}} extends Resource {
   {{/each}}
 }
 
+{{#if (shouldGenerateOptionsType modelName)}}
 {{#if properties.length}}
-type {{modelName}}OptionsType = OptionalKnownProperties<{{modelName}}>;
+type {{modelName}}Options = OptionalKnownProperties<{{modelName}}>;
 {{else}}
-type {{modelName}}OptionsType = Record<string, unknown>;
+type {{modelName}}Options = Record<string, unknown>;
+{{/if}}
 {{/if}}
 
 export {
   {{modelName}},
-  {{modelName}}OptionsType
+  {{modelName}}Options
 };

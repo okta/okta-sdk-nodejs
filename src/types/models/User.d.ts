@@ -18,11 +18,11 @@ import { Client } from '../client';
 import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { Collection } from '../collection';
 import { AppLink } from './AppLink';
-import { ChangePasswordRequestOptionsType } from './ChangePasswordRequest';
+import { ChangePasswordRequestOptions } from './ChangePasswordRequest';
 import { UserCredentials } from './UserCredentials';
-import { UserCredentialsOptionsType } from './UserCredentials';
+import { UserCredentialsOptions } from './UserCredentials';
 import { ForgotPasswordResponse } from './ForgotPasswordResponse';
-import { AssignRoleRequestOptionsType } from './AssignRoleRequest';
+import { AssignRoleRequestOptions } from './AssignRoleRequest';
 import { Role } from './Role';
 import { Response } from 'node-fetch';
 import { Group } from './Group';
@@ -32,7 +32,7 @@ import { OAuth2Client } from './OAuth2Client';
 import { UserActivationToken } from './UserActivationToken';
 import { ResetPasswordToken } from './ResetPasswordToken';
 import { TempPassword } from './TempPassword';
-import { UserFactorOptionsType } from './UserFactor';
+import { UserFactorOptions } from './UserFactor';
 import { UserFactor } from './UserFactor';
 import { SecurityQuestion } from './SecurityQuestion';
 import { IdentityProvider } from './IdentityProvider';
@@ -66,17 +66,17 @@ declare class User extends Resource {
     sendEmail?: boolean,
   }): Promise<Response>;
   listAppLinks(): Collection<AppLink>;
-  changePassword(changePasswordRequest: ChangePasswordRequestOptionsType, queryParameters?: {
+  changePassword(changePasswordRequest: ChangePasswordRequestOptions, queryParameters?: {
     strict?: boolean,
   }): Promise<UserCredentials>;
-  changeRecoveryQuestion(userCredentials: UserCredentialsOptionsType): Promise<UserCredentials>;
-  forgotPasswordSetNewPassword(userCredentials: UserCredentialsOptionsType, queryParameters?: {
+  changeRecoveryQuestion(userCredentials: UserCredentialsOptions): Promise<UserCredentials>;
+  forgotPasswordSetNewPassword(userCredentials: UserCredentialsOptions, queryParameters?: {
     sendEmail?: boolean,
   }): Promise<ForgotPasswordResponse>;
   forgotPasswordGenerateOneTimeToken(queryParameters?: {
     sendEmail?: boolean,
   }): Promise<ForgotPasswordResponse>;
-  assignRole(assignRoleRequest: AssignRoleRequestOptionsType, queryParameters?: {
+  assignRole(assignRoleRequest: AssignRoleRequestOptions, queryParameters?: {
     disableNotifications?: string,
   }): Promise<Role>;
   removeRole(roleId: string): Promise<Response>;
@@ -133,7 +133,7 @@ declare class User extends Resource {
   resetFactors(): Promise<Response>;
   deleteFactor(factorId: string): Promise<Response>;
   addToGroup(groupId: string): Promise<Response>;
-  enrollFactor(userFactor: UserFactorOptionsType, queryParameters?: {
+  enrollFactor(userFactor: UserFactorOptions, queryParameters?: {
     updatePhone?: boolean,
     templateId?: string,
     tokenLifetimeSeconds?: number,
@@ -155,9 +155,9 @@ declare class User extends Resource {
   removeLinkedObject(relationshipName: string): Promise<Response>;
 }
 
-type UserOptionsType = OptionalKnownProperties<User>;
+type UserOptions = OptionalKnownProperties<User>;
 
 export {
   User,
-  UserOptionsType
+  UserOptions
 };

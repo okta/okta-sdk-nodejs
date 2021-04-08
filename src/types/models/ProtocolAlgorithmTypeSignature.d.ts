@@ -26,9 +26,9 @@ declare class ProtocolAlgorithmTypeSignature extends Resource {
 
 }
 
-type ProtocolAlgorithmTypeSignatureOptionsType = OptionalKnownProperties<ProtocolAlgorithmTypeSignature>;
+type ProtocolAlgorithmTypeSignatureOptions = OptionalKnownProperties<ProtocolAlgorithmTypeSignature>;
 
 export {
   ProtocolAlgorithmTypeSignature,
-  ProtocolAlgorithmTypeSignatureOptionsType
+  ProtocolAlgorithmTypeSignatureOptions
 };

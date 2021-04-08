@@ -27,9 +27,9 @@ declare class UserIdentifierPolicyRuleCondition extends Resource {
 
 }
 
-type UserIdentifierPolicyRuleConditionOptionsType = OptionalKnownProperties<UserIdentifierPolicyRuleCondition>;
+type UserIdentifierPolicyRuleConditionOptions = OptionalKnownProperties<UserIdentifierPolicyRuleCondition>;
 
 export {
   UserIdentifierPolicyRuleCondition,
-  UserIdentifierPolicyRuleConditionOptionsType
+  UserIdentifierPolicyRuleConditionOptions
 };

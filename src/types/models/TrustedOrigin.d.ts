@@ -36,9 +36,9 @@ declare class TrustedOrigin extends Resource {
   delete(): Promise<Response>;
 }
 
-type TrustedOriginOptionsType = OptionalKnownProperties<TrustedOrigin>;
+type TrustedOriginOptions = OptionalKnownProperties<TrustedOrigin>;
 
 export {
   TrustedOrigin,
-  TrustedOriginOptionsType
+  TrustedOriginOptions
 };

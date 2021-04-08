@@ -23,9 +23,9 @@ declare class EventHookChannelConfigAuthSchemeType extends Resource {
 
 }
 
-type EventHookChannelConfigAuthSchemeTypeOptionsType = Record<string, unknown>;
+type EventHookChannelConfigAuthSchemeTypeOptions = Record<string, unknown>;
 
 export {
   EventHookChannelConfigAuthSchemeType,
-  EventHookChannelConfigAuthSchemeTypeOptionsType
+  EventHookChannelConfigAuthSchemeTypeOptions
 };

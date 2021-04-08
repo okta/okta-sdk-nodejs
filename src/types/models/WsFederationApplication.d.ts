@@ -25,9 +25,9 @@ declare class WsFederationApplication extends Application {
 
 }
 
-type WsFederationApplicationOptionsType = OptionalKnownProperties<WsFederationApplication>;
+type WsFederationApplicationOptions = OptionalKnownProperties<WsFederationApplication>;
 
 export {
   WsFederationApplication,
-  WsFederationApplicationOptionsType
+  WsFederationApplicationOptions
 };

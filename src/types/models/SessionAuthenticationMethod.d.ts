@@ -23,9 +23,9 @@ declare class SessionAuthenticationMethod extends Resource {
 
 }
 
-type SessionAuthenticationMethodOptionsType = Record<string, unknown>;
+type SessionAuthenticationMethodOptions = Record<string, unknown>;
 
 export {
   SessionAuthenticationMethod,
-  SessionAuthenticationMethodOptionsType
+  SessionAuthenticationMethodOptions
 };

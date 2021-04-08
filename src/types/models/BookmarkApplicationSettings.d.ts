@@ -25,9 +25,9 @@ declare class BookmarkApplicationSettings extends ApplicationSettings {
 
 }
 
-type BookmarkApplicationSettingsOptionsType = OptionalKnownProperties<BookmarkApplicationSettings>;
+type BookmarkApplicationSettingsOptions = OptionalKnownProperties<BookmarkApplicationSettings>;
 
 export {
   BookmarkApplicationSettings,
-  BookmarkApplicationSettingsOptionsType
+  BookmarkApplicationSettingsOptions
 };

@@ -25,9 +25,9 @@ declare class WebAuthnUserFactor extends UserFactor {
 
 }
 
-type WebAuthnUserFactorOptionsType = OptionalKnownProperties<WebAuthnUserFactor>;
+type WebAuthnUserFactorOptions = OptionalKnownProperties<WebAuthnUserFactor>;
 
 export {
   WebAuthnUserFactor,
-  WebAuthnUserFactorOptionsType
+  WebAuthnUserFactorOptions
 };

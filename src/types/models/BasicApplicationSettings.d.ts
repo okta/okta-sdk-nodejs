@@ -25,9 +25,9 @@ declare class BasicApplicationSettings extends ApplicationSettings {
 
 }
 
-type BasicApplicationSettingsOptionsType = OptionalKnownProperties<BasicApplicationSettings>;
+type BasicApplicationSettingsOptions = OptionalKnownProperties<BasicApplicationSettings>;
 
 export {
   BasicApplicationSettings,
-  BasicApplicationSettingsOptionsType
+  BasicApplicationSettingsOptions
 };

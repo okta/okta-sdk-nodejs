@@ -29,9 +29,9 @@ declare class IdentityProviderCredentials extends Resource {
 
 }
 
-type IdentityProviderCredentialsOptionsType = OptionalKnownProperties<IdentityProviderCredentials>;
+type IdentityProviderCredentialsOptions = OptionalKnownProperties<IdentityProviderCredentials>;
 
 export {
   IdentityProviderCredentials,
-  IdentityProviderCredentialsOptionsType
+  IdentityProviderCredentialsOptions
 };

@@ -26,9 +26,9 @@ declare class Scope extends Resource {
 
 }
 
-type ScopeOptionsType = OptionalKnownProperties<Scope>;
+type ScopeOptions = OptionalKnownProperties<Scope>;
 
 export {
   Scope,
-  ScopeOptionsType
+  ScopeOptions
 };

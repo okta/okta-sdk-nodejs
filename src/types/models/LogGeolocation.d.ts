@@ -26,9 +26,9 @@ declare class LogGeolocation extends Resource {
 
 }
 
-type LogGeolocationOptionsType = OptionalKnownProperties<LogGeolocation>;
+type LogGeolocationOptions = OptionalKnownProperties<LogGeolocation>;
 
 export {
   LogGeolocation,
-  LogGeolocationOptionsType
+  LogGeolocationOptions
 };

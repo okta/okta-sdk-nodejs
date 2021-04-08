@@ -25,9 +25,9 @@ declare class ProtocolSettings extends Resource {
 
 }
 
-type ProtocolSettingsOptionsType = OptionalKnownProperties<ProtocolSettings>;
+type ProtocolSettingsOptions = OptionalKnownProperties<ProtocolSettings>;
 
 export {
   ProtocolSettings,
-  ProtocolSettingsOptionsType
+  ProtocolSettingsOptions
 };

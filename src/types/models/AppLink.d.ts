@@ -34,9 +34,9 @@ declare class AppLink extends Resource {
 
 }
 
-type AppLinkOptionsType = OptionalKnownProperties<AppLink>;
+type AppLinkOptions = OptionalKnownProperties<AppLink>;
 
 export {
   AppLink,
-  AppLinkOptionsType
+  AppLinkOptions
 };

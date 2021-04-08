@@ -29,9 +29,9 @@ declare class VerifyUserFactorResponse extends Resource {
 
 }
 
-type VerifyUserFactorResponseOptionsType = OptionalKnownProperties<VerifyUserFactorResponse>;
+type VerifyUserFactorResponseOptions = OptionalKnownProperties<VerifyUserFactorResponse>;
 
 export {
   VerifyUserFactorResponse,
-  VerifyUserFactorResponseOptionsType
+  VerifyUserFactorResponseOptions
 };

@@ -25,9 +25,9 @@ declare class BrowserPluginApplication extends Application {
 
 }
 
-type BrowserPluginApplicationOptionsType = OptionalKnownProperties<BrowserPluginApplication>;
+type BrowserPluginApplicationOptions = OptionalKnownProperties<BrowserPluginApplication>;
 
 export {
   BrowserPluginApplication,
-  BrowserPluginApplicationOptionsType
+  BrowserPluginApplicationOptions
 };

@@ -23,9 +23,9 @@ declare class ApplicationSignOnMode extends Resource {
 
 }
 
-type ApplicationSignOnModeOptionsType = Record<string, unknown>;
+type ApplicationSignOnModeOptions = Record<string, unknown>;
 
 export {
   ApplicationSignOnMode,
-  ApplicationSignOnModeOptionsType
+  ApplicationSignOnModeOptions
 };

@@ -25,9 +25,9 @@ declare class ApplicationSettingsNotifications extends Resource {
 
 }
 
-type ApplicationSettingsNotificationsOptionsType = OptionalKnownProperties<ApplicationSettingsNotifications>;
+type ApplicationSettingsNotificationsOptions = OptionalKnownProperties<ApplicationSettingsNotifications>;
 
 export {
   ApplicationSettingsNotifications,
-  ApplicationSettingsNotificationsOptionsType
+  ApplicationSettingsNotificationsOptions
 };

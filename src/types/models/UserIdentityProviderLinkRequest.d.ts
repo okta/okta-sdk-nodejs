@@ -25,9 +25,9 @@ declare class UserIdentityProviderLinkRequest extends Resource {
 
 }
 
-type UserIdentityProviderLinkRequestOptionsType = OptionalKnownProperties<UserIdentityProviderLinkRequest>;
+type UserIdentityProviderLinkRequestOptions = OptionalKnownProperties<UserIdentityProviderLinkRequest>;
 
 export {
   UserIdentityProviderLinkRequest,
-  UserIdentityProviderLinkRequestOptionsType
+  UserIdentityProviderLinkRequestOptions
 };

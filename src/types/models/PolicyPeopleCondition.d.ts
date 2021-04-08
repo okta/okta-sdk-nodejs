@@ -27,9 +27,9 @@ declare class PolicyPeopleCondition extends Resource {
 
 }
 
-type PolicyPeopleConditionOptionsType = OptionalKnownProperties<PolicyPeopleCondition>;
+type PolicyPeopleConditionOptions = OptionalKnownProperties<PolicyPeopleCondition>;
 
 export {
   PolicyPeopleCondition,
-  PolicyPeopleConditionOptionsType
+  PolicyPeopleConditionOptions
 };

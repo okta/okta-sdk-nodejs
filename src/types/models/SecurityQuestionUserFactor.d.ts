@@ -25,9 +25,9 @@ declare class SecurityQuestionUserFactor extends UserFactor {
 
 }
 
-type SecurityQuestionUserFactorOptionsType = OptionalKnownProperties<SecurityQuestionUserFactor>;
+type SecurityQuestionUserFactorOptions = OptionalKnownProperties<SecurityQuestionUserFactor>;
 
 export {
   SecurityQuestionUserFactor,
-  SecurityQuestionUserFactorOptionsType
+  SecurityQuestionUserFactorOptions
 };

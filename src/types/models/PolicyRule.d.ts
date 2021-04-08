@@ -35,9 +35,9 @@ declare class PolicyRule extends Resource {
   deactivate(): Promise<Response>;
 }
 
-type PolicyRuleOptionsType = OptionalKnownProperties<PolicyRule>;
+type PolicyRuleOptions = OptionalKnownProperties<PolicyRule>;
 
 export {
   PolicyRule,
-  PolicyRuleOptionsType
+  PolicyRuleOptions
 };

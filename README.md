@@ -794,7 +794,7 @@ logEvents.each((entry: LogEvent) => {
 
 Providing request body parameters:
 ```typescript
-import { Application, ApplicationOptionsType } from '@okta/okta-sdk-nodejs/src/types/models/Application';
+import { Application, ApplicationOptions } from '@okta/okta-sdk-nodejs/src/types/models/Application';
 import { Client } from '@okta/okta-sdk-nodejs'
 import { LogEvent } from '@okta/okta-sdk-nodejs/src/types/models/LogEvent';
 
@@ -803,7 +803,7 @@ const client = new Client({
   token: 'apiToken',
 });
 
-const bookmarkAppOptions: ApplicationOptionsType = {
+const bookmarkAppOptions: ApplicationOptions = {
   "name": "bookmark",
   "label": "Sample Bookmark App",
   "signOnMode": "BOOKMARK",

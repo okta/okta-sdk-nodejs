@@ -26,9 +26,9 @@ declare class PasswordExpirationPolicyRuleCondition extends Resource {
 
 }
 
-type PasswordExpirationPolicyRuleConditionOptionsType = OptionalKnownProperties<PasswordExpirationPolicyRuleCondition>;
+type PasswordExpirationPolicyRuleConditionOptions = OptionalKnownProperties<PasswordExpirationPolicyRuleCondition>;
 
 export {
   PasswordExpirationPolicyRuleCondition,
-  PasswordExpirationPolicyRuleConditionOptionsType
+  PasswordExpirationPolicyRuleConditionOptions
 };

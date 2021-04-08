@@ -32,9 +32,9 @@ declare class OAuth2Scope extends Resource {
 
 }
 
-type OAuth2ScopeOptionsType = OptionalKnownProperties<OAuth2Scope>;
+type OAuth2ScopeOptions = OptionalKnownProperties<OAuth2Scope>;
 
 export {
   OAuth2Scope,
-  OAuth2ScopeOptionsType
+  OAuth2ScopeOptions
 };

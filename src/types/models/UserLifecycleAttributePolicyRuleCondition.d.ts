@@ -26,9 +26,9 @@ declare class UserLifecycleAttributePolicyRuleCondition extends Resource {
 
 }
 
-type UserLifecycleAttributePolicyRuleConditionOptionsType = OptionalKnownProperties<UserLifecycleAttributePolicyRuleCondition>;
+type UserLifecycleAttributePolicyRuleConditionOptions = OptionalKnownProperties<UserLifecycleAttributePolicyRuleCondition>;
 
 export {
   UserLifecycleAttributePolicyRuleCondition,
-  UserLifecycleAttributePolicyRuleConditionOptionsType
+  UserLifecycleAttributePolicyRuleConditionOptions
 };

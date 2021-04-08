@@ -26,9 +26,9 @@ declare class PasswordPolicyAuthenticationProviderCondition extends Resource {
 
 }
 
-type PasswordPolicyAuthenticationProviderConditionOptionsType = OptionalKnownProperties<PasswordPolicyAuthenticationProviderCondition>;
+type PasswordPolicyAuthenticationProviderConditionOptions = OptionalKnownProperties<PasswordPolicyAuthenticationProviderCondition>;
 
 export {
   PasswordPolicyAuthenticationProviderCondition,
-  PasswordPolicyAuthenticationProviderConditionOptionsType
+  PasswordPolicyAuthenticationProviderConditionOptions
 };

@@ -34,9 +34,9 @@ declare class LogAuthenticationContext extends Resource {
 
 }
 
-type LogAuthenticationContextOptionsType = OptionalKnownProperties<LogAuthenticationContext>;
+type LogAuthenticationContextOptions = OptionalKnownProperties<LogAuthenticationContext>;
 
 export {
   LogAuthenticationContext,
-  LogAuthenticationContextOptionsType
+  LogAuthenticationContextOptions
 };

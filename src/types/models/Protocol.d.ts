@@ -37,9 +37,9 @@ declare class Protocol extends Resource {
 
 }
 
-type ProtocolOptionsType = OptionalKnownProperties<Protocol>;
+type ProtocolOptions = OptionalKnownProperties<Protocol>;
 
 export {
   Protocol,
-  ProtocolOptionsType
+  ProtocolOptions
 };

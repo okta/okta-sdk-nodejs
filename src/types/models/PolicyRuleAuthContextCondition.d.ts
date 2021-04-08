@@ -25,9 +25,9 @@ declare class PolicyRuleAuthContextCondition extends Resource {
 
 }
 
-type PolicyRuleAuthContextConditionOptionsType = OptionalKnownProperties<PolicyRuleAuthContextCondition>;
+type PolicyRuleAuthContextConditionOptions = OptionalKnownProperties<PolicyRuleAuthContextCondition>;
 
 export {
   PolicyRuleAuthContextCondition,
-  PolicyRuleAuthContextConditionOptionsType
+  PolicyRuleAuthContextConditionOptions
 };

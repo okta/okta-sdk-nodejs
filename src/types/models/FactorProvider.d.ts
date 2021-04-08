@@ -23,9 +23,9 @@ declare class FactorProvider extends Resource {
 
 }
 
-type FactorProviderOptionsType = Record<string, unknown>;
+type FactorProviderOptions = Record<string, unknown>;
 
 export {
   FactorProvider,
-  FactorProviderOptionsType
+  FactorProviderOptions
 };

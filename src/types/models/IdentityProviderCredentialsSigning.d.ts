@@ -25,9 +25,9 @@ declare class IdentityProviderCredentialsSigning extends Resource {
 
 }
 
-type IdentityProviderCredentialsSigningOptionsType = OptionalKnownProperties<IdentityProviderCredentialsSigning>;
+type IdentityProviderCredentialsSigningOptions = OptionalKnownProperties<IdentityProviderCredentialsSigning>;
 
 export {
   IdentityProviderCredentialsSigning,
-  IdentityProviderCredentialsSigningOptionsType
+  IdentityProviderCredentialsSigningOptions
 };

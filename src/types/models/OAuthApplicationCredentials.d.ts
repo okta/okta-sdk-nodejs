@@ -25,9 +25,9 @@ declare class OAuthApplicationCredentials extends ApplicationCredentials {
 
 }
 
-type OAuthApplicationCredentialsOptionsType = OptionalKnownProperties<OAuthApplicationCredentials>;
+type OAuthApplicationCredentialsOptions = OptionalKnownProperties<OAuthApplicationCredentials>;
 
 export {
   OAuthApplicationCredentials,
-  OAuthApplicationCredentialsOptionsType
+  OAuthApplicationCredentialsOptions
 };

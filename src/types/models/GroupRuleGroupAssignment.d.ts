@@ -25,9 +25,9 @@ declare class GroupRuleGroupAssignment extends Resource {
 
 }
 
-type GroupRuleGroupAssignmentOptionsType = OptionalKnownProperties<GroupRuleGroupAssignment>;
+type GroupRuleGroupAssignmentOptions = OptionalKnownProperties<GroupRuleGroupAssignment>;
 
 export {
   GroupRuleGroupAssignment,
-  GroupRuleGroupAssignmentOptionsType
+  GroupRuleGroupAssignmentOptions
 };

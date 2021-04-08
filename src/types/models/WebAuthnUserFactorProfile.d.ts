@@ -26,9 +26,9 @@ declare class WebAuthnUserFactorProfile extends Resource {
 
 }
 
-type WebAuthnUserFactorProfileOptionsType = OptionalKnownProperties<WebAuthnUserFactorProfile>;
+type WebAuthnUserFactorProfileOptions = OptionalKnownProperties<WebAuthnUserFactorProfile>;
 
 export {
   WebAuthnUserFactorProfile,
-  WebAuthnUserFactorProfileOptionsType
+  WebAuthnUserFactorProfileOptions
 };

@@ -27,9 +27,9 @@ declare class LogUserAgent extends Resource {
 
 }
 
-type LogUserAgentOptionsType = OptionalKnownProperties<LogUserAgent>;
+type LogUserAgentOptions = OptionalKnownProperties<LogUserAgent>;
 
 export {
   LogUserAgent,
-  LogUserAgentOptionsType
+  LogUserAgentOptions
 };

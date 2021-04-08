@@ -25,9 +25,9 @@ declare class U2fUserFactorProfile extends Resource {
 
 }
 
-type U2fUserFactorProfileOptionsType = OptionalKnownProperties<U2fUserFactorProfile>;
+type U2fUserFactorProfileOptions = OptionalKnownProperties<U2fUserFactorProfile>;
 
 export {
   U2fUserFactorProfile,
-  U2fUserFactorProfileOptionsType
+  U2fUserFactorProfileOptions
 };

@@ -25,9 +25,9 @@ declare class AssignRoleRequest extends Resource {
 
 }
 
-type AssignRoleRequestOptionsType = OptionalKnownProperties<AssignRoleRequest>;
+type AssignRoleRequestOptions = OptionalKnownProperties<AssignRoleRequest>;
 
 export {
   AssignRoleRequest,
-  AssignRoleRequestOptionsType
+  AssignRoleRequestOptions
 };

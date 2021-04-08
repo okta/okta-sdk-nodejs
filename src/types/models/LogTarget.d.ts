@@ -29,9 +29,9 @@ declare class LogTarget extends Resource {
 
 }
 
-type LogTargetOptionsType = OptionalKnownProperties<LogTarget>;
+type LogTargetOptions = OptionalKnownProperties<LogTarget>;
 
 export {
   LogTarget,
-  LogTargetOptionsType
+  LogTargetOptions
 };

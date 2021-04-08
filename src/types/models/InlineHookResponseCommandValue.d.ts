@@ -27,9 +27,9 @@ declare class InlineHookResponseCommandValue extends Resource {
 
 }
 
-type InlineHookResponseCommandValueOptionsType = OptionalKnownProperties<InlineHookResponseCommandValue>;
+type InlineHookResponseCommandValueOptions = OptionalKnownProperties<InlineHookResponseCommandValue>;
 
 export {
   InlineHookResponseCommandValue,
-  InlineHookResponseCommandValueOptionsType
+  InlineHookResponseCommandValueOptions
 };

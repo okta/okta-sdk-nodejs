@@ -27,9 +27,9 @@ declare class OktaSignOnPolicyRuleSignonSessionActions extends Resource {
 
 }
 
-type OktaSignOnPolicyRuleSignonSessionActionsOptionsType = OptionalKnownProperties<OktaSignOnPolicyRuleSignonSessionActions>;
+type OktaSignOnPolicyRuleSignonSessionActionsOptions = OptionalKnownProperties<OktaSignOnPolicyRuleSignonSessionActions>;
 
 export {
   OktaSignOnPolicyRuleSignonSessionActions,
-  OktaSignOnPolicyRuleSignonSessionActionsOptionsType
+  OktaSignOnPolicyRuleSignonSessionActionsOptions
 };

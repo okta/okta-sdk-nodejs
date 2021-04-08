@@ -23,9 +23,9 @@ declare class SmsTemplateTranslations extends Resource {
 
 }
 
-type SmsTemplateTranslationsOptionsType = Record<string, unknown>;
+type SmsTemplateTranslationsOptions = Record<string, unknown>;
 
 export {
   SmsTemplateTranslations,
-  SmsTemplateTranslationsOptionsType
+  SmsTemplateTranslationsOptions
 };

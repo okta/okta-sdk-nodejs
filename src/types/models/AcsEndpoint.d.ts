@@ -26,9 +26,9 @@ declare class AcsEndpoint extends Resource {
 
 }
 
-type AcsEndpointOptionsType = OptionalKnownProperties<AcsEndpoint>;
+type AcsEndpointOptions = OptionalKnownProperties<AcsEndpoint>;
 
 export {
   AcsEndpoint,
-  AcsEndpointOptionsType
+  AcsEndpointOptions
 };

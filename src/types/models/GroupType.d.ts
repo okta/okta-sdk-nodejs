@@ -23,9 +23,9 @@ declare class GroupType extends Resource {
 
 }
 
-type GroupTypeOptionsType = Record<string, unknown>;
+type GroupTypeOptions = Record<string, unknown>;
 
 export {
   GroupType,
-  GroupTypeOptionsType
+  GroupTypeOptions
 };

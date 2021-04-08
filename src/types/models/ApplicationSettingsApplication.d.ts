@@ -23,9 +23,9 @@ declare class ApplicationSettingsApplication extends Resource {
 
 }
 
-type ApplicationSettingsApplicationOptionsType = Record<string, unknown>;
+type ApplicationSettingsApplicationOptions = Record<string, unknown>;
 
 export {
   ApplicationSettingsApplication,
-  ApplicationSettingsApplicationOptionsType
+  ApplicationSettingsApplicationOptions
 };

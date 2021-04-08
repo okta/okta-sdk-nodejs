@@ -23,9 +23,9 @@ declare class InlineHookStatus extends Resource {
 
 }
 
-type InlineHookStatusOptionsType = Record<string, unknown>;
+type InlineHookStatusOptions = Record<string, unknown>;
 
 export {
   InlineHookStatus,
-  InlineHookStatusOptionsType
+  InlineHookStatusOptions
 };

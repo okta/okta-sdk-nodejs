@@ -25,9 +25,9 @@ declare class ScheduledUserLifecycleAction extends Resource {
 
 }
 
-type ScheduledUserLifecycleActionOptionsType = OptionalKnownProperties<ScheduledUserLifecycleAction>;
+type ScheduledUserLifecycleActionOptions = OptionalKnownProperties<ScheduledUserLifecycleAction>;
 
 export {
   ScheduledUserLifecycleAction,
-  ScheduledUserLifecycleActionOptionsType
+  ScheduledUserLifecycleActionOptions
 };

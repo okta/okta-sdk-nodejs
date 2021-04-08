@@ -27,9 +27,9 @@ declare class ApplicationCredentials extends Resource {
 
 }
 
-type ApplicationCredentialsOptionsType = OptionalKnownProperties<ApplicationCredentials>;
+type ApplicationCredentialsOptions = OptionalKnownProperties<ApplicationCredentials>;
 
 export {
   ApplicationCredentials,
-  ApplicationCredentialsOptionsType
+  ApplicationCredentialsOptions
 };

@@ -25,9 +25,9 @@ declare class GroupRuleAction extends Resource {
 
 }
 
-type GroupRuleActionOptionsType = OptionalKnownProperties<GroupRuleAction>;
+type GroupRuleActionOptions = OptionalKnownProperties<GroupRuleAction>;
 
 export {
   GroupRuleAction,
-  GroupRuleActionOptionsType
+  GroupRuleActionOptions
 };

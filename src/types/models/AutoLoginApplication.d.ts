@@ -27,9 +27,9 @@ declare class AutoLoginApplication extends Application {
 
 }
 
-type AutoLoginApplicationOptionsType = OptionalKnownProperties<AutoLoginApplication>;
+type AutoLoginApplicationOptions = OptionalKnownProperties<AutoLoginApplication>;
 
 export {
   AutoLoginApplication,
-  AutoLoginApplicationOptionsType
+  AutoLoginApplicationOptions
 };

@@ -26,9 +26,9 @@ declare class PasswordPolicyRecoveryEmail extends Resource {
 
 }
 
-type PasswordPolicyRecoveryEmailOptionsType = OptionalKnownProperties<PasswordPolicyRecoveryEmail>;
+type PasswordPolicyRecoveryEmailOptions = OptionalKnownProperties<PasswordPolicyRecoveryEmail>;
 
 export {
   PasswordPolicyRecoveryEmail,
-  PasswordPolicyRecoveryEmailOptionsType
+  PasswordPolicyRecoveryEmailOptions
 };

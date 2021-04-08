@@ -27,9 +27,9 @@ declare class ApplicationAccessibility extends Resource {
 
 }
 
-type ApplicationAccessibilityOptionsType = OptionalKnownProperties<ApplicationAccessibility>;
+type ApplicationAccessibilityOptions = OptionalKnownProperties<ApplicationAccessibility>;
 
 export {
   ApplicationAccessibility,
-  ApplicationAccessibilityOptionsType
+  ApplicationAccessibilityOptions
 };

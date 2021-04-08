@@ -36,9 +36,9 @@ declare class OAuth2RefreshToken extends Resource {
 
 }
 
-type OAuth2RefreshTokenOptionsType = OptionalKnownProperties<OAuth2RefreshToken>;
+type OAuth2RefreshTokenOptions = OptionalKnownProperties<OAuth2RefreshToken>;
 
 export {
   OAuth2RefreshToken,
-  OAuth2RefreshTokenOptionsType
+  OAuth2RefreshTokenOptions
 };

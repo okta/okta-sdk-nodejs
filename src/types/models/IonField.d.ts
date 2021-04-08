@@ -33,9 +33,9 @@ declare class IonField extends Resource {
 
 }
 
-type IonFieldOptionsType = OptionalKnownProperties<IonField>;
+type IonFieldOptions = OptionalKnownProperties<IonField>;
 
 export {
   IonField,
-  IonFieldOptionsType
+  IonFieldOptions
 };

@@ -27,9 +27,9 @@ declare class SecurityQuestionUserFactorProfile extends Resource {
 
 }
 
-type SecurityQuestionUserFactorProfileOptionsType = OptionalKnownProperties<SecurityQuestionUserFactorProfile>;
+type SecurityQuestionUserFactorProfileOptions = OptionalKnownProperties<SecurityQuestionUserFactorProfile>;
 
 export {
   SecurityQuestionUserFactorProfile,
-  SecurityQuestionUserFactorProfileOptionsType
+  SecurityQuestionUserFactorProfileOptions
 };

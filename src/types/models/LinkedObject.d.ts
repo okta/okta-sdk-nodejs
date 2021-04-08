@@ -29,9 +29,9 @@ declare class LinkedObject extends Resource {
   delete(): Promise<Response>;
 }
 
-type LinkedObjectOptionsType = OptionalKnownProperties<LinkedObject>;
+type LinkedObjectOptions = OptionalKnownProperties<LinkedObject>;
 
 export {
   LinkedObject,
-  LinkedObjectOptionsType
+  LinkedObjectOptions
 };

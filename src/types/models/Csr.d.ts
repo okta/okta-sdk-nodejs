@@ -28,9 +28,9 @@ declare class Csr extends Resource {
 
 }
 
-type CsrOptionsType = OptionalKnownProperties<Csr>;
+type CsrOptions = OptionalKnownProperties<Csr>;
 
 export {
   Csr,
-  CsrOptionsType
+  CsrOptions
 };

@@ -26,9 +26,9 @@ declare class RecoveryQuestionCredential extends Resource {
 
 }
 
-type RecoveryQuestionCredentialOptionsType = OptionalKnownProperties<RecoveryQuestionCredential>;
+type RecoveryQuestionCredentialOptions = OptionalKnownProperties<RecoveryQuestionCredential>;
 
 export {
   RecoveryQuestionCredential,
-  RecoveryQuestionCredentialOptionsType
+  RecoveryQuestionCredentialOptions
 };

@@ -25,9 +25,9 @@ declare class CreateSessionRequest extends Resource {
 
 }
 
-type CreateSessionRequestOptionsType = OptionalKnownProperties<CreateSessionRequest>;
+type CreateSessionRequestOptions = OptionalKnownProperties<CreateSessionRequest>;
 
 export {
   CreateSessionRequest,
-  CreateSessionRequestOptionsType
+  CreateSessionRequestOptions
 };

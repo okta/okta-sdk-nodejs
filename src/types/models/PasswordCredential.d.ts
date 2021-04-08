@@ -28,9 +28,9 @@ declare class PasswordCredential extends Resource {
 
 }
 
-type PasswordCredentialOptionsType = OptionalKnownProperties<PasswordCredential>;
+type PasswordCredentialOptions = OptionalKnownProperties<PasswordCredential>;
 
 export {
   PasswordCredential,
-  PasswordCredentialOptionsType
+  PasswordCredentialOptions
 };

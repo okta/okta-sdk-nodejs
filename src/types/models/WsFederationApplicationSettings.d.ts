@@ -25,9 +25,9 @@ declare class WsFederationApplicationSettings extends ApplicationSettings {
 
 }
 
-type WsFederationApplicationSettingsOptionsType = OptionalKnownProperties<WsFederationApplicationSettings>;
+type WsFederationApplicationSettingsOptions = OptionalKnownProperties<WsFederationApplicationSettings>;
 
 export {
   WsFederationApplicationSettings,
-  WsFederationApplicationSettingsOptionsType
+  WsFederationApplicationSettingsOptions
 };

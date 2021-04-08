@@ -38,9 +38,9 @@ declare class OAuth2ScopeConsentGrant extends Resource {
 
 }
 
-type OAuth2ScopeConsentGrantOptionsType = OptionalKnownProperties<OAuth2ScopeConsentGrant>;
+type OAuth2ScopeConsentGrantOptions = OptionalKnownProperties<OAuth2ScopeConsentGrant>;
 
 export {
   OAuth2ScopeConsentGrant,
-  OAuth2ScopeConsentGrantOptionsType
+  OAuth2ScopeConsentGrantOptions
 };

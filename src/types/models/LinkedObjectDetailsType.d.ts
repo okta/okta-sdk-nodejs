@@ -23,9 +23,9 @@ declare class LinkedObjectDetailsType extends Resource {
 
 }
 
-type LinkedObjectDetailsTypeOptionsType = Record<string, unknown>;
+type LinkedObjectDetailsTypeOptions = Record<string, unknown>;
 
 export {
   LinkedObjectDetailsType,
-  LinkedObjectDetailsTypeOptionsType
+  LinkedObjectDetailsTypeOptions
 };

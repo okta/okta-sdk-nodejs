@@ -25,9 +25,9 @@ declare class EmailUserFactorProfile extends Resource {
 
 }
 
-type EmailUserFactorProfileOptionsType = OptionalKnownProperties<EmailUserFactorProfile>;
+type EmailUserFactorProfileOptions = OptionalKnownProperties<EmailUserFactorProfile>;
 
 export {
   EmailUserFactorProfile,
-  EmailUserFactorProfileOptionsType
+  EmailUserFactorProfileOptions
 };

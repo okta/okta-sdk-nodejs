@@ -26,9 +26,9 @@ declare class InactivityPolicyRuleCondition extends Resource {
 
 }
 
-type InactivityPolicyRuleConditionOptionsType = OptionalKnownProperties<InactivityPolicyRuleCondition>;
+type InactivityPolicyRuleConditionOptions = OptionalKnownProperties<InactivityPolicyRuleCondition>;
 
 export {
   InactivityPolicyRuleCondition,
-  InactivityPolicyRuleConditionOptionsType
+  InactivityPolicyRuleConditionOptions
 };

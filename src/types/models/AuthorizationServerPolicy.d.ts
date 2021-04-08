@@ -18,7 +18,7 @@ import { Client } from '../client';
 import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { Collection } from '../collection';
 import { AuthorizationServerPolicyRule } from './AuthorizationServerPolicyRule';
-import { AuthorizationServerPolicyRuleOptionsType } from './AuthorizationServerPolicyRule';
+import { AuthorizationServerPolicyRuleOptions } from './AuthorizationServerPolicyRule';
 import { Response } from 'node-fetch';
 import { PolicyRuleConditions } from './PolicyRuleConditions';
 import { PolicyType } from './PolicyType';
@@ -42,14 +42,14 @@ declare class AuthorizationServerPolicy extends Resource {
   update(authServerId: string): Promise<AuthorizationServerPolicy>;
   delete(authServerId: string): Promise<Response>;
   listPolicyRules(authServerId: string): Collection<AuthorizationServerPolicyRule>;
-  createPolicyRule(authServerId: string, authorizationServerPolicyRule: AuthorizationServerPolicyRuleOptionsType): Promise<AuthorizationServerPolicyRule>;
+  createPolicyRule(authServerId: string, authorizationServerPolicyRule: AuthorizationServerPolicyRuleOptions): Promise<AuthorizationServerPolicyRule>;
   getPolicyRule(authServerId: string, ruleId: string): Promise<AuthorizationServerPolicyRule>;
   deletePolicyRule(authServerId: string, ruleId: string): Promise<Response>;
 }
 
-type AuthorizationServerPolicyOptionsType = OptionalKnownProperties<AuthorizationServerPolicy>;
+type AuthorizationServerPolicyOptions = OptionalKnownProperties<AuthorizationServerPolicy>;
 
 export {
   AuthorizationServerPolicy,
-  AuthorizationServerPolicyOptionsType
+  AuthorizationServerPolicyOptions
 };

@@ -23,9 +23,9 @@ declare class CatalogApplicationStatus extends Resource {
 
 }
 
-type CatalogApplicationStatusOptionsType = Record<string, unknown>;
+type CatalogApplicationStatusOptions = Record<string, unknown>;
 
 export {
   CatalogApplicationStatus,
-  CatalogApplicationStatusOptionsType
+  CatalogApplicationStatusOptions
 };

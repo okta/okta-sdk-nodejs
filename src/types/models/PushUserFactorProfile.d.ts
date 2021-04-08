@@ -30,9 +30,9 @@ declare class PushUserFactorProfile extends Resource {
 
 }
 
-type PushUserFactorProfileOptionsType = OptionalKnownProperties<PushUserFactorProfile>;
+type PushUserFactorProfileOptions = OptionalKnownProperties<PushUserFactorProfile>;
 
 export {
   PushUserFactorProfile,
-  PushUserFactorProfileOptionsType
+  PushUserFactorProfileOptions
 };

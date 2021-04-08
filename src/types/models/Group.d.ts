@@ -20,7 +20,7 @@ import { Response } from 'node-fetch';
 import { Collection } from '../collection';
 import { User } from './User';
 import { Application } from './Application';
-import { AssignRoleRequestOptionsType } from './AssignRoleRequest';
+import { AssignRoleRequestOptions } from './AssignRoleRequest';
 import { Role } from './Role';
 import { GroupProfile } from './GroupProfile';
 import { GroupType } from './GroupType';
@@ -49,14 +49,14 @@ declare class Group extends Resource {
     after?: string,
     limit?: number,
   }): Collection<Application>;
-  assignRole(assignRoleRequest: AssignRoleRequestOptionsType, queryParameters?: {
+  assignRole(assignRoleRequest: AssignRoleRequestOptions, queryParameters?: {
     disableNotifications?: string,
   }): Promise<Role>;
 }
 
-type GroupOptionsType = OptionalKnownProperties<Group>;
+type GroupOptions = OptionalKnownProperties<Group>;
 
 export {
   Group,
-  GroupOptionsType
+  GroupOptions
 };

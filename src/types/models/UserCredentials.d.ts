@@ -29,9 +29,9 @@ declare class UserCredentials extends Resource {
 
 }
 
-type UserCredentialsOptionsType = OptionalKnownProperties<UserCredentials>;
+type UserCredentialsOptions = OptionalKnownProperties<UserCredentials>;
 
 export {
   UserCredentials,
-  UserCredentialsOptionsType
+  UserCredentialsOptions
 };

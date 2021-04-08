@@ -27,9 +27,9 @@ declare class AppAndInstanceConditionEvaluatorAppOrInstance extends Resource {
 
 }
 
-type AppAndInstanceConditionEvaluatorAppOrInstanceOptionsType = OptionalKnownProperties<AppAndInstanceConditionEvaluatorAppOrInstance>;
+type AppAndInstanceConditionEvaluatorAppOrInstanceOptions = OptionalKnownProperties<AppAndInstanceConditionEvaluatorAppOrInstance>;
 
 export {
   AppAndInstanceConditionEvaluatorAppOrInstance,
-  AppAndInstanceConditionEvaluatorAppOrInstanceOptionsType
+  AppAndInstanceConditionEvaluatorAppOrInstanceOptions
 };

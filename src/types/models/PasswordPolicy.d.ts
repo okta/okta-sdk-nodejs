@@ -25,9 +25,9 @@ declare class PasswordPolicy extends Policy {
 
 }
 
-type PasswordPolicyOptionsType = OptionalKnownProperties<PasswordPolicy>;
+type PasswordPolicyOptions = OptionalKnownProperties<PasswordPolicy>;
 
 export {
   PasswordPolicy,
-  PasswordPolicyOptionsType
+  PasswordPolicyOptions
 };

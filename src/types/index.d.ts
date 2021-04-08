@@ -14,3 +14,4 @@
 export * from './client';
 export * from './request-executor';
 export * from './default-request-executor';
+export * from './models/Application';

@@ -26,9 +26,9 @@ declare class ChangePasswordRequest extends Resource {
 
 }
 
-type ChangePasswordRequestOptionsType = OptionalKnownProperties<ChangePasswordRequest>;
+type ChangePasswordRequestOptions = OptionalKnownProperties<ChangePasswordRequest>;
 
 export {
   ChangePasswordRequest,
-  ChangePasswordRequestOptionsType
+  ChangePasswordRequestOptions
 };

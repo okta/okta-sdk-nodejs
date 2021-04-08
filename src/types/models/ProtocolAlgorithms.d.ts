@@ -26,9 +26,9 @@ declare class ProtocolAlgorithms extends Resource {
 
 }
 
-type ProtocolAlgorithmsOptionsType = OptionalKnownProperties<ProtocolAlgorithms>;
+type ProtocolAlgorithmsOptions = OptionalKnownProperties<ProtocolAlgorithms>;
 
 export {
   ProtocolAlgorithms,
-  ProtocolAlgorithmsOptionsType
+  ProtocolAlgorithmsOptions
 };

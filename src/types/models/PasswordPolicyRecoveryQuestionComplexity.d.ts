@@ -25,9 +25,9 @@ declare class PasswordPolicyRecoveryQuestionComplexity extends Resource {
 
 }
 
-type PasswordPolicyRecoveryQuestionComplexityOptionsType = OptionalKnownProperties<PasswordPolicyRecoveryQuestionComplexity>;
+type PasswordPolicyRecoveryQuestionComplexityOptions = OptionalKnownProperties<PasswordPolicyRecoveryQuestionComplexity>;
 
 export {
   PasswordPolicyRecoveryQuestionComplexity,
-  PasswordPolicyRecoveryQuestionComplexityOptionsType
+  PasswordPolicyRecoveryQuestionComplexityOptions
 };

@@ -25,9 +25,9 @@ declare class PasswordDictionaryCommon extends Resource {
 
 }
 
-type PasswordDictionaryCommonOptionsType = OptionalKnownProperties<PasswordDictionaryCommon>;
+type PasswordDictionaryCommonOptions = OptionalKnownProperties<PasswordDictionaryCommon>;
 
 export {
   PasswordDictionaryCommon,
-  PasswordDictionaryCommonOptionsType
+  PasswordDictionaryCommonOptions
 };

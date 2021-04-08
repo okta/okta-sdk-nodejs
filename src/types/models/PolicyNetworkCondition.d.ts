@@ -27,9 +27,9 @@ declare class PolicyNetworkCondition extends Resource {
 
 }
 
-type PolicyNetworkConditionOptionsType = OptionalKnownProperties<PolicyNetworkCondition>;
+type PolicyNetworkConditionOptions = OptionalKnownProperties<PolicyNetworkCondition>;
 
 export {
   PolicyNetworkCondition,
-  PolicyNetworkConditionOptionsType
+  PolicyNetworkConditionOptions
 };

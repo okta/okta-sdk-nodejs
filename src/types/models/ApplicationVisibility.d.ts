@@ -27,9 +27,9 @@ declare class ApplicationVisibility extends Resource {
 
 }
 
-type ApplicationVisibilityOptionsType = OptionalKnownProperties<ApplicationVisibility>;
+type ApplicationVisibilityOptions = OptionalKnownProperties<ApplicationVisibility>;
 
 export {
   ApplicationVisibility,
-  ApplicationVisibilityOptionsType
+  ApplicationVisibilityOptions
 };

@@ -55,9 +55,9 @@ declare class UserProfile extends Resource {
 
 }
 
-type UserProfileOptionsType = OptionalKnownProperties<UserProfile>;
+type UserProfileOptions = OptionalKnownProperties<UserProfile>;
 
 export {
   UserProfile,
-  UserProfileOptionsType
+  UserProfileOptions
 };

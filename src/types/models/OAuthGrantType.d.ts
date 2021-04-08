@@ -23,9 +23,9 @@ declare class OAuthGrantType extends Resource {
 
 }
 
-type OAuthGrantTypeOptionsType = Record<string, unknown>;
+type OAuthGrantTypeOptions = Record<string, unknown>;
 
 export {
   OAuthGrantType,
-  OAuthGrantTypeOptionsType
+  OAuthGrantTypeOptions
 };

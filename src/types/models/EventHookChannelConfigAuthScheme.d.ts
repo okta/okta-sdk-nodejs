@@ -27,9 +27,9 @@ declare class EventHookChannelConfigAuthScheme extends Resource {
 
 }
 
-type EventHookChannelConfigAuthSchemeOptionsType = OptionalKnownProperties<EventHookChannelConfigAuthScheme>;
+type EventHookChannelConfigAuthSchemeOptions = OptionalKnownProperties<EventHookChannelConfigAuthScheme>;
 
 export {
   EventHookChannelConfigAuthScheme,
-  EventHookChannelConfigAuthSchemeOptionsType
+  EventHookChannelConfigAuthSchemeOptions
 };

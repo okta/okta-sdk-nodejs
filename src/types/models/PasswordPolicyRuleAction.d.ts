@@ -25,9 +25,9 @@ declare class PasswordPolicyRuleAction extends Resource {
 
 }
 
-type PasswordPolicyRuleActionOptionsType = OptionalKnownProperties<PasswordPolicyRuleAction>;
+type PasswordPolicyRuleActionOptions = OptionalKnownProperties<PasswordPolicyRuleAction>;
 
 export {
   PasswordPolicyRuleAction,
-  PasswordPolicyRuleActionOptionsType
+  PasswordPolicyRuleActionOptions
 };

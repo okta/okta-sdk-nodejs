@@ -25,9 +25,9 @@ declare class TotpUserFactor extends UserFactor {
 
 }
 
-type TotpUserFactorOptionsType = OptionalKnownProperties<TotpUserFactor>;
+type TotpUserFactorOptions = OptionalKnownProperties<TotpUserFactor>;
 
 export {
   TotpUserFactor,
-  TotpUserFactorOptionsType
+  TotpUserFactorOptions
 };

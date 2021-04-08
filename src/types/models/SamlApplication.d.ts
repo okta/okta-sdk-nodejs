@@ -25,9 +25,9 @@ declare class SamlApplication extends Application {
 
 }
 
-type SamlApplicationOptionsType = OptionalKnownProperties<SamlApplication>;
+type SamlApplicationOptions = OptionalKnownProperties<SamlApplication>;
 
 export {
   SamlApplication,
-  SamlApplicationOptionsType
+  SamlApplicationOptions
 };

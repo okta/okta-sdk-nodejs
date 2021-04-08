@@ -36,9 +36,9 @@ declare class SmsTemplate extends Resource {
   partialUpdate(): Promise<SmsTemplate>;
 }
 
-type SmsTemplateOptionsType = OptionalKnownProperties<SmsTemplate>;
+type SmsTemplateOptions = OptionalKnownProperties<SmsTemplate>;
 
 export {
   SmsTemplate,
-  SmsTemplateOptionsType
+  SmsTemplateOptions
 };

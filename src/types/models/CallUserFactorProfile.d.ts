@@ -26,9 +26,9 @@ declare class CallUserFactorProfile extends Resource {
 
 }
 
-type CallUserFactorProfileOptionsType = OptionalKnownProperties<CallUserFactorProfile>;
+type CallUserFactorProfileOptions = OptionalKnownProperties<CallUserFactorProfile>;
 
 export {
   CallUserFactorProfile,
-  CallUserFactorProfileOptionsType
+  CallUserFactorProfileOptions
 };

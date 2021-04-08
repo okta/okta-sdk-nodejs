@@ -25,9 +25,9 @@ declare class OpenIdConnectApplicationSettingsClientKeys extends Resource {
 
 }
 
-type OpenIdConnectApplicationSettingsClientKeysOptionsType = OptionalKnownProperties<OpenIdConnectApplicationSettingsClientKeys>;
+type OpenIdConnectApplicationSettingsClientKeysOptions = OptionalKnownProperties<OpenIdConnectApplicationSettingsClientKeys>;
 
 export {
   OpenIdConnectApplicationSettingsClientKeys,
-  OpenIdConnectApplicationSettingsClientKeysOptionsType
+  OpenIdConnectApplicationSettingsClientKeysOptions
 };

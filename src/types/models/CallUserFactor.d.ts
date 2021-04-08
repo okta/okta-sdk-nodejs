@@ -25,9 +25,9 @@ declare class CallUserFactor extends UserFactor {
 
 }
 
-type CallUserFactorOptionsType = OptionalKnownProperties<CallUserFactor>;
+type CallUserFactorOptions = OptionalKnownProperties<CallUserFactor>;
 
 export {
   CallUserFactor,
-  CallUserFactorOptionsType
+  CallUserFactorOptions
 };

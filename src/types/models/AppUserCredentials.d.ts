@@ -26,9 +26,9 @@ declare class AppUserCredentials extends Resource {
 
 }
 
-type AppUserCredentialsOptionsType = OptionalKnownProperties<AppUserCredentials>;
+type AppUserCredentialsOptions = OptionalKnownProperties<AppUserCredentials>;
 
 export {
   AppUserCredentials,
-  AppUserCredentialsOptionsType
+  AppUserCredentialsOptions
 };

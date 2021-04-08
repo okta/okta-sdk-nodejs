@@ -30,9 +30,9 @@ declare class AuthorizationServerCredentialsSigningConfig extends Resource {
 
 }
 
-type AuthorizationServerCredentialsSigningConfigOptionsType = OptionalKnownProperties<AuthorizationServerCredentialsSigningConfig>;
+type AuthorizationServerCredentialsSigningConfigOptions = OptionalKnownProperties<AuthorizationServerCredentialsSigningConfig>;
 
 export {
   AuthorizationServerCredentialsSigningConfig,
-  AuthorizationServerCredentialsSigningConfigOptionsType
+  AuthorizationServerCredentialsSigningConfigOptions
 };

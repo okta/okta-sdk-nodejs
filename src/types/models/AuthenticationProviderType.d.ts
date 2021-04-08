@@ -23,9 +23,9 @@ declare class AuthenticationProviderType extends Resource {
 
 }
 
-type AuthenticationProviderTypeOptionsType = Record<string, unknown>;
+type AuthenticationProviderTypeOptions = Record<string, unknown>;
 
 export {
   AuthenticationProviderType,
-  AuthenticationProviderTypeOptionsType
+  AuthenticationProviderTypeOptions
 };
