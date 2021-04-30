@@ -15,11 +15,12 @@
 
 import { Resource } from '../resource';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { Response } from 'node-fetch';
 import { Collection } from '../collection';
 import { User } from './User';
 import { Application } from './Application';
-import { AssignRoleRequest } from './AssignRoleRequest';
+import { AssignRoleRequestOptions } from './AssignRoleRequest';
 import { Role } from './Role';
 import { GroupProfile } from './GroupProfile';
 import { GroupType } from './GroupType';
@@ -48,11 +49,14 @@ declare class Group extends Resource {
     after?: string,
     limit?: number,
   }): Collection<Application>;
-  assignRole(assignRoleRequest: AssignRoleRequest, queryParameters?: {
+  assignRole(assignRoleRequest: AssignRoleRequestOptions, queryParameters?: {
     disableNotifications?: string,
   }): Promise<Role>;
 }
 
+type GroupOptions = OptionalKnownProperties<Group>;
+
 export {
-  Group
+  Group,
+  GroupOptions
 };

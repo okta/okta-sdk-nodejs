@@ -15,6 +15,7 @@
 
 import { Resource } from '../resource';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 
 
 declare class UserStatusPolicyRuleCondition extends Resource {
@@ -24,6 +25,9 @@ declare class UserStatusPolicyRuleCondition extends Resource {
 
 }
 
+type UserStatusPolicyRuleConditionOptions = OptionalKnownProperties<UserStatusPolicyRuleCondition>;
+
 export {
-  UserStatusPolicyRuleCondition
+  UserStatusPolicyRuleCondition,
+  UserStatusPolicyRuleConditionOptions
 };

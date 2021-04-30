@@ -15,13 +15,14 @@
 
 import { Resource } from '../resource';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { Collection } from '../collection';
 import { Csr } from './Csr';
-import { CsrMetadata } from './CsrMetadata';
+import { CsrMetadataOptions } from './CsrMetadata';
 import { Response } from 'node-fetch';
 import { JsonWebKey } from './JsonWebKey';
 import { IdentityProviderApplicationUser } from './IdentityProviderApplicationUser';
-import { UserIdentityProviderLinkRequest } from './UserIdentityProviderLinkRequest';
+import { UserIdentityProviderLinkRequestOptions } from './UserIdentityProviderLinkRequest';
 import { SocialAuthToken } from './SocialAuthToken';
 import { IdentityProviderPolicy } from './IdentityProviderPolicy';
 import { Protocol } from './Protocol';
@@ -43,7 +44,7 @@ declare class IdentityProvider extends Resource {
   update(): Promise<IdentityProvider>;
   delete(): Promise<Response>;
   listSigningCsrs(): Collection<Csr>;
-  generateCsr(csrMetadata: CsrMetadata): Promise<Csr>;
+  generateCsr(csrMetadata: CsrMetadataOptions): Promise<Csr>;
   deleteSigningCsr(csrId: string): Promise<Response>;
   getSigningCsr(csrId: string): Promise<Csr>;
   listSigningKeys(): Collection<JsonWebKey>;
@@ -59,10 +60,13 @@ declare class IdentityProvider extends Resource {
   listUsers(): Collection<IdentityProviderApplicationUser>;
   unlinkUser(userId: string): Promise<Response>;
   getUser(userId: string): Promise<IdentityProviderApplicationUser>;
-  linkUser(userId: string, userIdentityProviderLinkRequest: UserIdentityProviderLinkRequest): Promise<IdentityProviderApplicationUser>;
+  linkUser(userId: string, userIdentityProviderLinkRequest: UserIdentityProviderLinkRequestOptions): Promise<IdentityProviderApplicationUser>;
   listSocialAuthTokens(userId: string): Collection<SocialAuthToken>;
 }
 
+type IdentityProviderOptions = OptionalKnownProperties<IdentityProvider>;
+
 export {
-  IdentityProvider
+  IdentityProvider,
+  IdentityProviderOptions
 };

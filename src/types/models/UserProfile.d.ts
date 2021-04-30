@@ -15,6 +15,7 @@
 
 import { Resource } from '../resource';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 
 
 declare class UserProfile extends Resource {
@@ -54,6 +55,9 @@ declare class UserProfile extends Resource {
 
 }
 
+type UserProfileOptions = OptionalKnownProperties<UserProfile>;
+
 export {
-  UserProfile
+  UserProfile,
+  UserProfileOptions
 };

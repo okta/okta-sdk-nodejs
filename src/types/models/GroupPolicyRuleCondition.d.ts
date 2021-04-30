@@ -15,6 +15,7 @@
 
 import { Resource } from '../resource';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 
 
 declare class GroupPolicyRuleCondition extends Resource {
@@ -25,6 +26,9 @@ declare class GroupPolicyRuleCondition extends Resource {
 
 }
 
+type GroupPolicyRuleConditionOptions = OptionalKnownProperties<GroupPolicyRuleCondition>;
+
 export {
-  GroupPolicyRuleCondition
+  GroupPolicyRuleCondition,
+  GroupPolicyRuleConditionOptions
 };

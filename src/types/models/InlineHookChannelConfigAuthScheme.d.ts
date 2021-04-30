@@ -15,6 +15,7 @@
 
 import { Resource } from '../resource';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 
 
 declare class InlineHookChannelConfigAuthScheme extends Resource {
@@ -26,6 +27,9 @@ declare class InlineHookChannelConfigAuthScheme extends Resource {
 
 }
 
+type InlineHookChannelConfigAuthSchemeOptions = OptionalKnownProperties<InlineHookChannelConfigAuthScheme>;
+
 export {
-  InlineHookChannelConfigAuthScheme
+  InlineHookChannelConfigAuthScheme,
+  InlineHookChannelConfigAuthSchemeOptions
 };

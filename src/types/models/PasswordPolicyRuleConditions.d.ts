@@ -15,6 +15,7 @@
 
 import { Resource } from '../resource';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { PolicyNetworkCondition } from './PolicyNetworkCondition';
 import { PolicyPeopleCondition } from './PolicyPeopleCondition';
 
@@ -26,6 +27,9 @@ declare class PasswordPolicyRuleConditions extends Resource {
 
 }
 
+type PasswordPolicyRuleConditionsOptions = OptionalKnownProperties<PasswordPolicyRuleConditions>;
+
 export {
-  PasswordPolicyRuleConditions
+  PasswordPolicyRuleConditions,
+  PasswordPolicyRuleConditionsOptions
 };

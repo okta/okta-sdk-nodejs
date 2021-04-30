@@ -15,6 +15,7 @@
 
 import { Resource } from '../resource';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 
 
 declare class ContextPolicyRuleCondition extends Resource {
@@ -24,6 +25,9 @@ declare class ContextPolicyRuleCondition extends Resource {
 
 }
 
+type ContextPolicyRuleConditionOptions = OptionalKnownProperties<ContextPolicyRuleCondition>;
+
 export {
-  ContextPolicyRuleCondition
+  ContextPolicyRuleCondition,
+  ContextPolicyRuleConditionOptions
 };

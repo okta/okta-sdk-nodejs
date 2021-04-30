@@ -15,6 +15,7 @@
 
 import { Resource } from '../resource';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 
 
 declare class PolicyAccountLinkFilterGroups extends Resource {
@@ -24,6 +25,9 @@ declare class PolicyAccountLinkFilterGroups extends Resource {
 
 }
 
+type PolicyAccountLinkFilterGroupsOptions = OptionalKnownProperties<PolicyAccountLinkFilterGroups>;
+
 export {
-  PolicyAccountLinkFilterGroups
+  PolicyAccountLinkFilterGroups,
+  PolicyAccountLinkFilterGroupsOptions
 };

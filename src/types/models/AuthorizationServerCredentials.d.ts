@@ -15,6 +15,7 @@
 
 import { Resource } from '../resource';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { AuthorizationServerCredentialsSigningConfig } from './AuthorizationServerCredentialsSigningConfig';
 
 declare class AuthorizationServerCredentials extends Resource {
@@ -24,6 +25,9 @@ declare class AuthorizationServerCredentials extends Resource {
 
 }
 
+type AuthorizationServerCredentialsOptions = OptionalKnownProperties<AuthorizationServerCredentials>;
+
 export {
-  AuthorizationServerCredentials
+  AuthorizationServerCredentials,
+  AuthorizationServerCredentialsOptions
 };

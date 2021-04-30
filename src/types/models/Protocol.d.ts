@@ -15,6 +15,7 @@
 
 import { Resource } from '../resource';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { ProtocolAlgorithms } from './ProtocolAlgorithms';
 import { IdentityProviderCredentials } from './IdentityProviderCredentials';
 import { ProtocolEndpoints } from './ProtocolEndpoints';
@@ -36,6 +37,9 @@ declare class Protocol extends Resource {
 
 }
 
+type ProtocolOptions = OptionalKnownProperties<Protocol>;
+
 export {
-  Protocol
+  Protocol,
+  ProtocolOptions
 };

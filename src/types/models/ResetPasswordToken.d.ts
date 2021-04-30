@@ -15,6 +15,7 @@
 
 import { Resource } from '../resource';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 
 
 declare class ResetPasswordToken extends Resource {
@@ -24,6 +25,9 @@ declare class ResetPasswordToken extends Resource {
 
 }
 
+type ResetPasswordTokenOptions = OptionalKnownProperties<ResetPasswordToken>;
+
 export {
-  ResetPasswordToken
+  ResetPasswordToken,
+  ResetPasswordTokenOptions
 };

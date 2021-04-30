@@ -15,6 +15,7 @@
 
 import { Resource } from '../resource';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 
 
 declare class LogTransaction extends Resource {
@@ -26,6 +27,9 @@ declare class LogTransaction extends Resource {
 
 }
 
+type LogTransactionOptions = OptionalKnownProperties<LogTransaction>;
+
 export {
-  LogTransaction
+  LogTransaction,
+  LogTransactionOptions
 };

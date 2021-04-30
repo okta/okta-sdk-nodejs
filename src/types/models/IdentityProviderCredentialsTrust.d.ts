@@ -15,6 +15,7 @@
 
 import { Resource } from '../resource';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 
 
 declare class IdentityProviderCredentialsTrust extends Resource {
@@ -28,6 +29,9 @@ declare class IdentityProviderCredentialsTrust extends Resource {
 
 }
 
+type IdentityProviderCredentialsTrustOptions = OptionalKnownProperties<IdentityProviderCredentialsTrust>;
+
 export {
-  IdentityProviderCredentialsTrust
+  IdentityProviderCredentialsTrust,
+  IdentityProviderCredentialsTrustOptions
 };

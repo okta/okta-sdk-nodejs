@@ -15,6 +15,7 @@
 
 import { ApplicationCredentials } from './ApplicationCredentials';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { PasswordCredential } from './PasswordCredential';
 import { ApplicationCredentialsScheme } from './ApplicationCredentialsScheme';
 import { ApplicationCredentialsSigning } from './ApplicationCredentialsSigning';
@@ -30,6 +31,9 @@ declare class SchemeApplicationCredentials extends ApplicationCredentials {
 
 }
 
+type SchemeApplicationCredentialsOptions = OptionalKnownProperties<SchemeApplicationCredentials>;
+
 export {
-  SchemeApplicationCredentials
+  SchemeApplicationCredentials,
+  SchemeApplicationCredentialsOptions
 };

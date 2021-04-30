@@ -15,6 +15,7 @@
 
 import { UserFactor } from './UserFactor';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { HardwareUserFactorProfile } from './HardwareUserFactorProfile';
 
 declare class HardwareUserFactor extends UserFactor {
@@ -24,6 +25,9 @@ declare class HardwareUserFactor extends UserFactor {
 
 }
 
+type HardwareUserFactorOptions = OptionalKnownProperties<HardwareUserFactor>;
+
 export {
-  HardwareUserFactor
+  HardwareUserFactor,
+  HardwareUserFactorOptions
 };

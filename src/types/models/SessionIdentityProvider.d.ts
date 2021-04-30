@@ -15,6 +15,7 @@
 
 import { Resource } from '../resource';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { SessionIdentityProviderType } from './SessionIdentityProviderType';
 
 declare class SessionIdentityProvider extends Resource {
@@ -25,6 +26,9 @@ declare class SessionIdentityProvider extends Resource {
 
 }
 
+type SessionIdentityProviderOptions = OptionalKnownProperties<SessionIdentityProvider>;
+
 export {
-  SessionIdentityProvider
+  SessionIdentityProvider,
+  SessionIdentityProviderOptions
 };

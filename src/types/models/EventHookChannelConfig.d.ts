@@ -15,6 +15,7 @@
 
 import { Resource } from '../resource';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { EventHookChannelConfigAuthScheme } from './EventHookChannelConfigAuthScheme';
 
 declare class EventHookChannelConfig extends Resource {
@@ -26,6 +27,9 @@ declare class EventHookChannelConfig extends Resource {
 
 }
 
+type EventHookChannelConfigOptions = OptionalKnownProperties<EventHookChannelConfig>;
+
 export {
-  EventHookChannelConfig
+  EventHookChannelConfig,
+  EventHookChannelConfigOptions
 };

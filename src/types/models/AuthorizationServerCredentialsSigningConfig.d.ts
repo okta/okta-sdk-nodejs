@@ -15,6 +15,7 @@
 
 import { Resource } from '../resource';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { AuthorizationServerCredentialsRotationMode } from './AuthorizationServerCredentialsRotationMode';
 import { AuthorizationServerCredentialsUse } from './AuthorizationServerCredentialsUse';
 
@@ -29,6 +30,9 @@ declare class AuthorizationServerCredentialsSigningConfig extends Resource {
 
 }
 
+type AuthorizationServerCredentialsSigningConfigOptions = OptionalKnownProperties<AuthorizationServerCredentialsSigningConfig>;
+
 export {
-  AuthorizationServerCredentialsSigningConfig
+  AuthorizationServerCredentialsSigningConfig,
+  AuthorizationServerCredentialsSigningConfigOptions
 };

@@ -15,6 +15,7 @@
 
 import { Resource } from '../resource';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { Response } from 'node-fetch';
 import { AppUserCredentials } from './AppUserCredentials';
 
@@ -42,6 +43,9 @@ declare class AppUser extends Resource {
   }): Promise<Response>;
 }
 
+type AppUserOptions = OptionalKnownProperties<AppUser>;
+
 export {
-  AppUser
+  AppUser,
+  AppUserOptions
 };

@@ -15,6 +15,7 @@
 
 import { Resource } from '../resource';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 
 
 declare class GroupRuleExpression extends Resource {
@@ -25,6 +26,9 @@ declare class GroupRuleExpression extends Resource {
 
 }
 
+type GroupRuleExpressionOptions = OptionalKnownProperties<GroupRuleExpression>;
+
 export {
-  GroupRuleExpression
+  GroupRuleExpression,
+  GroupRuleExpressionOptions
 };

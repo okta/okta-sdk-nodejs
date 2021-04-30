@@ -23,6 +23,9 @@ declare class InlineHookType extends Resource {
 
 }
 
+type InlineHookTypeOptions = Record<string, unknown>;
+
 export {
-  InlineHookType
+  InlineHookType,
+  InlineHookTypeOptions
 };

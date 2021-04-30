@@ -15,6 +15,7 @@
 
 import { Resource } from '../resource';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 
 
 declare class TempPassword extends Resource {
@@ -24,6 +25,9 @@ declare class TempPassword extends Resource {
 
 }
 
+type TempPasswordOptions = OptionalKnownProperties<TempPassword>;
+
 export {
-  TempPassword
+  TempPassword,
+  TempPasswordOptions
 };

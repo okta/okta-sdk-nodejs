@@ -15,6 +15,7 @@
 
 import { Resource } from '../resource';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 
 
 declare class UserIdentifierConditionEvaluatorPattern extends Resource {
@@ -25,6 +26,9 @@ declare class UserIdentifierConditionEvaluatorPattern extends Resource {
 
 }
 
+type UserIdentifierConditionEvaluatorPatternOptions = OptionalKnownProperties<UserIdentifierConditionEvaluatorPattern>;
+
 export {
-  UserIdentifierConditionEvaluatorPattern
+  UserIdentifierConditionEvaluatorPattern,
+  UserIdentifierConditionEvaluatorPatternOptions
 };

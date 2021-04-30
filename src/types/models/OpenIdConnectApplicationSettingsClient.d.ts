@@ -15,6 +15,7 @@
 
 import { Resource } from '../resource';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { OpenIdConnectApplicationType } from './OpenIdConnectApplicationType';
 import { OpenIdConnectApplicationConsentMethod } from './OpenIdConnectApplicationConsentMethod';
 import { OpenIdConnectApplicationIssuerMode } from './OpenIdConnectApplicationIssuerMode';
@@ -41,6 +42,9 @@ declare class OpenIdConnectApplicationSettingsClient extends Resource {
 
 }
 
+type OpenIdConnectApplicationSettingsClientOptions = OptionalKnownProperties<OpenIdConnectApplicationSettingsClient>;
+
 export {
-  OpenIdConnectApplicationSettingsClient
+  OpenIdConnectApplicationSettingsClient,
+  OpenIdConnectApplicationSettingsClientOptions
 };

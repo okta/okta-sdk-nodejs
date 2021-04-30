@@ -15,6 +15,7 @@
 
 import { Resource } from '../resource';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { Response } from 'node-fetch';
 
 declare class UserType extends Resource {
@@ -35,6 +36,9 @@ declare class UserType extends Resource {
   delete(): Promise<Response>;
 }
 
+type UserTypeOptions = OptionalKnownProperties<UserType>;
+
 export {
-  UserType
+  UserType,
+  UserTypeOptions
 };

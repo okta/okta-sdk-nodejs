@@ -15,6 +15,7 @@
 
 import { Policy } from './Policy';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { PolicyAccountLink } from './PolicyAccountLink';
 import { Provisioning } from './Provisioning';
 import { PolicySubject } from './PolicySubject';
@@ -29,6 +30,9 @@ declare class IdentityProviderPolicy extends Policy {
 
 }
 
+type IdentityProviderPolicyOptions = OptionalKnownProperties<IdentityProviderPolicy>;
+
 export {
-  IdentityProviderPolicy
+  IdentityProviderPolicy,
+  IdentityProviderPolicyOptions
 };

@@ -15,6 +15,7 @@
 
 import { Resource } from '../resource';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { OAuth2Actor } from './OAuth2Actor';
 import { OAuth2ScopeConsentGrantSource } from './OAuth2ScopeConsentGrantSource';
 import { OAuth2ScopeConsentGrantStatus } from './OAuth2ScopeConsentGrantStatus';
@@ -37,6 +38,9 @@ declare class OAuth2ScopeConsentGrant extends Resource {
 
 }
 
+type OAuth2ScopeConsentGrantOptions = OptionalKnownProperties<OAuth2ScopeConsentGrant>;
+
 export {
-  OAuth2ScopeConsentGrant
+  OAuth2ScopeConsentGrant,
+  OAuth2ScopeConsentGrantOptions
 };

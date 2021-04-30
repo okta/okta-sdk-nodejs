@@ -15,6 +15,7 @@
 
 import { Resource } from '../resource';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { ScopeType } from './ScopeType';
 
 declare class Scope extends Resource {
@@ -25,6 +26,9 @@ declare class Scope extends Resource {
 
 }
 
+type ScopeOptions = OptionalKnownProperties<Scope>;
+
 export {
-  Scope
+  Scope,
+  ScopeOptions
 };

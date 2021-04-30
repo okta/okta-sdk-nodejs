@@ -15,6 +15,7 @@
 
 import { Resource } from '../resource';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { EventHookChannelConfig } from './EventHookChannelConfig';
 
 declare class EventHookChannel extends Resource {
@@ -26,6 +27,9 @@ declare class EventHookChannel extends Resource {
 
 }
 
+type EventHookChannelOptions = OptionalKnownProperties<EventHookChannel>;
+
 export {
-  EventHookChannel
+  EventHookChannel,
+  EventHookChannelOptions
 };

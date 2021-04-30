@@ -15,6 +15,7 @@
 
 import { Resource } from '../resource';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { UserCredentials } from './UserCredentials';
 import { UserProfile } from './UserProfile';
 import { UserType } from './UserType';
@@ -29,6 +30,9 @@ declare class CreateUserRequest extends Resource {
 
 }
 
+type CreateUserRequestOptions = OptionalKnownProperties<CreateUserRequest>;
+
 export {
-  CreateUserRequest
+  CreateUserRequest,
+  CreateUserRequestOptions
 };

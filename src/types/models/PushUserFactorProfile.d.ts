@@ -15,6 +15,7 @@
 
 import { Resource } from '../resource';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 
 
 declare class PushUserFactorProfile extends Resource {
@@ -29,6 +30,9 @@ declare class PushUserFactorProfile extends Resource {
 
 }
 
+type PushUserFactorProfileOptions = OptionalKnownProperties<PushUserFactorProfile>;
+
 export {
-  PushUserFactorProfile
+  PushUserFactorProfile,
+  PushUserFactorProfileOptions
 };

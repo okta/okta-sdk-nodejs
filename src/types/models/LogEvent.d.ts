@@ -15,6 +15,7 @@
 
 import { Resource } from '../resource';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { LogActor } from './LogActor';
 import { LogAuthenticationContext } from './LogAuthenticationContext';
 import { LogClient } from './LogClient';
@@ -47,6 +48,9 @@ declare class LogEvent extends Resource {
 
 }
 
+type LogEventOptions = OptionalKnownProperties<LogEvent>;
+
 export {
-  LogEvent
+  LogEvent,
+  LogEventOptions
 };

@@ -15,6 +15,7 @@
 
 import { Resource } from '../resource';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { GroupRuleGroupCondition } from './GroupRuleGroupCondition';
 import { GroupRuleUserCondition } from './GroupRuleUserCondition';
 
@@ -26,6 +27,9 @@ declare class GroupRulePeopleCondition extends Resource {
 
 }
 
+type GroupRulePeopleConditionOptions = OptionalKnownProperties<GroupRulePeopleCondition>;
+
 export {
-  GroupRulePeopleCondition
+  GroupRulePeopleCondition,
+  GroupRulePeopleConditionOptions
 };

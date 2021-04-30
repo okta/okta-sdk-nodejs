@@ -15,6 +15,7 @@
 
 import { Resource } from '../resource';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { Response } from 'node-fetch';
 
 declare class ApplicationGroupAssignment extends Resource {
@@ -30,6 +31,9 @@ declare class ApplicationGroupAssignment extends Resource {
   delete(): Promise<Response>;
 }
 
+type ApplicationGroupAssignmentOptions = OptionalKnownProperties<ApplicationGroupAssignment>;
+
 export {
-  ApplicationGroupAssignment
+  ApplicationGroupAssignment,
+  ApplicationGroupAssignmentOptions
 };

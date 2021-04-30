@@ -15,6 +15,7 @@
 
 import { PolicyRule } from './PolicyRule';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { OktaSignOnPolicyRuleActions } from './OktaSignOnPolicyRuleActions';
 import { OktaSignOnPolicyRuleConditions } from './OktaSignOnPolicyRuleConditions';
 
@@ -27,6 +28,9 @@ declare class OktaSignOnPolicyRule extends PolicyRule {
 
 }
 
+type OktaSignOnPolicyRuleOptions = OptionalKnownProperties<OktaSignOnPolicyRule>;
+
 export {
-  OktaSignOnPolicyRule
+  OktaSignOnPolicyRule,
+  OktaSignOnPolicyRuleOptions
 };

@@ -23,6 +23,9 @@ declare class OAuthEndpointAuthenticationMethod extends Resource {
 
 }
 
+type OAuthEndpointAuthenticationMethodOptions = Record<string, unknown>;
+
 export {
-  OAuthEndpointAuthenticationMethod
+  OAuthEndpointAuthenticationMethod,
+  OAuthEndpointAuthenticationMethodOptions
 };

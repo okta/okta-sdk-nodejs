@@ -15,6 +15,7 @@
 
 import { Resource } from '../resource';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { CsrMetadataSubject } from './CsrMetadataSubject';
 import { CsrMetadataSubjectAltNames } from './CsrMetadataSubjectAltNames';
 
@@ -26,6 +27,9 @@ declare class CsrMetadata extends Resource {
 
 }
 
+type CsrMetadataOptions = OptionalKnownProperties<CsrMetadata>;
+
 export {
-  CsrMetadata
+  CsrMetadata,
+  CsrMetadataOptions
 };

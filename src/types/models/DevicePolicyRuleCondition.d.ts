@@ -15,6 +15,7 @@
 
 import { Resource } from '../resource';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { DevicePolicyRuleConditionPlatform } from './DevicePolicyRuleConditionPlatform';
 
 declare class DevicePolicyRuleCondition extends Resource {
@@ -27,6 +28,9 @@ declare class DevicePolicyRuleCondition extends Resource {
 
 }
 
+type DevicePolicyRuleConditionOptions = OptionalKnownProperties<DevicePolicyRuleCondition>;
+
 export {
-  DevicePolicyRuleCondition
+  DevicePolicyRuleCondition,
+  DevicePolicyRuleConditionOptions
 };

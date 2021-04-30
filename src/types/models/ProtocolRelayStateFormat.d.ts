@@ -23,6 +23,9 @@ declare class ProtocolRelayStateFormat extends Resource {
 
 }
 
+type ProtocolRelayStateFormatOptions = Record<string, unknown>;
+
 export {
-  ProtocolRelayStateFormat
+  ProtocolRelayStateFormat,
+  ProtocolRelayStateFormatOptions
 };

@@ -15,6 +15,7 @@
 
 import { Resource } from '../resource';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { OktaSignOnPolicyRuleSignonSessionActions } from './OktaSignOnPolicyRuleSignonSessionActions';
 
 declare class OktaSignOnPolicyRuleSignonActions extends Resource {
@@ -29,6 +30,9 @@ declare class OktaSignOnPolicyRuleSignonActions extends Resource {
 
 }
 
+type OktaSignOnPolicyRuleSignonActionsOptions = OptionalKnownProperties<OktaSignOnPolicyRuleSignonActions>;
+
 export {
-  OktaSignOnPolicyRuleSignonActions
+  OktaSignOnPolicyRuleSignonActions,
+  OktaSignOnPolicyRuleSignonActionsOptions
 };

@@ -15,6 +15,7 @@
 
 import { Resource } from '../resource';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { ProtocolRelayStateFormat } from './ProtocolRelayStateFormat';
 
 declare class ProtocolRelayState extends Resource {
@@ -24,6 +25,9 @@ declare class ProtocolRelayState extends Resource {
 
 }
 
+type ProtocolRelayStateOptions = OptionalKnownProperties<ProtocolRelayState>;
+
 export {
-  ProtocolRelayState
+  ProtocolRelayState,
+  ProtocolRelayStateOptions
 };

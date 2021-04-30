@@ -15,6 +15,7 @@
 
 import { Resource } from '../resource';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 
 
 declare class LogSecurityContext extends Resource {
@@ -28,6 +29,9 @@ declare class LogSecurityContext extends Resource {
 
 }
 
+type LogSecurityContextOptions = OptionalKnownProperties<LogSecurityContext>;
+
 export {
-  LogSecurityContext
+  LogSecurityContext,
+  LogSecurityContextOptions
 };

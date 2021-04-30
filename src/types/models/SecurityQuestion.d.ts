@@ -15,6 +15,7 @@
 
 import { Resource } from '../resource';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 
 
 declare class SecurityQuestion extends Resource {
@@ -26,6 +27,9 @@ declare class SecurityQuestion extends Resource {
 
 }
 
+type SecurityQuestionOptions = OptionalKnownProperties<SecurityQuestion>;
+
 export {
-  SecurityQuestion
+  SecurityQuestion,
+  SecurityQuestionOptions
 };

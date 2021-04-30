@@ -15,6 +15,7 @@
 
 import { ApplicationSettings } from './ApplicationSettings';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { SwaThreeFieldApplicationSettingsApplication } from './SwaThreeFieldApplicationSettingsApplication';
 
 declare class SwaThreeFieldApplicationSettings extends ApplicationSettings {
@@ -24,6 +25,9 @@ declare class SwaThreeFieldApplicationSettings extends ApplicationSettings {
 
 }
 
+type SwaThreeFieldApplicationSettingsOptions = OptionalKnownProperties<SwaThreeFieldApplicationSettings>;
+
 export {
-  SwaThreeFieldApplicationSettings
+  SwaThreeFieldApplicationSettings,
+  SwaThreeFieldApplicationSettingsOptions
 };

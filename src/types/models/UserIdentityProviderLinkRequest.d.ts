@@ -15,6 +15,7 @@
 
 import { Resource } from '../resource';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 
 
 declare class UserIdentityProviderLinkRequest extends Resource {
@@ -24,6 +25,9 @@ declare class UserIdentityProviderLinkRequest extends Resource {
 
 }
 
+type UserIdentityProviderLinkRequestOptions = OptionalKnownProperties<UserIdentityProviderLinkRequest>;
+
 export {
-  UserIdentityProviderLinkRequest
+  UserIdentityProviderLinkRequest,
+  UserIdentityProviderLinkRequestOptions
 };

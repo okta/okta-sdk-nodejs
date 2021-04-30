@@ -15,6 +15,7 @@
 
 import { Resource } from '../resource';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 
 
 declare class UserIdentifierPolicyRuleCondition extends Resource {
@@ -26,6 +27,9 @@ declare class UserIdentifierPolicyRuleCondition extends Resource {
 
 }
 
+type UserIdentifierPolicyRuleConditionOptions = OptionalKnownProperties<UserIdentifierPolicyRuleCondition>;
+
 export {
-  UserIdentifierPolicyRuleCondition
+  UserIdentifierPolicyRuleCondition,
+  UserIdentifierPolicyRuleConditionOptions
 };

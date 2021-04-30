@@ -23,6 +23,9 @@ declare class OAuthAuthorizationPolicy extends Policy {
 
 }
 
+type OAuthAuthorizationPolicyOptions = Record<string, unknown>;
+
 export {
-  OAuthAuthorizationPolicy
+  OAuthAuthorizationPolicy,
+  OAuthAuthorizationPolicyOptions
 };

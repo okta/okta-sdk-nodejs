@@ -15,6 +15,7 @@
 
 import { Resource } from '../resource';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { Response } from 'node-fetch';
 import { SessionIdentityProvider } from './SessionIdentityProvider';
 import { SessionStatus } from './SessionStatus';
@@ -38,6 +39,9 @@ declare class Session extends Resource {
   refresh(): Promise<Session>;
 }
 
+type SessionOptions = OptionalKnownProperties<Session>;
+
 export {
-  Session
+  Session,
+  SessionOptions
 };

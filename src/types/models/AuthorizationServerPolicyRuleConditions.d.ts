@@ -15,6 +15,7 @@
 
 import { Resource } from '../resource';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { ClientPolicyCondition } from './ClientPolicyCondition';
 import { GrantTypePolicyRuleCondition } from './GrantTypePolicyRuleCondition';
 import { PolicyPeopleCondition } from './PolicyPeopleCondition';
@@ -30,6 +31,9 @@ declare class AuthorizationServerPolicyRuleConditions extends Resource {
 
 }
 
+type AuthorizationServerPolicyRuleConditionsOptions = OptionalKnownProperties<AuthorizationServerPolicyRuleConditions>;
+
 export {
-  AuthorizationServerPolicyRuleConditions
+  AuthorizationServerPolicyRuleConditions,
+  AuthorizationServerPolicyRuleConditionsOptions
 };

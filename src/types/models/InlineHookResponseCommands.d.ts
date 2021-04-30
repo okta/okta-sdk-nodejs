@@ -15,6 +15,7 @@
 
 import { Resource } from '../resource';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 
 
 declare class InlineHookResponseCommands extends Resource {
@@ -25,6 +26,9 @@ declare class InlineHookResponseCommands extends Resource {
 
 }
 
+type InlineHookResponseCommandsOptions = OptionalKnownProperties<InlineHookResponseCommands>;
+
 export {
-  InlineHookResponseCommands
+  InlineHookResponseCommands,
+  InlineHookResponseCommandsOptions
 };

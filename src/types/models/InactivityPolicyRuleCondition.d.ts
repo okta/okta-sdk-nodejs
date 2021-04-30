@@ -15,6 +15,7 @@
 
 import { Resource } from '../resource';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 
 
 declare class InactivityPolicyRuleCondition extends Resource {
@@ -25,6 +26,9 @@ declare class InactivityPolicyRuleCondition extends Resource {
 
 }
 
+type InactivityPolicyRuleConditionOptions = OptionalKnownProperties<InactivityPolicyRuleCondition>;
+
 export {
-  InactivityPolicyRuleCondition
+  InactivityPolicyRuleCondition,
+  InactivityPolicyRuleConditionOptions
 };

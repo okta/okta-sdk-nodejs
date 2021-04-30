@@ -15,6 +15,7 @@
 
 import { Resource } from '../resource';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 
 
 declare class AutoLoginApplicationSettingsSignOn extends Resource {
@@ -25,6 +26,9 @@ declare class AutoLoginApplicationSettingsSignOn extends Resource {
 
 }
 
+type AutoLoginApplicationSettingsSignOnOptions = OptionalKnownProperties<AutoLoginApplicationSettingsSignOn>;
+
 export {
-  AutoLoginApplicationSettingsSignOn
+  AutoLoginApplicationSettingsSignOn,
+  AutoLoginApplicationSettingsSignOnOptions
 };
