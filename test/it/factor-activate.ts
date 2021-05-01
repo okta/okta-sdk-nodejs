@@ -48,8 +48,10 @@ describe('Factors API', () => {
     };
     const createdFactor = await client.enrollFactor(createdUser.id, factor);
     expect(createdFactor.status).to.be.equal('PENDING_ACTIVATION');
+    const embedded = createdFactor._embedded as Record<string, unknown>;
+    const activation = embedded.activation as Record<string, unknown>;
     const passCode = speakeasy.totp({
-      secret: createdFactor._embedded.activation.sharedSecret,
+      secret: activation.sharedSecret,
       encoding: 'base32'
     });
     const updatedFactor = await createdFactor.activate(createdUser.id, { passCode });

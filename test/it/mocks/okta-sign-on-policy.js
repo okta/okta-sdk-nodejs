@@ -1,4 +1,4 @@
-import faker = require('faker');
+const faker = require('faker');
 
 module.exports = () => ({
   type: 'OKTA_SIGN_ON',

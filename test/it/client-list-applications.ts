@@ -2,6 +2,7 @@ import { expect } from 'chai';
 import faker = require('faker');
 
 import * as okta from '@okta/okta-sdk-nodejs';
+import { Collection } from '../../src/Collection';
 import models = require('../../src/models');
 import utils = require('../utils');
 
@@ -59,7 +60,7 @@ describe('client.listApplications()', () => {
   });
 
   it('should return a collection', () => {
-    expect(client.listApplications()).to.be.an.instanceof(collection);
+    expect(client.listApplications()).to.be.an.instanceof(Collection);
   });
 
   it('should return the correct application types', async () => {

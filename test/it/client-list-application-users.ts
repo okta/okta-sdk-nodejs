@@ -43,7 +43,8 @@ describe('client.listApplicationUsers()', () => {
       });
       await client.listApplicationUsers(createdApplication.id).each(async (appUser) => {
         expect(appUser).to.be.instanceof(models.AppUser);
-        expect(appUser._links.user.href).to.contain(createdUser.id);
+        const userLink = appUser._links.user as Record<string, string>;
+        expect(userLink.href).to.contain(createdUser.id);
       });
     } finally {
       if (createdApplication) {

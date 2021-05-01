@@ -1,4 +1,4 @@
-import faker = require('faker');
+const faker = require('faker');
 
 module.exports = () => ({
   name: faker.random.word().substring(0, 49),

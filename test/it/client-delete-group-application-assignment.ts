@@ -36,7 +36,7 @@ describe('client.deleteApplicationGroupAssignment()', () => {
       await utils.cleanup(client, null, group);
       createdApplication = await client.createApplication(application);
       createdGroup = await client.createGroup(group);
-      await client.createApplicationGroupAssignment(createdApplication.id, createdGroup.id);
+      await client.createApplicationGroupAssignment(createdApplication.id, createdGroup.id, {});
       await client.deleteApplicationGroupAssignment(createdApplication.id, createdGroup.id)
         .then((res) => {
           expect(res.status).to.equal(204);

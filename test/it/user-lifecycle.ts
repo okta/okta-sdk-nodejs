@@ -32,12 +32,12 @@ describe('User lifecycle API', () => {
 
   describe('active and deactive', () => {
     beforeEach(async () => {
-      createdUser = await client.createUser(newUser, { activate : 'false' });
+      createdUser = await client.createUser(newUser, { activate : false });
       utils.validateUser(createdUser, newUser);
     });
 
     it('should activate a user', async () => {
-      const sendEmail = { sendEmail : 'false' };
+      const sendEmail = { sendEmail : false };
       await createdUser.activate(sendEmail);
       const queryParameters = { filter: 'status eq "ACTIVE"' };
       const userPresent = await utils.isUserPresent(client, createdUser, queryParameters);
@@ -47,12 +47,12 @@ describe('User lifecycle API', () => {
 
   describe('expire password', () => {
     beforeEach(async () => {
-      createdUser = await client.createUser(newUser, { activate : 'true' });
+      createdUser = await client.createUser(newUser, { activate : true });
       utils.validateUser(createdUser, newUser);
     });
 
     it('should expire a users password', async () => {
-      const queryParameters = { tempPassword : 'true' };
+      const queryParameters = { tempPassword : true };
       // TODO: receiving 403: Invalid Session
       const response = await createdUser.expirePassword(queryParameters);
       expect(response.tempPassword).to.not.be.null;
@@ -61,7 +61,7 @@ describe('User lifecycle API', () => {
 
   describe('suspend and unsuspend', () => {
     beforeEach(async () => {
-      createdUser = await client.createUser(newUser, { activate : 'true' });
+      createdUser = await client.createUser(newUser, { activate : true });
       utils.validateUser(createdUser, newUser);
     });
 
@@ -81,7 +81,7 @@ describe('User lifecycle API', () => {
 
   describe('unlock', () => {
     beforeEach(async () => {
-      createdUser = await client.createUser(newUser, { activate : 'true' });
+      createdUser = await client.createUser(newUser, { activate : true });
       utils.validateUser(createdUser, newUser);
     });
 
@@ -98,7 +98,7 @@ describe('User lifecycle API', () => {
 
   describe('reset factors', () => {
     beforeEach(async () => {
-      createdUser = await client.createUser(newUser, { activate : 'true' });
+      createdUser = await client.createUser(newUser, { activate : true });
       utils.validateUser(createdUser, newUser);
     });
 
@@ -110,7 +110,7 @@ describe('User lifecycle API', () => {
 
   describe('delete sessions', () => {
     beforeEach(async () => {
-      createdUser = await client.createUser(newUser, { activate : 'true' });
+      createdUser = await client.createUser(newUser, { activate : true });
       utils.validateUser(createdUser, newUser);
     });
 

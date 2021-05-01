@@ -37,11 +37,13 @@ describe('client.getApplicationGroupAssignment()', () => {
       await utils.cleanup(client, null, group);
       createdApplication = await client.createApplication(application);
       createdGroup = await client.createGroup(group);
-      await client.createApplicationGroupAssignment(createdApplication.id, createdGroup.id);
+      await client.createApplicationGroupAssignment(createdApplication.id, createdGroup.id, {});
       const assignment = await client.getApplicationGroupAssignment(createdApplication.id, createdGroup.id);
       expect(assignment).to.be.instanceof(models.ApplicationGroupAssignment);
-      expect(assignment._links.app.href).to.contain(createdApplication.id);
-      expect(assignment._links.group.href).to.contain(createdGroup.id);
+      const appLink = assignment._links.app as Record<string, string>;
+      const groupLink = assignment._links.app as Record<string, string>;
+      expect(appLink).to.contain(createdApplication.id);
+      expect(groupLink).to.contain(createdGroup.id);
     } finally {
       if (createdApplication) {
         await createdApplication.deactivate();

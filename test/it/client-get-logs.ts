@@ -21,7 +21,7 @@ describe('client.getLogs()', () => {
   it('should allow me to poll the collection but stop when needed', async () => {
     const collection = await client.getLogs({ since: '2018-01-26T00:00:00Z'});
     let iteratorCalledTimes = 0;
-    await new Promise((resolve, reject) => {
+    await new Promise<void>((resolve, reject) => {
       const subscription = collection.subscribe({
         next(logEvent) {
           iteratorCalledTimes++;
@@ -42,13 +42,13 @@ describe('client.getLogs()', () => {
   it('should allow the iterator to return a Promise', async () => {
     const collection = await client.getLogs({ since: '2018-01-26T00:00:00Z'});
     let iteratorCalledTimes = 0;
-    await new Promise((resolve, reject) => {
+    await new Promise<void>((resolve, reject) => {
       const subscription = collection.subscribe({
         interval: 1000,
         next(logEvent) {
           iteratorCalledTimes++;
           expect(logEvent).to.be.instanceof(models.LogEvent);
-          return new Promise(resolve => setTimeout(() => {
+          return new Promise<void>(resolve => setTimeout(() => {
             subscription.unsubscribe();
             resolve();
           }, 100));

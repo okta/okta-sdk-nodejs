@@ -1,3 +1,4 @@
+import { OktaSignOnPolicyRule } from '../..//src/types/models/OktaSignOnPolicyRule';
 import { expect } from 'chai';
 import * as okta from '@okta/okta-sdk-nodejs';
 import models = require('../../src/models');
@@ -79,7 +80,7 @@ describe('Policy Rule API', () => {
       });
 
       it('should get PolicyRule by id', async () => {
-        const ruleFromGet = await client.getPolicyRule(policy.id, rule.id);
+        const ruleFromGet = await client.getPolicyRule(policy.id, rule.id) as OktaSignOnPolicyRule;
         expect(ruleFromGet).to.be.instanceOf(models.PolicyRule);
         expect(ruleFromGet.name).to.equal(rule.name);
       });

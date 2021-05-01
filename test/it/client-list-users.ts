@@ -1,6 +1,7 @@
 import { expect } from 'chai';
 
 import * as okta from '@okta/okta-sdk-nodejs';
+import { Collection } from '../../src/Collection';
 import models = require('../../src/models');
 import utils = require('../utils');
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
@@ -41,7 +42,7 @@ describe('client.list-users()', () => {
   });
 
   it('should return a collection', () => {
-    expect(client.listUsers()).to.be.an.instanceof(collection);
+    expect(client.listUsers()).to.be.an.instanceof(Collection);
   });
 
   it('should allow me to perform search queries', async () => {

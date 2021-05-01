@@ -1,4 +1,4 @@
-import faker = require('faker');
+const faker = require('faker');
 
 module.exports = () => ({
   type: 'SIGN_ON',

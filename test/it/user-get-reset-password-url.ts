@@ -26,12 +26,12 @@ describe('User API Tests', () => {
     // Cleanup the user if user exists
     await utils.cleanup(client, newUser);
 
-    const queryParameters = { activate : 'true' };
+    const queryParameters = { activate : true };
     const createdUser = await client.createUser(newUser, queryParameters);
     utils.validateUser(createdUser, newUser);
 
     // 2. Get the reset password link
-    const sendEmail = { sendEmail : 'false' };
+    const sendEmail = { sendEmail : false };
     // TODO: receiving 403: invalid session
     const link = await createdUser.resetPassword(sendEmail);
     expect(link.resetPasswordUrl).to.not.be.null;

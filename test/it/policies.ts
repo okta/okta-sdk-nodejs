@@ -1,3 +1,4 @@
+import { OktaSignOnPolicyRule } from '../../src/types/models/OktaSignOnPolicyRule';
 import utils = require('../utils');
 import * as okta from '@okta/okta-sdk-nodejs';
 import models = require('../../src/models');
@@ -85,8 +86,7 @@ describe('Policy Scenarios', () => {
         }
       }
     };
-    const oktaSignOnPolicy = new models.OktaSignOnPolicy(policy, client);
-    const createdPolicy = await client.createPolicy(oktaSignOnPolicy);
+    const createdPolicy = await client.createPolicy(policy);
     await client.deletePolicy(createdPolicy.id);
     await client.deleteGroup(createdGroup.id);
 
@@ -250,9 +250,10 @@ describe('Policy Scenarios', () => {
     };
 
     const createdPolicyRule = await createdPolicy.createRule(policyRule);
+    const createdSignOnPolicyRule = createdPolicyRule as OktaSignOnPolicyRule;
 
-    expect(createdPolicyRule).to.not.be.undefined;
-    expect(createdPolicyRule.name).to.equal(policyRuleName);
+    expect(createdSignOnPolicyRule).to.not.be.undefined;
+    expect(createdSignOnPolicyRule.name).to.equal(policyRuleName);
 
     await createdPolicy.delete();
   });

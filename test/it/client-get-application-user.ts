@@ -44,7 +44,8 @@ describe('client.getApplicationUser()', () => {
       const fetchedAppUser = await client.getApplicationUser(createdApplication.id, createdAppUser.id);
       expect(fetchedAppUser).to.be.instanceof(models.AppUser);
       expect(fetchedAppUser.id).to.equal(createdAppUser.id);
-      expect(fetchedAppUser._links.user.href).to.contain(createdUser.id);
+      const userLink = fetchedAppUser._links.user as Record<string, string>;
+      expect(userLink.href).to.contain(createdUser.id);
     } finally {
       if (createdApplication) {
         await createdApplication.deactivate();
