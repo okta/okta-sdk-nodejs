@@ -16,13 +16,13 @@
 import { Resource } from '../resource';
 import { Client } from '../client';
 import { OptionalKnownProperties } from '../optional-known-properties-type';
-
+import { UserIdentifierConditionEvaluatorPattern } from './UserIdentifierConditionEvaluatorPattern';
 
 declare class UserIdentifierPolicyRuleCondition extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
 
   attribute: string;
-  patterns: [];
+  patterns: UserIdentifierConditionEvaluatorPattern[];
   type: string;
 
 }

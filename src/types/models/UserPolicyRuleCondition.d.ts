@@ -24,9 +24,9 @@ import { UserLifecycleAttributePolicyRuleCondition } from './UserLifecycleAttrib
 declare class UserPolicyRuleCondition extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
 
-  exclude: [];
+  exclude: string[];
   inactivity: InactivityPolicyRuleCondition;
-  include: [];
+  include: string[];
   lifecycleExpiration: LifecycleExpirationPolicyRuleCondition;
   passwordExpiration: PasswordExpirationPolicyRuleCondition;
   userLifecycleAttribute: UserLifecycleAttributePolicyRuleCondition;

@@ -29,10 +29,10 @@ declare class PolicyRule extends Resource {
   system: boolean;
   type: string;
 
-  update(): Promise<PolicyRule>;
-  delete(): Promise<Response>;
-  activate(): Promise<Response>;
-  deactivate(): Promise<Response>;
+  update(policyId: string): Promise<PolicyRule>;
+  delete(policyId: string): Promise<Response>;
+  activate(policyId: string): Promise<Response>;
+  deactivate(policyId: string): Promise<Response>;
 }
 
 type PolicyRuleOptions = OptionalKnownProperties<PolicyRule>;

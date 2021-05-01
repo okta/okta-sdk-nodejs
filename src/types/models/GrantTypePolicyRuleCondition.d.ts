@@ -21,7 +21,7 @@ import { OptionalKnownProperties } from '../optional-known-properties-type';
 declare class GrantTypePolicyRuleCondition extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
 
-  include: [];
+  include: string[];
 
 }
 

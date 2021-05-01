@@ -17,6 +17,7 @@ import { Resource } from '../resource';
 import { Client } from '../client';
 import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { Response } from 'node-fetch';
+import { SessionAuthenticationMethod } from './SessionAuthenticationMethod';
 import { SessionIdentityProvider } from './SessionIdentityProvider';
 import { SessionStatus } from './SessionStatus';
 
@@ -24,7 +25,7 @@ declare class Session extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
 
   readonly _links: {[name: string]: unknown};
-  readonly amr: [];
+  readonly amr: SessionAuthenticationMethod[];
   readonly createdAt: string;
   readonly expiresAt: string;
   readonly id: string;

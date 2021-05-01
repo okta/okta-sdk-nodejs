@@ -21,7 +21,7 @@ import { OptionalKnownProperties } from '../optional-known-properties-type';
 declare class RiskPolicyRuleCondition extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
 
-  behaviors: [];
+  behaviors: string[];
 
 }
 

@@ -26,14 +26,14 @@ declare class JsonWebKey extends Resource {
   readonly created: string;
   e: string;
   readonly expiresAt: string;
-  key_ops: [];
+  key_ops: string[];
   kid: string;
   kty: string;
   readonly lastUpdated: string;
   n: string;
   readonly status: string;
   use: string;
-  x5c: [];
+  x5c: string[];
   x5t: string;
   'x5t#S256': string;
   x5u: string;

@@ -21,8 +21,8 @@ import { OptionalKnownProperties } from '../optional-known-properties-type';
 declare class DevicePolicyRuleConditionPlatform extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
 
-  supportedMDMFrameworks: [];
-  types: [];
+  supportedMDMFrameworks: string[];
+  types: string[];
 
 }
 

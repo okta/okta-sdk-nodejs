@@ -43,7 +43,7 @@ declare class Application extends Resource {
   accessibility: ApplicationAccessibility;
   readonly created: string;
   credentials: ApplicationCredentials;
-  features: [];
+  features: string[];
   readonly id: string;
   label: string;
   readonly lastUpdated: string;

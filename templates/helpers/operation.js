@@ -267,7 +267,8 @@ const getModelMethodArgumentsAndReturnType = (method, modelName) => {
 
   operation.pathParams.forEach(param => {
     const matchingArgument = method.arguments.find(argument => argument.dest === param.name);
-    if (matchingArgument) {
+    // path param should be added to model method arguments if its corresponding 'operation' param does not have src property set
+    if (matchingArgument && matchingArgument.src) {
       args.delete(param.name);
     }
   });
@@ -276,6 +277,7 @@ const getModelMethodArgumentsAndReturnType = (method, modelName) => {
   if (bodyModelName && bodyModelName === modelName) {
     args.delete(_.camelCase(operation.bodyModel));
   }
+
   return [args, returnType];
 };
 
@@ -328,9 +330,9 @@ const formatImportStatements = (importTypes, {
   return importStatements.join('\n');
 };
 
-const convertSwaggerToTSType = swaggerType => {
+const convertSwaggerToTSType = (swaggerType, collectionElementType) => {
   return {
-    array: '[]',
+    array: `${collectionElementType}[]`,
     integer: 'number',
     double: 'number',
     hash: '{[name: string]: unknown}',
@@ -342,7 +344,8 @@ const convertSwaggerToTSType = swaggerType => {
 
 const isImportablePropertyType = (property, hostModelName) => {
   const isRestricted = isRestrictedPropertyOverride(hostModelName, property.propertyName);
-  return property.$ref && isImportableType(property.model) && !isRestricted;
+  // array properties do not have $ref specified for non-primitive model types
+  return (property.$ref || property.isArray) && isImportableType(property.model) && !isRestricted;
 };
 
 const isRestrictedPropertyOverride = (modelName, propertyName) => {

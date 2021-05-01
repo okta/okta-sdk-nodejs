@@ -26,7 +26,7 @@ declare class SamlAttributeStatement extends Resource {
   name: string;
   namespace: string;
   type: string;
-  values: [];
+  values: string[];
 
 }
 

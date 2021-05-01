@@ -22,8 +22,8 @@ declare class PolicyNetworkCondition extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
 
   connection: string;
-  exclude: [];
-  include: [];
+  exclude: string[];
+  include: string[];
 
 }
 

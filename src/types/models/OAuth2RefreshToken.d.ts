@@ -30,7 +30,7 @@ declare class OAuth2RefreshToken extends Resource {
   readonly id: string;
   issuer: string;
   readonly lastUpdated: string;
-  scopes: [];
+  scopes: string[];
   status: string;
   userId: string;
 

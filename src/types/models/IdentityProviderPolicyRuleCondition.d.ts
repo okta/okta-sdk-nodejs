@@ -21,7 +21,7 @@ import { OptionalKnownProperties } from '../optional-known-properties-type';
 declare class IdentityProviderPolicyRuleCondition extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
 
-  idpIds: [];
+  idpIds: string[];
   provider: string;
 
 }

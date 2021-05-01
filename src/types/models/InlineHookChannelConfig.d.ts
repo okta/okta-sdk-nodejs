@@ -17,12 +17,13 @@ import { Resource } from '../resource';
 import { Client } from '../client';
 import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { InlineHookChannelConfigAuthScheme } from './InlineHookChannelConfigAuthScheme';
+import { InlineHookChannelConfigHeaders } from './InlineHookChannelConfigHeaders';
 
 declare class InlineHookChannelConfig extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
 
   authScheme: InlineHookChannelConfigAuthScheme;
-  headers: [];
+  headers: InlineHookChannelConfigHeaders[];
   uri: string;
 
 }

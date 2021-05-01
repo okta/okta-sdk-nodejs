@@ -33,10 +33,10 @@ export declare class Collection<T> {
       value: T | null
     }>;
   };
-  getNextPage(): Promise<Record<string, unknown>>;
+  getNextPage(): Promise<Record<string, unknown>[]>;
   each(iterator: (item: T) =>  Promise<unknown> | boolean | unknown): Promise<unknown>;
   subscribe(config: {
-    interval: number;
+    interval?: number;
     next: (item: T) => unknown | Promise<unknown>;
     error: (e: Error) => unknown | Promise<unknown>;
     complete: () => void;

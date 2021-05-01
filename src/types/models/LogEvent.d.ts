@@ -24,6 +24,7 @@ import { LogOutcome } from './LogOutcome';
 import { LogRequest } from './LogRequest';
 import { LogSecurityContext } from './LogSecurityContext';
 import { LogSeverity } from './LogSeverity';
+import { LogTarget } from './LogTarget';
 import { LogTransaction } from './LogTransaction';
 
 declare class LogEvent extends Resource {
@@ -41,7 +42,7 @@ declare class LogEvent extends Resource {
   readonly request: LogRequest;
   readonly securityContext: LogSecurityContext;
   readonly severity: LogSeverity;
-  readonly target: [];
+  readonly target: LogTarget[];
   readonly transaction: LogTransaction;
   readonly uuid: string;
   readonly version: string;

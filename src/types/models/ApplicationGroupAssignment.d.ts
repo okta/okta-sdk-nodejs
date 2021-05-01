@@ -28,7 +28,7 @@ declare class ApplicationGroupAssignment extends Resource {
   priority: number;
   profile: {[name: string]: unknown};
 
-  delete(): Promise<Response>;
+  delete(appId: string): Promise<Response>;
 }
 
 type ApplicationGroupAssignmentOptions = OptionalKnownProperties<ApplicationGroupAssignment>;

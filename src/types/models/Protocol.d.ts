@@ -31,7 +31,7 @@ declare class Protocol extends Resource {
   endpoints: ProtocolEndpoints;
   issuer: ProtocolEndpoint;
   relayState: ProtocolRelayState;
-  scopes: [];
+  scopes: string[];
   settings: ProtocolSettings;
   type: string;
 

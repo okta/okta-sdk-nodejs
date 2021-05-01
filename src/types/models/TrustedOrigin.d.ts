@@ -17,6 +17,7 @@ import { Resource } from '../resource';
 import { Client } from '../client';
 import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { Response } from 'node-fetch';
+import { Scope } from './Scope';
 
 declare class TrustedOrigin extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
@@ -29,7 +30,7 @@ declare class TrustedOrigin extends Resource {
   lastUpdatedBy: string;
   name: string;
   origin: string;
-  scopes: [];
+  scopes: Scope[];
   status: string;
 
   update(): Promise<TrustedOrigin>;

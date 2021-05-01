@@ -16,13 +16,13 @@
 import { Resource } from '../resource';
 import { Client } from '../client';
 import { OptionalKnownProperties } from '../optional-known-properties-type';
-
+import { AppAndInstanceConditionEvaluatorAppOrInstance } from './AppAndInstanceConditionEvaluatorAppOrInstance';
 
 declare class AppAndInstancePolicyRuleCondition extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
 
-  exclude: [];
-  include: [];
+  exclude: AppAndInstanceConditionEvaluatorAppOrInstance[];
+  include: AppAndInstanceConditionEvaluatorAppOrInstance[];
 
 }
 
