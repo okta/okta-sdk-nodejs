@@ -1,8 +1,10 @@
 import { OktaSignOnPolicyRule } from '../..//src/types/models/OktaSignOnPolicyRule';
 import { expect } from 'chai';
-import * as okta from '@okta/okta-sdk-nodejs';
-import models = require('../../src/models');
-import Collection = require('../../src/collection');
+import {
+  Client,
+  Collection,
+  DefaultRequestExecutor,
+  PolicyRule } from '@okta/okta-sdk-nodejs';
 import getMockGroup = require('./mocks/group');
 import getMockOktaSignOnPolicy = require('./mocks/okta-sign-on-policy');
 import getMockRule = require('./mocks/policy-deny-rule');
@@ -12,10 +14,10 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/policy-rule`;
 }
 
-const client = new okta.Client({
+const client = new Client({
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
-  requestExecutor: new okta.DefaultRequestExecutor()
+  requestExecutor: new DefaultRequestExecutor()
 });
 
 describe('Policy Rule API', () => {
@@ -50,7 +52,7 @@ describe('Policy Rule API', () => {
 
       it('should resolve PolicyRule in collection', async () => {
         await policy.listPolicyRules().each(rule => {
-          expect(rule).to.be.instanceOf(models.PolicyRule);
+          expect(rule).to.be.instanceOf(PolicyRule);
         });
       });
     });
@@ -64,7 +66,7 @@ describe('Policy Rule API', () => {
       it('should return instance of PolicyRule', async () => {
         const mockRule = getMockRule();
         rule = await policy.createRule(mockRule);
-        expect(rule).to.be.instanceOf(models.PolicyRule);
+        expect(rule).to.be.instanceOf(PolicyRule);
         expect(rule).to.have.property('id');
         expect(rule.name).to.equal(mockRule.name);
       });
@@ -81,7 +83,7 @@ describe('Policy Rule API', () => {
 
       it('should get PolicyRule by id', async () => {
         const ruleFromGet = await client.getPolicyRule(policy.id, rule.id) as OktaSignOnPolicyRule;
-        expect(ruleFromGet).to.be.instanceOf(models.PolicyRule);
+        expect(ruleFromGet).to.be.instanceOf(PolicyRule);
         expect(ruleFromGet.name).to.equal(rule.name);
       });
     });

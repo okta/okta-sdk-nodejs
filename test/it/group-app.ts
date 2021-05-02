@@ -1,7 +1,9 @@
 import { expect } from 'chai';
-import * as okta from '@okta/okta-sdk-nodejs';
-import models = require('../../src/models');
-import Collection = require('../../src/collection');
+import {
+  Client,
+  Collection,
+  DefaultRequestExecutor,
+  Application } from '@okta/okta-sdk-nodejs';
 import utils = require('../utils');
 import getMockGroup = require('./mocks/group');
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
@@ -10,10 +12,10 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/group-app`;
 }
 
-const client = new okta.Client({
+const client = new Client({
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
-  requestExecutor: new okta.DefaultRequestExecutor()
+  requestExecutor: new DefaultRequestExecutor()
 });
 
 describe('Group App API', () => {
@@ -41,7 +43,7 @@ describe('Group App API', () => {
 
     it('should resolve Application in collection', async () => {
       await group.listApplications().each(application => {
-        expect(application).to.be.instanceOf(models.Application);
+        expect(application).to.be.instanceOf(Application);
       });
     });
   });

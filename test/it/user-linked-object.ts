@@ -1,7 +1,9 @@
 import { expect } from 'chai';
-import * as okta from '@okta/okta-sdk-nodejs';
-import models = require('../../src/models');
-import Collection = require('../../src/collection');
+import {
+  Client,
+  Collection,
+  DefaultRequestExecutor,
+  ResponseLinks } from '@okta/okta-sdk-nodejs';
 import utils = require('../utils');
 import getMockLinkedObject = require('./mocks/linked-object');
 import getMockUser = require('./mocks/user-without-credentials');
@@ -11,10 +13,10 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/user-linked-object`;
 }
 
-const client = new okta.Client({
+const client = new Client({
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
-  requestExecutor: new okta.DefaultRequestExecutor()
+  requestExecutor: new DefaultRequestExecutor()
 });
 
 describe('User linked object API', () => {
@@ -49,7 +51,7 @@ describe('User linked object API', () => {
       links = await associateUser.getLinkedObjects(linkedObject.primary.name);
       expect(links).to.be.instanceOf(Collection);
       await links.each(link => {
-        expect(link).to.be.instanceOf(models.ResponseLinks);
+        expect(link).to.be.instanceOf(ResponseLinks);
         expect(link._links.self.href).contains(primaryUser.id);
       });
     });
@@ -58,7 +60,7 @@ describe('User linked object API', () => {
       links = await primaryUser.getLinkedObjects(linkedObject.associated.name);
       expect(links).to.be.instanceOf(Collection);
       await links.each(link => {
-        expect(link).to.be.instanceOf(models.ResponseLinks);
+        expect(link).to.be.instanceOf(ResponseLinks);
         expect(link._links.self.href).contains(associateUser.id);
       });
     });

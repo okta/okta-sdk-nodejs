@@ -1,7 +1,6 @@
 import { expect } from 'chai';
 
 import * as okta from '@okta/okta-sdk-nodejs';
-import models = require('../../src/models');
 import utils = require('../utils');
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
@@ -30,7 +29,7 @@ describe.skip('Application.generateApplicationKey()', () => {
       const applicationKey = await createdApplication.generateApplicationKey({
         validityYears: 2
       });
-      expect(applicationKey).to.be.instanceof(models.JsonWebKey);
+      expect(applicationKey).to.be.instanceof(okta.JsonWebKey);
     } finally {
       if (createdApplication) {
         await createdApplication.deactivate();

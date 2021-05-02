@@ -1,7 +1,9 @@
 import { expect } from 'chai';
 
-import * as okta from '@okta/okta-sdk-nodejs';
-import models = require('../../src/models');
+import {
+  Client,
+  DefaultRequestExecutor,
+  LogEvent } from '@okta/okta-sdk-nodejs';
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -9,11 +11,11 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/client-get-application`;
 }
 
-const client = new okta.Client({
+const client = new Client({
   scopes: ['okta.clients.manage', 'okta.logs.read'],
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
-  requestExecutor: new okta.DefaultRequestExecutor()
+  requestExecutor: new DefaultRequestExecutor()
 });
 
 describe('client.getLogs()', () => {
@@ -25,7 +27,7 @@ describe('client.getLogs()', () => {
       const subscription = collection.subscribe({
         next(logEvent) {
           iteratorCalledTimes++;
-          expect(logEvent).to.be.instanceof(models.LogEvent);
+          expect(logEvent).to.be.instanceof(LogEvent);
           subscription.unsubscribe();
         },
         error(e) {
@@ -47,7 +49,7 @@ describe('client.getLogs()', () => {
         interval: 1000,
         next(logEvent) {
           iteratorCalledTimes++;
-          expect(logEvent).to.be.instanceof(models.LogEvent);
+          expect(logEvent).to.be.instanceof(LogEvent);
           return new Promise<void>(resolve => setTimeout(() => {
             subscription.unsubscribe();
             resolve();

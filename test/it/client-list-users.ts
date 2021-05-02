@@ -1,8 +1,11 @@
 import { expect } from 'chai';
 
-import * as okta from '@okta/okta-sdk-nodejs';
-import Collection = require('../../src/collection');
-import models = require('../../src/models');
+import {
+  Client,
+  Collection,
+  DefaultRequestExecutor,
+  User} from '@okta/okta-sdk-nodejs';
+
 import utils = require('../utils');
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -10,11 +13,11 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/list-users`;
 }
 
-const client = new okta.Client({
+const client = new Client({
   scopes: ['okta.clients.manage', 'okta.apps.manage', 'okta.users.manage'],
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
-  requestExecutor: new okta.DefaultRequestExecutor()
+  requestExecutor: new DefaultRequestExecutor()
 });
 
 describe('client.list-users()', () => {
@@ -70,7 +73,7 @@ describe('client.list-users()', () => {
 describe('client.listUsers().each()', () => {
   it('should allow me to iterate the entire collection and return User models', async () => {
     await client.listUsers().each(user => {
-      expect(user).to.be.an.instanceof(models.User);
+      expect(user).to.be.an.instanceof(User);
     });
   });
 
@@ -137,7 +140,7 @@ describe('client.listUsers().next()', () => {
   it('should return User models', () => {
     return client.listUsers().next()
       .then(result => {
-        expect(result.value).to.be.an.instanceof(models.User);
+        expect(result.value).to.be.an.instanceof(User);
       });
   });
 

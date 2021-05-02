@@ -1,7 +1,9 @@
 import { expect } from 'chai';
 
-import * as okta from '@okta/okta-sdk-nodejs';
-import models = require('../../src/models');
+import {
+  Client,
+  DefaultRequestExecutor,
+  JsonWebKey } from '@okta/okta-sdk-nodejs';
 import utils = require('../utils');
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
@@ -10,11 +12,11 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/client-generate-application-key`;
 }
 
-const client = new okta.Client({
+const client = new Client({
   scopes: ['okta.clients.manage', 'okta.apps.manage'],
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
-  requestExecutor: new okta.DefaultRequestExecutor()
+  requestExecutor: new DefaultRequestExecutor()
 });
 
 describe.skip('client.generateApplicationKey()', () => {
@@ -30,7 +32,7 @@ describe.skip('client.generateApplicationKey()', () => {
       const applicationKey = await client.generateApplicationKey(createdApplication.id, {
         validityYears: 2
       });
-      expect(applicationKey).to.be.instanceof(models.JsonWebKey);
+      expect(applicationKey).to.be.instanceof(JsonWebKey);
     } finally {
       if (createdApplication) {
         await createdApplication.deactivate();

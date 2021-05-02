@@ -1,7 +1,9 @@
 import { expect } from 'chai';
-import * as okta from '@okta/okta-sdk-nodejs';
-import models = require('../../src/models');
-import Collection = require('../../src/collection');
+import {
+  Client,
+  Collection,
+  DefaultRequestExecutor,
+  IdentityProvider } from '@okta/okta-sdk-nodejs';
 import getMockGenericOidcIdp = require('./mocks/generic-oidc-idp');
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -9,10 +11,10 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/idp-crud`;
 }
 
-const client = new okta.Client({
+const client = new Client({
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
-  requestExecutor: new okta.DefaultRequestExecutor()
+  requestExecutor: new DefaultRequestExecutor()
 });
 
 describe('Idp Crud API', () => {
@@ -30,7 +32,7 @@ describe('Idp Crud API', () => {
       const idps = await client.listIdentityProviders();
       expect(idps).to.be.instanceOf(Collection);
       await idps.each(idp => {
-        expect(idp).to.be.instanceOf(models.IdentityProvider);
+        expect(idp).to.be.instanceOf(IdentityProvider);
       });
     });
 
@@ -56,7 +58,7 @@ describe('Idp Crud API', () => {
     it('should create instance of IdentityProvider', async () => {
       const mockGenericOidcIdp = getMockGenericOidcIdp();
       idp = await client.createIdentityProvider(mockGenericOidcIdp);
-      expect(idp).to.be.instanceOf(models.IdentityProvider);
+      expect(idp).to.be.instanceOf(IdentityProvider);
       expect(idp).to.have.property('id');
       expect(idp.name).to.equal(mockGenericOidcIdp.name);
     });
@@ -74,7 +76,7 @@ describe('Idp Crud API', () => {
 
     it('should get IdentityProvider by id', async () => {
       const idpFromGet = await client.getIdentityProvider(idp.id);
-      expect(idpFromGet).to.be.instanceOf(models.IdentityProvider);
+      expect(idpFromGet).to.be.instanceOf(IdentityProvider);
       expect(idpFromGet.name).to.equal(idp.name);
     });
   });

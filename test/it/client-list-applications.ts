@@ -1,9 +1,11 @@
 import { expect } from 'chai';
 import faker = require('faker');
-
-import * as okta from '@okta/okta-sdk-nodejs';
-import Collection = require('../../src/collection');
-import models = require('../../src/models');
+import {
+  BasicAuthApplication,
+  BookmarkApplication,
+  Client,
+  Collection,
+  DefaultRequestExecutor } from '@okta/okta-sdk-nodejs';
 import utils = require('../utils');
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
@@ -12,11 +14,11 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/client-list-applications`;
 }
 
-const client = new okta.Client({
+const client = new Client({
   scopes: ['okta.clients.manage', 'okta.apps.manage'],
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
-  requestExecutor: new okta.DefaultRequestExecutor()
+  requestExecutor: new DefaultRequestExecutor()
 });
 
 describe('client.listApplications()', () => {
@@ -67,15 +69,15 @@ describe('client.listApplications()', () => {
     let bookmarkApplication;
     let basicApplication;
     await client.listApplications().each(app => {
-      if (app.label === app1.label && app instanceof models.BookmarkApplication) {
+      if (app.label === app1.label && app instanceof BookmarkApplication) {
         bookmarkApplication = app;
       }
-      if (app.label === app2.label && app instanceof models.BasicAuthApplication) {
+      if (app.label === app2.label && app instanceof BasicAuthApplication) {
         basicApplication = app;
       }
     });
-    expect(bookmarkApplication).to.be.an.instanceof(models.BookmarkApplication);
-    expect(basicApplication).to.be.an.instanceof(models.BasicAuthApplication);
+    expect(bookmarkApplication).to.be.an.instanceof(BookmarkApplication);
+    expect(basicApplication).to.be.an.instanceof(BasicAuthApplication);
   });
 
 });

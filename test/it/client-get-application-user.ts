@@ -1,7 +1,9 @@
 import { expect } from 'chai';
 
-import * as okta from '@okta/okta-sdk-nodejs';
-import models = require('../../src/models');
+import {
+  Client,
+  DefaultRequestExecutor,
+  AppUser } from '@okta/okta-sdk-nodejs';
 import utils = require('../utils');
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
@@ -10,11 +12,11 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/application-list-users`;
 }
 
-const client = new okta.Client({
+const client = new Client({
   scopes: ['okta.clients.manage', 'okta.apps.manage', 'okta.users.manage'],
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
-  requestExecutor: new okta.DefaultRequestExecutor()
+  requestExecutor: new DefaultRequestExecutor()
 });
 
 describe('client.getApplicationUser()', () => {
@@ -42,7 +44,7 @@ describe('client.getApplicationUser()', () => {
         id: createdUser.id
       });
       const fetchedAppUser = await client.getApplicationUser(createdApplication.id, createdAppUser.id);
-      expect(fetchedAppUser).to.be.instanceof(models.AppUser);
+      expect(fetchedAppUser).to.be.instanceof(AppUser);
       expect(fetchedAppUser.id).to.equal(createdAppUser.id);
       const userLink = fetchedAppUser._links.user as Record<string, string>;
       expect(userLink.href).to.contain(createdUser.id);

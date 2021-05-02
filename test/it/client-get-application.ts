@@ -1,7 +1,9 @@
 import { expect } from 'chai';
 
-import * as okta from '@okta/okta-sdk-nodejs';
-import models = require('../../src/models');
+import {
+  Client,
+  DefaultRequestExecutor,
+  BookmarkApplication } from '@okta/okta-sdk-nodejs';
 import utils = require('../utils');
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
@@ -10,11 +12,11 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/client-get-application`;
 }
 
-const client = new okta.Client({
+const client = new Client({
   scopes: ['okta.clients.manage', 'okta.apps.manage'],
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
-  requestExecutor: new okta.DefaultRequestExecutor()
+  requestExecutor: new DefaultRequestExecutor()
 });
 
 describe('client.getApplication()', () => {
@@ -29,7 +31,7 @@ describe('client.getApplication()', () => {
       createdApplication = await client.createApplication(application);
       const fetchedApplication = await client.getApplication(createdApplication.id);
       expect(fetchedApplication.id).to.equal(createdApplication.id);
-      expect(fetchedApplication).to.be.instanceof(models.BookmarkApplication);
+      expect(fetchedApplication).to.be.instanceof(BookmarkApplication);
     } finally {
       if (createdApplication) {
         await createdApplication.deactivate();

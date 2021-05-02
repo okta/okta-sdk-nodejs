@@ -1,7 +1,9 @@
 import { expect } from 'chai';
 
-import * as okta from '@okta/okta-sdk-nodejs';
-import models = require('../../src/models');
+import {
+  Client,
+  DefaultRequestExecutor,
+  JsonWebKey } from '@okta/okta-sdk-nodejs';
 import utils = require('../utils');
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
@@ -10,11 +12,11 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/client-clone-application-key`;
 }
 
-const client = new okta.Client({
+const client = new Client({
   scopes: ['okta.clients.manage', 'okta.apps.manage'],
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
-  requestExecutor: new okta.DefaultRequestExecutor()
+  requestExecutor: new DefaultRequestExecutor()
 });
 
 describe.skip('client.cloneApplicationKey()', () => {
@@ -49,7 +51,7 @@ describe.skip('client.cloneApplicationKey()', () => {
       const clonedKey = await client.cloneApplicationKey(createdApplication.id, generatedKey.kid, {
         targetAid: createdApplication2.id
       });
-      expect(clonedKey).to.be.instanceof(models.JsonWebKey);
+      expect(clonedKey).to.be.instanceof(JsonWebKey);
       expect(clonedKey.kid).to.equal(generatedKey.kid);
     } finally {
       if (createdApplication) {

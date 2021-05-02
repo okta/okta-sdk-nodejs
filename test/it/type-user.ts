@@ -1,8 +1,10 @@
 import { expect } from 'chai';
 import faker = require('faker');
-import * as okta from '@okta/okta-sdk-nodejs';
-import models = require('../../src/models');
-import Collection = require('../../src/collection');
+import {
+  Client,
+  Collection,
+  DefaultRequestExecutor,
+  UserType } from '@okta/okta-sdk-nodejs';
 import getMockUserType = require('./mocks/user-type');
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -10,10 +12,10 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/type-user`;
 }
 
-const client = new okta.Client({
+const client = new Client({
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
-  requestExecutor: new okta.DefaultRequestExecutor()
+  requestExecutor: new DefaultRequestExecutor()
 });
 
 describe('User Type API', () => {
@@ -31,7 +33,7 @@ describe('User Type API', () => {
       const userTypes = await client.listUserTypes();
       expect(userTypes).to.be.instanceOf(Collection);
       await userTypes.each(userType => {
-        expect(userType).to.be.instanceOf(models.UserType);
+        expect(userType).to.be.instanceOf(UserType);
       });
     });
   });
@@ -44,7 +46,7 @@ describe('User Type API', () => {
     it('should return UserType instance', async () => {
       const mockUserType = getMockUserType();
       userType = await client.createUserType(mockUserType);
-      expect(userType).to.be.instanceOf(models.UserType);
+      expect(userType).to.be.instanceOf(UserType);
       expect(userType).to.have.property('id');
       expect(userType.name).to.equal(mockUserType.name);
     });
@@ -60,7 +62,7 @@ describe('User Type API', () => {
 
     it('should get userType by id', async () => {
       const userTypeFromGet = await client.getUserType(userType.id);
-      expect(userTypeFromGet).to.be.instanceOf(models.UserType);
+      expect(userTypeFromGet).to.be.instanceOf(UserType);
       expect(userTypeFromGet.name).to.equal(userType.name);
     });
   });
@@ -85,7 +87,7 @@ describe('User Type API', () => {
     it('should replace userType with a new resource', async () => {
       mockType.displayName = faker.random.word();
       const replacedUserType = await client.replaceUserType(userType.id, mockType);
-      expect(replacedUserType).to.be.instanceOf(models.UserType);
+      expect(replacedUserType).to.be.instanceOf(UserType);
       expect(replacedUserType.id).to.be.equal(userType.id);
       expect(replacedUserType.name).to.be.equal(mockType.name);
     });

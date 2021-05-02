@@ -1,7 +1,9 @@
 import { expect } from 'chai';
-import * as okta from '@okta/okta-sdk-nodejs';
-import models = require('../../src/models');
-import Collection = require('../../src/collection');
+import {
+  Client,
+  Collection,
+  DefaultRequestExecutor,
+  Csr, JsonWebKey } from '@okta/okta-sdk-nodejs';
 import getMockGenericOidcIdp = require('./mocks/generic-oidc-idp');
 import mockJwk = require('./mocks/jwk.json');
 import mockCsr = require('./mocks/csr.json');
@@ -11,10 +13,10 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/idp-credential`;
 }
 
-const client = new okta.Client({
+const client = new Client({
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
-  requestExecutor: new okta.DefaultRequestExecutor()
+  requestExecutor: new DefaultRequestExecutor()
 });
 
 describe('Idp credential API', () => {
@@ -44,7 +46,7 @@ describe('Idp credential API', () => {
 
       it('should resolve JsonWebKey in collection', async () => {
         await client.listIdentityProviderKeys().each(key => {
-          expect(key).to.be.instanceOf(models.JsonWebKey);
+          expect(key).to.be.instanceOf(JsonWebKey);
         });
       });
     });
@@ -57,7 +59,7 @@ describe('Idp credential API', () => {
       it('should create key', async () => {
         key = await client.createIdentityProviderKey(mockJwk);
         expect(key).to.be.exist;
-        expect(key).to.be.instanceOf(models.JsonWebKey);
+        expect(key).to.be.instanceOf(JsonWebKey);
       });
     });
 
@@ -72,7 +74,7 @@ describe('Idp credential API', () => {
       it('should get key', async () => {
         key = await client.getIdentityProviderKey(key.kid);
         expect(key).to.be.exist;
-        expect(key).to.be.instanceOf(models.JsonWebKey);
+        expect(key).to.be.instanceOf(JsonWebKey);
       });
     });
 
@@ -109,7 +111,7 @@ describe('Idp credential API', () => {
 
       it('should resolve CSR in collection', async () => {
         await idp.listSigningCsrs().each(csr => {
-          expect(csr).to.be.instanceOf(models.Csr);
+          expect(csr).to.be.instanceOf(Csr);
         });
       });
     });
@@ -169,7 +171,7 @@ describe('Idp credential API', () => {
 
       it('should resolve JsonWebKey in collection', async () => {
         await idp.listSigningKeys().each(key => {
-          expect(key).to.be.instanceOf(models.JsonWebKey);
+          expect(key).to.be.instanceOf(JsonWebKey);
         });
       });
 
@@ -208,7 +210,7 @@ describe('Idp credential API', () => {
       it('should clone key to another idp', async () => {
         const clonedKey = await idp.cloneKey(key.kid, { targetIdpId: anotherIdp.id });
         expect(clonedKey).to.be.exist;
-        expect(clonedKey).to.be.instanceOf(models.JsonWebKey);
+        expect(clonedKey).to.be.instanceOf(JsonWebKey);
       });
     });
   });

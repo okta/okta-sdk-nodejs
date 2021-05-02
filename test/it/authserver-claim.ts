@@ -1,7 +1,9 @@
 import { expect } from 'chai';
-import * as okta from '@okta/okta-sdk-nodejs';
-import models = require('../../src/models');
-import Collection = require('../../src/collection');
+import {
+  Client,
+  Collection,
+  DefaultRequestExecutor,
+  OAuth2Claim } from '@okta/okta-sdk-nodejs';
 import getMockAuthorizationServer = require('./mocks/authorization-server');
 import mockScope = require('./mocks/scope.json');
 import mockClaim = require('./mocks/claim.json');
@@ -11,10 +13,10 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/authserver-claim`;
 }
 
-const client = new okta.Client({
+const client = new Client({
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
-  requestExecutor: new okta.DefaultRequestExecutor()
+  requestExecutor: new DefaultRequestExecutor()
 });
 
 describe('Authorization Server Claim API', () => {
@@ -46,7 +48,7 @@ describe('Authorization Server Claim API', () => {
       expect(claims).is.not.empty;
       const claimFindByName = claims.find(c => c.name === mockClaim.name);
       expect(claimFindByName).to.be.exist;
-      expect(claimFindByName).to.be.instanceOf(models.OAuth2Claim);
+      expect(claimFindByName).to.be.instanceOf(OAuth2Claim);
     });
   });
 
@@ -74,7 +76,7 @@ describe('Authorization Server Claim API', () => {
 
     it('should get claim from auth server by id', async () => {
       const claimFromGet = await authServer.getOAuth2Claim(claim.id);
-      expect(claimFromGet).to.be.instanceOf(models.OAuth2Claim);
+      expect(claimFromGet).to.be.instanceOf(OAuth2Claim);
       expect(claimFromGet.id).to.equal(claim.id);
     });
   });

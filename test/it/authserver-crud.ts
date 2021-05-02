@@ -1,7 +1,9 @@
 import { expect } from 'chai';
-import * as okta from '@okta/okta-sdk-nodejs';
-import models = require('../../src/models');
-import Collection = require('../../src/collection');
+import {
+  Client,
+  Collection,
+  DefaultRequestExecutor,
+  AuthorizationServer } from '@okta/okta-sdk-nodejs';
 import getMockAuthorizationServer = require('./mocks/authorization-server');
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -9,10 +11,10 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/authserver-crud`;
 }
 
-const client = new okta.Client({
+const client = new Client({
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
-  requestExecutor: new okta.DefaultRequestExecutor()
+  requestExecutor: new DefaultRequestExecutor()
 });
 
 describe('Authorization Server Crud API', () => {
@@ -26,7 +28,7 @@ describe('Authorization Server Crud API', () => {
     it('should return correct model', async () => {
       const mockAuthorizationServer = getMockAuthorizationServer();
       authServer = await client.createAuthorizationServer(mockAuthorizationServer);
-      expect(authServer).to.be.instanceOf(models.AuthorizationServer);
+      expect(authServer).to.be.instanceOf(AuthorizationServer);
       expect(authServer.id).to.be.exist;
       expect(authServer.name).to.be.equal(mockAuthorizationServer.name);
     });
@@ -65,7 +67,7 @@ describe('Authorization Server Crud API', () => {
 
     it('should get Authorization Server by id', async () => {
       const authServerFromGet = await client.getAuthorizationServer(authServer.id);
-      expect(authServerFromGet).to.be.instanceOf(models.AuthorizationServer);
+      expect(authServerFromGet).to.be.instanceOf(AuthorizationServer);
       expect(authServerFromGet.name).to.equal(authServer.name);
     });
   });
