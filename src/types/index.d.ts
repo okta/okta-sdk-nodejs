@@ -16,6 +16,7 @@
 export * from './client';
 export * from './request-executor';
 export * from './default-request-executor';
+export * from './collection';
 export * from './models/AcsEndpoint';
 export * from './models/ActivateFactorRequest';
 export * from './models/AppAndInstanceConditionEvaluatorAppOrInstance';

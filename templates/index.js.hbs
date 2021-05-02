@@ -5,6 +5,7 @@ module.exports = {
   Client: require('./client'),
   RequestExecutor: require('./request-executor'),
   DefaultRequestExecutor: require('./default-request-executor'),
+  Collection: require('./collection'),
 {{#each models}}
   {{this.modelName}}: require('./models/{{this.modelName}}'),
 {{/each}}

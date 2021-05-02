@@ -17,6 +17,7 @@ module.exports = {
   Client: require('./client'),
   RequestExecutor: require('./request-executor'),
   DefaultRequestExecutor: require('./default-request-executor'),
+  Collection: require('./collection'),
   AcsEndpoint: require('./models/AcsEndpoint'),
   ActivateFactorRequest: require('./models/ActivateFactorRequest'),
   AppAndInstanceConditionEvaluatorAppOrInstance: require('./models/AppAndInstanceConditionEvaluatorAppOrInstance'),
