@@ -212,11 +212,18 @@ const typeScriptModelImportBuilder = model => {
   });
 
   const importTypes = new Set([...methodsImportTypes, ...crudImportTypes, ...propertiesImportTypes]);
-  // model methods returning self type and CRUD operations with self type arguments
+  // Skip import for the following cases:
+  // - model methods returning self type
+  // - CRUD operations with self type arguments
+  // - models that generate auxiliary *Options class
   importTypes.delete(model.modelName);
-  importTypes.delete(`${model.modelName}${OPTIONS_TYPE_SUFFIX}`);
+  if (shouldGenerateOptionsType(model.modelName)) {
+    importTypes.delete(`${model.modelName}${OPTIONS_TYPE_SUFFIX}`);
+  }
 
-  return formatImportStatements(importTypes);
+  return formatImportStatements(importTypes, {
+    isModelToModelImport: true
+  }, model.modelName);
 };
 
 const getOperationArgumentsAndReturnType = operation => {
@@ -316,7 +323,7 @@ const formatObjectLiteralType = typeProps => {
 
 const formatImportStatements = (importTypes, {
   isModelToModelImport = true
-} = {}) => {
+} = {}, modelName) => {
   const importStatements = [];
   importTypes.forEach(type => {
     if (type === 'Response') {
@@ -324,7 +331,8 @@ const formatImportStatements = (importTypes, {
     } else if (type === 'Collection') {
       importStatements.push(`import { Collection } from '${isModelToModelImport ? '..' : '.'}/collection';`);
     } else {
-      importStatements.push(`import { ${type} } from '${isModelToModelImport ? './' : './models/'}${type.replace(OPTIONS_TYPE_SUFFIX, '')}';`);
+      const importSource = shouldGenerateOptionsType(modelName) ? type.replace(OPTIONS_TYPE_SUFFIX, '') : type;
+      importStatements.push(`import { ${type} } from '${isModelToModelImport ? './' : './models/'}${importSource}';`);
     }
   });
   return importStatements.join('\n');
