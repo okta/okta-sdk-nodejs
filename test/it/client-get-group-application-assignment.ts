@@ -4,6 +4,7 @@ import faker = require('faker');
 import * as okta from '@okta/okta-sdk-nodejs';
 import models = require('../../src/models');
 import utils = require('../utils');
+import { Application } from '../../src/types/models/Application';
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -41,9 +42,9 @@ describe('client.getApplicationGroupAssignment()', () => {
       const assignment = await client.getApplicationGroupAssignment(createdApplication.id, createdGroup.id);
       expect(assignment).to.be.instanceof(models.ApplicationGroupAssignment);
       const appLink = assignment._links.app as Record<string, string>;
-      const groupLink = assignment._links.app as Record<string, string>;
-      expect(appLink).to.contain(createdApplication.id);
-      expect(groupLink).to.contain(createdGroup.id);
+      const groupLink = assignment._links.group as Record<string, string>;
+      expect(appLink.href).to.contain(createdApplication.id);
+      expect(groupLink.href).to.contain(createdGroup.id);
     } finally {
       if (createdApplication) {
         await createdApplication.deactivate();

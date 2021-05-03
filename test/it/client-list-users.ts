@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 
 import * as okta from '@okta/okta-sdk-nodejs';
-import { Collection } from '../../src/Collection';
+import Collection = require('../../src/collection');
 import models = require('../../src/models');
 import utils = require('../utils');
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
