@@ -35,12 +35,12 @@ declare class Role extends Resource {
   readonly status: RoleStatus;
   type: RoleType;
 
-  addAdminGroupTarget(targetGroupId: string): Promise<Response>;
-  addAppInstanceTargetToAdminRole(appName: string, applicationId: string): Promise<Response>;
-  addAppTargetToAdminRole(appName: string): Promise<Response>;
-  addAllAppsAsTargetToRole(): Promise<Response>;
-  addAppTargetToAppAdminRoleForUser(appName: string, applicationId: string): Promise<Response>;
-  addAppTargetToAdminRoleForUser(appName: string): Promise<Response>;
+  addAdminGroupTarget(groupId: string, targetGroupId: string): Promise<Response>;
+  addAppInstanceTargetToAdminRole(groupId: string, appName: string, applicationId: string): Promise<Response>;
+  addAppTargetToAdminRole(groupId: string, appName: string): Promise<Response>;
+  addAllAppsAsTargetToRole(userId: string): Promise<Response>;
+  addAppTargetToAppAdminRoleForUser(userId: string, appName: string, applicationId: string): Promise<Response>;
+  addAppTargetToAdminRoleForUser(userId: string, appName: string): Promise<Response>;
 }
 
 type RoleOptions = OptionalKnownProperties<Role>;

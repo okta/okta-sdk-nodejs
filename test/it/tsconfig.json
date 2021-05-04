@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./",
+    "paths": {
+      "@okta/okta-sdk-nodejs": ["../.."]
+    },
+    "resolveJsonModule": true
+  }
+}

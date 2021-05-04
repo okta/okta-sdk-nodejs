@@ -16,15 +16,16 @@
 import { Resource } from '../resource';
 import { Client } from '../client';
 import { OptionalKnownProperties } from '../optional-known-properties-type';
-
+import { AcsEndpoint } from './AcsEndpoint';
+import { SamlAttributeStatement } from './SamlAttributeStatement';
 
 declare class SamlApplicationSettingsSignOn extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
 
-  acsEndpoints: [];
+  acsEndpoints: AcsEndpoint[];
   allowMultipleAcsEndpoints: boolean;
   assertionSigned: boolean;
-  attributeStatements: [];
+  attributeStatements: SamlAttributeStatement[];
   audience: string;
   audienceOverride: string;
   authnContextClassRef: string;

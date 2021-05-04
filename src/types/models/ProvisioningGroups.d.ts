@@ -22,8 +22,8 @@ declare class ProvisioningGroups extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
 
   action: string;
-  assignments: [];
-  filter: [];
+  assignments: string[];
+  filter: string[];
   sourceAttributeName: string;
 
 }

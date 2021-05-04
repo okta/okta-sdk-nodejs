@@ -23,7 +23,7 @@ declare class SocialAuthToken extends Resource {
 
   readonly expiresAt: string;
   readonly id: string;
-  scopes: [];
+  scopes: string[];
   token: string;
   tokenAuthScheme: string;
   tokenType: string;

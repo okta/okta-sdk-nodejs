@@ -17,12 +17,13 @@ import { Resource } from '../resource';
 import { Client } from '../client';
 import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { EventHookChannelConfigAuthScheme } from './EventHookChannelConfigAuthScheme';
+import { EventHookChannelConfigHeader } from './EventHookChannelConfigHeader';
 
 declare class EventHookChannelConfig extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
 
   authScheme: EventHookChannelConfigAuthScheme;
-  headers: [];
+  headers: EventHookChannelConfigHeader[];
   uri: string;
 
 }

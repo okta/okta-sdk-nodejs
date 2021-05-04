@@ -34,7 +34,7 @@ declare class Group extends Resource {
   readonly id: string;
   readonly lastMembershipUpdated: string;
   readonly lastUpdated: string;
-  readonly objectClass: [];
+  readonly objectClass: string[];
   profile: GroupProfile;
   readonly type: GroupType;
 

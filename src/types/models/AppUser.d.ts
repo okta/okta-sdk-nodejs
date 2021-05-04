@@ -37,8 +37,8 @@ declare class AppUser extends Resource {
   readonly statusChanged: string;
   readonly syncState: string;
 
-  update(): Promise<AppUser>;
-  delete(queryParameters?: {
+  update(appId: string): Promise<AppUser>;
+  delete(appId: string, queryParameters?: {
     sendEmail?: boolean,
   }): Promise<Response>;
 }

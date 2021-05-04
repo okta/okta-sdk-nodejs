@@ -28,7 +28,7 @@ declare class {{modelName}} extends Resource {
   {{#if this.readOnly}}readonly {{/if}}{{{sanitizeModelPropertyName ../modelName this.propertyName}}}: {{model}};
 {{/if}}
 {{else}}
-  {{#if this.readOnly}}readonly {{/if}}{{{sanitizeModelPropertyName ../modelName this.propertyName}}}: {{{convertSwaggerToTSType this.commonType}}};
+  {{#if this.readOnly}}readonly {{/if}}{{{sanitizeModelPropertyName ../modelName this.propertyName}}}: {{{convertSwaggerToTSType this.commonType this.model}}};
 {{/if}}
 {{/unless}}
 {{/each}}
@@ -52,9 +52,13 @@ type {{modelName}}Options = OptionalKnownProperties<{{modelName}}>;
 {{else}}
 type {{modelName}}Options = Record<string, unknown>;
 {{/if}}
-{{/if}}
 
 export {
   {{modelName}},
   {{modelName}}Options
 };
+{{else}}
+export {
+  {{modelName}}
+};
+{{/if}}

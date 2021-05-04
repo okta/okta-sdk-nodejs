@@ -21,7 +21,7 @@ import { OptionalKnownProperties } from '../optional-known-properties-type';
 declare class EventSubscriptions extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
 
-  items: [];
+  items: string[];
   type: string;
 
 }

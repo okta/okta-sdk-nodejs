@@ -25,11 +25,11 @@ declare class CatalogApplication extends Resource {
   category: string;
   description: string;
   displayName: string;
-  features: [];
+  features: string[];
   readonly id: string;
   readonly lastUpdated: string;
   name: string;
-  signOnModes: [];
+  signOnModes: string[];
   status: CatalogApplicationStatus;
   verificationStatus: string;
   website: string;

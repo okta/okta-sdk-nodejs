@@ -16,13 +16,13 @@
 import { Resource } from '../resource';
 import { Client } from '../client';
 import { OptionalKnownProperties } from '../optional-known-properties-type';
-
+import { PlatformConditionEvaluatorPlatform } from './PlatformConditionEvaluatorPlatform';
 
 declare class PlatformPolicyRuleCondition extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
 
-  exclude: [];
-  include: [];
+  exclude: PlatformConditionEvaluatorPlatform[];
+  include: PlatformConditionEvaluatorPlatform[];
 
 }
 

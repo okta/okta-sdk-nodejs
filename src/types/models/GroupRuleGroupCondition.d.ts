@@ -21,8 +21,8 @@ import { OptionalKnownProperties } from '../optional-known-properties-type';
 declare class GroupRuleGroupCondition extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
 
-  exclude: [];
-  include: [];
+  exclude: string[];
+  include: string[];
 
 }
 

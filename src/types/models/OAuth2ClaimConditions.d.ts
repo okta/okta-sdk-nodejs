@@ -21,7 +21,7 @@ import { OptionalKnownProperties } from '../optional-known-properties-type';
 declare class OAuth2ClaimConditions extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
 
-  scopes: [];
+  scopes: string[];
 
 }
 

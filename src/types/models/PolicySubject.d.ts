@@ -23,7 +23,7 @@ declare class PolicySubject extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
 
   filter: string;
-  format: [];
+  format: string[];
   matchAttribute: string;
   matchType: PolicySubjectMatchType;
   userNameTemplate: PolicyUserNameTemplate;

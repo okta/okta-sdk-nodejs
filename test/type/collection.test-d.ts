@@ -13,7 +13,7 @@ const collection = new Collection<Resource>(
 expectType<Promise<unknown>>(collection.each(
   (item) => Promise.resolve(item)
 ));
-expectType<Promise<Record<string, unknown>>>(collection.getNextPage());
+expectType<Promise<Record<string, unknown>[]>>(collection.getNextPage());
 expectType<Promise<{done: boolean, value: Resource | null}>>(collection.next());
 expectType<{unsubscribe:() => void}>(collection.subscribe({
   interval: 100,

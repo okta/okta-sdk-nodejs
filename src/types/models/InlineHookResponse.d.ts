@@ -16,12 +16,12 @@
 import { Resource } from '../resource';
 import { Client } from '../client';
 import { OptionalKnownProperties } from '../optional-known-properties-type';
-
+import { InlineHookResponseCommands } from './InlineHookResponseCommands';
 
 declare class InlineHookResponse extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
 
-  commands: [];
+  commands: InlineHookResponseCommands[];
 
 }
 

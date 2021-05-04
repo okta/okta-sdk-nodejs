@@ -21,7 +21,7 @@ import { OptionalKnownProperties } from '../optional-known-properties-type';
 declare class GroupRuleGroupAssignment extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
 
-  groupIds: [];
+  groupIds: string[];
 
 }
 

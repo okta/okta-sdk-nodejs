@@ -18,9 +18,11 @@ import { Client } from '../client';
 import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { OpenIdConnectApplicationType } from './OpenIdConnectApplicationType';
 import { OpenIdConnectApplicationConsentMethod } from './OpenIdConnectApplicationConsentMethod';
+import { OAuthGrantType } from './OAuthGrantType';
 import { OpenIdConnectApplicationIssuerMode } from './OpenIdConnectApplicationIssuerMode';
 import { OpenIdConnectApplicationSettingsClientKeys } from './OpenIdConnectApplicationSettingsClientKeys';
 import { OpenIdConnectApplicationSettingsRefreshToken } from './OpenIdConnectApplicationSettingsRefreshToken';
+import { OAuthResponseType } from './OAuthResponseType';
 
 declare class OpenIdConnectApplicationSettingsClient extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
@@ -28,16 +30,16 @@ declare class OpenIdConnectApplicationSettingsClient extends Resource {
   application_type: OpenIdConnectApplicationType;
   client_uri: string;
   consent_method: OpenIdConnectApplicationConsentMethod;
-  grant_types: [];
+  grant_types: OAuthGrantType[];
   initiate_login_uri: string;
   issuer_mode: OpenIdConnectApplicationIssuerMode;
   jwks: OpenIdConnectApplicationSettingsClientKeys;
   logo_uri: string;
   policy_uri: string;
-  post_logout_redirect_uris: [];
-  redirect_uris: [];
+  post_logout_redirect_uris: string[];
+  redirect_uris: string[];
   refresh_token: OpenIdConnectApplicationSettingsRefreshToken;
-  response_types: [];
+  response_types: OAuthResponseType[];
   tos_uri: string;
 
 }

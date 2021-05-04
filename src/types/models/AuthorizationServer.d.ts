@@ -34,7 +34,7 @@ declare class AuthorizationServer extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
 
   readonly _links: {[name: string]: unknown};
-  audiences: [];
+  audiences: string[];
   readonly created: string;
   credentials: AuthorizationServerCredentials;
   description: string;

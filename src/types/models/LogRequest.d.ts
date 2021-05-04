@@ -16,12 +16,12 @@
 import { Resource } from '../resource';
 import { Client } from '../client';
 import { OptionalKnownProperties } from '../optional-known-properties-type';
-
+import { LogIpAddress } from './LogIpAddress';
 
 declare class LogRequest extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
 
-  readonly ipChain: [];
+  readonly ipChain: LogIpAddress[];
 
 }
 

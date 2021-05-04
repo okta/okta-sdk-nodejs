@@ -24,7 +24,7 @@ declare class PasswordPolicyPasswordSettingsLockout extends Resource {
   autoUnlockMinutes: number;
   maxAttempts: number;
   showLockoutFailures: boolean;
-  userLockoutNotificationChannels: [];
+  userLockoutNotificationChannels: string[];
 
 }
 

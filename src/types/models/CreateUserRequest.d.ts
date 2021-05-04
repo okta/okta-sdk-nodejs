@@ -24,7 +24,7 @@ declare class CreateUserRequest extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
 
   credentials: UserCredentials;
-  groupIds: [];
+  groupIds: string[];
   profile: UserProfile;
   type: UserType;
 

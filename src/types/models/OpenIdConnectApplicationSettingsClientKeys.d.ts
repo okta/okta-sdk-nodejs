@@ -16,12 +16,12 @@
 import { Resource } from '../resource';
 import { Client } from '../client';
 import { OptionalKnownProperties } from '../optional-known-properties-type';
-
+import { JsonWebKey } from './JsonWebKey';
 
 declare class OpenIdConnectApplicationSettingsClientKeys extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
 
-  keys: [];
+  keys: JsonWebKey[];
 
 }
 

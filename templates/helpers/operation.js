@@ -212,11 +212,18 @@ const typeScriptModelImportBuilder = model => {
   });
 
   const importTypes = new Set([...methodsImportTypes, ...crudImportTypes, ...propertiesImportTypes]);
-  // model methods returning self type and CRUD operations with self type arguments
+  // Skip import for the following cases:
+  // - model methods returning self type
+  // - CRUD operations with self type arguments
+  // - models that generate auxiliary *Options class
   importTypes.delete(model.modelName);
-  importTypes.delete(`${model.modelName}${OPTIONS_TYPE_SUFFIX}`);
+  if (shouldGenerateOptionsType(model.modelName)) {
+    importTypes.delete(`${model.modelName}${OPTIONS_TYPE_SUFFIX}`);
+  }
 
-  return formatImportStatements(importTypes);
+  return formatImportStatements(importTypes, {
+    isModelToModelImport: true
+  }, model.modelName);
 };
 
 const getOperationArgumentsAndReturnType = operation => {
@@ -267,7 +274,8 @@ const getModelMethodArgumentsAndReturnType = (method, modelName) => {
 
   operation.pathParams.forEach(param => {
     const matchingArgument = method.arguments.find(argument => argument.dest === param.name);
-    if (matchingArgument) {
+    // path param should be added to model method arguments if its corresponding 'operation' param does not have src property set
+    if (matchingArgument && matchingArgument.src) {
       args.delete(param.name);
     }
   });
@@ -276,6 +284,7 @@ const getModelMethodArgumentsAndReturnType = (method, modelName) => {
   if (bodyModelName && bodyModelName === modelName) {
     args.delete(_.camelCase(operation.bodyModel));
   }
+
   return [args, returnType];
 };
 
@@ -314,7 +323,7 @@ const formatObjectLiteralType = typeProps => {
 
 const formatImportStatements = (importTypes, {
   isModelToModelImport = true
-} = {}) => {
+} = {}, modelName) => {
   const importStatements = [];
   importTypes.forEach(type => {
     if (type === 'Response') {
@@ -322,15 +331,16 @@ const formatImportStatements = (importTypes, {
     } else if (type === 'Collection') {
       importStatements.push(`import { Collection } from '${isModelToModelImport ? '..' : '.'}/collection';`);
     } else {
-      importStatements.push(`import { ${type} } from '${isModelToModelImport ? './' : './models/'}${type.replace(OPTIONS_TYPE_SUFFIX, '')}';`);
+      const importSource = shouldGenerateOptionsType(modelName) ? type.replace(OPTIONS_TYPE_SUFFIX, '') : type;
+      importStatements.push(`import { ${type} } from '${isModelToModelImport ? './' : './models/'}${importSource}';`);
     }
   });
   return importStatements.join('\n');
 };
 
-const convertSwaggerToTSType = swaggerType => {
+const convertSwaggerToTSType = (swaggerType, collectionElementType) => {
   return {
-    array: '[]',
+    array: `${collectionElementType}[]`,
     integer: 'number',
     double: 'number',
     hash: '{[name: string]: unknown}',
@@ -342,7 +352,8 @@ const convertSwaggerToTSType = swaggerType => {
 
 const isImportablePropertyType = (property, hostModelName) => {
   const isRestricted = isRestrictedPropertyOverride(hostModelName, property.propertyName);
-  return property.$ref && isImportableType(property.model) && !isRestricted;
+  // array properties do not have $ref specified for non-primitive model types
+  return (property.$ref || property.isArray) && isImportableType(property.model) && !isRestricted;
 };
 
 const isRestrictedPropertyOverride = (modelName, propertyName) => {

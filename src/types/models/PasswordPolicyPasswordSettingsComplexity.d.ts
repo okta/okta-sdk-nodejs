@@ -22,7 +22,7 @@ declare class PasswordPolicyPasswordSettingsComplexity extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
 
   dictionary: PasswordDictionary;
-  excludeAttributes: [];
+  excludeAttributes: string[];
   excludeUsername: boolean;
   minLength: number;
   minLowerCase: number;

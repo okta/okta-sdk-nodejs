@@ -16,7 +16,7 @@
 import { Resource } from '../resource';
 import { Client } from '../client';
 import { OptionalKnownProperties } from '../optional-known-properties-type';
-
+import { IonField } from './IonField';
 
 declare class IonForm extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
@@ -27,9 +27,9 @@ declare class IonForm extends Resource {
   name: string;
   produces: string;
   refresh: number;
-  rel: [];
-  relatesTo: [];
-  readonly value: [];
+  rel: string[];
+  relatesTo: string[];
+  readonly value: IonField[];
 
 }
 
