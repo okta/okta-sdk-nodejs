@@ -4,7 +4,6 @@ import faker = require('faker');
 import * as okta from '@okta/okta-sdk-nodejs';
 import models = require('../../src/models');
 import utils = require('../utils');
-import { Application } from '../../src/types/models/Application';
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
