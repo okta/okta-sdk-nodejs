@@ -1,0 +1,12 @@
+{{!-- The template file is not auto-generated - this banner is to be included into destination files --}}
+/* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
+
+module.exports = {
+  Client: require('./client'),
+  RequestExecutor: require('./request-executor'),
+  DefaultRequestExecutor: require('./default-request-executor'),
+  Collection: require('./collection'),
+{{#each models}}
+  {{this.modelName}}: require('./models/{{this.modelName}}'),
+{{/each}}
+};

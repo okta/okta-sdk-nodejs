@@ -1,7 +1,9 @@
 import { expect } from 'chai';
-import * as okta from '@okta/okta-sdk-nodejs';
-import models = require('../../src/models');
-import Collection = require('../../src/collection');
+import {
+  Client,
+  Collection,
+  DefaultRequestExecutor,
+  Policy } from '@okta/okta-sdk-nodejs';
 import getMockGroup = require('./mocks/group');
 import getMockOktaSignOnPolicy = require('./mocks/okta-sign-on-policy');
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
@@ -10,10 +12,10 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/policy-crud`;
 }
 
-const client = new okta.Client({
+const client = new Client({
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
-  requestExecutor: new okta.DefaultRequestExecutor()
+  requestExecutor: new DefaultRequestExecutor()
 });
 
 describe('Policy Crud API', () => {
@@ -44,7 +46,7 @@ describe('Policy Crud API', () => {
 
     it('should resolve Policy in collection', async () => {
       await client.listPolicies({ type: 'OKTA_SIGN_ON' }).each(policy => {
-        expect(policy).to.be.instanceOf(models.Policy);
+        expect(policy).to.be.instanceOf(Policy);
       });
     });
 
@@ -63,7 +65,7 @@ describe('Policy Crud API', () => {
 
     it('should return correct model', async () => {
       policy = await client.createPolicy(mockPolicy);
-      expect(policy).to.be.instanceOf(models.Policy);
+      expect(policy).to.be.instanceOf(Policy);
     });
 
     it('should return correct data with id assigned', async () => {
@@ -84,7 +86,7 @@ describe('Policy Crud API', () => {
 
     it('should get Policy by id', async () => {
       const policyFromGet = await client.getPolicy(policy.id);
-      expect(policyFromGet).to.be.instanceOf(models.Policy);
+      expect(policyFromGet).to.be.instanceOf(Policy);
       expect(policyFromGet.name).to.equal(mockPolicy.name);
     });
   });

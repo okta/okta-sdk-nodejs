@@ -1,17 +1,19 @@
 import { expect } from 'chai';
-import * as okta from '@okta/okta-sdk-nodejs';
-import models = require('../../src/models');
-import Collection = require('../../src/collection');
+import {
+  Client,
+  Collection,
+  DefaultRequestExecutor,
+  Feature } from '@okta/okta-sdk-nodejs';
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
 if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/feature-crud`;
 }
 
-const client = new okta.Client({
+const client = new Client({
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
-  requestExecutor: new okta.DefaultRequestExecutor()
+  requestExecutor: new DefaultRequestExecutor()
 });
 
 const getFirstNonBetaFeature = async () => {
@@ -33,7 +35,7 @@ describe('Feature Crud API', () => {
       const collection = await client.listFeatures();
       expect(collection).to.be.instanceOf(Collection);
       await collection.each(feature => {
-        expect(feature).to.be.instanceOf(models.Feature);
+        expect(feature).to.be.instanceOf(Feature);
       });
     });
   });
@@ -47,7 +49,7 @@ describe('Feature Crud API', () => {
     it('should get Feature by id', async () => {
       if (firstFeatureInList) {
         const feature = await client.getFeature(firstFeatureInList.id);
-        expect(feature).to.be.instanceOf(models.Feature);
+        expect(feature).to.be.instanceOf(Feature);
         expect(feature.id).to.equal(firstFeatureInList.id);
       }
     });
@@ -106,7 +108,7 @@ describe('Feature Crud API', () => {
         const collection = await firstFeatureInList.getDependencies();
         expect(collection).to.be.instanceOf(Collection);
         await collection.each(dependency => {
-          expect(dependency).to.be.instanceOf(models.Feature);
+          expect(dependency).to.be.instanceOf(Feature);
         });
       }
     });
@@ -123,7 +125,7 @@ describe('Feature Crud API', () => {
         const collection = await firstFeatureInList.getDependents();
         expect(collection).to.be.instanceOf(Collection);
         await collection.each(dependent => {
-          expect(dependent).to.be.instanceOf(models.Feature);
+          expect(dependent).to.be.instanceOf(Feature);
         });
       }
     });

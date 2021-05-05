@@ -45,6 +45,18 @@ js.process = ({spec, operations, models, handlebars}) => {
     }
   });
   templates.push({
+    src: 'index.js.hbs',
+    dest: 'src/index.js',
+    context: {models}
+  });
+
+  templates.push({
+    src: 'index.d.ts.hbs',
+    dest: 'src/types/index.d.ts',
+    context: {models}
+  });
+
+  templates.push({
     src: 'generated-client.d.ts.hbs',
     dest: 'src/types/generated-client.d.ts',
     context: {operations, spec}

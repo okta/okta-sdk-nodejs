@@ -1,7 +1,9 @@
 import { expect } from 'chai';
-import * as okta from '@okta/okta-sdk-nodejs';
-import models = require('../../src/models');
-import Collection = require('../../src/collection');
+import {
+  Client,
+  Collection,
+  DefaultRequestExecutor,
+  Policy } from '@okta/okta-sdk-nodejs';
 import getMockAuthorizationServer = require('./mocks/authorization-server');
 import getMockPolicy = require('./mocks/policy-oauth-authorization');
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
@@ -10,10 +12,10 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/authserver-policy`;
 }
 
-const client = new okta.Client({
+const client = new Client({
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
-  requestExecutor: new okta.DefaultRequestExecutor()
+  requestExecutor: new DefaultRequestExecutor()
 });
 
 describe('Authorization Server Policies API', () => {
@@ -43,7 +45,7 @@ describe('Authorization Server Policies API', () => {
       expect(policies).is.not.empty;
       const policyFindByName = policies.find(p => p.name === policy.name);
       expect(policyFindByName).to.be.exist;
-      expect(policyFindByName).to.be.instanceOf(models.Policy);
+      expect(policyFindByName).to.be.instanceOf(Policy);
     });
   });
 
@@ -72,7 +74,7 @@ describe('Authorization Server Policies API', () => {
 
     it('should get policy from auth server by id', async () => {
       const policyFromGet = await authServer.getPolicy(policy.id);
-      expect(policyFromGet).to.be.instanceOf(models.Policy);
+      expect(policyFromGet).to.be.instanceOf(Policy);
       expect(policyFromGet.id).to.equal(policy.id);
     });
   });

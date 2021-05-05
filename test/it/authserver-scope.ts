@@ -1,7 +1,9 @@
 import { expect } from 'chai';
-import * as okta from '@okta/okta-sdk-nodejs';
-import models = require('../../src/models');
-import Collection = require('../../src/collection');
+import {
+  Client,
+  Collection,
+  DefaultRequestExecutor,
+  OAuth2Scope } from '@okta/okta-sdk-nodejs';
 import getMockAuthorizationServer = require('./mocks/authorization-server');
 import mockScope = require('./mocks/scope.json');
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
@@ -10,10 +12,10 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/authserver-scope`;
 }
 
-const client = new okta.Client({
+const client = new Client({
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
-  requestExecutor: new okta.DefaultRequestExecutor()
+  requestExecutor: new DefaultRequestExecutor()
 });
 
 describe('Authorization Server Scope API', () => {
@@ -43,7 +45,7 @@ describe('Authorization Server Scope API', () => {
       expect(scopes).is.not.empty;
       const scopeFindByName = scopes.find(s => s.name === mockScope.name);
       expect(scopeFindByName).to.be.exist;
-      expect(scopeFindByName).to.be.instanceOf(models.OAuth2Scope);
+      expect(scopeFindByName).to.be.instanceOf(OAuth2Scope);
     });
   });
 
@@ -71,7 +73,7 @@ describe('Authorization Server Scope API', () => {
 
     it('should get scope from auth server by id', async () => {
       const scopeFromGet = await authServer.getOAuth2Scope(scope.id);
-      expect(scopeFromGet).to.be.instanceOf(models.OAuth2Scope);
+      expect(scopeFromGet).to.be.instanceOf(OAuth2Scope);
       expect(scopeFromGet.id).to.equal(scope.id);
     });
   });

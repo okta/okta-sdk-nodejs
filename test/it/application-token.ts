@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import * as okta from '@okta/okta-sdk-nodejs';
-import Collection = require('../../src/collection');
+import { Collection } from '@okta/okta-sdk-nodejs';
 import getMockApplication = require('./mocks/application-oidc');
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;

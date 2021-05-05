@@ -1,8 +1,10 @@
 import { expect } from 'chai';
-import * as okta from '@okta/okta-sdk-nodejs';
-import models = require('../../src/models');
+import {
+  Client,
+  Collection,
+  DefaultRequestExecutor,
+  InlineHook } from '@okta/okta-sdk-nodejs';
 import faker = require('faker');
-import Collection = require('../../src/collection');
 import getMockInlineHook = require('./mocks/inlinehook');
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -10,10 +12,10 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/inlinehook-crud`;
 }
 
-const client = new okta.Client({
+const client = new Client({
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
-  requestExecutor: new okta.DefaultRequestExecutor()
+  requestExecutor: new DefaultRequestExecutor()
 });
 
 describe('Inline Hook Crud API', () => {
@@ -27,7 +29,7 @@ describe('Inline Hook Crud API', () => {
     it('should return correct model', async () => {
       const mockInlineHook = getMockInlineHook();
       inlineHook = await client.createInlineHook(mockInlineHook);
-      expect(inlineHook).to.be.instanceOf(models.InlineHook);
+      expect(inlineHook).to.be.instanceOf(InlineHook);
       expect(inlineHook.id).to.be.exist;
       expect(inlineHook.name).to.be.equal(mockInlineHook.name);
     });
@@ -48,7 +50,7 @@ describe('Inline Hook Crud API', () => {
       expect(collection).to.be.instanceOf(Collection);
       const inlineHooks = [];
       await collection.each(ih => {
-        expect(ih).to.be.instanceOf(models.InlineHook);
+        expect(ih).to.be.instanceOf(InlineHook);
         inlineHooks.push(ih);
       });
       const inlineHookFromCollection = inlineHooks.find(ih => ih.name === inlineHook.name);
@@ -68,7 +70,7 @@ describe('Inline Hook Crud API', () => {
 
     it('should get InlineHook by id', async () => {
       const inlineHookFromGet = await client.getInlineHook(inlineHook.id);
-      expect(inlineHookFromGet).to.be.instanceOf(models.InlineHook);
+      expect(inlineHookFromGet).to.be.instanceOf(InlineHook);
       expect(inlineHookFromGet.name).to.equal(inlineHook.name);
     });
   });

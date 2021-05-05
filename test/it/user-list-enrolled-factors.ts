@@ -1,6 +1,8 @@
 import utils = require('../utils');
-import * as okta from '@okta/okta-sdk-nodejs';
-import models = require('../../src/models');
+import {
+  Client,
+  DefaultRequestExecutor,
+  SecurityQuestionUserFactor, SmsUserFactor } from '@okta/okta-sdk-nodejs';
 import { expect } from 'chai';
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -8,11 +10,11 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/user-list-enrolled-factors`;
 }
 
-const client = new okta.Client({
+const client = new Client({
   scopes: ['okta.users.manage'],
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
-  requestExecutor: new okta.DefaultRequestExecutor()
+  requestExecutor: new DefaultRequestExecutor()
 });
 
 /**
@@ -61,7 +63,7 @@ describe('User API tests', () => {
     const collection = await createdUser.listFactors();
     const factors = [];
     await collection.each(factor => factors.push(factor));
-    expect(factors[1]).to.be.instanceof(models.SmsUserFactor);
-    expect(factors[0]).to.be.instanceof(models.SecurityQuestionUserFactor);
+    expect(factors[1]).to.be.instanceof(SmsUserFactor);
+    expect(factors[0]).to.be.instanceof(SecurityQuestionUserFactor);
   });
 });

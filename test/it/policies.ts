@@ -1,7 +1,8 @@
-import { OktaSignOnPolicyRule } from '../../src/types/models/OktaSignOnPolicyRule';
 import utils = require('../utils');
-import * as okta from '@okta/okta-sdk-nodejs';
-import models = require('../../src/models');
+import {
+  Client,
+  DefaultRequestExecutor,
+  OktaSignOnPolicy, OktaSignOnPolicyRule, PasswordPolicy } from '@okta/okta-sdk-nodejs';
 import faker = require('faker');
 import { expect } from 'chai';
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
@@ -10,11 +11,11 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/policies`;
 }
 
-const client = new okta.Client({
+const client = new Client({
   scopes: ['okta.policies.manage', 'okta.groups.manage'],
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
-  requestExecutor: new okta.DefaultRequestExecutor()
+  requestExecutor: new DefaultRequestExecutor()
 });
 
 describe('Policy Scenarios', () => {
@@ -26,7 +27,7 @@ describe('Policy Scenarios', () => {
       name: `node-sdk: CreateSignOnPolicy ${faker.random.word()}`.substring(0, 49), // policy name length is limited to 50 characters
       description: 'The default policy applies in all situations if no other policy applies.',
     };
-    const oktaSignOnPolicy = new models.OktaSignOnPolicy(policy, client);
+    const oktaSignOnPolicy = new OktaSignOnPolicy(policy, client);
     const createdPolicy = await client.createPolicy(oktaSignOnPolicy);
     await client.deletePolicy(createdPolicy.id);
 
@@ -44,7 +45,7 @@ describe('Policy Scenarios', () => {
       name: `node-sdk: GetPolicy ${faker.random.word()}`.substring(0, 49),
       description: 'The default policy applies in all situations if no other policy applies.',
     };
-    const oktaSignOnPolicy = new models.OktaSignOnPolicy(policy, client);
+    const oktaSignOnPolicy = new OktaSignOnPolicy(policy, client);
     const createdPolicy = await client.createPolicy(oktaSignOnPolicy);
     const retrievedPolicy = await client.getPolicy(createdPolicy.id);
     await client.deletePolicy(createdPolicy.id);
@@ -116,10 +117,10 @@ describe('Policy Scenarios', () => {
       description: 'The default policy applies in all situations if no other policy applies.',
     };
 
-    const oktaSignOnPolicy1 = new models.OktaSignOnPolicy(policy1, client);
+    const oktaSignOnPolicy1 = new OktaSignOnPolicy(policy1, client);
     const createdPolicy1 = await client.createPolicy(oktaSignOnPolicy1);
 
-    const oktaSignOnPolicy2 = new models.PasswordPolicy(policy2, client);
+    const oktaSignOnPolicy2 = new PasswordPolicy(policy2, client);
     const createdPolicy2 = await client.createPolicy(oktaSignOnPolicy2);
 
     let signonCount = 0;
@@ -157,7 +158,7 @@ describe('Policy Scenarios', () => {
       name: `node-sdk: DeletePolicy ${faker.random.word()}`.substring(0, 49),
       description: 'The default policy applies in all situations if no other policy applies.',
     };
-    const oktaSignOnPolicy = new models.OktaSignOnPolicy(policyobj, client);
+    const oktaSignOnPolicy = new OktaSignOnPolicy(policyobj, client);
     const createdPolicy = await client.createPolicy(oktaSignOnPolicy);
     const retrievedPolicy = await client.getPolicy(createdPolicy.id);
     expect(retrievedPolicy).to.not.be.undefined;
@@ -184,7 +185,7 @@ describe('Policy Scenarios', () => {
       description: 'The default policy applies in all situations if no other policy applies.',
     };
 
-    const oktaSignOnPolicy = new models.OktaSignOnPolicy(policy, client);
+    const oktaSignOnPolicy = new OktaSignOnPolicy(policy, client);
     const createdPolicy = await client.createPolicy(oktaSignOnPolicy);
 
     createdPolicy.name = `node-sdk: Updated ${faker.random.word()}`.substring(0, 49);
@@ -205,7 +206,7 @@ describe('Policy Scenarios', () => {
       description: 'The default policy applies in all situations if no other policy applies.',
     };
 
-    const oktaSignOnPolicy = new models.OktaSignOnPolicy(policy, client);
+    const oktaSignOnPolicy = new OktaSignOnPolicy(policy, client);
     let createdPolicy = await client.createPolicy(oktaSignOnPolicy);
 
     expect(createdPolicy.status).to.be.equal('ACTIVE');
@@ -231,7 +232,7 @@ describe('Policy Scenarios', () => {
       name: `node-sdk: PolicyWithRule ${faker.random.word()}`.substring(0, 49),
       description: 'The default policy applies in all situations if no other policy applies.',
     };
-    const oktaSignOnPolicy = new models.OktaSignOnPolicy(policy, client);
+    const oktaSignOnPolicy = new OktaSignOnPolicy(policy, client);
     const createdPolicy = await client.createPolicy(oktaSignOnPolicy);
 
     const policyRuleActionSignOn = {

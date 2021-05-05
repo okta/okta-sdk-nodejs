@@ -1,6 +1,8 @@
 import utils = require('../utils');
-import * as okta from '@okta/okta-sdk-nodejs';
-import models = require('../../src/models');
+import {
+  Client,
+  DefaultRequestExecutor,
+  Session } from '@okta/okta-sdk-nodejs';
 import { expect } from 'chai';
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -8,11 +10,11 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/session-get`;
 }
 
-const client = new okta.Client({
+const client = new Client({
   scopes: ['okta.users.manage'],
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
-  requestExecutor: new okta.DefaultRequestExecutor()
+  requestExecutor: new DefaultRequestExecutor()
 });
 
 describe('Sessions API', () => {
@@ -49,6 +51,6 @@ describe('Sessions API', () => {
     // 2 - retrieve session
     const sess = await client.getSession(session.id);
 
-    expect(sess).to.be.instanceOf(models.Session);
+    expect(sess).to.be.instanceOf(Session);
   });
 });

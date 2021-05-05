@@ -1,7 +1,10 @@
 import { expect } from 'chai';
 
-import * as okta from '@okta/okta-sdk-nodejs';
-import models = require('../../src/models');
+import {
+  Client,
+  DefaultRequestExecutor,
+  JsonWebKey
+} from '@okta/okta-sdk-nodejs';
 import utils = require('../utils');
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
@@ -10,11 +13,11 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/client-get-application-key`;
 }
 
-const client = new okta.Client({
+const client = new Client({
   scopes: ['okta.clients.manage', 'okta.apps.manage'],
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
-  requestExecutor: new okta.DefaultRequestExecutor()
+  requestExecutor: new DefaultRequestExecutor()
 });
 
 describe('client.getApplicationKey()', () => {
@@ -35,7 +38,7 @@ describe('client.getApplicationKey()', () => {
       const applicationKeys = await client.listApplicationKeys(createdApplication.id);
       await applicationKeys.each(async (key) => {
         const fetchedKey = await client.getApplicationKey(createdApplication.id, key.kid);
-        expect(fetchedKey).to.be.instanceof(models.JsonWebKey);
+        expect(fetchedKey).to.be.instanceof(JsonWebKey);
         expect(fetchedKey.kid).to.equal(key.kid);
       });
     } finally {

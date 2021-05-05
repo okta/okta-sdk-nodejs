@@ -1,7 +1,9 @@
 import { expect } from 'chai';
-import * as okta from '@okta/okta-sdk-nodejs';
-import models = require('../../src/models');
-import Collection = require('../../src/collection');
+import {
+  Client,
+  Collection,
+  DefaultRequestExecutor,
+  IdentityProvider } from '@okta/okta-sdk-nodejs';
 import getMockGenericOidcIdp = require('./mocks/generic-oidc-idp');
 import getMockUser = require('./mocks/user-without-credentials');
 import utils = require('../utils');
@@ -11,10 +13,10 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/user-idp`;
 }
 
-const client = new okta.Client({
+const client = new Client({
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
-  requestExecutor: new okta.DefaultRequestExecutor()
+  requestExecutor: new DefaultRequestExecutor()
 });
 
 describe('User idp API', () => {
@@ -43,7 +45,7 @@ describe('User idp API', () => {
       const idps = await user.listIdentityProviders();
       expect(idps).to.be.instanceOf(Collection);
       await idps.each(idpFromCollection => {
-        expect(idpFromCollection).to.be.instanceOf(models.IdentityProvider);
+        expect(idpFromCollection).to.be.instanceOf(IdentityProvider);
         expect(idpFromCollection.id).to.be.equal(idp.id);
       });
     });

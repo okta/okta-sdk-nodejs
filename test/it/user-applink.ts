@@ -1,6 +1,5 @@
 import { expect } from 'chai';
-import * as okta from '@okta/okta-sdk-nodejs';
-import Collection = require('../../src/collection');
+import { Client, Collection, DefaultRequestExecutor } from '@okta/okta-sdk-nodejs';
 import utils = require('../utils');
 import getMockUser = require('./mocks/user-without-credentials');
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
@@ -9,10 +8,10 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/user-applink`;
 }
 
-const client = new okta.Client({
+const client = new Client({
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
-  requestExecutor: new okta.DefaultRequestExecutor()
+  requestExecutor: new DefaultRequestExecutor()
 });
 
 describe('User applink API', () => {

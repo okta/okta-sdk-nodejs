@@ -1,7 +1,9 @@
 import { expect } from 'chai';
-import * as okta from '@okta/okta-sdk-nodejs';
-import models = require('../../src/models');
-import Collection = require('../../src/collection');
+import {
+  Client,
+  Collection,
+  DefaultRequestExecutor,
+  Role, CatalogApplication, Group } from '@okta/okta-sdk-nodejs';
 import getMockGroup = require('./mocks/group');
 import getMockUser = require('./mocks/user-without-credentials');
 import utils = require('../utils');
@@ -11,10 +13,10 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/user-role`;
 }
 
-const client = new okta.Client({
+const client = new Client({
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
-  requestExecutor: new okta.DefaultRequestExecutor()
+  requestExecutor: new DefaultRequestExecutor()
 });
 
 describe('User role API', () => {
@@ -34,7 +36,7 @@ describe('User role API', () => {
 
     it('should assign role to user', async () => {
       role = await user.assignRole({ type: 'APP_ADMIN' });
-      expect(role).to.be.instanceOf(models.Role);
+      expect(role).to.be.instanceOf(Role);
       expect(role.id).to.be.exist;
       expect(role.type).to.equal('APP_ADMIN');
     });
@@ -65,7 +67,7 @@ describe('User role API', () => {
       const roles = await user.listAssignedRoles();
       expect(roles).to.be.instanceOf(Collection);
       await roles.each(roleFromCollection => {
-        expect(roleFromCollection).to.be.instanceOf(models.Role);
+        expect(roleFromCollection).to.be.instanceOf(Role);
         expect(roleFromCollection.id).to.be.equal(role.id);
       });
     });
@@ -101,7 +103,7 @@ describe('User role API', () => {
         const apps = await client.listApplicationTargetsForApplicationAdministratorRoleForUser(user.id, role.id);
         expect(apps).to.be.instanceOf(Collection);
         await apps.each(app => {
-          expect(app).to.be.instanceOf(models.CatalogApplication);
+          expect(app).to.be.instanceOf(CatalogApplication);
           expect(app.name).to.be.equal(application.name);
         });
       });
@@ -136,7 +138,7 @@ describe('User role API', () => {
         const groups = await client.listApplicationTargetsForApplicationAdministratorRoleForUser(user.id, role.id);
         expect(groups).to.be.instanceOf(Collection);
         await groups.each(groupFromCollection => {
-          expect(groupFromCollection).to.be.instanceOf(models.Group);
+          expect(groupFromCollection).to.be.instanceOf(Group);
           expect(groupFromCollection.id).to.be.equal(group.id);
         });
       });

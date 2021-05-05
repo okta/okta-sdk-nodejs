@@ -1,7 +1,9 @@
 import { expect } from 'chai';
-import * as okta from '@okta/okta-sdk-nodejs';
-import models = require('../../src/models');
-import Collection = require('../../src/collection');
+import {
+  Client,
+  Collection,
+  DefaultRequestExecutor,
+  OAuth2ScopeConsentGrant } from '@okta/okta-sdk-nodejs';
 import getMockApplication = require('./mocks/application-oidc');
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
@@ -10,10 +12,10 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/application-grant`;
 }
 
-const client = new okta.Client({
+const client = new Client({
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
-  requestExecutor: new okta.DefaultRequestExecutor()
+  requestExecutor: new DefaultRequestExecutor()
 });
 
 describe('Application OAuth2 grant API', () => {
@@ -33,7 +35,7 @@ describe('Application OAuth2 grant API', () => {
         issuer: client.baseUrl,
         scopeId: 'okta.users.manage'
       });
-      expect(grant).to.be.instanceOf(models.OAuth2ScopeConsentGrant);
+      expect(grant).to.be.instanceOf(OAuth2ScopeConsentGrant);
       expect(grant.issuer).to.equal(client.baseUrl);
       expect(grant.scopeId).to.equal('okta.users.manage');
     });
@@ -56,7 +58,7 @@ describe('Application OAuth2 grant API', () => {
       });
       expect(grants).to.be.instanceOf(Collection);
       await grants.each(grantFromCollection => {
-        expect(grantFromCollection).to.be.instanceOf(models.OAuth2ScopeConsentGrant);
+        expect(grantFromCollection).to.be.instanceOf(OAuth2ScopeConsentGrant);
         expect(grantFromCollection.id).to.equal(grant.id);
       });
     });
@@ -76,7 +78,7 @@ describe('Application OAuth2 grant API', () => {
     it('should get grant by id', async () => {
       const grantFromGet = await application.getScopeConsentGrant(grant.id);
       expect(grantFromGet).to.be.exist;
-      expect(grantFromGet).to.be.instanceOf(models.OAuth2ScopeConsentGrant);
+      expect(grantFromGet).to.be.instanceOf(OAuth2ScopeConsentGrant);
     });
   });
 

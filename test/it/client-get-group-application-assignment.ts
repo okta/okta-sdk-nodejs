@@ -1,8 +1,10 @@
 import { expect } from 'chai';
 import faker = require('faker');
 
-import * as okta from '@okta/okta-sdk-nodejs';
-import models = require('../../src/models');
+import {
+  Client,
+  DefaultRequestExecutor,
+  ApplicationGroupAssignment } from '@okta/okta-sdk-nodejs';
 import utils = require('../utils');
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
@@ -11,11 +13,11 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/client-get-application-group-assignment`;
 }
 
-const client = new okta.Client({
+const client = new Client({
   scopes: ['okta.clients.manage', 'okta.apps.manage', 'okta.groups.manage'],
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
-  requestExecutor: new okta.DefaultRequestExecutor()
+  requestExecutor: new DefaultRequestExecutor()
 });
 
 describe('client.getApplicationGroupAssignment()', () => {
@@ -39,7 +41,7 @@ describe('client.getApplicationGroupAssignment()', () => {
       createdGroup = await client.createGroup(group);
       await client.createApplicationGroupAssignment(createdApplication.id, createdGroup.id, {});
       const assignment = await client.getApplicationGroupAssignment(createdApplication.id, createdGroup.id);
-      expect(assignment).to.be.instanceof(models.ApplicationGroupAssignment);
+      expect(assignment).to.be.instanceof(ApplicationGroupAssignment);
       const appLink = assignment._links.app as Record<string, string>;
       const groupLink = assignment._links.group as Record<string, string>;
       expect(appLink.href).to.contain(createdApplication.id);

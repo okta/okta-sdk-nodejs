@@ -1,7 +1,9 @@
 import { expect } from 'chai';
-import * as okta from '@okta/okta-sdk-nodejs';
-import models = require('../../src/models');
-import Collection = require('../../src/collection');
+import {
+  Client,
+  Collection,
+  DefaultRequestExecutor,
+  IdentityProviderApplicationUser } from '@okta/okta-sdk-nodejs';
 import getMockGenericOidcIdp = require('./mocks/generic-oidc-idp');
 import getMockUser = require('./mocks/user-without-credentials');
 import utils = require('../utils');
@@ -11,10 +13,10 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/idp-user`;
 }
 
-const client = new okta.Client({
+const client = new Client({
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
-  requestExecutor: new okta.DefaultRequestExecutor()
+  requestExecutor: new DefaultRequestExecutor()
 });
 
 describe('Idp User API', () => {
@@ -46,7 +48,7 @@ describe('Idp User API', () => {
 
     it('should resolve IdentityProviderApplicationUser in collection', async () => {
       await idp.listUsers().each(user => {
-        expect(user).to.be.instanceOf(models.IdentityProviderApplicationUser);
+        expect(user).to.be.instanceOf(IdentityProviderApplicationUser);
       });
     });
   });
@@ -62,7 +64,7 @@ describe('Idp User API', () => {
 
     it('should return linked user as instanceof IdentityProviderApplicationUser', async () => {
       const idpUser = await idp.getUser(user.id);
-      expect(idpUser).to.be.instanceOf(models.IdentityProviderApplicationUser);
+      expect(idpUser).to.be.instanceOf(IdentityProviderApplicationUser);
     });
 
     it('should link to idp', async () => {
