@@ -1,4 +1,7 @@
 {
+  "parserOptions": {
+    "ecmaVersion": 9
+  },
   "globals": {
     "jest/globals": true
   },

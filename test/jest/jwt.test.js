@@ -95,5 +95,36 @@ describe('JWT', () => {
           return verifyJWT(jwt, endpoint);
         });
     });
+    it('sets JWK\'s \'kid\' value into JWT header', () => {
+      client.privateKey = {
+        ...JWK,
+        kid: 'keyId'
+      };
+      const endpoint = '/oauth2/v1/token';
+      return JWT.makeJwt(client, endpoint)
+        .then(jwt => {
+          return Promise.resolve().then(() => {
+            expect(jwt.header).toEqual({
+              alg: 'RS256',
+              kid: 'keyId',
+              typ: 'JWT'
+            });
+          });
+        });
+    });
+
+    it('does not set \'kid\' JWT header if \'kid\' was not specified in JWK', () => {
+      client.privateKey = JWK;
+      const endpoint = '/oauth2/v1/token';
+      return JWT.makeJwt(client, endpoint)
+        .then(jwt => {
+          return Promise.resolve().then(() => {
+            expect(jwt.header).toEqual({
+              alg: 'RS256',
+              typ: 'JWT'
+            });
+          });
+        });
+    });
   });
 });
