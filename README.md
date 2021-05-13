@@ -59,6 +59,7 @@ The `privateKey` can be passed in the following ways:
 - A string in PEM format
 - As a JSON object, in JWK format
 
+> Note: in case OAuth client app uses multiple JWKs, `privateKey` should specify `kid` attribute.
 
 ## Table of Contents
 

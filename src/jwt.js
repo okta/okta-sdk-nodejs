@@ -61,7 +61,9 @@ function makeJwt(client, endpoint) {
         .setExpiration(plus5Minutes)
         .setIssuer(client.clientId)
         .setSubject(client.clientId);
-
+      if (jwk.kid) {
+        jwt = jwt.setHeader('kid', jwk.kid);
+      }
       // JWT object is returned. It needs to be compacted with jwt.compact() before it can be used
       return jwt;
     });
