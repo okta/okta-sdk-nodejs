@@ -1,5 +1,15 @@
 # Okta Node SDK Changelog
 
+## 4.6.0
+
+### Features
+
+- [#237](https://github.com/okta/okta-sdk-nodejs/pull/237) Exposes models and type declarations through library root
+
+### Bug Fixes
+
+- [#247](https://github.com/okta/okta-sdk-nodejs/pull/247) Fixes OAuth flow error for apps using multiple JWKs
+
 ## 4.5.0
 
 ### Features
