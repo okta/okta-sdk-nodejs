@@ -44,11 +44,6 @@ js.process = ({spec, operations, models, handlebars}) => {
       }
     }
   });
-  templates.push({
-    src: 'index.js.hbs',
-    dest: 'src/index.js',
-    context: {models}
-  });
 
   templates.push({
     src: 'index.d.ts.hbs',
