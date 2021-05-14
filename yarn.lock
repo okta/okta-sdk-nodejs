@@ -737,6 +737,11 @@
   resolved "https://registry.yarnpkg.com/@types/prettier/-/prettier-2.1.5.tgz#b6ab3bba29e16b821d84e09ecfaded462b816b00"
   integrity sha512-UEyp8LwZ4Dg30kVU2Q3amHHyTn1jEdhCIE59ANed76GaT1Vp76DD3ZWSAxgCrw6wJ0TqeoBpqmfUHiUDPs//HQ==
 
+"@types/rasha@^1.2.2":
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/@types/rasha/-/rasha-1.2.2.tgz#0bfa31445171c526d59975bbf5eb324052423dfa"
+  integrity sha512-HPDx1mLHba3lYCmxZS+Q01UuN91VPtWY8mA1Zw/ZJAyha1nlDkZ0G6mlKN1hFvg5okrweYNao10IRp47oe4EBQ==
+
 "@types/stack-utils@^2.0.0":
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/@types/stack-utils/-/stack-utils-2.0.0.tgz#7036640b4e21cc2f259ae826ce843d277dad8cff"

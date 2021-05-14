@@ -9,10 +9,12 @@
  *
  * See the License for the specific language governing permissions and limitations under the License.
  */
+
+import * as Rasha from 'rasha';
 import { Client } from './client';
 
 export declare class Jwt {
-  constructor(claims: Record<string, string>, enforceDefaultFields: boolean);
+  constructor(claims: Record<string, unknown>, enforceDefaultFields: boolean);
 
   compact(): string;
   isExpired(): boolean;
@@ -33,4 +35,8 @@ export declare class Jwt {
 }
 
 export function makeJwt(client: Client, endpoint: string): Jwt;
-export function getPemAndJwk(privateKey: string | Record<string, unknown>): {jwk: Record<string, string>, pem: string};
+export function getPemAndJwk(privateKey: string | Record<string, unknown>): Promise<{
+  pem: string,
+  jwk: Rasha.Jwk | Record<string, unknown>
+}>;
+
