@@ -146,7 +146,7 @@ export declare class GeneratedApiClient {
   getApplicationGroupAssignment(appId: string, groupId: string, queryParameters?: {
     expand?: string,
   }): Promise<ApplicationGroupAssignment>;
-  createApplicationGroupAssignment(appId: string, groupId: string, applicationGroupAssignment: ApplicationGroupAssignmentOptions): Promise<ApplicationGroupAssignment>;
+  createApplicationGroupAssignment(appId: string, groupId: string, applicationGroupAssignment?: ApplicationGroupAssignmentOptions): Promise<ApplicationGroupAssignment>;
   activateApplication(appId: string): Promise<Response>;
   deactivateApplication(appId: string): Promise<Response>;
   revokeOAuth2TokensForApplication(appId: string): Promise<Response>;
@@ -478,9 +478,9 @@ export declare class GeneratedApiClient {
   listSupportedSecurityQuestions(userId: string): Collection<SecurityQuestion>;
   deleteFactor(userId: string, factorId: string): Promise<Response>;
   getFactor(userId: string, factorId: string): Promise<UserFactor>;
-  activateFactor(userId: string, factorId: string, activateFactorRequest: ActivateFactorRequestOptions): Promise<UserFactor>;
+  activateFactor(userId: string, factorId: string, activateFactorRequest?: ActivateFactorRequestOptions): Promise<UserFactor>;
   getFactorTransactionStatus(userId: string, factorId: string, transactionId: string): Promise<VerifyUserFactorResponse>;
-  verifyFactor(userId: string, factorId: string, verifyFactorRequest: VerifyFactorRequestOptions, queryParameters?: {
+  verifyFactor(userId: string, factorId: string, verifyFactorRequest?: VerifyFactorRequestOptions, queryParameters?: {
     templateId?: string,
     tokenLifetimeSeconds?: number,
   }): Promise<VerifyUserFactorResponse>;

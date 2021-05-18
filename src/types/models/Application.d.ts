@@ -71,7 +71,7 @@ declare class Application extends Resource {
   getApplicationUser(userId: string, queryParameters?: {
     expand?: string,
   }): Promise<AppUser>;
-  createApplicationGroupAssignment(groupId: string, applicationGroupAssignment: ApplicationGroupAssignmentOptions): Promise<ApplicationGroupAssignment>;
+  createApplicationGroupAssignment(groupId: string, applicationGroupAssignment?: ApplicationGroupAssignmentOptions): Promise<ApplicationGroupAssignment>;
   getApplicationGroupAssignment(groupId: string, queryParameters?: {
     expand?: string,
   }): Promise<ApplicationGroupAssignment>;

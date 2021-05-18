@@ -21,8 +21,8 @@ class GeneratedApiClient {
    */
   {{operationId}}({{operationArgumentBuilder this}}) {
     {{#each (getRequiredOperationParams this)}}
-    if (!{{name}}) {
-      return Promise.reject(new Error('OKTA API {{../operationId}} parameter {{name}} is required.'));
+    if (!{{this}}) {
+      return Promise.reject(new Error('OKTA API {{../operationId}} parameter {{this}} is required.'));
     }
     {{/each}}
     let url = `${this.baseUrl}{{replacePathParams path}}`;

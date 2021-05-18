@@ -200,6 +200,9 @@ class GeneratedApiClient {
     if (!appId) {
       return Promise.reject(new Error('OKTA API generateCsrForApplication parameter appId is required.'));
     }
+    if (!csrMetadata) {
+      return Promise.reject(new Error('OKTA API generateCsrForApplication parameter csrMetadata is required.'));
+    }
     let url = `${this.baseUrl}/api/v1/apps/${appId}/credentials/csrs`;
 
     const resources = [
@@ -285,14 +288,14 @@ class GeneratedApiClient {
    * @returns {Promise<JsonWebKey>}
    */
   publishCerCert(appId, csrId, certificate) {
-    if (!certificate) {
-      return Promise.reject(new Error('OKTA API publishCerCert parameter certificate is required.'));
-    }
     if (!appId) {
       return Promise.reject(new Error('OKTA API publishCerCert parameter appId is required.'));
     }
     if (!csrId) {
       return Promise.reject(new Error('OKTA API publishCerCert parameter csrId is required.'));
+    }
+    if (!certificate) {
+      return Promise.reject(new Error('OKTA API publishCerCert parameter certificate is required.'));
     }
     let url = `${this.baseUrl}/api/v1/apps/${appId}/credentials/csrs/${csrId}/lifecycle/publish`;
 
@@ -324,14 +327,14 @@ class GeneratedApiClient {
    * @returns {Promise<JsonWebKey>}
    */
   publishBinaryCerCert(appId, csrId, certificate) {
-    if (!certificate) {
-      return Promise.reject(new Error('OKTA API publishBinaryCerCert parameter certificate is required.'));
-    }
     if (!appId) {
       return Promise.reject(new Error('OKTA API publishBinaryCerCert parameter appId is required.'));
     }
     if (!csrId) {
       return Promise.reject(new Error('OKTA API publishBinaryCerCert parameter csrId is required.'));
+    }
+    if (!certificate) {
+      return Promise.reject(new Error('OKTA API publishBinaryCerCert parameter certificate is required.'));
     }
     let url = `${this.baseUrl}/api/v1/apps/${appId}/credentials/csrs/${csrId}/lifecycle/publish`;
 
@@ -363,14 +366,14 @@ class GeneratedApiClient {
    * @returns {Promise<JsonWebKey>}
    */
   publishDerCert(appId, csrId, certificate) {
-    if (!certificate) {
-      return Promise.reject(new Error('OKTA API publishDerCert parameter certificate is required.'));
-    }
     if (!appId) {
       return Promise.reject(new Error('OKTA API publishDerCert parameter appId is required.'));
     }
     if (!csrId) {
       return Promise.reject(new Error('OKTA API publishDerCert parameter csrId is required.'));
+    }
+    if (!certificate) {
+      return Promise.reject(new Error('OKTA API publishDerCert parameter certificate is required.'));
     }
     let url = `${this.baseUrl}/api/v1/apps/${appId}/credentials/csrs/${csrId}/lifecycle/publish`;
 
@@ -402,14 +405,14 @@ class GeneratedApiClient {
    * @returns {Promise<JsonWebKey>}
    */
   publishBinaryDerCert(appId, csrId, certificate) {
-    if (!certificate) {
-      return Promise.reject(new Error('OKTA API publishBinaryDerCert parameter certificate is required.'));
-    }
     if (!appId) {
       return Promise.reject(new Error('OKTA API publishBinaryDerCert parameter appId is required.'));
     }
     if (!csrId) {
       return Promise.reject(new Error('OKTA API publishBinaryDerCert parameter csrId is required.'));
+    }
+    if (!certificate) {
+      return Promise.reject(new Error('OKTA API publishBinaryDerCert parameter certificate is required.'));
     }
     let url = `${this.baseUrl}/api/v1/apps/${appId}/credentials/csrs/${csrId}/lifecycle/publish`;
 
@@ -441,14 +444,14 @@ class GeneratedApiClient {
    * @returns {Promise<JsonWebKey>}
    */
   publishBinaryPemCert(appId, csrId, certificate) {
-    if (!certificate) {
-      return Promise.reject(new Error('OKTA API publishBinaryPemCert parameter certificate is required.'));
-    }
     if (!appId) {
       return Promise.reject(new Error('OKTA API publishBinaryPemCert parameter appId is required.'));
     }
     if (!csrId) {
       return Promise.reject(new Error('OKTA API publishBinaryPemCert parameter csrId is required.'));
+    }
+    if (!certificate) {
+      return Promise.reject(new Error('OKTA API publishBinaryPemCert parameter certificate is required.'));
     }
     let url = `${this.baseUrl}/api/v1/apps/${appId}/credentials/csrs/${csrId}/lifecycle/publish`;
 
@@ -566,6 +569,9 @@ class GeneratedApiClient {
     }
     if (!keyId) {
       return Promise.reject(new Error('OKTA API cloneApplicationKey parameter keyId is required.'));
+    }
+    if (!queryParameters) {
+      return Promise.reject(new Error('OKTA API cloneApplicationKey parameter queryParameters is required.'));
     }
     let url = `${this.baseUrl}/api/v1/apps/${appId}/credentials/keys/${keyId}/clone`;
     const queryString = qs.stringify(queryParameters || {});
@@ -1625,6 +1631,9 @@ class GeneratedApiClient {
   rotateAuthorizationServerKeys(authServerId, jwkUse) {
     if (!authServerId) {
       return Promise.reject(new Error('OKTA API rotateAuthorizationServerKeys parameter authServerId is required.'));
+    }
+    if (!jwkUse) {
+      return Promise.reject(new Error('OKTA API rotateAuthorizationServerKeys parameter jwkUse is required.'));
     }
     let url = `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/credentials/lifecycle/keyRotate`;
 
@@ -2686,11 +2695,11 @@ class GeneratedApiClient {
    * @returns {Promise<Role>}
    */
   assignRoleToGroup(groupId, assignRoleRequest, queryParameters) {
-    if (!assignRoleRequest) {
-      return Promise.reject(new Error('OKTA API assignRoleToGroup parameter assignRoleRequest is required.'));
-    }
     if (!groupId) {
       return Promise.reject(new Error('OKTA API assignRoleToGroup parameter groupId is required.'));
+    }
+    if (!assignRoleRequest) {
+      return Promise.reject(new Error('OKTA API assignRoleToGroup parameter assignRoleRequest is required.'));
     }
     let url = `${this.baseUrl}/api/v1/groups/${groupId}/roles`;
     const queryString = qs.stringify(queryParameters || {});
@@ -3401,6 +3410,9 @@ class GeneratedApiClient {
     if (!idpId) {
       return Promise.reject(new Error('OKTA API generateCsrForIdentityProvider parameter idpId is required.'));
     }
+    if (!csrMetadata) {
+      return Promise.reject(new Error('OKTA API generateCsrForIdentityProvider parameter csrMetadata is required.'));
+    }
     let url = `${this.baseUrl}/api/v1/idps/${idpId}/credentials/csrs`;
 
     const resources = [
@@ -3486,14 +3498,14 @@ class GeneratedApiClient {
    * @returns {Promise<JsonWebKey>}
    */
   publishCerCertForIdentityProvider(idpId, csrId, certificate) {
-    if (!certificate) {
-      return Promise.reject(new Error('OKTA API publishCerCertForIdentityProvider parameter certificate is required.'));
-    }
     if (!idpId) {
       return Promise.reject(new Error('OKTA API publishCerCertForIdentityProvider parameter idpId is required.'));
     }
     if (!csrId) {
       return Promise.reject(new Error('OKTA API publishCerCertForIdentityProvider parameter csrId is required.'));
+    }
+    if (!certificate) {
+      return Promise.reject(new Error('OKTA API publishCerCertForIdentityProvider parameter certificate is required.'));
     }
     let url = `${this.baseUrl}/api/v1/idps/${idpId}/credentials/csrs/${csrId}/lifecycle/publish`;
 
@@ -3525,14 +3537,14 @@ class GeneratedApiClient {
    * @returns {Promise<JsonWebKey>}
    */
   publishBinaryCerCertForIdentityProvider(idpId, csrId, certificate) {
-    if (!certificate) {
-      return Promise.reject(new Error('OKTA API publishBinaryCerCertForIdentityProvider parameter certificate is required.'));
-    }
     if (!idpId) {
       return Promise.reject(new Error('OKTA API publishBinaryCerCertForIdentityProvider parameter idpId is required.'));
     }
     if (!csrId) {
       return Promise.reject(new Error('OKTA API publishBinaryCerCertForIdentityProvider parameter csrId is required.'));
+    }
+    if (!certificate) {
+      return Promise.reject(new Error('OKTA API publishBinaryCerCertForIdentityProvider parameter certificate is required.'));
     }
     let url = `${this.baseUrl}/api/v1/idps/${idpId}/credentials/csrs/${csrId}/lifecycle/publish`;
 
@@ -3564,14 +3576,14 @@ class GeneratedApiClient {
    * @returns {Promise<JsonWebKey>}
    */
   publishDerCertForIdentityProvider(idpId, csrId, certificate) {
-    if (!certificate) {
-      return Promise.reject(new Error('OKTA API publishDerCertForIdentityProvider parameter certificate is required.'));
-    }
     if (!idpId) {
       return Promise.reject(new Error('OKTA API publishDerCertForIdentityProvider parameter idpId is required.'));
     }
     if (!csrId) {
       return Promise.reject(new Error('OKTA API publishDerCertForIdentityProvider parameter csrId is required.'));
+    }
+    if (!certificate) {
+      return Promise.reject(new Error('OKTA API publishDerCertForIdentityProvider parameter certificate is required.'));
     }
     let url = `${this.baseUrl}/api/v1/idps/${idpId}/credentials/csrs/${csrId}/lifecycle/publish`;
 
@@ -3603,14 +3615,14 @@ class GeneratedApiClient {
    * @returns {Promise<JsonWebKey>}
    */
   publishBinaryDerCertForIdentityProvider(idpId, csrId, certificate) {
-    if (!certificate) {
-      return Promise.reject(new Error('OKTA API publishBinaryDerCertForIdentityProvider parameter certificate is required.'));
-    }
     if (!idpId) {
       return Promise.reject(new Error('OKTA API publishBinaryDerCertForIdentityProvider parameter idpId is required.'));
     }
     if (!csrId) {
       return Promise.reject(new Error('OKTA API publishBinaryDerCertForIdentityProvider parameter csrId is required.'));
+    }
+    if (!certificate) {
+      return Promise.reject(new Error('OKTA API publishBinaryDerCertForIdentityProvider parameter certificate is required.'));
     }
     let url = `${this.baseUrl}/api/v1/idps/${idpId}/credentials/csrs/${csrId}/lifecycle/publish`;
 
@@ -3642,14 +3654,14 @@ class GeneratedApiClient {
    * @returns {Promise<JsonWebKey>}
    */
   publishBinaryPemCertForIdentityProvider(idpId, csrId, certificate) {
-    if (!certificate) {
-      return Promise.reject(new Error('OKTA API publishBinaryPemCertForIdentityProvider parameter certificate is required.'));
-    }
     if (!idpId) {
       return Promise.reject(new Error('OKTA API publishBinaryPemCertForIdentityProvider parameter idpId is required.'));
     }
     if (!csrId) {
       return Promise.reject(new Error('OKTA API publishBinaryPemCertForIdentityProvider parameter csrId is required.'));
+    }
+    if (!certificate) {
+      return Promise.reject(new Error('OKTA API publishBinaryPemCertForIdentityProvider parameter certificate is required.'));
     }
     let url = `${this.baseUrl}/api/v1/idps/${idpId}/credentials/csrs/${csrId}/lifecycle/publish`;
 
@@ -3703,6 +3715,9 @@ class GeneratedApiClient {
   generateIdentityProviderSigningKey(idpId, queryParameters) {
     if (!idpId) {
       return Promise.reject(new Error('OKTA API generateIdentityProviderSigningKey parameter idpId is required.'));
+    }
+    if (!queryParameters) {
+      return Promise.reject(new Error('OKTA API generateIdentityProviderSigningKey parameter queryParameters is required.'));
     }
     let url = `${this.baseUrl}/api/v1/idps/${idpId}/credentials/keys/generate`;
     const queryString = qs.stringify(queryParameters || {});
@@ -3767,6 +3782,9 @@ class GeneratedApiClient {
     }
     if (!keyId) {
       return Promise.reject(new Error('OKTA API cloneIdentityProviderKey parameter keyId is required.'));
+    }
+    if (!queryParameters) {
+      return Promise.reject(new Error('OKTA API cloneIdentityProviderKey parameter queryParameters is required.'));
     }
     let url = `${this.baseUrl}/api/v1/idps/${idpId}/credentials/keys/${keyId}/clone`;
     const queryString = qs.stringify(queryParameters || {});
@@ -4112,6 +4130,9 @@ class GeneratedApiClient {
   executeInlineHook(inlineHookId, inlineHookPayload) {
     if (!inlineHookId) {
       return Promise.reject(new Error('OKTA API executeInlineHook parameter inlineHookId is required.'));
+    }
+    if (!inlineHookPayload) {
+      return Promise.reject(new Error('OKTA API executeInlineHook parameter inlineHookPayload is required.'));
     }
     let url = `${this.baseUrl}/api/v1/inlineHooks/${inlineHookId}/execute`;
 
@@ -4459,6 +4480,9 @@ class GeneratedApiClient {
    * @returns {Promise<Collection>} A collection that will yield {@link Policy} instances.
    */
   listPolicies(queryParameters) {
+    if (!queryParameters) {
+      return Promise.reject(new Error('OKTA API listPolicies parameter queryParameters is required.'));
+    }
     let url = `${this.baseUrl}/api/v1/policies`;
     const queryString = qs.stringify(queryParameters || {});
 
@@ -4564,11 +4588,11 @@ class GeneratedApiClient {
    * @returns {Promise<Policy>}
    */
   updatePolicy(policyId, policy) {
-    if (!policy) {
-      return Promise.reject(new Error('OKTA API updatePolicy parameter policy is required.'));
-    }
     if (!policyId) {
       return Promise.reject(new Error('OKTA API updatePolicy parameter policyId is required.'));
+    }
+    if (!policy) {
+      return Promise.reject(new Error('OKTA API updatePolicy parameter policy is required.'));
     }
     let url = `${this.baseUrl}/api/v1/policies/${policyId}`;
 
@@ -5328,6 +5352,9 @@ class GeneratedApiClient {
    * @returns {Promise<User>}
    */
   createUser(createUserRequest, queryParameters) {
+    if (!createUserRequest) {
+      return Promise.reject(new Error('OKTA API createUser parameter createUserRequest is required.'));
+    }
     let url = `${this.baseUrl}/api/v1/users`;
     const queryString = qs.stringify(queryParameters || {});
 
@@ -5448,11 +5475,11 @@ class GeneratedApiClient {
    * @returns {Promise<User>}
    */
   partialUpdateUser(userId, user, queryParameters) {
-    if (!user) {
-      return Promise.reject(new Error('OKTA API partialUpdateUser parameter user is required.'));
-    }
     if (!userId) {
       return Promise.reject(new Error('OKTA API partialUpdateUser parameter userId is required.'));
+    }
+    if (!user) {
+      return Promise.reject(new Error('OKTA API partialUpdateUser parameter user is required.'));
     }
     let url = `${this.baseUrl}/api/v1/users/${userId}`;
     const queryString = qs.stringify(queryParameters || {});
@@ -5484,11 +5511,11 @@ class GeneratedApiClient {
    * @returns {Promise<User>}
    */
   updateUser(userId, user, queryParameters) {
-    if (!user) {
-      return Promise.reject(new Error('OKTA API updateUser parameter user is required.'));
-    }
     if (!userId) {
       return Promise.reject(new Error('OKTA API updateUser parameter userId is required.'));
+    }
+    if (!user) {
+      return Promise.reject(new Error('OKTA API updateUser parameter user is required.'));
     }
     let url = `${this.baseUrl}/api/v1/users/${userId}`;
     const queryString = qs.stringify(queryParameters || {});
@@ -5756,11 +5783,11 @@ class GeneratedApiClient {
    * @returns {Promise<UserCredentials>}
    */
   changePassword(userId, changePasswordRequest, queryParameters) {
-    if (!changePasswordRequest) {
-      return Promise.reject(new Error('OKTA API changePassword parameter changePasswordRequest is required.'));
-    }
     if (!userId) {
       return Promise.reject(new Error('OKTA API changePassword parameter userId is required.'));
+    }
+    if (!changePasswordRequest) {
+      return Promise.reject(new Error('OKTA API changePassword parameter changePasswordRequest is required.'));
     }
     let url = `${this.baseUrl}/api/v1/users/${userId}/credentials/change_password`;
     const queryString = qs.stringify(queryParameters || {});
@@ -5790,11 +5817,11 @@ class GeneratedApiClient {
    * @returns {Promise<UserCredentials>}
    */
   changeRecoveryQuestion(userId, userCredentials) {
-    if (!userCredentials) {
-      return Promise.reject(new Error('OKTA API changeRecoveryQuestion parameter userCredentials is required.'));
-    }
     if (!userId) {
       return Promise.reject(new Error('OKTA API changeRecoveryQuestion parameter userId is required.'));
+    }
+    if (!userCredentials) {
+      return Promise.reject(new Error('OKTA API changeRecoveryQuestion parameter userCredentials is required.'));
     }
     let url = `${this.baseUrl}/api/v1/users/${userId}/credentials/change_recovery_question`;
 
@@ -5856,6 +5883,9 @@ class GeneratedApiClient {
     if (!userId) {
       return Promise.reject(new Error('OKTA API forgotPasswordSetNewPassword parameter userId is required.'));
     }
+    if (!userCredentials) {
+      return Promise.reject(new Error('OKTA API forgotPasswordSetNewPassword parameter userCredentials is required.'));
+    }
     let url = `${this.baseUrl}/api/v1/users/${userId}/credentials/forgot_password`;
     const queryString = qs.stringify(queryParameters || {});
 
@@ -5911,6 +5941,9 @@ class GeneratedApiClient {
   enrollFactor(userId, userFactor, queryParameters) {
     if (!userId) {
       return Promise.reject(new Error('OKTA API enrollFactor parameter userId is required.'));
+    }
+    if (!userFactor) {
+      return Promise.reject(new Error('OKTA API enrollFactor parameter userFactor is required.'));
     }
     let url = `${this.baseUrl}/api/v1/users/${userId}/factors`;
     const queryString = qs.stringify(queryParameters || {});
@@ -6306,6 +6339,9 @@ class GeneratedApiClient {
     if (!userId) {
       return Promise.reject(new Error('OKTA API activateUser parameter userId is required.'));
     }
+    if (!queryParameters) {
+      return Promise.reject(new Error('OKTA API activateUser parameter queryParameters is required.'));
+    }
     let url = `${this.baseUrl}/api/v1/users/${userId}/lifecycle/activate`;
     const queryString = qs.stringify(queryParameters || {});
 
@@ -6476,6 +6512,9 @@ class GeneratedApiClient {
   resetPassword(userId, queryParameters) {
     if (!userId) {
       return Promise.reject(new Error('OKTA API resetPassword parameter userId is required.'));
+    }
+    if (!queryParameters) {
+      return Promise.reject(new Error('OKTA API resetPassword parameter queryParameters is required.'));
     }
     let url = `${this.baseUrl}/api/v1/users/${userId}/lifecycle/reset_password`;
     const queryString = qs.stringify(queryParameters || {});
@@ -6673,11 +6712,11 @@ class GeneratedApiClient {
    * @returns {Promise<Role>}
    */
   assignRoleToUser(userId, assignRoleRequest, queryParameters) {
-    if (!assignRoleRequest) {
-      return Promise.reject(new Error('OKTA API assignRoleToUser parameter assignRoleRequest is required.'));
-    }
     if (!userId) {
       return Promise.reject(new Error('OKTA API assignRoleToUser parameter userId is required.'));
+    }
+    if (!assignRoleRequest) {
+      return Promise.reject(new Error('OKTA API assignRoleToUser parameter assignRoleRequest is required.'));
     }
     let url = `${this.baseUrl}/api/v1/users/${userId}/roles`;
     const queryString = qs.stringify(queryParameters || {});

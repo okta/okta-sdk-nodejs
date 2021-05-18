@@ -44,37 +44,46 @@ const getBodyModelName = operation => {
 const getBodyModelNameInCamelCase = operation => _.camelCase(getBodyModelName(operation));
 
 const getOperationArgument = operation => {
-  const { bodyModel, method, pathParams, queryParams } = operation;
+  const { bodyModel, method, pathParams, queryParams, parameters } = operation;
 
-  const args = pathParams.reduce((acc, curr) => {
+  const requiredArgs = pathParams.reduce((acc, curr) => {
     acc.push(curr.name);
     return acc;
   }, []);
+  const optionalArgs = [];
 
   if ((method === 'post' || method === 'put') && bodyModel) {
     const bodyModelName = getBodyModelNameInCamelCase(operation);
     if (bodyModelName) {
-      args.push(bodyModelName);
+      if (hasRequiredParameter(parameters, 'body')) {
+        requiredArgs.push(bodyModelName);
+      } else {
+        optionalArgs.push(bodyModelName);
+      }
     }
   }
 
   if (queryParams.length) {
-    args.push('queryParameters');
+    if (hasRequiredParameter(parameters, 'query')) {
+      requiredArgs.push('queryParameters');
+    } else {
+      optionalArgs.push('queryParameters');
+    }
   }
 
-  return args;
+  return [requiredArgs, optionalArgs];
 };
 
+const hasRequiredParameter = (parameters, parameterMedia) =>
+  parameters.find(({in: paramMedia, required}) => paramMedia === parameterMedia && required);
+
 const operationArgumentBuilder = (operation) => {
-  const args = getOperationArgument(operation);
-  return args.join(', ');
+  const [requiredArgs, optionalArgs] = getOperationArgument(operation);
+  return requiredArgs.concat(optionalArgs).join(', ');
 };
 
 const getRequiredOperationParams = operation => {
-  const args = getOperationArgument(operation);
-  return operation.parameters.filter(({ name, required }) => {
-    return args.includes(name) && required;
-  });
+  return getOperationArgument(operation).shift();
 };
 
 const getHttpMethod = ({ consumes, produces, method, responseModel }) => {
@@ -227,7 +236,7 @@ const typeScriptModelImportBuilder = model => {
 };
 
 const getOperationArgumentsAndReturnType = operation => {
-  const { bodyModel, method, pathParams, queryParams } = operation;
+  const { bodyModel, method, pathParams, queryParams, parameters } = operation;
   const args = new Map();
 
   pathParams.forEach(pathParam => {
@@ -243,16 +252,15 @@ const getOperationArgumentsAndReturnType = operation => {
       const modelPropertiesType = operation.bodyModel === 'string' ?
         operation.bodyModel :  `${operation.bodyModel}${OPTIONS_TYPE_SUFFIX}`;
       args.set(_.camelCase(bodyParamName), {
-        isRequired: true,
+        isRequired: hasRequiredParameter(parameters, 'body'),
         type: modelPropertiesType,
       });
     }
   }
 
   if (queryParams.length) {
-    const isRequired = queryParams.reduce((acc, param) => acc || param.required, false);
     args.set('queryParameters', {
-      isRequired,
+      isRequired: hasRequiredParameter(parameters, 'query'),
       type: queryParams,
     });
   }
