@@ -14,7 +14,7 @@
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
 var Resource = require('../resource');
-
+const InlineHookResponseCommands = require('./InlineHookResponseCommands');
 
 /**
  * @class InlineHookResponse
@@ -24,7 +24,9 @@ var Resource = require('../resource');
 class InlineHookResponse extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-
+    if (resourceJson && resourceJson.commands) {
+      this.commands = resourceJson.commands.map(resourceItem => new InlineHookResponseCommands(resourceItem));
+    }
   }
 
 }

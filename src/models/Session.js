@@ -14,6 +14,7 @@
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
 var Resource = require('../resource');
+const SessionAuthenticationMethod = require('./SessionAuthenticationMethod');
 const SessionIdentityProvider = require('./SessionIdentityProvider');
 
 /**
@@ -34,6 +35,9 @@ const SessionIdentityProvider = require('./SessionIdentityProvider');
 class Session extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
+    if (resourceJson && resourceJson.amr) {
+      this.amr = resourceJson.amr.map(resourceItem => new SessionAuthenticationMethod(resourceItem));
+    }
     if (resourceJson && resourceJson.idp) {
       this.idp = new SessionIdentityProvider(resourceJson.idp);
     }

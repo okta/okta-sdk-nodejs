@@ -14,7 +14,7 @@
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
 var Resource = require('../resource');
-
+const JsonWebKey = require('./JsonWebKey');
 
 /**
  * @class OpenIdConnectApplicationSettingsClientKeys
@@ -24,7 +24,9 @@ var Resource = require('../resource');
 class OpenIdConnectApplicationSettingsClientKeys extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-
+    if (resourceJson && resourceJson.keys) {
+      this.keys = resourceJson.keys.map(resourceItem => new JsonWebKey(resourceItem));
+    }
   }
 
 }

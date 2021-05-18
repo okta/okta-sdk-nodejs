@@ -21,6 +21,7 @@ const LogDebugContext = require('./LogDebugContext');
 const LogOutcome = require('./LogOutcome');
 const LogRequest = require('./LogRequest');
 const LogSecurityContext = require('./LogSecurityContext');
+const LogTarget = require('./LogTarget');
 const LogTransaction = require('./LogTransaction');
 
 /**
@@ -66,6 +67,9 @@ class LogEvent extends Resource {
     }
     if (resourceJson && resourceJson.securityContext) {
       this.securityContext = new LogSecurityContext(resourceJson.securityContext);
+    }
+    if (resourceJson && resourceJson.target) {
+      this.target = resourceJson.target.map(resourceItem => new LogTarget(resourceItem));
     }
     if (resourceJson && resourceJson.transaction) {
       this.transaction = new LogTransaction(resourceJson.transaction);

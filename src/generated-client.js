@@ -1706,7 +1706,7 @@ class GeneratedApiClient {
    * @param authServerId {String}
    * @description
    * Success
-   * @returns {Promise<Collection>} A collection that will yield {@link Policy} instances.
+   * @returns {Promise<Collection>} A collection that will yield {@link AuthorizationServerPolicy} instances.
    */
   listAuthorizationServerPolicies(authServerId) {
     if (!authServerId) {
@@ -1717,24 +1717,24 @@ class GeneratedApiClient {
     return new Collection(
       this,
       url,
-      new factories.Policy(),
+      new ModelFactory(models.AuthorizationServerPolicy),
     );
   }
 
   /**
    *
    * @param authServerId {String}
-   * @param {Policy} policy
+   * @param {AuthorizationServerPolicy} authorizationServerPolicy
    * @description
    * Success
-   * @returns {Promise<Policy>}
+   * @returns {Promise<AuthorizationServerPolicy>}
    */
-  createAuthorizationServerPolicy(authServerId, policy) {
+  createAuthorizationServerPolicy(authServerId, authorizationServerPolicy) {
     if (!authServerId) {
       return Promise.reject(new Error('OKTA API createAuthorizationServerPolicy parameter authServerId is required.'));
     }
-    if (!policy) {
-      return Promise.reject(new Error('OKTA API createAuthorizationServerPolicy parameter policy is required.'));
+    if (!authorizationServerPolicy) {
+      return Promise.reject(new Error('OKTA API createAuthorizationServerPolicy parameter authorizationServerPolicy is required.'));
     }
     let url = `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/policies`;
 
@@ -1745,11 +1745,11 @@ class GeneratedApiClient {
     const request = this.http.postJson(
       url,
       {
-        body: policy
+        body: authorizationServerPolicy
       },
       { resources }
     );
-    return request.then(jsonRes => new factories.Policy().createInstance(jsonRes, this));
+    return request.then(jsonRes => new models.AuthorizationServerPolicy(jsonRes, this));
   }
 
   /**
@@ -1787,7 +1787,7 @@ class GeneratedApiClient {
    * @param policyId {String}
    * @description
    * Success
-   * @returns {Promise<Policy>}
+   * @returns {Promise<AuthorizationServerPolicy>}
    */
   getAuthorizationServerPolicy(authServerId, policyId) {
     if (!authServerId) {
@@ -1808,27 +1808,27 @@ class GeneratedApiClient {
       null,
       { resources }
     );
-    return request.then(jsonRes => new factories.Policy().createInstance(jsonRes, this));
+    return request.then(jsonRes => new models.AuthorizationServerPolicy(jsonRes, this));
   }
 
   /**
    *
    * @param authServerId {String}
    * @param policyId {String}
-   * @param {Policy} policy
+   * @param {AuthorizationServerPolicy} authorizationServerPolicy
    * @description
    * Success
-   * @returns {Promise<Policy>}
+   * @returns {Promise<AuthorizationServerPolicy>}
    */
-  updateAuthorizationServerPolicy(authServerId, policyId, policy) {
+  updateAuthorizationServerPolicy(authServerId, policyId, authorizationServerPolicy) {
     if (!authServerId) {
       return Promise.reject(new Error('OKTA API updateAuthorizationServerPolicy parameter authServerId is required.'));
     }
     if (!policyId) {
       return Promise.reject(new Error('OKTA API updateAuthorizationServerPolicy parameter policyId is required.'));
     }
-    if (!policy) {
-      return Promise.reject(new Error('OKTA API updateAuthorizationServerPolicy parameter policy is required.'));
+    if (!authorizationServerPolicy) {
+      return Promise.reject(new Error('OKTA API updateAuthorizationServerPolicy parameter authorizationServerPolicy is required.'));
     }
     let url = `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/policies/${policyId}`;
 
@@ -1840,11 +1840,181 @@ class GeneratedApiClient {
     const request = this.http.putJson(
       url,
       {
-        body: policy
+        body: authorizationServerPolicy
       },
       { resources }
     );
-    return request.then(jsonRes => new factories.Policy().createInstance(jsonRes, this));
+    return request.then(jsonRes => new models.AuthorizationServerPolicy(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param policyId {String}
+   * @param authServerId {String}
+   * @description
+   * Enumerates all policy rules for the specified Custom Authorization Server and Policy.
+   * @returns {Promise<Collection>} A collection that will yield {@link AuthorizationServerPolicyRule} instances.
+   */
+  listAuthorizationServerPolicyRules(policyId, authServerId) {
+    if (!policyId) {
+      return Promise.reject(new Error('OKTA API listAuthorizationServerPolicyRules parameter policyId is required.'));
+    }
+    if (!authServerId) {
+      return Promise.reject(new Error('OKTA API listAuthorizationServerPolicyRules parameter authServerId is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/policies/${policyId}/rules`;
+
+    return new Collection(
+      this,
+      url,
+      new ModelFactory(models.AuthorizationServerPolicyRule),
+    );
+  }
+
+  /**
+   *
+   * @param policyId {String}
+   * @param authServerId {String}
+   * @param {AuthorizationServerPolicyRule} authorizationServerPolicyRule
+   * @description
+   * Creates a policy rule for the specified Custom Authorization Server and Policy.
+   * @returns {Promise<AuthorizationServerPolicyRule>}
+   */
+  createAuthorizationServerPolicyRule(policyId, authServerId, authorizationServerPolicyRule) {
+    if (!policyId) {
+      return Promise.reject(new Error('OKTA API createAuthorizationServerPolicyRule parameter policyId is required.'));
+    }
+    if (!authServerId) {
+      return Promise.reject(new Error('OKTA API createAuthorizationServerPolicyRule parameter authServerId is required.'));
+    }
+    if (!authorizationServerPolicyRule) {
+      return Promise.reject(new Error('OKTA API createAuthorizationServerPolicyRule parameter authorizationServerPolicyRule is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/policies/${policyId}/rules`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/policies/${policyId}`,
+      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}`
+    ];
+
+    const request = this.http.postJson(
+      url,
+      {
+        body: authorizationServerPolicyRule
+      },
+      { resources }
+    );
+    return request.then(jsonRes => new models.AuthorizationServerPolicyRule(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param policyId {String}
+   * @param authServerId {String}
+   * @param ruleId {String}
+   * @description
+   * Deletes a Policy Rule defined in the specified Custom Authorization Server and Policy.
+   */
+  deleteAuthorizationServerPolicyRule(policyId, authServerId, ruleId) {
+    if (!policyId) {
+      return Promise.reject(new Error('OKTA API deleteAuthorizationServerPolicyRule parameter policyId is required.'));
+    }
+    if (!authServerId) {
+      return Promise.reject(new Error('OKTA API deleteAuthorizationServerPolicyRule parameter authServerId is required.'));
+    }
+    if (!ruleId) {
+      return Promise.reject(new Error('OKTA API deleteAuthorizationServerPolicyRule parameter ruleId is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/policies/${policyId}/rules/${ruleId}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/policies/${policyId}/rules/${ruleId}`,
+      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/policies/${policyId}`,
+      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}`
+    ];
+
+    const request = this.http.delete(
+      url,
+      null,
+      { resources }
+    );
+    return request;
+  }
+
+  /**
+   *
+   * @param policyId {String}
+   * @param authServerId {String}
+   * @param ruleId {String}
+   * @description
+   * Returns a Policy Rule by ID that is defined in the specified Custom Authorization Server and Policy.
+   * @returns {Promise<AuthorizationServerPolicyRule>}
+   */
+  getAuthorizationServerPolicyRule(policyId, authServerId, ruleId) {
+    if (!policyId) {
+      return Promise.reject(new Error('OKTA API getAuthorizationServerPolicyRule parameter policyId is required.'));
+    }
+    if (!authServerId) {
+      return Promise.reject(new Error('OKTA API getAuthorizationServerPolicyRule parameter authServerId is required.'));
+    }
+    if (!ruleId) {
+      return Promise.reject(new Error('OKTA API getAuthorizationServerPolicyRule parameter ruleId is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/policies/${policyId}/rules/${ruleId}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/policies/${policyId}/rules/${ruleId}`,
+      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/policies/${policyId}`,
+      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}`
+    ];
+
+    const request = this.http.getJson(
+      url,
+      null,
+      { resources }
+    );
+    return request.then(jsonRes => new models.AuthorizationServerPolicyRule(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param policyId {String}
+   * @param authServerId {String}
+   * @param ruleId {String}
+   * @param {AuthorizationServerPolicyRule} authorizationServerPolicyRule
+   * @description
+   * Updates the configuration of the Policy Rule defined in the specified Custom Authorization Server and Policy.
+   * @returns {Promise<AuthorizationServerPolicyRule>}
+   */
+  updateAuthorizationServerPolicyRule(policyId, authServerId, ruleId, authorizationServerPolicyRule) {
+    if (!policyId) {
+      return Promise.reject(new Error('OKTA API updateAuthorizationServerPolicyRule parameter policyId is required.'));
+    }
+    if (!authServerId) {
+      return Promise.reject(new Error('OKTA API updateAuthorizationServerPolicyRule parameter authServerId is required.'));
+    }
+    if (!ruleId) {
+      return Promise.reject(new Error('OKTA API updateAuthorizationServerPolicyRule parameter ruleId is required.'));
+    }
+    if (!authorizationServerPolicyRule) {
+      return Promise.reject(new Error('OKTA API updateAuthorizationServerPolicyRule parameter authorizationServerPolicyRule is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/policies/${policyId}/rules/${ruleId}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/policies/${policyId}/rules/${ruleId}`,
+      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/policies/${policyId}`,
+      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}`
+    ];
+
+    const request = this.http.putJson(
+      url,
+      {
+        body: authorizationServerPolicyRule
+      },
+      { resources }
+    );
+    return request.then(jsonRes => new models.AuthorizationServerPolicyRule(jsonRes, this));
   }
 
   /**
@@ -4477,7 +4647,7 @@ class GeneratedApiClient {
    * @param {String} [queryParams.expand]
    * @description
    * Gets all policies with the specified type.
-   * @returns {Promise<Collection>} A collection that will yield {@link Policy} instances.
+   * @returns {Promise<Collection>} A collection that will yield {@link AuthorizationServerPolicy} instances.
    */
   listPolicies(queryParameters) {
     if (!queryParameters) {
@@ -4491,7 +4661,7 @@ class GeneratedApiClient {
     return new Collection(
       this,
       url,
-      new factories.Policy(),
+      new ModelFactory(models.AuthorizationServerPolicy),
     );
   }
 

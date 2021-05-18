@@ -14,7 +14,7 @@
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
 var Resource = require('../resource');
-
+const UserIdentifierConditionEvaluatorPattern = require('./UserIdentifierConditionEvaluatorPattern');
 
 /**
  * @class UserIdentifierPolicyRuleCondition
@@ -26,7 +26,9 @@ var Resource = require('../resource');
 class UserIdentifierPolicyRuleCondition extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-
+    if (resourceJson && resourceJson.patterns) {
+      this.patterns = resourceJson.patterns.map(resourceItem => new UserIdentifierConditionEvaluatorPattern(resourceItem));
+    }
   }
 
 }

@@ -14,7 +14,7 @@
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
 var Resource = require('../resource');
-
+const IonField = require('./IonField');
 
 /**
  * @class IonForm
@@ -32,7 +32,9 @@ var Resource = require('../resource');
 class IonForm extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-
+    if (resourceJson && resourceJson.value) {
+      this.value = resourceJson.value.map(resourceItem => new IonField(resourceItem));
+    }
   }
 
 }

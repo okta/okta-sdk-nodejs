@@ -15,6 +15,7 @@
 
 var Resource = require('../resource');
 const InlineHookChannelConfigAuthScheme = require('./InlineHookChannelConfigAuthScheme');
+const InlineHookChannelConfigHeaders = require('./InlineHookChannelConfigHeaders');
 
 /**
  * @class InlineHookChannelConfig
@@ -28,6 +29,9 @@ class InlineHookChannelConfig extends Resource {
     super(resourceJson, client);
     if (resourceJson && resourceJson.authScheme) {
       this.authScheme = new InlineHookChannelConfigAuthScheme(resourceJson.authScheme);
+    }
+    if (resourceJson && resourceJson.headers) {
+      this.headers = resourceJson.headers.map(resourceItem => new InlineHookChannelConfigHeaders(resourceItem));
     }
   }
 

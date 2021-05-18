@@ -14,7 +14,8 @@
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
 var Resource = require('../resource');
-
+const AcsEndpoint = require('./AcsEndpoint');
+const SamlAttributeStatement = require('./SamlAttributeStatement');
 
 /**
  * @class SamlApplicationSettingsSignOn
@@ -46,7 +47,12 @@ var Resource = require('../resource');
 class SamlApplicationSettingsSignOn extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-
+    if (resourceJson && resourceJson.acsEndpoints) {
+      this.acsEndpoints = resourceJson.acsEndpoints.map(resourceItem => new AcsEndpoint(resourceItem));
+    }
+    if (resourceJson && resourceJson.attributeStatements) {
+      this.attributeStatements = resourceJson.attributeStatements.map(resourceItem => new SamlAttributeStatement(resourceItem));
+    }
   }
 
 }

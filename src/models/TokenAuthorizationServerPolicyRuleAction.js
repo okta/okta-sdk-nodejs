@@ -13,19 +13,22 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-import { Resource } from '../resource';
-import { Client } from '../client';
+var Resource = require('../resource');
 
 
-declare class RoleType extends Resource {
-  constructor(resourceJson: string, client: Client);
+/**
+ * @class TokenAuthorizationServerPolicyRuleAction
+ * @extends Resource
+ * @property { integer } accessTokenLifetimeMinutes
+ * @property { integer } refreshTokenLifetimeMinutes
+ * @property { integer } refreshTokenWindowMinutes
+ */
+class TokenAuthorizationServerPolicyRuleAction extends Resource {
+  constructor(resourceJson, client) {
+    super(resourceJson, client);
 
+  }
 
 }
 
-type RoleTypeOptions = Record<string, unknown>;
-
-export {
-  RoleType,
-  RoleTypeOptions
-};
+module.exports = TokenAuthorizationServerPolicyRuleAction;

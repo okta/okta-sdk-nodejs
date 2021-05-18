@@ -14,7 +14,7 @@
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
 var Resource = require('../resource');
-
+const LogIpAddress = require('./LogIpAddress');
 
 /**
  * @class LogRequest
@@ -24,7 +24,9 @@ var Resource = require('../resource');
 class LogRequest extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-
+    if (resourceJson && resourceJson.ipChain) {
+      this.ipChain = resourceJson.ipChain.map(resourceItem => new LogIpAddress(resourceItem));
+    }
   }
 
 }

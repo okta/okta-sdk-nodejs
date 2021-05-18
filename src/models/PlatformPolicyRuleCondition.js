@@ -14,7 +14,7 @@
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
 var Resource = require('../resource');
-
+const PlatformConditionEvaluatorPlatform = require('./PlatformConditionEvaluatorPlatform');
 
 /**
  * @class PlatformPolicyRuleCondition
@@ -25,7 +25,12 @@ var Resource = require('../resource');
 class PlatformPolicyRuleCondition extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-
+    if (resourceJson && resourceJson.exclude) {
+      this.exclude = resourceJson.exclude.map(resourceItem => new PlatformConditionEvaluatorPlatform(resourceItem));
+    }
+    if (resourceJson && resourceJson.include) {
+      this.include = resourceJson.include.map(resourceItem => new PlatformConditionEvaluatorPlatform(resourceItem));
+    }
   }
 
 }

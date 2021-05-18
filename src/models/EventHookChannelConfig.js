@@ -15,6 +15,7 @@
 
 var Resource = require('../resource');
 const EventHookChannelConfigAuthScheme = require('./EventHookChannelConfigAuthScheme');
+const EventHookChannelConfigHeader = require('./EventHookChannelConfigHeader');
 
 /**
  * @class EventHookChannelConfig
@@ -28,6 +29,9 @@ class EventHookChannelConfig extends Resource {
     super(resourceJson, client);
     if (resourceJson && resourceJson.authScheme) {
       this.authScheme = new EventHookChannelConfigAuthScheme(resourceJson.authScheme);
+    }
+    if (resourceJson && resourceJson.headers) {
+      this.headers = resourceJson.headers.map(resourceItem => new EventHookChannelConfigHeader(resourceItem));
     }
   }
 

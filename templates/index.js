@@ -156,11 +156,18 @@ js.process = ({spec, operations, models, handlebars}) => {
     const constructorStatements = [];
     model.properties.forEach(property => {
       const shouldProcess = operationUtils.isImportablePropertyType(property, model.modelName);
-      if (shouldProcess && !property.isEnum) {
-        constructorStatements.push(`    if (resourceJson && resourceJson.${property.propertyName}) {`);
-        constructorStatements.push(`      this.${property.propertyName} = new ${property.model}(resourceJson.${property.propertyName});`);
-        constructorStatements.push('    }');
+      if (!shouldProcess || property.isEnum) {
+        return;
       }
+
+      constructorStatements.push(`    if (resourceJson && resourceJson.${property.propertyName}) {`);
+      if (property.isArray) {
+        constructorStatements.push(`      this.${property.propertyName} = resourceJson.${property.propertyName}.map(resourceItem => new ${property.model}(resourceItem));`);
+      } else {
+        constructorStatements.push(`      this.${property.propertyName} = new ${property.model}(resourceJson.${property.propertyName});`);
+      }
+      constructorStatements.push('    }');
+
     });
     return constructorStatements.join('\n');
   });

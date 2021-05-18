@@ -18,7 +18,7 @@ import { Client } from '../client';
 
 
 declare class LogCredentialType extends Resource {
-  constructor(resourceJson: Record<string, unknown>, client: Client);
+  constructor(resourceJson: string, client: Client);
 
 
 }

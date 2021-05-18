@@ -18,7 +18,7 @@ import { Client } from '../client';
 
 
 declare class OpenIdConnectApplicationIssuerMode extends Resource {
-  constructor(resourceJson: Record<string, unknown>, client: Client);
+  constructor(resourceJson: string, client: Client);
 
 
 }

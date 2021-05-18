@@ -18,7 +18,7 @@ import { Client } from '../client';
 
 
 declare class GroupType extends Resource {
-  constructor(resourceJson: Record<string, unknown>, client: Client);
+  constructor(resourceJson: string, client: Client);
 
 
 }

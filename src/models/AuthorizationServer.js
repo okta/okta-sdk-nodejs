@@ -153,18 +153,18 @@ class AuthorizationServer extends Resource {
   }
 
   /**
-   * @returns {Promise<Collection>} A collection that will yield {@link Policy} instances.
+   * @returns {Promise<Collection>} A collection that will yield {@link AuthorizationServerPolicy} instances.
    */
   listPolicies() {
     return this.httpClient.listAuthorizationServerPolicies(this.id);
   }
 
   /**
-   * @param {Policy} policy
-   * @returns {Promise<Policy>}
+   * @param {AuthorizationServerPolicy} authorizationServerPolicy
+   * @returns {Promise<AuthorizationServerPolicy>}
    */
-  createPolicy(policy) {
-    return this.httpClient.createAuthorizationServerPolicy(this.id, policy);
+  createPolicy(authorizationServerPolicy) {
+    return this.httpClient.createAuthorizationServerPolicy(this.id, authorizationServerPolicy);
   }
 
   /**
@@ -176,7 +176,7 @@ class AuthorizationServer extends Resource {
 
   /**
    * @param {string} policyId
-   * @returns {Promise<Policy>}
+   * @returns {Promise<AuthorizationServerPolicy>}
    */
   getPolicy(policyId) {
     return this.httpClient.getAuthorizationServerPolicy(this.id, policyId);
@@ -184,11 +184,11 @@ class AuthorizationServer extends Resource {
 
   /**
    * @param {string} policyId
-   * @param {Policy} policy
-   * @returns {Promise<Policy>}
+   * @param {AuthorizationServerPolicy} authorizationServerPolicy
+   * @returns {Promise<AuthorizationServerPolicy>}
    */
-  updatePolicy(policyId, policy) {
-    return this.httpClient.updateAuthorizationServerPolicy(this.id, policyId, policy);
+  updatePolicy(policyId, authorizationServerPolicy) {
+    return this.httpClient.updateAuthorizationServerPolicy(this.id, policyId, authorizationServerPolicy);
   }
 
   /**
