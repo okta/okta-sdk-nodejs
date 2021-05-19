@@ -22,6 +22,7 @@ const InlineHookChannelConfigHeaders = require('./InlineHookChannelConfigHeaders
  * @extends Resource
  * @property { InlineHookChannelConfigAuthScheme } authScheme
  * @property { array } headers
+ * @property { string } method
  * @property { string } uri
  */
 class InlineHookChannelConfig extends Resource {

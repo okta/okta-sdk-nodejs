@@ -18,6 +18,8 @@ import { Client } from '../client';
 import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { AcsEndpoint } from './AcsEndpoint';
 import { SamlAttributeStatement } from './SamlAttributeStatement';
+import { SingleLogout } from './SingleLogout';
+import { SpCertificate } from './SpCertificate';
 
 declare class SamlApplicationSettingsSignOn extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
@@ -40,6 +42,8 @@ declare class SamlApplicationSettingsSignOn extends Resource {
   requestCompressed: boolean;
   responseSigned: boolean;
   signatureAlgorithm: string;
+  slo: SingleLogout;
+  spCertificate: SpCertificate;
   spIssuer: string;
   ssoAcsUrl: string;
   ssoAcsUrlOverride: string;

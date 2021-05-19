@@ -23,15 +23,15 @@ declare class JsonWebKey extends Resource {
 
   readonly _links: {[name: string]: unknown};
   alg: string;
-  readonly created: string;
+  created: string;
   e: string;
-  readonly expiresAt: string;
+  expiresAt: string;
   key_ops: string[];
   kid: string;
   kty: string;
-  readonly lastUpdated: string;
+  lastUpdated: string;
   n: string;
-  readonly status: string;
+  status: string;
   use: string;
   x5c: string[];
   x5t: string;

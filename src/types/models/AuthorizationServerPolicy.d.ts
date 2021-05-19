@@ -45,6 +45,8 @@ declare class AuthorizationServerPolicy extends Resource {
   createPolicyRule(authServerId: string, authorizationServerPolicyRule: AuthorizationServerPolicyRuleOptions): Promise<AuthorizationServerPolicyRule>;
   getPolicyRule(authServerId: string, ruleId: string): Promise<AuthorizationServerPolicyRule>;
   deletePolicyRule(authServerId: string, ruleId: string): Promise<Response>;
+  activate(authServerId: string): Promise<Response>;
+  deactivate(authServerId: string): Promise<Response>;
 }
 
 type AuthorizationServerPolicyOptions = OptionalKnownProperties<AuthorizationServerPolicy>;

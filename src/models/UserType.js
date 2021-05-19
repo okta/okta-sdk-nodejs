@@ -45,6 +45,14 @@ class UserType extends Resource {
   delete() {
     return this.httpClient.deleteUserType(this.id);
   }
+
+  /**
+   * @param {string} typeId
+   * @returns {Promise<UserType>}
+   */
+  replaceUserType(typeId) {
+    return this.httpClient.replaceUserType(typeId, this);
+  }
 }
 
 module.exports = UserType;

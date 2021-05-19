@@ -19,6 +19,7 @@ import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { OpenIdConnectApplicationType } from './OpenIdConnectApplicationType';
 import { OpenIdConnectApplicationConsentMethod } from './OpenIdConnectApplicationConsentMethod';
 import { OAuthGrantType } from './OAuthGrantType';
+import { OpenIdConnectApplicationIdpInitiatedLogin } from './OpenIdConnectApplicationIdpInitiatedLogin';
 import { OpenIdConnectApplicationIssuerMode } from './OpenIdConnectApplicationIssuerMode';
 import { OpenIdConnectApplicationSettingsClientKeys } from './OpenIdConnectApplicationSettingsClientKeys';
 import { OpenIdConnectApplicationSettingsRefreshToken } from './OpenIdConnectApplicationSettingsRefreshToken';
@@ -31,6 +32,7 @@ declare class OpenIdConnectApplicationSettingsClient extends Resource {
   client_uri: string;
   consent_method: OpenIdConnectApplicationConsentMethod;
   grant_types: OAuthGrantType[];
+  idp_initiated_login: OpenIdConnectApplicationIdpInitiatedLogin;
   initiate_login_uri: string;
   issuer_mode: OpenIdConnectApplicationIssuerMode;
   jwks: OpenIdConnectApplicationSettingsClientKeys;

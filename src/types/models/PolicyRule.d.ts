@@ -17,13 +17,18 @@ import { Resource } from '../resource';
 import { Client } from '../client';
 import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { Response } from 'node-fetch';
+import { PolicyRuleActions } from './PolicyRuleActions';
+import { PolicyRuleConditions } from './PolicyRuleConditions';
 
 declare class PolicyRule extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
 
+  actions: PolicyRuleActions;
+  conditions: PolicyRuleConditions;
   readonly created: string;
   readonly id: string;
   readonly lastUpdated: string;
+  name: string;
   priority: number;
   status: string;
   system: boolean;

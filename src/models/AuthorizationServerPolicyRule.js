@@ -59,17 +59,19 @@ class AuthorizationServerPolicyRule extends Resource {
   }
 
   /**
+   * @param {string} authServerId
    * @param {string} policyId
    */
-  activate(policyId) {
-    return this.httpClient.activatePolicyRule(policyId, this.id);
+  activate(authServerId, policyId) {
+    return this.httpClient.activateAuthorizationServerPolicyRule(authServerId, policyId, this.id);
   }
 
   /**
+   * @param {string} authServerId
    * @param {string} policyId
    */
-  deactivate(policyId) {
-    return this.httpClient.deactivatePolicyRule(policyId, this.id);
+  deactivate(authServerId, policyId) {
+    return this.httpClient.deactivateAuthorizationServerPolicyRule(authServerId, policyId, this.id);
   }
 }
 

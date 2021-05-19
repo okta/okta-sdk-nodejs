@@ -13,12 +13,12 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-import { Resource } from '../resource';
+import { PolicyRuleActions } from './PolicyRuleActions';
 import { Client } from '../client';
 import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { OktaSignOnPolicyRuleSignonActions } from './OktaSignOnPolicyRuleSignonActions';
 
-declare class OktaSignOnPolicyRuleActions extends Resource {
+declare class OktaSignOnPolicyRuleActions extends PolicyRuleActions {
   constructor(resourceJson: Record<string, unknown>, client: Client);
 
   signon: OktaSignOnPolicyRuleSignonActions;

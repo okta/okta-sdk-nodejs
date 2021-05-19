@@ -13,12 +13,12 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-import { Resource } from '../resource';
+import { PolicyRuleActions } from './PolicyRuleActions';
 import { Client } from '../client';
 import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { PasswordPolicyRuleAction } from './PasswordPolicyRuleAction';
 
-declare class PasswordPolicyRuleActions extends Resource {
+declare class PasswordPolicyRuleActions extends PolicyRuleActions {
   constructor(resourceJson: Record<string, unknown>, client: Client);
 
   passwordChange: PasswordPolicyRuleAction;

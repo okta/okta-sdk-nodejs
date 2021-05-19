@@ -13,13 +13,13 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-import { Resource } from '../resource';
+import { PolicyRuleConditions } from './PolicyRuleConditions';
 import { Client } from '../client';
 import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { PolicyNetworkCondition } from './PolicyNetworkCondition';
 import { PolicyPeopleCondition } from './PolicyPeopleCondition';
 
-declare class PasswordPolicyRuleConditions extends Resource {
+declare class PasswordPolicyRuleConditions extends PolicyRuleConditions {
   constructor(resourceJson: Record<string, unknown>, client: Client);
 
   network: PolicyNetworkCondition;

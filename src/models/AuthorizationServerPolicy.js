@@ -87,6 +87,20 @@ class AuthorizationServerPolicy extends Resource {
   deletePolicyRule(authServerId, ruleId) {
     return this.httpClient.deleteAuthorizationServerPolicyRule(this.id, authServerId, ruleId);
   }
+
+  /**
+   * @param {string} authServerId
+   */
+  activate(authServerId) {
+    return this.httpClient.activateAuthorizationServerPolicy(authServerId, this.id);
+  }
+
+  /**
+   * @param {string} authServerId
+   */
+  deactivate(authServerId) {
+    return this.httpClient.deactivateAuthorizationServerPolicy(authServerId, this.id);
+  }
 }
 
 module.exports = AuthorizationServerPolicy;

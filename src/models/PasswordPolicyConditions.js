@@ -13,17 +13,17 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-var Resource = require('../resource');
+var PolicyRuleConditions = require('./PolicyRuleConditions');
 const PasswordPolicyAuthenticationProviderCondition = require('./PasswordPolicyAuthenticationProviderCondition');
 const PolicyPeopleCondition = require('./PolicyPeopleCondition');
 
 /**
  * @class PasswordPolicyConditions
- * @extends Resource
+ * @extends PolicyRuleConditions
  * @property { PasswordPolicyAuthenticationProviderCondition } authProvider
  * @property { PolicyPeopleCondition } people
  */
-class PasswordPolicyConditions extends Resource {
+class PasswordPolicyConditions extends PolicyRuleConditions {
   constructor(resourceJson, client) {
     super(resourceJson, client);
     if (resourceJson && resourceJson.authProvider) {

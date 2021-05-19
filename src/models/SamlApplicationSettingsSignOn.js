@@ -16,6 +16,8 @@
 var Resource = require('../resource');
 const AcsEndpoint = require('./AcsEndpoint');
 const SamlAttributeStatement = require('./SamlAttributeStatement');
+const SingleLogout = require('./SingleLogout');
+const SpCertificate = require('./SpCertificate');
 
 /**
  * @class SamlApplicationSettingsSignOn
@@ -38,6 +40,8 @@ const SamlAttributeStatement = require('./SamlAttributeStatement');
  * @property { boolean } requestCompressed
  * @property { boolean } responseSigned
  * @property { string } signatureAlgorithm
+ * @property { SingleLogout } slo
+ * @property { SpCertificate } spCertificate
  * @property { string } spIssuer
  * @property { string } ssoAcsUrl
  * @property { string } ssoAcsUrlOverride
@@ -52,6 +56,12 @@ class SamlApplicationSettingsSignOn extends Resource {
     }
     if (resourceJson && resourceJson.attributeStatements) {
       this.attributeStatements = resourceJson.attributeStatements.map(resourceItem => new SamlAttributeStatement(resourceItem));
+    }
+    if (resourceJson && resourceJson.slo) {
+      this.slo = new SingleLogout(resourceJson.slo);
+    }
+    if (resourceJson && resourceJson.spCertificate) {
+      this.spCertificate = new SpCertificate(resourceJson.spCertificate);
     }
   }
 

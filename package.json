@@ -44,7 +44,7 @@
     "safe-flat": "^2.0.2"
   },
   "devDependencies": {
-    "@okta/openapi": "^2.1.6",
+    "@okta/openapi": "^2.2.4",
     "@types/chai": "^4.2.17",
     "@types/mocha": "^8.2.2",
     "@typescript-eslint/eslint-plugin": "^4.15.2",

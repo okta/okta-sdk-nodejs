@@ -13,17 +13,17 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-var Resource = require('../resource');
+var PolicyRuleConditions = require('./PolicyRuleConditions');
 const PolicyNetworkCondition = require('./PolicyNetworkCondition');
 const PolicyPeopleCondition = require('./PolicyPeopleCondition');
 
 /**
  * @class PasswordPolicyRuleConditions
- * @extends Resource
+ * @extends PolicyRuleConditions
  * @property { PolicyNetworkCondition } network
  * @property { PolicyPeopleCondition } people
  */
-class PasswordPolicyRuleConditions extends Resource {
+class PasswordPolicyRuleConditions extends PolicyRuleConditions {
   constructor(resourceJson, client) {
     super(resourceJson, client);
     if (resourceJson && resourceJson.network) {

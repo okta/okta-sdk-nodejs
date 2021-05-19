@@ -36,8 +36,8 @@ declare class AuthorizationServerPolicyRule extends Resource {
 
   update(policyId: string, authServerId: string): Promise<AuthorizationServerPolicyRule>;
   delete(policyId: string, authServerId: string): Promise<Response>;
-  activate(policyId: string): Promise<Response>;
-  deactivate(policyId: string): Promise<Response>;
+  activate(authServerId: string, policyId: string): Promise<Response>;
+  deactivate(authServerId: string, policyId: string): Promise<Response>;
 }
 
 type AuthorizationServerPolicyRuleOptions = OptionalKnownProperties<AuthorizationServerPolicyRule>;

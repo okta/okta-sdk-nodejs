@@ -62,6 +62,10 @@ import { InlineHookOptions } from './models/InlineHook';
 import { InlineHookPayloadOptions } from './models/InlineHookPayload';
 import { InlineHookResponse } from './models/InlineHookResponse';
 import { LogEvent } from './models/LogEvent';
+import { ProfileMapping } from './models/ProfileMapping';
+import { ProfileMappingOptions } from './models/ProfileMapping';
+import { UserSchema } from './models/UserSchema';
+import { UserSchemaOptions } from './models/UserSchema';
 import { LinkedObject } from './models/LinkedObject';
 import { LinkedObjectOptions } from './models/LinkedObject';
 import { UserType } from './models/UserType';
@@ -74,6 +78,8 @@ import { CreateSessionRequestOptions } from './models/CreateSessionRequest';
 import { Session } from './models/Session';
 import { SmsTemplate } from './models/SmsTemplate';
 import { SmsTemplateOptions } from './models/SmsTemplate';
+import { ThreatInsightConfiguration } from './models/ThreatInsightConfiguration';
+import { ThreatInsightConfigurationOptions } from './models/ThreatInsightConfiguration';
 import { TrustedOrigin } from './models/TrustedOrigin';
 import { TrustedOriginOptions } from './models/TrustedOrigin';
 import { CreateUserRequestOptions } from './models/CreateUserRequest';
@@ -93,6 +99,8 @@ import { UserActivationToken } from './models/UserActivationToken';
 import { TempPassword } from './models/TempPassword';
 import { ResetPasswordToken } from './models/ResetPasswordToken';
 import { ResponseLinks } from './models/ResponseLinks';
+import { NetworkZone } from './models/NetworkZone';
+import { NetworkZoneOptions } from './models/NetworkZone';
 
 export declare class GeneratedApiClient {
   listApplications(queryParameters?: {
@@ -209,11 +217,15 @@ export declare class GeneratedApiClient {
   deleteAuthorizationServerPolicy(authServerId: string, policyId: string): Promise<Response>;
   getAuthorizationServerPolicy(authServerId: string, policyId: string): Promise<AuthorizationServerPolicy>;
   updateAuthorizationServerPolicy(authServerId: string, policyId: string, authorizationServerPolicy: AuthorizationServerPolicyOptions): Promise<AuthorizationServerPolicy>;
+  activateAuthorizationServerPolicy(authServerId: string, policyId: string): Promise<Response>;
+  deactivateAuthorizationServerPolicy(authServerId: string, policyId: string): Promise<Response>;
   listAuthorizationServerPolicyRules(policyId: string, authServerId: string): Collection<AuthorizationServerPolicyRule>;
   createAuthorizationServerPolicyRule(policyId: string, authServerId: string, authorizationServerPolicyRule: AuthorizationServerPolicyRuleOptions): Promise<AuthorizationServerPolicyRule>;
   deleteAuthorizationServerPolicyRule(policyId: string, authServerId: string, ruleId: string): Promise<Response>;
   getAuthorizationServerPolicyRule(policyId: string, authServerId: string, ruleId: string): Promise<AuthorizationServerPolicyRule>;
   updateAuthorizationServerPolicyRule(policyId: string, authServerId: string, ruleId: string, authorizationServerPolicyRule: AuthorizationServerPolicyRuleOptions): Promise<AuthorizationServerPolicyRule>;
+  activateAuthorizationServerPolicyRule(authServerId: string, policyId: string, ruleId: string): Promise<Response>;
+  deactivateAuthorizationServerPolicyRule(authServerId: string, policyId: string, ruleId: string): Promise<Response>;
   listOAuth2Scopes(authServerId: string, queryParameters?: {
     q?: string,
     filter?: string,
@@ -356,10 +368,22 @@ export declare class GeneratedApiClient {
     sortOrder?: string,
     after?: string,
   }): Collection<LogEvent>;
+  listProfileMappings(queryParameters?: {
+    after?: string,
+    limit?: number,
+    sourceId?: string,
+    targetId?: string,
+  }): Collection<ProfileMapping>;
+  getProfileMapping(mappingId: string): Promise<ProfileMapping>;
+  updateProfileMapping(mappingId: string, profileMapping: ProfileMappingOptions): Promise<ProfileMapping>;
+  getApplicationUserSchema(appInstanceId: string): Promise<UserSchema>;
+  updateApplicationUserProfile(appInstanceId: string, userSchema?: UserSchemaOptions): Promise<UserSchema>;
   listLinkedObjectDefinitions(): Collection<LinkedObject>;
   addLinkedObjectDefinition(linkedObject: LinkedObjectOptions): Promise<LinkedObject>;
   deleteLinkedObjectDefinition(linkedObjectName: string): Promise<Response>;
   getLinkedObjectDefinition(linkedObjectName: string): Promise<LinkedObject>;
+  getUserSchema(schemaId: string): Promise<UserSchema>;
+  updateUserProfile(schemaId: string, userSchema: UserSchemaOptions): Promise<UserSchema>;
   listUserTypes(): Collection<UserType>;
   createUserType(userType: UserTypeOptions): Promise<UserType>;
   deleteUserType(typeId: string): Promise<Response>;
@@ -400,6 +424,8 @@ export declare class GeneratedApiClient {
   getSmsTemplate(templateId: string): Promise<SmsTemplate>;
   partialUpdateSmsTemplate(templateId: string, smsTemplate: SmsTemplateOptions): Promise<SmsTemplate>;
   updateSmsTemplate(templateId: string, smsTemplate: SmsTemplateOptions): Promise<SmsTemplate>;
+  getCurrentConfiguration(): Promise<ThreatInsightConfiguration>;
+  updateConfiguration(threatInsightConfiguration: ThreatInsightConfigurationOptions): Promise<ThreatInsightConfiguration>;
   listOrigins(queryParameters?: {
     q?: string,
     filter?: string,
@@ -545,4 +571,15 @@ export declare class GeneratedApiClient {
   clearUserSessions(userId: string, queryParameters?: {
     oauthTokens?: boolean,
   }): Promise<Response>;
+  listNetworkZones(queryParameters?: {
+    after?: string,
+    limit?: number,
+    filter?: string,
+  }): Collection<NetworkZone>;
+  createNetworkZone(networkZone: NetworkZoneOptions): Promise<NetworkZone>;
+  deleteNetworkZone(zoneId: string): Promise<Response>;
+  getNetworkZone(zoneId: string): Promise<NetworkZone>;
+  updateNetworkZone(zoneId: string, networkZone: NetworkZoneOptions): Promise<NetworkZone>;
+  activateNetworkZone(zoneId: string): Promise<Response>;
+  deactivateNetworkZone(zoneId: string): Promise<Response>;
 }

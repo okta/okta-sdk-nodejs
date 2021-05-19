@@ -13,17 +13,17 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-var Resource = require('../resource');
+var PolicyRuleActions = require('./PolicyRuleActions');
 const PasswordPolicyRuleAction = require('./PasswordPolicyRuleAction');
 
 /**
  * @class PasswordPolicyRuleActions
- * @extends Resource
+ * @extends PolicyRuleActions
  * @property { PasswordPolicyRuleAction } passwordChange
  * @property { PasswordPolicyRuleAction } selfServicePasswordReset
  * @property { PasswordPolicyRuleAction } selfServiceUnlock
  */
-class PasswordPolicyRuleActions extends Resource {
+class PasswordPolicyRuleActions extends PolicyRuleActions {
   constructor(resourceJson, client) {
     super(resourceJson, client);
     if (resourceJson && resourceJson.passwordChange) {

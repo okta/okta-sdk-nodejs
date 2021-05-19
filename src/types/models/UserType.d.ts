@@ -34,6 +34,7 @@ declare class UserType extends Resource {
 
   update(): Promise<UserType>;
   delete(): Promise<Response>;
+  replaceUserType(typeId: string): Promise<UserType>;
 }
 
 type UserTypeOptions = OptionalKnownProperties<UserType>;

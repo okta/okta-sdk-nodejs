@@ -13,15 +13,15 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-var Resource = require('../resource');
+var PolicyRuleConditions = require('./PolicyRuleConditions');
 const PolicyPeopleCondition = require('./PolicyPeopleCondition');
 
 /**
  * @class OktaSignOnPolicyConditions
- * @extends Resource
+ * @extends PolicyRuleConditions
  * @property { PolicyPeopleCondition } people
  */
-class OktaSignOnPolicyConditions extends Resource {
+class OktaSignOnPolicyConditions extends PolicyRuleConditions {
   constructor(resourceJson, client) {
     super(resourceJson, client);
     if (resourceJson && resourceJson.people) {

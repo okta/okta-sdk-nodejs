@@ -13,12 +13,12 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-import { Resource } from '../resource';
+import { PolicyRuleConditions } from './PolicyRuleConditions';
 import { Client } from '../client';
 import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { PolicyPeopleCondition } from './PolicyPeopleCondition';
 
-declare class OktaSignOnPolicyConditions extends Resource {
+declare class OktaSignOnPolicyConditions extends PolicyRuleConditions {
   constructor(resourceJson: Record<string, unknown>, client: Client);
 
   people: PolicyPeopleCondition;
