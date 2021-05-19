@@ -90,12 +90,12 @@ describe('Authorization Server Policies API', () => {
       let policyRuleFromGet = await policyFromGet.getPolicyRule(authServer.id, policyRule.id);
       expect(policyRuleFromGet.status).to.equal('ACTIVE');
 
-      let response = await policyRuleFromGet.deactivate(policy.id);
+      let response = await policyRuleFromGet.deactivate(authServer.id, policy.id);
       expect(response.status).to.equal(204);
       policyRuleFromGet = await policyFromGet.getPolicyRule(authServer.id, policyRule.id);
       expect(policyRuleFromGet.status).to.equal('INACTIVE');
 
-      response = await policyRuleFromGet.deactivate(policy.id);
+      response = await policyRuleFromGet.activate(authServer.id, policy.id);
       expect(response.status).to.equal(204);
       policyRuleFromGet = await policyFromGet.getPolicyRule(authServer.id, policyRule.id);
       expect(policyRuleFromGet.status).to.equal('ACTIVE');
