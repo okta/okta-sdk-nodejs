@@ -2,11 +2,17 @@ import { expect } from 'chai';
 import {
   AuthorizationServer,
   AuthorizationServerPolicy,
+  AuthorizationServerPolicyRule,
+  AuthorizationServerPolicyRuleActions,
+  AuthorizationServerPolicyRuleConditions,
   Client,
   Collection,
-  DefaultRequestExecutor } from '@okta/okta-sdk-nodejs';
+  DefaultRequestExecutor,
+  TokenAuthorizationServerPolicyRuleAction} from '@okta/okta-sdk-nodejs';
 import getMockAuthorizationServer = require('./mocks/authorization-server');
 import getMockPolicy = require('./mocks/policy-oauth-authorization');
+import getMockPolicyRule = require('./mocks/authz-server-policy-rule');
+
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
 if (process.env.OKTA_USE_MOCK) {
@@ -29,7 +35,74 @@ describe('Authorization Server Policies API', () => {
     await authServer.delete();
   });
 
-  describe('List all policies', () => {
+  describe('Authorization Server Policy Rules API', () => {
+    let policy: AuthorizationServerPolicy;
+    let policyRule: AuthorizationServerPolicyRule;
+    beforeEach(async () => {
+      policy = await authServer.createPolicy(getMockPolicy());
+      policyRule = await policy.createPolicyRule(authServer.id, getMockPolicyRule());
+    });
+    afterEach(async () => {
+      await authServer.deletePolicy(policy.id);
+    });
+
+    it('should return a collection of policies rules', async () => {
+      const policyFromGet = await authServer.getPolicy(policy.id);
+      const policyRules: AuthorizationServerPolicyRule[] = [];
+      const collection = policyFromGet.listPolicyRules(authServer.id);
+      await collection.each(policyRule => policyRules.push(policyRule));
+      expect(policyRules).is.not.empty;
+    });
+
+    it('should get policy rule from auth server with created policy rule id', async () => {
+      const policyFromGet = await authServer.getPolicy(policy.id);
+      const policyRuleFromGet = await policyFromGet.getPolicyRule(authServer.id, policyRule.id);
+
+      expect(policyRuleFromGet.actions).to.be.instanceof(AuthorizationServerPolicyRuleActions);
+      expect(policyRuleFromGet.actions.token).to.be.instanceof(TokenAuthorizationServerPolicyRuleAction);
+      expect(policyRuleFromGet.conditions).to.be.instanceof(AuthorizationServerPolicyRuleConditions);
+    });
+
+    it('should delete policy rule', async () => {
+      const policyFromGet = await authServer.getPolicy(policy.id);
+      policyFromGet.deletePolicyRule(authServer.id, policyRule.id);
+      try {
+        await policyFromGet.getPolicyRule(authServer.id, policyRule.id);
+      } catch (e) {
+        expect(e.status).to.equal(404);
+      }
+    });
+
+    it('should update policy rule', async () => {
+      const policyFromGet = await authServer.getPolicy(policy.id);
+      let policyRuleFromGet = await policyFromGet.getPolicyRule(authServer.id, policyRule.id);
+      expect(policyRuleFromGet.actions.token.accessTokenLifetimeMinutes).to.equal(5);
+
+      policyRuleFromGet.actions.token.accessTokenLifetimeMinutes = 360;
+      const updatedPolicyRule = await policyRuleFromGet.update(policy.id, authServer.id);
+      policyRuleFromGet = await policyFromGet.getPolicyRule(authServer.id, policyRule.id);
+      expect(updatedPolicyRule.actions.token.accessTokenLifetimeMinutes).to.equal(360);
+      expect(policyRuleFromGet.actions.token.accessTokenLifetimeMinutes).to.equal(360);
+    });
+
+    it('should deactivate/activate policy rule', async () => {
+      const policyFromGet = await authServer.getPolicy(policy.id);
+      let policyRuleFromGet = await policyFromGet.getPolicyRule(authServer.id, policyRule.id);
+      expect(policyRuleFromGet.status).to.equal('ACTIVE');
+
+      let response = await policyRuleFromGet.deactivate(policy.id);
+      expect(response.status).to.equal(204);
+      policyRuleFromGet = await policyFromGet.getPolicyRule(authServer.id, policyRule.id);
+      expect(policyRuleFromGet.status).to.equal('INACTIVE');
+
+      response = await policyRuleFromGet.deactivate(policy.id);
+      expect(response.status).to.equal(204);
+      policyRuleFromGet = await policyFromGet.getPolicyRule(authServer.id, policyRule.id);
+      expect(policyRuleFromGet.status).to.equal('ACTIVE');
+    });
+  });
+
+  xdescribe('List all policies', () => {
     let policy;
     beforeEach(async () => {
       policy = await authServer.createPolicy(getMockPolicy());
@@ -50,7 +123,8 @@ describe('Authorization Server Policies API', () => {
     });
   });
 
-  describe('Create a Policy', () => {
+
+  xdescribe('Create a Policy', () => {
     let policy;
     afterEach(async () => {
       await authServer.deletePolicy(policy.id);
@@ -64,7 +138,7 @@ describe('Authorization Server Policies API', () => {
     });
   });
 
-  describe('Get a policy', () => {
+  xdescribe('Get a policy', () => {
     let policy;
     beforeEach(async () => {
       policy = await authServer.createPolicy(getMockPolicy());
@@ -80,7 +154,7 @@ describe('Authorization Server Policies API', () => {
     });
   });
 
-  describe('Update policy', () => {
+  xdescribe('Update policy', () => {
     let policy;
     beforeEach(async () => {
       policy = await authServer.createPolicy(getMockPolicy());
@@ -98,7 +172,7 @@ describe('Authorization Server Policies API', () => {
     });
   });
 
-  describe('Delete policy', () => {
+  xdescribe('Delete policy', () => {
     let policy;
     beforeEach(async () => {
       policy = await authServer.createPolicy(getMockPolicy());
