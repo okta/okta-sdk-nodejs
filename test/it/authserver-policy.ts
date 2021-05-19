@@ -1,9 +1,10 @@
 import { expect } from 'chai';
 import {
+  AuthorizationServer,
+  AuthorizationServerPolicy,
   Client,
   Collection,
-  DefaultRequestExecutor,
-  Policy } from '@okta/okta-sdk-nodejs';
+  DefaultRequestExecutor } from '@okta/okta-sdk-nodejs';
 import getMockAuthorizationServer = require('./mocks/authorization-server');
 import getMockPolicy = require('./mocks/policy-oauth-authorization');
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
@@ -19,7 +20,7 @@ const client = new Client({
 });
 
 describe('Authorization Server Policies API', () => {
-  let authServer;
+  let authServer: AuthorizationServer;
   before(async () => {
     authServer = await client.createAuthorizationServer(getMockAuthorizationServer());
   });
@@ -40,12 +41,12 @@ describe('Authorization Server Policies API', () => {
     it('should return a collection of policies', async () => {
       const collection = authServer.listPolicies();
       expect(collection).to.be.instanceOf(Collection);
-      const policies = [];
-      await collection.each(p => policies.push(p));
+      const policies: AuthorizationServerPolicy[] = [];
+      await collection.each((p: AuthorizationServerPolicy) => policies.push(p));
       expect(policies).is.not.empty;
       const policyFindByName = policies.find(p => p.name === policy.name);
       expect(policyFindByName).to.be.exist;
-      expect(policyFindByName).to.be.instanceOf(Policy);
+      expect(policyFindByName).to.be.instanceOf(AuthorizationServerPolicy);
     });
   });
 
@@ -74,7 +75,7 @@ describe('Authorization Server Policies API', () => {
 
     it('should get policy from auth server by id', async () => {
       const policyFromGet = await authServer.getPolicy(policy.id);
-      expect(policyFromGet).to.be.instanceOf(Policy);
+      expect(policyFromGet).to.be.instanceOf(AuthorizationServerPolicy);
       expect(policyFromGet.id).to.equal(policy.id);
     });
   });
