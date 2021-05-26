@@ -821,6 +821,14 @@ client.createApplication(bookmarkAppOptions).then((createdApp: Application) => {
 });
 ```
 
+#### TypeScript usage examples (>=4.6.0)
+
+Models can be imported from library root:
+
+```typescript
+import { Client, LogEvent } from '@okta/okta-sdk-nodejs';
+```
+
 ## Migrating between versions
 
 ### From 3.x to 4.0
