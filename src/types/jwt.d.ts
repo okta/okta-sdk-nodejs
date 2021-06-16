@@ -11,28 +11,10 @@
  */
 
 import * as Rasha from 'rasha';
+import { Jwt } from 'njwt';
+
 import { Client } from './client';
 
-export declare class Jwt {
-  constructor(claims: Record<string, unknown>, enforceDefaultFields: boolean);
-
-  compact(): string;
-  isExpired(): boolean;
-  isNotBefore(): boolean;
-  isSupportedAlg(alg: string): boolean;
-  setClaim(claim: string, value: string): Jwt;
-  setExpiration(exp: Date | number): Jwt;
-  setHeader(param: string, value: unknown): Jwt;
-  setIssuedAt(iat: number): Jwt;
-  setIssuer(iss: string): Jwt;
-  setJti(jti: string): Jwt;
-  setNotBefore(nbf: Date | number): Jwt;
-  setSigningAlgorithm(alg: string): Jwt;
-  setSigningKey(key: string | ArrayBuffer | Buffer): Jwt;
-  setSubject(sub: string): Jwt;
-  sign(payload: Record<string, unknown>, algorithm: string, cryptoInput: string | ArrayBuffer | Buffer): string;
-  toString(): string;
-}
 
 export function makeJwt(client: Client, endpoint: string): Jwt;
 export function getPemAndJwk(privateKey: string | Record<string, unknown>): Promise<{
