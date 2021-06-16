@@ -16,11 +16,13 @@
 import { Policy } from './Policy';
 import { Client } from '../client';
 import { OptionalKnownProperties } from '../optional-known-properties-type';
+import { PasswordPolicyConditions } from './PasswordPolicyConditions';
 import { PasswordPolicySettings } from './PasswordPolicySettings';
 
 declare class PasswordPolicy extends Policy {
   constructor(resourceJson: Record<string, unknown>, client: Client);
 
+  conditions: PasswordPolicyConditions;
   settings: PasswordPolicySettings;
 
 }

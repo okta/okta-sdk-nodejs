@@ -16,11 +16,12 @@
 import { Policy } from './Policy';
 import { Client } from '../client';
 import { OptionalKnownProperties } from '../optional-known-properties-type';
-
+import { OktaSignOnPolicyConditions } from './OktaSignOnPolicyConditions';
 
 declare class OktaSignOnPolicy extends Policy {
   constructor(resourceJson: Record<string, unknown>, client: Client);
 
+  conditions: OktaSignOnPolicyConditions;
 
 }
 

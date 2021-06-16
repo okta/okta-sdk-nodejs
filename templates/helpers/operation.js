@@ -9,8 +9,6 @@ const MODELS_SHOULD_NOT_PROCESS = ['object', 'string', 'undefined', 'Promise'];
 // This is done to avoid property type conflicts between parent and descendant models.
 // These models' respective superclasses are expected to provide a correct property type.
 const RESTRICTED_MODEL_PROPERTY_OVERRIDES = {
-  OktaSignOnPolicy: ['conditions'],
-  PasswordPolicy: ['conditions'],
   BookmarkApplication: ['name'],
   BasicAuthApplication: ['name'],
   OpenIdConnectApplication: ['name'],
