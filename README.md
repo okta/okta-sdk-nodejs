@@ -823,6 +823,20 @@ client.createApplication(bookmarkAppOptions).then((createdApp: Application) => {
 
 ## Migrating between versions
 
+### From 4.x to 5.0
+
+#### Breaking changes
+
+Following methods signatures have changed:
+ - `createAuthorizationServerPolicy`: added `authorizationServerPolicy: AuthorizationServerPolicyOptions` parameter
+ - method `listAuthorizationServerPolicies`: returns `Collection<AuthorizationServerPolicy>`
+ - method `getAuthorizationServerPolicy`: returns `Promise<AuthorizationServerPolicy>`
+ - method `updateAuthorizationServerPolicy`: second parameter type changed to `AuthorizationServerPolicyOptions`, returns `Promise<AuthorizationServerPolicy>`
+ - method `listPolicies` returns `Promise<AuthorizationServerPolicy>`
+
+All required method parameters in Client are now checked at runtime in JS code.
+Change details are listed in [CHANGELOG.md](CHANGELOG.md#500)
+
 ### From 3.x to 4.0
 
 The version 4.0 of this SDK dropped support for Node 8, which is EOL (End-of-Life) since 2019-12-31. Current supported minimum Node version is 10.0.0.
