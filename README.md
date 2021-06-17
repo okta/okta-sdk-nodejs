@@ -827,15 +827,19 @@ client.createApplication(bookmarkAppOptions).then((createdApp: Application) => {
 
 #### Breaking changes
 
-Following methods signatures have changed:
+Following Client methods signatures have changed:
  - `createAuthorizationServerPolicy`: added `authorizationServerPolicy: AuthorizationServerPolicyOptions` parameter
- - method `listAuthorizationServerPolicies`: returns `Collection<AuthorizationServerPolicy>`
- - method `getAuthorizationServerPolicy`: returns `Promise<AuthorizationServerPolicy>`
- - method `updateAuthorizationServerPolicy`: second parameter type changed to `AuthorizationServerPolicyOptions`, returns `Promise<AuthorizationServerPolicy>`
- - method `listPolicies` returns `Promise<AuthorizationServerPolicy>`
+ - `listAuthorizationServerPolicies`: returns `Collection<AuthorizationServerPolicy>`
+ - `getAuthorizationServerPolicy`: returns `Promise<AuthorizationServerPolicy>`
+ - `updateAuthorizationServerPolicy`: second parameter type changed to `AuthorizationServerPolicyOptions`, returns `Promise<AuthorizationServerPolicy>`
+ - `listPolicies` returns `Promise<AuthorizationServerPolicy>`
+
+Following models' method signatures have changed:
+- `AuthorizationServer`
+
+ Change details are listed in [CHANGELOG.md](CHANGELOG.md#500)
 
 All required method parameters in Client are now checked at runtime in JS code.
-Change details are listed in [CHANGELOG.md](CHANGELOG.md#500)
 
 ### From 3.x to 4.0
 
