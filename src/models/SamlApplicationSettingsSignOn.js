@@ -1,5 +1,5 @@
 /*!
- * Copyright (c) 2017-2020, Okta, Inc. and/or its affiliates. All rights reserved.
+ * Copyright (c) 2017-present, Okta, Inc. and/or its affiliates. All rights reserved.
  * The Okta software accompanied by this notice is provided pursuant to the Apache License, Version 2.0 (the "License.")
  *
  * You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0.
@@ -14,7 +14,10 @@
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
 var Resource = require('../resource');
-
+const AcsEndpoint = require('./AcsEndpoint');
+const SamlAttributeStatement = require('./SamlAttributeStatement');
+const SingleLogout = require('./SingleLogout');
+const SpCertificate = require('./SpCertificate');
 
 /**
  * @class SamlApplicationSettingsSignOn
@@ -37,6 +40,8 @@ var Resource = require('../resource');
  * @property { boolean } requestCompressed
  * @property { boolean } responseSigned
  * @property { string } signatureAlgorithm
+ * @property { SingleLogout } slo
+ * @property { SpCertificate } spCertificate
  * @property { string } spIssuer
  * @property { string } ssoAcsUrl
  * @property { string } ssoAcsUrlOverride
@@ -46,7 +51,18 @@ var Resource = require('../resource');
 class SamlApplicationSettingsSignOn extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-
+    if (resourceJson && resourceJson.acsEndpoints) {
+      this.acsEndpoints = resourceJson.acsEndpoints.map(resourceItem => new AcsEndpoint(resourceItem));
+    }
+    if (resourceJson && resourceJson.attributeStatements) {
+      this.attributeStatements = resourceJson.attributeStatements.map(resourceItem => new SamlAttributeStatement(resourceItem));
+    }
+    if (resourceJson && resourceJson.slo) {
+      this.slo = new SingleLogout(resourceJson.slo);
+    }
+    if (resourceJson && resourceJson.spCertificate) {
+      this.spCertificate = new SpCertificate(resourceJson.spCertificate);
+    }
   }
 
 }

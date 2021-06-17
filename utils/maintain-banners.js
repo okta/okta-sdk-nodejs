@@ -11,13 +11,6 @@ const files = globby.sync([
 ]);
 const bannerSource = fs.readFileSync(bannerSourcePath).toString();
 const copyrightRegex = /(Copyright \(c\) )([0-9]+)-?([0-9]+)?/;
-const match = bannerSource.match(copyrightRegex);
-const firstYear = match[2];
-const currentYear = new Date().getFullYear().toString();
-
-if (firstYear !== currentYear) {
-  fs.writeFileSync(bannerSourcePath, bannerSource.replace(copyrightRegex, `$1$2-${currentYear}`));
-}
 
 files.forEach(file => {
   const contents = fs.readFileSync(file).toString();
@@ -25,8 +18,9 @@ files.forEach(file => {
   if (!match) {
     return fs.writeFileSync(file, bannerSource + '\n\n' + contents);
   }
-  const firstYear = match[2];
-  if (firstYear !== currentYear) {
-    return fs.writeFileSync(file, contents.replace(copyrightRegex, `$1$2-${currentYear}`));
+  const yearRangeEnd = match[3];
+  // replace numeric year with 'present'
+  if (yearRangeEnd) {
+    return fs.writeFileSync(file, contents.replace(copyrightRegex, '$1$2-present'));
   }
 });

@@ -1,5 +1,5 @@
 /*!
- * Copyright (c) 2017-2021, Okta, Inc. and/or its affiliates. All rights reserved.
+ * Copyright (c) 2017-present, Okta, Inc. and/or its affiliates. All rights reserved.
  * The Okta software accompanied by this notice is provided pursuant to the Apache License, Version 2.0 (the "License.")
  *
  * You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0.
@@ -23,15 +23,15 @@ declare class JsonWebKey extends Resource {
 
   readonly _links: {[name: string]: unknown};
   alg: string;
-  readonly created: string;
+  created: string;
   e: string;
-  readonly expiresAt: string;
+  expiresAt: string;
   key_ops: string[];
   kid: string;
   kty: string;
-  readonly lastUpdated: string;
+  lastUpdated: string;
   n: string;
-  readonly status: string;
+  status: string;
   use: string;
   x5c: string[];
   x5t: string;

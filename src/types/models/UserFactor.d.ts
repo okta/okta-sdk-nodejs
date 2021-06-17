@@ -1,5 +1,5 @@
 /*!
- * Copyright (c) 2017-2021, Okta, Inc. and/or its affiliates. All rights reserved.
+ * Copyright (c) 2017-present, Okta, Inc. and/or its affiliates. All rights reserved.
  * The Okta software accompanied by this notice is provided pursuant to the Apache License, Version 2.0 (the "License.")
  *
  * You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0.
@@ -39,8 +39,8 @@ declare class UserFactor extends Resource {
   _verify: VerifyFactorRequest;
 
   delete(userId: string): Promise<Response>;
-  activate(userId: string, activateFactorRequest: ActivateFactorRequestOptions): Promise<UserFactor>;
-  verify(userId: string, verifyFactorRequest: VerifyFactorRequestOptions, queryParameters?: {
+  activate(userId: string, activateFactorRequest?: ActivateFactorRequestOptions): Promise<UserFactor>;
+  verify(userId: string, verifyFactorRequest?: VerifyFactorRequestOptions, queryParameters?: {
     templateId?: string,
     tokenLifetimeSeconds?: number,
   }): Promise<VerifyUserFactorResponse>;

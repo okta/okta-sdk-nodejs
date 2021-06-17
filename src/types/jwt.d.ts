@@ -1,5 +1,5 @@
 /*!
- * Copyright (c) 2017-2021, Okta, Inc. and/or its affiliates. All rights reserved.
+ * Copyright (c) 2017-present, Okta, Inc. and/or its affiliates. All rights reserved.
  * The Okta software accompanied by this notice is provided pursuant to the Apache License, Version 2.0 (the "License.")
  *
  * You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0.
@@ -9,28 +9,16 @@
  *
  * See the License for the specific language governing permissions and limitations under the License.
  */
+
+import * as Rasha from 'rasha';
+import { Jwt } from 'njwt';
+
 import { Client } from './client';
 
-export declare class Jwt {
-  constructor(claims: Record<string, string>, enforceDefaultFields: boolean);
-
-  compact(): string;
-  isExpired(): boolean;
-  isNotBefore(): boolean;
-  isSupportedAlg(alg: string): boolean;
-  setClaim(claim: string, value: string): Jwt;
-  setExpiration(exp: Date | number): Jwt;
-  setHeader(param: string, value: unknown): Jwt;
-  setIssuedAt(iat: number): Jwt;
-  setIssuer(iss: string): Jwt;
-  setJti(jti: string): Jwt;
-  setNotBefore(nbf: Date | number): Jwt;
-  setSigningAlgorithm(alg: string): Jwt;
-  setSigningKey(key: string | ArrayBuffer | Buffer): Jwt;
-  setSubject(sub: string): Jwt;
-  sign(payload: Record<string, unknown>, algorithm: string, cryptoInput: string | ArrayBuffer | Buffer): string;
-  toString(): string;
-}
 
 export function makeJwt(client: Client, endpoint: string): Jwt;
-export function getPemAndJwk(privateKey: string | Record<string, unknown>): {jwk: Record<string, string>, pem: string};
+export function getPemAndJwk(privateKey: string | Record<string, unknown>): Promise<{
+  pem: string,
+  jwk: Rasha.Jwk | Record<string, unknown>
+}>;
+
