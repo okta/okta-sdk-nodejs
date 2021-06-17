@@ -1,5 +1,5 @@
 /*!
- * Copyright (c) 2017-2020, Okta, Inc. and/or its affiliates. All rights reserved.
+ * Copyright (c) 2017-present, Okta, Inc. and/or its affiliates. All rights reserved.
  * The Okta software accompanied by this notice is provided pursuant to the Apache License, Version 2.0 (the "License.")
  *
  * You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0.
@@ -153,18 +153,18 @@ class AuthorizationServer extends Resource {
   }
 
   /**
-   * @returns {Promise<Collection>} A collection that will yield {@link Policy} instances.
+   * @returns {Promise<Collection>} A collection that will yield {@link AuthorizationServerPolicy} instances.
    */
   listPolicies() {
     return this.httpClient.listAuthorizationServerPolicies(this.id);
   }
 
   /**
-   * @param {Policy} policy
-   * @returns {Promise<Policy>}
+   * @param {AuthorizationServerPolicy} authorizationServerPolicy
+   * @returns {Promise<AuthorizationServerPolicy>}
    */
-  createPolicy(policy) {
-    return this.httpClient.createAuthorizationServerPolicy(this.id, policy);
+  createPolicy(authorizationServerPolicy) {
+    return this.httpClient.createAuthorizationServerPolicy(this.id, authorizationServerPolicy);
   }
 
   /**
@@ -176,7 +176,7 @@ class AuthorizationServer extends Resource {
 
   /**
    * @param {string} policyId
-   * @returns {Promise<Policy>}
+   * @returns {Promise<AuthorizationServerPolicy>}
    */
   getPolicy(policyId) {
     return this.httpClient.getAuthorizationServerPolicy(this.id, policyId);
@@ -184,11 +184,11 @@ class AuthorizationServer extends Resource {
 
   /**
    * @param {string} policyId
-   * @param {Policy} policy
-   * @returns {Promise<Policy>}
+   * @param {AuthorizationServerPolicy} authorizationServerPolicy
+   * @returns {Promise<AuthorizationServerPolicy>}
    */
-  updatePolicy(policyId, policy) {
-    return this.httpClient.updateAuthorizationServerPolicy(this.id, policyId, policy);
+  updatePolicy(policyId, authorizationServerPolicy) {
+    return this.httpClient.updateAuthorizationServerPolicy(this.id, policyId, authorizationServerPolicy);
   }
 
   /**

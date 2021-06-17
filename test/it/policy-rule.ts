@@ -1,9 +1,9 @@
-import { OktaSignOnPolicyRule } from '../..//src/types/models/OktaSignOnPolicyRule';
 import { expect } from 'chai';
 import {
   Client,
   Collection,
   DefaultRequestExecutor,
+  OktaSignOnPolicyRule,
   PolicyRule } from '@okta/okta-sdk-nodejs';
 import getMockGroup = require('./mocks/group');
 import getMockOktaSignOnPolicy = require('./mocks/okta-sign-on-policy');

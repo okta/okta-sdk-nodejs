@@ -1,5 +1,5 @@
 /*!
- * Copyright (c) 2017-2021, Okta, Inc. and/or its affiliates. All rights reserved.
+ * Copyright (c) 2017-present, Okta, Inc. and/or its affiliates. All rights reserved.
  * The Okta software accompanied by this notice is provided pursuant to the Apache License, Version 2.0 (the "License.")
  *
  * You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0.
@@ -45,6 +45,8 @@ declare class AuthorizationServerPolicy extends Resource {
   createPolicyRule(authServerId: string, authorizationServerPolicyRule: AuthorizationServerPolicyRuleOptions): Promise<AuthorizationServerPolicyRule>;
   getPolicyRule(authServerId: string, ruleId: string): Promise<AuthorizationServerPolicyRule>;
   deletePolicyRule(authServerId: string, ruleId: string): Promise<Response>;
+  activate(authServerId: string): Promise<Response>;
+  deactivate(authServerId: string): Promise<Response>;
 }
 
 type AuthorizationServerPolicyOptions = OptionalKnownProperties<AuthorizationServerPolicy>;

@@ -1,5 +1,5 @@
 /*!
- * Copyright (c) 2017-2021, Okta, Inc. and/or its affiliates. All rights reserved.
+ * Copyright (c) 2017-present, Okta, Inc. and/or its affiliates. All rights reserved.
  * The Okta software accompanied by this notice is provided pursuant to the Apache License, Version 2.0 (the "License.")
  *
  * You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0.
@@ -12,35 +12,12 @@
 
 import { Client } from './client';
 
-interface JWTHeader {
-  alg: string;
-  typ?: string;
-  kid?: string;
-  jku?: string;
-  x5u?: string;
-  x5t?: string;
-}
-
-interface UserClaims {
-  sub: string;
-  [properties: string]: unknown;
-}
-
 export interface TokenEndpointResponse {
   access_token: string,
   token_type: string,
   expires_in: number,
   scope: string,
 }
-
-// import from okta-auth-js?
-export interface JWTObject {
-  header: JWTHeader;
-  payload: UserClaims;
-  signature: string;
-}
-
-
 
 export declare class OAuth {
   constructor(client: Client);
@@ -49,5 +26,5 @@ export declare class OAuth {
   accessToken: TokenEndpointResponse;
   getAccessToken(): Promise<TokenEndpointResponse>;
   clearCachedAccessToken(): void;
-  getJwt(endpoint: string): JWTObject;
+  getJwt(endpoint: string): string;
 }

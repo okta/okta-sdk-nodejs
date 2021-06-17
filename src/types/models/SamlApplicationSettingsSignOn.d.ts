@@ -1,5 +1,5 @@
 /*!
- * Copyright (c) 2017-2021, Okta, Inc. and/or its affiliates. All rights reserved.
+ * Copyright (c) 2017-present, Okta, Inc. and/or its affiliates. All rights reserved.
  * The Okta software accompanied by this notice is provided pursuant to the Apache License, Version 2.0 (the "License.")
  *
  * You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0.
@@ -18,6 +18,8 @@ import { Client } from '../client';
 import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { AcsEndpoint } from './AcsEndpoint';
 import { SamlAttributeStatement } from './SamlAttributeStatement';
+import { SingleLogout } from './SingleLogout';
+import { SpCertificate } from './SpCertificate';
 
 declare class SamlApplicationSettingsSignOn extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
@@ -40,6 +42,8 @@ declare class SamlApplicationSettingsSignOn extends Resource {
   requestCompressed: boolean;
   responseSigned: boolean;
   signatureAlgorithm: string;
+  slo: SingleLogout;
+  spCertificate: SpCertificate;
   spIssuer: string;
   ssoAcsUrl: string;
   ssoAcsUrlOverride: string;
