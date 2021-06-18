@@ -75,7 +75,7 @@ class ConfigLoader {
   }
 
   applyYamlFile(path) {
-    this.apply(yaml.safeLoad(fs.readFileSync(path)).okta);
+    this.apply(yaml.load(fs.readFileSync(path)).okta);
   }
 
   apply(config) {
