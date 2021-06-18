@@ -2,6 +2,8 @@
 
 ## 5.0.0
 
+- [#259](https://github.com/okta/okta-sdk-nodejs/pull/259) Drop support for Node 10
+
 - [#248](https://github.com/okta/okta-sdk-nodejs/pull/248) Generates SDK over latest spec `@okta/openapi@2.2.4` that includes new endpoints and updated method signatures. Please see list below for detailed information:
   - Fixes
     - correct njwt-facing type signatures

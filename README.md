@@ -2,7 +2,7 @@
 
 Node.js API Client for the [Okta Platform API].
 
-Requires Node.js version 10.0.0 or higher.
+Requires Node.js version 12.0.0 or higher.
 
 Need help? Contact [developers@okta.com](mailto:developers@okta.com) or use the [Okta Developer Forum].
 
@@ -176,7 +176,7 @@ orgUsersCollection.each(user => {
 .then(() => console.log('All users have been listed'));
 ```
 
-If you're using a version of Node 10 or greater, you can use async iterators.
+If you're using a version of Node 12 or greater, you can use async iterators.
 
 ```javascript
 for await (let user of client.listUsers()) {
@@ -824,6 +824,8 @@ client.createApplication(bookmarkAppOptions).then((createdApp: Application) => {
 ## Migrating between versions
 
 ### From 4.x to 5.0
+
+The version 5.0 of this SDK dropped support for Node 10, which is EOL (End-of-Life) since 2021-04-30. Current supported minimum Node version is 12.0.0.
 
 #### Breaking changes
 
