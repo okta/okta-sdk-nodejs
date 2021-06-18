@@ -3,7 +3,7 @@ Okta Node.js SDK License
 The Okta software accompanied by this notice is provided pursuant to the
 following terms:
 
-Copyright © 2017, Okta, Inc.
+Copyright © 2017-present, Okta, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use
 this file except in compliance with the License. You may obtain a copy of the
