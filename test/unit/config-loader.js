@@ -42,8 +42,8 @@ describe('ConfigLoader', () => {
     });
 
     it('automatically sets "authorizationMode" to "SSWS"', () => {
-      fakeFs.file(path.join(os.homedir(), '.okta', 'okta.yaml'), yaml.safeDump({}));
-      fakeFs.file(path.join(process.cwd(), 'okta.yaml'), yaml.safeDump({}));
+      fakeFs.file(path.join(os.homedir(), '.okta', 'okta.yaml'), yaml.dump({}));
+      fakeFs.file(path.join(process.cwd(), 'okta.yaml'), yaml.dump({}));
       loader.applyDefaults();
       assert.deepEqual(loader.config, {
         client: {
@@ -59,7 +59,7 @@ describe('ConfigLoader', () => {
     });
 
     it('should override defaults with ~/.okta/okta.yaml file', () => {
-      fakeFs.file(path.join(os.homedir(), '.okta', 'okta.yaml'), yaml.safeDump({
+      fakeFs.file(path.join(os.homedir(), '.okta', 'okta.yaml'), yaml.dump({
         okta: {
           client: {
             orgUrl: 'foo',
@@ -67,7 +67,7 @@ describe('ConfigLoader', () => {
           }
         }
       }));
-      fakeFs.file(path.join(process.cwd(), 'okta.yaml'), yaml.safeDump({}));
+      fakeFs.file(path.join(process.cwd(), 'okta.yaml'), yaml.dump({}));
       loader.applyDefaults();
       assert.deepEqual(loader.config, {
         client: {
@@ -83,8 +83,8 @@ describe('ConfigLoader', () => {
     });
 
     it('should override ~/.okta/okta.yaml with okta.yaml in the process context', () => {
-      fakeFs.file(path.join(os.homedir(), '.okta', 'okta.yaml'), yaml.safeDump({}));
-      fakeFs.file(path.join(process.cwd(), 'okta.yaml'), yaml.safeDump({
+      fakeFs.file(path.join(os.homedir(), '.okta', 'okta.yaml'), yaml.dump({}));
+      fakeFs.file(path.join(process.cwd(), 'okta.yaml'), yaml.dump({
         okta: {
           client: {
             orgUrl: 'bar'
