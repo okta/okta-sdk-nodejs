@@ -1,22 +1,54 @@
-# okta-sdk-nodejs
+[<img src="https://aws1.discourse-cdn.com/standard14/uploads/oktadev/original/1X/0c6402653dfb70edc661d4976a43a46f33e5e919.png" align="right" width="256px"/>](https://devforum.okta.com/)
+[![npm](https://img.shields.io/npm/v/@okta/okta-sdk-nodejs)](https://www.npmjs.com/package/@okta/okta-sdk-nodejs)
+[![Support](https://img.shields.io/badge/support-Developer%20Forum-blue.svg)][devforum]
+[![API Reference](https://img.shields.io/badge/docs-reference-lightgrey.svg)][nodejsdocs]
 
+# Okta Node.js Management SDK
+
+* [Release status](#release-status)
+* [Need help?](#need-help)
+* [Getting started](#getting-started)
+* [Usage guide](#usage-guide)
+* [Configuration reference](#configuration-reference)
+* [Building the SDK](#building-the-sdk)
+* [TypeScript usage](#typescript-usage)
+
+* [Contributing](#contributing)
+
+## Release status
+
+This library uses semantic versioning and follows Okta's [library version policy](https://developer.okta.com/code/library-versions/).
+
+✔️: The current stable major version series is: 4.x.x
+
+| Version | Status                    |
+| ------- | ------------------------- |
+| 1.x | :x: Retired |
+| 2.x | :x: Retired |
+| 3.x | :x: Retired |
+| 4.x | :heavy_check_mark: Stable ([migration guide](#from-3x-to-40)) |
+
+The latest release can always be found on the [releases page][github-releases].
+ 
+## Need help?
+ 
+If you run into problems using the SDK, you can
+ 
+* Ask questions on the [Okta Developer Forums][devforum]
+* Post [issues][github-issues] here on GitHub (for code errors)
 Node.js API Client for the [Okta Platform API].
+
+
+## Getting started
 
 Requires Node.js version 10.0.0 or higher.
 
-Need help? Contact [developers@okta.com](mailto:developers@okta.com) or use the [Okta Developer Forum].
-
-## Installation
 
 ```sh
 npm install @okta/okta-sdk-nodejs
 ```
 
-## JsDocs
-
-You can view the entire JsDocs for this project here: https://developer.okta.com/okta-sdk-nodejs/jsdocs/
-
-## Usage
+## Usage guide
 
 All usage of this SDK begins with the creation of a client, the client handles the authentication and communication with the Okta API.  To create a client, you need to provide it with your Okta Domain and an API token.  To obtain those, see [Getting Started With the Okta APIs](https://developer.okta.com/code/rest/).
 
@@ -61,10 +93,12 @@ The `privateKey` can be passed in the following ways:
 
 > Note: in case OAuth client app uses multiple JWKs, `privateKey` should specify `kid` attribute.
 
-## Table of Contents
 
-* [Examples](#examples)
-  * [Users](#users)
+## Examples
+
+This library is a wrapper for the [Okta Platform API], which should be referred to as the source-of-truth for what is and isn't possible with the API.  In the following sections we show you how to use your client to perform some common operations with the [Okta Platform API].
+
+ * [Users](#users)
     * [Create a User](#create-a-user)
     * [Get a User](#get-a-user)
     * [Update a User](#update-a-user)
@@ -84,20 +118,6 @@ The `privateKey` can be passed in the following ways:
 * [Collection](#collection)
   * [each](#each)
   * [subscribe](#subscribeconfig)
-* [Configuration](#configuration)
-* [Caching](#caching)
-* [Rate Limiting](#rate-limiting)
-  * [Built-In Retry](#built-in-retry)
-  * [Manual Retry](#manual-retry)
-* [Request Executor](#request-executor)
-  * [Default Request Executor](#default-request-executor)
-  * [Base Request Executor](#base-request-executor)
-* [Migrating between versions](#migrating-between-versions)
-
-
-## Examples
-
-This library is a wrapper for the [Okta Platform API], which should be referred to as the source-of-truth for what is and isn't possible with the API.  In the following sections we show you how to use your client to perform some common operations with the [Okta Platform API].
 
 ### Users
 
@@ -414,15 +434,15 @@ client.http.http(url, request)
   });
 ```
 
-## Collection
+### Collection
 
 When the client is used to fetch collections of resources, a collection instance is returned.  The collection encapsulates the work of paginating the API to fetch all resources in the collection (see [Pagination]).  The collection provides the `each()` method for iterating over the collection, as described below.
 
-### `each()`
+#### `each()`
 
 Allows you to visit every item in the collection, while optionally doing work at each item.  All calls to `each()` will return a promise that is resolved when all items have been visited or rejected if you return a rejected promise from your iterator.  Iteration can be stopped by rejecting a returned promise, or by returning `false` (will not cause a promise rejection).  The following examples show you the various use-cases.
 
-#### Serial or Parallel Synchronous Work
+##### Serial or Parallel Synchronous Work
 
 If no value is returned, `each()` will continue to the next item:
 
@@ -436,7 +456,7 @@ client.listUsers().each(user => {
 });
 ```
 
-#### Serial Asynchronous Work
+##### Serial Asynchronous Work
 
 Returning a promise will pause the iterator until the promise is resolved:
 
@@ -448,7 +468,7 @@ client.listUsers().each(user => {
 });
 ```
 
-#### Ending Iteration
+##### Ending Iteration
 
 Returning `false` will end iteration:
 
@@ -485,7 +505,7 @@ return client.listUsers().each(user => {
 });
 ```
 
-### `subscribe(config)`
+#### `subscribe(config)`
 
 A subscription allows you to continue paginating a collection until new items are available, if the REST API supports it for the collection.  The only supported collection is the [System Log API] at this time.
 
@@ -493,7 +513,7 @@ A subscription fetches pages until the first empty page is reached. From that po
 
 Depending on the polling interval you choose, you may run into rate limiting exceptions.  In that case you should enable our rate limiting retry strategy, see [Rate Limiting](#rate-limiting).
 
-#### Simple subscription example
+##### Simple subscription example
 ```javascript
 const subscription = collection.subscribe({
   interval: 5000,
@@ -509,7 +529,7 @@ const subscription = collection.subscribe({
 subscription.unsubscribe()
 ```
 
-## Configuration
+## Configuration Reference
 
 There are several ways to provide configuration to the client constructor.  When creating a new client, the following locations are searched in order, in a last-one-wins fashion:
 
@@ -770,7 +790,10 @@ const client = new okta.Client({
 })
 ```
 
-### TypeScript usage examples (>=4.5.0)
+## TypeScript usage
+
+### 4.5.x
+
 ```typescript
 
 import { Client } from '@okta/okta-sdk-nodejs'
@@ -821,7 +844,7 @@ client.createApplication(bookmarkAppOptions).then((createdApp: Application) => {
 });
 ```
 
-#### TypeScript usage examples (>=4.6.0)
+### >=4.6.x
 
 Models can be imported from library root:
 
@@ -847,6 +870,10 @@ This version 4.0 release also updated APIs latest `@okta/openapi` (v2.0.0) that 
 - Renamed `client.endAllUserSessions` to `client.clearUserSessions`
 - Model and Client methods change for `User` related operations
 - Model and Client methods change for `Rule` related operations
+
+## Building the SDK
+
+Run `yarn build` from repository root.
 
 ## Contributing
 
@@ -877,3 +904,9 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) if you would like to propose changes to t
 [Users: List Users]: https://developer.okta.com/docs/api/resources/users#list-users
 [Users: Update User]: https://developer.okta.com/docs/api/resources/users#update-user
 [Okta NodeJS Management SDK JSDoc Site]: https://developer.okta.com/okta-sdk-nodejs/jsdocs/
+
+[devforum]: https://devforum.okta.com/
+[nodejsdocs]: https://developer.okta.com/okta-sdk-nodejs/jsdocs/
+[github-issues]: https://github.com/okta/okta-sdk-nodejs/issues
+[github-releases]: https://github.com/okta/okta-sdk-nodejs/releases
+
