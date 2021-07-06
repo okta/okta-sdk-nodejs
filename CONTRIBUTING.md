@@ -7,7 +7,7 @@ Some of this SDK is auto-generated from our API Spec, defined as an Open API JSO
 To re-build the auto generated files, use this command in a cloned copy of this repo (after ensuring the dev dependencies have been installed):
 
 ```sh
-npm run build
+yarn build
 ```
 
 If there are modifications to the auto-generated files, please include those changes in your pull request.
@@ -26,5 +26,5 @@ OKTA_CLIENT_TOKEN=xxxx_api_token
 Then run the tests:
 
 ```bash
-npm test
+yarn test
 ```
