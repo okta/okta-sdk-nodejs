@@ -17,12 +17,15 @@ import {
   Client,
   DefaultRequestExecutor,
   OAuthApplicationCredentials,
+  OAuthGrantType,
+  OAuthResponseType,
   OpenIdConnectApplication,
   OpenIdConnectApplicationSettings,
   OpenIdConnectApplicationSettingsClient,
   SamlApplication,
   SamlApplicationSettings,
   SamlApplicationSettingsSignOn,
+  SamlAttributeStatement,
   SecurePasswordStoreApplication,
   SecurePasswordStoreApplicationSettings,
   SecurePasswordStoreApplicationSettingsApplication,
@@ -352,11 +355,11 @@ describe('client.createApplication()', () => {
       }
     };
 
-    let createdApplication;
+    let createdApplication: SamlApplication;
 
     try {
       await utils.removeAppByLabel(client, application.label);
-      createdApplication = await client.createApplication(application);
+      createdApplication = await client.createApplication(application) as SamlApplication;
       expect(createdApplication).to.be.instanceof(Application);
       expect(createdApplication).to.be.instanceof(SamlApplication);
       expect(createdApplication.name).to.contain('examplecustomsaml20app');
@@ -366,7 +369,8 @@ describe('client.createApplication()', () => {
       expect(createdApplication.settings).to.be.instanceof(SamlApplicationSettings);
       expect(createdApplication.settings.signOn).to.be.instanceof(SamlApplicationSettingsSignOn);
       expect(createdApplication.settings.signOn.assertionSigned).to.equal(application.settings.signOn.assertionSigned);
-      expect(createdApplication.settings.signOn.attributeStatements).to.deep.equal(application.settings.signOn.attributeStatements);
+      const attributeStatements = application.settings.signOn.attributeStatements.map(attributeStatement => new SamlAttributeStatement(attributeStatement, client));
+      expect(createdApplication.settings.signOn.attributeStatements).to.deep.equal(attributeStatements);
       expect(createdApplication.settings.signOn.audience).to.equal(application.settings.signOn.audience);
       expect(createdApplication.settings.signOn.authnContextClassRef).to.equal(application.settings.signOn.authnContextClassRef);
       expect(createdApplication.settings.signOn.defaultRelayState).to.equal(null);
@@ -481,11 +485,11 @@ describe('client.createApplication()', () => {
       }
     };
 
-    let createdApplication;
+    let createdApplication: OpenIdConnectApplication;
 
     try {
       await utils.removeAppByLabel(client, application.label);
-      createdApplication = await client.createApplication(application);
+      createdApplication = await client.createApplication(application) as OpenIdConnectApplication;
       expect(createdApplication).to.be.instanceof(Application);
       expect(createdApplication).to.be.instanceof(OpenIdConnectApplication);
       expect(createdApplication.name).to.equal(application.name);
@@ -501,9 +505,11 @@ describe('client.createApplication()', () => {
       expect(createdApplication.settings.oauthClient).to.be.instanceof(OpenIdConnectApplicationSettingsClient);
       expect(createdApplication.settings.oauthClient.application_type).to.equal(application.settings.oauthClient.application_type);
       expect(createdApplication.settings.oauthClient.client_uri).to.equal(application.settings.oauthClient.client_uri);
-      expect(createdApplication.settings.oauthClient.grant_types).to.deep.equal(application.settings.oauthClient.grant_types);
+      const grantTypes = application.settings.oauthClient.grant_types.map(grantTypeOptions => new OAuthGrantType(grantTypeOptions, client));
+      expect(createdApplication.settings.oauthClient.grant_types).to.deep.equal(grantTypes);
       expect(createdApplication.settings.oauthClient.logo_uri).to.equal(application.settings.oauthClient.logo_uri);
-      expect(createdApplication.settings.oauthClient.response_types).to.deep.equal(application.settings.oauthClient.response_types);
+      const responseTypes = application.settings.oauthClient.response_types.map(responseTypeOptions => new OAuthResponseType(responseTypeOptions, client));
+      expect(createdApplication.settings.oauthClient.response_types).to.deep.equal(responseTypes);
     } finally {
       if (createdApplication) {
         await createdApplication.deactivate();

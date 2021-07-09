@@ -19,7 +19,11 @@ declare class {{modelName}} extends {{extends}} {
 {{else}}
 declare class {{modelName}} extends Resource {
 {{/if}}
+{{#if this.enum}}
+  constructor(resourceJson: string, client: Client);
+{{else}}
   constructor(resourceJson: Record<string, unknown>, client: Client);
+{{/if}}
 
 {{#each properties}}
 {{#unless (isRestrictedPropertyOverride ../modelName this.propertyName)}}

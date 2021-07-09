@@ -1,5 +1,5 @@
 /*!
- * Copyright (c) 2017-2021, Okta, Inc. and/or its affiliates. All rights reserved.
+ * Copyright (c) 2017-present, Okta, Inc. and/or its affiliates. All rights reserved.
  * The Okta software accompanied by this notice is provided pursuant to the Apache License, Version 2.0 (the "License.")
  *
  * You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0.
@@ -13,12 +13,12 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-import { Resource } from '../resource';
+import { PolicyRuleActions } from './PolicyRuleActions';
 import { Client } from '../client';
 import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { PasswordPolicyRuleAction } from './PasswordPolicyRuleAction';
 
-declare class PasswordPolicyRuleActions extends Resource {
+declare class PasswordPolicyRuleActions extends PolicyRuleActions {
   constructor(resourceJson: Record<string, unknown>, client: Client);
 
   passwordChange: PasswordPolicyRuleAction;

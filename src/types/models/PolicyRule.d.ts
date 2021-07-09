@@ -1,5 +1,5 @@
 /*!
- * Copyright (c) 2017-2021, Okta, Inc. and/or its affiliates. All rights reserved.
+ * Copyright (c) 2017-present, Okta, Inc. and/or its affiliates. All rights reserved.
  * The Okta software accompanied by this notice is provided pursuant to the Apache License, Version 2.0 (the "License.")
  *
  * You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0.
@@ -17,13 +17,18 @@ import { Resource } from '../resource';
 import { Client } from '../client';
 import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { Response } from 'node-fetch';
+import { PolicyRuleActions } from './PolicyRuleActions';
+import { PolicyRuleConditions } from './PolicyRuleConditions';
 
 declare class PolicyRule extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
 
+  actions: PolicyRuleActions;
+  conditions: PolicyRuleConditions;
   readonly created: string;
   readonly id: string;
   readonly lastUpdated: string;
+  name: string;
   priority: number;
   status: string;
   system: boolean;

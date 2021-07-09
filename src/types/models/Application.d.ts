@@ -1,5 +1,5 @@
 /*!
- * Copyright (c) 2017-2021, Okta, Inc. and/or its affiliates. All rights reserved.
+ * Copyright (c) 2017-present, Okta, Inc. and/or its affiliates. All rights reserved.
  * The Okta software accompanied by this notice is provided pursuant to the Apache License, Version 2.0 (the "License.")
  *
  * You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0.
@@ -71,7 +71,7 @@ declare class Application extends Resource {
   getApplicationUser(userId: string, queryParameters?: {
     expand?: string,
   }): Promise<AppUser>;
-  createApplicationGroupAssignment(groupId: string, applicationGroupAssignment: ApplicationGroupAssignmentOptions): Promise<ApplicationGroupAssignment>;
+  createApplicationGroupAssignment(groupId: string, applicationGroupAssignment?: ApplicationGroupAssignmentOptions): Promise<ApplicationGroupAssignment>;
   getApplicationGroupAssignment(groupId: string, queryParameters?: {
     expand?: string,
   }): Promise<ApplicationGroupAssignment>;

@@ -1,5 +1,6 @@
 import { expect } from 'chai';
 import {
+  AuthorizationServerPolicy,
   Client,
   Collection,
   DefaultRequestExecutor,
@@ -46,7 +47,7 @@ describe('Policy Crud API', () => {
 
     it('should resolve Policy in collection', async () => {
       await client.listPolicies({ type: 'OKTA_SIGN_ON' }).each(policy => {
-        expect(policy).to.be.instanceOf(Policy);
+        expect(policy).to.be.instanceOf(AuthorizationServerPolicy);
       });
     });
 
@@ -92,7 +93,7 @@ describe('Policy Crud API', () => {
   });
 
   describe('Update policy', () => {
-    let policy;
+    let policy: Policy;
     beforeEach(async () => {
       policy = await client.createPolicy(mockPolicy);
     });
@@ -110,7 +111,7 @@ describe('Policy Crud API', () => {
   });
 
   describe('Delete policy', () => {
-    let policy;
+    let policy: Policy;
     beforeEach(async () => {
       policy = await client.createPolicy(mockPolicy);
     });

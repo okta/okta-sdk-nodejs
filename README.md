@@ -27,6 +27,7 @@ This library uses semantic versioning and follows Okta's [library version policy
 | 2.x | :x: Retired |
 | 3.x | :x: Retired |
 | 4.x | :heavy_check_mark: Stable ([migration guide](#from-3x-to-40)) |
+| 5.x | :heavy_check_mark: Stable ([migration guide](#from-4x-to-50)) |
 
 The latest release can always be found on the [releases page][github-releases].
  
@@ -38,10 +39,7 @@ If you run into problems using the SDK, you can
 * Post [issues][github-issues] here on GitHub (for code errors)
 Node.js API Client for the [Okta Platform API].
 
-
-## Getting started
-
-Requires Node.js version 10.0.0 or higher.
+Requires Node.js version 12.0.0 or higher.
 
 
 ```sh
@@ -196,7 +194,7 @@ orgUsersCollection.each(user => {
 .then(() => console.log('All users have been listed'));
 ```
 
-If you're using a version of Node 10 or greater, you can use async iterators.
+You can also use async iterators.
 
 ```javascript
 for await (let user of client.listUsers()) {
@@ -853,6 +851,26 @@ import { Client, LogEvent } from '@okta/okta-sdk-nodejs';
 ```
 
 ## Migrating between versions
+
+### From 4.x to 5.0
+
+The version 5.0 of this SDK dropped support for Node 10, which is EOL (End-of-Life) since 2021-04-30. Current supported minimum Node version is 12.0.0.
+
+#### Breaking changes
+
+Following Client methods signatures have changed:
+ - `createAuthorizationServerPolicy`: added `authorizationServerPolicy: AuthorizationServerPolicyOptions` parameter
+ - `listAuthorizationServerPolicies`: returns `Collection<AuthorizationServerPolicy>`
+ - `getAuthorizationServerPolicy`: returns `Promise<AuthorizationServerPolicy>`
+ - `updateAuthorizationServerPolicy`: second parameter type changed to `AuthorizationServerPolicyOptions`, returns `Promise<AuthorizationServerPolicy>`
+ - `listPolicies` returns `Promise<AuthorizationServerPolicy>`
+
+Following models' method signatures have changed:
+- `AuthorizationServer`
+
+ Change details are listed in [CHANGELOG.md](CHANGELOG.md#500)
+
+All required method parameters in Client are now checked at runtime in JS code.
 
 ### From 3.x to 4.0
 

@@ -1,5 +1,5 @@
 /*!
- * Copyright (c) 2017-2020, Okta, Inc. and/or its affiliates. All rights reserved.
+ * Copyright (c) 2017-present, Okta, Inc. and/or its affiliates. All rights reserved.
  * The Okta software accompanied by this notice is provided pursuant to the Apache License, Version 2.0 (the "License.")
  *
  * You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0.
@@ -21,6 +21,7 @@ const LogDebugContext = require('./LogDebugContext');
 const LogOutcome = require('./LogOutcome');
 const LogRequest = require('./LogRequest');
 const LogSecurityContext = require('./LogSecurityContext');
+const LogTarget = require('./LogTarget');
 const LogTransaction = require('./LogTransaction');
 
 /**
@@ -66,6 +67,9 @@ class LogEvent extends Resource {
     }
     if (resourceJson && resourceJson.securityContext) {
       this.securityContext = new LogSecurityContext(resourceJson.securityContext);
+    }
+    if (resourceJson && resourceJson.target) {
+      this.target = resourceJson.target.map(resourceItem => new LogTarget(resourceItem));
     }
     if (resourceJson && resourceJson.transaction) {
       this.transaction = new LogTransaction(resourceJson.transaction);

@@ -1,5 +1,92 @@
 # Okta Node SDK Changelog
 
+## 5.0.0
+
+- [#259](https://github.com/okta/okta-sdk-nodejs/pull/259) Drop support for Node 10
+
+- [#248](https://github.com/okta/okta-sdk-nodejs/pull/248) Generates SDK over latest spec `@okta/openapi@2.2.4` that includes new endpoints and updated method signatures. Please see list below for detailed information:
+  - Fixes
+    - correct njwt-facing type signatures
+    - force required params in js code
+    - correct parsing of models' properties of array types
+  - Model changes
+    - `AuthorizationServer`
+      - method `listPolicies`: returns `Collection<AuthorizationServerPolicy>`
+      - method `createPolicy`: parameter type changed to `AuthorizationServerPolicyOptions`, returns `Collection<AuthorizationServerPolicy>`
+      - method `getPolicy`: returns `Promise<AuthorizationServerPolicy>`
+      - method `updatePolicy`: second parameter type changed to `AuthorizationServerPolicyOptions`, returns `Promise<AuthorizationServerPolicy>`
+    - `PolicyRule`
+      - added properties: `actions: PolicyRuleActions`, `conditions: PolicyRuleConditions`, `name: string`
+    - `SamlApplicationSettingsSignOn`
+      - added properties: `slo: SingleLogout`, `spCertificate: SpCertificate`
+    - `InlineHookChannelConfig`
+      - added properties: `method: string`
+    - `OpenIdConnectApplicationSettingsClient`
+      - added properties: `idp_initiated_login: OpenIdConnectApplicationIdpInitiatedLogin`
+    - `UserType`
+      - added method `replaceUserType`
+    - added `AuthorizationServerPolicy`
+    - added `AuthorizationServerPolicyRule`
+    - added `AuthorizationServerPolicyRuleActions`
+    - added `AuthorizationServerPolicyRuleActions`
+    - added `AuthorizationServerPolicyRuleConditions`
+    - added `NetworkZone`
+    - added `NetworkZoneAddress`
+    - added `NetworkZoneAddressType`
+    - added `NetworkZoneLocation`
+    - added `NetworkZoneStatus`
+    - added `NetworkZoneType`
+    - added `NetworkZoneUsage`
+    - added `OpenIdConnectApplicationIdpInitiatedLogin`
+    - added `PolicyRuleActions`
+    - added `PolicyRuleActionsEnroll`
+    - added `PolicyRuleActionsEnrollSelf`
+    - added `ProfileMapping`
+    - added `ProfileMappingProperty`
+    - added `ProfileMappingPropertyPushStatus`
+    - added `ProfileMappingSource`
+    - added `SingleLogout`
+    - added `SpCertificate`
+    - added `ThreatInsightConfiguration`
+    - added `TokenAuthorizationServerPolicyRuleAction`
+    - added `UserSchema`
+    - added `UserSchemaAttribute`
+    - added `UserSchemaAttributeMaster`
+    - added `UserSchemaAttributePermission`
+    - added `UserSchemaBase`
+    - added `UserSchemaBaseProperties`
+    - added `UserSchemaDefinitions`
+    - added `UserSchemaPublic`
+  - Client changes
+    - method `createAuthorizationServerPolicy`: added `authorizationServerPolicy: AuthorizationServerPolicyOptions` parameter
+    - method `listAuthorizationServerPolicies`: returns `Collection<AuthorizationServerPolicy>`
+    - method `getAuthorizationServerPolicy`: returns `Promise<AuthorizationServerPolicy>`
+    - method `updateAuthorizationServerPolicy`: second parameter type changed to `AuthorizationServerPolicyOptions`, returns `Promise<AuthorizationServerPolicy>`
+    - method `listPolicies` returns `Promise<AuthorizationServerPolicy>`
+    - added method `activateAuthorizationServerPolicy`
+    - added method `deactivateAuthorizationServerPolicy`
+    - added method `listAuthorizationServerPolicyRules`
+    - added method `createAuthorizationServerPolicyRule`
+    - added method `deleteAuthorizationServerPolicyRule`
+    - added method `getAuthorizationServerPolicyRule`
+    - added method `updateAuthorizationServerPolicyRule`
+    - added method `activateAuthorizationServerPolicyRule`
+    - added method `deactivateAuthorizationServerPolicyRule`
+    - added method `listProfileMappings`
+    - added method `getProfileMapping`
+    - added method `updateProfileMapping`
+    - added method `getApplicationUserSchema`
+    - added method `updateApplicationUserProfile`
+    - added method `getUserSchema`
+    - added method `updateUserProfile`
+    - added method `getCurrentConfiguration`
+    - added method `updateConfiguration`
+    - added method `createNetworkZone`
+    - added method `deleteNetworkZone`
+    - added method `getNetworkZone`
+    - added method `updateNetworkZone`
+    - added method `activateNetworkZone`
+    - added method `deactivateNetworkZone`
 ## 4.6.0
 
 ### Features
