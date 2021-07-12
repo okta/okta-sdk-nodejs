@@ -15,6 +15,20 @@
 
 * [Contributing](#contributing)
 
+This repository contains the Okta management SDK for Node.js. This SDK can be used in your server-side code to interact with the Okta management API and:
+ 
+* Create and update users with the [Users API](https://developer.okta.com/docs/api/resources/users)
+* Add security factors to users with the [Factors API](https://developer.okta.com/docs/api/resources/factors)
+* Manage groups with the [Groups API](https://developer.okta.com/docs/api/resources/groups)
+* Manage applications with the [Apps API](https://developer.okta.com/docs/api/resources/apps)
+* Much more!
+ 
+We also publish these libraries for Node.js:
+ 
+* [Authentication SDK](https://github.com/okta/okta-auth-js)
+ 
+You can learn more on the [Okta + Node.js](https://developer.okta.com/code/nodejs) page in our documentation.
+
 ## Release status
 
 This library uses semantic versioning and follows Okta's [library version policy](https://developer.okta.com/code/library-versions/).
@@ -543,7 +557,7 @@ If providing a yaml file, the structure should be the same as the properties tha
 ```yaml
 okta:
   client:
-    orgUrl: 'https://dev-1234.oktapreview.com/'
+    orgUrl: 'https://dev-1234.oktapreview.com/',
     token: 'xYzabc'
 ```
 
@@ -583,7 +597,7 @@ const client = new okta.Client({
 `MemoryStore` configuration options:
 
 * `keyLimit` - Max number of keys stored (default is 100000). The oldest keys are deleted as new keys are set.
-* `expirationPoll` - The time, in milliseconds, between memory scans. If the value is *true*, a value of 15000 is used. (default is false, no scanning)
+* `expirationPoll` - The time, in milliseconds, between memory scans. If the value is `true`, a value of 15000 is used. (default is `false`, no scanning)
 
 
 #### Custom Storage
@@ -709,7 +723,7 @@ const customDefaultRequestExecutor = new okta.DefaultRequestExecutor({
 })
 
 const client = new okta.Client({
-  orgUrl: 'https://dev-1234.oktapreview.com/',
+  orgUrl: 'https://dev-1234.okta.com/',
   token: 'xYzabc',    // Obtained from Developer Dashboard
   requestExecutor: customDefaultRequestExecutor
 });
@@ -897,20 +911,20 @@ Run `yarn build` from repository root.
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) if you would like to propose changes to this library.
 
-[Sessions: Create Session with Session Token]: https://developer.okta.com/docs/api/resources/sessions.html#create-session-with-session-token
-[Sessions: Session Properties]: https://developer.okta.com/docs/api/resources/sessions.html#session-properties
-[Sessions: Session Operations]: https://developer.okta.com/docs/api/resources/sessions.html#session-operations
+[Sessions: Create Session with Session Token]: https://developer.okta.com/docs/api/resources/sessions#create-session-with-session-token
+[Sessions: Session Properties]: https://developer.okta.com/docs/api/resources/sessions#session-properties
+[Sessions: Session Operations]: https://developer.okta.com/docs/api/resources/sessions#session-operations
 [Applications]: https://developer.okta.com/docs/api/resources/apps/
 [Applications: Application User Profile]: https://developer.okta.com/docs/api/resources/apps/#application-user-profile-object
 [Applications: Add Application]: https://developer.okta.com/docs/api/resources/apps/#add-application
 [Applications: User Operations]:https://developer.okta.com/docs/api/resources/apps/#application-user-operations
 [Basic Authentication Application]: https://developer.okta.com/docs/api/resources/apps/#add-basic-authentication-application
-[Client]: https://developer.okta.com/okta-sdk-nodejs/jsdocs/Client.html
+[Client]: https://developer.okta.com/okta-sdk-nodejs/jsdocs/Client
 [DefaultRequestExecutor]: src/default-request-executor.js
 [Groups: Add Group]: https://developer.okta.com/docs/api/resources/groups.html#add-group
 [isomorphic-fetch]: https://github.com/matthew-andrews/isomorphic-fetch
 [Okta Developer Forum]: https://devforum.okta.com/
-[Okta Platform API]: https://developer.okta.com/docs/api/getting_started/api_test_client.html
+[Okta Platform API]: https://developer.okta.com/docs/api/getting_started/api_test_client
 [Pagination]: https://developer.okta.com/docs/api/getting_started/design_principles.html#pagination
 [Rate Limiting at Okta]: https://developer.okta.com/docs/api/getting_started/rate-limits
 [RequestExecutor]: src/request-executor.js
