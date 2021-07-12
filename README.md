@@ -15,6 +15,20 @@
 
 * [Contributing](#contributing)
 
+This repository contains the Okta management SDK for Node.js. This SDK can be used in your server-side code to interact with the Okta management API and:
+ 
+* Create and update users with the [Users API](https://developer.okta.com/docs/api/resources/users)
+* Add security factors to users with the [Factors API](https://developer.okta.com/docs/api/resources/factors)
+* Manage groups with the [Groups API](https://developer.okta.com/docs/api/resources/groups)
+* Manage applications with the [Apps API](https://developer.okta.com/docs/api/resources/apps)
+* Much more!
+ 
+We also publish these libraries for Node.js:
+ 
+* [Authentication SDK](https://github.com/okta/okta-auth-js)
+ 
+You can learn more on the [Okta + Node.js](https://developer.okta.com/code/nodejs) page in our documentation.
+
 ## Release status
 
 This library uses semantic versioning and follows Okta's [library version policy](https://developer.okta.com/code/library-versions/).
