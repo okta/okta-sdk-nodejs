@@ -194,6 +194,14 @@ orgUsersCollection.each(user => {
 .then(() => console.log('All users have been listed'));
 ```
 
+You can also use async iterators.
+
+```javascript
+for await (let user of client.listUsers()) {
+    console.log(user);
+}
+```
+
 For more information about this API see [Users: Get User].
 
 #### Search for Users
@@ -535,7 +543,7 @@ If providing a yaml file, the structure should be the same as the properties tha
 ```yaml
 okta:
   client:
-    orgUrl: 'https://dev-1234.oktapreview.com/'
+    orgUrl: 'https://dev-1234.oktapreview.com/',
     token: 'xYzabc'
 ```
 
@@ -701,7 +709,7 @@ const customDefaultRequestExecutor = new okta.DefaultRequestExecutor({
 })
 
 const client = new okta.Client({
-  orgUrl: 'https://dev-1234.oktapreview.com/',
+  orgUrl: 'https://dev-1234.okta.com/',
   token: 'xYzabc',    // Obtained from Developer Dashboard
   requestExecutor: customDefaultRequestExecutor
 });
