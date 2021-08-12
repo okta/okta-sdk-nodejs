@@ -31,7 +31,8 @@
       2,
       {
         "vars": "all",
-        "args": "after-used"
+        "args": "after-used",
+        "varsIgnorePattern": "^_"
       }
     ],
     "no-use-before-define": [
