@@ -668,6 +668,8 @@ async function customMiddleware(ctx, next) {
 }
 ```
 
+> Note: default cache middleware implementation does not cache collections requests as there is no one-size-fits-all solution for keeping track of modified/deleted items within collections. Developers should provide their own cache middleware implementation for collection caching.
+
 ## Rate Limiting
 
 The Okta API will return 429 responses if too many requests are made within a given time. Please see [Rate Limiting at Okta] for a complete list of which endpoints are rate limited.  When a 429 error is received, the `X-Rate-Limit-Reset` header will tell you the time at which you can retry. This section discusses  methods for handling rate limiting with this SDK.
