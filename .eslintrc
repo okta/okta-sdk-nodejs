@@ -1,6 +1,6 @@
 {
   "parserOptions": {
-    "ecmaVersion": 2017
+    "ecmaVersion": 2018
   },
   "rules": {
     "curly": [
@@ -31,7 +31,8 @@
       2,
       {
         "vars": "all",
-        "args": "after-used"
+        "args": "after-used",
+        "varsIgnorePattern": "^_"
       }
     ],
     "no-use-before-define": [

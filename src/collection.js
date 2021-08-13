@@ -38,8 +38,8 @@ class Collection {
 
     return new Promise((resolve, reject) => {
       function nextItem() {
-        const done = !self.currentItems.length && !self.nextUri;
         const item = self.currentItems.length && self.currentItems.shift();
+        const done = !self.currentItems.length && !self.nextUri && !item;
         const result = {
           value: item ? self.factory.createInstance(item, self.client) : null,
           done,
@@ -72,6 +72,10 @@ class Collection {
   }
 
   getNextPage() {
+    if (!this.nextUri) {
+      return Promise.resolve([]);
+    }
+
     return this.client.http.http(this.nextUri, this.request, {isCollection: true})
       .then(res => {
         const link = res.headers.get('link');
