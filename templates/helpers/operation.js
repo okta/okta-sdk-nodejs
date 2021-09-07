@@ -29,8 +29,27 @@ const KNOWN_CONFLICTING_PROPERTY_NAMES = {
 
 const PROPERTY_NAME_CHARACTERS_REQUIRE_ESCAPING = ['#'];
 const OPTIONS_TYPE_SUFFIX = 'Options';
+
+
+const MODELS_IMPORTING_GENERATED_MODELS_WITH_OPTIONS_SUFFIX = [
+  'PasswordPolicyDelegationSettings'
+];
+
+
 const NO_OPTIONS_TYPE_MODELS = [
-  'PasswordPolicyDelegationSettings', // confilicting name
+  'PasswordPolicyDelegationSettings', // conflicting name
+
+  'Application',
+  'BookmarkApplication',
+  'BasicAuthApplication',
+  'BrowserPluginApplication',
+  'SwaApplication',
+  'SwaThreeFieldApplication',
+  'SecurePasswordStoreApplication',
+  'AutoLoginApplication',
+  'SamlApplication',
+  'WsFederationApplication',
+  'OpenIdConnectApplication'
 ];
 
 const getBodyModelName = operation => {
@@ -232,7 +251,8 @@ const typeScriptModelImportBuilder = model => {
   // - models that generate auxiliary *Options class
   importTypes.delete(model.modelName);
   let sourceFileSuffixToTrim;
-  if (shouldGenerateOptionsType(model.modelName)) {
+  // remove *Options type from imports unless it is a type coming from spec
+  if (!MODELS_IMPORTING_GENERATED_MODELS_WITH_OPTIONS_SUFFIX.includes(model.modelName)) {
     importTypes.delete(`${model.modelName}${OPTIONS_TYPE_SUFFIX}`);
     sourceFileSuffixToTrim = OPTIONS_TYPE_SUFFIX;
   }

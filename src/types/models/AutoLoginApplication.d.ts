@@ -15,7 +15,6 @@
 
 import { Application } from './Application';
 import { Client } from '../client';
-import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { SchemeApplicationCredentials } from './SchemeApplicationCredentials';
 import { AutoLoginApplicationSettings } from './AutoLoginApplicationSettings';
 
@@ -27,9 +26,6 @@ declare class AutoLoginApplication extends Application {
 
 }
 
-type AutoLoginApplicationOptions = OptionalKnownProperties<AutoLoginApplication>;
-
 export {
-  AutoLoginApplication,
-  AutoLoginApplicationOptions
+  AutoLoginApplication
 };

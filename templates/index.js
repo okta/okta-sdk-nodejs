@@ -1,6 +1,4 @@
 const _ = require('lodash');
-
-
 const js = module.exports;
 const operationUtils = require('./helpers/operation');
 const { convertSwaggerToTSType } = require('./helpers/typescript-formatter');

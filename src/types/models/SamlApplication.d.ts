@@ -15,7 +15,6 @@
 
 import { Application } from './Application';
 import { Client } from '../client';
-import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { SamlApplicationSettings } from './SamlApplicationSettings';
 
 declare class SamlApplication extends Application {
@@ -25,9 +24,6 @@ declare class SamlApplication extends Application {
 
 }
 
-type SamlApplicationOptions = OptionalKnownProperties<SamlApplication>;
-
 export {
-  SamlApplication,
-  SamlApplicationOptions
+  SamlApplication
 };

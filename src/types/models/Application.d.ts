@@ -15,7 +15,6 @@
 
 import { Resource } from '../resource';
 import { Client } from '../client';
-import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { Response } from 'node-fetch';
 import { Collection } from '../collection';
 import { AppUser } from './AppUser';
@@ -118,9 +117,6 @@ declare class Application extends Resource {
   }): Promise<OAuth2ScopeConsentGrant>;
 }
 
-type ApplicationOptions = OptionalKnownProperties<Application>;
-
 export {
-  Application,
-  ApplicationOptions
+  Application
 };
