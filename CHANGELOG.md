@@ -1,5 +1,9 @@
 # Okta Node SDK Changelog
 
+## 5.1.0
+
+- [#273](https://github.com/okta/okta-sdk-nodejs/pull/273) Introduces parameterized `getApplication` and `createApplication` methods
+
 ## 5.0.0
 
 - [#259](https://github.com/okta/okta-sdk-nodejs/pull/259) Drop support for Node 10

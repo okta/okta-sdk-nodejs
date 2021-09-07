@@ -866,6 +866,35 @@ Models can be imported from library root:
 import { Client, LogEvent } from '@okta/okta-sdk-nodejs';
 ```
 
+### 5.1.0
+
+`client.createApplication` and `client.getApplication` methods can be parameterized with application type:
+
+```typescript
+const oidcApp: OpenIdConnectApplication = client.getApplication<OpenIdConnectApplication>(appId);
+```
+or
+```typescript
+const oidcApp: OpenIdConnectApplication = client.getApplication(appId);
+```
+
+```typescript
+const applicationOptions: ApplicationOptions = {
+  name: 'bookmark',
+    label: 'Bookmark app',
+    signOnMode: 'BOOKMARK',
+    settings: {
+      app: {
+        requestIntegration: false,
+        url: 'https://example.com/bookmark.htm'
+      }
+    }
+  };
+};
+
+const application: BookmarkApplication = client.createApplication(applicationOptions);
+```
+
 ## Migrating between versions
 
 ### From 4.x to 5.0
