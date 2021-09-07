@@ -5,6 +5,7 @@ import {
   ApplicationCredentialsOAuthClient,
   ApplicationSettings,
   ApplicationSettingsApplication,
+  ApplicationOptions,
   AutoLoginApplication,
   AutoLoginApplicationSettingsSignOn,
   BasicApplicationSettings,
@@ -57,9 +58,18 @@ const client = new Client({
 describe('client.createApplication()', () => {
 
   it('should allow me to create a bookmark application', async () => {
-    const application = utils.getBookmarkApplication();
-
-    let createdApplication;
+    const application: ApplicationOptions = {
+      name: 'bookmark',
+      label: `node-sdk: Bookmark ${faker.random.words()}`.substring(0, 99),
+      signOnMode: 'BOOKMARK',
+      settings: {
+        app: {
+          requestIntegration: false,
+          url: 'https://example.com/bookmark.htm'
+        }
+      }
+    };
+    let createdApplication: BookmarkApplication;
 
     try {
       await utils.removeAppByLabel(client, application.label);
@@ -84,7 +94,7 @@ describe('client.createApplication()', () => {
   });
 
   it('should allow me to create a basic authentication application', async () => {
-    const application = {
+    const application: ApplicationOptions = {
       name: 'template_basic_auth',
       label: `node-sdk: Sample Basic Auth App - ${faker.random.word()}`.substring(0, 49),
       signOnMode: 'BASIC_AUTH',
@@ -95,8 +105,7 @@ describe('client.createApplication()', () => {
         }
       }
     };
-
-    let createdApplication;
+    let createdApplication: BasicAuthApplication;
 
     try {
       await utils.removeAppByLabel(client, application.label);
@@ -121,7 +130,7 @@ describe('client.createApplication()', () => {
   });
 
   it('should allow me to create a SWA plugin application', async () => {
-    const application = {
+    const application: ApplicationOptions = {
       name: 'template_swa',
       label: `node-sdk: Sample Plugin App - ${faker.random.word()}`.substring(0, 49),
       signOnMode: 'BROWSER_PLUGIN',
@@ -135,7 +144,7 @@ describe('client.createApplication()', () => {
       }
     };
 
-    let createdApplication;
+    let createdApplication: SwaApplication;
 
     try {
       await utils.removeAppByLabel(client, application.label);
@@ -163,7 +172,7 @@ describe('client.createApplication()', () => {
   });
 
   it('should allow me to create a 3-field SWA plugin application', async () => {
-    const application = {
+    const application: ApplicationOptions = {
       name: 'template_swa3field',
       label: `node-sdk: Sample Plugin App 3-field - ${faker.random.word()}`.substring(0, 49),
       signOnMode: 'BROWSER_PLUGIN',
@@ -179,7 +188,7 @@ describe('client.createApplication()', () => {
       }
     };
 
-    let createdApplication;
+    let createdApplication: SwaThreeFieldApplication;
 
     try {
       await utils.removeAppByLabel(client, application.label);
@@ -209,7 +218,7 @@ describe('client.createApplication()', () => {
   });
 
   it('should allow me to create a SWA no-plugin application', async () => {
-    const application = {
+    const application: ApplicationOptions = {
       name: 'template_sps',
       label: `node-sdk: Example SWA App - ${faker.random.word()}`.substring(0, 49),
       signOnMode: 'SECURE_PASSWORD_STORE',
@@ -228,7 +237,7 @@ describe('client.createApplication()', () => {
       }
     };
 
-    let createdApplication;
+    let createdApplication: SecurePasswordStoreApplication;
 
     try {
       await utils.removeAppByLabel(client, application.label);
@@ -265,7 +274,7 @@ describe('client.createApplication()', () => {
       return;
     }
 
-    const application = {
+    const application: ApplicationOptions = {
       label: `Example Custom SWA App - ${faker.random.word()}`,
       visibility: {
         autoSubmitToolbar: false,
@@ -284,7 +293,7 @@ describe('client.createApplication()', () => {
       }
     };
 
-    let createdApplication;
+    let createdApplication: AutoLoginApplication;
 
     try {
       await utils.removeAppByLabel(client, application.label);
@@ -312,7 +321,7 @@ describe('client.createApplication()', () => {
       return;
     }
 
-    const application = {
+    const application: ApplicationOptions = {
       label: `Example Custom SAML 2.0 App - ${faker.random.word()}`,
       visibility: {
         autoSubmitToolbar: false,
@@ -397,7 +406,7 @@ describe('client.createApplication()', () => {
 
   // Test disabled as it fails on bacon/dev environment (https://oktainc.atlassian.net/browse/OKTA-179297)
   it.skip('should allow me to create a custom WS-Fed application', async () => {
-    const application = {
+    const application: ApplicationOptions = {
       name: 'template_wsfed',
       label: `node-sdk: Sample WS-Fed App - ${faker.random.word()}`.substring(0, 49),
       signOnMode: 'WS_FEDERATION',
@@ -419,7 +428,7 @@ describe('client.createApplication()', () => {
       }
     };
 
-    let createdApplication;
+    let createdApplication: WsFederationApplication;
 
     try {
       await utils.removeAppByLabel(client, application.label);
@@ -453,7 +462,7 @@ describe('client.createApplication()', () => {
   });
 
   it('should allow me to create a OIDC client application', async () => {
-    const application = {
+    const application: ApplicationOptions = {
       name: 'oidc_client',
       label: `node-sdk: Sample Client - ${faker.random.word()}`.substring(0, 49),
       signOnMode: 'OPENID_CONNECT',
