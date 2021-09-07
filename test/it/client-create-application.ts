@@ -359,7 +359,7 @@ describe('client.createApplication()', () => {
 
     try {
       await utils.removeAppByLabel(client, application.label);
-      createdApplication = await client.createApplication(application) as SamlApplication;
+      createdApplication = await client.createApplication(application);
       expect(createdApplication).to.be.instanceof(Application);
       expect(createdApplication).to.be.instanceof(SamlApplication);
       expect(createdApplication.name).to.contain('examplecustomsaml20app');
@@ -489,7 +489,7 @@ describe('client.createApplication()', () => {
 
     try {
       await utils.removeAppByLabel(client, application.label);
-      createdApplication = await client.createApplication(application) as OpenIdConnectApplication;
+      createdApplication = await client.createApplication(application);
       expect(createdApplication).to.be.instanceof(Application);
       expect(createdApplication).to.be.instanceof(OpenIdConnectApplication);
       expect(createdApplication.name).to.equal(application.name);
