@@ -23,5 +23,6 @@ declare class ParameterizedOperationsClient extends GeneratedApiClient {
 }
 
 export {
+  ApplicationOptions,
   ParameterizedOperationsClient
 };

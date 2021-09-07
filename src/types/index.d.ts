@@ -17,6 +17,17 @@ export * from './client';
 export * from './request-executor';
 export * from './default-request-executor';
 export * from './collection';
+export * from './parameterized-operations-client';
+export * from './request-options/BasicAuthApplicationOptions';
+export * from './request-options/BookmarkApplicationOptions';
+export * from './request-options/OpenIdConnectApplicationOptions';
+export * from './request-options/SamlCustomApplicationOptions';
+export * from './request-options/Swa3FieldApplicationOptions';
+export * from './request-options/SwaApplicationOptions';
+export * from './request-options/SwaCustomApplicationOptions';
+export * from './request-options/SwaNoPluginApplicationOptions';
+export * from './request-options/WsFederationApplicationOptions';
+
 export * from './models/AcsEndpoint';
 export * from './models/ActivateFactorRequest';
 export * from './models/AppAndInstanceConditionEvaluatorAppOrInstance';
