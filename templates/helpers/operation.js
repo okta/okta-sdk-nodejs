@@ -209,7 +209,12 @@ const typeScriptClientImportBuilder = operations => {
     return acc.concat(importableTypes);
   }, []);
 
-  return formatImportStatements(new Set([...operationsImportTypes]), {
+  const uniqueImportTypes = new Set([...operationsImportTypes]);
+  NO_OPTIONS_TYPE_MODELS.forEach(modelName => {
+    uniqueImportTypes.delete(`${modelName}Options`);
+  });
+
+  return formatImportStatements(uniqueImportTypes, {
     isModelToModelImport: false,
     sourceFileSuffixToTrim: OPTIONS_TYPE_SUFFIX
   });

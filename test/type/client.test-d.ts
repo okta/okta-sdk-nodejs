@@ -2,7 +2,8 @@ import { expectError, expectType } from 'tsd';
 import { Response } from 'node-fetch';
 import { Client } from '../../src/types/client';
 import { Collection } from '../../src/types/collection';
-import { Application, ApplicationOptions } from '../../src/types/models/Application';
+import { Application } from '../../src/types/models/Application';
+import { ApplicationOptions } from '../../src/types/parameterized-operations-client';
 
 
 const client = new Client();
@@ -19,6 +20,14 @@ expectType<Collection<Application>>(client.listApplications());
 
 // methods expecting body request parameters
 const appOptions: ApplicationOptions = {
-  name: 'oidc_app',
+  name: 'bookmark',
+  label: 'Bookmark app',
+  signOnMode: 'BOOKMARK',
+  settings: {
+    app: {
+      requestIntegration: false,
+      url: 'https://example.com/bookmark.htm'
+    }
+  }
 };
 expectType<Promise<Application>>(client.createApplication(appOptions));
