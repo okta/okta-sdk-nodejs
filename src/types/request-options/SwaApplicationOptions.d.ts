@@ -22,6 +22,8 @@ declare interface SwaApplicationOptions {
       url: string;
     };
   };
+  signOnMode: string; /* 'BROWSER_PLUGIN' */
+
 }
 
 export {

@@ -12,15 +12,17 @@
 
 
 declare interface SamlCustomApplicationOptions {
-  label: string;
   accessibility?: {
     selfService?: boolean;
     errorRedirectUrl?: string;
     loginRedirectUrl?: string;
   };
   features: string[];
+  label: string;
+  name?: null;
   signOnMode: string; /* 'SAML_2_0' */
   settings: {
+    app?: Record<string, unknown>;
     signOn: {
       assertionSigned: boolean;
       attributeStatements?: {

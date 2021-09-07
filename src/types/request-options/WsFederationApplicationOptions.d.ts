@@ -25,6 +25,7 @@ declare interface WsFederationApplicationOptions {
   signOnMode: string; /* 'WS_FEDERATION' */
   settings: {
     app: {
+      attributeStatements?: null;
       audienceRestriction: string;
       authnContextClassRef?: string;
       groupName?: string;

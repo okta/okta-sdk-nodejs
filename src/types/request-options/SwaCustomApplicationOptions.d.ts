@@ -17,7 +17,6 @@ declare interface SwaCustomApplicationOptions {
     errorRedirectUrl?: string;
     loginRedirectUrl?: string;
   };
-  features?: string[];
   credentials?: {
     scheme?: string; /* 'EXTERNAL_PASSWORD_SYNC' */
     userNameTemplate?: {
@@ -27,7 +26,11 @@ declare interface SwaCustomApplicationOptions {
     revealPassword?: false;
     signing?: Record<string, unknown>;
   };
+  features?: string[];
+  label: string;
+  name?: null;
   settings: {
+    app?: Record<string, unknown>;
     notifications?: {
       vpn?: {
         network?: {

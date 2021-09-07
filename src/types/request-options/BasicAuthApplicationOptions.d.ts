@@ -20,6 +20,7 @@ declare interface BasicAuthApplicationOptions {
       url: string;
     };
   };
+  signOnMode: string; /* "BASIC_AUTH" */
 }
 
 export {

@@ -14,6 +14,7 @@
 declare interface BookmarkApplicationOptions {
   label: string;
   name: string /* 'template_bookmark' */;
+  signOnMode: string; /* 'BOOKMARK' */
   settings: {
     app: {
       requestIntegration: boolean;

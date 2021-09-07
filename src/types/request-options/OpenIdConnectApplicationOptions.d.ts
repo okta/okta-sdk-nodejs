@@ -22,7 +22,9 @@ declare interface OpenIdConnectApplicationOptions {
       token_endpoint_auth_method?: string;
     };
   };
+  signOnMode: string; /* "OPENID_CONNECT" */
   settings: {
+    app?: Record<string, unknown>;
     oauthClient: {
       application_type?: string;
       client_uri?: string;
@@ -43,6 +45,7 @@ declare interface OpenIdConnectApplicationOptions {
         leeway?: number;
         rotation_type?: string;
       };
+
       tos_uri?:	string;
       wildcard_redirect?: string;
     };
