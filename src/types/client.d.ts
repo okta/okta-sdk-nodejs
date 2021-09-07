@@ -10,7 +10,7 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
-import { GeneratedApiClient } from './generated-client';
+import { ParameterizedOperationsClient } from './parameterized-operations-client';
 import { OAuth } from './oauth';
 import { Http } from './http';
 import { RequestExecutor } from './request-executor';
@@ -18,7 +18,7 @@ import { defaultCacheMiddleware } from './default-cache-middleware';
 import { CacheStorage } from './memory-store';
 
 
-export declare class Client extends GeneratedApiClient {
+export declare class Client extends ParameterizedOperationsClient {
   constructor(config?: {
     orgUrl?: string,
     token?: string,
