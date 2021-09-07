@@ -46,10 +46,10 @@ function formatInterfaceProperties(props) {
   }, '');
 }
 
-const formatImportStatements = (importTypes, {
+function formatImportStatements(importTypes, {
   isModelToModelImport = true,
   sourceFileSuffixToTrim = ''
-} = {}, /*_modelName*/) => {
+} = {}) {
   const importStatements = [];
   importTypes.forEach(type => {
     if (type === 'Response') {
@@ -62,9 +62,9 @@ const formatImportStatements = (importTypes, {
     }
   });
   return importStatements.join('\n');
-};
+}
 
-const convertSwaggerToTSType = (swaggerType, collectionElementType) => {
+function convertSwaggerToTSType(swaggerType, collectionElementType) {
   return {
     array: `${collectionElementType}[]`,
     integer: 'number',
@@ -74,7 +74,7 @@ const convertSwaggerToTSType = (swaggerType, collectionElementType) => {
     password: 'string',
     object: 'Record<string, unknown>'
   }[swaggerType] || swaggerType;
-};
+}
 
 module.exports = {
   formatMethodSignature,

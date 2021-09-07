@@ -29,7 +29,9 @@ const KNOWN_CONFLICTING_PROPERTY_NAMES = {
 
 const PROPERTY_NAME_CHARACTERS_REQUIRE_ESCAPING = ['#'];
 const OPTIONS_TYPE_SUFFIX = 'Options';
-const NO_OPTIONS_TYPE_MODELS = ['PasswordPolicyDelegationSettings'];
+const NO_OPTIONS_TYPE_MODELS = [
+  'PasswordPolicyDelegationSettings', // confilicting name
+];
 
 const getBodyModelName = operation => {
   const { bodyModel, parameters } = operation;
