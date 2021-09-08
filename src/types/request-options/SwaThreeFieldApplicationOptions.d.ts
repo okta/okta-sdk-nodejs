@@ -11,26 +11,22 @@
  */
 
 
-declare interface SwaNoPluginApplicationOptions {
+declare interface SwaThreeFieldApplicationOptions {
   label: string;
-  name: string; /* 'template_sps' */
-  signOnMode: string; /* 'SECURE_PASSWORD_STORE' */
+  name: string; /* 'template_swa3field' */
+  signOnMode: string; /* 'BROWSER_PLUGIN' */
   settings: {
     app: {
-      url: string;
-      passwordField: string;
-      usernameField: string;
-      optionalField1?: string;
-      optionalField1Value?: string;
-      optionalField2?: string;
-      optionalField2Value?: string;
-      optionalField3?: string;
-      optionalField3Value?: string;
+      buttonSelector: string;
+      passwordSelector: string;
+      userNameSelector: string;
+      extraFieldSelector: string;
+      extraFieldValue: string;
+      targetURL: string;
     };
   };
 }
 
 export {
-  SwaNoPluginApplicationOptions
+  SwaThreeFieldApplicationOptions
 };
-

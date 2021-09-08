@@ -11,7 +11,7 @@
  */
 
 
-declare interface SwaCustomApplicationOptions {
+declare interface AutoLoginApplicationOptions {
   accessibility?: {
     selfService?: boolean;
     errorRedirectUrl?: string;
@@ -56,5 +56,5 @@ declare interface SwaCustomApplicationOptions {
 }
 
 export {
-  SwaCustomApplicationOptions
+  AutoLoginApplicationOptions
 };

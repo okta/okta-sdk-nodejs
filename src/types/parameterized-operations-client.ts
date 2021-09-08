@@ -4,16 +4,16 @@ import { BasicAuthApplicationOptions } from './request-options/BasicAuthApplicat
 import { BookmarkApplicationOptions } from './request-options/BookmarkApplicationOptions';
 import { OpenIdConnectApplicationOptions } from './request-options/OpenIdConnectApplicationOptions';
 import { SamlCustomApplicationOptions } from './request-options/SamlCustomApplicationOptions';
-import { Swa3FieldApplicationOptions } from './request-options/Swa3FieldApplicationOptions';
+import { SwaThreeFieldApplicationOptions } from './request-options/SwaThreeFieldApplicationOptions';
 import { SwaApplicationOptions } from './request-options/SwaApplicationOptions';
-import { SwaCustomApplicationOptions } from './request-options/SwaCustomApplicationOptions';
-import { SwaNoPluginApplicationOptions } from './request-options/SwaNoPluginApplicationOptions';
+import { AutoLoginApplicationOptions } from './request-options/AutoLoginApplicationOptions';
+import { SecurePasswordStoreApplicationOptions } from './request-options/SecurePasswordStoreApplicationOptions';
 import { WsFederationApplicationOptions } from './request-options/WsFederationApplicationOptions';
 
 type ApplicationOptions =
   BasicAuthApplicationOptions | BookmarkApplicationOptions | OpenIdConnectApplicationOptions |
-  SamlCustomApplicationOptions | Swa3FieldApplicationOptions | SwaApplicationOptions |
-  SwaCustomApplicationOptions | SwaNoPluginApplicationOptions | WsFederationApplicationOptions;
+  SamlCustomApplicationOptions | SwaThreeFieldApplicationOptions | SwaApplicationOptions |
+  AutoLoginApplicationOptions | SecurePasswordStoreApplicationOptions | WsFederationApplicationOptions;
 
 declare class ParameterizedOperationsClient extends GeneratedApiClient {
   createApplication<T extends Application = Application>(applicationOptions: ApplicationOptions, queryParameters?: {

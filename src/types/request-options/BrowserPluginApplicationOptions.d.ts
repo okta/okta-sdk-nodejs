@@ -11,22 +11,12 @@
  */
 
 
-declare interface Swa3FieldApplicationOptions {
+declare interface BrowserPluginApplicationOptions {
   label: string;
-  name: string; /* 'template_swa3field' */
+  credentials: Record<string, unknown>;
   signOnMode: string; /* 'BROWSER_PLUGIN' */
-  settings: {
-    app: {
-      buttonSelector: string;
-      passwordSelector: string;
-      userNameSelector: string;
-      extraFieldSelector: string;
-      extraFieldValue: string;
-      targetURL: string;
-    };
-  };
 }
 
 export {
-  Swa3FieldApplicationOptions
+  BrowserPluginApplicationOptions
 };
