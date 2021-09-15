@@ -13,9 +13,9 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
+import { ApplicationOptions } from './parameterized-operations-client';
 import { Collection } from './collection';
 import { Application } from './models/Application';
-import { ApplicationOptions } from './models/Application';
 import { Response } from 'node-fetch';
 import { Csr } from './models/Csr';
 import { CsrMetadataOptions } from './models/CsrMetadata';

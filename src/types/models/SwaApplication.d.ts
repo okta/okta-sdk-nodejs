@@ -15,7 +15,6 @@
 
 import { BrowserPluginApplication } from './BrowserPluginApplication';
 import { Client } from '../client';
-import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { SwaApplicationSettings } from './SwaApplicationSettings';
 
 declare class SwaApplication extends BrowserPluginApplication {
@@ -25,9 +24,6 @@ declare class SwaApplication extends BrowserPluginApplication {
 
 }
 
-type SwaApplicationOptions = OptionalKnownProperties<SwaApplication>;
-
 export {
-  SwaApplication,
-  SwaApplicationOptions
+  SwaApplication
 };

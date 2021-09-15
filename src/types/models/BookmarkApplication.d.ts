@@ -15,7 +15,6 @@
 
 import { Application } from './Application';
 import { Client } from '../client';
-import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { BookmarkApplicationSettings } from './BookmarkApplicationSettings';
 
 declare class BookmarkApplication extends Application {
@@ -25,9 +24,6 @@ declare class BookmarkApplication extends Application {
 
 }
 
-type BookmarkApplicationOptions = OptionalKnownProperties<BookmarkApplication>;
-
 export {
-  BookmarkApplication,
-  BookmarkApplicationOptions
+  BookmarkApplication
 };

@@ -1,6 +1,7 @@
 const _ = require('lodash');
 const js = module.exports;
 const operationUtils = require('./helpers/operation');
+const { convertSwaggerToTSType } = require('./helpers/typescript-formatter');
 
 /**
  * Easy lookup of models from the models array
@@ -85,16 +86,6 @@ js.process = ({spec, operations, models, handlebars}) => {
       templates.push({
         src: 'factory.js.hbs',
         dest: `src/factories/${model.modelName}Factory.js`,
-        context: {
-          parentModelName: model.modelName,
-          mapping,
-          propertyName: model.resolutionStrategy.propertyName
-        }
-      });
-
-      templates.push({
-        src: 'factory.d.ts.hbs',
-        dest: `src/types/factories/${model.modelName}Factory.d.ts`,
         context: {
           parentModelName: model.modelName,
           mapping,
@@ -275,5 +266,6 @@ js.process = ({spec, operations, models, handlebars}) => {
     return indented.join('\n');
   });
 
+  handlebars.registerHelper('convertSwaggerToTSType', convertSwaggerToTSType);
   return templates;
 };

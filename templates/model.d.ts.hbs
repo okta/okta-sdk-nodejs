@@ -39,14 +39,14 @@ declare class {{modelName}} extends Resource {
 
   {{#each crud}}
   {{#if (eq alias 'update')}}
-  {{alias}}{{{typeScriptModelMethodSignatureBuilder this ../modelName}}}
+  {{{typeScriptModelMethodSignatureBuilder this ../modelName}}}
   {{/if}}
   {{#if (eq alias 'delete')}}
-  {{alias}}{{{typeScriptModelMethodSignatureBuilder this ../modelName}}}
+  {{{typeScriptModelMethodSignatureBuilder this ../modelName}}}
   {{/if}}
   {{/each}}
   {{#each methods}}
-  {{alias}}{{{typeScriptModelMethodSignatureBuilder this ../modelName}}}
+  {{{typeScriptModelMethodSignatureBuilder this ../modelName}}}
   {{/each}}
 }
 

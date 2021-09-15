@@ -1,4 +1,8 @@
 const _ = require('lodash');
+const {
+  formatImportStatements,
+  formatMethodSignature,
+} = require('./typescript-formatter');
 
 const MODELS_SHOULD_NOT_PROCESS = ['object', 'string', 'undefined', 'Promise'];
 
@@ -25,7 +29,28 @@ const KNOWN_CONFLICTING_PROPERTY_NAMES = {
 
 const PROPERTY_NAME_CHARACTERS_REQUIRE_ESCAPING = ['#'];
 const OPTIONS_TYPE_SUFFIX = 'Options';
-const NO_OPTIONS_TYPE_MODELS = ['PasswordPolicyDelegationSettings'];
+
+
+const MODELS_IMPORTING_GENERATED_MODELS_WITH_OPTIONS_SUFFIX = [
+  'PasswordPolicyDelegationSettings'
+];
+
+
+const NO_OPTIONS_TYPE_MODELS = [
+  'PasswordPolicyDelegationSettings', // conflicting name
+
+  'Application',
+  'BookmarkApplication',
+  'BasicAuthApplication',
+  'BrowserPluginApplication',
+  'SwaApplication',
+  'SwaThreeFieldApplication',
+  'SecurePasswordStoreApplication',
+  'AutoLoginApplication',
+  'SamlApplication',
+  'WsFederationApplication',
+  'OpenIdConnectApplication'
+];
 
 const getBodyModelName = operation => {
   const { bodyModel, parameters } = operation;
@@ -53,7 +78,7 @@ const getOperationArgument = operation => {
   if ((method === 'post' || method === 'put') && bodyModel) {
     const bodyModelName = getBodyModelNameInCamelCase(operation);
     if (bodyModelName) {
-      if (hasRequiredParameter(parameters, 'body')) {
+      if (hasRequiredParameterInRequestMedia(parameters, 'body')) {
         requiredArgs.push(bodyModelName);
       } else {
         optionalArgs.push(bodyModelName);
@@ -62,7 +87,7 @@ const getOperationArgument = operation => {
   }
 
   if (queryParams.length) {
-    if (hasRequiredParameter(parameters, 'query')) {
+    if (hasRequiredParameterInRequestMedia(parameters, 'query')) {
       requiredArgs.push('queryParameters');
     } else {
       optionalArgs.push('queryParameters');
@@ -72,8 +97,8 @@ const getOperationArgument = operation => {
   return [requiredArgs, optionalArgs];
 };
 
-const hasRequiredParameter = (parameters, parameterMedia) =>
-  parameters.find(({in: paramMedia, required}) => paramMedia === parameterMedia && required);
+const hasRequiredParameterInRequestMedia = (parameters, requestMedia) =>
+  parameters.find(({in: paramMedia, required}) => paramMedia === requestMedia && required);
 
 const operationArgumentBuilder = (operation) => {
   const [requiredArgs, optionalArgs] = getOperationArgument(operation);
@@ -168,12 +193,12 @@ const jsdocBuilder = (operation) => {
 
 const typeScriptOperationSignatureBuilder = operation => {
   const [args, returnType] = getOperationArgumentsAndReturnType(operation);
-  return `${operation.operationId}(${formatTypeScriptArguments(args)}): ${formatReturnType(returnType)};`;
+  return formatMethodSignature(operation.operationId, args, returnType);
 };
 
 const typeScriptModelMethodSignatureBuilder = (method, modelName) => {
   const [args, returnType] = getModelMethodArgumentsAndReturnType(method, modelName);
-  return `(${formatTypeScriptArguments(args)}): ${formatReturnType(returnType)};`;
+  return formatMethodSignature(method.alias, args, returnType);
 };
 
 const typeScriptClientImportBuilder = operations => {
@@ -184,8 +209,14 @@ const typeScriptClientImportBuilder = operations => {
     return acc.concat(importableTypes);
   }, []);
 
-  return formatImportStatements(new Set([...operationsImportTypes]), {
-    isModelToModelImport: false
+  const uniqueImportTypes = new Set([...operationsImportTypes]);
+  NO_OPTIONS_TYPE_MODELS.forEach(modelName => {
+    uniqueImportTypes.delete(`${modelName}Options`);
+  });
+
+  return formatImportStatements(uniqueImportTypes, {
+    isModelToModelImport: false,
+    sourceFileSuffixToTrim: OPTIONS_TYPE_SUFFIX
   });
 };
 
@@ -224,12 +255,15 @@ const typeScriptModelImportBuilder = model => {
   // - CRUD operations with self type arguments
   // - models that generate auxiliary *Options class
   importTypes.delete(model.modelName);
-  if (shouldGenerateOptionsType(model.modelName)) {
+  let sourceFileSuffixToTrim;
+  // remove *Options type from imports unless it is a type coming from spec
+  if (!MODELS_IMPORTING_GENERATED_MODELS_WITH_OPTIONS_SUFFIX.includes(model.modelName)) {
     importTypes.delete(`${model.modelName}${OPTIONS_TYPE_SUFFIX}`);
+    sourceFileSuffixToTrim = OPTIONS_TYPE_SUFFIX;
   }
-
   return formatImportStatements(importTypes, {
-    isModelToModelImport: true
+    isModelToModelImport: true,
+    sourceFileSuffixToTrim
   }, model.modelName);
 };
 
@@ -250,7 +284,7 @@ const getOperationArgumentsAndReturnType = operation => {
       const modelPropertiesType = operation.bodyModel === 'string' ?
         operation.bodyModel :  `${operation.bodyModel}${OPTIONS_TYPE_SUFFIX}`;
       args.set(_.camelCase(bodyParamName), {
-        isRequired: hasRequiredParameter(parameters, 'body'),
+        isRequired: hasRequiredParameterInRequestMedia(parameters, 'body'),
         type: modelPropertiesType,
       });
     }
@@ -258,7 +292,7 @@ const getOperationArgumentsAndReturnType = operation => {
 
   if (queryParams.length) {
     args.set('queryParameters', {
-      isRequired: hasRequiredParameter(parameters, 'query'),
+      isRequired: hasRequiredParameterInRequestMedia(parameters, 'query'),
       type: queryParams,
     });
   }
@@ -297,63 +331,6 @@ const getModelMethodArgumentsAndReturnType = (method, modelName) => {
 const convertTypeObjectsToTypeNames = (args, returnType) => {
   const argTypes = Array.from(args.values()).map(arg => arg.type);
   return [...argTypes, returnType.genericType, returnType.genericParameterType];
-};
-
-const formatTypeScriptArguments = args => {
-  const typedArgs = [];
-  for (let [argName, {type, isRequired}] of args) {
-    let argument = `${argName}${isRequired ? '' : '?'}`;
-    if (Array.isArray(type)) {
-      argument = `${argument}: ${formatObjectLiteralType(type)}`;
-    } else {
-      argument = `${argument}: ${type}`;
-    }
-    typedArgs.push(argument);
-  }
-  return typedArgs.join(', ');
-};
-
-const formatReturnType = ({genericType, genericParameterType}) =>
-  `${genericType}<${genericParameterType}>`;
-
-const formatObjectLiteralType = typeProps => {
-  let objectLiteralType = '{\n';
-  typeProps.forEach(prop => {
-    const isRequired = prop.required ? '' : '?';
-    const propType = convertSwaggerToTSType(prop.type);
-    objectLiteralType += `    ${prop.name}${isRequired}: ${propType},\n`;
-  });
-  objectLiteralType += '  }';
-  return objectLiteralType;
-};
-
-const formatImportStatements = (importTypes, {
-  isModelToModelImport = true
-} = {}, modelName) => {
-  const importStatements = [];
-  importTypes.forEach(type => {
-    if (type === 'Response') {
-      importStatements.push('import { Response } from \'node-fetch\';');
-    } else if (type === 'Collection') {
-      importStatements.push(`import { Collection } from '${isModelToModelImport ? '..' : '.'}/collection';`);
-    } else {
-      const importSource = shouldGenerateOptionsType(modelName) ? type.replace(OPTIONS_TYPE_SUFFIX, '') : type;
-      importStatements.push(`import { ${type} } from '${isModelToModelImport ? './' : './models/'}${importSource}';`);
-    }
-  });
-  return importStatements.join('\n');
-};
-
-const convertSwaggerToTSType = (swaggerType, collectionElementType) => {
-  return {
-    array: `${collectionElementType}[]`,
-    integer: 'number',
-    double: 'number',
-    hash: '{[name: string]: unknown}',
-    dateTime: 'string',
-    password: 'string',
-    object: 'Record<string, unknown>'
-  }[swaggerType] || swaggerType;
 };
 
 const isImportablePropertyType = (property, hostModelName) => {
@@ -404,7 +381,6 @@ module.exports = {
   typeScriptModelImportBuilder,
   typeScriptModelMethodSignatureBuilder,
   typeScriptClientImportBuilder,
-  convertSwaggerToTSType,
   sanitizeModelPropertyName,
   isImportablePropertyType,
   isRestrictedPropertyOverride,

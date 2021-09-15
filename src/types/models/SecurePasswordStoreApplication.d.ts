@@ -15,7 +15,6 @@
 
 import { Application } from './Application';
 import { Client } from '../client';
-import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { SchemeApplicationCredentials } from './SchemeApplicationCredentials';
 import { SecurePasswordStoreApplicationSettings } from './SecurePasswordStoreApplicationSettings';
 
@@ -27,9 +26,6 @@ declare class SecurePasswordStoreApplication extends Application {
 
 }
 
-type SecurePasswordStoreApplicationOptions = OptionalKnownProperties<SecurePasswordStoreApplication>;
-
 export {
-  SecurePasswordStoreApplication,
-  SecurePasswordStoreApplicationOptions
+  SecurePasswordStoreApplication
 };
