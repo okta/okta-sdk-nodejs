@@ -17,26 +17,20 @@ var Resource = require('../resource');
 
 
 /**
- * @class ThreatInsightConfiguration
+ * @class Error
  * @extends Resource
- * @property { string } action
- * @property { array } excludeZones
- * @property { dateTime } created
- * @property { dateTime } lastUpdated
- * @property { hash } _links
+ * @property { string } errorCode
+ * @property { string } errorSummary
+ * @property { string } errorLink
+ * @property { string } errorId
+ * @property { array } errorCauses
  */
-class ThreatInsightConfiguration extends Resource {
+class Error extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
 
   }
 
-  /**
-   * @returns {Promise<ThreatInsightConfiguration>}
-   */
-  update() {
-    return this.httpClient.updateConfiguration(this);
-  }
 }
 
-module.exports = ThreatInsightConfiguration;
+module.exports = Error;

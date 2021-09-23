@@ -17,26 +17,17 @@ var Resource = require('../resource');
 
 
 /**
- * @class ThreatInsightConfiguration
+ * @class hrefObject
  * @extends Resource
- * @property { string } action
- * @property { array } excludeZones
- * @property { dateTime } created
- * @property { dateTime } lastUpdated
- * @property { hash } _links
+ * @property { string } href
+ * @property { object } hints
  */
-class ThreatInsightConfiguration extends Resource {
+class hrefObject extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
 
   }
 
-  /**
-   * @returns {Promise<ThreatInsightConfiguration>}
-   */
-  update() {
-    return this.httpClient.updateConfiguration(this);
-  }
 }
 
-module.exports = ThreatInsightConfiguration;
+module.exports = hrefObject;

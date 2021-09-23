@@ -17,26 +17,21 @@ var Resource = require('../resource');
 
 
 /**
- * @class ThreatInsightConfiguration
+ * @class CAPTCHAInstance
  * @extends Resource
- * @property { string } action
- * @property { array } excludeZones
- * @property { dateTime } created
- * @property { dateTime } lastUpdated
- * @property { hash } _links
+ * @property { string } id
+ * @property { string } name
+ * @property { string } secretKey
+ * @property { string } siteKey
+ * @property { string } type
+ * @property { object } _link
  */
-class ThreatInsightConfiguration extends Resource {
+class CAPTCHAInstance extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
 
   }
 
-  /**
-   * @returns {Promise<ThreatInsightConfiguration>}
-   */
-  update() {
-    return this.httpClient.updateConfiguration(this);
-  }
 }
 
-module.exports = ThreatInsightConfiguration;
+module.exports = CAPTCHAInstance;

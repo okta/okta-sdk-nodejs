@@ -21,11 +21,11 @@ import { OptionalKnownProperties } from '../optional-known-properties-type';
 declare class ThreatInsightConfiguration extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
 
-  readonly _links: {[name: string]: unknown};
   action: string;
-  readonly created: string;
   excludeZones: string[];
+  readonly created: string;
   readonly lastUpdated: string;
+  readonly _links: {[name: string]: unknown};
 
   update(): Promise<ThreatInsightConfiguration>;
 }

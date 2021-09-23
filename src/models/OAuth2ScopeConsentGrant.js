@@ -22,6 +22,7 @@ const OAuth2Actor = require('./OAuth2Actor');
  * @property { hash } _embedded
  * @property { hash } _links
  * @property { string } clientId
+ * @property { string } userId
  * @property { dateTime } created
  * @property { OAuth2Actor } createdBy
  * @property { string } id
@@ -30,7 +31,6 @@ const OAuth2Actor = require('./OAuth2Actor');
  * @property { string } scopeId
  * @property { OAuth2ScopeConsentGrantSource } source
  * @property { OAuth2ScopeConsentGrantStatus } status
- * @property { string } userId
  */
 class OAuth2ScopeConsentGrant extends Resource {
   constructor(resourceJson, client) {

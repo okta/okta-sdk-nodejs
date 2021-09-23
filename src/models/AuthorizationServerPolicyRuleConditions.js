@@ -14,30 +14,30 @@
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
 var Resource = require('../resource');
+const PolicyPeopleCondition = require('./PolicyPeopleCondition');
 const ClientPolicyCondition = require('./ClientPolicyCondition');
 const GrantTypePolicyRuleCondition = require('./GrantTypePolicyRuleCondition');
-const PolicyPeopleCondition = require('./PolicyPeopleCondition');
 const OAuth2ScopesMediationPolicyRuleCondition = require('./OAuth2ScopesMediationPolicyRuleCondition');
 
 /**
  * @class AuthorizationServerPolicyRuleConditions
  * @extends Resource
+ * @property { PolicyPeopleCondition } people
  * @property { ClientPolicyCondition } clients
  * @property { GrantTypePolicyRuleCondition } grantTypes
- * @property { PolicyPeopleCondition } people
  * @property { OAuth2ScopesMediationPolicyRuleCondition } scopes
  */
 class AuthorizationServerPolicyRuleConditions extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
+    if (resourceJson && resourceJson.people) {
+      this.people = new PolicyPeopleCondition(resourceJson.people);
+    }
     if (resourceJson && resourceJson.clients) {
       this.clients = new ClientPolicyCondition(resourceJson.clients);
     }
     if (resourceJson && resourceJson.grantTypes) {
       this.grantTypes = new GrantTypePolicyRuleCondition(resourceJson.grantTypes);
-    }
-    if (resourceJson && resourceJson.people) {
-      this.people = new PolicyPeopleCondition(resourceJson.people);
     }
     if (resourceJson && resourceJson.scopes) {
       this.scopes = new OAuth2ScopesMediationPolicyRuleCondition(resourceJson.scopes);

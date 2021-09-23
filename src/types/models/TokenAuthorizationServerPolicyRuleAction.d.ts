@@ -22,9 +22,9 @@ declare class TokenAuthorizationServerPolicyRuleAction extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
 
   accessTokenLifetimeMinutes: number;
-  inlineHook: TokenAuthorizationServerPolicyRuleActionInlineHook;
   refreshTokenLifetimeMinutes: number;
   refreshTokenWindowMinutes: number;
+  inlineHook: TokenAuthorizationServerPolicyRuleActionInlineHook;
 
 }
 

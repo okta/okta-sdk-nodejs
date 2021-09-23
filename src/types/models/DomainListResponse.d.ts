@@ -16,12 +16,12 @@
 import { Resource } from '../resource';
 import { Client } from '../client';
 import { OptionalKnownProperties } from '../optional-known-properties-type';
-import { Domain } from './Domain';
+import { DomainResponse } from './DomainResponse';
 
 declare class DomainListResponse extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
 
-  domains: Domain[];
+  domains: DomainResponse[];
 
 }
 

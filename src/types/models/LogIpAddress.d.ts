@@ -21,7 +21,7 @@ import { LogGeographicalContext } from './LogGeographicalContext';
 declare class LogIpAddress extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
 
-  readonly geographicalContext: LogGeographicalContext;
+  geographicalContext: LogGeographicalContext;
   readonly ip: string;
   readonly source: string;
   readonly version: string;

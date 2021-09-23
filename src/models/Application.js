@@ -193,47 +193,38 @@ class Application extends Resource {
 
   /**
    * @param {string} csrId
-   * @param {string} string
    * @returns {Promise<JsonWebKey>}
    */
-  publishCerCert(csrId, string) {
-    return this.httpClient.publishCerCert(this.id, csrId, string);
+  publishCerCert(csrId) {
+    return this.httpClient.publishCsrFromApplication(this.id, csrId);
   }
 
-  /**
-   * @param {string} csrId
-   * @param {string} string
-   * @returns {Promise<JsonWebKey>}
-   */
-  publishBinaryCerCert(csrId, string) {
-    return this.httpClient.publishBinaryCerCert(this.id, csrId, string);
+  
+publishBinaryCerCert(
+) {
+    return this.httpClient.(
+);
   }
 
-  /**
-   * @param {string} csrId
-   * @param {string} string
-   * @returns {Promise<JsonWebKey>}
-   */
-  publishDerCert(csrId, string) {
-    return this.httpClient.publishDerCert(this.id, csrId, string);
+  
+publishDerCert(
+) {
+    return this.httpClient.(
+);
   }
 
-  /**
-   * @param {string} csrId
-   * @param {string} string
-   * @returns {Promise<JsonWebKey>}
-   */
-  publishBinaryDerCert(csrId, string) {
-    return this.httpClient.publishBinaryDerCert(this.id, csrId, string);
+  
+publishBinaryDerCert(
+) {
+    return this.httpClient.(
+);
   }
 
-  /**
-   * @param {string} csrId
-   * @param {string} string
-   * @returns {Promise<JsonWebKey>}
-   */
-  publishBinaryPemCert(csrId, string) {
-    return this.httpClient.publishBinaryPemCert(this.id, csrId, string);
+  
+publishBinaryPemCert(
+) {
+    return this.httpClient.(
+);
   }
 
   /**

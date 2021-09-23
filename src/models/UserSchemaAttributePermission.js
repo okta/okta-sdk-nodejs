@@ -19,8 +19,8 @@ var Resource = require('../resource');
 /**
  * @class UserSchemaAttributePermission
  * @extends Resource
- * @property { string } action
  * @property { string } principal
+ * @property { string } action
  */
 class UserSchemaAttributePermission extends Resource {
   constructor(resourceJson, client) {

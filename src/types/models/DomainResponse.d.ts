@@ -16,27 +16,26 @@
 import { Resource } from '../resource';
 import { Client } from '../client';
 import { OptionalKnownProperties } from '../optional-known-properties-type';
-import { LogAuthenticationProvider } from './LogAuthenticationProvider';
-import { LogCredentialProvider } from './LogCredentialProvider';
-import { LogCredentialType } from './LogCredentialType';
-import { LogIssuer } from './LogIssuer';
+import { DNSRecord } from './DNSRecord';
+import { DomainLinks } from './DomainLinks';
+import { DomainCertificateMetadata } from './DomainCertificateMetadata';
 
-declare class LogAuthenticationContext extends Resource {
+declare class DomainResponse extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
 
-  authenticationProvider: LogAuthenticationProvider;
-  readonly authenticationStep: number;
-  credentialProvider: LogCredentialProvider;
-  credentialType: LogCredentialType;
-  readonly externalSessionId: string;
-  readonly interface: string;
-  issuer: LogIssuer;
+  certificateSourceType: string;
+  dnsRecords: DNSRecord[];
+  domain: string;
+  id: string;
+  _links: DomainLinks;
+  publicCertificate: DomainCertificateMetadata;
+  validationStatus: string;
 
 }
 
-type LogAuthenticationContextOptions = OptionalKnownProperties<LogAuthenticationContext>;
+type DomainResponseOptions = OptionalKnownProperties<DomainResponse>;
 
 export {
-  LogAuthenticationContext,
-  LogAuthenticationContextOptions
+  DomainResponse,
+  DomainResponseOptions
 };

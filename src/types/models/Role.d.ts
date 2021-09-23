@@ -32,7 +32,7 @@ declare class Role extends Resource {
   readonly id: string;
   readonly label: string;
   readonly lastUpdated: string;
-  readonly status: RoleStatus;
+  status: RoleStatus;
   type: RoleType;
 
   addAdminGroupTarget(groupId: string, targetGroupId: string): Promise<Response>;

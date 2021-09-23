@@ -17,9 +17,9 @@ import { Resource } from '../resource';
 import { Client } from '../client';
 import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { Response } from 'node-fetch';
-import { AuthenticatorSettings } from './AuthenticatorSettings';
 import { AuthenticatorStatus } from './AuthenticatorStatus';
 import { AuthenticatorType } from './AuthenticatorType';
+import { AuthenticatorSettings } from './AuthenticatorSettings';
 
 declare class Authenticator extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
@@ -28,11 +28,11 @@ declare class Authenticator extends Resource {
   readonly created: string;
   readonly id: string;
   key: string;
+  status: AuthenticatorStatus;
   readonly lastUpdated: string;
   name: string;
-  settings: AuthenticatorSettings;
-  status: AuthenticatorStatus;
   type: AuthenticatorType;
+  settings: AuthenticatorSettings;
 
   activate(): Promise<Response>;
   deactivate(): Promise<Response>;

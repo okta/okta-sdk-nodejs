@@ -21,7 +21,7 @@ import { PasswordPolicyRecoveryQuestionComplexity } from './PasswordPolicyRecove
 declare class PasswordPolicyRecoveryQuestionProperties extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
 
-  readonly complexity: PasswordPolicyRecoveryQuestionComplexity;
+  complexity: PasswordPolicyRecoveryQuestionComplexity;
 
 }
 

@@ -22,7 +22,7 @@ declare class OrgPreferences extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
 
   _links: Record<string, unknown>;
-  readonly showEndUserFooter: boolean;
+  readonly _showEndUserFooter: boolean;
 
   hideEndUserFooter(): Promise<OrgPreferences>;
   showEndUserFooter(): Promise<OrgPreferences>;

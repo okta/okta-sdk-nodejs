@@ -30,7 +30,7 @@ declare class GroupRule extends Resource {
   readonly id: string;
   readonly lastUpdated: string;
   name: string;
-  readonly status: GroupRuleStatus;
+  status: GroupRuleStatus;
   type: string;
 
   update(): Promise<GroupRule>;

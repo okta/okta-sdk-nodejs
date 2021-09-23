@@ -23,7 +23,6 @@ class UserFactorFactory extends ModelResolutionFactory {
     return {
       'call': models.CallUserFactor,
       'email': models.EmailUserFactor,
-      'hotp': models.CustomHotpUserFactor,
       'push': models.PushUserFactor,
       'question': models.SecurityQuestionUserFactor,
       'sms': models.SmsUserFactor,
@@ -34,6 +33,7 @@ class UserFactorFactory extends ModelResolutionFactory {
       'u2f': models.U2fUserFactor,
       'web': models.WebUserFactor,
       'webauthn': models.WebAuthnUserFactor,
+      'hotp': models.CustomHotpUserFactor,
     };
   }
 

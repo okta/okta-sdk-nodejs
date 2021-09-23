@@ -29,11 +29,11 @@ declare class Session extends Resource {
   readonly createdAt: string;
   readonly expiresAt: string;
   readonly id: string;
-  readonly idp: SessionIdentityProvider;
+  idp: SessionIdentityProvider;
   readonly lastFactorVerification: string;
   readonly lastPasswordVerification: string;
   readonly login: string;
-  readonly status: SessionStatus;
+  status: SessionStatus;
   readonly userId: string;
 
   delete(): Promise<Response>;

@@ -70,7 +70,7 @@ declare class Application extends Resource {
   getApplicationUser(userId: string, queryParameters?: {
     expand?: string,
   }): Promise<AppUser>;
-  createApplicationGroupAssignment(groupId: string, applicationGroupAssignment?: ApplicationGroupAssignmentOptions): Promise<ApplicationGroupAssignment>;
+  createApplicationGroupAssignment(groupId: string, applicationGroupAssignment: ApplicationGroupAssignmentOptions): Promise<ApplicationGroupAssignment>;
   getApplicationGroupAssignment(groupId: string, queryParameters?: {
     expand?: string,
   }): Promise<ApplicationGroupAssignment>;
@@ -92,11 +92,11 @@ declare class Application extends Resource {
   getCsr(csrId: string): Promise<Csr>;
   revokeCsr(csrId: string): Promise<Response>;
   listCsrs(): Collection<Csr>;
-  publishCerCert(csrId: string, certificate: string): Promise<JsonWebKey>;
-  publishBinaryCerCert(csrId: string, certificate: string): Promise<JsonWebKey>;
-  publishDerCert(csrId: string, certificate: string): Promise<JsonWebKey>;
-  publishBinaryDerCert(csrId: string, certificate: string): Promise<JsonWebKey>;
-  publishBinaryPemCert(csrId: string, certificate: string): Promise<JsonWebKey>;
+  publishCerCert(csrId: string): Promise<JsonWebKey>;
+  
+  
+  
+  
   listOAuth2Tokens(queryParameters?: {
     expand?: string,
     after?: string,

@@ -27,7 +27,7 @@ declare class Domain extends Resource {
   certificateSourceType: DomainCertificateSourceType;
   dnsRecords: DNSRecord[];
   domain: string;
-  readonly id: string;
+  id: string;
   publicCertificate: DomainCertificateMetadata;
   validationStatus: DomainValidationStatus;
 

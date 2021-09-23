@@ -30,7 +30,7 @@ declare class GroupSchema extends Resource {
   readonly id: string;
   readonly lastUpdated: string;
   readonly name: string;
-  readonly properties: UserSchemaProperties;
+  properties: UserSchemaProperties;
   title: string;
   readonly type: string;
 

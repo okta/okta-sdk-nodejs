@@ -16,35 +16,35 @@
 import { Resource } from '../resource';
 import { Client } from '../client';
 import { OptionalKnownProperties } from '../optional-known-properties-type';
-import { UserSchemaAttributeItems } from './UserSchemaAttributeItems';
-import { UserSchemaAttributeMaster } from './UserSchemaAttributeMaster';
+import { UserSchemaAttributeType } from './UserSchemaAttributeType';
+import { UserSchemaAttributeScope } from './UserSchemaAttributeScope';
 import { UserSchemaAttributeEnum } from './UserSchemaAttributeEnum';
 import { UserSchemaAttributePermission } from './UserSchemaAttributePermission';
-import { UserSchemaAttributeScope } from './UserSchemaAttributeScope';
-import { UserSchemaAttributeType } from './UserSchemaAttributeType';
+import { UserSchemaAttributeMaster } from './UserSchemaAttributeMaster';
 import { UserSchemaAttributeUnion } from './UserSchemaAttributeUnion';
+import { UserSchemaAttributeItems } from './UserSchemaAttributeItems';
 
 declare class UserSchemaAttribute extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
 
-  description: string;
-  enum: string[];
-  externalName: string;
-  externalNamespace: string;
-  items: UserSchemaAttributeItems;
-  master: UserSchemaAttributeMaster;
-  maxLength: number;
-  minLength: number;
-  mutability: string;
-  oneOf: UserSchemaAttributeEnum[];
-  pattern: string;
-  permissions: UserSchemaAttributePermission[];
-  required: boolean;
-  scope: UserSchemaAttributeScope;
   title: string;
   type: UserSchemaAttributeType;
+  required: boolean;
+  mutability: string;
+  scope: UserSchemaAttributeScope;
+  enum: string[];
+  oneOf: UserSchemaAttributeEnum[];
+  minLength: number;
+  maxLength: number;
+  description: string;
+  permissions: UserSchemaAttributePermission[];
+  master: UserSchemaAttributeMaster;
   union: UserSchemaAttributeUnion;
+  items: UserSchemaAttributeItems;
+  pattern: string;
   unique: string;
+  externalName: string;
+  externalNamespace: string;
 
 }
 

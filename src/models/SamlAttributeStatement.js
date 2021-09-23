@@ -19,11 +19,11 @@ var Resource = require('../resource');
 /**
  * @class SamlAttributeStatement
  * @extends Resource
- * @property { string } filterType
- * @property { string } filterValue
  * @property { string } name
  * @property { string } namespace
  * @property { string } type
+ * @property { string } filterType
+ * @property { string } filterValue
  * @property { array } values
  */
 class SamlAttributeStatement extends Resource {

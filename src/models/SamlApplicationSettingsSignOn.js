@@ -23,8 +23,8 @@ const SpCertificate = require('./SpCertificate');
 /**
  * @class SamlApplicationSettingsSignOn
  * @extends Resource
- * @property { array } acsEndpoints
  * @property { boolean } allowMultipleAcsEndpoints
+ * @property { array } acsEndpoints
  * @property { boolean } assertionSigned
  * @property { array } attributeStatements
  * @property { string } audience
@@ -43,10 +43,10 @@ const SpCertificate = require('./SpCertificate');
  * @property { boolean } responseSigned
  * @property { string } signatureAlgorithm
  * @property { SingleLogout } slo
- * @property { SpCertificate } spCertificate
  * @property { string } spIssuer
  * @property { string } ssoAcsUrl
  * @property { string } ssoAcsUrlOverride
+ * @property { SpCertificate } spCertificate
  * @property { string } subjectNameIdFormat
  * @property { string } subjectNameIdTemplate
  */

@@ -22,16 +22,16 @@ import { UserSchemaProperties } from './UserSchemaProperties';
 declare class UserSchema extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
 
+  readonly id: string;
   readonly $schema: string;
-  readonly _links: {[name: string]: unknown};
+  readonly name: string;
+  title: string;
+  readonly lastUpdated: string;
   readonly created: string;
   definitions: UserSchemaDefinitions;
-  readonly id: string;
-  readonly lastUpdated: string;
-  readonly name: string;
-  readonly properties: UserSchemaProperties;
-  title: string;
   readonly type: string;
+  properties: UserSchemaProperties;
+  readonly _links: {[name: string]: unknown};
 
 }
 

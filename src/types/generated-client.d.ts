@@ -41,9 +41,11 @@ import { AuthorizationServerPolicyRule } from './models/AuthorizationServerPolic
 import { AuthorizationServerPolicyRuleOptions } from './models/AuthorizationServerPolicyRule';
 import { OAuth2Scope } from './models/OAuth2Scope';
 import { OAuth2ScopeOptions } from './models/OAuth2Scope';
+import { CAPTCHAInstance } from './models/CAPTCHAInstance';
+import { CAPTCHAInstanceOptions } from './models/CAPTCHAInstance';
 import { DomainListResponse } from './models/DomainListResponse';
 import { DomainOptions } from './models/Domain';
-import { Domain } from './models/Domain';
+import { DomainResponse } from './models/DomainResponse';
 import { DomainCertificateOptions } from './models/DomainCertificate';
 import { EventHook } from './models/EventHook';
 import { EventHookOptions } from './models/EventHook';
@@ -82,9 +84,9 @@ import { OrgSettingOptions } from './models/OrgSetting';
 import { OrgContactTypeObj } from './models/OrgContactTypeObj';
 import { OrgContactUser } from './models/OrgContactUser';
 import { UserIdStringOptions } from './models/UserIdString';
-import { OrgPreferences } from './models/OrgPreferences';
-import { OrgOktaCommunicationSetting } from './models/OrgOktaCommunicationSetting';
 import { OrgOktaSupportSettingsObj } from './models/OrgOktaSupportSettingsObj';
+import { OrgOktaCommunicationSetting } from './models/OrgOktaCommunicationSetting';
+import { OrgPreferences } from './models/OrgPreferences';
 import { Policy } from './models/Policy';
 import { PolicyOptions } from './models/Policy';
 import { PolicyRule } from './models/PolicyRule';
@@ -129,20 +131,16 @@ export declare class GeneratedApiClient {
   createApplication(application: ApplicationOptions, queryParameters?: {
     activate?: boolean,
   }): Promise<Application>;
-  deleteApplication(appId: string): Promise<Response>;
   getApplication(appId: string, queryParameters?: {
     expand?: string,
   }): Promise<Application>;
   updateApplication(appId: string, application: ApplicationOptions): Promise<Application>;
+  deleteApplication(appId: string): Promise<Response>;
   listCsrsForApplication(appId: string): Collection<Csr>;
   generateCsrForApplication(appId: string, csrMetadata: CsrMetadataOptions): Promise<Csr>;
-  revokeCsrFromApplication(appId: string, csrId: string): Promise<Response>;
   getCsrForApplication(appId: string, csrId: string): Promise<Csr>;
-  publishCerCert(appId: string, csrId: string, certificate: string): Promise<JsonWebKey>;
-  publishBinaryCerCert(appId: string, csrId: string, certificate: string): Promise<JsonWebKey>;
-  publishDerCert(appId: string, csrId: string, certificate: string): Promise<JsonWebKey>;
-  publishBinaryDerCert(appId: string, csrId: string, certificate: string): Promise<JsonWebKey>;
-  publishBinaryPemCert(appId: string, csrId: string, certificate: string): Promise<JsonWebKey>;
+  revokeCsrFromApplication(appId: string, csrId: string): Promise<Response>;
+  publishCsrFromApplication(appId: string, csrId: string): Promise<JsonWebKey>;
   listApplicationKeys(appId: string): Collection<JsonWebKey>;
   generateApplicationKey(appId: string, queryParameters?: {
     validityYears?: number,
@@ -155,33 +153,33 @@ export declare class GeneratedApiClient {
     expand?: string,
   }): Collection<OAuth2ScopeConsentGrant>;
   grantConsentToScope(appId: string, oAuth2ScopeConsentGrant: OAuth2ScopeConsentGrantOptions): Promise<OAuth2ScopeConsentGrant>;
-  revokeScopeConsentGrant(appId: string, grantId: string): Promise<Response>;
   getScopeConsentGrant(appId: string, grantId: string, queryParameters?: {
     expand?: string,
   }): Promise<OAuth2ScopeConsentGrant>;
+  revokeScopeConsentGrant(appId: string, grantId: string): Promise<Response>;
   listApplicationGroupAssignments(appId: string, queryParameters?: {
     q?: string,
     after?: string,
     limit?: number,
     expand?: string,
   }): Collection<ApplicationGroupAssignment>;
-  deleteApplicationGroupAssignment(appId: string, groupId: string): Promise<Response>;
   getApplicationGroupAssignment(appId: string, groupId: string, queryParameters?: {
     expand?: string,
   }): Promise<ApplicationGroupAssignment>;
-  createApplicationGroupAssignment(appId: string, groupId: string, applicationGroupAssignment?: ApplicationGroupAssignmentOptions): Promise<ApplicationGroupAssignment>;
+  createApplicationGroupAssignment(appId: string, groupId: string, applicationGroupAssignment: ApplicationGroupAssignmentOptions): Promise<ApplicationGroupAssignment>;
+  deleteApplicationGroupAssignment(appId: string, groupId: string): Promise<Response>;
   activateApplication(appId: string): Promise<Response>;
   deactivateApplication(appId: string): Promise<Response>;
-  revokeOAuth2TokensForApplication(appId: string): Promise<Response>;
   listOAuth2TokensForApplication(appId: string, queryParameters?: {
     expand?: string,
     after?: string,
     limit?: number,
   }): Collection<OAuth2Token>;
-  revokeOAuth2TokenForApplication(appId: string, tokenId: string): Promise<Response>;
+  revokeOAuth2TokensForApplication(appId: string): Promise<Response>;
   getOAuth2TokenForApplication(appId: string, tokenId: string, queryParameters?: {
     expand?: string,
   }): Promise<OAuth2Token>;
+  revokeOAuth2TokenForApplication(appId: string, tokenId: string): Promise<Response>;
   listApplicationUsers(appId: string, queryParameters?: {
     q?: string,
     query_scope?: string,
@@ -191,13 +189,13 @@ export declare class GeneratedApiClient {
     expand?: string,
   }): Collection<AppUser>;
   assignUserToApplication(appId: string, appUser: AppUserOptions): Promise<AppUser>;
-  deleteApplicationUser(appId: string, userId: string, queryParameters?: {
-    sendEmail?: boolean,
-  }): Promise<Response>;
   getApplicationUser(appId: string, userId: string, queryParameters?: {
     expand?: string,
   }): Promise<AppUser>;
   updateApplicationUser(appId: string, userId: string, appUser: AppUserOptions): Promise<AppUser>;
+  deleteApplicationUser(appId: string, userId: string, queryParameters?: {
+    sendEmail?: boolean,
+  }): Promise<Response>;
   listAuthenticators(): Collection<Authenticator>;
   getAuthenticator(authenticatorId: string): Promise<Authenticator>;
   activateAuthenticator(authenticatorId: string): Promise<Response>;
@@ -208,41 +206,41 @@ export declare class GeneratedApiClient {
     after?: string,
   }): Collection<AuthorizationServer>;
   createAuthorizationServer(authorizationServer: AuthorizationServerOptions): Promise<AuthorizationServer>;
-  deleteAuthorizationServer(authServerId: string): Promise<Response>;
   getAuthorizationServer(authServerId: string): Promise<AuthorizationServer>;
   updateAuthorizationServer(authServerId: string, authorizationServer: AuthorizationServerOptions): Promise<AuthorizationServer>;
+  deleteAuthorizationServer(authServerId: string): Promise<Response>;
   listOAuth2Claims(authServerId: string): Collection<OAuth2Claim>;
   createOAuth2Claim(authServerId: string, oAuth2Claim: OAuth2ClaimOptions): Promise<OAuth2Claim>;
-  deleteOAuth2Claim(authServerId: string, claimId: string): Promise<Response>;
   getOAuth2Claim(authServerId: string, claimId: string): Promise<OAuth2Claim>;
   updateOAuth2Claim(authServerId: string, claimId: string, oAuth2Claim: OAuth2ClaimOptions): Promise<OAuth2Claim>;
+  deleteOAuth2Claim(authServerId: string, claimId: string): Promise<Response>;
   listOAuth2ClientsForAuthorizationServer(authServerId: string): Collection<OAuth2Client>;
-  revokeRefreshTokensForAuthorizationServerAndClient(authServerId: string, clientId: string): Promise<Response>;
   listRefreshTokensForAuthorizationServerAndClient(authServerId: string, clientId: string, queryParameters?: {
     expand?: string,
     after?: string,
     limit?: number,
   }): Collection<OAuth2RefreshToken>;
-  revokeRefreshTokenForAuthorizationServerAndClient(authServerId: string, clientId: string, tokenId: string): Promise<Response>;
+  revokeRefreshTokensForAuthorizationServerAndClient(authServerId: string, clientId: string): Promise<Response>;
   getRefreshTokenForAuthorizationServerAndClient(authServerId: string, clientId: string, tokenId: string, queryParameters?: {
     expand?: string,
   }): Promise<OAuth2RefreshToken>;
+  revokeRefreshTokenForAuthorizationServerAndClient(authServerId: string, clientId: string, tokenId: string): Promise<Response>;
   listAuthorizationServerKeys(authServerId: string): Collection<JsonWebKey>;
   rotateAuthorizationServerKeys(authServerId: string, jwkUse: JwkUseOptions): Collection<JsonWebKey>;
   activateAuthorizationServer(authServerId: string): Promise<Response>;
   deactivateAuthorizationServer(authServerId: string): Promise<Response>;
   listAuthorizationServerPolicies(authServerId: string): Collection<AuthorizationServerPolicy>;
   createAuthorizationServerPolicy(authServerId: string, authorizationServerPolicy: AuthorizationServerPolicyOptions): Promise<AuthorizationServerPolicy>;
-  deleteAuthorizationServerPolicy(authServerId: string, policyId: string): Promise<Response>;
   getAuthorizationServerPolicy(authServerId: string, policyId: string): Promise<AuthorizationServerPolicy>;
   updateAuthorizationServerPolicy(authServerId: string, policyId: string, authorizationServerPolicy: AuthorizationServerPolicyOptions): Promise<AuthorizationServerPolicy>;
+  deleteAuthorizationServerPolicy(authServerId: string, policyId: string): Promise<Response>;
   activateAuthorizationServerPolicy(authServerId: string, policyId: string): Promise<Response>;
   deactivateAuthorizationServerPolicy(authServerId: string, policyId: string): Promise<Response>;
   listAuthorizationServerPolicyRules(policyId: string, authServerId: string): Collection<AuthorizationServerPolicyRule>;
   createAuthorizationServerPolicyRule(policyId: string, authServerId: string, authorizationServerPolicyRule: AuthorizationServerPolicyRuleOptions): Promise<AuthorizationServerPolicyRule>;
-  deleteAuthorizationServerPolicyRule(policyId: string, authServerId: string, ruleId: string): Promise<Response>;
   getAuthorizationServerPolicyRule(policyId: string, authServerId: string, ruleId: string): Promise<AuthorizationServerPolicyRule>;
   updateAuthorizationServerPolicyRule(policyId: string, authServerId: string, ruleId: string, authorizationServerPolicyRule: AuthorizationServerPolicyRuleOptions): Promise<AuthorizationServerPolicyRule>;
+  deleteAuthorizationServerPolicyRule(policyId: string, authServerId: string, ruleId: string): Promise<Response>;
   activateAuthorizationServerPolicyRule(authServerId: string, policyId: string, ruleId: string): Promise<Response>;
   deactivateAuthorizationServerPolicyRule(authServerId: string, policyId: string, ruleId: string): Promise<Response>;
   listOAuth2Scopes(authServerId: string, queryParameters?: {
@@ -252,20 +250,26 @@ export declare class GeneratedApiClient {
     limit?: number,
   }): Collection<OAuth2Scope>;
   createOAuth2Scope(authServerId: string, oAuth2Scope: OAuth2ScopeOptions): Promise<OAuth2Scope>;
-  deleteOAuth2Scope(authServerId: string, scopeId: string): Promise<Response>;
   getOAuth2Scope(authServerId: string, scopeId: string): Promise<OAuth2Scope>;
   updateOAuth2Scope(authServerId: string, scopeId: string, oAuth2Scope: OAuth2ScopeOptions): Promise<OAuth2Scope>;
+  deleteOAuth2Scope(authServerId: string, scopeId: string): Promise<Response>;
+  listCaptchaInstances(): Collection<CAPTCHAInstance>;
+  createCaptchaInstance(captchaInstance: CAPTCHAInstanceOptions): Promise<CAPTCHAInstance>;
+  getCaptchaInstance(captchaId: string): Promise<CAPTCHAInstance>;
+  updateCaptchaInstance(captchaId: string, captchaInstance: CAPTCHAInstanceOptions): Promise<CAPTCHAInstance>;
+  deleteCaptchaInstance(captchaId: string): Promise<Response>;
+  partialUpdateCaptchaInstance(captchaId: string, captchaInstance: CAPTCHAInstanceOptions): Promise<CAPTCHAInstance>;
   listDomains(): Promise<DomainListResponse>;
-  createDomain(domain: DomainOptions): Promise<Domain>;
-  deleteDomain(domainId: string): Promise<Response>;
-  getDomain(domainId: string): Promise<Domain>;
+  createDomain(domain: DomainOptions): Promise<DomainResponse>;
+  verifyDomain(domainId: string): Promise<DomainResponse>;
   createCertificate(domainId: string, domainCertificate: DomainCertificateOptions): Promise<Response>;
-  verifyDomain(domainId: string): Promise<Domain>;
+  getDomain(domainId: string): Promise<DomainResponse>;
+  deleteDomain(domainId: string): Promise<Response>;
   listEventHooks(): Collection<EventHook>;
   createEventHook(eventHook: EventHookOptions): Promise<EventHook>;
-  deleteEventHook(eventHookId: string): Promise<Response>;
   getEventHook(eventHookId: string): Promise<EventHook>;
   updateEventHook(eventHookId: string, eventHook: EventHookOptions): Promise<EventHook>;
+  deleteEventHook(eventHookId: string): Promise<Response>;
   activateEventHook(eventHookId: string): Promise<EventHook>;
   deactivateEventHook(eventHookId: string): Promise<EventHook>;
   verifyEventHook(eventHookId: string): Promise<EventHook>;
@@ -291,18 +295,18 @@ export declare class GeneratedApiClient {
     expand?: string,
   }): Collection<GroupRule>;
   createGroupRule(groupRule: GroupRuleOptions): Promise<GroupRule>;
-  deleteGroupRule(ruleId: string, queryParameters?: {
-    removeUsers?: boolean,
-  }): Promise<Response>;
   getGroupRule(ruleId: string, queryParameters?: {
     expand?: string,
   }): Promise<GroupRule>;
   updateGroupRule(ruleId: string, groupRule: GroupRuleOptions): Promise<GroupRule>;
+  deleteGroupRule(ruleId: string, queryParameters?: {
+    removeUsers?: boolean,
+  }): Promise<Response>;
   activateGroupRule(ruleId: string): Promise<Response>;
   deactivateGroupRule(ruleId: string): Promise<Response>;
-  deleteGroup(groupId: string): Promise<Response>;
   getGroup(groupId: string): Promise<Group>;
   updateGroup(groupId: string, group: GroupOptions): Promise<Group>;
+  deleteGroup(groupId: string): Promise<Response>;
   listAssignedApplicationsForGroup(groupId: string, queryParameters?: {
     after?: string,
     limit?: number,
@@ -313,28 +317,28 @@ export declare class GeneratedApiClient {
   assignRoleToGroup(groupId: string, assignRoleRequest: AssignRoleRequestOptions, queryParameters?: {
     disableNotifications?: string,
   }): Promise<Role>;
-  removeRoleFromGroup(groupId: string, roleId: string): Promise<Response>;
   getRole(groupId: string, roleId: string): Promise<Role>;
+  removeRoleFromGroup(groupId: string, roleId: string): Promise<Response>;
   listApplicationTargetsForApplicationAdministratorRoleForGroup(groupId: string, roleId: string, queryParameters?: {
     after?: string,
     limit?: number,
   }): Collection<CatalogApplication>;
-  removeApplicationTargetFromApplicationAdministratorRoleGivenToGroup(groupId: string, roleId: string, appName: string): Promise<Response>;
   addApplicationTargetToAdminRoleGivenToGroup(groupId: string, roleId: string, appName: string): Promise<Response>;
-  removeApplicationTargetFromAdministratorRoleGivenToGroup(groupId: string, roleId: string, appName: string, applicationId: string): Promise<Response>;
+  removeApplicationTargetFromApplicationAdministratorRoleGivenToGroup(groupId: string, roleId: string, appName: string): Promise<Response>;
   addApplicationInstanceTargetToAppAdminRoleGivenToGroup(groupId: string, roleId: string, appName: string, applicationId: string): Promise<Response>;
+  removeApplicationTargetFromAdministratorRoleGivenToGroup(groupId: string, roleId: string, appName: string, applicationId: string): Promise<Response>;
   listGroupTargetsForGroupRole(groupId: string, roleId: string, queryParameters?: {
     after?: string,
     limit?: number,
   }): Collection<Group>;
-  removeGroupTargetFromGroupAdministratorRoleGivenToGroup(groupId: string, roleId: string, targetGroupId: string): Promise<Response>;
   addGroupTargetToGroupAdministratorRoleForGroup(groupId: string, roleId: string, targetGroupId: string): Promise<Response>;
+  removeGroupTargetFromGroupAdministratorRoleGivenToGroup(groupId: string, roleId: string, targetGroupId: string): Promise<Response>;
   listGroupUsers(groupId: string, queryParameters?: {
     after?: string,
     limit?: number,
   }): Collection<User>;
-  removeUserFromGroup(groupId: string, userId: string): Promise<Response>;
   addUserToGroup(groupId: string, userId: string): Promise<Response>;
+  removeUserFromGroup(groupId: string, userId: string): Promise<Response>;
   listIdentityProviders(queryParameters?: {
     q?: string,
     after?: string,
@@ -347,20 +351,16 @@ export declare class GeneratedApiClient {
     limit?: number,
   }): Collection<JsonWebKey>;
   createIdentityProviderKey(jsonWebKey: JsonWebKeyOptions): Promise<JsonWebKey>;
-  deleteIdentityProviderKey(keyId: string): Promise<Response>;
   getIdentityProviderKey(keyId: string): Promise<JsonWebKey>;
-  deleteIdentityProvider(idpId: string): Promise<Response>;
+  deleteIdentityProviderKey(keyId: string): Promise<Response>;
   getIdentityProvider(idpId: string): Promise<IdentityProvider>;
   updateIdentityProvider(idpId: string, identityProvider: IdentityProviderOptions): Promise<IdentityProvider>;
+  deleteIdentityProvider(idpId: string): Promise<Response>;
   listCsrsForIdentityProvider(idpId: string): Collection<Csr>;
   generateCsrForIdentityProvider(idpId: string, csrMetadata: CsrMetadataOptions): Promise<Csr>;
-  revokeCsrForIdentityProvider(idpId: string, csrId: string): Promise<Response>;
   getCsrForIdentityProvider(idpId: string, csrId: string): Promise<Csr>;
-  publishCerCertForIdentityProvider(idpId: string, csrId: string, certificate: string): Promise<JsonWebKey>;
-  publishBinaryCerCertForIdentityProvider(idpId: string, csrId: string, certificate: string): Promise<JsonWebKey>;
-  publishDerCertForIdentityProvider(idpId: string, csrId: string, certificate: string): Promise<JsonWebKey>;
-  publishBinaryDerCertForIdentityProvider(idpId: string, csrId: string, certificate: string): Promise<JsonWebKey>;
-  publishBinaryPemCertForIdentityProvider(idpId: string, csrId: string, certificate: string): Promise<JsonWebKey>;
+  revokeCsrForIdentityProvider(idpId: string, csrId: string): Promise<Response>;
+  publishCsrForIdentityProvider(idpId: string, csrId: string): Promise<JsonWebKey>;
   listIdentityProviderSigningKeys(idpId: string): Collection<JsonWebKey>;
   generateIdentityProviderSigningKey(idpId: string, queryParameters: {
     validityYears: number,
@@ -372,17 +372,17 @@ export declare class GeneratedApiClient {
   activateIdentityProvider(idpId: string): Promise<IdentityProvider>;
   deactivateIdentityProvider(idpId: string): Promise<IdentityProvider>;
   listIdentityProviderApplicationUsers(idpId: string): Collection<IdentityProviderApplicationUser>;
-  unlinkUserFromIdentityProvider(idpId: string, userId: string): Promise<Response>;
   getIdentityProviderApplicationUser(idpId: string, userId: string): Promise<IdentityProviderApplicationUser>;
   linkUserToIdentityProvider(idpId: string, userId: string, userIdentityProviderLinkRequest: UserIdentityProviderLinkRequestOptions): Promise<IdentityProviderApplicationUser>;
+  unlinkUserFromIdentityProvider(idpId: string, userId: string): Promise<Response>;
   listSocialAuthTokens(idpId: string, userId: string): Collection<SocialAuthToken>;
   listInlineHooks(queryParameters?: {
     type?: string,
   }): Collection<InlineHook>;
   createInlineHook(inlineHook: InlineHookOptions): Promise<InlineHook>;
-  deleteInlineHook(inlineHookId: string): Promise<Response>;
   getInlineHook(inlineHookId: string): Promise<InlineHook>;
   updateInlineHook(inlineHookId: string, inlineHook: InlineHookOptions): Promise<InlineHook>;
+  deleteInlineHook(inlineHookId: string): Promise<Response>;
   executeInlineHook(inlineHookId: string, inlineHookPayload: InlineHookPayloadOptions): Promise<InlineHookResponse>;
   activateInlineHook(inlineHookId: string): Promise<InlineHook>;
   deactivateInlineHook(inlineHookId: string): Promise<InlineHook>;
@@ -404,37 +404,37 @@ export declare class GeneratedApiClient {
   getProfileMapping(mappingId: string): Promise<ProfileMapping>;
   updateProfileMapping(mappingId: string, profileMapping: ProfileMappingOptions): Promise<ProfileMapping>;
   getApplicationUserSchema(appInstanceId: string): Promise<UserSchema>;
-  updateApplicationUserProfile(appInstanceId: string, userSchema?: UserSchemaOptions): Promise<UserSchema>;
+  updateApplicationUserProfile(appInstanceId: string, userSchema: UserSchemaOptions): Promise<UserSchema>;
   getGroupSchema(): Promise<GroupSchema>;
-  updateGroupSchema(groupSchema?: GroupSchemaOptions): Promise<GroupSchema>;
-  listLinkedObjectDefinitions(): Collection<LinkedObject>;
-  addLinkedObjectDefinition(linkedObject: LinkedObjectOptions): Promise<LinkedObject>;
-  deleteLinkedObjectDefinition(linkedObjectName: string): Promise<Response>;
-  getLinkedObjectDefinition(linkedObjectName: string): Promise<LinkedObject>;
+  updateGroupSchema(groupSchema: GroupSchemaOptions): Promise<GroupSchema>;
   getUserSchema(schemaId: string): Promise<UserSchema>;
   updateUserProfile(schemaId: string, userSchema: UserSchemaOptions): Promise<UserSchema>;
+  listLinkedObjectDefinitions(): Collection<LinkedObject>;
+  addLinkedObjectDefinition(linkedObject: LinkedObjectOptions): Promise<LinkedObject>;
+  getLinkedObjectDefinition(linkedObjectName: string): Promise<LinkedObject>;
+  deleteLinkedObjectDefinition(linkedObjectName: string): Promise<Response>;
   listUserTypes(): Collection<UserType>;
   createUserType(userType: UserTypeOptions): Promise<UserType>;
-  deleteUserType(typeId: string): Promise<Response>;
   getUserType(typeId: string): Promise<UserType>;
-  updateUserType(typeId: string, userType: UserTypeOptions): Promise<UserType>;
   replaceUserType(typeId: string, userType: UserTypeOptions): Promise<UserType>;
+  updateUserType(typeId: string, userType: UserTypeOptions): Promise<UserType>;
+  deleteUserType(typeId: string): Promise<Response>;
   getOrgSettings(): Promise<OrgSetting>;
   partialUpdateOrgSetting(orgSetting: OrgSettingOptions): Promise<OrgSetting>;
   updateOrgSetting(orgSetting: OrgSettingOptions): Promise<OrgSetting>;
   getOrgContactTypes(): Collection<OrgContactTypeObj>;
   getOrgContactUser(contactType: string): Promise<OrgContactUser>;
   updateOrgContactUser(contactType: string, userIdString: UserIdStringOptions): Promise<OrgContactUser>;
-  getOrgPreferences(): Promise<OrgPreferences>;
-  hideOktaUIFooter(): Promise<OrgPreferences>;
-  showOktaUIFooter(): Promise<OrgPreferences>;
-  getOktaCommunicationSettings(): Promise<OrgOktaCommunicationSetting>;
-  optInUsersToOktaCommunicationEmails(): Promise<OrgOktaCommunicationSetting>;
-  optOutUsersFromOktaCommunicationEmails(): Promise<OrgOktaCommunicationSetting>;
   getOrgOktaSupportSettings(): Promise<OrgOktaSupportSettingsObj>;
-  extendOktaSupport(): Promise<OrgOktaSupportSettingsObj>;
   grantOktaSupport(): Promise<OrgOktaSupportSettingsObj>;
+  extendOktaSupport(): Promise<OrgOktaSupportSettingsObj>;
   revokeOktaSupport(): Promise<OrgOktaSupportSettingsObj>;
+  getOktaCommunicationSettings(): Promise<OrgOktaCommunicationSetting>;
+  optOutUsersFromOktaCommunicationEmails(): Promise<OrgOktaCommunicationSetting>;
+  optInUsersToOktaCommunicationEmails(): Promise<OrgOktaCommunicationSetting>;
+  getOrgPreferences(): Promise<OrgPreferences>;
+  showOktaUIFooter(): Promise<OrgPreferences>;
+  hideOktaUIFooter(): Promise<OrgPreferences>;
   listPolicies(queryParameters: {
     type: string,
     status?: string,
@@ -443,32 +443,32 @@ export declare class GeneratedApiClient {
   createPolicy(policy: PolicyOptions, queryParameters?: {
     activate?: boolean,
   }): Promise<Policy>;
-  deletePolicy(policyId: string): Promise<Response>;
   getPolicy(policyId: string, queryParameters?: {
     expand?: string,
   }): Promise<Policy>;
   updatePolicy(policyId: string, policy: PolicyOptions): Promise<Policy>;
+  deletePolicy(policyId: string): Promise<Response>;
   activatePolicy(policyId: string): Promise<Response>;
   deactivatePolicy(policyId: string): Promise<Response>;
   listPolicyRules(policyId: string): Collection<PolicyRule>;
   createPolicyRule(policyId: string, policyRule: PolicyRuleOptions): Promise<PolicyRule>;
-  deletePolicyRule(policyId: string, ruleId: string): Promise<Response>;
   getPolicyRule(policyId: string, ruleId: string): Promise<PolicyRule>;
   updatePolicyRule(policyId: string, ruleId: string, policyRule: PolicyRuleOptions): Promise<PolicyRule>;
+  deletePolicyRule(policyId: string, ruleId: string): Promise<Response>;
   activatePolicyRule(policyId: string, ruleId: string): Promise<Response>;
   deactivatePolicyRule(policyId: string, ruleId: string): Promise<Response>;
   createSession(createSessionRequest: CreateSessionRequestOptions): Promise<Session>;
-  endSession(sessionId: string): Promise<Response>;
   getSession(sessionId: string): Promise<Session>;
+  endSession(sessionId: string): Promise<Response>;
   refreshSession(sessionId: string): Promise<Session>;
   listSmsTemplates(queryParameters?: {
-    templateType?: string,
+    templateType?: undefined,
   }): Collection<SmsTemplate>;
   createSmsTemplate(smsTemplate: SmsTemplateOptions): Promise<SmsTemplate>;
-  deleteSmsTemplate(templateId: string): Promise<Response>;
   getSmsTemplate(templateId: string): Promise<SmsTemplate>;
-  partialUpdateSmsTemplate(templateId: string, smsTemplate: SmsTemplateOptions): Promise<SmsTemplate>;
   updateSmsTemplate(templateId: string, smsTemplate: SmsTemplateOptions): Promise<SmsTemplate>;
+  partialUpdateSmsTemplate(templateId: string, smsTemplate: SmsTemplateOptions): Promise<SmsTemplate>;
+  deleteSmsTemplate(templateId: string): Promise<Response>;
   getCurrentConfiguration(): Promise<ThreatInsightConfiguration>;
   updateConfiguration(threatInsightConfiguration: ThreatInsightConfigurationOptions): Promise<ThreatInsightConfiguration>;
   listOrigins(queryParameters?: {
@@ -478,9 +478,9 @@ export declare class GeneratedApiClient {
     limit?: number,
   }): Collection<TrustedOrigin>;
   createOrigin(trustedOrigin: TrustedOriginOptions): Promise<TrustedOrigin>;
-  deleteOrigin(trustedOriginId: string): Promise<Response>;
   getOrigin(trustedOriginId: string): Promise<TrustedOrigin>;
   updateOrigin(trustedOriginId: string, trustedOrigin: TrustedOriginOptions): Promise<TrustedOrigin>;
+  deleteOrigin(trustedOriginId: string): Promise<Response>;
   activateOrigin(trustedOriginId: string): Promise<TrustedOrigin>;
   deactivateOrigin(trustedOriginId: string): Promise<TrustedOrigin>;
   listUsers(queryParameters?: {
@@ -495,49 +495,49 @@ export declare class GeneratedApiClient {
   createUser(createUserRequest: CreateUserRequestOptions, queryParameters?: {
     activate?: boolean,
     provider?: boolean,
-    nextLogin?: string,
+    nextLogin?: undefined,
   }): Promise<User>;
   setLinkedObjectForUser(associatedUserId: string, primaryRelationshipName: string, primaryUserId: string): Promise<Response>;
-  deactivateOrDeleteUser(userId: string, queryParameters?: {
-    sendEmail?: boolean,
-  }): Promise<Response>;
   getUser(userId: string): Promise<User>;
-  partialUpdateUser(userId: string, user: UserOptions, queryParameters?: {
-    strict?: boolean,
-  }): Promise<User>;
   updateUser(userId: string, user: UserOptions, queryParameters?: {
     strict?: boolean,
   }): Promise<User>;
+  partialUpdateUser(userId: string, user: UserOptions, queryParameters?: {
+    strict?: boolean,
+  }): Promise<User>;
+  deactivateOrDeleteUser(userId: string, queryParameters?: {
+    sendEmail?: boolean,
+  }): Promise<Response>;
   listAppLinks(userId: string): Collection<AppLink>;
   listUserClients(userId: string): Collection<OAuth2Client>;
-  revokeGrantsForUserAndClient(userId: string, clientId: string): Promise<Response>;
   listGrantsForUserAndClient(userId: string, clientId: string, queryParameters?: {
     expand?: string,
     after?: string,
     limit?: number,
   }): Collection<OAuth2ScopeConsentGrant>;
-  revokeTokensForUserAndClient(userId: string, clientId: string): Promise<Response>;
+  revokeGrantsForUserAndClient(userId: string, clientId: string): Promise<Response>;
   listRefreshTokensForUserAndClient(userId: string, clientId: string, queryParameters?: {
     expand?: string,
     after?: string,
     limit?: number,
   }): Collection<OAuth2RefreshToken>;
-  revokeTokenForUserAndClient(userId: string, clientId: string, tokenId: string): Promise<Response>;
+  revokeTokensForUserAndClient(userId: string, clientId: string): Promise<Response>;
   getRefreshTokenForUserAndClient(userId: string, clientId: string, tokenId: string, queryParameters?: {
     expand?: string,
     limit?: number,
     after?: string,
   }): Promise<OAuth2RefreshToken>;
+  revokeTokenForUserAndClient(userId: string, clientId: string, tokenId: string): Promise<Response>;
   changePassword(userId: string, changePasswordRequest: ChangePasswordRequestOptions, queryParameters?: {
     strict?: boolean,
   }): Promise<UserCredentials>;
   changeRecoveryQuestion(userId: string, userCredentials: UserCredentialsOptions): Promise<UserCredentials>;
-  forgotPasswordGenerateOneTimeToken(userId: string, queryParameters?: {
-    sendEmail?: boolean,
+  forgotPassword(userId: string, queryParameters?: {
+    sendEmail?: string,
   }): Promise<ForgotPasswordResponse>;
   forgotPasswordSetNewPassword(userId: string, userCredentials: UserCredentialsOptions, queryParameters?: {
-    sendEmail?: boolean,
-  }): Promise<ForgotPasswordResponse>;
+    sendEmail?: string,
+  }): Promise<UserCredentials>;
   listFactors(userId: string): Collection<UserFactor>;
   enrollFactor(userId: string, userFactor: UserFactorOptions, queryParameters?: {
     updatePhone?: boolean,
@@ -547,25 +547,25 @@ export declare class GeneratedApiClient {
   }): Promise<UserFactor>;
   listSupportedFactors(userId: string): Collection<UserFactor>;
   listSupportedSecurityQuestions(userId: string): Collection<SecurityQuestion>;
-  deleteFactor(userId: string, factorId: string): Promise<Response>;
   getFactor(userId: string, factorId: string): Promise<UserFactor>;
-  activateFactor(userId: string, factorId: string, activateFactorRequest?: ActivateFactorRequestOptions): Promise<UserFactor>;
+  deleteFactor(userId: string, factorId: string): Promise<Response>;
+  activateFactor(userId: string, factorId: string, activateFactorRequest: ActivateFactorRequestOptions): Promise<UserFactor>;
   getFactorTransactionStatus(userId: string, factorId: string, transactionId: string): Promise<VerifyUserFactorResponse>;
-  verifyFactor(userId: string, factorId: string, verifyFactorRequest?: VerifyFactorRequestOptions, queryParameters?: {
+  verifyFactor(userId: string, factorId: string, verifyFactorRequest: VerifyFactorRequestOptions, queryParameters?: {
     templateId?: string,
     tokenLifetimeSeconds?: number,
   }): Promise<VerifyUserFactorResponse>;
-  revokeUserGrants(userId: string): Promise<Response>;
   listUserGrants(userId: string, queryParameters?: {
     scopeId?: string,
     expand?: string,
     after?: string,
     limit?: number,
   }): Collection<OAuth2ScopeConsentGrant>;
-  revokeUserGrant(userId: string, grantId: string): Promise<Response>;
+  revokeUserGrants(userId: string): Promise<Response>;
   getUserGrant(userId: string, grantId: string, queryParameters?: {
     expand?: string,
   }): Promise<OAuth2ScopeConsentGrant>;
+  revokeUserGrant(userId: string, grantId: string): Promise<Response>;
   listUserGroups(userId: string): Collection<Group>;
   listUserIdentityProviders(userId: string): Collection<IdentityProvider>;
   activateUser(userId: string, queryParameters: {
@@ -586,11 +586,11 @@ export declare class GeneratedApiClient {
   suspendUser(userId: string): Promise<Response>;
   unlockUser(userId: string): Promise<Response>;
   unsuspendUser(userId: string): Promise<Response>;
-  removeLinkedObjectForUser(userId: string, relationshipName: string): Promise<Response>;
   getLinkedObjectsForUser(userId: string, relationshipName: string, queryParameters?: {
     after?: string,
     limit?: number,
   }): Collection<ResponseLinks>;
+  removeLinkedObjectForUser(userId: string, relationshipName: string): Promise<Response>;
   listAssignedRolesForUser(userId: string, queryParameters?: {
     expand?: string,
   }): Collection<Role>;
@@ -604,16 +604,16 @@ export declare class GeneratedApiClient {
     limit?: number,
   }): Collection<CatalogApplication>;
   addAllAppsAsTargetToRole(userId: string, roleId: string): Promise<Response>;
-  removeApplicationTargetFromApplicationAdministratorRoleForUser(userId: string, roleId: string, appName: string): Promise<Response>;
   addApplicationTargetToAdminRoleForUser(userId: string, roleId: string, appName: string): Promise<Response>;
-  removeApplicationTargetFromAdministratorRoleForUser(userId: string, roleId: string, appName: string, applicationId: string): Promise<Response>;
+  removeApplicationTargetFromApplicationAdministratorRoleForUser(userId: string, roleId: string, appName: string): Promise<Response>;
   addApplicationTargetToAppAdminRoleForUser(userId: string, roleId: string, appName: string, applicationId: string): Promise<Response>;
+  removeApplicationTargetFromAdministratorRoleForUser(userId: string, roleId: string, appName: string, applicationId: string): Promise<Response>;
   listGroupTargetsForRole(userId: string, roleId: string, queryParameters?: {
     after?: string,
     limit?: number,
   }): Collection<Group>;
-  removeGroupTargetFromRole(userId: string, roleId: string, groupId: string): Promise<Response>;
   addGroupTargetToRole(userId: string, roleId: string, groupId: string): Promise<Response>;
+  removeGroupTargetFromRole(userId: string, roleId: string, groupId: string): Promise<Response>;
   clearUserSessions(userId: string, queryParameters?: {
     oauthTokens?: boolean,
   }): Promise<Response>;
@@ -623,9 +623,9 @@ export declare class GeneratedApiClient {
     filter?: string,
   }): Collection<NetworkZone>;
   createNetworkZone(networkZone: NetworkZoneOptions): Promise<NetworkZone>;
-  deleteNetworkZone(zoneId: string): Promise<Response>;
   getNetworkZone(zoneId: string): Promise<NetworkZone>;
   updateNetworkZone(zoneId: string, networkZone: NetworkZoneOptions): Promise<NetworkZone>;
-  activateNetworkZone(zoneId: string): Promise<NetworkZone>;
+  deleteNetworkZone(zoneId: string): Promise<Response>;
   deactivateNetworkZone(zoneId: string): Promise<NetworkZone>;
+  activateNetworkZone(zoneId: string): Promise<NetworkZone>;
 }

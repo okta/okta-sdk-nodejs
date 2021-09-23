@@ -19,8 +19,8 @@ const UserSchemaAttributeMasterPriority = require('./UserSchemaAttributeMasterPr
 /**
  * @class UserSchemaAttributeMaster
  * @extends Resource
- * @property { array } priority
  * @property { UserSchemaAttributeMasterType } type
+ * @property { array } priority
  */
 class UserSchemaAttributeMaster extends Resource {
   constructor(resourceJson, client) {

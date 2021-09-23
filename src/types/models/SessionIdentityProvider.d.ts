@@ -22,7 +22,7 @@ declare class SessionIdentityProvider extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
 
   readonly id: string;
-  readonly type: SessionIdentityProviderType;
+  type: SessionIdentityProviderType;
 
 }
 

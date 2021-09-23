@@ -19,11 +19,11 @@ import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { OpenIdConnectApplicationType } from './OpenIdConnectApplicationType';
 import { OpenIdConnectApplicationConsentMethod } from './OpenIdConnectApplicationConsentMethod';
 import { OAuthGrantType } from './OAuthGrantType';
-import { OpenIdConnectApplicationIdpInitiatedLogin } from './OpenIdConnectApplicationIdpInitiatedLogin';
 import { OpenIdConnectApplicationIssuerMode } from './OpenIdConnectApplicationIssuerMode';
-import { OpenIdConnectApplicationSettingsClientKeys } from './OpenIdConnectApplicationSettingsClientKeys';
-import { OpenIdConnectApplicationSettingsRefreshToken } from './OpenIdConnectApplicationSettingsRefreshToken';
+import { OpenIdConnectApplicationIdpInitiatedLogin } from './OpenIdConnectApplicationIdpInitiatedLogin';
 import { OAuthResponseType } from './OAuthResponseType';
+import { OpenIdConnectApplicationSettingsRefreshToken } from './OpenIdConnectApplicationSettingsRefreshToken';
+import { OpenIdConnectApplicationSettingsClientKeys } from './OpenIdConnectApplicationSettingsClientKeys';
 
 declare class OpenIdConnectApplicationSettingsClient extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
@@ -32,18 +32,18 @@ declare class OpenIdConnectApplicationSettingsClient extends Resource {
   client_uri: string;
   consent_method: OpenIdConnectApplicationConsentMethod;
   grant_types: OAuthGrantType[];
-  idp_initiated_login: OpenIdConnectApplicationIdpInitiatedLogin;
   initiate_login_uri: string;
   issuer_mode: OpenIdConnectApplicationIssuerMode;
-  jwks: OpenIdConnectApplicationSettingsClientKeys;
+  idp_initiated_login: OpenIdConnectApplicationIdpInitiatedLogin;
   logo_uri: string;
   policy_uri: string;
   post_logout_redirect_uris: string[];
   redirect_uris: string[];
-  refresh_token: OpenIdConnectApplicationSettingsRefreshToken;
-  response_types: OAuthResponseType[];
-  tos_uri: string;
   wildcard_redirect: string;
+  response_types: OAuthResponseType[];
+  refresh_token: OpenIdConnectApplicationSettingsRefreshToken;
+  tos_uri: string;
+  jwks: OpenIdConnectApplicationSettingsClientKeys;
 
 }
 

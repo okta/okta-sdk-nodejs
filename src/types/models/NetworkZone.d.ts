@@ -17,29 +17,29 @@ import { Resource } from '../resource';
 import { Client } from '../client';
 import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { Response } from 'node-fetch';
-import { NetworkZoneAddress } from './NetworkZoneAddress';
-import { NetworkZoneLocation } from './NetworkZoneLocation';
-import { NetworkZoneStatus } from './NetworkZoneStatus';
 import { NetworkZoneType } from './NetworkZoneType';
 import { NetworkZoneUsage } from './NetworkZoneUsage';
+import { NetworkZoneStatus } from './NetworkZoneStatus';
+import { NetworkZoneLocation } from './NetworkZoneLocation';
+import { NetworkZoneAddress } from './NetworkZoneAddress';
 
 declare class NetworkZone extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
 
-  readonly _links: {[name: string]: unknown};
+  type: NetworkZoneType;
+  readonly id: string;
+  name: string;
+  system: boolean;
+  usage: NetworkZoneUsage;
+  status: NetworkZoneStatus;
+  proxyType: string;
+  locations: NetworkZoneLocation[];
+  gateways: NetworkZoneAddress[];
+  proxies: NetworkZoneAddress[];
   asns: string[];
   readonly created: string;
-  gateways: NetworkZoneAddress[];
-  readonly id: string;
   readonly lastUpdated: string;
-  locations: NetworkZoneLocation[];
-  name: string;
-  proxies: NetworkZoneAddress[];
-  proxyType: string;
-  status: NetworkZoneStatus;
-  system: boolean;
-  type: NetworkZoneType;
-  usage: NetworkZoneUsage;
+  readonly _links: {[name: string]: unknown};
 
   update(): Promise<NetworkZone>;
   delete(): Promise<Response>;

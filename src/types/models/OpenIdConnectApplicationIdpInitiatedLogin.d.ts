@@ -21,8 +21,8 @@ import { OptionalKnownProperties } from '../optional-known-properties-type';
 declare class OpenIdConnectApplicationIdpInitiatedLogin extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
 
-  default_scope: string[];
   mode: string;
+  default_scope: string[];
 
 }
 

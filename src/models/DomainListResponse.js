@@ -14,7 +14,7 @@
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
 var Resource = require('../resource');
-const Domain = require('./Domain');
+const DomainResponse = require('./DomainResponse');
 
 /**
  * @class DomainListResponse
@@ -25,7 +25,7 @@ class DomainListResponse extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
     if (resourceJson && resourceJson.domains) {
-      this.domains = resourceJson.domains.map(resourceItem => new Domain(resourceItem));
+      this.domains = resourceJson.domains.map(resourceItem => new DomainResponse(resourceItem));
     }
   }
 

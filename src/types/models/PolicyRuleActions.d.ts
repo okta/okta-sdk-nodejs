@@ -17,17 +17,17 @@ import { Resource } from '../resource';
 import { Client } from '../client';
 import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { PolicyRuleActionsEnroll } from './PolicyRuleActionsEnroll';
-import { PasswordPolicyRuleAction } from './PasswordPolicyRuleAction';
 import { OktaSignOnPolicyRuleSignonActions } from './OktaSignOnPolicyRuleSignonActions';
+import { PasswordPolicyRuleAction } from './PasswordPolicyRuleAction';
 
 declare class PolicyRuleActions extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
 
   enroll: PolicyRuleActionsEnroll;
+  signon: OktaSignOnPolicyRuleSignonActions;
   passwordChange: PasswordPolicyRuleAction;
   selfServicePasswordReset: PasswordPolicyRuleAction;
   selfServiceUnlock: PasswordPolicyRuleAction;
-  signon: OktaSignOnPolicyRuleSignonActions;
 
 }
 

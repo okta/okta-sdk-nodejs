@@ -36,7 +36,7 @@ declare class Group extends Resource {
   readonly lastUpdated: string;
   readonly objectClass: string[];
   profile: GroupProfile;
-  readonly type: GroupType;
+  type: GroupType;
 
   update(): Promise<Group>;
   delete(): Promise<Response>;

@@ -23,10 +23,10 @@ declare class LogClient extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
 
   readonly device: string;
-  readonly geographicalContext: LogGeographicalContext;
+  geographicalContext: LogGeographicalContext;
   readonly id: string;
   readonly ipAddress: string;
-  readonly userAgent: LogUserAgent;
+  userAgent: LogUserAgent;
   readonly zone: string;
 
 }

@@ -15,23 +15,26 @@
 
 var Resource = require('../resource');
 const PolicyRuleActionsEnroll = require('./PolicyRuleActionsEnroll');
-const PasswordPolicyRuleAction = require('./PasswordPolicyRuleAction');
 const OktaSignOnPolicyRuleSignonActions = require('./OktaSignOnPolicyRuleSignonActions');
+const PasswordPolicyRuleAction = require('./PasswordPolicyRuleAction');
 
 /**
  * @class PolicyRuleActions
  * @extends Resource
  * @property { PolicyRuleActionsEnroll } enroll
+ * @property { OktaSignOnPolicyRuleSignonActions } signon
  * @property { PasswordPolicyRuleAction } passwordChange
  * @property { PasswordPolicyRuleAction } selfServicePasswordReset
  * @property { PasswordPolicyRuleAction } selfServiceUnlock
- * @property { OktaSignOnPolicyRuleSignonActions } signon
  */
 class PolicyRuleActions extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
     if (resourceJson && resourceJson.enroll) {
       this.enroll = new PolicyRuleActionsEnroll(resourceJson.enroll);
+    }
+    if (resourceJson && resourceJson.signon) {
+      this.signon = new OktaSignOnPolicyRuleSignonActions(resourceJson.signon);
     }
     if (resourceJson && resourceJson.passwordChange) {
       this.passwordChange = new PasswordPolicyRuleAction(resourceJson.passwordChange);
@@ -41,9 +44,6 @@ class PolicyRuleActions extends Resource {
     }
     if (resourceJson && resourceJson.selfServiceUnlock) {
       this.selfServiceUnlock = new PasswordPolicyRuleAction(resourceJson.selfServiceUnlock);
-    }
-    if (resourceJson && resourceJson.signon) {
-      this.signon = new OktaSignOnPolicyRuleSignonActions(resourceJson.signon);
     }
   }
 

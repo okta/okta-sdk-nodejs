@@ -16,14 +16,14 @@
 import { Resource } from '../resource';
 import { Client } from '../client';
 import { OptionalKnownProperties } from '../optional-known-properties-type';
-import { UserSchemaAttributeMasterPriority } from './UserSchemaAttributeMasterPriority';
 import { UserSchemaAttributeMasterType } from './UserSchemaAttributeMasterType';
+import { UserSchemaAttributeMasterPriority } from './UserSchemaAttributeMasterPriority';
 
 declare class UserSchemaAttributeMaster extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
 
-  priority: UserSchemaAttributeMasterPriority[];
   type: UserSchemaAttributeMasterType;
+  priority: UserSchemaAttributeMasterPriority[];
 
 }
 

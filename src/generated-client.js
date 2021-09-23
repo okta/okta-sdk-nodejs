@@ -86,30 +86,6 @@ class GeneratedApiClient {
   /**
    *
    * @param appId {String}
-   * @description
-   * Removes an inactive application.
-   */
-  deleteApplication(appId) {
-    if (!appId) {
-      return Promise.reject(new Error('OKTA API deleteApplication parameter appId is required.'));
-    }
-    let url = `${this.baseUrl}/api/v1/apps/${appId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/apps/${appId}`
-    ];
-
-    const request = this.http.delete(
-      url,
-      null,
-      { resources }
-    );
-    return request;
-  }
-
-  /**
-   *
-   * @param appId {String}
    * @param {Object} queryParams Map of query parameters to add to this request
    * @param {String} [queryParams.expand]
    * @description
@@ -172,6 +148,30 @@ class GeneratedApiClient {
    *
    * @param appId {String}
    * @description
+   * Removes an inactive application.
+   */
+  deleteApplication(appId) {
+    if (!appId) {
+      return Promise.reject(new Error('OKTA API deleteApplication parameter appId is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/apps/${appId}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/apps/${appId}`
+    ];
+
+    const request = this.http.delete(
+      url,
+      null,
+      { resources }
+    );
+    return request;
+  }
+
+  /**
+   *
+   * @param appId {String}
+   * @description
    * Enumerates Certificate Signing Requests for an application
    * @returns {Promise<Collection>} A collection that will yield {@link Csr} instances.
    */
@@ -224,36 +224,7 @@ class GeneratedApiClient {
    * @param appId {String}
    * @param csrId {String}
    * @description
-   * Convenience method for /api/v1/apps/{appId}/credentials/csrs/{csrId}
-   */
-  revokeCsrFromApplication(appId, csrId) {
-    if (!appId) {
-      return Promise.reject(new Error('OKTA API revokeCsrFromApplication parameter appId is required.'));
-    }
-    if (!csrId) {
-      return Promise.reject(new Error('OKTA API revokeCsrFromApplication parameter csrId is required.'));
-    }
-    let url = `${this.baseUrl}/api/v1/apps/${appId}/credentials/csrs/${csrId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/apps/${appId}/credentials/csrs/${csrId}`,
-      `${this.baseUrl}/api/v1/apps/${appId}`
-    ];
-
-    const request = this.http.delete(
-      url,
-      null,
-      { resources }
-    );
-    return request;
-  }
-
-  /**
-   *
-   * @param appId {String}
-   * @param csrId {String}
-   * @description
-   * Convenience method for /api/v1/apps/{appId}/credentials/csrs/{csrId}
+   * Fetches a certificate signing request for the app by `id`.
    * @returns {Promise<Csr>}
    */
   getCsrForApplication(appId, csrId) {
@@ -282,59 +253,45 @@ class GeneratedApiClient {
    *
    * @param appId {String}
    * @param csrId {String}
-   * @param {string} string
    * @description
-   * Convenience method for /api/v1/apps/{appId}/credentials/csrs/{csrId}/lifecycle/publish
-   * @returns {Promise<JsonWebKey>}
+   * Revokes a certificate signing request and deletes the key pair from the application.
    */
-  publishCerCert(appId, csrId, certificate) {
+  revokeCsrFromApplication(appId, csrId) {
     if (!appId) {
-      return Promise.reject(new Error('OKTA API publishCerCert parameter appId is required.'));
+      return Promise.reject(new Error('OKTA API revokeCsrFromApplication parameter appId is required.'));
     }
     if (!csrId) {
-      return Promise.reject(new Error('OKTA API publishCerCert parameter csrId is required.'));
+      return Promise.reject(new Error('OKTA API revokeCsrFromApplication parameter csrId is required.'));
     }
-    if (!certificate) {
-      return Promise.reject(new Error('OKTA API publishCerCert parameter certificate is required.'));
-    }
-    let url = `${this.baseUrl}/api/v1/apps/${appId}/credentials/csrs/${csrId}/lifecycle/publish`;
+    let url = `${this.baseUrl}/api/v1/apps/${appId}/credentials/csrs/${csrId}`;
 
     const resources = [
       `${this.baseUrl}/api/v1/apps/${appId}/credentials/csrs/${csrId}`,
       `${this.baseUrl}/api/v1/apps/${appId}`
     ];
 
-    const request = this.http.post(
+    const request = this.http.delete(
       url,
-      {
-        headers: {
-          'Content-Type': 'application/x-x509-ca-cert', 'Accept': 'application/json', 'Content-Transfer-Encoding': 'base64',
-        },
-        body: certificate
-      },
+      null,
       { resources }
-    ).then(res => res.json());
-    return request.then(jsonRes => new models.JsonWebKey(jsonRes, this));
+    );
+    return request;
   }
 
   /**
    *
    * @param appId {String}
    * @param csrId {String}
-   * @param {string} string
    * @description
-   * Convenience method for /api/v1/apps/{appId}/credentials/csrs/{csrId}/lifecycle/publish
+   * Updates a certificate signing request for the app with a signed X.509 certificate and adds it into the application key credentials
    * @returns {Promise<JsonWebKey>}
    */
-  publishBinaryCerCert(appId, csrId, certificate) {
+  publishCsrFromApplication(appId, csrId) {
     if (!appId) {
-      return Promise.reject(new Error('OKTA API publishBinaryCerCert parameter appId is required.'));
+      return Promise.reject(new Error('OKTA API publishCsrFromApplication parameter appId is required.'));
     }
     if (!csrId) {
-      return Promise.reject(new Error('OKTA API publishBinaryCerCert parameter csrId is required.'));
-    }
-    if (!certificate) {
-      return Promise.reject(new Error('OKTA API publishBinaryCerCert parameter certificate is required.'));
+      return Promise.reject(new Error('OKTA API publishCsrFromApplication parameter csrId is required.'));
     }
     let url = `${this.baseUrl}/api/v1/apps/${appId}/credentials/csrs/${csrId}/lifecycle/publish`;
 
@@ -347,126 +304,8 @@ class GeneratedApiClient {
       url,
       {
         headers: {
-          'Content-Type': 'application/x-x509-ca-cert', 'Accept': 'application/json',
+          'Content-Type': 'application/x-x509-ca-cert,application/pkix-cert,application/x-pem-file', 'Accept': 'application/json',
         },
-        body: certificate
-      },
-      { resources }
-    ).then(res => res.json());
-    return request.then(jsonRes => new models.JsonWebKey(jsonRes, this));
-  }
-
-  /**
-   *
-   * @param appId {String}
-   * @param csrId {String}
-   * @param {string} string
-   * @description
-   * Convenience method for /api/v1/apps/{appId}/credentials/csrs/{csrId}/lifecycle/publish
-   * @returns {Promise<JsonWebKey>}
-   */
-  publishDerCert(appId, csrId, certificate) {
-    if (!appId) {
-      return Promise.reject(new Error('OKTA API publishDerCert parameter appId is required.'));
-    }
-    if (!csrId) {
-      return Promise.reject(new Error('OKTA API publishDerCert parameter csrId is required.'));
-    }
-    if (!certificate) {
-      return Promise.reject(new Error('OKTA API publishDerCert parameter certificate is required.'));
-    }
-    let url = `${this.baseUrl}/api/v1/apps/${appId}/credentials/csrs/${csrId}/lifecycle/publish`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/apps/${appId}/credentials/csrs/${csrId}`,
-      `${this.baseUrl}/api/v1/apps/${appId}`
-    ];
-
-    const request = this.http.post(
-      url,
-      {
-        headers: {
-          'Content-Type': 'application/pkix-cert', 'Accept': 'application/json', 'Content-Transfer-Encoding': 'base64',
-        },
-        body: certificate
-      },
-      { resources }
-    ).then(res => res.json());
-    return request.then(jsonRes => new models.JsonWebKey(jsonRes, this));
-  }
-
-  /**
-   *
-   * @param appId {String}
-   * @param csrId {String}
-   * @param {string} string
-   * @description
-   * Convenience method for /api/v1/apps/{appId}/credentials/csrs/{csrId}/lifecycle/publish
-   * @returns {Promise<JsonWebKey>}
-   */
-  publishBinaryDerCert(appId, csrId, certificate) {
-    if (!appId) {
-      return Promise.reject(new Error('OKTA API publishBinaryDerCert parameter appId is required.'));
-    }
-    if (!csrId) {
-      return Promise.reject(new Error('OKTA API publishBinaryDerCert parameter csrId is required.'));
-    }
-    if (!certificate) {
-      return Promise.reject(new Error('OKTA API publishBinaryDerCert parameter certificate is required.'));
-    }
-    let url = `${this.baseUrl}/api/v1/apps/${appId}/credentials/csrs/${csrId}/lifecycle/publish`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/apps/${appId}/credentials/csrs/${csrId}`,
-      `${this.baseUrl}/api/v1/apps/${appId}`
-    ];
-
-    const request = this.http.post(
-      url,
-      {
-        headers: {
-          'Content-Type': 'application/pkix-cert', 'Accept': 'application/json',
-        },
-        body: certificate
-      },
-      { resources }
-    ).then(res => res.json());
-    return request.then(jsonRes => new models.JsonWebKey(jsonRes, this));
-  }
-
-  /**
-   *
-   * @param appId {String}
-   * @param csrId {String}
-   * @param {string} string
-   * @description
-   * Convenience method for /api/v1/apps/{appId}/credentials/csrs/{csrId}/lifecycle/publish
-   * @returns {Promise<JsonWebKey>}
-   */
-  publishBinaryPemCert(appId, csrId, certificate) {
-    if (!appId) {
-      return Promise.reject(new Error('OKTA API publishBinaryPemCert parameter appId is required.'));
-    }
-    if (!csrId) {
-      return Promise.reject(new Error('OKTA API publishBinaryPemCert parameter csrId is required.'));
-    }
-    if (!certificate) {
-      return Promise.reject(new Error('OKTA API publishBinaryPemCert parameter certificate is required.'));
-    }
-    let url = `${this.baseUrl}/api/v1/apps/${appId}/credentials/csrs/${csrId}/lifecycle/publish`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/apps/${appId}/credentials/csrs/${csrId}`,
-      `${this.baseUrl}/api/v1/apps/${appId}`
-    ];
-
-    const request = this.http.post(
-      url,
-      {
-        headers: {
-          'Content-Type': 'application/x-pem-file', 'Accept': 'application/json',
-        },
-        body: certificate
       },
       { resources }
     ).then(res => res.json());
@@ -515,11 +354,15 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/apps/${appId}`
     ];
 
-    const request = this.http.postJson(
+    const request = this.http.post(
       url,
-      null,
+      {
+        headers: {
+          'Accept': 'application/json',
+        },
+      },
       { resources }
-    );
+    ).then(res => res.json());
     return request.then(jsonRes => new models.JsonWebKey(jsonRes, this));
   }
 
@@ -583,11 +426,15 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/apps/${appId}`
     ];
 
-    const request = this.http.postJson(
+    const request = this.http.post(
       url,
-      null,
+      {
+        headers: {
+          'Accept': 'application/json',
+        },
+      },
       { resources }
-    );
+    ).then(res => res.json());
     return request.then(jsonRes => new models.JsonWebKey(jsonRes, this));
   }
 
@@ -651,35 +498,6 @@ class GeneratedApiClient {
    *
    * @param appId {String}
    * @param grantId {String}
-   * @description
-   * Revokes permission for the application to request the given scope
-   */
-  revokeScopeConsentGrant(appId, grantId) {
-    if (!appId) {
-      return Promise.reject(new Error('OKTA API revokeScopeConsentGrant parameter appId is required.'));
-    }
-    if (!grantId) {
-      return Promise.reject(new Error('OKTA API revokeScopeConsentGrant parameter grantId is required.'));
-    }
-    let url = `${this.baseUrl}/api/v1/apps/${appId}/grants/${grantId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/apps/${appId}/grants/${grantId}`,
-      `${this.baseUrl}/api/v1/apps/${appId}`
-    ];
-
-    const request = this.http.delete(
-      url,
-      null,
-      { resources }
-    );
-    return request;
-  }
-
-  /**
-   *
-   * @param appId {String}
-   * @param grantId {String}
    * @param {Object} queryParams Map of query parameters to add to this request
    * @param {String} [queryParams.expand]
    * @description
@@ -714,6 +532,35 @@ class GeneratedApiClient {
   /**
    *
    * @param appId {String}
+   * @param grantId {String}
+   * @description
+   * Revokes permission for the application to request the given scope
+   */
+  revokeScopeConsentGrant(appId, grantId) {
+    if (!appId) {
+      return Promise.reject(new Error('OKTA API revokeScopeConsentGrant parameter appId is required.'));
+    }
+    if (!grantId) {
+      return Promise.reject(new Error('OKTA API revokeScopeConsentGrant parameter grantId is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/apps/${appId}/grants/${grantId}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/apps/${appId}/grants/${grantId}`,
+      `${this.baseUrl}/api/v1/apps/${appId}`
+    ];
+
+    const request = this.http.delete(
+      url,
+      null,
+      { resources }
+    );
+    return request;
+  }
+
+  /**
+   *
+   * @param appId {String}
    * @param {Object} queryParams Map of query parameters to add to this request
    * @param {String} [queryParams.q]
    * @param {String} [queryParams.after]
@@ -737,35 +584,6 @@ class GeneratedApiClient {
       url,
       new ModelFactory(models.ApplicationGroupAssignment),
     );
-  }
-
-  /**
-   *
-   * @param appId {String}
-   * @param groupId {String}
-   * @description
-   * Removes a group assignment from an application.
-   */
-  deleteApplicationGroupAssignment(appId, groupId) {
-    if (!appId) {
-      return Promise.reject(new Error('OKTA API deleteApplicationGroupAssignment parameter appId is required.'));
-    }
-    if (!groupId) {
-      return Promise.reject(new Error('OKTA API deleteApplicationGroupAssignment parameter groupId is required.'));
-    }
-    let url = `${this.baseUrl}/api/v1/apps/${appId}/groups/${groupId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/apps/${appId}/groups/${groupId}`,
-      `${this.baseUrl}/api/v1/apps/${appId}`
-    ];
-
-    const request = this.http.delete(
-      url,
-      null,
-      { resources }
-    );
-    return request;
   }
 
   /**
@@ -819,6 +637,9 @@ class GeneratedApiClient {
     if (!groupId) {
       return Promise.reject(new Error('OKTA API createApplicationGroupAssignment parameter groupId is required.'));
     }
+    if (!applicationGroupAssignment) {
+      return Promise.reject(new Error('OKTA API createApplicationGroupAssignment parameter applicationGroupAssignment is required.'));
+    }
     let url = `${this.baseUrl}/api/v1/apps/${appId}/groups/${groupId}`;
 
     const resources = [
@@ -839,6 +660,35 @@ class GeneratedApiClient {
   /**
    *
    * @param appId {String}
+   * @param groupId {String}
+   * @description
+   * Removes a group assignment from an application.
+   */
+  deleteApplicationGroupAssignment(appId, groupId) {
+    if (!appId) {
+      return Promise.reject(new Error('OKTA API deleteApplicationGroupAssignment parameter appId is required.'));
+    }
+    if (!groupId) {
+      return Promise.reject(new Error('OKTA API deleteApplicationGroupAssignment parameter groupId is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/apps/${appId}/groups/${groupId}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/apps/${appId}/groups/${groupId}`,
+      `${this.baseUrl}/api/v1/apps/${appId}`
+    ];
+
+    const request = this.http.delete(
+      url,
+      null,
+      { resources }
+    );
+    return request;
+  }
+
+  /**
+   *
+   * @param appId {String}
    * @description
    * Activates an inactive application.
    */
@@ -854,11 +704,7 @@ class GeneratedApiClient {
 
     const request = this.http.post(
       url,
-      {
-        headers: {
-          'Content-Type': 'application/json', 'Accept': 'application/json',
-        },
-      },
+      null,
       { resources }
     );
     return request;
@@ -881,34 +727,6 @@ class GeneratedApiClient {
     ];
 
     const request = this.http.post(
-      url,
-      {
-        headers: {
-          'Content-Type': 'application/json', 'Accept': 'application/json',
-        },
-      },
-      { resources }
-    );
-    return request;
-  }
-
-  /**
-   *
-   * @param appId {String}
-   * @description
-   * Revokes all tokens for the specified application
-   */
-  revokeOAuth2TokensForApplication(appId) {
-    if (!appId) {
-      return Promise.reject(new Error('OKTA API revokeOAuth2TokensForApplication parameter appId is required.'));
-    }
-    let url = `${this.baseUrl}/api/v1/apps/${appId}/tokens`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/apps/${appId}`
-    ];
-
-    const request = this.http.delete(
       url,
       null,
       { resources }
@@ -946,21 +764,16 @@ class GeneratedApiClient {
   /**
    *
    * @param appId {String}
-   * @param tokenId {String}
    * @description
-   * Revokes the specified token for the specified application
+   * Revokes all tokens for the specified application
    */
-  revokeOAuth2TokenForApplication(appId, tokenId) {
+  revokeOAuth2TokensForApplication(appId) {
     if (!appId) {
-      return Promise.reject(new Error('OKTA API revokeOAuth2TokenForApplication parameter appId is required.'));
+      return Promise.reject(new Error('OKTA API revokeOAuth2TokensForApplication parameter appId is required.'));
     }
-    if (!tokenId) {
-      return Promise.reject(new Error('OKTA API revokeOAuth2TokenForApplication parameter tokenId is required.'));
-    }
-    let url = `${this.baseUrl}/api/v1/apps/${appId}/tokens/${tokenId}`;
+    let url = `${this.baseUrl}/api/v1/apps/${appId}/tokens`;
 
     const resources = [
-      `${this.baseUrl}/api/v1/apps/${appId}/tokens/${tokenId}`,
       `${this.baseUrl}/api/v1/apps/${appId}`
     ];
 
@@ -1005,6 +818,35 @@ class GeneratedApiClient {
       { resources }
     );
     return request.then(jsonRes => new models.OAuth2Token(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param appId {String}
+   * @param tokenId {String}
+   * @description
+   * Revokes the specified token for the specified application
+   */
+  revokeOAuth2TokenForApplication(appId, tokenId) {
+    if (!appId) {
+      return Promise.reject(new Error('OKTA API revokeOAuth2TokenForApplication parameter appId is required.'));
+    }
+    if (!tokenId) {
+      return Promise.reject(new Error('OKTA API revokeOAuth2TokenForApplication parameter tokenId is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/apps/${appId}/tokens/${tokenId}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/apps/${appId}/tokens/${tokenId}`,
+      `${this.baseUrl}/api/v1/apps/${appId}`
+    ];
+
+    const request = this.http.delete(
+      url,
+      null,
+      { resources }
+    );
+    return request;
   }
 
   /**
@@ -1066,40 +908,6 @@ class GeneratedApiClient {
       { resources }
     );
     return request.then(jsonRes => new models.AppUser(jsonRes, this));
-  }
-
-  /**
-   *
-   * @param appId {String}
-   * @param userId {String}
-   * @param {Object} queryParams Map of query parameters to add to this request
-   * @param {String} [queryParams.sendEmail]
-   * @description
-   * Removes an assignment for a user from an application.
-   */
-  deleteApplicationUser(appId, userId, queryParameters) {
-    if (!appId) {
-      return Promise.reject(new Error('OKTA API deleteApplicationUser parameter appId is required.'));
-    }
-    if (!userId) {
-      return Promise.reject(new Error('OKTA API deleteApplicationUser parameter userId is required.'));
-    }
-    let url = `${this.baseUrl}/api/v1/apps/${appId}/users/${userId}`;
-    const queryString = qs.stringify(queryParameters || {});
-
-    url += queryString ? ('?' + queryString) : '';
-
-    const resources = [
-      `${this.baseUrl}/api/v1/apps/${appId}/users/${userId}`,
-      `${this.baseUrl}/api/v1/apps/${appId}`
-    ];
-
-    const request = this.http.delete(
-      url,
-      null,
-      { resources }
-    );
-    return request;
   }
 
   /**
@@ -1175,6 +983,40 @@ class GeneratedApiClient {
 
   /**
    *
+   * @param appId {String}
+   * @param userId {String}
+   * @param {Object} queryParams Map of query parameters to add to this request
+   * @param {String} [queryParams.sendEmail]
+   * @description
+   * Removes an assignment for a user from an application.
+   */
+  deleteApplicationUser(appId, userId, queryParameters) {
+    if (!appId) {
+      return Promise.reject(new Error('OKTA API deleteApplicationUser parameter appId is required.'));
+    }
+    if (!userId) {
+      return Promise.reject(new Error('OKTA API deleteApplicationUser parameter userId is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/apps/${appId}/users/${userId}`;
+    const queryString = qs.stringify(queryParameters || {});
+
+    url += queryString ? ('?' + queryString) : '';
+
+    const resources = [
+      `${this.baseUrl}/api/v1/apps/${appId}/users/${userId}`,
+      `${this.baseUrl}/api/v1/apps/${appId}`
+    ];
+
+    const request = this.http.delete(
+      url,
+      null,
+      { resources }
+    );
+    return request;
+  }
+
+  /**
+   *
    * @description
    * Success
    * @returns {Promise<Collection>} A collection that will yield {@link Authenticator} instances.
@@ -1232,11 +1074,7 @@ class GeneratedApiClient {
 
     const request = this.http.post(
       url,
-      {
-        headers: {
-          'Content-Type': 'application/json', 'Accept': 'application/json',
-        },
-      },
+      null,
       { resources }
     );
     return request;
@@ -1260,11 +1098,7 @@ class GeneratedApiClient {
 
     const request = this.http.post(
       url,
-      {
-        headers: {
-          'Content-Type': 'application/json', 'Accept': 'application/json',
-        },
-      },
+      null,
       { resources }
     );
     return request;
@@ -1316,30 +1150,6 @@ class GeneratedApiClient {
       { resources }
     );
     return request.then(jsonRes => new models.AuthorizationServer(jsonRes, this));
-  }
-
-  /**
-   *
-   * @param authServerId {String}
-   * @description
-   * Success
-   */
-  deleteAuthorizationServer(authServerId) {
-    if (!authServerId) {
-      return Promise.reject(new Error('OKTA API deleteAuthorizationServer parameter authServerId is required.'));
-    }
-    let url = `${this.baseUrl}/api/v1/authorizationServers/${authServerId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}`
-    ];
-
-    const request = this.http.delete(
-      url,
-      null,
-      { resources }
-    );
-    return request;
   }
 
   /**
@@ -1403,6 +1213,30 @@ class GeneratedApiClient {
    * @param authServerId {String}
    * @description
    * Success
+   */
+  deleteAuthorizationServer(authServerId) {
+    if (!authServerId) {
+      return Promise.reject(new Error('OKTA API deleteAuthorizationServer parameter authServerId is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/authorizationServers/${authServerId}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}`
+    ];
+
+    const request = this.http.delete(
+      url,
+      null,
+      { resources }
+    );
+    return request;
+  }
+
+  /**
+   *
+   * @param authServerId {String}
+   * @description
+   * Success
    * @returns {Promise<Collection>} A collection that will yield {@link OAuth2Claim} instances.
    */
   listOAuth2Claims(authServerId) {
@@ -1447,35 +1281,6 @@ class GeneratedApiClient {
       { resources }
     );
     return request.then(jsonRes => new models.OAuth2Claim(jsonRes, this));
-  }
-
-  /**
-   *
-   * @param authServerId {String}
-   * @param claimId {String}
-   * @description
-   * Success
-   */
-  deleteOAuth2Claim(authServerId, claimId) {
-    if (!authServerId) {
-      return Promise.reject(new Error('OKTA API deleteOAuth2Claim parameter authServerId is required.'));
-    }
-    if (!claimId) {
-      return Promise.reject(new Error('OKTA API deleteOAuth2Claim parameter claimId is required.'));
-    }
-    let url = `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/claims/${claimId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/claims/${claimId}`,
-      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}`
-    ];
-
-    const request = this.http.delete(
-      url,
-      null,
-      { resources }
-    );
-    return request;
   }
 
   /**
@@ -1547,6 +1352,35 @@ class GeneratedApiClient {
   /**
    *
    * @param authServerId {String}
+   * @param claimId {String}
+   * @description
+   * Success
+   */
+  deleteOAuth2Claim(authServerId, claimId) {
+    if (!authServerId) {
+      return Promise.reject(new Error('OKTA API deleteOAuth2Claim parameter authServerId is required.'));
+    }
+    if (!claimId) {
+      return Promise.reject(new Error('OKTA API deleteOAuth2Claim parameter claimId is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/claims/${claimId}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/claims/${claimId}`,
+      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}`
+    ];
+
+    const request = this.http.delete(
+      url,
+      null,
+      { resources }
+    );
+    return request;
+  }
+
+  /**
+   *
+   * @param authServerId {String}
    * @description
    * Success
    * @returns {Promise<Collection>} A collection that will yield {@link OAuth2Client} instances.
@@ -1562,35 +1396,6 @@ class GeneratedApiClient {
       url,
       new ModelFactory(models.OAuth2Client),
     );
-  }
-
-  /**
-   *
-   * @param authServerId {String}
-   * @param clientId {String}
-   * @description
-   * Success
-   */
-  revokeRefreshTokensForAuthorizationServerAndClient(authServerId, clientId) {
-    if (!authServerId) {
-      return Promise.reject(new Error('OKTA API revokeRefreshTokensForAuthorizationServerAndClient parameter authServerId is required.'));
-    }
-    if (!clientId) {
-      return Promise.reject(new Error('OKTA API revokeRefreshTokensForAuthorizationServerAndClient parameter clientId is required.'));
-    }
-    let url = `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/clients/${clientId}/tokens`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/clients/${clientId}`,
-      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}`
-    ];
-
-    const request = this.http.delete(
-      url,
-      null,
-      { resources }
-    );
-    return request;
   }
 
   /**
@@ -1628,24 +1433,19 @@ class GeneratedApiClient {
    *
    * @param authServerId {String}
    * @param clientId {String}
-   * @param tokenId {String}
    * @description
    * Success
    */
-  revokeRefreshTokenForAuthorizationServerAndClient(authServerId, clientId, tokenId) {
+  revokeRefreshTokensForAuthorizationServerAndClient(authServerId, clientId) {
     if (!authServerId) {
-      return Promise.reject(new Error('OKTA API revokeRefreshTokenForAuthorizationServerAndClient parameter authServerId is required.'));
+      return Promise.reject(new Error('OKTA API revokeRefreshTokensForAuthorizationServerAndClient parameter authServerId is required.'));
     }
     if (!clientId) {
-      return Promise.reject(new Error('OKTA API revokeRefreshTokenForAuthorizationServerAndClient parameter clientId is required.'));
+      return Promise.reject(new Error('OKTA API revokeRefreshTokensForAuthorizationServerAndClient parameter clientId is required.'));
     }
-    if (!tokenId) {
-      return Promise.reject(new Error('OKTA API revokeRefreshTokenForAuthorizationServerAndClient parameter tokenId is required.'));
-    }
-    let url = `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/clients/${clientId}/tokens/${tokenId}`;
+    let url = `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/clients/${clientId}/tokens`;
 
     const resources = [
-      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/clients/${clientId}/tokens/${tokenId}`,
       `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/clients/${clientId}`,
       `${this.baseUrl}/api/v1/authorizationServers/${authServerId}`
     ];
@@ -1696,6 +1496,40 @@ class GeneratedApiClient {
       { resources }
     );
     return request.then(jsonRes => new models.OAuth2RefreshToken(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param authServerId {String}
+   * @param clientId {String}
+   * @param tokenId {String}
+   * @description
+   * Success
+   */
+  revokeRefreshTokenForAuthorizationServerAndClient(authServerId, clientId, tokenId) {
+    if (!authServerId) {
+      return Promise.reject(new Error('OKTA API revokeRefreshTokenForAuthorizationServerAndClient parameter authServerId is required.'));
+    }
+    if (!clientId) {
+      return Promise.reject(new Error('OKTA API revokeRefreshTokenForAuthorizationServerAndClient parameter clientId is required.'));
+    }
+    if (!tokenId) {
+      return Promise.reject(new Error('OKTA API revokeRefreshTokenForAuthorizationServerAndClient parameter tokenId is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/clients/${clientId}/tokens/${tokenId}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/clients/${clientId}/tokens/${tokenId}`,
+      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/clients/${clientId}`,
+      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}`
+    ];
+
+    const request = this.http.delete(
+      url,
+      null,
+      { resources }
+    );
+    return request;
   }
 
   /**
@@ -1760,11 +1594,7 @@ class GeneratedApiClient {
 
     const request = this.http.post(
       url,
-      {
-        headers: {
-          'Content-Type': 'application/json', 'Accept': 'application/json',
-        },
-      },
+      null,
       { resources }
     );
     return request;
@@ -1788,11 +1618,7 @@ class GeneratedApiClient {
 
     const request = this.http.post(
       url,
-      {
-        headers: {
-          'Content-Type': 'application/json', 'Accept': 'application/json',
-        },
-      },
+      null,
       { resources }
     );
     return request;
@@ -1847,35 +1673,6 @@ class GeneratedApiClient {
       { resources }
     );
     return request.then(jsonRes => new models.AuthorizationServerPolicy(jsonRes, this));
-  }
-
-  /**
-   *
-   * @param authServerId {String}
-   * @param policyId {String}
-   * @description
-   * Success
-   */
-  deleteAuthorizationServerPolicy(authServerId, policyId) {
-    if (!authServerId) {
-      return Promise.reject(new Error('OKTA API deleteAuthorizationServerPolicy parameter authServerId is required.'));
-    }
-    if (!policyId) {
-      return Promise.reject(new Error('OKTA API deleteAuthorizationServerPolicy parameter policyId is required.'));
-    }
-    let url = `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/policies/${policyId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/policies/${policyId}`,
-      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}`
-    ];
-
-    const request = this.http.delete(
-      url,
-      null,
-      { resources }
-    );
-    return request;
   }
 
   /**
@@ -1949,6 +1746,35 @@ class GeneratedApiClient {
    * @param authServerId {String}
    * @param policyId {String}
    * @description
+   * Success
+   */
+  deleteAuthorizationServerPolicy(authServerId, policyId) {
+    if (!authServerId) {
+      return Promise.reject(new Error('OKTA API deleteAuthorizationServerPolicy parameter authServerId is required.'));
+    }
+    if (!policyId) {
+      return Promise.reject(new Error('OKTA API deleteAuthorizationServerPolicy parameter policyId is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/policies/${policyId}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/policies/${policyId}`,
+      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}`
+    ];
+
+    const request = this.http.delete(
+      url,
+      null,
+      { resources }
+    );
+    return request;
+  }
+
+  /**
+   *
+   * @param authServerId {String}
+   * @param policyId {String}
+   * @description
    * Activate Authorization Server Policy
    */
   activateAuthorizationServerPolicy(authServerId, policyId) {
@@ -1967,11 +1793,7 @@ class GeneratedApiClient {
 
     const request = this.http.post(
       url,
-      {
-        headers: {
-          'Content-Type': 'application/json', 'Accept': 'application/json',
-        },
-      },
+      null,
       { resources }
     );
     return request;
@@ -2000,11 +1822,7 @@ class GeneratedApiClient {
 
     const request = this.http.post(
       url,
-      {
-        headers: {
-          'Content-Type': 'application/json', 'Accept': 'application/json',
-        },
-      },
+      null,
       { resources }
     );
     return request;
@@ -2068,40 +1886,6 @@ class GeneratedApiClient {
       { resources }
     );
     return request.then(jsonRes => new models.AuthorizationServerPolicyRule(jsonRes, this));
-  }
-
-  /**
-   *
-   * @param policyId {String}
-   * @param authServerId {String}
-   * @param ruleId {String}
-   * @description
-   * Deletes a Policy Rule defined in the specified Custom Authorization Server and Policy.
-   */
-  deleteAuthorizationServerPolicyRule(policyId, authServerId, ruleId) {
-    if (!policyId) {
-      return Promise.reject(new Error('OKTA API deleteAuthorizationServerPolicyRule parameter policyId is required.'));
-    }
-    if (!authServerId) {
-      return Promise.reject(new Error('OKTA API deleteAuthorizationServerPolicyRule parameter authServerId is required.'));
-    }
-    if (!ruleId) {
-      return Promise.reject(new Error('OKTA API deleteAuthorizationServerPolicyRule parameter ruleId is required.'));
-    }
-    let url = `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/policies/${policyId}/rules/${ruleId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/policies/${policyId}/rules/${ruleId}`,
-      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/policies/${policyId}`,
-      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}`
-    ];
-
-    const request = this.http.delete(
-      url,
-      null,
-      { resources }
-    );
-    return request;
   }
 
   /**
@@ -2182,6 +1966,40 @@ class GeneratedApiClient {
 
   /**
    *
+   * @param policyId {String}
+   * @param authServerId {String}
+   * @param ruleId {String}
+   * @description
+   * Deletes a Policy Rule defined in the specified Custom Authorization Server and Policy.
+   */
+  deleteAuthorizationServerPolicyRule(policyId, authServerId, ruleId) {
+    if (!policyId) {
+      return Promise.reject(new Error('OKTA API deleteAuthorizationServerPolicyRule parameter policyId is required.'));
+    }
+    if (!authServerId) {
+      return Promise.reject(new Error('OKTA API deleteAuthorizationServerPolicyRule parameter authServerId is required.'));
+    }
+    if (!ruleId) {
+      return Promise.reject(new Error('OKTA API deleteAuthorizationServerPolicyRule parameter ruleId is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/policies/${policyId}/rules/${ruleId}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/policies/${policyId}/rules/${ruleId}`,
+      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/policies/${policyId}`,
+      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}`
+    ];
+
+    const request = this.http.delete(
+      url,
+      null,
+      { resources }
+    );
+    return request;
+  }
+
+  /**
+   *
    * @param authServerId {String}
    * @param policyId {String}
    * @param ruleId {String}
@@ -2208,11 +2026,7 @@ class GeneratedApiClient {
 
     const request = this.http.post(
       url,
-      {
-        headers: {
-          'Content-Type': 'application/json', 'Accept': 'application/json',
-        },
-      },
+      null,
       { resources }
     );
     return request;
@@ -2246,11 +2060,7 @@ class GeneratedApiClient {
 
     const request = this.http.post(
       url,
-      {
-        headers: {
-          'Content-Type': 'application/json', 'Accept': 'application/json',
-        },
-      },
+      null,
       { resources }
     );
     return request;
@@ -2321,35 +2131,6 @@ class GeneratedApiClient {
    * @param scopeId {String}
    * @description
    * Success
-   */
-  deleteOAuth2Scope(authServerId, scopeId) {
-    if (!authServerId) {
-      return Promise.reject(new Error('OKTA API deleteOAuth2Scope parameter authServerId is required.'));
-    }
-    if (!scopeId) {
-      return Promise.reject(new Error('OKTA API deleteOAuth2Scope parameter scopeId is required.'));
-    }
-    let url = `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/scopes/${scopeId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/scopes/${scopeId}`,
-      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}`
-    ];
-
-    const request = this.http.delete(
-      url,
-      null,
-      { resources }
-    );
-    return request;
-  }
-
-  /**
-   *
-   * @param authServerId {String}
-   * @param scopeId {String}
-   * @description
-   * Success
    * @returns {Promise<OAuth2Scope>}
    */
   getOAuth2Scope(authServerId, scopeId) {
@@ -2412,6 +2193,187 @@ class GeneratedApiClient {
 
   /**
    *
+   * @param authServerId {String}
+   * @param scopeId {String}
+   * @description
+   * Success
+   */
+  deleteOAuth2Scope(authServerId, scopeId) {
+    if (!authServerId) {
+      return Promise.reject(new Error('OKTA API deleteOAuth2Scope parameter authServerId is required.'));
+    }
+    if (!scopeId) {
+      return Promise.reject(new Error('OKTA API deleteOAuth2Scope parameter scopeId is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/scopes/${scopeId}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/scopes/${scopeId}`,
+      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}`
+    ];
+
+    const request = this.http.delete(
+      url,
+      null,
+      { resources }
+    );
+    return request;
+  }
+
+  /**
+   *
+   * @description
+   * Enumerates CAPTCHA instances in your organization with pagination. A subset of CAPTCHA instances can be returned that match a supported filter expression or query.
+   * @returns {Promise<Collection>} A collection that will yield {@link CAPTCHAInstance} instances.
+   */
+  listCaptchaInstances() {
+    let url = `${this.baseUrl}/api/v1/captchas`;
+
+    return new Collection(
+      this,
+      url,
+      new ModelFactory(models.CAPTCHAInstance),
+    );
+  }
+
+  /**
+   *
+   * @param {CAPTCHAInstance} captchaInstance
+   * @description
+   * Adds a new CAPTCHA instance to your organization. In current release, we only allow one CAPTCHA instance per org.
+   * @returns {Promise<CAPTCHAInstance>}
+   */
+  createCaptchaInstance(captchaInstance) {
+    if (!captchaInstance) {
+      return Promise.reject(new Error('OKTA API createCaptchaInstance parameter captchaInstance is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/captchas`;
+
+    const resources = [];
+
+    const request = this.http.postJson(
+      url,
+      {
+        body: captchaInstance
+      },
+      { resources }
+    );
+    return request.then(jsonRes => new models.CAPTCHAInstance(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param captchaId {String}
+   * @description
+   * Fetches a CAPTCHA instance by `id`.
+   * @returns {Promise<CAPTCHAInstance>}
+   */
+  getCaptchaInstance(captchaId) {
+    if (!captchaId) {
+      return Promise.reject(new Error('OKTA API getCaptchaInstance parameter captchaId is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/captchas/${captchaId}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/captchas/${captchaId}`
+    ];
+
+    const request = this.http.getJson(
+      url,
+      null,
+      { resources }
+    );
+    return request.then(jsonRes => new models.CAPTCHAInstance(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param captchaId {String}
+   * @param {CAPTCHAInstance} captchaInstance
+   * @description
+   * Update a CAPTCHA instance by `id`.
+   * @returns {Promise<CAPTCHAInstance>}
+   */
+  updateCaptchaInstance(captchaId, captchaInstance) {
+    if (!captchaId) {
+      return Promise.reject(new Error('OKTA API updateCaptchaInstance parameter captchaId is required.'));
+    }
+    if (!captchaInstance) {
+      return Promise.reject(new Error('OKTA API updateCaptchaInstance parameter captchaInstance is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/captchas/${captchaId}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/captchas/${captchaId}`
+    ];
+
+    const request = this.http.putJson(
+      url,
+      {
+        body: captchaInstance
+      },
+      { resources }
+    );
+    return request.then(jsonRes => new models.CAPTCHAInstance(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param captchaId {String}
+   * @description
+   * Delete a CAPTCHA instance by `id`.
+   */
+  deleteCaptchaInstance(captchaId) {
+    if (!captchaId) {
+      return Promise.reject(new Error('OKTA API deleteCaptchaInstance parameter captchaId is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/captchas/${captchaId}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/captchas/${captchaId}`
+    ];
+
+    const request = this.http.delete(
+      url,
+      null,
+      { resources }
+    );
+    return request;
+  }
+
+  /**
+   *
+   * @param captchaId {String}
+   * @param {CAPTCHAInstance} captchaInstance
+   * @description
+   * Partially update a CAPTCHA instance by `id`.
+   * @returns {Promise<CAPTCHAInstance>}
+   */
+  partialUpdateCaptchaInstance(captchaId, captchaInstance) {
+    if (!captchaId) {
+      return Promise.reject(new Error('OKTA API partialUpdateCaptchaInstance parameter captchaId is required.'));
+    }
+    if (!captchaInstance) {
+      return Promise.reject(new Error('OKTA API partialUpdateCaptchaInstance parameter captchaInstance is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/captchas/${captchaId}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/captchas/${captchaId}`
+    ];
+
+    const request = this.http.postJson(
+      url,
+      {
+        body: captchaInstance
+      },
+      { resources }
+    );
+    return request.then(jsonRes => new models.CAPTCHAInstance(jsonRes, this));
+  }
+
+  /**
+   *
    * @description
    * List all verified custom Domains for the org.
    * @returns {Promise<DomainListResponse>}
@@ -2434,7 +2396,7 @@ class GeneratedApiClient {
    * @param {Domain} domain
    * @description
    * Creates your domain.
-   * @returns {Promise<Domain>}
+   * @returns {Promise<DomainResponse>}
    */
   createDomain(domain) {
     if (!domain) {
@@ -2451,56 +2413,36 @@ class GeneratedApiClient {
       },
       { resources }
     );
-    return request.then(jsonRes => new models.Domain(jsonRes, this));
+    return request.then(jsonRes => new models.DomainResponse(jsonRes, this));
   }
 
   /**
    *
    * @param domainId {String}
    * @description
-   * Deletes a Domain by `id`.
+   * Verifies the Domain by `id`.
+   * @returns {Promise<DomainResponse>}
    */
-  deleteDomain(domainId) {
+  verifyDomain(domainId) {
     if (!domainId) {
-      return Promise.reject(new Error('OKTA API deleteDomain parameter domainId is required.'));
+      return Promise.reject(new Error('OKTA API verifyDomain parameter domainId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/domains/${domainId}`;
+    let url = `${this.baseUrl}/api/v1/domains/${domainId}/verify`;
 
     const resources = [
       `${this.baseUrl}/api/v1/domains/${domainId}`
     ];
 
-    const request = this.http.delete(
+    const request = this.http.post(
       url,
-      null,
+      {
+        headers: {
+          'Accept': 'application/json',
+        },
+      },
       { resources }
-    );
-    return request;
-  }
-
-  /**
-   *
-   * @param domainId {String}
-   * @description
-   * Fetches a Domain by `id`.
-   * @returns {Promise<Domain>}
-   */
-  getDomain(domainId) {
-    if (!domainId) {
-      return Promise.reject(new Error('OKTA API getDomain parameter domainId is required.'));
-    }
-    let url = `${this.baseUrl}/api/v1/domains/${domainId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/domains/${domainId}`
-    ];
-
-    const request = this.http.getJson(
-      url,
-      null,
-      { resources }
-    );
-    return request.then(jsonRes => new models.Domain(jsonRes, this));
+    ).then(res => res.json());
+    return request.then(jsonRes => new models.DomainResponse(jsonRes, this));
   }
 
   /**
@@ -2527,7 +2469,7 @@ class GeneratedApiClient {
       url,
       {
         headers: {
-          'Content-Type': 'application/json', 'Accept': 'application/json',
+          'Content-Type': 'application/json',
         },
         body: domainCertificate
       },
@@ -2540,25 +2482,49 @@ class GeneratedApiClient {
    *
    * @param domainId {String}
    * @description
-   * Verifies the Domain by `id`.
-   * @returns {Promise<Domain>}
+   * Fetches a Domain by `id`.
+   * @returns {Promise<DomainResponse>}
    */
-  verifyDomain(domainId) {
+  getDomain(domainId) {
     if (!domainId) {
-      return Promise.reject(new Error('OKTA API verifyDomain parameter domainId is required.'));
+      return Promise.reject(new Error('OKTA API getDomain parameter domainId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/domains/${domainId}/verify`;
+    let url = `${this.baseUrl}/api/v1/domains/${domainId}`;
 
     const resources = [
       `${this.baseUrl}/api/v1/domains/${domainId}`
     ];
 
-    const request = this.http.postJson(
+    const request = this.http.getJson(
       url,
       null,
       { resources }
     );
-    return request.then(jsonRes => new models.Domain(jsonRes, this));
+    return request.then(jsonRes => new models.DomainResponse(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param domainId {String}
+   * @description
+   * Deletes a Domain by `id`.
+   */
+  deleteDomain(domainId) {
+    if (!domainId) {
+      return Promise.reject(new Error('OKTA API deleteDomain parameter domainId is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/domains/${domainId}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/domains/${domainId}`
+    ];
+
+    const request = this.http.delete(
+      url,
+      null,
+      { resources }
+    );
+    return request;
   }
 
   /**
@@ -2600,30 +2566,6 @@ class GeneratedApiClient {
       { resources }
     );
     return request.then(jsonRes => new models.EventHook(jsonRes, this));
-  }
-
-  /**
-   *
-   * @param eventHookId {String}
-   * @description
-   * Success
-   */
-  deleteEventHook(eventHookId) {
-    if (!eventHookId) {
-      return Promise.reject(new Error('OKTA API deleteEventHook parameter eventHookId is required.'));
-    }
-    let url = `${this.baseUrl}/api/v1/eventHooks/${eventHookId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/eventHooks/${eventHookId}`
-    ];
-
-    const request = this.http.delete(
-      url,
-      null,
-      { resources }
-    );
-    return request;
   }
 
   /**
@@ -2687,6 +2629,30 @@ class GeneratedApiClient {
    * @param eventHookId {String}
    * @description
    * Success
+   */
+  deleteEventHook(eventHookId) {
+    if (!eventHookId) {
+      return Promise.reject(new Error('OKTA API deleteEventHook parameter eventHookId is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/eventHooks/${eventHookId}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/eventHooks/${eventHookId}`
+    ];
+
+    const request = this.http.delete(
+      url,
+      null,
+      { resources }
+    );
+    return request;
+  }
+
+  /**
+   *
+   * @param eventHookId {String}
+   * @description
+   * Success
    * @returns {Promise<EventHook>}
    */
   activateEventHook(eventHookId) {
@@ -2699,11 +2665,15 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/eventHooks/${eventHookId}`
     ];
 
-    const request = this.http.postJson(
+    const request = this.http.post(
       url,
-      null,
+      {
+        headers: {
+          'Accept': 'application/json',
+        },
+      },
       { resources }
-    );
+    ).then(res => res.json());
     return request.then(jsonRes => new models.EventHook(jsonRes, this));
   }
 
@@ -2724,11 +2694,15 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/eventHooks/${eventHookId}`
     ];
 
-    const request = this.http.postJson(
+    const request = this.http.post(
       url,
-      null,
+      {
+        headers: {
+          'Accept': 'application/json',
+        },
+      },
       { resources }
-    );
+    ).then(res => res.json());
     return request.then(jsonRes => new models.EventHook(jsonRes, this));
   }
 
@@ -2749,11 +2723,15 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/eventHooks/${eventHookId}`
     ];
 
-    const request = this.http.postJson(
+    const request = this.http.post(
       url,
-      null,
+      {
+        headers: {
+          'Accept': 'application/json',
+        },
+      },
       { resources }
-    );
+    ).then(res => res.json());
     return request.then(jsonRes => new models.EventHook(jsonRes, this));
   }
 
@@ -2865,11 +2843,15 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/features/${featureId}`
     ];
 
-    const request = this.http.postJson(
+    const request = this.http.post(
       url,
-      null,
+      {
+        headers: {
+          'Accept': 'application/json',
+        },
+      },
       { resources }
-    );
+    ).then(res => res.json());
     return request.then(jsonRes => new models.Feature(jsonRes, this));
   }
 
@@ -2976,35 +2958,6 @@ class GeneratedApiClient {
    *
    * @param ruleId {String}
    * @param {Object} queryParams Map of query parameters to add to this request
-   * @param {String} [queryParams.removeUsers]
-   * @description
-   * Removes a specific group rule by id from your organization
-   */
-  deleteGroupRule(ruleId, queryParameters) {
-    if (!ruleId) {
-      return Promise.reject(new Error('OKTA API deleteGroupRule parameter ruleId is required.'));
-    }
-    let url = `${this.baseUrl}/api/v1/groups/rules/${ruleId}`;
-    const queryString = qs.stringify(queryParameters || {});
-
-    url += queryString ? ('?' + queryString) : '';
-
-    const resources = [
-      `${this.baseUrl}/api/v1/groups/rules/${ruleId}`
-    ];
-
-    const request = this.http.delete(
-      url,
-      null,
-      { resources }
-    );
-    return request;
-  }
-
-  /**
-   *
-   * @param ruleId {String}
-   * @param {Object} queryParams Map of query parameters to add to this request
    * @param {String} [queryParams.expand]
    * @description
    * Fetches a specific group rule by id from your organization
@@ -3065,6 +3018,35 @@ class GeneratedApiClient {
   /**
    *
    * @param ruleId {String}
+   * @param {Object} queryParams Map of query parameters to add to this request
+   * @param {String} [queryParams.removeUsers]
+   * @description
+   * Removes a specific group rule by id from your organization
+   */
+  deleteGroupRule(ruleId, queryParameters) {
+    if (!ruleId) {
+      return Promise.reject(new Error('OKTA API deleteGroupRule parameter ruleId is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/groups/rules/${ruleId}`;
+    const queryString = qs.stringify(queryParameters || {});
+
+    url += queryString ? ('?' + queryString) : '';
+
+    const resources = [
+      `${this.baseUrl}/api/v1/groups/rules/${ruleId}`
+    ];
+
+    const request = this.http.delete(
+      url,
+      null,
+      { resources }
+    );
+    return request;
+  }
+
+  /**
+   *
+   * @param ruleId {String}
    * @description
    * Activates a specific group rule by id from your organization
    */
@@ -3080,11 +3062,7 @@ class GeneratedApiClient {
 
     const request = this.http.post(
       url,
-      {
-        headers: {
-          'Content-Type': 'application/json', 'Accept': 'application/json',
-        },
-      },
+      null,
       { resources }
     );
     return request;
@@ -3107,34 +3085,6 @@ class GeneratedApiClient {
     ];
 
     const request = this.http.post(
-      url,
-      {
-        headers: {
-          'Content-Type': 'application/json', 'Accept': 'application/json',
-        },
-      },
-      { resources }
-    );
-    return request;
-  }
-
-  /**
-   *
-   * @param groupId {String}
-   * @description
-   * Removes a group with `OKTA_GROUP` type from your organization.
-   */
-  deleteGroup(groupId) {
-    if (!groupId) {
-      return Promise.reject(new Error('OKTA API deleteGroup parameter groupId is required.'));
-    }
-    let url = `${this.baseUrl}/api/v1/groups/${groupId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/groups/${groupId}`
-    ];
-
-    const request = this.http.delete(
       url,
       null,
       { resources }
@@ -3196,6 +3146,30 @@ class GeneratedApiClient {
       { resources }
     );
     return request.then(jsonRes => new models.Group(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param groupId {String}
+   * @description
+   * Removes a group with `OKTA_GROUP` type from your organization.
+   */
+  deleteGroup(groupId) {
+    if (!groupId) {
+      return Promise.reject(new Error('OKTA API deleteGroup parameter groupId is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/groups/${groupId}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/groups/${groupId}`
+    ];
+
+    const request = this.http.delete(
+      url,
+      null,
+      { resources }
+    );
+    return request;
   }
 
   /**
@@ -3290,35 +3264,6 @@ class GeneratedApiClient {
    * @param groupId {String}
    * @param roleId {String}
    * @description
-   * Unassigns a Role from a Group
-   */
-  removeRoleFromGroup(groupId, roleId) {
-    if (!groupId) {
-      return Promise.reject(new Error('OKTA API removeRoleFromGroup parameter groupId is required.'));
-    }
-    if (!roleId) {
-      return Promise.reject(new Error('OKTA API removeRoleFromGroup parameter roleId is required.'));
-    }
-    let url = `${this.baseUrl}/api/v1/groups/${groupId}/roles/${roleId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/groups/${groupId}/roles/${roleId}`,
-      `${this.baseUrl}/api/v1/groups/${groupId}`
-    ];
-
-    const request = this.http.delete(
-      url,
-      null,
-      { resources }
-    );
-    return request;
-  }
-
-  /**
-   *
-   * @param groupId {String}
-   * @param roleId {String}
-   * @description
    * Success
    * @returns {Promise<Role>}
    */
@@ -3342,6 +3287,35 @@ class GeneratedApiClient {
       { resources }
     );
     return request.then(jsonRes => new models.Role(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param groupId {String}
+   * @param roleId {String}
+   * @description
+   * Unassigns a Role from a Group
+   */
+  removeRoleFromGroup(groupId, roleId) {
+    if (!groupId) {
+      return Promise.reject(new Error('OKTA API removeRoleFromGroup parameter groupId is required.'));
+    }
+    if (!roleId) {
+      return Promise.reject(new Error('OKTA API removeRoleFromGroup parameter roleId is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/groups/${groupId}/roles/${roleId}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/groups/${groupId}/roles/${roleId}`,
+      `${this.baseUrl}/api/v1/groups/${groupId}`
+    ];
+
+    const request = this.http.delete(
+      url,
+      null,
+      { resources }
+    );
+    return request;
   }
 
   /**
@@ -3372,6 +3346,40 @@ class GeneratedApiClient {
       url,
       new ModelFactory(models.CatalogApplication),
     );
+  }
+
+  /**
+   *
+   * @param groupId {String}
+   * @param roleId {String}
+   * @param appName {String}
+   * @description
+   * Success
+   */
+  addApplicationTargetToAdminRoleGivenToGroup(groupId, roleId, appName) {
+    if (!groupId) {
+      return Promise.reject(new Error('OKTA API addApplicationTargetToAdminRoleGivenToGroup parameter groupId is required.'));
+    }
+    if (!roleId) {
+      return Promise.reject(new Error('OKTA API addApplicationTargetToAdminRoleGivenToGroup parameter roleId is required.'));
+    }
+    if (!appName) {
+      return Promise.reject(new Error('OKTA API addApplicationTargetToAdminRoleGivenToGroup parameter appName is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/groups/${groupId}/roles/${roleId}/targets/catalog/apps/${appName}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/groups/${groupId}/roles/${roleId}/targets/catalog/apps/${appName}`,
+      `${this.baseUrl}/api/v1/groups/${groupId}/roles/${roleId}`,
+      `${this.baseUrl}/api/v1/groups/${groupId}`
+    ];
+
+    const request = this.http.put(
+      url,
+      null,
+      { resources }
+    );
+    return request;
   }
 
   /**
@@ -3413,22 +3421,27 @@ class GeneratedApiClient {
    * @param groupId {String}
    * @param roleId {String}
    * @param appName {String}
+   * @param applicationId {String}
    * @description
-   * Success
+   * Add App Instance Target to App Administrator Role given to a Group
    */
-  addApplicationTargetToAdminRoleGivenToGroup(groupId, roleId, appName) {
+  addApplicationInstanceTargetToAppAdminRoleGivenToGroup(groupId, roleId, appName, applicationId) {
     if (!groupId) {
-      return Promise.reject(new Error('OKTA API addApplicationTargetToAdminRoleGivenToGroup parameter groupId is required.'));
+      return Promise.reject(new Error('OKTA API addApplicationInstanceTargetToAppAdminRoleGivenToGroup parameter groupId is required.'));
     }
     if (!roleId) {
-      return Promise.reject(new Error('OKTA API addApplicationTargetToAdminRoleGivenToGroup parameter roleId is required.'));
+      return Promise.reject(new Error('OKTA API addApplicationInstanceTargetToAppAdminRoleGivenToGroup parameter roleId is required.'));
     }
     if (!appName) {
-      return Promise.reject(new Error('OKTA API addApplicationTargetToAdminRoleGivenToGroup parameter appName is required.'));
+      return Promise.reject(new Error('OKTA API addApplicationInstanceTargetToAppAdminRoleGivenToGroup parameter appName is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/groups/${groupId}/roles/${roleId}/targets/catalog/apps/${appName}`;
+    if (!applicationId) {
+      return Promise.reject(new Error('OKTA API addApplicationInstanceTargetToAppAdminRoleGivenToGroup parameter applicationId is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/groups/${groupId}/roles/${roleId}/targets/catalog/apps/${appName}/${applicationId}`;
 
     const resources = [
+      `${this.baseUrl}/api/v1/groups/${groupId}/roles/${roleId}/targets/catalog/apps/${appName}/${applicationId}`,
       `${this.baseUrl}/api/v1/groups/${groupId}/roles/${roleId}/targets/catalog/apps/${appName}`,
       `${this.baseUrl}/api/v1/groups/${groupId}/roles/${roleId}`,
       `${this.baseUrl}/api/v1/groups/${groupId}`
@@ -3436,11 +3449,7 @@ class GeneratedApiClient {
 
     const request = this.http.put(
       url,
-      {
-        headers: {
-          'Content-Type': 'application/json', 'Accept': 'application/json',
-        },
-      },
+      null,
       { resources }
     );
     return request;
@@ -3489,54 +3498,11 @@ class GeneratedApiClient {
    *
    * @param groupId {String}
    * @param roleId {String}
-   * @param appName {String}
-   * @param applicationId {String}
-   * @description
-   * Add App Instance Target to App Administrator Role given to a Group
-   */
-  addApplicationInstanceTargetToAppAdminRoleGivenToGroup(groupId, roleId, appName, applicationId) {
-    if (!groupId) {
-      return Promise.reject(new Error('OKTA API addApplicationInstanceTargetToAppAdminRoleGivenToGroup parameter groupId is required.'));
-    }
-    if (!roleId) {
-      return Promise.reject(new Error('OKTA API addApplicationInstanceTargetToAppAdminRoleGivenToGroup parameter roleId is required.'));
-    }
-    if (!appName) {
-      return Promise.reject(new Error('OKTA API addApplicationInstanceTargetToAppAdminRoleGivenToGroup parameter appName is required.'));
-    }
-    if (!applicationId) {
-      return Promise.reject(new Error('OKTA API addApplicationInstanceTargetToAppAdminRoleGivenToGroup parameter applicationId is required.'));
-    }
-    let url = `${this.baseUrl}/api/v1/groups/${groupId}/roles/${roleId}/targets/catalog/apps/${appName}/${applicationId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/groups/${groupId}/roles/${roleId}/targets/catalog/apps/${appName}/${applicationId}`,
-      `${this.baseUrl}/api/v1/groups/${groupId}/roles/${roleId}/targets/catalog/apps/${appName}`,
-      `${this.baseUrl}/api/v1/groups/${groupId}/roles/${roleId}`,
-      `${this.baseUrl}/api/v1/groups/${groupId}`
-    ];
-
-    const request = this.http.put(
-      url,
-      {
-        headers: {
-          'Content-Type': 'application/json', 'Accept': 'application/json',
-        },
-      },
-      { resources }
-    );
-    return request;
-  }
-
-  /**
-   *
-   * @param groupId {String}
-   * @param roleId {String}
    * @param {Object} queryParams Map of query parameters to add to this request
    * @param {String} [queryParams.after]
    * @param {String} [queryParams.limit]
    * @description
-   * Success
+   * Enumerates group targets for a group role.
    * @returns {Promise<Collection>} A collection that will yield {@link Group} instances.
    */
   listGroupTargetsForGroupRole(groupId, roleId, queryParameters) {
@@ -3564,7 +3530,41 @@ class GeneratedApiClient {
    * @param roleId {String}
    * @param targetGroupId {String}
    * @description
-   * Convenience method for /api/v1/groups/{groupId}/roles/{roleId}/targets/groups/{targetGroupId}
+   * Enumerates group targets for a group role.
+   */
+  addGroupTargetToGroupAdministratorRoleForGroup(groupId, roleId, targetGroupId) {
+    if (!groupId) {
+      return Promise.reject(new Error('OKTA API addGroupTargetToGroupAdministratorRoleForGroup parameter groupId is required.'));
+    }
+    if (!roleId) {
+      return Promise.reject(new Error('OKTA API addGroupTargetToGroupAdministratorRoleForGroup parameter roleId is required.'));
+    }
+    if (!targetGroupId) {
+      return Promise.reject(new Error('OKTA API addGroupTargetToGroupAdministratorRoleForGroup parameter targetGroupId is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/groups/${groupId}/roles/${roleId}/targets/groups/${targetGroupId}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/groups/${groupId}/roles/${roleId}/targets/groups/${targetGroupId}`,
+      `${this.baseUrl}/api/v1/groups/${groupId}/roles/${roleId}`,
+      `${this.baseUrl}/api/v1/groups/${groupId}`
+    ];
+
+    const request = this.http.put(
+      url,
+      null,
+      { resources }
+    );
+    return request;
+  }
+
+  /**
+   *
+   * @param groupId {String}
+   * @param roleId {String}
+   * @param targetGroupId {String}
+   * @description
+   * remove group target for a group role.
    */
   removeGroupTargetFromGroupAdministratorRoleGivenToGroup(groupId, roleId, targetGroupId) {
     if (!groupId) {
@@ -3587,44 +3587,6 @@ class GeneratedApiClient {
     const request = this.http.delete(
       url,
       null,
-      { resources }
-    );
-    return request;
-  }
-
-  /**
-   *
-   * @param groupId {String}
-   * @param roleId {String}
-   * @param targetGroupId {String}
-   * @description
-   * Convenience method for /api/v1/groups/{groupId}/roles/{roleId}/targets/groups/{targetGroupId}
-   */
-  addGroupTargetToGroupAdministratorRoleForGroup(groupId, roleId, targetGroupId) {
-    if (!groupId) {
-      return Promise.reject(new Error('OKTA API addGroupTargetToGroupAdministratorRoleForGroup parameter groupId is required.'));
-    }
-    if (!roleId) {
-      return Promise.reject(new Error('OKTA API addGroupTargetToGroupAdministratorRoleForGroup parameter roleId is required.'));
-    }
-    if (!targetGroupId) {
-      return Promise.reject(new Error('OKTA API addGroupTargetToGroupAdministratorRoleForGroup parameter targetGroupId is required.'));
-    }
-    let url = `${this.baseUrl}/api/v1/groups/${groupId}/roles/${roleId}/targets/groups/${targetGroupId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/groups/${groupId}/roles/${roleId}/targets/groups/${targetGroupId}`,
-      `${this.baseUrl}/api/v1/groups/${groupId}/roles/${roleId}`,
-      `${this.baseUrl}/api/v1/groups/${groupId}`
-    ];
-
-    const request = this.http.put(
-      url,
-      {
-        headers: {
-          'Content-Type': 'application/json', 'Accept': 'application/json',
-        },
-      },
       { resources }
     );
     return request;
@@ -3661,6 +3623,35 @@ class GeneratedApiClient {
    * @param groupId {String}
    * @param userId {String}
    * @description
+   * Adds a user to a group with 'OKTA_GROUP' type.
+   */
+  addUserToGroup(groupId, userId) {
+    if (!groupId) {
+      return Promise.reject(new Error('OKTA API addUserToGroup parameter groupId is required.'));
+    }
+    if (!userId) {
+      return Promise.reject(new Error('OKTA API addUserToGroup parameter userId is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/groups/${groupId}/users/${userId}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/groups/${groupId}/users/${userId}`,
+      `${this.baseUrl}/api/v1/groups/${groupId}`
+    ];
+
+    const request = this.http.put(
+      url,
+      null,
+      { resources }
+    );
+    return request;
+  }
+
+  /**
+   *
+   * @param groupId {String}
+   * @param userId {String}
+   * @description
    * Removes a user from a group with 'OKTA_GROUP' type.
    */
   removeUserFromGroup(groupId, userId) {
@@ -3680,39 +3671,6 @@ class GeneratedApiClient {
     const request = this.http.delete(
       url,
       null,
-      { resources }
-    );
-    return request;
-  }
-
-  /**
-   *
-   * @param groupId {String}
-   * @param userId {String}
-   * @description
-   * Adds a user to a group with 'OKTA_GROUP' type.
-   */
-  addUserToGroup(groupId, userId) {
-    if (!groupId) {
-      return Promise.reject(new Error('OKTA API addUserToGroup parameter groupId is required.'));
-    }
-    if (!userId) {
-      return Promise.reject(new Error('OKTA API addUserToGroup parameter userId is required.'));
-    }
-    let url = `${this.baseUrl}/api/v1/groups/${groupId}/users/${userId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/groups/${groupId}/users/${userId}`,
-      `${this.baseUrl}/api/v1/groups/${groupId}`
-    ];
-
-    const request = this.http.put(
-      url,
-      {
-        headers: {
-          'Content-Type': 'application/json', 'Accept': 'application/json',
-        },
-      },
       { resources }
     );
     return request;
@@ -3818,30 +3776,6 @@ class GeneratedApiClient {
    *
    * @param keyId {String}
    * @description
-   * Deletes a specific IdP Key Credential by `kid` if it is not currently being used by an Active or Inactive IdP.
-   */
-  deleteIdentityProviderKey(keyId) {
-    if (!keyId) {
-      return Promise.reject(new Error('OKTA API deleteIdentityProviderKey parameter keyId is required.'));
-    }
-    let url = `${this.baseUrl}/api/v1/idps/credentials/keys/${keyId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/idps/credentials/keys/${keyId}`
-    ];
-
-    const request = this.http.delete(
-      url,
-      null,
-      { resources }
-    );
-    return request;
-  }
-
-  /**
-   *
-   * @param keyId {String}
-   * @description
    * Gets a specific IdP Key Credential by `kid`
    * @returns {Promise<JsonWebKey>}
    */
@@ -3865,18 +3799,18 @@ class GeneratedApiClient {
 
   /**
    *
-   * @param idpId {String}
+   * @param keyId {String}
    * @description
-   * Removes an IdP from your organization.
+   * Deletes a specific IdP Key Credential by `kid` if it is not currently being used by an Active or Inactive IdP.
    */
-  deleteIdentityProvider(idpId) {
-    if (!idpId) {
-      return Promise.reject(new Error('OKTA API deleteIdentityProvider parameter idpId is required.'));
+  deleteIdentityProviderKey(keyId) {
+    if (!keyId) {
+      return Promise.reject(new Error('OKTA API deleteIdentityProviderKey parameter keyId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/idps/${idpId}`;
+    let url = `${this.baseUrl}/api/v1/idps/credentials/keys/${keyId}`;
 
     const resources = [
-      `${this.baseUrl}/api/v1/idps/${idpId}`
+      `${this.baseUrl}/api/v1/idps/credentials/keys/${keyId}`
     ];
 
     const request = this.http.delete(
@@ -3947,6 +3881,30 @@ class GeneratedApiClient {
    *
    * @param idpId {String}
    * @description
+   * Removes an IdP from your organization.
+   */
+  deleteIdentityProvider(idpId) {
+    if (!idpId) {
+      return Promise.reject(new Error('OKTA API deleteIdentityProvider parameter idpId is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/idps/${idpId}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/idps/${idpId}`
+    ];
+
+    const request = this.http.delete(
+      url,
+      null,
+      { resources }
+    );
+    return request;
+  }
+
+  /**
+   *
+   * @param idpId {String}
+   * @description
    * Enumerates Certificate Signing Requests for an IdP
    * @returns {Promise<Collection>} A collection that will yield {@link Csr} instances.
    */
@@ -3999,35 +3957,6 @@ class GeneratedApiClient {
    * @param idpId {String}
    * @param csrId {String}
    * @description
-   * Revoke a Certificate Signing Request and delete the key pair from the IdP
-   */
-  revokeCsrForIdentityProvider(idpId, csrId) {
-    if (!idpId) {
-      return Promise.reject(new Error('OKTA API revokeCsrForIdentityProvider parameter idpId is required.'));
-    }
-    if (!csrId) {
-      return Promise.reject(new Error('OKTA API revokeCsrForIdentityProvider parameter csrId is required.'));
-    }
-    let url = `${this.baseUrl}/api/v1/idps/${idpId}/credentials/csrs/${csrId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/idps/${idpId}/credentials/csrs/${csrId}`,
-      `${this.baseUrl}/api/v1/idps/${idpId}`
-    ];
-
-    const request = this.http.delete(
-      url,
-      null,
-      { resources }
-    );
-    return request;
-  }
-
-  /**
-   *
-   * @param idpId {String}
-   * @param csrId {String}
-   * @description
    * Gets a specific Certificate Signing Request model by id
    * @returns {Promise<Csr>}
    */
@@ -4057,59 +3986,45 @@ class GeneratedApiClient {
    *
    * @param idpId {String}
    * @param csrId {String}
-   * @param {string} string
    * @description
-   * Update the Certificate Signing Request with a signed X.509 certificate and add it into the signing key credentials for the IdP.
-   * @returns {Promise<JsonWebKey>}
+   * Revoke a Certificate Signing Request and delete the key pair from the IdP
    */
-  publishCerCertForIdentityProvider(idpId, csrId, certificate) {
+  revokeCsrForIdentityProvider(idpId, csrId) {
     if (!idpId) {
-      return Promise.reject(new Error('OKTA API publishCerCertForIdentityProvider parameter idpId is required.'));
+      return Promise.reject(new Error('OKTA API revokeCsrForIdentityProvider parameter idpId is required.'));
     }
     if (!csrId) {
-      return Promise.reject(new Error('OKTA API publishCerCertForIdentityProvider parameter csrId is required.'));
+      return Promise.reject(new Error('OKTA API revokeCsrForIdentityProvider parameter csrId is required.'));
     }
-    if (!certificate) {
-      return Promise.reject(new Error('OKTA API publishCerCertForIdentityProvider parameter certificate is required.'));
-    }
-    let url = `${this.baseUrl}/api/v1/idps/${idpId}/credentials/csrs/${csrId}/lifecycle/publish`;
+    let url = `${this.baseUrl}/api/v1/idps/${idpId}/credentials/csrs/${csrId}`;
 
     const resources = [
       `${this.baseUrl}/api/v1/idps/${idpId}/credentials/csrs/${csrId}`,
       `${this.baseUrl}/api/v1/idps/${idpId}`
     ];
 
-    const request = this.http.post(
+    const request = this.http.delete(
       url,
-      {
-        headers: {
-          'Content-Type': 'application/x-x509-ca-cert', 'Accept': 'application/json', 'Content-Transfer-Encoding': 'base64',
-        },
-        body: certificate
-      },
+      null,
       { resources }
-    ).then(res => res.json());
-    return request.then(jsonRes => new models.JsonWebKey(jsonRes, this));
+    );
+    return request;
   }
 
   /**
    *
    * @param idpId {String}
    * @param csrId {String}
-   * @param {string} string
    * @description
    * Update the Certificate Signing Request with a signed X.509 certificate and add it into the signing key credentials for the IdP.
    * @returns {Promise<JsonWebKey>}
    */
-  publishBinaryCerCertForIdentityProvider(idpId, csrId, certificate) {
+  publishCsrForIdentityProvider(idpId, csrId) {
     if (!idpId) {
-      return Promise.reject(new Error('OKTA API publishBinaryCerCertForIdentityProvider parameter idpId is required.'));
+      return Promise.reject(new Error('OKTA API publishCsrForIdentityProvider parameter idpId is required.'));
     }
     if (!csrId) {
-      return Promise.reject(new Error('OKTA API publishBinaryCerCertForIdentityProvider parameter csrId is required.'));
-    }
-    if (!certificate) {
-      return Promise.reject(new Error('OKTA API publishBinaryCerCertForIdentityProvider parameter certificate is required.'));
+      return Promise.reject(new Error('OKTA API publishCsrForIdentityProvider parameter csrId is required.'));
     }
     let url = `${this.baseUrl}/api/v1/idps/${idpId}/credentials/csrs/${csrId}/lifecycle/publish`;
 
@@ -4122,126 +4037,8 @@ class GeneratedApiClient {
       url,
       {
         headers: {
-          'Content-Type': 'application/x-x509-ca-cert', 'Accept': 'application/json',
+          'Content-Type': 'application/x-x509-ca-cert,application/pkix-cert,application/x-pem-file', 'Accept': 'application/json',
         },
-        body: certificate
-      },
-      { resources }
-    ).then(res => res.json());
-    return request.then(jsonRes => new models.JsonWebKey(jsonRes, this));
-  }
-
-  /**
-   *
-   * @param idpId {String}
-   * @param csrId {String}
-   * @param {string} string
-   * @description
-   * Update the Certificate Signing Request with a signed X.509 certificate and add it into the signing key credentials for the IdP.
-   * @returns {Promise<JsonWebKey>}
-   */
-  publishDerCertForIdentityProvider(idpId, csrId, certificate) {
-    if (!idpId) {
-      return Promise.reject(new Error('OKTA API publishDerCertForIdentityProvider parameter idpId is required.'));
-    }
-    if (!csrId) {
-      return Promise.reject(new Error('OKTA API publishDerCertForIdentityProvider parameter csrId is required.'));
-    }
-    if (!certificate) {
-      return Promise.reject(new Error('OKTA API publishDerCertForIdentityProvider parameter certificate is required.'));
-    }
-    let url = `${this.baseUrl}/api/v1/idps/${idpId}/credentials/csrs/${csrId}/lifecycle/publish`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/idps/${idpId}/credentials/csrs/${csrId}`,
-      `${this.baseUrl}/api/v1/idps/${idpId}`
-    ];
-
-    const request = this.http.post(
-      url,
-      {
-        headers: {
-          'Content-Type': 'application/pkix-cert', 'Accept': 'application/json', 'Content-Transfer-Encoding': 'base64',
-        },
-        body: certificate
-      },
-      { resources }
-    ).then(res => res.json());
-    return request.then(jsonRes => new models.JsonWebKey(jsonRes, this));
-  }
-
-  /**
-   *
-   * @param idpId {String}
-   * @param csrId {String}
-   * @param {string} string
-   * @description
-   * Update the Certificate Signing Request with a signed X.509 certificate and add it into the signing key credentials for the IdP.
-   * @returns {Promise<JsonWebKey>}
-   */
-  publishBinaryDerCertForIdentityProvider(idpId, csrId, certificate) {
-    if (!idpId) {
-      return Promise.reject(new Error('OKTA API publishBinaryDerCertForIdentityProvider parameter idpId is required.'));
-    }
-    if (!csrId) {
-      return Promise.reject(new Error('OKTA API publishBinaryDerCertForIdentityProvider parameter csrId is required.'));
-    }
-    if (!certificate) {
-      return Promise.reject(new Error('OKTA API publishBinaryDerCertForIdentityProvider parameter certificate is required.'));
-    }
-    let url = `${this.baseUrl}/api/v1/idps/${idpId}/credentials/csrs/${csrId}/lifecycle/publish`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/idps/${idpId}/credentials/csrs/${csrId}`,
-      `${this.baseUrl}/api/v1/idps/${idpId}`
-    ];
-
-    const request = this.http.post(
-      url,
-      {
-        headers: {
-          'Content-Type': 'application/pkix-cert', 'Accept': 'application/json',
-        },
-        body: certificate
-      },
-      { resources }
-    ).then(res => res.json());
-    return request.then(jsonRes => new models.JsonWebKey(jsonRes, this));
-  }
-
-  /**
-   *
-   * @param idpId {String}
-   * @param csrId {String}
-   * @param {string} string
-   * @description
-   * Update the Certificate Signing Request with a signed X.509 certificate and add it into the signing key credentials for the IdP.
-   * @returns {Promise<JsonWebKey>}
-   */
-  publishBinaryPemCertForIdentityProvider(idpId, csrId, certificate) {
-    if (!idpId) {
-      return Promise.reject(new Error('OKTA API publishBinaryPemCertForIdentityProvider parameter idpId is required.'));
-    }
-    if (!csrId) {
-      return Promise.reject(new Error('OKTA API publishBinaryPemCertForIdentityProvider parameter csrId is required.'));
-    }
-    if (!certificate) {
-      return Promise.reject(new Error('OKTA API publishBinaryPemCertForIdentityProvider parameter certificate is required.'));
-    }
-    let url = `${this.baseUrl}/api/v1/idps/${idpId}/credentials/csrs/${csrId}/lifecycle/publish`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/idps/${idpId}/credentials/csrs/${csrId}`,
-      `${this.baseUrl}/api/v1/idps/${idpId}`
-    ];
-
-    const request = this.http.post(
-      url,
-      {
-        headers: {
-          'Content-Type': 'application/x-pem-file', 'Accept': 'application/json',
-        },
-        body: certificate
       },
       { resources }
     ).then(res => res.json());
@@ -4293,11 +4090,15 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/idps/${idpId}`
     ];
 
-    const request = this.http.postJson(
+    const request = this.http.post(
       url,
-      null,
+      {
+        headers: {
+          'Accept': 'application/json',
+        },
+      },
       { resources }
-    );
+    ).then(res => res.json());
     return request.then(jsonRes => new models.JsonWebKey(jsonRes, this));
   }
 
@@ -4361,11 +4162,15 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/idps/${idpId}`
     ];
 
-    const request = this.http.postJson(
+    const request = this.http.post(
       url,
-      null,
+      {
+        headers: {
+          'Accept': 'application/json',
+        },
+      },
       { resources }
-    );
+    ).then(res => res.json());
     return request.then(jsonRes => new models.JsonWebKey(jsonRes, this));
   }
 
@@ -4386,11 +4191,15 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/idps/${idpId}`
     ];
 
-    const request = this.http.postJson(
+    const request = this.http.post(
       url,
-      null,
+      {
+        headers: {
+          'Accept': 'application/json',
+        },
+      },
       { resources }
-    );
+    ).then(res => res.json());
     return request.then(jsonRes => new models.IdentityProvider(jsonRes, this));
   }
 
@@ -4411,11 +4220,15 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/idps/${idpId}`
     ];
 
-    const request = this.http.postJson(
+    const request = this.http.post(
       url,
-      null,
+      {
+        headers: {
+          'Accept': 'application/json',
+        },
+      },
       { resources }
-    );
+    ).then(res => res.json());
     return request.then(jsonRes => new models.IdentityProvider(jsonRes, this));
   }
 
@@ -4437,35 +4250,6 @@ class GeneratedApiClient {
       url,
       new ModelFactory(models.IdentityProviderApplicationUser),
     );
-  }
-
-  /**
-   *
-   * @param idpId {String}
-   * @param userId {String}
-   * @description
-   * Removes the link between the Okta user and the IdP user.
-   */
-  unlinkUserFromIdentityProvider(idpId, userId) {
-    if (!idpId) {
-      return Promise.reject(new Error('OKTA API unlinkUserFromIdentityProvider parameter idpId is required.'));
-    }
-    if (!userId) {
-      return Promise.reject(new Error('OKTA API unlinkUserFromIdentityProvider parameter userId is required.'));
-    }
-    let url = `${this.baseUrl}/api/v1/idps/${idpId}/users/${userId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/idps/${idpId}/users/${userId}`,
-      `${this.baseUrl}/api/v1/idps/${idpId}`
-    ];
-
-    const request = this.http.delete(
-      url,
-      null,
-      { resources }
-    );
-    return request;
   }
 
   /**
@@ -4532,6 +4316,35 @@ class GeneratedApiClient {
       { resources }
     );
     return request.then(jsonRes => new models.IdentityProviderApplicationUser(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param idpId {String}
+   * @param userId {String}
+   * @description
+   * Removes the link between the Okta user and the IdP user.
+   */
+  unlinkUserFromIdentityProvider(idpId, userId) {
+    if (!idpId) {
+      return Promise.reject(new Error('OKTA API unlinkUserFromIdentityProvider parameter idpId is required.'));
+    }
+    if (!userId) {
+      return Promise.reject(new Error('OKTA API unlinkUserFromIdentityProvider parameter userId is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/idps/${idpId}/users/${userId}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/idps/${idpId}/users/${userId}`,
+      `${this.baseUrl}/api/v1/idps/${idpId}`
+    ];
+
+    const request = this.http.delete(
+      url,
+      null,
+      { resources }
+    );
+    return request;
   }
 
   /**
@@ -4608,30 +4421,6 @@ class GeneratedApiClient {
    *
    * @param inlineHookId {String}
    * @description
-   * Deletes the Inline Hook matching the provided id. Once deleted, the Inline Hook is unrecoverable. As a safety precaution, only Inline Hooks with a status of INACTIVE are eligible for deletion.
-   */
-  deleteInlineHook(inlineHookId) {
-    if (!inlineHookId) {
-      return Promise.reject(new Error('OKTA API deleteInlineHook parameter inlineHookId is required.'));
-    }
-    let url = `${this.baseUrl}/api/v1/inlineHooks/${inlineHookId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/inlineHooks/${inlineHookId}`
-    ];
-
-    const request = this.http.delete(
-      url,
-      null,
-      { resources }
-    );
-    return request;
-  }
-
-  /**
-   *
-   * @param inlineHookId {String}
-   * @description
    * Gets an inline hook by ID
    * @returns {Promise<InlineHook>}
    */
@@ -4687,6 +4476,30 @@ class GeneratedApiClient {
   /**
    *
    * @param inlineHookId {String}
+   * @description
+   * Deletes the Inline Hook matching the provided id. Once deleted, the Inline Hook is unrecoverable. As a safety precaution, only Inline Hooks with a status of INACTIVE are eligible for deletion.
+   */
+  deleteInlineHook(inlineHookId) {
+    if (!inlineHookId) {
+      return Promise.reject(new Error('OKTA API deleteInlineHook parameter inlineHookId is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/inlineHooks/${inlineHookId}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/inlineHooks/${inlineHookId}`
+    ];
+
+    const request = this.http.delete(
+      url,
+      null,
+      { resources }
+    );
+    return request;
+  }
+
+  /**
+   *
+   * @param inlineHookId {String}
    * @param {InlineHookPayload} inlineHookPayload
    * @description
    * Executes the Inline Hook matching the provided inlineHookId using the request body as the input. This will send the provided data through the Channel and return a response if it matches the correct data contract. This execution endpoint should only be used for testing purposes.
@@ -4732,11 +4545,15 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/inlineHooks/${inlineHookId}`
     ];
 
-    const request = this.http.postJson(
+    const request = this.http.post(
       url,
-      null,
+      {
+        headers: {
+          'Accept': 'application/json',
+        },
+      },
       { resources }
-    );
+    ).then(res => res.json());
     return request.then(jsonRes => new models.InlineHook(jsonRes, this));
   }
 
@@ -4757,11 +4574,15 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/inlineHooks/${inlineHookId}`
     ];
 
-    const request = this.http.postJson(
+    const request = this.http.post(
       url,
-      null,
+      {
+        headers: {
+          'Accept': 'application/json',
+        },
+      },
       { resources }
-    );
+    ).then(res => res.json());
     return request.then(jsonRes => new models.InlineHook(jsonRes, this));
   }
 
@@ -4909,6 +4730,9 @@ class GeneratedApiClient {
     if (!appInstanceId) {
       return Promise.reject(new Error('OKTA API updateApplicationUserProfile parameter appInstanceId is required.'));
     }
+    if (!userSchema) {
+      return Promise.reject(new Error('OKTA API updateApplicationUserProfile parameter userSchema is required.'));
+    }
     let url = `${this.baseUrl}/api/v1/meta/schemas/apps/${appInstanceId}/default`;
 
     const resources = [
@@ -4952,6 +4776,9 @@ class GeneratedApiClient {
    * @returns {Promise<GroupSchema>}
    */
   updateGroupSchema(groupSchema) {
+    if (!groupSchema) {
+      return Promise.reject(new Error('OKTA API updateGroupSchema parameter groupSchema is required.'));
+    }
     let url = `${this.baseUrl}/api/v1/meta/schemas/group/default`;
 
     const resources = [];
@@ -4964,96 +4791,6 @@ class GeneratedApiClient {
       { resources }
     );
     return request.then(jsonRes => new models.GroupSchema(jsonRes, this));
-  }
-
-  /**
-   *
-   * @description
-   * Success
-   * @returns {Promise<Collection>} A collection that will yield {@link LinkedObject} instances.
-   */
-  listLinkedObjectDefinitions() {
-    let url = `${this.baseUrl}/api/v1/meta/schemas/user/linkedObjects`;
-
-    return new Collection(
-      this,
-      url,
-      new ModelFactory(models.LinkedObject),
-    );
-  }
-
-  /**
-   *
-   * @param {LinkedObject} linkedObject
-   * @description
-   * Success
-   * @returns {Promise<LinkedObject>}
-   */
-  addLinkedObjectDefinition(linkedObject) {
-    if (!linkedObject) {
-      return Promise.reject(new Error('OKTA API addLinkedObjectDefinition parameter linkedObject is required.'));
-    }
-    let url = `${this.baseUrl}/api/v1/meta/schemas/user/linkedObjects`;
-
-    const resources = [];
-
-    const request = this.http.postJson(
-      url,
-      {
-        body: linkedObject
-      },
-      { resources }
-    );
-    return request.then(jsonRes => new models.LinkedObject(jsonRes, this));
-  }
-
-  /**
-   *
-   * @param linkedObjectName {String}
-   * @description
-   * Success
-   */
-  deleteLinkedObjectDefinition(linkedObjectName) {
-    if (!linkedObjectName) {
-      return Promise.reject(new Error('OKTA API deleteLinkedObjectDefinition parameter linkedObjectName is required.'));
-    }
-    let url = `${this.baseUrl}/api/v1/meta/schemas/user/linkedObjects/${linkedObjectName}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/meta/schemas/user/linkedObjects/${linkedObjectName}`
-    ];
-
-    const request = this.http.delete(
-      url,
-      null,
-      { resources }
-    );
-    return request;
-  }
-
-  /**
-   *
-   * @param linkedObjectName {String}
-   * @description
-   * Success
-   * @returns {Promise<LinkedObject>}
-   */
-  getLinkedObjectDefinition(linkedObjectName) {
-    if (!linkedObjectName) {
-      return Promise.reject(new Error('OKTA API getLinkedObjectDefinition parameter linkedObjectName is required.'));
-    }
-    let url = `${this.baseUrl}/api/v1/meta/schemas/user/linkedObjects/${linkedObjectName}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/meta/schemas/user/linkedObjects/${linkedObjectName}`
-    ];
-
-    const request = this.http.getJson(
-      url,
-      null,
-      { resources }
-    );
-    return request.then(jsonRes => new models.LinkedObject(jsonRes, this));
   }
 
   /**
@@ -5115,6 +4852,96 @@ class GeneratedApiClient {
   /**
    *
    * @description
+   * Success
+   * @returns {Promise<Collection>} A collection that will yield {@link LinkedObject} instances.
+   */
+  listLinkedObjectDefinitions() {
+    let url = `${this.baseUrl}/api/v1/meta/schemas/user/linkedObjects`;
+
+    return new Collection(
+      this,
+      url,
+      new ModelFactory(models.LinkedObject),
+    );
+  }
+
+  /**
+   *
+   * @param {LinkedObject} linkedObject
+   * @description
+   * Success
+   * @returns {Promise<LinkedObject>}
+   */
+  addLinkedObjectDefinition(linkedObject) {
+    if (!linkedObject) {
+      return Promise.reject(new Error('OKTA API addLinkedObjectDefinition parameter linkedObject is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/meta/schemas/user/linkedObjects`;
+
+    const resources = [];
+
+    const request = this.http.postJson(
+      url,
+      {
+        body: linkedObject
+      },
+      { resources }
+    );
+    return request.then(jsonRes => new models.LinkedObject(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param linkedObjectName {String}
+   * @description
+   * Success
+   * @returns {Promise<LinkedObject>}
+   */
+  getLinkedObjectDefinition(linkedObjectName) {
+    if (!linkedObjectName) {
+      return Promise.reject(new Error('OKTA API getLinkedObjectDefinition parameter linkedObjectName is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/meta/schemas/user/linkedObjects/${linkedObjectName}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/meta/schemas/user/linkedObjects/${linkedObjectName}`
+    ];
+
+    const request = this.http.getJson(
+      url,
+      null,
+      { resources }
+    );
+    return request.then(jsonRes => new models.LinkedObject(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param linkedObjectName {String}
+   * @description
+   * Success
+   */
+  deleteLinkedObjectDefinition(linkedObjectName) {
+    if (!linkedObjectName) {
+      return Promise.reject(new Error('OKTA API deleteLinkedObjectDefinition parameter linkedObjectName is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/meta/schemas/user/linkedObjects/${linkedObjectName}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/meta/schemas/user/linkedObjects/${linkedObjectName}`
+    ];
+
+    const request = this.http.delete(
+      url,
+      null,
+      { resources }
+    );
+    return request;
+  }
+
+  /**
+   *
+   * @description
    * Fetches all User Types in your org
    * @returns {Promise<Collection>} A collection that will yield {@link UserType} instances.
    */
@@ -5157,30 +4984,6 @@ class GeneratedApiClient {
    *
    * @param typeId {String}
    * @description
-   * Deletes a User Type permanently. This operation is not permitted for the default type, nor for any User Type that has existing users
-   */
-  deleteUserType(typeId) {
-    if (!typeId) {
-      return Promise.reject(new Error('OKTA API deleteUserType parameter typeId is required.'));
-    }
-    let url = `${this.baseUrl}/api/v1/meta/types/user/${typeId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/meta/types/user/${typeId}`
-    ];
-
-    const request = this.http.delete(
-      url,
-      null,
-      { resources }
-    );
-    return request;
-  }
-
-  /**
-   *
-   * @param typeId {String}
-   * @description
    * Fetches a User Type by ID. The special identifier `default` may be used to fetch the default User Type.
    * @returns {Promise<UserType>}
    */
@@ -5197,6 +5000,37 @@ class GeneratedApiClient {
     const request = this.http.getJson(
       url,
       null,
+      { resources }
+    );
+    return request.then(jsonRes => new models.UserType(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param typeId {String}
+   * @param {UserType} userType
+   * @description
+   * Replace an existing User Type
+   * @returns {Promise<UserType>}
+   */
+  replaceUserType(typeId, userType) {
+    if (!typeId) {
+      return Promise.reject(new Error('OKTA API replaceUserType parameter typeId is required.'));
+    }
+    if (!userType) {
+      return Promise.reject(new Error('OKTA API replaceUserType parameter userType is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/meta/types/user/${typeId}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/meta/types/user/${typeId}`
+    ];
+
+    const request = this.http.putJson(
+      url,
+      {
+        body: userType
+      },
       { resources }
     );
     return request.then(jsonRes => new models.UserType(jsonRes, this));
@@ -5236,17 +5070,12 @@ class GeneratedApiClient {
   /**
    *
    * @param typeId {String}
-   * @param {UserType} userType
    * @description
-   * Replace an existing User Type
-   * @returns {Promise<UserType>}
+   * Deletes a User Type permanently. This operation is not permitted for the default type, nor for any User Type that has existing users
    */
-  replaceUserType(typeId, userType) {
+  deleteUserType(typeId) {
     if (!typeId) {
-      return Promise.reject(new Error('OKTA API replaceUserType parameter typeId is required.'));
-    }
-    if (!userType) {
-      return Promise.reject(new Error('OKTA API replaceUserType parameter userType is required.'));
+      return Promise.reject(new Error('OKTA API deleteUserType parameter typeId is required.'));
     }
     let url = `${this.baseUrl}/api/v1/meta/types/user/${typeId}`;
 
@@ -5254,14 +5083,12 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/meta/types/user/${typeId}`
     ];
 
-    const request = this.http.putJson(
+    const request = this.http.delete(
       url,
-      {
-        body: userType
-      },
+      null,
       { resources }
     );
-    return request.then(jsonRes => new models.UserType(jsonRes, this));
+    return request;
   }
 
   /**
@@ -5408,11 +5235,11 @@ class GeneratedApiClient {
   /**
    *
    * @description
-   * Gets preferences of your organization.
-   * @returns {Promise<OrgPreferences>}
+   * Gets Okta Support Settings of your organization.
+   * @returns {Promise<OrgOktaSupportSettingsObj>}
    */
-  getOrgPreferences() {
-    let url = `${this.baseUrl}/api/v1/org/preferences`;
+  getOrgOktaSupportSettings() {
+    let url = `${this.baseUrl}/api/v1/org/privacy/oktaSupport`;
 
     const resources = [];
 
@@ -5421,45 +5248,76 @@ class GeneratedApiClient {
       null,
       { resources }
     );
-    return request.then(jsonRes => new models.OrgPreferences(jsonRes, this));
+    return request.then(jsonRes => new models.OrgOktaSupportSettingsObj(jsonRes, this));
   }
 
   /**
    *
    * @description
-   * Hide the Okta UI footer for all end users of your organization.
-   * @returns {Promise<OrgPreferences>}
+   * Enables you to temporarily allow Okta Support to access your org as an administrator for eight hours.
+   * @returns {Promise<OrgOktaSupportSettingsObj>}
    */
-  hideOktaUIFooter() {
-    let url = `${this.baseUrl}/api/v1/org/preferences/hideEndUserFooter`;
+  grantOktaSupport() {
+    let url = `${this.baseUrl}/api/v1/org/privacy/oktaSupport/grant`;
 
     const resources = [];
 
-    const request = this.http.postJson(
+    const request = this.http.post(
       url,
-      null,
+      {
+        headers: {
+          'Accept': 'application/json',
+        },
+      },
       { resources }
-    );
-    return request.then(jsonRes => new models.OrgPreferences(jsonRes, this));
+    ).then(res => res.json());
+    return request.then(jsonRes => new models.OrgOktaSupportSettingsObj(jsonRes, this));
   }
 
   /**
    *
    * @description
-   * Makes the Okta UI footer visible for all end users of your organization.
-   * @returns {Promise<OrgPreferences>}
+   * Extends the length of time that Okta Support can access your org by 24 hours. This means that 24 hours are added to the remaining access time.
+   * @returns {Promise<OrgOktaSupportSettingsObj>}
    */
-  showOktaUIFooter() {
-    let url = `${this.baseUrl}/api/v1/org/preferences/showEndUserFooter`;
+  extendOktaSupport() {
+    let url = `${this.baseUrl}/api/v1/org/privacy/oktaSupport/extend`;
 
     const resources = [];
 
-    const request = this.http.postJson(
+    const request = this.http.post(
       url,
-      null,
+      {
+        headers: {
+          'Accept': 'application/json',
+        },
+      },
       { resources }
-    );
-    return request.then(jsonRes => new models.OrgPreferences(jsonRes, this));
+    ).then(res => res.json());
+    return request.then(jsonRes => new models.OrgOktaSupportSettingsObj(jsonRes, this));
+  }
+
+  /**
+   *
+   * @description
+   * Revokes Okta Support access to your organization.
+   * @returns {Promise<OrgOktaSupportSettingsObj>}
+   */
+  revokeOktaSupport() {
+    let url = `${this.baseUrl}/api/v1/org/privacy/oktaSupport/revoke`;
+
+    const resources = [];
+
+    const request = this.http.post(
+      url,
+      {
+        headers: {
+          'Accept': 'application/json',
+        },
+      },
+      { resources }
+    ).then(res => res.json());
+    return request.then(jsonRes => new models.OrgOktaSupportSettingsObj(jsonRes, this));
   }
 
   /**
@@ -5484,25 +5342,6 @@ class GeneratedApiClient {
   /**
    *
    * @description
-   * Opts in all users of this org to Okta Communication emails.
-   * @returns {Promise<OrgOktaCommunicationSetting>}
-   */
-  optInUsersToOktaCommunicationEmails() {
-    let url = `${this.baseUrl}/api/v1/org/privacy/oktaCommunication/optIn`;
-
-    const resources = [];
-
-    const request = this.http.postJson(
-      url,
-      null,
-      { resources }
-    );
-    return request.then(jsonRes => new models.OrgOktaCommunicationSetting(jsonRes, this));
-  }
-
-  /**
-   *
-   * @description
    * Opts out all users of this org from Okta Communication emails.
    * @returns {Promise<OrgOktaCommunicationSetting>}
    */
@@ -5511,22 +5350,49 @@ class GeneratedApiClient {
 
     const resources = [];
 
-    const request = this.http.postJson(
+    const request = this.http.post(
       url,
-      null,
+      {
+        headers: {
+          'Accept': 'application/json',
+        },
+      },
       { resources }
-    );
+    ).then(res => res.json());
     return request.then(jsonRes => new models.OrgOktaCommunicationSetting(jsonRes, this));
   }
 
   /**
    *
    * @description
-   * Gets Okta Support Settings of your organization.
-   * @returns {Promise<OrgOktaSupportSettingsObj>}
+   * Opts in all users of this org to Okta Communication emails.
+   * @returns {Promise<OrgOktaCommunicationSetting>}
    */
-  getOrgOktaSupportSettings() {
-    let url = `${this.baseUrl}/api/v1/org/privacy/oktaSupport`;
+  optInUsersToOktaCommunicationEmails() {
+    let url = `${this.baseUrl}/api/v1/org/privacy/oktaCommunication/optIn`;
+
+    const resources = [];
+
+    const request = this.http.post(
+      url,
+      {
+        headers: {
+          'Accept': 'application/json',
+        },
+      },
+      { resources }
+    ).then(res => res.json());
+    return request.then(jsonRes => new models.OrgOktaCommunicationSetting(jsonRes, this));
+  }
+
+  /**
+   *
+   * @description
+   * Gets preferences of your organization.
+   * @returns {Promise<OrgPreferences>}
+   */
+  getOrgPreferences() {
+    let url = `${this.baseUrl}/api/v1/org/preferences`;
 
     const resources = [];
 
@@ -5535,64 +5401,53 @@ class GeneratedApiClient {
       null,
       { resources }
     );
-    return request.then(jsonRes => new models.OrgOktaSupportSettingsObj(jsonRes, this));
+    return request.then(jsonRes => new models.OrgPreferences(jsonRes, this));
   }
 
   /**
    *
    * @description
-   * Extends the length of time that Okta Support can access your org by 24 hours. This means that 24 hours are added to the remaining access time.
-   * @returns {Promise<OrgOktaSupportSettingsObj>}
+   * Makes the Okta UI footer visible for all end users of your organization.
+   * @returns {Promise<OrgPreferences>}
    */
-  extendOktaSupport() {
-    let url = `${this.baseUrl}/api/v1/org/privacy/oktaSupport/extend`;
+  showOktaUIFooter() {
+    let url = `${this.baseUrl}/api/v1/org/preferences/showEndUserFooter`;
 
     const resources = [];
 
-    const request = this.http.postJson(
+    const request = this.http.post(
       url,
-      null,
+      {
+        headers: {
+          'Accept': 'application/json',
+        },
+      },
       { resources }
-    );
-    return request.then(jsonRes => new models.OrgOktaSupportSettingsObj(jsonRes, this));
+    ).then(res => res.json());
+    return request.then(jsonRes => new models.OrgPreferences(jsonRes, this));
   }
 
   /**
    *
    * @description
-   * Enables you to temporarily allow Okta Support to access your org as an administrator for eight hours.
-   * @returns {Promise<OrgOktaSupportSettingsObj>}
+   * Hide the Okta UI footer for all end users of your organization.
+   * @returns {Promise<OrgPreferences>}
    */
-  grantOktaSupport() {
-    let url = `${this.baseUrl}/api/v1/org/privacy/oktaSupport/grant`;
+  hideOktaUIFooter() {
+    let url = `${this.baseUrl}/api/v1/org/preferences/hideEndUserFooter`;
 
     const resources = [];
 
-    const request = this.http.postJson(
+    const request = this.http.post(
       url,
-      null,
+      {
+        headers: {
+          'Accept': 'application/json',
+        },
+      },
       { resources }
-    );
-    return request.then(jsonRes => new models.OrgOktaSupportSettingsObj(jsonRes, this));
-  }
-
-  /**
-   *
-   * @description
-   * Revokes Okta Support access to your organization.
-   * @returns {Promise<OrgOktaSupportSettingsObj>}
-   */
-  revokeOktaSupport() {
-    let url = `${this.baseUrl}/api/v1/org/privacy/oktaSupport/revoke`;
-
-    const resources = [];
-
-    const request = this.http.postJson(
-      url,
-      null,
-      { resources }
-    );
-    return request.then(jsonRes => new models.OrgOktaSupportSettingsObj(jsonRes, this));
+    ).then(res => res.json());
+    return request.then(jsonRes => new models.OrgPreferences(jsonRes, this));
   }
 
   /**
@@ -5649,30 +5504,6 @@ class GeneratedApiClient {
       { resources }
     );
     return request.then(jsonRes => new factories.Policy().createInstance(jsonRes, this));
-  }
-
-  /**
-   *
-   * @param policyId {String}
-   * @description
-   * Removes a policy.
-   */
-  deletePolicy(policyId) {
-    if (!policyId) {
-      return Promise.reject(new Error('OKTA API deletePolicy parameter policyId is required.'));
-    }
-    let url = `${this.baseUrl}/api/v1/policies/${policyId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/policies/${policyId}`
-    ];
-
-    const request = this.http.delete(
-      url,
-      null,
-      { resources }
-    );
-    return request;
   }
 
   /**
@@ -5740,6 +5571,30 @@ class GeneratedApiClient {
    *
    * @param policyId {String}
    * @description
+   * Removes a policy.
+   */
+  deletePolicy(policyId) {
+    if (!policyId) {
+      return Promise.reject(new Error('OKTA API deletePolicy parameter policyId is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/policies/${policyId}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/policies/${policyId}`
+    ];
+
+    const request = this.http.delete(
+      url,
+      null,
+      { resources }
+    );
+    return request;
+  }
+
+  /**
+   *
+   * @param policyId {String}
+   * @description
    * Activates a policy.
    */
   activatePolicy(policyId) {
@@ -5754,11 +5609,7 @@ class GeneratedApiClient {
 
     const request = this.http.post(
       url,
-      {
-        headers: {
-          'Content-Type': 'application/json', 'Accept': 'application/json',
-        },
-      },
+      null,
       { resources }
     );
     return request;
@@ -5782,11 +5633,7 @@ class GeneratedApiClient {
 
     const request = this.http.post(
       url,
-      {
-        headers: {
-          'Content-Type': 'application/json', 'Accept': 'application/json',
-        },
-      },
+      null,
       { resources }
     );
     return request;
@@ -5841,35 +5688,6 @@ class GeneratedApiClient {
       { resources }
     );
     return request.then(jsonRes => new factories.PolicyRule().createInstance(jsonRes, this));
-  }
-
-  /**
-   *
-   * @param policyId {String}
-   * @param ruleId {String}
-   * @description
-   * Removes a policy rule.
-   */
-  deletePolicyRule(policyId, ruleId) {
-    if (!policyId) {
-      return Promise.reject(new Error('OKTA API deletePolicyRule parameter policyId is required.'));
-    }
-    if (!ruleId) {
-      return Promise.reject(new Error('OKTA API deletePolicyRule parameter ruleId is required.'));
-    }
-    let url = `${this.baseUrl}/api/v1/policies/${policyId}/rules/${ruleId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/policies/${policyId}/rules/${ruleId}`,
-      `${this.baseUrl}/api/v1/policies/${policyId}`
-    ];
-
-    const request = this.http.delete(
-      url,
-      null,
-      { resources }
-    );
-    return request;
   }
 
   /**
@@ -5943,6 +5761,35 @@ class GeneratedApiClient {
    * @param policyId {String}
    * @param ruleId {String}
    * @description
+   * Removes a policy rule.
+   */
+  deletePolicyRule(policyId, ruleId) {
+    if (!policyId) {
+      return Promise.reject(new Error('OKTA API deletePolicyRule parameter policyId is required.'));
+    }
+    if (!ruleId) {
+      return Promise.reject(new Error('OKTA API deletePolicyRule parameter ruleId is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/policies/${policyId}/rules/${ruleId}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/policies/${policyId}/rules/${ruleId}`,
+      `${this.baseUrl}/api/v1/policies/${policyId}`
+    ];
+
+    const request = this.http.delete(
+      url,
+      null,
+      { resources }
+    );
+    return request;
+  }
+
+  /**
+   *
+   * @param policyId {String}
+   * @param ruleId {String}
+   * @description
    * Activates a policy rule.
    */
   activatePolicyRule(policyId, ruleId) {
@@ -5961,11 +5808,7 @@ class GeneratedApiClient {
 
     const request = this.http.post(
       url,
-      {
-        headers: {
-          'Content-Type': 'application/json', 'Accept': 'application/json',
-        },
-      },
+      null,
       { resources }
     );
     return request;
@@ -5994,11 +5837,7 @@ class GeneratedApiClient {
 
     const request = this.http.post(
       url,
-      {
-        headers: {
-          'Content-Type': 'application/json', 'Accept': 'application/json',
-        },
-      },
+      null,
       { resources }
     );
     return request;
@@ -6033,30 +5872,6 @@ class GeneratedApiClient {
    *
    * @param sessionId {String}
    * @description
-   * Convenience method for /api/v1/sessions/{sessionId}
-   */
-  endSession(sessionId) {
-    if (!sessionId) {
-      return Promise.reject(new Error('OKTA API endSession parameter sessionId is required.'));
-    }
-    let url = `${this.baseUrl}/api/v1/sessions/${sessionId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/sessions/${sessionId}`
-    ];
-
-    const request = this.http.delete(
-      url,
-      null,
-      { resources }
-    );
-    return request;
-  }
-
-  /**
-   *
-   * @param sessionId {String}
-   * @description
    * Get details about a session.
    * @returns {Promise<Session>}
    */
@@ -6082,7 +5897,31 @@ class GeneratedApiClient {
    *
    * @param sessionId {String}
    * @description
-   * Convenience method for /api/v1/sessions/{sessionId}/lifecycle/refresh
+   * End a session.
+   */
+  endSession(sessionId) {
+    if (!sessionId) {
+      return Promise.reject(new Error('OKTA API endSession parameter sessionId is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/sessions/${sessionId}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/sessions/${sessionId}`
+    ];
+
+    const request = this.http.delete(
+      url,
+      null,
+      { resources }
+    );
+    return request;
+  }
+
+  /**
+   *
+   * @param sessionId {String}
+   * @description
+   * Refresh a session.
    * @returns {Promise<Session>}
    */
   refreshSession(sessionId) {
@@ -6095,11 +5934,15 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/sessions/${sessionId}`
     ];
 
-    const request = this.http.postJson(
+    const request = this.http.post(
       url,
-      null,
+      {
+        headers: {
+          'Accept': 'application/json',
+        },
+      },
       { resources }
-    );
+    ).then(res => res.json());
     return request.then(jsonRes => new models.Session(jsonRes, this));
   }
 
@@ -6153,30 +5996,6 @@ class GeneratedApiClient {
    *
    * @param templateId {String}
    * @description
-   * Removes an SMS template.
-   */
-  deleteSmsTemplate(templateId) {
-    if (!templateId) {
-      return Promise.reject(new Error('OKTA API deleteSmsTemplate parameter templateId is required.'));
-    }
-    let url = `${this.baseUrl}/api/v1/templates/sms/${templateId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/templates/sms/${templateId}`
-    ];
-
-    const request = this.http.delete(
-      url,
-      null,
-      { resources }
-    );
-    return request;
-  }
-
-  /**
-   *
-   * @param templateId {String}
-   * @description
    * Fetches a specific template by `id`
    * @returns {Promise<SmsTemplate>}
    */
@@ -6193,6 +6012,37 @@ class GeneratedApiClient {
     const request = this.http.getJson(
       url,
       null,
+      { resources }
+    );
+    return request.then(jsonRes => new models.SmsTemplate(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param templateId {String}
+   * @param {SmsTemplate} smsTemplate
+   * @description
+   * Updates the SMS template.
+   * @returns {Promise<SmsTemplate>}
+   */
+  updateSmsTemplate(templateId, smsTemplate) {
+    if (!templateId) {
+      return Promise.reject(new Error('OKTA API updateSmsTemplate parameter templateId is required.'));
+    }
+    if (!smsTemplate) {
+      return Promise.reject(new Error('OKTA API updateSmsTemplate parameter smsTemplate is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/templates/sms/${templateId}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/templates/sms/${templateId}`
+    ];
+
+    const request = this.http.putJson(
+      url,
+      {
+        body: smsTemplate
+      },
       { resources }
     );
     return request.then(jsonRes => new models.SmsTemplate(jsonRes, this));
@@ -6232,17 +6082,12 @@ class GeneratedApiClient {
   /**
    *
    * @param templateId {String}
-   * @param {SmsTemplate} smsTemplate
    * @description
-   * Updates the SMS template.
-   * @returns {Promise<SmsTemplate>}
+   * Removes an SMS template.
    */
-  updateSmsTemplate(templateId, smsTemplate) {
+  deleteSmsTemplate(templateId) {
     if (!templateId) {
-      return Promise.reject(new Error('OKTA API updateSmsTemplate parameter templateId is required.'));
-    }
-    if (!smsTemplate) {
-      return Promise.reject(new Error('OKTA API updateSmsTemplate parameter smsTemplate is required.'));
+      return Promise.reject(new Error('OKTA API deleteSmsTemplate parameter templateId is required.'));
     }
     let url = `${this.baseUrl}/api/v1/templates/sms/${templateId}`;
 
@@ -6250,14 +6095,12 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/templates/sms/${templateId}`
     ];
 
-    const request = this.http.putJson(
+    const request = this.http.delete(
       url,
-      {
-        body: smsTemplate
-      },
+      null,
       { resources }
     );
-    return request.then(jsonRes => new models.SmsTemplate(jsonRes, this));
+    return request;
   }
 
   /**
@@ -6358,30 +6201,6 @@ class GeneratedApiClient {
    * @param trustedOriginId {String}
    * @description
    * Success
-   */
-  deleteOrigin(trustedOriginId) {
-    if (!trustedOriginId) {
-      return Promise.reject(new Error('OKTA API deleteOrigin parameter trustedOriginId is required.'));
-    }
-    let url = `${this.baseUrl}/api/v1/trustedOrigins/${trustedOriginId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/trustedOrigins/${trustedOriginId}`
-    ];
-
-    const request = this.http.delete(
-      url,
-      null,
-      { resources }
-    );
-    return request;
-  }
-
-  /**
-   *
-   * @param trustedOriginId {String}
-   * @description
-   * Success
    * @returns {Promise<TrustedOrigin>}
    */
   getOrigin(trustedOriginId) {
@@ -6438,6 +6257,30 @@ class GeneratedApiClient {
    * @param trustedOriginId {String}
    * @description
    * Success
+   */
+  deleteOrigin(trustedOriginId) {
+    if (!trustedOriginId) {
+      return Promise.reject(new Error('OKTA API deleteOrigin parameter trustedOriginId is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/trustedOrigins/${trustedOriginId}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/trustedOrigins/${trustedOriginId}`
+    ];
+
+    const request = this.http.delete(
+      url,
+      null,
+      { resources }
+    );
+    return request;
+  }
+
+  /**
+   *
+   * @param trustedOriginId {String}
+   * @description
+   * Success
    * @returns {Promise<TrustedOrigin>}
    */
   activateOrigin(trustedOriginId) {
@@ -6450,11 +6293,15 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/trustedOrigins/${trustedOriginId}`
     ];
 
-    const request = this.http.postJson(
+    const request = this.http.post(
       url,
-      null,
+      {
+        headers: {
+          'Accept': 'application/json',
+        },
+      },
       { resources }
-    );
+    ).then(res => res.json());
     return request.then(jsonRes => new models.TrustedOrigin(jsonRes, this));
   }
 
@@ -6475,11 +6322,15 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/trustedOrigins/${trustedOriginId}`
     ];
 
-    const request = this.http.postJson(
+    const request = this.http.post(
       url,
-      null,
+      {
+        headers: {
+          'Accept': 'application/json',
+        },
+      },
       { resources }
-    );
+    ).then(res => res.json());
     return request.then(jsonRes => new models.TrustedOrigin(jsonRes, this));
   }
 
@@ -6548,7 +6399,7 @@ class GeneratedApiClient {
    * @param primaryRelationshipName {String}
    * @param primaryUserId {String}
    * @description
-   * Convenience method for /api/v1/users/{associatedUserId}/linkedObjects/{primaryRelationshipName}/{primaryUserId}
+   * Sets a linked object for a user.
    */
   setLinkedObjectForUser(associatedUserId, primaryRelationshipName, primaryUserId) {
     if (!associatedUserId) {
@@ -6569,39 +6420,6 @@ class GeneratedApiClient {
     ];
 
     const request = this.http.put(
-      url,
-      {
-        headers: {
-          'Content-Type': 'application/json', 'Accept': 'application/json',
-        },
-      },
-      { resources }
-    );
-    return request;
-  }
-
-  /**
-   *
-   * @param userId {String}
-   * @param {Object} queryParams Map of query parameters to add to this request
-   * @param {String} [queryParams.sendEmail]
-   * @description
-   * Deletes a user permanently.  This operation can only be performed on users that have a `DEPROVISIONED` status.  **This action cannot be recovered!**
-   */
-  deactivateOrDeleteUser(userId, queryParameters) {
-    if (!userId) {
-      return Promise.reject(new Error('OKTA API deactivateOrDeleteUser parameter userId is required.'));
-    }
-    let url = `${this.baseUrl}/api/v1/users/${userId}`;
-    const queryString = qs.stringify(queryParameters || {});
-
-    url += queryString ? ('?' + queryString) : '';
-
-    const resources = [
-      `${this.baseUrl}/api/v1/users/${userId}`
-    ];
-
-    const request = this.http.delete(
       url,
       null,
       { resources }
@@ -6629,6 +6447,42 @@ class GeneratedApiClient {
     const request = this.http.getJson(
       url,
       null,
+      { resources }
+    );
+    return request.then(jsonRes => new models.User(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param userId {String}
+   * @param {User} user
+   * @param {Object} queryParams Map of query parameters to add to this request
+   * @param {String} [queryParams.strict]
+   * @description
+   * Update a user's profile and/or credentials using strict-update semantics.
+   * @returns {Promise<User>}
+   */
+  updateUser(userId, user, queryParameters) {
+    if (!userId) {
+      return Promise.reject(new Error('OKTA API updateUser parameter userId is required.'));
+    }
+    if (!user) {
+      return Promise.reject(new Error('OKTA API updateUser parameter user is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/users/${userId}`;
+    const queryString = qs.stringify(queryParameters || {});
+
+    url += queryString ? ('?' + queryString) : '';
+
+    const resources = [
+      `${this.baseUrl}/api/v1/users/${userId}`
+    ];
+
+    const request = this.http.putJson(
+      url,
+      {
+        body: user
+      },
       { resources }
     );
     return request.then(jsonRes => new models.User(jsonRes, this));
@@ -6673,19 +6527,14 @@ class GeneratedApiClient {
   /**
    *
    * @param userId {String}
-   * @param {User} user
    * @param {Object} queryParams Map of query parameters to add to this request
-   * @param {String} [queryParams.strict]
+   * @param {String} [queryParams.sendEmail]
    * @description
-   * Update a user's profile and/or credentials using strict-update semantics.
-   * @returns {Promise<User>}
+   * Deletes a user permanently.  This operation can only be performed on users that have a `DEPROVISIONED` status.  **This action cannot be recovered!**
    */
-  updateUser(userId, user, queryParameters) {
+  deactivateOrDeleteUser(userId, queryParameters) {
     if (!userId) {
-      return Promise.reject(new Error('OKTA API updateUser parameter userId is required.'));
-    }
-    if (!user) {
-      return Promise.reject(new Error('OKTA API updateUser parameter user is required.'));
+      return Promise.reject(new Error('OKTA API deactivateOrDeleteUser parameter userId is required.'));
     }
     let url = `${this.baseUrl}/api/v1/users/${userId}`;
     const queryString = qs.stringify(queryParameters || {});
@@ -6696,14 +6545,12 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/users/${userId}`
     ];
 
-    const request = this.http.putJson(
+    const request = this.http.delete(
       url,
-      {
-        body: user
-      },
+      null,
       { resources }
     );
-    return request.then(jsonRes => new models.User(jsonRes, this));
+    return request;
   }
 
   /**
@@ -6750,35 +6597,6 @@ class GeneratedApiClient {
    *
    * @param userId {String}
    * @param clientId {String}
-   * @description
-   * Revokes all grants for the specified user and client
-   */
-  revokeGrantsForUserAndClient(userId, clientId) {
-    if (!userId) {
-      return Promise.reject(new Error('OKTA API revokeGrantsForUserAndClient parameter userId is required.'));
-    }
-    if (!clientId) {
-      return Promise.reject(new Error('OKTA API revokeGrantsForUserAndClient parameter clientId is required.'));
-    }
-    let url = `${this.baseUrl}/api/v1/users/${userId}/clients/${clientId}/grants`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/users/${userId}/clients/${clientId}`,
-      `${this.baseUrl}/api/v1/users/${userId}`
-    ];
-
-    const request = this.http.delete(
-      url,
-      null,
-      { resources }
-    );
-    return request;
-  }
-
-  /**
-   *
-   * @param userId {String}
-   * @param clientId {String}
    * @param {Object} queryParams Map of query parameters to add to this request
    * @param {String} [queryParams.expand]
    * @param {String} [queryParams.after]
@@ -6811,16 +6629,16 @@ class GeneratedApiClient {
    * @param userId {String}
    * @param clientId {String}
    * @description
-   * Revokes all refresh tokens issued for the specified User and Client.
+   * Revokes all grants for the specified user and client
    */
-  revokeTokensForUserAndClient(userId, clientId) {
+  revokeGrantsForUserAndClient(userId, clientId) {
     if (!userId) {
-      return Promise.reject(new Error('OKTA API revokeTokensForUserAndClient parameter userId is required.'));
+      return Promise.reject(new Error('OKTA API revokeGrantsForUserAndClient parameter userId is required.'));
     }
     if (!clientId) {
-      return Promise.reject(new Error('OKTA API revokeTokensForUserAndClient parameter clientId is required.'));
+      return Promise.reject(new Error('OKTA API revokeGrantsForUserAndClient parameter clientId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/users/${userId}/clients/${clientId}/tokens`;
+    let url = `${this.baseUrl}/api/v1/users/${userId}/clients/${clientId}/grants`;
 
     const resources = [
       `${this.baseUrl}/api/v1/users/${userId}/clients/${clientId}`,
@@ -6870,24 +6688,19 @@ class GeneratedApiClient {
    *
    * @param userId {String}
    * @param clientId {String}
-   * @param tokenId {String}
    * @description
-   * Revokes the specified refresh token.
+   * Revokes all refresh tokens issued for the specified User and Client.
    */
-  revokeTokenForUserAndClient(userId, clientId, tokenId) {
+  revokeTokensForUserAndClient(userId, clientId) {
     if (!userId) {
-      return Promise.reject(new Error('OKTA API revokeTokenForUserAndClient parameter userId is required.'));
+      return Promise.reject(new Error('OKTA API revokeTokensForUserAndClient parameter userId is required.'));
     }
     if (!clientId) {
-      return Promise.reject(new Error('OKTA API revokeTokenForUserAndClient parameter clientId is required.'));
+      return Promise.reject(new Error('OKTA API revokeTokensForUserAndClient parameter clientId is required.'));
     }
-    if (!tokenId) {
-      return Promise.reject(new Error('OKTA API revokeTokenForUserAndClient parameter tokenId is required.'));
-    }
-    let url = `${this.baseUrl}/api/v1/users/${userId}/clients/${clientId}/tokens/${tokenId}`;
+    let url = `${this.baseUrl}/api/v1/users/${userId}/clients/${clientId}/tokens`;
 
     const resources = [
-      `${this.baseUrl}/api/v1/users/${userId}/clients/${clientId}/tokens/${tokenId}`,
       `${this.baseUrl}/api/v1/users/${userId}/clients/${clientId}`,
       `${this.baseUrl}/api/v1/users/${userId}`
     ];
@@ -6940,6 +6753,40 @@ class GeneratedApiClient {
       { resources }
     );
     return request.then(jsonRes => new models.OAuth2RefreshToken(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param userId {String}
+   * @param clientId {String}
+   * @param tokenId {String}
+   * @description
+   * Revokes the specified refresh token.
+   */
+  revokeTokenForUserAndClient(userId, clientId, tokenId) {
+    if (!userId) {
+      return Promise.reject(new Error('OKTA API revokeTokenForUserAndClient parameter userId is required.'));
+    }
+    if (!clientId) {
+      return Promise.reject(new Error('OKTA API revokeTokenForUserAndClient parameter clientId is required.'));
+    }
+    if (!tokenId) {
+      return Promise.reject(new Error('OKTA API revokeTokenForUserAndClient parameter tokenId is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/users/${userId}/clients/${clientId}/tokens/${tokenId}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/users/${userId}/clients/${clientId}/tokens/${tokenId}`,
+      `${this.baseUrl}/api/v1/users/${userId}/clients/${clientId}`,
+      `${this.baseUrl}/api/v1/users/${userId}`
+    ];
+
+    const request = this.http.delete(
+      url,
+      null,
+      { resources }
+    );
+    return request;
   }
 
   /**
@@ -7015,12 +6862,12 @@ class GeneratedApiClient {
    * @param {Object} queryParams Map of query parameters to add to this request
    * @param {String} [queryParams.sendEmail]
    * @description
-   * Generates a one-time token (OTT) that can be used to reset a user's password
+   * Initiate forgot password flow. Generates a one-time token (OTT) that can be used to reset a user's password.
    * @returns {Promise<ForgotPasswordResponse>}
    */
-  forgotPasswordGenerateOneTimeToken(userId, queryParameters) {
+  forgotPassword(userId, queryParameters) {
     if (!userId) {
-      return Promise.reject(new Error('OKTA API forgotPasswordGenerateOneTimeToken parameter userId is required.'));
+      return Promise.reject(new Error('OKTA API forgotPassword parameter userId is required.'));
     }
     let url = `${this.baseUrl}/api/v1/users/${userId}/credentials/forgot_password`;
     const queryString = qs.stringify(queryParameters || {});
@@ -7031,11 +6878,15 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/users/${userId}`
     ];
 
-    const request = this.http.postJson(
+    const request = this.http.post(
       url,
-      null,
+      {
+        headers: {
+          'Accept': 'application/json',
+        },
+      },
       { resources }
-    );
+    ).then(res => res.json());
     return request.then(jsonRes => new models.ForgotPasswordResponse(jsonRes, this));
   }
 
@@ -7046,8 +6897,8 @@ class GeneratedApiClient {
    * @param {Object} queryParams Map of query parameters to add to this request
    * @param {String} [queryParams.sendEmail]
    * @description
-   * Sets a new password for a user by validating the user's answer to their current recovery question
-   * @returns {Promise<ForgotPasswordResponse>}
+   * Resets the user's password to the specified password if the provided answer to the recovery question is correct.
+   * @returns {Promise<UserCredentials>}
    */
   forgotPasswordSetNewPassword(userId, userCredentials, queryParameters) {
     if (!userId) {
@@ -7056,7 +6907,7 @@ class GeneratedApiClient {
     if (!userCredentials) {
       return Promise.reject(new Error('OKTA API forgotPasswordSetNewPassword parameter userCredentials is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/users/${userId}/credentials/forgot_password`;
+    let url = `${this.baseUrl}/api/v1/users/${userId}/credentials/forgot_password_recovery_question`;
     const queryString = qs.stringify(queryParameters || {});
 
     url += queryString ? ('?' + queryString) : '';
@@ -7072,7 +6923,7 @@ class GeneratedApiClient {
       },
       { resources }
     );
-    return request.then(jsonRes => new models.ForgotPasswordResponse(jsonRes, this));
+    return request.then(jsonRes => new models.UserCredentials(jsonRes, this));
   }
 
   /**
@@ -7179,35 +7030,6 @@ class GeneratedApiClient {
    * @param userId {String}
    * @param factorId {String}
    * @description
-   * Unenrolls an existing factor for the specified user, allowing the user to enroll a new factor.
-   */
-  deleteFactor(userId, factorId) {
-    if (!userId) {
-      return Promise.reject(new Error('OKTA API deleteFactor parameter userId is required.'));
-    }
-    if (!factorId) {
-      return Promise.reject(new Error('OKTA API deleteFactor parameter factorId is required.'));
-    }
-    let url = `${this.baseUrl}/api/v1/users/${userId}/factors/${factorId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/users/${userId}/factors/${factorId}`,
-      `${this.baseUrl}/api/v1/users/${userId}`
-    ];
-
-    const request = this.http.delete(
-      url,
-      null,
-      { resources }
-    );
-    return request;
-  }
-
-  /**
-   *
-   * @param userId {String}
-   * @param factorId {String}
-   * @description
    * Fetches a factor for the specified user
    * @returns {Promise<UserFactor>}
    */
@@ -7237,6 +7059,35 @@ class GeneratedApiClient {
    *
    * @param userId {String}
    * @param factorId {String}
+   * @description
+   * Unenrolls an existing factor for the specified user, allowing the user to enroll a new factor.
+   */
+  deleteFactor(userId, factorId) {
+    if (!userId) {
+      return Promise.reject(new Error('OKTA API deleteFactor parameter userId is required.'));
+    }
+    if (!factorId) {
+      return Promise.reject(new Error('OKTA API deleteFactor parameter factorId is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/users/${userId}/factors/${factorId}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/users/${userId}/factors/${factorId}`,
+      `${this.baseUrl}/api/v1/users/${userId}`
+    ];
+
+    const request = this.http.delete(
+      url,
+      null,
+      { resources }
+    );
+    return request;
+  }
+
+  /**
+   *
+   * @param userId {String}
+   * @param factorId {String}
    * @param {ActivateFactorRequest} activateFactorRequest
    * @description
    * The `sms` and `token:software:totp` factor types require activation to complete the enrollment process.
@@ -7248,6 +7099,9 @@ class GeneratedApiClient {
     }
     if (!factorId) {
       return Promise.reject(new Error('OKTA API activateFactor parameter factorId is required.'));
+    }
+    if (!activateFactorRequest) {
+      return Promise.reject(new Error('OKTA API activateFactor parameter activateFactorRequest is required.'));
     }
     let url = `${this.baseUrl}/api/v1/users/${userId}/factors/${factorId}/lifecycle/activate`;
 
@@ -7320,6 +7174,9 @@ class GeneratedApiClient {
     if (!factorId) {
       return Promise.reject(new Error('OKTA API verifyFactor parameter factorId is required.'));
     }
+    if (!verifyFactorRequest) {
+      return Promise.reject(new Error('OKTA API verifyFactor parameter verifyFactorRequest is required.'));
+    }
     let url = `${this.baseUrl}/api/v1/users/${userId}/factors/${factorId}/verify`;
     const queryString = qs.stringify(queryParameters || {});
 
@@ -7338,30 +7195,6 @@ class GeneratedApiClient {
       { resources }
     );
     return request.then(jsonRes => new models.VerifyUserFactorResponse(jsonRes, this));
-  }
-
-  /**
-   *
-   * @param userId {String}
-   * @description
-   * Revokes all grants for a specified user
-   */
-  revokeUserGrants(userId) {
-    if (!userId) {
-      return Promise.reject(new Error('OKTA API revokeUserGrants parameter userId is required.'));
-    }
-    let url = `${this.baseUrl}/api/v1/users/${userId}/grants`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/users/${userId}`
-    ];
-
-    const request = this.http.delete(
-      url,
-      null,
-      { resources }
-    );
-    return request;
   }
 
   /**
@@ -7395,21 +7228,16 @@ class GeneratedApiClient {
   /**
    *
    * @param userId {String}
-   * @param grantId {String}
    * @description
-   * Revokes one grant for a specified user
+   * Revokes all grants for a specified user
    */
-  revokeUserGrant(userId, grantId) {
+  revokeUserGrants(userId) {
     if (!userId) {
-      return Promise.reject(new Error('OKTA API revokeUserGrant parameter userId is required.'));
+      return Promise.reject(new Error('OKTA API revokeUserGrants parameter userId is required.'));
     }
-    if (!grantId) {
-      return Promise.reject(new Error('OKTA API revokeUserGrant parameter grantId is required.'));
-    }
-    let url = `${this.baseUrl}/api/v1/users/${userId}/grants/${grantId}`;
+    let url = `${this.baseUrl}/api/v1/users/${userId}/grants`;
 
     const resources = [
-      `${this.baseUrl}/api/v1/users/${userId}/grants/${grantId}`,
       `${this.baseUrl}/api/v1/users/${userId}`
     ];
 
@@ -7454,6 +7282,35 @@ class GeneratedApiClient {
       { resources }
     );
     return request.then(jsonRes => new models.OAuth2ScopeConsentGrant(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param userId {String}
+   * @param grantId {String}
+   * @description
+   * Revokes one grant for a specified user
+   */
+  revokeUserGrant(userId, grantId) {
+    if (!userId) {
+      return Promise.reject(new Error('OKTA API revokeUserGrant parameter userId is required.'));
+    }
+    if (!grantId) {
+      return Promise.reject(new Error('OKTA API revokeUserGrant parameter grantId is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/users/${userId}/grants/${grantId}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/users/${userId}/grants/${grantId}`,
+      `${this.baseUrl}/api/v1/users/${userId}`
+    ];
+
+    const request = this.http.delete(
+      url,
+      null,
+      { resources }
+    );
+    return request;
   }
 
   /**
@@ -7521,11 +7378,15 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/users/${userId}`
     ];
 
-    const request = this.http.postJson(
+    const request = this.http.post(
       url,
-      null,
+      {
+        headers: {
+          'Accept': 'application/json',
+        },
+      },
       { resources }
-    );
+    ).then(res => res.json());
     return request.then(jsonRes => new models.UserActivationToken(jsonRes, this));
   }
 
@@ -7552,11 +7413,7 @@ class GeneratedApiClient {
 
     const request = this.http.post(
       url,
-      {
-        headers: {
-          'Content-Type': 'application/json', 'Accept': 'application/json',
-        },
-      },
+      null,
       { resources }
     );
     return request;
@@ -7573,17 +7430,21 @@ class GeneratedApiClient {
     if (!userId) {
       return Promise.reject(new Error('OKTA API expirePassword parameter userId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/users/${userId}/lifecycle/expire_password?tempPassword=false`;
+    let url = `${this.baseUrl}/api/v1/users/${userId}/lifecycle/expire_password`;
 
     const resources = [
       `${this.baseUrl}/api/v1/users/${userId}`
     ];
 
-    const request = this.http.postJson(
+    const request = this.http.post(
       url,
-      null,
+      {
+        headers: {
+          'Accept': 'application/json',
+        },
+      },
       { resources }
-    );
+    ).then(res => res.json());
     return request.then(jsonRes => new models.User(jsonRes, this));
   }
 
@@ -7591,24 +7452,28 @@ class GeneratedApiClient {
    *
    * @param userId {String}
    * @description
-   * This operation transitions the user to the status of `PASSWORD_EXPIRED` and the user's password is reset to a temporary password that is returned.
+   * This operation transitions the user to the status of `PASSWORD_EXPIRED` so that the user is required to change their password at their next login, and also sets the user's password to a temporary password returned in the response.
    * @returns {Promise<TempPassword>}
    */
   expirePasswordAndGetTemporaryPassword(userId) {
     if (!userId) {
       return Promise.reject(new Error('OKTA API expirePasswordAndGetTemporaryPassword parameter userId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/users/${userId}/lifecycle/expire_password?tempPassword=true`;
+    let url = `${this.baseUrl}/api/v1/users/${userId}/lifecycle/expire_password_with_temp_password`;
 
     const resources = [
       `${this.baseUrl}/api/v1/users/${userId}`
     ];
 
-    const request = this.http.postJson(
+    const request = this.http.post(
       url,
-      null,
+      {
+        headers: {
+          'Accept': 'application/json',
+        },
+      },
       { resources }
-    );
+    ).then(res => res.json());
     return request.then(jsonRes => new models.TempPassword(jsonRes, this));
   }
 
@@ -7634,11 +7499,15 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/users/${userId}`
     ];
 
-    const request = this.http.postJson(
+    const request = this.http.post(
       url,
-      null,
+      {
+        headers: {
+          'Accept': 'application/json',
+        },
+      },
       { resources }
-    );
+    ).then(res => res.json());
     return request.then(jsonRes => new models.UserActivationToken(jsonRes, this));
   }
 
@@ -7660,11 +7529,7 @@ class GeneratedApiClient {
 
     const request = this.http.post(
       url,
-      {
-        headers: {
-          'Content-Type': 'application/json', 'Accept': 'application/json',
-        },
-      },
+      null,
       { resources }
     );
     return request;
@@ -7695,11 +7560,15 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/users/${userId}`
     ];
 
-    const request = this.http.postJson(
+    const request = this.http.post(
       url,
-      null,
+      {
+        headers: {
+          'Accept': 'application/json',
+        },
+      },
       { resources }
-    );
+    ).then(res => res.json());
     return request.then(jsonRes => new models.ResetPasswordToken(jsonRes, this));
   }
 
@@ -7721,11 +7590,7 @@ class GeneratedApiClient {
 
     const request = this.http.post(
       url,
-      {
-        headers: {
-          'Content-Type': 'application/json', 'Accept': 'application/json',
-        },
-      },
+      null,
       { resources }
     );
     return request;
@@ -7749,11 +7614,7 @@ class GeneratedApiClient {
 
     const request = this.http.post(
       url,
-      {
-        headers: {
-          'Content-Type': 'application/json', 'Accept': 'application/json',
-        },
-      },
+      null,
       { resources }
     );
     return request;
@@ -7776,39 +7637,6 @@ class GeneratedApiClient {
     ];
 
     const request = this.http.post(
-      url,
-      {
-        headers: {
-          'Content-Type': 'application/json', 'Accept': 'application/json',
-        },
-      },
-      { resources }
-    );
-    return request;
-  }
-
-  /**
-   *
-   * @param userId {String}
-   * @param relationshipName {String}
-   * @description
-   * Delete linked objects for a user, relationshipName can be ONLY a primary relationship name
-   */
-  removeLinkedObjectForUser(userId, relationshipName) {
-    if (!userId) {
-      return Promise.reject(new Error('OKTA API removeLinkedObjectForUser parameter userId is required.'));
-    }
-    if (!relationshipName) {
-      return Promise.reject(new Error('OKTA API removeLinkedObjectForUser parameter relationshipName is required.'));
-    }
-    let url = `${this.baseUrl}/api/v1/users/${userId}/linkedObjects/${relationshipName}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/users/${userId}/linkedObjects/${relationshipName}`,
-      `${this.baseUrl}/api/v1/users/${userId}`
-    ];
-
-    const request = this.http.delete(
       url,
       null,
       { resources }
@@ -7844,6 +7672,35 @@ class GeneratedApiClient {
       url,
       new ModelFactory(models.ResponseLinks),
     );
+  }
+
+  /**
+   *
+   * @param userId {String}
+   * @param relationshipName {String}
+   * @description
+   * Delete linked objects for a user, relationshipName can be ONLY a primary relationship name
+   */
+  removeLinkedObjectForUser(userId, relationshipName) {
+    if (!userId) {
+      return Promise.reject(new Error('OKTA API removeLinkedObjectForUser parameter userId is required.'));
+    }
+    if (!relationshipName) {
+      return Promise.reject(new Error('OKTA API removeLinkedObjectForUser parameter relationshipName is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/users/${userId}/linkedObjects/${relationshipName}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/users/${userId}/linkedObjects/${relationshipName}`,
+      `${this.baseUrl}/api/v1/users/${userId}`
+    ];
+
+    const request = this.http.delete(
+      url,
+      null,
+      { resources }
+    );
+    return request;
   }
 
   /**
@@ -7941,7 +7798,7 @@ class GeneratedApiClient {
    * @param userId {String}
    * @param roleId {String}
    * @description
-   * Gets role that is assigne to user.
+   * Gets role that is assigned to user.
    * @returns {Promise<Role>}
    */
   getUserRole(userId, roleId) {
@@ -8019,11 +7876,41 @@ class GeneratedApiClient {
 
     const request = this.http.put(
       url,
-      {
-        headers: {
-          'Content-Type': 'application/json', 'Accept': 'application/json',
-        },
-      },
+      null,
+      { resources }
+    );
+    return request;
+  }
+
+  /**
+   *
+   * @param userId {String}
+   * @param roleId {String}
+   * @param appName {String}
+   * @description
+   * Success
+   */
+  addApplicationTargetToAdminRoleForUser(userId, roleId, appName) {
+    if (!userId) {
+      return Promise.reject(new Error('OKTA API addApplicationTargetToAdminRoleForUser parameter userId is required.'));
+    }
+    if (!roleId) {
+      return Promise.reject(new Error('OKTA API addApplicationTargetToAdminRoleForUser parameter roleId is required.'));
+    }
+    if (!appName) {
+      return Promise.reject(new Error('OKTA API addApplicationTargetToAdminRoleForUser parameter appName is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/users/${userId}/roles/${roleId}/targets/catalog/apps/${appName}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/users/${userId}/roles/${roleId}/targets/catalog/apps/${appName}`,
+      `${this.baseUrl}/api/v1/users/${userId}/roles/${roleId}`,
+      `${this.baseUrl}/api/v1/users/${userId}`
+    ];
+
+    const request = this.http.put(
+      url,
+      null,
       { resources }
     );
     return request;
@@ -8068,22 +7955,27 @@ class GeneratedApiClient {
    * @param userId {String}
    * @param roleId {String}
    * @param appName {String}
+   * @param applicationId {String}
    * @description
-   * Success
+   * Add App Instance Target to App Administrator Role given to a User
    */
-  addApplicationTargetToAdminRoleForUser(userId, roleId, appName) {
+  addApplicationTargetToAppAdminRoleForUser(userId, roleId, appName, applicationId) {
     if (!userId) {
-      return Promise.reject(new Error('OKTA API addApplicationTargetToAdminRoleForUser parameter userId is required.'));
+      return Promise.reject(new Error('OKTA API addApplicationTargetToAppAdminRoleForUser parameter userId is required.'));
     }
     if (!roleId) {
-      return Promise.reject(new Error('OKTA API addApplicationTargetToAdminRoleForUser parameter roleId is required.'));
+      return Promise.reject(new Error('OKTA API addApplicationTargetToAppAdminRoleForUser parameter roleId is required.'));
     }
     if (!appName) {
-      return Promise.reject(new Error('OKTA API addApplicationTargetToAdminRoleForUser parameter appName is required.'));
+      return Promise.reject(new Error('OKTA API addApplicationTargetToAppAdminRoleForUser parameter appName is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/users/${userId}/roles/${roleId}/targets/catalog/apps/${appName}`;
+    if (!applicationId) {
+      return Promise.reject(new Error('OKTA API addApplicationTargetToAppAdminRoleForUser parameter applicationId is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/users/${userId}/roles/${roleId}/targets/catalog/apps/${appName}/${applicationId}`;
 
     const resources = [
+      `${this.baseUrl}/api/v1/users/${userId}/roles/${roleId}/targets/catalog/apps/${appName}/${applicationId}`,
       `${this.baseUrl}/api/v1/users/${userId}/roles/${roleId}/targets/catalog/apps/${appName}`,
       `${this.baseUrl}/api/v1/users/${userId}/roles/${roleId}`,
       `${this.baseUrl}/api/v1/users/${userId}`
@@ -8091,11 +7983,7 @@ class GeneratedApiClient {
 
     const request = this.http.put(
       url,
-      {
-        headers: {
-          'Content-Type': 'application/json', 'Accept': 'application/json',
-        },
-      },
+      null,
       { resources }
     );
     return request;
@@ -8144,49 +8032,6 @@ class GeneratedApiClient {
    *
    * @param userId {String}
    * @param roleId {String}
-   * @param appName {String}
-   * @param applicationId {String}
-   * @description
-   * Add App Instance Target to App Administrator Role given to a User
-   */
-  addApplicationTargetToAppAdminRoleForUser(userId, roleId, appName, applicationId) {
-    if (!userId) {
-      return Promise.reject(new Error('OKTA API addApplicationTargetToAppAdminRoleForUser parameter userId is required.'));
-    }
-    if (!roleId) {
-      return Promise.reject(new Error('OKTA API addApplicationTargetToAppAdminRoleForUser parameter roleId is required.'));
-    }
-    if (!appName) {
-      return Promise.reject(new Error('OKTA API addApplicationTargetToAppAdminRoleForUser parameter appName is required.'));
-    }
-    if (!applicationId) {
-      return Promise.reject(new Error('OKTA API addApplicationTargetToAppAdminRoleForUser parameter applicationId is required.'));
-    }
-    let url = `${this.baseUrl}/api/v1/users/${userId}/roles/${roleId}/targets/catalog/apps/${appName}/${applicationId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/users/${userId}/roles/${roleId}/targets/catalog/apps/${appName}/${applicationId}`,
-      `${this.baseUrl}/api/v1/users/${userId}/roles/${roleId}/targets/catalog/apps/${appName}`,
-      `${this.baseUrl}/api/v1/users/${userId}/roles/${roleId}`,
-      `${this.baseUrl}/api/v1/users/${userId}`
-    ];
-
-    const request = this.http.put(
-      url,
-      {
-        headers: {
-          'Content-Type': 'application/json', 'Accept': 'application/json',
-        },
-      },
-      { resources }
-    );
-    return request;
-  }
-
-  /**
-   *
-   * @param userId {String}
-   * @param roleId {String}
    * @param {Object} queryParams Map of query parameters to add to this request
    * @param {String} [queryParams.after]
    * @param {String} [queryParams.limit]
@@ -8221,6 +8066,40 @@ class GeneratedApiClient {
    * @description
    * Success
    */
+  addGroupTargetToRole(userId, roleId, groupId) {
+    if (!userId) {
+      return Promise.reject(new Error('OKTA API addGroupTargetToRole parameter userId is required.'));
+    }
+    if (!roleId) {
+      return Promise.reject(new Error('OKTA API addGroupTargetToRole parameter roleId is required.'));
+    }
+    if (!groupId) {
+      return Promise.reject(new Error('OKTA API addGroupTargetToRole parameter groupId is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/users/${userId}/roles/${roleId}/targets/groups/${groupId}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/users/${userId}/roles/${roleId}/targets/groups/${groupId}`,
+      `${this.baseUrl}/api/v1/users/${userId}/roles/${roleId}`,
+      `${this.baseUrl}/api/v1/users/${userId}`
+    ];
+
+    const request = this.http.put(
+      url,
+      null,
+      { resources }
+    );
+    return request;
+  }
+
+  /**
+   *
+   * @param userId {String}
+   * @param roleId {String}
+   * @param groupId {String}
+   * @description
+   * Success
+   */
   removeGroupTargetFromRole(userId, roleId, groupId) {
     if (!userId) {
       return Promise.reject(new Error('OKTA API removeGroupTargetFromRole parameter userId is required.'));
@@ -8242,44 +8121,6 @@ class GeneratedApiClient {
     const request = this.http.delete(
       url,
       null,
-      { resources }
-    );
-    return request;
-  }
-
-  /**
-   *
-   * @param userId {String}
-   * @param roleId {String}
-   * @param groupId {String}
-   * @description
-   * Success
-   */
-  addGroupTargetToRole(userId, roleId, groupId) {
-    if (!userId) {
-      return Promise.reject(new Error('OKTA API addGroupTargetToRole parameter userId is required.'));
-    }
-    if (!roleId) {
-      return Promise.reject(new Error('OKTA API addGroupTargetToRole parameter roleId is required.'));
-    }
-    if (!groupId) {
-      return Promise.reject(new Error('OKTA API addGroupTargetToRole parameter groupId is required.'));
-    }
-    let url = `${this.baseUrl}/api/v1/users/${userId}/roles/${roleId}/targets/groups/${groupId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/users/${userId}/roles/${roleId}/targets/groups/${groupId}`,
-      `${this.baseUrl}/api/v1/users/${userId}/roles/${roleId}`,
-      `${this.baseUrl}/api/v1/users/${userId}`
-    ];
-
-    const request = this.http.put(
-      url,
-      {
-        headers: {
-          'Content-Type': 'application/json', 'Accept': 'application/json',
-        },
-      },
       { resources }
     );
     return request;
@@ -8366,30 +8207,6 @@ class GeneratedApiClient {
    *
    * @param zoneId {String}
    * @description
-   * Removes network zone.
-   */
-  deleteNetworkZone(zoneId) {
-    if (!zoneId) {
-      return Promise.reject(new Error('OKTA API deleteNetworkZone parameter zoneId is required.'));
-    }
-    let url = `${this.baseUrl}/api/v1/zones/${zoneId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/zones/${zoneId}`
-    ];
-
-    const request = this.http.delete(
-      url,
-      null,
-      { resources }
-    );
-    return request;
-  }
-
-  /**
-   *
-   * @param zoneId {String}
-   * @description
    * Fetches a network zone from your Okta organization by `id`.
    * @returns {Promise<NetworkZone>}
    */
@@ -8446,25 +8263,24 @@ class GeneratedApiClient {
    *
    * @param zoneId {String}
    * @description
-   * Activate Network Zone
-   * @returns {Promise<NetworkZone>}
+   * Removes network zone.
    */
-  activateNetworkZone(zoneId) {
+  deleteNetworkZone(zoneId) {
     if (!zoneId) {
-      return Promise.reject(new Error('OKTA API activateNetworkZone parameter zoneId is required.'));
+      return Promise.reject(new Error('OKTA API deleteNetworkZone parameter zoneId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/zones/${zoneId}/lifecycle/activate`;
+    let url = `${this.baseUrl}/api/v1/zones/${zoneId}`;
 
     const resources = [
       `${this.baseUrl}/api/v1/zones/${zoneId}`
     ];
 
-    const request = this.http.postJson(
+    const request = this.http.delete(
       url,
       null,
       { resources }
     );
-    return request.then(jsonRes => new models.NetworkZone(jsonRes, this));
+    return request;
   }
 
   /**
@@ -8484,11 +8300,44 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/zones/${zoneId}`
     ];
 
-    const request = this.http.postJson(
+    const request = this.http.post(
       url,
-      null,
+      {
+        headers: {
+          'Accept': 'application/json',
+        },
+      },
       { resources }
-    );
+    ).then(res => res.json());
+    return request.then(jsonRes => new models.NetworkZone(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param zoneId {String}
+   * @description
+   * Activate Network Zone
+   * @returns {Promise<NetworkZone>}
+   */
+  activateNetworkZone(zoneId) {
+    if (!zoneId) {
+      return Promise.reject(new Error('OKTA API activateNetworkZone parameter zoneId is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/zones/${zoneId}/lifecycle/activate`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/zones/${zoneId}`
+    ];
+
+    const request = this.http.post(
+      url,
+      {
+        headers: {
+          'Accept': 'application/json',
+        },
+      },
+      { resources }
+    ).then(res => res.json());
     return request.then(jsonRes => new models.NetworkZone(jsonRes, this));
   }
 

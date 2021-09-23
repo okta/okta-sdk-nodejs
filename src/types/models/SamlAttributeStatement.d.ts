@@ -21,11 +21,11 @@ import { OptionalKnownProperties } from '../optional-known-properties-type';
 declare class SamlAttributeStatement extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
 
-  filterType: string;
-  filterValue: string;
   name: string;
   namespace: string;
   type: string;
+  filterType: string;
+  filterValue: string;
   values: string[];
 
 }

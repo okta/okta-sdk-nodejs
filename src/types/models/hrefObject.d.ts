@@ -16,27 +16,19 @@
 import { Resource } from '../resource';
 import { Client } from '../client';
 import { OptionalKnownProperties } from '../optional-known-properties-type';
-import { LogAuthenticationProvider } from './LogAuthenticationProvider';
-import { LogCredentialProvider } from './LogCredentialProvider';
-import { LogCredentialType } from './LogCredentialType';
-import { LogIssuer } from './LogIssuer';
 
-declare class LogAuthenticationContext extends Resource {
+
+declare class hrefObject extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
 
-  authenticationProvider: LogAuthenticationProvider;
-  readonly authenticationStep: number;
-  credentialProvider: LogCredentialProvider;
-  credentialType: LogCredentialType;
-  readonly externalSessionId: string;
-  readonly interface: string;
-  issuer: LogIssuer;
+  href: string;
+  hints: Record<string, unknown>;
 
 }
 
-type LogAuthenticationContextOptions = OptionalKnownProperties<LogAuthenticationContext>;
+type hrefObjectOptions = OptionalKnownProperties<hrefObject>;
 
 export {
-  LogAuthenticationContext,
-  LogAuthenticationContextOptions
+  hrefObject,
+  hrefObjectOptions
 };

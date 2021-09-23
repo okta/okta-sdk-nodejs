@@ -35,12 +35,12 @@ declare class UserFactor extends Resource {
   readonly id: string;
   readonly lastUpdated: string;
   provider: FactorProvider;
-  readonly status: FactorStatus;
+  status: FactorStatus;
   _verify: VerifyFactorRequest;
 
   delete(userId: string): Promise<Response>;
-  activate(userId: string, activateFactorRequest?: ActivateFactorRequestOptions): Promise<UserFactor>;
-  verify(userId: string, verifyFactorRequest?: VerifyFactorRequestOptions, queryParameters?: {
+  activate(userId: string, activateFactorRequest: ActivateFactorRequestOptions): Promise<UserFactor>;
+  verify(userId: string, verifyFactorRequest: VerifyFactorRequestOptions, queryParameters?: {
     templateId?: string,
     tokenLifetimeSeconds?: number,
   }): Promise<VerifyUserFactorResponse>;

@@ -20,9 +20,9 @@ const TokenAuthorizationServerPolicyRuleActionInlineHook = require('./TokenAutho
  * @class TokenAuthorizationServerPolicyRuleAction
  * @extends Resource
  * @property { integer } accessTokenLifetimeMinutes
- * @property { TokenAuthorizationServerPolicyRuleActionInlineHook } inlineHook
  * @property { integer } refreshTokenLifetimeMinutes
  * @property { integer } refreshTokenWindowMinutes
+ * @property { TokenAuthorizationServerPolicyRuleActionInlineHook } inlineHook
  */
 class TokenAuthorizationServerPolicyRuleAction extends Resource {
   constructor(resourceJson, client) {

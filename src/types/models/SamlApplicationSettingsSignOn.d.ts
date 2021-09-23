@@ -25,8 +25,8 @@ import { SpCertificate } from './SpCertificate';
 declare class SamlApplicationSettingsSignOn extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
 
-  acsEndpoints: AcsEndpoint[];
   allowMultipleAcsEndpoints: boolean;
+  acsEndpoints: AcsEndpoint[];
   assertionSigned: boolean;
   attributeStatements: SamlAttributeStatement[];
   audience: string;
@@ -45,10 +45,10 @@ declare class SamlApplicationSettingsSignOn extends Resource {
   responseSigned: boolean;
   signatureAlgorithm: string;
   slo: SingleLogout;
-  spCertificate: SpCertificate;
   spIssuer: string;
   ssoAcsUrl: string;
   ssoAcsUrlOverride: string;
+  spCertificate: SpCertificate;
   subjectNameIdFormat: string;
   subjectNameIdTemplate: string;
 

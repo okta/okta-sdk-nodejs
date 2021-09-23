@@ -21,18 +21,18 @@ import { CatalogApplicationStatus } from './CatalogApplicationStatus';
 declare class CatalogApplication extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
 
-  readonly _links: {[name: string]: unknown};
-  category: string;
-  description: string;
-  displayName: string;
-  features: string[];
   readonly id: string;
-  readonly lastUpdated: string;
   name: string;
-  signOnModes: string[];
+  displayName: string;
+  description: string;
   status: CatalogApplicationStatus;
+  readonly lastUpdated: string;
+  category: string;
   verificationStatus: string;
   website: string;
+  signOnModes: string[];
+  features: string[];
+  readonly _links: {[name: string]: unknown};
 
 }
 

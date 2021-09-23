@@ -19,18 +19,18 @@ var Resource = require('../resource');
 /**
  * @class CatalogApplication
  * @extends Resource
- * @property { hash } _links
- * @property { string } category
- * @property { string } description
- * @property { string } displayName
- * @property { array } features
  * @property { string } id
- * @property { dateTime } lastUpdated
  * @property { string } name
- * @property { array } signOnModes
+ * @property { string } displayName
+ * @property { string } description
  * @property { CatalogApplicationStatus } status
+ * @property { dateTime } lastUpdated
+ * @property { string } category
  * @property { string } verificationStatus
  * @property { string } website
+ * @property { array } signOnModes
+ * @property { array } features
+ * @property { hash } _links
  */
 class CatalogApplication extends Resource {
   constructor(resourceJson, client) {

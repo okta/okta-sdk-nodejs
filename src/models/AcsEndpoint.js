@@ -19,8 +19,8 @@ var Resource = require('../resource');
 /**
  * @class AcsEndpoint
  * @extends Resource
- * @property { integer } index
  * @property { string } url
+ * @property { integer } index
  */
 class AcsEndpoint extends Resource {
   constructor(resourceJson, client) {

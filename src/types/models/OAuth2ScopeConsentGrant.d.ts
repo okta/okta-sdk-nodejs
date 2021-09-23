@@ -26,6 +26,7 @@ declare class OAuth2ScopeConsentGrant extends Resource {
   readonly _embedded: {[name: string]: unknown};
   readonly _links: {[name: string]: unknown};
   clientId: string;
+  userId: string;
   readonly created: string;
   createdBy: OAuth2Actor;
   readonly id: string;
@@ -34,7 +35,6 @@ declare class OAuth2ScopeConsentGrant extends Resource {
   scopeId: string;
   source: OAuth2ScopeConsentGrantSource;
   status: OAuth2ScopeConsentGrantStatus;
-  userId: string;
 
 }
 

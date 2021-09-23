@@ -20,9 +20,9 @@ var Resource = require('../resource');
  * @class UserSchemaPublic
  * @extends Resource
  * @property { string } id
+ * @property { string } type
  * @property { hash } properties
  * @property { array } required
- * @property { string } type
  */
 class UserSchemaPublic extends Resource {
   constructor(resourceJson, client) {

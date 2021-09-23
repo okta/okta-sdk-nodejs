@@ -14,31 +14,31 @@
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
 var Resource = require('../resource');
-const PolicyRuleActions = require('./PolicyRuleActions');
 const PolicyRuleConditions = require('./PolicyRuleConditions');
+const PolicyRuleActions = require('./PolicyRuleActions');
 
 /**
  * @class PolicyRule
  * @extends Resource
- * @property { PolicyRuleActions } actions
- * @property { PolicyRuleConditions } conditions
  * @property { dateTime } created
  * @property { string } id
  * @property { dateTime } lastUpdated
- * @property { string } name
  * @property { integer } priority
  * @property { string } status
  * @property { boolean } system
  * @property { string } type
+ * @property { string } name
+ * @property { PolicyRuleConditions } conditions
+ * @property { PolicyRuleActions } actions
  */
 class PolicyRule extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson.actions) {
-      this.actions = new PolicyRuleActions(resourceJson.actions);
-    }
     if (resourceJson && resourceJson.conditions) {
       this.conditions = new PolicyRuleConditions(resourceJson.conditions);
+    }
+    if (resourceJson && resourceJson.actions) {
+      this.actions = new PolicyRuleActions(resourceJson.actions);
     }
   }
 

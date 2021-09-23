@@ -19,8 +19,8 @@ var Resource = require('../resource');
 /**
  * @class WebAuthnUserFactorProfile
  * @extends Resource
- * @property { string } authenticatorName
  * @property { string } credentialId
+ * @property { string } authenticatorName
  */
 class WebAuthnUserFactorProfile extends Resource {
   constructor(resourceJson, client) {

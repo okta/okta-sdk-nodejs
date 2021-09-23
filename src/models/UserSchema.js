@@ -20,16 +20,16 @@ const UserSchemaProperties = require('./UserSchemaProperties');
 /**
  * @class UserSchema
  * @extends Resource
+ * @property { string } id
  * @property { string } $schema
- * @property { hash } _links
+ * @property { string } name
+ * @property { string } title
+ * @property { string } lastUpdated
  * @property { string } created
  * @property { UserSchemaDefinitions } definitions
- * @property { string } id
- * @property { string } lastUpdated
- * @property { string } name
- * @property { UserSchemaProperties } properties
- * @property { string } title
  * @property { string } type
+ * @property { UserSchemaProperties } properties
+ * @property { hash } _links
  */
 class UserSchema extends Resource {
   constructor(resourceJson, client) {

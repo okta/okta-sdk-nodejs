@@ -21,10 +21,10 @@ import { OptionalKnownProperties } from '../optional-known-properties-type';
 declare class UserSchemaPublic extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
 
-  readonly id: string;
+  id: string;
+  type: string;
   properties: {[name: string]: unknown};
   required: string[];
-  type: string;
 
 }
 

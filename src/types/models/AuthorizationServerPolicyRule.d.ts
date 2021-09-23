@@ -17,22 +17,22 @@ import { Resource } from '../resource';
 import { Client } from '../client';
 import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { Response } from 'node-fetch';
-import { AuthorizationServerPolicyRuleActions } from './AuthorizationServerPolicyRuleActions';
 import { AuthorizationServerPolicyRuleConditions } from './AuthorizationServerPolicyRuleConditions';
+import { AuthorizationServerPolicyRuleActions } from './AuthorizationServerPolicyRuleActions';
 
 declare class AuthorizationServerPolicyRule extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
 
-  actions: AuthorizationServerPolicyRuleActions;
-  conditions: AuthorizationServerPolicyRuleConditions;
   readonly created: string;
   readonly id: string;
-  readonly lastUpdated: string;
   name: string;
+  readonly lastUpdated: string;
   priority: number;
   status: string;
   system: boolean;
   type: string;
+  conditions: AuthorizationServerPolicyRuleConditions;
+  actions: AuthorizationServerPolicyRuleActions;
 
   update(policyId: string, authServerId: string): Promise<AuthorizationServerPolicyRule>;
   delete(policyId: string, authServerId: string): Promise<Response>;

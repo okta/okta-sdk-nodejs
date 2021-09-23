@@ -16,17 +16,17 @@
 import { Resource } from '../resource';
 import { Client } from '../client';
 import { OptionalKnownProperties } from '../optional-known-properties-type';
+import { PolicyPeopleCondition } from './PolicyPeopleCondition';
 import { ClientPolicyCondition } from './ClientPolicyCondition';
 import { GrantTypePolicyRuleCondition } from './GrantTypePolicyRuleCondition';
-import { PolicyPeopleCondition } from './PolicyPeopleCondition';
 import { OAuth2ScopesMediationPolicyRuleCondition } from './OAuth2ScopesMediationPolicyRuleCondition';
 
 declare class AuthorizationServerPolicyRuleConditions extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
 
+  people: PolicyPeopleCondition;
   clients: ClientPolicyCondition;
   grantTypes: GrantTypePolicyRuleCondition;
-  people: PolicyPeopleCondition;
   scopes: OAuth2ScopesMediationPolicyRuleCondition;
 
 }

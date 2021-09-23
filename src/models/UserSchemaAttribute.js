@@ -14,47 +14,47 @@
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
 var Resource = require('../resource');
-const UserSchemaAttributeItems = require('./UserSchemaAttributeItems');
-const UserSchemaAttributeMaster = require('./UserSchemaAttributeMaster');
 const UserSchemaAttributeEnum = require('./UserSchemaAttributeEnum');
 const UserSchemaAttributePermission = require('./UserSchemaAttributePermission');
+const UserSchemaAttributeMaster = require('./UserSchemaAttributeMaster');
+const UserSchemaAttributeItems = require('./UserSchemaAttributeItems');
 
 /**
  * @class UserSchemaAttribute
  * @extends Resource
- * @property { string } description
- * @property { array } enum
- * @property { string } externalName
- * @property { string } externalNamespace
- * @property { UserSchemaAttributeItems } items
- * @property { UserSchemaAttributeMaster } master
- * @property { integer } maxLength
- * @property { integer } minLength
- * @property { string } mutability
- * @property { array } oneOf
- * @property { string } pattern
- * @property { array } permissions
- * @property { boolean } required
- * @property { UserSchemaAttributeScope } scope
  * @property { string } title
  * @property { UserSchemaAttributeType } type
+ * @property { boolean } required
+ * @property { string } mutability
+ * @property { UserSchemaAttributeScope } scope
+ * @property { array } enum
+ * @property { array } oneOf
+ * @property { integer } minLength
+ * @property { integer } maxLength
+ * @property { string } description
+ * @property { array } permissions
+ * @property { UserSchemaAttributeMaster } master
  * @property { UserSchemaAttributeUnion } union
+ * @property { UserSchemaAttributeItems } items
+ * @property { string } pattern
  * @property { string } unique
+ * @property { string } externalName
+ * @property { string } externalNamespace
  */
 class UserSchemaAttribute extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson.items) {
-      this.items = new UserSchemaAttributeItems(resourceJson.items);
-    }
-    if (resourceJson && resourceJson.master) {
-      this.master = new UserSchemaAttributeMaster(resourceJson.master);
-    }
     if (resourceJson && resourceJson.oneOf) {
       this.oneOf = resourceJson.oneOf.map(resourceItem => new UserSchemaAttributeEnum(resourceItem));
     }
     if (resourceJson && resourceJson.permissions) {
       this.permissions = resourceJson.permissions.map(resourceItem => new UserSchemaAttributePermission(resourceItem));
+    }
+    if (resourceJson && resourceJson.master) {
+      this.master = new UserSchemaAttributeMaster(resourceJson.master);
+    }
+    if (resourceJson && resourceJson.items) {
+      this.items = new UserSchemaAttributeItems(resourceJson.items);
     }
   }
 

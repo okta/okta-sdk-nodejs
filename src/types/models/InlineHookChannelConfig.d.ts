@@ -24,8 +24,8 @@ declare class InlineHookChannelConfig extends Resource {
 
   authScheme: InlineHookChannelConfigAuthScheme;
   headers: InlineHookChannelConfigHeaders[];
-  method: string;
   uri: string;
+  method: string;
 
 }
 

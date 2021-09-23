@@ -23,7 +23,7 @@ declare class OrgOktaSupportSettingsObj extends Resource {
 
   _links: Record<string, unknown>;
   readonly expiration: string;
-  readonly support: OrgOktaSupportSetting;
+  support: OrgOktaSupportSetting;
 
   extendOktaSupport(): Promise<OrgOktaSupportSettingsObj>;
   grantOktaSupport(): Promise<OrgOktaSupportSettingsObj>;

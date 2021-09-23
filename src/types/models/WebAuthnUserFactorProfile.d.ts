@@ -21,8 +21,8 @@ import { OptionalKnownProperties } from '../optional-known-properties-type';
 declare class WebAuthnUserFactorProfile extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
 
-  authenticatorName: string;
   credentialId: string;
+  authenticatorName: string;
 
 }
 

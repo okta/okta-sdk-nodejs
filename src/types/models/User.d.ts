@@ -21,7 +21,6 @@ import { AppLink } from './AppLink';
 import { ChangePasswordRequestOptions } from './ChangePasswordRequest';
 import { UserCredentials } from './UserCredentials';
 import { UserCredentialsOptions } from './UserCredentials';
-import { ForgotPasswordResponse } from './ForgotPasswordResponse';
 import { AssignRoleRequestOptions } from './AssignRoleRequest';
 import { Role } from './Role';
 import { Response } from 'node-fetch';
@@ -54,9 +53,9 @@ declare class User extends Resource {
   readonly lastUpdated: string;
   readonly passwordChanged: string;
   profile: UserProfile;
-  readonly status: UserStatus;
+  status: UserStatus;
   readonly statusChanged: string;
-  readonly transitioningToStatus: UserStatus;
+  transitioningToStatus: UserStatus;
   type: UserType;
 
   update(queryParameters?: {
@@ -71,11 +70,9 @@ declare class User extends Resource {
   }): Promise<UserCredentials>;
   changeRecoveryQuestion(userCredentials: UserCredentialsOptions): Promise<UserCredentials>;
   forgotPasswordSetNewPassword(userCredentials: UserCredentialsOptions, queryParameters?: {
-    sendEmail?: boolean,
-  }): Promise<ForgotPasswordResponse>;
-  forgotPasswordGenerateOneTimeToken(queryParameters?: {
-    sendEmail?: boolean,
-  }): Promise<ForgotPasswordResponse>;
+    sendEmail?: string,
+  }): Promise<UserCredentials>;
+  
   assignRole(assignRoleRequest: AssignRoleRequestOptions, queryParameters?: {
     disableNotifications?: string,
   }): Promise<Role>;

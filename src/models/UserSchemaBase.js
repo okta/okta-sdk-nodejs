@@ -20,9 +20,9 @@ const UserSchemaBaseProperties = require('./UserSchemaBaseProperties');
  * @class UserSchemaBase
  * @extends Resource
  * @property { string } id
+ * @property { string } type
  * @property { UserSchemaBaseProperties } properties
  * @property { array } required
- * @property { string } type
  */
 class UserSchemaBase extends Resource {
   constructor(resourceJson, client) {

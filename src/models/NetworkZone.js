@@ -14,35 +14,35 @@
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
 var Resource = require('../resource');
-const NetworkZoneAddress = require('./NetworkZoneAddress');
 const NetworkZoneLocation = require('./NetworkZoneLocation');
+const NetworkZoneAddress = require('./NetworkZoneAddress');
 
 /**
  * @class NetworkZone
  * @extends Resource
- * @property { hash } _links
+ * @property { NetworkZoneType } type
+ * @property { string } id
+ * @property { string } name
+ * @property { boolean } system
+ * @property { NetworkZoneUsage } usage
+ * @property { NetworkZoneStatus } status
+ * @property { string } proxyType
+ * @property { array } locations
+ * @property { array } gateways
+ * @property { array } proxies
  * @property { array } asns
  * @property { dateTime } created
- * @property { array } gateways
- * @property { string } id
  * @property { dateTime } lastUpdated
- * @property { array } locations
- * @property { string } name
- * @property { array } proxies
- * @property { string } proxyType
- * @property { NetworkZoneStatus } status
- * @property { boolean } system
- * @property { NetworkZoneType } type
- * @property { NetworkZoneUsage } usage
+ * @property { hash } _links
  */
 class NetworkZone extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson.gateways) {
-      this.gateways = resourceJson.gateways.map(resourceItem => new NetworkZoneAddress(resourceItem));
-    }
     if (resourceJson && resourceJson.locations) {
       this.locations = resourceJson.locations.map(resourceItem => new NetworkZoneLocation(resourceItem));
+    }
+    if (resourceJson && resourceJson.gateways) {
+      this.gateways = resourceJson.gateways.map(resourceItem => new NetworkZoneAddress(resourceItem));
     }
     if (resourceJson && resourceJson.proxies) {
       this.proxies = resourceJson.proxies.map(resourceItem => new NetworkZoneAddress(resourceItem));

@@ -23,11 +23,11 @@ const AuthenticatorSettings = require('./AuthenticatorSettings');
  * @property { dateTime } created
  * @property { string } id
  * @property { string } key
+ * @property { AuthenticatorStatus } status
  * @property { dateTime } lastUpdated
  * @property { string } name
- * @property { AuthenticatorSettings } settings
- * @property { AuthenticatorStatus } status
  * @property { AuthenticatorType } type
+ * @property { AuthenticatorSettings } settings
  */
 class Authenticator extends Resource {
   constructor(resourceJson, client) {

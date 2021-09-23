@@ -21,8 +21,8 @@ import { OptionalKnownProperties } from '../optional-known-properties-type';
 declare class AcsEndpoint extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
 
-  index: number;
   url: string;
+  index: number;
 
 }
 

@@ -30,20 +30,20 @@ import { LogTransaction } from './LogTransaction';
 declare class LogEvent extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
 
-  readonly actor: LogActor;
-  readonly authenticationContext: LogAuthenticationContext;
-  readonly client: LogClient;
-  readonly debugContext: LogDebugContext;
+  actor: LogActor;
+  authenticationContext: LogAuthenticationContext;
+  client: LogClient;
+  debugContext: LogDebugContext;
   readonly displayMessage: string;
   readonly eventType: string;
   readonly legacyEventType: string;
-  readonly outcome: LogOutcome;
+  outcome: LogOutcome;
   readonly published: string;
-  readonly request: LogRequest;
-  readonly securityContext: LogSecurityContext;
-  readonly severity: LogSeverity;
+  request: LogRequest;
+  securityContext: LogSecurityContext;
+  severity: LogSeverity;
   readonly target: LogTarget[];
-  readonly transaction: LogTransaction;
+  transaction: LogTransaction;
   readonly uuid: string;
   readonly version: string;
 

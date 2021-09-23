@@ -23,7 +23,7 @@ declare class LogGeographicalContext extends Resource {
 
   readonly city: string;
   readonly country: string;
-  readonly geolocation: LogGeolocation;
+  geolocation: LogGeolocation;
   readonly postalCode: string;
   readonly state: string;
 

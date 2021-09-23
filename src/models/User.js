@@ -91,18 +91,17 @@ class User extends Resource {
   /**
    * @param {UserCredentials} userCredentials
    * @param {object} queryParameters
-   * @returns {Promise<ForgotPasswordResponse>}
+   * @returns {Promise<UserCredentials>}
    */
   forgotPasswordSetNewPassword(userCredentials, queryParameters) {
     return this.httpClient.forgotPasswordSetNewPassword(this.id, userCredentials, queryParameters);
   }
 
-  /**
-   * @param {object} queryParameters
-   * @returns {Promise<ForgotPasswordResponse>}
-   */
-  forgotPasswordGenerateOneTimeToken(queryParameters) {
-    return this.httpClient.forgotPasswordGenerateOneTimeToken(this.id, queryParameters);
+  
+forgotPasswordGenerateOneTimeToken(
+) {
+    return this.httpClient.(
+);
   }
 
   /**

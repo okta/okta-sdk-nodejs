@@ -21,8 +21,8 @@ import { OptionalKnownProperties } from '../optional-known-properties-type';
 declare class UserSchemaAttributePermission extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
 
-  action: string;
   principal: string;
+  action: string;
 
 }
 

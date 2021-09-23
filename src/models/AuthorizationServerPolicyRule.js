@@ -14,31 +14,31 @@
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
 var Resource = require('../resource');
-const AuthorizationServerPolicyRuleActions = require('./AuthorizationServerPolicyRuleActions');
 const AuthorizationServerPolicyRuleConditions = require('./AuthorizationServerPolicyRuleConditions');
+const AuthorizationServerPolicyRuleActions = require('./AuthorizationServerPolicyRuleActions');
 
 /**
  * @class AuthorizationServerPolicyRule
  * @extends Resource
- * @property { AuthorizationServerPolicyRuleActions } actions
- * @property { AuthorizationServerPolicyRuleConditions } conditions
  * @property { dateTime } created
  * @property { string } id
- * @property { dateTime } lastUpdated
  * @property { string } name
+ * @property { dateTime } lastUpdated
  * @property { integer } priority
  * @property { string } status
  * @property { boolean } system
  * @property { string } type
+ * @property { AuthorizationServerPolicyRuleConditions } conditions
+ * @property { AuthorizationServerPolicyRuleActions } actions
  */
 class AuthorizationServerPolicyRule extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson.actions) {
-      this.actions = new AuthorizationServerPolicyRuleActions(resourceJson.actions);
-    }
     if (resourceJson && resourceJson.conditions) {
       this.conditions = new AuthorizationServerPolicyRuleConditions(resourceJson.conditions);
+    }
+    if (resourceJson && resourceJson.actions) {
+      this.actions = new AuthorizationServerPolicyRuleActions(resourceJson.actions);
     }
   }
 

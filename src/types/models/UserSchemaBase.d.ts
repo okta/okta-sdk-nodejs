@@ -21,10 +21,10 @@ import { UserSchemaBaseProperties } from './UserSchemaBaseProperties';
 declare class UserSchemaBase extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
 
-  readonly id: string;
+  id: string;
+  type: string;
   properties: UserSchemaBaseProperties;
   required: string[];
-  type: string;
 
 }
 

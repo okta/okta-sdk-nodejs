@@ -19,8 +19,8 @@ var Resource = require('../resource');
 /**
  * @class OpenIdConnectApplicationIdpInitiatedLogin
  * @extends Resource
- * @property { array } default_scope
  * @property { string } mode
+ * @property { array } default_scope
  */
 class OpenIdConnectApplicationIdpInitiatedLogin extends Resource {
   constructor(resourceJson, client) {
