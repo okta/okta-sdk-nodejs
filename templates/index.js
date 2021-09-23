@@ -167,6 +167,9 @@ js.process = ({spec, operations, models, handlebars}) => {
     const args = [];
 
     const operation = method.operation;
+    if (!operation) {
+      return '\n';
+    }
 
     operation.pathParams.forEach(param => {
       const matchingArgument = method.arguments.filter(argument => argument.dest === param.name)[0];
@@ -191,6 +194,9 @@ js.process = ({spec, operations, models, handlebars}) => {
     const args = [];
 
     const operation = method.operation;
+    if (!operation) {
+      return '\n';
+    }
 
     operation.pathParams.forEach(param => {
       const matchingArgument = method.arguments.filter(argument => argument.dest === param.name)[0];
@@ -217,11 +223,14 @@ js.process = ({spec, operations, models, handlebars}) => {
     const args = [];
 
     const operation = method.operation;
+    if (!operation) {
+      return '\n';
+    }
 
     operation.pathParams.forEach(param => {
       const matchingArgument = method.arguments.filter(argument => argument.dest === param.name)[0];
       if (!matchingArgument || !matchingArgument.src) {
-        args.push(`@param {${param.type}} ${param.name}`);
+        args.push(`@param {${param.schema.type}} ${param.name}`);
       }
     });
 

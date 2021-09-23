@@ -8,6 +8,9 @@ function formatParameterizedReturnType({genericType, genericParameterType}) {
 
 function formatArguments(args) {
   const typedArgs = [];
+  if (!args) {
+    return '';
+  }
   for (let [argName, {type, isRequired}] of args) {
     let argument = `${argName}${isRequired ? '' : '?'}`;
     if (Array.isArray(type)) {
@@ -24,7 +27,7 @@ function formatObjectLiteralType(typeProps) {
   let objectLiteralType = '{\n';
   typeProps.forEach(prop => {
     const isRequired = prop.required ? '' : '?';
-    const propType = convertSwaggerToTSType(prop.type);
+    const propType = convertSwaggerToTSType(prop.schema.type);
     objectLiteralType += `    ${prop.name}${isRequired}: ${propType},\n`;
   });
   objectLiteralType += '  }';

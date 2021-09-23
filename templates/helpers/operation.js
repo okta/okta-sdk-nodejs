@@ -79,11 +79,11 @@ const getOperationArgument = operation => {
   if ((method === 'post' || method === 'put') && bodyModel) {
     const bodyModelName = getBodyModelNameInCamelCase(operation);
     if (bodyModelName) {
-      if (hasRequiredParameterInRequestMedia(parameters, 'body')) {
-        requiredArgs.push(bodyModelName);
-      } else {
-        optionalArgs.push(bodyModelName);
-      }
+      //if (hasRequiredParameterInRequestMedia(parameters, 'body')) {
+      requiredArgs.push(bodyModelName);
+      //} else {
+      //  optionalArgs.push(bodyModelName);
+      //}
     }
   }
 
@@ -143,6 +143,9 @@ const hasRequest = (operation) => {
 const hasHeaders = (operation) => {
   const { consumes, produces } = operation;
   const httpMethod = getHttpMethod(operation);
+  if (!consumes) {
+    console.log(operation);
+  }
   return httpMethod.indexOf('Json') === -1 && (consumes.length || produces.length);
 };
 
@@ -194,17 +197,27 @@ const jsdocBuilder = (operation) => {
 
 const typeScriptOperationSignatureBuilder = operation => {
   const [args, returnType] = getOperationArgumentsAndReturnType(operation);
+  if (!args || !returnType) {
+    return '';
+  }
   return formatMethodSignature(operation.operationId, args, returnType);
 };
 
 const typeScriptModelMethodSignatureBuilder = (method, modelName) => {
   const [args, returnType] = getModelMethodArgumentsAndReturnType(method, modelName);
+  if (!args || !returnType) {
+    return '';
+  }
   return formatMethodSignature(method.alias, args, returnType);
 };
 
 const typeScriptClientImportBuilder = operations => {
   const operationsImportTypes = operations.reduce((acc, operation) => {
     const [args, returnType] = getOperationArgumentsAndReturnType(operation);
+
+    if (!args || !returnType) {
+      return [];
+    }
     const typeNames = convertTypeObjectsToTypeNames(args, returnType);
     const importableTypes = typeNames.filter(isImportableType);
     return acc.concat(importableTypes);
@@ -269,6 +282,9 @@ const typeScriptModelImportBuilder = model => {
 };
 
 const getOperationArgumentsAndReturnType = operation => {
+  if (!operation) {
+    return [];
+  }
   const { bodyModel, method, pathParams, queryParams, parameters } = operation;
   const args = new Map();
 
@@ -285,7 +301,8 @@ const getOperationArgumentsAndReturnType = operation => {
       const modelPropertiesType = operation.bodyModel === 'string' ?
         operation.bodyModel :  `${operation.bodyModel}${OPTIONS_TYPE_SUFFIX}`;
       args.set(_.camelCase(bodyParamName), {
-        isRequired: hasRequiredParameterInRequestMedia(parameters, 'body'),
+        // isRequired: hasRequiredParameterInRequestMedia(parameters, 'body'),
+        isRequired: true,
         type: modelPropertiesType,
       });
     }
@@ -293,7 +310,7 @@ const getOperationArgumentsAndReturnType = operation => {
 
   if (queryParams.length) {
     args.set('queryParameters', {
-      isRequired: hasRequiredParameterInRequestMedia(parameters, 'query'),
+      isRequired: parameters && hasRequiredParameterInRequestMedia(parameters, 'query'),
       type: queryParams,
     });
   }
@@ -311,6 +328,9 @@ const getOperationArgumentsAndReturnType = operation => {
 
 const getModelMethodArgumentsAndReturnType = (method, modelName) => {
   const { operation } = method;
+  if (!operation) {
+    return [];
+  }
   const [args, returnType] = getOperationArgumentsAndReturnType(operation);
 
   operation.pathParams.forEach(param => {
@@ -330,6 +350,9 @@ const getModelMethodArgumentsAndReturnType = (method, modelName) => {
 };
 
 const convertTypeObjectsToTypeNames = (args, returnType) => {
+  if (!args || !returnType) {
+    return [];
+  }
   const argTypes = Array.from(args.values()).map(arg => arg.type);
   return [...argTypes, returnType.genericType, returnType.genericParameterType];
 };
