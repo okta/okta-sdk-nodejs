@@ -16,6 +16,7 @@
 var Resource = require('../resource');
 const AcsEndpoint = require('./AcsEndpoint');
 const SamlAttributeStatement = require('./SamlAttributeStatement');
+const SignOnInlineHook = require('./SignOnInlineHook');
 const SingleLogout = require('./SingleLogout');
 const SpCertificate = require('./SpCertificate');
 
@@ -35,6 +36,7 @@ const SpCertificate = require('./SpCertificate');
  * @property { string } digestAlgorithm
  * @property { boolean } honorForceAuthn
  * @property { string } idpIssuer
+ * @property { array } inlineHooks
  * @property { string } recipient
  * @property { string } recipientOverride
  * @property { boolean } requestCompressed
@@ -56,6 +58,9 @@ class SamlApplicationSettingsSignOn extends Resource {
     }
     if (resourceJson && resourceJson.attributeStatements) {
       this.attributeStatements = resourceJson.attributeStatements.map(resourceItem => new SamlAttributeStatement(resourceItem));
+    }
+    if (resourceJson && resourceJson.inlineHooks) {
+      this.inlineHooks = resourceJson.inlineHooks.map(resourceItem => new SignOnInlineHook(resourceItem));
     }
     if (resourceJson && resourceJson.slo) {
       this.slo = new SingleLogout(resourceJson.slo);

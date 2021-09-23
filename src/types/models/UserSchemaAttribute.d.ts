@@ -16,22 +16,35 @@
 import { Resource } from '../resource';
 import { Client } from '../client';
 import { OptionalKnownProperties } from '../optional-known-properties-type';
+import { UserSchemaAttributeItems } from './UserSchemaAttributeItems';
 import { UserSchemaAttributeMaster } from './UserSchemaAttributeMaster';
+import { UserSchemaAttributeEnum } from './UserSchemaAttributeEnum';
 import { UserSchemaAttributePermission } from './UserSchemaAttributePermission';
+import { UserSchemaAttributeScope } from './UserSchemaAttributeScope';
+import { UserSchemaAttributeType } from './UserSchemaAttributeType';
+import { UserSchemaAttributeUnion } from './UserSchemaAttributeUnion';
 
 declare class UserSchemaAttribute extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
 
   description: string;
+  enum: string[];
+  externalName: string;
+  externalNamespace: string;
+  items: UserSchemaAttributeItems;
   master: UserSchemaAttributeMaster;
   maxLength: number;
   minLength: number;
   mutability: string;
+  oneOf: UserSchemaAttributeEnum[];
+  pattern: string;
   permissions: UserSchemaAttributePermission[];
   required: boolean;
-  scope: string;
+  scope: UserSchemaAttributeScope;
   title: string;
-  type: string;
+  type: UserSchemaAttributeType;
+  union: UserSchemaAttributeUnion;
+  unique: string;
 
 }
 

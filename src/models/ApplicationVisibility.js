@@ -20,6 +20,7 @@ const ApplicationVisibilityHide = require('./ApplicationVisibilityHide');
  * @class ApplicationVisibility
  * @extends Resource
  * @property { hash } appLinks
+ * @property { boolean } autoLaunch
  * @property { boolean } autoSubmitToolbar
  * @property { ApplicationVisibilityHide } hide
  */

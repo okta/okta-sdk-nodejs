@@ -38,6 +38,7 @@ const OAuthResponseType = require('./OAuthResponseType');
  * @property { OpenIdConnectApplicationSettingsRefreshToken } refresh_token
  * @property { array } response_types
  * @property { string } tos_uri
+ * @property { string } wildcard_redirect
  */
 class OpenIdConnectApplicationSettingsClient extends Resource {
   constructor(resourceJson, client) {

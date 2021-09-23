@@ -1175,6 +1175,103 @@ class GeneratedApiClient {
 
   /**
    *
+   * @description
+   * Success
+   * @returns {Promise<Collection>} A collection that will yield {@link Authenticator} instances.
+   */
+  listAuthenticators() {
+    let url = `${this.baseUrl}/api/v1/authenticators`;
+
+    return new Collection(
+      this,
+      url,
+      new ModelFactory(models.Authenticator),
+    );
+  }
+
+  /**
+   *
+   * @param authenticatorId {String}
+   * @description
+   * Success
+   * @returns {Promise<Authenticator>}
+   */
+  getAuthenticator(authenticatorId) {
+    if (!authenticatorId) {
+      return Promise.reject(new Error('OKTA API getAuthenticator parameter authenticatorId is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/authenticators/${authenticatorId}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/authenticators/${authenticatorId}`
+    ];
+
+    const request = this.http.getJson(
+      url,
+      null,
+      { resources }
+    );
+    return request.then(jsonRes => new models.Authenticator(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param authenticatorId {String}
+   * @description
+   * Success
+   */
+  activateAuthenticator(authenticatorId) {
+    if (!authenticatorId) {
+      return Promise.reject(new Error('OKTA API activateAuthenticator parameter authenticatorId is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/authenticators/${authenticatorId}/lifecycle/activate`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/authenticators/${authenticatorId}`
+    ];
+
+    const request = this.http.post(
+      url,
+      {
+        headers: {
+          'Content-Type': 'application/json', 'Accept': 'application/json',
+        },
+      },
+      { resources }
+    );
+    return request;
+  }
+
+  /**
+   *
+   * @param authenticatorId {String}
+   * @description
+   * Success
+   */
+  deactivateAuthenticator(authenticatorId) {
+    if (!authenticatorId) {
+      return Promise.reject(new Error('OKTA API deactivateAuthenticator parameter authenticatorId is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/authenticators/${authenticatorId}/lifecycle/deactivate`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/authenticators/${authenticatorId}`
+    ];
+
+    const request = this.http.post(
+      url,
+      {
+        headers: {
+          'Content-Type': 'application/json', 'Accept': 'application/json',
+        },
+      },
+      { resources }
+    );
+    return request;
+  }
+
+  /**
+   *
    * @param {Object} queryParams Map of query parameters to add to this request
    * @param {String} [queryParams.q]
    * @param {String} [queryParams.limit]
@@ -2316,6 +2413,157 @@ class GeneratedApiClient {
   /**
    *
    * @description
+   * List all verified custom Domains for the org.
+   * @returns {Promise<DomainListResponse>}
+   */
+  listDomains() {
+    let url = `${this.baseUrl}/api/v1/domains`;
+
+    const resources = [];
+
+    const request = this.http.getJson(
+      url,
+      null,
+      { resources }
+    );
+    return request.then(jsonRes => new models.DomainListResponse(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param {Domain} domain
+   * @description
+   * Creates your domain.
+   * @returns {Promise<Domain>}
+   */
+  createDomain(domain) {
+    if (!domain) {
+      return Promise.reject(new Error('OKTA API createDomain parameter domain is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/domains`;
+
+    const resources = [];
+
+    const request = this.http.postJson(
+      url,
+      {
+        body: domain
+      },
+      { resources }
+    );
+    return request.then(jsonRes => new models.Domain(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param domainId {String}
+   * @description
+   * Deletes a Domain by `id`.
+   */
+  deleteDomain(domainId) {
+    if (!domainId) {
+      return Promise.reject(new Error('OKTA API deleteDomain parameter domainId is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/domains/${domainId}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/domains/${domainId}`
+    ];
+
+    const request = this.http.delete(
+      url,
+      null,
+      { resources }
+    );
+    return request;
+  }
+
+  /**
+   *
+   * @param domainId {String}
+   * @description
+   * Fetches a Domain by `id`.
+   * @returns {Promise<Domain>}
+   */
+  getDomain(domainId) {
+    if (!domainId) {
+      return Promise.reject(new Error('OKTA API getDomain parameter domainId is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/domains/${domainId}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/domains/${domainId}`
+    ];
+
+    const request = this.http.getJson(
+      url,
+      null,
+      { resources }
+    );
+    return request.then(jsonRes => new models.Domain(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param domainId {String}
+   * @param {DomainCertificate} domainCertificate
+   * @description
+   * Creates the Certificate for the Domain.
+   */
+  createCertificate(domainId, domainCertificate) {
+    if (!domainId) {
+      return Promise.reject(new Error('OKTA API createCertificate parameter domainId is required.'));
+    }
+    if (!domainCertificate) {
+      return Promise.reject(new Error('OKTA API createCertificate parameter domainCertificate is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/domains/${domainId}/certificate`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/domains/${domainId}`
+    ];
+
+    const request = this.http.put(
+      url,
+      {
+        headers: {
+          'Content-Type': 'application/json', 'Accept': 'application/json',
+        },
+        body: domainCertificate
+      },
+      { resources }
+    );
+    return request;
+  }
+
+  /**
+   *
+   * @param domainId {String}
+   * @description
+   * Verifies the Domain by `id`.
+   * @returns {Promise<Domain>}
+   */
+  verifyDomain(domainId) {
+    if (!domainId) {
+      return Promise.reject(new Error('OKTA API verifyDomain parameter domainId is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/domains/${domainId}/verify`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/domains/${domainId}`
+    ];
+
+    const request = this.http.postJson(
+      url,
+      null,
+      { resources }
+    );
+    return request.then(jsonRes => new models.Domain(jsonRes, this));
+  }
+
+  /**
+   *
+   * @description
    * Success
    * @returns {Promise<Collection>} A collection that will yield {@link EventHook} instances.
    */
@@ -2629,7 +2877,7 @@ class GeneratedApiClient {
    *
    * @param {Object} queryParams Map of query parameters to add to this request
    * @param {String} [queryParams.q]
-   * @param {String} [queryParams.filter]
+   * @param {String} [queryParams.search]
    * @param {String} [queryParams.after]
    * @param {String} [queryParams.limit]
    * @param {String} [queryParams.expand]
@@ -2727,14 +2975,19 @@ class GeneratedApiClient {
   /**
    *
    * @param ruleId {String}
+   * @param {Object} queryParams Map of query parameters to add to this request
+   * @param {String} [queryParams.removeUsers]
    * @description
    * Removes a specific group rule by id from your organization
    */
-  deleteGroupRule(ruleId) {
+  deleteGroupRule(ruleId, queryParameters) {
     if (!ruleId) {
       return Promise.reject(new Error('OKTA API deleteGroupRule parameter ruleId is required.'));
     }
     let url = `${this.baseUrl}/api/v1/groups/rules/${ruleId}`;
+    const queryString = qs.stringify(queryParameters || {});
+
+    url += queryString ? ('?' + queryString) : '';
 
     const resources = [
       `${this.baseUrl}/api/v1/groups/rules/${ruleId}`
@@ -2893,7 +3146,7 @@ class GeneratedApiClient {
    *
    * @param groupId {String}
    * @description
-   * Lists all group rules for your organization.
+   * Fetches a group from your organization.
    * @returns {Promise<Group>}
    */
   getGroup(groupId) {
@@ -4675,6 +4928,47 @@ class GeneratedApiClient {
   /**
    *
    * @description
+   * Fetches the group schema
+   * @returns {Promise<GroupSchema>}
+   */
+  getGroupSchema() {
+    let url = `${this.baseUrl}/api/v1/meta/schemas/group/default`;
+
+    const resources = [];
+
+    const request = this.http.getJson(
+      url,
+      null,
+      { resources }
+    );
+    return request.then(jsonRes => new models.GroupSchema(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param {GroupSchema} groupSchema
+   * @description
+   * Updates, adds ore removes one or more custom Group Profile properties in the schema
+   * @returns {Promise<GroupSchema>}
+   */
+  updateGroupSchema(groupSchema) {
+    let url = `${this.baseUrl}/api/v1/meta/schemas/group/default`;
+
+    const resources = [];
+
+    const request = this.http.postJson(
+      url,
+      {
+        body: groupSchema
+      },
+      { resources }
+    );
+    return request.then(jsonRes => new models.GroupSchema(jsonRes, this));
+  }
+
+  /**
+   *
+   * @description
    * Success
    * @returns {Promise<Collection>} A collection that will yield {@link LinkedObject} instances.
    */
@@ -4972,13 +5266,344 @@ class GeneratedApiClient {
 
   /**
    *
+   * @description
+   * Get settings of your organization.
+   * @returns {Promise<OrgSetting>}
+   */
+  getOrgSettings() {
+    let url = `${this.baseUrl}/api/v1/org`;
+
+    const resources = [];
+
+    const request = this.http.getJson(
+      url,
+      null,
+      { resources }
+    );
+    return request.then(jsonRes => new models.OrgSetting(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param {OrgSetting} orgSetting
+   * @description
+   * Partial update settings of your organization.
+   * @returns {Promise<OrgSetting>}
+   */
+  partialUpdateOrgSetting(orgSetting) {
+    if (!orgSetting) {
+      return Promise.reject(new Error('OKTA API partialUpdateOrgSetting parameter orgSetting is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/org`;
+
+    const resources = [];
+
+    const request = this.http.postJson(
+      url,
+      {
+        body: orgSetting
+      },
+      { resources }
+    );
+    return request.then(jsonRes => new models.OrgSetting(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param {OrgSetting} orgSetting
+   * @description
+   * Update settings of your organization.
+   * @returns {Promise<OrgSetting>}
+   */
+  updateOrgSetting(orgSetting) {
+    if (!orgSetting) {
+      return Promise.reject(new Error('OKTA API updateOrgSetting parameter orgSetting is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/org`;
+
+    const resources = [];
+
+    const request = this.http.putJson(
+      url,
+      {
+        body: orgSetting
+      },
+      { resources }
+    );
+    return request.then(jsonRes => new models.OrgSetting(jsonRes, this));
+  }
+
+  /**
+   *
+   * @description
+   * Gets Contact Types of your organization.
+   * @returns {Promise<Collection>} A collection that will yield {@link OrgContactTypeObj} instances.
+   */
+  getOrgContactTypes() {
+    let url = `${this.baseUrl}/api/v1/org/contacts`;
+
+    return new Collection(
+      this,
+      url,
+      new ModelFactory(models.OrgContactTypeObj),
+    );
+  }
+
+  /**
+   *
+   * @param contactType {String}
+   * @description
+   * Retrieves the URL of the User associated with the specified Contact Type.
+   * @returns {Promise<OrgContactUser>}
+   */
+  getOrgContactUser(contactType) {
+    if (!contactType) {
+      return Promise.reject(new Error('OKTA API getOrgContactUser parameter contactType is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/org/contacts/${contactType}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/org/contacts/${contactType}`
+    ];
+
+    const request = this.http.getJson(
+      url,
+      null,
+      { resources }
+    );
+    return request.then(jsonRes => new models.OrgContactUser(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param contactType {String}
+   * @param {UserIdString} userIdString
+   * @description
+   * Updates the User associated with the specified Contact Type.
+   * @returns {Promise<OrgContactUser>}
+   */
+  updateOrgContactUser(contactType, userIdString) {
+    if (!contactType) {
+      return Promise.reject(new Error('OKTA API updateOrgContactUser parameter contactType is required.'));
+    }
+    if (!userIdString) {
+      return Promise.reject(new Error('OKTA API updateOrgContactUser parameter userIdString is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/org/contacts/${contactType}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/org/contacts/${contactType}`
+    ];
+
+    const request = this.http.putJson(
+      url,
+      {
+        body: userIdString
+      },
+      { resources }
+    );
+    return request.then(jsonRes => new models.OrgContactUser(jsonRes, this));
+  }
+
+  /**
+   *
+   * @description
+   * Gets preferences of your organization.
+   * @returns {Promise<OrgPreferences>}
+   */
+  getOrgPreferences() {
+    let url = `${this.baseUrl}/api/v1/org/preferences`;
+
+    const resources = [];
+
+    const request = this.http.getJson(
+      url,
+      null,
+      { resources }
+    );
+    return request.then(jsonRes => new models.OrgPreferences(jsonRes, this));
+  }
+
+  /**
+   *
+   * @description
+   * Hide the Okta UI footer for all end users of your organization.
+   * @returns {Promise<OrgPreferences>}
+   */
+  hideOktaUIFooter() {
+    let url = `${this.baseUrl}/api/v1/org/preferences/hideEndUserFooter`;
+
+    const resources = [];
+
+    const request = this.http.postJson(
+      url,
+      null,
+      { resources }
+    );
+    return request.then(jsonRes => new models.OrgPreferences(jsonRes, this));
+  }
+
+  /**
+   *
+   * @description
+   * Makes the Okta UI footer visible for all end users of your organization.
+   * @returns {Promise<OrgPreferences>}
+   */
+  showOktaUIFooter() {
+    let url = `${this.baseUrl}/api/v1/org/preferences/showEndUserFooter`;
+
+    const resources = [];
+
+    const request = this.http.postJson(
+      url,
+      null,
+      { resources }
+    );
+    return request.then(jsonRes => new models.OrgPreferences(jsonRes, this));
+  }
+
+  /**
+   *
+   * @description
+   * Gets Okta Communication Settings of your organization.
+   * @returns {Promise<OrgOktaCommunicationSetting>}
+   */
+  getOktaCommunicationSettings() {
+    let url = `${this.baseUrl}/api/v1/org/privacy/oktaCommunication`;
+
+    const resources = [];
+
+    const request = this.http.getJson(
+      url,
+      null,
+      { resources }
+    );
+    return request.then(jsonRes => new models.OrgOktaCommunicationSetting(jsonRes, this));
+  }
+
+  /**
+   *
+   * @description
+   * Opts in all users of this org to Okta Communication emails.
+   * @returns {Promise<OrgOktaCommunicationSetting>}
+   */
+  optInUsersToOktaCommunicationEmails() {
+    let url = `${this.baseUrl}/api/v1/org/privacy/oktaCommunication/optIn`;
+
+    const resources = [];
+
+    const request = this.http.postJson(
+      url,
+      null,
+      { resources }
+    );
+    return request.then(jsonRes => new models.OrgOktaCommunicationSetting(jsonRes, this));
+  }
+
+  /**
+   *
+   * @description
+   * Opts out all users of this org from Okta Communication emails.
+   * @returns {Promise<OrgOktaCommunicationSetting>}
+   */
+  optOutUsersFromOktaCommunicationEmails() {
+    let url = `${this.baseUrl}/api/v1/org/privacy/oktaCommunication/optOut`;
+
+    const resources = [];
+
+    const request = this.http.postJson(
+      url,
+      null,
+      { resources }
+    );
+    return request.then(jsonRes => new models.OrgOktaCommunicationSetting(jsonRes, this));
+  }
+
+  /**
+   *
+   * @description
+   * Gets Okta Support Settings of your organization.
+   * @returns {Promise<OrgOktaSupportSettingsObj>}
+   */
+  getOrgOktaSupportSettings() {
+    let url = `${this.baseUrl}/api/v1/org/privacy/oktaSupport`;
+
+    const resources = [];
+
+    const request = this.http.getJson(
+      url,
+      null,
+      { resources }
+    );
+    return request.then(jsonRes => new models.OrgOktaSupportSettingsObj(jsonRes, this));
+  }
+
+  /**
+   *
+   * @description
+   * Extends the length of time that Okta Support can access your org by 24 hours. This means that 24 hours are added to the remaining access time.
+   * @returns {Promise<OrgOktaSupportSettingsObj>}
+   */
+  extendOktaSupport() {
+    let url = `${this.baseUrl}/api/v1/org/privacy/oktaSupport/extend`;
+
+    const resources = [];
+
+    const request = this.http.postJson(
+      url,
+      null,
+      { resources }
+    );
+    return request.then(jsonRes => new models.OrgOktaSupportSettingsObj(jsonRes, this));
+  }
+
+  /**
+   *
+   * @description
+   * Enables you to temporarily allow Okta Support to access your org as an administrator for eight hours.
+   * @returns {Promise<OrgOktaSupportSettingsObj>}
+   */
+  grantOktaSupport() {
+    let url = `${this.baseUrl}/api/v1/org/privacy/oktaSupport/grant`;
+
+    const resources = [];
+
+    const request = this.http.postJson(
+      url,
+      null,
+      { resources }
+    );
+    return request.then(jsonRes => new models.OrgOktaSupportSettingsObj(jsonRes, this));
+  }
+
+  /**
+   *
+   * @description
+   * Revokes Okta Support access to your organization.
+   * @returns {Promise<OrgOktaSupportSettingsObj>}
+   */
+  revokeOktaSupport() {
+    let url = `${this.baseUrl}/api/v1/org/privacy/oktaSupport/revoke`;
+
+    const resources = [];
+
+    const request = this.http.postJson(
+      url,
+      null,
+      { resources }
+    );
+    return request.then(jsonRes => new models.OrgOktaSupportSettingsObj(jsonRes, this));
+  }
+
+  /**
+   *
    * @param {Object} queryParams Map of query parameters to add to this request
    * @param {String} [queryParams.type]
    * @param {String} [queryParams.status]
    * @param {String} [queryParams.expand]
    * @description
    * Gets all policies with the specified type.
-   * @returns {Promise<Collection>} A collection that will yield {@link AuthorizationServerPolicy} instances.
+   * @returns {Promise<Collection>} A collection that will yield {@link Policy} instances.
    */
   listPolicies(queryParameters) {
     if (!queryParameters) {
@@ -4992,7 +5617,7 @@ class GeneratedApiClient {
     return new Collection(
       this,
       url,
-      new ModelFactory(models.AuthorizationServerPolicy),
+      new factories.Policy(),
     );
   }
 
@@ -7315,6 +7940,36 @@ class GeneratedApiClient {
    *
    * @param userId {String}
    * @param roleId {String}
+   * @description
+   * Gets role that is assigne to user.
+   * @returns {Promise<Role>}
+   */
+  getUserRole(userId, roleId) {
+    if (!userId) {
+      return Promise.reject(new Error('OKTA API getUserRole parameter userId is required.'));
+    }
+    if (!roleId) {
+      return Promise.reject(new Error('OKTA API getUserRole parameter roleId is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/users/${userId}/roles/${roleId}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/users/${userId}/roles/${roleId}`,
+      `${this.baseUrl}/api/v1/users/${userId}`
+    ];
+
+    const request = this.http.getJson(
+      url,
+      null,
+      { resources }
+    );
+    return request.then(jsonRes => new models.Role(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param userId {String}
+   * @param roleId {String}
    * @param {Object} queryParams Map of query parameters to add to this request
    * @param {String} [queryParams.after]
    * @param {String} [queryParams.limit]
@@ -7792,6 +8447,7 @@ class GeneratedApiClient {
    * @param zoneId {String}
    * @description
    * Activate Network Zone
+   * @returns {Promise<NetworkZone>}
    */
   activateNetworkZone(zoneId) {
     if (!zoneId) {
@@ -7803,16 +8459,12 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/zones/${zoneId}`
     ];
 
-    const request = this.http.post(
+    const request = this.http.postJson(
       url,
-      {
-        headers: {
-          'Content-Type': 'application/json', 'Accept': 'application/json',
-        },
-      },
+      null,
       { resources }
     );
-    return request;
+    return request.then(jsonRes => new models.NetworkZone(jsonRes, this));
   }
 
   /**
@@ -7820,6 +8472,7 @@ class GeneratedApiClient {
    * @param zoneId {String}
    * @description
    * Deactivates a network zone.
+   * @returns {Promise<NetworkZone>}
    */
   deactivateNetworkZone(zoneId) {
     if (!zoneId) {
@@ -7831,16 +8484,12 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/zones/${zoneId}`
     ];
 
-    const request = this.http.post(
+    const request = this.http.postJson(
       url,
-      {
-        headers: {
-          'Content-Type': 'application/json', 'Accept': 'application/json',
-        },
-      },
+      null,
       { resources }
     );
-    return request;
+    return request.then(jsonRes => new models.NetworkZone(jsonRes, this));
   }
 
 }

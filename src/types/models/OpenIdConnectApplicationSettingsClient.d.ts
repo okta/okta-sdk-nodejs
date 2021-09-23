@@ -43,6 +43,7 @@ declare class OpenIdConnectApplicationSettingsClient extends Resource {
   refresh_token: OpenIdConnectApplicationSettingsRefreshToken;
   response_types: OAuthResponseType[];
   tos_uri: string;
+  wildcard_redirect: string;
 
 }
 
