@@ -25,6 +25,7 @@ const RESTRICTED_MODEL_PROPERTY_OVERRIDES = {
 
 const KNOWN_CONFLICTING_PROPERTY_NAMES = {
   UserFactor: ['verify'],
+  OrgPreferences: ['showEndUserFooter']
 };
 
 const PROPERTY_NAME_CHARACTERS_REQUIRE_ESCAPING = ['#'];
