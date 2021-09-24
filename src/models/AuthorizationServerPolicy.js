@@ -53,7 +53,6 @@ class AuthorizationServerPolicy extends Resource {
   delete(authServerId) {
     return this.httpClient.deleteAuthorizationServerPolicy(authServerId, this.id);
   }
-
   /**
    * @param {string} authServerId
    * @returns {Promise<Collection>} A collection that will yield {@link AuthorizationServerPolicyRule} instances.
@@ -61,7 +60,6 @@ class AuthorizationServerPolicy extends Resource {
   listPolicyRules(authServerId) {
     return this.httpClient.listAuthorizationServerPolicyRules(this.id, authServerId);
   }
-
   /**
    * @param {string} authServerId
    * @param {AuthorizationServerPolicyRule} authorizationServerPolicyRule
@@ -70,7 +68,6 @@ class AuthorizationServerPolicy extends Resource {
   createPolicyRule(authServerId, authorizationServerPolicyRule) {
     return this.httpClient.createAuthorizationServerPolicyRule(this.id, authServerId, authorizationServerPolicyRule);
   }
-
   /**
    * @param {string} authServerId
    * @param {string} ruleId
@@ -79,7 +76,6 @@ class AuthorizationServerPolicy extends Resource {
   getPolicyRule(authServerId, ruleId) {
     return this.httpClient.getAuthorizationServerPolicyRule(this.id, authServerId, ruleId);
   }
-
   /**
    * @param {string} authServerId
    * @param {string} ruleId
@@ -87,14 +83,12 @@ class AuthorizationServerPolicy extends Resource {
   deletePolicyRule(authServerId, ruleId) {
     return this.httpClient.deleteAuthorizationServerPolicyRule(this.id, authServerId, ruleId);
   }
-
   /**
    * @param {string} authServerId
    */
   activate(authServerId) {
     return this.httpClient.activateAuthorizationServerPolicy(authServerId, this.id);
   }
-
   /**
    * @param {string} authServerId
    */

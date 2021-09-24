@@ -69,15 +69,12 @@ class Application extends Resource {
   delete() {
     return this.httpClient.deleteApplication(this.id);
   }
-
   activate() {
     return this.httpClient.activateApplication(this.id);
   }
-
   deactivate() {
     return this.httpClient.deactivateApplication(this.id);
   }
-
   /**
    * @param {object} queryParameters
    * @returns {Promise<Collection>} A collection that will yield {@link AppUser} instances.
@@ -85,7 +82,6 @@ class Application extends Resource {
   listApplicationUsers(queryParameters) {
     return this.httpClient.listApplicationUsers(this.id, queryParameters);
   }
-
   /**
    * @param {AppUser} appUser
    * @returns {Promise<AppUser>}
@@ -93,7 +89,6 @@ class Application extends Resource {
   assignUserToApplication(appUser) {
     return this.httpClient.assignUserToApplication(this.id, appUser);
   }
-
   /**
    * @param {string} userId
    * @param {object} queryParameters
@@ -102,7 +97,6 @@ class Application extends Resource {
   getApplicationUser(userId, queryParameters) {
     return this.httpClient.getApplicationUser(this.id, userId, queryParameters);
   }
-
   /**
    * @param {string} groupId
    * @param {ApplicationGroupAssignment} applicationGroupAssignment
@@ -111,7 +105,6 @@ class Application extends Resource {
   createApplicationGroupAssignment(groupId, applicationGroupAssignment) {
     return this.httpClient.createApplicationGroupAssignment(this.id, groupId, applicationGroupAssignment);
   }
-
   /**
    * @param {string} groupId
    * @param {object} queryParameters
@@ -120,7 +113,6 @@ class Application extends Resource {
   getApplicationGroupAssignment(groupId, queryParameters) {
     return this.httpClient.getApplicationGroupAssignment(this.id, groupId, queryParameters);
   }
-
   /**
    * @param {string} keyId
    * @param {object} queryParameters
@@ -129,7 +121,6 @@ class Application extends Resource {
   cloneApplicationKey(keyId, queryParameters) {
     return this.httpClient.cloneApplicationKey(this.id, keyId, queryParameters);
   }
-
   /**
    * @param {string} keyId
    * @returns {Promise<JsonWebKey>}
@@ -137,7 +128,6 @@ class Application extends Resource {
   getApplicationKey(keyId) {
     return this.httpClient.getApplicationKey(this.id, keyId);
   }
-
   /**
    * @param {object} queryParameters
    * @returns {Promise<Collection>} A collection that will yield {@link ApplicationGroupAssignment} instances.
@@ -145,14 +135,12 @@ class Application extends Resource {
   listGroupAssignments(queryParameters) {
     return this.httpClient.listApplicationGroupAssignments(this.id, queryParameters);
   }
-
   /**
    * @returns {Promise<Collection>} A collection that will yield {@link JsonWebKey} instances.
    */
   listKeys() {
     return this.httpClient.listApplicationKeys(this.id);
   }
-
   /**
    * @param {object} queryParameters
    * @returns {Promise<JsonWebKey>}
@@ -160,7 +148,6 @@ class Application extends Resource {
   generateKey(queryParameters) {
     return this.httpClient.generateApplicationKey(this.id, queryParameters);
   }
-
   /**
    * @param {CsrMetadata} csrMetadata
    * @returns {Promise<Csr>}
@@ -168,7 +155,6 @@ class Application extends Resource {
   generateCsr(csrMetadata) {
     return this.httpClient.generateCsrForApplication(this.id, csrMetadata);
   }
-
   /**
    * @param {string} csrId
    * @returns {Promise<Csr>}
@@ -176,21 +162,18 @@ class Application extends Resource {
   getCsr(csrId) {
     return this.httpClient.getCsrForApplication(this.id, csrId);
   }
-
   /**
    * @param {string} csrId
    */
   revokeCsr(csrId) {
     return this.httpClient.revokeCsrFromApplication(this.id, csrId);
   }
-
   /**
    * @returns {Promise<Collection>} A collection that will yield {@link Csr} instances.
    */
   listCsrs() {
     return this.httpClient.listCsrsForApplication(this.id);
   }
-
   /**
    * @param {string} csrId
    * @returns {Promise<JsonWebKey>}
@@ -198,35 +181,6 @@ class Application extends Resource {
   publishCerCert(csrId) {
     return this.httpClient.publishCsrFromApplication(this.id, csrId);
   }
-
-  
-publishBinaryCerCert(
-) {
-    return this.httpClient.(
-);
-  }
-
-  
-publishDerCert(
-) {
-    return this.httpClient.(
-);
-  }
-
-  
-publishBinaryDerCert(
-) {
-    return this.httpClient.(
-);
-  }
-
-  
-publishBinaryPemCert(
-) {
-    return this.httpClient.(
-);
-  }
-
   /**
    * @param {object} queryParameters
    * @returns {Promise<Collection>} A collection that will yield {@link OAuth2Token} instances.
@@ -234,14 +188,12 @@ publishBinaryPemCert(
   listOAuth2Tokens(queryParameters) {
     return this.httpClient.listOAuth2TokensForApplication(this.id, queryParameters);
   }
-
   /**
    * @param {string} tokenId
    */
   revokeOAuth2TokenForApplication(tokenId) {
     return this.httpClient.revokeOAuth2TokenForApplication(this.id, tokenId);
   }
-
   /**
    * @param {string} tokenId
    * @param {object} queryParameters
@@ -250,11 +202,9 @@ publishBinaryPemCert(
   getOAuth2Token(tokenId, queryParameters) {
     return this.httpClient.getOAuth2TokenForApplication(this.id, tokenId, queryParameters);
   }
-
   revokeOAuth2Tokens() {
     return this.httpClient.revokeOAuth2TokensForApplication(this.id);
   }
-
   /**
    * @param {object} queryParameters
    * @returns {Promise<Collection>} A collection that will yield {@link OAuth2ScopeConsentGrant} instances.
@@ -262,7 +212,6 @@ publishBinaryPemCert(
   listScopeConsentGrants(queryParameters) {
     return this.httpClient.listScopeConsentGrants(this.id, queryParameters);
   }
-
   /**
    * @param {OAuth2ScopeConsentGrant} oAuth2ScopeConsentGrant
    * @returns {Promise<OAuth2ScopeConsentGrant>}
@@ -270,14 +219,12 @@ publishBinaryPemCert(
   grantConsentToScope(oAuth2ScopeConsentGrant) {
     return this.httpClient.grantConsentToScope(this.id, oAuth2ScopeConsentGrant);
   }
-
   /**
    * @param {string} grantId
    */
   revokeScopeConsentGrant(grantId) {
     return this.httpClient.revokeScopeConsentGrant(this.id, grantId);
   }
-
   /**
    * @param {string} grantId
    * @param {object} queryParameters

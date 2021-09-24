@@ -28,7 +28,6 @@ class OrgContactUser extends Resource {
 
   }
 
-
   /**
    * @param {string} contactType
    * @param {UserIdString} userIdString

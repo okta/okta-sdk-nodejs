@@ -50,10 +50,11 @@ class {{modelName}} extends Resource {
   {{/if}}
   {{/each}}
   {{#each methods}}
-
+  {{#if operation.operationId}}
   {{{modelMethodPublicArgumentJsDocBuilder this ../modelName}}}{{alias}}({{modelMethodPublicArgumentBuilder this ../modelName}}) {
     return this.httpClient.{{operation.operationId}}({{modelMethodProxyArgumentBuilder this ../modelName}});
   }
+  {{/if}}
   {{/each}}
 }
 

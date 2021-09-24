@@ -67,15 +67,19 @@ function formatImportStatements(importTypes, {
   return importStatements.join('\n');
 }
 
-function convertSwaggerToTSType(swaggerType, collectionElementType) {
-  return {
-    array: `${collectionElementType}[]`,
+function convertSwaggerToTSType(swaggerType, collectionElementType, modelName) {
+  const typesMap = {
     integer: 'number',
     double: 'number',
     hash: '{[name: string]: unknown}',
     dateTime: 'string',
     password: 'string',
     object: 'Record<string, unknown>'
+  };
+
+  return {
+    ...typesMap,
+    array: `${typesMap[collectionElementType] || collectionElementType}[]`,
   }[swaggerType] || swaggerType;
 }
 

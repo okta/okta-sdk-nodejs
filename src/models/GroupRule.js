@@ -52,11 +52,9 @@ class GroupRule extends Resource {
   delete(queryParameters) {
     return this.httpClient.deleteGroupRule(this.id, queryParameters);
   }
-
   activate() {
     return this.httpClient.activateGroupRule(this.id);
   }
-
   deactivate() {
     return this.httpClient.deactivateGroupRule(this.id);
   }

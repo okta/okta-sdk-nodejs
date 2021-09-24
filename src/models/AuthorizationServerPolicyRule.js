@@ -57,7 +57,6 @@ class AuthorizationServerPolicyRule extends Resource {
   delete(policyId, authServerId) {
     return this.httpClient.deleteAuthorizationServerPolicyRule(policyId, authServerId, this.id);
   }
-
   /**
    * @param {string} authServerId
    * @param {string} policyId
@@ -65,7 +64,6 @@ class AuthorizationServerPolicyRule extends Resource {
   activate(authServerId, policyId) {
     return this.httpClient.activateAuthorizationServerPolicyRule(authServerId, policyId, this.id);
   }
-
   /**
    * @param {string} authServerId
    * @param {string} policyId

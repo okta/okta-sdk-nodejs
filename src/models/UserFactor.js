@@ -43,7 +43,6 @@ class UserFactor extends Resource {
   delete(userId) {
     return this.httpClient.deleteFactor(userId, this.id);
   }
-
   /**
    * @param {string} userId
    * @param {ActivateFactorRequest} activateFactorRequest
@@ -52,7 +51,6 @@ class UserFactor extends Resource {
   activate(userId, activateFactorRequest) {
     return this.httpClient.activateFactor(userId, this.id, activateFactorRequest);
   }
-
   /**
    * @param {string} userId
    * @param {VerifyFactorRequest} verifyFactorRequest

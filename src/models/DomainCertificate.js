@@ -30,7 +30,6 @@ class DomainCertificate extends Resource {
 
   }
 
-
   /**
    * @param {string} domainId
    */

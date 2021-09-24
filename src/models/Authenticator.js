@@ -37,11 +37,9 @@ class Authenticator extends Resource {
     }
   }
 
-
   activate() {
     return this.httpClient.activateAuthenticator(this.id);
   }
-
   deactivate() {
     return this.httpClient.deactivateAuthenticator(this.id);
   }

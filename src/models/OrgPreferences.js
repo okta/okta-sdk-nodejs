@@ -28,14 +28,12 @@ class OrgPreferences extends Resource {
 
   }
 
-
   /**
    * @returns {Promise<OrgPreferences>}
    */
   hideEndUserFooter() {
     return this.httpClient.hideOktaUIFooter();
   }
-
   /**
    * @returns {Promise<OrgPreferences>}
    */

@@ -55,14 +55,12 @@ class PolicyRule extends Resource {
   delete(policyId) {
     return this.httpClient.deletePolicyRule(policyId, this.id);
   }
-
   /**
    * @param {string} policyId
    */
   activate(policyId) {
     return this.httpClient.activatePolicyRule(policyId, this.id);
   }
-
   /**
    * @param {string} policyId
    */

@@ -25,7 +25,7 @@ declare class Error extends Resource {
   errorSummary: string;
   errorLink: string;
   errorId: string;
-  errorCauses: object[];
+  errorCauses: Record<string, unknown>[];
 
 }
 

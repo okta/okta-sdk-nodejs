@@ -29,21 +29,18 @@ class OrgOktaSupportSettingsObj extends Resource {
 
   }
 
-
   /**
    * @returns {Promise<OrgOktaSupportSettingsObj>}
    */
   extendOktaSupport() {
     return this.httpClient.extendOktaSupport();
   }
-
   /**
    * @returns {Promise<OrgOktaSupportSettingsObj>}
    */
   grantOktaSupport() {
     return this.httpClient.grantOktaSupport();
   }
-
   /**
    * @returns {Promise<OrgOktaSupportSettingsObj>}
    */

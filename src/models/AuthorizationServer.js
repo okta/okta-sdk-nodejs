@@ -48,14 +48,12 @@ class AuthorizationServer extends Resource {
   delete() {
     return this.httpClient.deleteAuthorizationServer(this.id);
   }
-
   /**
    * @returns {Promise<Collection>} A collection that will yield {@link OAuth2Claim} instances.
    */
   listOAuth2Claims() {
     return this.httpClient.listOAuth2Claims(this.id);
   }
-
   /**
    * @param {OAuth2Claim} oAuth2Claim
    * @returns {Promise<OAuth2Claim>}
@@ -63,14 +61,12 @@ class AuthorizationServer extends Resource {
   createOAuth2Claim(oAuth2Claim) {
     return this.httpClient.createOAuth2Claim(this.id, oAuth2Claim);
   }
-
   /**
    * @param {string} claimId
    */
   deleteOAuth2Claim(claimId) {
     return this.httpClient.deleteOAuth2Claim(this.id, claimId);
   }
-
   /**
    * @param {string} claimId
    * @returns {Promise<OAuth2Claim>}
@@ -78,7 +74,6 @@ class AuthorizationServer extends Resource {
   getOAuth2Claim(claimId) {
     return this.httpClient.getOAuth2Claim(this.id, claimId);
   }
-
   /**
    * @param {string} claimId
    * @param {OAuth2Claim} oAuth2Claim
@@ -87,21 +82,18 @@ class AuthorizationServer extends Resource {
   updateOAuth2Claim(claimId, oAuth2Claim) {
     return this.httpClient.updateOAuth2Claim(this.id, claimId, oAuth2Claim);
   }
-
   /**
    * @returns {Promise<Collection>} A collection that will yield {@link OAuth2Client} instances.
    */
   listOAuth2Clients() {
     return this.httpClient.listOAuth2ClientsForAuthorizationServer(this.id);
   }
-
   /**
    * @param {string} clientId
    */
   revokeRefreshTokensForClient(clientId) {
     return this.httpClient.revokeRefreshTokensForAuthorizationServerAndClient(this.id, clientId);
   }
-
   /**
    * @param {string} clientId
    * @param {object} queryParameters
@@ -110,7 +102,6 @@ class AuthorizationServer extends Resource {
   listRefreshTokensForClient(clientId, queryParameters) {
     return this.httpClient.listRefreshTokensForAuthorizationServerAndClient(this.id, clientId, queryParameters);
   }
-
   /**
    * @param {string} clientId
    * @param {string} tokenId
@@ -120,7 +111,6 @@ class AuthorizationServer extends Resource {
   getRefreshTokenForClient(clientId, tokenId, queryParameters) {
     return this.httpClient.getRefreshTokenForAuthorizationServerAndClient(this.id, clientId, tokenId, queryParameters);
   }
-
   /**
    * @param {string} clientId
    * @param {string} tokenId
@@ -128,14 +118,12 @@ class AuthorizationServer extends Resource {
   revokeRefreshTokenForClient(clientId, tokenId) {
     return this.httpClient.revokeRefreshTokenForAuthorizationServerAndClient(this.id, clientId, tokenId);
   }
-
   /**
    * @returns {Promise<Collection>} A collection that will yield {@link JsonWebKey} instances.
    */
   listKeys() {
     return this.httpClient.listAuthorizationServerKeys(this.id);
   }
-
   /**
    * @param {JwkUse} jwkUse
    * @returns {Promise<Collection>} A collection that will yield {@link JsonWebKey} instances.
@@ -143,22 +131,18 @@ class AuthorizationServer extends Resource {
   rotateKeys(jwkUse) {
     return this.httpClient.rotateAuthorizationServerKeys(this.id, jwkUse);
   }
-
   activate() {
     return this.httpClient.activateAuthorizationServer(this.id);
   }
-
   deactivate() {
     return this.httpClient.deactivateAuthorizationServer(this.id);
   }
-
   /**
    * @returns {Promise<Collection>} A collection that will yield {@link AuthorizationServerPolicy} instances.
    */
   listPolicies() {
     return this.httpClient.listAuthorizationServerPolicies(this.id);
   }
-
   /**
    * @param {AuthorizationServerPolicy} authorizationServerPolicy
    * @returns {Promise<AuthorizationServerPolicy>}
@@ -166,14 +150,12 @@ class AuthorizationServer extends Resource {
   createPolicy(authorizationServerPolicy) {
     return this.httpClient.createAuthorizationServerPolicy(this.id, authorizationServerPolicy);
   }
-
   /**
    * @param {string} policyId
    */
   deletePolicy(policyId) {
     return this.httpClient.deleteAuthorizationServerPolicy(this.id, policyId);
   }
-
   /**
    * @param {string} policyId
    * @returns {Promise<AuthorizationServerPolicy>}
@@ -181,7 +163,6 @@ class AuthorizationServer extends Resource {
   getPolicy(policyId) {
     return this.httpClient.getAuthorizationServerPolicy(this.id, policyId);
   }
-
   /**
    * @param {string} policyId
    * @param {AuthorizationServerPolicy} authorizationServerPolicy
@@ -190,7 +171,6 @@ class AuthorizationServer extends Resource {
   updatePolicy(policyId, authorizationServerPolicy) {
     return this.httpClient.updateAuthorizationServerPolicy(this.id, policyId, authorizationServerPolicy);
   }
-
   /**
    * @param {object} queryParameters
    * @returns {Promise<Collection>} A collection that will yield {@link OAuth2Scope} instances.
@@ -198,7 +178,6 @@ class AuthorizationServer extends Resource {
   listOAuth2Scopes(queryParameters) {
     return this.httpClient.listOAuth2Scopes(this.id, queryParameters);
   }
-
   /**
    * @param {OAuth2Scope} oAuth2Scope
    * @returns {Promise<OAuth2Scope>}
@@ -206,14 +185,12 @@ class AuthorizationServer extends Resource {
   createOAuth2Scope(oAuth2Scope) {
     return this.httpClient.createOAuth2Scope(this.id, oAuth2Scope);
   }
-
   /**
    * @param {string} scopeId
    */
   deleteOAuth2Scope(scopeId) {
     return this.httpClient.deleteOAuth2Scope(this.id, scopeId);
   }
-
   /**
    * @param {string} scopeId
    * @returns {Promise<OAuth2Scope>}
@@ -221,7 +198,6 @@ class AuthorizationServer extends Resource {
   getOAuth2Scope(scopeId) {
     return this.httpClient.getOAuth2Scope(this.id, scopeId);
   }
-
   /**
    * @param {string} scopeId
    * @param {OAuth2Scope} oAuth2Scope

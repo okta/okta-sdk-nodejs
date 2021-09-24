@@ -28,14 +28,12 @@ class OrgOktaCommunicationSetting extends Resource {
 
   }
 
-
   /**
    * @returns {Promise<OrgOktaCommunicationSetting>}
    */
   optInUsersToOktaCommunicationEmails() {
     return this.httpClient.optInUsersToOktaCommunicationEmails();
   }
-
   /**
    * @returns {Promise<OrgOktaCommunicationSetting>}
    */

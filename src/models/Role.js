@@ -36,7 +36,6 @@ class Role extends Resource {
 
   }
 
-
   /**
    * @param {string} groupId
    * @param {string} targetGroupId
@@ -44,7 +43,6 @@ class Role extends Resource {
   addAdminGroupTarget(groupId, targetGroupId) {
     return this.httpClient.addGroupTargetToGroupAdministratorRoleForGroup(groupId, this.id, targetGroupId);
   }
-
   /**
    * @param {string} groupId
    * @param {string} appName
@@ -53,7 +51,6 @@ class Role extends Resource {
   addAppInstanceTargetToAdminRole(groupId, appName, applicationId) {
     return this.httpClient.addApplicationInstanceTargetToAppAdminRoleGivenToGroup(groupId, this.id, appName, applicationId);
   }
-
   /**
    * @param {string} groupId
    * @param {string} appName
@@ -61,14 +58,12 @@ class Role extends Resource {
   addAppTargetToAdminRole(groupId, appName) {
     return this.httpClient.addApplicationTargetToAdminRoleGivenToGroup(groupId, this.id, appName);
   }
-
   /**
    * @param {string} userId
    */
   addAllAppsAsTargetToRole(userId) {
     return this.httpClient.addAllAppsAsTargetToRole(userId, this.id);
   }
-
   /**
    * @param {string} userId
    * @param {string} appName
@@ -77,7 +72,6 @@ class Role extends Resource {
   addAppTargetToAppAdminRoleForUser(userId, appName, applicationId) {
     return this.httpClient.addApplicationTargetToAppAdminRoleForUser(userId, this.id, appName, applicationId);
   }
-
   /**
    * @param {string} userId
    * @param {string} appName

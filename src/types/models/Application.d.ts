@@ -93,10 +93,10 @@ declare class Application extends Resource {
   revokeCsr(csrId: string): Promise<Response>;
   listCsrs(): Collection<Csr>;
   publishCerCert(csrId: string): Promise<JsonWebKey>;
-  
-  
-  
-  
+
+
+
+
   listOAuth2Tokens(queryParameters?: {
     expand?: string,
     after?: string,

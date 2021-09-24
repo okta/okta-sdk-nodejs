@@ -32,7 +32,7 @@ declare class {{modelName}} extends Resource {
   {{#if this.readOnly}}readonly {{/if}}{{{sanitizeModelPropertyName ../modelName this.propertyName}}}: {{model}};
 {{/if}}
 {{else}}
-  {{#if this.readOnly}}readonly {{/if}}{{{sanitizeModelPropertyName ../modelName this.propertyName}}}: {{{convertSwaggerToTSType this.commonType this.model}}};
+  {{#if this.readOnly}}readonly {{/if}}{{{sanitizeModelPropertyName ../modelName this.propertyName}}}: {{{convertSwaggerToTSType this.commonType this.model ../modelName}}};
 {{/if}}
 {{/unless}}
 {{/each}}

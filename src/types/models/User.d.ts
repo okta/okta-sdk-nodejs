@@ -72,7 +72,7 @@ declare class User extends Resource {
   forgotPasswordSetNewPassword(userCredentials: UserCredentialsOptions, queryParameters?: {
     sendEmail?: string,
   }): Promise<UserCredentials>;
-  
+
   assignRole(assignRoleRequest: AssignRoleRequestOptions, queryParameters?: {
     disableNotifications?: string,
   }): Promise<Role>;

@@ -58,14 +58,12 @@ class NetworkZone extends Resource {
   delete() {
     return this.httpClient.deleteNetworkZone(this.id);
   }
-
   /**
    * @returns {Promise<NetworkZone>}
    */
   activate() {
     return this.httpClient.activateNetworkZone(this.id);
   }
-
   /**
    * @returns {Promise<NetworkZone>}
    */

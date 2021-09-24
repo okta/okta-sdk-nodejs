@@ -44,7 +44,6 @@ class SmsTemplate extends Resource {
   delete() {
     return this.httpClient.deleteSmsTemplate(this.id);
   }
-
   /**
    * @returns {Promise<SmsTemplate>}
    */

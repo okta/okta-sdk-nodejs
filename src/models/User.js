@@ -63,14 +63,12 @@ class User extends Resource {
   delete(queryParameters) {
     return this.httpClient.deactivateOrDeleteUser(this.id, queryParameters);
   }
-
   /**
    * @returns {Promise<Collection>} A collection that will yield {@link AppLink} instances.
    */
   listAppLinks() {
     return this.httpClient.listAppLinks(this.id);
   }
-
   /**
    * @param {ChangePasswordRequest} changePasswordRequest
    * @param {object} queryParameters
@@ -79,7 +77,6 @@ class User extends Resource {
   changePassword(changePasswordRequest, queryParameters) {
     return this.httpClient.changePassword(this.id, changePasswordRequest, queryParameters);
   }
-
   /**
    * @param {UserCredentials} userCredentials
    * @returns {Promise<UserCredentials>}
@@ -87,7 +84,6 @@ class User extends Resource {
   changeRecoveryQuestion(userCredentials) {
     return this.httpClient.changeRecoveryQuestion(this.id, userCredentials);
   }
-
   /**
    * @param {UserCredentials} userCredentials
    * @param {object} queryParameters
@@ -96,14 +92,6 @@ class User extends Resource {
   forgotPasswordSetNewPassword(userCredentials, queryParameters) {
     return this.httpClient.forgotPasswordSetNewPassword(this.id, userCredentials, queryParameters);
   }
-
-  
-forgotPasswordGenerateOneTimeToken(
-) {
-    return this.httpClient.(
-);
-  }
-
   /**
    * @param {AssignRoleRequest} assignRoleRequest
    * @param {object} queryParameters
@@ -112,14 +100,12 @@ forgotPasswordGenerateOneTimeToken(
   assignRole(assignRoleRequest, queryParameters) {
     return this.httpClient.assignRoleToUser(this.id, assignRoleRequest, queryParameters);
   }
-
   /**
    * @param {string} roleId
    */
   removeRole(roleId) {
     return this.httpClient.removeRoleFromUser(this.id, roleId);
   }
-
   /**
    * @param {string} roleId
    * @param {object} queryParameters
@@ -128,7 +114,6 @@ forgotPasswordGenerateOneTimeToken(
   listGroupTargets(roleId, queryParameters) {
     return this.httpClient.listGroupTargetsForRole(this.id, roleId, queryParameters);
   }
-
   /**
    * @param {string} roleId
    * @param {string} groupId
@@ -136,7 +121,6 @@ forgotPasswordGenerateOneTimeToken(
   removeGroupTarget(roleId, groupId) {
     return this.httpClient.removeGroupTargetFromRole(this.id, roleId, groupId);
   }
-
   /**
    * @param {string} roleId
    * @param {string} groupId
@@ -144,7 +128,6 @@ forgotPasswordGenerateOneTimeToken(
   addGroupTarget(roleId, groupId) {
     return this.httpClient.addGroupTargetToRole(this.id, roleId, groupId);
   }
-
   /**
    * @param {object} queryParameters
    * @returns {Promise<Collection>} A collection that will yield {@link Role} instances.
@@ -152,21 +135,18 @@ forgotPasswordGenerateOneTimeToken(
   listAssignedRoles(queryParameters) {
     return this.httpClient.listAssignedRolesForUser(this.id, queryParameters);
   }
-
   /**
    * @param {string} roleId
    */
   addAllAppsAsTarget(roleId) {
     return this.httpClient.addAllAppsAsTargetToRole(this.id, roleId);
   }
-
   /**
    * @returns {Promise<Collection>} A collection that will yield {@link Group} instances.
    */
   listGroups() {
     return this.httpClient.listUserGroups(this.id);
   }
-
   /**
    * @param {object} queryParameters
    * @returns {Promise<Collection>} A collection that will yield {@link OAuth2ScopeConsentGrant} instances.
@@ -174,25 +154,21 @@ forgotPasswordGenerateOneTimeToken(
   listGrants(queryParameters) {
     return this.httpClient.listUserGrants(this.id, queryParameters);
   }
-
   revokeGrants() {
     return this.httpClient.revokeUserGrants(this.id);
   }
-
   /**
    * @param {string} grantId
    */
   revokeGrant(grantId) {
     return this.httpClient.revokeUserGrant(this.id, grantId);
   }
-
   /**
    * @param {string} clientId
    */
   revokeGrantsForUserAndClient(clientId) {
     return this.httpClient.revokeGrantsForUserAndClient(this.id, clientId);
   }
-
   /**
    * @param {string} clientId
    * @param {object} queryParameters
@@ -201,7 +177,6 @@ forgotPasswordGenerateOneTimeToken(
   listRefreshTokensForUserAndClient(clientId, queryParameters) {
     return this.httpClient.listRefreshTokensForUserAndClient(this.id, clientId, queryParameters);
   }
-
   /**
    * @param {string} clientId
    * @param {string} tokenId
@@ -209,7 +184,6 @@ forgotPasswordGenerateOneTimeToken(
   revokeTokenForUserAndClient(clientId, tokenId) {
     return this.httpClient.revokeTokenForUserAndClient(this.id, clientId, tokenId);
   }
-
   /**
    * @param {string} clientId
    * @param {string} tokenId
@@ -219,21 +193,18 @@ forgotPasswordGenerateOneTimeToken(
   getRefreshTokenForUserAndClient(clientId, tokenId, queryParameters) {
     return this.httpClient.getRefreshTokenForUserAndClient(this.id, clientId, tokenId, queryParameters);
   }
-
   /**
    * @param {string} clientId
    */
   revokeTokensForUserAndClient(clientId) {
     return this.httpClient.revokeTokensForUserAndClient(this.id, clientId);
   }
-
   /**
    * @returns {Promise<Collection>} A collection that will yield {@link OAuth2Client} instances.
    */
   listClients() {
     return this.httpClient.listUserClients(this.id);
   }
-
   /**
    * @param {object} queryParameters
    * @returns {Promise<UserActivationToken>}
@@ -241,7 +212,6 @@ forgotPasswordGenerateOneTimeToken(
   activate(queryParameters) {
     return this.httpClient.activateUser(this.id, queryParameters);
   }
-
   /**
    * @param {object} queryParameters
    * @returns {Promise<UserActivationToken>}
@@ -249,22 +219,18 @@ forgotPasswordGenerateOneTimeToken(
   reactivate(queryParameters) {
     return this.httpClient.reactivateUser(this.id, queryParameters);
   }
-
   /**
    * @param {object} queryParameters
    */
   deactivate(queryParameters) {
     return this.httpClient.deactivateUser(this.id, queryParameters);
   }
-
   suspend() {
     return this.httpClient.suspendUser(this.id);
   }
-
   unsuspend() {
     return this.httpClient.unsuspendUser(this.id);
   }
-
   /**
    * @param {object} queryParameters
    * @returns {Promise<ResetPasswordToken>}
@@ -272,43 +238,36 @@ forgotPasswordGenerateOneTimeToken(
   resetPassword(queryParameters) {
     return this.httpClient.resetPassword(this.id, queryParameters);
   }
-
   /**
    * @returns {Promise<User>}
    */
   expirePassword() {
     return this.httpClient.expirePassword(this.id);
   }
-
   /**
    * @returns {Promise<TempPassword>}
    */
   expirePasswordAndGetTemporaryPassword() {
     return this.httpClient.expirePasswordAndGetTemporaryPassword(this.id);
   }
-
   unlock() {
     return this.httpClient.unlockUser(this.id);
   }
-
   resetFactors() {
     return this.httpClient.resetFactors(this.id);
   }
-
   /**
    * @param {string} factorId
    */
   deleteFactor(factorId) {
     return this.httpClient.deleteFactor(this.id, factorId);
   }
-
   /**
    * @param {string} groupId
    */
   addToGroup(groupId) {
     return this.httpClient.addUserToGroup(groupId, this.id);
   }
-
   /**
    * @param {UserFactor} userFactor
    * @param {object} queryParameters
@@ -317,28 +276,24 @@ forgotPasswordGenerateOneTimeToken(
   enrollFactor(userFactor, queryParameters) {
     return this.httpClient.enrollFactor(this.id, userFactor, queryParameters);
   }
-
   /**
    * @returns {Promise<Collection>} A collection that will yield {@link UserFactor} instances.
    */
   listSupportedFactors() {
     return this.httpClient.listSupportedFactors(this.id);
   }
-
   /**
    * @returns {Promise<Collection>} A collection that will yield {@link UserFactor} instances.
    */
   listFactors() {
     return this.httpClient.listFactors(this.id);
   }
-
   /**
    * @returns {Promise<Collection>} A collection that will yield {@link SecurityQuestion} instances.
    */
   listSupportedSecurityQuestions() {
     return this.httpClient.listSupportedSecurityQuestions(this.id);
   }
-
   /**
    * @param {string} factorId
    * @returns {Promise<UserFactor>}
@@ -346,7 +301,6 @@ forgotPasswordGenerateOneTimeToken(
   getFactor(factorId) {
     return this.httpClient.getFactor(this.id, factorId);
   }
-
   /**
    * @param {string} primaryRelationshipName
    * @param {string} primaryUserId
@@ -354,14 +308,12 @@ forgotPasswordGenerateOneTimeToken(
   setLinkedObject(primaryRelationshipName, primaryUserId) {
     return this.httpClient.setLinkedObjectForUser(this.id, primaryRelationshipName, primaryUserId);
   }
-
   /**
    * @returns {Promise<Collection>} A collection that will yield {@link IdentityProvider} instances.
    */
   listIdentityProviders() {
     return this.httpClient.listUserIdentityProviders(this.id);
   }
-
   /**
    * @param {string} relationshipName
    * @param {object} queryParameters
@@ -370,14 +322,12 @@ forgotPasswordGenerateOneTimeToken(
   getLinkedObjects(relationshipName, queryParameters) {
     return this.httpClient.getLinkedObjectsForUser(this.id, relationshipName, queryParameters);
   }
-
   /**
    * @param {object} queryParameters
    */
   clearSessions(queryParameters) {
     return this.httpClient.clearUserSessions(this.id, queryParameters);
   }
-
   /**
    * @param {string} relationshipName
    */

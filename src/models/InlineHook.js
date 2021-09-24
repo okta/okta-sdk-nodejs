@@ -46,21 +46,18 @@ class InlineHook extends Resource {
   delete() {
     return this.httpClient.deleteInlineHook(this.id);
   }
-
   /**
    * @returns {Promise<InlineHook>}
    */
   activate() {
     return this.httpClient.activateInlineHook(this.id);
   }
-
   /**
    * @returns {Promise<InlineHook>}
    */
   deactivate() {
     return this.httpClient.deactivateInlineHook(this.id);
   }
-
   /**
    * @param {InlineHookPayload} inlineHookPayload
    * @returns {Promise<InlineHookResponse>}

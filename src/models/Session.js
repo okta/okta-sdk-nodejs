@@ -46,7 +46,6 @@ class Session extends Resource {
   delete() {
     return this.httpClient.endSession(this.id);
   }
-
   /**
    * @returns {Promise<Session>}
    */

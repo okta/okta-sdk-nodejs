@@ -51,14 +51,12 @@ class IdentityProvider extends Resource {
   delete() {
     return this.httpClient.deleteIdentityProvider(this.id);
   }
-
   /**
    * @returns {Promise<Collection>} A collection that will yield {@link Csr} instances.
    */
   listSigningCsrs() {
     return this.httpClient.listCsrsForIdentityProvider(this.id);
   }
-
   /**
    * @param {CsrMetadata} csrMetadata
    * @returns {Promise<Csr>}
@@ -66,14 +64,12 @@ class IdentityProvider extends Resource {
   generateCsr(csrMetadata) {
     return this.httpClient.generateCsrForIdentityProvider(this.id, csrMetadata);
   }
-
   /**
    * @param {string} csrId
    */
   deleteSigningCsr(csrId) {
     return this.httpClient.revokeCsrForIdentityProvider(this.id, csrId);
   }
-
   /**
    * @param {string} csrId
    * @returns {Promise<Csr>}
@@ -81,14 +77,12 @@ class IdentityProvider extends Resource {
   getSigningCsr(csrId) {
     return this.httpClient.getCsrForIdentityProvider(this.id, csrId);
   }
-
   /**
    * @returns {Promise<Collection>} A collection that will yield {@link JsonWebKey} instances.
    */
   listSigningKeys() {
     return this.httpClient.listIdentityProviderSigningKeys(this.id);
   }
-
   /**
    * @param {object} queryParameters
    * @returns {Promise<JsonWebKey>}
@@ -96,7 +90,6 @@ class IdentityProvider extends Resource {
   generateSigningKey(queryParameters) {
     return this.httpClient.generateIdentityProviderSigningKey(this.id, queryParameters);
   }
-
   /**
    * @param {string} keyId
    * @returns {Promise<JsonWebKey>}
@@ -104,7 +97,6 @@ class IdentityProvider extends Resource {
   getSigningKey(keyId) {
     return this.httpClient.getIdentityProviderSigningKey(this.id, keyId);
   }
-
   /**
    * @param {string} keyId
    * @param {object} queryParameters
@@ -113,35 +105,30 @@ class IdentityProvider extends Resource {
   cloneKey(keyId, queryParameters) {
     return this.httpClient.cloneIdentityProviderKey(this.id, keyId, queryParameters);
   }
-
   /**
    * @returns {Promise<IdentityProvider>}
    */
   activate() {
     return this.httpClient.activateIdentityProvider(this.id);
   }
-
   /**
    * @returns {Promise<IdentityProvider>}
    */
   deactivate() {
     return this.httpClient.deactivateIdentityProvider(this.id);
   }
-
   /**
    * @returns {Promise<Collection>} A collection that will yield {@link IdentityProviderApplicationUser} instances.
    */
   listUsers() {
     return this.httpClient.listIdentityProviderApplicationUsers(this.id);
   }
-
   /**
    * @param {string} userId
    */
   unlinkUser(userId) {
     return this.httpClient.unlinkUserFromIdentityProvider(this.id, userId);
   }
-
   /**
    * @param {string} userId
    * @returns {Promise<IdentityProviderApplicationUser>}
@@ -149,7 +136,6 @@ class IdentityProvider extends Resource {
   getUser(userId) {
     return this.httpClient.getIdentityProviderApplicationUser(this.id, userId);
   }
-
   /**
    * @param {string} userId
    * @param {UserIdentityProviderLinkRequest} userIdentityProviderLinkRequest
@@ -158,7 +144,6 @@ class IdentityProvider extends Resource {
   linkUser(userId, userIdentityProviderLinkRequest) {
     return this.httpClient.linkUserToIdentityProvider(this.id, userId, userIdentityProviderLinkRequest);
   }
-
   /**
    * @param {string} userId
    * @returns {Promise<Collection>} A collection that will yield {@link SocialAuthToken} instances.

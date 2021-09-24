@@ -46,14 +46,12 @@ class Group extends Resource {
   delete() {
     return this.httpClient.deleteGroup(this.id);
   }
-
   /**
    * @param {string} userId
    */
   removeUser(userId) {
     return this.httpClient.removeUserFromGroup(this.id, userId);
   }
-
   /**
    * @param {object} queryParameters
    * @returns {Promise<Collection>} A collection that will yield {@link User} instances.
@@ -61,7 +59,6 @@ class Group extends Resource {
   listUsers(queryParameters) {
     return this.httpClient.listGroupUsers(this.id, queryParameters);
   }
-
   /**
    * @param {object} queryParameters
    * @returns {Promise<Collection>} A collection that will yield {@link Application} instances.
@@ -69,7 +66,6 @@ class Group extends Resource {
   listApplications(queryParameters) {
     return this.httpClient.listAssignedApplicationsForGroup(this.id, queryParameters);
   }
-
   /**
    * @param {AssignRoleRequest} assignRoleRequest
    * @param {object} queryParameters

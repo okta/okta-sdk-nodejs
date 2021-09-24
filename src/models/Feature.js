@@ -35,7 +35,6 @@ class Feature extends Resource {
     }
   }
 
-
   /**
    * @param {string} lifecycle
    * @param {object} queryParameters
@@ -44,14 +43,12 @@ class Feature extends Resource {
   updateLifecycle(lifecycle, queryParameters) {
     return this.httpClient.updateFeatureLifecycle(this.id, lifecycle, queryParameters);
   }
-
   /**
    * @returns {Promise<Collection>} A collection that will yield {@link Feature} instances.
    */
   getDependents() {
     return this.httpClient.listFeatureDependents(this.id);
   }
-
   /**
    * @returns {Promise<Collection>} A collection that will yield {@link Feature} instances.
    */
