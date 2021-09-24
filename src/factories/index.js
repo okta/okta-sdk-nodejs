@@ -16,7 +16,6 @@
 /** @ignore */
 exports.Application = require('./ApplicationFactory');
 exports.BrowserPluginApplication = require('./BrowserPluginApplicationFactory');
-exports.EventSubscriptions = require('./EventSubscriptionsFactory');
 exports.Policy = require('./PolicyFactory');
 exports.PolicyRule = require('./PolicyRuleFactory');
 exports.UserFactor = require('./UserFactorFactory');

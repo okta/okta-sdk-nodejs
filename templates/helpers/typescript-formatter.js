@@ -67,7 +67,7 @@ function formatImportStatements(importTypes, {
   return importStatements.join('\n');
 }
 
-function convertSwaggerToTSType(swaggerType, collectionElementType, modelName) {
+function convertSwaggerToTSType(swaggerType, collectionElementType) {
   const typesMap = {
     integer: 'number',
     double: 'number',
