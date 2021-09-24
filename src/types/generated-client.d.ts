@@ -93,6 +93,7 @@ import { PolicyRule } from './models/PolicyRule';
 import { PolicyRuleOptions } from './models/PolicyRule';
 import { CreateSessionRequestOptions } from './models/CreateSessionRequest';
 import { Session } from './models/Session';
+import { SmsTemplateType } from './models/SmsTemplateType';
 import { SmsTemplate } from './models/SmsTemplate';
 import { SmsTemplateOptions } from './models/SmsTemplate';
 import { ThreatInsightConfiguration } from './models/ThreatInsightConfiguration';
@@ -100,6 +101,7 @@ import { ThreatInsightConfigurationOptions } from './models/ThreatInsightConfigu
 import { TrustedOrigin } from './models/TrustedOrigin';
 import { TrustedOriginOptions } from './models/TrustedOrigin';
 import { CreateUserRequestOptions } from './models/CreateUserRequest';
+import { UserNextLogin } from './models/UserNextLogin';
 import { UserOptions } from './models/User';
 import { AppLink } from './models/AppLink';
 import { ChangePasswordRequestOptions } from './models/ChangePasswordRequest';
@@ -462,7 +464,7 @@ export declare class GeneratedApiClient {
   endSession(sessionId: string): Promise<Response>;
   refreshSession(sessionId: string): Promise<Session>;
   listSmsTemplates(queryParameters?: {
-    templateType?: undefined,
+    templateType?: SmsTemplateType,
   }): Collection<SmsTemplate>;
   createSmsTemplate(smsTemplate: SmsTemplateOptions): Promise<SmsTemplate>;
   getSmsTemplate(templateId: string): Promise<SmsTemplate>;
@@ -495,7 +497,7 @@ export declare class GeneratedApiClient {
   createUser(createUserRequest: CreateUserRequestOptions, queryParameters?: {
     activate?: boolean,
     provider?: boolean,
-    nextLogin?: undefined,
+    nextLogin?: UserNextLogin,
   }): Promise<User>;
   setLinkedObjectForUser(associatedUserId: string, primaryRelationshipName: string, primaryUserId: string): Promise<Response>;
   getUser(userId: string): Promise<User>;

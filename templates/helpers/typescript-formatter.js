@@ -27,8 +27,8 @@ function formatObjectLiteralType(typeProps) {
   let objectLiteralType = '{\n';
   typeProps.forEach(prop => {
     const isRequired = prop.required ? '' : '?';
-    const propType = convertSwaggerToTSType(prop.schema.type);
-    objectLiteralType += `    ${prop.name}${isRequired}: ${propType},\n`;
+    const propType = prop.schema.type;
+    objectLiteralType += `    ${prop.name}${isRequired}: ${convertSwaggerToTSType(propType)},\n`;
   });
   objectLiteralType += '  }';
   return objectLiteralType;

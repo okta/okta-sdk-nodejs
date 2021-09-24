@@ -354,7 +354,13 @@ const convertTypeObjectsToTypeNames = (args, returnType) => {
     return [];
   }
   const argTypes = Array.from(args.values()).map(arg => arg.type);
-  return [...argTypes, returnType.genericType, returnType.genericParameterType];
+  let nestedTypes = [];
+  argTypes.forEach(argType => {
+    if (Array.isArray(argType)) {
+      nestedTypes = nestedTypes.concat(argType.filter(entry => entry.schema['$ref']).map(entry => entry.schema.type));
+    }
+  });
+  return [...argTypes, ...nestedTypes, returnType.genericType, returnType.genericParameterType];
 };
 
 const isImportablePropertyType = (property, hostModelName) => {
