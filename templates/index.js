@@ -67,14 +67,21 @@ js.process = ({spec, operations, models, handlebars}) => {
 
   // add all the models and any related factories
   for (let model of models) {
+    let jsTemplateName = 'model.js.hbs';
+    let dtsTemplateName = 'model.d.ts.hbs';
+    if (model.enum) {
+      jsTemplateName = 'enum.js.hbs';
+      dtsTemplateName = 'enum.d.ts.hbs';
+    }
+
     templates.push({
-      src: 'model.js.hbs',
+      src: jsTemplateName,
       dest: `src/models/${model.modelName}.js`,
       context: model
     });
 
     templates.push({
-      src: 'model.d.ts.hbs',
+      src: dtsTemplateName,
       dest: `src/types/models/${model.modelName}.d.ts`,
       context: model
     });
@@ -148,19 +155,20 @@ js.process = ({spec, operations, models, handlebars}) => {
     const constructorStatements = [];
 
     model.properties.forEach(property => {
-      const propertyName = sanitizeModelPropertyName(model.modelName, property.propertyName);
+      const propertyName = `'${sanitizeModelPropertyName(model.modelName, property.propertyName).replace(/'/g, '')}'`;
+
       let requiresInstantiation = !property.isEnum && property.model && !['string', 'object'].includes(property.model);
 
-      constructorStatements.push(`    if (resourceJson && resourceJson.${propertyName}) {`);
+      constructorStatements.push(`    if (resourceJson && resourceJson[${propertyName}]) {`);
 
       if (requiresInstantiation) {
         if (property.isArray) {
-          constructorStatements.push(`      this.${propertyName} = resourceJson.${propertyName}.map(resourceItem => new ${property.model}(resourceItem));`);
+          constructorStatements.push(`      this[${propertyName}] = resourceJson[${propertyName}].map(resourceItem => new ${property.model}(resourceItem));`);
         } else {
-          constructorStatements.push(`      this.${propertyName} = new ${property.model}(resourceJson.${property.propertyName});`);
+          constructorStatements.push(`      this[${propertyName}] = new ${property.model}(resourceJson[${property.propertyName}]);`);
         }
       } else {
-        constructorStatements.push(`      this.${propertyName} = resourceJson.${property.propertyName};`);
+        constructorStatements.push(`      this[${propertyName}] = resourceJson['${property.propertyName}'];`);
       }
       constructorStatements.push('    }');
 
@@ -272,5 +280,12 @@ js.process = ({spec, operations, models, handlebars}) => {
   });
 
   handlebars.registerHelper('convertSwaggerToTSType', convertSwaggerToTSType);
+
+  handlebars.registerHelper('toEnumKey', (str) => {
+    if (str && typeof str === 'string') {
+      return str.toUpperCase().replace(/[:\-._]/g, '_');
+    }
+    return '';
+  });
   return templates;
 };
