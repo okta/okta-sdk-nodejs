@@ -32,8 +32,14 @@ const UserLifecycleAttributePolicyRuleCondition = require('./UserLifecycleAttrib
 class UserPolicyRuleCondition extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
+    if (resourceJson && resourceJson.exclude) {
+      this.exclude = resourceJson.exclude;
+    }
     if (resourceJson && resourceJson.inactivity) {
       this.inactivity = new InactivityPolicyRuleCondition(resourceJson.inactivity);
+    }
+    if (resourceJson && resourceJson.include) {
+      this.include = resourceJson.include;
     }
     if (resourceJson && resourceJson.lifecycleExpiration) {
       this.lifecycleExpiration = new LifecycleExpirationPolicyRuleCondition(resourceJson.lifecycleExpiration);

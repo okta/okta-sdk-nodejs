@@ -28,6 +28,9 @@ class AppUserCredentials extends Resource {
     if (resourceJson && resourceJson.password) {
       this.password = new AppUserPasswordCredential(resourceJson.password);
     }
+    if (resourceJson && resourceJson.userName) {
+      this.userName = resourceJson.userName;
+    }
   }
 
 }

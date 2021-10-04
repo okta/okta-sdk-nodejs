@@ -32,8 +32,32 @@ const InlineHookChannel = require('./InlineHookChannel');
 class InlineHook extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
+    if (resourceJson && resourceJson._links) {
+      this._links = resourceJson._links;
+    }
     if (resourceJson && resourceJson.channel) {
       this.channel = new InlineHookChannel(resourceJson.channel);
+    }
+    if (resourceJson && resourceJson.created) {
+      this.created = resourceJson.created;
+    }
+    if (resourceJson && resourceJson.id) {
+      this.id = resourceJson.id;
+    }
+    if (resourceJson && resourceJson.lastUpdated) {
+      this.lastUpdated = resourceJson.lastUpdated;
+    }
+    if (resourceJson && resourceJson.name) {
+      this.name = resourceJson.name;
+    }
+    if (resourceJson && resourceJson.status) {
+      this.status = resourceJson.status;
+    }
+    if (resourceJson && resourceJson.type) {
+      this.type = resourceJson.type;
+    }
+    if (resourceJson && resourceJson.version) {
+      this.version = resourceJson.version;
     }
   }
 

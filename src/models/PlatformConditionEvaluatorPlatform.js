@@ -28,6 +28,9 @@ class PlatformConditionEvaluatorPlatform extends Resource {
     if (resourceJson && resourceJson.os) {
       this.os = new PlatformConditionEvaluatorPlatformOperatingSystem(resourceJson.os);
     }
+    if (resourceJson && resourceJson.type) {
+      this.type = resourceJson.type;
+    }
   }
 
 }

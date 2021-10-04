@@ -25,7 +25,12 @@ var Resource = require('../resource');
 class EventSubscriptions extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-
+    if (resourceJson && resourceJson.items) {
+      this.items = resourceJson.items;
+    }
+    if (resourceJson && resourceJson.type) {
+      this.type = resourceJson.type;
+    }
   }
 
 }

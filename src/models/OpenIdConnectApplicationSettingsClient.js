@@ -43,20 +43,53 @@ const OAuthResponseType = require('./OAuthResponseType');
 class OpenIdConnectApplicationSettingsClient extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
+    if (resourceJson && resourceJson.application_type) {
+      this.application_type = resourceJson.application_type;
+    }
+    if (resourceJson && resourceJson.client_uri) {
+      this.client_uri = resourceJson.client_uri;
+    }
+    if (resourceJson && resourceJson.consent_method) {
+      this.consent_method = resourceJson.consent_method;
+    }
     if (resourceJson && resourceJson.grant_types) {
       this.grant_types = resourceJson.grant_types.map(resourceItem => new OAuthGrantType(resourceItem));
     }
     if (resourceJson && resourceJson.idp_initiated_login) {
       this.idp_initiated_login = new OpenIdConnectApplicationIdpInitiatedLogin(resourceJson.idp_initiated_login);
     }
+    if (resourceJson && resourceJson.initiate_login_uri) {
+      this.initiate_login_uri = resourceJson.initiate_login_uri;
+    }
+    if (resourceJson && resourceJson.issuer_mode) {
+      this.issuer_mode = resourceJson.issuer_mode;
+    }
     if (resourceJson && resourceJson.jwks) {
       this.jwks = new OpenIdConnectApplicationSettingsClientKeys(resourceJson.jwks);
+    }
+    if (resourceJson && resourceJson.logo_uri) {
+      this.logo_uri = resourceJson.logo_uri;
+    }
+    if (resourceJson && resourceJson.policy_uri) {
+      this.policy_uri = resourceJson.policy_uri;
+    }
+    if (resourceJson && resourceJson.post_logout_redirect_uris) {
+      this.post_logout_redirect_uris = resourceJson.post_logout_redirect_uris;
+    }
+    if (resourceJson && resourceJson.redirect_uris) {
+      this.redirect_uris = resourceJson.redirect_uris;
     }
     if (resourceJson && resourceJson.refresh_token) {
       this.refresh_token = new OpenIdConnectApplicationSettingsRefreshToken(resourceJson.refresh_token);
     }
     if (resourceJson && resourceJson.response_types) {
       this.response_types = resourceJson.response_types.map(resourceItem => new OAuthResponseType(resourceItem));
+    }
+    if (resourceJson && resourceJson.tos_uri) {
+      this.tos_uri = resourceJson.tos_uri;
+    }
+    if (resourceJson && resourceJson.wildcard_redirect) {
+      this.wildcard_redirect = resourceJson.wildcard_redirect;
     }
   }
 

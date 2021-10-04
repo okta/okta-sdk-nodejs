@@ -29,6 +29,12 @@ class EventHookChannel extends Resource {
     if (resourceJson && resourceJson.config) {
       this.config = new EventHookChannelConfig(resourceJson.config);
     }
+    if (resourceJson && resourceJson.type) {
+      this.type = resourceJson.type;
+    }
+    if (resourceJson && resourceJson.version) {
+      this.version = resourceJson.version;
+    }
   }
 
 }

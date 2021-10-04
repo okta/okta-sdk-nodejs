@@ -26,6 +26,12 @@ const PushUserFactorProfile = require('./PushUserFactorProfile');
 class PushUserFactor extends UserFactor {
   constructor(resourceJson, client) {
     super(resourceJson, client);
+    if (resourceJson && resourceJson.expiresAt) {
+      this.expiresAt = resourceJson.expiresAt;
+    }
+    if (resourceJson && resourceJson.factorResult) {
+      this.factorResult = resourceJson.factorResult;
+    }
     if (resourceJson && resourceJson.profile) {
       this.profile = new PushUserFactorProfile(resourceJson.profile);
     }

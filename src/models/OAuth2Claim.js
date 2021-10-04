@@ -34,8 +34,38 @@ const OAuth2ClaimConditions = require('./OAuth2ClaimConditions');
 class OAuth2Claim extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
+    if (resourceJson && resourceJson._links) {
+      this._links = resourceJson._links;
+    }
+    if (resourceJson && resourceJson.alwaysIncludeInToken) {
+      this.alwaysIncludeInToken = resourceJson.alwaysIncludeInToken;
+    }
+    if (resourceJson && resourceJson.claimType) {
+      this.claimType = resourceJson.claimType;
+    }
     if (resourceJson && resourceJson.conditions) {
       this.conditions = new OAuth2ClaimConditions(resourceJson.conditions);
+    }
+    if (resourceJson && resourceJson.group_filter_type) {
+      this.group_filter_type = resourceJson.group_filter_type;
+    }
+    if (resourceJson && resourceJson.id) {
+      this.id = resourceJson.id;
+    }
+    if (resourceJson && resourceJson.name) {
+      this.name = resourceJson.name;
+    }
+    if (resourceJson && resourceJson.status) {
+      this.status = resourceJson.status;
+    }
+    if (resourceJson && resourceJson.system) {
+      this.system = resourceJson.system;
+    }
+    if (resourceJson && resourceJson.value) {
+      this.value = resourceJson.value;
+    }
+    if (resourceJson && resourceJson.valueType) {
+      this.valueType = resourceJson.valueType;
     }
   }
 

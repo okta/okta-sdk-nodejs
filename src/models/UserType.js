@@ -33,7 +33,36 @@ var Resource = require('../resource');
 class UserType extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-
+    if (resourceJson && resourceJson._links) {
+      this._links = resourceJson._links;
+    }
+    if (resourceJson && resourceJson.created) {
+      this.created = resourceJson.created;
+    }
+    if (resourceJson && resourceJson.createdBy) {
+      this.createdBy = resourceJson.createdBy;
+    }
+    if (resourceJson && resourceJson.default) {
+      this.default = resourceJson.default;
+    }
+    if (resourceJson && resourceJson.description) {
+      this.description = resourceJson.description;
+    }
+    if (resourceJson && resourceJson.displayName) {
+      this.displayName = resourceJson.displayName;
+    }
+    if (resourceJson && resourceJson.id) {
+      this.id = resourceJson.id;
+    }
+    if (resourceJson && resourceJson.lastUpdated) {
+      this.lastUpdated = resourceJson.lastUpdated;
+    }
+    if (resourceJson && resourceJson.lastUpdatedBy) {
+      this.lastUpdatedBy = resourceJson.lastUpdatedBy;
+    }
+    if (resourceJson && resourceJson.name) {
+      this.name = resourceJson.name;
+    }
   }
 
   /**

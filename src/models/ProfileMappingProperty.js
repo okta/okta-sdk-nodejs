@@ -25,7 +25,12 @@ var Resource = require('../resource');
 class ProfileMappingProperty extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-
+    if (resourceJson && resourceJson.expression) {
+      this.expression = resourceJson.expression;
+    }
+    if (resourceJson && resourceJson.pushStatus) {
+      this.pushStatus = resourceJson.pushStatus;
+    }
   }
 
 }

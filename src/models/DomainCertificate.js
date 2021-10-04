@@ -27,7 +27,18 @@ var Resource = require('../resource');
 class DomainCertificate extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-
+    if (resourceJson && resourceJson.certificate) {
+      this.certificate = resourceJson.certificate;
+    }
+    if (resourceJson && resourceJson.certificateChain) {
+      this.certificateChain = resourceJson.certificateChain;
+    }
+    if (resourceJson && resourceJson.privateKey) {
+      this.privateKey = resourceJson.privateKey;
+    }
+    if (resourceJson && resourceJson.type) {
+      this.type = resourceJson.type;
+    }
   }
 
 

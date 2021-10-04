@@ -28,6 +28,9 @@ class PasswordPolicyRecoveryEmail extends Resource {
     if (resourceJson && resourceJson.properties) {
       this.properties = new PasswordPolicyRecoveryEmailProperties(resourceJson.properties);
     }
+    if (resourceJson && resourceJson.status) {
+      this.status = resourceJson.status;
+    }
   }
 
 }

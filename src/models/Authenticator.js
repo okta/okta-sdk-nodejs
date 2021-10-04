@@ -32,8 +32,32 @@ const AuthenticatorSettings = require('./AuthenticatorSettings');
 class Authenticator extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
+    if (resourceJson && resourceJson._links) {
+      this._links = resourceJson._links;
+    }
+    if (resourceJson && resourceJson.created) {
+      this.created = resourceJson.created;
+    }
+    if (resourceJson && resourceJson.id) {
+      this.id = resourceJson.id;
+    }
+    if (resourceJson && resourceJson.key) {
+      this.key = resourceJson.key;
+    }
+    if (resourceJson && resourceJson.lastUpdated) {
+      this.lastUpdated = resourceJson.lastUpdated;
+    }
+    if (resourceJson && resourceJson.name) {
+      this.name = resourceJson.name;
+    }
     if (resourceJson && resourceJson.settings) {
       this.settings = new AuthenticatorSettings(resourceJson.settings);
+    }
+    if (resourceJson && resourceJson.status) {
+      this.status = resourceJson.status;
+    }
+    if (resourceJson && resourceJson.type) {
+      this.type = resourceJson.type;
     }
   }
 

@@ -33,6 +33,9 @@ class OktaSignOnPolicyRule extends PolicyRule {
     if (resourceJson && resourceJson.conditions) {
       this.conditions = new OktaSignOnPolicyRuleConditions(resourceJson.conditions);
     }
+    if (resourceJson && resourceJson.name) {
+      this.name = resourceJson.name;
+    }
   }
 
 }

@@ -31,7 +31,30 @@ var Resource = require('../resource');
 class VerifyFactorRequest extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-
+    if (resourceJson && resourceJson.activationToken) {
+      this.activationToken = resourceJson.activationToken;
+    }
+    if (resourceJson && resourceJson.answer) {
+      this.answer = resourceJson.answer;
+    }
+    if (resourceJson && resourceJson.attestation) {
+      this.attestation = resourceJson.attestation;
+    }
+    if (resourceJson && resourceJson.clientData) {
+      this.clientData = resourceJson.clientData;
+    }
+    if (resourceJson && resourceJson.nextPassCode) {
+      this.nextPassCode = resourceJson.nextPassCode;
+    }
+    if (resourceJson && resourceJson.passCode) {
+      this.passCode = resourceJson.passCode;
+    }
+    if (resourceJson && resourceJson.registrationData) {
+      this.registrationData = resourceJson.registrationData;
+    }
+    if (resourceJson && resourceJson.stateToken) {
+      this.stateToken = resourceJson.stateToken;
+    }
   }
 
 }

@@ -28,6 +28,9 @@ class UserSchemaAttributeMaster extends Resource {
     if (resourceJson && resourceJson.priority) {
       this.priority = resourceJson.priority.map(resourceItem => new UserSchemaAttributeMasterPriority(resourceItem));
     }
+    if (resourceJson && resourceJson.type) {
+      this.type = resourceJson.type;
+    }
   }
 
 }

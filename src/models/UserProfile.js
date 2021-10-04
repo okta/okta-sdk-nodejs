@@ -54,7 +54,99 @@ var Resource = require('../resource');
 class UserProfile extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-
+    if (resourceJson && resourceJson.city) {
+      this.city = resourceJson.city;
+    }
+    if (resourceJson && resourceJson.costCenter) {
+      this.costCenter = resourceJson.costCenter;
+    }
+    if (resourceJson && resourceJson.countryCode) {
+      this.countryCode = resourceJson.countryCode;
+    }
+    if (resourceJson && resourceJson.department) {
+      this.department = resourceJson.department;
+    }
+    if (resourceJson && resourceJson.displayName) {
+      this.displayName = resourceJson.displayName;
+    }
+    if (resourceJson && resourceJson.division) {
+      this.division = resourceJson.division;
+    }
+    if (resourceJson && resourceJson.email) {
+      this.email = resourceJson.email;
+    }
+    if (resourceJson && resourceJson.employeeNumber) {
+      this.employeeNumber = resourceJson.employeeNumber;
+    }
+    if (resourceJson && resourceJson.firstName) {
+      this.firstName = resourceJson.firstName;
+    }
+    if (resourceJson && resourceJson.honorificPrefix) {
+      this.honorificPrefix = resourceJson.honorificPrefix;
+    }
+    if (resourceJson && resourceJson.honorificSuffix) {
+      this.honorificSuffix = resourceJson.honorificSuffix;
+    }
+    if (resourceJson && resourceJson.lastName) {
+      this.lastName = resourceJson.lastName;
+    }
+    if (resourceJson && resourceJson.locale) {
+      this.locale = resourceJson.locale;
+    }
+    if (resourceJson && resourceJson.login) {
+      this.login = resourceJson.login;
+    }
+    if (resourceJson && resourceJson.manager) {
+      this.manager = resourceJson.manager;
+    }
+    if (resourceJson && resourceJson.managerId) {
+      this.managerId = resourceJson.managerId;
+    }
+    if (resourceJson && resourceJson.middleName) {
+      this.middleName = resourceJson.middleName;
+    }
+    if (resourceJson && resourceJson.mobilePhone) {
+      this.mobilePhone = resourceJson.mobilePhone;
+    }
+    if (resourceJson && resourceJson.nickName) {
+      this.nickName = resourceJson.nickName;
+    }
+    if (resourceJson && resourceJson.organization) {
+      this.organization = resourceJson.organization;
+    }
+    if (resourceJson && resourceJson.postalAddress) {
+      this.postalAddress = resourceJson.postalAddress;
+    }
+    if (resourceJson && resourceJson.preferredLanguage) {
+      this.preferredLanguage = resourceJson.preferredLanguage;
+    }
+    if (resourceJson && resourceJson.primaryPhone) {
+      this.primaryPhone = resourceJson.primaryPhone;
+    }
+    if (resourceJson && resourceJson.profileUrl) {
+      this.profileUrl = resourceJson.profileUrl;
+    }
+    if (resourceJson && resourceJson.secondEmail) {
+      this.secondEmail = resourceJson.secondEmail;
+    }
+    if (resourceJson && resourceJson.state) {
+      this.state = resourceJson.state;
+    }
+    if (resourceJson && resourceJson.streetAddress) {
+      this.streetAddress = resourceJson.streetAddress;
+    }
+    if (resourceJson && resourceJson.timezone) {
+      this.timezone = resourceJson.timezone;
+    }
+    if (resourceJson && resourceJson.title) {
+      this.title = resourceJson.title;
+    }
+    if (resourceJson && resourceJson.userType) {
+      this.userType = resourceJson.userType;
+    }
+    if (resourceJson && resourceJson.zipCode) {
+      this.zipCode = resourceJson.zipCode;
+    }
   }
 
 }

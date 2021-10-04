@@ -25,7 +25,12 @@ var ApplicationSettingsApplication = require('./ApplicationSettingsApplication')
 class BasicApplicationSettingsApplication extends ApplicationSettingsApplication {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-
+    if (resourceJson && resourceJson.authURL) {
+      this.authURL = resourceJson.authURL;
+    }
+    if (resourceJson && resourceJson.url) {
+      this.url = resourceJson.url;
+    }
   }
 
 }

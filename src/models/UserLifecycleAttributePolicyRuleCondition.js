@@ -25,7 +25,12 @@ var Resource = require('../resource');
 class UserLifecycleAttributePolicyRuleCondition extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-
+    if (resourceJson && resourceJson.attributeName) {
+      this.attributeName = resourceJson.attributeName;
+    }
+    if (resourceJson && resourceJson.matchingValue) {
+      this.matchingValue = resourceJson.matchingValue;
+    }
   }
 
 }

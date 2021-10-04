@@ -33,6 +33,9 @@ class EventHookChannelConfig extends Resource {
     if (resourceJson && resourceJson.headers) {
       this.headers = resourceJson.headers.map(resourceItem => new EventHookChannelConfigHeader(resourceItem));
     }
+    if (resourceJson && resourceJson.uri) {
+      this.uri = resourceJson.uri;
+    }
   }
 
 }

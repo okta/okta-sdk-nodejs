@@ -35,6 +35,30 @@ class IonField extends Resource {
     if (resourceJson && resourceJson.form) {
       this.form = new IonForm(resourceJson.form);
     }
+    if (resourceJson && resourceJson.label) {
+      this.label = resourceJson.label;
+    }
+    if (resourceJson && resourceJson.mutable) {
+      this.mutable = resourceJson.mutable;
+    }
+    if (resourceJson && resourceJson.name) {
+      this.name = resourceJson.name;
+    }
+    if (resourceJson && resourceJson.required) {
+      this.required = resourceJson.required;
+    }
+    if (resourceJson && resourceJson.secret) {
+      this.secret = resourceJson.secret;
+    }
+    if (resourceJson && resourceJson.type) {
+      this.type = resourceJson.type;
+    }
+    if (resourceJson && resourceJson.value) {
+      this.value = resourceJson.value;
+    }
+    if (resourceJson && resourceJson.visible) {
+      this.visible = resourceJson.visible;
+    }
   }
 
 }

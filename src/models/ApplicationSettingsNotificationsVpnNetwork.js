@@ -26,7 +26,15 @@ var Resource = require('../resource');
 class ApplicationSettingsNotificationsVpnNetwork extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-
+    if (resourceJson && resourceJson.connection) {
+      this.connection = resourceJson.connection;
+    }
+    if (resourceJson && resourceJson.exclude) {
+      this.exclude = resourceJson.exclude;
+    }
+    if (resourceJson && resourceJson.include) {
+      this.include = resourceJson.include;
+    }
   }
 
 }

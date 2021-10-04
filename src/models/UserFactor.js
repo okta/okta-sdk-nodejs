@@ -32,8 +32,32 @@ const VerifyFactorRequest = require('./VerifyFactorRequest');
 class UserFactor extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson.verify) {
-      this.verify = new VerifyFactorRequest(resourceJson.verify);
+    if (resourceJson && resourceJson._embedded) {
+      this._embedded = resourceJson._embedded;
+    }
+    if (resourceJson && resourceJson._links) {
+      this._links = resourceJson._links;
+    }
+    if (resourceJson && resourceJson.created) {
+      this.created = resourceJson.created;
+    }
+    if (resourceJson && resourceJson.factorType) {
+      this.factorType = resourceJson.factorType;
+    }
+    if (resourceJson && resourceJson.id) {
+      this.id = resourceJson.id;
+    }
+    if (resourceJson && resourceJson.lastUpdated) {
+      this.lastUpdated = resourceJson.lastUpdated;
+    }
+    if (resourceJson && resourceJson.provider) {
+      this.provider = resourceJson.provider;
+    }
+    if (resourceJson && resourceJson.status) {
+      this.status = resourceJson.status;
+    }
+    if (resourceJson && resourceJson._verify) {
+      this._verify = new VerifyFactorRequest(resourceJson.verify);
     }
   }
 

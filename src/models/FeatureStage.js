@@ -25,7 +25,12 @@ var Resource = require('../resource');
 class FeatureStage extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-
+    if (resourceJson && resourceJson.state) {
+      this.state = resourceJson.state;
+    }
+    if (resourceJson && resourceJson.value) {
+      this.value = resourceJson.value;
+    }
   }
 
 }

@@ -40,6 +40,30 @@ class AuthorizationServerPolicyRule extends Resource {
     if (resourceJson && resourceJson.conditions) {
       this.conditions = new AuthorizationServerPolicyRuleConditions(resourceJson.conditions);
     }
+    if (resourceJson && resourceJson.created) {
+      this.created = resourceJson.created;
+    }
+    if (resourceJson && resourceJson.id) {
+      this.id = resourceJson.id;
+    }
+    if (resourceJson && resourceJson.lastUpdated) {
+      this.lastUpdated = resourceJson.lastUpdated;
+    }
+    if (resourceJson && resourceJson.name) {
+      this.name = resourceJson.name;
+    }
+    if (resourceJson && resourceJson.priority) {
+      this.priority = resourceJson.priority;
+    }
+    if (resourceJson && resourceJson.status) {
+      this.status = resourceJson.status;
+    }
+    if (resourceJson && resourceJson.system) {
+      this.system = resourceJson.system;
+    }
+    if (resourceJson && resourceJson.type) {
+      this.type = resourceJson.type;
+    }
   }
 
   /**

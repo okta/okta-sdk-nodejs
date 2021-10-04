@@ -32,8 +32,17 @@ class SchemeApplicationCredentials extends ApplicationCredentials {
     if (resourceJson && resourceJson.password) {
       this.password = new PasswordCredential(resourceJson.password);
     }
+    if (resourceJson && resourceJson.revealPassword) {
+      this.revealPassword = resourceJson.revealPassword;
+    }
+    if (resourceJson && resourceJson.scheme) {
+      this.scheme = resourceJson.scheme;
+    }
     if (resourceJson && resourceJson.signing) {
       this.signing = new ApplicationCredentialsSigning(resourceJson.signing);
+    }
+    if (resourceJson && resourceJson.userName) {
+      this.userName = resourceJson.userName;
     }
   }
 

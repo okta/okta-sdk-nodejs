@@ -1,4 +1,5 @@
 const _ = require('lodash');
+const { sanitizeModelPropertyName } = require('./helpers/operation');
 const js = module.exports;
 const operationUtils = require('./helpers/operation');
 const { convertSwaggerToTSType } = require('./helpers/typescript-formatter');
@@ -145,17 +146,21 @@ js.process = ({spec, operations, models, handlebars}) => {
       return;
     }
     const constructorStatements = [];
-    model.properties.forEach(property => {
-      const shouldProcess = operationUtils.isImportablePropertyType(property, model.modelName);
-      if (!shouldProcess || property.isEnum) {
-        return;
-      }
 
-      constructorStatements.push(`    if (resourceJson && resourceJson.${property.propertyName}) {`);
-      if (property.isArray) {
-        constructorStatements.push(`      this.${property.propertyName} = resourceJson.${property.propertyName}.map(resourceItem => new ${property.model}(resourceItem));`);
+    model.properties.forEach(property => {
+      const propertyName = sanitizeModelPropertyName(model.modelName, property.propertyName);
+      let requiresInstantiation = !property.isEnum && property.model && !['string', 'object'].includes(property.model);
+
+      constructorStatements.push(`    if (resourceJson && resourceJson.${propertyName}) {`);
+
+      if (requiresInstantiation) {
+        if (property.isArray) {
+          constructorStatements.push(`      this.${propertyName} = resourceJson.${propertyName}.map(resourceItem => new ${property.model}(resourceItem));`);
+        } else {
+          constructorStatements.push(`      this.${propertyName} = new ${property.model}(resourceJson.${property.propertyName});`);
+        }
       } else {
-        constructorStatements.push(`      this.${property.propertyName} = new ${property.model}(resourceJson.${property.propertyName});`);
+        constructorStatements.push(`      this.${propertyName} = resourceJson.${property.propertyName};`);
       }
       constructorStatements.push('    }');
 

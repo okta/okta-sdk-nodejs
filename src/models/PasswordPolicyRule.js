@@ -33,6 +33,9 @@ class PasswordPolicyRule extends PolicyRule {
     if (resourceJson && resourceJson.conditions) {
       this.conditions = new PasswordPolicyRuleConditions(resourceJson.conditions);
     }
+    if (resourceJson && resourceJson.name) {
+      this.name = resourceJson.name;
+    }
   }
 
 }

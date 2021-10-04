@@ -38,14 +38,47 @@ const NetworkZoneLocation = require('./NetworkZoneLocation');
 class NetworkZone extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
+    if (resourceJson && resourceJson._links) {
+      this._links = resourceJson._links;
+    }
+    if (resourceJson && resourceJson.asns) {
+      this.asns = resourceJson.asns;
+    }
+    if (resourceJson && resourceJson.created) {
+      this.created = resourceJson.created;
+    }
     if (resourceJson && resourceJson.gateways) {
       this.gateways = resourceJson.gateways.map(resourceItem => new NetworkZoneAddress(resourceItem));
+    }
+    if (resourceJson && resourceJson.id) {
+      this.id = resourceJson.id;
+    }
+    if (resourceJson && resourceJson.lastUpdated) {
+      this.lastUpdated = resourceJson.lastUpdated;
     }
     if (resourceJson && resourceJson.locations) {
       this.locations = resourceJson.locations.map(resourceItem => new NetworkZoneLocation(resourceItem));
     }
+    if (resourceJson && resourceJson.name) {
+      this.name = resourceJson.name;
+    }
     if (resourceJson && resourceJson.proxies) {
       this.proxies = resourceJson.proxies.map(resourceItem => new NetworkZoneAddress(resourceItem));
+    }
+    if (resourceJson && resourceJson.proxyType) {
+      this.proxyType = resourceJson.proxyType;
+    }
+    if (resourceJson && resourceJson.status) {
+      this.status = resourceJson.status;
+    }
+    if (resourceJson && resourceJson.system) {
+      this.system = resourceJson.system;
+    }
+    if (resourceJson && resourceJson.type) {
+      this.type = resourceJson.type;
+    }
+    if (resourceJson && resourceJson.usage) {
+      this.usage = resourceJson.usage;
     }
   }
 

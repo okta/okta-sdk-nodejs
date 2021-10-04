@@ -24,7 +24,9 @@ var Resource = require('../resource');
 class RiskPolicyRuleCondition extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-
+    if (resourceJson && resourceJson.behaviors) {
+      this.behaviors = resourceJson.behaviors;
+    }
   }
 
 }

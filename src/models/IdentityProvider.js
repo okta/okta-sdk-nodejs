@@ -34,11 +34,35 @@ const Protocol = require('./Protocol');
 class IdentityProvider extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
+    if (resourceJson && resourceJson._links) {
+      this._links = resourceJson._links;
+    }
+    if (resourceJson && resourceJson.created) {
+      this.created = resourceJson.created;
+    }
+    if (resourceJson && resourceJson.id) {
+      this.id = resourceJson.id;
+    }
+    if (resourceJson && resourceJson.issuerMode) {
+      this.issuerMode = resourceJson.issuerMode;
+    }
+    if (resourceJson && resourceJson.lastUpdated) {
+      this.lastUpdated = resourceJson.lastUpdated;
+    }
+    if (resourceJson && resourceJson.name) {
+      this.name = resourceJson.name;
+    }
     if (resourceJson && resourceJson.policy) {
       this.policy = new IdentityProviderPolicy(resourceJson.policy);
     }
     if (resourceJson && resourceJson.protocol) {
       this.protocol = new Protocol(resourceJson.protocol);
+    }
+    if (resourceJson && resourceJson.status) {
+      this.status = resourceJson.status;
+    }
+    if (resourceJson && resourceJson.type) {
+      this.type = resourceJson.type;
     }
   }
 

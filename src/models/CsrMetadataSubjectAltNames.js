@@ -24,7 +24,9 @@ var Resource = require('../resource');
 class CsrMetadataSubjectAltNames extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-
+    if (resourceJson && resourceJson.dnsNames) {
+      this.dnsNames = resourceJson.dnsNames;
+    }
   }
 
 }

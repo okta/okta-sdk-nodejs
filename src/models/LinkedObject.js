@@ -26,6 +26,9 @@ const LinkedObjectDetails = require('./LinkedObjectDetails');
 class LinkedObject extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
+    if (resourceJson && resourceJson._links) {
+      this._links = resourceJson._links;
+    }
     if (resourceJson && resourceJson.associated) {
       this.associated = new LinkedObjectDetails(resourceJson.associated);
     }

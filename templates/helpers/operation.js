@@ -344,8 +344,10 @@ const isRestrictedPropertyOverride = (modelName, propertyName) => {
   return RESTRICTED_MODEL_PROPERTY_OVERRIDES[modelName] &&
     RESTRICTED_MODEL_PROPERTY_OVERRIDES[modelName].includes(propertyName);
 };
-const isImportableType = type =>
-  !MODELS_SHOULD_NOT_PROCESS.includes(type) && !Array.isArray(type);
+const isImportableType = type => {
+  // query parameters are converted into array of parameter types
+  return !MODELS_SHOULD_NOT_PROCESS.includes(type) && !Array.isArray(type);
+};
 
 const sanitizeModelPropertyName = (modelName, propertyName) => {
   let sanitizedPropertyName = propertyName;

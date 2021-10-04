@@ -30,7 +30,27 @@ var Resource = require('../resource');
 class IdentityProviderApplicationUser extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-
+    if (resourceJson && resourceJson._embedded) {
+      this._embedded = resourceJson._embedded;
+    }
+    if (resourceJson && resourceJson._links) {
+      this._links = resourceJson._links;
+    }
+    if (resourceJson && resourceJson.created) {
+      this.created = resourceJson.created;
+    }
+    if (resourceJson && resourceJson.externalId) {
+      this.externalId = resourceJson.externalId;
+    }
+    if (resourceJson && resourceJson.id) {
+      this.id = resourceJson.id;
+    }
+    if (resourceJson && resourceJson.lastUpdated) {
+      this.lastUpdated = resourceJson.lastUpdated;
+    }
+    if (resourceJson && resourceJson.profile) {
+      this.profile = resourceJson.profile;
+    }
   }
 
 }

@@ -35,11 +35,38 @@ const SessionIdentityProvider = require('./SessionIdentityProvider');
 class Session extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
+    if (resourceJson && resourceJson._links) {
+      this._links = resourceJson._links;
+    }
     if (resourceJson && resourceJson.amr) {
       this.amr = resourceJson.amr.map(resourceItem => new SessionAuthenticationMethod(resourceItem));
     }
+    if (resourceJson && resourceJson.createdAt) {
+      this.createdAt = resourceJson.createdAt;
+    }
+    if (resourceJson && resourceJson.expiresAt) {
+      this.expiresAt = resourceJson.expiresAt;
+    }
+    if (resourceJson && resourceJson.id) {
+      this.id = resourceJson.id;
+    }
     if (resourceJson && resourceJson.idp) {
       this.idp = new SessionIdentityProvider(resourceJson.idp);
+    }
+    if (resourceJson && resourceJson.lastFactorVerification) {
+      this.lastFactorVerification = resourceJson.lastFactorVerification;
+    }
+    if (resourceJson && resourceJson.lastPasswordVerification) {
+      this.lastPasswordVerification = resourceJson.lastPasswordVerification;
+    }
+    if (resourceJson && resourceJson.login) {
+      this.login = resourceJson.login;
+    }
+    if (resourceJson && resourceJson.status) {
+      this.status = resourceJson.status;
+    }
+    if (resourceJson && resourceJson.userId) {
+      this.userId = resourceJson.userId;
     }
   }
 

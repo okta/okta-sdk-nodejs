@@ -25,7 +25,12 @@ var Resource = require('../resource');
 class EventHookChannelConfigHeader extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-
+    if (resourceJson && resourceJson.key) {
+      this.key = resourceJson.key;
+    }
+    if (resourceJson && resourceJson.value) {
+      this.value = resourceJson.value;
+    }
   }
 
 }

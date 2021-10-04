@@ -24,7 +24,9 @@ var Resource = require('../resource');
 class UserIdentityProviderLinkRequest extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-
+    if (resourceJson && resourceJson.externalId) {
+      this.externalId = resourceJson.externalId;
+    }
   }
 
 }

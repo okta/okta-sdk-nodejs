@@ -28,6 +28,18 @@ const PolicyUserNameTemplate = require('./PolicyUserNameTemplate');
 class PolicySubject extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
+    if (resourceJson && resourceJson.filter) {
+      this.filter = resourceJson.filter;
+    }
+    if (resourceJson && resourceJson.format) {
+      this.format = resourceJson.format;
+    }
+    if (resourceJson && resourceJson.matchAttribute) {
+      this.matchAttribute = resourceJson.matchAttribute;
+    }
+    if (resourceJson && resourceJson.matchType) {
+      this.matchType = resourceJson.matchType;
+    }
     if (resourceJson && resourceJson.userNameTemplate) {
       this.userNameTemplate = new PolicyUserNameTemplate(resourceJson.userNameTemplate);
     }

@@ -51,8 +51,14 @@ class Protocol extends Resource {
     if (resourceJson && resourceJson.relayState) {
       this.relayState = new ProtocolRelayState(resourceJson.relayState);
     }
+    if (resourceJson && resourceJson.scopes) {
+      this.scopes = resourceJson.scopes;
+    }
     if (resourceJson && resourceJson.settings) {
       this.settings = new ProtocolSettings(resourceJson.settings);
+    }
+    if (resourceJson && resourceJson.type) {
+      this.type = resourceJson.type;
     }
   }
 

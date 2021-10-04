@@ -43,17 +43,50 @@ const ApplicationVisibility = require('./ApplicationVisibility');
 class Application extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
+    if (resourceJson && resourceJson._embedded) {
+      this._embedded = resourceJson._embedded;
+    }
+    if (resourceJson && resourceJson._links) {
+      this._links = resourceJson._links;
+    }
     if (resourceJson && resourceJson.accessibility) {
       this.accessibility = new ApplicationAccessibility(resourceJson.accessibility);
+    }
+    if (resourceJson && resourceJson.created) {
+      this.created = resourceJson.created;
     }
     if (resourceJson && resourceJson.credentials) {
       this.credentials = new ApplicationCredentials(resourceJson.credentials);
     }
+    if (resourceJson && resourceJson.features) {
+      this.features = resourceJson.features;
+    }
+    if (resourceJson && resourceJson.id) {
+      this.id = resourceJson.id;
+    }
+    if (resourceJson && resourceJson.label) {
+      this.label = resourceJson.label;
+    }
+    if (resourceJson && resourceJson.lastUpdated) {
+      this.lastUpdated = resourceJson.lastUpdated;
+    }
     if (resourceJson && resourceJson.licensing) {
       this.licensing = new ApplicationLicensing(resourceJson.licensing);
     }
+    if (resourceJson && resourceJson.name) {
+      this.name = resourceJson.name;
+    }
+    if (resourceJson && resourceJson.profile) {
+      this.profile = resourceJson.profile;
+    }
     if (resourceJson && resourceJson.settings) {
       this.settings = new ApplicationSettings(resourceJson.settings);
+    }
+    if (resourceJson && resourceJson.signOnMode) {
+      this.signOnMode = resourceJson.signOnMode;
+    }
+    if (resourceJson && resourceJson.status) {
+      this.status = resourceJson.status;
     }
     if (resourceJson && resourceJson.visibility) {
       this.visibility = new ApplicationVisibility(resourceJson.visibility);

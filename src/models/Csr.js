@@ -27,7 +27,18 @@ var Resource = require('../resource');
 class Csr extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-
+    if (resourceJson && resourceJson.created) {
+      this.created = resourceJson.created;
+    }
+    if (resourceJson && resourceJson.csr) {
+      this.csr = resourceJson.csr;
+    }
+    if (resourceJson && resourceJson.id) {
+      this.id = resourceJson.id;
+    }
+    if (resourceJson && resourceJson.kty) {
+      this.kty = resourceJson.kty;
+    }
   }
 
 }

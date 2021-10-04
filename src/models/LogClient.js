@@ -30,11 +30,23 @@ const LogUserAgent = require('./LogUserAgent');
 class LogClient extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
+    if (resourceJson && resourceJson.device) {
+      this.device = resourceJson.device;
+    }
     if (resourceJson && resourceJson.geographicalContext) {
       this.geographicalContext = new LogGeographicalContext(resourceJson.geographicalContext);
     }
+    if (resourceJson && resourceJson.id) {
+      this.id = resourceJson.id;
+    }
+    if (resourceJson && resourceJson.ipAddress) {
+      this.ipAddress = resourceJson.ipAddress;
+    }
     if (resourceJson && resourceJson.userAgent) {
       this.userAgent = new LogUserAgent(resourceJson.userAgent);
+    }
+    if (resourceJson && resourceJson.zone) {
+      this.zone = resourceJson.zone;
     }
   }
 

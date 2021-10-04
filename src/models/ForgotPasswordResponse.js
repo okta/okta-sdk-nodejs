@@ -24,7 +24,9 @@ var Resource = require('../resource');
 class ForgotPasswordResponse extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-
+    if (resourceJson && resourceJson.resetPasswordUrl) {
+      this.resetPasswordUrl = resourceJson.resetPasswordUrl;
+    }
   }
 
 }

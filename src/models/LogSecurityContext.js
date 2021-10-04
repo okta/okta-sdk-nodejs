@@ -28,7 +28,21 @@ var Resource = require('../resource');
 class LogSecurityContext extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-
+    if (resourceJson && resourceJson.asNumber) {
+      this.asNumber = resourceJson.asNumber;
+    }
+    if (resourceJson && resourceJson.asOrg) {
+      this.asOrg = resourceJson.asOrg;
+    }
+    if (resourceJson && resourceJson.domain) {
+      this.domain = resourceJson.domain;
+    }
+    if (resourceJson && resourceJson.isProxy) {
+      this.isProxy = resourceJson.isProxy;
+    }
+    if (resourceJson && resourceJson.isp) {
+      this.isp = resourceJson.isp;
+    }
   }
 
 }

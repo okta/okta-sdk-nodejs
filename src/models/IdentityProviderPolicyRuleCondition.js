@@ -25,7 +25,12 @@ var Resource = require('../resource');
 class IdentityProviderPolicyRuleCondition extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-
+    if (resourceJson && resourceJson.idpIds) {
+      this.idpIds = resourceJson.idpIds;
+    }
+    if (resourceJson && resourceJson.provider) {
+      this.provider = resourceJson.provider;
+    }
   }
 
 }

@@ -26,7 +26,15 @@ var Resource = require('../resource');
 class EventHookChannelConfigAuthScheme extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-
+    if (resourceJson && resourceJson.key) {
+      this.key = resourceJson.key;
+    }
+    if (resourceJson && resourceJson.type) {
+      this.type = resourceJson.type;
+    }
+    if (resourceJson && resourceJson.value) {
+      this.value = resourceJson.value;
+    }
   }
 
 }

@@ -32,6 +32,9 @@ class IdentityProviderPolicy extends Policy {
     if (resourceJson && resourceJson.accountLink) {
       this.accountLink = new PolicyAccountLink(resourceJson.accountLink);
     }
+    if (resourceJson && resourceJson.maxClockSkew) {
+      this.maxClockSkew = resourceJson.maxClockSkew;
+    }
     if (resourceJson && resourceJson.provisioning) {
       this.provisioning = new Provisioning(resourceJson.provisioning);
     }

@@ -26,6 +26,12 @@ const ApplicationSettingsNotificationsVpnNetwork = require('./ApplicationSetting
 class ApplicationSettingsNotificationsVpn extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
+    if (resourceJson && resourceJson.helpUrl) {
+      this.helpUrl = resourceJson.helpUrl;
+    }
+    if (resourceJson && resourceJson.message) {
+      this.message = resourceJson.message;
+    }
     if (resourceJson && resourceJson.network) {
       this.network = new ApplicationSettingsNotificationsVpnNetwork(resourceJson.network);
     }

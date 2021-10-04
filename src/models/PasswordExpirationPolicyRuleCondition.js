@@ -25,7 +25,12 @@ var Resource = require('../resource');
 class PasswordExpirationPolicyRuleCondition extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-
+    if (resourceJson && resourceJson.number) {
+      this.number = resourceJson.number;
+    }
+    if (resourceJson && resourceJson.unit) {
+      this.unit = resourceJson.unit;
+    }
   }
 
 }

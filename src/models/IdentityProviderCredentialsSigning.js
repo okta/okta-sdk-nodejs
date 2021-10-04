@@ -24,7 +24,9 @@ var Resource = require('../resource');
 class IdentityProviderCredentialsSigning extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-
+    if (resourceJson && resourceJson.kid) {
+      this.kid = resourceJson.kid;
+    }
   }
 
 }

@@ -27,7 +27,18 @@ var Resource = require('../resource');
 class ProvisioningGroups extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-
+    if (resourceJson && resourceJson.action) {
+      this.action = resourceJson.action;
+    }
+    if (resourceJson && resourceJson.assignments) {
+      this.assignments = resourceJson.assignments;
+    }
+    if (resourceJson && resourceJson.filter) {
+      this.filter = resourceJson.filter;
+    }
+    if (resourceJson && resourceJson.sourceAttributeName) {
+      this.sourceAttributeName = resourceJson.sourceAttributeName;
+    }
   }
 
 }

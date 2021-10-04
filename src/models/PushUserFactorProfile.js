@@ -29,7 +29,24 @@ var Resource = require('../resource');
 class PushUserFactorProfile extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-
+    if (resourceJson && resourceJson.credentialId) {
+      this.credentialId = resourceJson.credentialId;
+    }
+    if (resourceJson && resourceJson.deviceToken) {
+      this.deviceToken = resourceJson.deviceToken;
+    }
+    if (resourceJson && resourceJson.deviceType) {
+      this.deviceType = resourceJson.deviceType;
+    }
+    if (resourceJson && resourceJson.name) {
+      this.name = resourceJson.name;
+    }
+    if (resourceJson && resourceJson.platform) {
+      this.platform = resourceJson.platform;
+    }
+    if (resourceJson && resourceJson.version) {
+      this.version = resourceJson.version;
+    }
   }
 
 }

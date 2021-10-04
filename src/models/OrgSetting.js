@@ -41,7 +41,60 @@ var Resource = require('../resource');
 class OrgSetting extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-
+    if (resourceJson && resourceJson._links) {
+      this._links = resourceJson._links;
+    }
+    if (resourceJson && resourceJson.address1) {
+      this.address1 = resourceJson.address1;
+    }
+    if (resourceJson && resourceJson.address2) {
+      this.address2 = resourceJson.address2;
+    }
+    if (resourceJson && resourceJson.city) {
+      this.city = resourceJson.city;
+    }
+    if (resourceJson && resourceJson.companyName) {
+      this.companyName = resourceJson.companyName;
+    }
+    if (resourceJson && resourceJson.country) {
+      this.country = resourceJson.country;
+    }
+    if (resourceJson && resourceJson.created) {
+      this.created = resourceJson.created;
+    }
+    if (resourceJson && resourceJson.endUserSupportHelpURL) {
+      this.endUserSupportHelpURL = resourceJson.endUserSupportHelpURL;
+    }
+    if (resourceJson && resourceJson.expiresAt) {
+      this.expiresAt = resourceJson.expiresAt;
+    }
+    if (resourceJson && resourceJson.id) {
+      this.id = resourceJson.id;
+    }
+    if (resourceJson && resourceJson.lastUpdated) {
+      this.lastUpdated = resourceJson.lastUpdated;
+    }
+    if (resourceJson && resourceJson.phoneNumber) {
+      this.phoneNumber = resourceJson.phoneNumber;
+    }
+    if (resourceJson && resourceJson.postalCode) {
+      this.postalCode = resourceJson.postalCode;
+    }
+    if (resourceJson && resourceJson.state) {
+      this.state = resourceJson.state;
+    }
+    if (resourceJson && resourceJson.status) {
+      this.status = resourceJson.status;
+    }
+    if (resourceJson && resourceJson.subdomain) {
+      this.subdomain = resourceJson.subdomain;
+    }
+    if (resourceJson && resourceJson.supportPhoneNumber) {
+      this.supportPhoneNumber = resourceJson.supportPhoneNumber;
+    }
+    if (resourceJson && resourceJson.website) {
+      this.website = resourceJson.website;
+    }
   }
 
   /**

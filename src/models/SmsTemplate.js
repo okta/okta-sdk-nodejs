@@ -30,8 +30,26 @@ const SmsTemplateTranslations = require('./SmsTemplateTranslations');
 class SmsTemplate extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
+    if (resourceJson && resourceJson.created) {
+      this.created = resourceJson.created;
+    }
+    if (resourceJson && resourceJson.id) {
+      this.id = resourceJson.id;
+    }
+    if (resourceJson && resourceJson.lastUpdated) {
+      this.lastUpdated = resourceJson.lastUpdated;
+    }
+    if (resourceJson && resourceJson.name) {
+      this.name = resourceJson.name;
+    }
+    if (resourceJson && resourceJson.template) {
+      this.template = resourceJson.template;
+    }
     if (resourceJson && resourceJson.translations) {
       this.translations = new SmsTemplateTranslations(resourceJson.translations);
+    }
+    if (resourceJson && resourceJson.type) {
+      this.type = resourceJson.type;
     }
   }
 

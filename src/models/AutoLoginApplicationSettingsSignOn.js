@@ -25,7 +25,12 @@ var Resource = require('../resource');
 class AutoLoginApplicationSettingsSignOn extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-
+    if (resourceJson && resourceJson.loginUrl) {
+      this.loginUrl = resourceJson.loginUrl;
+    }
+    if (resourceJson && resourceJson.redirectUrl) {
+      this.redirectUrl = resourceJson.redirectUrl;
+    }
   }
 
 }

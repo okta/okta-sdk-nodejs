@@ -59,8 +59,20 @@ class LogEvent extends Resource {
     if (resourceJson && resourceJson.debugContext) {
       this.debugContext = new LogDebugContext(resourceJson.debugContext);
     }
+    if (resourceJson && resourceJson.displayMessage) {
+      this.displayMessage = resourceJson.displayMessage;
+    }
+    if (resourceJson && resourceJson.eventType) {
+      this.eventType = resourceJson.eventType;
+    }
+    if (resourceJson && resourceJson.legacyEventType) {
+      this.legacyEventType = resourceJson.legacyEventType;
+    }
     if (resourceJson && resourceJson.outcome) {
       this.outcome = new LogOutcome(resourceJson.outcome);
+    }
+    if (resourceJson && resourceJson.published) {
+      this.published = resourceJson.published;
     }
     if (resourceJson && resourceJson.request) {
       this.request = new LogRequest(resourceJson.request);
@@ -68,11 +80,20 @@ class LogEvent extends Resource {
     if (resourceJson && resourceJson.securityContext) {
       this.securityContext = new LogSecurityContext(resourceJson.securityContext);
     }
+    if (resourceJson && resourceJson.severity) {
+      this.severity = resourceJson.severity;
+    }
     if (resourceJson && resourceJson.target) {
       this.target = resourceJson.target.map(resourceItem => new LogTarget(resourceItem));
     }
     if (resourceJson && resourceJson.transaction) {
       this.transaction = new LogTransaction(resourceJson.transaction);
+    }
+    if (resourceJson && resourceJson.uuid) {
+      this.uuid = resourceJson.uuid;
+    }
+    if (resourceJson && resourceJson.version) {
+      this.version = resourceJson.version;
     }
   }
 

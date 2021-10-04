@@ -29,7 +29,24 @@ var Resource = require('../resource');
 class CsrMetadataSubject extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-
+    if (resourceJson && resourceJson.commonName) {
+      this.commonName = resourceJson.commonName;
+    }
+    if (resourceJson && resourceJson.countryName) {
+      this.countryName = resourceJson.countryName;
+    }
+    if (resourceJson && resourceJson.localityName) {
+      this.localityName = resourceJson.localityName;
+    }
+    if (resourceJson && resourceJson.organizationName) {
+      this.organizationName = resourceJson.organizationName;
+    }
+    if (resourceJson && resourceJson.organizationalUnitName) {
+      this.organizationalUnitName = resourceJson.organizationalUnitName;
+    }
+    if (resourceJson && resourceJson.stateOrProvinceName) {
+      this.stateOrProvinceName = resourceJson.stateOrProvinceName;
+    }
   }
 
 }

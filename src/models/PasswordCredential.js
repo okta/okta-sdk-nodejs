@@ -33,6 +33,9 @@ class PasswordCredential extends Resource {
     if (resourceJson && resourceJson.hook) {
       this.hook = new PasswordCredentialHook(resourceJson.hook);
     }
+    if (resourceJson && resourceJson.value) {
+      this.value = resourceJson.value;
+    }
   }
 
 }

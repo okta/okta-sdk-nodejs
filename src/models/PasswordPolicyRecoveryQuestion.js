@@ -28,6 +28,9 @@ class PasswordPolicyRecoveryQuestion extends Resource {
     if (resourceJson && resourceJson.properties) {
       this.properties = new PasswordPolicyRecoveryQuestionProperties(resourceJson.properties);
     }
+    if (resourceJson && resourceJson.status) {
+      this.status = resourceJson.status;
+    }
   }
 
 }

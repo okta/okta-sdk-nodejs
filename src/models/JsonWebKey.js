@@ -39,7 +39,54 @@ var Resource = require('../resource');
 class JsonWebKey extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-
+    if (resourceJson && resourceJson._links) {
+      this._links = resourceJson._links;
+    }
+    if (resourceJson && resourceJson.alg) {
+      this.alg = resourceJson.alg;
+    }
+    if (resourceJson && resourceJson.created) {
+      this.created = resourceJson.created;
+    }
+    if (resourceJson && resourceJson.e) {
+      this.e = resourceJson.e;
+    }
+    if (resourceJson && resourceJson.expiresAt) {
+      this.expiresAt = resourceJson.expiresAt;
+    }
+    if (resourceJson && resourceJson.key_ops) {
+      this.key_ops = resourceJson.key_ops;
+    }
+    if (resourceJson && resourceJson.kid) {
+      this.kid = resourceJson.kid;
+    }
+    if (resourceJson && resourceJson.kty) {
+      this.kty = resourceJson.kty;
+    }
+    if (resourceJson && resourceJson.lastUpdated) {
+      this.lastUpdated = resourceJson.lastUpdated;
+    }
+    if (resourceJson && resourceJson.n) {
+      this.n = resourceJson.n;
+    }
+    if (resourceJson && resourceJson.status) {
+      this.status = resourceJson.status;
+    }
+    if (resourceJson && resourceJson.use) {
+      this.use = resourceJson.use;
+    }
+    if (resourceJson && resourceJson.x5c) {
+      this.x5c = resourceJson.x5c;
+    }
+    if (resourceJson && resourceJson.x5t) {
+      this.x5t = resourceJson.x5t;
+    }
+    if (resourceJson && resourceJson.'x5t#S256') {
+      this.'x5t#S256' = resourceJson.x5t#S256;
+    }
+    if (resourceJson && resourceJson.x5u) {
+      this.x5u = resourceJson.x5u;
+    }
   }
 
 }

@@ -24,7 +24,9 @@ var Resource = require('../resource');
 class ScheduledUserLifecycleAction extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-
+    if (resourceJson && resourceJson.status) {
+      this.status = resourceJson.status;
+    }
   }
 
 }

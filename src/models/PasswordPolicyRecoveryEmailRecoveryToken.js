@@ -24,7 +24,9 @@ var Resource = require('../resource');
 class PasswordPolicyRecoveryEmailRecoveryToken extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-
+    if (resourceJson && resourceJson.tokenLifetimeMinutes) {
+      this.tokenLifetimeMinutes = resourceJson.tokenLifetimeMinutes;
+    }
   }
 
 }
