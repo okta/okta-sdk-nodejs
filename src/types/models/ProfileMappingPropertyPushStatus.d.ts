@@ -13,19 +13,11 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-import { Resource } from '../resource';
-import { Client } from '../client';
-
-
-declare class ProfileMappingPropertyPushStatus extends Resource {
-  constructor(resourceJson: string, client: Client);
-
-
+declare enum ProfileMappingPropertyPushStatus {
+  PUSH = 'PUSH',
+  DONT_PUSH = 'DONT_PUSH',
 }
 
-type ProfileMappingPropertyPushStatusOptions = Record<string, unknown>;
-
 export {
-  ProfileMappingPropertyPushStatus,
-  ProfileMappingPropertyPushStatusOptions
+  ProfileMappingPropertyPushStatus
 };

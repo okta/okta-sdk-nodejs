@@ -25,11 +25,11 @@ var Resource = require('../resource');
 class OpenIdConnectApplicationIdpInitiatedLogin extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson.default_scope) {
-      this.default_scope = resourceJson.default_scope;
+    if (resourceJson && resourceJson['default_scope']) {
+      this['default_scope'] = resourceJson['default_scope'];
     }
-    if (resourceJson && resourceJson.mode) {
-      this.mode = resourceJson.mode;
+    if (resourceJson && resourceJson['mode']) {
+      this['mode'] = resourceJson['mode'];
     }
   }
 

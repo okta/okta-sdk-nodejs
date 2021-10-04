@@ -13,19 +13,11 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-import { Resource } from '../resource';
-import { Client } from '../client';
-
-
-declare class NetworkZoneAddressType extends Resource {
-  constructor(resourceJson: string, client: Client);
-
-
+declare enum NetworkZoneAddressType {
+  CIDR = 'CIDR',
+  RANGE = 'RANGE',
 }
 
-type NetworkZoneAddressTypeOptions = Record<string, unknown>;
-
 export {
-  NetworkZoneAddressType,
-  NetworkZoneAddressTypeOptions
+  NetworkZoneAddressType
 };

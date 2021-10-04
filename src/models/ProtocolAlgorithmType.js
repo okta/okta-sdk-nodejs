@@ -24,8 +24,8 @@ const ProtocolAlgorithmTypeSignature = require('./ProtocolAlgorithmTypeSignature
 class ProtocolAlgorithmType extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson.signature) {
-      this.signature = new ProtocolAlgorithmTypeSignature(resourceJson.signature);
+    if (resourceJson && resourceJson['signature']) {
+      this['signature'] = new ProtocolAlgorithmTypeSignature(resourceJson[signature]);
     }
   }
 

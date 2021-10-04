@@ -28,20 +28,20 @@ const LogGeolocation = require('./LogGeolocation');
 class LogGeographicalContext extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson.city) {
-      this.city = resourceJson.city;
+    if (resourceJson && resourceJson['city']) {
+      this['city'] = resourceJson['city'];
     }
-    if (resourceJson && resourceJson.country) {
-      this.country = resourceJson.country;
+    if (resourceJson && resourceJson['country']) {
+      this['country'] = resourceJson['country'];
     }
-    if (resourceJson && resourceJson.geolocation) {
-      this.geolocation = new LogGeolocation(resourceJson.geolocation);
+    if (resourceJson && resourceJson['geolocation']) {
+      this['geolocation'] = new LogGeolocation(resourceJson[geolocation]);
     }
-    if (resourceJson && resourceJson.postalCode) {
-      this.postalCode = resourceJson.postalCode;
+    if (resourceJson && resourceJson['postalCode']) {
+      this['postalCode'] = resourceJson['postalCode'];
     }
-    if (resourceJson && resourceJson.state) {
-      this.state = resourceJson.state;
+    if (resourceJson && resourceJson['state']) {
+      this['state'] = resourceJson['state'];
     }
   }
 

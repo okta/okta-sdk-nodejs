@@ -13,19 +13,17 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-var Resource = require('../resource');
-
-
-/**
- * @class ApplicationSignOnMode
- * @extends Resource
- */
-class ApplicationSignOnMode extends Resource {
-  constructor(resourceJson, client) {
-    super(resourceJson, client);
-
-  }
-
-}
+var ApplicationSignOnMode;
+(function (ApplicationSignOnMode) {
+  ApplicationSignOnMode['BOOKMARK'] = 'BOOKMARK';
+  ApplicationSignOnMode['BASIC_AUTH'] = 'BASIC_AUTH';
+  ApplicationSignOnMode['BROWSER_PLUGIN'] = 'BROWSER_PLUGIN';
+  ApplicationSignOnMode['SECURE_PASSWORD_STORE'] = 'SECURE_PASSWORD_STORE';
+  ApplicationSignOnMode['AUTO_LOGIN'] = 'AUTO_LOGIN';
+  ApplicationSignOnMode['WS_FEDERATION'] = 'WS_FEDERATION';
+  ApplicationSignOnMode['SAML_2_0'] = 'SAML_2_0';
+  ApplicationSignOnMode['OPENID_CONNECT'] = 'OPENID_CONNECT';
+  ApplicationSignOnMode['SAML_1_1'] = 'SAML_1_1';
+}(ApplicationSignOnMode || (ApplicationSignOnMode = {})));
 
 module.exports = ApplicationSignOnMode;

@@ -13,19 +13,10 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-var Resource = require('../resource');
-
-
-/**
- * @class OrgContactType
- * @extends Resource
- */
-class OrgContactType extends Resource {
-  constructor(resourceJson, client) {
-    super(resourceJson, client);
-
-  }
-
-}
+var OrgContactType;
+(function (OrgContactType) {
+  OrgContactType['BILLING'] = 'BILLING';
+  OrgContactType['TECHNICAL'] = 'TECHNICAL';
+}(OrgContactType || (OrgContactType = {})));
 
 module.exports = OrgContactType;

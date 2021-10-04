@@ -13,19 +13,14 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-import { Resource } from '../resource';
-import { Client } from '../client';
-
-
-declare class PasswordCredentialHashAlgorithm extends Resource {
-  constructor(resourceJson: string, client: Client);
-
-
+declare enum PasswordCredentialHashAlgorithm {
+  BCRYPT = 'BCRYPT',
+  SHA_512 = 'SHA-512',
+  SHA_256 = 'SHA-256',
+  SHA_1 = 'SHA-1',
+  MD5 = 'MD5',
 }
 
-type PasswordCredentialHashAlgorithmOptions = Record<string, unknown>;
-
 export {
-  PasswordCredentialHashAlgorithm,
-  PasswordCredentialHashAlgorithmOptions
+  PasswordCredentialHashAlgorithm
 };

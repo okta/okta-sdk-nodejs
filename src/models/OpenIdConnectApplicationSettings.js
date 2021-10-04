@@ -24,8 +24,8 @@ const OpenIdConnectApplicationSettingsClient = require('./OpenIdConnectApplicati
 class OpenIdConnectApplicationSettings extends ApplicationSettings {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson.oauthClient) {
-      this.oauthClient = new OpenIdConnectApplicationSettingsClient(resourceJson.oauthClient);
+    if (resourceJson && resourceJson['oauthClient']) {
+      this['oauthClient'] = new OpenIdConnectApplicationSettingsClient(resourceJson[oauthClient]);
     }
   }
 

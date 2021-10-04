@@ -25,11 +25,11 @@ var Resource = require('../resource');
 class NetworkZoneLocation extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson.country) {
-      this.country = resourceJson.country;
+    if (resourceJson && resourceJson['country']) {
+      this['country'] = resourceJson['country'];
     }
-    if (resourceJson && resourceJson.region) {
-      this.region = resourceJson.region;
+    if (resourceJson && resourceJson['region']) {
+      this['region'] = resourceJson['region'];
     }
   }
 

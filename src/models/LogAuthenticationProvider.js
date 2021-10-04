@@ -13,19 +13,14 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-var Resource = require('../resource');
-
-
-/**
- * @class LogAuthenticationProvider
- * @extends Resource
- */
-class LogAuthenticationProvider extends Resource {
-  constructor(resourceJson, client) {
-    super(resourceJson, client);
-
-  }
-
-}
+var LogAuthenticationProvider;
+(function (LogAuthenticationProvider) {
+  LogAuthenticationProvider['OKTA_AUTHENTICATION_PROVIDER'] = 'OKTA_AUTHENTICATION_PROVIDER';
+  LogAuthenticationProvider['ACTIVE_DIRECTORY'] = 'ACTIVE_DIRECTORY';
+  LogAuthenticationProvider['LDAP'] = 'LDAP';
+  LogAuthenticationProvider['FEDERATION'] = 'FEDERATION';
+  LogAuthenticationProvider['SOCIAL'] = 'SOCIAL';
+  LogAuthenticationProvider['FACTOR_PROVIDER'] = 'FACTOR_PROVIDER';
+}(LogAuthenticationProvider || (LogAuthenticationProvider = {})));
 
 module.exports = LogAuthenticationProvider;

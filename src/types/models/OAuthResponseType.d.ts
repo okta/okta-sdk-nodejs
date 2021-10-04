@@ -13,19 +13,12 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-import { Resource } from '../resource';
-import { Client } from '../client';
-
-
-declare class OAuthResponseType extends Resource {
-  constructor(resourceJson: string, client: Client);
-
-
+declare enum OAuthResponseType {
+  CODE = 'code',
+  TOKEN = 'token',
+  ID_TOKEN = 'id_token',
 }
 
-type OAuthResponseTypeOptions = Record<string, unknown>;
-
 export {
-  OAuthResponseType,
-  OAuthResponseTypeOptions
+  OAuthResponseType
 };

@@ -13,19 +13,13 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-import { Resource } from '../resource';
-import { Client } from '../client';
-
-
-declare class DomainValidationStatus extends Resource {
-  constructor(resourceJson: string, client: Client);
-
-
+declare enum DomainValidationStatus {
+  NOT_STARTED = 'NOT_STARTED',
+  IN_PROGRESS = 'IN_PROGRESS',
+  VERIFIED = 'VERIFIED',
+  COMPLETED = 'COMPLETED',
 }
 
-type DomainValidationStatusOptions = Record<string, unknown>;
-
 export {
-  DomainValidationStatus,
-  DomainValidationStatusOptions
+  DomainValidationStatus
 };

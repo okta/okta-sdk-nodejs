@@ -13,19 +13,9 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-var Resource = require('../resource');
-
-
-/**
- * @class SmsTemplateType
- * @extends Resource
- */
-class SmsTemplateType extends Resource {
-  constructor(resourceJson, client) {
-    super(resourceJson, client);
-
-  }
-
-}
+var SmsTemplateType;
+(function (SmsTemplateType) {
+  SmsTemplateType['SMS_VERIFY_CODE'] = 'SMS_VERIFY_CODE';
+}(SmsTemplateType || (SmsTemplateType = {})));
 
 module.exports = SmsTemplateType;

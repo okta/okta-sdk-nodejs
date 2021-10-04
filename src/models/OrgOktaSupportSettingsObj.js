@@ -26,14 +26,14 @@ var Resource = require('../resource');
 class OrgOktaSupportSettingsObj extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson._links) {
-      this._links = resourceJson._links;
+    if (resourceJson && resourceJson['_links']) {
+      this['_links'] = resourceJson['_links'];
     }
-    if (resourceJson && resourceJson.expiration) {
-      this.expiration = resourceJson.expiration;
+    if (resourceJson && resourceJson['expiration']) {
+      this['expiration'] = resourceJson['expiration'];
     }
-    if (resourceJson && resourceJson.support) {
-      this.support = resourceJson.support;
+    if (resourceJson && resourceJson['support']) {
+      this['support'] = resourceJson['support'];
     }
   }
 

@@ -34,38 +34,38 @@ const AuthorizationServerCredentials = require('./AuthorizationServerCredentials
 class AuthorizationServer extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson._links) {
-      this._links = resourceJson._links;
+    if (resourceJson && resourceJson['_links']) {
+      this['_links'] = resourceJson['_links'];
     }
-    if (resourceJson && resourceJson.audiences) {
-      this.audiences = resourceJson.audiences;
+    if (resourceJson && resourceJson['audiences']) {
+      this['audiences'] = resourceJson['audiences'];
     }
-    if (resourceJson && resourceJson.created) {
-      this.created = resourceJson.created;
+    if (resourceJson && resourceJson['created']) {
+      this['created'] = resourceJson['created'];
     }
-    if (resourceJson && resourceJson.credentials) {
-      this.credentials = new AuthorizationServerCredentials(resourceJson.credentials);
+    if (resourceJson && resourceJson['credentials']) {
+      this['credentials'] = new AuthorizationServerCredentials(resourceJson[credentials]);
     }
-    if (resourceJson && resourceJson.description) {
-      this.description = resourceJson.description;
+    if (resourceJson && resourceJson['description']) {
+      this['description'] = resourceJson['description'];
     }
-    if (resourceJson && resourceJson.id) {
-      this.id = resourceJson.id;
+    if (resourceJson && resourceJson['id']) {
+      this['id'] = resourceJson['id'];
     }
-    if (resourceJson && resourceJson.issuer) {
-      this.issuer = resourceJson.issuer;
+    if (resourceJson && resourceJson['issuer']) {
+      this['issuer'] = resourceJson['issuer'];
     }
-    if (resourceJson && resourceJson.issuerMode) {
-      this.issuerMode = resourceJson.issuerMode;
+    if (resourceJson && resourceJson['issuerMode']) {
+      this['issuerMode'] = resourceJson['issuerMode'];
     }
-    if (resourceJson && resourceJson.lastUpdated) {
-      this.lastUpdated = resourceJson.lastUpdated;
+    if (resourceJson && resourceJson['lastUpdated']) {
+      this['lastUpdated'] = resourceJson['lastUpdated'];
     }
-    if (resourceJson && resourceJson.name) {
-      this.name = resourceJson.name;
+    if (resourceJson && resourceJson['name']) {
+      this['name'] = resourceJson['name'];
     }
-    if (resourceJson && resourceJson.status) {
-      this.status = resourceJson.status;
+    if (resourceJson && resourceJson['status']) {
+      this['status'] = resourceJson['status'];
     }
   }
 

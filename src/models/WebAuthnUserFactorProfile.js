@@ -25,11 +25,11 @@ var Resource = require('../resource');
 class WebAuthnUserFactorProfile extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson.authenticatorName) {
-      this.authenticatorName = resourceJson.authenticatorName;
+    if (resourceJson && resourceJson['authenticatorName']) {
+      this['authenticatorName'] = resourceJson['authenticatorName'];
     }
-    if (resourceJson && resourceJson.credentialId) {
-      this.credentialId = resourceJson.credentialId;
+    if (resourceJson && resourceJson['credentialId']) {
+      this['credentialId'] = resourceJson['credentialId'];
     }
   }
 

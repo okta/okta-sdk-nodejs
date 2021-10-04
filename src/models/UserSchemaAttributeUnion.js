@@ -13,19 +13,10 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-var Resource = require('../resource');
-
-
-/**
- * @class UserSchemaAttributeUnion
- * @extends Resource
- */
-class UserSchemaAttributeUnion extends Resource {
-  constructor(resourceJson, client) {
-    super(resourceJson, client);
-
-  }
-
-}
+var UserSchemaAttributeUnion;
+(function (UserSchemaAttributeUnion) {
+  UserSchemaAttributeUnion['DISABLE'] = 'DISABLE';
+  UserSchemaAttributeUnion['ENABLE'] = 'ENABLE';
+}(UserSchemaAttributeUnion || (UserSchemaAttributeUnion = {})));
 
 module.exports = UserSchemaAttributeUnion;

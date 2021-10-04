@@ -26,14 +26,14 @@ var Resource = require('../resource');
 class OktaSignOnPolicyRuleSignonSessionActions extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson.maxSessionIdleMinutes) {
-      this.maxSessionIdleMinutes = resourceJson.maxSessionIdleMinutes;
+    if (resourceJson && resourceJson['maxSessionIdleMinutes']) {
+      this['maxSessionIdleMinutes'] = resourceJson['maxSessionIdleMinutes'];
     }
-    if (resourceJson && resourceJson.maxSessionLifetimeMinutes) {
-      this.maxSessionLifetimeMinutes = resourceJson.maxSessionLifetimeMinutes;
+    if (resourceJson && resourceJson['maxSessionLifetimeMinutes']) {
+      this['maxSessionLifetimeMinutes'] = resourceJson['maxSessionLifetimeMinutes'];
     }
-    if (resourceJson && resourceJson.usePersistentCookie) {
-      this.usePersistentCookie = resourceJson.usePersistentCookie;
+    if (resourceJson && resourceJson['usePersistentCookie']) {
+      this['usePersistentCookie'] = resourceJson['usePersistentCookie'];
     }
   }
 

@@ -30,17 +30,17 @@ const OAuth2ScopesMediationPolicyRuleCondition = require('./OAuth2ScopesMediatio
 class AuthorizationServerPolicyRuleConditions extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson.clients) {
-      this.clients = new ClientPolicyCondition(resourceJson.clients);
+    if (resourceJson && resourceJson['clients']) {
+      this['clients'] = new ClientPolicyCondition(resourceJson[clients]);
     }
-    if (resourceJson && resourceJson.grantTypes) {
-      this.grantTypes = new GrantTypePolicyRuleCondition(resourceJson.grantTypes);
+    if (resourceJson && resourceJson['grantTypes']) {
+      this['grantTypes'] = new GrantTypePolicyRuleCondition(resourceJson[grantTypes]);
     }
-    if (resourceJson && resourceJson.people) {
-      this.people = new PolicyPeopleCondition(resourceJson.people);
+    if (resourceJson && resourceJson['people']) {
+      this['people'] = new PolicyPeopleCondition(resourceJson[people]);
     }
-    if (resourceJson && resourceJson.scopes) {
-      this.scopes = new OAuth2ScopesMediationPolicyRuleCondition(resourceJson.scopes);
+    if (resourceJson && resourceJson['scopes']) {
+      this['scopes'] = new OAuth2ScopesMediationPolicyRuleCondition(resourceJson[scopes]);
     }
   }
 

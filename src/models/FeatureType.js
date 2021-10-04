@@ -13,19 +13,9 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-var Resource = require('../resource');
-
-
-/**
- * @class FeatureType
- * @extends Resource
- */
-class FeatureType extends Resource {
-  constructor(resourceJson, client) {
-    super(resourceJson, client);
-
-  }
-
-}
+var FeatureType;
+(function (FeatureType) {
+  FeatureType['SELF_SERVICE'] = 'self-service';
+}(FeatureType || (FeatureType = {})));
 
 module.exports = FeatureType;

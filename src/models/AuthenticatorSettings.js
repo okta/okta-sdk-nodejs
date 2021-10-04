@@ -25,11 +25,11 @@ var Resource = require('../resource');
 class AuthenticatorSettings extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson.allowedFor) {
-      this.allowedFor = resourceJson.allowedFor;
+    if (resourceJson && resourceJson['allowedFor']) {
+      this['allowedFor'] = resourceJson['allowedFor'];
     }
-    if (resourceJson && resourceJson.tokenLifetimeInMinutes) {
-      this.tokenLifetimeInMinutes = resourceJson.tokenLifetimeInMinutes;
+    if (resourceJson && resourceJson['tokenLifetimeInMinutes']) {
+      this['tokenLifetimeInMinutes'] = resourceJson['tokenLifetimeInMinutes'];
     }
   }
 

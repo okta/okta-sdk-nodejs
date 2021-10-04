@@ -64,68 +64,68 @@ const UserPolicyRuleCondition = require('./UserPolicyRuleCondition');
 class PolicyRuleConditions extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson.app) {
-      this.app = new AppAndInstancePolicyRuleCondition(resourceJson.app);
+    if (resourceJson && resourceJson['app']) {
+      this['app'] = new AppAndInstancePolicyRuleCondition(resourceJson[app]);
     }
-    if (resourceJson && resourceJson.apps) {
-      this.apps = new AppInstancePolicyRuleCondition(resourceJson.apps);
+    if (resourceJson && resourceJson['apps']) {
+      this['apps'] = new AppInstancePolicyRuleCondition(resourceJson[apps]);
     }
-    if (resourceJson && resourceJson.authContext) {
-      this.authContext = new PolicyRuleAuthContextCondition(resourceJson.authContext);
+    if (resourceJson && resourceJson['authContext']) {
+      this['authContext'] = new PolicyRuleAuthContextCondition(resourceJson[authContext]);
     }
-    if (resourceJson && resourceJson.authProvider) {
-      this.authProvider = new PasswordPolicyAuthenticationProviderCondition(resourceJson.authProvider);
+    if (resourceJson && resourceJson['authProvider']) {
+      this['authProvider'] = new PasswordPolicyAuthenticationProviderCondition(resourceJson[authProvider]);
     }
-    if (resourceJson && resourceJson.beforeScheduledAction) {
-      this.beforeScheduledAction = new BeforeScheduledActionPolicyRuleCondition(resourceJson.beforeScheduledAction);
+    if (resourceJson && resourceJson['beforeScheduledAction']) {
+      this['beforeScheduledAction'] = new BeforeScheduledActionPolicyRuleCondition(resourceJson[beforeScheduledAction]);
     }
-    if (resourceJson && resourceJson.clients) {
-      this.clients = new ClientPolicyCondition(resourceJson.clients);
+    if (resourceJson && resourceJson['clients']) {
+      this['clients'] = new ClientPolicyCondition(resourceJson[clients]);
     }
-    if (resourceJson && resourceJson.context) {
-      this.context = new ContextPolicyRuleCondition(resourceJson.context);
+    if (resourceJson && resourceJson['context']) {
+      this['context'] = new ContextPolicyRuleCondition(resourceJson[context]);
     }
-    if (resourceJson && resourceJson.device) {
-      this.device = new DevicePolicyRuleCondition(resourceJson.device);
+    if (resourceJson && resourceJson['device']) {
+      this['device'] = new DevicePolicyRuleCondition(resourceJson[device]);
     }
-    if (resourceJson && resourceJson.grantTypes) {
-      this.grantTypes = new GrantTypePolicyRuleCondition(resourceJson.grantTypes);
+    if (resourceJson && resourceJson['grantTypes']) {
+      this['grantTypes'] = new GrantTypePolicyRuleCondition(resourceJson[grantTypes]);
     }
-    if (resourceJson && resourceJson.groups) {
-      this.groups = new GroupPolicyRuleCondition(resourceJson.groups);
+    if (resourceJson && resourceJson['groups']) {
+      this['groups'] = new GroupPolicyRuleCondition(resourceJson[groups]);
     }
-    if (resourceJson && resourceJson.identityProvider) {
-      this.identityProvider = new IdentityProviderPolicyRuleCondition(resourceJson.identityProvider);
+    if (resourceJson && resourceJson['identityProvider']) {
+      this['identityProvider'] = new IdentityProviderPolicyRuleCondition(resourceJson[identityProvider]);
     }
-    if (resourceJson && resourceJson.mdmEnrollment) {
-      this.mdmEnrollment = new MDMEnrollmentPolicyRuleCondition(resourceJson.mdmEnrollment);
+    if (resourceJson && resourceJson['mdmEnrollment']) {
+      this['mdmEnrollment'] = new MDMEnrollmentPolicyRuleCondition(resourceJson[mdmEnrollment]);
     }
-    if (resourceJson && resourceJson.network) {
-      this.network = new PolicyNetworkCondition(resourceJson.network);
+    if (resourceJson && resourceJson['network']) {
+      this['network'] = new PolicyNetworkCondition(resourceJson[network]);
     }
-    if (resourceJson && resourceJson.people) {
-      this.people = new PolicyPeopleCondition(resourceJson.people);
+    if (resourceJson && resourceJson['people']) {
+      this['people'] = new PolicyPeopleCondition(resourceJson[people]);
     }
-    if (resourceJson && resourceJson.platform) {
-      this.platform = new PlatformPolicyRuleCondition(resourceJson.platform);
+    if (resourceJson && resourceJson['platform']) {
+      this['platform'] = new PlatformPolicyRuleCondition(resourceJson[platform]);
     }
-    if (resourceJson && resourceJson.risk) {
-      this.risk = new RiskPolicyRuleCondition(resourceJson.risk);
+    if (resourceJson && resourceJson['risk']) {
+      this['risk'] = new RiskPolicyRuleCondition(resourceJson[risk]);
     }
-    if (resourceJson && resourceJson.riskScore) {
-      this.riskScore = new RiskScorePolicyRuleCondition(resourceJson.riskScore);
+    if (resourceJson && resourceJson['riskScore']) {
+      this['riskScore'] = new RiskScorePolicyRuleCondition(resourceJson[riskScore]);
     }
-    if (resourceJson && resourceJson.scopes) {
-      this.scopes = new OAuth2ScopesMediationPolicyRuleCondition(resourceJson.scopes);
+    if (resourceJson && resourceJson['scopes']) {
+      this['scopes'] = new OAuth2ScopesMediationPolicyRuleCondition(resourceJson[scopes]);
     }
-    if (resourceJson && resourceJson.userIdentifier) {
-      this.userIdentifier = new UserIdentifierPolicyRuleCondition(resourceJson.userIdentifier);
+    if (resourceJson && resourceJson['userIdentifier']) {
+      this['userIdentifier'] = new UserIdentifierPolicyRuleCondition(resourceJson[userIdentifier]);
     }
-    if (resourceJson && resourceJson.userStatus) {
-      this.userStatus = new UserStatusPolicyRuleCondition(resourceJson.userStatus);
+    if (resourceJson && resourceJson['userStatus']) {
+      this['userStatus'] = new UserStatusPolicyRuleCondition(resourceJson[userStatus]);
     }
-    if (resourceJson && resourceJson.users) {
-      this.users = new UserPolicyRuleCondition(resourceJson.users);
+    if (resourceJson && resourceJson['users']) {
+      this['users'] = new UserPolicyRuleCondition(resourceJson[users]);
     }
   }
 

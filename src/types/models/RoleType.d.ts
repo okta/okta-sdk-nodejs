@@ -13,19 +13,19 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-import { Resource } from '../resource';
-import { Client } from '../client';
-
-
-declare class RoleType extends Resource {
-  constructor(resourceJson: string, client: Client);
-
-
+declare enum RoleType {
+  SUPER_ADMIN = 'SUPER_ADMIN',
+  ORG_ADMIN = 'ORG_ADMIN',
+  APP_ADMIN = 'APP_ADMIN',
+  USER_ADMIN = 'USER_ADMIN',
+  HELP_DESK_ADMIN = 'HELP_DESK_ADMIN',
+  READ_ONLY_ADMIN = 'READ_ONLY_ADMIN',
+  MOBILE_ADMIN = 'MOBILE_ADMIN',
+  API_ACCESS_MANAGEMENT_ADMIN = 'API_ACCESS_MANAGEMENT_ADMIN',
+  REPORT_ADMIN = 'REPORT_ADMIN',
+  GROUP_MEMBERSHIP_ADMIN = 'GROUP_MEMBERSHIP_ADMIN',
 }
 
-type RoleTypeOptions = Record<string, unknown>;
-
 export {
-  RoleType,
-  RoleTypeOptions
+  RoleType
 };

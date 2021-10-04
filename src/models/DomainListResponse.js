@@ -24,8 +24,8 @@ const Domain = require('./Domain');
 class DomainListResponse extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson.domains) {
-      this.domains = resourceJson.domains.map(resourceItem => new Domain(resourceItem));
+    if (resourceJson && resourceJson['domains']) {
+      this['domains'] = resourceJson['domains'].map(resourceItem => new Domain(resourceItem));
     }
   }
 

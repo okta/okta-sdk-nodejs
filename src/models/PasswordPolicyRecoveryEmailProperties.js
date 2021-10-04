@@ -24,8 +24,8 @@ const PasswordPolicyRecoveryEmailRecoveryToken = require('./PasswordPolicyRecove
 class PasswordPolicyRecoveryEmailProperties extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson.recoveryToken) {
-      this.recoveryToken = new PasswordPolicyRecoveryEmailRecoveryToken(resourceJson.recoveryToken);
+    if (resourceJson && resourceJson['recoveryToken']) {
+      this['recoveryToken'] = new PasswordPolicyRecoveryEmailRecoveryToken(resourceJson[recoveryToken]);
     }
   }
 

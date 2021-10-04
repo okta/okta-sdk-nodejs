@@ -24,8 +24,8 @@ var Resource = require('../resource');
 class PasswordDictionaryCommon extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson.exclude) {
-      this.exclude = resourceJson.exclude;
+    if (resourceJson && resourceJson['exclude']) {
+      this['exclude'] = resourceJson['exclude'];
     }
   }
 

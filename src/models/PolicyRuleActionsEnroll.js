@@ -24,8 +24,8 @@ var Resource = require('../resource');
 class PolicyRuleActionsEnroll extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson.self) {
-      this.self = resourceJson.self;
+    if (resourceJson && resourceJson['self']) {
+      this['self'] = resourceJson['self'];
     }
   }
 

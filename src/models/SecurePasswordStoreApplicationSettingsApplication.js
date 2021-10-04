@@ -32,32 +32,32 @@ var ApplicationSettingsApplication = require('./ApplicationSettingsApplication')
 class SecurePasswordStoreApplicationSettingsApplication extends ApplicationSettingsApplication {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson.optionalField1) {
-      this.optionalField1 = resourceJson.optionalField1;
+    if (resourceJson && resourceJson['optionalField1']) {
+      this['optionalField1'] = resourceJson['optionalField1'];
     }
-    if (resourceJson && resourceJson.optionalField1Value) {
-      this.optionalField1Value = resourceJson.optionalField1Value;
+    if (resourceJson && resourceJson['optionalField1Value']) {
+      this['optionalField1Value'] = resourceJson['optionalField1Value'];
     }
-    if (resourceJson && resourceJson.optionalField2) {
-      this.optionalField2 = resourceJson.optionalField2;
+    if (resourceJson && resourceJson['optionalField2']) {
+      this['optionalField2'] = resourceJson['optionalField2'];
     }
-    if (resourceJson && resourceJson.optionalField2Value) {
-      this.optionalField2Value = resourceJson.optionalField2Value;
+    if (resourceJson && resourceJson['optionalField2Value']) {
+      this['optionalField2Value'] = resourceJson['optionalField2Value'];
     }
-    if (resourceJson && resourceJson.optionalField3) {
-      this.optionalField3 = resourceJson.optionalField3;
+    if (resourceJson && resourceJson['optionalField3']) {
+      this['optionalField3'] = resourceJson['optionalField3'];
     }
-    if (resourceJson && resourceJson.optionalField3Value) {
-      this.optionalField3Value = resourceJson.optionalField3Value;
+    if (resourceJson && resourceJson['optionalField3Value']) {
+      this['optionalField3Value'] = resourceJson['optionalField3Value'];
     }
-    if (resourceJson && resourceJson.passwordField) {
-      this.passwordField = resourceJson.passwordField;
+    if (resourceJson && resourceJson['passwordField']) {
+      this['passwordField'] = resourceJson['passwordField'];
     }
-    if (resourceJson && resourceJson.url) {
-      this.url = resourceJson.url;
+    if (resourceJson && resourceJson['url']) {
+      this['url'] = resourceJson['url'];
     }
-    if (resourceJson && resourceJson.usernameField) {
-      this.usernameField = resourceJson.usernameField;
+    if (resourceJson && resourceJson['usernameField']) {
+      this['usernameField'] = resourceJson['usernameField'];
     }
   }
 

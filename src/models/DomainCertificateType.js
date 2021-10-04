@@ -13,19 +13,9 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-var Resource = require('../resource');
-
-
-/**
- * @class DomainCertificateType
- * @extends Resource
- */
-class DomainCertificateType extends Resource {
-  constructor(resourceJson, client) {
-    super(resourceJson, client);
-
-  }
-
-}
+var DomainCertificateType;
+(function (DomainCertificateType) {
+  DomainCertificateType['PEM'] = 'PEM';
+}(DomainCertificateType || (DomainCertificateType = {})));
 
 module.exports = DomainCertificateType;

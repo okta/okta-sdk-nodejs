@@ -13,19 +13,13 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-var Resource = require('../resource');
-
-
-/**
- * @class OAuthGrantType
- * @extends Resource
- */
-class OAuthGrantType extends Resource {
-  constructor(resourceJson, client) {
-    super(resourceJson, client);
-
-  }
-
-}
+var OAuthGrantType;
+(function (OAuthGrantType) {
+  OAuthGrantType['AUTHORIZATION_CODE'] = 'authorization_code';
+  OAuthGrantType['IMPLICIT'] = 'implicit';
+  OAuthGrantType['PASSWORD'] = 'password';
+  OAuthGrantType['REFRESH_TOKEN'] = 'refresh_token';
+  OAuthGrantType['CLIENT_CREDENTIALS'] = 'client_credentials';
+}(OAuthGrantType || (OAuthGrantType = {})));
 
 module.exports = OAuthGrantType;

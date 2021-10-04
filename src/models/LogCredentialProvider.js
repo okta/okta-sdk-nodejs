@@ -13,19 +13,15 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-var Resource = require('../resource');
-
-
-/**
- * @class LogCredentialProvider
- * @extends Resource
- */
-class LogCredentialProvider extends Resource {
-  constructor(resourceJson, client) {
-    super(resourceJson, client);
-
-  }
-
-}
+var LogCredentialProvider;
+(function (LogCredentialProvider) {
+  LogCredentialProvider['OKTA_AUTHENTICATION_PROVIDER'] = 'OKTA_AUTHENTICATION_PROVIDER';
+  LogCredentialProvider['OKTA_CREDENTIAL_PROVIDER'] = 'OKTA_CREDENTIAL_PROVIDER';
+  LogCredentialProvider['RSA'] = 'RSA';
+  LogCredentialProvider['SYMANTEC'] = 'SYMANTEC';
+  LogCredentialProvider['GOOGLE'] = 'GOOGLE';
+  LogCredentialProvider['DUO'] = 'DUO';
+  LogCredentialProvider['YUBIKEY'] = 'YUBIKEY';
+}(LogCredentialProvider || (LogCredentialProvider = {})));
 
 module.exports = LogCredentialProvider;

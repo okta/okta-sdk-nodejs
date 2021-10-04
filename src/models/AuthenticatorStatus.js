@@ -13,19 +13,10 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-var Resource = require('../resource');
-
-
-/**
- * @class AuthenticatorStatus
- * @extends Resource
- */
-class AuthenticatorStatus extends Resource {
-  constructor(resourceJson, client) {
-    super(resourceJson, client);
-
-  }
-
-}
+var AuthenticatorStatus;
+(function (AuthenticatorStatus) {
+  AuthenticatorStatus['ACTIVE'] = 'ACTIVE';
+  AuthenticatorStatus['INACTIVE'] = 'INACTIVE';
+}(AuthenticatorStatus || (AuthenticatorStatus = {})));
 
 module.exports = AuthenticatorStatus;

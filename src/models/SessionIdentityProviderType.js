@@ -13,19 +13,13 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-var Resource = require('../resource');
-
-
-/**
- * @class SessionIdentityProviderType
- * @extends Resource
- */
-class SessionIdentityProviderType extends Resource {
-  constructor(resourceJson, client) {
-    super(resourceJson, client);
-
-  }
-
-}
+var SessionIdentityProviderType;
+(function (SessionIdentityProviderType) {
+  SessionIdentityProviderType['ACTIVE_DIRECTORY'] = 'ACTIVE_DIRECTORY';
+  SessionIdentityProviderType['LDAP'] = 'LDAP';
+  SessionIdentityProviderType['OKTA'] = 'OKTA';
+  SessionIdentityProviderType['FEDERATION'] = 'FEDERATION';
+  SessionIdentityProviderType['SOCIAL'] = 'SOCIAL';
+}(SessionIdentityProviderType || (SessionIdentityProviderType = {})));
 
 module.exports = SessionIdentityProviderType;

@@ -13,19 +13,13 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-import { Resource } from '../resource';
-import { Client } from '../client';
-
-
-declare class PolicyType extends Resource {
-  constructor(resourceJson: string, client: Client);
-
-
+declare enum PolicyType {
+  OAUTH_AUTHORIZATION_POLICY = 'OAUTH_AUTHORIZATION_POLICY',
+  OKTA_SIGN_ON = 'OKTA_SIGN_ON',
+  PASSWORD = 'PASSWORD',
+  IDP_DISCOVERY = 'IDP_DISCOVERY',
 }
 
-type PolicyTypeOptions = Record<string, unknown>;
-
 export {
-  PolicyType,
-  PolicyTypeOptions
+  PolicyType
 };

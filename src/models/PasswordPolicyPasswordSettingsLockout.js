@@ -27,17 +27,17 @@ var Resource = require('../resource');
 class PasswordPolicyPasswordSettingsLockout extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson.autoUnlockMinutes) {
-      this.autoUnlockMinutes = resourceJson.autoUnlockMinutes;
+    if (resourceJson && resourceJson['autoUnlockMinutes']) {
+      this['autoUnlockMinutes'] = resourceJson['autoUnlockMinutes'];
     }
-    if (resourceJson && resourceJson.maxAttempts) {
-      this.maxAttempts = resourceJson.maxAttempts;
+    if (resourceJson && resourceJson['maxAttempts']) {
+      this['maxAttempts'] = resourceJson['maxAttempts'];
     }
-    if (resourceJson && resourceJson.showLockoutFailures) {
-      this.showLockoutFailures = resourceJson.showLockoutFailures;
+    if (resourceJson && resourceJson['showLockoutFailures']) {
+      this['showLockoutFailures'] = resourceJson['showLockoutFailures'];
     }
-    if (resourceJson && resourceJson.userLockoutNotificationChannels) {
-      this.userLockoutNotificationChannels = resourceJson.userLockoutNotificationChannels;
+    if (resourceJson && resourceJson['userLockoutNotificationChannels']) {
+      this['userLockoutNotificationChannels'] = resourceJson['userLockoutNotificationChannels'];
     }
   }
 

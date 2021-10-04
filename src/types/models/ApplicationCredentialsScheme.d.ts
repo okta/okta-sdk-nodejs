@@ -13,19 +13,14 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-import { Resource } from '../resource';
-import { Client } from '../client';
-
-
-declare class ApplicationCredentialsScheme extends Resource {
-  constructor(resourceJson: string, client: Client);
-
-
+declare enum ApplicationCredentialsScheme {
+  SHARED_USERNAME_AND_PASSWORD = 'SHARED_USERNAME_AND_PASSWORD',
+  EXTERNAL_PASSWORD_SYNC = 'EXTERNAL_PASSWORD_SYNC',
+  EDIT_USERNAME_AND_PASSWORD = 'EDIT_USERNAME_AND_PASSWORD',
+  EDIT_PASSWORD_ONLY = 'EDIT_PASSWORD_ONLY',
+  ADMIN_SETS_CREDENTIALS = 'ADMIN_SETS_CREDENTIALS',
 }
 
-type ApplicationCredentialsSchemeOptions = Record<string, unknown>;
-
 export {
-  ApplicationCredentialsScheme,
-  ApplicationCredentialsSchemeOptions
+  ApplicationCredentialsScheme
 };

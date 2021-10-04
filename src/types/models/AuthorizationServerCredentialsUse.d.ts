@@ -13,19 +13,10 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-import { Resource } from '../resource';
-import { Client } from '../client';
-
-
-declare class AuthorizationServerCredentialsUse extends Resource {
-  constructor(resourceJson: string, client: Client);
-
-
+declare enum AuthorizationServerCredentialsUse {
+  SIG = 'sig',
 }
 
-type AuthorizationServerCredentialsUseOptions = Record<string, unknown>;
-
 export {
-  AuthorizationServerCredentialsUse,
-  AuthorizationServerCredentialsUseOptions
+  AuthorizationServerCredentialsUse
 };

@@ -13,19 +13,12 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-var Resource = require('../resource');
-
-
-/**
- * @class AllowedForEnum
- * @extends Resource
- */
-class AllowedForEnum extends Resource {
-  constructor(resourceJson, client) {
-    super(resourceJson, client);
-
-  }
-
-}
+var AllowedForEnum;
+(function (AllowedForEnum) {
+  AllowedForEnum['RECOVERY'] = 'recovery';
+  AllowedForEnum['SSO'] = 'sso';
+  AllowedForEnum['ANY'] = 'any';
+  AllowedForEnum['NONE'] = 'none';
+}(AllowedForEnum || (AllowedForEnum = {})));
 
 module.exports = AllowedForEnum;

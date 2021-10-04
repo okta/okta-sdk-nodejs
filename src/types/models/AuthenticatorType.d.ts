@@ -13,19 +13,15 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-import { Resource } from '../resource';
-import { Client } from '../client';
-
-
-declare class AuthenticatorType extends Resource {
-  constructor(resourceJson: string, client: Client);
-
-
+declare enum AuthenticatorType {
+  APP = 'app',
+  PASSWORD = 'password',
+  SECURITY_QUESTION = 'security_question',
+  PHONE = 'phone',
+  EMAIL = 'email',
+  SECURITY_KEY = 'security_key',
 }
 
-type AuthenticatorTypeOptions = Record<string, unknown>;
-
 export {
-  AuthenticatorType,
-  AuthenticatorTypeOptions
+  AuthenticatorType
 };

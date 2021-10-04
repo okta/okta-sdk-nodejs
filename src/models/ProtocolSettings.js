@@ -24,8 +24,8 @@ var Resource = require('../resource');
 class ProtocolSettings extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson.nameFormat) {
-      this.nameFormat = resourceJson.nameFormat;
+    if (resourceJson && resourceJson['nameFormat']) {
+      this['nameFormat'] = resourceJson['nameFormat'];
     }
   }
 

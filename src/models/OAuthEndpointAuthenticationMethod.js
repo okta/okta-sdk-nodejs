@@ -13,19 +13,13 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-var Resource = require('../resource');
-
-
-/**
- * @class OAuthEndpointAuthenticationMethod
- * @extends Resource
- */
-class OAuthEndpointAuthenticationMethod extends Resource {
-  constructor(resourceJson, client) {
-    super(resourceJson, client);
-
-  }
-
-}
+var OAuthEndpointAuthenticationMethod;
+(function (OAuthEndpointAuthenticationMethod) {
+  OAuthEndpointAuthenticationMethod['NONE'] = 'none';
+  OAuthEndpointAuthenticationMethod['CLIENT_SECRET_POST'] = 'client_secret_post';
+  OAuthEndpointAuthenticationMethod['CLIENT_SECRET_BASIC'] = 'client_secret_basic';
+  OAuthEndpointAuthenticationMethod['CLIENT_SECRET_JWT'] = 'client_secret_jwt';
+  OAuthEndpointAuthenticationMethod['PRIVATE_KEY_JWT'] = 'private_key_jwt';
+}(OAuthEndpointAuthenticationMethod || (OAuthEndpointAuthenticationMethod = {})));
 
 module.exports = OAuthEndpointAuthenticationMethod;

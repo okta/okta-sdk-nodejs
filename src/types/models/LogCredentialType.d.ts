@@ -13,19 +13,17 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-import { Resource } from '../resource';
-import { Client } from '../client';
-
-
-declare class LogCredentialType extends Resource {
-  constructor(resourceJson: string, client: Client);
-
-
+declare enum LogCredentialType {
+  OTP = 'OTP',
+  SMS = 'SMS',
+  PASSWORD = 'PASSWORD',
+  ASSERTION = 'ASSERTION',
+  IWA = 'IWA',
+  EMAIL = 'EMAIL',
+  OAUTH2 = 'OAUTH2',
+  JWT = 'JWT',
 }
 
-type LogCredentialTypeOptions = Record<string, unknown>;
-
 export {
-  LogCredentialType,
-  LogCredentialTypeOptions
+  LogCredentialType
 };

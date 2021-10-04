@@ -13,19 +13,10 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-var Resource = require('../resource');
-
-
-/**
- * @class RoleStatus
- * @extends Resource
- */
-class RoleStatus extends Resource {
-  constructor(resourceJson, client) {
-    super(resourceJson, client);
-
-  }
-
-}
+var RoleStatus;
+(function (RoleStatus) {
+  RoleStatus['ACTIVE'] = 'ACTIVE';
+  RoleStatus['INACTIVE'] = 'INACTIVE';
+}(RoleStatus || (RoleStatus = {})));
 
 module.exports = RoleStatus;

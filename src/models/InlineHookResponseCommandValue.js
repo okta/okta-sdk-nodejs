@@ -26,14 +26,14 @@ var Resource = require('../resource');
 class InlineHookResponseCommandValue extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson.op) {
-      this.op = resourceJson.op;
+    if (resourceJson && resourceJson['op']) {
+      this['op'] = resourceJson['op'];
     }
-    if (resourceJson && resourceJson.path) {
-      this.path = resourceJson.path;
+    if (resourceJson && resourceJson['path']) {
+      this['path'] = resourceJson['path'];
     }
-    if (resourceJson && resourceJson.value) {
-      this.value = resourceJson.value;
+    if (resourceJson && resourceJson['value']) {
+      this['value'] = resourceJson['value'];
     }
   }
 

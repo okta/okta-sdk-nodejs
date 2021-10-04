@@ -25,11 +25,11 @@ var Resource = require('../resource');
 class PasswordPolicyAuthenticationProviderCondition extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson.include) {
-      this.include = resourceJson.include;
+    if (resourceJson && resourceJson['include']) {
+      this['include'] = resourceJson['include'];
     }
-    if (resourceJson && resourceJson.provider) {
-      this.provider = resourceJson.provider;
+    if (resourceJson && resourceJson['provider']) {
+      this['provider'] = resourceJson['provider'];
     }
   }
 

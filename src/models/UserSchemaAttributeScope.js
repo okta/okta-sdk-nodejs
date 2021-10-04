@@ -13,19 +13,10 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-var Resource = require('../resource');
-
-
-/**
- * @class UserSchemaAttributeScope
- * @extends Resource
- */
-class UserSchemaAttributeScope extends Resource {
-  constructor(resourceJson, client) {
-    super(resourceJson, client);
-
-  }
-
-}
+var UserSchemaAttributeScope;
+(function (UserSchemaAttributeScope) {
+  UserSchemaAttributeScope['SELF'] = 'SELF';
+  UserSchemaAttributeScope['NONE'] = 'NONE';
+}(UserSchemaAttributeScope || (UserSchemaAttributeScope = {})));
 
 module.exports = UserSchemaAttributeScope;

@@ -24,8 +24,8 @@ var Resource = require('../resource');
 class ResetPasswordToken extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson.resetPasswordUrl) {
-      this.resetPasswordUrl = resourceJson.resetPasswordUrl;
+    if (resourceJson && resourceJson['resetPasswordUrl']) {
+      this['resetPasswordUrl'] = resourceJson['resetPasswordUrl'];
     }
   }
 

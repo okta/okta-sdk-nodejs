@@ -13,19 +13,11 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-import { Resource } from '../resource';
-import { Client } from '../client';
-
-
-declare class DNSRecordType extends Resource {
-  constructor(resourceJson: string, client: Client);
-
-
+declare enum DNSRecordType {
+  TXT = 'TXT',
+  CNAME = 'CNAME',
 }
 
-type DNSRecordTypeOptions = Record<string, unknown>;
-
 export {
-  DNSRecordType,
-  DNSRecordTypeOptions
+  DNSRecordType
 };

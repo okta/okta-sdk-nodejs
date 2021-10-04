@@ -35,41 +35,41 @@ var Resource = require('../resource');
 class CatalogApplication extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson._links) {
-      this._links = resourceJson._links;
+    if (resourceJson && resourceJson['_links']) {
+      this['_links'] = resourceJson['_links'];
     }
-    if (resourceJson && resourceJson.category) {
-      this.category = resourceJson.category;
+    if (resourceJson && resourceJson['category']) {
+      this['category'] = resourceJson['category'];
     }
-    if (resourceJson && resourceJson.description) {
-      this.description = resourceJson.description;
+    if (resourceJson && resourceJson['description']) {
+      this['description'] = resourceJson['description'];
     }
-    if (resourceJson && resourceJson.displayName) {
-      this.displayName = resourceJson.displayName;
+    if (resourceJson && resourceJson['displayName']) {
+      this['displayName'] = resourceJson['displayName'];
     }
-    if (resourceJson && resourceJson.features) {
-      this.features = resourceJson.features;
+    if (resourceJson && resourceJson['features']) {
+      this['features'] = resourceJson['features'];
     }
-    if (resourceJson && resourceJson.id) {
-      this.id = resourceJson.id;
+    if (resourceJson && resourceJson['id']) {
+      this['id'] = resourceJson['id'];
     }
-    if (resourceJson && resourceJson.lastUpdated) {
-      this.lastUpdated = resourceJson.lastUpdated;
+    if (resourceJson && resourceJson['lastUpdated']) {
+      this['lastUpdated'] = resourceJson['lastUpdated'];
     }
-    if (resourceJson && resourceJson.name) {
-      this.name = resourceJson.name;
+    if (resourceJson && resourceJson['name']) {
+      this['name'] = resourceJson['name'];
     }
-    if (resourceJson && resourceJson.signOnModes) {
-      this.signOnModes = resourceJson.signOnModes;
+    if (resourceJson && resourceJson['signOnModes']) {
+      this['signOnModes'] = resourceJson['signOnModes'];
     }
-    if (resourceJson && resourceJson.status) {
-      this.status = resourceJson.status;
+    if (resourceJson && resourceJson['status']) {
+      this['status'] = resourceJson['status'];
     }
-    if (resourceJson && resourceJson.verificationStatus) {
-      this.verificationStatus = resourceJson.verificationStatus;
+    if (resourceJson && resourceJson['verificationStatus']) {
+      this['verificationStatus'] = resourceJson['verificationStatus'];
     }
-    if (resourceJson && resourceJson.website) {
-      this.website = resourceJson.website;
+    if (resourceJson && resourceJson['website']) {
+      this['website'] = resourceJson['website'];
     }
   }
 

@@ -13,19 +13,13 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-import { Resource } from '../resource';
-import { Client } from '../client';
-
-
-declare class AllowedForEnum extends Resource {
-  constructor(resourceJson: string, client: Client);
-
-
+declare enum AllowedForEnum {
+  RECOVERY = 'recovery',
+  SSO = 'sso',
+  ANY = 'any',
+  NONE = 'none',
 }
 
-type AllowedForEnumOptions = Record<string, unknown>;
-
 export {
-  AllowedForEnum,
-  AllowedForEnumOptions
+  AllowedForEnum
 };

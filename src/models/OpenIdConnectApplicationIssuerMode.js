@@ -13,19 +13,10 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-var Resource = require('../resource');
-
-
-/**
- * @class OpenIdConnectApplicationIssuerMode
- * @extends Resource
- */
-class OpenIdConnectApplicationIssuerMode extends Resource {
-  constructor(resourceJson, client) {
-    super(resourceJson, client);
-
-  }
-
-}
+var OpenIdConnectApplicationIssuerMode;
+(function (OpenIdConnectApplicationIssuerMode) {
+  OpenIdConnectApplicationIssuerMode['CUSTOM_URL'] = 'CUSTOM_URL';
+  OpenIdConnectApplicationIssuerMode['ORG_URL'] = 'ORG_URL';
+}(OpenIdConnectApplicationIssuerMode || (OpenIdConnectApplicationIssuerMode = {})));
 
 module.exports = OpenIdConnectApplicationIssuerMode;

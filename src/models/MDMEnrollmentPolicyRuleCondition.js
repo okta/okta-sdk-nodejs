@@ -25,11 +25,11 @@ var Resource = require('../resource');
 class MDMEnrollmentPolicyRuleCondition extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson.blockNonSafeAndroid) {
-      this.blockNonSafeAndroid = resourceJson.blockNonSafeAndroid;
+    if (resourceJson && resourceJson['blockNonSafeAndroid']) {
+      this['blockNonSafeAndroid'] = resourceJson['blockNonSafeAndroid'];
     }
-    if (resourceJson && resourceJson.enrollment) {
-      this.enrollment = resourceJson.enrollment;
+    if (resourceJson && resourceJson['enrollment']) {
+      this['enrollment'] = resourceJson['enrollment'];
     }
   }
 

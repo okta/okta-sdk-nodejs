@@ -33,35 +33,35 @@ const Scope = require('./Scope');
 class TrustedOrigin extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson._links) {
-      this._links = resourceJson._links;
+    if (resourceJson && resourceJson['_links']) {
+      this['_links'] = resourceJson['_links'];
     }
-    if (resourceJson && resourceJson.created) {
-      this.created = resourceJson.created;
+    if (resourceJson && resourceJson['created']) {
+      this['created'] = resourceJson['created'];
     }
-    if (resourceJson && resourceJson.createdBy) {
-      this.createdBy = resourceJson.createdBy;
+    if (resourceJson && resourceJson['createdBy']) {
+      this['createdBy'] = resourceJson['createdBy'];
     }
-    if (resourceJson && resourceJson.id) {
-      this.id = resourceJson.id;
+    if (resourceJson && resourceJson['id']) {
+      this['id'] = resourceJson['id'];
     }
-    if (resourceJson && resourceJson.lastUpdated) {
-      this.lastUpdated = resourceJson.lastUpdated;
+    if (resourceJson && resourceJson['lastUpdated']) {
+      this['lastUpdated'] = resourceJson['lastUpdated'];
     }
-    if (resourceJson && resourceJson.lastUpdatedBy) {
-      this.lastUpdatedBy = resourceJson.lastUpdatedBy;
+    if (resourceJson && resourceJson['lastUpdatedBy']) {
+      this['lastUpdatedBy'] = resourceJson['lastUpdatedBy'];
     }
-    if (resourceJson && resourceJson.name) {
-      this.name = resourceJson.name;
+    if (resourceJson && resourceJson['name']) {
+      this['name'] = resourceJson['name'];
     }
-    if (resourceJson && resourceJson.origin) {
-      this.origin = resourceJson.origin;
+    if (resourceJson && resourceJson['origin']) {
+      this['origin'] = resourceJson['origin'];
     }
-    if (resourceJson && resourceJson.scopes) {
-      this.scopes = resourceJson.scopes.map(resourceItem => new Scope(resourceItem));
+    if (resourceJson && resourceJson['scopes']) {
+      this['scopes'] = resourceJson['scopes'].map(resourceItem => new Scope(resourceItem));
     }
-    if (resourceJson && resourceJson.status) {
-      this.status = resourceJson.status;
+    if (resourceJson && resourceJson['status']) {
+      this['status'] = resourceJson['status'];
     }
   }
 

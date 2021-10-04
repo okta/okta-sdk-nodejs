@@ -27,17 +27,17 @@ const GroupSchemaBaseProperties = require('./GroupSchemaBaseProperties');
 class GroupSchemaBase extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson.id) {
-      this.id = resourceJson.id;
+    if (resourceJson && resourceJson['id']) {
+      this['id'] = resourceJson['id'];
     }
-    if (resourceJson && resourceJson.properties) {
-      this.properties = new GroupSchemaBaseProperties(resourceJson.properties);
+    if (resourceJson && resourceJson['properties']) {
+      this['properties'] = new GroupSchemaBaseProperties(resourceJson[properties]);
     }
-    if (resourceJson && resourceJson.required) {
-      this.required = resourceJson.required;
+    if (resourceJson && resourceJson['required']) {
+      this['required'] = resourceJson['required'];
     }
-    if (resourceJson && resourceJson.type) {
-      this.type = resourceJson.type;
+    if (resourceJson && resourceJson['type']) {
+      this['type'] = resourceJson['type'];
     }
   }
 

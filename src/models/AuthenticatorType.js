@@ -13,19 +13,14 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-var Resource = require('../resource');
-
-
-/**
- * @class AuthenticatorType
- * @extends Resource
- */
-class AuthenticatorType extends Resource {
-  constructor(resourceJson, client) {
-    super(resourceJson, client);
-
-  }
-
-}
+var AuthenticatorType;
+(function (AuthenticatorType) {
+  AuthenticatorType['APP'] = 'app';
+  AuthenticatorType['PASSWORD'] = 'password';
+  AuthenticatorType['SECURITY_QUESTION'] = 'security_question';
+  AuthenticatorType['PHONE'] = 'phone';
+  AuthenticatorType['EMAIL'] = 'email';
+  AuthenticatorType['SECURITY_KEY'] = 'security_key';
+}(AuthenticatorType || (AuthenticatorType = {})));
 
 module.exports = AuthenticatorType;

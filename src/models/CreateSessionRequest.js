@@ -24,8 +24,8 @@ var Resource = require('../resource');
 class CreateSessionRequest extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson.sessionToken) {
-      this.sessionToken = resourceJson.sessionToken;
+    if (resourceJson && resourceJson['sessionToken']) {
+      this['sessionToken'] = resourceJson['sessionToken'];
     }
   }
 

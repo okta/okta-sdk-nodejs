@@ -25,11 +25,11 @@ var Resource = require('../resource');
 class ApplicationSettingsNotes extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson.admin) {
-      this.admin = resourceJson.admin;
+    if (resourceJson && resourceJson['admin']) {
+      this['admin'] = resourceJson['admin'];
     }
-    if (resourceJson && resourceJson.enduser) {
-      this.enduser = resourceJson.enduser;
+    if (resourceJson && resourceJson['enduser']) {
+      this['enduser'] = resourceJson['enduser'];
     }
   }
 

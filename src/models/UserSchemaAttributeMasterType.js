@@ -13,19 +13,11 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-var Resource = require('../resource');
-
-
-/**
- * @class UserSchemaAttributeMasterType
- * @extends Resource
- */
-class UserSchemaAttributeMasterType extends Resource {
-  constructor(resourceJson, client) {
-    super(resourceJson, client);
-
-  }
-
-}
+var UserSchemaAttributeMasterType;
+(function (UserSchemaAttributeMasterType) {
+  UserSchemaAttributeMasterType['PROFILE_MASTER'] = 'PROFILE_MASTER';
+  UserSchemaAttributeMasterType['OKTA'] = 'OKTA';
+  UserSchemaAttributeMasterType['OVERRIDE'] = 'OVERRIDE';
+}(UserSchemaAttributeMasterType || (UserSchemaAttributeMasterType = {})));
 
 module.exports = UserSchemaAttributeMasterType;

@@ -28,20 +28,20 @@ var ApplicationSettingsApplication = require('./ApplicationSettingsApplication')
 class SwaApplicationSettingsApplication extends ApplicationSettingsApplication {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson.buttonField) {
-      this.buttonField = resourceJson.buttonField;
+    if (resourceJson && resourceJson['buttonField']) {
+      this['buttonField'] = resourceJson['buttonField'];
     }
-    if (resourceJson && resourceJson.loginUrlRegex) {
-      this.loginUrlRegex = resourceJson.loginUrlRegex;
+    if (resourceJson && resourceJson['loginUrlRegex']) {
+      this['loginUrlRegex'] = resourceJson['loginUrlRegex'];
     }
-    if (resourceJson && resourceJson.passwordField) {
-      this.passwordField = resourceJson.passwordField;
+    if (resourceJson && resourceJson['passwordField']) {
+      this['passwordField'] = resourceJson['passwordField'];
     }
-    if (resourceJson && resourceJson.url) {
-      this.url = resourceJson.url;
+    if (resourceJson && resourceJson['url']) {
+      this['url'] = resourceJson['url'];
     }
-    if (resourceJson && resourceJson.usernameField) {
-      this.usernameField = resourceJson.usernameField;
+    if (resourceJson && resourceJson['usernameField']) {
+      this['usernameField'] = resourceJson['usernameField'];
     }
   }
 

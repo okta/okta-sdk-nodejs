@@ -13,19 +13,14 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-import { Resource } from '../resource';
-import { Client } from '../client';
-
-
-declare class OAuthEndpointAuthenticationMethod extends Resource {
-  constructor(resourceJson: string, client: Client);
-
-
+declare enum OAuthEndpointAuthenticationMethod {
+  NONE = 'none',
+  CLIENT_SECRET_POST = 'client_secret_post',
+  CLIENT_SECRET_BASIC = 'client_secret_basic',
+  CLIENT_SECRET_JWT = 'client_secret_jwt',
+  PRIVATE_KEY_JWT = 'private_key_jwt',
 }
 
-type OAuthEndpointAuthenticationMethodOptions = Record<string, unknown>;
-
 export {
-  OAuthEndpointAuthenticationMethod,
-  OAuthEndpointAuthenticationMethodOptions
+  OAuthEndpointAuthenticationMethod
 };

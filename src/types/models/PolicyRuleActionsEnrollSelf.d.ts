@@ -13,19 +13,12 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-import { Resource } from '../resource';
-import { Client } from '../client';
-
-
-declare class PolicyRuleActionsEnrollSelf extends Resource {
-  constructor(resourceJson: string, client: Client);
-
-
+declare enum PolicyRuleActionsEnrollSelf {
+  CHALLENGE = 'CHALLENGE',
+  LOGIN = 'LOGIN',
+  NEVER = 'NEVER',
 }
 
-type PolicyRuleActionsEnrollSelfOptions = Record<string, unknown>;
-
 export {
-  PolicyRuleActionsEnrollSelf,
-  PolicyRuleActionsEnrollSelfOptions
+  PolicyRuleActionsEnrollSelf
 };

@@ -27,17 +27,17 @@ var Resource = require('../resource');
 class ProtocolEndpoint extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson.binding) {
-      this.binding = resourceJson.binding;
+    if (resourceJson && resourceJson['binding']) {
+      this['binding'] = resourceJson['binding'];
     }
-    if (resourceJson && resourceJson.destination) {
-      this.destination = resourceJson.destination;
+    if (resourceJson && resourceJson['destination']) {
+      this['destination'] = resourceJson['destination'];
     }
-    if (resourceJson && resourceJson.type) {
-      this.type = resourceJson.type;
+    if (resourceJson && resourceJson['type']) {
+      this['type'] = resourceJson['type'];
     }
-    if (resourceJson && resourceJson.url) {
-      this.url = resourceJson.url;
+    if (resourceJson && resourceJson['url']) {
+      this['url'] = resourceJson['url'];
     }
   }
 

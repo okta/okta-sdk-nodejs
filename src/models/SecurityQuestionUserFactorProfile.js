@@ -26,14 +26,14 @@ var Resource = require('../resource');
 class SecurityQuestionUserFactorProfile extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson.answer) {
-      this.answer = resourceJson.answer;
+    if (resourceJson && resourceJson['answer']) {
+      this['answer'] = resourceJson['answer'];
     }
-    if (resourceJson && resourceJson.question) {
-      this.question = resourceJson.question;
+    if (resourceJson && resourceJson['question']) {
+      this['question'] = resourceJson['question'];
     }
-    if (resourceJson && resourceJson.questionText) {
-      this.questionText = resourceJson.questionText;
+    if (resourceJson && resourceJson['questionText']) {
+      this['questionText'] = resourceJson['questionText'];
     }
   }
 

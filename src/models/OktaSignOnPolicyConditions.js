@@ -24,8 +24,8 @@ const PolicyPeopleCondition = require('./PolicyPeopleCondition');
 class OktaSignOnPolicyConditions extends PolicyRuleConditions {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson.people) {
-      this.people = new PolicyPeopleCondition(resourceJson.people);
+    if (resourceJson && resourceJson['people']) {
+      this['people'] = new PolicyPeopleCondition(resourceJson[people]);
     }
   }
 

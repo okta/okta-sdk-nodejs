@@ -13,19 +13,10 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-import { Resource } from '../resource';
-import { Client } from '../client';
-
-
-declare class DomainCertificateSourceType extends Resource {
-  constructor(resourceJson: string, client: Client);
-
-
+declare enum DomainCertificateSourceType {
+  MANUAL = 'MANUAL',
 }
 
-type DomainCertificateSourceTypeOptions = Record<string, unknown>;
-
 export {
-  DomainCertificateSourceType,
-  DomainCertificateSourceTypeOptions
+  DomainCertificateSourceType
 };

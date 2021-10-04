@@ -28,20 +28,20 @@ var Resource = require('../resource');
 class ActivateFactorRequest extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson.attestation) {
-      this.attestation = resourceJson.attestation;
+    if (resourceJson && resourceJson['attestation']) {
+      this['attestation'] = resourceJson['attestation'];
     }
-    if (resourceJson && resourceJson.clientData) {
-      this.clientData = resourceJson.clientData;
+    if (resourceJson && resourceJson['clientData']) {
+      this['clientData'] = resourceJson['clientData'];
     }
-    if (resourceJson && resourceJson.passCode) {
-      this.passCode = resourceJson.passCode;
+    if (resourceJson && resourceJson['passCode']) {
+      this['passCode'] = resourceJson['passCode'];
     }
-    if (resourceJson && resourceJson.registrationData) {
-      this.registrationData = resourceJson.registrationData;
+    if (resourceJson && resourceJson['registrationData']) {
+      this['registrationData'] = resourceJson['registrationData'];
     }
-    if (resourceJson && resourceJson.stateToken) {
-      this.stateToken = resourceJson.stateToken;
+    if (resourceJson && resourceJson['stateToken']) {
+      this['stateToken'] = resourceJson['stateToken'];
     }
   }
 

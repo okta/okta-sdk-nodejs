@@ -25,11 +25,11 @@ var Resource = require('../resource');
 class OpenIdConnectApplicationSettingsRefreshToken extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson.leeway) {
-      this.leeway = resourceJson.leeway;
+    if (resourceJson && resourceJson['leeway']) {
+      this['leeway'] = resourceJson['leeway'];
     }
-    if (resourceJson && resourceJson.rotation_type) {
-      this.rotation_type = resourceJson.rotation_type;
+    if (resourceJson && resourceJson['rotation_type']) {
+      this['rotation_type'] = resourceJson['rotation_type'];
     }
   }
 

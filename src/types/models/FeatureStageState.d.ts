@@ -13,19 +13,11 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-import { Resource } from '../resource';
-import { Client } from '../client';
-
-
-declare class FeatureStageState extends Resource {
-  constructor(resourceJson: string, client: Client);
-
-
+declare enum FeatureStageState {
+  OPEN = 'OPEN',
+  CLOSED = 'CLOSED',
 }
 
-type FeatureStageStateOptions = Record<string, unknown>;
-
 export {
-  FeatureStageState,
-  FeatureStageStateOptions
+  FeatureStageState
 };

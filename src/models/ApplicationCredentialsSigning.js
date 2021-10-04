@@ -28,20 +28,20 @@ var Resource = require('../resource');
 class ApplicationCredentialsSigning extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson.kid) {
-      this.kid = resourceJson.kid;
+    if (resourceJson && resourceJson['kid']) {
+      this['kid'] = resourceJson['kid'];
     }
-    if (resourceJson && resourceJson.lastRotated) {
-      this.lastRotated = resourceJson.lastRotated;
+    if (resourceJson && resourceJson['lastRotated']) {
+      this['lastRotated'] = resourceJson['lastRotated'];
     }
-    if (resourceJson && resourceJson.nextRotation) {
-      this.nextRotation = resourceJson.nextRotation;
+    if (resourceJson && resourceJson['nextRotation']) {
+      this['nextRotation'] = resourceJson['nextRotation'];
     }
-    if (resourceJson && resourceJson.rotationMode) {
-      this.rotationMode = resourceJson.rotationMode;
+    if (resourceJson && resourceJson['rotationMode']) {
+      this['rotationMode'] = resourceJson['rotationMode'];
     }
-    if (resourceJson && resourceJson.use) {
-      this.use = resourceJson.use;
+    if (resourceJson && resourceJson['use']) {
+      this['use'] = resourceJson['use'];
     }
   }
 

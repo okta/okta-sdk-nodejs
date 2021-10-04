@@ -28,20 +28,20 @@ var Resource = require('../resource');
 class LogActor extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson.alternateId) {
-      this.alternateId = resourceJson.alternateId;
+    if (resourceJson && resourceJson['alternateId']) {
+      this['alternateId'] = resourceJson['alternateId'];
     }
-    if (resourceJson && resourceJson.detail) {
-      this.detail = resourceJson.detail;
+    if (resourceJson && resourceJson['detail']) {
+      this['detail'] = resourceJson['detail'];
     }
-    if (resourceJson && resourceJson.displayName) {
-      this.displayName = resourceJson.displayName;
+    if (resourceJson && resourceJson['displayName']) {
+      this['displayName'] = resourceJson['displayName'];
     }
-    if (resourceJson && resourceJson.id) {
-      this.id = resourceJson.id;
+    if (resourceJson && resourceJson['id']) {
+      this['id'] = resourceJson['id'];
     }
-    if (resourceJson && resourceJson.type) {
-      this.type = resourceJson.type;
+    if (resourceJson && resourceJson['type']) {
+      this['type'] = resourceJson['type'];
     }
   }
 

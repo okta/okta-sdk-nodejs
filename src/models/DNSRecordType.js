@@ -13,19 +13,10 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-var Resource = require('../resource');
-
-
-/**
- * @class DNSRecordType
- * @extends Resource
- */
-class DNSRecordType extends Resource {
-  constructor(resourceJson, client) {
-    super(resourceJson, client);
-
-  }
-
-}
+var DNSRecordType;
+(function (DNSRecordType) {
+  DNSRecordType['TXT'] = 'TXT';
+  DNSRecordType['CNAME'] = 'CNAME';
+}(DNSRecordType || (DNSRecordType = {})));
 
 module.exports = DNSRecordType;

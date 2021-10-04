@@ -24,8 +24,8 @@ var Resource = require('../resource');
 class CustomHotpUserFactorProfile extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson.sharedSecret) {
-      this.sharedSecret = resourceJson.sharedSecret;
+    if (resourceJson && resourceJson['sharedSecret']) {
+      this['sharedSecret'] = resourceJson['sharedSecret'];
     }
   }
 

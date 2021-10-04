@@ -24,8 +24,8 @@ const EmailUserFactorProfile = require('./EmailUserFactorProfile');
 class EmailUserFactor extends UserFactor {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson.profile) {
-      this.profile = new EmailUserFactorProfile(resourceJson.profile);
+    if (resourceJson && resourceJson['profile']) {
+      this['profile'] = new EmailUserFactorProfile(resourceJson[profile]);
     }
   }
 

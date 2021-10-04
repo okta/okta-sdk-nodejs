@@ -25,11 +25,11 @@ var Resource = require('../resource');
 class AcsEndpoint extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson.index) {
-      this.index = resourceJson.index;
+    if (resourceJson && resourceJson['index']) {
+      this['index'] = resourceJson['index'];
     }
-    if (resourceJson && resourceJson.url) {
-      this.url = resourceJson.url;
+    if (resourceJson && resourceJson['url']) {
+      this['url'] = resourceJson['url'];
     }
   }
 

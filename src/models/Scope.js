@@ -25,11 +25,11 @@ var Resource = require('../resource');
 class Scope extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson.stringValue) {
-      this.stringValue = resourceJson.stringValue;
+    if (resourceJson && resourceJson['stringValue']) {
+      this['stringValue'] = resourceJson['stringValue'];
     }
-    if (resourceJson && resourceJson.type) {
-      this.type = resourceJson.type;
+    if (resourceJson && resourceJson['type']) {
+      this['type'] = resourceJson['type'];
     }
   }
 

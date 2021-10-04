@@ -13,19 +13,11 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-import { Resource } from '../resource';
-import { Client } from '../client';
-
-
-declare class NetworkZoneUsage extends Resource {
-  constructor(resourceJson: string, client: Client);
-
-
+declare enum NetworkZoneUsage {
+  POLICY = 'POLICY',
+  BLOCKLIST = 'BLOCKLIST',
 }
 
-type NetworkZoneUsageOptions = Record<string, unknown>;
-
 export {
-  NetworkZoneUsage,
-  NetworkZoneUsageOptions
+  NetworkZoneUsage
 };

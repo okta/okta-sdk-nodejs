@@ -25,11 +25,11 @@ var Resource = require('../resource');
 class IdentityProviderCredentialsClient extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson.client_id) {
-      this.client_id = resourceJson.client_id;
+    if (resourceJson && resourceJson['client_id']) {
+      this['client_id'] = resourceJson['client_id'];
     }
-    if (resourceJson && resourceJson.client_secret) {
-      this.client_secret = resourceJson.client_secret;
+    if (resourceJson && resourceJson['client_secret']) {
+      this['client_secret'] = resourceJson['client_secret'];
     }
   }
 

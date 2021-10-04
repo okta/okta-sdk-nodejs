@@ -13,19 +13,12 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-import { Resource } from '../resource';
-import { Client } from '../client';
-
-
-declare class UserSchemaAttributeMasterType extends Resource {
-  constructor(resourceJson: string, client: Client);
-
-
+declare enum UserSchemaAttributeMasterType {
+  PROFILE_MASTER = 'PROFILE_MASTER',
+  OKTA = 'OKTA',
+  OVERRIDE = 'OVERRIDE',
 }
 
-type UserSchemaAttributeMasterTypeOptions = Record<string, unknown>;
-
 export {
-  UserSchemaAttributeMasterType,
-  UserSchemaAttributeMasterTypeOptions
+  UserSchemaAttributeMasterType
 };

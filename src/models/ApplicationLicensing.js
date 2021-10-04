@@ -24,8 +24,8 @@ var Resource = require('../resource');
 class ApplicationLicensing extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson.seatCount) {
-      this.seatCount = resourceJson.seatCount;
+    if (resourceJson && resourceJson['seatCount']) {
+      this['seatCount'] = resourceJson['seatCount'];
     }
   }
 

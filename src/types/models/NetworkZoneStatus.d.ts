@@ -13,19 +13,11 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-import { Resource } from '../resource';
-import { Client } from '../client';
-
-
-declare class NetworkZoneStatus extends Resource {
-  constructor(resourceJson: string, client: Client);
-
-
+declare enum NetworkZoneStatus {
+  ACTIVE = 'ACTIVE',
+  INACTIVE = 'INACTIVE',
 }
 
-type NetworkZoneStatusOptions = Record<string, unknown>;
-
 export {
-  NetworkZoneStatus,
-  NetworkZoneStatusOptions
+  NetworkZoneStatus
 };

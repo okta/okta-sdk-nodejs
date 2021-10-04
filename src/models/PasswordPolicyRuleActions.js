@@ -26,14 +26,14 @@ const PasswordPolicyRuleAction = require('./PasswordPolicyRuleAction');
 class PasswordPolicyRuleActions extends PolicyRuleActions {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson.passwordChange) {
-      this.passwordChange = new PasswordPolicyRuleAction(resourceJson.passwordChange);
+    if (resourceJson && resourceJson['passwordChange']) {
+      this['passwordChange'] = new PasswordPolicyRuleAction(resourceJson[passwordChange]);
     }
-    if (resourceJson && resourceJson.selfServicePasswordReset) {
-      this.selfServicePasswordReset = new PasswordPolicyRuleAction(resourceJson.selfServicePasswordReset);
+    if (resourceJson && resourceJson['selfServicePasswordReset']) {
+      this['selfServicePasswordReset'] = new PasswordPolicyRuleAction(resourceJson[selfServicePasswordReset]);
     }
-    if (resourceJson && resourceJson.selfServiceUnlock) {
-      this.selfServiceUnlock = new PasswordPolicyRuleAction(resourceJson.selfServiceUnlock);
+    if (resourceJson && resourceJson['selfServiceUnlock']) {
+      this['selfServiceUnlock'] = new PasswordPolicyRuleAction(resourceJson[selfServiceUnlock]);
     }
   }
 

@@ -27,17 +27,17 @@ const TokenAuthorizationServerPolicyRuleActionInlineHook = require('./TokenAutho
 class TokenAuthorizationServerPolicyRuleAction extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson.accessTokenLifetimeMinutes) {
-      this.accessTokenLifetimeMinutes = resourceJson.accessTokenLifetimeMinutes;
+    if (resourceJson && resourceJson['accessTokenLifetimeMinutes']) {
+      this['accessTokenLifetimeMinutes'] = resourceJson['accessTokenLifetimeMinutes'];
     }
-    if (resourceJson && resourceJson.inlineHook) {
-      this.inlineHook = new TokenAuthorizationServerPolicyRuleActionInlineHook(resourceJson.inlineHook);
+    if (resourceJson && resourceJson['inlineHook']) {
+      this['inlineHook'] = new TokenAuthorizationServerPolicyRuleActionInlineHook(resourceJson[inlineHook]);
     }
-    if (resourceJson && resourceJson.refreshTokenLifetimeMinutes) {
-      this.refreshTokenLifetimeMinutes = resourceJson.refreshTokenLifetimeMinutes;
+    if (resourceJson && resourceJson['refreshTokenLifetimeMinutes']) {
+      this['refreshTokenLifetimeMinutes'] = resourceJson['refreshTokenLifetimeMinutes'];
     }
-    if (resourceJson && resourceJson.refreshTokenWindowMinutes) {
-      this.refreshTokenWindowMinutes = resourceJson.refreshTokenWindowMinutes;
+    if (resourceJson && resourceJson['refreshTokenWindowMinutes']) {
+      this['refreshTokenWindowMinutes'] = resourceJson['refreshTokenWindowMinutes'];
     }
   }
 

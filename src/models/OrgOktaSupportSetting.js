@@ -13,19 +13,10 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-var Resource = require('../resource');
-
-
-/**
- * @class OrgOktaSupportSetting
- * @extends Resource
- */
-class OrgOktaSupportSetting extends Resource {
-  constructor(resourceJson, client) {
-    super(resourceJson, client);
-
-  }
-
-}
+var OrgOktaSupportSetting;
+(function (OrgOktaSupportSetting) {
+  OrgOktaSupportSetting['DISABLED'] = 'DISABLED';
+  OrgOktaSupportSetting['ENABLED'] = 'ENABLED';
+}(OrgOktaSupportSetting || (OrgOktaSupportSetting = {})));
 
 module.exports = OrgOktaSupportSetting;

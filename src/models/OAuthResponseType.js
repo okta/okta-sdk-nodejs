@@ -13,19 +13,11 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-var Resource = require('../resource');
-
-
-/**
- * @class OAuthResponseType
- * @extends Resource
- */
-class OAuthResponseType extends Resource {
-  constructor(resourceJson, client) {
-    super(resourceJson, client);
-
-  }
-
-}
+var OAuthResponseType;
+(function (OAuthResponseType) {
+  OAuthResponseType['CODE'] = 'code';
+  OAuthResponseType['TOKEN'] = 'token';
+  OAuthResponseType['ID_TOKEN'] = 'id_token';
+}(OAuthResponseType || (OAuthResponseType = {})));
 
 module.exports = OAuthResponseType;

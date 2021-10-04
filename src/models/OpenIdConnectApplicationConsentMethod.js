@@ -13,19 +13,10 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-var Resource = require('../resource');
-
-
-/**
- * @class OpenIdConnectApplicationConsentMethod
- * @extends Resource
- */
-class OpenIdConnectApplicationConsentMethod extends Resource {
-  constructor(resourceJson, client) {
-    super(resourceJson, client);
-
-  }
-
-}
+var OpenIdConnectApplicationConsentMethod;
+(function (OpenIdConnectApplicationConsentMethod) {
+  OpenIdConnectApplicationConsentMethod['REQUIRED'] = 'REQUIRED';
+  OpenIdConnectApplicationConsentMethod['TRUSTED'] = 'TRUSTED';
+}(OpenIdConnectApplicationConsentMethod || (OpenIdConnectApplicationConsentMethod = {})));
 
 module.exports = OpenIdConnectApplicationConsentMethod;

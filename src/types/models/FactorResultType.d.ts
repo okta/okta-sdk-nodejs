@@ -13,19 +13,19 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-import { Resource } from '../resource';
-import { Client } from '../client';
-
-
-declare class FactorResultType extends Resource {
-  constructor(resourceJson: string, client: Client);
-
-
+declare enum FactorResultType {
+  SUCCESS = 'SUCCESS',
+  CHALLENGE = 'CHALLENGE',
+  WAITING = 'WAITING',
+  FAILED = 'FAILED',
+  REJECTED = 'REJECTED',
+  TIMEOUT = 'TIMEOUT',
+  TIME_WINDOW_EXCEEDED = 'TIME_WINDOW_EXCEEDED',
+  PASSCODE_REPLAYED = 'PASSCODE_REPLAYED',
+  ERROR = 'ERROR',
+  CANCELLED = 'CANCELLED',
 }
 
-type FactorResultTypeOptions = Record<string, unknown>;
-
 export {
-  FactorResultType,
-  FactorResultTypeOptions
+  FactorResultType
 };

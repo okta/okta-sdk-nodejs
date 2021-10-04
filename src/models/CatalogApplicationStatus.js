@@ -13,19 +13,10 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-var Resource = require('../resource');
-
-
-/**
- * @class CatalogApplicationStatus
- * @extends Resource
- */
-class CatalogApplicationStatus extends Resource {
-  constructor(resourceJson, client) {
-    super(resourceJson, client);
-
-  }
-
-}
+var CatalogApplicationStatus;
+(function (CatalogApplicationStatus) {
+  CatalogApplicationStatus['ACTIVE'] = 'ACTIVE';
+  CatalogApplicationStatus['INACTIVE'] = 'INACTIVE';
+}(CatalogApplicationStatus || (CatalogApplicationStatus = {})));
 
 module.exports = CatalogApplicationStatus;

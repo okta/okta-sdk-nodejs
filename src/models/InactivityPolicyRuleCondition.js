@@ -25,11 +25,11 @@ var Resource = require('../resource');
 class InactivityPolicyRuleCondition extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson.number) {
-      this.number = resourceJson.number;
+    if (resourceJson && resourceJson['number']) {
+      this['number'] = resourceJson['number'];
     }
-    if (resourceJson && resourceJson.unit) {
-      this.unit = resourceJson.unit;
+    if (resourceJson && resourceJson['unit']) {
+      this['unit'] = resourceJson['unit'];
     }
   }
 

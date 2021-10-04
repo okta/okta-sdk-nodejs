@@ -13,19 +13,17 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-import { Resource } from '../resource';
-import { Client } from '../client';
-
-
-declare class UserStatus extends Resource {
-  constructor(resourceJson: string, client: Client);
-
-
+declare enum UserStatus {
+  ACTIVE = 'ACTIVE',
+  DEPROVISIONED = 'DEPROVISIONED',
+  LOCKED_OUT = 'LOCKED_OUT',
+  PASSWORD_EXPIRED = 'PASSWORD_EXPIRED',
+  PROVISIONED = 'PROVISIONED',
+  RECOVERY = 'RECOVERY',
+  STAGED = 'STAGED',
+  SUSPENDED = 'SUSPENDED',
 }
 
-type UserStatusOptions = Record<string, unknown>;
-
 export {
-  UserStatus,
-  UserStatusOptions
+  UserStatus
 };

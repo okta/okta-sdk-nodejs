@@ -13,19 +13,13 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-var Resource = require('../resource');
-
-
-/**
- * @class InlineHookType
- * @extends Resource
- */
-class InlineHookType extends Resource {
-  constructor(resourceJson, client) {
-    super(resourceJson, client);
-
-  }
-
-}
+var InlineHookType;
+(function (InlineHookType) {
+  InlineHookType['COM_OKTA_OAUTH2_TOKENS_TRANSFORM'] = 'com.okta.oauth2.tokens.transform';
+  InlineHookType['COM_OKTA_IMPORT_TRANSFORM'] = 'com.okta.import.transform';
+  InlineHookType['COM_OKTA_SAML_TOKENS_TRANSFORM'] = 'com.okta.saml.tokens.transform';
+  InlineHookType['COM_OKTA_USER_PRE_REGISTRATION'] = 'com.okta.user.pre-registration';
+  InlineHookType['COM_OKTA_USER_CREDENTIAL_PASSWORD_IMPORT'] = 'com.okta.user.credential.password.import';
+}(InlineHookType || (InlineHookType = {})));
 
 module.exports = InlineHookType;

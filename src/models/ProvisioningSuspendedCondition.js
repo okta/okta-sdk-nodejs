@@ -24,8 +24,8 @@ var Resource = require('../resource');
 class ProvisioningSuspendedCondition extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson.action) {
-      this.action = resourceJson.action;
+    if (resourceJson && resourceJson['action']) {
+      this['action'] = resourceJson['action'];
     }
   }
 

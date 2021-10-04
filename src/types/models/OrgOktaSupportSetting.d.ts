@@ -13,19 +13,11 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-import { Resource } from '../resource';
-import { Client } from '../client';
-
-
-declare class OrgOktaSupportSetting extends Resource {
-  constructor(resourceJson: string, client: Client);
-
-
+declare enum OrgOktaSupportSetting {
+  DISABLED = 'DISABLED',
+  ENABLED = 'ENABLED',
 }
 
-type OrgOktaSupportSettingOptions = Record<string, unknown>;
-
 export {
-  OrgOktaSupportSetting,
-  OrgOktaSupportSettingOptions
+  OrgOktaSupportSetting
 };

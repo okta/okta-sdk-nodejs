@@ -25,11 +25,11 @@ const AppUserPasswordCredential = require('./AppUserPasswordCredential');
 class AppUserCredentials extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson.password) {
-      this.password = new AppUserPasswordCredential(resourceJson.password);
+    if (resourceJson && resourceJson['password']) {
+      this['password'] = new AppUserPasswordCredential(resourceJson[password]);
     }
-    if (resourceJson && resourceJson.userName) {
-      this.userName = resourceJson.userName;
+    if (resourceJson && resourceJson['userName']) {
+      this['userName'] = resourceJson['userName'];
     }
   }
 

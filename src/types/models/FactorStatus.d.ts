@@ -13,19 +13,16 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-import { Resource } from '../resource';
-import { Client } from '../client';
-
-
-declare class FactorStatus extends Resource {
-  constructor(resourceJson: string, client: Client);
-
-
+declare enum FactorStatus {
+  PENDING_ACTIVATION = 'PENDING_ACTIVATION',
+  ACTIVE = 'ACTIVE',
+  INACTIVE = 'INACTIVE',
+  NOT_SETUP = 'NOT_SETUP',
+  ENROLLED = 'ENROLLED',
+  DISABLED = 'DISABLED',
+  EXPIRED = 'EXPIRED',
 }
 
-type FactorStatusOptions = Record<string, unknown>;
-
 export {
-  FactorStatus,
-  FactorStatusOptions
+  FactorStatus
 };

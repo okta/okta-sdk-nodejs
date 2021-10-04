@@ -13,19 +13,11 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-import { Resource } from '../resource';
-import { Client } from '../client';
-
-
-declare class FeatureStageValue extends Resource {
-  constructor(resourceJson: string, client: Client);
-
-
+declare enum FeatureStageValue {
+  EA = 'EA',
+  BETA = 'BETA',
 }
 
-type FeatureStageValueOptions = Record<string, unknown>;
-
 export {
-  FeatureStageValue,
-  FeatureStageValueOptions
+  FeatureStageValue
 };

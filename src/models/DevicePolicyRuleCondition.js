@@ -27,17 +27,17 @@ const DevicePolicyRuleConditionPlatform = require('./DevicePolicyRuleConditionPl
 class DevicePolicyRuleCondition extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson.migrated) {
-      this.migrated = resourceJson.migrated;
+    if (resourceJson && resourceJson['migrated']) {
+      this['migrated'] = resourceJson['migrated'];
     }
-    if (resourceJson && resourceJson.platform) {
-      this.platform = new DevicePolicyRuleConditionPlatform(resourceJson.platform);
+    if (resourceJson && resourceJson['platform']) {
+      this['platform'] = new DevicePolicyRuleConditionPlatform(resourceJson[platform]);
     }
-    if (resourceJson && resourceJson.rooted) {
-      this.rooted = resourceJson.rooted;
+    if (resourceJson && resourceJson['rooted']) {
+      this['rooted'] = resourceJson['rooted'];
     }
-    if (resourceJson && resourceJson.trustLevel) {
-      this.trustLevel = resourceJson.trustLevel;
+    if (resourceJson && resourceJson['trustLevel']) {
+      this['trustLevel'] = resourceJson['trustLevel'];
     }
   }
 

@@ -13,19 +13,11 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-var Resource = require('../resource');
-
-
-/**
- * @class GroupRuleStatus
- * @extends Resource
- */
-class GroupRuleStatus extends Resource {
-  constructor(resourceJson, client) {
-    super(resourceJson, client);
-
-  }
-
-}
+var GroupRuleStatus;
+(function (GroupRuleStatus) {
+  GroupRuleStatus['ACTIVE'] = 'ACTIVE';
+  GroupRuleStatus['INACTIVE'] = 'INACTIVE';
+  GroupRuleStatus['INVALID'] = 'INVALID';
+}(GroupRuleStatus || (GroupRuleStatus = {})));
 
 module.exports = GroupRuleStatus;

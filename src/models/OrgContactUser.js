@@ -25,11 +25,11 @@ var Resource = require('../resource');
 class OrgContactUser extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson._links) {
-      this._links = resourceJson._links;
+    if (resourceJson && resourceJson['_links']) {
+      this['_links'] = resourceJson['_links'];
     }
-    if (resourceJson && resourceJson.userId) {
-      this.userId = resourceJson.userId;
+    if (resourceJson && resourceJson['userId']) {
+      this['userId'] = resourceJson['userId'];
     }
   }
 

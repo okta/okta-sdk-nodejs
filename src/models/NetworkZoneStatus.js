@@ -13,19 +13,10 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-var Resource = require('../resource');
-
-
-/**
- * @class NetworkZoneStatus
- * @extends Resource
- */
-class NetworkZoneStatus extends Resource {
-  constructor(resourceJson, client) {
-    super(resourceJson, client);
-
-  }
-
-}
+var NetworkZoneStatus;
+(function (NetworkZoneStatus) {
+  NetworkZoneStatus['ACTIVE'] = 'ACTIVE';
+  NetworkZoneStatus['INACTIVE'] = 'INACTIVE';
+}(NetworkZoneStatus || (NetworkZoneStatus = {})));
 
 module.exports = NetworkZoneStatus;

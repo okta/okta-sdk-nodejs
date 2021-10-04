@@ -13,19 +13,13 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-var Resource = require('../resource');
-
-
-/**
- * @class ApplicationCredentialsScheme
- * @extends Resource
- */
-class ApplicationCredentialsScheme extends Resource {
-  constructor(resourceJson, client) {
-    super(resourceJson, client);
-
-  }
-
-}
+var ApplicationCredentialsScheme;
+(function (ApplicationCredentialsScheme) {
+  ApplicationCredentialsScheme['SHARED_USERNAME_AND_PASSWORD'] = 'SHARED_USERNAME_AND_PASSWORD';
+  ApplicationCredentialsScheme['EXTERNAL_PASSWORD_SYNC'] = 'EXTERNAL_PASSWORD_SYNC';
+  ApplicationCredentialsScheme['EDIT_USERNAME_AND_PASSWORD'] = 'EDIT_USERNAME_AND_PASSWORD';
+  ApplicationCredentialsScheme['EDIT_PASSWORD_ONLY'] = 'EDIT_PASSWORD_ONLY';
+  ApplicationCredentialsScheme['ADMIN_SETS_CREDENTIALS'] = 'ADMIN_SETS_CREDENTIALS';
+}(ApplicationCredentialsScheme || (ApplicationCredentialsScheme = {})));
 
 module.exports = ApplicationCredentialsScheme;

@@ -28,20 +28,20 @@ var Resource = require('../resource');
 class IdentityProviderCredentialsTrust extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson.audience) {
-      this.audience = resourceJson.audience;
+    if (resourceJson && resourceJson['audience']) {
+      this['audience'] = resourceJson['audience'];
     }
-    if (resourceJson && resourceJson.issuer) {
-      this.issuer = resourceJson.issuer;
+    if (resourceJson && resourceJson['issuer']) {
+      this['issuer'] = resourceJson['issuer'];
     }
-    if (resourceJson && resourceJson.kid) {
-      this.kid = resourceJson.kid;
+    if (resourceJson && resourceJson['kid']) {
+      this['kid'] = resourceJson['kid'];
     }
-    if (resourceJson && resourceJson.revocation) {
-      this.revocation = resourceJson.revocation;
+    if (resourceJson && resourceJson['revocation']) {
+      this['revocation'] = resourceJson['revocation'];
     }
-    if (resourceJson && resourceJson.revocationCacheLifetime) {
-      this.revocationCacheLifetime = resourceJson.revocationCacheLifetime;
+    if (resourceJson && resourceJson['revocationCacheLifetime']) {
+      this['revocationCacheLifetime'] = resourceJson['revocationCacheLifetime'];
     }
   }
 

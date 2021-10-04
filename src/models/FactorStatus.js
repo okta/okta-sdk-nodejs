@@ -13,19 +13,15 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-var Resource = require('../resource');
-
-
-/**
- * @class FactorStatus
- * @extends Resource
- */
-class FactorStatus extends Resource {
-  constructor(resourceJson, client) {
-    super(resourceJson, client);
-
-  }
-
-}
+var FactorStatus;
+(function (FactorStatus) {
+  FactorStatus['PENDING_ACTIVATION'] = 'PENDING_ACTIVATION';
+  FactorStatus['ACTIVE'] = 'ACTIVE';
+  FactorStatus['INACTIVE'] = 'INACTIVE';
+  FactorStatus['NOT_SETUP'] = 'NOT_SETUP';
+  FactorStatus['ENROLLED'] = 'ENROLLED';
+  FactorStatus['DISABLED'] = 'DISABLED';
+  FactorStatus['EXPIRED'] = 'EXPIRED';
+}(FactorStatus || (FactorStatus = {})));
 
 module.exports = FactorStatus;

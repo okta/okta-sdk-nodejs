@@ -33,35 +33,35 @@ var Resource = require('../resource');
 class AppLink extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson.appAssignmentId) {
-      this.appAssignmentId = resourceJson.appAssignmentId;
+    if (resourceJson && resourceJson['appAssignmentId']) {
+      this['appAssignmentId'] = resourceJson['appAssignmentId'];
     }
-    if (resourceJson && resourceJson.appInstanceId) {
-      this.appInstanceId = resourceJson.appInstanceId;
+    if (resourceJson && resourceJson['appInstanceId']) {
+      this['appInstanceId'] = resourceJson['appInstanceId'];
     }
-    if (resourceJson && resourceJson.appName) {
-      this.appName = resourceJson.appName;
+    if (resourceJson && resourceJson['appName']) {
+      this['appName'] = resourceJson['appName'];
     }
-    if (resourceJson && resourceJson.credentialsSetup) {
-      this.credentialsSetup = resourceJson.credentialsSetup;
+    if (resourceJson && resourceJson['credentialsSetup']) {
+      this['credentialsSetup'] = resourceJson['credentialsSetup'];
     }
-    if (resourceJson && resourceJson.hidden) {
-      this.hidden = resourceJson.hidden;
+    if (resourceJson && resourceJson['hidden']) {
+      this['hidden'] = resourceJson['hidden'];
     }
-    if (resourceJson && resourceJson.id) {
-      this.id = resourceJson.id;
+    if (resourceJson && resourceJson['id']) {
+      this['id'] = resourceJson['id'];
     }
-    if (resourceJson && resourceJson.label) {
-      this.label = resourceJson.label;
+    if (resourceJson && resourceJson['label']) {
+      this['label'] = resourceJson['label'];
     }
-    if (resourceJson && resourceJson.linkUrl) {
-      this.linkUrl = resourceJson.linkUrl;
+    if (resourceJson && resourceJson['linkUrl']) {
+      this['linkUrl'] = resourceJson['linkUrl'];
     }
-    if (resourceJson && resourceJson.logoUrl) {
-      this.logoUrl = resourceJson.logoUrl;
+    if (resourceJson && resourceJson['logoUrl']) {
+      this['logoUrl'] = resourceJson['logoUrl'];
     }
-    if (resourceJson && resourceJson.sortOrder) {
-      this.sortOrder = resourceJson.sortOrder;
+    if (resourceJson && resourceJson['sortOrder']) {
+      this['sortOrder'] = resourceJson['sortOrder'];
     }
   }
 

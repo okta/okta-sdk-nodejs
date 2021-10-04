@@ -13,19 +13,21 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-var Resource = require('../resource');
-
-
-/**
- * @class FactorType
- * @extends Resource
- */
-class FactorType extends Resource {
-  constructor(resourceJson, client) {
-    super(resourceJson, client);
-
-  }
-
-}
+var FactorType;
+(function (FactorType) {
+  FactorType['CALL'] = 'call';
+  FactorType['EMAIL'] = 'email';
+  FactorType['HOTP'] = 'hotp';
+  FactorType['PUSH'] = 'push';
+  FactorType['QUESTION'] = 'question';
+  FactorType['SMS'] = 'sms';
+  FactorType['TOKEN_HARDWARE'] = 'token:hardware';
+  FactorType['TOKEN_HOTP'] = 'token:hotp';
+  FactorType['TOKEN_SOFTWARE_TOTP'] = 'token:software:totp';
+  FactorType['TOKEN'] = 'token';
+  FactorType['U2F'] = 'u2f';
+  FactorType['WEB'] = 'web';
+  FactorType['WEBAUTHN'] = 'webauthn';
+}(FactorType || (FactorType = {})));
 
 module.exports = FactorType;

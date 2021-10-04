@@ -24,8 +24,8 @@ const PasswordPolicyDelegationSettingsOptions = require('./PasswordPolicyDelegat
 class PasswordPolicyDelegationSettings extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson.options) {
-      this.options = new PasswordPolicyDelegationSettingsOptions(resourceJson.options);
+    if (resourceJson && resourceJson['options']) {
+      this['options'] = new PasswordPolicyDelegationSettingsOptions(resourceJson[options]);
     }
   }
 

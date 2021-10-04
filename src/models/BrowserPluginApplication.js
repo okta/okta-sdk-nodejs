@@ -24,8 +24,8 @@ const SchemeApplicationCredentials = require('./SchemeApplicationCredentials');
 class BrowserPluginApplication extends Application {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson.credentials) {
-      this.credentials = new SchemeApplicationCredentials(resourceJson.credentials);
+    if (resourceJson && resourceJson['credentials']) {
+      this['credentials'] = new SchemeApplicationCredentials(resourceJson[credentials]);
     }
   }
 

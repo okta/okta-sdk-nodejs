@@ -29,23 +29,23 @@ var Resource = require('../resource');
 class SocialAuthToken extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson.expiresAt) {
-      this.expiresAt = resourceJson.expiresAt;
+    if (resourceJson && resourceJson['expiresAt']) {
+      this['expiresAt'] = resourceJson['expiresAt'];
     }
-    if (resourceJson && resourceJson.id) {
-      this.id = resourceJson.id;
+    if (resourceJson && resourceJson['id']) {
+      this['id'] = resourceJson['id'];
     }
-    if (resourceJson && resourceJson.scopes) {
-      this.scopes = resourceJson.scopes;
+    if (resourceJson && resourceJson['scopes']) {
+      this['scopes'] = resourceJson['scopes'];
     }
-    if (resourceJson && resourceJson.token) {
-      this.token = resourceJson.token;
+    if (resourceJson && resourceJson['token']) {
+      this['token'] = resourceJson['token'];
     }
-    if (resourceJson && resourceJson.tokenAuthScheme) {
-      this.tokenAuthScheme = resourceJson.tokenAuthScheme;
+    if (resourceJson && resourceJson['tokenAuthScheme']) {
+      this['tokenAuthScheme'] = resourceJson['tokenAuthScheme'];
     }
-    if (resourceJson && resourceJson.tokenType) {
-      this.tokenType = resourceJson.tokenType;
+    if (resourceJson && resourceJson['tokenType']) {
+      this['tokenType'] = resourceJson['tokenType'];
     }
   }
 

@@ -27,17 +27,17 @@ const ApplicationVisibilityHide = require('./ApplicationVisibilityHide');
 class ApplicationVisibility extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson.appLinks) {
-      this.appLinks = new boolean(resourceJson.appLinks);
+    if (resourceJson && resourceJson['appLinks']) {
+      this['appLinks'] = new boolean(resourceJson[appLinks]);
     }
-    if (resourceJson && resourceJson.autoLaunch) {
-      this.autoLaunch = resourceJson.autoLaunch;
+    if (resourceJson && resourceJson['autoLaunch']) {
+      this['autoLaunch'] = resourceJson['autoLaunch'];
     }
-    if (resourceJson && resourceJson.autoSubmitToolbar) {
-      this.autoSubmitToolbar = resourceJson.autoSubmitToolbar;
+    if (resourceJson && resourceJson['autoSubmitToolbar']) {
+      this['autoSubmitToolbar'] = resourceJson['autoSubmitToolbar'];
     }
-    if (resourceJson && resourceJson.hide) {
-      this.hide = new ApplicationVisibilityHide(resourceJson.hide);
+    if (resourceJson && resourceJson['hide']) {
+      this['hide'] = new ApplicationVisibilityHide(resourceJson[hide]);
     }
   }
 

@@ -13,19 +13,9 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-var Resource = require('../resource');
-
-
-/**
- * @class AuthorizationServerCredentialsUse
- * @extends Resource
- */
-class AuthorizationServerCredentialsUse extends Resource {
-  constructor(resourceJson, client) {
-    super(resourceJson, client);
-
-  }
-
-}
+var AuthorizationServerCredentialsUse;
+(function (AuthorizationServerCredentialsUse) {
+  AuthorizationServerCredentialsUse['SIG'] = 'sig';
+}(AuthorizationServerCredentialsUse || (AuthorizationServerCredentialsUse = {})));
 
 module.exports = AuthorizationServerCredentialsUse;

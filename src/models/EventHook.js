@@ -34,35 +34,35 @@ const EventSubscriptions = require('./EventSubscriptions');
 class EventHook extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson._links) {
-      this._links = resourceJson._links;
+    if (resourceJson && resourceJson['_links']) {
+      this['_links'] = resourceJson['_links'];
     }
-    if (resourceJson && resourceJson.channel) {
-      this.channel = new EventHookChannel(resourceJson.channel);
+    if (resourceJson && resourceJson['channel']) {
+      this['channel'] = new EventHookChannel(resourceJson[channel]);
     }
-    if (resourceJson && resourceJson.created) {
-      this.created = resourceJson.created;
+    if (resourceJson && resourceJson['created']) {
+      this['created'] = resourceJson['created'];
     }
-    if (resourceJson && resourceJson.createdBy) {
-      this.createdBy = resourceJson.createdBy;
+    if (resourceJson && resourceJson['createdBy']) {
+      this['createdBy'] = resourceJson['createdBy'];
     }
-    if (resourceJson && resourceJson.events) {
-      this.events = new EventSubscriptions(resourceJson.events);
+    if (resourceJson && resourceJson['events']) {
+      this['events'] = new EventSubscriptions(resourceJson[events]);
     }
-    if (resourceJson && resourceJson.id) {
-      this.id = resourceJson.id;
+    if (resourceJson && resourceJson['id']) {
+      this['id'] = resourceJson['id'];
     }
-    if (resourceJson && resourceJson.lastUpdated) {
-      this.lastUpdated = resourceJson.lastUpdated;
+    if (resourceJson && resourceJson['lastUpdated']) {
+      this['lastUpdated'] = resourceJson['lastUpdated'];
     }
-    if (resourceJson && resourceJson.name) {
-      this.name = resourceJson.name;
+    if (resourceJson && resourceJson['name']) {
+      this['name'] = resourceJson['name'];
     }
-    if (resourceJson && resourceJson.status) {
-      this.status = resourceJson.status;
+    if (resourceJson && resourceJson['status']) {
+      this['status'] = resourceJson['status'];
     }
-    if (resourceJson && resourceJson.verificationStatus) {
-      this.verificationStatus = resourceJson.verificationStatus;
+    if (resourceJson && resourceJson['verificationStatus']) {
+      this['verificationStatus'] = resourceJson['verificationStatus'];
     }
   }
 

@@ -26,11 +26,11 @@ const PolicyPeopleCondition = require('./PolicyPeopleCondition');
 class PasswordPolicyRuleConditions extends PolicyRuleConditions {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson.network) {
-      this.network = new PolicyNetworkCondition(resourceJson.network);
+    if (resourceJson && resourceJson['network']) {
+      this['network'] = new PolicyNetworkCondition(resourceJson[network]);
     }
-    if (resourceJson && resourceJson.people) {
-      this.people = new PolicyPeopleCondition(resourceJson.people);
+    if (resourceJson && resourceJson['people']) {
+      this['people'] = new PolicyPeopleCondition(resourceJson[people]);
     }
   }
 

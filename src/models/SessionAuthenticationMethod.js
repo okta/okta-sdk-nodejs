@@ -13,19 +13,18 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-var Resource = require('../resource');
-
-
-/**
- * @class SessionAuthenticationMethod
- * @extends Resource
- */
-class SessionAuthenticationMethod extends Resource {
-  constructor(resourceJson, client) {
-    super(resourceJson, client);
-
-  }
-
-}
+var SessionAuthenticationMethod;
+(function (SessionAuthenticationMethod) {
+  SessionAuthenticationMethod['PWD'] = 'pwd';
+  SessionAuthenticationMethod['SWK'] = 'swk';
+  SessionAuthenticationMethod['HWK'] = 'hwk';
+  SessionAuthenticationMethod['OTP'] = 'otp';
+  SessionAuthenticationMethod['SMS'] = 'sms';
+  SessionAuthenticationMethod['TEL'] = 'tel';
+  SessionAuthenticationMethod['GEO'] = 'geo';
+  SessionAuthenticationMethod['FPT'] = 'fpt';
+  SessionAuthenticationMethod['KBA'] = 'kba';
+  SessionAuthenticationMethod['MFA'] = 'mfa';
+}(SessionAuthenticationMethod || (SessionAuthenticationMethod = {})));
 
 module.exports = SessionAuthenticationMethod;

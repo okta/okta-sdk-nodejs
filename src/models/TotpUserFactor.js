@@ -24,8 +24,8 @@ const TotpUserFactorProfile = require('./TotpUserFactorProfile');
 class TotpUserFactor extends UserFactor {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson.profile) {
-      this.profile = new TotpUserFactorProfile(resourceJson.profile);
+    if (resourceJson && resourceJson['profile']) {
+      this['profile'] = new TotpUserFactorProfile(resourceJson[profile]);
     }
   }
 

@@ -25,11 +25,11 @@ var Resource = require('../resource');
 class UserSchemaAttributeMasterPriority extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson.type) {
-      this.type = resourceJson.type;
+    if (resourceJson && resourceJson['type']) {
+      this['type'] = resourceJson['type'];
     }
-    if (resourceJson && resourceJson.value) {
-      this.value = resourceJson.value;
+    if (resourceJson && resourceJson['value']) {
+      this['value'] = resourceJson['value'];
     }
   }
 

@@ -36,29 +36,29 @@ const ProtocolSettings = require('./ProtocolSettings');
 class Protocol extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson.algorithms) {
-      this.algorithms = new ProtocolAlgorithms(resourceJson.algorithms);
+    if (resourceJson && resourceJson['algorithms']) {
+      this['algorithms'] = new ProtocolAlgorithms(resourceJson[algorithms]);
     }
-    if (resourceJson && resourceJson.credentials) {
-      this.credentials = new IdentityProviderCredentials(resourceJson.credentials);
+    if (resourceJson && resourceJson['credentials']) {
+      this['credentials'] = new IdentityProviderCredentials(resourceJson[credentials]);
     }
-    if (resourceJson && resourceJson.endpoints) {
-      this.endpoints = new ProtocolEndpoints(resourceJson.endpoints);
+    if (resourceJson && resourceJson['endpoints']) {
+      this['endpoints'] = new ProtocolEndpoints(resourceJson[endpoints]);
     }
-    if (resourceJson && resourceJson.issuer) {
-      this.issuer = new ProtocolEndpoint(resourceJson.issuer);
+    if (resourceJson && resourceJson['issuer']) {
+      this['issuer'] = new ProtocolEndpoint(resourceJson[issuer]);
     }
-    if (resourceJson && resourceJson.relayState) {
-      this.relayState = new ProtocolRelayState(resourceJson.relayState);
+    if (resourceJson && resourceJson['relayState']) {
+      this['relayState'] = new ProtocolRelayState(resourceJson[relayState]);
     }
-    if (resourceJson && resourceJson.scopes) {
-      this.scopes = resourceJson.scopes;
+    if (resourceJson && resourceJson['scopes']) {
+      this['scopes'] = resourceJson['scopes'];
     }
-    if (resourceJson && resourceJson.settings) {
-      this.settings = new ProtocolSettings(resourceJson.settings);
+    if (resourceJson && resourceJson['settings']) {
+      this['settings'] = new ProtocolSettings(resourceJson[settings]);
     }
-    if (resourceJson && resourceJson.type) {
-      this.type = resourceJson.type;
+    if (resourceJson && resourceJson['type']) {
+      this['type'] = resourceJson['type'];
     }
   }
 

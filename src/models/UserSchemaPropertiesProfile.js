@@ -24,8 +24,8 @@ const UserSchemaPropertiesProfileItem = require('./UserSchemaPropertiesProfileIt
 class UserSchemaPropertiesProfile extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson.allOf) {
-      this.allOf = resourceJson.allOf.map(resourceItem => new UserSchemaPropertiesProfileItem(resourceItem));
+    if (resourceJson && resourceJson['allOf']) {
+      this['allOf'] = resourceJson['allOf'].map(resourceItem => new UserSchemaPropertiesProfileItem(resourceItem));
     }
   }
 

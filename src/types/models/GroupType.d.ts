@@ -13,19 +13,12 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-import { Resource } from '../resource';
-import { Client } from '../client';
-
-
-declare class GroupType extends Resource {
-  constructor(resourceJson: string, client: Client);
-
-
+declare enum GroupType {
+  OKTA_GROUP = 'OKTA_GROUP',
+  APP_GROUP = 'APP_GROUP',
+  BUILT_IN = 'BUILT_IN',
 }
 
-type GroupTypeOptions = Record<string, unknown>;
-
 export {
-  GroupType,
-  GroupTypeOptions
+  GroupType
 };

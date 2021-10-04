@@ -13,19 +13,16 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-import { Resource } from '../resource';
-import { Client } from '../client';
-
-
-declare class LogCredentialProvider extends Resource {
-  constructor(resourceJson: string, client: Client);
-
-
+declare enum LogCredentialProvider {
+  OKTA_AUTHENTICATION_PROVIDER = 'OKTA_AUTHENTICATION_PROVIDER',
+  OKTA_CREDENTIAL_PROVIDER = 'OKTA_CREDENTIAL_PROVIDER',
+  RSA = 'RSA',
+  SYMANTEC = 'SYMANTEC',
+  GOOGLE = 'GOOGLE',
+  DUO = 'DUO',
+  YUBIKEY = 'YUBIKEY',
 }
 
-type LogCredentialProviderOptions = Record<string, unknown>;
-
 export {
-  LogCredentialProvider,
-  LogCredentialProviderOptions
+  LogCredentialProvider
 };

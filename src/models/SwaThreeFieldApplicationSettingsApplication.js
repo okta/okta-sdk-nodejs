@@ -30,26 +30,26 @@ var ApplicationSettingsApplication = require('./ApplicationSettingsApplication')
 class SwaThreeFieldApplicationSettingsApplication extends ApplicationSettingsApplication {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson.buttonSelector) {
-      this.buttonSelector = resourceJson.buttonSelector;
+    if (resourceJson && resourceJson['buttonSelector']) {
+      this['buttonSelector'] = resourceJson['buttonSelector'];
     }
-    if (resourceJson && resourceJson.extraFieldSelector) {
-      this.extraFieldSelector = resourceJson.extraFieldSelector;
+    if (resourceJson && resourceJson['extraFieldSelector']) {
+      this['extraFieldSelector'] = resourceJson['extraFieldSelector'];
     }
-    if (resourceJson && resourceJson.extraFieldValue) {
-      this.extraFieldValue = resourceJson.extraFieldValue;
+    if (resourceJson && resourceJson['extraFieldValue']) {
+      this['extraFieldValue'] = resourceJson['extraFieldValue'];
     }
-    if (resourceJson && resourceJson.loginUrlRegex) {
-      this.loginUrlRegex = resourceJson.loginUrlRegex;
+    if (resourceJson && resourceJson['loginUrlRegex']) {
+      this['loginUrlRegex'] = resourceJson['loginUrlRegex'];
     }
-    if (resourceJson && resourceJson.passwordSelector) {
-      this.passwordSelector = resourceJson.passwordSelector;
+    if (resourceJson && resourceJson['passwordSelector']) {
+      this['passwordSelector'] = resourceJson['passwordSelector'];
     }
-    if (resourceJson && resourceJson.targetURL) {
-      this.targetURL = resourceJson.targetURL;
+    if (resourceJson && resourceJson['targetURL']) {
+      this['targetURL'] = resourceJson['targetURL'];
     }
-    if (resourceJson && resourceJson.userNameSelector) {
-      this.userNameSelector = resourceJson.userNameSelector;
+    if (resourceJson && resourceJson['userNameSelector']) {
+      this['userNameSelector'] = resourceJson['userNameSelector'];
     }
   }
 

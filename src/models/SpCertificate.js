@@ -24,8 +24,8 @@ var Resource = require('../resource');
 class SpCertificate extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson.x5c) {
-      this.x5c = resourceJson.x5c;
+    if (resourceJson && resourceJson['x5c']) {
+      this['x5c'] = resourceJson['x5c'];
     }
   }
 

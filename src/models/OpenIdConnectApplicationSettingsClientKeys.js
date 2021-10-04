@@ -24,8 +24,8 @@ const JsonWebKey = require('./JsonWebKey');
 class OpenIdConnectApplicationSettingsClientKeys extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson.keys) {
-      this.keys = resourceJson.keys.map(resourceItem => new JsonWebKey(resourceItem));
+    if (resourceJson && resourceJson['keys']) {
+      this['keys'] = resourceJson['keys'].map(resourceItem => new JsonWebKey(resourceItem));
     }
   }
 

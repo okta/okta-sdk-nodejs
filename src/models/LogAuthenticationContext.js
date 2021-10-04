@@ -30,26 +30,26 @@ const LogIssuer = require('./LogIssuer');
 class LogAuthenticationContext extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson.authenticationProvider) {
-      this.authenticationProvider = resourceJson.authenticationProvider;
+    if (resourceJson && resourceJson['authenticationProvider']) {
+      this['authenticationProvider'] = resourceJson['authenticationProvider'];
     }
-    if (resourceJson && resourceJson.authenticationStep) {
-      this.authenticationStep = resourceJson.authenticationStep;
+    if (resourceJson && resourceJson['authenticationStep']) {
+      this['authenticationStep'] = resourceJson['authenticationStep'];
     }
-    if (resourceJson && resourceJson.credentialProvider) {
-      this.credentialProvider = resourceJson.credentialProvider;
+    if (resourceJson && resourceJson['credentialProvider']) {
+      this['credentialProvider'] = resourceJson['credentialProvider'];
     }
-    if (resourceJson && resourceJson.credentialType) {
-      this.credentialType = resourceJson.credentialType;
+    if (resourceJson && resourceJson['credentialType']) {
+      this['credentialType'] = resourceJson['credentialType'];
     }
-    if (resourceJson && resourceJson.externalSessionId) {
-      this.externalSessionId = resourceJson.externalSessionId;
+    if (resourceJson && resourceJson['externalSessionId']) {
+      this['externalSessionId'] = resourceJson['externalSessionId'];
     }
-    if (resourceJson && resourceJson.interface) {
-      this.interface = resourceJson.interface;
+    if (resourceJson && resourceJson['interface']) {
+      this['interface'] = resourceJson['interface'];
     }
-    if (resourceJson && resourceJson.issuer) {
-      this.issuer = new LogIssuer(resourceJson.issuer);
+    if (resourceJson && resourceJson['issuer']) {
+      this['issuer'] = new LogIssuer(resourceJson[issuer]);
     }
   }
 

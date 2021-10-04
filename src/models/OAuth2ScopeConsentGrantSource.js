@@ -13,19 +13,10 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-var Resource = require('../resource');
-
-
-/**
- * @class OAuth2ScopeConsentGrantSource
- * @extends Resource
- */
-class OAuth2ScopeConsentGrantSource extends Resource {
-  constructor(resourceJson, client) {
-    super(resourceJson, client);
-
-  }
-
-}
+var OAuth2ScopeConsentGrantSource;
+(function (OAuth2ScopeConsentGrantSource) {
+  OAuth2ScopeConsentGrantSource['END_USER'] = 'END_USER';
+  OAuth2ScopeConsentGrantSource['ADMIN'] = 'ADMIN';
+}(OAuth2ScopeConsentGrantSource || (OAuth2ScopeConsentGrantSource = {})));
 
 module.exports = OAuth2ScopeConsentGrantSource;

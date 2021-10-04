@@ -13,19 +13,10 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-var Resource = require('../resource');
-
-
-/**
- * @class NetworkZoneAddressType
- * @extends Resource
- */
-class NetworkZoneAddressType extends Resource {
-  constructor(resourceJson, client) {
-    super(resourceJson, client);
-
-  }
-
-}
+var NetworkZoneAddressType;
+(function (NetworkZoneAddressType) {
+  NetworkZoneAddressType['CIDR'] = 'CIDR';
+  NetworkZoneAddressType['RANGE'] = 'RANGE';
+}(NetworkZoneAddressType || (NetworkZoneAddressType = {})));
 
 module.exports = NetworkZoneAddressType;

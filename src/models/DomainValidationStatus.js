@@ -13,19 +13,12 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-var Resource = require('../resource');
-
-
-/**
- * @class DomainValidationStatus
- * @extends Resource
- */
-class DomainValidationStatus extends Resource {
-  constructor(resourceJson, client) {
-    super(resourceJson, client);
-
-  }
-
-}
+var DomainValidationStatus;
+(function (DomainValidationStatus) {
+  DomainValidationStatus['NOT_STARTED'] = 'NOT_STARTED';
+  DomainValidationStatus['IN_PROGRESS'] = 'IN_PROGRESS';
+  DomainValidationStatus['VERIFIED'] = 'VERIFIED';
+  DomainValidationStatus['COMPLETED'] = 'COMPLETED';
+}(DomainValidationStatus || (DomainValidationStatus = {})));
 
 module.exports = DomainValidationStatus;

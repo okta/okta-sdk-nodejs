@@ -13,19 +13,9 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-var Resource = require('../resource');
-
-
-/**
- * @class DomainCertificateSourceType
- * @extends Resource
- */
-class DomainCertificateSourceType extends Resource {
-  constructor(resourceJson, client) {
-    super(resourceJson, client);
-
-  }
-
-}
+var DomainCertificateSourceType;
+(function (DomainCertificateSourceType) {
+  DomainCertificateSourceType['MANUAL'] = 'MANUAL';
+}(DomainCertificateSourceType || (DomainCertificateSourceType = {})));
 
 module.exports = DomainCertificateSourceType;

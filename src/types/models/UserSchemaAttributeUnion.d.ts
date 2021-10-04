@@ -13,19 +13,11 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-import { Resource } from '../resource';
-import { Client } from '../client';
-
-
-declare class UserSchemaAttributeUnion extends Resource {
-  constructor(resourceJson: string, client: Client);
-
-
+declare enum UserSchemaAttributeUnion {
+  DISABLE = 'DISABLE',
+  ENABLE = 'ENABLE',
 }
 
-type UserSchemaAttributeUnionOptions = Record<string, unknown>;
-
 export {
-  UserSchemaAttributeUnion,
-  UserSchemaAttributeUnionOptions
+  UserSchemaAttributeUnion
 };

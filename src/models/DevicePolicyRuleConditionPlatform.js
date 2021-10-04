@@ -25,11 +25,11 @@ var Resource = require('../resource');
 class DevicePolicyRuleConditionPlatform extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson.supportedMDMFrameworks) {
-      this.supportedMDMFrameworks = resourceJson.supportedMDMFrameworks;
+    if (resourceJson && resourceJson['supportedMDMFrameworks']) {
+      this['supportedMDMFrameworks'] = resourceJson['supportedMDMFrameworks'];
     }
-    if (resourceJson && resourceJson.types) {
-      this.types = resourceJson.types;
+    if (resourceJson && resourceJson['types']) {
+      this['types'] = resourceJson['types'];
     }
   }
 

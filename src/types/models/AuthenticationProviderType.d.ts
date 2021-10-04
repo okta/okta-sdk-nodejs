@@ -13,19 +13,15 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-import { Resource } from '../resource';
-import { Client } from '../client';
-
-
-declare class AuthenticationProviderType extends Resource {
-  constructor(resourceJson: string, client: Client);
-
-
+declare enum AuthenticationProviderType {
+  ACTIVE_DIRECTORY = 'ACTIVE_DIRECTORY',
+  FEDERATION = 'FEDERATION',
+  LDAP = 'LDAP',
+  OKTA = 'OKTA',
+  SOCIAL = 'SOCIAL',
+  IMPORT = 'IMPORT',
 }
 
-type AuthenticationProviderTypeOptions = Record<string, unknown>;
-
 export {
-  AuthenticationProviderType,
-  AuthenticationProviderTypeOptions
+  AuthenticationProviderType
 };

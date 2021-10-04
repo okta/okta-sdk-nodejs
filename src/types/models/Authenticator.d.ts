@@ -16,7 +16,6 @@
 import { Resource } from '../resource';
 import { Client } from '../client';
 import { OptionalKnownProperties } from '../optional-known-properties-type';
-import { Response } from 'node-fetch';
 import { AuthenticatorSettings } from './AuthenticatorSettings';
 import { AuthenticatorStatus } from './AuthenticatorStatus';
 import { AuthenticatorType } from './AuthenticatorType';
@@ -34,8 +33,8 @@ declare class Authenticator extends Resource {
   status: AuthenticatorStatus;
   type: AuthenticatorType;
 
-  activate(): Promise<Response>;
-  deactivate(): Promise<Response>;
+  activate(): Promise<Authenticator>;
+  deactivate(): Promise<Authenticator>;
 }
 
 type AuthenticatorOptions = OptionalKnownProperties<Authenticator>;

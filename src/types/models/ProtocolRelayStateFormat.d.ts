@@ -13,19 +13,11 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-import { Resource } from '../resource';
-import { Client } from '../client';
-
-
-declare class ProtocolRelayStateFormat extends Resource {
-  constructor(resourceJson: string, client: Client);
-
-
+declare enum ProtocolRelayStateFormat {
+  OPAQUE = 'OPAQUE',
+  FROM_URL = 'FROM_URL',
 }
 
-type ProtocolRelayStateFormatOptions = Record<string, unknown>;
-
 export {
-  ProtocolRelayStateFormat,
-  ProtocolRelayStateFormatOptions
+  ProtocolRelayStateFormat
 };

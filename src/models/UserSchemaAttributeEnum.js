@@ -25,11 +25,11 @@ var Resource = require('../resource');
 class UserSchemaAttributeEnum extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson.const) {
-      this.const = resourceJson.const;
+    if (resourceJson && resourceJson['const']) {
+      this['const'] = resourceJson['const'];
     }
-    if (resourceJson && resourceJson.title) {
-      this.title = resourceJson.title;
+    if (resourceJson && resourceJson['title']) {
+      this['title'] = resourceJson['title'];
     }
   }
 

@@ -13,19 +13,13 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-var Resource = require('../resource');
-
-
-/**
- * @class UserSchemaAttributeType
- * @extends Resource
- */
-class UserSchemaAttributeType extends Resource {
-  constructor(resourceJson, client) {
-    super(resourceJson, client);
-
-  }
-
-}
+var UserSchemaAttributeType;
+(function (UserSchemaAttributeType) {
+  UserSchemaAttributeType['STRING'] = 'string';
+  UserSchemaAttributeType['BOOLEAN'] = 'boolean';
+  UserSchemaAttributeType['NUMBER'] = 'number';
+  UserSchemaAttributeType['INTEGER'] = 'integer';
+  UserSchemaAttributeType['ARRAY'] = 'array';
+}(UserSchemaAttributeType || (UserSchemaAttributeType = {})));
 
 module.exports = UserSchemaAttributeType;

@@ -25,11 +25,11 @@ var Resource = require('../resource');
 class LogGeolocation extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson.lat) {
-      this.lat = resourceJson.lat;
+    if (resourceJson && resourceJson['lat']) {
+      this['lat'] = resourceJson['lat'];
     }
-    if (resourceJson && resourceJson.lon) {
-      this.lon = resourceJson.lon;
+    if (resourceJson && resourceJson['lon']) {
+      this['lon'] = resourceJson['lon'];
     }
   }
 

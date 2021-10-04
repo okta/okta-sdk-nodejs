@@ -13,19 +13,22 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-import { Resource } from '../resource';
-import { Client } from '../client';
-
-
-declare class FactorType extends Resource {
-  constructor(resourceJson: string, client: Client);
-
-
+declare enum FactorType {
+  CALL = 'call',
+  EMAIL = 'email',
+  HOTP = 'hotp',
+  PUSH = 'push',
+  QUESTION = 'question',
+  SMS = 'sms',
+  TOKEN_HARDWARE = 'token:hardware',
+  TOKEN_HOTP = 'token:hotp',
+  TOKEN_SOFTWARE_TOTP = 'token:software:totp',
+  TOKEN = 'token',
+  U2F = 'u2f',
+  WEB = 'web',
+  WEBAUTHN = 'webauthn',
 }
 
-type FactorTypeOptions = Record<string, unknown>;
-
 export {
-  FactorType,
-  FactorTypeOptions
+  FactorType
 };

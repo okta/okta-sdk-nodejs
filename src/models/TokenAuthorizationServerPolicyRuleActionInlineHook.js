@@ -24,8 +24,8 @@ var Resource = require('../resource');
 class TokenAuthorizationServerPolicyRuleActionInlineHook extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson.id) {
-      this.id = resourceJson.id;
+    if (resourceJson && resourceJson['id']) {
+      this['id'] = resourceJson['id'];
     }
   }
 

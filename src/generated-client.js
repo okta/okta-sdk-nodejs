@@ -1219,6 +1219,7 @@ class GeneratedApiClient {
    * @param authenticatorId {String}
    * @description
    * Success
+   * @returns {Promise<Authenticator>}
    */
   activateAuthenticator(authenticatorId) {
     if (!authenticatorId) {
@@ -1230,16 +1231,12 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/authenticators/${authenticatorId}`
     ];
 
-    const request = this.http.post(
+    const request = this.http.postJson(
       url,
-      {
-        headers: {
-          'Content-Type': 'application/json', 'Accept': 'application/json',
-        },
-      },
+      null,
       { resources }
     );
-    return request;
+    return request.then(jsonRes => new models.Authenticator(jsonRes, this));
   }
 
   /**
@@ -1247,6 +1244,7 @@ class GeneratedApiClient {
    * @param authenticatorId {String}
    * @description
    * Success
+   * @returns {Promise<Authenticator>}
    */
   deactivateAuthenticator(authenticatorId) {
     if (!authenticatorId) {
@@ -1258,16 +1256,12 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/authenticators/${authenticatorId}`
     ];
 
-    const request = this.http.post(
+    const request = this.http.postJson(
       url,
-      {
-        headers: {
-          'Content-Type': 'application/json', 'Accept': 'application/json',
-        },
-      },
+      null,
       { resources }
     );
-    return request;
+    return request.then(jsonRes => new models.Authenticator(jsonRes, this));
   }
 
   /**

@@ -13,19 +13,10 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-var Resource = require('../resource');
-
-
-/**
- * @class InlineHookStatus
- * @extends Resource
- */
-class InlineHookStatus extends Resource {
-  constructor(resourceJson, client) {
-    super(resourceJson, client);
-
-  }
-
-}
+var InlineHookStatus;
+(function (InlineHookStatus) {
+  InlineHookStatus['ACTIVE'] = 'ACTIVE';
+  InlineHookStatus['INACTIVE'] = 'INACTIVE';
+}(InlineHookStatus || (InlineHookStatus = {})));
 
 module.exports = InlineHookStatus;

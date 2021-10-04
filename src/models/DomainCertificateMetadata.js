@@ -26,14 +26,14 @@ var Resource = require('../resource');
 class DomainCertificateMetadata extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson.expiration) {
-      this.expiration = resourceJson.expiration;
+    if (resourceJson && resourceJson['expiration']) {
+      this['expiration'] = resourceJson['expiration'];
     }
-    if (resourceJson && resourceJson.fingerprint) {
-      this.fingerprint = resourceJson.fingerprint;
+    if (resourceJson && resourceJson['fingerprint']) {
+      this['fingerprint'] = resourceJson['fingerprint'];
     }
-    if (resourceJson && resourceJson.subject) {
-      this.subject = resourceJson.subject;
+    if (resourceJson && resourceJson['subject']) {
+      this['subject'] = resourceJson['subject'];
     }
   }
 

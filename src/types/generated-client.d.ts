@@ -200,8 +200,8 @@ export declare class GeneratedApiClient {
   updateApplicationUser(appId: string, userId: string, appUser: AppUserOptions): Promise<AppUser>;
   listAuthenticators(): Collection<Authenticator>;
   getAuthenticator(authenticatorId: string): Promise<Authenticator>;
-  activateAuthenticator(authenticatorId: string): Promise<Response>;
-  deactivateAuthenticator(authenticatorId: string): Promise<Response>;
+  activateAuthenticator(authenticatorId: string): Promise<Authenticator>;
+  deactivateAuthenticator(authenticatorId: string): Promise<Authenticator>;
   listAuthorizationServers(queryParameters?: {
     q?: string,
     limit?: string,

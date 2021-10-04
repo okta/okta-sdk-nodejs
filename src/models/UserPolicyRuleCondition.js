@@ -32,23 +32,23 @@ const UserLifecycleAttributePolicyRuleCondition = require('./UserLifecycleAttrib
 class UserPolicyRuleCondition extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson.exclude) {
-      this.exclude = resourceJson.exclude;
+    if (resourceJson && resourceJson['exclude']) {
+      this['exclude'] = resourceJson['exclude'];
     }
-    if (resourceJson && resourceJson.inactivity) {
-      this.inactivity = new InactivityPolicyRuleCondition(resourceJson.inactivity);
+    if (resourceJson && resourceJson['inactivity']) {
+      this['inactivity'] = new InactivityPolicyRuleCondition(resourceJson[inactivity]);
     }
-    if (resourceJson && resourceJson.include) {
-      this.include = resourceJson.include;
+    if (resourceJson && resourceJson['include']) {
+      this['include'] = resourceJson['include'];
     }
-    if (resourceJson && resourceJson.lifecycleExpiration) {
-      this.lifecycleExpiration = new LifecycleExpirationPolicyRuleCondition(resourceJson.lifecycleExpiration);
+    if (resourceJson && resourceJson['lifecycleExpiration']) {
+      this['lifecycleExpiration'] = new LifecycleExpirationPolicyRuleCondition(resourceJson[lifecycleExpiration]);
     }
-    if (resourceJson && resourceJson.passwordExpiration) {
-      this.passwordExpiration = new PasswordExpirationPolicyRuleCondition(resourceJson.passwordExpiration);
+    if (resourceJson && resourceJson['passwordExpiration']) {
+      this['passwordExpiration'] = new PasswordExpirationPolicyRuleCondition(resourceJson[passwordExpiration]);
     }
-    if (resourceJson && resourceJson.userLifecycleAttribute) {
-      this.userLifecycleAttribute = new UserLifecycleAttributePolicyRuleCondition(resourceJson.userLifecycleAttribute);
+    if (resourceJson && resourceJson['userLifecycleAttribute']) {
+      this['userLifecycleAttribute'] = new UserLifecycleAttributePolicyRuleCondition(resourceJson[userLifecycleAttribute]);
     }
   }
 

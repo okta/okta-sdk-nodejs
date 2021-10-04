@@ -13,19 +13,14 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-import { Resource } from '../resource';
-import { Client } from '../client';
-
-
-declare class UserSchemaAttributeType extends Resource {
-  constructor(resourceJson: string, client: Client);
-
-
+declare enum UserSchemaAttributeType {
+  STRING = 'string',
+  BOOLEAN = 'boolean',
+  NUMBER = 'number',
+  INTEGER = 'integer',
+  ARRAY = 'array',
 }
 
-type UserSchemaAttributeTypeOptions = Record<string, unknown>;
-
 export {
-  UserSchemaAttributeType,
-  UserSchemaAttributeTypeOptions
+  UserSchemaAttributeType
 };
