@@ -25,7 +25,7 @@ class AuthorizationServerPolicyRuleActions extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
     if (resourceJson && resourceJson['token']) {
-      this['token'] = new TokenAuthorizationServerPolicyRuleAction(resourceJson[token]);
+      this['token'] = new TokenAuthorizationServerPolicyRuleAction(resourceJson['token']);
     }
   }
 

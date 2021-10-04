@@ -31,7 +31,7 @@ class UserSchemaBase extends Resource {
       this['id'] = resourceJson['id'];
     }
     if (resourceJson && resourceJson['properties']) {
-      this['properties'] = new UserSchemaBaseProperties(resourceJson[properties]);
+      this['properties'] = new UserSchemaBaseProperties(resourceJson['properties']);
     }
     if (resourceJson && resourceJson['required']) {
       this['required'] = resourceJson['required'];

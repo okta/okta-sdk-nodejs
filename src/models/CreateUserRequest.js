@@ -30,16 +30,16 @@ class CreateUserRequest extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
     if (resourceJson && resourceJson['credentials']) {
-      this['credentials'] = new UserCredentials(resourceJson[credentials]);
+      this['credentials'] = new UserCredentials(resourceJson['credentials']);
     }
     if (resourceJson && resourceJson['groupIds']) {
       this['groupIds'] = resourceJson['groupIds'];
     }
     if (resourceJson && resourceJson['profile']) {
-      this['profile'] = new UserProfile(resourceJson[profile]);
+      this['profile'] = new UserProfile(resourceJson['profile']);
     }
     if (resourceJson && resourceJson['type']) {
-      this['type'] = new UserType(resourceJson[type]);
+      this['type'] = new UserType(resourceJson['type']);
     }
   }
 

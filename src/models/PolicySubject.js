@@ -41,7 +41,7 @@ class PolicySubject extends Resource {
       this['matchType'] = resourceJson['matchType'];
     }
     if (resourceJson && resourceJson['userNameTemplate']) {
-      this['userNameTemplate'] = new PolicyUserNameTemplate(resourceJson[userNameTemplate]);
+      this['userNameTemplate'] = new PolicyUserNameTemplate(resourceJson['userNameTemplate']);
     }
   }
 

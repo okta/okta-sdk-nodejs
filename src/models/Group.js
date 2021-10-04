@@ -54,7 +54,7 @@ class Group extends Resource {
       this['objectClass'] = resourceJson['objectClass'];
     }
     if (resourceJson && resourceJson['profile']) {
-      this['profile'] = new GroupProfile(resourceJson[profile]);
+      this['profile'] = new GroupProfile(resourceJson['profile']);
     }
     if (resourceJson && resourceJson['type']) {
       this['type'] = resourceJson['type'];

@@ -52,7 +52,7 @@ class User extends Resource {
       this['created'] = resourceJson['created'];
     }
     if (resourceJson && resourceJson['credentials']) {
-      this['credentials'] = new UserCredentials(resourceJson[credentials]);
+      this['credentials'] = new UserCredentials(resourceJson['credentials']);
     }
     if (resourceJson && resourceJson['id']) {
       this['id'] = resourceJson['id'];
@@ -67,7 +67,7 @@ class User extends Resource {
       this['passwordChanged'] = resourceJson['passwordChanged'];
     }
     if (resourceJson && resourceJson['profile']) {
-      this['profile'] = new UserProfile(resourceJson[profile]);
+      this['profile'] = new UserProfile(resourceJson['profile']);
     }
     if (resourceJson && resourceJson['status']) {
       this['status'] = resourceJson['status'];
@@ -79,7 +79,7 @@ class User extends Resource {
       this['transitioningToStatus'] = resourceJson['transitioningToStatus'];
     }
     if (resourceJson && resourceJson['type']) {
-      this['type'] = new UserType(resourceJson[type]);
+      this['type'] = new UserType(resourceJson['type']);
     }
   }
 

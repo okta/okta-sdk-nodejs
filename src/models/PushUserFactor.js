@@ -33,7 +33,7 @@ class PushUserFactor extends UserFactor {
       this['factorResult'] = resourceJson['factorResult'];
     }
     if (resourceJson && resourceJson['profile']) {
-      this['profile'] = new PushUserFactorProfile(resourceJson[profile]);
+      this['profile'] = new PushUserFactorProfile(resourceJson['profile']);
     }
   }
 

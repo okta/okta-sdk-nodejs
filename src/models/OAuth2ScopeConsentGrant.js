@@ -48,7 +48,7 @@ class OAuth2ScopeConsentGrant extends Resource {
       this['created'] = resourceJson['created'];
     }
     if (resourceJson && resourceJson['createdBy']) {
-      this['createdBy'] = new OAuth2Actor(resourceJson[createdBy]);
+      this['createdBy'] = new OAuth2Actor(resourceJson['createdBy']);
     }
     if (resourceJson && resourceJson['id']) {
       this['id'] = resourceJson['id'];

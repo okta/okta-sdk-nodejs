@@ -49,7 +49,7 @@ class LogAuthenticationContext extends Resource {
       this['interface'] = resourceJson['interface'];
     }
     if (resourceJson && resourceJson['issuer']) {
-      this['issuer'] = new LogIssuer(resourceJson[issuer]);
+      this['issuer'] = new LogIssuer(resourceJson['issuer']);
     }
   }
 

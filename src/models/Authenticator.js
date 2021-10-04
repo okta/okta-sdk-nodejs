@@ -51,7 +51,7 @@ class Authenticator extends Resource {
       this['name'] = resourceJson['name'];
     }
     if (resourceJson && resourceJson['settings']) {
-      this['settings'] = new AuthenticatorSettings(resourceJson[settings]);
+      this['settings'] = new AuthenticatorSettings(resourceJson['settings']);
     }
     if (resourceJson && resourceJson['status']) {
       this['status'] = resourceJson['status'];

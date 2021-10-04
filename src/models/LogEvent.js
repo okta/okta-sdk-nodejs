@@ -48,16 +48,16 @@ class LogEvent extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
     if (resourceJson && resourceJson['actor']) {
-      this['actor'] = new LogActor(resourceJson[actor]);
+      this['actor'] = new LogActor(resourceJson['actor']);
     }
     if (resourceJson && resourceJson['authenticationContext']) {
-      this['authenticationContext'] = new LogAuthenticationContext(resourceJson[authenticationContext]);
+      this['authenticationContext'] = new LogAuthenticationContext(resourceJson['authenticationContext']);
     }
     if (resourceJson && resourceJson['client']) {
-      this['client'] = new LogClient(resourceJson[client]);
+      this['client'] = new LogClient(resourceJson['client']);
     }
     if (resourceJson && resourceJson['debugContext']) {
-      this['debugContext'] = new LogDebugContext(resourceJson[debugContext]);
+      this['debugContext'] = new LogDebugContext(resourceJson['debugContext']);
     }
     if (resourceJson && resourceJson['displayMessage']) {
       this['displayMessage'] = resourceJson['displayMessage'];
@@ -69,16 +69,16 @@ class LogEvent extends Resource {
       this['legacyEventType'] = resourceJson['legacyEventType'];
     }
     if (resourceJson && resourceJson['outcome']) {
-      this['outcome'] = new LogOutcome(resourceJson[outcome]);
+      this['outcome'] = new LogOutcome(resourceJson['outcome']);
     }
     if (resourceJson && resourceJson['published']) {
       this['published'] = resourceJson['published'];
     }
     if (resourceJson && resourceJson['request']) {
-      this['request'] = new LogRequest(resourceJson[request]);
+      this['request'] = new LogRequest(resourceJson['request']);
     }
     if (resourceJson && resourceJson['securityContext']) {
-      this['securityContext'] = new LogSecurityContext(resourceJson[securityContext]);
+      this['securityContext'] = new LogSecurityContext(resourceJson['securityContext']);
     }
     if (resourceJson && resourceJson['severity']) {
       this['severity'] = resourceJson['severity'];
@@ -87,7 +87,7 @@ class LogEvent extends Resource {
       this['target'] = resourceJson['target'].map(resourceItem => new LogTarget(resourceItem));
     }
     if (resourceJson && resourceJson['transaction']) {
-      this['transaction'] = new LogTransaction(resourceJson[transaction]);
+      this['transaction'] = new LogTransaction(resourceJson['transaction']);
     }
     if (resourceJson && resourceJson['uuid']) {
       this['uuid'] = resourceJson['uuid'];

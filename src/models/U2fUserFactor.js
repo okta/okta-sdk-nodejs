@@ -25,7 +25,7 @@ class U2fUserFactor extends UserFactor {
   constructor(resourceJson, client) {
     super(resourceJson, client);
     if (resourceJson && resourceJson['profile']) {
-      this['profile'] = new U2fUserFactorProfile(resourceJson[profile]);
+      this['profile'] = new U2fUserFactorProfile(resourceJson['profile']);
     }
   }
 

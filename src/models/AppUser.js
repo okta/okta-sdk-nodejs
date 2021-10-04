@@ -47,7 +47,7 @@ class AppUser extends Resource {
       this['created'] = resourceJson['created'];
     }
     if (resourceJson && resourceJson['credentials']) {
-      this['credentials'] = new AppUserCredentials(resourceJson[credentials]);
+      this['credentials'] = new AppUserCredentials(resourceJson['credentials']);
     }
     if (resourceJson && resourceJson['externalId']) {
       this['externalId'] = resourceJson['externalId'];

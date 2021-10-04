@@ -27,10 +27,10 @@ class GroupSchemaDefinitions extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
     if (resourceJson && resourceJson['base']) {
-      this['base'] = new GroupSchemaBase(resourceJson[base]);
+      this['base'] = new GroupSchemaBase(resourceJson['base']);
     }
     if (resourceJson && resourceJson['custom']) {
-      this['custom'] = new GroupSchemaCustom(resourceJson[custom]);
+      this['custom'] = new GroupSchemaCustom(resourceJson['custom']);
     }
   }
 

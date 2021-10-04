@@ -26,10 +26,10 @@ class ChangePasswordRequest extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
     if (resourceJson && resourceJson['newPassword']) {
-      this['newPassword'] = new PasswordCredential(resourceJson[newPassword]);
+      this['newPassword'] = new PasswordCredential(resourceJson['newPassword']);
     }
     if (resourceJson && resourceJson['oldPassword']) {
-      this['oldPassword'] = new PasswordCredential(resourceJson[oldPassword]);
+      this['oldPassword'] = new PasswordCredential(resourceJson['oldPassword']);
     }
   }
 

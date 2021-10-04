@@ -36,19 +36,19 @@ class UserPolicyRuleCondition extends Resource {
       this['exclude'] = resourceJson['exclude'];
     }
     if (resourceJson && resourceJson['inactivity']) {
-      this['inactivity'] = new InactivityPolicyRuleCondition(resourceJson[inactivity]);
+      this['inactivity'] = new InactivityPolicyRuleCondition(resourceJson['inactivity']);
     }
     if (resourceJson && resourceJson['include']) {
       this['include'] = resourceJson['include'];
     }
     if (resourceJson && resourceJson['lifecycleExpiration']) {
-      this['lifecycleExpiration'] = new LifecycleExpirationPolicyRuleCondition(resourceJson[lifecycleExpiration]);
+      this['lifecycleExpiration'] = new LifecycleExpirationPolicyRuleCondition(resourceJson['lifecycleExpiration']);
     }
     if (resourceJson && resourceJson['passwordExpiration']) {
-      this['passwordExpiration'] = new PasswordExpirationPolicyRuleCondition(resourceJson[passwordExpiration]);
+      this['passwordExpiration'] = new PasswordExpirationPolicyRuleCondition(resourceJson['passwordExpiration']);
     }
     if (resourceJson && resourceJson['userLifecycleAttribute']) {
-      this['userLifecycleAttribute'] = new UserLifecycleAttributePolicyRuleCondition(resourceJson[userLifecycleAttribute]);
+      this['userLifecycleAttribute'] = new UserLifecycleAttributePolicyRuleCondition(resourceJson['userLifecycleAttribute']);
     }
   }
 

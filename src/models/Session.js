@@ -51,7 +51,7 @@ class Session extends Resource {
       this['id'] = resourceJson['id'];
     }
     if (resourceJson && resourceJson['idp']) {
-      this['idp'] = new SessionIdentityProvider(resourceJson[idp]);
+      this['idp'] = new SessionIdentityProvider(resourceJson['idp']);
     }
     if (resourceJson && resourceJson['lastFactorVerification']) {
       this['lastFactorVerification'] = resourceJson['lastFactorVerification'];

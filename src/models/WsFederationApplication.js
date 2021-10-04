@@ -29,7 +29,7 @@ class WsFederationApplication extends Application {
       this['name'] = resourceJson['name'];
     }
     if (resourceJson && resourceJson['settings']) {
-      this['settings'] = new WsFederationApplicationSettings(resourceJson[settings]);
+      this['settings'] = new WsFederationApplicationSettings(resourceJson['settings']);
     }
   }
 

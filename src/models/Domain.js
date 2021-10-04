@@ -43,7 +43,7 @@ class Domain extends Resource {
       this['id'] = resourceJson['id'];
     }
     if (resourceJson && resourceJson['publicCertificate']) {
-      this['publicCertificate'] = new DomainCertificateMetadata(resourceJson[publicCertificate]);
+      this['publicCertificate'] = new DomainCertificateMetadata(resourceJson['publicCertificate']);
     }
     if (resourceJson && resourceJson['validationStatus']) {
       this['validationStatus'] = resourceJson['validationStatus'];

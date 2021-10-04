@@ -31,19 +31,19 @@ class PolicyRuleActions extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
     if (resourceJson && resourceJson['enroll']) {
-      this['enroll'] = new PolicyRuleActionsEnroll(resourceJson[enroll]);
+      this['enroll'] = new PolicyRuleActionsEnroll(resourceJson['enroll']);
     }
     if (resourceJson && resourceJson['passwordChange']) {
-      this['passwordChange'] = new PasswordPolicyRuleAction(resourceJson[passwordChange]);
+      this['passwordChange'] = new PasswordPolicyRuleAction(resourceJson['passwordChange']);
     }
     if (resourceJson && resourceJson['selfServicePasswordReset']) {
-      this['selfServicePasswordReset'] = new PasswordPolicyRuleAction(resourceJson[selfServicePasswordReset]);
+      this['selfServicePasswordReset'] = new PasswordPolicyRuleAction(resourceJson['selfServicePasswordReset']);
     }
     if (resourceJson && resourceJson['selfServiceUnlock']) {
-      this['selfServiceUnlock'] = new PasswordPolicyRuleAction(resourceJson[selfServiceUnlock]);
+      this['selfServiceUnlock'] = new PasswordPolicyRuleAction(resourceJson['selfServiceUnlock']);
     }
     if (resourceJson && resourceJson['signon']) {
-      this['signon'] = new OktaSignOnPolicyRuleSignonActions(resourceJson[signon]);
+      this['signon'] = new OktaSignOnPolicyRuleSignonActions(resourceJson['signon']);
     }
   }
 

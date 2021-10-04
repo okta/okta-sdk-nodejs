@@ -45,7 +45,7 @@ class GroupSchema extends Resource {
       this['created'] = resourceJson['created'];
     }
     if (resourceJson && resourceJson['definitions']) {
-      this['definitions'] = new GroupSchemaDefinitions(resourceJson[definitions]);
+      this['definitions'] = new GroupSchemaDefinitions(resourceJson['definitions']);
     }
     if (resourceJson && resourceJson['description']) {
       this['description'] = resourceJson['description'];
@@ -60,7 +60,7 @@ class GroupSchema extends Resource {
       this['name'] = resourceJson['name'];
     }
     if (resourceJson && resourceJson['properties']) {
-      this['properties'] = new UserSchemaProperties(resourceJson[properties]);
+      this['properties'] = new UserSchemaProperties(resourceJson['properties']);
     }
     if (resourceJson && resourceJson['title']) {
       this['title'] = resourceJson['title'];

@@ -57,7 +57,7 @@ class UserFactor extends Resource {
       this['status'] = resourceJson['status'];
     }
     if (resourceJson && resourceJson['_verify']) {
-      this['_verify'] = new VerifyFactorRequest(resourceJson[verify]);
+      this['_verify'] = new VerifyFactorRequest(resourceJson['verify']);
     }
   }
 

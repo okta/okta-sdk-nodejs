@@ -31,7 +31,7 @@ class UserSchemaPublic extends Resource {
       this['id'] = resourceJson['id'];
     }
     if (resourceJson && resourceJson['properties']) {
-      this['properties'] = new UserSchemaAttribute(resourceJson[properties]);
+      this['properties'] = resourceJson['properties'];
     }
     if (resourceJson && resourceJson['required']) {
       this['required'] = resourceJson['required'];

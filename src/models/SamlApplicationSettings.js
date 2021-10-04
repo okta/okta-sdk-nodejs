@@ -25,7 +25,7 @@ class SamlApplicationSettings extends ApplicationSettings {
   constructor(resourceJson, client) {
     super(resourceJson, client);
     if (resourceJson && resourceJson['signOn']) {
-      this['signOn'] = new SamlApplicationSettingsSignOn(resourceJson[signOn]);
+      this['signOn'] = new SamlApplicationSettingsSignOn(resourceJson['signOn']);
     }
   }
 

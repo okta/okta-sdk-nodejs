@@ -35,10 +35,10 @@ class PolicyRule extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
     if (resourceJson && resourceJson['actions']) {
-      this['actions'] = new PolicyRuleActions(resourceJson[actions]);
+      this['actions'] = new PolicyRuleActions(resourceJson['actions']);
     }
     if (resourceJson && resourceJson['conditions']) {
-      this['conditions'] = new PolicyRuleConditions(resourceJson[conditions]);
+      this['conditions'] = new PolicyRuleConditions(resourceJson['conditions']);
     }
     if (resourceJson && resourceJson['created']) {
       this['created'] = resourceJson['created'];

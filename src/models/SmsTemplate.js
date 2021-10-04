@@ -46,7 +46,7 @@ class SmsTemplate extends Resource {
       this['template'] = resourceJson['template'];
     }
     if (resourceJson && resourceJson['translations']) {
-      this['translations'] = new SmsTemplateTranslations(resourceJson[translations]);
+      this['translations'] = new SmsTemplateTranslations(resourceJson['translations']);
     }
     if (resourceJson && resourceJson['type']) {
       this['type'] = resourceJson['type'];

@@ -53,10 +53,10 @@ class IdentityProvider extends Resource {
       this['name'] = resourceJson['name'];
     }
     if (resourceJson && resourceJson['policy']) {
-      this['policy'] = new IdentityProviderPolicy(resourceJson[policy]);
+      this['policy'] = new IdentityProviderPolicy(resourceJson['policy']);
     }
     if (resourceJson && resourceJson['protocol']) {
-      this['protocol'] = new Protocol(resourceJson[protocol]);
+      this['protocol'] = new Protocol(resourceJson['protocol']);
     }
     if (resourceJson && resourceJson['status']) {
       this['status'] = resourceJson['status'];

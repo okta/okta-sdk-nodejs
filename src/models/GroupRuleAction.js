@@ -25,7 +25,7 @@ class GroupRuleAction extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
     if (resourceJson && resourceJson['assignUserToGroups']) {
-      this['assignUserToGroups'] = new GroupRuleGroupAssignment(resourceJson[assignUserToGroups]);
+      this['assignUserToGroups'] = new GroupRuleGroupAssignment(resourceJson['assignUserToGroups']);
     }
   }
 

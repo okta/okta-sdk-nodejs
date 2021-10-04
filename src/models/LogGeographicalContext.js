@@ -35,7 +35,7 @@ class LogGeographicalContext extends Resource {
       this['country'] = resourceJson['country'];
     }
     if (resourceJson && resourceJson['geolocation']) {
-      this['geolocation'] = new LogGeolocation(resourceJson[geolocation]);
+      this['geolocation'] = new LogGeolocation(resourceJson['geolocation']);
     }
     if (resourceJson && resourceJson['postalCode']) {
       this['postalCode'] = resourceJson['postalCode'];

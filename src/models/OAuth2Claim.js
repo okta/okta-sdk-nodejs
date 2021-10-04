@@ -44,7 +44,7 @@ class OAuth2Claim extends Resource {
       this['claimType'] = resourceJson['claimType'];
     }
     if (resourceJson && resourceJson['conditions']) {
-      this['conditions'] = new OAuth2ClaimConditions(resourceJson[conditions]);
+      this['conditions'] = new OAuth2ClaimConditions(resourceJson['conditions']);
     }
     if (resourceJson && resourceJson['group_filter_type']) {
       this['group_filter_type'] = resourceJson['group_filter_type'];

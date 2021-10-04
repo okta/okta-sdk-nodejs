@@ -27,10 +27,10 @@ class GroupRuleConditions extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
     if (resourceJson && resourceJson['expression']) {
-      this['expression'] = new GroupRuleExpression(resourceJson[expression]);
+      this['expression'] = new GroupRuleExpression(resourceJson['expression']);
     }
     if (resourceJson && resourceJson['people']) {
-      this['people'] = new GroupRulePeopleCondition(resourceJson[people]);
+      this['people'] = new GroupRulePeopleCondition(resourceJson['people']);
     }
   }
 

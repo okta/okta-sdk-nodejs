@@ -44,7 +44,7 @@ class UserSchema extends Resource {
       this['created'] = resourceJson['created'];
     }
     if (resourceJson && resourceJson['definitions']) {
-      this['definitions'] = new UserSchemaDefinitions(resourceJson[definitions]);
+      this['definitions'] = new UserSchemaDefinitions(resourceJson['definitions']);
     }
     if (resourceJson && resourceJson['id']) {
       this['id'] = resourceJson['id'];
@@ -56,7 +56,7 @@ class UserSchema extends Resource {
       this['name'] = resourceJson['name'];
     }
     if (resourceJson && resourceJson['properties']) {
-      this['properties'] = new UserSchemaProperties(resourceJson[properties]);
+      this['properties'] = new UserSchemaProperties(resourceJson['properties']);
     }
     if (resourceJson && resourceJson['title']) {
       this['title'] = resourceJson['title'];

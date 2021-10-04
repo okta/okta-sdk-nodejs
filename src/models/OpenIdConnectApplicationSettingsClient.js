@@ -56,7 +56,7 @@ class OpenIdConnectApplicationSettingsClient extends Resource {
       this['grant_types'] = resourceJson['grant_types'].map(resourceItem => new OAuthGrantType(resourceItem));
     }
     if (resourceJson && resourceJson['idp_initiated_login']) {
-      this['idp_initiated_login'] = new OpenIdConnectApplicationIdpInitiatedLogin(resourceJson[idp_initiated_login]);
+      this['idp_initiated_login'] = new OpenIdConnectApplicationIdpInitiatedLogin(resourceJson['idp_initiated_login']);
     }
     if (resourceJson && resourceJson['initiate_login_uri']) {
       this['initiate_login_uri'] = resourceJson['initiate_login_uri'];
@@ -65,7 +65,7 @@ class OpenIdConnectApplicationSettingsClient extends Resource {
       this['issuer_mode'] = resourceJson['issuer_mode'];
     }
     if (resourceJson && resourceJson['jwks']) {
-      this['jwks'] = new OpenIdConnectApplicationSettingsClientKeys(resourceJson[jwks]);
+      this['jwks'] = new OpenIdConnectApplicationSettingsClientKeys(resourceJson['jwks']);
     }
     if (resourceJson && resourceJson['logo_uri']) {
       this['logo_uri'] = resourceJson['logo_uri'];
@@ -80,7 +80,7 @@ class OpenIdConnectApplicationSettingsClient extends Resource {
       this['redirect_uris'] = resourceJson['redirect_uris'];
     }
     if (resourceJson && resourceJson['refresh_token']) {
-      this['refresh_token'] = new OpenIdConnectApplicationSettingsRefreshToken(resourceJson[refresh_token]);
+      this['refresh_token'] = new OpenIdConnectApplicationSettingsRefreshToken(resourceJson['refresh_token']);
     }
     if (resourceJson && resourceJson['response_types']) {
       this['response_types'] = resourceJson['response_types'].map(resourceItem => new OAuthResponseType(resourceItem));

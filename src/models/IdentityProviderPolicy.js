@@ -30,16 +30,16 @@ class IdentityProviderPolicy extends Policy {
   constructor(resourceJson, client) {
     super(resourceJson, client);
     if (resourceJson && resourceJson['accountLink']) {
-      this['accountLink'] = new PolicyAccountLink(resourceJson[accountLink]);
+      this['accountLink'] = new PolicyAccountLink(resourceJson['accountLink']);
     }
     if (resourceJson && resourceJson['maxClockSkew']) {
       this['maxClockSkew'] = resourceJson['maxClockSkew'];
     }
     if (resourceJson && resourceJson['provisioning']) {
-      this['provisioning'] = new Provisioning(resourceJson[provisioning]);
+      this['provisioning'] = new Provisioning(resourceJson['provisioning']);
     }
     if (resourceJson && resourceJson['subject']) {
-      this['subject'] = new PolicySubject(resourceJson[subject]);
+      this['subject'] = new PolicySubject(resourceJson['subject']);
     }
   }
 

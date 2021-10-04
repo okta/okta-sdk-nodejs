@@ -48,7 +48,7 @@ class OAuth2RefreshToken extends Resource {
       this['created'] = resourceJson['created'];
     }
     if (resourceJson && resourceJson['createdBy']) {
-      this['createdBy'] = new OAuth2Actor(resourceJson[createdBy]);
+      this['createdBy'] = new OAuth2Actor(resourceJson['createdBy']);
     }
     if (resourceJson && resourceJson['expiresAt']) {
       this['expiresAt'] = resourceJson['expiresAt'];

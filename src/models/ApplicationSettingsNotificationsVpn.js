@@ -33,7 +33,7 @@ class ApplicationSettingsNotificationsVpn extends Resource {
       this['message'] = resourceJson['message'];
     }
     if (resourceJson && resourceJson['network']) {
-      this['network'] = new ApplicationSettingsNotificationsVpnNetwork(resourceJson[network]);
+      this['network'] = new ApplicationSettingsNotificationsVpnNetwork(resourceJson['network']);
     }
   }
 

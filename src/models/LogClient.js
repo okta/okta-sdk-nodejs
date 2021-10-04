@@ -34,7 +34,7 @@ class LogClient extends Resource {
       this['device'] = resourceJson['device'];
     }
     if (resourceJson && resourceJson['geographicalContext']) {
-      this['geographicalContext'] = new LogGeographicalContext(resourceJson[geographicalContext]);
+      this['geographicalContext'] = new LogGeographicalContext(resourceJson['geographicalContext']);
     }
     if (resourceJson && resourceJson['id']) {
       this['id'] = resourceJson['id'];
@@ -43,7 +43,7 @@ class LogClient extends Resource {
       this['ipAddress'] = resourceJson['ipAddress'];
     }
     if (resourceJson && resourceJson['userAgent']) {
-      this['userAgent'] = new LogUserAgent(resourceJson[userAgent]);
+      this['userAgent'] = new LogUserAgent(resourceJson['userAgent']);
     }
     if (resourceJson && resourceJson['zone']) {
       this['zone'] = resourceJson['zone'];

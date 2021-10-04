@@ -29,7 +29,7 @@ class BookmarkApplication extends Application {
       this['name'] = resourceJson['name'];
     }
     if (resourceJson && resourceJson['settings']) {
-      this['settings'] = new BookmarkApplicationSettings(resourceJson[settings]);
+      this['settings'] = new BookmarkApplicationSettings(resourceJson['settings']);
     }
   }
 

@@ -29,7 +29,7 @@ class SwaApplication extends BrowserPluginApplication {
       this['name'] = resourceJson['name'];
     }
     if (resourceJson && resourceJson['settings']) {
-      this['settings'] = new SwaApplicationSettings(resourceJson[settings]);
+      this['settings'] = new SwaApplicationSettings(resourceJson['settings']);
     }
   }
 

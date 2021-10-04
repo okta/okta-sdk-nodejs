@@ -27,10 +27,10 @@ class PasswordPolicyConditions extends PolicyRuleConditions {
   constructor(resourceJson, client) {
     super(resourceJson, client);
     if (resourceJson && resourceJson['authProvider']) {
-      this['authProvider'] = new PasswordPolicyAuthenticationProviderCondition(resourceJson[authProvider]);
+      this['authProvider'] = new PasswordPolicyAuthenticationProviderCondition(resourceJson['authProvider']);
     }
     if (resourceJson && resourceJson['people']) {
-      this['people'] = new PolicyPeopleCondition(resourceJson[people]);
+      this['people'] = new PolicyPeopleCondition(resourceJson['people']);
     }
   }
 

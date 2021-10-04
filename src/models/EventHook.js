@@ -38,7 +38,7 @@ class EventHook extends Resource {
       this['_links'] = resourceJson['_links'];
     }
     if (resourceJson && resourceJson['channel']) {
-      this['channel'] = new EventHookChannel(resourceJson[channel]);
+      this['channel'] = new EventHookChannel(resourceJson['channel']);
     }
     if (resourceJson && resourceJson['created']) {
       this['created'] = resourceJson['created'];
@@ -47,7 +47,7 @@ class EventHook extends Resource {
       this['createdBy'] = resourceJson['createdBy'];
     }
     if (resourceJson && resourceJson['events']) {
-      this['events'] = new EventSubscriptions(resourceJson[events]);
+      this['events'] = new EventSubscriptions(resourceJson['events']);
     }
     if (resourceJson && resourceJson['id']) {
       this['id'] = resourceJson['id'];

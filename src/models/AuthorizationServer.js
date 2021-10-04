@@ -44,7 +44,7 @@ class AuthorizationServer extends Resource {
       this['created'] = resourceJson['created'];
     }
     if (resourceJson && resourceJson['credentials']) {
-      this['credentials'] = new AuthorizationServerCredentials(resourceJson[credentials]);
+      this['credentials'] = new AuthorizationServerCredentials(resourceJson['credentials']);
     }
     if (resourceJson && resourceJson['description']) {
       this['description'] = resourceJson['description'];

@@ -29,13 +29,13 @@ class OktaSignOnPolicyRuleConditions extends PolicyRuleConditions {
   constructor(resourceJson, client) {
     super(resourceJson, client);
     if (resourceJson && resourceJson['authContext']) {
-      this['authContext'] = new PolicyRuleAuthContextCondition(resourceJson[authContext]);
+      this['authContext'] = new PolicyRuleAuthContextCondition(resourceJson['authContext']);
     }
     if (resourceJson && resourceJson['network']) {
-      this['network'] = new PolicyNetworkCondition(resourceJson[network]);
+      this['network'] = new PolicyNetworkCondition(resourceJson['network']);
     }
     if (resourceJson && resourceJson['people']) {
-      this['people'] = new PolicyPeopleCondition(resourceJson[people]);
+      this['people'] = new PolicyPeopleCondition(resourceJson['people']);
     }
   }
 

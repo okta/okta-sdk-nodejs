@@ -36,7 +36,7 @@ class InlineHook extends Resource {
       this['_links'] = resourceJson['_links'];
     }
     if (resourceJson && resourceJson['channel']) {
-      this['channel'] = new InlineHookChannel(resourceJson[channel]);
+      this['channel'] = new InlineHookChannel(resourceJson['channel']);
     }
     if (resourceJson && resourceJson['created']) {
       this['created'] = resourceJson['created'];

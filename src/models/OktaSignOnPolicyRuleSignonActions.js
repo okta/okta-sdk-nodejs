@@ -45,7 +45,7 @@ class OktaSignOnPolicyRuleSignonActions extends Resource {
       this['requireFactor'] = resourceJson['requireFactor'];
     }
     if (resourceJson && resourceJson['session']) {
-      this['session'] = new OktaSignOnPolicyRuleSignonSessionActions(resourceJson[session]);
+      this['session'] = new OktaSignOnPolicyRuleSignonSessionActions(resourceJson['session']);
     }
   }
 

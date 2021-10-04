@@ -27,7 +27,7 @@ class EventHookChannel extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
     if (resourceJson && resourceJson['config']) {
-      this['config'] = new EventHookChannelConfig(resourceJson[config]);
+      this['config'] = new EventHookChannelConfig(resourceJson['config']);
     }
     if (resourceJson && resourceJson['type']) {
       this['type'] = resourceJson['type'];

@@ -31,16 +31,16 @@ class AuthorizationServerPolicyRuleConditions extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
     if (resourceJson && resourceJson['clients']) {
-      this['clients'] = new ClientPolicyCondition(resourceJson[clients]);
+      this['clients'] = new ClientPolicyCondition(resourceJson['clients']);
     }
     if (resourceJson && resourceJson['grantTypes']) {
-      this['grantTypes'] = new GrantTypePolicyRuleCondition(resourceJson[grantTypes]);
+      this['grantTypes'] = new GrantTypePolicyRuleCondition(resourceJson['grantTypes']);
     }
     if (resourceJson && resourceJson['people']) {
-      this['people'] = new PolicyPeopleCondition(resourceJson[people]);
+      this['people'] = new PolicyPeopleCondition(resourceJson['people']);
     }
     if (resourceJson && resourceJson['scopes']) {
-      this['scopes'] = new OAuth2ScopesMediationPolicyRuleCondition(resourceJson[scopes]);
+      this['scopes'] = new OAuth2ScopesMediationPolicyRuleCondition(resourceJson['scopes']);
     }
   }
 

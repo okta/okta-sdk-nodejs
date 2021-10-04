@@ -31,7 +31,7 @@ class TokenAuthorizationServerPolicyRuleAction extends Resource {
       this['accessTokenLifetimeMinutes'] = resourceJson['accessTokenLifetimeMinutes'];
     }
     if (resourceJson && resourceJson['inlineHook']) {
-      this['inlineHook'] = new TokenAuthorizationServerPolicyRuleActionInlineHook(resourceJson[inlineHook]);
+      this['inlineHook'] = new TokenAuthorizationServerPolicyRuleActionInlineHook(resourceJson['inlineHook']);
     }
     if (resourceJson && resourceJson['refreshTokenLifetimeMinutes']) {
       this['refreshTokenLifetimeMinutes'] = resourceJson['refreshTokenLifetimeMinutes'];

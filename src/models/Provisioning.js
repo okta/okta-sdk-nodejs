@@ -32,10 +32,10 @@ class Provisioning extends Resource {
       this['action'] = resourceJson['action'];
     }
     if (resourceJson && resourceJson['conditions']) {
-      this['conditions'] = new ProvisioningConditions(resourceJson[conditions]);
+      this['conditions'] = new ProvisioningConditions(resourceJson['conditions']);
     }
     if (resourceJson && resourceJson['groups']) {
-      this['groups'] = new ProvisioningGroups(resourceJson[groups]);
+      this['groups'] = new ProvisioningGroups(resourceJson['groups']);
     }
     if (resourceJson && resourceJson['profileMaster']) {
       this['profileMaster'] = resourceJson['profileMaster'];

@@ -29,7 +29,7 @@ class InlineHookChannelConfig extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
     if (resourceJson && resourceJson['authScheme']) {
-      this['authScheme'] = new InlineHookChannelConfigAuthScheme(resourceJson[authScheme]);
+      this['authScheme'] = new InlineHookChannelConfigAuthScheme(resourceJson['authScheme']);
     }
     if (resourceJson && resourceJson['headers']) {
       this['headers'] = resourceJson['headers'].map(resourceItem => new InlineHookChannelConfigHeaders(resourceItem));

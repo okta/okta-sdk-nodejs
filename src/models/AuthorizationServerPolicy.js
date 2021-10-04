@@ -42,7 +42,7 @@ class AuthorizationServerPolicy extends Resource {
       this['_links'] = resourceJson['_links'];
     }
     if (resourceJson && resourceJson['conditions']) {
-      this['conditions'] = new PolicyRuleConditions(resourceJson[conditions]);
+      this['conditions'] = new PolicyRuleConditions(resourceJson['conditions']);
     }
     if (resourceJson && resourceJson['created']) {
       this['created'] = resourceJson['created'];

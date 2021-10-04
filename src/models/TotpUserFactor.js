@@ -25,7 +25,7 @@ class TotpUserFactor extends UserFactor {
   constructor(resourceJson, client) {
     super(resourceJson, client);
     if (resourceJson && resourceJson['profile']) {
-      this['profile'] = new TotpUserFactorProfile(resourceJson[profile]);
+      this['profile'] = new TotpUserFactorProfile(resourceJson['profile']);
     }
   }
 

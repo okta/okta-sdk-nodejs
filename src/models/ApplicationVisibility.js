@@ -28,7 +28,7 @@ class ApplicationVisibility extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
     if (resourceJson && resourceJson['appLinks']) {
-      this['appLinks'] = new boolean(resourceJson[appLinks]);
+      this['appLinks'] = resourceJson['appLinks'];
     }
     if (resourceJson && resourceJson['autoLaunch']) {
       this['autoLaunch'] = resourceJson['autoLaunch'];
@@ -37,7 +37,7 @@ class ApplicationVisibility extends Resource {
       this['autoSubmitToolbar'] = resourceJson['autoSubmitToolbar'];
     }
     if (resourceJson && resourceJson['hide']) {
-      this['hide'] = new ApplicationVisibilityHide(resourceJson[hide]);
+      this['hide'] = new ApplicationVisibilityHide(resourceJson['hide']);
     }
   }
 

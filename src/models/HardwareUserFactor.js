@@ -25,7 +25,7 @@ class HardwareUserFactor extends UserFactor {
   constructor(resourceJson, client) {
     super(resourceJson, client);
     if (resourceJson && resourceJson['profile']) {
-      this['profile'] = new HardwareUserFactorProfile(resourceJson[profile]);
+      this['profile'] = new HardwareUserFactorProfile(resourceJson['profile']);
     }
   }
 

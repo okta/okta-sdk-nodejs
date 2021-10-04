@@ -31,7 +31,7 @@ class DevicePolicyRuleCondition extends Resource {
       this['migrated'] = resourceJson['migrated'];
     }
     if (resourceJson && resourceJson['platform']) {
-      this['platform'] = new DevicePolicyRuleConditionPlatform(resourceJson[platform]);
+      this['platform'] = new DevicePolicyRuleConditionPlatform(resourceJson['platform']);
     }
     if (resourceJson && resourceJson['rooted']) {
       this['rooted'] = resourceJson['rooted'];

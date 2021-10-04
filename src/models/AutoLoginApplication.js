@@ -27,10 +27,10 @@ class AutoLoginApplication extends Application {
   constructor(resourceJson, client) {
     super(resourceJson, client);
     if (resourceJson && resourceJson['credentials']) {
-      this['credentials'] = new SchemeApplicationCredentials(resourceJson[credentials]);
+      this['credentials'] = new SchemeApplicationCredentials(resourceJson['credentials']);
     }
     if (resourceJson && resourceJson['settings']) {
-      this['settings'] = new AutoLoginApplicationSettings(resourceJson[settings]);
+      this['settings'] = new AutoLoginApplicationSettings(resourceJson['settings']);
     }
   }
 

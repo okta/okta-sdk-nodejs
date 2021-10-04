@@ -25,7 +25,7 @@ class SwaThreeFieldApplicationSettings extends ApplicationSettings {
   constructor(resourceJson, client) {
     super(resourceJson, client);
     if (resourceJson && resourceJson['app']) {
-      this['app'] = new SwaThreeFieldApplicationSettingsApplication(resourceJson[app]);
+      this['app'] = new SwaThreeFieldApplicationSettingsApplication(resourceJson['app']);
     }
   }
 

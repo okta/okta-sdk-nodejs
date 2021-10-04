@@ -43,7 +43,7 @@ class Feature extends Resource {
       this['name'] = resourceJson['name'];
     }
     if (resourceJson && resourceJson['stage']) {
-      this['stage'] = new FeatureStage(resourceJson[stage]);
+      this['stage'] = new FeatureStage(resourceJson['stage']);
     }
     if (resourceJson && resourceJson['status']) {
       this['status'] = resourceJson['status'];

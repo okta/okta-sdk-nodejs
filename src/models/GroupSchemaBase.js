@@ -31,7 +31,7 @@ class GroupSchemaBase extends Resource {
       this['id'] = resourceJson['id'];
     }
     if (resourceJson && resourceJson['properties']) {
-      this['properties'] = new GroupSchemaBaseProperties(resourceJson[properties]);
+      this['properties'] = new GroupSchemaBaseProperties(resourceJson['properties']);
     }
     if (resourceJson && resourceJson['required']) {
       this['required'] = resourceJson['required'];

@@ -35,13 +35,13 @@ class ProfileMapping extends Resource {
       this['id'] = resourceJson['id'];
     }
     if (resourceJson && resourceJson['properties']) {
-      this['properties'] = new ProfileMappingProperty(resourceJson[properties]);
+      this['properties'] = resourceJson['properties'];
     }
     if (resourceJson && resourceJson['source']) {
-      this['source'] = new ProfileMappingSource(resourceJson[source]);
+      this['source'] = new ProfileMappingSource(resourceJson['source']);
     }
     if (resourceJson && resourceJson['target']) {
-      this['target'] = new ProfileMappingSource(resourceJson[target]);
+      this['target'] = new ProfileMappingSource(resourceJson['target']);
     }
   }
 

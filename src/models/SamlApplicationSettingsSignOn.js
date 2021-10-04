@@ -111,10 +111,10 @@ class SamlApplicationSettingsSignOn extends Resource {
       this['signatureAlgorithm'] = resourceJson['signatureAlgorithm'];
     }
     if (resourceJson && resourceJson['slo']) {
-      this['slo'] = new SingleLogout(resourceJson[slo]);
+      this['slo'] = new SingleLogout(resourceJson['slo']);
     }
     if (resourceJson && resourceJson['spCertificate']) {
-      this['spCertificate'] = new SpCertificate(resourceJson[spCertificate]);
+      this['spCertificate'] = new SpCertificate(resourceJson['spCertificate']);
     }
     if (resourceJson && resourceJson['spIssuer']) {
       this['spIssuer'] = resourceJson['spIssuer'];

@@ -33,7 +33,7 @@ class PlatformConditionEvaluatorPlatformOperatingSystem extends Resource {
       this['type'] = resourceJson['type'];
     }
     if (resourceJson && resourceJson['version']) {
-      this['version'] = new PlatformConditionEvaluatorPlatformOperatingSystemVersion(resourceJson[version]);
+      this['version'] = new PlatformConditionEvaluatorPlatformOperatingSystemVersion(resourceJson['version']);
     }
   }
 

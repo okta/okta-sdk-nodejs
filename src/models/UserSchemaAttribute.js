@@ -57,10 +57,10 @@ class UserSchemaAttribute extends Resource {
       this['externalNamespace'] = resourceJson['externalNamespace'];
     }
     if (resourceJson && resourceJson['items']) {
-      this['items'] = new UserSchemaAttributeItems(resourceJson[items]);
+      this['items'] = new UserSchemaAttributeItems(resourceJson['items']);
     }
     if (resourceJson && resourceJson['master']) {
-      this['master'] = new UserSchemaAttributeMaster(resourceJson[master]);
+      this['master'] = new UserSchemaAttributeMaster(resourceJson['master']);
     }
     if (resourceJson && resourceJson['maxLength']) {
       this['maxLength'] = resourceJson['maxLength'];

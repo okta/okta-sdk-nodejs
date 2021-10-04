@@ -26,10 +26,10 @@ class ProtocolAlgorithms extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
     if (resourceJson && resourceJson['request']) {
-      this['request'] = new ProtocolAlgorithmType(resourceJson[request]);
+      this['request'] = new ProtocolAlgorithmType(resourceJson['request']);
     }
     if (resourceJson && resourceJson['response']) {
-      this['response'] = new ProtocolAlgorithmType(resourceJson[response]);
+      this['response'] = new ProtocolAlgorithmType(resourceJson['response']);
     }
   }
 

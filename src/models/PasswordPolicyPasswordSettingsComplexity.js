@@ -32,7 +32,7 @@ class PasswordPolicyPasswordSettingsComplexity extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
     if (resourceJson && resourceJson['dictionary']) {
-      this['dictionary'] = new PasswordDictionary(resourceJson[dictionary]);
+      this['dictionary'] = new PasswordDictionary(resourceJson['dictionary']);
     }
     if (resourceJson && resourceJson['excludeAttributes']) {
       this['excludeAttributes'] = resourceJson['excludeAttributes'];

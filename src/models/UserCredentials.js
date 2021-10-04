@@ -29,13 +29,13 @@ class UserCredentials extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
     if (resourceJson && resourceJson['password']) {
-      this['password'] = new PasswordCredential(resourceJson[password]);
+      this['password'] = new PasswordCredential(resourceJson['password']);
     }
     if (resourceJson && resourceJson['provider']) {
-      this['provider'] = new AuthenticationProvider(resourceJson[provider]);
+      this['provider'] = new AuthenticationProvider(resourceJson['provider']);
     }
     if (resourceJson && resourceJson['recovery_question']) {
-      this['recovery_question'] = new RecoveryQuestionCredential(resourceJson[recovery_question]);
+      this['recovery_question'] = new RecoveryQuestionCredential(resourceJson['recovery_question']);
     }
   }
 

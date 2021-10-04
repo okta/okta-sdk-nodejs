@@ -29,7 +29,7 @@ class CustomHotpUserFactor extends UserFactor {
       this['factorProfileId'] = resourceJson['factorProfileId'];
     }
     if (resourceJson && resourceJson['profile']) {
-      this['profile'] = new CustomHotpUserFactorProfile(resourceJson[profile]);
+      this['profile'] = new CustomHotpUserFactorProfile(resourceJson['profile']);
     }
   }
 

@@ -25,7 +25,7 @@ class BasicApplicationSettings extends ApplicationSettings {
   constructor(resourceJson, client) {
     super(resourceJson, client);
     if (resourceJson && resourceJson['app']) {
-      this['app'] = new BasicApplicationSettingsApplication(resourceJson[app]);
+      this['app'] = new BasicApplicationSettingsApplication(resourceJson['app']);
     }
   }
 

@@ -29,7 +29,7 @@ class PolicyAccountLink extends Resource {
       this['action'] = resourceJson['action'];
     }
     if (resourceJson && resourceJson['filter']) {
-      this['filter'] = new PolicyAccountLinkFilter(resourceJson[filter]);
+      this['filter'] = new PolicyAccountLinkFilter(resourceJson['filter']);
     }
   }
 

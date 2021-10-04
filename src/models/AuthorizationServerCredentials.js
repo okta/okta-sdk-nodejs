@@ -25,7 +25,7 @@ class AuthorizationServerCredentials extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
     if (resourceJson && resourceJson['signing']) {
-      this['signing'] = new AuthorizationServerCredentialsSigningConfig(resourceJson[signing]);
+      this['signing'] = new AuthorizationServerCredentialsSigningConfig(resourceJson['signing']);
     }
   }
 

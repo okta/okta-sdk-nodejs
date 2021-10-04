@@ -157,7 +157,7 @@ js.process = ({spec, operations, models, handlebars}) => {
     model.properties.forEach(property => {
       const propertyName = `'${sanitizeModelPropertyName(model.modelName, property.propertyName).replace(/'/g, '')}'`;
 
-      let requiresInstantiation = !property.isEnum && property.model && !['string', 'object'].includes(property.model);
+      let requiresInstantiation = !property.isHash && !property.isEnum && property.model && !['boolean', 'string', 'object'].includes(property.model);
 
       constructorStatements.push(`    if (resourceJson && resourceJson[${propertyName}]) {`);
 
@@ -165,7 +165,7 @@ js.process = ({spec, operations, models, handlebars}) => {
         if (property.isArray) {
           constructorStatements.push(`      this[${propertyName}] = resourceJson[${propertyName}].map(resourceItem => new ${property.model}(resourceItem));`);
         } else {
-          constructorStatements.push(`      this[${propertyName}] = new ${property.model}(resourceJson[${property.propertyName}]);`);
+          constructorStatements.push(`      this[${propertyName}] = new ${property.model}(resourceJson['${property.propertyName}']);`);
         }
       } else {
         constructorStatements.push(`      this[${propertyName}] = resourceJson['${property.propertyName}'];`);
