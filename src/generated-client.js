@@ -2517,12 +2517,9 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/domains/${domainId}`
     ];
 
-    const request = this.http.put(
+    const request = this.http.putJson(
       url,
       {
-        headers: {
-          'Content-Type': 'application/json', 'Accept': 'application/json',
-        },
         body: domainCertificate
       },
       { resources }

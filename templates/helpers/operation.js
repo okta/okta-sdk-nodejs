@@ -110,15 +110,19 @@ const getRequiredOperationParams = operation => {
   return getOperationArgument(operation).shift();
 };
 
-const getHttpMethod = ({ consumes, produces, method, responseModel }) => {
+const getHttpMethod = ({ consumes, produces, method, responseModel, operationId, parameters = [] }) => {
   let res;
+  if (operationId === 'createCertificate') {
+    debugger;
+  }
+  const hasModelParameterInBody = parameters.some(parameter => parameter.in === 'body' && parameter.schema && parameter.schema.$ref);
   switch (method) {
     case 'get':
       res = 'getJson';
       break;
     case 'post':
     case 'put':
-      if (consumes.includes('application/json') && produces.includes('application/json') && responseModel) {
+      if (consumes.includes('application/json') && produces.includes('application/json') && (responseModel || hasModelParameterInBody)) {
         res = `${method}Json`;
       } else {
         res = method;
