@@ -1,5 +1,5 @@
 const _ = require('lodash');
-const { sanitizeModelPropertyName, isConflictingPropertyName, containsRestrictedChars } = require('./helpers/operation');
+const { isConflictingPropertyName, containsRestrictedChars } = require('./helpers/operation');
 const js = module.exports;
 const operationUtils = require('./helpers/operation');
 const { convertSwaggerToTSType } = require('./helpers/typescript-formatter');
