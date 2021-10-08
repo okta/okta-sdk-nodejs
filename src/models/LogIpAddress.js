@@ -27,18 +27,7 @@ const LogGeographicalContext = require('./LogGeographicalContext');
 class LogIpAddress extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson['geographicalContext']) {
-      this['geographicalContext'] = new LogGeographicalContext(resourceJson['geographicalContext']);
-    }
-    if (resourceJson && resourceJson['ip']) {
-      this['ip'] = resourceJson['ip'];
-    }
-    if (resourceJson && resourceJson['source']) {
-      this['source'] = resourceJson['source'];
-    }
-    if (resourceJson && resourceJson['version']) {
-      this['version'] = resourceJson['version'];
-    }
+
   }
 
 }

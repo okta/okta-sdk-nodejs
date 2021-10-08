@@ -24,9 +24,7 @@ var Resource = require('../resource');
 class UserIdString extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson['userId']) {
-      this['userId'] = resourceJson['userId'];
-    }
+
   }
 
 }

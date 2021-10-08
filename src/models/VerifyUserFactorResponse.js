@@ -28,21 +28,7 @@ var Resource = require('../resource');
 class VerifyUserFactorResponse extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson['_embedded']) {
-      this['_embedded'] = resourceJson['_embedded'];
-    }
-    if (resourceJson && resourceJson['_links']) {
-      this['_links'] = resourceJson['_links'];
-    }
-    if (resourceJson && resourceJson['expiresAt']) {
-      this['expiresAt'] = resourceJson['expiresAt'];
-    }
-    if (resourceJson && resourceJson['factorResult']) {
-      this['factorResult'] = resourceJson['factorResult'];
-    }
-    if (resourceJson && resourceJson['factorResultMessage']) {
-      this['factorResultMessage'] = resourceJson['factorResultMessage'];
-    }
+
   }
 
 }

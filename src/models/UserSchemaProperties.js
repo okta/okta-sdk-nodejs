@@ -24,9 +24,7 @@ const UserSchemaPropertiesProfile = require('./UserSchemaPropertiesProfile');
 class UserSchemaProperties extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson['profile']) {
-      this['profile'] = new UserSchemaPropertiesProfile(resourceJson['profile']);
-    }
+
   }
 
 }

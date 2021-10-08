@@ -24,9 +24,7 @@ var Resource = require('../resource');
 class SmsUserFactorProfile extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson['phoneNumber']) {
-      this['phoneNumber'] = resourceJson['phoneNumber'];
-    }
+
   }
 
 }

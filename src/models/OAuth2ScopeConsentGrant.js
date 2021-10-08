@@ -35,42 +35,7 @@ const OAuth2Actor = require('./OAuth2Actor');
 class OAuth2ScopeConsentGrant extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson['_embedded']) {
-      this['_embedded'] = resourceJson['_embedded'];
-    }
-    if (resourceJson && resourceJson['_links']) {
-      this['_links'] = resourceJson['_links'];
-    }
-    if (resourceJson && resourceJson['clientId']) {
-      this['clientId'] = resourceJson['clientId'];
-    }
-    if (resourceJson && resourceJson['created']) {
-      this['created'] = resourceJson['created'];
-    }
-    if (resourceJson && resourceJson['createdBy']) {
-      this['createdBy'] = new OAuth2Actor(resourceJson['createdBy']);
-    }
-    if (resourceJson && resourceJson['id']) {
-      this['id'] = resourceJson['id'];
-    }
-    if (resourceJson && resourceJson['issuer']) {
-      this['issuer'] = resourceJson['issuer'];
-    }
-    if (resourceJson && resourceJson['lastUpdated']) {
-      this['lastUpdated'] = resourceJson['lastUpdated'];
-    }
-    if (resourceJson && resourceJson['scopeId']) {
-      this['scopeId'] = resourceJson['scopeId'];
-    }
-    if (resourceJson && resourceJson['source']) {
-      this['source'] = resourceJson['source'];
-    }
-    if (resourceJson && resourceJson['status']) {
-      this['status'] = resourceJson['status'];
-    }
-    if (resourceJson && resourceJson['userId']) {
-      this['userId'] = resourceJson['userId'];
-    }
+
   }
 
 }

@@ -25,12 +25,7 @@ var Resource = require('../resource');
 class GroupRuleExpression extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson['type']) {
-      this['type'] = resourceJson['type'];
-    }
-    if (resourceJson && resourceJson['value']) {
-      this['value'] = resourceJson['value'];
-    }
+
   }
 
 }

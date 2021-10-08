@@ -30,21 +30,7 @@ const ApplicationSettingsNotifications = require('./ApplicationSettingsNotificat
 class ApplicationSettings extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson['app']) {
-      this['app'] = new ApplicationSettingsApplication(resourceJson['app']);
-    }
-    if (resourceJson && resourceJson['implicitAssignment']) {
-      this['implicitAssignment'] = resourceJson['implicitAssignment'];
-    }
-    if (resourceJson && resourceJson['inlineHookId']) {
-      this['inlineHookId'] = resourceJson['inlineHookId'];
-    }
-    if (resourceJson && resourceJson['notes']) {
-      this['notes'] = new ApplicationSettingsNotes(resourceJson['notes']);
-    }
-    if (resourceJson && resourceJson['notifications']) {
-      this['notifications'] = new ApplicationSettingsNotifications(resourceJson['notifications']);
-    }
+
   }
 
 }

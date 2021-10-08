@@ -24,9 +24,7 @@ const SwaApplicationSettingsApplication = require('./SwaApplicationSettingsAppli
 class SwaApplicationSettings extends ApplicationSettings {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson['app']) {
-      this['app'] = new SwaApplicationSettingsApplication(resourceJson['app']);
-    }
+
   }
 
 }

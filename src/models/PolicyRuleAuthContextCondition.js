@@ -24,9 +24,7 @@ var Resource = require('../resource');
 class PolicyRuleAuthContextCondition extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson['authType']) {
-      this['authType'] = resourceJson['authType'];
-    }
+
   }
 
 }

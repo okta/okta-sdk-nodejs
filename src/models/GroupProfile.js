@@ -25,12 +25,7 @@ var Resource = require('../resource');
 class GroupProfile extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson['description']) {
-      this['description'] = resourceJson['description'];
-    }
-    if (resourceJson && resourceJson['name']) {
-      this['name'] = resourceJson['name'];
-    }
+
   }
 
 }

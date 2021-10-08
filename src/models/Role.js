@@ -33,36 +33,7 @@ var Resource = require('../resource');
 class Role extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson['_embedded']) {
-      this['_embedded'] = resourceJson['_embedded'];
-    }
-    if (resourceJson && resourceJson['_links']) {
-      this['_links'] = resourceJson['_links'];
-    }
-    if (resourceJson && resourceJson['assignmentType']) {
-      this['assignmentType'] = resourceJson['assignmentType'];
-    }
-    if (resourceJson && resourceJson['created']) {
-      this['created'] = resourceJson['created'];
-    }
-    if (resourceJson && resourceJson['description']) {
-      this['description'] = resourceJson['description'];
-    }
-    if (resourceJson && resourceJson['id']) {
-      this['id'] = resourceJson['id'];
-    }
-    if (resourceJson && resourceJson['label']) {
-      this['label'] = resourceJson['label'];
-    }
-    if (resourceJson && resourceJson['lastUpdated']) {
-      this['lastUpdated'] = resourceJson['lastUpdated'];
-    }
-    if (resourceJson && resourceJson['status']) {
-      this['status'] = resourceJson['status'];
-    }
-    if (resourceJson && resourceJson['type']) {
-      this['type'] = resourceJson['type'];
-    }
+
   }
 
 

@@ -28,21 +28,7 @@ var Resource = require('../resource');
 class LogTarget extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson['alternateId']) {
-      this['alternateId'] = resourceJson['alternateId'];
-    }
-    if (resourceJson && resourceJson['detailEntry']) {
-      this['detailEntry'] = resourceJson['detailEntry'];
-    }
-    if (resourceJson && resourceJson['displayName']) {
-      this['displayName'] = resourceJson['displayName'];
-    }
-    if (resourceJson && resourceJson['id']) {
-      this['id'] = resourceJson['id'];
-    }
-    if (resourceJson && resourceJson['type']) {
-      this['type'] = resourceJson['type'];
-    }
+
   }
 
 }

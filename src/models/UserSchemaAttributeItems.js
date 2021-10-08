@@ -26,15 +26,7 @@ const UserSchemaAttributeEnum = require('./UserSchemaAttributeEnum');
 class UserSchemaAttributeItems extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson['enum']) {
-      this['enum'] = resourceJson['enum'];
-    }
-    if (resourceJson && resourceJson['oneOf']) {
-      this['oneOf'] = resourceJson['oneOf'].map(resourceItem => new UserSchemaAttributeEnum(resourceItem));
-    }
-    if (resourceJson && resourceJson['type']) {
-      this['type'] = resourceJson['type'];
-    }
+
   }
 
 }

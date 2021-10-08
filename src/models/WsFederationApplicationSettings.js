@@ -24,9 +24,7 @@ const WsFederationApplicationSettingsApplication = require('./WsFederationApplic
 class WsFederationApplicationSettings extends ApplicationSettings {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson['app']) {
-      this['app'] = new WsFederationApplicationSettingsApplication(resourceJson['app']);
-    }
+
   }
 
 }

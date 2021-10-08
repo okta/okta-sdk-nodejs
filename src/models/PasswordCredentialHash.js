@@ -28,21 +28,7 @@ var Resource = require('../resource');
 class PasswordCredentialHash extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson['algorithm']) {
-      this['algorithm'] = resourceJson['algorithm'];
-    }
-    if (resourceJson && resourceJson['salt']) {
-      this['salt'] = resourceJson['salt'];
-    }
-    if (resourceJson && resourceJson['saltOrder']) {
-      this['saltOrder'] = resourceJson['saltOrder'];
-    }
-    if (resourceJson && resourceJson['value']) {
-      this['value'] = resourceJson['value'];
-    }
-    if (resourceJson && resourceJson['workFactor']) {
-      this['workFactor'] = resourceJson['workFactor'];
-    }
+
   }
 
 }

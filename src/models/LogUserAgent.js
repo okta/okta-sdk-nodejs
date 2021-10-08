@@ -26,15 +26,7 @@ var Resource = require('../resource');
 class LogUserAgent extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson['browser']) {
-      this['browser'] = resourceJson['browser'];
-    }
-    if (resourceJson && resourceJson['os']) {
-      this['os'] = resourceJson['os'];
-    }
-    if (resourceJson && resourceJson['rawUserAgent']) {
-      this['rawUserAgent'] = resourceJson['rawUserAgent'];
-    }
+
   }
 
 }

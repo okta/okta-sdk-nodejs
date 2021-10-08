@@ -27,18 +27,7 @@ var Resource = require('../resource');
 class GroupSchemaCustom extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson['id']) {
-      this['id'] = resourceJson['id'];
-    }
-    if (resourceJson && resourceJson['properties']) {
-      this['properties'] = resourceJson['properties'];
-    }
-    if (resourceJson && resourceJson['required']) {
-      this['required'] = resourceJson['required'];
-    }
-    if (resourceJson && resourceJson['type']) {
-      this['type'] = resourceJson['type'];
-    }
+
   }
 
 }

@@ -26,15 +26,7 @@ const InlineHookChannelConfig = require('./InlineHookChannelConfig');
 class InlineHookChannel extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson['config']) {
-      this['config'] = new InlineHookChannelConfig(resourceJson['config']);
-    }
-    if (resourceJson && resourceJson['type']) {
-      this['type'] = resourceJson['type'];
-    }
-    if (resourceJson && resourceJson['version']) {
-      this['version'] = resourceJson['version'];
-    }
+
   }
 
 }

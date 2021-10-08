@@ -25,12 +25,7 @@ var Resource = require('../resource');
 class RecoveryQuestionCredential extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson['answer']) {
-      this['answer'] = resourceJson['answer'];
-    }
-    if (resourceJson && resourceJson['question']) {
-      this['question'] = resourceJson['question'];
-    }
+
   }
 
 }

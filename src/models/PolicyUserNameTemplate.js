@@ -24,9 +24,7 @@ var Resource = require('../resource');
 class PolicyUserNameTemplate extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson['template']) {
-      this['template'] = resourceJson['template'];
-    }
+
   }
 
 }

@@ -27,18 +27,7 @@ var Resource = require('../resource');
 class ProfileMappingSource extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson['_links']) {
-      this['_links'] = resourceJson['_links'];
-    }
-    if (resourceJson && resourceJson['id']) {
-      this['id'] = resourceJson['id'];
-    }
-    if (resourceJson && resourceJson['name']) {
-      this['name'] = resourceJson['name'];
-    }
-    if (resourceJson && resourceJson['type']) {
-      this['type'] = resourceJson['type'];
-    }
+
   }
 
 }

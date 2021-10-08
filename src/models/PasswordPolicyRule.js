@@ -27,15 +27,7 @@ const PasswordPolicyRuleConditions = require('./PasswordPolicyRuleConditions');
 class PasswordPolicyRule extends PolicyRule {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson['actions']) {
-      this['actions'] = new PasswordPolicyRuleActions(resourceJson['actions']);
-    }
-    if (resourceJson && resourceJson['conditions']) {
-      this['conditions'] = new PasswordPolicyRuleConditions(resourceJson['conditions']);
-    }
-    if (resourceJson && resourceJson['name']) {
-      this['name'] = resourceJson['name'];
-    }
+
   }
 
 }

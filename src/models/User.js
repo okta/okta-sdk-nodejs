@@ -39,48 +39,7 @@ const UserType = require('./UserType');
 class User extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson['_embedded']) {
-      this['_embedded'] = resourceJson['_embedded'];
-    }
-    if (resourceJson && resourceJson['_links']) {
-      this['_links'] = resourceJson['_links'];
-    }
-    if (resourceJson && resourceJson['activated']) {
-      this['activated'] = resourceJson['activated'];
-    }
-    if (resourceJson && resourceJson['created']) {
-      this['created'] = resourceJson['created'];
-    }
-    if (resourceJson && resourceJson['credentials']) {
-      this['credentials'] = new UserCredentials(resourceJson['credentials']);
-    }
-    if (resourceJson && resourceJson['id']) {
-      this['id'] = resourceJson['id'];
-    }
-    if (resourceJson && resourceJson['lastLogin']) {
-      this['lastLogin'] = resourceJson['lastLogin'];
-    }
-    if (resourceJson && resourceJson['lastUpdated']) {
-      this['lastUpdated'] = resourceJson['lastUpdated'];
-    }
-    if (resourceJson && resourceJson['passwordChanged']) {
-      this['passwordChanged'] = resourceJson['passwordChanged'];
-    }
-    if (resourceJson && resourceJson['profile']) {
-      this['profile'] = new UserProfile(resourceJson['profile']);
-    }
-    if (resourceJson && resourceJson['status']) {
-      this['status'] = resourceJson['status'];
-    }
-    if (resourceJson && resourceJson['statusChanged']) {
-      this['statusChanged'] = resourceJson['statusChanged'];
-    }
-    if (resourceJson && resourceJson['transitioningToStatus']) {
-      this['transitioningToStatus'] = resourceJson['transitioningToStatus'];
-    }
-    if (resourceJson && resourceJson['type']) {
-      this['type'] = new UserType(resourceJson['type']);
-    }
+
   }
 
   /**

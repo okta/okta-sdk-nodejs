@@ -24,9 +24,7 @@ var Resource = require('../resource');
 class LogDebugContext extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson['debugData']) {
-      this['debugData'] = resourceJson['debugData'];
-    }
+
   }
 
 }

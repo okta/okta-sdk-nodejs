@@ -24,9 +24,7 @@ var Resource = require('../resource');
 class HardwareUserFactorProfile extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson['credentialId']) {
-      this['credentialId'] = resourceJson['credentialId'];
-    }
+
   }
 
 }

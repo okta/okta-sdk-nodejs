@@ -24,9 +24,7 @@ var Resource = require('../resource');
 class EmailUserFactorProfile extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson['email']) {
-      this['email'] = resourceJson['email'];
-    }
+
   }
 
 }

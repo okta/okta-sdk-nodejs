@@ -24,9 +24,7 @@ var Resource = require('../resource');
 class ProtocolRelayState extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson['format']) {
-      this['format'] = resourceJson['format'];
-    }
+
   }
 
 }

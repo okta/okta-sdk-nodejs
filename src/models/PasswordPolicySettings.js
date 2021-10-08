@@ -28,15 +28,7 @@ const PasswordPolicyRecoverySettings = require('./PasswordPolicyRecoverySettings
 class PasswordPolicySettings extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson['delegation']) {
-      this['delegation'] = new PasswordPolicyDelegationSettings(resourceJson['delegation']);
-    }
-    if (resourceJson && resourceJson['password']) {
-      this['password'] = new PasswordPolicyPasswordSettings(resourceJson['password']);
-    }
-    if (resourceJson && resourceJson['recovery']) {
-      this['recovery'] = new PasswordPolicyRecoverySettings(resourceJson['recovery']);
-    }
+
   }
 
 }

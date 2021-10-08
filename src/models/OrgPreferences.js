@@ -25,11 +25,9 @@ var Resource = require('../resource');
 class OrgPreferences extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson['_links']) {
-      this['_links'] = resourceJson['_links'];
-    }
-    if (resourceJson && resourceJson['_showEndUserFooter']) {
-      this['_showEndUserFooter'] = resourceJson['showEndUserFooter'];
+    delete this['showEndUserFooter'];
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'showEndUserFooter')) {
+      this._showEndUserFooter = resourceJson.showEndUserFooter;
     }
   }
 

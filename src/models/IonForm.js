@@ -32,33 +32,7 @@ const IonField = require('./IonField');
 class IonForm extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson['accepts']) {
-      this['accepts'] = resourceJson['accepts'];
-    }
-    if (resourceJson && resourceJson['href']) {
-      this['href'] = resourceJson['href'];
-    }
-    if (resourceJson && resourceJson['method']) {
-      this['method'] = resourceJson['method'];
-    }
-    if (resourceJson && resourceJson['name']) {
-      this['name'] = resourceJson['name'];
-    }
-    if (resourceJson && resourceJson['produces']) {
-      this['produces'] = resourceJson['produces'];
-    }
-    if (resourceJson && resourceJson['refresh']) {
-      this['refresh'] = resourceJson['refresh'];
-    }
-    if (resourceJson && resourceJson['rel']) {
-      this['rel'] = resourceJson['rel'];
-    }
-    if (resourceJson && resourceJson['relatesTo']) {
-      this['relatesTo'] = resourceJson['relatesTo'];
-    }
-    if (resourceJson && resourceJson['value']) {
-      this['value'] = resourceJson['value'].map(resourceItem => new IonField(resourceItem));
-    }
+
   }
 
 }

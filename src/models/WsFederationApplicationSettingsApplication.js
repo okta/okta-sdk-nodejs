@@ -35,42 +35,7 @@ var ApplicationSettingsApplication = require('./ApplicationSettingsApplication')
 class WsFederationApplicationSettingsApplication extends ApplicationSettingsApplication {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson['attributeStatements']) {
-      this['attributeStatements'] = resourceJson['attributeStatements'];
-    }
-    if (resourceJson && resourceJson['audienceRestriction']) {
-      this['audienceRestriction'] = resourceJson['audienceRestriction'];
-    }
-    if (resourceJson && resourceJson['authnContextClassRef']) {
-      this['authnContextClassRef'] = resourceJson['authnContextClassRef'];
-    }
-    if (resourceJson && resourceJson['groupFilter']) {
-      this['groupFilter'] = resourceJson['groupFilter'];
-    }
-    if (resourceJson && resourceJson['groupName']) {
-      this['groupName'] = resourceJson['groupName'];
-    }
-    if (resourceJson && resourceJson['groupValueFormat']) {
-      this['groupValueFormat'] = resourceJson['groupValueFormat'];
-    }
-    if (resourceJson && resourceJson['nameIDFormat']) {
-      this['nameIDFormat'] = resourceJson['nameIDFormat'];
-    }
-    if (resourceJson && resourceJson['realm']) {
-      this['realm'] = resourceJson['realm'];
-    }
-    if (resourceJson && resourceJson['siteURL']) {
-      this['siteURL'] = resourceJson['siteURL'];
-    }
-    if (resourceJson && resourceJson['usernameAttribute']) {
-      this['usernameAttribute'] = resourceJson['usernameAttribute'];
-    }
-    if (resourceJson && resourceJson['wReplyOverride']) {
-      this['wReplyOverride'] = resourceJson['wReplyOverride'];
-    }
-    if (resourceJson && resourceJson['wReplyURL']) {
-      this['wReplyURL'] = resourceJson['wReplyURL'];
-    }
+
   }
 
 }

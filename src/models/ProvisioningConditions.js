@@ -26,12 +26,7 @@ const ProvisioningSuspendedCondition = require('./ProvisioningSuspendedCondition
 class ProvisioningConditions extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson['deprovisioned']) {
-      this['deprovisioned'] = new ProvisioningDeprovisionedCondition(resourceJson['deprovisioned']);
-    }
-    if (resourceJson && resourceJson['suspended']) {
-      this['suspended'] = new ProvisioningSuspendedCondition(resourceJson['suspended']);
-    }
+
   }
 
 }

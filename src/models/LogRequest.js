@@ -24,9 +24,7 @@ const LogIpAddress = require('./LogIpAddress');
 class LogRequest extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson['ipChain']) {
-      this['ipChain'] = resourceJson['ipChain'].map(resourceItem => new LogIpAddress(resourceItem));
-    }
+
   }
 
 }

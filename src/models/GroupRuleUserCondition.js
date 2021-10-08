@@ -25,12 +25,7 @@ var Resource = require('../resource');
 class GroupRuleUserCondition extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson['exclude']) {
-      this['exclude'] = resourceJson['exclude'];
-    }
-    if (resourceJson && resourceJson['include']) {
-      this['include'] = resourceJson['include'];
-    }
+
   }
 
 }

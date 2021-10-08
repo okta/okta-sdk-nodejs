@@ -26,12 +26,7 @@ const CsrMetadataSubjectAltNames = require('./CsrMetadataSubjectAltNames');
 class CsrMetadata extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson['subject']) {
-      this['subject'] = new CsrMetadataSubject(resourceJson['subject']);
-    }
-    if (resourceJson && resourceJson['subjectAltNames']) {
-      this['subjectAltNames'] = new CsrMetadataSubjectAltNames(resourceJson['subjectAltNames']);
-    }
+
   }
 
 }

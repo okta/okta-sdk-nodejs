@@ -27,18 +27,7 @@ var Resource = require('../resource');
 class PasswordPolicyPasswordSettingsAge extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson['expireWarnDays']) {
-      this['expireWarnDays'] = resourceJson['expireWarnDays'];
-    }
-    if (resourceJson && resourceJson['historyCount']) {
-      this['historyCount'] = resourceJson['historyCount'];
-    }
-    if (resourceJson && resourceJson['maxAgeDays']) {
-      this['maxAgeDays'] = resourceJson['maxAgeDays'];
-    }
-    if (resourceJson && resourceJson['minAgeMinutes']) {
-      this['minAgeMinutes'] = resourceJson['minAgeMinutes'];
-    }
+
   }
 
 }

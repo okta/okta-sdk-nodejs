@@ -28,21 +28,7 @@ var Resource = require('../resource');
 class OAuth2Client extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson['_links']) {
-      this['_links'] = resourceJson['_links'];
-    }
-    if (resourceJson && resourceJson['client_id']) {
-      this['client_id'] = resourceJson['client_id'];
-    }
-    if (resourceJson && resourceJson['client_name']) {
-      this['client_name'] = resourceJson['client_name'];
-    }
-    if (resourceJson && resourceJson['client_uri']) {
-      this['client_uri'] = resourceJson['client_uri'];
-    }
-    if (resourceJson && resourceJson['logo_uri']) {
-      this['logo_uri'] = resourceJson['logo_uri'];
-    }
+
   }
 
 }

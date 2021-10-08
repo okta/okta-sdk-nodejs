@@ -29,24 +29,7 @@ const OktaSignOnPolicyRuleSignonSessionActions = require('./OktaSignOnPolicyRule
 class OktaSignOnPolicyRuleSignonActions extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson['access']) {
-      this['access'] = resourceJson['access'];
-    }
-    if (resourceJson && resourceJson['factorLifetime']) {
-      this['factorLifetime'] = resourceJson['factorLifetime'];
-    }
-    if (resourceJson && resourceJson['factorPromptMode']) {
-      this['factorPromptMode'] = resourceJson['factorPromptMode'];
-    }
-    if (resourceJson && resourceJson['rememberDeviceByDefault']) {
-      this['rememberDeviceByDefault'] = resourceJson['rememberDeviceByDefault'];
-    }
-    if (resourceJson && resourceJson['requireFactor']) {
-      this['requireFactor'] = resourceJson['requireFactor'];
-    }
-    if (resourceJson && resourceJson['session']) {
-      this['session'] = new OktaSignOnPolicyRuleSignonSessionActions(resourceJson['session']);
-    }
+
   }
 
 }

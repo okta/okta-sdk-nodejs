@@ -28,21 +28,7 @@ var Resource = require('../resource');
 class ThreatInsightConfiguration extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson['_links']) {
-      this['_links'] = resourceJson['_links'];
-    }
-    if (resourceJson && resourceJson['action']) {
-      this['action'] = resourceJson['action'];
-    }
-    if (resourceJson && resourceJson['created']) {
-      this['created'] = resourceJson['created'];
-    }
-    if (resourceJson && resourceJson['excludeZones']) {
-      this['excludeZones'] = resourceJson['excludeZones'];
-    }
-    if (resourceJson && resourceJson['lastUpdated']) {
-      this['lastUpdated'] = resourceJson['lastUpdated'];
-    }
+
   }
 
   /**

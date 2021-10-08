@@ -37,48 +37,7 @@ const AppUserCredentials = require('./AppUserCredentials');
 class AppUser extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson['_embedded']) {
-      this['_embedded'] = resourceJson['_embedded'];
-    }
-    if (resourceJson && resourceJson['_links']) {
-      this['_links'] = resourceJson['_links'];
-    }
-    if (resourceJson && resourceJson['created']) {
-      this['created'] = resourceJson['created'];
-    }
-    if (resourceJson && resourceJson['credentials']) {
-      this['credentials'] = new AppUserCredentials(resourceJson['credentials']);
-    }
-    if (resourceJson && resourceJson['externalId']) {
-      this['externalId'] = resourceJson['externalId'];
-    }
-    if (resourceJson && resourceJson['id']) {
-      this['id'] = resourceJson['id'];
-    }
-    if (resourceJson && resourceJson['lastSync']) {
-      this['lastSync'] = resourceJson['lastSync'];
-    }
-    if (resourceJson && resourceJson['lastUpdated']) {
-      this['lastUpdated'] = resourceJson['lastUpdated'];
-    }
-    if (resourceJson && resourceJson['passwordChanged']) {
-      this['passwordChanged'] = resourceJson['passwordChanged'];
-    }
-    if (resourceJson && resourceJson['profile']) {
-      this['profile'] = resourceJson['profile'];
-    }
-    if (resourceJson && resourceJson['scope']) {
-      this['scope'] = resourceJson['scope'];
-    }
-    if (resourceJson && resourceJson['status']) {
-      this['status'] = resourceJson['status'];
-    }
-    if (resourceJson && resourceJson['statusChanged']) {
-      this['statusChanged'] = resourceJson['statusChanged'];
-    }
-    if (resourceJson && resourceJson['syncState']) {
-      this['syncState'] = resourceJson['syncState'];
-    }
+
   }
 
   /**

@@ -26,15 +26,7 @@ var Resource = require('../resource');
 class ApplicationAccessibility extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson['errorRedirectUrl']) {
-      this['errorRedirectUrl'] = resourceJson['errorRedirectUrl'];
-    }
-    if (resourceJson && resourceJson['loginRedirectUrl']) {
-      this['loginRedirectUrl'] = resourceJson['loginRedirectUrl'];
-    }
-    if (resourceJson && resourceJson['selfService']) {
-      this['selfService'] = resourceJson['selfService'];
-    }
+
   }
 
 }

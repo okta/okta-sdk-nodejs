@@ -24,9 +24,7 @@ var Resource = require('../resource');
 class UserSchemaPropertiesProfileItem extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson['$ref']) {
-      this['$ref'] = resourceJson['$ref'];
-    }
+
   }
 
 }

@@ -25,12 +25,7 @@ var ApplicationSettingsApplication = require('./ApplicationSettingsApplication')
 class BookmarkApplicationSettingsApplication extends ApplicationSettingsApplication {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson['requestIntegration']) {
-      this['requestIntegration'] = resourceJson['requestIntegration'];
-    }
-    if (resourceJson && resourceJson['url']) {
-      this['url'] = resourceJson['url'];
-    }
+
   }
 
 }

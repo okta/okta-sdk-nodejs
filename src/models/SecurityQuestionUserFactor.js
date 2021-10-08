@@ -24,9 +24,7 @@ const SecurityQuestionUserFactorProfile = require('./SecurityQuestionUserFactorP
 class SecurityQuestionUserFactor extends UserFactor {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson['profile']) {
-      this['profile'] = new SecurityQuestionUserFactorProfile(resourceJson['profile']);
-    }
+
   }
 
 }

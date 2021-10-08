@@ -27,18 +27,7 @@ var Resource = require('../resource');
 class DNSRecord extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson['expiration']) {
-      this['expiration'] = resourceJson['expiration'];
-    }
-    if (resourceJson && resourceJson['fqdn']) {
-      this['fqdn'] = resourceJson['fqdn'];
-    }
-    if (resourceJson && resourceJson['recordType']) {
-      this['recordType'] = resourceJson['recordType'];
-    }
-    if (resourceJson && resourceJson['values']) {
-      this['values'] = resourceJson['values'];
-    }
+
   }
 
 }

@@ -24,9 +24,7 @@ var Resource = require('../resource');
 class RiskScorePolicyRuleCondition extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson['level']) {
-      this['level'] = resourceJson['level'];
-    }
+
   }
 
 }

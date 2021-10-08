@@ -31,30 +31,7 @@ var Resource = require('../resource');
 class OAuth2Scope extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson['consent']) {
-      this['consent'] = resourceJson['consent'];
-    }
-    if (resourceJson && resourceJson['default']) {
-      this['default'] = resourceJson['default'];
-    }
-    if (resourceJson && resourceJson['description']) {
-      this['description'] = resourceJson['description'];
-    }
-    if (resourceJson && resourceJson['displayName']) {
-      this['displayName'] = resourceJson['displayName'];
-    }
-    if (resourceJson && resourceJson['id']) {
-      this['id'] = resourceJson['id'];
-    }
-    if (resourceJson && resourceJson['metadataPublish']) {
-      this['metadataPublish'] = resourceJson['metadataPublish'];
-    }
-    if (resourceJson && resourceJson['name']) {
-      this['name'] = resourceJson['name'];
-    }
-    if (resourceJson && resourceJson['system']) {
-      this['system'] = resourceJson['system'];
-    }
+
   }
 
 }

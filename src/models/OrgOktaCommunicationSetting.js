@@ -25,12 +25,7 @@ var Resource = require('../resource');
 class OrgOktaCommunicationSetting extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson['_links']) {
-      this['_links'] = resourceJson['_links'];
-    }
-    if (resourceJson && resourceJson['optOutEmailUsers']) {
-      this['optOutEmailUsers'] = resourceJson['optOutEmailUsers'];
-    }
+
   }
 
 

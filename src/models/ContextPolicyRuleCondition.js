@@ -24,9 +24,7 @@ var Resource = require('../resource');
 class ContextPolicyRuleCondition extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson['expression']) {
-      this['expression'] = resourceJson['expression'];
-    }
+
   }
 
 }

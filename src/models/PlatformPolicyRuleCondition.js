@@ -25,12 +25,7 @@ const PlatformConditionEvaluatorPlatform = require('./PlatformConditionEvaluator
 class PlatformPolicyRuleCondition extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson['exclude']) {
-      this['exclude'] = resourceJson['exclude'].map(resourceItem => new PlatformConditionEvaluatorPlatform(resourceItem));
-    }
-    if (resourceJson && resourceJson['include']) {
-      this['include'] = resourceJson['include'].map(resourceItem => new PlatformConditionEvaluatorPlatform(resourceItem));
-    }
+
   }
 
 }

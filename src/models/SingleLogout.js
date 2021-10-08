@@ -26,15 +26,7 @@ var Resource = require('../resource');
 class SingleLogout extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson['enabled']) {
-      this['enabled'] = resourceJson['enabled'];
-    }
-    if (resourceJson && resourceJson['issuer']) {
-      this['issuer'] = resourceJson['issuer'];
-    }
-    if (resourceJson && resourceJson['logoutUrl']) {
-      this['logoutUrl'] = resourceJson['logoutUrl'];
-    }
+
   }
 
 }

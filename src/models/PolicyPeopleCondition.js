@@ -26,12 +26,7 @@ const UserCondition = require('./UserCondition');
 class PolicyPeopleCondition extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson['groups']) {
-      this['groups'] = new GroupCondition(resourceJson['groups']);
-    }
-    if (resourceJson && resourceJson['users']) {
-      this['users'] = new UserCondition(resourceJson['users']);
-    }
+
   }
 
 }

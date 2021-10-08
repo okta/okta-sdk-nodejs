@@ -24,9 +24,7 @@ var Resource = require('../resource');
 class AssignRoleRequest extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson['type']) {
-      this['type'] = resourceJson['type'];
-    }
+
   }
 
 }

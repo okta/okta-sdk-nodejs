@@ -24,9 +24,7 @@ var Resource = require('../resource');
 class TotpUserFactorProfile extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson['credentialId']) {
-      this['credentialId'] = resourceJson['credentialId'];
-    }
+
   }
 
 }

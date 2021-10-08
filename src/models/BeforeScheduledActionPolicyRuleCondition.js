@@ -26,12 +26,7 @@ const ScheduledUserLifecycleAction = require('./ScheduledUserLifecycleAction');
 class BeforeScheduledActionPolicyRuleCondition extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson['duration']) {
-      this['duration'] = new Duration(resourceJson['duration']);
-    }
-    if (resourceJson && resourceJson['lifecycleAction']) {
-      this['lifecycleAction'] = new ScheduledUserLifecycleAction(resourceJson['lifecycleAction']);
-    }
+
   }
 
 }

@@ -26,15 +26,7 @@ var Resource = require('../resource');
 class LifecycleExpirationPolicyRuleCondition extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson['lifecycleStatus']) {
-      this['lifecycleStatus'] = resourceJson['lifecycleStatus'];
-    }
-    if (resourceJson && resourceJson['number']) {
-      this['number'] = resourceJson['number'];
-    }
-    if (resourceJson && resourceJson['unit']) {
-      this['unit'] = resourceJson['unit'];
-    }
+
   }
 
 }

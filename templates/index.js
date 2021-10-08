@@ -1,5 +1,5 @@
 const _ = require('lodash');
-const { sanitizeModelPropertyName } = require('./helpers/operation');
+const { sanitizeModelPropertyName, isConflictingPropertyName, containsRestrictedChars } = require('./helpers/operation');
 const js = module.exports;
 const operationUtils = require('./helpers/operation');
 const { convertSwaggerToTSType } = require('./helpers/typescript-formatter');
@@ -155,23 +155,32 @@ js.process = ({spec, operations, models, handlebars}) => {
     const constructorStatements = [];
 
     model.properties.forEach(property => {
-      const propertyName = `'${sanitizeModelPropertyName(model.modelName, property.propertyName).replace(/'/g, '')}'`;
+      let propertyName = property.propertyName;
+      let dedupedPropertyName = propertyName;
 
-      let requiresInstantiation = !property.isHash && !property.isEnum && property.model && !['boolean', 'string', 'object'].includes(property.model);
-
-      constructorStatements.push(`    if (resourceJson && resourceJson[${propertyName}]) {`);
-
-      if (requiresInstantiation) {
-        if (property.isArray) {
-          constructorStatements.push(`      this[${propertyName}] = resourceJson[${propertyName}].map(resourceItem => new ${property.model}(resourceItem));`);
-        } else {
-          constructorStatements.push(`      this[${propertyName}] = new ${property.model}(resourceJson['${property.propertyName}']);`);
-        }
-      } else {
-        constructorStatements.push(`      this[${propertyName}] = resourceJson['${property.propertyName}'];`);
+      const propertyAccessor = propName => containsRestrictedChars(propName) ? `['${propName}']` : `.${propName}`;
+      let isConflicting = isConflictingPropertyName(model.modelName, propertyName);
+      if (isConflicting) {
+        dedupedPropertyName = `_${propertyName}`;
+        // remove property set by parent Resource class
+        constructorStatements.push(`    delete this['${property.propertyName}'];`);
       }
-      constructorStatements.push('    }');
 
+      // let requiresInstantiation = !property.isHash && !property.isEnum && property.model && !['boolean', 'string', 'object'].includes(property.model);
+      let requiresInstantiation = !property.isHash && !property.isEnum && property.model && property.model.$ref;
+
+      if (requiresInstantiation || isConflicting) {
+        constructorStatements.push(`    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, '${propertyName}')) {`);
+        if (property.isArray) {
+          constructorStatements.push(`      this${propertyAccessor(dedupedPropertyName)} = resourceJson${propertyAccessor(propertyName)}.map(resourceItem => new ${property.model}(resourceItem));`);
+        } else if (property.model) {
+          constructorStatements.push(`      this${propertyAccessor(dedupedPropertyName)} = new ${property.model}(resourceJson${propertyAccessor(propertyName)});`);
+        } else {
+          // explicitly assign non-instantiatable property only if it conflicts with method name
+          constructorStatements.push(`      this${propertyAccessor(dedupedPropertyName)} = resourceJson${propertyAccessor(propertyName)};`);
+        }
+        constructorStatements.push('    }');
+      }
     });
     return constructorStatements.join('\n');
   });

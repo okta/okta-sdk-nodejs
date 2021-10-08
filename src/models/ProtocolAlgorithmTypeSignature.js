@@ -25,12 +25,7 @@ var Resource = require('../resource');
 class ProtocolAlgorithmTypeSignature extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson['algorithm']) {
-      this['algorithm'] = resourceJson['algorithm'];
-    }
-    if (resourceJson && resourceJson['scope']) {
-      this['scope'] = resourceJson['scope'];
-    }
+
   }
 
 }

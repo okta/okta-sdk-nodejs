@@ -24,9 +24,7 @@ var Resource = require('../resource');
 class TempPassword extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson['tempPassword']) {
-      this['tempPassword'] = resourceJson['tempPassword'];
-    }
+
   }
 
 }

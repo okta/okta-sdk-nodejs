@@ -25,12 +25,7 @@ var Resource = require('../resource');
 class ApplicationVisibilityHide extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson['iOS']) {
-      this['iOS'] = resourceJson['iOS'];
-    }
-    if (resourceJson && resourceJson['web']) {
-      this['web'] = resourceJson['web'];
-    }
+
   }
 
 }

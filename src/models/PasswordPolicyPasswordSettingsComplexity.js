@@ -31,30 +31,7 @@ const PasswordDictionary = require('./PasswordDictionary');
 class PasswordPolicyPasswordSettingsComplexity extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson['dictionary']) {
-      this['dictionary'] = new PasswordDictionary(resourceJson['dictionary']);
-    }
-    if (resourceJson && resourceJson['excludeAttributes']) {
-      this['excludeAttributes'] = resourceJson['excludeAttributes'];
-    }
-    if (resourceJson && resourceJson['excludeUsername']) {
-      this['excludeUsername'] = resourceJson['excludeUsername'];
-    }
-    if (resourceJson && resourceJson['minLength']) {
-      this['minLength'] = resourceJson['minLength'];
-    }
-    if (resourceJson && resourceJson['minLowerCase']) {
-      this['minLowerCase'] = resourceJson['minLowerCase'];
-    }
-    if (resourceJson && resourceJson['minNumber']) {
-      this['minNumber'] = resourceJson['minNumber'];
-    }
-    if (resourceJson && resourceJson['minSymbol']) {
-      this['minSymbol'] = resourceJson['minSymbol'];
-    }
-    if (resourceJson && resourceJson['minUpperCase']) {
-      this['minUpperCase'] = resourceJson['minUpperCase'];
-    }
+
   }
 
 }

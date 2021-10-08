@@ -24,9 +24,7 @@ const ApplicationCredentialsOAuthClient = require('./ApplicationCredentialsOAuth
 class OAuthApplicationCredentials extends ApplicationCredentials {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson['oauthClient']) {
-      this['oauthClient'] = new ApplicationCredentialsOAuthClient(resourceJson['oauthClient']);
-    }
+
   }
 
 }

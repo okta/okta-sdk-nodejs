@@ -26,15 +26,7 @@ var Resource = require('../resource');
 class ApplicationCredentialsUsernameTemplate extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson['suffix']) {
-      this['suffix'] = resourceJson['suffix'];
-    }
-    if (resourceJson && resourceJson['template']) {
-      this['template'] = resourceJson['template'];
-    }
-    if (resourceJson && resourceJson['type']) {
-      this['type'] = resourceJson['type'];
-    }
+
   }
 
 }

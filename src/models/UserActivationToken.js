@@ -25,12 +25,7 @@ var Resource = require('../resource');
 class UserActivationToken extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson['activationToken']) {
-      this['activationToken'] = resourceJson['activationToken'];
-    }
-    if (resourceJson && resourceJson['activationUrl']) {
-      this['activationUrl'] = resourceJson['activationUrl'];
-    }
+
   }
 
 }

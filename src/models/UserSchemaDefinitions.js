@@ -26,12 +26,7 @@ const UserSchemaPublic = require('./UserSchemaPublic');
 class UserSchemaDefinitions extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson['base']) {
-      this['base'] = new UserSchemaBase(resourceJson['base']);
-    }
-    if (resourceJson && resourceJson['custom']) {
-      this['custom'] = new UserSchemaPublic(resourceJson['custom']);
-    }
+
   }
 
 }

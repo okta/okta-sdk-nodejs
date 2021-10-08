@@ -25,12 +25,7 @@ var Resource = require('../resource');
 class CallUserFactorProfile extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson['phoneExtension']) {
-      this['phoneExtension'] = resourceJson['phoneExtension'];
-    }
-    if (resourceJson && resourceJson['phoneNumber']) {
-      this['phoneNumber'] = resourceJson['phoneNumber'];
-    }
+
   }
 
 }

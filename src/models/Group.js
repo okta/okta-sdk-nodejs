@@ -32,33 +32,7 @@ const GroupProfile = require('./GroupProfile');
 class Group extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson['_embedded']) {
-      this['_embedded'] = resourceJson['_embedded'];
-    }
-    if (resourceJson && resourceJson['_links']) {
-      this['_links'] = resourceJson['_links'];
-    }
-    if (resourceJson && resourceJson['created']) {
-      this['created'] = resourceJson['created'];
-    }
-    if (resourceJson && resourceJson['id']) {
-      this['id'] = resourceJson['id'];
-    }
-    if (resourceJson && resourceJson['lastMembershipUpdated']) {
-      this['lastMembershipUpdated'] = resourceJson['lastMembershipUpdated'];
-    }
-    if (resourceJson && resourceJson['lastUpdated']) {
-      this['lastUpdated'] = resourceJson['lastUpdated'];
-    }
-    if (resourceJson && resourceJson['objectClass']) {
-      this['objectClass'] = resourceJson['objectClass'];
-    }
-    if (resourceJson && resourceJson['profile']) {
-      this['profile'] = new GroupProfile(resourceJson['profile']);
-    }
-    if (resourceJson && resourceJson['type']) {
-      this['type'] = resourceJson['type'];
-    }
+
   }
 
   /**

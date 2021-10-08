@@ -25,12 +25,7 @@ const SwaThreeFieldApplicationSettings = require('./SwaThreeFieldApplicationSett
 class SwaThreeFieldApplication extends BrowserPluginApplication {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson['name']) {
-      this['name'] = resourceJson['name'];
-    }
-    if (resourceJson && resourceJson['settings']) {
-      this['settings'] = new SwaThreeFieldApplicationSettings(resourceJson['settings']);
-    }
+
   }
 
 }

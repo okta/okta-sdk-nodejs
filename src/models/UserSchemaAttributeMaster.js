@@ -25,12 +25,7 @@ const UserSchemaAttributeMasterPriority = require('./UserSchemaAttributeMasterPr
 class UserSchemaAttributeMaster extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson['priority']) {
-      this['priority'] = resourceJson['priority'].map(resourceItem => new UserSchemaAttributeMasterPriority(resourceItem));
-    }
-    if (resourceJson && resourceJson['type']) {
-      this['type'] = resourceJson['type'];
-    }
+
   }
 
 }

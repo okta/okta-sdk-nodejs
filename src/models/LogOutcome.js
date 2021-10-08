@@ -25,12 +25,7 @@ var Resource = require('../resource');
 class LogOutcome extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson['reason']) {
-      this['reason'] = resourceJson['reason'];
-    }
-    if (resourceJson && resourceJson['result']) {
-      this['result'] = resourceJson['result'];
-    }
+
   }
 
 }

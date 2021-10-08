@@ -24,9 +24,7 @@ const OktaSignOnPolicyRuleSignonActions = require('./OktaSignOnPolicyRuleSignonA
 class OktaSignOnPolicyRuleActions extends PolicyRuleActions {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson['signon']) {
-      this['signon'] = new OktaSignOnPolicyRuleSignonActions(resourceJson['signon']);
-    }
+
   }
 
 }

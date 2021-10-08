@@ -29,24 +29,7 @@ var Resource = require('../resource');
 class SamlAttributeStatement extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson['filterType']) {
-      this['filterType'] = resourceJson['filterType'];
-    }
-    if (resourceJson && resourceJson['filterValue']) {
-      this['filterValue'] = resourceJson['filterValue'];
-    }
-    if (resourceJson && resourceJson['name']) {
-      this['name'] = resourceJson['name'];
-    }
-    if (resourceJson && resourceJson['namespace']) {
-      this['namespace'] = resourceJson['namespace'];
-    }
-    if (resourceJson && resourceJson['type']) {
-      this['type'] = resourceJson['type'];
-    }
-    if (resourceJson && resourceJson['values']) {
-      this['values'] = resourceJson['values'];
-    }
+
   }
 
 }
