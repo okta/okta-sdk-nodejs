@@ -28,7 +28,15 @@ const PasswordPolicyRecoverySettings = require('./PasswordPolicyRecoverySettings
 class PasswordPolicySettings extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'delegation')) {
+      this.delegation = new PasswordPolicyDelegationSettings(resourceJson.delegation);
+    }
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'password')) {
+      this.password = new PasswordPolicyPasswordSettings(resourceJson.password);
+    }
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'recovery')) {
+      this.recovery = new PasswordPolicyRecoverySettings(resourceJson.recovery);
+    }
   }
 
 }

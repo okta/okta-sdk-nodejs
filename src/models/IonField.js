@@ -32,7 +32,9 @@ const IonForm = require('./IonForm');
 class IonField extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'form')) {
+      this.form = new IonForm(resourceJson.form);
+    }
   }
 
 }

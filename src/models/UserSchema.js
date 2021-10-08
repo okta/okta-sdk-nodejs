@@ -34,7 +34,12 @@ const UserSchemaProperties = require('./UserSchemaProperties');
 class UserSchema extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'definitions')) {
+      this.definitions = new UserSchemaDefinitions(resourceJson.definitions);
+    }
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'properties')) {
+      this.properties = new UserSchemaProperties(resourceJson.properties);
+    }
   }
 
 }

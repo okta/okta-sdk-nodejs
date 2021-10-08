@@ -25,7 +25,9 @@ const PlatformConditionEvaluatorPlatformOperatingSystem = require('./PlatformCon
 class PlatformConditionEvaluatorPlatform extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'os')) {
+      this.os = new PlatformConditionEvaluatorPlatformOperatingSystem(resourceJson.os);
+    }
   }
 
 }

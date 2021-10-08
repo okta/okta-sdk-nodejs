@@ -27,7 +27,12 @@ const PasswordCredentialHook = require('./PasswordCredentialHook');
 class PasswordCredential extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'hash')) {
+      this.hash = new PasswordCredentialHash(resourceJson.hash);
+    }
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'hook')) {
+      this.hook = new PasswordCredentialHook(resourceJson.hook);
+    }
   }
 
 }

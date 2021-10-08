@@ -38,7 +38,15 @@ const NetworkZoneLocation = require('./NetworkZoneLocation');
 class NetworkZone extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'gateways')) {
+      this.gateways = resourceJson.gateways.map(resourceItem => new NetworkZoneAddress(resourceItem));
+    }
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'locations')) {
+      this.locations = resourceJson.locations.map(resourceItem => new NetworkZoneLocation(resourceItem));
+    }
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'proxies')) {
+      this.proxies = resourceJson.proxies.map(resourceItem => new NetworkZoneAddress(resourceItem));
+    }
   }
 
   /**

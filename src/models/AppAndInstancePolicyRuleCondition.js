@@ -25,7 +25,12 @@ const AppAndInstanceConditionEvaluatorAppOrInstance = require('./AppAndInstanceC
 class AppAndInstancePolicyRuleCondition extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'exclude')) {
+      this.exclude = resourceJson.exclude.map(resourceItem => new AppAndInstanceConditionEvaluatorAppOrInstance(resourceItem));
+    }
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'include')) {
+      this.include = resourceJson.include.map(resourceItem => new AppAndInstanceConditionEvaluatorAppOrInstance(resourceItem));
+    }
   }
 
 }

@@ -27,7 +27,9 @@ const GroupSchemaBaseProperties = require('./GroupSchemaBaseProperties');
 class GroupSchemaBase extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'properties')) {
+      this.properties = new GroupSchemaBaseProperties(resourceJson.properties);
+    }
   }
 
 }

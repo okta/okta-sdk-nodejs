@@ -27,7 +27,12 @@ const BasicApplicationSettings = require('./BasicApplicationSettings');
 class BasicAuthApplication extends Application {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'credentials')) {
+      this.credentials = new SchemeApplicationCredentials(resourceJson.credentials);
+    }
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'settings')) {
+      this.settings = new BasicApplicationSettings(resourceJson.settings);
+    }
   }
 
 }

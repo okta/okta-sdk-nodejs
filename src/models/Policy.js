@@ -35,7 +35,9 @@ const PolicyRuleConditions = require('./PolicyRuleConditions');
 class Policy extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'conditions')) {
+      this.conditions = new PolicyRuleConditions(resourceJson.conditions);
+    }
   }
 
   /**

@@ -29,7 +29,15 @@ const PolicySubject = require('./PolicySubject');
 class IdentityProviderPolicy extends Policy {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'accountLink')) {
+      this.accountLink = new PolicyAccountLink(resourceJson.accountLink);
+    }
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'provisioning')) {
+      this.provisioning = new Provisioning(resourceJson.provisioning);
+    }
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'subject')) {
+      this.subject = new PolicySubject(resourceJson.subject);
+    }
   }
 
 }

@@ -27,7 +27,9 @@ const TokenAuthorizationServerPolicyRuleActionInlineHook = require('./TokenAutho
 class TokenAuthorizationServerPolicyRuleAction extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'inlineHook')) {
+      this.inlineHook = new TokenAuthorizationServerPolicyRuleActionInlineHook(resourceJson.inlineHook);
+    }
   }
 
 }

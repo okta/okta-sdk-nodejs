@@ -43,7 +43,21 @@ const ApplicationVisibility = require('./ApplicationVisibility');
 class Application extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'accessibility')) {
+      this.accessibility = new ApplicationAccessibility(resourceJson.accessibility);
+    }
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'credentials')) {
+      this.credentials = new ApplicationCredentials(resourceJson.credentials);
+    }
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'licensing')) {
+      this.licensing = new ApplicationLicensing(resourceJson.licensing);
+    }
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'settings')) {
+      this.settings = new ApplicationSettings(resourceJson.settings);
+    }
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'visibility')) {
+      this.visibility = new ApplicationVisibility(resourceJson.visibility);
+    }
   }
 
   /**

@@ -27,7 +27,9 @@ const LogGeographicalContext = require('./LogGeographicalContext');
 class LogIpAddress extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'geographicalContext')) {
+      this.geographicalContext = new LogGeographicalContext(resourceJson.geographicalContext);
+    }
   }
 
 }

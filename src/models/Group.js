@@ -32,7 +32,9 @@ const GroupProfile = require('./GroupProfile');
 class Group extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'profile')) {
+      this.profile = new GroupProfile(resourceJson.profile);
+    }
   }
 
   /**

@@ -28,7 +28,12 @@ const ProvisioningGroups = require('./ProvisioningGroups');
 class Provisioning extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'conditions')) {
+      this.conditions = new ProvisioningConditions(resourceJson.conditions);
+    }
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'groups')) {
+      this.groups = new ProvisioningGroups(resourceJson.groups);
+    }
   }
 
 }

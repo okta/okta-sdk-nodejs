@@ -31,7 +31,9 @@ const PasswordDictionary = require('./PasswordDictionary');
 class PasswordPolicyPasswordSettingsComplexity extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'dictionary')) {
+      this.dictionary = new PasswordDictionary(resourceJson.dictionary);
+    }
   }
 
 }

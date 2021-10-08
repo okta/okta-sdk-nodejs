@@ -35,7 +35,12 @@ const UserSchemaProperties = require('./UserSchemaProperties');
 class GroupSchema extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'definitions')) {
+      this.definitions = new GroupSchemaDefinitions(resourceJson.definitions);
+    }
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'properties')) {
+      this.properties = new UserSchemaProperties(resourceJson.properties);
+    }
   }
 
 }

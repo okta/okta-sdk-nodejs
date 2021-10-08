@@ -53,7 +53,21 @@ const SpCertificate = require('./SpCertificate');
 class SamlApplicationSettingsSignOn extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'acsEndpoints')) {
+      this.acsEndpoints = resourceJson.acsEndpoints.map(resourceItem => new AcsEndpoint(resourceItem));
+    }
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'attributeStatements')) {
+      this.attributeStatements = resourceJson.attributeStatements.map(resourceItem => new SamlAttributeStatement(resourceItem));
+    }
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'inlineHooks')) {
+      this.inlineHooks = resourceJson.inlineHooks.map(resourceItem => new SignOnInlineHook(resourceItem));
+    }
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'slo')) {
+      this.slo = new SingleLogout(resourceJson.slo);
+    }
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'spCertificate')) {
+      this.spCertificate = new SpCertificate(resourceJson.spCertificate);
+    }
   }
 
 }

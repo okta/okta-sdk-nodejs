@@ -24,7 +24,9 @@ const SamlApplicationSettings = require('./SamlApplicationSettings');
 class SamlApplication extends Application {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'settings')) {
+      this.settings = new SamlApplicationSettings(resourceJson.settings);
+    }
   }
 
 }

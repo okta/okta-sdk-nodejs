@@ -27,7 +27,9 @@ const ApplicationVisibilityHide = require('./ApplicationVisibilityHide');
 class ApplicationVisibility extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'hide')) {
+      this.hide = new ApplicationVisibilityHide(resourceJson.hide);
+    }
   }
 
 }

@@ -24,7 +24,9 @@ const WebAuthnUserFactorProfile = require('./WebAuthnUserFactorProfile');
 class WebAuthnUserFactor extends UserFactor {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'profile')) {
+      this.profile = new WebAuthnUserFactorProfile(resourceJson.profile);
+    }
   }
 
 }

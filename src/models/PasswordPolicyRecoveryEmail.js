@@ -25,7 +25,9 @@ const PasswordPolicyRecoveryEmailProperties = require('./PasswordPolicyRecoveryE
 class PasswordPolicyRecoveryEmail extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'properties')) {
+      this.properties = new PasswordPolicyRecoveryEmailProperties(resourceJson.properties);
+    }
   }
 
 }

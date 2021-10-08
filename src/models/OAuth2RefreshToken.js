@@ -35,7 +35,9 @@ const OAuth2Actor = require('./OAuth2Actor');
 class OAuth2RefreshToken extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'createdBy')) {
+      this.createdBy = new OAuth2Actor(resourceJson.createdBy);
+    }
   }
 
 }

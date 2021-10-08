@@ -24,7 +24,9 @@ const SwaThreeFieldApplicationSettingsApplication = require('./SwaThreeFieldAppl
 class SwaThreeFieldApplicationSettings extends ApplicationSettings {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'app')) {
+      this.app = new SwaThreeFieldApplicationSettingsApplication(resourceJson.app);
+    }
   }
 
 }

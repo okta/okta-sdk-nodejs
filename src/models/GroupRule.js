@@ -32,7 +32,12 @@ const GroupRuleConditions = require('./GroupRuleConditions');
 class GroupRule extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'actions')) {
+      this.actions = new GroupRuleAction(resourceJson.actions);
+    }
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'conditions')) {
+      this.conditions = new GroupRuleConditions(resourceJson.conditions);
+    }
   }
 
   /**

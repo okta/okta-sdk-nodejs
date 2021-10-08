@@ -26,7 +26,12 @@ const ApplicationCredentialsUsernameTemplate = require('./ApplicationCredentials
 class ApplicationCredentials extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'signing')) {
+      this.signing = new ApplicationCredentialsSigning(resourceJson.signing);
+    }
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'userNameTemplate')) {
+      this.userNameTemplate = new ApplicationCredentialsUsernameTemplate(resourceJson.userNameTemplate);
+    }
   }
 
 }

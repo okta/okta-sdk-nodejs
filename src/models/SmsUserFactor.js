@@ -24,7 +24,9 @@ const SmsUserFactorProfile = require('./SmsUserFactorProfile');
 class SmsUserFactor extends UserFactor {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'profile')) {
+      this.profile = new SmsUserFactorProfile(resourceJson.profile);
+    }
   }
 
 }

@@ -26,7 +26,12 @@ const ScheduledUserLifecycleAction = require('./ScheduledUserLifecycleAction');
 class BeforeScheduledActionPolicyRuleCondition extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'duration')) {
+      this.duration = new Duration(resourceJson.duration);
+    }
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'lifecycleAction')) {
+      this.lifecycleAction = new ScheduledUserLifecycleAction(resourceJson.lifecycleAction);
+    }
   }
 
 }

@@ -166,8 +166,7 @@ js.process = ({spec, operations, models, handlebars}) => {
         constructorStatements.push(`    delete this['${property.propertyName}'];`);
       }
 
-      // let requiresInstantiation = !property.isHash && !property.isEnum && property.model && !['boolean', 'string', 'object'].includes(property.model);
-      let requiresInstantiation = !property.isHash && !property.isEnum && property.model && property.model.$ref;
+      let requiresInstantiation = !property.isHash && !property.isEnum && property.model && !['boolean', 'string', 'object'].includes(property.model);
 
       if (requiresInstantiation || isConflicting) {
         constructorStatements.push(`    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, '${propertyName}')) {`);

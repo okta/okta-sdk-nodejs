@@ -35,7 +35,12 @@ const SessionIdentityProvider = require('./SessionIdentityProvider');
 class Session extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'amr')) {
+      this.amr = resourceJson.amr.map(resourceItem => new SessionAuthenticationMethod(resourceItem));
+    }
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'idp')) {
+      this.idp = new SessionIdentityProvider(resourceJson.idp);
+    }
   }
 
   delete() {

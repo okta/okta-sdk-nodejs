@@ -30,7 +30,21 @@ const OktaSignOnPolicyRuleSignonActions = require('./OktaSignOnPolicyRuleSignonA
 class PolicyRuleActions extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'enroll')) {
+      this.enroll = new PolicyRuleActionsEnroll(resourceJson.enroll);
+    }
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'passwordChange')) {
+      this.passwordChange = new PasswordPolicyRuleAction(resourceJson.passwordChange);
+    }
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'selfServicePasswordReset')) {
+      this.selfServicePasswordReset = new PasswordPolicyRuleAction(resourceJson.selfServicePasswordReset);
+    }
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'selfServiceUnlock')) {
+      this.selfServiceUnlock = new PasswordPolicyRuleAction(resourceJson.selfServiceUnlock);
+    }
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'signon')) {
+      this.signon = new OktaSignOnPolicyRuleSignonActions(resourceJson.signon);
+    }
   }
 
 }

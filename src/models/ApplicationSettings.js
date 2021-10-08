@@ -30,7 +30,15 @@ const ApplicationSettingsNotifications = require('./ApplicationSettingsNotificat
 class ApplicationSettings extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'app')) {
+      this.app = new ApplicationSettingsApplication(resourceJson.app);
+    }
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'notes')) {
+      this.notes = new ApplicationSettingsNotes(resourceJson.notes);
+    }
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'notifications')) {
+      this.notifications = new ApplicationSettingsNotifications(resourceJson.notifications);
+    }
   }
 
 }

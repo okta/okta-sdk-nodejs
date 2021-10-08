@@ -32,7 +32,18 @@ const UserLifecycleAttributePolicyRuleCondition = require('./UserLifecycleAttrib
 class UserPolicyRuleCondition extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'inactivity')) {
+      this.inactivity = new InactivityPolicyRuleCondition(resourceJson.inactivity);
+    }
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'lifecycleExpiration')) {
+      this.lifecycleExpiration = new LifecycleExpirationPolicyRuleCondition(resourceJson.lifecycleExpiration);
+    }
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'passwordExpiration')) {
+      this.passwordExpiration = new PasswordExpirationPolicyRuleCondition(resourceJson.passwordExpiration);
+    }
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'userLifecycleAttribute')) {
+      this.userLifecycleAttribute = new UserLifecycleAttributePolicyRuleCondition(resourceJson.userLifecycleAttribute);
+    }
   }
 
 }

@@ -26,7 +26,12 @@ const LinkedObjectDetails = require('./LinkedObjectDetails');
 class LinkedObject extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'associated')) {
+      this.associated = new LinkedObjectDetails(resourceJson.associated);
+    }
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'primary')) {
+      this.primary = new LinkedObjectDetails(resourceJson.primary);
+    }
   }
 
   /**

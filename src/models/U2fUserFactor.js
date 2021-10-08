@@ -24,7 +24,9 @@ const U2fUserFactorProfile = require('./U2fUserFactorProfile');
 class U2fUserFactor extends UserFactor {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'profile')) {
+      this.profile = new U2fUserFactorProfile(resourceJson.profile);
+    }
   }
 
 }

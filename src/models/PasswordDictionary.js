@@ -24,7 +24,9 @@ const PasswordDictionaryCommon = require('./PasswordDictionaryCommon');
 class PasswordDictionary extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'common')) {
+      this.common = new PasswordDictionaryCommon(resourceJson.common);
+    }
   }
 
 }

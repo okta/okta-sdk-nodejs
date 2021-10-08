@@ -27,7 +27,9 @@ const DevicePolicyRuleConditionPlatform = require('./DevicePolicyRuleConditionPl
 class DevicePolicyRuleCondition extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'platform')) {
+      this.platform = new DevicePolicyRuleConditionPlatform(resourceJson.platform);
+    }
   }
 
 }

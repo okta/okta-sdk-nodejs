@@ -54,7 +54,99 @@ const UserSchemaAttribute = require('./UserSchemaAttribute');
 class UserSchemaBaseProperties extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'city')) {
+      this.city = new UserSchemaAttribute(resourceJson.city);
+    }
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'costCenter')) {
+      this.costCenter = new UserSchemaAttribute(resourceJson.costCenter);
+    }
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'countryCode')) {
+      this.countryCode = new UserSchemaAttribute(resourceJson.countryCode);
+    }
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'department')) {
+      this.department = new UserSchemaAttribute(resourceJson.department);
+    }
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'displayName')) {
+      this.displayName = new UserSchemaAttribute(resourceJson.displayName);
+    }
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'division')) {
+      this.division = new UserSchemaAttribute(resourceJson.division);
+    }
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'email')) {
+      this.email = new UserSchemaAttribute(resourceJson.email);
+    }
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'employeeNumber')) {
+      this.employeeNumber = new UserSchemaAttribute(resourceJson.employeeNumber);
+    }
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'firstName')) {
+      this.firstName = new UserSchemaAttribute(resourceJson.firstName);
+    }
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'honorificPrefix')) {
+      this.honorificPrefix = new UserSchemaAttribute(resourceJson.honorificPrefix);
+    }
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'honorificSuffix')) {
+      this.honorificSuffix = new UserSchemaAttribute(resourceJson.honorificSuffix);
+    }
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'lastName')) {
+      this.lastName = new UserSchemaAttribute(resourceJson.lastName);
+    }
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'locale')) {
+      this.locale = new UserSchemaAttribute(resourceJson.locale);
+    }
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'login')) {
+      this.login = new UserSchemaAttribute(resourceJson.login);
+    }
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'manager')) {
+      this.manager = new UserSchemaAttribute(resourceJson.manager);
+    }
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'managerId')) {
+      this.managerId = new UserSchemaAttribute(resourceJson.managerId);
+    }
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'middleName')) {
+      this.middleName = new UserSchemaAttribute(resourceJson.middleName);
+    }
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'mobilePhone')) {
+      this.mobilePhone = new UserSchemaAttribute(resourceJson.mobilePhone);
+    }
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'nickName')) {
+      this.nickName = new UserSchemaAttribute(resourceJson.nickName);
+    }
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'organization')) {
+      this.organization = new UserSchemaAttribute(resourceJson.organization);
+    }
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'postalAddress')) {
+      this.postalAddress = new UserSchemaAttribute(resourceJson.postalAddress);
+    }
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'preferredLanguage')) {
+      this.preferredLanguage = new UserSchemaAttribute(resourceJson.preferredLanguage);
+    }
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'primaryPhone')) {
+      this.primaryPhone = new UserSchemaAttribute(resourceJson.primaryPhone);
+    }
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'profileUrl')) {
+      this.profileUrl = new UserSchemaAttribute(resourceJson.profileUrl);
+    }
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'secondEmail')) {
+      this.secondEmail = new UserSchemaAttribute(resourceJson.secondEmail);
+    }
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'state')) {
+      this.state = new UserSchemaAttribute(resourceJson.state);
+    }
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'streetAddress')) {
+      this.streetAddress = new UserSchemaAttribute(resourceJson.streetAddress);
+    }
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'timezone')) {
+      this.timezone = new UserSchemaAttribute(resourceJson.timezone);
+    }
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'title')) {
+      this.title = new UserSchemaAttribute(resourceJson.title);
+    }
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'userType')) {
+      this.userType = new UserSchemaAttribute(resourceJson.userType);
+    }
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'zipCode')) {
+      this.zipCode = new UserSchemaAttribute(resourceJson.zipCode);
+    }
   }
 
 }

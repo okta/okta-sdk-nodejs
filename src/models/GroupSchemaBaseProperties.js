@@ -25,7 +25,12 @@ const GroupSchemaAttribute = require('./GroupSchemaAttribute');
 class GroupSchemaBaseProperties extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'description')) {
+      this.description = new GroupSchemaAttribute(resourceJson.description);
+    }
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'name')) {
+      this.name = new GroupSchemaAttribute(resourceJson.name);
+    }
   }
 
 }

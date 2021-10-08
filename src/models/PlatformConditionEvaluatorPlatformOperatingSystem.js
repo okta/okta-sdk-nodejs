@@ -26,7 +26,9 @@ const PlatformConditionEvaluatorPlatformOperatingSystemVersion = require('./Plat
 class PlatformConditionEvaluatorPlatformOperatingSystem extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'version')) {
+      this.version = new PlatformConditionEvaluatorPlatformOperatingSystemVersion(resourceJson.version);
+    }
   }
 
 }

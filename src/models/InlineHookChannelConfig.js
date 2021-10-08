@@ -28,7 +28,12 @@ const InlineHookChannelConfigHeaders = require('./InlineHookChannelConfigHeaders
 class InlineHookChannelConfig extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'authScheme')) {
+      this.authScheme = new InlineHookChannelConfigAuthScheme(resourceJson.authScheme);
+    }
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'headers')) {
+      this.headers = resourceJson.headers.map(resourceItem => new InlineHookChannelConfigHeaders(resourceItem));
+    }
   }
 
 }

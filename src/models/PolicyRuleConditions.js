@@ -64,7 +64,69 @@ const UserPolicyRuleCondition = require('./UserPolicyRuleCondition');
 class PolicyRuleConditions extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'app')) {
+      this.app = new AppAndInstancePolicyRuleCondition(resourceJson.app);
+    }
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'apps')) {
+      this.apps = new AppInstancePolicyRuleCondition(resourceJson.apps);
+    }
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'authContext')) {
+      this.authContext = new PolicyRuleAuthContextCondition(resourceJson.authContext);
+    }
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'authProvider')) {
+      this.authProvider = new PasswordPolicyAuthenticationProviderCondition(resourceJson.authProvider);
+    }
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'beforeScheduledAction')) {
+      this.beforeScheduledAction = new BeforeScheduledActionPolicyRuleCondition(resourceJson.beforeScheduledAction);
+    }
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'clients')) {
+      this.clients = new ClientPolicyCondition(resourceJson.clients);
+    }
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'context')) {
+      this.context = new ContextPolicyRuleCondition(resourceJson.context);
+    }
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'device')) {
+      this.device = new DevicePolicyRuleCondition(resourceJson.device);
+    }
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'grantTypes')) {
+      this.grantTypes = new GrantTypePolicyRuleCondition(resourceJson.grantTypes);
+    }
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'groups')) {
+      this.groups = new GroupPolicyRuleCondition(resourceJson.groups);
+    }
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'identityProvider')) {
+      this.identityProvider = new IdentityProviderPolicyRuleCondition(resourceJson.identityProvider);
+    }
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'mdmEnrollment')) {
+      this.mdmEnrollment = new MDMEnrollmentPolicyRuleCondition(resourceJson.mdmEnrollment);
+    }
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'network')) {
+      this.network = new PolicyNetworkCondition(resourceJson.network);
+    }
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'people')) {
+      this.people = new PolicyPeopleCondition(resourceJson.people);
+    }
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'platform')) {
+      this.platform = new PlatformPolicyRuleCondition(resourceJson.platform);
+    }
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'risk')) {
+      this.risk = new RiskPolicyRuleCondition(resourceJson.risk);
+    }
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'riskScore')) {
+      this.riskScore = new RiskScorePolicyRuleCondition(resourceJson.riskScore);
+    }
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'scopes')) {
+      this.scopes = new OAuth2ScopesMediationPolicyRuleCondition(resourceJson.scopes);
+    }
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'userIdentifier')) {
+      this.userIdentifier = new UserIdentifierPolicyRuleCondition(resourceJson.userIdentifier);
+    }
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'userStatus')) {
+      this.userStatus = new UserStatusPolicyRuleCondition(resourceJson.userStatus);
+    }
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'users')) {
+      this.users = new UserPolicyRuleCondition(resourceJson.users);
+    }
   }
 
 }

@@ -24,7 +24,9 @@ const PasswordPolicyRecoveryQuestionComplexity = require('./PasswordPolicyRecove
 class PasswordPolicyRecoveryQuestionProperties extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'complexity')) {
+      this.complexity = new PasswordPolicyRecoveryQuestionComplexity(resourceJson.complexity);
+    }
   }
 
 }

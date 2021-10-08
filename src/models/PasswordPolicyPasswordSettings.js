@@ -28,7 +28,15 @@ const PasswordPolicyPasswordSettingsLockout = require('./PasswordPolicyPasswordS
 class PasswordPolicyPasswordSettings extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'age')) {
+      this.age = new PasswordPolicyPasswordSettingsAge(resourceJson.age);
+    }
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'complexity')) {
+      this.complexity = new PasswordPolicyPasswordSettingsComplexity(resourceJson.complexity);
+    }
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'lockout')) {
+      this.lockout = new PasswordPolicyPasswordSettingsLockout(resourceJson.lockout);
+    }
   }
 
 }

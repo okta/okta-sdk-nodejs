@@ -31,7 +31,30 @@ const ProtocolEndpoint = require('./ProtocolEndpoint');
 class ProtocolEndpoints extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'acs')) {
+      this.acs = new ProtocolEndpoint(resourceJson.acs);
+    }
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'authorization')) {
+      this.authorization = new ProtocolEndpoint(resourceJson.authorization);
+    }
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'jwks')) {
+      this.jwks = new ProtocolEndpoint(resourceJson.jwks);
+    }
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'metadata')) {
+      this.metadata = new ProtocolEndpoint(resourceJson.metadata);
+    }
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'slo')) {
+      this.slo = new ProtocolEndpoint(resourceJson.slo);
+    }
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'sso')) {
+      this.sso = new ProtocolEndpoint(resourceJson.sso);
+    }
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'token')) {
+      this.token = new ProtocolEndpoint(resourceJson.token);
+    }
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'userInfo')) {
+      this.userInfo = new ProtocolEndpoint(resourceJson.userInfo);
+    }
   }
 
 }

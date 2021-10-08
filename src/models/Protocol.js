@@ -36,7 +36,24 @@ const ProtocolSettings = require('./ProtocolSettings');
 class Protocol extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'algorithms')) {
+      this.algorithms = new ProtocolAlgorithms(resourceJson.algorithms);
+    }
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'credentials')) {
+      this.credentials = new IdentityProviderCredentials(resourceJson.credentials);
+    }
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'endpoints')) {
+      this.endpoints = new ProtocolEndpoints(resourceJson.endpoints);
+    }
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'issuer')) {
+      this.issuer = new ProtocolEndpoint(resourceJson.issuer);
+    }
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'relayState')) {
+      this.relayState = new ProtocolRelayState(resourceJson.relayState);
+    }
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'settings')) {
+      this.settings = new ProtocolSettings(resourceJson.settings);
+    }
   }
 
 }

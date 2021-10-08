@@ -30,7 +30,12 @@ const LogUserAgent = require('./LogUserAgent');
 class LogClient extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'geographicalContext')) {
+      this.geographicalContext = new LogGeographicalContext(resourceJson.geographicalContext);
+    }
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'userAgent')) {
+      this.userAgent = new LogUserAgent(resourceJson.userAgent);
+    }
   }
 
 }

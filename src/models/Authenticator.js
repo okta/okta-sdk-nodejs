@@ -32,7 +32,9 @@ const AuthenticatorSettings = require('./AuthenticatorSettings');
 class Authenticator extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'settings')) {
+      this.settings = new AuthenticatorSettings(resourceJson.settings);
+    }
   }
 
 

@@ -28,7 +28,9 @@ const PolicyUserNameTemplate = require('./PolicyUserNameTemplate');
 class PolicySubject extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'userNameTemplate')) {
+      this.userNameTemplate = new PolicyUserNameTemplate(resourceJson.userNameTemplate);
+    }
   }
 
 }

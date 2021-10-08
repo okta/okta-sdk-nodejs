@@ -28,7 +28,15 @@ const RecoveryQuestionCredential = require('./RecoveryQuestionCredential');
 class UserCredentials extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'password')) {
+      this.password = new PasswordCredential(resourceJson.password);
+    }
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'provider')) {
+      this.provider = new AuthenticationProvider(resourceJson.provider);
+    }
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'recovery_question')) {
+      this.recovery_question = new RecoveryQuestionCredential(resourceJson.recovery_question);
+    }
   }
 
 }

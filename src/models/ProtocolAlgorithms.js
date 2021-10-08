@@ -25,7 +25,12 @@ const ProtocolAlgorithmType = require('./ProtocolAlgorithmType');
 class ProtocolAlgorithms extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'request')) {
+      this.request = new ProtocolAlgorithmType(resourceJson.request);
+    }
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'response')) {
+      this.response = new ProtocolAlgorithmType(resourceJson.response);
+    }
   }
 
 }

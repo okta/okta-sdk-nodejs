@@ -34,7 +34,12 @@ const EventSubscriptions = require('./EventSubscriptions');
 class EventHook extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'channel')) {
+      this.channel = new EventHookChannel(resourceJson.channel);
+    }
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'events')) {
+      this.events = new EventSubscriptions(resourceJson.events);
+    }
   }
 
   /**

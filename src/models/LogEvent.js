@@ -47,7 +47,33 @@ const LogTransaction = require('./LogTransaction');
 class LogEvent extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'actor')) {
+      this.actor = new LogActor(resourceJson.actor);
+    }
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'authenticationContext')) {
+      this.authenticationContext = new LogAuthenticationContext(resourceJson.authenticationContext);
+    }
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'client')) {
+      this.client = new LogClient(resourceJson.client);
+    }
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'debugContext')) {
+      this.debugContext = new LogDebugContext(resourceJson.debugContext);
+    }
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'outcome')) {
+      this.outcome = new LogOutcome(resourceJson.outcome);
+    }
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'request')) {
+      this.request = new LogRequest(resourceJson.request);
+    }
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'securityContext')) {
+      this.securityContext = new LogSecurityContext(resourceJson.securityContext);
+    }
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'target')) {
+      this.target = resourceJson.target.map(resourceItem => new LogTarget(resourceItem));
+    }
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'transaction')) {
+      this.transaction = new LogTransaction(resourceJson.transaction);
+    }
   }
 
 }

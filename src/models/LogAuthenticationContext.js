@@ -30,7 +30,9 @@ const LogIssuer = require('./LogIssuer');
 class LogAuthenticationContext extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'issuer')) {
+      this.issuer = new LogIssuer(resourceJson.issuer);
+    }
   }
 
 }

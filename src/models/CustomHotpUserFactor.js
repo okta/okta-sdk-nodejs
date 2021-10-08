@@ -25,7 +25,9 @@ const CustomHotpUserFactorProfile = require('./CustomHotpUserFactorProfile');
 class CustomHotpUserFactor extends UserFactor {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'profile')) {
+      this.profile = new CustomHotpUserFactorProfile(resourceJson.profile);
+    }
   }
 
 }

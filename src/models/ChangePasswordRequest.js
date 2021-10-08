@@ -25,7 +25,12 @@ const PasswordCredential = require('./PasswordCredential');
 class ChangePasswordRequest extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'newPassword')) {
+      this.newPassword = new PasswordCredential(resourceJson.newPassword);
+    }
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'oldPassword')) {
+      this.oldPassword = new PasswordCredential(resourceJson.oldPassword);
+    }
   }
 
 }
