@@ -477,8 +477,8 @@ describe('client.createApplication()', () => {
           application_type: 'native',
           client_uri: 'https://example.com/client',
           grant_types: [
-            'implicit',
-            'authorization_code'
+            OAuthGrantType.IMPLICIT,
+            OAuthGrantType.AUTHORIZATION_CODE
           ],
           logo_uri: 'https://example.com/assets/images/logo-new.png',
           redirect_uris: [
@@ -486,9 +486,9 @@ describe('client.createApplication()', () => {
             'myapp://callback'
           ],
           response_types: [
-            'token',
-            'id_token',
-            'code'
+            OAuthResponseType.TOKEN,
+            OAuthResponseType.ID_TOKEN,
+            OAuthResponseType.CODE
           ]
         }
       }
@@ -514,11 +514,9 @@ describe('client.createApplication()', () => {
       expect(createdApplication.settings.oauthClient).to.be.instanceof(OpenIdConnectApplicationSettingsClient);
       expect(createdApplication.settings.oauthClient.application_type).to.equal(application.settings.oauthClient.application_type);
       expect(createdApplication.settings.oauthClient.client_uri).to.equal(application.settings.oauthClient.client_uri);
-      const grantTypes = application.settings.oauthClient.grant_types.map(grantTypeOptions => new OAuthGrantType(grantTypeOptions, client));
-      expect(createdApplication.settings.oauthClient.grant_types).to.deep.equal(grantTypes);
+      expect(createdApplication.settings.oauthClient.grant_types).to.deep.equal(application.settings.oauthClient.grant_types);
       expect(createdApplication.settings.oauthClient.logo_uri).to.equal(application.settings.oauthClient.logo_uri);
-      const responseTypes = application.settings.oauthClient.response_types.map(responseTypeOptions => new OAuthResponseType(responseTypeOptions, client));
-      expect(createdApplication.settings.oauthClient.response_types).to.deep.equal(responseTypes);
+      expect(createdApplication.settings.oauthClient.response_types).to.deep.equal(application.settings.oauthClient.response_types);
     } finally {
       if (createdApplication) {
         await createdApplication.deactivate();
