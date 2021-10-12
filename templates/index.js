@@ -259,7 +259,7 @@ js.process = ({spec, operations, models, handlebars}) => {
 
     if (operation.responseModel) {
       if (operation.isArray) {
-        args.push(`@returns {Promise<Collection>} A collection that will yield {@link ${operation.responseModel}} instances.`);
+        args.push(`@returns {Collection} A collection that will yield {@link ${operation.responseModel}} instances.`);
       } else {
         args.push(`@returns {Promise<${operation.responseModel}>}`);
       }
