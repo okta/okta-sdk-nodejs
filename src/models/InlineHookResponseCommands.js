@@ -25,7 +25,7 @@ const InlineHookResponseCommandValue = require('./InlineHookResponseCommandValue
 class InlineHookResponseCommands extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'value')) {
+    if (resourceJson && resourceJson.value) {
       this.value = resourceJson.value.map(resourceItem => new InlineHookResponseCommandValue(resourceItem));
     }
   }

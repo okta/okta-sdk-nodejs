@@ -24,7 +24,7 @@ const SecurePasswordStoreApplicationSettingsApplication = require('./SecurePassw
 class SecurePasswordStoreApplicationSettings extends ApplicationSettings {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'app')) {
+    if (resourceJson && resourceJson.app) {
       this.app = new SecurePasswordStoreApplicationSettingsApplication(resourceJson.app);
     }
   }

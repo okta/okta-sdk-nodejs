@@ -27,10 +27,10 @@ const EventHookChannelConfigHeader = require('./EventHookChannelConfigHeader');
 class EventHookChannelConfig extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'authScheme')) {
+    if (resourceJson && resourceJson.authScheme) {
       this.authScheme = new EventHookChannelConfigAuthScheme(resourceJson.authScheme);
     }
-    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'headers')) {
+    if (resourceJson && resourceJson.headers) {
       this.headers = resourceJson.headers.map(resourceItem => new EventHookChannelConfigHeader(resourceItem));
     }
   }

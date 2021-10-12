@@ -34,10 +34,10 @@ const AuthorizationServerPolicyRuleConditions = require('./AuthorizationServerPo
 class AuthorizationServerPolicyRule extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'actions')) {
+    if (resourceJson && resourceJson.actions) {
       this.actions = new AuthorizationServerPolicyRuleActions(resourceJson.actions);
     }
-    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'conditions')) {
+    if (resourceJson && resourceJson.conditions) {
       this.conditions = new AuthorizationServerPolicyRuleConditions(resourceJson.conditions);
     }
   }

@@ -31,28 +31,28 @@ const ProtocolEndpoint = require('./ProtocolEndpoint');
 class ProtocolEndpoints extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'acs')) {
+    if (resourceJson && resourceJson.acs) {
       this.acs = new ProtocolEndpoint(resourceJson.acs);
     }
-    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'authorization')) {
+    if (resourceJson && resourceJson.authorization) {
       this.authorization = new ProtocolEndpoint(resourceJson.authorization);
     }
-    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'jwks')) {
+    if (resourceJson && resourceJson.jwks) {
       this.jwks = new ProtocolEndpoint(resourceJson.jwks);
     }
-    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'metadata')) {
+    if (resourceJson && resourceJson.metadata) {
       this.metadata = new ProtocolEndpoint(resourceJson.metadata);
     }
-    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'slo')) {
+    if (resourceJson && resourceJson.slo) {
       this.slo = new ProtocolEndpoint(resourceJson.slo);
     }
-    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'sso')) {
+    if (resourceJson && resourceJson.sso) {
       this.sso = new ProtocolEndpoint(resourceJson.sso);
     }
-    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'token')) {
+    if (resourceJson && resourceJson.token) {
       this.token = new ProtocolEndpoint(resourceJson.token);
     }
-    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'userInfo')) {
+    if (resourceJson && resourceJson.userInfo) {
       this.userInfo = new ProtocolEndpoint(resourceJson.userInfo);
     }
   }

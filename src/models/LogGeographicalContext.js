@@ -28,7 +28,7 @@ const LogGeolocation = require('./LogGeolocation');
 class LogGeographicalContext extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'geolocation')) {
+    if (resourceJson && resourceJson.geolocation) {
       this.geolocation = new LogGeolocation(resourceJson.geolocation);
     }
   }

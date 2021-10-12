@@ -24,7 +24,7 @@ const AutoLoginApplicationSettingsSignOn = require('./AutoLoginApplicationSettin
 class AutoLoginApplicationSettings extends ApplicationSettings {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'signOn')) {
+    if (resourceJson && resourceJson.signOn) {
       this.signOn = new AutoLoginApplicationSettingsSignOn(resourceJson.signOn);
     }
   }

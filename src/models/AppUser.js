@@ -37,7 +37,7 @@ const AppUserCredentials = require('./AppUserCredentials');
 class AppUser extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'credentials')) {
+    if (resourceJson && resourceJson.credentials) {
       this.credentials = new AppUserCredentials(resourceJson.credentials);
     }
   }

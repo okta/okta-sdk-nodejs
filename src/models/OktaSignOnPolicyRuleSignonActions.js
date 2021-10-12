@@ -29,7 +29,7 @@ const OktaSignOnPolicyRuleSignonSessionActions = require('./OktaSignOnPolicyRule
 class OktaSignOnPolicyRuleSignonActions extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'session')) {
+    if (resourceJson && resourceJson.session) {
       this.session = new OktaSignOnPolicyRuleSignonSessionActions(resourceJson.session);
     }
   }

@@ -24,7 +24,7 @@ const HardwareUserFactorProfile = require('./HardwareUserFactorProfile');
 class HardwareUserFactor extends UserFactor {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'profile')) {
+    if (resourceJson && resourceJson.profile) {
       this.profile = new HardwareUserFactorProfile(resourceJson.profile);
     }
   }

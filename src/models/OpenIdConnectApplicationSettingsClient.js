@@ -43,19 +43,19 @@ const OAuthResponseType = require('./OAuthResponseType');
 class OpenIdConnectApplicationSettingsClient extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'grant_types')) {
+    if (resourceJson && resourceJson.grant_types) {
       this.grant_types = resourceJson.grant_types.map(resourceItem => new OAuthGrantType(resourceItem));
     }
-    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'idp_initiated_login')) {
+    if (resourceJson && resourceJson.idp_initiated_login) {
       this.idp_initiated_login = new OpenIdConnectApplicationIdpInitiatedLogin(resourceJson.idp_initiated_login);
     }
-    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'jwks')) {
+    if (resourceJson && resourceJson.jwks) {
       this.jwks = new OpenIdConnectApplicationSettingsClientKeys(resourceJson.jwks);
     }
-    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'refresh_token')) {
+    if (resourceJson && resourceJson.refresh_token) {
       this.refresh_token = new OpenIdConnectApplicationSettingsRefreshToken(resourceJson.refresh_token);
     }
-    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'response_types')) {
+    if (resourceJson && resourceJson.response_types) {
       this.response_types = resourceJson.response_types.map(resourceItem => new OAuthResponseType(resourceItem));
     }
   }

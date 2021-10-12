@@ -34,10 +34,10 @@ const Protocol = require('./Protocol');
 class IdentityProvider extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'policy')) {
+    if (resourceJson && resourceJson.policy) {
       this.policy = new IdentityProviderPolicy(resourceJson.policy);
     }
-    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'protocol')) {
+    if (resourceJson && resourceJson.protocol) {
       this.protocol = new Protocol(resourceJson.protocol);
     }
   }

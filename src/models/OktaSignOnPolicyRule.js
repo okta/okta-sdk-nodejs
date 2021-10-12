@@ -27,10 +27,10 @@ const OktaSignOnPolicyRuleConditions = require('./OktaSignOnPolicyRuleConditions
 class OktaSignOnPolicyRule extends PolicyRule {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'actions')) {
+    if (resourceJson && resourceJson.actions) {
       this.actions = new OktaSignOnPolicyRuleActions(resourceJson.actions);
     }
-    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'conditions')) {
+    if (resourceJson && resourceJson.conditions) {
       this.conditions = new OktaSignOnPolicyRuleConditions(resourceJson.conditions);
     }
   }

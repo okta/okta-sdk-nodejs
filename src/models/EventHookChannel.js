@@ -26,7 +26,7 @@ const EventHookChannelConfig = require('./EventHookChannelConfig');
 class EventHookChannel extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'config')) {
+    if (resourceJson && resourceJson.config) {
       this.config = new EventHookChannelConfig(resourceJson.config);
     }
   }

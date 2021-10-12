@@ -28,13 +28,13 @@ const IdentityProviderCredentialsTrust = require('./IdentityProviderCredentialsT
 class IdentityProviderCredentials extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'client')) {
+    if (resourceJson && resourceJson.client) {
       this.client = new IdentityProviderCredentialsClient(resourceJson.client);
     }
-    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'signing')) {
+    if (resourceJson && resourceJson.signing) {
       this.signing = new IdentityProviderCredentialsSigning(resourceJson.signing);
     }
-    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'trust')) {
+    if (resourceJson && resourceJson.trust) {
       this.trust = new IdentityProviderCredentialsTrust(resourceJson.trust);
     }
   }

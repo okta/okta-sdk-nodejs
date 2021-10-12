@@ -28,10 +28,10 @@ const ProfileMappingSource = require('./ProfileMappingSource');
 class ProfileMapping extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'source')) {
+    if (resourceJson && resourceJson.source) {
       this.source = new ProfileMappingSource(resourceJson.source);
     }
-    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'target')) {
+    if (resourceJson && resourceJson.target) {
       this.target = new ProfileMappingSource(resourceJson.target);
     }
   }

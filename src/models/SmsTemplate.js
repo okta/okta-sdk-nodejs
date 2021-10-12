@@ -30,7 +30,7 @@ const SmsTemplateTranslations = require('./SmsTemplateTranslations');
 class SmsTemplate extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'translations')) {
+    if (resourceJson && resourceJson.translations) {
       this.translations = new SmsTemplateTranslations(resourceJson.translations);
     }
   }

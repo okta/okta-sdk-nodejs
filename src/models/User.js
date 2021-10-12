@@ -39,13 +39,13 @@ const UserType = require('./UserType');
 class User extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'credentials')) {
+    if (resourceJson && resourceJson.credentials) {
       this.credentials = new UserCredentials(resourceJson.credentials);
     }
-    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'profile')) {
+    if (resourceJson && resourceJson.profile) {
       this.profile = new UserProfile(resourceJson.profile);
     }
-    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'type')) {
+    if (resourceJson && resourceJson.type) {
       this.type = new UserType(resourceJson.type);
     }
   }

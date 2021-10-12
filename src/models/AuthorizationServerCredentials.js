@@ -24,7 +24,7 @@ const AuthorizationServerCredentialsSigningConfig = require('./AuthorizationServ
 class AuthorizationServerCredentials extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'signing')) {
+    if (resourceJson && resourceJson.signing) {
       this.signing = new AuthorizationServerCredentialsSigningConfig(resourceJson.signing);
     }
   }

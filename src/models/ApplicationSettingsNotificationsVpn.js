@@ -26,7 +26,7 @@ const ApplicationSettingsNotificationsVpnNetwork = require('./ApplicationSetting
 class ApplicationSettingsNotificationsVpn extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'network')) {
+    if (resourceJson && resourceJson.network) {
       this.network = new ApplicationSettingsNotificationsVpnNetwork(resourceJson.network);
     }
   }

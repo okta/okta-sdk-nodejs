@@ -33,7 +33,7 @@ const Scope = require('./Scope');
 class TrustedOrigin extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'scopes')) {
+    if (resourceJson && resourceJson.scopes) {
       this.scopes = resourceJson.scopes.map(resourceItem => new Scope(resourceItem));
     }
   }

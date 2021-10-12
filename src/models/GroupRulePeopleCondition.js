@@ -26,10 +26,10 @@ const GroupRuleUserCondition = require('./GroupRuleUserCondition');
 class GroupRulePeopleCondition extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'groups')) {
+    if (resourceJson && resourceJson.groups) {
       this.groups = new GroupRuleGroupCondition(resourceJson.groups);
     }
-    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'users')) {
+    if (resourceJson && resourceJson.users) {
       this.users = new GroupRuleUserCondition(resourceJson.users);
     }
   }

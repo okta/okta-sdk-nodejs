@@ -27,7 +27,7 @@ const UserSchemaBaseProperties = require('./UserSchemaBaseProperties');
 class UserSchemaBase extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'properties')) {
+    if (resourceJson && resourceJson.properties) {
       this.properties = new UserSchemaBaseProperties(resourceJson.properties);
     }
   }

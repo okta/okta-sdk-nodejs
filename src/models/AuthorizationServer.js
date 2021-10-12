@@ -34,7 +34,7 @@ const AuthorizationServerCredentials = require('./AuthorizationServerCredentials
 class AuthorizationServer extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'credentials')) {
+    if (resourceJson && resourceJson.credentials) {
       this.credentials = new AuthorizationServerCredentials(resourceJson.credentials);
     }
   }

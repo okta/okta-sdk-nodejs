@@ -26,10 +26,10 @@ const GroupSchemaCustom = require('./GroupSchemaCustom');
 class GroupSchemaDefinitions extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'base')) {
+    if (resourceJson && resourceJson.base) {
       this.base = new GroupSchemaBase(resourceJson.base);
     }
-    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'custom')) {
+    if (resourceJson && resourceJson.custom) {
       this.custom = new GroupSchemaCustom(resourceJson.custom);
     }
   }

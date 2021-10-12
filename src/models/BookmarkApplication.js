@@ -25,7 +25,7 @@ const BookmarkApplicationSettings = require('./BookmarkApplicationSettings');
 class BookmarkApplication extends Application {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'settings')) {
+    if (resourceJson && resourceJson.settings) {
       this.settings = new BookmarkApplicationSettings(resourceJson.settings);
     }
   }

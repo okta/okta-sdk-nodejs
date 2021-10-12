@@ -30,7 +30,7 @@ const FeatureStage = require('./FeatureStage');
 class Feature extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'stage')) {
+    if (resourceJson && resourceJson.stage) {
       this.stage = new FeatureStage(resourceJson.stage);
     }
   }

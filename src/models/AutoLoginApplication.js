@@ -26,10 +26,10 @@ const AutoLoginApplicationSettings = require('./AutoLoginApplicationSettings');
 class AutoLoginApplication extends Application {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'credentials')) {
+    if (resourceJson && resourceJson.credentials) {
       this.credentials = new SchemeApplicationCredentials(resourceJson.credentials);
     }
-    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'settings')) {
+    if (resourceJson && resourceJson.settings) {
       this.settings = new AutoLoginApplicationSettings(resourceJson.settings);
     }
   }

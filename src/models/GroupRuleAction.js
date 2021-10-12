@@ -24,7 +24,7 @@ const GroupRuleGroupAssignment = require('./GroupRuleGroupAssignment');
 class GroupRuleAction extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'assignUserToGroups')) {
+    if (resourceJson && resourceJson.assignUserToGroups) {
       this.assignUserToGroups = new GroupRuleGroupAssignment(resourceJson.assignUserToGroups);
     }
   }

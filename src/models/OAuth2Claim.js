@@ -34,7 +34,7 @@ const OAuth2ClaimConditions = require('./OAuth2ClaimConditions');
 class OAuth2Claim extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'conditions')) {
+    if (resourceJson && resourceJson.conditions) {
       this.conditions = new OAuth2ClaimConditions(resourceJson.conditions);
     }
   }

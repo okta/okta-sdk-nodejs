@@ -29,10 +29,10 @@ const ApplicationCredentialsSigning = require('./ApplicationCredentialsSigning')
 class SchemeApplicationCredentials extends ApplicationCredentials {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'password')) {
+    if (resourceJson && resourceJson.password) {
       this.password = new PasswordCredential(resourceJson.password);
     }
-    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'signing')) {
+    if (resourceJson && resourceJson.signing) {
       this.signing = new ApplicationCredentialsSigning(resourceJson.signing);
     }
   }

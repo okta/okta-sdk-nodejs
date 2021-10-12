@@ -30,10 +30,10 @@ const DomainCertificateMetadata = require('./DomainCertificateMetadata');
 class Domain extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'dnsRecords')) {
+    if (resourceJson && resourceJson.dnsRecords) {
       this.dnsRecords = resourceJson.dnsRecords.map(resourceItem => new DNSRecord(resourceItem));
     }
-    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'publicCertificate')) {
+    if (resourceJson && resourceJson.publicCertificate) {
       this.publicCertificate = new DomainCertificateMetadata(resourceJson.publicCertificate);
     }
   }

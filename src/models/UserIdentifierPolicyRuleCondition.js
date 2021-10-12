@@ -26,7 +26,7 @@ const UserIdentifierConditionEvaluatorPattern = require('./UserIdentifierConditi
 class UserIdentifierPolicyRuleCondition extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'patterns')) {
+    if (resourceJson && resourceJson.patterns) {
       this.patterns = resourceJson.patterns.map(resourceItem => new UserIdentifierConditionEvaluatorPattern(resourceItem));
     }
   }

@@ -25,7 +25,7 @@ const SwaApplicationSettings = require('./SwaApplicationSettings');
 class SwaApplication extends BrowserPluginApplication {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'settings')) {
+    if (resourceJson && resourceJson.settings) {
       this.settings = new SwaApplicationSettings(resourceJson.settings);
     }
   }

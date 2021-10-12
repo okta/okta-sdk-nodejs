@@ -24,7 +24,7 @@ const PolicyAccountLinkFilterGroups = require('./PolicyAccountLinkFilterGroups')
 class PolicyAccountLinkFilter extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'groups')) {
+    if (resourceJson && resourceJson.groups) {
       this.groups = new PolicyAccountLinkFilterGroups(resourceJson.groups);
     }
   }

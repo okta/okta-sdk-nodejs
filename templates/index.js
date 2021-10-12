@@ -159,9 +159,12 @@ js.process = ({spec, operations, models, handlebars}) => {
       let dedupedPropertyName = propertyName;
 
       const propertyAccessor = propName => containsRestrictedChars(propName) ? `['${propName}']` : `.${propName}`;
+      let propertyExistsOrHasTruthyValue = propName => `resourceJson${propertyAccessor(propName)}`;
       let isConflicting = isConflictingPropertyName(model.modelName, propertyName);
       if (isConflicting) {
         dedupedPropertyName = `_${propertyName}`;
+        // for confilicting properties with primitive types, property value `false` can be misinterpreted as a non-existing property
+        propertyExistsOrHasTruthyValue = propName => `Object.prototype.hasOwnProperty.call(resourceJson, '${propName}')`;
         // remove property set by parent Resource class
         constructorStatements.push(`    delete this['${property.propertyName}'];`);
       }
@@ -169,7 +172,7 @@ js.process = ({spec, operations, models, handlebars}) => {
       let requiresInstantiation = !property.isHash && !property.isEnum && property.model && !['boolean', 'string', 'object'].includes(property.model);
 
       if (requiresInstantiation || isConflicting) {
-        constructorStatements.push(`    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, '${propertyName}')) {`);
+        constructorStatements.push(`    if (resourceJson && ${propertyExistsOrHasTruthyValue(propertyName)}) {`);
         if (property.isArray) {
           constructorStatements.push(`      this${propertyAccessor(dedupedPropertyName)} = resourceJson${propertyAccessor(propertyName)}.map(resourceItem => new ${property.model}(resourceItem));`);
         } else if (property.model) {

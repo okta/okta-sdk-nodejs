@@ -25,7 +25,7 @@ const PolicyAccountLinkFilter = require('./PolicyAccountLinkFilter');
 class PolicyAccountLink extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'filter')) {
+    if (resourceJson && resourceJson.filter) {
       this.filter = new PolicyAccountLinkFilter(resourceJson.filter);
     }
   }

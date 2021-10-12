@@ -32,7 +32,7 @@ const InlineHookChannel = require('./InlineHookChannel');
 class InlineHook extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'channel')) {
+    if (resourceJson && resourceJson.channel) {
       this.channel = new InlineHookChannel(resourceJson.channel);
     }
   }

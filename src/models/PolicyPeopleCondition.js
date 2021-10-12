@@ -26,10 +26,10 @@ const UserCondition = require('./UserCondition');
 class PolicyPeopleCondition extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'groups')) {
+    if (resourceJson && resourceJson.groups) {
       this.groups = new GroupCondition(resourceJson.groups);
     }
-    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'users')) {
+    if (resourceJson && resourceJson.users) {
       this.users = new UserCondition(resourceJson.users);
     }
   }

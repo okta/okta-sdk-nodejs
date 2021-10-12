@@ -47,31 +47,31 @@ const LogTransaction = require('./LogTransaction');
 class LogEvent extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'actor')) {
+    if (resourceJson && resourceJson.actor) {
       this.actor = new LogActor(resourceJson.actor);
     }
-    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'authenticationContext')) {
+    if (resourceJson && resourceJson.authenticationContext) {
       this.authenticationContext = new LogAuthenticationContext(resourceJson.authenticationContext);
     }
-    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'client')) {
+    if (resourceJson && resourceJson.client) {
       this.client = new LogClient(resourceJson.client);
     }
-    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'debugContext')) {
+    if (resourceJson && resourceJson.debugContext) {
       this.debugContext = new LogDebugContext(resourceJson.debugContext);
     }
-    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'outcome')) {
+    if (resourceJson && resourceJson.outcome) {
       this.outcome = new LogOutcome(resourceJson.outcome);
     }
-    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'request')) {
+    if (resourceJson && resourceJson.request) {
       this.request = new LogRequest(resourceJson.request);
     }
-    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'securityContext')) {
+    if (resourceJson && resourceJson.securityContext) {
       this.securityContext = new LogSecurityContext(resourceJson.securityContext);
     }
-    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'target')) {
+    if (resourceJson && resourceJson.target) {
       this.target = resourceJson.target.map(resourceItem => new LogTarget(resourceItem));
     }
-    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'transaction')) {
+    if (resourceJson && resourceJson.transaction) {
       this.transaction = new LogTransaction(resourceJson.transaction);
     }
   }

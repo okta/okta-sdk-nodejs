@@ -44,16 +44,16 @@ const UserSchemaAttributePermission = require('./UserSchemaAttributePermission')
 class UserSchemaAttribute extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'items')) {
+    if (resourceJson && resourceJson.items) {
       this.items = new UserSchemaAttributeItems(resourceJson.items);
     }
-    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'master')) {
+    if (resourceJson && resourceJson.master) {
       this.master = new UserSchemaAttributeMaster(resourceJson.master);
     }
-    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'oneOf')) {
+    if (resourceJson && resourceJson.oneOf) {
       this.oneOf = resourceJson.oneOf.map(resourceItem => new UserSchemaAttributeEnum(resourceItem));
     }
-    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'permissions')) {
+    if (resourceJson && resourceJson.permissions) {
       this.permissions = resourceJson.permissions.map(resourceItem => new UserSchemaAttributePermission(resourceItem));
     }
   }
