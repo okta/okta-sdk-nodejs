@@ -1,6 +1,143 @@
 # Okta Node SDK Changelog
 
-## 5.1.0
+## 6.0.0
+- [#278](https://github.com/okta/okta-sdk-nodejs/pull/278) Adds Org, Group Schema, Domain API, introduces enum modules. Please see list below for detailed information:
+  - Models/Enum:
+    - added `AllowedForEnum`
+    - added `ApplicationSettingsNotes`
+    - added `DNSRecord`
+    - added `DNSRecordType`
+    - added `Domain`
+    - added `DomainCertificate`
+    - added `DomainCertificateMetadata`
+    - added `DomainCertificateSourceType`
+    - added `DomainCertificateType`
+    - added `DomainListResponse`
+    - added `DomainValidationStatus`
+    - added `GroupSchema`
+    - added `GroupSchemaAttribute`
+    - added `GroupSchemaBase`
+    - added `GroupSchemaBaseProperties`
+    - added `GroupSchemaCustom`
+    - added `GroupSchemaCustomDefinitions`
+    - added `OrgContactType`
+    - added `OrgContactTypeObject`
+    - added `OrgContactUser`
+    - added `OrgOktaCommunicationSetting`
+    - added `OrgOktaSupportSetting`
+    - added `OrgOktaSupportSettingsObj`
+    - added `OrgPreferences`
+    - added `OrgSetting`
+    - added `TokenAuthorizationServerPolicyRuleActionInlineHook`
+    - added `UserIdString`
+    - added `SignOnInlineHook`
+    - added `UserSchemaAttributeEnum`
+    - added `UserSchemaAttributeItems`
+    - added `UserSchemaAttributeMasterPriority`
+    - added `UserSchemaAttributeMasterType`
+    - added `UserSchemaAttributeScope`
+    - added `UserSchemaAttributeType`
+    - added `UserSchemaAttributeUnion`
+    - added `UserSchemaAttributeUnion`
+    - added `UserSchemaProperties`
+    - added `UserSchemaPropertiesProfile`
+    - added `UserSchemaPropertiesProfileItem`
+    - converted to enum `ApllicationCredentialsScheme`
+    - converted to enum `ApplicationCredentialsSigningUse`
+    - converted to enum `ApplicatonSignOnMode`
+    - converted to enum `AuthenticationProviderType`
+    - converted to enum `AuthorizationServerCredentialsMode`
+    - converted to enum `AuthorizationServerCredentialsUse`
+    - converted to enum `CatalogApplicationStatus`
+    - converted to enum `EnabledStatus`
+    - converted to enum `EventHookChannelConfigAuthSchemeType`
+    - converted to enum `FactorProvider`
+    - converted to enum `FactorResultType`
+    - converted to enum `FactorStatus`
+    - converted to enum `FactorType`
+    - converted to enum `FeatureStageState`
+    - converted to enum `FeatureStageValue`
+    - converted to enum `FeatureType`
+    - converted to enum `GroupRuleStatus`
+    - converted to enum `GroupType`
+    - converted to enum `InlineHookStatus`
+    - converted to enum `InlineHookType`
+    - converted to enum `LinkedObjectDetailsType`
+    - converted to enum `LogAuthenticationProvider`
+    - converted to enum `LogCredentialsProvider`
+    - converted to enum `LogCredentialType`
+    - converted to enum `LogSeverity`
+    - converted to enum `NetworkZoneAddressType`
+    - converted to enum `NetworkZoneStatus`
+    - converted to enum `NetworkZoneType`
+    - converted to enum `NetworkZoneUsage`
+    - converted to enum `OAuth2ScopeConsentGrantSource`
+    - converted to enum `OAuth2ScopeConsentGrantStatus`
+    - converted to enum `OAuthEndpointAuthenticationMethod`
+    - converted to enum `OAuthGrantType`
+    - converted to enum `OAuthResponseType`
+    - converted to enum `OpenIdConnectApplicationConsentMethod`
+    - converted to enum `OpenIdConnectApplicationIssuerMode`
+    - converted to enum `OpenIdConnectApplicationType`
+    - converted to enum `OpenIdConnectRefreshTokenRotationType`
+    - converted to enum `PasswordCredentialHashAlgorithm`
+    - converted to enum `PolicyRuleActionsEnrollSelf`
+    - converted to enum `PolicySubjectMatchType`
+    - converted to enum `PolicyType`
+    - converted to enum `ProfileMappingPropertyPushStatus`
+    - converted to enum `ProtocolRelayStateFormat`
+    - converted to enum `RoleAssignmentType`
+    - converted to enum `RoleStatus`
+    - converted to enum `RoleType`
+    - converted to enum `ScopeType`
+    - converted to enum `SessionAuthenticationMethod`
+    - converted to enum `SessionIdentityProviderType`
+    - converted to enum `SessionStatus`
+    - converted to enum `SmsTemplateType`
+    - converted to enum `UserNextLogin`
+    - converted to enum `UserStatus`
+    - updated `ApplicationSettings` (`notes` property added)
+    - updated `ApplicationVisibility` (`autoLaunch` property added)
+    - updated `GroupRule` (`delete` method now accepts optional `queryParameters`)
+    - updated `NetworkZone` (CRUD method return `Promise<NetworkZone>`)
+    - updated `OpenIdConnectApplicationSettingsClient` (`wildcard_redirect` property added)
+    - updated `SamlApplicationSettingsSignOn` (`inline_hooks` property added)
+    - updated `TokenAuthorizationServerPolicyRuleAction` (`inline_hook` property added)
+    - updated `User` (`getRole` method added)
+    - updated `UserSchema` (`properties` property type changed to `UserSchemaProperties`)
+    - updated `UserSchemaAttribute` (mulitple properties added, `type` and `scope` properties type changed to `UserSchemaAttributeType` and `UserSchemaAttributeScope` respectively)
+    - updated `UserSchemaAttributeMaster` (`priority` property added, `type` property type changed to `UserSchemaAttributeMasterType`)
+  - Client:
+    - added `listDomains`
+    - added `createDomain`
+    - added `deleteDomain`
+    - added `getDomain`
+    - added `createCertificate`
+    - added `verifyDomain`
+    - added `getGroupSchema`
+    - added `updateGroupSchema`
+    - added `getOrgSettings`
+    - added `partialUpdateOrgSetting`
+    - added `updateOrgSetting`
+    - added `getOrgContactTypes`
+    - added `getOrgContactUser`
+    - added `updateOrgContactUser`
+    - added `getOrgPreferences`
+    - added `hideOktaUIFooter`
+    - added `showOktaUIFooter`
+    - added `getOktaCommunicationSettings`
+    - added `optInUsersToOktaCommunicationEmails`
+    - added `optOutUsersFromOktaCommunicationEmails`
+    - added `getOrgOktaSupportSettings`
+    - added `extendOktaSupport`
+    - added `grantOktaSupport`
+    - added `revokeOktaSupport`
+    - added `getUserRole`
+    - updated `listPolicies` (returns `Promise<Policy>`)
+    - updated `activateNetworZone` (returns `Promise<NetworkZone>`)
+    - updated `deactivateNetworkZone` (returns `Promise<NetworkZone>`)
+    - updated `listGroups` (no longer accepts `filter` parameter trhough `queryParameters`)
+    - updated `deleteGroupRule` (`queryParameters` optional parameter added)
 
 - [#273](https://github.com/okta/okta-sdk-nodejs/pull/273) Introduces parameterized `getApplication` and `createApplication` methods
 
