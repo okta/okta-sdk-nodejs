@@ -14,11 +14,9 @@
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
 var Resource = require('../resource');
-const OAuthGrantType = require('./OAuthGrantType');
 const OpenIdConnectApplicationIdpInitiatedLogin = require('./OpenIdConnectApplicationIdpInitiatedLogin');
 const OpenIdConnectApplicationSettingsClientKeys = require('./OpenIdConnectApplicationSettingsClientKeys');
 const OpenIdConnectApplicationSettingsRefreshToken = require('./OpenIdConnectApplicationSettingsRefreshToken');
-const OAuthResponseType = require('./OAuthResponseType');
 
 /**
  * @class OpenIdConnectApplicationSettingsClient
@@ -43,9 +41,6 @@ const OAuthResponseType = require('./OAuthResponseType');
 class OpenIdConnectApplicationSettingsClient extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson.grant_types) {
-      this.grant_types = resourceJson.grant_types.map(resourceItem => new OAuthGrantType(resourceItem));
-    }
     if (resourceJson && resourceJson.idp_initiated_login) {
       this.idp_initiated_login = new OpenIdConnectApplicationIdpInitiatedLogin(resourceJson.idp_initiated_login);
     }
@@ -54,9 +49,6 @@ class OpenIdConnectApplicationSettingsClient extends Resource {
     }
     if (resourceJson && resourceJson.refresh_token) {
       this.refresh_token = new OpenIdConnectApplicationSettingsRefreshToken(resourceJson.refresh_token);
-    }
-    if (resourceJson && resourceJson.response_types) {
-      this.response_types = resourceJson.response_types.map(resourceItem => new OAuthResponseType(resourceItem));
     }
   }
 

@@ -12,10 +12,21 @@ const { convertSwaggerToTSType } = require('./helpers/typescript-formatter');
 class ModelResolver {
   constructor(models) {
     this.models = models;
+    this.enums = new Set();
+    models.forEach(model => {
+      if (model.enum) {
+        this.enums.add(model.modelName);
+      }
+    });
   }
+
   getByName(name) {
     const match = this.models.filter(model => model.modelName === name);
     return match && match[0];
+  }
+
+  isEnum(name) {
+    return this.enums.has(name);
   }
 }
 
@@ -134,21 +145,22 @@ js.process = ({spec, operations, models, handlebars}) => {
     return new handlebars.SafeString(path);
   });
 
-  handlebars.registerHelper('modelImportBuilder', (model) => {
+  handlebars.registerHelper('modelImportBuilder', function (modelResolver, model) {
     if (!model.properties) {
       return;
     }
     const importStatements = new Set();
     model.properties.forEach(property => {
       const shouldProcess = operationUtils.isImportablePropertyType(property, model.modelName);
-      if (shouldProcess && !property.isEnum) {
+      const isEnum = property.isEnum || modelResolver.isEnum(property.model);
+      if (shouldProcess && !isEnum) {
         importStatements.add(`const ${property.model} = require('./${property.model}');`);
       }
     });
     return Array.from(importStatements).join('\n');
-  });
+  }.bind(null, modelResolver));
 
-  handlebars.registerHelper('propertyCastBuilder', (model) => {
+  handlebars.registerHelper('propertyCastBuilder', function (modelResolver, model) {
     if (!model.properties) {
       return;
     }
@@ -169,7 +181,8 @@ js.process = ({spec, operations, models, handlebars}) => {
         constructorStatements.push(`    delete this['${property.propertyName}'];`);
       }
 
-      let requiresInstantiation = !property.isHash && !property.isEnum && property.model && !['boolean', 'string', 'object'].includes(property.model);
+      const isEnum = property.isEnum || modelResolver.isEnum(property.model);
+      let requiresInstantiation = !property.isHash && !isEnum && property.model && !['boolean', 'string', 'object'].includes(property.model);
 
       if (requiresInstantiation || isConflicting) {
         constructorStatements.push(`    if (resourceJson && ${propertyExistsOrHasTruthyValue(propertyName)}) {`);
@@ -185,7 +198,7 @@ js.process = ({spec, operations, models, handlebars}) => {
       }
     });
     return constructorStatements.join('\n');
-  });
+  }.bind(null, modelResolver));
 
   handlebars.registerHelper('modelMethodPublicArgumentBuilder', (method, modelName) => {
     const args = [];
