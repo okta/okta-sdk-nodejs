@@ -50,7 +50,7 @@ class AuthorizationServer extends Resource {
   }
 
   /**
-   * @returns {Promise<Collection>} A collection that will yield {@link OAuth2Claim} instances.
+   * @returns {Collection} A collection that will yield {@link OAuth2Claim} instances.
    */
   listOAuth2Claims() {
     return this.httpClient.listOAuth2Claims(this.id);
@@ -89,7 +89,7 @@ class AuthorizationServer extends Resource {
   }
 
   /**
-   * @returns {Promise<Collection>} A collection that will yield {@link OAuth2Client} instances.
+   * @returns {Collection} A collection that will yield {@link OAuth2Client} instances.
    */
   listOAuth2Clients() {
     return this.httpClient.listOAuth2ClientsForAuthorizationServer(this.id);
@@ -105,7 +105,7 @@ class AuthorizationServer extends Resource {
   /**
    * @param {string} clientId
    * @param {object} queryParameters
-   * @returns {Promise<Collection>} A collection that will yield {@link OAuth2RefreshToken} instances.
+   * @returns {Collection} A collection that will yield {@link OAuth2RefreshToken} instances.
    */
   listRefreshTokensForClient(clientId, queryParameters) {
     return this.httpClient.listRefreshTokensForAuthorizationServerAndClient(this.id, clientId, queryParameters);
@@ -130,7 +130,7 @@ class AuthorizationServer extends Resource {
   }
 
   /**
-   * @returns {Promise<Collection>} A collection that will yield {@link JsonWebKey} instances.
+   * @returns {Collection} A collection that will yield {@link JsonWebKey} instances.
    */
   listKeys() {
     return this.httpClient.listAuthorizationServerKeys(this.id);
@@ -138,7 +138,7 @@ class AuthorizationServer extends Resource {
 
   /**
    * @param {JwkUse} jwkUse
-   * @returns {Promise<Collection>} A collection that will yield {@link JsonWebKey} instances.
+   * @returns {Collection} A collection that will yield {@link JsonWebKey} instances.
    */
   rotateKeys(jwkUse) {
     return this.httpClient.rotateAuthorizationServerKeys(this.id, jwkUse);
@@ -153,7 +153,7 @@ class AuthorizationServer extends Resource {
   }
 
   /**
-   * @returns {Promise<Collection>} A collection that will yield {@link AuthorizationServerPolicy} instances.
+   * @returns {Collection} A collection that will yield {@link AuthorizationServerPolicy} instances.
    */
   listPolicies() {
     return this.httpClient.listAuthorizationServerPolicies(this.id);
@@ -193,7 +193,7 @@ class AuthorizationServer extends Resource {
 
   /**
    * @param {object} queryParameters
-   * @returns {Promise<Collection>} A collection that will yield {@link OAuth2Scope} instances.
+   * @returns {Collection} A collection that will yield {@link OAuth2Scope} instances.
    */
   listOAuth2Scopes(queryParameters) {
     return this.httpClient.listOAuth2Scopes(this.id, queryParameters);

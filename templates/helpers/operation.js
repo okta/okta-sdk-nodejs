@@ -184,7 +184,7 @@ const jsdocBuilder = (operation) => {
 
   if (operation.responseModel) {
     if (operation.isArray) {
-      lines.push(`   * @returns {Promise<Collection>} A collection that will yield {@link ${operation.responseModel}} instances.`);
+      lines.push(`   * @returns {Collection} A collection that will yield {@link ${operation.responseModel}} instances.`);
     } else {
       lines.push(`   * @returns {Promise<${operation.responseModel}>}`);
     }

@@ -46,14 +46,14 @@ class Feature extends Resource {
   }
 
   /**
-   * @returns {Promise<Collection>} A collection that will yield {@link Feature} instances.
+   * @returns {Collection} A collection that will yield {@link Feature} instances.
    */
   getDependents() {
     return this.httpClient.listFeatureDependents(this.id);
   }
 
   /**
-   * @returns {Promise<Collection>} A collection that will yield {@link Feature} instances.
+   * @returns {Collection} A collection that will yield {@link Feature} instances.
    */
   getDependencies() {
     return this.httpClient.listFeatureDependencies(this.id);
