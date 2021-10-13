@@ -22,6 +22,7 @@ declare class ApplicationVisibility extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
 
   appLinks: {[name: string]: unknown};
+  autoLaunch: boolean;
   autoSubmitToolbar: boolean;
   hide: ApplicationVisibilityHide;
 

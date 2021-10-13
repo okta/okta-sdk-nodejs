@@ -13,19 +13,11 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-import { Resource } from '../resource';
-import { Client } from '../client';
-
-
-declare class ScopeType extends Resource {
-  constructor(resourceJson: string, client: Client);
-
-
+declare enum ScopeType {
+  CORS = 'CORS',
+  REDIRECT = 'REDIRECT',
 }
 
-type ScopeTypeOptions = Record<string, unknown>;
-
 export {
-  ScopeType,
-  ScopeTypeOptions
+  ScopeType
 };

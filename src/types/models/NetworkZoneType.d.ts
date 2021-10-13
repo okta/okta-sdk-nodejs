@@ -13,19 +13,11 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-import { Resource } from '../resource';
-import { Client } from '../client';
-
-
-declare class NetworkZoneType extends Resource {
-  constructor(resourceJson: string, client: Client);
-
-
+declare enum NetworkZoneType {
+  IP = 'IP',
+  DYNAMIC = 'DYNAMIC',
 }
 
-type NetworkZoneTypeOptions = Record<string, unknown>;
-
 export {
-  NetworkZoneType,
-  NetworkZoneTypeOptions
+  NetworkZoneType
 };

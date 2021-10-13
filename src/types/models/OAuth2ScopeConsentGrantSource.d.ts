@@ -13,19 +13,11 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-import { Resource } from '../resource';
-import { Client } from '../client';
-
-
-declare class OAuth2ScopeConsentGrantSource extends Resource {
-  constructor(resourceJson: string, client: Client);
-
-
+declare enum OAuth2ScopeConsentGrantSource {
+  END_USER = 'END_USER',
+  ADMIN = 'ADMIN',
 }
 
-type OAuth2ScopeConsentGrantSourceOptions = Record<string, unknown>;
-
 export {
-  OAuth2ScopeConsentGrantSource,
-  OAuth2ScopeConsentGrantSourceOptions
+  OAuth2ScopeConsentGrantSource
 };

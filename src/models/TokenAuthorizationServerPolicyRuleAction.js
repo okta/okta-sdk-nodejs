@@ -14,19 +14,22 @@
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
 var Resource = require('../resource');
-
+const TokenAuthorizationServerPolicyRuleActionInlineHook = require('./TokenAuthorizationServerPolicyRuleActionInlineHook');
 
 /**
  * @class TokenAuthorizationServerPolicyRuleAction
  * @extends Resource
  * @property { integer } accessTokenLifetimeMinutes
+ * @property { TokenAuthorizationServerPolicyRuleActionInlineHook } inlineHook
  * @property { integer } refreshTokenLifetimeMinutes
  * @property { integer } refreshTokenWindowMinutes
  */
 class TokenAuthorizationServerPolicyRuleAction extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-
+    if (resourceJson && resourceJson.inlineHook) {
+      this.inlineHook = new TokenAuthorizationServerPolicyRuleActionInlineHook(resourceJson.inlineHook);
+    }
   }
 
 }

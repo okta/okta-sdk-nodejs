@@ -43,8 +43,8 @@ declare class NetworkZone extends Resource {
 
   update(): Promise<NetworkZone>;
   delete(): Promise<Response>;
-  activate(): Promise<Response>;
-  deactivate(): Promise<Response>;
+  activate(): Promise<NetworkZone>;
+  deactivate(): Promise<NetworkZone>;
 }
 
 type NetworkZoneOptions = OptionalKnownProperties<NetworkZone>;

@@ -13,19 +13,16 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-var Resource = require('../resource');
-
-
-/**
- * @class FactorProvider
- * @extends Resource
- */
-class FactorProvider extends Resource {
-  constructor(resourceJson, client) {
-    super(resourceJson, client);
-
-  }
-
-}
+var FactorProvider;
+(function (FactorProvider) {
+  FactorProvider['OKTA'] = 'OKTA';
+  FactorProvider['RSA'] = 'RSA';
+  FactorProvider['FIDO'] = 'FIDO';
+  FactorProvider['GOOGLE'] = 'GOOGLE';
+  FactorProvider['SYMANTEC'] = 'SYMANTEC';
+  FactorProvider['DUO'] = 'DUO';
+  FactorProvider['YUBICO'] = 'YUBICO';
+  FactorProvider['CUSTOM'] = 'CUSTOM';
+}(FactorProvider || (FactorProvider = {})));
 
 module.exports = FactorProvider;

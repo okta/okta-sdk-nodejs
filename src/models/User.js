@@ -65,7 +65,7 @@ class User extends Resource {
   }
 
   /**
-   * @returns {Promise<Collection>} A collection that will yield {@link AppLink} instances.
+   * @returns {Collection} A collection that will yield {@link AppLink} instances.
    */
   listAppLinks() {
     return this.httpClient.listAppLinks(this.id);
@@ -116,6 +116,14 @@ class User extends Resource {
 
   /**
    * @param {string} roleId
+   * @returns {Promise<Role>}
+   */
+  getRole(roleId) {
+    return this.httpClient.getUserRole(this.id, roleId);
+  }
+
+  /**
+   * @param {string} roleId
    */
   removeRole(roleId) {
     return this.httpClient.removeRoleFromUser(this.id, roleId);
@@ -124,7 +132,7 @@ class User extends Resource {
   /**
    * @param {string} roleId
    * @param {object} queryParameters
-   * @returns {Promise<Collection>} A collection that will yield {@link Group} instances.
+   * @returns {Collection} A collection that will yield {@link Group} instances.
    */
   listGroupTargets(roleId, queryParameters) {
     return this.httpClient.listGroupTargetsForRole(this.id, roleId, queryParameters);
@@ -148,7 +156,7 @@ class User extends Resource {
 
   /**
    * @param {object} queryParameters
-   * @returns {Promise<Collection>} A collection that will yield {@link Role} instances.
+   * @returns {Collection} A collection that will yield {@link Role} instances.
    */
   listAssignedRoles(queryParameters) {
     return this.httpClient.listAssignedRolesForUser(this.id, queryParameters);
@@ -162,7 +170,7 @@ class User extends Resource {
   }
 
   /**
-   * @returns {Promise<Collection>} A collection that will yield {@link Group} instances.
+   * @returns {Collection} A collection that will yield {@link Group} instances.
    */
   listGroups() {
     return this.httpClient.listUserGroups(this.id);
@@ -170,7 +178,7 @@ class User extends Resource {
 
   /**
    * @param {object} queryParameters
-   * @returns {Promise<Collection>} A collection that will yield {@link OAuth2ScopeConsentGrant} instances.
+   * @returns {Collection} A collection that will yield {@link OAuth2ScopeConsentGrant} instances.
    */
   listGrants(queryParameters) {
     return this.httpClient.listUserGrants(this.id, queryParameters);
@@ -197,7 +205,7 @@ class User extends Resource {
   /**
    * @param {string} clientId
    * @param {object} queryParameters
-   * @returns {Promise<Collection>} A collection that will yield {@link OAuth2RefreshToken} instances.
+   * @returns {Collection} A collection that will yield {@link OAuth2RefreshToken} instances.
    */
   listRefreshTokensForUserAndClient(clientId, queryParameters) {
     return this.httpClient.listRefreshTokensForUserAndClient(this.id, clientId, queryParameters);
@@ -229,7 +237,7 @@ class User extends Resource {
   }
 
   /**
-   * @returns {Promise<Collection>} A collection that will yield {@link OAuth2Client} instances.
+   * @returns {Collection} A collection that will yield {@link OAuth2Client} instances.
    */
   listClients() {
     return this.httpClient.listUserClients(this.id);
@@ -320,21 +328,21 @@ class User extends Resource {
   }
 
   /**
-   * @returns {Promise<Collection>} A collection that will yield {@link UserFactor} instances.
+   * @returns {Collection} A collection that will yield {@link UserFactor} instances.
    */
   listSupportedFactors() {
     return this.httpClient.listSupportedFactors(this.id);
   }
 
   /**
-   * @returns {Promise<Collection>} A collection that will yield {@link UserFactor} instances.
+   * @returns {Collection} A collection that will yield {@link UserFactor} instances.
    */
   listFactors() {
     return this.httpClient.listFactors(this.id);
   }
 
   /**
-   * @returns {Promise<Collection>} A collection that will yield {@link SecurityQuestion} instances.
+   * @returns {Collection} A collection that will yield {@link SecurityQuestion} instances.
    */
   listSupportedSecurityQuestions() {
     return this.httpClient.listSupportedSecurityQuestions(this.id);
@@ -357,7 +365,7 @@ class User extends Resource {
   }
 
   /**
-   * @returns {Promise<Collection>} A collection that will yield {@link IdentityProvider} instances.
+   * @returns {Collection} A collection that will yield {@link IdentityProvider} instances.
    */
   listIdentityProviders() {
     return this.httpClient.listUserIdentityProviders(this.id);
@@ -366,7 +374,7 @@ class User extends Resource {
   /**
    * @param {string} relationshipName
    * @param {object} queryParameters
-   * @returns {Promise<Collection>} A collection that will yield {@link ResponseLinks} instances.
+   * @returns {Collection} A collection that will yield {@link ResponseLinks} instances.
    */
   getLinkedObjects(relationshipName, queryParameters) {
     return this.httpClient.getLinkedObjectsForUser(this.id, relationshipName, queryParameters);

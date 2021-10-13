@@ -13,19 +13,12 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-var Resource = require('../resource');
-
-
-/**
- * @class PolicyType
- * @extends Resource
- */
-class PolicyType extends Resource {
-  constructor(resourceJson, client) {
-    super(resourceJson, client);
-
-  }
-
-}
+var PolicyType;
+(function (PolicyType) {
+  PolicyType['OAUTH_AUTHORIZATION_POLICY'] = 'OAUTH_AUTHORIZATION_POLICY';
+  PolicyType['OKTA_SIGN_ON'] = 'OKTA_SIGN_ON';
+  PolicyType['PASSWORD'] = 'PASSWORD';
+  PolicyType['IDP_DISCOVERY'] = 'IDP_DISCOVERY';
+}(PolicyType || (PolicyType = {})));
 
 module.exports = PolicyType;

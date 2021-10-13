@@ -13,19 +13,10 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-import { Resource } from '../resource';
-import { Client } from '../client';
-
-
-declare class FeatureType extends Resource {
-  constructor(resourceJson: string, client: Client);
-
-
+declare enum FeatureType {
+  SELF_SERVICE = 'self-service',
 }
 
-type FeatureTypeOptions = Record<string, unknown>;
-
 export {
-  FeatureType,
-  FeatureTypeOptions
+  FeatureType
 };

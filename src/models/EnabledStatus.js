@@ -13,19 +13,10 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-var Resource = require('../resource');
-
-
-/**
- * @class EnabledStatus
- * @extends Resource
- */
-class EnabledStatus extends Resource {
-  constructor(resourceJson, client) {
-    super(resourceJson, client);
-
-  }
-
-}
+var EnabledStatus;
+(function (EnabledStatus) {
+  EnabledStatus['ENABLED'] = 'ENABLED';
+  EnabledStatus['DISABLED'] = 'DISABLED';
+}(EnabledStatus || (EnabledStatus = {})));
 
 module.exports = EnabledStatus;

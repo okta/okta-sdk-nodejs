@@ -13,19 +13,13 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-import { Resource } from '../resource';
-import { Client } from '../client';
-
-
-declare class PolicySubjectMatchType extends Resource {
-  constructor(resourceJson: string, client: Client);
-
-
+declare enum PolicySubjectMatchType {
+  USERNAME = 'USERNAME',
+  EMAIL = 'EMAIL',
+  USERNAME_OR_EMAIL = 'USERNAME_OR_EMAIL',
+  CUSTOM_ATTRIBUTE = 'CUSTOM_ATTRIBUTE',
 }
 
-type PolicySubjectMatchTypeOptions = Record<string, unknown>;
-
 export {
-  PolicySubjectMatchType,
-  PolicySubjectMatchTypeOptions
+  PolicySubjectMatchType
 };

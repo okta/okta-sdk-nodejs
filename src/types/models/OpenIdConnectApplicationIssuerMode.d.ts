@@ -13,19 +13,11 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-import { Resource } from '../resource';
-import { Client } from '../client';
-
-
-declare class OpenIdConnectApplicationIssuerMode extends Resource {
-  constructor(resourceJson: string, client: Client);
-
-
+declare enum OpenIdConnectApplicationIssuerMode {
+  CUSTOM_URL = 'CUSTOM_URL',
+  ORG_URL = 'ORG_URL',
 }
 
-type OpenIdConnectApplicationIssuerModeOptions = Record<string, unknown>;
-
 export {
-  OpenIdConnectApplicationIssuerMode,
-  OpenIdConnectApplicationIssuerModeOptions
+  OpenIdConnectApplicationIssuerMode
 };

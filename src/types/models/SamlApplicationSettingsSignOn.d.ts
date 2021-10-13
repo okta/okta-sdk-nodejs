@@ -18,6 +18,7 @@ import { Client } from '../client';
 import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { AcsEndpoint } from './AcsEndpoint';
 import { SamlAttributeStatement } from './SamlAttributeStatement';
+import { SignOnInlineHook } from './SignOnInlineHook';
 import { SingleLogout } from './SingleLogout';
 import { SpCertificate } from './SpCertificate';
 
@@ -37,6 +38,7 @@ declare class SamlApplicationSettingsSignOn extends Resource {
   digestAlgorithm: string;
   honorForceAuthn: boolean;
   idpIssuer: string;
+  inlineHooks: SignOnInlineHook[];
   recipient: string;
   recipientOverride: string;
   requestCompressed: boolean;

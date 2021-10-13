@@ -13,19 +13,11 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-var Resource = require('../resource');
-
-
-/**
- * @class PolicyRuleActionsEnrollSelf
- * @extends Resource
- */
-class PolicyRuleActionsEnrollSelf extends Resource {
-  constructor(resourceJson, client) {
-    super(resourceJson, client);
-
-  }
-
-}
+var PolicyRuleActionsEnrollSelf;
+(function (PolicyRuleActionsEnrollSelf) {
+  PolicyRuleActionsEnrollSelf['CHALLENGE'] = 'CHALLENGE';
+  PolicyRuleActionsEnrollSelf['LOGIN'] = 'LOGIN';
+  PolicyRuleActionsEnrollSelf['NEVER'] = 'NEVER';
+}(PolicyRuleActionsEnrollSelf || (PolicyRuleActionsEnrollSelf = {})));
 
 module.exports = PolicyRuleActionsEnrollSelf;

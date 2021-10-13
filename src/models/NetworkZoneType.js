@@ -13,19 +13,10 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-var Resource = require('../resource');
-
-
-/**
- * @class NetworkZoneType
- * @extends Resource
- */
-class NetworkZoneType extends Resource {
-  constructor(resourceJson, client) {
-    super(resourceJson, client);
-
-  }
-
-}
+var NetworkZoneType;
+(function (NetworkZoneType) {
+  NetworkZoneType['IP'] = 'IP';
+  NetworkZoneType['DYNAMIC'] = 'DYNAMIC';
+}(NetworkZoneType || (NetworkZoneType = {})));
 
 module.exports = NetworkZoneType;

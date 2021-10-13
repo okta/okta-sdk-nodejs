@@ -13,19 +13,13 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-import { Resource } from '../resource';
-import { Client } from '../client';
-
-
-declare class LogSeverity extends Resource {
-  constructor(resourceJson: string, client: Client);
-
-
+declare enum LogSeverity {
+  DEBUG = 'DEBUG',
+  INFO = 'INFO',
+  WARN = 'WARN',
+  ERROR = 'ERROR',
 }
 
-type LogSeverityOptions = Record<string, unknown>;
-
 export {
-  LogSeverity,
-  LogSeverityOptions
+  LogSeverity
 };

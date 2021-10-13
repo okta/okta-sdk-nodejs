@@ -13,19 +13,18 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-import { Resource } from '../resource';
-import { Client } from '../client';
-
-
-declare class ApplicationSignOnMode extends Resource {
-  constructor(resourceJson: string, client: Client);
-
-
+declare enum ApplicationSignOnMode {
+  BOOKMARK = 'BOOKMARK',
+  BASIC_AUTH = 'BASIC_AUTH',
+  BROWSER_PLUGIN = 'BROWSER_PLUGIN',
+  SECURE_PASSWORD_STORE = 'SECURE_PASSWORD_STORE',
+  AUTO_LOGIN = 'AUTO_LOGIN',
+  WS_FEDERATION = 'WS_FEDERATION',
+  SAML_2_0 = 'SAML_2_0',
+  OPENID_CONNECT = 'OPENID_CONNECT',
+  SAML_1_1 = 'SAML_1_1',
 }
 
-type ApplicationSignOnModeOptions = Record<string, unknown>;
-
 export {
-  ApplicationSignOnMode,
-  ApplicationSignOnModeOptions
+  ApplicationSignOnMode
 };

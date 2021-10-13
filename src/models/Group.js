@@ -56,7 +56,7 @@ class Group extends Resource {
 
   /**
    * @param {object} queryParameters
-   * @returns {Promise<Collection>} A collection that will yield {@link User} instances.
+   * @returns {Collection} A collection that will yield {@link User} instances.
    */
   listUsers(queryParameters) {
     return this.httpClient.listGroupUsers(this.id, queryParameters);
@@ -64,7 +64,7 @@ class Group extends Resource {
 
   /**
    * @param {object} queryParameters
-   * @returns {Promise<Collection>} A collection that will yield {@link Application} instances.
+   * @returns {Collection} A collection that will yield {@link Application} instances.
    */
   listApplications(queryParameters) {
     return this.httpClient.listAssignedApplicationsForGroup(this.id, queryParameters);

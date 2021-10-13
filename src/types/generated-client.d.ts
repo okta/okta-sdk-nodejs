@@ -40,6 +40,10 @@ import { AuthorizationServerPolicyRule } from './models/AuthorizationServerPolic
 import { AuthorizationServerPolicyRuleOptions } from './models/AuthorizationServerPolicyRule';
 import { OAuth2Scope } from './models/OAuth2Scope';
 import { OAuth2ScopeOptions } from './models/OAuth2Scope';
+import { DomainListResponse } from './models/DomainListResponse';
+import { DomainOptions } from './models/Domain';
+import { Domain } from './models/Domain';
+import { DomainCertificateOptions } from './models/DomainCertificate';
 import { EventHook } from './models/EventHook';
 import { EventHookOptions } from './models/EventHook';
 import { Feature } from './models/Feature';
@@ -66,12 +70,22 @@ import { ProfileMapping } from './models/ProfileMapping';
 import { ProfileMappingOptions } from './models/ProfileMapping';
 import { UserSchema } from './models/UserSchema';
 import { UserSchemaOptions } from './models/UserSchema';
+import { GroupSchema } from './models/GroupSchema';
+import { GroupSchemaOptions } from './models/GroupSchema';
 import { LinkedObject } from './models/LinkedObject';
 import { LinkedObjectOptions } from './models/LinkedObject';
 import { UserType } from './models/UserType';
 import { UserTypeOptions } from './models/UserType';
-import { PolicyOptions } from './models/Policy';
+import { OrgSetting } from './models/OrgSetting';
+import { OrgSettingOptions } from './models/OrgSetting';
+import { OrgContactTypeObj } from './models/OrgContactTypeObj';
+import { OrgContactUser } from './models/OrgContactUser';
+import { UserIdStringOptions } from './models/UserIdString';
+import { OrgPreferences } from './models/OrgPreferences';
+import { OrgOktaCommunicationSetting } from './models/OrgOktaCommunicationSetting';
+import { OrgOktaSupportSettingsObj } from './models/OrgOktaSupportSettingsObj';
 import { Policy } from './models/Policy';
+import { PolicyOptions } from './models/Policy';
 import { PolicyRule } from './models/PolicyRule';
 import { PolicyRuleOptions } from './models/PolicyRule';
 import { CreateSessionRequestOptions } from './models/CreateSessionRequest';
@@ -236,6 +250,12 @@ export declare class GeneratedApiClient {
   deleteOAuth2Scope(authServerId: string, scopeId: string): Promise<Response>;
   getOAuth2Scope(authServerId: string, scopeId: string): Promise<OAuth2Scope>;
   updateOAuth2Scope(authServerId: string, scopeId: string, oAuth2Scope: OAuth2ScopeOptions): Promise<OAuth2Scope>;
+  listDomains(): Promise<DomainListResponse>;
+  createDomain(domain: DomainOptions): Promise<Domain>;
+  deleteDomain(domainId: string): Promise<Response>;
+  getDomain(domainId: string): Promise<Domain>;
+  createCertificate(domainId: string, domainCertificate: DomainCertificateOptions): Promise<Response>;
+  verifyDomain(domainId: string): Promise<Domain>;
   listEventHooks(): Collection<EventHook>;
   createEventHook(eventHook: EventHookOptions): Promise<EventHook>;
   deleteEventHook(eventHookId: string): Promise<Response>;
@@ -253,7 +273,7 @@ export declare class GeneratedApiClient {
   }): Promise<Feature>;
   listGroups(queryParameters?: {
     q?: string,
-    filter?: string,
+    search?: string,
     after?: string,
     limit?: number,
     expand?: string,
@@ -266,7 +286,9 @@ export declare class GeneratedApiClient {
     expand?: string,
   }): Collection<GroupRule>;
   createGroupRule(groupRule: GroupRuleOptions): Promise<GroupRule>;
-  deleteGroupRule(ruleId: string): Promise<Response>;
+  deleteGroupRule(ruleId: string, queryParameters?: {
+    removeUsers?: boolean,
+  }): Promise<Response>;
   getGroupRule(ruleId: string, queryParameters?: {
     expand?: string,
   }): Promise<GroupRule>;
@@ -378,6 +400,8 @@ export declare class GeneratedApiClient {
   updateProfileMapping(mappingId: string, profileMapping: ProfileMappingOptions): Promise<ProfileMapping>;
   getApplicationUserSchema(appInstanceId: string): Promise<UserSchema>;
   updateApplicationUserProfile(appInstanceId: string, userSchema?: UserSchemaOptions): Promise<UserSchema>;
+  getGroupSchema(): Promise<GroupSchema>;
+  updateGroupSchema(groupSchema?: GroupSchemaOptions): Promise<GroupSchema>;
   listLinkedObjectDefinitions(): Collection<LinkedObject>;
   addLinkedObjectDefinition(linkedObject: LinkedObjectOptions): Promise<LinkedObject>;
   deleteLinkedObjectDefinition(linkedObjectName: string): Promise<Response>;
@@ -390,11 +414,27 @@ export declare class GeneratedApiClient {
   getUserType(typeId: string): Promise<UserType>;
   updateUserType(typeId: string, userType: UserTypeOptions): Promise<UserType>;
   replaceUserType(typeId: string, userType: UserTypeOptions): Promise<UserType>;
+  getOrgSettings(): Promise<OrgSetting>;
+  partialUpdateOrgSetting(orgSetting: OrgSettingOptions): Promise<OrgSetting>;
+  updateOrgSetting(orgSetting: OrgSettingOptions): Promise<OrgSetting>;
+  getOrgContactTypes(): Collection<OrgContactTypeObj>;
+  getOrgContactUser(contactType: string): Promise<OrgContactUser>;
+  updateOrgContactUser(contactType: string, userIdString: UserIdStringOptions): Promise<OrgContactUser>;
+  getOrgPreferences(): Promise<OrgPreferences>;
+  hideOktaUIFooter(): Promise<OrgPreferences>;
+  showOktaUIFooter(): Promise<OrgPreferences>;
+  getOktaCommunicationSettings(): Promise<OrgOktaCommunicationSetting>;
+  optInUsersToOktaCommunicationEmails(): Promise<OrgOktaCommunicationSetting>;
+  optOutUsersFromOktaCommunicationEmails(): Promise<OrgOktaCommunicationSetting>;
+  getOrgOktaSupportSettings(): Promise<OrgOktaSupportSettingsObj>;
+  extendOktaSupport(): Promise<OrgOktaSupportSettingsObj>;
+  grantOktaSupport(): Promise<OrgOktaSupportSettingsObj>;
+  revokeOktaSupport(): Promise<OrgOktaSupportSettingsObj>;
   listPolicies(queryParameters: {
     type: string,
     status?: string,
     expand?: string,
-  }): Collection<AuthorizationServerPolicy>;
+  }): Collection<Policy>;
   createPolicy(policy: PolicyOptions, queryParameters?: {
     activate?: boolean,
   }): Promise<Policy>;
@@ -553,6 +593,7 @@ export declare class GeneratedApiClient {
     disableNotifications?: string,
   }): Promise<Role>;
   removeRoleFromUser(userId: string, roleId: string): Promise<Response>;
+  getUserRole(userId: string, roleId: string): Promise<Role>;
   listApplicationTargetsForApplicationAdministratorRoleForUser(userId: string, roleId: string, queryParameters?: {
     after?: string,
     limit?: number,
@@ -580,6 +621,6 @@ export declare class GeneratedApiClient {
   deleteNetworkZone(zoneId: string): Promise<Response>;
   getNetworkZone(zoneId: string): Promise<NetworkZone>;
   updateNetworkZone(zoneId: string, networkZone: NetworkZoneOptions): Promise<NetworkZone>;
-  activateNetworkZone(zoneId: string): Promise<Response>;
-  deactivateNetworkZone(zoneId: string): Promise<Response>;
+  activateNetworkZone(zoneId: string): Promise<NetworkZone>;
+  deactivateNetworkZone(zoneId: string): Promise<NetworkZone>;
 }

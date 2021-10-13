@@ -13,19 +13,12 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-import { Resource } from '../resource';
-import { Client } from '../client';
-
-
-declare class SessionStatus extends Resource {
-  constructor(resourceJson: string, client: Client);
-
-
+declare enum SessionStatus {
+  ACTIVE = 'ACTIVE',
+  MFA_ENROLL = 'MFA_ENROLL',
+  MFA_REQUIRED = 'MFA_REQUIRED',
 }
 
-type SessionStatusOptions = Record<string, unknown>;
-
 export {
-  SessionStatus,
-  SessionStatusOptions
+  SessionStatus
 };

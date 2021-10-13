@@ -32,8 +32,9 @@ const VerifyFactorRequest = require('./VerifyFactorRequest');
 class UserFactor extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson.verify) {
-      this.verify = new VerifyFactorRequest(resourceJson.verify);
+    delete this['verify'];
+    if (resourceJson && Object.prototype.hasOwnProperty.call(resourceJson, 'verify')) {
+      this._verify = new VerifyFactorRequest(resourceJson.verify);
     }
   }
 

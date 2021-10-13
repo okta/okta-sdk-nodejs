@@ -80,7 +80,7 @@ class Application extends Resource {
 
   /**
    * @param {object} queryParameters
-   * @returns {Promise<Collection>} A collection that will yield {@link AppUser} instances.
+   * @returns {Collection} A collection that will yield {@link AppUser} instances.
    */
   listApplicationUsers(queryParameters) {
     return this.httpClient.listApplicationUsers(this.id, queryParameters);
@@ -140,14 +140,14 @@ class Application extends Resource {
 
   /**
    * @param {object} queryParameters
-   * @returns {Promise<Collection>} A collection that will yield {@link ApplicationGroupAssignment} instances.
+   * @returns {Collection} A collection that will yield {@link ApplicationGroupAssignment} instances.
    */
   listGroupAssignments(queryParameters) {
     return this.httpClient.listApplicationGroupAssignments(this.id, queryParameters);
   }
 
   /**
-   * @returns {Promise<Collection>} A collection that will yield {@link JsonWebKey} instances.
+   * @returns {Collection} A collection that will yield {@link JsonWebKey} instances.
    */
   listKeys() {
     return this.httpClient.listApplicationKeys(this.id);
@@ -185,7 +185,7 @@ class Application extends Resource {
   }
 
   /**
-   * @returns {Promise<Collection>} A collection that will yield {@link Csr} instances.
+   * @returns {Collection} A collection that will yield {@link Csr} instances.
    */
   listCsrs() {
     return this.httpClient.listCsrsForApplication(this.id);
@@ -238,7 +238,7 @@ class Application extends Resource {
 
   /**
    * @param {object} queryParameters
-   * @returns {Promise<Collection>} A collection that will yield {@link OAuth2Token} instances.
+   * @returns {Collection} A collection that will yield {@link OAuth2Token} instances.
    */
   listOAuth2Tokens(queryParameters) {
     return this.httpClient.listOAuth2TokensForApplication(this.id, queryParameters);
@@ -266,7 +266,7 @@ class Application extends Resource {
 
   /**
    * @param {object} queryParameters
-   * @returns {Promise<Collection>} A collection that will yield {@link OAuth2ScopeConsentGrant} instances.
+   * @returns {Collection} A collection that will yield {@link OAuth2ScopeConsentGrant} instances.
    */
   listScopeConsentGrants(queryParameters) {
     return this.httpClient.listScopeConsentGrants(this.id, queryParameters);

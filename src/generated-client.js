@@ -38,7 +38,7 @@ class GeneratedApiClient {
    * @param {String} [queryParams.includeNonDeleted]
    * @description
    * Enumerates apps added to your organization with pagination. A subset of apps can be returned that match a supported filter expression or query.
-   * @returns {Promise<Collection>} A collection that will yield {@link Application} instances.
+   * @returns {Collection} A collection that will yield {@link Application} instances.
    */
   listApplications(queryParameters) {
     let url = `${this.baseUrl}/api/v1/apps`;
@@ -173,7 +173,7 @@ class GeneratedApiClient {
    * @param appId {String}
    * @description
    * Enumerates Certificate Signing Requests for an application
-   * @returns {Promise<Collection>} A collection that will yield {@link Csr} instances.
+   * @returns {Collection} A collection that will yield {@link Csr} instances.
    */
   listCsrsForApplication(appId) {
     if (!appId) {
@@ -478,7 +478,7 @@ class GeneratedApiClient {
    * @param appId {String}
    * @description
    * Enumerates key credentials for an application
-   * @returns {Promise<Collection>} A collection that will yield {@link JsonWebKey} instances.
+   * @returns {Collection} A collection that will yield {@link JsonWebKey} instances.
    */
   listApplicationKeys(appId) {
     if (!appId) {
@@ -598,7 +598,7 @@ class GeneratedApiClient {
    * @param {String} [queryParams.expand]
    * @description
    * Lists all scope consent grants for the application
-   * @returns {Promise<Collection>} A collection that will yield {@link OAuth2ScopeConsentGrant} instances.
+   * @returns {Collection} A collection that will yield {@link OAuth2ScopeConsentGrant} instances.
    */
   listScopeConsentGrants(appId, queryParameters) {
     if (!appId) {
@@ -721,7 +721,7 @@ class GeneratedApiClient {
    * @param {String} [queryParams.expand]
    * @description
    * Enumerates group assignments for an application.
-   * @returns {Promise<Collection>} A collection that will yield {@link ApplicationGroupAssignment} instances.
+   * @returns {Collection} A collection that will yield {@link ApplicationGroupAssignment} instances.
    */
   listApplicationGroupAssignments(appId, queryParameters) {
     if (!appId) {
@@ -925,7 +925,7 @@ class GeneratedApiClient {
    * @param {String} [queryParams.limit]
    * @description
    * Lists all tokens for the application
-   * @returns {Promise<Collection>} A collection that will yield {@link OAuth2Token} instances.
+   * @returns {Collection} A collection that will yield {@link OAuth2Token} instances.
    */
   listOAuth2TokensForApplication(appId, queryParameters) {
     if (!appId) {
@@ -1019,7 +1019,7 @@ class GeneratedApiClient {
    * @param {String} [queryParams.expand]
    * @description
    * Enumerates all assigned [application users](#application-user-model) for an application.
-   * @returns {Promise<Collection>} A collection that will yield {@link AppUser} instances.
+   * @returns {Collection} A collection that will yield {@link AppUser} instances.
    */
   listApplicationUsers(appId, queryParameters) {
     if (!appId) {
@@ -1181,7 +1181,7 @@ class GeneratedApiClient {
    * @param {String} [queryParams.after]
    * @description
    * Success
-   * @returns {Promise<Collection>} A collection that will yield {@link AuthorizationServer} instances.
+   * @returns {Collection} A collection that will yield {@link AuthorizationServer} instances.
    */
   listAuthorizationServers(queryParameters) {
     let url = `${this.baseUrl}/api/v1/authorizationServers`;
@@ -1306,7 +1306,7 @@ class GeneratedApiClient {
    * @param authServerId {String}
    * @description
    * Success
-   * @returns {Promise<Collection>} A collection that will yield {@link OAuth2Claim} instances.
+   * @returns {Collection} A collection that will yield {@link OAuth2Claim} instances.
    */
   listOAuth2Claims(authServerId) {
     if (!authServerId) {
@@ -1452,7 +1452,7 @@ class GeneratedApiClient {
    * @param authServerId {String}
    * @description
    * Success
-   * @returns {Promise<Collection>} A collection that will yield {@link OAuth2Client} instances.
+   * @returns {Collection} A collection that will yield {@link OAuth2Client} instances.
    */
   listOAuth2ClientsForAuthorizationServer(authServerId) {
     if (!authServerId) {
@@ -1506,7 +1506,7 @@ class GeneratedApiClient {
    * @param {String} [queryParams.limit]
    * @description
    * Success
-   * @returns {Promise<Collection>} A collection that will yield {@link OAuth2RefreshToken} instances.
+   * @returns {Collection} A collection that will yield {@link OAuth2RefreshToken} instances.
    */
   listRefreshTokensForAuthorizationServerAndClient(authServerId, clientId, queryParameters) {
     if (!authServerId) {
@@ -1606,7 +1606,7 @@ class GeneratedApiClient {
    * @param authServerId {String}
    * @description
    * Success
-   * @returns {Promise<Collection>} A collection that will yield {@link JsonWebKey} instances.
+   * @returns {Collection} A collection that will yield {@link JsonWebKey} instances.
    */
   listAuthorizationServerKeys(authServerId) {
     if (!authServerId) {
@@ -1626,7 +1626,7 @@ class GeneratedApiClient {
    * @param authServerId {String}
    * @description
    * Success
-   * @returns {Promise<Collection>} A collection that will yield {@link JsonWebKey} instances.
+   * @returns {Collection} A collection that will yield {@link JsonWebKey} instances.
    */
   rotateAuthorizationServerKeys(authServerId, jwkUse) {
     if (!authServerId) {
@@ -1706,7 +1706,7 @@ class GeneratedApiClient {
    * @param authServerId {String}
    * @description
    * Success
-   * @returns {Promise<Collection>} A collection that will yield {@link AuthorizationServerPolicy} instances.
+   * @returns {Collection} A collection that will yield {@link AuthorizationServerPolicy} instances.
    */
   listAuthorizationServerPolicies(authServerId) {
     if (!authServerId) {
@@ -1919,7 +1919,7 @@ class GeneratedApiClient {
    * @param authServerId {String}
    * @description
    * Enumerates all policy rules for the specified Custom Authorization Server and Policy.
-   * @returns {Promise<Collection>} A collection that will yield {@link AuthorizationServerPolicyRule} instances.
+   * @returns {Collection} A collection that will yield {@link AuthorizationServerPolicyRule} instances.
    */
   listAuthorizationServerPolicyRules(policyId, authServerId) {
     if (!policyId) {
@@ -2169,7 +2169,7 @@ class GeneratedApiClient {
    * @param {String} [queryParams.limit]
    * @description
    * Success
-   * @returns {Promise<Collection>} A collection that will yield {@link OAuth2Scope} instances.
+   * @returns {Collection} A collection that will yield {@link OAuth2Scope} instances.
    */
   listOAuth2Scopes(authServerId, queryParameters) {
     if (!authServerId) {
@@ -2316,8 +2316,156 @@ class GeneratedApiClient {
   /**
    *
    * @description
+   * List all verified custom Domains for the org.
+   * @returns {Promise<DomainListResponse>}
+   */
+  listDomains() {
+    let url = `${this.baseUrl}/api/v1/domains`;
+
+    const resources = [];
+
+    const request = this.http.getJson(
+      url,
+      null,
+      { resources }
+    );
+    return request.then(jsonRes => new models.DomainListResponse(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param {Domain} domain
+   * @description
+   * Creates your domain.
+   * @returns {Promise<Domain>}
+   */
+  createDomain(domain) {
+    if (!domain) {
+      return Promise.reject(new Error('OKTA API createDomain parameter domain is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/domains`;
+
+    const resources = [];
+
+    const request = this.http.postJson(
+      url,
+      {
+        body: domain
+      },
+      { resources }
+    );
+    return request.then(jsonRes => new models.Domain(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param domainId {String}
+   * @description
+   * Deletes a Domain by `id`.
+   */
+  deleteDomain(domainId) {
+    if (!domainId) {
+      return Promise.reject(new Error('OKTA API deleteDomain parameter domainId is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/domains/${domainId}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/domains/${domainId}`
+    ];
+
+    const request = this.http.delete(
+      url,
+      null,
+      { resources }
+    );
+    return request;
+  }
+
+  /**
+   *
+   * @param domainId {String}
+   * @description
+   * Fetches a Domain by `id`.
+   * @returns {Promise<Domain>}
+   */
+  getDomain(domainId) {
+    if (!domainId) {
+      return Promise.reject(new Error('OKTA API getDomain parameter domainId is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/domains/${domainId}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/domains/${domainId}`
+    ];
+
+    const request = this.http.getJson(
+      url,
+      null,
+      { resources }
+    );
+    return request.then(jsonRes => new models.Domain(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param domainId {String}
+   * @param {DomainCertificate} domainCertificate
+   * @description
+   * Creates the Certificate for the Domain.
+   */
+  createCertificate(domainId, domainCertificate) {
+    if (!domainId) {
+      return Promise.reject(new Error('OKTA API createCertificate parameter domainId is required.'));
+    }
+    if (!domainCertificate) {
+      return Promise.reject(new Error('OKTA API createCertificate parameter domainCertificate is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/domains/${domainId}/certificate`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/domains/${domainId}`
+    ];
+
+    const request = this.http.putJson(
+      url,
+      {
+        body: domainCertificate
+      },
+      { resources }
+    );
+    return request;
+  }
+
+  /**
+   *
+   * @param domainId {String}
+   * @description
+   * Verifies the Domain by `id`.
+   * @returns {Promise<Domain>}
+   */
+  verifyDomain(domainId) {
+    if (!domainId) {
+      return Promise.reject(new Error('OKTA API verifyDomain parameter domainId is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/domains/${domainId}/verify`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/domains/${domainId}`
+    ];
+
+    const request = this.http.postJson(
+      url,
+      null,
+      { resources }
+    );
+    return request.then(jsonRes => new models.Domain(jsonRes, this));
+  }
+
+  /**
+   *
+   * @description
    * Success
-   * @returns {Promise<Collection>} A collection that will yield {@link EventHook} instances.
+   * @returns {Collection} A collection that will yield {@link EventHook} instances.
    */
   listEventHooks() {
     let url = `${this.baseUrl}/api/v1/eventHooks`;
@@ -2513,7 +2661,7 @@ class GeneratedApiClient {
    *
    * @description
    * Success
-   * @returns {Promise<Collection>} A collection that will yield {@link Feature} instances.
+   * @returns {Collection} A collection that will yield {@link Feature} instances.
    */
   listFeatures() {
     let url = `${this.baseUrl}/api/v1/features`;
@@ -2555,7 +2703,7 @@ class GeneratedApiClient {
    * @param featureId {String}
    * @description
    * Success
-   * @returns {Promise<Collection>} A collection that will yield {@link Feature} instances.
+   * @returns {Collection} A collection that will yield {@link Feature} instances.
    */
   listFeatureDependencies(featureId) {
     if (!featureId) {
@@ -2575,7 +2723,7 @@ class GeneratedApiClient {
    * @param featureId {String}
    * @description
    * Success
-   * @returns {Promise<Collection>} A collection that will yield {@link Feature} instances.
+   * @returns {Collection} A collection that will yield {@link Feature} instances.
    */
   listFeatureDependents(featureId) {
     if (!featureId) {
@@ -2629,13 +2777,13 @@ class GeneratedApiClient {
    *
    * @param {Object} queryParams Map of query parameters to add to this request
    * @param {String} [queryParams.q]
-   * @param {String} [queryParams.filter]
+   * @param {String} [queryParams.search]
    * @param {String} [queryParams.after]
    * @param {String} [queryParams.limit]
    * @param {String} [queryParams.expand]
    * @description
    * Enumerates groups in your organization with pagination. A subset of groups can be returned that match a supported filter expression or query.
-   * @returns {Promise<Collection>} A collection that will yield {@link Group} instances.
+   * @returns {Collection} A collection that will yield {@link Group} instances.
    */
   listGroups(queryParameters) {
     let url = `${this.baseUrl}/api/v1/groups`;
@@ -2684,7 +2832,7 @@ class GeneratedApiClient {
    * @param {String} [queryParams.expand]
    * @description
    * Lists all group rules for your organization.
-   * @returns {Promise<Collection>} A collection that will yield {@link GroupRule} instances.
+   * @returns {Collection} A collection that will yield {@link GroupRule} instances.
    */
   listGroupRules(queryParameters) {
     let url = `${this.baseUrl}/api/v1/groups/rules`;
@@ -2727,14 +2875,19 @@ class GeneratedApiClient {
   /**
    *
    * @param ruleId {String}
+   * @param {Object} queryParams Map of query parameters to add to this request
+   * @param {String} [queryParams.removeUsers]
    * @description
    * Removes a specific group rule by id from your organization
    */
-  deleteGroupRule(ruleId) {
+  deleteGroupRule(ruleId, queryParameters) {
     if (!ruleId) {
       return Promise.reject(new Error('OKTA API deleteGroupRule parameter ruleId is required.'));
     }
     let url = `${this.baseUrl}/api/v1/groups/rules/${ruleId}`;
+    const queryString = qs.stringify(queryParameters || {});
+
+    url += queryString ? ('?' + queryString) : '';
 
     const resources = [
       `${this.baseUrl}/api/v1/groups/rules/${ruleId}`
@@ -2893,7 +3046,7 @@ class GeneratedApiClient {
    *
    * @param groupId {String}
    * @description
-   * Lists all group rules for your organization.
+   * Fetches a group from your organization.
    * @returns {Promise<Group>}
    */
   getGroup(groupId) {
@@ -2953,7 +3106,7 @@ class GeneratedApiClient {
    * @param {String} [queryParams.limit]
    * @description
    * Enumerates all applications that are assigned to a group.
-   * @returns {Promise<Collection>} A collection that will yield {@link Application} instances.
+   * @returns {Collection} A collection that will yield {@link Application} instances.
    */
   listAssignedApplicationsForGroup(groupId, queryParameters) {
     if (!groupId) {
@@ -2978,7 +3131,7 @@ class GeneratedApiClient {
    * @param {String} [queryParams.expand]
    * @description
    * Success
-   * @returns {Promise<Collection>} A collection that will yield {@link Role} instances.
+   * @returns {Collection} A collection that will yield {@link Role} instances.
    */
   listGroupAssignedRoles(groupId, queryParameters) {
     if (!groupId) {
@@ -3100,7 +3253,7 @@ class GeneratedApiClient {
    * @param {String} [queryParams.limit]
    * @description
    * Lists all App targets for an `APP_ADMIN` Role assigned to a Group. This methods return list may include full Applications or Instances. The response for an instance will have an `ID` value, while Application will not have an ID.
-   * @returns {Promise<Collection>} A collection that will yield {@link CatalogApplication} instances.
+   * @returns {Collection} A collection that will yield {@link CatalogApplication} instances.
    */
   listApplicationTargetsForApplicationAdministratorRoleForGroup(groupId, roleId, queryParameters) {
     if (!groupId) {
@@ -3284,7 +3437,7 @@ class GeneratedApiClient {
    * @param {String} [queryParams.limit]
    * @description
    * Success
-   * @returns {Promise<Collection>} A collection that will yield {@link Group} instances.
+   * @returns {Collection} A collection that will yield {@link Group} instances.
    */
   listGroupTargetsForGroupRole(groupId, roleId, queryParameters) {
     if (!groupId) {
@@ -3385,7 +3538,7 @@ class GeneratedApiClient {
    * @param {String} [queryParams.limit]
    * @description
    * Enumerates all users that are a member of a group.
-   * @returns {Promise<Collection>} A collection that will yield {@link User} instances.
+   * @returns {Collection} A collection that will yield {@link User} instances.
    */
   listGroupUsers(groupId, queryParameters) {
     if (!groupId) {
@@ -3474,7 +3627,7 @@ class GeneratedApiClient {
    * @param {String} [queryParams.type]
    * @description
    * Enumerates IdPs in your organization with pagination. A subset of IdPs can be returned that match a supported filter expression or query.
-   * @returns {Promise<Collection>} A collection that will yield {@link IdentityProvider} instances.
+   * @returns {Collection} A collection that will yield {@link IdentityProvider} instances.
    */
   listIdentityProviders(queryParameters) {
     let url = `${this.baseUrl}/api/v1/idps`;
@@ -3521,7 +3674,7 @@ class GeneratedApiClient {
    * @param {String} [queryParams.limit]
    * @description
    * Enumerates IdP key credentials.
-   * @returns {Promise<Collection>} A collection that will yield {@link JsonWebKey} instances.
+   * @returns {Collection} A collection that will yield {@link JsonWebKey} instances.
    */
   listIdentityProviderKeys(queryParameters) {
     let url = `${this.baseUrl}/api/v1/idps/credentials/keys`;
@@ -3695,7 +3848,7 @@ class GeneratedApiClient {
    * @param idpId {String}
    * @description
    * Enumerates Certificate Signing Requests for an IdP
-   * @returns {Promise<Collection>} A collection that will yield {@link Csr} instances.
+   * @returns {Collection} A collection that will yield {@link Csr} instances.
    */
   listCsrsForIdentityProvider(idpId) {
     if (!idpId) {
@@ -4000,7 +4153,7 @@ class GeneratedApiClient {
    * @param idpId {String}
    * @description
    * Enumerates signing key credentials for an IdP
-   * @returns {Promise<Collection>} A collection that will yield {@link JsonWebKey} instances.
+   * @returns {Collection} A collection that will yield {@link JsonWebKey} instances.
    */
   listIdentityProviderSigningKeys(idpId) {
     if (!idpId) {
@@ -4171,7 +4324,7 @@ class GeneratedApiClient {
    * @param idpId {String}
    * @description
    * Find all the users linked to an identity provider
-   * @returns {Promise<Collection>} A collection that will yield {@link IdentityProviderApplicationUser} instances.
+   * @returns {Collection} A collection that will yield {@link IdentityProviderApplicationUser} instances.
    */
   listIdentityProviderApplicationUsers(idpId) {
     if (!idpId) {
@@ -4287,7 +4440,7 @@ class GeneratedApiClient {
    * @param userId {String}
    * @description
    * Fetches the tokens minted by the Social Authentication Provider when the user authenticates with Okta via Social Auth.
-   * @returns {Promise<Collection>} A collection that will yield {@link SocialAuthToken} instances.
+   * @returns {Collection} A collection that will yield {@link SocialAuthToken} instances.
    */
   listSocialAuthTokens(idpId, userId) {
     if (!idpId) {
@@ -4311,7 +4464,7 @@ class GeneratedApiClient {
    * @param {String} [queryParams.type]
    * @description
    * Success
-   * @returns {Promise<Collection>} A collection that will yield {@link InlineHook} instances.
+   * @returns {Collection} A collection that will yield {@link InlineHook} instances.
    */
   listInlineHooks(queryParameters) {
     let url = `${this.baseUrl}/api/v1/inlineHooks`;
@@ -4524,7 +4677,7 @@ class GeneratedApiClient {
    * @param {String} [queryParams.after]
    * @description
    * The Okta System Log API provides read access to your organization’s system log. This API provides more functionality than the Events API
-   * @returns {Promise<Collection>} A collection that will yield {@link LogEvent} instances.
+   * @returns {Collection} A collection that will yield {@link LogEvent} instances.
    */
   getLogs(queryParameters) {
     let url = `${this.baseUrl}/api/v1/logs`;
@@ -4548,7 +4701,7 @@ class GeneratedApiClient {
    * @param {String} [queryParams.targetId]
    * @description
    * Enumerates Profile Mappings in your organization with pagination.
-   * @returns {Promise<Collection>} A collection that will yield {@link ProfileMapping} instances.
+   * @returns {Collection} A collection that will yield {@link ProfileMapping} instances.
    */
   listProfileMappings(queryParameters) {
     let url = `${this.baseUrl}/api/v1/mappings`;
@@ -4675,8 +4828,49 @@ class GeneratedApiClient {
   /**
    *
    * @description
+   * Fetches the group schema
+   * @returns {Promise<GroupSchema>}
+   */
+  getGroupSchema() {
+    let url = `${this.baseUrl}/api/v1/meta/schemas/group/default`;
+
+    const resources = [];
+
+    const request = this.http.getJson(
+      url,
+      null,
+      { resources }
+    );
+    return request.then(jsonRes => new models.GroupSchema(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param {GroupSchema} groupSchema
+   * @description
+   * Updates, adds ore removes one or more custom Group Profile properties in the schema
+   * @returns {Promise<GroupSchema>}
+   */
+  updateGroupSchema(groupSchema) {
+    let url = `${this.baseUrl}/api/v1/meta/schemas/group/default`;
+
+    const resources = [];
+
+    const request = this.http.postJson(
+      url,
+      {
+        body: groupSchema
+      },
+      { resources }
+    );
+    return request.then(jsonRes => new models.GroupSchema(jsonRes, this));
+  }
+
+  /**
+   *
+   * @description
    * Success
-   * @returns {Promise<Collection>} A collection that will yield {@link LinkedObject} instances.
+   * @returns {Collection} A collection that will yield {@link LinkedObject} instances.
    */
   listLinkedObjectDefinitions() {
     let url = `${this.baseUrl}/api/v1/meta/schemas/user/linkedObjects`;
@@ -4822,7 +5016,7 @@ class GeneratedApiClient {
    *
    * @description
    * Fetches all User Types in your org
-   * @returns {Promise<Collection>} A collection that will yield {@link UserType} instances.
+   * @returns {Collection} A collection that will yield {@link UserType} instances.
    */
   listUserTypes() {
     let url = `${this.baseUrl}/api/v1/meta/types/user`;
@@ -4972,13 +5166,344 @@ class GeneratedApiClient {
 
   /**
    *
+   * @description
+   * Get settings of your organization.
+   * @returns {Promise<OrgSetting>}
+   */
+  getOrgSettings() {
+    let url = `${this.baseUrl}/api/v1/org`;
+
+    const resources = [];
+
+    const request = this.http.getJson(
+      url,
+      null,
+      { resources }
+    );
+    return request.then(jsonRes => new models.OrgSetting(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param {OrgSetting} orgSetting
+   * @description
+   * Partial update settings of your organization.
+   * @returns {Promise<OrgSetting>}
+   */
+  partialUpdateOrgSetting(orgSetting) {
+    if (!orgSetting) {
+      return Promise.reject(new Error('OKTA API partialUpdateOrgSetting parameter orgSetting is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/org`;
+
+    const resources = [];
+
+    const request = this.http.postJson(
+      url,
+      {
+        body: orgSetting
+      },
+      { resources }
+    );
+    return request.then(jsonRes => new models.OrgSetting(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param {OrgSetting} orgSetting
+   * @description
+   * Update settings of your organization.
+   * @returns {Promise<OrgSetting>}
+   */
+  updateOrgSetting(orgSetting) {
+    if (!orgSetting) {
+      return Promise.reject(new Error('OKTA API updateOrgSetting parameter orgSetting is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/org`;
+
+    const resources = [];
+
+    const request = this.http.putJson(
+      url,
+      {
+        body: orgSetting
+      },
+      { resources }
+    );
+    return request.then(jsonRes => new models.OrgSetting(jsonRes, this));
+  }
+
+  /**
+   *
+   * @description
+   * Gets Contact Types of your organization.
+   * @returns {Collection} A collection that will yield {@link OrgContactTypeObj} instances.
+   */
+  getOrgContactTypes() {
+    let url = `${this.baseUrl}/api/v1/org/contacts`;
+
+    return new Collection(
+      this,
+      url,
+      new ModelFactory(models.OrgContactTypeObj),
+    );
+  }
+
+  /**
+   *
+   * @param contactType {String}
+   * @description
+   * Retrieves the URL of the User associated with the specified Contact Type.
+   * @returns {Promise<OrgContactUser>}
+   */
+  getOrgContactUser(contactType) {
+    if (!contactType) {
+      return Promise.reject(new Error('OKTA API getOrgContactUser parameter contactType is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/org/contacts/${contactType}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/org/contacts/${contactType}`
+    ];
+
+    const request = this.http.getJson(
+      url,
+      null,
+      { resources }
+    );
+    return request.then(jsonRes => new models.OrgContactUser(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param contactType {String}
+   * @param {UserIdString} userIdString
+   * @description
+   * Updates the User associated with the specified Contact Type.
+   * @returns {Promise<OrgContactUser>}
+   */
+  updateOrgContactUser(contactType, userIdString) {
+    if (!contactType) {
+      return Promise.reject(new Error('OKTA API updateOrgContactUser parameter contactType is required.'));
+    }
+    if (!userIdString) {
+      return Promise.reject(new Error('OKTA API updateOrgContactUser parameter userIdString is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/org/contacts/${contactType}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/org/contacts/${contactType}`
+    ];
+
+    const request = this.http.putJson(
+      url,
+      {
+        body: userIdString
+      },
+      { resources }
+    );
+    return request.then(jsonRes => new models.OrgContactUser(jsonRes, this));
+  }
+
+  /**
+   *
+   * @description
+   * Gets preferences of your organization.
+   * @returns {Promise<OrgPreferences>}
+   */
+  getOrgPreferences() {
+    let url = `${this.baseUrl}/api/v1/org/preferences`;
+
+    const resources = [];
+
+    const request = this.http.getJson(
+      url,
+      null,
+      { resources }
+    );
+    return request.then(jsonRes => new models.OrgPreferences(jsonRes, this));
+  }
+
+  /**
+   *
+   * @description
+   * Hide the Okta UI footer for all end users of your organization.
+   * @returns {Promise<OrgPreferences>}
+   */
+  hideOktaUIFooter() {
+    let url = `${this.baseUrl}/api/v1/org/preferences/hideEndUserFooter`;
+
+    const resources = [];
+
+    const request = this.http.postJson(
+      url,
+      null,
+      { resources }
+    );
+    return request.then(jsonRes => new models.OrgPreferences(jsonRes, this));
+  }
+
+  /**
+   *
+   * @description
+   * Makes the Okta UI footer visible for all end users of your organization.
+   * @returns {Promise<OrgPreferences>}
+   */
+  showOktaUIFooter() {
+    let url = `${this.baseUrl}/api/v1/org/preferences/showEndUserFooter`;
+
+    const resources = [];
+
+    const request = this.http.postJson(
+      url,
+      null,
+      { resources }
+    );
+    return request.then(jsonRes => new models.OrgPreferences(jsonRes, this));
+  }
+
+  /**
+   *
+   * @description
+   * Gets Okta Communication Settings of your organization.
+   * @returns {Promise<OrgOktaCommunicationSetting>}
+   */
+  getOktaCommunicationSettings() {
+    let url = `${this.baseUrl}/api/v1/org/privacy/oktaCommunication`;
+
+    const resources = [];
+
+    const request = this.http.getJson(
+      url,
+      null,
+      { resources }
+    );
+    return request.then(jsonRes => new models.OrgOktaCommunicationSetting(jsonRes, this));
+  }
+
+  /**
+   *
+   * @description
+   * Opts in all users of this org to Okta Communication emails.
+   * @returns {Promise<OrgOktaCommunicationSetting>}
+   */
+  optInUsersToOktaCommunicationEmails() {
+    let url = `${this.baseUrl}/api/v1/org/privacy/oktaCommunication/optIn`;
+
+    const resources = [];
+
+    const request = this.http.postJson(
+      url,
+      null,
+      { resources }
+    );
+    return request.then(jsonRes => new models.OrgOktaCommunicationSetting(jsonRes, this));
+  }
+
+  /**
+   *
+   * @description
+   * Opts out all users of this org from Okta Communication emails.
+   * @returns {Promise<OrgOktaCommunicationSetting>}
+   */
+  optOutUsersFromOktaCommunicationEmails() {
+    let url = `${this.baseUrl}/api/v1/org/privacy/oktaCommunication/optOut`;
+
+    const resources = [];
+
+    const request = this.http.postJson(
+      url,
+      null,
+      { resources }
+    );
+    return request.then(jsonRes => new models.OrgOktaCommunicationSetting(jsonRes, this));
+  }
+
+  /**
+   *
+   * @description
+   * Gets Okta Support Settings of your organization.
+   * @returns {Promise<OrgOktaSupportSettingsObj>}
+   */
+  getOrgOktaSupportSettings() {
+    let url = `${this.baseUrl}/api/v1/org/privacy/oktaSupport`;
+
+    const resources = [];
+
+    const request = this.http.getJson(
+      url,
+      null,
+      { resources }
+    );
+    return request.then(jsonRes => new models.OrgOktaSupportSettingsObj(jsonRes, this));
+  }
+
+  /**
+   *
+   * @description
+   * Extends the length of time that Okta Support can access your org by 24 hours. This means that 24 hours are added to the remaining access time.
+   * @returns {Promise<OrgOktaSupportSettingsObj>}
+   */
+  extendOktaSupport() {
+    let url = `${this.baseUrl}/api/v1/org/privacy/oktaSupport/extend`;
+
+    const resources = [];
+
+    const request = this.http.postJson(
+      url,
+      null,
+      { resources }
+    );
+    return request.then(jsonRes => new models.OrgOktaSupportSettingsObj(jsonRes, this));
+  }
+
+  /**
+   *
+   * @description
+   * Enables you to temporarily allow Okta Support to access your org as an administrator for eight hours.
+   * @returns {Promise<OrgOktaSupportSettingsObj>}
+   */
+  grantOktaSupport() {
+    let url = `${this.baseUrl}/api/v1/org/privacy/oktaSupport/grant`;
+
+    const resources = [];
+
+    const request = this.http.postJson(
+      url,
+      null,
+      { resources }
+    );
+    return request.then(jsonRes => new models.OrgOktaSupportSettingsObj(jsonRes, this));
+  }
+
+  /**
+   *
+   * @description
+   * Revokes Okta Support access to your organization.
+   * @returns {Promise<OrgOktaSupportSettingsObj>}
+   */
+  revokeOktaSupport() {
+    let url = `${this.baseUrl}/api/v1/org/privacy/oktaSupport/revoke`;
+
+    const resources = [];
+
+    const request = this.http.postJson(
+      url,
+      null,
+      { resources }
+    );
+    return request.then(jsonRes => new models.OrgOktaSupportSettingsObj(jsonRes, this));
+  }
+
+  /**
+   *
    * @param {Object} queryParams Map of query parameters to add to this request
    * @param {String} [queryParams.type]
    * @param {String} [queryParams.status]
    * @param {String} [queryParams.expand]
    * @description
    * Gets all policies with the specified type.
-   * @returns {Promise<Collection>} A collection that will yield {@link AuthorizationServerPolicy} instances.
+   * @returns {Collection} A collection that will yield {@link Policy} instances.
    */
   listPolicies(queryParameters) {
     if (!queryParameters) {
@@ -4992,7 +5517,7 @@ class GeneratedApiClient {
     return new Collection(
       this,
       url,
-      new ModelFactory(models.AuthorizationServerPolicy),
+      new factories.Policy(),
     );
   }
 
@@ -5172,7 +5697,7 @@ class GeneratedApiClient {
    * @param policyId {String}
    * @description
    * Enumerates all policy rules.
-   * @returns {Promise<Collection>} A collection that will yield {@link PolicyRule} instances.
+   * @returns {Collection} A collection that will yield {@link PolicyRule} instances.
    */
   listPolicyRules(policyId) {
     if (!policyId) {
@@ -5484,7 +6009,7 @@ class GeneratedApiClient {
    * @param {String} [queryParams.templateType]
    * @description
    * Enumerates custom SMS templates in your organization. A subset of templates can be returned that match a template type.
-   * @returns {Promise<Collection>} A collection that will yield {@link SmsTemplate} instances.
+   * @returns {Collection} A collection that will yield {@link SmsTemplate} instances.
    */
   listSmsTemplates(queryParameters) {
     let url = `${this.baseUrl}/api/v1/templates/sms`;
@@ -5688,7 +6213,7 @@ class GeneratedApiClient {
    * @param {String} [queryParams.limit]
    * @description
    * Success
-   * @returns {Promise<Collection>} A collection that will yield {@link TrustedOrigin} instances.
+   * @returns {Collection} A collection that will yield {@link TrustedOrigin} instances.
    */
   listOrigins(queryParameters) {
     let url = `${this.baseUrl}/api/v1/trustedOrigins`;
@@ -5870,7 +6395,7 @@ class GeneratedApiClient {
    * @param {String} [queryParams.sortOrder]
    * @description
    * Lists users in your organization with pagination in most cases.  A subset of users can be returned that match a supported filter expression or search criteria.
-   * @returns {Promise<Collection>} A collection that will yield {@link User} instances.
+   * @returns {Collection} A collection that will yield {@link User} instances.
    */
   listUsers(queryParameters) {
     let url = `${this.baseUrl}/api/v1/users`;
@@ -6086,7 +6611,7 @@ class GeneratedApiClient {
    * @param userId {String}
    * @description
    * Fetches appLinks for all direct or indirect (via group membership) assigned applications.
-   * @returns {Promise<Collection>} A collection that will yield {@link AppLink} instances.
+   * @returns {Collection} A collection that will yield {@link AppLink} instances.
    */
   listAppLinks(userId) {
     if (!userId) {
@@ -6106,7 +6631,7 @@ class GeneratedApiClient {
    * @param userId {String}
    * @description
    * Lists all client resources for which the specified user has grants or tokens.
-   * @returns {Promise<Collection>} A collection that will yield {@link OAuth2Client} instances.
+   * @returns {Collection} A collection that will yield {@link OAuth2Client} instances.
    */
   listUserClients(userId) {
     if (!userId) {
@@ -6160,7 +6685,7 @@ class GeneratedApiClient {
    * @param {String} [queryParams.limit]
    * @description
    * Lists all grants for a specified user and client
-   * @returns {Promise<Collection>} A collection that will yield {@link OAuth2ScopeConsentGrant} instances.
+   * @returns {Collection} A collection that will yield {@link OAuth2ScopeConsentGrant} instances.
    */
   listGrantsForUserAndClient(userId, clientId, queryParameters) {
     if (!userId) {
@@ -6220,7 +6745,7 @@ class GeneratedApiClient {
    * @param {String} [queryParams.limit]
    * @description
    * Lists all refresh tokens issued for the specified User and Client.
-   * @returns {Promise<Collection>} A collection that will yield {@link OAuth2RefreshToken} instances.
+   * @returns {Collection} A collection that will yield {@link OAuth2RefreshToken} instances.
    */
   listRefreshTokensForUserAndClient(userId, clientId, queryParameters) {
     if (!userId) {
@@ -6455,7 +6980,7 @@ class GeneratedApiClient {
    * @param userId {String}
    * @description
    * Enumerates all the enrolled factors for the specified user
-   * @returns {Promise<Collection>} A collection that will yield {@link UserFactor} instances.
+   * @returns {Collection} A collection that will yield {@link UserFactor} instances.
    */
   listFactors(userId) {
     if (!userId) {
@@ -6514,7 +7039,7 @@ class GeneratedApiClient {
    * @param userId {String}
    * @description
    * Enumerates all the supported factors that can be enrolled for the specified user
-   * @returns {Promise<Collection>} A collection that will yield {@link UserFactor} instances.
+   * @returns {Collection} A collection that will yield {@link UserFactor} instances.
    */
   listSupportedFactors(userId) {
     if (!userId) {
@@ -6534,7 +7059,7 @@ class GeneratedApiClient {
    * @param userId {String}
    * @description
    * Enumerates all available security questions for a user's `question` factor
-   * @returns {Promise<Collection>} A collection that will yield {@link SecurityQuestion} instances.
+   * @returns {Collection} A collection that will yield {@link SecurityQuestion} instances.
    */
   listSupportedSecurityQuestions(userId) {
     if (!userId) {
@@ -6749,7 +7274,7 @@ class GeneratedApiClient {
    * @param {String} [queryParams.limit]
    * @description
    * Lists all grants for the specified user
-   * @returns {Promise<Collection>} A collection that will yield {@link OAuth2ScopeConsentGrant} instances.
+   * @returns {Collection} A collection that will yield {@link OAuth2ScopeConsentGrant} instances.
    */
   listUserGrants(userId, queryParameters) {
     if (!userId) {
@@ -6836,7 +7361,7 @@ class GeneratedApiClient {
    * @param userId {String}
    * @description
    * Fetches the groups of which the user is a member.
-   * @returns {Promise<Collection>} A collection that will yield {@link Group} instances.
+   * @returns {Collection} A collection that will yield {@link Group} instances.
    */
   listUserGroups(userId) {
     if (!userId) {
@@ -6856,7 +7381,7 @@ class GeneratedApiClient {
    * @param userId {String}
    * @description
    * Lists the IdPs associated with the user.
-   * @returns {Promise<Collection>} A collection that will yield {@link IdentityProvider} instances.
+   * @returns {Collection} A collection that will yield {@link IdentityProvider} instances.
    */
   listUserIdentityProviders(userId) {
     if (!userId) {
@@ -7200,7 +7725,7 @@ class GeneratedApiClient {
    * @param {String} [queryParams.limit]
    * @description
    * Get linked objects for a user, relationshipName can be a primary or associated relationship name
-   * @returns {Promise<Collection>} A collection that will yield {@link ResponseLinks} instances.
+   * @returns {Collection} A collection that will yield {@link ResponseLinks} instances.
    */
   getLinkedObjectsForUser(userId, relationshipName, queryParameters) {
     if (!userId) {
@@ -7228,7 +7753,7 @@ class GeneratedApiClient {
    * @param {String} [queryParams.expand]
    * @description
    * Lists all roles assigned to a user.
-   * @returns {Promise<Collection>} A collection that will yield {@link Role} instances.
+   * @returns {Collection} A collection that will yield {@link Role} instances.
    */
   listAssignedRolesForUser(userId, queryParameters) {
     if (!userId) {
@@ -7315,12 +7840,42 @@ class GeneratedApiClient {
    *
    * @param userId {String}
    * @param roleId {String}
+   * @description
+   * Gets role that is assigne to user.
+   * @returns {Promise<Role>}
+   */
+  getUserRole(userId, roleId) {
+    if (!userId) {
+      return Promise.reject(new Error('OKTA API getUserRole parameter userId is required.'));
+    }
+    if (!roleId) {
+      return Promise.reject(new Error('OKTA API getUserRole parameter roleId is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/users/${userId}/roles/${roleId}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/users/${userId}/roles/${roleId}`,
+      `${this.baseUrl}/api/v1/users/${userId}`
+    ];
+
+    const request = this.http.getJson(
+      url,
+      null,
+      { resources }
+    );
+    return request.then(jsonRes => new models.Role(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param userId {String}
+   * @param roleId {String}
    * @param {Object} queryParams Map of query parameters to add to this request
    * @param {String} [queryParams.after]
    * @param {String} [queryParams.limit]
    * @description
    * Lists all App targets for an `APP_ADMIN` Role assigned to a User. This methods return list may include full Applications or Instances. The response for an instance will have an `ID` value, while Application will not have an ID.
-   * @returns {Promise<Collection>} A collection that will yield {@link CatalogApplication} instances.
+   * @returns {Collection} A collection that will yield {@link CatalogApplication} instances.
    */
   listApplicationTargetsForApplicationAdministratorRoleForUser(userId, roleId, queryParameters) {
     if (!userId) {
@@ -7537,7 +8092,7 @@ class GeneratedApiClient {
    * @param {String} [queryParams.limit]
    * @description
    * Success
-   * @returns {Promise<Collection>} A collection that will yield {@link Group} instances.
+   * @returns {Collection} A collection that will yield {@link Group} instances.
    */
   listGroupTargetsForRole(userId, roleId, queryParameters) {
     if (!userId) {
@@ -7667,7 +8222,7 @@ class GeneratedApiClient {
    * @param {String} [queryParams.filter]
    * @description
    * Enumerates network zones added to your organization with pagination. A subset of zones can be returned that match a supported filter expression or query.
-   * @returns {Promise<Collection>} A collection that will yield {@link NetworkZone} instances.
+   * @returns {Collection} A collection that will yield {@link NetworkZone} instances.
    */
   listNetworkZones(queryParameters) {
     let url = `${this.baseUrl}/api/v1/zones`;
@@ -7792,6 +8347,7 @@ class GeneratedApiClient {
    * @param zoneId {String}
    * @description
    * Activate Network Zone
+   * @returns {Promise<NetworkZone>}
    */
   activateNetworkZone(zoneId) {
     if (!zoneId) {
@@ -7803,16 +8359,12 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/zones/${zoneId}`
     ];
 
-    const request = this.http.post(
+    const request = this.http.postJson(
       url,
-      {
-        headers: {
-          'Content-Type': 'application/json', 'Accept': 'application/json',
-        },
-      },
+      null,
       { resources }
     );
-    return request;
+    return request.then(jsonRes => new models.NetworkZone(jsonRes, this));
   }
 
   /**
@@ -7820,6 +8372,7 @@ class GeneratedApiClient {
    * @param zoneId {String}
    * @description
    * Deactivates a network zone.
+   * @returns {Promise<NetworkZone>}
    */
   deactivateNetworkZone(zoneId) {
     if (!zoneId) {
@@ -7831,16 +8384,12 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/zones/${zoneId}`
     ];
 
-    const request = this.http.post(
+    const request = this.http.postJson(
       url,
-      {
-        headers: {
-          'Content-Type': 'application/json', 'Accept': 'application/json',
-        },
-      },
+      null,
       { resources }
     );
-    return request;
+    return request.then(jsonRes => new models.NetworkZone(jsonRes, this));
   }
 
 }

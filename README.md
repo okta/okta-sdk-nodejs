@@ -897,6 +897,18 @@ const application: BookmarkApplication = client.createApplication(applicationOpt
 
 ## Migrating between versions
 
+### From 5.x to 6.0
+
+#### Breaking changes
+
+Enum types from the spec are accounted for: repspective JS models are converted to enum-like modules.
+
+Following Client methods signatures have changed:
+ - `listPolicies` returns `Promise<Policy>`
+ - `activateNetworkZone` returns `Promise<NetworkZone>`
+ - `deactivateNetworkZone` returns `Promise<NetworkZone>`
+ - `listGroups` no longer accepts `filter` parameter trhough `queryParameters`
+
 ### From 4.x to 5.0
 
 The version 5.0 of this SDK dropped support for Node 10, which is EOL (End-of-Life) since 2021-04-30. Current supported minimum Node version is 12.0.0.

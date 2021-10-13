@@ -13,19 +13,10 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-import { Resource } from '../resource';
-import { Client } from '../client';
-
-
-declare class ApplicationCredentialsSigningUse extends Resource {
-  constructor(resourceJson: string, client: Client);
-
-
+declare enum ApplicationCredentialsSigningUse {
+  SIG = 'sig',
 }
 
-type ApplicationCredentialsSigningUseOptions = Record<string, unknown>;
-
 export {
-  ApplicationCredentialsSigningUse,
-  ApplicationCredentialsSigningUseOptions
+  ApplicationCredentialsSigningUse
 };

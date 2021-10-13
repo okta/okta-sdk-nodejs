@@ -1,0 +1,12 @@
+{{!-- The template file is not auto-generated - this banner is to be included into destination files --}}
+/* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
+
+declare enum {{modelName}} {
+  {{#each enum}}
+  {{toEnumKey this}} = '{{this}}',
+  {{/each}}
+}
+
+export {
+  {{modelName}}
+};

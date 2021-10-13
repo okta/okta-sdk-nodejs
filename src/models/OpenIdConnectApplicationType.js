@@ -13,19 +13,12 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-var Resource = require('../resource');
-
-
-/**
- * @class OpenIdConnectApplicationType
- * @extends Resource
- */
-class OpenIdConnectApplicationType extends Resource {
-  constructor(resourceJson, client) {
-    super(resourceJson, client);
-
-  }
-
-}
+var OpenIdConnectApplicationType;
+(function (OpenIdConnectApplicationType) {
+  OpenIdConnectApplicationType['WEB'] = 'web';
+  OpenIdConnectApplicationType['NATIVE'] = 'native';
+  OpenIdConnectApplicationType['BROWSER'] = 'browser';
+  OpenIdConnectApplicationType['SERVICE'] = 'service';
+}(OpenIdConnectApplicationType || (OpenIdConnectApplicationType = {})));
 
 module.exports = OpenIdConnectApplicationType;

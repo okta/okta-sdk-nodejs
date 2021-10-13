@@ -56,7 +56,7 @@ class AuthorizationServerPolicy extends Resource {
 
   /**
    * @param {string} authServerId
-   * @returns {Promise<Collection>} A collection that will yield {@link AuthorizationServerPolicyRule} instances.
+   * @returns {Collection} A collection that will yield {@link AuthorizationServerPolicyRule} instances.
    */
   listPolicyRules(authServerId) {
     return this.httpClient.listAuthorizationServerPolicyRules(this.id, authServerId);

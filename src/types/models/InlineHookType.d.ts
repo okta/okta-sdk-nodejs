@@ -13,19 +13,14 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-import { Resource } from '../resource';
-import { Client } from '../client';
-
-
-declare class InlineHookType extends Resource {
-  constructor(resourceJson: string, client: Client);
-
-
+declare enum InlineHookType {
+  COM_OKTA_OAUTH2_TOKENS_TRANSFORM = 'com.okta.oauth2.tokens.transform',
+  COM_OKTA_IMPORT_TRANSFORM = 'com.okta.import.transform',
+  COM_OKTA_SAML_TOKENS_TRANSFORM = 'com.okta.saml.tokens.transform',
+  COM_OKTA_USER_PRE_REGISTRATION = 'com.okta.user.pre-registration',
+  COM_OKTA_USER_CREDENTIAL_PASSWORD_IMPORT = 'com.okta.user.credential.password.import',
 }
 
-type InlineHookTypeOptions = Record<string, unknown>;
-
 export {
-  InlineHookType,
-  InlineHookTypeOptions
+  InlineHookType
 };

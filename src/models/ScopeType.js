@@ -13,19 +13,10 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-var Resource = require('../resource');
-
-
-/**
- * @class ScopeType
- * @extends Resource
- */
-class ScopeType extends Resource {
-  constructor(resourceJson, client) {
-    super(resourceJson, client);
-
-  }
-
-}
+var ScopeType;
+(function (ScopeType) {
+  ScopeType['CORS'] = 'CORS';
+  ScopeType['REDIRECT'] = 'REDIRECT';
+}(ScopeType || (ScopeType = {})));
 
 module.exports = ScopeType;

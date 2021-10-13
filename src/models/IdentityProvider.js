@@ -53,7 +53,7 @@ class IdentityProvider extends Resource {
   }
 
   /**
-   * @returns {Promise<Collection>} A collection that will yield {@link Csr} instances.
+   * @returns {Collection} A collection that will yield {@link Csr} instances.
    */
   listSigningCsrs() {
     return this.httpClient.listCsrsForIdentityProvider(this.id);
@@ -83,7 +83,7 @@ class IdentityProvider extends Resource {
   }
 
   /**
-   * @returns {Promise<Collection>} A collection that will yield {@link JsonWebKey} instances.
+   * @returns {Collection} A collection that will yield {@link JsonWebKey} instances.
    */
   listSigningKeys() {
     return this.httpClient.listIdentityProviderSigningKeys(this.id);
@@ -129,7 +129,7 @@ class IdentityProvider extends Resource {
   }
 
   /**
-   * @returns {Promise<Collection>} A collection that will yield {@link IdentityProviderApplicationUser} instances.
+   * @returns {Collection} A collection that will yield {@link IdentityProviderApplicationUser} instances.
    */
   listUsers() {
     return this.httpClient.listIdentityProviderApplicationUsers(this.id);
@@ -161,7 +161,7 @@ class IdentityProvider extends Resource {
 
   /**
    * @param {string} userId
-   * @returns {Promise<Collection>} A collection that will yield {@link SocialAuthToken} instances.
+   * @returns {Collection} A collection that will yield {@link SocialAuthToken} instances.
    */
   listSocialAuthTokens(userId) {
     return this.httpClient.listSocialAuthTokens(this.id, userId);

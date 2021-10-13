@@ -17,6 +17,7 @@ import { Resource } from '../resource';
 import { Client } from '../client';
 import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { ApplicationSettingsApplication } from './ApplicationSettingsApplication';
+import { ApplicationSettingsNotes } from './ApplicationSettingsNotes';
 import { ApplicationSettingsNotifications } from './ApplicationSettingsNotifications';
 
 declare class ApplicationSettings extends Resource {
@@ -25,6 +26,7 @@ declare class ApplicationSettings extends Resource {
   app: ApplicationSettingsApplication;
   implicitAssignment: boolean;
   inlineHookId: string;
+  notes: ApplicationSettingsNotes;
   notifications: ApplicationSettingsNotifications;
 
 }

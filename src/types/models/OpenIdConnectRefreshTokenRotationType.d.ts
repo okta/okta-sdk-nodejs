@@ -13,19 +13,11 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-import { Resource } from '../resource';
-import { Client } from '../client';
-
-
-declare class OpenIdConnectRefreshTokenRotationType extends Resource {
-  constructor(resourceJson: string, client: Client);
-
-
+declare enum OpenIdConnectRefreshTokenRotationType {
+  ROTATE = 'rotate',
+  STATIC = 'static',
 }
 
-type OpenIdConnectRefreshTokenRotationTypeOptions = Record<string, unknown>;
-
 export {
-  OpenIdConnectRefreshTokenRotationType,
-  OpenIdConnectRefreshTokenRotationTypeOptions
+  OpenIdConnectRefreshTokenRotationType
 };

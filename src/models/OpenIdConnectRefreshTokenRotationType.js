@@ -13,19 +13,10 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-var Resource = require('../resource');
-
-
-/**
- * @class OpenIdConnectRefreshTokenRotationType
- * @extends Resource
- */
-class OpenIdConnectRefreshTokenRotationType extends Resource {
-  constructor(resourceJson, client) {
-    super(resourceJson, client);
-
-  }
-
-}
+var OpenIdConnectRefreshTokenRotationType;
+(function (OpenIdConnectRefreshTokenRotationType) {
+  OpenIdConnectRefreshTokenRotationType['ROTATE'] = 'rotate';
+  OpenIdConnectRefreshTokenRotationType['STATIC'] = 'static';
+}(OpenIdConnectRefreshTokenRotationType || (OpenIdConnectRefreshTokenRotationType = {})));
 
 module.exports = OpenIdConnectRefreshTokenRotationType;

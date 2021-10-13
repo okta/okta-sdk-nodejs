@@ -13,19 +13,11 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-import { Resource } from '../resource';
-import { Client } from '../client';
-
-
-declare class OAuth2ScopeConsentGrantStatus extends Resource {
-  constructor(resourceJson: string, client: Client);
-
-
+declare enum OAuth2ScopeConsentGrantStatus {
+  ACTIVE = 'ACTIVE',
+  REVOKED = 'REVOKED',
 }
 
-type OAuth2ScopeConsentGrantStatusOptions = Record<string, unknown>;
-
 export {
-  OAuth2ScopeConsentGrantStatus,
-  OAuth2ScopeConsentGrantStatusOptions
+  OAuth2ScopeConsentGrantStatus
 };

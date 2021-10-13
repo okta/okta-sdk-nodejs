@@ -15,6 +15,7 @@
 
 var Resource = require('../resource');
 const ApplicationSettingsApplication = require('./ApplicationSettingsApplication');
+const ApplicationSettingsNotes = require('./ApplicationSettingsNotes');
 const ApplicationSettingsNotifications = require('./ApplicationSettingsNotifications');
 
 /**
@@ -23,6 +24,7 @@ const ApplicationSettingsNotifications = require('./ApplicationSettingsNotificat
  * @property { ApplicationSettingsApplication } app
  * @property { boolean } implicitAssignment
  * @property { string } inlineHookId
+ * @property { ApplicationSettingsNotes } notes
  * @property { ApplicationSettingsNotifications } notifications
  */
 class ApplicationSettings extends Resource {
@@ -30,6 +32,9 @@ class ApplicationSettings extends Resource {
     super(resourceJson, client);
     if (resourceJson && resourceJson.app) {
       this.app = new ApplicationSettingsApplication(resourceJson.app);
+    }
+    if (resourceJson && resourceJson.notes) {
+      this.notes = new ApplicationSettingsNotes(resourceJson.notes);
     }
     if (resourceJson && resourceJson.notifications) {
       this.notifications = new ApplicationSettingsNotifications(resourceJson.notifications);

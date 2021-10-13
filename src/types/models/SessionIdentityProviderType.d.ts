@@ -13,19 +13,14 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-import { Resource } from '../resource';
-import { Client } from '../client';
-
-
-declare class SessionIdentityProviderType extends Resource {
-  constructor(resourceJson: string, client: Client);
-
-
+declare enum SessionIdentityProviderType {
+  ACTIVE_DIRECTORY = 'ACTIVE_DIRECTORY',
+  LDAP = 'LDAP',
+  OKTA = 'OKTA',
+  FEDERATION = 'FEDERATION',
+  SOCIAL = 'SOCIAL',
 }
 
-type SessionIdentityProviderTypeOptions = Record<string, unknown>;
-
 export {
-  SessionIdentityProviderType,
-  SessionIdentityProviderTypeOptions
+  SessionIdentityProviderType
 };

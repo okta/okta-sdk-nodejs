@@ -13,19 +13,11 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-import { Resource } from '../resource';
-import { Client } from '../client';
-
-
-declare class RoleStatus extends Resource {
-  constructor(resourceJson: string, client: Client);
-
-
+declare enum RoleStatus {
+  ACTIVE = 'ACTIVE',
+  INACTIVE = 'INACTIVE',
 }
 
-type RoleStatusOptions = Record<string, unknown>;
-
 export {
-  RoleStatus,
-  RoleStatusOptions
+  RoleStatus
 };

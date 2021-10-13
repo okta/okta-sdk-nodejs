@@ -17,6 +17,7 @@ import { Resource } from '../resource';
 import { Client } from '../client';
 import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { UserSchemaDefinitions } from './UserSchemaDefinitions';
+import { UserSchemaProperties } from './UserSchemaProperties';
 
 declare class UserSchema extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
@@ -28,7 +29,7 @@ declare class UserSchema extends Resource {
   readonly id: string;
   readonly lastUpdated: string;
   readonly name: string;
-  readonly properties: {[name: string]: unknown};
+  readonly properties: UserSchemaProperties;
   title: string;
   readonly type: string;
 

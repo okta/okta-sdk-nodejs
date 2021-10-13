@@ -13,19 +13,17 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-import { Resource } from '../resource';
-import { Client } from '../client';
-
-
-declare class FactorProvider extends Resource {
-  constructor(resourceJson: string, client: Client);
-
-
+declare enum FactorProvider {
+  OKTA = 'OKTA',
+  RSA = 'RSA',
+  FIDO = 'FIDO',
+  GOOGLE = 'GOOGLE',
+  SYMANTEC = 'SYMANTEC',
+  DUO = 'DUO',
+  YUBICO = 'YUBICO',
+  CUSTOM = 'CUSTOM',
 }
 
-type FactorProviderOptions = Record<string, unknown>;
-
 export {
-  FactorProvider,
-  FactorProviderOptions
+  FactorProvider
 };

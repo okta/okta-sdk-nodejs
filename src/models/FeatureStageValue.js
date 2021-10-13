@@ -13,19 +13,10 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-var Resource = require('../resource');
-
-
-/**
- * @class FeatureStageValue
- * @extends Resource
- */
-class FeatureStageValue extends Resource {
-  constructor(resourceJson, client) {
-    super(resourceJson, client);
-
-  }
-
-}
+var FeatureStageValue;
+(function (FeatureStageValue) {
+  FeatureStageValue['EA'] = 'EA';
+  FeatureStageValue['BETA'] = 'BETA';
+}(FeatureStageValue || (FeatureStageValue = {})));
 
 module.exports = FeatureStageValue;

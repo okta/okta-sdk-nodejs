@@ -13,19 +13,18 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-var Resource = require('../resource');
-
-
-/**
- * @class RoleType
- * @extends Resource
- */
-class RoleType extends Resource {
-  constructor(resourceJson, client) {
-    super(resourceJson, client);
-
-  }
-
-}
+var RoleType;
+(function (RoleType) {
+  RoleType['SUPER_ADMIN'] = 'SUPER_ADMIN';
+  RoleType['ORG_ADMIN'] = 'ORG_ADMIN';
+  RoleType['APP_ADMIN'] = 'APP_ADMIN';
+  RoleType['USER_ADMIN'] = 'USER_ADMIN';
+  RoleType['HELP_DESK_ADMIN'] = 'HELP_DESK_ADMIN';
+  RoleType['READ_ONLY_ADMIN'] = 'READ_ONLY_ADMIN';
+  RoleType['MOBILE_ADMIN'] = 'MOBILE_ADMIN';
+  RoleType['API_ACCESS_MANAGEMENT_ADMIN'] = 'API_ACCESS_MANAGEMENT_ADMIN';
+  RoleType['REPORT_ADMIN'] = 'REPORT_ADMIN';
+  RoleType['GROUP_MEMBERSHIP_ADMIN'] = 'GROUP_MEMBERSHIP_ADMIN';
+}(RoleType || (RoleType = {})));
 
 module.exports = RoleType;

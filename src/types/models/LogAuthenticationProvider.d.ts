@@ -13,19 +13,15 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-import { Resource } from '../resource';
-import { Client } from '../client';
-
-
-declare class LogAuthenticationProvider extends Resource {
-  constructor(resourceJson: string, client: Client);
-
-
+declare enum LogAuthenticationProvider {
+  OKTA_AUTHENTICATION_PROVIDER = 'OKTA_AUTHENTICATION_PROVIDER',
+  ACTIVE_DIRECTORY = 'ACTIVE_DIRECTORY',
+  LDAP = 'LDAP',
+  FEDERATION = 'FEDERATION',
+  SOCIAL = 'SOCIAL',
+  FACTOR_PROVIDER = 'FACTOR_PROVIDER',
 }
 
-type LogAuthenticationProviderOptions = Record<string, unknown>;
-
 export {
-  LogAuthenticationProvider,
-  LogAuthenticationProviderOptions
+  LogAuthenticationProvider
 };

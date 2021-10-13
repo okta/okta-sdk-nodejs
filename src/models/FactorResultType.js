@@ -13,19 +13,18 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-var Resource = require('../resource');
-
-
-/**
- * @class FactorResultType
- * @extends Resource
- */
-class FactorResultType extends Resource {
-  constructor(resourceJson, client) {
-    super(resourceJson, client);
-
-  }
-
-}
+var FactorResultType;
+(function (FactorResultType) {
+  FactorResultType['SUCCESS'] = 'SUCCESS';
+  FactorResultType['CHALLENGE'] = 'CHALLENGE';
+  FactorResultType['WAITING'] = 'WAITING';
+  FactorResultType['FAILED'] = 'FAILED';
+  FactorResultType['REJECTED'] = 'REJECTED';
+  FactorResultType['TIMEOUT'] = 'TIMEOUT';
+  FactorResultType['TIME_WINDOW_EXCEEDED'] = 'TIME_WINDOW_EXCEEDED';
+  FactorResultType['PASSCODE_REPLAYED'] = 'PASSCODE_REPLAYED';
+  FactorResultType['ERROR'] = 'ERROR';
+  FactorResultType['CANCELLED'] = 'CANCELLED';
+}(FactorResultType || (FactorResultType = {})));
 
 module.exports = FactorResultType;

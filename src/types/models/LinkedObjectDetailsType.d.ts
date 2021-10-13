@@ -13,19 +13,10 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-import { Resource } from '../resource';
-import { Client } from '../client';
-
-
-declare class LinkedObjectDetailsType extends Resource {
-  constructor(resourceJson: string, client: Client);
-
-
+declare enum LinkedObjectDetailsType {
+  USER = 'USER',
 }
 
-type LinkedObjectDetailsTypeOptions = Record<string, unknown>;
-
 export {
-  LinkedObjectDetailsType,
-  LinkedObjectDetailsTypeOptions
+  LinkedObjectDetailsType
 };

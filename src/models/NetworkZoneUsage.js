@@ -13,19 +13,10 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-var Resource = require('../resource');
-
-
-/**
- * @class NetworkZoneUsage
- * @extends Resource
- */
-class NetworkZoneUsage extends Resource {
-  constructor(resourceJson, client) {
-    super(resourceJson, client);
-
-  }
-
-}
+var NetworkZoneUsage;
+(function (NetworkZoneUsage) {
+  NetworkZoneUsage['POLICY'] = 'POLICY';
+  NetworkZoneUsage['BLOCKLIST'] = 'BLOCKLIST';
+}(NetworkZoneUsage || (NetworkZoneUsage = {})));
 
 module.exports = NetworkZoneUsage;

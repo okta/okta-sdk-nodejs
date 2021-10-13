@@ -13,19 +13,11 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-var Resource = require('../resource');
-
-
-/**
- * @class GroupType
- * @extends Resource
- */
-class GroupType extends Resource {
-  constructor(resourceJson, client) {
-    super(resourceJson, client);
-
-  }
-
-}
+var GroupType;
+(function (GroupType) {
+  GroupType['OKTA_GROUP'] = 'OKTA_GROUP';
+  GroupType['APP_GROUP'] = 'APP_GROUP';
+  GroupType['BUILT_IN'] = 'BUILT_IN';
+}(GroupType || (GroupType = {})));
 
 module.exports = GroupType;

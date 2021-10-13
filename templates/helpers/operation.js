@@ -25,6 +25,7 @@ const RESTRICTED_MODEL_PROPERTY_OVERRIDES = {
 
 const KNOWN_CONFLICTING_PROPERTY_NAMES = {
   UserFactor: ['verify'],
+  OrgPreferences: ['showEndUserFooter']
 };
 
 const PROPERTY_NAME_CHARACTERS_REQUIRE_ESCAPING = ['#'];
@@ -109,15 +110,16 @@ const getRequiredOperationParams = operation => {
   return getOperationArgument(operation).shift();
 };
 
-const getHttpMethod = ({ consumes, produces, method, responseModel }) => {
+const getHttpMethod = ({ consumes, produces, method, responseModel, parameters = [] }) => {
   let res;
+  const hasModelParameterInBody = parameters.some(parameter => parameter.in === 'body' && parameter.schema && parameter.schema.$ref);
   switch (method) {
     case 'get':
       res = 'getJson';
       break;
     case 'post':
     case 'put':
-      if (consumes.includes('application/json') && produces.includes('application/json') && responseModel) {
+      if (consumes.includes('application/json') && produces.includes('application/json') && (responseModel || hasModelParameterInBody)) {
         res = `${method}Json`;
       } else {
         res = method;
@@ -182,7 +184,7 @@ const jsdocBuilder = (operation) => {
 
   if (operation.responseModel) {
     if (operation.isArray) {
-      lines.push(`   * @returns {Promise<Collection>} A collection that will yield {@link ${operation.responseModel}} instances.`);
+      lines.push(`   * @returns {Collection} A collection that will yield {@link ${operation.responseModel}} instances.`);
     } else {
       lines.push(`   * @returns {Promise<${operation.responseModel}>}`);
     }
@@ -343,22 +345,28 @@ const isRestrictedPropertyOverride = (modelName, propertyName) => {
   return RESTRICTED_MODEL_PROPERTY_OVERRIDES[modelName] &&
     RESTRICTED_MODEL_PROPERTY_OVERRIDES[modelName].includes(propertyName);
 };
-const isImportableType = type =>
-  !MODELS_SHOULD_NOT_PROCESS.includes(type) && !Array.isArray(type);
+const isImportableType = type => {
+  // query parameters are converted into array of parameter types
+  return !MODELS_SHOULD_NOT_PROCESS.includes(type) && !Array.isArray(type);
+};
+
+const isConflictingPropertyName = (modelName, propertyName) =>
+  KNOWN_CONFLICTING_PROPERTY_NAMES[modelName] &&
+    KNOWN_CONFLICTING_PROPERTY_NAMES[modelName].includes(propertyName);
+
+const containsRestrictedChars = (propertyName) =>
+  PROPERTY_NAME_CHARACTERS_REQUIRE_ESCAPING.find(char => propertyName.includes(char));
 
 const sanitizeModelPropertyName = (modelName, propertyName) => {
   let sanitizedPropertyName = propertyName;
 
-  const containsRestrictedChars =
-    PROPERTY_NAME_CHARACTERS_REQUIRE_ESCAPING.find(char => propertyName.includes(char));
 
-  if (KNOWN_CONFLICTING_PROPERTY_NAMES[modelName] &&
-      KNOWN_CONFLICTING_PROPERTY_NAMES[modelName].includes(propertyName)) {
-    sanitizedPropertyName = `_${propertyName}`;
+  if (containsRestrictedChars(propertyName)) {
+    sanitizedPropertyName = `'${propertyName}'`;
   }
 
-  if (containsRestrictedChars) {
-    sanitizedPropertyName = `'${propertyName}'`;
+  if (isConflictingPropertyName(modelName, propertyName)) {
+    sanitizedPropertyName = `_${propertyName}`;
   }
 
   return sanitizedPropertyName;
@@ -382,6 +390,8 @@ module.exports = {
   typeScriptModelMethodSignatureBuilder,
   typeScriptClientImportBuilder,
   sanitizeModelPropertyName,
+  containsRestrictedChars,
+  isConflictingPropertyName,
   isImportablePropertyType,
   isRestrictedPropertyOverride,
   shouldGenerateOptionsType,

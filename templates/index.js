@@ -1,4 +1,5 @@
 const _ = require('lodash');
+const { isConflictingPropertyName, containsRestrictedChars } = require('./helpers/operation');
 const js = module.exports;
 const operationUtils = require('./helpers/operation');
 const { convertSwaggerToTSType } = require('./helpers/typescript-formatter');
@@ -11,10 +12,21 @@ const { convertSwaggerToTSType } = require('./helpers/typescript-formatter');
 class ModelResolver {
   constructor(models) {
     this.models = models;
+    this.enums = new Set();
+    models.forEach(model => {
+      if (model.enum) {
+        this.enums.add(model.modelName);
+      }
+    });
   }
+
   getByName(name) {
     const match = this.models.filter(model => model.modelName === name);
     return match && match[0];
+  }
+
+  isEnum(name) {
+    return this.enums.has(name);
   }
 }
 
@@ -66,14 +78,21 @@ js.process = ({spec, operations, models, handlebars}) => {
 
   // add all the models and any related factories
   for (let model of models) {
+    let jsTemplateName = 'model.js.hbs';
+    let dtsTemplateName = 'model.d.ts.hbs';
+    if (model.enum) {
+      jsTemplateName = 'enum.js.hbs';
+      dtsTemplateName = 'enum.d.ts.hbs';
+    }
+
     templates.push({
-      src: 'model.js.hbs',
+      src: jsTemplateName,
       dest: `src/models/${model.modelName}.js`,
       context: model
     });
 
     templates.push({
-      src: 'model.d.ts.hbs',
+      src: dtsTemplateName,
       dest: `src/types/models/${model.modelName}.d.ts`,
       context: model
     });
@@ -126,42 +145,60 @@ js.process = ({spec, operations, models, handlebars}) => {
     return new handlebars.SafeString(path);
   });
 
-  handlebars.registerHelper('modelImportBuilder', (model) => {
+  handlebars.registerHelper('modelImportBuilder', function (modelResolver, model) {
     if (!model.properties) {
       return;
     }
     const importStatements = new Set();
     model.properties.forEach(property => {
       const shouldProcess = operationUtils.isImportablePropertyType(property, model.modelName);
-      if (shouldProcess && !property.isEnum) {
+      const isEnum = property.isEnum || modelResolver.isEnum(property.model);
+      if (shouldProcess && !isEnum) {
         importStatements.add(`const ${property.model} = require('./${property.model}');`);
       }
     });
     return Array.from(importStatements).join('\n');
-  });
+  }.bind(null, modelResolver));
 
-  handlebars.registerHelper('propertyCastBuilder', (model) => {
+  handlebars.registerHelper('propertyCastBuilder', function (modelResolver, model) {
     if (!model.properties) {
       return;
     }
     const constructorStatements = [];
+
     model.properties.forEach(property => {
-      const shouldProcess = operationUtils.isImportablePropertyType(property, model.modelName);
-      if (!shouldProcess || property.isEnum) {
-        return;
+      let propertyName = property.propertyName;
+      let dedupedPropertyName = propertyName;
+
+      const propertyAccessor = propName => containsRestrictedChars(propName) ? `['${propName}']` : `.${propName}`;
+      let propertyExistsOrHasTruthyValue = propName => `resourceJson${propertyAccessor(propName)}`;
+      let isConflicting = isConflictingPropertyName(model.modelName, propertyName);
+      if (isConflicting) {
+        dedupedPropertyName = `_${propertyName}`;
+        // for confilicting properties with primitive types, property value `false` can be misinterpreted as a non-existing property
+        propertyExistsOrHasTruthyValue = propName => `Object.prototype.hasOwnProperty.call(resourceJson, '${propName}')`;
+        // remove property set by parent Resource class
+        constructorStatements.push(`    delete this['${property.propertyName}'];`);
       }
 
-      constructorStatements.push(`    if (resourceJson && resourceJson.${property.propertyName}) {`);
-      if (property.isArray) {
-        constructorStatements.push(`      this.${property.propertyName} = resourceJson.${property.propertyName}.map(resourceItem => new ${property.model}(resourceItem));`);
-      } else {
-        constructorStatements.push(`      this.${property.propertyName} = new ${property.model}(resourceJson.${property.propertyName});`);
-      }
-      constructorStatements.push('    }');
+      const isEnum = property.isEnum || modelResolver.isEnum(property.model);
+      let requiresInstantiation = !property.isHash && !isEnum && property.model && !['boolean', 'string', 'object'].includes(property.model);
 
+      if (requiresInstantiation || isConflicting) {
+        constructorStatements.push(`    if (resourceJson && ${propertyExistsOrHasTruthyValue(propertyName)}) {`);
+        if (property.isArray) {
+          constructorStatements.push(`      this${propertyAccessor(dedupedPropertyName)} = resourceJson${propertyAccessor(propertyName)}.map(resourceItem => new ${property.model}(resourceItem));`);
+        } else if (property.model) {
+          constructorStatements.push(`      this${propertyAccessor(dedupedPropertyName)} = new ${property.model}(resourceJson${propertyAccessor(propertyName)});`);
+        } else {
+          // explicitly assign non-instantiatable property only if it conflicts with method name
+          constructorStatements.push(`      this${propertyAccessor(dedupedPropertyName)} = resourceJson${propertyAccessor(propertyName)};`);
+        }
+        constructorStatements.push('    }');
+      }
     });
     return constructorStatements.join('\n');
-  });
+  }.bind(null, modelResolver));
 
   handlebars.registerHelper('modelMethodPublicArgumentBuilder', (method, modelName) => {
     const args = [];
@@ -235,7 +272,7 @@ js.process = ({spec, operations, models, handlebars}) => {
 
     if (operation.responseModel) {
       if (operation.isArray) {
-        args.push(`@returns {Promise<Collection>} A collection that will yield {@link ${operation.responseModel}} instances.`);
+        args.push(`@returns {Collection} A collection that will yield {@link ${operation.responseModel}} instances.`);
       } else {
         args.push(`@returns {Promise<${operation.responseModel}>}`);
       }
@@ -267,5 +304,12 @@ js.process = ({spec, operations, models, handlebars}) => {
   });
 
   handlebars.registerHelper('convertSwaggerToTSType', convertSwaggerToTSType);
+
+  handlebars.registerHelper('toEnumKey', (str) => {
+    if (str && typeof str === 'string') {
+      return str.toUpperCase().replace(/[:\-._]/g, '_');
+    }
+    return '';
+  });
   return templates;
 };

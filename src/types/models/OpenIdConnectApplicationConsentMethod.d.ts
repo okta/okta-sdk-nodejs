@@ -13,19 +13,11 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-import { Resource } from '../resource';
-import { Client } from '../client';
-
-
-declare class OpenIdConnectApplicationConsentMethod extends Resource {
-  constructor(resourceJson: string, client: Client);
-
-
+declare enum OpenIdConnectApplicationConsentMethod {
+  REQUIRED = 'REQUIRED',
+  TRUSTED = 'TRUSTED',
 }
 
-type OpenIdConnectApplicationConsentMethodOptions = Record<string, unknown>;
-
 export {
-  OpenIdConnectApplicationConsentMethod,
-  OpenIdConnectApplicationConsentMethodOptions
+  OpenIdConnectApplicationConsentMethod
 };

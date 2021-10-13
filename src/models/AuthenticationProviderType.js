@@ -13,19 +13,14 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-var Resource = require('../resource');
-
-
-/**
- * @class AuthenticationProviderType
- * @extends Resource
- */
-class AuthenticationProviderType extends Resource {
-  constructor(resourceJson, client) {
-    super(resourceJson, client);
-
-  }
-
-}
+var AuthenticationProviderType;
+(function (AuthenticationProviderType) {
+  AuthenticationProviderType['ACTIVE_DIRECTORY'] = 'ACTIVE_DIRECTORY';
+  AuthenticationProviderType['FEDERATION'] = 'FEDERATION';
+  AuthenticationProviderType['LDAP'] = 'LDAP';
+  AuthenticationProviderType['OKTA'] = 'OKTA';
+  AuthenticationProviderType['SOCIAL'] = 'SOCIAL';
+  AuthenticationProviderType['IMPORT'] = 'IMPORT';
+}(AuthenticationProviderType || (AuthenticationProviderType = {})));
 
 module.exports = AuthenticationProviderType;

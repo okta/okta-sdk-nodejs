@@ -69,12 +69,12 @@ describe('Network Zone API', () => {
   it('activates and deactivates network zone', async () => {
     expect(networkZone.status).to.equal('ACTIVE');
     let response = await networkZone.deactivate();
-    expect(response.status).to.equal(200);
+    expect(response.status).to.equal('INACTIVE');
     let updatedNetworkZone = await client.getNetworkZone(networkZone.id);
     expect(updatedNetworkZone.status).to.equal('INACTIVE');
 
     response = await networkZone.activate();
-    expect(response.status).to.equal(200);
+    expect(response.status).to.equal('ACTIVE');
     updatedNetworkZone = await client.getNetworkZone(networkZone.id);
     expect(updatedNetworkZone.status).to.equal('ACTIVE');
   });

@@ -79,6 +79,7 @@ declare class User extends Resource {
   assignRole(assignRoleRequest: AssignRoleRequestOptions, queryParameters?: {
     disableNotifications?: string,
   }): Promise<Role>;
+  getRole(roleId: string): Promise<Role>;
   removeRole(roleId: string): Promise<Response>;
   listGroupTargets(roleId: string, queryParameters?: {
     after?: string,

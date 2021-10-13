@@ -13,19 +13,10 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-import { Resource } from '../resource';
-import { Client } from '../client';
-
-
-declare class SmsTemplateType extends Resource {
-  constructor(resourceJson: string, client: Client);
-
-
+declare enum SmsTemplateType {
+  SMS_VERIFY_CODE = 'SMS_VERIFY_CODE',
 }
 
-type SmsTemplateTypeOptions = Record<string, unknown>;
-
 export {
-  SmsTemplateType,
-  SmsTemplateTypeOptions
+  SmsTemplateType
 };

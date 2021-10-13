@@ -13,19 +13,14 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-import { Resource } from '../resource';
-import { Client } from '../client';
-
-
-declare class OAuthGrantType extends Resource {
-  constructor(resourceJson: string, client: Client);
-
-
+declare enum OAuthGrantType {
+  AUTHORIZATION_CODE = 'authorization_code',
+  IMPLICIT = 'implicit',
+  PASSWORD = 'password',
+  REFRESH_TOKEN = 'refresh_token',
+  CLIENT_CREDENTIALS = 'client_credentials',
 }
 
-type OAuthGrantTypeOptions = Record<string, unknown>;
-
 export {
-  OAuthGrantType,
-  OAuthGrantTypeOptions
+  OAuthGrantType
 };

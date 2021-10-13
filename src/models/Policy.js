@@ -59,7 +59,7 @@ class Policy extends Resource {
   }
 
   /**
-   * @returns {Promise<Collection>} A collection that will yield {@link PolicyRule} instances.
+   * @returns {Collection} A collection that will yield {@link PolicyRule} instances.
    */
   listPolicyRules() {
     return this.httpClient.listPolicyRules(this.id);

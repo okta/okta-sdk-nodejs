@@ -13,19 +13,12 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-var Resource = require('../resource');
-
-
-/**
- * @class PolicySubjectMatchType
- * @extends Resource
- */
-class PolicySubjectMatchType extends Resource {
-  constructor(resourceJson, client) {
-    super(resourceJson, client);
-
-  }
-
-}
+var PolicySubjectMatchType;
+(function (PolicySubjectMatchType) {
+  PolicySubjectMatchType['USERNAME'] = 'USERNAME';
+  PolicySubjectMatchType['EMAIL'] = 'EMAIL';
+  PolicySubjectMatchType['USERNAME_OR_EMAIL'] = 'USERNAME_OR_EMAIL';
+  PolicySubjectMatchType['CUSTOM_ATTRIBUTE'] = 'CUSTOM_ATTRIBUTE';
+}(PolicySubjectMatchType || (PolicySubjectMatchType = {})));
 
 module.exports = PolicySubjectMatchType;

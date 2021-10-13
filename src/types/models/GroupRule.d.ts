@@ -34,7 +34,9 @@ declare class GroupRule extends Resource {
   type: string;
 
   update(): Promise<GroupRule>;
-  delete(): Promise<Response>;
+  delete(queryParameters?: {
+    removeUsers?: boolean,
+  }): Promise<Response>;
   activate(): Promise<Response>;
   deactivate(): Promise<Response>;
 }

@@ -13,19 +13,12 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-import { Resource } from '../resource';
-import { Client } from '../client';
-
-
-declare class GroupRuleStatus extends Resource {
-  constructor(resourceJson: string, client: Client);
-
-
+declare enum GroupRuleStatus {
+  ACTIVE = 'ACTIVE',
+  INACTIVE = 'INACTIVE',
+  INVALID = 'INVALID',
 }
 
-type GroupRuleStatusOptions = Record<string, unknown>;
-
 export {
-  GroupRuleStatus,
-  GroupRuleStatusOptions
+  GroupRuleStatus
 };

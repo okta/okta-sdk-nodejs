@@ -13,19 +13,9 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-var Resource = require('../resource');
-
-
-/**
- * @class EventHookChannelConfigAuthSchemeType
- * @extends Resource
- */
-class EventHookChannelConfigAuthSchemeType extends Resource {
-  constructor(resourceJson, client) {
-    super(resourceJson, client);
-
-  }
-
-}
+var EventHookChannelConfigAuthSchemeType;
+(function (EventHookChannelConfigAuthSchemeType) {
+  EventHookChannelConfigAuthSchemeType['HEADER'] = 'HEADER';
+}(EventHookChannelConfigAuthSchemeType || (EventHookChannelConfigAuthSchemeType = {})));
 
 module.exports = EventHookChannelConfigAuthSchemeType;

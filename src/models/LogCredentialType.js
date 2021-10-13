@@ -13,19 +13,16 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-var Resource = require('../resource');
-
-
-/**
- * @class LogCredentialType
- * @extends Resource
- */
-class LogCredentialType extends Resource {
-  constructor(resourceJson, client) {
-    super(resourceJson, client);
-
-  }
-
-}
+var LogCredentialType;
+(function (LogCredentialType) {
+  LogCredentialType['OTP'] = 'OTP';
+  LogCredentialType['SMS'] = 'SMS';
+  LogCredentialType['PASSWORD'] = 'PASSWORD';
+  LogCredentialType['ASSERTION'] = 'ASSERTION';
+  LogCredentialType['IWA'] = 'IWA';
+  LogCredentialType['EMAIL'] = 'EMAIL';
+  LogCredentialType['OAUTH2'] = 'OAUTH2';
+  LogCredentialType['JWT'] = 'JWT';
+}(LogCredentialType || (LogCredentialType = {})));
 
 module.exports = LogCredentialType;

@@ -14,17 +14,20 @@
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
 var Resource = require('../resource');
-
+const UserSchemaAttributeMasterPriority = require('./UserSchemaAttributeMasterPriority');
 
 /**
  * @class UserSchemaAttributeMaster
  * @extends Resource
- * @property { string } type
+ * @property { array } priority
+ * @property { UserSchemaAttributeMasterType } type
  */
 class UserSchemaAttributeMaster extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-
+    if (resourceJson && resourceJson.priority) {
+      this.priority = resourceJson.priority.map(resourceItem => new UserSchemaAttributeMasterPriority(resourceItem));
+    }
   }
 
 }

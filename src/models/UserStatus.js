@@ -13,19 +13,16 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-var Resource = require('../resource');
-
-
-/**
- * @class UserStatus
- * @extends Resource
- */
-class UserStatus extends Resource {
-  constructor(resourceJson, client) {
-    super(resourceJson, client);
-
-  }
-
-}
+var UserStatus;
+(function (UserStatus) {
+  UserStatus['ACTIVE'] = 'ACTIVE';
+  UserStatus['DEPROVISIONED'] = 'DEPROVISIONED';
+  UserStatus['LOCKED_OUT'] = 'LOCKED_OUT';
+  UserStatus['PASSWORD_EXPIRED'] = 'PASSWORD_EXPIRED';
+  UserStatus['PROVISIONED'] = 'PROVISIONED';
+  UserStatus['RECOVERY'] = 'RECOVERY';
+  UserStatus['STAGED'] = 'STAGED';
+  UserStatus['SUSPENDED'] = 'SUSPENDED';
+}(UserStatus || (UserStatus = {})));
 
 module.exports = UserStatus;

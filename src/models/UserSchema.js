@@ -15,6 +15,7 @@
 
 var Resource = require('../resource');
 const UserSchemaDefinitions = require('./UserSchemaDefinitions');
+const UserSchemaProperties = require('./UserSchemaProperties');
 
 /**
  * @class UserSchema
@@ -26,7 +27,7 @@ const UserSchemaDefinitions = require('./UserSchemaDefinitions');
  * @property { string } id
  * @property { string } lastUpdated
  * @property { string } name
- * @property { hash } properties
+ * @property { UserSchemaProperties } properties
  * @property { string } title
  * @property { string } type
  */
@@ -35,6 +36,9 @@ class UserSchema extends Resource {
     super(resourceJson, client);
     if (resourceJson && resourceJson.definitions) {
       this.definitions = new UserSchemaDefinitions(resourceJson.definitions);
+    }
+    if (resourceJson && resourceJson.properties) {
+      this.properties = new UserSchemaProperties(resourceJson.properties);
     }
   }
 

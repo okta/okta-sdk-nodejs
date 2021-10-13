@@ -13,19 +13,19 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-import { Resource } from '../resource';
-import { Client } from '../client';
-
-
-declare class SessionAuthenticationMethod extends Resource {
-  constructor(resourceJson: string, client: Client);
-
-
+declare enum SessionAuthenticationMethod {
+  PWD = 'pwd',
+  SWK = 'swk',
+  HWK = 'hwk',
+  OTP = 'otp',
+  SMS = 'sms',
+  TEL = 'tel',
+  GEO = 'geo',
+  FPT = 'fpt',
+  KBA = 'kba',
+  MFA = 'mfa',
 }
 
-type SessionAuthenticationMethodOptions = Record<string, unknown>;
-
 export {
-  SessionAuthenticationMethod,
-  SessionAuthenticationMethodOptions
+  SessionAuthenticationMethod
 };

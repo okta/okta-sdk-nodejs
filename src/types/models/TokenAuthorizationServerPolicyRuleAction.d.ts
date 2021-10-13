@@ -16,12 +16,13 @@
 import { Resource } from '../resource';
 import { Client } from '../client';
 import { OptionalKnownProperties } from '../optional-known-properties-type';
-
+import { TokenAuthorizationServerPolicyRuleActionInlineHook } from './TokenAuthorizationServerPolicyRuleActionInlineHook';
 
 declare class TokenAuthorizationServerPolicyRuleAction extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
 
   accessTokenLifetimeMinutes: number;
+  inlineHook: TokenAuthorizationServerPolicyRuleActionInlineHook;
   refreshTokenLifetimeMinutes: number;
   refreshTokenWindowMinutes: number;
 

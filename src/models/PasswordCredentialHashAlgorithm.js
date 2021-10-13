@@ -13,19 +13,13 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-var Resource = require('../resource');
-
-
-/**
- * @class PasswordCredentialHashAlgorithm
- * @extends Resource
- */
-class PasswordCredentialHashAlgorithm extends Resource {
-  constructor(resourceJson, client) {
-    super(resourceJson, client);
-
-  }
-
-}
+var PasswordCredentialHashAlgorithm;
+(function (PasswordCredentialHashAlgorithm) {
+  PasswordCredentialHashAlgorithm['BCRYPT'] = 'BCRYPT';
+  PasswordCredentialHashAlgorithm['SHA_512'] = 'SHA-512';
+  PasswordCredentialHashAlgorithm['SHA_256'] = 'SHA-256';
+  PasswordCredentialHashAlgorithm['SHA_1'] = 'SHA-1';
+  PasswordCredentialHashAlgorithm['MD5'] = 'MD5';
+}(PasswordCredentialHashAlgorithm || (PasswordCredentialHashAlgorithm = {})));
 
 module.exports = PasswordCredentialHashAlgorithm;

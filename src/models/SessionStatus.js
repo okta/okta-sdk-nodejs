@@ -13,19 +13,11 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-var Resource = require('../resource');
-
-
-/**
- * @class SessionStatus
- * @extends Resource
- */
-class SessionStatus extends Resource {
-  constructor(resourceJson, client) {
-    super(resourceJson, client);
-
-  }
-
-}
+var SessionStatus;
+(function (SessionStatus) {
+  SessionStatus['ACTIVE'] = 'ACTIVE';
+  SessionStatus['MFA_ENROLL'] = 'MFA_ENROLL';
+  SessionStatus['MFA_REQUIRED'] = 'MFA_REQUIRED';
+}(SessionStatus || (SessionStatus = {})));
 
 module.exports = SessionStatus;

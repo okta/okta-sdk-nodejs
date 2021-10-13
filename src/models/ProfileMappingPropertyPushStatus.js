@@ -13,19 +13,10 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-var Resource = require('../resource');
-
-
-/**
- * @class ProfileMappingPropertyPushStatus
- * @extends Resource
- */
-class ProfileMappingPropertyPushStatus extends Resource {
-  constructor(resourceJson, client) {
-    super(resourceJson, client);
-
-  }
-
-}
+var ProfileMappingPropertyPushStatus;
+(function (ProfileMappingPropertyPushStatus) {
+  ProfileMappingPropertyPushStatus['PUSH'] = 'PUSH';
+  ProfileMappingPropertyPushStatus['DONT_PUSH'] = 'DONT_PUSH';
+}(ProfileMappingPropertyPushStatus || (ProfileMappingPropertyPushStatus = {})));
 
 module.exports = ProfileMappingPropertyPushStatus;

@@ -13,19 +13,13 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-import { Resource } from '../resource';
-import { Client } from '../client';
-
-
-declare class OpenIdConnectApplicationType extends Resource {
-  constructor(resourceJson: string, client: Client);
-
-
+declare enum OpenIdConnectApplicationType {
+  WEB = 'web',
+  NATIVE = 'native',
+  BROWSER = 'browser',
+  SERVICE = 'service',
 }
 
-type OpenIdConnectApplicationTypeOptions = Record<string, unknown>;
-
 export {
-  OpenIdConnectApplicationType,
-  OpenIdConnectApplicationTypeOptions
+  OpenIdConnectApplicationType
 };

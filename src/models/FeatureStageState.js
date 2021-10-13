@@ -13,19 +13,10 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-var Resource = require('../resource');
-
-
-/**
- * @class FeatureStageState
- * @extends Resource
- */
-class FeatureStageState extends Resource {
-  constructor(resourceJson, client) {
-    super(resourceJson, client);
-
-  }
-
-}
+var FeatureStageState;
+(function (FeatureStageState) {
+  FeatureStageState['OPEN'] = 'OPEN';
+  FeatureStageState['CLOSED'] = 'CLOSED';
+}(FeatureStageState || (FeatureStageState = {})));
 
 module.exports = FeatureStageState;

@@ -13,19 +13,11 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-import { Resource } from '../resource';
-import { Client } from '../client';
-
-
-declare class InlineHookStatus extends Resource {
-  constructor(resourceJson: string, client: Client);
-
-
+declare enum InlineHookStatus {
+  ACTIVE = 'ACTIVE',
+  INACTIVE = 'INACTIVE',
 }
 
-type InlineHookStatusOptions = Record<string, unknown>;
-
 export {
-  InlineHookStatus,
-  InlineHookStatusOptions
+  InlineHookStatus
 };
