@@ -60,6 +60,7 @@ describe('Org API', () => {
   });
 
   it('gets Org preferences and allows toggling footer visibility', async () => {
+    await client.hideOktaUIFooter();
     let orgPreferences = await client.getOrgPreferences();
     expect(orgPreferences._showEndUserFooter).to.equal(false);
     orgPreferences = await orgPreferences.showEndUserFooter();
@@ -69,6 +70,7 @@ describe('Org API', () => {
   });
 
   it('allows listing and configuring Org communication settings', async () => {
+    await client.optInUsersToOktaCommunicationEmails();
     let communicationSettings = await client.getOktaCommunicationSettings();
     expect(communicationSettings.optOutEmailUsers).to.equal(false);
     communicationSettings = await client.optOutUsersFromOktaCommunicationEmails();
@@ -78,6 +80,7 @@ describe('Org API', () => {
   });
 
   it('allows listing and configuring Org support settings', async () => {
+    await client.revokeOktaSupport();
     let supportSettings = await client.getOrgOktaSupportSettings();
     expect(supportSettings.support).to.equal(OrgOktaSupportSetting.DISABLED);
     supportSettings = await client.grantOktaSupport();
