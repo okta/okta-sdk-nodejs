@@ -13,7 +13,7 @@
 
 module.exports = Object.assign(
   {}, {
-    Client: require('./client'),
+    Client: require('./client').GeneratedApiClient,
     RequestExecutor: require('./request-executor'),
     DefaultRequestExecutor: require('./default-request-executor'),
     Collection: require('./collection'),
