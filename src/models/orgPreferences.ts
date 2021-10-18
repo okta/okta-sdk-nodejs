@@ -10,10 +10,10 @@
  * Do not edit the class manually.
  */
 
-import { RequestFile } from '.';
+import { RequestFile } from './models';
 
 export class OrgPreferences {
-    'links'?: { [key: string]: object; };
+    '_links'?: { [key: string]: object; };
     'showEndUserFooter'?: boolean;
 
     static discriminator: string | undefined = undefined;

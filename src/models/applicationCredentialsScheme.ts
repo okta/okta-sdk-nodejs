@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { RequestFile } from '.';
+import { RequestFile } from './models';
 
 export enum ApplicationCredentialsScheme {
     SharedUsernameAndPassword = <any> 'SHARED_USERNAME_AND_PASSWORD',

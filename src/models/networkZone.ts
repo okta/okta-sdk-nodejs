@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { RequestFile } from '.';
+import { RequestFile } from './models';
 import { NetworkZoneAddress } from './networkZoneAddress';
 import { NetworkZoneLocation } from './networkZoneLocation';
 import { NetworkZoneStatus } from './networkZoneStatus';
@@ -31,7 +31,7 @@ export class NetworkZone {
     'asns'?: Array<string>;
     'created'?: Date;
     'lastUpdated'?: Date;
-    'links'?: { [key: string]: object; };
+    '_links'?: { [key: string]: object; };
 
     static discriminator: string | undefined = undefined;
 

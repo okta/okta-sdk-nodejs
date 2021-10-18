@@ -1,15 +1,25 @@
 import * as localVarRequest from 'request';
+import * as http from 'http';
 
 import { AppUser } from './models/appUser';
+import { Application } from './models/application';
 import { ApplicationGroupAssignment } from './models/applicationGroupAssignment';
+import { Csr } from './models/csr';
+import { CsrMetadata } from './models/csrMetadata';
+import { OAuth2ScopeConsentGrant } from './models/oAuth2ScopeConsentGrant';
+import { OAuth2Token } from './models/oAuth2Token';
 
 import { Authenticator } from './models/authenticator';
 
 import { AuthorizationServer } from './models/authorizationServer';
 import { AuthorizationServerPolicy } from './models/authorizationServerPolicy';
 import { AuthorizationServerPolicyRule } from './models/authorizationServerPolicyRule';
+import { JsonWebKey } from './models/jsonWebKey';
 import { JwkUse } from './models/jwkUse';
 import { OAuth2Claim } from './models/oAuth2Claim';
+import { OAuth2Client } from './models/oAuth2Client';
+import { OAuth2RefreshToken } from './models/oAuth2RefreshToken';
+import { OAuth2Scope } from './models/oAuth2Scope';
 
 import { CAPTCHAInstance } from './models/cAPTCHAInstance';
 
@@ -22,19 +32,11 @@ import { EventHook } from './models/eventHook';
 
 import { Feature } from './models/feature';
 
-import { Application } from './models/application';
-import { AssignRoleRequest } from './models/assignRoleRequest';
-import { CatalogApplication } from './models/catalogApplication';
 import { GroupRule } from './models/groupRule';
-import { Role } from './models/role';
 
 import { GroupSchema } from './models/groupSchema';
 
-import { Csr } from './models/csr';
-import { CsrMetadata } from './models/csrMetadata';
-import { IdentityProvider } from './models/identityProvider';
 import { IdentityProviderApplicationUser } from './models/identityProviderApplicationUser';
-import { JsonWebKey } from './models/jsonWebKey';
 import { SocialAuthToken } from './models/socialAuthToken';
 import { UserIdentityProviderLinkRequest } from './models/userIdentityProviderLinkRequest';
 
@@ -71,14 +73,15 @@ import { ThreatInsightConfiguration } from './models/threatInsightConfiguration'
 import { TrustedOrigin } from './models/trustedOrigin';
 
 import { AppLink } from './models/appLink';
+import { AssignRoleRequest } from './models/assignRoleRequest';
+import { CatalogApplication } from './models/catalogApplication';
 import { ChangePasswordRequest } from './models/changePasswordRequest';
 import { CreateUserRequest } from './models/createUserRequest';
 import { ForgotPasswordResponse } from './models/forgotPasswordResponse';
 import { Group } from './models/group';
-import { OAuth2Client } from './models/oAuth2Client';
-import { OAuth2RefreshToken } from './models/oAuth2RefreshToken';
-import { OAuth2ScopeConsentGrant } from './models/oAuth2ScopeConsentGrant';
+import { IdentityProvider } from './models/identityProvider';
 import { ResetPasswordToken } from './models/resetPasswordToken';
+import { Role } from './models/role';
 import { TempPassword } from './models/tempPassword';
 import { User } from './models/user';
 import { UserActivationToken } from './models/userActivationToken';
@@ -95,14 +98,28 @@ import { UserSchema } from './models/userSchema';
 
 import { UserType } from './models/userType';
 
-import * as http from 'http';
-import { ObjectSerializer, Authentication, VoidAuth, Interceptor, OAuth2Token, OAuth2Scope, RequestFile } from './models';
+import { ObjectSerializer, Authentication, VoidAuth, Interceptor, RequestFile } from './models';
 import { HttpBasicAuth, HttpBearerAuth, ApiKeyAuth, OAuth } from './models';
 
 export class HttpError extends Error {
+    errorCode: any;
+    errorSummary: any;
+    errorCauses: any;
+    errorLink: any;
+    errorId: any;
     constructor (public response: http.IncomingMessage, public body: any, public statusCode?: number) {
         super('HTTP request failed');
         this.name = 'HttpError';
+        
+        this.errorCode = body.errorCode;
+        this.errorSummary = body.errorSummary || '';
+        this.errorCauses = body.errorCauses;
+        this.errorLink = body.errorLink;
+        this.errorId = body.errorId;
+
+        this.stack = '';
+        this.message = 'Okta HTTP ' + statusCode + ' ' + this.errorCode + ' ' + this.errorSummary + (this.errorCauses ? ('. ' + this.errorCauses.map(cause => cause.errorSummary).join('. ')) : '');
+
     }
 }
 
@@ -129,7 +146,7 @@ export class GeneratedApiClient {
 
     protected interceptors: Interceptor[] = [];
 
-    constructor(config: {orgUrl: string, token: string}) {
+    constructor(config: {orgUrl: string, token: string, scopes?: any, requestExecutor?: any}) {
         this.basePath = config.orgUrl;
         if (config.token) {
             this.setApiKey(GeneratedClientApiKeys.api_token, `SSWS ${config.token}`);
@@ -174,7 +191,7 @@ export class GeneratedApiClient {
      * @summary Activate Application
      * @param appId 
      */
-    public async activateApplication (appId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public async activateApplication (appId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<any> {
         const localVarPath = this.basePath + '/api/v1/apps/{appId}/lifecycle/activate'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -218,13 +235,13 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            return new Promise<any>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -239,7 +256,7 @@ export class GeneratedApiClient {
      * @param appId 
      * @param appUser 
      */
-    public async assignUserToApplication (appId: string, appUser: AppUser, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: AppUser;  }> {
+    public async assignUserToApplication (appId: string, appUser: AppUser, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<AppUser> {
         const localVarPath = this.basePath + '/api/v1/apps/{appId}/users'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -296,14 +313,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: AppUser;  }>((resolve, reject) => {
+            return new Promise<AppUser>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "AppUser");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -319,7 +336,7 @@ export class GeneratedApiClient {
      * @param keyId 
      * @param targetAid Unique key of the target Application
      */
-    public async cloneApplicationKey (appId: string, keyId: string, targetAid: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: JsonWebKey;  }> {
+    public async cloneApplicationKey (appId: string, keyId: string, targetAid: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<JsonWebKey> {
         const localVarPath = this.basePath + '/api/v1/apps/{appId}/credentials/keys/{keyId}/clone'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'keyId' + '}', encodeURIComponent(String(keyId)));
@@ -385,14 +402,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: JsonWebKey;  }>((resolve, reject) => {
+            return new Promise<JsonWebKey>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "JsonWebKey");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -408,7 +425,7 @@ export class GeneratedApiClient {
      * @param activate Executes activation lifecycle operation when creating the app
      * @param oktaAccessGatewayAgent 
      */
-    public async createApplication (application: Application, activate?: boolean, oktaAccessGatewayAgent?: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Application;  }> {
+    public async createApplication (application: Application, activate?: boolean, oktaAccessGatewayAgent?: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<Application> {
         const localVarPath = this.basePath + '/api/v1/apps';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -464,14 +481,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Application;  }>((resolve, reject) => {
+            return new Promise<Application>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "Application");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -487,7 +504,7 @@ export class GeneratedApiClient {
      * @param groupId 
      * @param applicationGroupAssignment 
      */
-    public async createApplicationGroupAssignment (appId: string, groupId: string, applicationGroupAssignment?: ApplicationGroupAssignment, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: ApplicationGroupAssignment;  }> {
+    public async createApplicationGroupAssignment (appId: string, groupId: string, applicationGroupAssignment?: ApplicationGroupAssignment, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<ApplicationGroupAssignment> {
         const localVarPath = this.basePath + '/api/v1/apps/{appId}/groups/{groupId}'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'groupId' + '}', encodeURIComponent(String(groupId)));
@@ -545,14 +562,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: ApplicationGroupAssignment;  }>((resolve, reject) => {
+            return new Promise<ApplicationGroupAssignment>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "ApplicationGroupAssignment");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -566,7 +583,7 @@ export class GeneratedApiClient {
      * @summary Deactivate Application
      * @param appId 
      */
-    public async deactivateApplication (appId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public async deactivateApplication (appId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<any> {
         const localVarPath = this.basePath + '/api/v1/apps/{appId}/lifecycle/deactivate'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -610,13 +627,13 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            return new Promise<any>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -630,7 +647,7 @@ export class GeneratedApiClient {
      * @summary Delete Application
      * @param appId 
      */
-    public async deleteApplication (appId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public async deleteApplication (appId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<any> {
         const localVarPath = this.basePath + '/api/v1/apps/{appId}'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -674,13 +691,13 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            return new Promise<any>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -695,7 +712,7 @@ export class GeneratedApiClient {
      * @param appId 
      * @param groupId 
      */
-    public async deleteApplicationGroupAssignment (appId: string, groupId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public async deleteApplicationGroupAssignment (appId: string, groupId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<any> {
         const localVarPath = this.basePath + '/api/v1/apps/{appId}/groups/{groupId}'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'groupId' + '}', encodeURIComponent(String(groupId)));
@@ -745,13 +762,13 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            return new Promise<any>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -767,7 +784,7 @@ export class GeneratedApiClient {
      * @param userId 
      * @param sendEmail 
      */
-    public async deleteApplicationUser (appId: string, userId: string, sendEmail?: boolean, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public async deleteApplicationUser (appId: string, userId: string, sendEmail?: boolean, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<any> {
         const localVarPath = this.basePath + '/api/v1/apps/{appId}/users/{userId}'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)));
@@ -821,13 +838,13 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            return new Promise<any>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -841,7 +858,7 @@ export class GeneratedApiClient {
      * @param appId 
      * @param validityYears 
      */
-    public async generateApplicationKey (appId: string, validityYears?: number, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: JsonWebKey;  }> {
+    public async generateApplicationKey (appId: string, validityYears?: number, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<JsonWebKey> {
         const localVarPath = this.basePath + '/api/v1/apps/{appId}/credentials/keys/generate'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -896,14 +913,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: JsonWebKey;  }>((resolve, reject) => {
+            return new Promise<JsonWebKey>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "JsonWebKey");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -918,7 +935,7 @@ export class GeneratedApiClient {
      * @param appId 
      * @param csrMetadata 
      */
-    public async generateCsrForApplication (appId: string, csrMetadata: CsrMetadata, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Csr;  }> {
+    public async generateCsrForApplication (appId: string, csrMetadata: CsrMetadata, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<Csr> {
         const localVarPath = this.basePath + '/api/v1/apps/{appId}/credentials/csrs'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -975,14 +992,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Csr;  }>((resolve, reject) => {
+            return new Promise<Csr>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "Csr");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -997,7 +1014,7 @@ export class GeneratedApiClient {
      * @param appId 
      * @param expand 
      */
-    public async getApplication (appId: string, expand?: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Application;  }> {
+    public async getApplication (appId: string, expand?: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<Application> {
         const localVarPath = this.basePath + '/api/v1/apps/{appId}'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -1052,14 +1069,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Application;  }>((resolve, reject) => {
+            return new Promise<Application>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "Application");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -1075,7 +1092,7 @@ export class GeneratedApiClient {
      * @param groupId 
      * @param expand 
      */
-    public async getApplicationGroupAssignment (appId: string, groupId: string, expand?: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: ApplicationGroupAssignment;  }> {
+    public async getApplicationGroupAssignment (appId: string, groupId: string, expand?: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<ApplicationGroupAssignment> {
         const localVarPath = this.basePath + '/api/v1/apps/{appId}/groups/{groupId}'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'groupId' + '}', encodeURIComponent(String(groupId)));
@@ -1136,14 +1153,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: ApplicationGroupAssignment;  }>((resolve, reject) => {
+            return new Promise<ApplicationGroupAssignment>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "ApplicationGroupAssignment");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -1158,7 +1175,7 @@ export class GeneratedApiClient {
      * @param appId 
      * @param keyId 
      */
-    public async getApplicationKey (appId: string, keyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: JsonWebKey;  }> {
+    public async getApplicationKey (appId: string, keyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<JsonWebKey> {
         const localVarPath = this.basePath + '/api/v1/apps/{appId}/credentials/keys/{keyId}'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'keyId' + '}', encodeURIComponent(String(keyId)));
@@ -1215,14 +1232,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: JsonWebKey;  }>((resolve, reject) => {
+            return new Promise<JsonWebKey>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "JsonWebKey");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -1238,7 +1255,7 @@ export class GeneratedApiClient {
      * @param userId 
      * @param expand 
      */
-    public async getApplicationUser (appId: string, userId: string, expand?: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: AppUser;  }> {
+    public async getApplicationUser (appId: string, userId: string, expand?: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<AppUser> {
         const localVarPath = this.basePath + '/api/v1/apps/{appId}/users/{userId}'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)));
@@ -1299,14 +1316,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: AppUser;  }>((resolve, reject) => {
+            return new Promise<AppUser>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "AppUser");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -1321,7 +1338,7 @@ export class GeneratedApiClient {
      * @param appId 
      * @param csrId 
      */
-    public async getCsrForApplication (appId: string, csrId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Csr;  }> {
+    public async getCsrForApplication (appId: string, csrId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<Csr> {
         const localVarPath = this.basePath + '/api/v1/apps/{appId}/credentials/csrs/{csrId}'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'csrId' + '}', encodeURIComponent(String(csrId)));
@@ -1378,14 +1395,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Csr;  }>((resolve, reject) => {
+            return new Promise<Csr>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "Csr");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -1400,7 +1417,7 @@ export class GeneratedApiClient {
      * @param tokenId 
      * @param expand 
      */
-    public async getOAuth2TokenForApplication (appId: string, tokenId: string, expand?: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: OAuth2Token;  }> {
+    public async getOAuth2TokenForApplication (appId: string, tokenId: string, expand?: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<OAuth2Token> {
         const localVarPath = this.basePath + '/api/v1/apps/{appId}/tokens/{tokenId}'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'tokenId' + '}', encodeURIComponent(String(tokenId)));
@@ -1461,14 +1478,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: OAuth2Token;  }>((resolve, reject) => {
+            return new Promise<OAuth2Token>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "OAuth2Token");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -1483,7 +1500,7 @@ export class GeneratedApiClient {
      * @param grantId 
      * @param expand 
      */
-    public async getScopeConsentGrant (appId: string, grantId: string, expand?: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: OAuth2ScopeConsentGrant;  }> {
+    public async getScopeConsentGrant (appId: string, grantId: string, expand?: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<OAuth2ScopeConsentGrant> {
         const localVarPath = this.basePath + '/api/v1/apps/{appId}/grants/{grantId}'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'grantId' + '}', encodeURIComponent(String(grantId)));
@@ -1544,14 +1561,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: OAuth2ScopeConsentGrant;  }>((resolve, reject) => {
+            return new Promise<OAuth2ScopeConsentGrant>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "OAuth2ScopeConsentGrant");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -1565,7 +1582,7 @@ export class GeneratedApiClient {
      * @param appId 
      * @param oAuth2ScopeConsentGrant 
      */
-    public async grantConsentToScope (appId: string, oAuth2ScopeConsentGrant: OAuth2ScopeConsentGrant, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: OAuth2ScopeConsentGrant;  }> {
+    public async grantConsentToScope (appId: string, oAuth2ScopeConsentGrant: OAuth2ScopeConsentGrant, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<OAuth2ScopeConsentGrant> {
         const localVarPath = this.basePath + '/api/v1/apps/{appId}/grants'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -1622,14 +1639,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: OAuth2ScopeConsentGrant;  }>((resolve, reject) => {
+            return new Promise<OAuth2ScopeConsentGrant>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "OAuth2ScopeConsentGrant");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -1647,7 +1664,7 @@ export class GeneratedApiClient {
      * @param limit Specifies the number of results for a page
      * @param expand 
      */
-    public async listApplicationGroupAssignments (appId: string, q?: string, after?: string, limit?: number, expand?: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Array<ApplicationGroupAssignment>;  }> {
+    public async listApplicationGroupAssignments (appId: string, q?: string, after?: string, limit?: number, expand?: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<Array<ApplicationGroupAssignment>> {
         const localVarPath = this.basePath + '/api/v1/apps/{appId}/groups'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -1714,14 +1731,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Array<ApplicationGroupAssignment>;  }>((resolve, reject) => {
+            return new Promise<Array<ApplicationGroupAssignment>>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "Array<ApplicationGroupAssignment>");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -1735,7 +1752,7 @@ export class GeneratedApiClient {
      * @summary List Key Credentials for Application
      * @param appId 
      */
-    public async listApplicationKeys (appId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Array<JsonWebKey>;  }> {
+    public async listApplicationKeys (appId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<Array<JsonWebKey>> {
         const localVarPath = this.basePath + '/api/v1/apps/{appId}/credentials/keys'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -1786,14 +1803,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Array<JsonWebKey>;  }>((resolve, reject) => {
+            return new Promise<Array<JsonWebKey>>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "Array<JsonWebKey>");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -1813,7 +1830,7 @@ export class GeneratedApiClient {
      * @param filter 
      * @param expand 
      */
-    public async listApplicationUsers (appId: string, q?: string, queryScope?: string, after?: string, limit?: number, filter?: string, expand?: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Array<AppUser>;  }> {
+    public async listApplicationUsers (appId: string, q?: string, queryScope?: string, after?: string, limit?: number, filter?: string, expand?: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<Array<AppUser>> {
         const localVarPath = this.basePath + '/api/v1/apps/{appId}/users'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -1888,14 +1905,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Array<AppUser>;  }>((resolve, reject) => {
+            return new Promise<Array<AppUser>>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "Array<AppUser>");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -1914,7 +1931,7 @@ export class GeneratedApiClient {
      * @param expand Traverses users link relationship and optionally embeds Application User resource
      * @param includeNonDeleted 
      */
-    public async listApplications (q?: string, after?: string, limit?: number, filter?: string, expand?: string, includeNonDeleted?: boolean, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Array<Application>;  }> {
+    public async listApplications (q?: string, after?: string, limit?: number, filter?: string, expand?: string, includeNonDeleted?: boolean, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<Array<Application>> {
         const localVarPath = this.basePath + '/api/v1/apps';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -1983,14 +2000,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Array<Application>;  }>((resolve, reject) => {
+            return new Promise<Array<Application>>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "Array<Application>");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -2004,7 +2021,7 @@ export class GeneratedApiClient {
      * @summary List Certificate Signing Requests for Application
      * @param appId 
      */
-    public async listCsrsForApplication (appId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Array<Csr>;  }> {
+    public async listCsrsForApplication (appId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<Array<Csr>> {
         const localVarPath = this.basePath + '/api/v1/apps/{appId}/credentials/csrs'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -2055,14 +2072,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Array<Csr>;  }>((resolve, reject) => {
+            return new Promise<Array<Csr>>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "Array<Csr>");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -2078,7 +2095,7 @@ export class GeneratedApiClient {
      * @param after 
      * @param limit 
      */
-    public async listOAuth2TokensForApplication (appId: string, expand?: string, after?: string, limit?: number, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Array<OAuth2Token>;  }> {
+    public async listOAuth2TokensForApplication (appId: string, expand?: string, after?: string, limit?: number, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<Array<OAuth2Token>> {
         const localVarPath = this.basePath + '/api/v1/apps/{appId}/tokens'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -2141,14 +2158,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Array<OAuth2Token>;  }>((resolve, reject) => {
+            return new Promise<Array<OAuth2Token>>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "Array<OAuth2Token>");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -2162,7 +2179,7 @@ export class GeneratedApiClient {
      * @param appId 
      * @param expand 
      */
-    public async listScopeConsentGrants (appId: string, expand?: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Array<OAuth2ScopeConsentGrant>;  }> {
+    public async listScopeConsentGrants (appId: string, expand?: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<Array<OAuth2ScopeConsentGrant>> {
         const localVarPath = this.basePath + '/api/v1/apps/{appId}/grants'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -2217,14 +2234,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Array<OAuth2ScopeConsentGrant>;  }>((resolve, reject) => {
+            return new Promise<Array<OAuth2ScopeConsentGrant>>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "Array<OAuth2ScopeConsentGrant>");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -2240,7 +2257,7 @@ export class GeneratedApiClient {
      * @param csrId 
      * @param body 
      */
-    public async publishCsrFromApplication (appId: string, csrId: string, body: RequestFile, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: JsonWebKey;  }> {
+    public async publishCsrFromApplication (appId: string, csrId: string, body: RequestFile, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<JsonWebKey> {
         const localVarPath = this.basePath + '/api/v1/apps/{appId}/credentials/csrs/{csrId}/lifecycle/publish'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'csrId' + '}', encodeURIComponent(String(csrId)));
@@ -2303,14 +2320,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: JsonWebKey;  }>((resolve, reject) => {
+            return new Promise<JsonWebKey>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "JsonWebKey");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -2325,7 +2342,7 @@ export class GeneratedApiClient {
      * @param appId 
      * @param csrId 
      */
-    public async revokeCsrFromApplication (appId: string, csrId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public async revokeCsrFromApplication (appId: string, csrId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<any> {
         const localVarPath = this.basePath + '/api/v1/apps/{appId}/credentials/csrs/{csrId}'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'csrId' + '}', encodeURIComponent(String(csrId)));
@@ -2375,13 +2392,13 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            return new Promise<any>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -2395,7 +2412,7 @@ export class GeneratedApiClient {
      * @param appId 
      * @param tokenId 
      */
-    public async revokeOAuth2TokenForApplication (appId: string, tokenId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public async revokeOAuth2TokenForApplication (appId: string, tokenId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<any> {
         const localVarPath = this.basePath + '/api/v1/apps/{appId}/tokens/{tokenId}'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'tokenId' + '}', encodeURIComponent(String(tokenId)));
@@ -2445,13 +2462,13 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            return new Promise<any>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -2464,7 +2481,7 @@ export class GeneratedApiClient {
      * Revokes all tokens for the specified application
      * @param appId 
      */
-    public async revokeOAuth2TokensForApplication (appId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public async revokeOAuth2TokensForApplication (appId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<any> {
         const localVarPath = this.basePath + '/api/v1/apps/{appId}/tokens'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -2508,13 +2525,13 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            return new Promise<any>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -2528,7 +2545,7 @@ export class GeneratedApiClient {
      * @param appId 
      * @param grantId 
      */
-    public async revokeScopeConsentGrant (appId: string, grantId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public async revokeScopeConsentGrant (appId: string, grantId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<any> {
         const localVarPath = this.basePath + '/api/v1/apps/{appId}/grants/{grantId}'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'grantId' + '}', encodeURIComponent(String(grantId)));
@@ -2578,13 +2595,13 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            return new Promise<any>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -2599,7 +2616,7 @@ export class GeneratedApiClient {
      * @param appId 
      * @param application 
      */
-    public async updateApplication (appId: string, application: Application, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Application;  }> {
+    public async updateApplication (appId: string, application: Application, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<Application> {
         const localVarPath = this.basePath + '/api/v1/apps/{appId}'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
         let localVarQueryParameters: any = {};
@@ -2656,14 +2673,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Application;  }>((resolve, reject) => {
+            return new Promise<Application>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "Application");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -2679,7 +2696,7 @@ export class GeneratedApiClient {
      * @param userId 
      * @param appUser 
      */
-    public async updateApplicationUser (appId: string, userId: string, appUser: AppUser, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: AppUser;  }> {
+    public async updateApplicationUser (appId: string, userId: string, appUser: AppUser, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<AppUser> {
         const localVarPath = this.basePath + '/api/v1/apps/{appId}/users/{userId}'
             .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)));
@@ -2742,14 +2759,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: AppUser;  }>((resolve, reject) => {
+            return new Promise<AppUser>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "AppUser");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -2765,7 +2782,7 @@ export class GeneratedApiClient {
      * @summary Activate Authenticator
      * @param authenticatorId 
      */
-    public async activateAuthenticator (authenticatorId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public async activateAuthenticator (authenticatorId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<any> {
         const localVarPath = this.basePath + '/api/v1/authenticators/{authenticatorId}/lifecycle/activate'
             .replace('{' + 'authenticatorId' + '}', encodeURIComponent(String(authenticatorId)));
         let localVarQueryParameters: any = {};
@@ -2809,13 +2826,13 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            return new Promise<any>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -2829,7 +2846,7 @@ export class GeneratedApiClient {
      * @summary Deactivate Authenticator
      * @param authenticatorId 
      */
-    public async deactivateAuthenticator (authenticatorId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public async deactivateAuthenticator (authenticatorId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<any> {
         const localVarPath = this.basePath + '/api/v1/authenticators/{authenticatorId}/lifecycle/deactivate'
             .replace('{' + 'authenticatorId' + '}', encodeURIComponent(String(authenticatorId)));
         let localVarQueryParameters: any = {};
@@ -2873,13 +2890,13 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            return new Promise<any>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -2893,7 +2910,7 @@ export class GeneratedApiClient {
      * @summary Get Authenticator
      * @param authenticatorId 
      */
-    public async getAuthenticator (authenticatorId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Authenticator;  }> {
+    public async getAuthenticator (authenticatorId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<Authenticator> {
         const localVarPath = this.basePath + '/api/v1/authenticators/{authenticatorId}'
             .replace('{' + 'authenticatorId' + '}', encodeURIComponent(String(authenticatorId)));
         let localVarQueryParameters: any = {};
@@ -2944,14 +2961,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Authenticator;  }>((resolve, reject) => {
+            return new Promise<Authenticator>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "Authenticator");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -2964,7 +2981,7 @@ export class GeneratedApiClient {
      * Enumerates authenticators in your organization.
      * @summary List Authenticators
      */
-    public async listAuthenticators (options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Array<Authenticator>;  }> {
+    public async listAuthenticators (options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<Array<Authenticator>> {
         const localVarPath = this.basePath + '/api/v1/authenticators';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -3009,14 +3026,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Array<Authenticator>;  }>((resolve, reject) => {
+            return new Promise<Array<Authenticator>>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "Array<Authenticator>");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -3031,7 +3048,7 @@ export class GeneratedApiClient {
      * Success
      * @param authServerId 
      */
-    public async activateAuthorizationServer (authServerId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public async activateAuthorizationServer (authServerId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<any> {
         const localVarPath = this.basePath + '/api/v1/authorizationServers/{authServerId}/lifecycle/activate'
             .replace('{' + 'authServerId' + '}', encodeURIComponent(String(authServerId)));
         let localVarQueryParameters: any = {};
@@ -3075,13 +3092,13 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            return new Promise<any>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -3095,7 +3112,7 @@ export class GeneratedApiClient {
      * @param authServerId 
      * @param policyId 
      */
-    public async activateAuthorizationServerPolicy (authServerId: string, policyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public async activateAuthorizationServerPolicy (authServerId: string, policyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<any> {
         const localVarPath = this.basePath + '/api/v1/authorizationServers/{authServerId}/policies/{policyId}/lifecycle/activate'
             .replace('{' + 'authServerId' + '}', encodeURIComponent(String(authServerId)))
             .replace('{' + 'policyId' + '}', encodeURIComponent(String(policyId)));
@@ -3145,13 +3162,13 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            return new Promise<any>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -3166,7 +3183,7 @@ export class GeneratedApiClient {
      * @param policyId 
      * @param ruleId 
      */
-    public async activateAuthorizationServerPolicyRule (authServerId: string, policyId: string, ruleId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public async activateAuthorizationServerPolicyRule (authServerId: string, policyId: string, ruleId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<any> {
         const localVarPath = this.basePath + '/api/v1/authorizationServers/{authServerId}/policies/{policyId}/rules/{ruleId}/lifecycle/activate'
             .replace('{' + 'authServerId' + '}', encodeURIComponent(String(authServerId)))
             .replace('{' + 'policyId' + '}', encodeURIComponent(String(policyId)))
@@ -3222,13 +3239,13 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            return new Promise<any>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -3241,7 +3258,7 @@ export class GeneratedApiClient {
      * Success
      * @param authorizationServer 
      */
-    public async createAuthorizationServer (authorizationServer: AuthorizationServer, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: AuthorizationServer;  }> {
+    public async createAuthorizationServer (authorizationServer: AuthorizationServer, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<AuthorizationServer> {
         const localVarPath = this.basePath + '/api/v1/authorizationServers';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -3292,14 +3309,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: AuthorizationServer;  }>((resolve, reject) => {
+            return new Promise<AuthorizationServer>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "AuthorizationServer");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -3313,7 +3330,7 @@ export class GeneratedApiClient {
      * @param authServerId 
      * @param authorizationServerPolicy 
      */
-    public async createAuthorizationServerPolicy (authServerId: string, authorizationServerPolicy: AuthorizationServerPolicy, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: AuthorizationServerPolicy;  }> {
+    public async createAuthorizationServerPolicy (authServerId: string, authorizationServerPolicy: AuthorizationServerPolicy, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<AuthorizationServerPolicy> {
         const localVarPath = this.basePath + '/api/v1/authorizationServers/{authServerId}/policies'
             .replace('{' + 'authServerId' + '}', encodeURIComponent(String(authServerId)));
         let localVarQueryParameters: any = {};
@@ -3370,14 +3387,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: AuthorizationServerPolicy;  }>((resolve, reject) => {
+            return new Promise<AuthorizationServerPolicy>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "AuthorizationServerPolicy");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -3392,7 +3409,7 @@ export class GeneratedApiClient {
      * @param authServerId 
      * @param authorizationServerPolicyRule 
      */
-    public async createAuthorizationServerPolicyRule (policyId: string, authServerId: string, authorizationServerPolicyRule: AuthorizationServerPolicyRule, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: AuthorizationServerPolicyRule;  }> {
+    public async createAuthorizationServerPolicyRule (policyId: string, authServerId: string, authorizationServerPolicyRule: AuthorizationServerPolicyRule, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<AuthorizationServerPolicyRule> {
         const localVarPath = this.basePath + '/api/v1/authorizationServers/{authServerId}/policies/{policyId}/rules'
             .replace('{' + 'policyId' + '}', encodeURIComponent(String(policyId)))
             .replace('{' + 'authServerId' + '}', encodeURIComponent(String(authServerId)));
@@ -3455,14 +3472,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: AuthorizationServerPolicyRule;  }>((resolve, reject) => {
+            return new Promise<AuthorizationServerPolicyRule>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "AuthorizationServerPolicyRule");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -3476,7 +3493,7 @@ export class GeneratedApiClient {
      * @param authServerId 
      * @param oAuth2Claim 
      */
-    public async createOAuth2Claim (authServerId: string, oAuth2Claim: OAuth2Claim, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: OAuth2Claim;  }> {
+    public async createOAuth2Claim (authServerId: string, oAuth2Claim: OAuth2Claim, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<OAuth2Claim> {
         const localVarPath = this.basePath + '/api/v1/authorizationServers/{authServerId}/claims'
             .replace('{' + 'authServerId' + '}', encodeURIComponent(String(authServerId)));
         let localVarQueryParameters: any = {};
@@ -3533,14 +3550,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: OAuth2Claim;  }>((resolve, reject) => {
+            return new Promise<OAuth2Claim>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "OAuth2Claim");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -3554,7 +3571,7 @@ export class GeneratedApiClient {
      * @param authServerId 
      * @param oAuth2Scope 
      */
-    public async createOAuth2Scope (authServerId: string, oAuth2Scope: OAuth2Scope, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: OAuth2Scope;  }> {
+    public async createOAuth2Scope (authServerId: string, oAuth2Scope: OAuth2Scope, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<OAuth2Scope> {
         const localVarPath = this.basePath + '/api/v1/authorizationServers/{authServerId}/scopes'
             .replace('{' + 'authServerId' + '}', encodeURIComponent(String(authServerId)));
         let localVarQueryParameters: any = {};
@@ -3611,14 +3628,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: OAuth2Scope;  }>((resolve, reject) => {
+            return new Promise<OAuth2Scope>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "OAuth2Scope");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -3631,7 +3648,7 @@ export class GeneratedApiClient {
      * Success
      * @param authServerId 
      */
-    public async deactivateAuthorizationServer (authServerId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public async deactivateAuthorizationServer (authServerId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<any> {
         const localVarPath = this.basePath + '/api/v1/authorizationServers/{authServerId}/lifecycle/deactivate'
             .replace('{' + 'authServerId' + '}', encodeURIComponent(String(authServerId)));
         let localVarQueryParameters: any = {};
@@ -3675,13 +3692,13 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            return new Promise<any>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -3695,7 +3712,7 @@ export class GeneratedApiClient {
      * @param authServerId 
      * @param policyId 
      */
-    public async deactivateAuthorizationServerPolicy (authServerId: string, policyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public async deactivateAuthorizationServerPolicy (authServerId: string, policyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<any> {
         const localVarPath = this.basePath + '/api/v1/authorizationServers/{authServerId}/policies/{policyId}/lifecycle/deactivate'
             .replace('{' + 'authServerId' + '}', encodeURIComponent(String(authServerId)))
             .replace('{' + 'policyId' + '}', encodeURIComponent(String(policyId)));
@@ -3745,13 +3762,13 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            return new Promise<any>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -3766,7 +3783,7 @@ export class GeneratedApiClient {
      * @param policyId 
      * @param ruleId 
      */
-    public async deactivateAuthorizationServerPolicyRule (authServerId: string, policyId: string, ruleId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public async deactivateAuthorizationServerPolicyRule (authServerId: string, policyId: string, ruleId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<any> {
         const localVarPath = this.basePath + '/api/v1/authorizationServers/{authServerId}/policies/{policyId}/rules/{ruleId}/lifecycle/deactivate'
             .replace('{' + 'authServerId' + '}', encodeURIComponent(String(authServerId)))
             .replace('{' + 'policyId' + '}', encodeURIComponent(String(policyId)))
@@ -3822,13 +3839,13 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            return new Promise<any>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -3841,7 +3858,7 @@ export class GeneratedApiClient {
      * Success
      * @param authServerId 
      */
-    public async deleteAuthorizationServer (authServerId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public async deleteAuthorizationServer (authServerId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<any> {
         const localVarPath = this.basePath + '/api/v1/authorizationServers/{authServerId}'
             .replace('{' + 'authServerId' + '}', encodeURIComponent(String(authServerId)));
         let localVarQueryParameters: any = {};
@@ -3885,13 +3902,13 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            return new Promise<any>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -3905,7 +3922,7 @@ export class GeneratedApiClient {
      * @param authServerId 
      * @param policyId 
      */
-    public async deleteAuthorizationServerPolicy (authServerId: string, policyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public async deleteAuthorizationServerPolicy (authServerId: string, policyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<any> {
         const localVarPath = this.basePath + '/api/v1/authorizationServers/{authServerId}/policies/{policyId}'
             .replace('{' + 'authServerId' + '}', encodeURIComponent(String(authServerId)))
             .replace('{' + 'policyId' + '}', encodeURIComponent(String(policyId)));
@@ -3955,13 +3972,13 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            return new Promise<any>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -3976,7 +3993,7 @@ export class GeneratedApiClient {
      * @param authServerId 
      * @param ruleId 
      */
-    public async deleteAuthorizationServerPolicyRule (policyId: string, authServerId: string, ruleId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public async deleteAuthorizationServerPolicyRule (policyId: string, authServerId: string, ruleId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<any> {
         const localVarPath = this.basePath + '/api/v1/authorizationServers/{authServerId}/policies/{policyId}/rules/{ruleId}'
             .replace('{' + 'policyId' + '}', encodeURIComponent(String(policyId)))
             .replace('{' + 'authServerId' + '}', encodeURIComponent(String(authServerId)))
@@ -4032,13 +4049,13 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            return new Promise<any>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -4052,7 +4069,7 @@ export class GeneratedApiClient {
      * @param authServerId 
      * @param claimId 
      */
-    public async deleteOAuth2Claim (authServerId: string, claimId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public async deleteOAuth2Claim (authServerId: string, claimId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<any> {
         const localVarPath = this.basePath + '/api/v1/authorizationServers/{authServerId}/claims/{claimId}'
             .replace('{' + 'authServerId' + '}', encodeURIComponent(String(authServerId)))
             .replace('{' + 'claimId' + '}', encodeURIComponent(String(claimId)));
@@ -4102,13 +4119,13 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            return new Promise<any>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -4122,7 +4139,7 @@ export class GeneratedApiClient {
      * @param authServerId 
      * @param scopeId 
      */
-    public async deleteOAuth2Scope (authServerId: string, scopeId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public async deleteOAuth2Scope (authServerId: string, scopeId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<any> {
         const localVarPath = this.basePath + '/api/v1/authorizationServers/{authServerId}/scopes/{scopeId}'
             .replace('{' + 'authServerId' + '}', encodeURIComponent(String(authServerId)))
             .replace('{' + 'scopeId' + '}', encodeURIComponent(String(scopeId)));
@@ -4172,13 +4189,13 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            return new Promise<any>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -4191,7 +4208,7 @@ export class GeneratedApiClient {
      * Success
      * @param authServerId 
      */
-    public async getAuthorizationServer (authServerId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: AuthorizationServer;  }> {
+    public async getAuthorizationServer (authServerId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<AuthorizationServer> {
         const localVarPath = this.basePath + '/api/v1/authorizationServers/{authServerId}'
             .replace('{' + 'authServerId' + '}', encodeURIComponent(String(authServerId)));
         let localVarQueryParameters: any = {};
@@ -4242,14 +4259,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: AuthorizationServer;  }>((resolve, reject) => {
+            return new Promise<AuthorizationServer>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "AuthorizationServer");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -4263,7 +4280,7 @@ export class GeneratedApiClient {
      * @param authServerId 
      * @param policyId 
      */
-    public async getAuthorizationServerPolicy (authServerId: string, policyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: AuthorizationServerPolicy;  }> {
+    public async getAuthorizationServerPolicy (authServerId: string, policyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<AuthorizationServerPolicy> {
         const localVarPath = this.basePath + '/api/v1/authorizationServers/{authServerId}/policies/{policyId}'
             .replace('{' + 'authServerId' + '}', encodeURIComponent(String(authServerId)))
             .replace('{' + 'policyId' + '}', encodeURIComponent(String(policyId)));
@@ -4320,14 +4337,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: AuthorizationServerPolicy;  }>((resolve, reject) => {
+            return new Promise<AuthorizationServerPolicy>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "AuthorizationServerPolicy");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -4342,7 +4359,7 @@ export class GeneratedApiClient {
      * @param authServerId 
      * @param ruleId 
      */
-    public async getAuthorizationServerPolicyRule (policyId: string, authServerId: string, ruleId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: AuthorizationServerPolicyRule;  }> {
+    public async getAuthorizationServerPolicyRule (policyId: string, authServerId: string, ruleId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<AuthorizationServerPolicyRule> {
         const localVarPath = this.basePath + '/api/v1/authorizationServers/{authServerId}/policies/{policyId}/rules/{ruleId}'
             .replace('{' + 'policyId' + '}', encodeURIComponent(String(policyId)))
             .replace('{' + 'authServerId' + '}', encodeURIComponent(String(authServerId)))
@@ -4405,14 +4422,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: AuthorizationServerPolicyRule;  }>((resolve, reject) => {
+            return new Promise<AuthorizationServerPolicyRule>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "AuthorizationServerPolicyRule");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -4426,7 +4443,7 @@ export class GeneratedApiClient {
      * @param authServerId 
      * @param claimId 
      */
-    public async getOAuth2Claim (authServerId: string, claimId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: OAuth2Claim;  }> {
+    public async getOAuth2Claim (authServerId: string, claimId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<OAuth2Claim> {
         const localVarPath = this.basePath + '/api/v1/authorizationServers/{authServerId}/claims/{claimId}'
             .replace('{' + 'authServerId' + '}', encodeURIComponent(String(authServerId)))
             .replace('{' + 'claimId' + '}', encodeURIComponent(String(claimId)));
@@ -4483,14 +4500,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: OAuth2Claim;  }>((resolve, reject) => {
+            return new Promise<OAuth2Claim>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "OAuth2Claim");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -4504,7 +4521,7 @@ export class GeneratedApiClient {
      * @param authServerId 
      * @param scopeId 
      */
-    public async getOAuth2Scope (authServerId: string, scopeId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: OAuth2Scope;  }> {
+    public async getOAuth2Scope (authServerId: string, scopeId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<OAuth2Scope> {
         const localVarPath = this.basePath + '/api/v1/authorizationServers/{authServerId}/scopes/{scopeId}'
             .replace('{' + 'authServerId' + '}', encodeURIComponent(String(authServerId)))
             .replace('{' + 'scopeId' + '}', encodeURIComponent(String(scopeId)));
@@ -4561,14 +4578,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: OAuth2Scope;  }>((resolve, reject) => {
+            return new Promise<OAuth2Scope>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "OAuth2Scope");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -4584,7 +4601,7 @@ export class GeneratedApiClient {
      * @param tokenId 
      * @param expand 
      */
-    public async getRefreshTokenForAuthorizationServerAndClient (authServerId: string, clientId: string, tokenId: string, expand?: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: OAuth2RefreshToken;  }> {
+    public async getRefreshTokenForAuthorizationServerAndClient (authServerId: string, clientId: string, tokenId: string, expand?: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<OAuth2RefreshToken> {
         const localVarPath = this.basePath + '/api/v1/authorizationServers/{authServerId}/clients/{clientId}/tokens/{tokenId}'
             .replace('{' + 'authServerId' + '}', encodeURIComponent(String(authServerId)))
             .replace('{' + 'clientId' + '}', encodeURIComponent(String(clientId)))
@@ -4651,14 +4668,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: OAuth2RefreshToken;  }>((resolve, reject) => {
+            return new Promise<OAuth2RefreshToken>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "OAuth2RefreshToken");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -4671,7 +4688,7 @@ export class GeneratedApiClient {
      * Success
      * @param authServerId 
      */
-    public async listAuthorizationServerKeys (authServerId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Array<JsonWebKey>;  }> {
+    public async listAuthorizationServerKeys (authServerId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<Array<JsonWebKey>> {
         const localVarPath = this.basePath + '/api/v1/authorizationServers/{authServerId}/credentials/keys'
             .replace('{' + 'authServerId' + '}', encodeURIComponent(String(authServerId)));
         let localVarQueryParameters: any = {};
@@ -4722,14 +4739,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Array<JsonWebKey>;  }>((resolve, reject) => {
+            return new Promise<Array<JsonWebKey>>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "Array<JsonWebKey>");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -4742,7 +4759,7 @@ export class GeneratedApiClient {
      * Success
      * @param authServerId 
      */
-    public async listAuthorizationServerPolicies (authServerId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Array<AuthorizationServerPolicy>;  }> {
+    public async listAuthorizationServerPolicies (authServerId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<Array<AuthorizationServerPolicy>> {
         const localVarPath = this.basePath + '/api/v1/authorizationServers/{authServerId}/policies'
             .replace('{' + 'authServerId' + '}', encodeURIComponent(String(authServerId)));
         let localVarQueryParameters: any = {};
@@ -4793,14 +4810,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Array<AuthorizationServerPolicy>;  }>((resolve, reject) => {
+            return new Promise<Array<AuthorizationServerPolicy>>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "Array<AuthorizationServerPolicy>");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -4814,7 +4831,7 @@ export class GeneratedApiClient {
      * @param policyId 
      * @param authServerId 
      */
-    public async listAuthorizationServerPolicyRules (policyId: string, authServerId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Array<AuthorizationServerPolicyRule>;  }> {
+    public async listAuthorizationServerPolicyRules (policyId: string, authServerId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<Array<AuthorizationServerPolicyRule>> {
         const localVarPath = this.basePath + '/api/v1/authorizationServers/{authServerId}/policies/{policyId}/rules'
             .replace('{' + 'policyId' + '}', encodeURIComponent(String(policyId)))
             .replace('{' + 'authServerId' + '}', encodeURIComponent(String(authServerId)));
@@ -4871,14 +4888,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Array<AuthorizationServerPolicyRule>;  }>((resolve, reject) => {
+            return new Promise<Array<AuthorizationServerPolicyRule>>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "Array<AuthorizationServerPolicyRule>");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -4893,7 +4910,7 @@ export class GeneratedApiClient {
      * @param limit 
      * @param after 
      */
-    public async listAuthorizationServers (q?: string, limit?: string, after?: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Array<AuthorizationServer>;  }> {
+    public async listAuthorizationServers (q?: string, limit?: string, after?: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<Array<AuthorizationServer>> {
         const localVarPath = this.basePath + '/api/v1/authorizationServers';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -4950,14 +4967,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Array<AuthorizationServer>;  }>((resolve, reject) => {
+            return new Promise<Array<AuthorizationServer>>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "Array<AuthorizationServer>");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -4970,7 +4987,7 @@ export class GeneratedApiClient {
      * Success
      * @param authServerId 
      */
-    public async listOAuth2Claims (authServerId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Array<OAuth2Claim>;  }> {
+    public async listOAuth2Claims (authServerId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<Array<OAuth2Claim>> {
         const localVarPath = this.basePath + '/api/v1/authorizationServers/{authServerId}/claims'
             .replace('{' + 'authServerId' + '}', encodeURIComponent(String(authServerId)));
         let localVarQueryParameters: any = {};
@@ -5021,14 +5038,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Array<OAuth2Claim>;  }>((resolve, reject) => {
+            return new Promise<Array<OAuth2Claim>>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "Array<OAuth2Claim>");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -5041,7 +5058,7 @@ export class GeneratedApiClient {
      * Success
      * @param authServerId 
      */
-    public async listOAuth2ClientsForAuthorizationServer (authServerId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Array<OAuth2Client>;  }> {
+    public async listOAuth2ClientsForAuthorizationServer (authServerId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<Array<OAuth2Client>> {
         const localVarPath = this.basePath + '/api/v1/authorizationServers/{authServerId}/clients'
             .replace('{' + 'authServerId' + '}', encodeURIComponent(String(authServerId)));
         let localVarQueryParameters: any = {};
@@ -5092,14 +5109,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Array<OAuth2Client>;  }>((resolve, reject) => {
+            return new Promise<Array<OAuth2Client>>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "Array<OAuth2Client>");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -5116,7 +5133,7 @@ export class GeneratedApiClient {
      * @param cursor 
      * @param limit 
      */
-    public async listOAuth2Scopes (authServerId: string, q?: string, filter?: string, cursor?: string, limit?: number, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Array<OAuth2Scope>;  }> {
+    public async listOAuth2Scopes (authServerId: string, q?: string, filter?: string, cursor?: string, limit?: number, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<Array<OAuth2Scope>> {
         const localVarPath = this.basePath + '/api/v1/authorizationServers/{authServerId}/scopes'
             .replace('{' + 'authServerId' + '}', encodeURIComponent(String(authServerId)));
         let localVarQueryParameters: any = {};
@@ -5183,14 +5200,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Array<OAuth2Scope>;  }>((resolve, reject) => {
+            return new Promise<Array<OAuth2Scope>>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "Array<OAuth2Scope>");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -5207,7 +5224,7 @@ export class GeneratedApiClient {
      * @param after 
      * @param limit 
      */
-    public async listRefreshTokensForAuthorizationServerAndClient (authServerId: string, clientId: string, expand?: string, after?: string, limit?: number, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Array<OAuth2RefreshToken>;  }> {
+    public async listRefreshTokensForAuthorizationServerAndClient (authServerId: string, clientId: string, expand?: string, after?: string, limit?: number, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<Array<OAuth2RefreshToken>> {
         const localVarPath = this.basePath + '/api/v1/authorizationServers/{authServerId}/clients/{clientId}/tokens'
             .replace('{' + 'authServerId' + '}', encodeURIComponent(String(authServerId)))
             .replace('{' + 'clientId' + '}', encodeURIComponent(String(clientId)));
@@ -5276,14 +5293,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Array<OAuth2RefreshToken>;  }>((resolve, reject) => {
+            return new Promise<Array<OAuth2RefreshToken>>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "Array<OAuth2RefreshToken>");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -5298,7 +5315,7 @@ export class GeneratedApiClient {
      * @param clientId 
      * @param tokenId 
      */
-    public async revokeRefreshTokenForAuthorizationServerAndClient (authServerId: string, clientId: string, tokenId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public async revokeRefreshTokenForAuthorizationServerAndClient (authServerId: string, clientId: string, tokenId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<any> {
         const localVarPath = this.basePath + '/api/v1/authorizationServers/{authServerId}/clients/{clientId}/tokens/{tokenId}'
             .replace('{' + 'authServerId' + '}', encodeURIComponent(String(authServerId)))
             .replace('{' + 'clientId' + '}', encodeURIComponent(String(clientId)))
@@ -5354,13 +5371,13 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            return new Promise<any>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -5374,7 +5391,7 @@ export class GeneratedApiClient {
      * @param authServerId 
      * @param clientId 
      */
-    public async revokeRefreshTokensForAuthorizationServerAndClient (authServerId: string, clientId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public async revokeRefreshTokensForAuthorizationServerAndClient (authServerId: string, clientId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<any> {
         const localVarPath = this.basePath + '/api/v1/authorizationServers/{authServerId}/clients/{clientId}/tokens'
             .replace('{' + 'authServerId' + '}', encodeURIComponent(String(authServerId)))
             .replace('{' + 'clientId' + '}', encodeURIComponent(String(clientId)));
@@ -5424,13 +5441,13 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            return new Promise<any>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -5444,7 +5461,7 @@ export class GeneratedApiClient {
      * @param authServerId 
      * @param jwkUse 
      */
-    public async rotateAuthorizationServerKeys (authServerId: string, jwkUse: JwkUse, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Array<JsonWebKey>;  }> {
+    public async rotateAuthorizationServerKeys (authServerId: string, jwkUse: JwkUse, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<Array<JsonWebKey>> {
         const localVarPath = this.basePath + '/api/v1/authorizationServers/{authServerId}/credentials/lifecycle/keyRotate'
             .replace('{' + 'authServerId' + '}', encodeURIComponent(String(authServerId)));
         let localVarQueryParameters: any = {};
@@ -5501,14 +5518,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Array<JsonWebKey>;  }>((resolve, reject) => {
+            return new Promise<Array<JsonWebKey>>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "Array<JsonWebKey>");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -5522,7 +5539,7 @@ export class GeneratedApiClient {
      * @param authServerId 
      * @param authorizationServer 
      */
-    public async updateAuthorizationServer (authServerId: string, authorizationServer: AuthorizationServer, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: AuthorizationServer;  }> {
+    public async updateAuthorizationServer (authServerId: string, authorizationServer: AuthorizationServer, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<AuthorizationServer> {
         const localVarPath = this.basePath + '/api/v1/authorizationServers/{authServerId}'
             .replace('{' + 'authServerId' + '}', encodeURIComponent(String(authServerId)));
         let localVarQueryParameters: any = {};
@@ -5579,14 +5596,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: AuthorizationServer;  }>((resolve, reject) => {
+            return new Promise<AuthorizationServer>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "AuthorizationServer");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -5601,7 +5618,7 @@ export class GeneratedApiClient {
      * @param policyId 
      * @param authorizationServerPolicy 
      */
-    public async updateAuthorizationServerPolicy (authServerId: string, policyId: string, authorizationServerPolicy: AuthorizationServerPolicy, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: AuthorizationServerPolicy;  }> {
+    public async updateAuthorizationServerPolicy (authServerId: string, policyId: string, authorizationServerPolicy: AuthorizationServerPolicy, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<AuthorizationServerPolicy> {
         const localVarPath = this.basePath + '/api/v1/authorizationServers/{authServerId}/policies/{policyId}'
             .replace('{' + 'authServerId' + '}', encodeURIComponent(String(authServerId)))
             .replace('{' + 'policyId' + '}', encodeURIComponent(String(policyId)));
@@ -5664,14 +5681,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: AuthorizationServerPolicy;  }>((resolve, reject) => {
+            return new Promise<AuthorizationServerPolicy>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "AuthorizationServerPolicy");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -5687,7 +5704,7 @@ export class GeneratedApiClient {
      * @param ruleId 
      * @param authorizationServerPolicyRule 
      */
-    public async updateAuthorizationServerPolicyRule (policyId: string, authServerId: string, ruleId: string, authorizationServerPolicyRule: AuthorizationServerPolicyRule, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: AuthorizationServerPolicyRule;  }> {
+    public async updateAuthorizationServerPolicyRule (policyId: string, authServerId: string, ruleId: string, authorizationServerPolicyRule: AuthorizationServerPolicyRule, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<AuthorizationServerPolicyRule> {
         const localVarPath = this.basePath + '/api/v1/authorizationServers/{authServerId}/policies/{policyId}/rules/{ruleId}'
             .replace('{' + 'policyId' + '}', encodeURIComponent(String(policyId)))
             .replace('{' + 'authServerId' + '}', encodeURIComponent(String(authServerId)))
@@ -5756,14 +5773,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: AuthorizationServerPolicyRule;  }>((resolve, reject) => {
+            return new Promise<AuthorizationServerPolicyRule>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "AuthorizationServerPolicyRule");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -5778,7 +5795,7 @@ export class GeneratedApiClient {
      * @param claimId 
      * @param oAuth2Claim 
      */
-    public async updateOAuth2Claim (authServerId: string, claimId: string, oAuth2Claim: OAuth2Claim, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: OAuth2Claim;  }> {
+    public async updateOAuth2Claim (authServerId: string, claimId: string, oAuth2Claim: OAuth2Claim, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<OAuth2Claim> {
         const localVarPath = this.basePath + '/api/v1/authorizationServers/{authServerId}/claims/{claimId}'
             .replace('{' + 'authServerId' + '}', encodeURIComponent(String(authServerId)))
             .replace('{' + 'claimId' + '}', encodeURIComponent(String(claimId)));
@@ -5841,14 +5858,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: OAuth2Claim;  }>((resolve, reject) => {
+            return new Promise<OAuth2Claim>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "OAuth2Claim");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -5863,7 +5880,7 @@ export class GeneratedApiClient {
      * @param scopeId 
      * @param oAuth2Scope 
      */
-    public async updateOAuth2Scope (authServerId: string, scopeId: string, oAuth2Scope: OAuth2Scope, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: OAuth2Scope;  }> {
+    public async updateOAuth2Scope (authServerId: string, scopeId: string, oAuth2Scope: OAuth2Scope, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<OAuth2Scope> {
         const localVarPath = this.basePath + '/api/v1/authorizationServers/{authServerId}/scopes/{scopeId}'
             .replace('{' + 'authServerId' + '}', encodeURIComponent(String(authServerId)))
             .replace('{' + 'scopeId' + '}', encodeURIComponent(String(scopeId)));
@@ -5926,14 +5943,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: OAuth2Scope;  }>((resolve, reject) => {
+            return new Promise<OAuth2Scope>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "OAuth2Scope");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -5949,7 +5966,7 @@ export class GeneratedApiClient {
      * @summary Create new CAPTCHA instance
      * @param cAPTCHAInstance 
      */
-    public async createCaptchaInstance (cAPTCHAInstance?: CAPTCHAInstance, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: CAPTCHAInstance;  }> {
+    public async createCaptchaInstance (cAPTCHAInstance?: CAPTCHAInstance, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<CAPTCHAInstance> {
         const localVarPath = this.basePath + '/api/v1/captchas';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -5995,14 +6012,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: CAPTCHAInstance;  }>((resolve, reject) => {
+            return new Promise<CAPTCHAInstance>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "CAPTCHAInstance");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -6016,7 +6033,7 @@ export class GeneratedApiClient {
      * @summary Delete CAPTCHA Instance
      * @param captchaId id of the CAPTCHA
      */
-    public async deleteCaptchaInstance (captchaId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public async deleteCaptchaInstance (captchaId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<any> {
         const localVarPath = this.basePath + '/api/v1/captchas/{captchaId}'
             .replace('{' + 'captchaId' + '}', encodeURIComponent(String(captchaId)));
         let localVarQueryParameters: any = {};
@@ -6067,13 +6084,13 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            return new Promise<any>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -6087,7 +6104,7 @@ export class GeneratedApiClient {
      * @summary Get CAPTCHA Instance
      * @param captchaId id of the CAPTCHA
      */
-    public async getCaptchaInstance (captchaId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: CAPTCHAInstance;  }> {
+    public async getCaptchaInstance (captchaId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<CAPTCHAInstance> {
         const localVarPath = this.basePath + '/api/v1/captchas/{captchaId}'
             .replace('{' + 'captchaId' + '}', encodeURIComponent(String(captchaId)));
         let localVarQueryParameters: any = {};
@@ -6138,14 +6155,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: CAPTCHAInstance;  }>((resolve, reject) => {
+            return new Promise<CAPTCHAInstance>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "CAPTCHAInstance");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -6158,7 +6175,7 @@ export class GeneratedApiClient {
      * Enumerates CAPTCHA instances in your organization with pagination. A subset of CAPTCHA instances can be returned that match a supported filter expression or query.
      * @summary List CAPTCHA instances
      */
-    public async listCaptchaInstances (options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Array<CAPTCHAInstance>;  }> {
+    public async listCaptchaInstances (options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<Array<CAPTCHAInstance>> {
         const localVarPath = this.basePath + '/api/v1/captchas';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -6203,14 +6220,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Array<CAPTCHAInstance>;  }>((resolve, reject) => {
+            return new Promise<Array<CAPTCHAInstance>>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "Array<CAPTCHAInstance>");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -6225,7 +6242,7 @@ export class GeneratedApiClient {
      * @param captchaId id of the CAPTCHA
      * @param cAPTCHAInstance 
      */
-    public async partialUpdateCaptchaInstance (captchaId: string, cAPTCHAInstance: CAPTCHAInstance, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: CAPTCHAInstance;  }> {
+    public async partialUpdateCaptchaInstance (captchaId: string, cAPTCHAInstance: CAPTCHAInstance, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<CAPTCHAInstance> {
         const localVarPath = this.basePath + '/api/v1/captchas/{captchaId}'
             .replace('{' + 'captchaId' + '}', encodeURIComponent(String(captchaId)));
         let localVarQueryParameters: any = {};
@@ -6282,14 +6299,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: CAPTCHAInstance;  }>((resolve, reject) => {
+            return new Promise<CAPTCHAInstance>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "CAPTCHAInstance");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -6304,7 +6321,7 @@ export class GeneratedApiClient {
      * @param captchaId id of the CAPTCHA
      * @param cAPTCHAInstance 
      */
-    public async updateCaptchaInstance (captchaId: string, cAPTCHAInstance: CAPTCHAInstance, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: CAPTCHAInstance;  }> {
+    public async updateCaptchaInstance (captchaId: string, cAPTCHAInstance: CAPTCHAInstance, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<CAPTCHAInstance> {
         const localVarPath = this.basePath + '/api/v1/captchas/{captchaId}'
             .replace('{' + 'captchaId' + '}', encodeURIComponent(String(captchaId)));
         let localVarQueryParameters: any = {};
@@ -6361,14 +6378,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: CAPTCHAInstance;  }>((resolve, reject) => {
+            return new Promise<CAPTCHAInstance>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "CAPTCHAInstance");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -6385,7 +6402,7 @@ export class GeneratedApiClient {
      * @param domainId 
      * @param domainCertificate 
      */
-    public async createCertificate (domainId: string, domainCertificate: DomainCertificate, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public async createCertificate (domainId: string, domainCertificate: DomainCertificate, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<any> {
         const localVarPath = this.basePath + '/api/v1/domains/{domainId}/certificate'
             .replace('{' + 'domainId' + '}', encodeURIComponent(String(domainId)));
         let localVarQueryParameters: any = {};
@@ -6435,13 +6452,13 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            return new Promise<any>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -6455,7 +6472,7 @@ export class GeneratedApiClient {
      * @summary Create Domain
      * @param domain 
      */
-    public async createDomain (domain: Domain, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: DomainResponse;  }> {
+    public async createDomain (domain: Domain, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<DomainResponse> {
         const localVarPath = this.basePath + '/api/v1/domains';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -6506,14 +6523,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: DomainResponse;  }>((resolve, reject) => {
+            return new Promise<DomainResponse>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "DomainResponse");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -6527,7 +6544,7 @@ export class GeneratedApiClient {
      * @summary Delete Domain
      * @param domainId 
      */
-    public async deleteDomain (domainId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public async deleteDomain (domainId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<any> {
         const localVarPath = this.basePath + '/api/v1/domains/{domainId}'
             .replace('{' + 'domainId' + '}', encodeURIComponent(String(domainId)));
         let localVarQueryParameters: any = {};
@@ -6571,13 +6588,13 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            return new Promise<any>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -6591,7 +6608,7 @@ export class GeneratedApiClient {
      * @summary Get Domain
      * @param domainId 
      */
-    public async getDomain (domainId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: DomainResponse;  }> {
+    public async getDomain (domainId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<DomainResponse> {
         const localVarPath = this.basePath + '/api/v1/domains/{domainId}'
             .replace('{' + 'domainId' + '}', encodeURIComponent(String(domainId)));
         let localVarQueryParameters: any = {};
@@ -6642,14 +6659,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: DomainResponse;  }>((resolve, reject) => {
+            return new Promise<DomainResponse>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "DomainResponse");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -6662,7 +6679,7 @@ export class GeneratedApiClient {
      * List all verified custom Domains for the org.
      * @summary List Domains
      */
-    public async listDomains (options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: DomainListResponse;  }> {
+    public async listDomains (options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<DomainListResponse> {
         const localVarPath = this.basePath + '/api/v1/domains';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -6707,14 +6724,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: DomainListResponse;  }>((resolve, reject) => {
+            return new Promise<DomainListResponse>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "DomainListResponse");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -6728,7 +6745,7 @@ export class GeneratedApiClient {
      * @summary Verify Domain
      * @param domainId 
      */
-    public async verifyDomain (domainId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: DomainResponse;  }> {
+    public async verifyDomain (domainId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<DomainResponse> {
         const localVarPath = this.basePath + '/api/v1/domains/{domainId}/verify'
             .replace('{' + 'domainId' + '}', encodeURIComponent(String(domainId)));
         let localVarQueryParameters: any = {};
@@ -6779,14 +6796,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: DomainResponse;  }>((resolve, reject) => {
+            return new Promise<DomainResponse>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "DomainResponse");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -6801,7 +6818,7 @@ export class GeneratedApiClient {
      * Success
      * @param eventHookId 
      */
-    public async activateEventHook (eventHookId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: EventHook;  }> {
+    public async activateEventHook (eventHookId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<EventHook> {
         const localVarPath = this.basePath + '/api/v1/eventHooks/{eventHookId}/lifecycle/activate'
             .replace('{' + 'eventHookId' + '}', encodeURIComponent(String(eventHookId)));
         let localVarQueryParameters: any = {};
@@ -6852,14 +6869,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: EventHook;  }>((resolve, reject) => {
+            return new Promise<EventHook>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "EventHook");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -6872,7 +6889,7 @@ export class GeneratedApiClient {
      * Success
      * @param eventHook 
      */
-    public async createEventHook (eventHook: EventHook, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: EventHook;  }> {
+    public async createEventHook (eventHook: EventHook, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<EventHook> {
         const localVarPath = this.basePath + '/api/v1/eventHooks';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -6923,14 +6940,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: EventHook;  }>((resolve, reject) => {
+            return new Promise<EventHook>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "EventHook");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -6943,7 +6960,7 @@ export class GeneratedApiClient {
      * Success
      * @param eventHookId 
      */
-    public async deactivateEventHook (eventHookId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: EventHook;  }> {
+    public async deactivateEventHook (eventHookId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<EventHook> {
         const localVarPath = this.basePath + '/api/v1/eventHooks/{eventHookId}/lifecycle/deactivate'
             .replace('{' + 'eventHookId' + '}', encodeURIComponent(String(eventHookId)));
         let localVarQueryParameters: any = {};
@@ -6994,14 +7011,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: EventHook;  }>((resolve, reject) => {
+            return new Promise<EventHook>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "EventHook");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -7014,7 +7031,7 @@ export class GeneratedApiClient {
      * Success
      * @param eventHookId 
      */
-    public async deleteEventHook (eventHookId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public async deleteEventHook (eventHookId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<any> {
         const localVarPath = this.basePath + '/api/v1/eventHooks/{eventHookId}'
             .replace('{' + 'eventHookId' + '}', encodeURIComponent(String(eventHookId)));
         let localVarQueryParameters: any = {};
@@ -7058,13 +7075,13 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            return new Promise<any>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -7077,7 +7094,7 @@ export class GeneratedApiClient {
      * Success
      * @param eventHookId 
      */
-    public async getEventHook (eventHookId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: EventHook;  }> {
+    public async getEventHook (eventHookId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<EventHook> {
         const localVarPath = this.basePath + '/api/v1/eventHooks/{eventHookId}'
             .replace('{' + 'eventHookId' + '}', encodeURIComponent(String(eventHookId)));
         let localVarQueryParameters: any = {};
@@ -7128,14 +7145,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: EventHook;  }>((resolve, reject) => {
+            return new Promise<EventHook>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "EventHook");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -7147,7 +7164,7 @@ export class GeneratedApiClient {
     /**
      * Success
      */
-    public async listEventHooks (options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Array<EventHook>;  }> {
+    public async listEventHooks (options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<Array<EventHook>> {
         const localVarPath = this.basePath + '/api/v1/eventHooks';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -7192,14 +7209,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Array<EventHook>;  }>((resolve, reject) => {
+            return new Promise<Array<EventHook>>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "Array<EventHook>");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -7213,7 +7230,7 @@ export class GeneratedApiClient {
      * @param eventHookId 
      * @param eventHook 
      */
-    public async updateEventHook (eventHookId: string, eventHook: EventHook, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: EventHook;  }> {
+    public async updateEventHook (eventHookId: string, eventHook: EventHook, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<EventHook> {
         const localVarPath = this.basePath + '/api/v1/eventHooks/{eventHookId}'
             .replace('{' + 'eventHookId' + '}', encodeURIComponent(String(eventHookId)));
         let localVarQueryParameters: any = {};
@@ -7270,14 +7287,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: EventHook;  }>((resolve, reject) => {
+            return new Promise<EventHook>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "EventHook");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -7290,7 +7307,7 @@ export class GeneratedApiClient {
      * Success
      * @param eventHookId 
      */
-    public async verifyEventHook (eventHookId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: EventHook;  }> {
+    public async verifyEventHook (eventHookId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<EventHook> {
         const localVarPath = this.basePath + '/api/v1/eventHooks/{eventHookId}/lifecycle/verify'
             .replace('{' + 'eventHookId' + '}', encodeURIComponent(String(eventHookId)));
         let localVarQueryParameters: any = {};
@@ -7341,14 +7358,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: EventHook;  }>((resolve, reject) => {
+            return new Promise<EventHook>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "EventHook");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -7363,7 +7380,7 @@ export class GeneratedApiClient {
      * Success
      * @param featureId 
      */
-    public async getFeature (featureId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Feature;  }> {
+    public async getFeature (featureId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<Feature> {
         const localVarPath = this.basePath + '/api/v1/features/{featureId}'
             .replace('{' + 'featureId' + '}', encodeURIComponent(String(featureId)));
         let localVarQueryParameters: any = {};
@@ -7414,14 +7431,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Feature;  }>((resolve, reject) => {
+            return new Promise<Feature>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "Feature");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -7434,7 +7451,7 @@ export class GeneratedApiClient {
      * Success
      * @param featureId 
      */
-    public async listFeatureDependencies (featureId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Array<Feature>;  }> {
+    public async listFeatureDependencies (featureId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<Array<Feature>> {
         const localVarPath = this.basePath + '/api/v1/features/{featureId}/dependencies'
             .replace('{' + 'featureId' + '}', encodeURIComponent(String(featureId)));
         let localVarQueryParameters: any = {};
@@ -7485,14 +7502,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Array<Feature>;  }>((resolve, reject) => {
+            return new Promise<Array<Feature>>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "Array<Feature>");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -7505,7 +7522,7 @@ export class GeneratedApiClient {
      * Success
      * @param featureId 
      */
-    public async listFeatureDependents (featureId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Array<Feature>;  }> {
+    public async listFeatureDependents (featureId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<Array<Feature>> {
         const localVarPath = this.basePath + '/api/v1/features/{featureId}/dependents'
             .replace('{' + 'featureId' + '}', encodeURIComponent(String(featureId)));
         let localVarQueryParameters: any = {};
@@ -7556,14 +7573,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Array<Feature>;  }>((resolve, reject) => {
+            return new Promise<Array<Feature>>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "Array<Feature>");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -7575,7 +7592,7 @@ export class GeneratedApiClient {
     /**
      * Success
      */
-    public async listFeatures (options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Array<Feature>;  }> {
+    public async listFeatures (options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<Array<Feature>> {
         const localVarPath = this.basePath + '/api/v1/features';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -7620,14 +7637,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Array<Feature>;  }>((resolve, reject) => {
+            return new Promise<Array<Feature>>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "Array<Feature>");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -7642,7 +7659,7 @@ export class GeneratedApiClient {
      * @param lifecycle 
      * @param mode 
      */
-    public async updateFeatureLifecycle (featureId: string, lifecycle: string, mode?: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Feature;  }> {
+    public async updateFeatureLifecycle (featureId: string, lifecycle: string, mode?: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<Feature> {
         const localVarPath = this.basePath + '/api/v1/features/{featureId}/{lifecycle}'
             .replace('{' + 'featureId' + '}', encodeURIComponent(String(featureId)))
             .replace('{' + 'lifecycle' + '}', encodeURIComponent(String(lifecycle)));
@@ -7703,14 +7720,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Feature;  }>((resolve, reject) => {
+            return new Promise<Feature>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "Feature");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -7726,7 +7743,7 @@ export class GeneratedApiClient {
      * @summary Activate a group Rule
      * @param ruleId 
      */
-    public async activateGroupRule (ruleId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public async activateGroupRule (ruleId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<any> {
         const localVarPath = this.basePath + '/api/v1/groups/rules/{ruleId}/lifecycle/activate'
             .replace('{' + 'ruleId' + '}', encodeURIComponent(String(ruleId)));
         let localVarQueryParameters: any = {};
@@ -7770,13 +7787,13 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            return new Promise<any>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -7793,7 +7810,7 @@ export class GeneratedApiClient {
      * @param appName 
      * @param applicationId 
      */
-    public async addApplicationInstanceTargetToAppAdminRoleGivenToGroup (groupId: string, roleId: string, appName: string, applicationId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public async addApplicationInstanceTargetToAppAdminRoleGivenToGroup (groupId: string, roleId: string, appName: string, applicationId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<any> {
         const localVarPath = this.basePath + '/api/v1/groups/{groupId}/roles/{roleId}/targets/catalog/apps/{appName}/{applicationId}'
             .replace('{' + 'groupId' + '}', encodeURIComponent(String(groupId)))
             .replace('{' + 'roleId' + '}', encodeURIComponent(String(roleId)))
@@ -7855,13 +7872,13 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            return new Promise<any>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -7876,7 +7893,7 @@ export class GeneratedApiClient {
      * @param roleId 
      * @param appName 
      */
-    public async addApplicationTargetToAdminRoleGivenToGroup (groupId: string, roleId: string, appName: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public async addApplicationTargetToAdminRoleGivenToGroup (groupId: string, roleId: string, appName: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<any> {
         const localVarPath = this.basePath + '/api/v1/groups/{groupId}/roles/{roleId}/targets/catalog/apps/{appName}'
             .replace('{' + 'groupId' + '}', encodeURIComponent(String(groupId)))
             .replace('{' + 'roleId' + '}', encodeURIComponent(String(roleId)))
@@ -7932,13 +7949,13 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            return new Promise<any>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -7954,7 +7971,7 @@ export class GeneratedApiClient {
      * @param roleId 
      * @param targetGroupId 
      */
-    public async addGroupTargetToGroupAdministratorRoleForGroup (groupId: string, roleId: string, targetGroupId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public async addGroupTargetToGroupAdministratorRoleForGroup (groupId: string, roleId: string, targetGroupId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<any> {
         const localVarPath = this.basePath + '/api/v1/groups/{groupId}/roles/{roleId}/targets/groups/{targetGroupId}'
             .replace('{' + 'groupId' + '}', encodeURIComponent(String(groupId)))
             .replace('{' + 'roleId' + '}', encodeURIComponent(String(roleId)))
@@ -8007,13 +8024,13 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            return new Promise<any>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -8028,7 +8045,7 @@ export class GeneratedApiClient {
      * @param groupId 
      * @param userId 
      */
-    public async addUserToGroup (groupId: string, userId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public async addUserToGroup (groupId: string, userId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<any> {
         const localVarPath = this.basePath + '/api/v1/groups/{groupId}/users/{userId}'
             .replace('{' + 'groupId' + '}', encodeURIComponent(String(groupId)))
             .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)));
@@ -8078,13 +8095,13 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            return new Promise<any>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -8099,7 +8116,7 @@ export class GeneratedApiClient {
      * @param assignRoleRequest 
      * @param disableNotifications 
      */
-    public async assignRoleToGroup (groupId: string, assignRoleRequest: AssignRoleRequest, disableNotifications?: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Role;  }> {
+    public async assignRoleToGroup (groupId: string, assignRoleRequest: AssignRoleRequest, disableNotifications?: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<Role> {
         const localVarPath = this.basePath + '/api/v1/groups/{groupId}/roles'
             .replace('{' + 'groupId' + '}', encodeURIComponent(String(groupId)));
         let localVarQueryParameters: any = {};
@@ -8160,14 +8177,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Role;  }>((resolve, reject) => {
+            return new Promise<Role>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "Role");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -8181,7 +8198,7 @@ export class GeneratedApiClient {
      * @summary Add Group
      * @param group 
      */
-    public async createGroup (group: Group, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Group;  }> {
+    public async createGroup (group: Group, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<Group> {
         const localVarPath = this.basePath + '/api/v1/groups';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -8232,14 +8249,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Group;  }>((resolve, reject) => {
+            return new Promise<Group>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "Group");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -8253,7 +8270,7 @@ export class GeneratedApiClient {
      * @summary Create Group Rule
      * @param groupRule 
      */
-    public async createGroupRule (groupRule: GroupRule, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: GroupRule;  }> {
+    public async createGroupRule (groupRule: GroupRule, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<GroupRule> {
         const localVarPath = this.basePath + '/api/v1/groups/rules';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -8304,14 +8321,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: GroupRule;  }>((resolve, reject) => {
+            return new Promise<GroupRule>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "GroupRule");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -8325,7 +8342,7 @@ export class GeneratedApiClient {
      * @summary Deactivate a group Rule
      * @param ruleId 
      */
-    public async deactivateGroupRule (ruleId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public async deactivateGroupRule (ruleId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<any> {
         const localVarPath = this.basePath + '/api/v1/groups/rules/{ruleId}/lifecycle/deactivate'
             .replace('{' + 'ruleId' + '}', encodeURIComponent(String(ruleId)));
         let localVarQueryParameters: any = {};
@@ -8369,13 +8386,13 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            return new Promise<any>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -8389,7 +8406,7 @@ export class GeneratedApiClient {
      * @summary Remove Group
      * @param groupId 
      */
-    public async deleteGroup (groupId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public async deleteGroup (groupId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<any> {
         const localVarPath = this.basePath + '/api/v1/groups/{groupId}'
             .replace('{' + 'groupId' + '}', encodeURIComponent(String(groupId)));
         let localVarQueryParameters: any = {};
@@ -8433,13 +8450,13 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            return new Promise<any>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -8454,7 +8471,7 @@ export class GeneratedApiClient {
      * @param ruleId 
      * @param removeUsers Indicates whether to keep or remove users from groups assigned by this rule.
      */
-    public async deleteGroupRule (ruleId: string, removeUsers?: boolean, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public async deleteGroupRule (ruleId: string, removeUsers?: boolean, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<any> {
         const localVarPath = this.basePath + '/api/v1/groups/rules/{ruleId}'
             .replace('{' + 'ruleId' + '}', encodeURIComponent(String(ruleId)));
         let localVarQueryParameters: any = {};
@@ -8502,13 +8519,13 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            return new Promise<any>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -8522,7 +8539,7 @@ export class GeneratedApiClient {
      * @summary List Group Rules
      * @param groupId 
      */
-    public async getGroup (groupId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Group;  }> {
+    public async getGroup (groupId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<Group> {
         const localVarPath = this.basePath + '/api/v1/groups/{groupId}'
             .replace('{' + 'groupId' + '}', encodeURIComponent(String(groupId)));
         let localVarQueryParameters: any = {};
@@ -8573,14 +8590,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Group;  }>((resolve, reject) => {
+            return new Promise<Group>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "Group");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -8595,7 +8612,7 @@ export class GeneratedApiClient {
      * @param ruleId 
      * @param expand 
      */
-    public async getGroupRule (ruleId: string, expand?: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: GroupRule;  }> {
+    public async getGroupRule (ruleId: string, expand?: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<GroupRule> {
         const localVarPath = this.basePath + '/api/v1/groups/rules/{ruleId}'
             .replace('{' + 'ruleId' + '}', encodeURIComponent(String(ruleId)));
         let localVarQueryParameters: any = {};
@@ -8650,14 +8667,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: GroupRule;  }>((resolve, reject) => {
+            return new Promise<GroupRule>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "GroupRule");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -8671,7 +8688,7 @@ export class GeneratedApiClient {
      * @param groupId 
      * @param roleId 
      */
-    public async getRole (groupId: string, roleId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Role;  }> {
+    public async getRole (groupId: string, roleId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<Role> {
         const localVarPath = this.basePath + '/api/v1/groups/{groupId}/roles/{roleId}'
             .replace('{' + 'groupId' + '}', encodeURIComponent(String(groupId)))
             .replace('{' + 'roleId' + '}', encodeURIComponent(String(roleId)));
@@ -8728,14 +8745,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Role;  }>((resolve, reject) => {
+            return new Promise<Role>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "Role");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -8751,7 +8768,7 @@ export class GeneratedApiClient {
      * @param after 
      * @param limit 
      */
-    public async listApplicationTargetsForApplicationAdministratorRoleForGroup (groupId: string, roleId: string, after?: string, limit?: number, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Array<CatalogApplication>;  }> {
+    public async listApplicationTargetsForApplicationAdministratorRoleForGroup (groupId: string, roleId: string, after?: string, limit?: number, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<Array<CatalogApplication>> {
         const localVarPath = this.basePath + '/api/v1/groups/{groupId}/roles/{roleId}/targets/catalog/apps'
             .replace('{' + 'groupId' + '}', encodeURIComponent(String(groupId)))
             .replace('{' + 'roleId' + '}', encodeURIComponent(String(roleId)));
@@ -8816,14 +8833,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Array<CatalogApplication>;  }>((resolve, reject) => {
+            return new Promise<Array<CatalogApplication>>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "Array<CatalogApplication>");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -8839,7 +8856,7 @@ export class GeneratedApiClient {
      * @param after Specifies the pagination cursor for the next page of apps
      * @param limit Specifies the number of app results for a page
      */
-    public async listAssignedApplicationsForGroup (groupId: string, after?: string, limit?: number, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Array<Application>;  }> {
+    public async listAssignedApplicationsForGroup (groupId: string, after?: string, limit?: number, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<Array<Application>> {
         const localVarPath = this.basePath + '/api/v1/groups/{groupId}/apps'
             .replace('{' + 'groupId' + '}', encodeURIComponent(String(groupId)));
         let localVarQueryParameters: any = {};
@@ -8898,14 +8915,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Array<Application>;  }>((resolve, reject) => {
+            return new Promise<Array<Application>>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "Array<Application>");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -8919,7 +8936,7 @@ export class GeneratedApiClient {
      * @param groupId 
      * @param expand 
      */
-    public async listGroupAssignedRoles (groupId: string, expand?: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Array<Role>;  }> {
+    public async listGroupAssignedRoles (groupId: string, expand?: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<Array<Role>> {
         const localVarPath = this.basePath + '/api/v1/groups/{groupId}/roles'
             .replace('{' + 'groupId' + '}', encodeURIComponent(String(groupId)));
         let localVarQueryParameters: any = {};
@@ -8974,14 +8991,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Array<Role>;  }>((resolve, reject) => {
+            return new Promise<Array<Role>>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "Array<Role>");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -8998,7 +9015,7 @@ export class GeneratedApiClient {
      * @param search Specifies the keyword to search fules for
      * @param expand If specified as &#x60;groupIdToGroupNameMap&#x60;, then show group names
      */
-    public async listGroupRules (limit?: number, after?: string, search?: string, expand?: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Array<GroupRule>;  }> {
+    public async listGroupRules (limit?: number, after?: string, search?: string, expand?: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<Array<GroupRule>> {
         const localVarPath = this.basePath + '/api/v1/groups/rules';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -9059,14 +9076,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Array<GroupRule>;  }>((resolve, reject) => {
+            return new Promise<Array<GroupRule>>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "Array<GroupRule>");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -9083,7 +9100,7 @@ export class GeneratedApiClient {
      * @param after 
      * @param limit 
      */
-    public async listGroupTargetsForGroupRole (groupId: string, roleId: string, after?: string, limit?: number, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Array<Group>;  }> {
+    public async listGroupTargetsForGroupRole (groupId: string, roleId: string, after?: string, limit?: number, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<Array<Group>> {
         const localVarPath = this.basePath + '/api/v1/groups/{groupId}/roles/{roleId}/targets/groups'
             .replace('{' + 'groupId' + '}', encodeURIComponent(String(groupId)))
             .replace('{' + 'roleId' + '}', encodeURIComponent(String(roleId)));
@@ -9148,14 +9165,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Array<Group>;  }>((resolve, reject) => {
+            return new Promise<Array<Group>>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "Array<Group>");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -9171,7 +9188,7 @@ export class GeneratedApiClient {
      * @param after Specifies the pagination cursor for the next page of users
      * @param limit Specifies the number of user results in a page
      */
-    public async listGroupUsers (groupId: string, after?: string, limit?: number, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Array<User>;  }> {
+    public async listGroupUsers (groupId: string, after?: string, limit?: number, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<Array<User>> {
         const localVarPath = this.basePath + '/api/v1/groups/{groupId}/users'
             .replace('{' + 'groupId' + '}', encodeURIComponent(String(groupId)));
         let localVarQueryParameters: any = {};
@@ -9230,14 +9247,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Array<User>;  }>((resolve, reject) => {
+            return new Promise<Array<User>>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "Array<User>");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -9255,7 +9272,7 @@ export class GeneratedApiClient {
      * @param limit Specifies the number of group results in a page
      * @param expand If specified, it causes additional metadata to be included in the response.
      */
-    public async listGroups (q?: string, search?: string, after?: string, limit?: number, expand?: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Array<Group>;  }> {
+    public async listGroups (q?: string, search?: string, after?: string, limit?: number, expand?: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<Array<Group>> {
         const localVarPath = this.basePath + '/api/v1/groups';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -9320,14 +9337,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Array<Group>;  }>((resolve, reject) => {
+            return new Promise<Array<Group>>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "Array<Group>");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -9344,7 +9361,7 @@ export class GeneratedApiClient {
      * @param appName 
      * @param applicationId 
      */
-    public async removeApplicationTargetFromAdministratorRoleGivenToGroup (groupId: string, roleId: string, appName: string, applicationId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public async removeApplicationTargetFromAdministratorRoleGivenToGroup (groupId: string, roleId: string, appName: string, applicationId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<any> {
         const localVarPath = this.basePath + '/api/v1/groups/{groupId}/roles/{roleId}/targets/catalog/apps/{appName}/{applicationId}'
             .replace('{' + 'groupId' + '}', encodeURIComponent(String(groupId)))
             .replace('{' + 'roleId' + '}', encodeURIComponent(String(roleId)))
@@ -9406,13 +9423,13 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            return new Promise<any>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -9427,7 +9444,7 @@ export class GeneratedApiClient {
      * @param roleId 
      * @param appName 
      */
-    public async removeApplicationTargetFromApplicationAdministratorRoleGivenToGroup (groupId: string, roleId: string, appName: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public async removeApplicationTargetFromApplicationAdministratorRoleGivenToGroup (groupId: string, roleId: string, appName: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<any> {
         const localVarPath = this.basePath + '/api/v1/groups/{groupId}/roles/{roleId}/targets/catalog/apps/{appName}'
             .replace('{' + 'groupId' + '}', encodeURIComponent(String(groupId)))
             .replace('{' + 'roleId' + '}', encodeURIComponent(String(roleId)))
@@ -9483,13 +9500,13 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            return new Promise<any>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -9505,7 +9522,7 @@ export class GeneratedApiClient {
      * @param roleId 
      * @param targetGroupId 
      */
-    public async removeGroupTargetFromGroupAdministratorRoleGivenToGroup (groupId: string, roleId: string, targetGroupId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public async removeGroupTargetFromGroupAdministratorRoleGivenToGroup (groupId: string, roleId: string, targetGroupId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<any> {
         const localVarPath = this.basePath + '/api/v1/groups/{groupId}/roles/{roleId}/targets/groups/{targetGroupId}'
             .replace('{' + 'groupId' + '}', encodeURIComponent(String(groupId)))
             .replace('{' + 'roleId' + '}', encodeURIComponent(String(roleId)))
@@ -9558,13 +9575,13 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            return new Promise<any>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -9578,7 +9595,7 @@ export class GeneratedApiClient {
      * @param groupId 
      * @param roleId 
      */
-    public async removeRoleFromGroup (groupId: string, roleId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public async removeRoleFromGroup (groupId: string, roleId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<any> {
         const localVarPath = this.basePath + '/api/v1/groups/{groupId}/roles/{roleId}'
             .replace('{' + 'groupId' + '}', encodeURIComponent(String(groupId)))
             .replace('{' + 'roleId' + '}', encodeURIComponent(String(roleId)));
@@ -9628,13 +9645,13 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            return new Promise<any>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -9649,7 +9666,7 @@ export class GeneratedApiClient {
      * @param groupId 
      * @param userId 
      */
-    public async removeUserFromGroup (groupId: string, userId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public async removeUserFromGroup (groupId: string, userId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<any> {
         const localVarPath = this.basePath + '/api/v1/groups/{groupId}/users/{userId}'
             .replace('{' + 'groupId' + '}', encodeURIComponent(String(groupId)))
             .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)));
@@ -9699,13 +9716,13 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            return new Promise<any>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -9720,7 +9737,7 @@ export class GeneratedApiClient {
      * @param groupId 
      * @param group 
      */
-    public async updateGroup (groupId: string, group: Group, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Group;  }> {
+    public async updateGroup (groupId: string, group: Group, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<Group> {
         const localVarPath = this.basePath + '/api/v1/groups/{groupId}'
             .replace('{' + 'groupId' + '}', encodeURIComponent(String(groupId)));
         let localVarQueryParameters: any = {};
@@ -9777,14 +9794,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Group;  }>((resolve, reject) => {
+            return new Promise<Group>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "Group");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -9798,7 +9815,7 @@ export class GeneratedApiClient {
      * @param ruleId 
      * @param groupRule 
      */
-    public async updateGroupRule (ruleId: string, groupRule: GroupRule, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: GroupRule;  }> {
+    public async updateGroupRule (ruleId: string, groupRule: GroupRule, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<GroupRule> {
         const localVarPath = this.basePath + '/api/v1/groups/rules/{ruleId}'
             .replace('{' + 'ruleId' + '}', encodeURIComponent(String(ruleId)));
         let localVarQueryParameters: any = {};
@@ -9855,14 +9872,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: GroupRule;  }>((resolve, reject) => {
+            return new Promise<GroupRule>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "GroupRule");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -9877,7 +9894,7 @@ export class GeneratedApiClient {
      * Fetches the group schema
      * @summary Fetches the group schema
      */
-    public async getGroupSchema (options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: GroupSchema;  }> {
+    public async getGroupSchema (options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<GroupSchema> {
         const localVarPath = this.basePath + '/api/v1/meta/schemas/group/default';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -9922,14 +9939,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: GroupSchema;  }>((resolve, reject) => {
+            return new Promise<GroupSchema>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "GroupSchema");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -9943,7 +9960,7 @@ export class GeneratedApiClient {
      * @summary Updates, adds ore removes one or more custom Group Profile properties in the schema
      * @param groupSchema 
      */
-    public async updateGroupSchema (groupSchema?: GroupSchema, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: GroupSchema;  }> {
+    public async updateGroupSchema (groupSchema?: GroupSchema, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<GroupSchema> {
         const localVarPath = this.basePath + '/api/v1/meta/schemas/group/default';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -9989,14 +10006,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: GroupSchema;  }>((resolve, reject) => {
+            return new Promise<GroupSchema>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "GroupSchema");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -10012,7 +10029,7 @@ export class GeneratedApiClient {
      * @summary Activate Identity Provider
      * @param idpId 
      */
-    public async activateIdentityProvider (idpId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: IdentityProvider;  }> {
+    public async activateIdentityProvider (idpId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<IdentityProvider> {
         const localVarPath = this.basePath + '/api/v1/idps/{idpId}/lifecycle/activate'
             .replace('{' + 'idpId' + '}', encodeURIComponent(String(idpId)));
         let localVarQueryParameters: any = {};
@@ -10063,14 +10080,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: IdentityProvider;  }>((resolve, reject) => {
+            return new Promise<IdentityProvider>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "IdentityProvider");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -10086,7 +10103,7 @@ export class GeneratedApiClient {
      * @param keyId 
      * @param targetIdpId 
      */
-    public async cloneIdentityProviderKey (idpId: string, keyId: string, targetIdpId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: JsonWebKey;  }> {
+    public async cloneIdentityProviderKey (idpId: string, keyId: string, targetIdpId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<JsonWebKey> {
         const localVarPath = this.basePath + '/api/v1/idps/{idpId}/credentials/keys/{keyId}/clone'
             .replace('{' + 'idpId' + '}', encodeURIComponent(String(idpId)))
             .replace('{' + 'keyId' + '}', encodeURIComponent(String(keyId)));
@@ -10152,14 +10169,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: JsonWebKey;  }>((resolve, reject) => {
+            return new Promise<JsonWebKey>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "JsonWebKey");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -10173,7 +10190,7 @@ export class GeneratedApiClient {
      * @summary Add Identity Provider
      * @param identityProvider 
      */
-    public async createIdentityProvider (identityProvider: IdentityProvider, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: IdentityProvider;  }> {
+    public async createIdentityProvider (identityProvider: IdentityProvider, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<IdentityProvider> {
         const localVarPath = this.basePath + '/api/v1/idps';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -10224,14 +10241,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: IdentityProvider;  }>((resolve, reject) => {
+            return new Promise<IdentityProvider>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "IdentityProvider");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -10245,7 +10262,7 @@ export class GeneratedApiClient {
      * @summary Add X.509 Certificate Public Key
      * @param jsonWebKey 
      */
-    public async createIdentityProviderKey (jsonWebKey: JsonWebKey, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: JsonWebKey;  }> {
+    public async createIdentityProviderKey (jsonWebKey: JsonWebKey, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<JsonWebKey> {
         const localVarPath = this.basePath + '/api/v1/idps/credentials/keys';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -10296,14 +10313,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: JsonWebKey;  }>((resolve, reject) => {
+            return new Promise<JsonWebKey>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "JsonWebKey");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -10317,7 +10334,7 @@ export class GeneratedApiClient {
      * @summary Deactivate Identity Provider
      * @param idpId 
      */
-    public async deactivateIdentityProvider (idpId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: IdentityProvider;  }> {
+    public async deactivateIdentityProvider (idpId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<IdentityProvider> {
         const localVarPath = this.basePath + '/api/v1/idps/{idpId}/lifecycle/deactivate'
             .replace('{' + 'idpId' + '}', encodeURIComponent(String(idpId)));
         let localVarQueryParameters: any = {};
@@ -10368,14 +10385,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: IdentityProvider;  }>((resolve, reject) => {
+            return new Promise<IdentityProvider>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "IdentityProvider");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -10389,7 +10406,7 @@ export class GeneratedApiClient {
      * @summary Delete Identity Provider
      * @param idpId 
      */
-    public async deleteIdentityProvider (idpId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public async deleteIdentityProvider (idpId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<any> {
         const localVarPath = this.basePath + '/api/v1/idps/{idpId}'
             .replace('{' + 'idpId' + '}', encodeURIComponent(String(idpId)));
         let localVarQueryParameters: any = {};
@@ -10433,13 +10450,13 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            return new Promise<any>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -10453,7 +10470,7 @@ export class GeneratedApiClient {
      * @summary Delete Key
      * @param keyId 
      */
-    public async deleteIdentityProviderKey (keyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public async deleteIdentityProviderKey (keyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<any> {
         const localVarPath = this.basePath + '/api/v1/idps/credentials/keys/{keyId}'
             .replace('{' + 'keyId' + '}', encodeURIComponent(String(keyId)));
         let localVarQueryParameters: any = {};
@@ -10497,13 +10514,13 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            return new Promise<any>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -10518,7 +10535,7 @@ export class GeneratedApiClient {
      * @param idpId 
      * @param csrMetadata 
      */
-    public async generateCsrForIdentityProvider (idpId: string, csrMetadata: CsrMetadata, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Csr;  }> {
+    public async generateCsrForIdentityProvider (idpId: string, csrMetadata: CsrMetadata, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<Csr> {
         const localVarPath = this.basePath + '/api/v1/idps/{idpId}/credentials/csrs'
             .replace('{' + 'idpId' + '}', encodeURIComponent(String(idpId)));
         let localVarQueryParameters: any = {};
@@ -10575,14 +10592,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Csr;  }>((resolve, reject) => {
+            return new Promise<Csr>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "Csr");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -10597,7 +10614,7 @@ export class GeneratedApiClient {
      * @param idpId 
      * @param validityYears expiry of the IdP Key Credential
      */
-    public async generateIdentityProviderSigningKey (idpId: string, validityYears: number, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: JsonWebKey;  }> {
+    public async generateIdentityProviderSigningKey (idpId: string, validityYears: number, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<JsonWebKey> {
         const localVarPath = this.basePath + '/api/v1/idps/{idpId}/credentials/keys/generate'
             .replace('{' + 'idpId' + '}', encodeURIComponent(String(idpId)));
         let localVarQueryParameters: any = {};
@@ -10657,14 +10674,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: JsonWebKey;  }>((resolve, reject) => {
+            return new Promise<JsonWebKey>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "JsonWebKey");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -10678,7 +10695,7 @@ export class GeneratedApiClient {
      * @param idpId 
      * @param csrId 
      */
-    public async getCsrForIdentityProvider (idpId: string, csrId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Csr;  }> {
+    public async getCsrForIdentityProvider (idpId: string, csrId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<Csr> {
         const localVarPath = this.basePath + '/api/v1/idps/{idpId}/credentials/csrs/{csrId}'
             .replace('{' + 'idpId' + '}', encodeURIComponent(String(idpId)))
             .replace('{' + 'csrId' + '}', encodeURIComponent(String(csrId)));
@@ -10735,14 +10752,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Csr;  }>((resolve, reject) => {
+            return new Promise<Csr>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "Csr");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -10756,7 +10773,7 @@ export class GeneratedApiClient {
      * @summary Get Identity Provider
      * @param idpId 
      */
-    public async getIdentityProvider (idpId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: IdentityProvider;  }> {
+    public async getIdentityProvider (idpId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<IdentityProvider> {
         const localVarPath = this.basePath + '/api/v1/idps/{idpId}'
             .replace('{' + 'idpId' + '}', encodeURIComponent(String(idpId)));
         let localVarQueryParameters: any = {};
@@ -10807,14 +10824,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: IdentityProvider;  }>((resolve, reject) => {
+            return new Promise<IdentityProvider>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "IdentityProvider");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -10828,7 +10845,7 @@ export class GeneratedApiClient {
      * @param idpId 
      * @param userId 
      */
-    public async getIdentityProviderApplicationUser (idpId: string, userId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: IdentityProviderApplicationUser;  }> {
+    public async getIdentityProviderApplicationUser (idpId: string, userId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<IdentityProviderApplicationUser> {
         const localVarPath = this.basePath + '/api/v1/idps/{idpId}/users/{userId}'
             .replace('{' + 'idpId' + '}', encodeURIComponent(String(idpId)))
             .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)));
@@ -10885,14 +10902,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: IdentityProviderApplicationUser;  }>((resolve, reject) => {
+            return new Promise<IdentityProviderApplicationUser>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "IdentityProviderApplicationUser");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -10906,7 +10923,7 @@ export class GeneratedApiClient {
      * @summary Get Key
      * @param keyId 
      */
-    public async getIdentityProviderKey (keyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: JsonWebKey;  }> {
+    public async getIdentityProviderKey (keyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<JsonWebKey> {
         const localVarPath = this.basePath + '/api/v1/idps/credentials/keys/{keyId}'
             .replace('{' + 'keyId' + '}', encodeURIComponent(String(keyId)));
         let localVarQueryParameters: any = {};
@@ -10957,14 +10974,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: JsonWebKey;  }>((resolve, reject) => {
+            return new Promise<JsonWebKey>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "JsonWebKey");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -10979,7 +10996,7 @@ export class GeneratedApiClient {
      * @param idpId 
      * @param keyId 
      */
-    public async getIdentityProviderSigningKey (idpId: string, keyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: JsonWebKey;  }> {
+    public async getIdentityProviderSigningKey (idpId: string, keyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<JsonWebKey> {
         const localVarPath = this.basePath + '/api/v1/idps/{idpId}/credentials/keys/{keyId}'
             .replace('{' + 'idpId' + '}', encodeURIComponent(String(idpId)))
             .replace('{' + 'keyId' + '}', encodeURIComponent(String(keyId)));
@@ -11036,14 +11053,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: JsonWebKey;  }>((resolve, reject) => {
+            return new Promise<JsonWebKey>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "JsonWebKey");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -11059,7 +11076,7 @@ export class GeneratedApiClient {
      * @param userId 
      * @param userIdentityProviderLinkRequest 
      */
-    public async linkUserToIdentityProvider (idpId: string, userId: string, userIdentityProviderLinkRequest: UserIdentityProviderLinkRequest, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: IdentityProviderApplicationUser;  }> {
+    public async linkUserToIdentityProvider (idpId: string, userId: string, userIdentityProviderLinkRequest: UserIdentityProviderLinkRequest, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<IdentityProviderApplicationUser> {
         const localVarPath = this.basePath + '/api/v1/idps/{idpId}/users/{userId}'
             .replace('{' + 'idpId' + '}', encodeURIComponent(String(idpId)))
             .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)));
@@ -11122,14 +11139,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: IdentityProviderApplicationUser;  }>((resolve, reject) => {
+            return new Promise<IdentityProviderApplicationUser>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "IdentityProviderApplicationUser");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -11143,7 +11160,7 @@ export class GeneratedApiClient {
      * @summary List Certificate Signing Requests for IdP
      * @param idpId 
      */
-    public async listCsrsForIdentityProvider (idpId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Array<Csr>;  }> {
+    public async listCsrsForIdentityProvider (idpId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<Array<Csr>> {
         const localVarPath = this.basePath + '/api/v1/idps/{idpId}/credentials/csrs'
             .replace('{' + 'idpId' + '}', encodeURIComponent(String(idpId)));
         let localVarQueryParameters: any = {};
@@ -11194,14 +11211,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Array<Csr>;  }>((resolve, reject) => {
+            return new Promise<Array<Csr>>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "Array<Csr>");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -11215,7 +11232,7 @@ export class GeneratedApiClient {
      * @summary Find Users
      * @param idpId 
      */
-    public async listIdentityProviderApplicationUsers (idpId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Array<IdentityProviderApplicationUser>;  }> {
+    public async listIdentityProviderApplicationUsers (idpId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<Array<IdentityProviderApplicationUser>> {
         const localVarPath = this.basePath + '/api/v1/idps/{idpId}/users'
             .replace('{' + 'idpId' + '}', encodeURIComponent(String(idpId)));
         let localVarQueryParameters: any = {};
@@ -11266,14 +11283,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Array<IdentityProviderApplicationUser>;  }>((resolve, reject) => {
+            return new Promise<Array<IdentityProviderApplicationUser>>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "Array<IdentityProviderApplicationUser>");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -11288,7 +11305,7 @@ export class GeneratedApiClient {
      * @param after Specifies the pagination cursor for the next page of keys
      * @param limit Specifies the number of key results in a page
      */
-    public async listIdentityProviderKeys (after?: string, limit?: number, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Array<JsonWebKey>;  }> {
+    public async listIdentityProviderKeys (after?: string, limit?: number, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<Array<JsonWebKey>> {
         const localVarPath = this.basePath + '/api/v1/idps/credentials/keys';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -11341,14 +11358,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Array<JsonWebKey>;  }>((resolve, reject) => {
+            return new Promise<Array<JsonWebKey>>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "Array<JsonWebKey>");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -11362,7 +11379,7 @@ export class GeneratedApiClient {
      * @summary List Signing Key Credentials for IdP
      * @param idpId 
      */
-    public async listIdentityProviderSigningKeys (idpId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Array<JsonWebKey>;  }> {
+    public async listIdentityProviderSigningKeys (idpId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<Array<JsonWebKey>> {
         const localVarPath = this.basePath + '/api/v1/idps/{idpId}/credentials/keys'
             .replace('{' + 'idpId' + '}', encodeURIComponent(String(idpId)));
         let localVarQueryParameters: any = {};
@@ -11413,14 +11430,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Array<JsonWebKey>;  }>((resolve, reject) => {
+            return new Promise<Array<JsonWebKey>>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "Array<JsonWebKey>");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -11437,7 +11454,7 @@ export class GeneratedApiClient {
      * @param limit Specifies the number of IdP results in a page
      * @param type Filters IdPs by type
      */
-    public async listIdentityProviders (q?: string, after?: string, limit?: number, type?: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Array<IdentityProvider>;  }> {
+    public async listIdentityProviders (q?: string, after?: string, limit?: number, type?: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<Array<IdentityProvider>> {
         const localVarPath = this.basePath + '/api/v1/idps';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -11498,14 +11515,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Array<IdentityProvider>;  }>((resolve, reject) => {
+            return new Promise<Array<IdentityProvider>>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "Array<IdentityProvider>");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -11520,7 +11537,7 @@ export class GeneratedApiClient {
      * @param idpId 
      * @param userId 
      */
-    public async listSocialAuthTokens (idpId: string, userId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Array<SocialAuthToken>;  }> {
+    public async listSocialAuthTokens (idpId: string, userId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<Array<SocialAuthToken>> {
         const localVarPath = this.basePath + '/api/v1/idps/{idpId}/users/{userId}/credentials/tokens'
             .replace('{' + 'idpId' + '}', encodeURIComponent(String(idpId)))
             .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)));
@@ -11577,14 +11594,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Array<SocialAuthToken>;  }>((resolve, reject) => {
+            return new Promise<Array<SocialAuthToken>>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "Array<SocialAuthToken>");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -11599,7 +11616,7 @@ export class GeneratedApiClient {
      * @param csrId 
      * @param body 
      */
-    public async publishCsrForIdentityProvider (idpId: string, csrId: string, body: RequestFile, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: JsonWebKey;  }> {
+    public async publishCsrForIdentityProvider (idpId: string, csrId: string, body: RequestFile, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<JsonWebKey> {
         const localVarPath = this.basePath + '/api/v1/idps/{idpId}/credentials/csrs/{csrId}/lifecycle/publish'
             .replace('{' + 'idpId' + '}', encodeURIComponent(String(idpId)))
             .replace('{' + 'csrId' + '}', encodeURIComponent(String(csrId)));
@@ -11662,14 +11679,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: JsonWebKey;  }>((resolve, reject) => {
+            return new Promise<JsonWebKey>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "JsonWebKey");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -11683,7 +11700,7 @@ export class GeneratedApiClient {
      * @param idpId 
      * @param csrId 
      */
-    public async revokeCsrForIdentityProvider (idpId: string, csrId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public async revokeCsrForIdentityProvider (idpId: string, csrId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<any> {
         const localVarPath = this.basePath + '/api/v1/idps/{idpId}/credentials/csrs/{csrId}'
             .replace('{' + 'idpId' + '}', encodeURIComponent(String(idpId)))
             .replace('{' + 'csrId' + '}', encodeURIComponent(String(csrId)));
@@ -11733,13 +11750,13 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            return new Promise<any>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -11754,7 +11771,7 @@ export class GeneratedApiClient {
      * @param idpId 
      * @param userId 
      */
-    public async unlinkUserFromIdentityProvider (idpId: string, userId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public async unlinkUserFromIdentityProvider (idpId: string, userId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<any> {
         const localVarPath = this.basePath + '/api/v1/idps/{idpId}/users/{userId}'
             .replace('{' + 'idpId' + '}', encodeURIComponent(String(idpId)))
             .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)));
@@ -11804,13 +11821,13 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            return new Promise<any>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -11825,7 +11842,7 @@ export class GeneratedApiClient {
      * @param idpId 
      * @param identityProvider 
      */
-    public async updateIdentityProvider (idpId: string, identityProvider: IdentityProvider, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: IdentityProvider;  }> {
+    public async updateIdentityProvider (idpId: string, identityProvider: IdentityProvider, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<IdentityProvider> {
         const localVarPath = this.basePath + '/api/v1/idps/{idpId}'
             .replace('{' + 'idpId' + '}', encodeURIComponent(String(idpId)));
         let localVarQueryParameters: any = {};
@@ -11882,14 +11899,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: IdentityProvider;  }>((resolve, reject) => {
+            return new Promise<IdentityProvider>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "IdentityProvider");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -11904,7 +11921,7 @@ export class GeneratedApiClient {
      * Activates the Inline Hook matching the provided id
      * @param inlineHookId 
      */
-    public async activateInlineHook (inlineHookId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: InlineHook;  }> {
+    public async activateInlineHook (inlineHookId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<InlineHook> {
         const localVarPath = this.basePath + '/api/v1/inlineHooks/{inlineHookId}/lifecycle/activate'
             .replace('{' + 'inlineHookId' + '}', encodeURIComponent(String(inlineHookId)));
         let localVarQueryParameters: any = {};
@@ -11952,14 +11969,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: InlineHook;  }>((resolve, reject) => {
+            return new Promise<InlineHook>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "InlineHook");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -11972,7 +11989,7 @@ export class GeneratedApiClient {
      * Success
      * @param inlineHook 
      */
-    public async createInlineHook (inlineHook: InlineHook, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: InlineHook;  }> {
+    public async createInlineHook (inlineHook: InlineHook, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<InlineHook> {
         const localVarPath = this.basePath + '/api/v1/inlineHooks';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -12023,14 +12040,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: InlineHook;  }>((resolve, reject) => {
+            return new Promise<InlineHook>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "InlineHook");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -12043,7 +12060,7 @@ export class GeneratedApiClient {
      * Deactivates the Inline Hook matching the provided id
      * @param inlineHookId 
      */
-    public async deactivateInlineHook (inlineHookId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: InlineHook;  }> {
+    public async deactivateInlineHook (inlineHookId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<InlineHook> {
         const localVarPath = this.basePath + '/api/v1/inlineHooks/{inlineHookId}/lifecycle/deactivate'
             .replace('{' + 'inlineHookId' + '}', encodeURIComponent(String(inlineHookId)));
         let localVarQueryParameters: any = {};
@@ -12091,14 +12108,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: InlineHook;  }>((resolve, reject) => {
+            return new Promise<InlineHook>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "InlineHook");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -12111,7 +12128,7 @@ export class GeneratedApiClient {
      * Deletes the Inline Hook matching the provided id. Once deleted, the Inline Hook is unrecoverable. As a safety precaution, only Inline Hooks with a status of INACTIVE are eligible for deletion.
      * @param inlineHookId 
      */
-    public async deleteInlineHook (inlineHookId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public async deleteInlineHook (inlineHookId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<any> {
         const localVarPath = this.basePath + '/api/v1/inlineHooks/{inlineHookId}'
             .replace('{' + 'inlineHookId' + '}', encodeURIComponent(String(inlineHookId)));
         let localVarQueryParameters: any = {};
@@ -12155,13 +12172,13 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            return new Promise<any>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -12175,7 +12192,7 @@ export class GeneratedApiClient {
      * @param inlineHookId 
      * @param body 
      */
-    public async executeInlineHook (inlineHookId: string, body: object, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: InlineHookResponse;  }> {
+    public async executeInlineHook (inlineHookId: string, body: object, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<InlineHookResponse> {
         const localVarPath = this.basePath + '/api/v1/inlineHooks/{inlineHookId}/execute'
             .replace('{' + 'inlineHookId' + '}', encodeURIComponent(String(inlineHookId)));
         let localVarQueryParameters: any = {};
@@ -12232,14 +12249,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: InlineHookResponse;  }>((resolve, reject) => {
+            return new Promise<InlineHookResponse>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "InlineHookResponse");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -12252,7 +12269,7 @@ export class GeneratedApiClient {
      * Gets an inline hook by ID
      * @param inlineHookId 
      */
-    public async getInlineHook (inlineHookId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: InlineHook;  }> {
+    public async getInlineHook (inlineHookId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<InlineHook> {
         const localVarPath = this.basePath + '/api/v1/inlineHooks/{inlineHookId}'
             .replace('{' + 'inlineHookId' + '}', encodeURIComponent(String(inlineHookId)));
         let localVarQueryParameters: any = {};
@@ -12303,14 +12320,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: InlineHook;  }>((resolve, reject) => {
+            return new Promise<InlineHook>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "InlineHook");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -12323,7 +12340,7 @@ export class GeneratedApiClient {
      * Success
      * @param type 
      */
-    public async listInlineHooks (type?: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Array<InlineHook>;  }> {
+    public async listInlineHooks (type?: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<Array<InlineHook>> {
         const localVarPath = this.basePath + '/api/v1/inlineHooks';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -12372,14 +12389,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Array<InlineHook>;  }>((resolve, reject) => {
+            return new Promise<Array<InlineHook>>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "Array<InlineHook>");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -12393,7 +12410,7 @@ export class GeneratedApiClient {
      * @param inlineHookId 
      * @param inlineHook 
      */
-    public async updateInlineHook (inlineHookId: string, inlineHook: InlineHook, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: InlineHook;  }> {
+    public async updateInlineHook (inlineHookId: string, inlineHook: InlineHook, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<InlineHook> {
         const localVarPath = this.basePath + '/api/v1/inlineHooks/{inlineHookId}'
             .replace('{' + 'inlineHookId' + '}', encodeURIComponent(String(inlineHookId)));
         let localVarQueryParameters: any = {};
@@ -12450,14 +12467,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: InlineHook;  }>((resolve, reject) => {
+            return new Promise<InlineHook>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "InlineHook");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -12472,7 +12489,7 @@ export class GeneratedApiClient {
      * Success
      * @param linkedObject 
      */
-    public async addLinkedObjectDefinition (linkedObject: LinkedObject, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: LinkedObject;  }> {
+    public async addLinkedObjectDefinition (linkedObject: LinkedObject, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<LinkedObject> {
         const localVarPath = this.basePath + '/api/v1/meta/schemas/user/linkedObjects';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -12523,14 +12540,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: LinkedObject;  }>((resolve, reject) => {
+            return new Promise<LinkedObject>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "LinkedObject");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -12543,7 +12560,7 @@ export class GeneratedApiClient {
      * Success
      * @param linkedObjectName 
      */
-    public async deleteLinkedObjectDefinition (linkedObjectName: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public async deleteLinkedObjectDefinition (linkedObjectName: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<any> {
         const localVarPath = this.basePath + '/api/v1/meta/schemas/user/linkedObjects/{linkedObjectName}'
             .replace('{' + 'linkedObjectName' + '}', encodeURIComponent(String(linkedObjectName)));
         let localVarQueryParameters: any = {};
@@ -12587,13 +12604,13 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            return new Promise<any>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -12606,7 +12623,7 @@ export class GeneratedApiClient {
      * Success
      * @param linkedObjectName 
      */
-    public async getLinkedObjectDefinition (linkedObjectName: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: LinkedObject;  }> {
+    public async getLinkedObjectDefinition (linkedObjectName: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<LinkedObject> {
         const localVarPath = this.basePath + '/api/v1/meta/schemas/user/linkedObjects/{linkedObjectName}'
             .replace('{' + 'linkedObjectName' + '}', encodeURIComponent(String(linkedObjectName)));
         let localVarQueryParameters: any = {};
@@ -12657,14 +12674,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: LinkedObject;  }>((resolve, reject) => {
+            return new Promise<LinkedObject>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "LinkedObject");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -12676,7 +12693,7 @@ export class GeneratedApiClient {
     /**
      * Success
      */
-    public async listLinkedObjectDefinitions (options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Array<LinkedObject>;  }> {
+    public async listLinkedObjectDefinitions (options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<Array<LinkedObject>> {
         const localVarPath = this.basePath + '/api/v1/meta/schemas/user/linkedObjects';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -12721,14 +12738,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Array<LinkedObject>;  }>((resolve, reject) => {
+            return new Promise<Array<LinkedObject>>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "Array<LinkedObject>");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -12750,7 +12767,7 @@ export class GeneratedApiClient {
      * @param sortOrder 
      * @param after 
      */
-    public async getLogs (since?: Date, until?: Date, filter?: string, q?: string, limit?: number, sortOrder?: string, after?: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Array<LogEvent>;  }> {
+    public async getLogs (since?: Date, until?: Date, filter?: string, q?: string, limit?: number, sortOrder?: string, after?: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<Array<LogEvent>> {
         const localVarPath = this.basePath + '/api/v1/logs';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -12823,14 +12840,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Array<LogEvent>;  }>((resolve, reject) => {
+            return new Promise<Array<LogEvent>>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "Array<LogEvent>");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -12846,7 +12863,7 @@ export class GeneratedApiClient {
      * @summary Activate Network Zone
      * @param zoneId 
      */
-    public async activateNetworkZone (zoneId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: NetworkZone;  }> {
+    public async activateNetworkZone (zoneId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<NetworkZone> {
         const localVarPath = this.basePath + '/api/v1/zones/{zoneId}/lifecycle/activate'
             .replace('{' + 'zoneId' + '}', encodeURIComponent(String(zoneId)));
         let localVarQueryParameters: any = {};
@@ -12897,14 +12914,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: NetworkZone;  }>((resolve, reject) => {
+            return new Promise<NetworkZone>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "NetworkZone");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -12918,7 +12935,7 @@ export class GeneratedApiClient {
      * @summary Add Network Zone
      * @param networkZone 
      */
-    public async createNetworkZone (networkZone: NetworkZone, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: NetworkZone;  }> {
+    public async createNetworkZone (networkZone: NetworkZone, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<NetworkZone> {
         const localVarPath = this.basePath + '/api/v1/zones';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -12969,14 +12986,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: NetworkZone;  }>((resolve, reject) => {
+            return new Promise<NetworkZone>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "NetworkZone");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -12990,7 +13007,7 @@ export class GeneratedApiClient {
      * @summary Deactivate Network Zone
      * @param zoneId 
      */
-    public async deactivateNetworkZone (zoneId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: NetworkZone;  }> {
+    public async deactivateNetworkZone (zoneId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<NetworkZone> {
         const localVarPath = this.basePath + '/api/v1/zones/{zoneId}/lifecycle/deactivate'
             .replace('{' + 'zoneId' + '}', encodeURIComponent(String(zoneId)));
         let localVarQueryParameters: any = {};
@@ -13041,14 +13058,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: NetworkZone;  }>((resolve, reject) => {
+            return new Promise<NetworkZone>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "NetworkZone");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -13062,7 +13079,7 @@ export class GeneratedApiClient {
      * @summary Delete Network Zone
      * @param zoneId 
      */
-    public async deleteNetworkZone (zoneId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public async deleteNetworkZone (zoneId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<any> {
         const localVarPath = this.basePath + '/api/v1/zones/{zoneId}'
             .replace('{' + 'zoneId' + '}', encodeURIComponent(String(zoneId)));
         let localVarQueryParameters: any = {};
@@ -13106,13 +13123,13 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            return new Promise<any>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -13126,7 +13143,7 @@ export class GeneratedApiClient {
      * @summary Get Network Zone
      * @param zoneId 
      */
-    public async getNetworkZone (zoneId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: NetworkZone;  }> {
+    public async getNetworkZone (zoneId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<NetworkZone> {
         const localVarPath = this.basePath + '/api/v1/zones/{zoneId}'
             .replace('{' + 'zoneId' + '}', encodeURIComponent(String(zoneId)));
         let localVarQueryParameters: any = {};
@@ -13177,14 +13194,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: NetworkZone;  }>((resolve, reject) => {
+            return new Promise<NetworkZone>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "NetworkZone");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -13200,7 +13217,7 @@ export class GeneratedApiClient {
      * @param limit Specifies the number of results for a page
      * @param filter Filters zones by usage or id expression
      */
-    public async listNetworkZones (after?: string, limit?: number, filter?: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Array<NetworkZone>;  }> {
+    public async listNetworkZones (after?: string, limit?: number, filter?: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<Array<NetworkZone>> {
         const localVarPath = this.basePath + '/api/v1/zones';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -13257,14 +13274,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Array<NetworkZone>;  }>((resolve, reject) => {
+            return new Promise<Array<NetworkZone>>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "Array<NetworkZone>");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -13279,7 +13296,7 @@ export class GeneratedApiClient {
      * @param zoneId 
      * @param networkZone 
      */
-    public async updateNetworkZone (zoneId: string, networkZone: NetworkZone, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: NetworkZone;  }> {
+    public async updateNetworkZone (zoneId: string, networkZone: NetworkZone, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<NetworkZone> {
         const localVarPath = this.basePath + '/api/v1/zones/{zoneId}'
             .replace('{' + 'zoneId' + '}', encodeURIComponent(String(zoneId)));
         let localVarQueryParameters: any = {};
@@ -13336,14 +13353,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: NetworkZone;  }>((resolve, reject) => {
+            return new Promise<NetworkZone>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "NetworkZone");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -13358,7 +13375,7 @@ export class GeneratedApiClient {
      * Extends the length of time that Okta Support can access your org by 24 hours. This means that 24 hours are added to the remaining access time.
      * @summary Extend Okta Support
      */
-    public async extendOktaSupport (options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: OrgOktaSupportSettingsObj;  }> {
+    public async extendOktaSupport (options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<OrgOktaSupportSettingsObj> {
         const localVarPath = this.basePath + '/api/v1/org/privacy/oktaSupport/extend';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -13403,14 +13420,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: OrgOktaSupportSettingsObj;  }>((resolve, reject) => {
+            return new Promise<OrgOktaSupportSettingsObj>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "OrgOktaSupportSettingsObj");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -13423,7 +13440,7 @@ export class GeneratedApiClient {
      * Gets Okta Communication Settings of your organization.
      * @summary Get Okta Communication Settings
      */
-    public async getOktaCommunicationSettings (options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: OrgOktaCommunicationSetting;  }> {
+    public async getOktaCommunicationSettings (options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<OrgOktaCommunicationSetting> {
         const localVarPath = this.basePath + '/api/v1/org/privacy/oktaCommunication';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -13468,14 +13485,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: OrgOktaCommunicationSetting;  }>((resolve, reject) => {
+            return new Promise<OrgOktaCommunicationSetting>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "OrgOktaCommunicationSetting");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -13488,7 +13505,7 @@ export class GeneratedApiClient {
      * Gets Contact Types of your organization.
      * @summary Get org contact types
      */
-    public async getOrgContactTypes (options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Array<OrgContactTypeObj>;  }> {
+    public async getOrgContactTypes (options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<Array<OrgContactTypeObj>> {
         const localVarPath = this.basePath + '/api/v1/org/contacts';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -13533,14 +13550,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Array<OrgContactTypeObj>;  }>((resolve, reject) => {
+            return new Promise<Array<OrgContactTypeObj>>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "Array<OrgContactTypeObj>");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -13554,7 +13571,7 @@ export class GeneratedApiClient {
      * @summary Get org contact user
      * @param contactType 
      */
-    public async getOrgContactUser (contactType: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: OrgContactUser;  }> {
+    public async getOrgContactUser (contactType: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<OrgContactUser> {
         const localVarPath = this.basePath + '/api/v1/org/contacts/{contactType}'
             .replace('{' + 'contactType' + '}', encodeURIComponent(String(contactType)));
         let localVarQueryParameters: any = {};
@@ -13605,14 +13622,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: OrgContactUser;  }>((resolve, reject) => {
+            return new Promise<OrgContactUser>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "OrgContactUser");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -13625,7 +13642,7 @@ export class GeneratedApiClient {
      * Gets Okta Support Settings of your organization.
      * @summary Get Okta Support settings
      */
-    public async getOrgOktaSupportSettings (options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: OrgOktaSupportSettingsObj;  }> {
+    public async getOrgOktaSupportSettings (options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<OrgOktaSupportSettingsObj> {
         const localVarPath = this.basePath + '/api/v1/org/privacy/oktaSupport';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -13670,14 +13687,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: OrgOktaSupportSettingsObj;  }>((resolve, reject) => {
+            return new Promise<OrgOktaSupportSettingsObj>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "OrgOktaSupportSettingsObj");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -13690,7 +13707,7 @@ export class GeneratedApiClient {
      * Gets preferences of your organization.
      * @summary Get org preferences
      */
-    public async getOrgPreferences (options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: OrgPreferences;  }> {
+    public async getOrgPreferences (options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<OrgPreferences> {
         const localVarPath = this.basePath + '/api/v1/org/preferences';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -13735,14 +13752,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: OrgPreferences;  }>((resolve, reject) => {
+            return new Promise<OrgPreferences>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "OrgPreferences");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -13755,7 +13772,7 @@ export class GeneratedApiClient {
      * Get settings of your organization.
      * @summary Get org settings
      */
-    public async getOrgSettings (options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: OrgSetting;  }> {
+    public async getOrgSettings (options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<OrgSetting> {
         const localVarPath = this.basePath + '/api/v1/org';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -13800,14 +13817,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: OrgSetting;  }>((resolve, reject) => {
+            return new Promise<OrgSetting>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "OrgSetting");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -13820,7 +13837,7 @@ export class GeneratedApiClient {
      * Enables you to temporarily allow Okta Support to access your org as an administrator for eight hours.
      * @summary Grant Okta Support
      */
-    public async grantOktaSupport (options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: OrgOktaSupportSettingsObj;  }> {
+    public async grantOktaSupport (options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<OrgOktaSupportSettingsObj> {
         const localVarPath = this.basePath + '/api/v1/org/privacy/oktaSupport/grant';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -13865,14 +13882,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: OrgOktaSupportSettingsObj;  }>((resolve, reject) => {
+            return new Promise<OrgOktaSupportSettingsObj>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "OrgOktaSupportSettingsObj");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -13885,7 +13902,7 @@ export class GeneratedApiClient {
      * Hide the Okta UI footer for all end users of your organization.
      * @summary Show Okta UI Footer
      */
-    public async hideOktaUIFooter (options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: OrgPreferences;  }> {
+    public async hideOktaUIFooter (options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<OrgPreferences> {
         const localVarPath = this.basePath + '/api/v1/org/preferences/hideEndUserFooter';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -13930,14 +13947,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: OrgPreferences;  }>((resolve, reject) => {
+            return new Promise<OrgPreferences>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "OrgPreferences");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -13950,7 +13967,7 @@ export class GeneratedApiClient {
      * Opts in all users of this org to Okta Communication emails.
      * @summary Opt in all users to Okta Communication emails
      */
-    public async optInUsersToOktaCommunicationEmails (options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: OrgOktaCommunicationSetting;  }> {
+    public async optInUsersToOktaCommunicationEmails (options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<OrgOktaCommunicationSetting> {
         const localVarPath = this.basePath + '/api/v1/org/privacy/oktaCommunication/optIn';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -13995,14 +14012,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: OrgOktaCommunicationSetting;  }>((resolve, reject) => {
+            return new Promise<OrgOktaCommunicationSetting>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "OrgOktaCommunicationSetting");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -14015,7 +14032,7 @@ export class GeneratedApiClient {
      * Opts out all users of this org from Okta Communication emails.
      * @summary Opt out all users from Okta Communication emails
      */
-    public async optOutUsersFromOktaCommunicationEmails (options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: OrgOktaCommunicationSetting;  }> {
+    public async optOutUsersFromOktaCommunicationEmails (options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<OrgOktaCommunicationSetting> {
         const localVarPath = this.basePath + '/api/v1/org/privacy/oktaCommunication/optOut';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -14060,14 +14077,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: OrgOktaCommunicationSetting;  }>((resolve, reject) => {
+            return new Promise<OrgOktaCommunicationSetting>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "OrgOktaCommunicationSetting");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -14081,7 +14098,7 @@ export class GeneratedApiClient {
      * @summary Partial update Org Setting
      * @param orgSetting 
      */
-    public async partialUpdateOrgSetting (orgSetting?: OrgSetting, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: OrgSetting;  }> {
+    public async partialUpdateOrgSetting (orgSetting?: OrgSetting, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<OrgSetting> {
         const localVarPath = this.basePath + '/api/v1/org';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -14127,14 +14144,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: OrgSetting;  }>((resolve, reject) => {
+            return new Promise<OrgSetting>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "OrgSetting");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -14147,7 +14164,7 @@ export class GeneratedApiClient {
      * Revokes Okta Support access to your organization.
      * @summary Extend Okta Support
      */
-    public async revokeOktaSupport (options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: OrgOktaSupportSettingsObj;  }> {
+    public async revokeOktaSupport (options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<OrgOktaSupportSettingsObj> {
         const localVarPath = this.basePath + '/api/v1/org/privacy/oktaSupport/revoke';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -14192,14 +14209,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: OrgOktaSupportSettingsObj;  }>((resolve, reject) => {
+            return new Promise<OrgOktaSupportSettingsObj>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "OrgOktaSupportSettingsObj");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -14212,7 +14229,7 @@ export class GeneratedApiClient {
      * Makes the Okta UI footer visible for all end users of your organization.
      * @summary Show Okta UI Footer
      */
-    public async showOktaUIFooter (options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: OrgPreferences;  }> {
+    public async showOktaUIFooter (options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<OrgPreferences> {
         const localVarPath = this.basePath + '/api/v1/org/preferences/showEndUserFooter';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -14257,14 +14274,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: OrgPreferences;  }>((resolve, reject) => {
+            return new Promise<OrgPreferences>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "OrgPreferences");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -14279,7 +14296,7 @@ export class GeneratedApiClient {
      * @param contactType 
      * @param userIdString 
      */
-    public async updateOrgContactUser (contactType: string, userIdString: UserIdString, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: OrgContactUser;  }> {
+    public async updateOrgContactUser (contactType: string, userIdString: UserIdString, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<OrgContactUser> {
         const localVarPath = this.basePath + '/api/v1/org/contacts/{contactType}'
             .replace('{' + 'contactType' + '}', encodeURIComponent(String(contactType)));
         let localVarQueryParameters: any = {};
@@ -14336,14 +14353,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: OrgContactUser;  }>((resolve, reject) => {
+            return new Promise<OrgContactUser>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "OrgContactUser");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -14357,7 +14374,7 @@ export class GeneratedApiClient {
      * @summary Update Org setting
      * @param orgSetting 
      */
-    public async updateOrgSetting (orgSetting: OrgSetting, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: OrgSetting;  }> {
+    public async updateOrgSetting (orgSetting: OrgSetting, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<OrgSetting> {
         const localVarPath = this.basePath + '/api/v1/org';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -14408,14 +14425,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: OrgSetting;  }>((resolve, reject) => {
+            return new Promise<OrgSetting>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "OrgSetting");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -14430,7 +14447,7 @@ export class GeneratedApiClient {
      * Activates a policy.
      * @param policyId 
      */
-    public async activatePolicy (policyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public async activatePolicy (policyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<any> {
         const localVarPath = this.basePath + '/api/v1/policies/{policyId}/lifecycle/activate'
             .replace('{' + 'policyId' + '}', encodeURIComponent(String(policyId)));
         let localVarQueryParameters: any = {};
@@ -14474,13 +14491,13 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            return new Promise<any>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -14494,7 +14511,7 @@ export class GeneratedApiClient {
      * @param policyId 
      * @param ruleId 
      */
-    public async activatePolicyRule (policyId: string, ruleId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public async activatePolicyRule (policyId: string, ruleId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<any> {
         const localVarPath = this.basePath + '/api/v1/policies/{policyId}/rules/{ruleId}/lifecycle/activate'
             .replace('{' + 'policyId' + '}', encodeURIComponent(String(policyId)))
             .replace('{' + 'ruleId' + '}', encodeURIComponent(String(ruleId)));
@@ -14544,13 +14561,13 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            return new Promise<any>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -14564,7 +14581,7 @@ export class GeneratedApiClient {
      * @param policy 
      * @param activate 
      */
-    public async createPolicy (policy: Policy, activate?: boolean, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Policy;  }> {
+    public async createPolicy (policy: Policy, activate?: boolean, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<Policy> {
         const localVarPath = this.basePath + '/api/v1/policies';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -14619,14 +14636,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Policy;  }>((resolve, reject) => {
+            return new Promise<Policy>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "Policy");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -14640,7 +14657,7 @@ export class GeneratedApiClient {
      * @param policyId 
      * @param policyRule 
      */
-    public async createPolicyRule (policyId: string, policyRule: PolicyRule, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: PolicyRule;  }> {
+    public async createPolicyRule (policyId: string, policyRule: PolicyRule, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<PolicyRule> {
         const localVarPath = this.basePath + '/api/v1/policies/{policyId}/rules'
             .replace('{' + 'policyId' + '}', encodeURIComponent(String(policyId)));
         let localVarQueryParameters: any = {};
@@ -14697,14 +14714,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: PolicyRule;  }>((resolve, reject) => {
+            return new Promise<PolicyRule>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "PolicyRule");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -14717,7 +14734,7 @@ export class GeneratedApiClient {
      * Deactivates a policy.
      * @param policyId 
      */
-    public async deactivatePolicy (policyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public async deactivatePolicy (policyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<any> {
         const localVarPath = this.basePath + '/api/v1/policies/{policyId}/lifecycle/deactivate'
             .replace('{' + 'policyId' + '}', encodeURIComponent(String(policyId)));
         let localVarQueryParameters: any = {};
@@ -14761,13 +14778,13 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            return new Promise<any>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -14781,7 +14798,7 @@ export class GeneratedApiClient {
      * @param policyId 
      * @param ruleId 
      */
-    public async deactivatePolicyRule (policyId: string, ruleId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public async deactivatePolicyRule (policyId: string, ruleId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<any> {
         const localVarPath = this.basePath + '/api/v1/policies/{policyId}/rules/{ruleId}/lifecycle/deactivate'
             .replace('{' + 'policyId' + '}', encodeURIComponent(String(policyId)))
             .replace('{' + 'ruleId' + '}', encodeURIComponent(String(ruleId)));
@@ -14831,13 +14848,13 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            return new Promise<any>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -14850,7 +14867,7 @@ export class GeneratedApiClient {
      * Removes a policy.
      * @param policyId 
      */
-    public async deletePolicy (policyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public async deletePolicy (policyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<any> {
         const localVarPath = this.basePath + '/api/v1/policies/{policyId}'
             .replace('{' + 'policyId' + '}', encodeURIComponent(String(policyId)));
         let localVarQueryParameters: any = {};
@@ -14894,13 +14911,13 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            return new Promise<any>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -14914,7 +14931,7 @@ export class GeneratedApiClient {
      * @param policyId 
      * @param ruleId 
      */
-    public async deletePolicyRule (policyId: string, ruleId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public async deletePolicyRule (policyId: string, ruleId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<any> {
         const localVarPath = this.basePath + '/api/v1/policies/{policyId}/rules/{ruleId}'
             .replace('{' + 'policyId' + '}', encodeURIComponent(String(policyId)))
             .replace('{' + 'ruleId' + '}', encodeURIComponent(String(ruleId)));
@@ -14964,13 +14981,13 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            return new Promise<any>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -14984,7 +15001,7 @@ export class GeneratedApiClient {
      * @param policyId 
      * @param expand 
      */
-    public async getPolicy (policyId: string, expand?: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Policy;  }> {
+    public async getPolicy (policyId: string, expand?: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<Policy> {
         const localVarPath = this.basePath + '/api/v1/policies/{policyId}'
             .replace('{' + 'policyId' + '}', encodeURIComponent(String(policyId)));
         let localVarQueryParameters: any = {};
@@ -15039,14 +15056,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Policy;  }>((resolve, reject) => {
+            return new Promise<Policy>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "Policy");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -15060,7 +15077,7 @@ export class GeneratedApiClient {
      * @param policyId 
      * @param ruleId 
      */
-    public async getPolicyRule (policyId: string, ruleId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: PolicyRule;  }> {
+    public async getPolicyRule (policyId: string, ruleId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<PolicyRule> {
         const localVarPath = this.basePath + '/api/v1/policies/{policyId}/rules/{ruleId}'
             .replace('{' + 'policyId' + '}', encodeURIComponent(String(policyId)))
             .replace('{' + 'ruleId' + '}', encodeURIComponent(String(ruleId)));
@@ -15117,14 +15134,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: PolicyRule;  }>((resolve, reject) => {
+            return new Promise<PolicyRule>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "PolicyRule");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -15139,7 +15156,7 @@ export class GeneratedApiClient {
      * @param status 
      * @param expand 
      */
-    public async listPolicies (type: string, status?: string, expand?: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Array<Policy>;  }> {
+    public async listPolicies (type: string, status?: string, expand?: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<Array<Policy>> {
         const localVarPath = this.basePath + '/api/v1/policies';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -15201,14 +15218,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Array<Policy>;  }>((resolve, reject) => {
+            return new Promise<Array<Policy>>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "Array<Policy>");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -15221,7 +15238,7 @@ export class GeneratedApiClient {
      * Enumerates all policy rules.
      * @param policyId 
      */
-    public async listPolicyRules (policyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Array<PolicyRule>;  }> {
+    public async listPolicyRules (policyId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<Array<PolicyRule>> {
         const localVarPath = this.basePath + '/api/v1/policies/{policyId}/rules'
             .replace('{' + 'policyId' + '}', encodeURIComponent(String(policyId)));
         let localVarQueryParameters: any = {};
@@ -15272,14 +15289,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Array<PolicyRule>;  }>((resolve, reject) => {
+            return new Promise<Array<PolicyRule>>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "Array<PolicyRule>");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -15293,7 +15310,7 @@ export class GeneratedApiClient {
      * @param policyId 
      * @param policy 
      */
-    public async updatePolicy (policyId: string, policy: Policy, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Policy;  }> {
+    public async updatePolicy (policyId: string, policy: Policy, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<Policy> {
         const localVarPath = this.basePath + '/api/v1/policies/{policyId}'
             .replace('{' + 'policyId' + '}', encodeURIComponent(String(policyId)));
         let localVarQueryParameters: any = {};
@@ -15350,14 +15367,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Policy;  }>((resolve, reject) => {
+            return new Promise<Policy>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "Policy");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -15372,7 +15389,7 @@ export class GeneratedApiClient {
      * @param ruleId 
      * @param policyRule 
      */
-    public async updatePolicyRule (policyId: string, ruleId: string, policyRule: PolicyRule, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: PolicyRule;  }> {
+    public async updatePolicyRule (policyId: string, ruleId: string, policyRule: PolicyRule, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<PolicyRule> {
         const localVarPath = this.basePath + '/api/v1/policies/{policyId}/rules/{ruleId}'
             .replace('{' + 'policyId' + '}', encodeURIComponent(String(policyId)))
             .replace('{' + 'ruleId' + '}', encodeURIComponent(String(ruleId)));
@@ -15435,14 +15452,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: PolicyRule;  }>((resolve, reject) => {
+            return new Promise<PolicyRule>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "PolicyRule");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -15458,7 +15475,7 @@ export class GeneratedApiClient {
      * @summary Get Profile Mapping
      * @param mappingId 
      */
-    public async getProfileMapping (mappingId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: ProfileMapping;  }> {
+    public async getProfileMapping (mappingId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<ProfileMapping> {
         const localVarPath = this.basePath + '/api/v1/mappings/{mappingId}'
             .replace('{' + 'mappingId' + '}', encodeURIComponent(String(mappingId)));
         let localVarQueryParameters: any = {};
@@ -15509,14 +15526,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: ProfileMapping;  }>((resolve, reject) => {
+            return new Promise<ProfileMapping>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "ProfileMapping");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -15532,7 +15549,7 @@ export class GeneratedApiClient {
      * @param sourceId 
      * @param targetId 
      */
-    public async listProfileMappings (after?: string, limit?: number, sourceId?: string, targetId?: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Array<ProfileMapping>;  }> {
+    public async listProfileMappings (after?: string, limit?: number, sourceId?: string, targetId?: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<Array<ProfileMapping>> {
         const localVarPath = this.basePath + '/api/v1/mappings';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -15593,14 +15610,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Array<ProfileMapping>;  }>((resolve, reject) => {
+            return new Promise<Array<ProfileMapping>>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "Array<ProfileMapping>");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -15615,7 +15632,7 @@ export class GeneratedApiClient {
      * @param mappingId 
      * @param profileMapping 
      */
-    public async updateProfileMapping (mappingId: string, profileMapping: ProfileMapping, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: ProfileMapping;  }> {
+    public async updateProfileMapping (mappingId: string, profileMapping: ProfileMapping, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<ProfileMapping> {
         const localVarPath = this.basePath + '/api/v1/mappings/{mappingId}'
             .replace('{' + 'mappingId' + '}', encodeURIComponent(String(mappingId)));
         let localVarQueryParameters: any = {};
@@ -15672,14 +15689,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: ProfileMapping;  }>((resolve, reject) => {
+            return new Promise<ProfileMapping>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "ProfileMapping");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -15695,7 +15712,7 @@ export class GeneratedApiClient {
      * @summary Create Session with Session Token
      * @param createSessionRequest 
      */
-    public async createSession (createSessionRequest: CreateSessionRequest, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Session;  }> {
+    public async createSession (createSessionRequest: CreateSessionRequest, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<Session> {
         const localVarPath = this.basePath + '/api/v1/sessions';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -15746,14 +15763,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Session;  }>((resolve, reject) => {
+            return new Promise<Session>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "Session");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -15767,7 +15784,7 @@ export class GeneratedApiClient {
      * @summary End Session
      * @param sessionId 
      */
-    public async endSession (sessionId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public async endSession (sessionId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<any> {
         const localVarPath = this.basePath + '/api/v1/sessions/{sessionId}'
             .replace('{' + 'sessionId' + '}', encodeURIComponent(String(sessionId)));
         let localVarQueryParameters: any = {};
@@ -15811,13 +15828,13 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            return new Promise<any>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -15831,7 +15848,7 @@ export class GeneratedApiClient {
      * @summary Get Session
      * @param sessionId 
      */
-    public async getSession (sessionId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Session;  }> {
+    public async getSession (sessionId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<Session> {
         const localVarPath = this.basePath + '/api/v1/sessions/{sessionId}'
             .replace('{' + 'sessionId' + '}', encodeURIComponent(String(sessionId)));
         let localVarQueryParameters: any = {};
@@ -15882,14 +15899,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Session;  }>((resolve, reject) => {
+            return new Promise<Session>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "Session");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -15903,7 +15920,7 @@ export class GeneratedApiClient {
      * @summary Refresh Session
      * @param sessionId 
      */
-    public async refreshSession (sessionId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Session;  }> {
+    public async refreshSession (sessionId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<Session> {
         const localVarPath = this.basePath + '/api/v1/sessions/{sessionId}/lifecycle/refresh'
             .replace('{' + 'sessionId' + '}', encodeURIComponent(String(sessionId)));
         let localVarQueryParameters: any = {};
@@ -15954,14 +15971,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Session;  }>((resolve, reject) => {
+            return new Promise<Session>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "Session");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -15977,7 +15994,7 @@ export class GeneratedApiClient {
      * @summary Add SMS Template
      * @param smsTemplate 
      */
-    public async createSmsTemplate (smsTemplate: SmsTemplate, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: SmsTemplate;  }> {
+    public async createSmsTemplate (smsTemplate: SmsTemplate, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<SmsTemplate> {
         const localVarPath = this.basePath + '/api/v1/templates/sms';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -16028,14 +16045,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: SmsTemplate;  }>((resolve, reject) => {
+            return new Promise<SmsTemplate>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "SmsTemplate");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -16049,7 +16066,7 @@ export class GeneratedApiClient {
      * @summary Remove SMS Template
      * @param templateId 
      */
-    public async deleteSmsTemplate (templateId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public async deleteSmsTemplate (templateId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<any> {
         const localVarPath = this.basePath + '/api/v1/templates/sms/{templateId}'
             .replace('{' + 'templateId' + '}', encodeURIComponent(String(templateId)));
         let localVarQueryParameters: any = {};
@@ -16093,13 +16110,13 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            return new Promise<any>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -16113,7 +16130,7 @@ export class GeneratedApiClient {
      * @summary Get SMS Template
      * @param templateId 
      */
-    public async getSmsTemplate (templateId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: SmsTemplate;  }> {
+    public async getSmsTemplate (templateId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<SmsTemplate> {
         const localVarPath = this.basePath + '/api/v1/templates/sms/{templateId}'
             .replace('{' + 'templateId' + '}', encodeURIComponent(String(templateId)));
         let localVarQueryParameters: any = {};
@@ -16164,14 +16181,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: SmsTemplate;  }>((resolve, reject) => {
+            return new Promise<SmsTemplate>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "SmsTemplate");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -16185,7 +16202,7 @@ export class GeneratedApiClient {
      * @summary List SMS Templates
      * @param templateType 
      */
-    public async listSmsTemplates (templateType?: SmsTemplateType, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Array<SmsTemplate>;  }> {
+    public async listSmsTemplates (templateType?: SmsTemplateType, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<Array<SmsTemplate>> {
         const localVarPath = this.basePath + '/api/v1/templates/sms';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -16234,14 +16251,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Array<SmsTemplate>;  }>((resolve, reject) => {
+            return new Promise<Array<SmsTemplate>>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "Array<SmsTemplate>");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -16256,7 +16273,7 @@ export class GeneratedApiClient {
      * @param templateId 
      * @param smsTemplate 
      */
-    public async partialUpdateSmsTemplate (templateId: string, smsTemplate: SmsTemplate, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: SmsTemplate;  }> {
+    public async partialUpdateSmsTemplate (templateId: string, smsTemplate: SmsTemplate, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<SmsTemplate> {
         const localVarPath = this.basePath + '/api/v1/templates/sms/{templateId}'
             .replace('{' + 'templateId' + '}', encodeURIComponent(String(templateId)));
         let localVarQueryParameters: any = {};
@@ -16313,14 +16330,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: SmsTemplate;  }>((resolve, reject) => {
+            return new Promise<SmsTemplate>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "SmsTemplate");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -16335,7 +16352,7 @@ export class GeneratedApiClient {
      * @param templateId 
      * @param smsTemplate 
      */
-    public async updateSmsTemplate (templateId: string, smsTemplate: SmsTemplate, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: SmsTemplate;  }> {
+    public async updateSmsTemplate (templateId: string, smsTemplate: SmsTemplate, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<SmsTemplate> {
         const localVarPath = this.basePath + '/api/v1/templates/sms/{templateId}'
             .replace('{' + 'templateId' + '}', encodeURIComponent(String(templateId)));
         let localVarQueryParameters: any = {};
@@ -16392,14 +16409,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: SmsTemplate;  }>((resolve, reject) => {
+            return new Promise<SmsTemplate>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "SmsTemplate");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -16413,7 +16430,7 @@ export class GeneratedApiClient {
     /**
      * Gets current ThreatInsight configuration
      */
-    public async getCurrentConfiguration (options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: ThreatInsightConfiguration;  }> {
+    public async getCurrentConfiguration (options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<ThreatInsightConfiguration> {
         const localVarPath = this.basePath + '/api/v1/threats/configuration';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -16458,14 +16475,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: ThreatInsightConfiguration;  }>((resolve, reject) => {
+            return new Promise<ThreatInsightConfiguration>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "ThreatInsightConfiguration");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -16478,7 +16495,7 @@ export class GeneratedApiClient {
      * Updates ThreatInsight configuration
      * @param threatInsightConfiguration 
      */
-    public async updateConfiguration (threatInsightConfiguration: ThreatInsightConfiguration, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: ThreatInsightConfiguration;  }> {
+    public async updateConfiguration (threatInsightConfiguration: ThreatInsightConfiguration, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<ThreatInsightConfiguration> {
         const localVarPath = this.basePath + '/api/v1/threats/configuration';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -16529,14 +16546,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: ThreatInsightConfiguration;  }>((resolve, reject) => {
+            return new Promise<ThreatInsightConfiguration>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "ThreatInsightConfiguration");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -16551,7 +16568,7 @@ export class GeneratedApiClient {
      * Success
      * @param trustedOriginId 
      */
-    public async activateOrigin (trustedOriginId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: TrustedOrigin;  }> {
+    public async activateOrigin (trustedOriginId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<TrustedOrigin> {
         const localVarPath = this.basePath + '/api/v1/trustedOrigins/{trustedOriginId}/lifecycle/activate'
             .replace('{' + 'trustedOriginId' + '}', encodeURIComponent(String(trustedOriginId)));
         let localVarQueryParameters: any = {};
@@ -16602,14 +16619,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: TrustedOrigin;  }>((resolve, reject) => {
+            return new Promise<TrustedOrigin>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "TrustedOrigin");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -16622,7 +16639,7 @@ export class GeneratedApiClient {
      * Success
      * @param trustedOrigin 
      */
-    public async createOrigin (trustedOrigin: TrustedOrigin, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: TrustedOrigin;  }> {
+    public async createOrigin (trustedOrigin: TrustedOrigin, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<TrustedOrigin> {
         const localVarPath = this.basePath + '/api/v1/trustedOrigins';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -16673,14 +16690,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: TrustedOrigin;  }>((resolve, reject) => {
+            return new Promise<TrustedOrigin>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "TrustedOrigin");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -16693,7 +16710,7 @@ export class GeneratedApiClient {
      * Success
      * @param trustedOriginId 
      */
-    public async deactivateOrigin (trustedOriginId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: TrustedOrigin;  }> {
+    public async deactivateOrigin (trustedOriginId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<TrustedOrigin> {
         const localVarPath = this.basePath + '/api/v1/trustedOrigins/{trustedOriginId}/lifecycle/deactivate'
             .replace('{' + 'trustedOriginId' + '}', encodeURIComponent(String(trustedOriginId)));
         let localVarQueryParameters: any = {};
@@ -16744,14 +16761,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: TrustedOrigin;  }>((resolve, reject) => {
+            return new Promise<TrustedOrigin>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "TrustedOrigin");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -16764,7 +16781,7 @@ export class GeneratedApiClient {
      * Success
      * @param trustedOriginId 
      */
-    public async deleteOrigin (trustedOriginId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public async deleteOrigin (trustedOriginId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<any> {
         const localVarPath = this.basePath + '/api/v1/trustedOrigins/{trustedOriginId}'
             .replace('{' + 'trustedOriginId' + '}', encodeURIComponent(String(trustedOriginId)));
         let localVarQueryParameters: any = {};
@@ -16808,13 +16825,13 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            return new Promise<any>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -16827,7 +16844,7 @@ export class GeneratedApiClient {
      * Success
      * @param trustedOriginId 
      */
-    public async getOrigin (trustedOriginId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: TrustedOrigin;  }> {
+    public async getOrigin (trustedOriginId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<TrustedOrigin> {
         const localVarPath = this.basePath + '/api/v1/trustedOrigins/{trustedOriginId}'
             .replace('{' + 'trustedOriginId' + '}', encodeURIComponent(String(trustedOriginId)));
         let localVarQueryParameters: any = {};
@@ -16878,14 +16895,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: TrustedOrigin;  }>((resolve, reject) => {
+            return new Promise<TrustedOrigin>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "TrustedOrigin");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -16901,7 +16918,7 @@ export class GeneratedApiClient {
      * @param after 
      * @param limit 
      */
-    public async listOrigins (q?: string, filter?: string, after?: string, limit?: number, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Array<TrustedOrigin>;  }> {
+    public async listOrigins (q?: string, filter?: string, after?: string, limit?: number, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<Array<TrustedOrigin>> {
         const localVarPath = this.basePath + '/api/v1/trustedOrigins';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -16962,14 +16979,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Array<TrustedOrigin>;  }>((resolve, reject) => {
+            return new Promise<Array<TrustedOrigin>>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "Array<TrustedOrigin>");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -16983,7 +17000,7 @@ export class GeneratedApiClient {
      * @param trustedOriginId 
      * @param trustedOrigin 
      */
-    public async updateOrigin (trustedOriginId: string, trustedOrigin: TrustedOrigin, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: TrustedOrigin;  }> {
+    public async updateOrigin (trustedOriginId: string, trustedOrigin: TrustedOrigin, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<TrustedOrigin> {
         const localVarPath = this.basePath + '/api/v1/trustedOrigins/{trustedOriginId}'
             .replace('{' + 'trustedOriginId' + '}', encodeURIComponent(String(trustedOriginId)));
         let localVarQueryParameters: any = {};
@@ -17040,14 +17057,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: TrustedOrigin;  }>((resolve, reject) => {
+            return new Promise<TrustedOrigin>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "TrustedOrigin");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -17064,7 +17081,7 @@ export class GeneratedApiClient {
      * @param userId 
      * @param sendEmail Sends an activation email to the user if true
      */
-    public async activateUser (userId: string, sendEmail: boolean, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: UserActivationToken;  }> {
+    public async activateUser (userId: string, sendEmail: boolean, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<UserActivationToken> {
         const localVarPath = this.basePath + '/api/v1/users/{userId}/lifecycle/activate'
             .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)));
         let localVarQueryParameters: any = {};
@@ -17124,14 +17141,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: UserActivationToken;  }>((resolve, reject) => {
+            return new Promise<UserActivationToken>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "UserActivationToken");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -17145,7 +17162,7 @@ export class GeneratedApiClient {
      * @param userId 
      * @param roleId 
      */
-    public async addAllAppsAsTargetToRole (userId: string, roleId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public async addAllAppsAsTargetToRole (userId: string, roleId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<any> {
         const localVarPath = this.basePath + '/api/v1/users/{userId}/roles/{roleId}/targets/catalog/apps'
             .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)))
             .replace('{' + 'roleId' + '}', encodeURIComponent(String(roleId)));
@@ -17195,13 +17212,13 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            return new Promise<any>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -17216,7 +17233,7 @@ export class GeneratedApiClient {
      * @param roleId 
      * @param appName 
      */
-    public async addApplicationTargetToAdminRoleForUser (userId: string, roleId: string, appName: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public async addApplicationTargetToAdminRoleForUser (userId: string, roleId: string, appName: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<any> {
         const localVarPath = this.basePath + '/api/v1/users/{userId}/roles/{roleId}/targets/catalog/apps/{appName}'
             .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)))
             .replace('{' + 'roleId' + '}', encodeURIComponent(String(roleId)))
@@ -17272,13 +17289,13 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            return new Promise<any>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -17295,7 +17312,7 @@ export class GeneratedApiClient {
      * @param appName 
      * @param applicationId 
      */
-    public async addApplicationTargetToAppAdminRoleForUser (userId: string, roleId: string, appName: string, applicationId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public async addApplicationTargetToAppAdminRoleForUser (userId: string, roleId: string, appName: string, applicationId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<any> {
         const localVarPath = this.basePath + '/api/v1/users/{userId}/roles/{roleId}/targets/catalog/apps/{appName}/{applicationId}'
             .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)))
             .replace('{' + 'roleId' + '}', encodeURIComponent(String(roleId)))
@@ -17357,13 +17374,13 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            return new Promise<any>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -17378,7 +17395,7 @@ export class GeneratedApiClient {
      * @param roleId 
      * @param groupId 
      */
-    public async addGroupTargetToRole (userId: string, roleId: string, groupId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public async addGroupTargetToRole (userId: string, roleId: string, groupId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<any> {
         const localVarPath = this.basePath + '/api/v1/users/{userId}/roles/{roleId}/targets/groups/{groupId}'
             .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)))
             .replace('{' + 'roleId' + '}', encodeURIComponent(String(roleId)))
@@ -17434,13 +17451,13 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            return new Promise<any>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -17455,7 +17472,7 @@ export class GeneratedApiClient {
      * @param assignRoleRequest 
      * @param disableNotifications 
      */
-    public async assignRoleToUser (userId: string, assignRoleRequest: AssignRoleRequest, disableNotifications?: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Role;  }> {
+    public async assignRoleToUser (userId: string, assignRoleRequest: AssignRoleRequest, disableNotifications?: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<Role> {
         const localVarPath = this.basePath + '/api/v1/users/{userId}/roles'
             .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)));
         let localVarQueryParameters: any = {};
@@ -17516,14 +17533,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Role;  }>((resolve, reject) => {
+            return new Promise<Role>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "Role");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -17539,7 +17556,7 @@ export class GeneratedApiClient {
      * @param changePasswordRequest 
      * @param strict 
      */
-    public async changePassword (userId: string, changePasswordRequest: ChangePasswordRequest, strict?: boolean, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: UserCredentials;  }> {
+    public async changePassword (userId: string, changePasswordRequest: ChangePasswordRequest, strict?: boolean, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<UserCredentials> {
         const localVarPath = this.basePath + '/api/v1/users/{userId}/credentials/change_password'
             .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)));
         let localVarQueryParameters: any = {};
@@ -17600,14 +17617,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: UserCredentials;  }>((resolve, reject) => {
+            return new Promise<UserCredentials>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "UserCredentials");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -17622,7 +17639,7 @@ export class GeneratedApiClient {
      * @param userId 
      * @param userCredentials 
      */
-    public async changeRecoveryQuestion (userId: string, userCredentials: UserCredentials, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: UserCredentials;  }> {
+    public async changeRecoveryQuestion (userId: string, userCredentials: UserCredentials, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<UserCredentials> {
         const localVarPath = this.basePath + '/api/v1/users/{userId}/credentials/change_recovery_question'
             .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)));
         let localVarQueryParameters: any = {};
@@ -17679,14 +17696,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: UserCredentials;  }>((resolve, reject) => {
+            return new Promise<UserCredentials>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "UserCredentials");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -17700,7 +17717,7 @@ export class GeneratedApiClient {
      * @param userId 
      * @param oauthTokens Revoke issued OpenID Connect and OAuth refresh and access tokens
      */
-    public async clearUserSessions (userId: string, oauthTokens?: boolean, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public async clearUserSessions (userId: string, oauthTokens?: boolean, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<any> {
         const localVarPath = this.basePath + '/api/v1/users/{userId}/sessions'
             .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)));
         let localVarQueryParameters: any = {};
@@ -17748,13 +17765,13 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            return new Promise<any>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -17771,7 +17788,7 @@ export class GeneratedApiClient {
      * @param provider Indicates whether to create a user with a specified authentication provider
      * @param nextLogin With activate&#x3D;true, set nextLogin to \&quot;changePassword\&quot; to have the password be EXPIRED, so user must change it the next time they log in.
      */
-    public async createUser (createUserRequest: CreateUserRequest, activate?: boolean, provider?: boolean, nextLogin?: UserNextLogin, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: User;  }> {
+    public async createUser (createUserRequest: CreateUserRequest, activate?: boolean, provider?: boolean, nextLogin?: UserNextLogin, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<User> {
         const localVarPath = this.basePath + '/api/v1/users';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -17834,14 +17851,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: User;  }>((resolve, reject) => {
+            return new Promise<User>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "User");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -17856,7 +17873,7 @@ export class GeneratedApiClient {
      * @param userId 
      * @param sendEmail 
      */
-    public async deactivateOrDeleteUser (userId: string, sendEmail?: boolean, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public async deactivateOrDeleteUser (userId: string, sendEmail?: boolean, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<any> {
         const localVarPath = this.basePath + '/api/v1/users/{userId}'
             .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)));
         let localVarQueryParameters: any = {};
@@ -17904,13 +17921,13 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            return new Promise<any>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -17925,7 +17942,7 @@ export class GeneratedApiClient {
      * @param userId 
      * @param sendEmail 
      */
-    public async deactivateUser (userId: string, sendEmail?: boolean, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public async deactivateUser (userId: string, sendEmail?: boolean, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<any> {
         const localVarPath = this.basePath + '/api/v1/users/{userId}/lifecycle/deactivate'
             .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)));
         let localVarQueryParameters: any = {};
@@ -17973,13 +17990,13 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            return new Promise<any>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -17993,7 +18010,7 @@ export class GeneratedApiClient {
      * @summary Expire Password
      * @param userId 
      */
-    public async expirePassword (userId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: User;  }> {
+    public async expirePassword (userId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<User> {
         const localVarPath = this.basePath + '/api/v1/users/{userId}/lifecycle/expire_password'
             .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)));
         let localVarQueryParameters: any = {};
@@ -18044,14 +18061,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: User;  }>((resolve, reject) => {
+            return new Promise<User>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "User");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -18065,7 +18082,7 @@ export class GeneratedApiClient {
      * @summary Expire Password and Set Temporary Password
      * @param userId 
      */
-    public async expirePasswordAndGetTemporaryPassword (userId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: TempPassword;  }> {
+    public async expirePasswordAndGetTemporaryPassword (userId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<TempPassword> {
         const localVarPath = this.basePath + '/api/v1/users/{userId}/lifecycle/expire_password_with_temp_password'
             .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)));
         let localVarQueryParameters: any = {};
@@ -18116,14 +18133,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: TempPassword;  }>((resolve, reject) => {
+            return new Promise<TempPassword>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "TempPassword");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -18138,7 +18155,7 @@ export class GeneratedApiClient {
      * @param userId 
      * @param sendEmail 
      */
-    public async forgotPassword (userId: string, sendEmail?: boolean, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: ForgotPasswordResponse;  }> {
+    public async forgotPassword (userId: string, sendEmail?: boolean, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<ForgotPasswordResponse> {
         const localVarPath = this.basePath + '/api/v1/users/{userId}/credentials/forgot_password'
             .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)));
         let localVarQueryParameters: any = {};
@@ -18193,14 +18210,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: ForgotPasswordResponse;  }>((resolve, reject) => {
+            return new Promise<ForgotPasswordResponse>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "ForgotPasswordResponse");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -18216,7 +18233,7 @@ export class GeneratedApiClient {
      * @param sendEmail 
      * @param userCredentials 
      */
-    public async forgotPasswordSetNewPassword (userId: string, sendEmail?: boolean, userCredentials?: UserCredentials, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: UserCredentials;  }> {
+    public async forgotPasswordSetNewPassword (userId: string, sendEmail?: boolean, userCredentials?: UserCredentials, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<UserCredentials> {
         const localVarPath = this.basePath + '/api/v1/users/{userId}/credentials/forgot_password_recovery_question'
             .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)));
         let localVarQueryParameters: any = {};
@@ -18272,14 +18289,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: UserCredentials;  }>((resolve, reject) => {
+            return new Promise<UserCredentials>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "UserCredentials");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -18295,7 +18312,7 @@ export class GeneratedApiClient {
      * @param after 
      * @param limit 
      */
-    public async getLinkedObjectsForUser (userId: string, relationshipName: string, after?: string, limit?: number, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Array<object>;  }> {
+    public async getLinkedObjectsForUser (userId: string, relationshipName: string, after?: string, limit?: number, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<Array<object>> {
         const localVarPath = this.basePath + '/api/v1/users/{userId}/linkedObjects/{relationshipName}'
             .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)))
             .replace('{' + 'relationshipName' + '}', encodeURIComponent(String(relationshipName)));
@@ -18360,14 +18377,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Array<object>;  }>((resolve, reject) => {
+            return new Promise<Array<object>>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "Array<object>");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -18385,7 +18402,7 @@ export class GeneratedApiClient {
      * @param limit 
      * @param after 
      */
-    public async getRefreshTokenForUserAndClient (userId: string, clientId: string, tokenId: string, expand?: string, limit?: number, after?: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: OAuth2RefreshToken;  }> {
+    public async getRefreshTokenForUserAndClient (userId: string, clientId: string, tokenId: string, expand?: string, limit?: number, after?: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<OAuth2RefreshToken> {
         const localVarPath = this.basePath + '/api/v1/users/{userId}/clients/{clientId}/tokens/{tokenId}'
             .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)))
             .replace('{' + 'clientId' + '}', encodeURIComponent(String(clientId)))
@@ -18460,14 +18477,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: OAuth2RefreshToken;  }>((resolve, reject) => {
+            return new Promise<OAuth2RefreshToken>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "OAuth2RefreshToken");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -18481,7 +18498,7 @@ export class GeneratedApiClient {
      * @summary Get User
      * @param userId 
      */
-    public async getUser (userId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: User;  }> {
+    public async getUser (userId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<User> {
         const localVarPath = this.basePath + '/api/v1/users/{userId}'
             .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)));
         let localVarQueryParameters: any = {};
@@ -18532,14 +18549,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: User;  }>((resolve, reject) => {
+            return new Promise<User>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "User");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -18554,7 +18571,7 @@ export class GeneratedApiClient {
      * @param grantId 
      * @param expand 
      */
-    public async getUserGrant (userId: string, grantId: string, expand?: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: OAuth2ScopeConsentGrant;  }> {
+    public async getUserGrant (userId: string, grantId: string, expand?: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<OAuth2ScopeConsentGrant> {
         const localVarPath = this.basePath + '/api/v1/users/{userId}/grants/{grantId}'
             .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)))
             .replace('{' + 'grantId' + '}', encodeURIComponent(String(grantId)));
@@ -18615,14 +18632,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: OAuth2ScopeConsentGrant;  }>((resolve, reject) => {
+            return new Promise<OAuth2ScopeConsentGrant>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "OAuth2ScopeConsentGrant");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -18636,7 +18653,7 @@ export class GeneratedApiClient {
      * @param userId 
      * @param roleId 
      */
-    public async getUserRole (userId: string, roleId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Role;  }> {
+    public async getUserRole (userId: string, roleId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<Role> {
         const localVarPath = this.basePath + '/api/v1/users/{userId}/roles/{roleId}'
             .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)))
             .replace('{' + 'roleId' + '}', encodeURIComponent(String(roleId)));
@@ -18693,14 +18710,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Role;  }>((resolve, reject) => {
+            return new Promise<Role>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "Role");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -18714,7 +18731,7 @@ export class GeneratedApiClient {
      * @summary Get Assigned App Links
      * @param userId 
      */
-    public async listAppLinks (userId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Array<AppLink>;  }> {
+    public async listAppLinks (userId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<Array<AppLink>> {
         const localVarPath = this.basePath + '/api/v1/users/{userId}/appLinks'
             .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)));
         let localVarQueryParameters: any = {};
@@ -18765,14 +18782,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Array<AppLink>;  }>((resolve, reject) => {
+            return new Promise<Array<AppLink>>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "Array<AppLink>");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -18788,7 +18805,7 @@ export class GeneratedApiClient {
      * @param after 
      * @param limit 
      */
-    public async listApplicationTargetsForApplicationAdministratorRoleForUser (userId: string, roleId: string, after?: string, limit?: number, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Array<CatalogApplication>;  }> {
+    public async listApplicationTargetsForApplicationAdministratorRoleForUser (userId: string, roleId: string, after?: string, limit?: number, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<Array<CatalogApplication>> {
         const localVarPath = this.basePath + '/api/v1/users/{userId}/roles/{roleId}/targets/catalog/apps'
             .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)))
             .replace('{' + 'roleId' + '}', encodeURIComponent(String(roleId)));
@@ -18853,14 +18870,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Array<CatalogApplication>;  }>((resolve, reject) => {
+            return new Promise<Array<CatalogApplication>>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "Array<CatalogApplication>");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -18874,7 +18891,7 @@ export class GeneratedApiClient {
      * @param userId 
      * @param expand 
      */
-    public async listAssignedRolesForUser (userId: string, expand?: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Array<Role>;  }> {
+    public async listAssignedRolesForUser (userId: string, expand?: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<Array<Role>> {
         const localVarPath = this.basePath + '/api/v1/users/{userId}/roles'
             .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)));
         let localVarQueryParameters: any = {};
@@ -18929,14 +18946,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Array<Role>;  }>((resolve, reject) => {
+            return new Promise<Array<Role>>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "Array<Role>");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -18953,7 +18970,7 @@ export class GeneratedApiClient {
      * @param after 
      * @param limit 
      */
-    public async listGrantsForUserAndClient (userId: string, clientId: string, expand?: string, after?: string, limit?: number, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Array<OAuth2ScopeConsentGrant>;  }> {
+    public async listGrantsForUserAndClient (userId: string, clientId: string, expand?: string, after?: string, limit?: number, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<Array<OAuth2ScopeConsentGrant>> {
         const localVarPath = this.basePath + '/api/v1/users/{userId}/clients/{clientId}/grants'
             .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)))
             .replace('{' + 'clientId' + '}', encodeURIComponent(String(clientId)));
@@ -19022,14 +19039,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Array<OAuth2ScopeConsentGrant>;  }>((resolve, reject) => {
+            return new Promise<Array<OAuth2ScopeConsentGrant>>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "Array<OAuth2ScopeConsentGrant>");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -19045,7 +19062,7 @@ export class GeneratedApiClient {
      * @param after 
      * @param limit 
      */
-    public async listGroupTargetsForRole (userId: string, roleId: string, after?: string, limit?: number, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Array<Group>;  }> {
+    public async listGroupTargetsForRole (userId: string, roleId: string, after?: string, limit?: number, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<Array<Group>> {
         const localVarPath = this.basePath + '/api/v1/users/{userId}/roles/{roleId}/targets/groups'
             .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)))
             .replace('{' + 'roleId' + '}', encodeURIComponent(String(roleId)));
@@ -19110,14 +19127,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Array<Group>;  }>((resolve, reject) => {
+            return new Promise<Array<Group>>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "Array<Group>");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -19134,7 +19151,7 @@ export class GeneratedApiClient {
      * @param after 
      * @param limit 
      */
-    public async listRefreshTokensForUserAndClient (userId: string, clientId: string, expand?: string, after?: string, limit?: number, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Array<OAuth2RefreshToken>;  }> {
+    public async listRefreshTokensForUserAndClient (userId: string, clientId: string, expand?: string, after?: string, limit?: number, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<Array<OAuth2RefreshToken>> {
         const localVarPath = this.basePath + '/api/v1/users/{userId}/clients/{clientId}/tokens'
             .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)))
             .replace('{' + 'clientId' + '}', encodeURIComponent(String(clientId)));
@@ -19203,14 +19220,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Array<OAuth2RefreshToken>;  }>((resolve, reject) => {
+            return new Promise<Array<OAuth2RefreshToken>>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "Array<OAuth2RefreshToken>");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -19223,7 +19240,7 @@ export class GeneratedApiClient {
      * Lists all client resources for which the specified user has grants or tokens.
      * @param userId 
      */
-    public async listUserClients (userId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Array<OAuth2Client>;  }> {
+    public async listUserClients (userId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<Array<OAuth2Client>> {
         const localVarPath = this.basePath + '/api/v1/users/{userId}/clients'
             .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)));
         let localVarQueryParameters: any = {};
@@ -19274,14 +19291,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Array<OAuth2Client>;  }>((resolve, reject) => {
+            return new Promise<Array<OAuth2Client>>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "Array<OAuth2Client>");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -19298,7 +19315,7 @@ export class GeneratedApiClient {
      * @param after 
      * @param limit 
      */
-    public async listUserGrants (userId: string, scopeId?: string, expand?: string, after?: string, limit?: number, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Array<OAuth2ScopeConsentGrant>;  }> {
+    public async listUserGrants (userId: string, scopeId?: string, expand?: string, after?: string, limit?: number, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<Array<OAuth2ScopeConsentGrant>> {
         const localVarPath = this.basePath + '/api/v1/users/{userId}/grants'
             .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)));
         let localVarQueryParameters: any = {};
@@ -19365,14 +19382,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Array<OAuth2ScopeConsentGrant>;  }>((resolve, reject) => {
+            return new Promise<Array<OAuth2ScopeConsentGrant>>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "Array<OAuth2ScopeConsentGrant>");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -19386,7 +19403,7 @@ export class GeneratedApiClient {
      * @summary Get Member Groups
      * @param userId 
      */
-    public async listUserGroups (userId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Array<Group>;  }> {
+    public async listUserGroups (userId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<Array<Group>> {
         const localVarPath = this.basePath + '/api/v1/users/{userId}/groups'
             .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)));
         let localVarQueryParameters: any = {};
@@ -19437,14 +19454,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Array<Group>;  }>((resolve, reject) => {
+            return new Promise<Array<Group>>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "Array<Group>");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -19458,7 +19475,7 @@ export class GeneratedApiClient {
      * @summary Listing IdPs associated with a user
      * @param userId 
      */
-    public async listUserIdentityProviders (userId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Array<IdentityProvider>;  }> {
+    public async listUserIdentityProviders (userId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<Array<IdentityProvider>> {
         const localVarPath = this.basePath + '/api/v1/users/{userId}/idps'
             .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)));
         let localVarQueryParameters: any = {};
@@ -19509,14 +19526,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Array<IdentityProvider>;  }>((resolve, reject) => {
+            return new Promise<Array<IdentityProvider>>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "Array<IdentityProvider>");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -19536,7 +19553,7 @@ export class GeneratedApiClient {
      * @param sortBy 
      * @param sortOrder 
      */
-    public async listUsers (q?: string, after?: string, limit?: number, filter?: string, search?: string, sortBy?: string, sortOrder?: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Array<User>;  }> {
+    public async listUsers (q?: string, after?: string, limit?: number, filter?: string, search?: string, sortBy?: string, sortOrder?: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<Array<User>> {
         const localVarPath = this.basePath + '/api/v1/users';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -19609,14 +19626,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Array<User>;  }>((resolve, reject) => {
+            return new Promise<Array<User>>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "Array<User>");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -19631,7 +19648,7 @@ export class GeneratedApiClient {
      * @param user 
      * @param strict 
      */
-    public async partialUpdateUser (userId: string, user: User, strict?: boolean, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: User;  }> {
+    public async partialUpdateUser (userId: string, user: User, strict?: boolean, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<User> {
         const localVarPath = this.basePath + '/api/v1/users/{userId}'
             .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)));
         let localVarQueryParameters: any = {};
@@ -19692,14 +19709,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: User;  }>((resolve, reject) => {
+            return new Promise<User>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "User");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -19714,7 +19731,7 @@ export class GeneratedApiClient {
      * @param userId 
      * @param sendEmail Sends an activation email to the user if true
      */
-    public async reactivateUser (userId: string, sendEmail?: boolean, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: UserActivationToken;  }> {
+    public async reactivateUser (userId: string, sendEmail?: boolean, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<UserActivationToken> {
         const localVarPath = this.basePath + '/api/v1/users/{userId}/lifecycle/reactivate'
             .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)));
         let localVarQueryParameters: any = {};
@@ -19769,14 +19786,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: UserActivationToken;  }>((resolve, reject) => {
+            return new Promise<UserActivationToken>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "UserActivationToken");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -19793,7 +19810,7 @@ export class GeneratedApiClient {
      * @param appName 
      * @param applicationId 
      */
-    public async removeApplicationTargetFromAdministratorRoleForUser (userId: string, roleId: string, appName: string, applicationId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public async removeApplicationTargetFromAdministratorRoleForUser (userId: string, roleId: string, appName: string, applicationId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<any> {
         const localVarPath = this.basePath + '/api/v1/users/{userId}/roles/{roleId}/targets/catalog/apps/{appName}/{applicationId}'
             .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)))
             .replace('{' + 'roleId' + '}', encodeURIComponent(String(roleId)))
@@ -19855,13 +19872,13 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            return new Promise<any>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -19876,7 +19893,7 @@ export class GeneratedApiClient {
      * @param roleId 
      * @param appName 
      */
-    public async removeApplicationTargetFromApplicationAdministratorRoleForUser (userId: string, roleId: string, appName: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public async removeApplicationTargetFromApplicationAdministratorRoleForUser (userId: string, roleId: string, appName: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<any> {
         const localVarPath = this.basePath + '/api/v1/users/{userId}/roles/{roleId}/targets/catalog/apps/{appName}'
             .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)))
             .replace('{' + 'roleId' + '}', encodeURIComponent(String(roleId)))
@@ -19932,13 +19949,13 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            return new Promise<any>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -19953,7 +19970,7 @@ export class GeneratedApiClient {
      * @param roleId 
      * @param groupId 
      */
-    public async removeGroupTargetFromRole (userId: string, roleId: string, groupId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public async removeGroupTargetFromRole (userId: string, roleId: string, groupId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<any> {
         const localVarPath = this.basePath + '/api/v1/users/{userId}/roles/{roleId}/targets/groups/{groupId}'
             .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)))
             .replace('{' + 'roleId' + '}', encodeURIComponent(String(roleId)))
@@ -20009,13 +20026,13 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            return new Promise<any>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -20029,7 +20046,7 @@ export class GeneratedApiClient {
      * @param userId 
      * @param relationshipName 
      */
-    public async removeLinkedObjectForUser (userId: string, relationshipName: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public async removeLinkedObjectForUser (userId: string, relationshipName: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<any> {
         const localVarPath = this.basePath + '/api/v1/users/{userId}/linkedObjects/{relationshipName}'
             .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)))
             .replace('{' + 'relationshipName' + '}', encodeURIComponent(String(relationshipName)));
@@ -20079,13 +20096,13 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            return new Promise<any>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -20099,7 +20116,7 @@ export class GeneratedApiClient {
      * @param userId 
      * @param roleId 
      */
-    public async removeRoleFromUser (userId: string, roleId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public async removeRoleFromUser (userId: string, roleId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<any> {
         const localVarPath = this.basePath + '/api/v1/users/{userId}/roles/{roleId}'
             .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)))
             .replace('{' + 'roleId' + '}', encodeURIComponent(String(roleId)));
@@ -20149,13 +20166,13 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            return new Promise<any>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -20169,7 +20186,7 @@ export class GeneratedApiClient {
      * @summary Reset Factors
      * @param userId 
      */
-    public async resetFactors (userId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public async resetFactors (userId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<any> {
         const localVarPath = this.basePath + '/api/v1/users/{userId}/lifecycle/reset_factors'
             .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)));
         let localVarQueryParameters: any = {};
@@ -20213,13 +20230,13 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            return new Promise<any>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -20234,7 +20251,7 @@ export class GeneratedApiClient {
      * @param userId 
      * @param sendEmail 
      */
-    public async resetPassword (userId: string, sendEmail: boolean, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: ResetPasswordToken;  }> {
+    public async resetPassword (userId: string, sendEmail: boolean, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<ResetPasswordToken> {
         const localVarPath = this.basePath + '/api/v1/users/{userId}/lifecycle/reset_password'
             .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)));
         let localVarQueryParameters: any = {};
@@ -20294,14 +20311,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: ResetPasswordToken;  }>((resolve, reject) => {
+            return new Promise<ResetPasswordToken>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "ResetPasswordToken");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -20315,7 +20332,7 @@ export class GeneratedApiClient {
      * @param userId 
      * @param clientId 
      */
-    public async revokeGrantsForUserAndClient (userId: string, clientId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public async revokeGrantsForUserAndClient (userId: string, clientId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<any> {
         const localVarPath = this.basePath + '/api/v1/users/{userId}/clients/{clientId}/grants'
             .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)))
             .replace('{' + 'clientId' + '}', encodeURIComponent(String(clientId)));
@@ -20365,13 +20382,13 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            return new Promise<any>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -20386,7 +20403,7 @@ export class GeneratedApiClient {
      * @param clientId 
      * @param tokenId 
      */
-    public async revokeTokenForUserAndClient (userId: string, clientId: string, tokenId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public async revokeTokenForUserAndClient (userId: string, clientId: string, tokenId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<any> {
         const localVarPath = this.basePath + '/api/v1/users/{userId}/clients/{clientId}/tokens/{tokenId}'
             .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)))
             .replace('{' + 'clientId' + '}', encodeURIComponent(String(clientId)))
@@ -20442,13 +20459,13 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            return new Promise<any>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -20462,7 +20479,7 @@ export class GeneratedApiClient {
      * @param userId 
      * @param clientId 
      */
-    public async revokeTokensForUserAndClient (userId: string, clientId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public async revokeTokensForUserAndClient (userId: string, clientId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<any> {
         const localVarPath = this.basePath + '/api/v1/users/{userId}/clients/{clientId}/tokens'
             .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)))
             .replace('{' + 'clientId' + '}', encodeURIComponent(String(clientId)));
@@ -20512,13 +20529,13 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            return new Promise<any>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -20532,7 +20549,7 @@ export class GeneratedApiClient {
      * @param userId 
      * @param grantId 
      */
-    public async revokeUserGrant (userId: string, grantId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public async revokeUserGrant (userId: string, grantId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<any> {
         const localVarPath = this.basePath + '/api/v1/users/{userId}/grants/{grantId}'
             .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)))
             .replace('{' + 'grantId' + '}', encodeURIComponent(String(grantId)));
@@ -20582,13 +20599,13 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            return new Promise<any>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -20601,7 +20618,7 @@ export class GeneratedApiClient {
      * Revokes all grants for a specified user
      * @param userId 
      */
-    public async revokeUserGrants (userId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public async revokeUserGrants (userId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<any> {
         const localVarPath = this.basePath + '/api/v1/users/{userId}/grants'
             .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)));
         let localVarQueryParameters: any = {};
@@ -20645,13 +20662,13 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            return new Promise<any>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -20667,7 +20684,7 @@ export class GeneratedApiClient {
      * @param primaryRelationshipName 
      * @param primaryUserId 
      */
-    public async setLinkedObjectForUser (associatedUserId: string, primaryRelationshipName: string, primaryUserId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public async setLinkedObjectForUser (associatedUserId: string, primaryRelationshipName: string, primaryUserId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<any> {
         const localVarPath = this.basePath + '/api/v1/users/{associatedUserId}/linkedObjects/{primaryRelationshipName}/{primaryUserId}'
             .replace('{' + 'associatedUserId' + '}', encodeURIComponent(String(associatedUserId)))
             .replace('{' + 'primaryRelationshipName' + '}', encodeURIComponent(String(primaryRelationshipName)))
@@ -20720,13 +20737,13 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            return new Promise<any>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -20740,7 +20757,7 @@ export class GeneratedApiClient {
      * @summary Suspend User
      * @param userId 
      */
-    public async suspendUser (userId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public async suspendUser (userId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<any> {
         const localVarPath = this.basePath + '/api/v1/users/{userId}/lifecycle/suspend'
             .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)));
         let localVarQueryParameters: any = {};
@@ -20784,13 +20801,13 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            return new Promise<any>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -20804,7 +20821,7 @@ export class GeneratedApiClient {
      * @summary Unlock User
      * @param userId 
      */
-    public async unlockUser (userId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public async unlockUser (userId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<any> {
         const localVarPath = this.basePath + '/api/v1/users/{userId}/lifecycle/unlock'
             .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)));
         let localVarQueryParameters: any = {};
@@ -20848,13 +20865,13 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            return new Promise<any>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -20868,7 +20885,7 @@ export class GeneratedApiClient {
      * @summary Unsuspend User
      * @param userId 
      */
-    public async unsuspendUser (userId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public async unsuspendUser (userId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<any> {
         const localVarPath = this.basePath + '/api/v1/users/{userId}/lifecycle/unsuspend'
             .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)));
         let localVarQueryParameters: any = {};
@@ -20912,13 +20929,13 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            return new Promise<any>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -20934,7 +20951,7 @@ export class GeneratedApiClient {
      * @param user 
      * @param strict 
      */
-    public async updateUser (userId: string, user: User, strict?: boolean, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: User;  }> {
+    public async updateUser (userId: string, user: User, strict?: boolean, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<User> {
         const localVarPath = this.basePath + '/api/v1/users/{userId}'
             .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)));
         let localVarQueryParameters: any = {};
@@ -20995,14 +21012,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: User;  }>((resolve, reject) => {
+            return new Promise<User>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "User");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -21020,7 +21037,7 @@ export class GeneratedApiClient {
      * @param factorId 
      * @param activateFactorRequest 
      */
-    public async activateFactor (userId: string, factorId: string, activateFactorRequest?: ActivateFactorRequest, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: UserFactor;  }> {
+    public async activateFactor (userId: string, factorId: string, activateFactorRequest?: ActivateFactorRequest, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<UserFactor> {
         const localVarPath = this.basePath + '/api/v1/users/{userId}/factors/{factorId}/lifecycle/activate'
             .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)))
             .replace('{' + 'factorId' + '}', encodeURIComponent(String(factorId)));
@@ -21078,14 +21095,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: UserFactor;  }>((resolve, reject) => {
+            return new Promise<UserFactor>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "UserFactor");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -21099,7 +21116,7 @@ export class GeneratedApiClient {
      * @param userId 
      * @param factorId 
      */
-    public async deleteFactor (userId: string, factorId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public async deleteFactor (userId: string, factorId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<any> {
         const localVarPath = this.basePath + '/api/v1/users/{userId}/factors/{factorId}'
             .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)))
             .replace('{' + 'factorId' + '}', encodeURIComponent(String(factorId)));
@@ -21149,13 +21166,13 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            return new Promise<any>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -21174,7 +21191,7 @@ export class GeneratedApiClient {
      * @param tokenLifetimeSeconds 
      * @param activate 
      */
-    public async enrollFactor (userId: string, userFactor: UserFactor, updatePhone?: boolean, templateId?: string, tokenLifetimeSeconds?: number, activate?: boolean, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: UserFactor;  }> {
+    public async enrollFactor (userId: string, userFactor: UserFactor, updatePhone?: boolean, templateId?: string, tokenLifetimeSeconds?: number, activate?: boolean, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<UserFactor> {
         const localVarPath = this.basePath + '/api/v1/users/{userId}/factors'
             .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)));
         let localVarQueryParameters: any = {};
@@ -21247,14 +21264,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: UserFactor;  }>((resolve, reject) => {
+            return new Promise<UserFactor>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "UserFactor");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -21268,7 +21285,7 @@ export class GeneratedApiClient {
      * @param userId 
      * @param factorId 
      */
-    public async getFactor (userId: string, factorId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: UserFactor;  }> {
+    public async getFactor (userId: string, factorId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<UserFactor> {
         const localVarPath = this.basePath + '/api/v1/users/{userId}/factors/{factorId}'
             .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)))
             .replace('{' + 'factorId' + '}', encodeURIComponent(String(factorId)));
@@ -21325,14 +21342,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: UserFactor;  }>((resolve, reject) => {
+            return new Promise<UserFactor>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "UserFactor");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -21347,7 +21364,7 @@ export class GeneratedApiClient {
      * @param factorId 
      * @param transactionId 
      */
-    public async getFactorTransactionStatus (userId: string, factorId: string, transactionId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: VerifyUserFactorResponse;  }> {
+    public async getFactorTransactionStatus (userId: string, factorId: string, transactionId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<VerifyUserFactorResponse> {
         const localVarPath = this.basePath + '/api/v1/users/{userId}/factors/{factorId}/transactions/{transactionId}'
             .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)))
             .replace('{' + 'factorId' + '}', encodeURIComponent(String(factorId)))
@@ -21410,14 +21427,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: VerifyUserFactorResponse;  }>((resolve, reject) => {
+            return new Promise<VerifyUserFactorResponse>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "VerifyUserFactorResponse");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -21430,7 +21447,7 @@ export class GeneratedApiClient {
      * Enumerates all the enrolled factors for the specified user
      * @param userId 
      */
-    public async listFactors (userId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Array<UserFactor>;  }> {
+    public async listFactors (userId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<Array<UserFactor>> {
         const localVarPath = this.basePath + '/api/v1/users/{userId}/factors'
             .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)));
         let localVarQueryParameters: any = {};
@@ -21481,14 +21498,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Array<UserFactor>;  }>((resolve, reject) => {
+            return new Promise<Array<UserFactor>>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "Array<UserFactor>");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -21501,7 +21518,7 @@ export class GeneratedApiClient {
      * Enumerates all the supported factors that can be enrolled for the specified user
      * @param userId 
      */
-    public async listSupportedFactors (userId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Array<UserFactor>;  }> {
+    public async listSupportedFactors (userId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<Array<UserFactor>> {
         const localVarPath = this.basePath + '/api/v1/users/{userId}/factors/catalog'
             .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)));
         let localVarQueryParameters: any = {};
@@ -21552,14 +21569,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Array<UserFactor>;  }>((resolve, reject) => {
+            return new Promise<Array<UserFactor>>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "Array<UserFactor>");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -21572,7 +21589,7 @@ export class GeneratedApiClient {
      * Enumerates all available security questions for a user\'s `question` factor
      * @param userId 
      */
-    public async listSupportedSecurityQuestions (userId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Array<SecurityQuestion>;  }> {
+    public async listSupportedSecurityQuestions (userId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<Array<SecurityQuestion>> {
         const localVarPath = this.basePath + '/api/v1/users/{userId}/factors/questions'
             .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)));
         let localVarQueryParameters: any = {};
@@ -21623,14 +21640,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Array<SecurityQuestion>;  }>((resolve, reject) => {
+            return new Promise<Array<SecurityQuestion>>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "Array<SecurityQuestion>");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -21651,7 +21668,7 @@ export class GeneratedApiClient {
      * @param acceptLanguage 
      * @param verifyFactorRequest 
      */
-    public async verifyFactor (userId: string, factorId: string, templateId?: string, tokenLifetimeSeconds?: number, xForwardedFor?: string, userAgent?: string, acceptLanguage?: string, verifyFactorRequest?: VerifyFactorRequest, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: VerifyUserFactorResponse;  }> {
+    public async verifyFactor (userId: string, factorId: string, templateId?: string, tokenLifetimeSeconds?: number, xForwardedFor?: string, userAgent?: string, acceptLanguage?: string, verifyFactorRequest?: VerifyFactorRequest, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<VerifyUserFactorResponse> {
         const localVarPath = this.basePath + '/api/v1/users/{userId}/factors/{factorId}/verify'
             .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)))
             .replace('{' + 'factorId' + '}', encodeURIComponent(String(factorId)));
@@ -21720,14 +21737,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: VerifyUserFactorResponse;  }>((resolve, reject) => {
+            return new Promise<VerifyUserFactorResponse>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "VerifyUserFactorResponse");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -21743,7 +21760,7 @@ export class GeneratedApiClient {
      * @summary Fetches the Schema for an App User
      * @param appInstanceId 
      */
-    public async getApplicationUserSchema (appInstanceId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: UserSchema;  }> {
+    public async getApplicationUserSchema (appInstanceId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<UserSchema> {
         const localVarPath = this.basePath + '/api/v1/meta/schemas/apps/{appInstanceId}/default'
             .replace('{' + 'appInstanceId' + '}', encodeURIComponent(String(appInstanceId)));
         let localVarQueryParameters: any = {};
@@ -21794,14 +21811,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: UserSchema;  }>((resolve, reject) => {
+            return new Promise<UserSchema>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "UserSchema");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -21815,7 +21832,7 @@ export class GeneratedApiClient {
      * @summary Fetches the schema for a Schema Id.
      * @param schemaId 
      */
-    public async getUserSchema (schemaId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: UserSchema;  }> {
+    public async getUserSchema (schemaId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<UserSchema> {
         const localVarPath = this.basePath + '/api/v1/meta/schemas/user/{schemaId}'
             .replace('{' + 'schemaId' + '}', encodeURIComponent(String(schemaId)));
         let localVarQueryParameters: any = {};
@@ -21866,14 +21883,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: UserSchema;  }>((resolve, reject) => {
+            return new Promise<UserSchema>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "UserSchema");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -21888,7 +21905,7 @@ export class GeneratedApiClient {
      * @param appInstanceId 
      * @param userSchema 
      */
-    public async updateApplicationUserProfile (appInstanceId: string, userSchema?: UserSchema, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: UserSchema;  }> {
+    public async updateApplicationUserProfile (appInstanceId: string, userSchema?: UserSchema, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<UserSchema> {
         const localVarPath = this.basePath + '/api/v1/meta/schemas/apps/{appInstanceId}/default'
             .replace('{' + 'appInstanceId' + '}', encodeURIComponent(String(appInstanceId)));
         let localVarQueryParameters: any = {};
@@ -21940,14 +21957,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: UserSchema;  }>((resolve, reject) => {
+            return new Promise<UserSchema>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "UserSchema");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -21961,7 +21978,7 @@ export class GeneratedApiClient {
      * @param schemaId 
      * @param userSchema 
      */
-    public async updateUserProfile (schemaId: string, userSchema: UserSchema, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: UserSchema;  }> {
+    public async updateUserProfile (schemaId: string, userSchema: UserSchema, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<UserSchema> {
         const localVarPath = this.basePath + '/api/v1/meta/schemas/user/{schemaId}'
             .replace('{' + 'schemaId' + '}', encodeURIComponent(String(schemaId)));
         let localVarQueryParameters: any = {};
@@ -22018,14 +22035,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: UserSchema;  }>((resolve, reject) => {
+            return new Promise<UserSchema>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "UserSchema");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -22040,7 +22057,7 @@ export class GeneratedApiClient {
      * Creates a new User Type. A default User Type is automatically created along with your org, and you may add another 9 User Types for a maximum of 10.
      * @param userType 
      */
-    public async createUserType (userType: UserType, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: UserType;  }> {
+    public async createUserType (userType: UserType, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<UserType> {
         const localVarPath = this.basePath + '/api/v1/meta/types/user';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -22091,14 +22108,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: UserType;  }>((resolve, reject) => {
+            return new Promise<UserType>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "UserType");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -22111,7 +22128,7 @@ export class GeneratedApiClient {
      * Deletes a User Type permanently. This operation is not permitted for the default type, nor for any User Type that has existing users
      * @param typeId 
      */
-    public async deleteUserType (typeId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    public async deleteUserType (typeId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<any> {
         const localVarPath = this.basePath + '/api/v1/meta/types/user/{typeId}'
             .replace('{' + 'typeId' + '}', encodeURIComponent(String(typeId)));
         let localVarQueryParameters: any = {};
@@ -22155,13 +22172,13 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body?: any;  }>((resolve, reject) => {
+            return new Promise<any>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -22174,7 +22191,7 @@ export class GeneratedApiClient {
      * Fetches a User Type by ID. The special identifier `default` may be used to fetch the default User Type.
      * @param typeId 
      */
-    public async getUserType (typeId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: UserType;  }> {
+    public async getUserType (typeId: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<UserType> {
         const localVarPath = this.basePath + '/api/v1/meta/types/user/{typeId}'
             .replace('{' + 'typeId' + '}', encodeURIComponent(String(typeId)));
         let localVarQueryParameters: any = {};
@@ -22225,14 +22242,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: UserType;  }>((resolve, reject) => {
+            return new Promise<UserType>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "UserType");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -22244,7 +22261,7 @@ export class GeneratedApiClient {
     /**
      * Fetches all User Types in your org
      */
-    public async listUserTypes (options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Array<UserType>;  }> {
+    public async listUserTypes (options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<Array<UserType>> {
         const localVarPath = this.basePath + '/api/v1/meta/types/user';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -22289,14 +22306,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Array<UserType>;  }>((resolve, reject) => {
+            return new Promise<Array<UserType>>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "Array<UserType>");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -22310,7 +22327,7 @@ export class GeneratedApiClient {
      * @param typeId 
      * @param userType 
      */
-    public async replaceUserType (typeId: string, userType: UserType, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: UserType;  }> {
+    public async replaceUserType (typeId: string, userType: UserType, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<UserType> {
         const localVarPath = this.basePath + '/api/v1/meta/types/user/{typeId}'
             .replace('{' + 'typeId' + '}', encodeURIComponent(String(typeId)));
         let localVarQueryParameters: any = {};
@@ -22367,14 +22384,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: UserType;  }>((resolve, reject) => {
+            return new Promise<UserType>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "UserType");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }
@@ -22388,7 +22405,7 @@ export class GeneratedApiClient {
      * @param typeId 
      * @param userType 
      */
-    public async updateUserType (typeId: string, userType: UserType, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: UserType;  }> {
+    public async updateUserType (typeId: string, userType: UserType, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<UserType> {
         const localVarPath = this.basePath + '/api/v1/meta/types/user/{typeId}'
             .replace('{' + 'typeId' + '}', encodeURIComponent(String(typeId)));
         let localVarQueryParameters: any = {};
@@ -22445,14 +22462,14 @@ export class GeneratedApiClient {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: UserType;  }>((resolve, reject) => {
+            return new Promise<UserType>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         body = ObjectSerializer.deserialize(body, "UserType");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            resolve({ response: response, body: body });
+                            resolve(body);
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
                         }

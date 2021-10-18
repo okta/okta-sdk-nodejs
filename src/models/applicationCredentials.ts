@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { RequestFile } from '.';
+import { RequestFile } from './models';
 import { ApplicationCredentialsSigning } from './applicationCredentialsSigning';
 import { ApplicationCredentialsUsernameTemplate } from './applicationCredentialsUsernameTemplate';
 

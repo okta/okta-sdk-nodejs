@@ -10,16 +10,16 @@
  * Do not edit the class manually.
  */
 
-import { RequestFile } from '.';
+import { RequestFile } from './models';
 import { PasswordPolicyRecoveryEmail } from './passwordPolicyRecoveryEmail';
 import { PasswordPolicyRecoveryFactorSettings } from './passwordPolicyRecoveryFactorSettings';
 import { PasswordPolicyRecoveryQuestion } from './passwordPolicyRecoveryQuestion';
 
 export class PasswordPolicyRecoveryFactors {
-    'oktaCall'?: PasswordPolicyRecoveryFactorSettings;
-    'oktaEmail'?: PasswordPolicyRecoveryEmail;
-    'oktaSms'?: PasswordPolicyRecoveryFactorSettings;
-    'recoveryQuestion'?: PasswordPolicyRecoveryQuestion;
+    'okta_call'?: PasswordPolicyRecoveryFactorSettings;
+    'okta_email'?: PasswordPolicyRecoveryEmail;
+    'okta_sms'?: PasswordPolicyRecoveryFactorSettings;
+    'recovery_question'?: PasswordPolicyRecoveryQuestion;
 
     static discriminator: string | undefined = undefined;
 

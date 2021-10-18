@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { RequestFile } from '.';
+import { RequestFile } from './models';
 import { CAPTCHAInstanceLink } from './cAPTCHAInstanceLink';
 
 export class CAPTCHAInstance {
@@ -19,7 +19,7 @@ export class CAPTCHAInstance {
     'secretKey'?: string;
     'siteKey'?: string;
     'type'?: CAPTCHAInstance.TypeEnum;
-    'link'?: CAPTCHAInstanceLink;
+    '_link'?: CAPTCHAInstanceLink;
 
     static discriminator: string | undefined = undefined;
 

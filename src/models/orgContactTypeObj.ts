@@ -10,11 +10,11 @@
  * Do not edit the class manually.
  */
 
-import { RequestFile } from '.';
+import { RequestFile } from './models';
 import { OrgContactType } from './orgContactType';
 
 export class OrgContactTypeObj {
-    'links'?: { [key: string]: object; };
+    '_links'?: { [key: string]: object; };
     'contactType'?: OrgContactType;
 
     static discriminator: string | undefined = undefined;

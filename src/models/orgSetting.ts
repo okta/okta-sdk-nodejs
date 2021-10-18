@@ -10,10 +10,10 @@
  * Do not edit the class manually.
  */
 
-import { RequestFile } from '.';
+import { RequestFile } from './models';
 
 export class OrgSetting {
-    'links'?: { [key: string]: object; };
+    '_links'?: { [key: string]: object; };
     'address1'?: string;
     'address2'?: string;
     'city'?: string;

@@ -10,13 +10,13 @@
  * Do not edit the class manually.
  */
 
-import { RequestFile } from '.';
+import { RequestFile } from './models';
 import { GroupProfile } from './groupProfile';
 import { GroupType } from './groupType';
 
 export class Group {
-    'embedded'?: { [key: string]: object; };
-    'links'?: { [key: string]: object; };
+    '_embedded'?: { [key: string]: object; };
+    '_links'?: { [key: string]: object; };
     'created'?: Date;
     'id'?: string;
     'lastMembershipUpdated'?: Date;

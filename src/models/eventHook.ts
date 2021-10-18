@@ -10,12 +10,12 @@
  * Do not edit the class manually.
  */
 
-import { RequestFile } from '.';
+import { RequestFile } from './models';
 import { EventHookChannel } from './eventHookChannel';
 import { EventSubscriptions } from './eventSubscriptions';
 
 export class EventHook {
-    'links'?: { [key: string]: object; };
+    '_links'?: { [key: string]: object; };
     'channel'?: EventHookChannel;
     'created'?: Date;
     'createdBy'?: string;

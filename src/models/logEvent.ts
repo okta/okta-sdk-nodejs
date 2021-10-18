@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { RequestFile } from '.';
+import { RequestFile } from './models';
 import { LogActor } from './logActor';
 import { LogAuthenticationContext } from './logAuthenticationContext';
 import { LogClient } from './logClient';

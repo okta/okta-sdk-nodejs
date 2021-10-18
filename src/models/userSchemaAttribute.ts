@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { RequestFile } from '.';
+import { RequestFile } from './models';
 import { UserSchemaAttributeEnum } from './userSchemaAttributeEnum';
 import { UserSchemaAttributeItems } from './userSchemaAttributeItems';
 import { UserSchemaAttributeMaster } from './userSchemaAttributeMaster';
@@ -25,7 +25,7 @@ export class UserSchemaAttribute {
     'required'?: boolean;
     'mutability'?: string;
     'scope'?: UserSchemaAttributeScope;
-    '_enum'?: Array<string>;
+    'enum'?: Array<string>;
     'oneOf'?: Array<UserSchemaAttributeEnum>;
     'minLength'?: number;
     'maxLength'?: number;

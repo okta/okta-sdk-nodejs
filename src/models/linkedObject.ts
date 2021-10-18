@@ -10,11 +10,11 @@
  * Do not edit the class manually.
  */
 
-import { RequestFile } from '.';
+import { RequestFile } from './models';
 import { LinkedObjectDetails } from './linkedObjectDetails';
 
 export class LinkedObject {
-    'links'?: { [key: string]: object; };
+    '_links'?: { [key: string]: object; };
     'associated'?: LinkedObjectDetails;
     'primary'?: LinkedObjectDetails;
 

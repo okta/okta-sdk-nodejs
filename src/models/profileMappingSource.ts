@@ -10,10 +10,10 @@
  * Do not edit the class manually.
  */
 
-import { RequestFile } from '.';
+import { RequestFile } from './models';
 
 export class ProfileMappingSource {
-    'links'?: { [key: string]: object; };
+    '_links'?: { [key: string]: object; };
     'id'?: string;
     'name'?: string;
     'type'?: string;

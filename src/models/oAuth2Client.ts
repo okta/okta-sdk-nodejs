@@ -10,14 +10,14 @@
  * Do not edit the class manually.
  */
 
-import { RequestFile } from '.';
+import { RequestFile } from './models';
 
 export class OAuth2Client {
-    'links'?: { [key: string]: object; };
-    'clientId'?: string;
-    'clientName'?: string;
-    'clientUri'?: string;
-    'logoUri'?: string;
+    '_links'?: { [key: string]: object; };
+    'client_id'?: string;
+    'client_name'?: string;
+    'client_uri'?: string;
+    'logo_uri'?: string;
 
     static discriminator: string | undefined = undefined;
 

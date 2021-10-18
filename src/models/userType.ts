@@ -10,13 +10,13 @@
  * Do not edit the class manually.
  */
 
-import { RequestFile } from '.';
+import { RequestFile } from './models';
 
 export class UserType {
-    'links'?: { [key: string]: object; };
+    '_links'?: { [key: string]: object; };
     'created'?: Date;
     'createdBy'?: string;
-    '_default'?: boolean;
+    'default'?: boolean;
     'description'?: string;
     'displayName'?: string;
     'id'?: string;

@@ -13,7 +13,7 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-export * from './client';
+export {GeneratedApiClient as Client} from './client';
 export * from './request-executor';
 export * from './default-request-executor';
 export * from './collection';

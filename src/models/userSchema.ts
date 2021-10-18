@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { RequestFile } from '.';
+import { RequestFile } from './models';
 import { UserSchemaDefinitions } from './userSchemaDefinitions';
 import { UserSchemaProperties } from './userSchemaProperties';
 
@@ -24,7 +24,7 @@ export class UserSchema {
     'definitions'?: UserSchemaDefinitions;
     'type'?: string;
     'properties'?: UserSchemaProperties;
-    'links'?: { [key: string]: object; };
+    '_links'?: { [key: string]: object; };
 
     static discriminator: string | undefined = undefined;
 

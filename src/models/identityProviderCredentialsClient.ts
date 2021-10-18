@@ -10,11 +10,11 @@
  * Do not edit the class manually.
  */
 
-import { RequestFile } from '.';
+import { RequestFile } from './models';
 
 export class IdentityProviderCredentialsClient {
-    'clientId'?: string;
-    'clientSecret'?: string;
+    'client_id'?: string;
+    'client_secret'?: string;
 
     static discriminator: string | undefined = undefined;
 

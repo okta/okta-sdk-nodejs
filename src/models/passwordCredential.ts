@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { RequestFile } from '.';
+import { RequestFile } from './models';
 import { PasswordCredentialHash } from './passwordCredentialHash';
 import { PasswordCredentialHook } from './passwordCredentialHook';
 

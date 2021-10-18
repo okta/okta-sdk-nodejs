@@ -10,11 +10,11 @@
  * Do not edit the class manually.
  */
 
-import { RequestFile } from '.';
+import { RequestFile } from './models';
 import { UserSchemaAttributeEnum } from './userSchemaAttributeEnum';
 
 export class UserSchemaAttributeItems {
-    '_enum'?: Array<string>;
+    'enum'?: Array<string>;
     'oneOf'?: Array<UserSchemaAttributeEnum>;
     'type'?: string;
 

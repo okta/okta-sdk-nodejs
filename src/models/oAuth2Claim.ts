@@ -10,15 +10,15 @@
  * Do not edit the class manually.
  */
 
-import { RequestFile } from '.';
+import { RequestFile } from './models';
 import { OAuth2ClaimConditions } from './oAuth2ClaimConditions';
 
 export class OAuth2Claim {
-    'links'?: { [key: string]: object; };
+    '_links'?: { [key: string]: object; };
     'alwaysIncludeInToken'?: boolean;
     'claimType'?: OAuth2Claim.ClaimTypeEnum;
     'conditions'?: OAuth2ClaimConditions;
-    'groupFilterType'?: OAuth2Claim.GroupFilterTypeEnum;
+    'group_filter_type'?: OAuth2Claim.GroupFilterTypeEnum;
     'id'?: string;
     'name'?: string;
     'status'?: OAuth2Claim.StatusEnum;

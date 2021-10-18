@@ -10,11 +10,11 @@
  * Do not edit the class manually.
  */
 
-import { RequestFile } from '.';
+import { RequestFile } from './models';
 import { Scope } from './scope';
 
 export class TrustedOrigin {
-    'links'?: { [key: string]: object; };
+    '_links'?: { [key: string]: object; };
     'created'?: Date;
     'createdBy'?: string;
     'id'?: string;

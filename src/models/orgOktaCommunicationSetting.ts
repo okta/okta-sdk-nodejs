@@ -10,10 +10,10 @@
  * Do not edit the class manually.
  */
 
-import { RequestFile } from '.';
+import { RequestFile } from './models';
 
 export class OrgOktaCommunicationSetting {
-    'links'?: { [key: string]: object; };
+    '_links'?: { [key: string]: object; };
     'optOutEmailUsers'?: boolean;
 
     static discriminator: string | undefined = undefined;

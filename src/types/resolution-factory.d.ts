@@ -11,7 +11,7 @@
  */
 
 import { Resource } from './resource';
-import { Client } from './client';
+import { Client } from './_client';
 
 
 export declare class ModelResolutionFactory {

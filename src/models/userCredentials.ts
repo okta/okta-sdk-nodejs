@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { RequestFile } from '.';
+import { RequestFile } from './models';
 import { AuthenticationProvider } from './authenticationProvider';
 import { PasswordCredential } from './passwordCredential';
 import { RecoveryQuestionCredential } from './recoveryQuestionCredential';
@@ -18,7 +18,7 @@ import { RecoveryQuestionCredential } from './recoveryQuestionCredential';
 export class UserCredentials {
     'password'?: PasswordCredential;
     'provider'?: AuthenticationProvider;
-    'recoveryQuestion'?: RecoveryQuestionCredential;
+    'recovery_question'?: RecoveryQuestionCredential;
 
     static discriminator: string | undefined = undefined;
 

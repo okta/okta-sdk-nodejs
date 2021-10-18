@@ -10,14 +10,14 @@
  * Do not edit the class manually.
  */
 
-import { RequestFile } from '.';
+import { RequestFile } from './models';
 import { OAuthEndpointAuthenticationMethod } from './oAuthEndpointAuthenticationMethod';
 
 export class ApplicationCredentialsOAuthClient {
     'autoKeyRotation'?: boolean;
-    'clientId'?: string;
-    'clientSecret'?: string;
-    'tokenEndpointAuthMethod'?: OAuthEndpointAuthenticationMethod;
+    'client_id'?: string;
+    'client_secret'?: string;
+    'token_endpoint_auth_method'?: OAuthEndpointAuthenticationMethod;
 
     static discriminator: string | undefined = undefined;
 

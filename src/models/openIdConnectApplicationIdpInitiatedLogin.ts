@@ -10,11 +10,11 @@
  * Do not edit the class manually.
  */
 
-import { RequestFile } from '.';
+import { RequestFile } from './models';
 
 export class OpenIdConnectApplicationIdpInitiatedLogin {
     'mode'?: string;
-    'defaultScope'?: Array<string>;
+    'default_scope'?: Array<string>;
 
     static discriminator: string | undefined = undefined;
 

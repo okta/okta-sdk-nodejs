@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { RequestFile } from '.';
+import { RequestFile } from './models';
 import { U2fUserFactorProfile } from './u2fUserFactorProfile';
 
 export class U2fUserFactor {

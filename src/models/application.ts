@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { RequestFile } from '.';
+import { RequestFile } from './models';
 import { ApplicationAccessibility } from './applicationAccessibility';
 import { ApplicationCredentials } from './applicationCredentials';
 import { ApplicationLicensing } from './applicationLicensing';
@@ -19,8 +19,8 @@ import { ApplicationSignOnMode } from './applicationSignOnMode';
 import { ApplicationVisibility } from './applicationVisibility';
 
 export class Application {
-    'embedded'?: { [key: string]: object; };
-    'links'?: { [key: string]: object; };
+    '_embedded'?: { [key: string]: object; };
+    '_links'?: { [key: string]: object; };
     'accessibility'?: ApplicationAccessibility;
     'created'?: Date;
     'credentials'?: ApplicationCredentials;

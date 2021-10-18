@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { RequestFile } from '.';
+import { RequestFile } from './models';
 import { IdentityProviderCredentials } from './identityProviderCredentials';
 import { ProtocolAlgorithms } from './protocolAlgorithms';
 import { ProtocolEndpoint } from './protocolEndpoint';

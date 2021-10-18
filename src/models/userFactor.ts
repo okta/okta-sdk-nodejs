@@ -10,15 +10,15 @@
  * Do not edit the class manually.
  */
 
-import { RequestFile } from '.';
+import { RequestFile } from './models';
 import { FactorProvider } from './factorProvider';
 import { FactorStatus } from './factorStatus';
 import { FactorType } from './factorType';
 import { VerifyFactorRequest } from './verifyFactorRequest';
 
 export class UserFactor {
-    'embedded'?: { [key: string]: object; };
-    'links'?: { [key: string]: object; };
+    '_embedded'?: { [key: string]: object; };
+    '_links'?: { [key: string]: object; };
     'created'?: Date;
     'factorType'?: FactorType;
     'id'?: string;

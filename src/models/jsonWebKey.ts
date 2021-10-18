@@ -10,15 +10,15 @@
  * Do not edit the class manually.
  */
 
-import { RequestFile } from '.';
+import { RequestFile } from './models';
 
 export class JsonWebKey {
-    'links'?: { [key: string]: object; };
+    '_links'?: { [key: string]: object; };
     'alg'?: string;
     'created'?: Date;
     'e'?: string;
     'expiresAt'?: Date;
-    'keyOps'?: Array<string>;
+    'key_ops'?: Array<string>;
     'kid'?: string;
     'kty'?: string;
     'lastUpdated'?: Date;
@@ -27,7 +27,7 @@ export class JsonWebKey {
     'use'?: string;
     'x5c'?: Array<string>;
     'x5t'?: string;
-    'x5tS256'?: string;
+    'x5t#S256'?: string;
     'x5u'?: string;
 
     static discriminator: string | undefined = undefined;

@@ -10,13 +10,13 @@
  * Do not edit the class manually.
  */
 
-import { RequestFile } from '.';
+import { RequestFile } from './models';
 import { EnabledStatus } from './enabledStatus';
 import { FeatureStage } from './featureStage';
 import { FeatureType } from './featureType';
 
 export class Feature {
-    'links'?: { [key: string]: object; };
+    '_links'?: { [key: string]: object; };
     'description'?: string;
     'id'?: string;
     'name'?: string;

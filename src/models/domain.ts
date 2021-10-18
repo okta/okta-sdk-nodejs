@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { RequestFile } from '.';
+import { RequestFile } from './models';
 import { DNSRecord } from './dNSRecord';
 import { DomainCertificateMetadata } from './domainCertificateMetadata';
 import { DomainCertificateSourceType } from './domainCertificateSourceType';

@@ -13,7 +13,7 @@
 import { RequestOptions } from './request-options';
 import { ModelFactory } from './model-factory';
 import { ModelResolutionFactory } from './resolution-factory';
-import { Client } from './client';
+import { Client } from './_client';
 
 export declare class Collection<T> {
   constructor(client: Client, uri: string, factory: ModelFactory | ModelResolutionFactory, request?: RequestOptions);

@@ -10,11 +10,11 @@
  * Do not edit the class manually.
  */
 
-import { RequestFile } from '.';
+import { RequestFile } from './models';
 
 export class VerifyUserFactorResponse {
-    'embedded'?: { [key: string]: object; };
-    'links'?: { [key: string]: object; };
+    '_embedded'?: { [key: string]: object; };
+    '_links'?: { [key: string]: object; };
     'expiresAt'?: Date;
     'factorResult'?: VerifyUserFactorResponse.FactorResultEnum;
     'factorResultMessage'?: string;

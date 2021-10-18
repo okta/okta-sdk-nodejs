@@ -10,15 +10,15 @@
  * Do not edit the class manually.
  */
 
-import { RequestFile } from '.';
+import { RequestFile } from './models';
 import { UserCredentials } from './userCredentials';
 import { UserProfile } from './userProfile';
 import { UserStatus } from './userStatus';
 import { UserType } from './userType';
 
 export class User {
-    'embedded'?: { [key: string]: object; };
-    'links'?: { [key: string]: object; };
+    '_embedded'?: { [key: string]: object; };
+    '_links'?: { [key: string]: object; };
     'activated'?: Date;
     'created'?: Date;
     'credentials'?: UserCredentials;

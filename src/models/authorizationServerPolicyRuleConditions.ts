@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { RequestFile } from '.';
+import { RequestFile } from './models';
 import { ClientPolicyCondition } from './clientPolicyCondition';
 import { GrantTypePolicyRuleCondition } from './grantTypePolicyRuleCondition';
 import { OAuth2ScopesMediationPolicyRuleCondition } from './oAuth2ScopesMediationPolicyRuleCondition';

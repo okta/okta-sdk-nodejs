@@ -10,7 +10,7 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
-import { Client } from './client';
+import { Client } from './_client';
 import { Resource } from './resource';
 
 export declare class ModelFactory {

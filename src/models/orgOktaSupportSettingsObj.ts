@@ -10,11 +10,11 @@
  * Do not edit the class manually.
  */
 
-import { RequestFile } from '.';
+import { RequestFile } from './models';
 import { OrgOktaSupportSetting } from './orgOktaSupportSetting';
 
 export class OrgOktaSupportSettingsObj {
-    'links'?: { [key: string]: object; };
+    '_links'?: { [key: string]: object; };
     'expiration'?: Date;
     'support'?: OrgOktaSupportSetting;
 

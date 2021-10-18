@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { RequestFile } from '.';
+import { RequestFile } from './models';
 import { AppAndInstancePolicyRuleCondition } from './appAndInstancePolicyRuleCondition';
 import { AppInstancePolicyRuleCondition } from './appInstancePolicyRuleCondition';
 import { BeforeScheduledActionPolicyRuleCondition } from './beforeScheduledActionPolicyRuleCondition';

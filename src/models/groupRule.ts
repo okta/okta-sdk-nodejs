@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { RequestFile } from '.';
+import { RequestFile } from './models';
 import { GroupRuleAction } from './groupRuleAction';
 import { GroupRuleConditions } from './groupRuleConditions';
 import { GroupRuleStatus } from './groupRuleStatus';

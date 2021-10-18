@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { RequestFile } from '.';
+import { RequestFile } from './models';
 import { CatalogApplicationStatus } from './catalogApplicationStatus';
 
 export class CatalogApplication {
@@ -25,7 +25,7 @@ export class CatalogApplication {
     'website'?: string;
     'signOnModes'?: Array<string>;
     'features'?: Array<string>;
-    'links'?: { [key: string]: object; };
+    '_links'?: { [key: string]: object; };
 
     static discriminator: string | undefined = undefined;
 

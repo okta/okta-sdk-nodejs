@@ -10,13 +10,13 @@
  * Do not edit the class manually.
  */
 
-import { RequestFile } from '.';
+import { RequestFile } from './models';
 import { SessionAuthenticationMethod } from './sessionAuthenticationMethod';
 import { SessionIdentityProvider } from './sessionIdentityProvider';
 import { SessionStatus } from './sessionStatus';
 
 export class Session {
-    'links'?: { [key: string]: object; };
+    '_links'?: { [key: string]: object; };
     'amr'?: Array<SessionAuthenticationMethod>;
     'createdAt'?: Date;
     'expiresAt'?: Date;

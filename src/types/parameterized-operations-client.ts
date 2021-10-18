@@ -1,4 +1,4 @@
-import { GeneratedApiClient } from './generated-client';
+import { GeneratedApiClient } from './_generated-client';
 import { Application } from './models/Application';
 import { BasicAuthApplicationOptions } from './request-options/BasicAuthApplicationOptions';
 import { BookmarkApplicationOptions } from './request-options/BookmarkApplicationOptions';

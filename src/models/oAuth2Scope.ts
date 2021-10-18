@@ -10,11 +10,11 @@
  * Do not edit the class manually.
  */
 
-import { RequestFile } from '.';
+import { RequestFile } from './models';
 
 export class OAuth2Scope {
     'consent'?: OAuth2Scope.ConsentEnum;
-    '_default'?: boolean;
+    'default'?: boolean;
     'description'?: string;
     'displayName'?: string;
     'id'?: string;

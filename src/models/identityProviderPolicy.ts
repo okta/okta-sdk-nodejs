@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { RequestFile } from '.';
+import { RequestFile } from './models';
 import { PolicyAccountLink } from './policyAccountLink';
 import { PolicySubject } from './policySubject';
 import { Provisioning } from './provisioning';

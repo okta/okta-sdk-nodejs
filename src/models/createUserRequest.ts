@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { RequestFile } from '.';
+import { RequestFile } from './models';
 import { UserCredentials } from './userCredentials';
 import { UserProfile } from './userProfile';
 import { UserType } from './userType';

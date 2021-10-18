@@ -10,12 +10,12 @@
  * Do not edit the class manually.
  */
 
-import { RequestFile } from '.';
+import { RequestFile } from './models';
 import { AppUserCredentials } from './appUserCredentials';
 
 export class AppUser {
-    'embedded'?: { [key: string]: object; };
-    'links'?: { [key: string]: object; };
+    '_embedded'?: { [key: string]: object; };
+    '_links'?: { [key: string]: object; };
     'created'?: Date;
     'credentials'?: AppUserCredentials;
     'externalId'?: string;

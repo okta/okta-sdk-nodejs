@@ -10,12 +10,12 @@
  * Do not edit the class manually.
  */
 
-import { RequestFile } from '.';
+import { RequestFile } from './models';
 import { ProfileMappingProperty } from './profileMappingProperty';
 import { ProfileMappingSource } from './profileMappingSource';
 
 export class ProfileMapping {
-    'links'?: { [key: string]: object; };
+    '_links'?: { [key: string]: object; };
     'id'?: string;
     'properties'?: { [key: string]: ProfileMappingProperty; };
     'source'?: ProfileMappingSource;

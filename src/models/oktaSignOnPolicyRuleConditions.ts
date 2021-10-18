@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { RequestFile } from '.';
+import { RequestFile } from './models';
 import { PolicyNetworkCondition } from './policyNetworkCondition';
 import { PolicyPeopleCondition } from './policyPeopleCondition';
 import { PolicyRuleAuthContextCondition } from './policyRuleAuthContextCondition';

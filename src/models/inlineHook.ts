@@ -10,13 +10,13 @@
  * Do not edit the class manually.
  */
 
-import { RequestFile } from '.';
+import { RequestFile } from './models';
 import { InlineHookChannel } from './inlineHookChannel';
 import { InlineHookStatus } from './inlineHookStatus';
 import { InlineHookType } from './inlineHookType';
 
 export class InlineHook {
-    'links'?: { [key: string]: object; };
+    '_links'?: { [key: string]: object; };
     'channel'?: InlineHookChannel;
     'created'?: Date;
     'id'?: string;

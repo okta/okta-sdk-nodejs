@@ -10,14 +10,14 @@
  * Do not edit the class manually.
  */
 
-import { RequestFile } from '.';
+import { RequestFile } from './models';
 
 export class ThreatInsightConfiguration {
     'action'?: string;
     'excludeZones'?: Array<string>;
     'created'?: Date;
     'lastUpdated'?: Date;
-    'links'?: { [key: string]: object; };
+    '_links'?: { [key: string]: object; };
 
     static discriminator: string | undefined = undefined;
 

@@ -10,12 +10,12 @@
  * Do not edit the class manually.
  */
 
-import { RequestFile } from '.';
+import { RequestFile } from './models';
 import { OpenIdConnectRefreshTokenRotationType } from './openIdConnectRefreshTokenRotationType';
 
 export class OpenIdConnectApplicationSettingsRefreshToken {
     'leeway'?: number;
-    'rotationType'?: OpenIdConnectRefreshTokenRotationType;
+    'rotation_type'?: OpenIdConnectRefreshTokenRotationType;
 
     static discriminator: string | undefined = undefined;
 

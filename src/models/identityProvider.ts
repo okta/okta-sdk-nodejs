@@ -10,12 +10,12 @@
  * Do not edit the class manually.
  */
 
-import { RequestFile } from '.';
+import { RequestFile } from './models';
 import { IdentityProviderPolicy } from './identityProviderPolicy';
 import { Protocol } from './protocol';
 
 export class IdentityProvider {
-    'links'?: { [key: string]: object; };
+    '_links'?: { [key: string]: object; };
     'created'?: Date;
     'id'?: string;
     'issuerMode'?: IdentityProvider.IssuerModeEnum;

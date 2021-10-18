@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { RequestFile } from '.';
+import { RequestFile } from './models';
 import { IdentityProviderCredentialsClient } from './identityProviderCredentialsClient';
 import { IdentityProviderCredentialsSigning } from './identityProviderCredentialsSigning';
 import { IdentityProviderCredentialsTrust } from './identityProviderCredentialsTrust';

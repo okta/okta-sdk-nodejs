@@ -10,10 +10,10 @@
  * Do not edit the class manually.
  */
 
-import { RequestFile } from '.';
+import { RequestFile } from './models';
 
 export class UserSchemaAttributeEnum {
-    '_const'?: string;
+    'const'?: string;
     'title'?: string;
 
     static discriminator: string | undefined = undefined;

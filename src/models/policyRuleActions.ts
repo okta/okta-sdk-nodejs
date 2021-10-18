@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { RequestFile } from '.';
+import { RequestFile } from './models';
 import { OktaSignOnPolicyRuleSignonActions } from './oktaSignOnPolicyRuleSignonActions';
 import { PasswordPolicyRuleAction } from './passwordPolicyRuleAction';
 import { PolicyRuleActionsEnroll } from './policyRuleActionsEnroll';

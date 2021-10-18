@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { RequestFile } from '.';
+import { RequestFile } from './models';
 import { UserSchemaAttributeEnum } from './userSchemaAttributeEnum';
 import { UserSchemaAttributeItems } from './userSchemaAttributeItems';
 import { UserSchemaAttributeMaster } from './userSchemaAttributeMaster';
@@ -21,7 +21,7 @@ import { UserSchemaAttributeUnion } from './userSchemaAttributeUnion';
 
 export class GroupSchemaAttribute {
     'description'?: string;
-    '_enum'?: Array<string>;
+    'enum'?: Array<string>;
     'externalName'?: string;
     'externalNamespace'?: string;
     'items'?: UserSchemaAttributeItems;

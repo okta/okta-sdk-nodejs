@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { RequestFile } from '.';
+import { RequestFile } from './models';
 import { LogAuthenticationProvider } from './logAuthenticationProvider';
 import { LogCredentialProvider } from './logCredentialProvider';
 import { LogCredentialType } from './logCredentialType';
@@ -22,7 +22,7 @@ export class LogAuthenticationContext {
     'credentialProvider'?: LogCredentialProvider;
     'credentialType'?: LogCredentialType;
     'externalSessionId'?: string;
-    '_interface'?: string;
+    'interface'?: string;
     'issuer'?: LogIssuer;
 
     static discriminator: string | undefined = undefined;

@@ -10,11 +10,11 @@
  * Do not edit the class manually.
  */
 
-import { RequestFile } from '.';
+import { RequestFile } from './models';
 import { AuthorizationServerCredentials } from './authorizationServerCredentials';
 
 export class AuthorizationServer {
-    'links'?: { [key: string]: object; };
+    '_links'?: { [key: string]: object; };
     'audiences'?: Array<string>;
     'created'?: Date;
     'credentials'?: AuthorizationServerCredentials;

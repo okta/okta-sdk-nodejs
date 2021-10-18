@@ -16,7 +16,7 @@
 const ModelResolutionFactory = require('../resolution-factory');
 /*eslint-disable no-unused-vars*/
 const factories = require('./');
-const models = require('../models');
+const models = require('./models/s');
 
 class BrowserPluginApplicationFactory extends ModelResolutionFactory {
   getMapping() {

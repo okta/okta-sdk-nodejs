@@ -10,10 +10,10 @@
  * Do not edit the class manually.
  */
 
-import { RequestFile } from '.';
+import { RequestFile } from './models';
 
 export class OrgContactUser {
-    'links'?: { [key: string]: object; };
+    '_links'?: { [key: string]: object; };
     'userId'?: string;
 
     static discriminator: string | undefined = undefined;

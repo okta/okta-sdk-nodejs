@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { RequestFile } from '.';
+import { RequestFile } from './models';
 
 export enum OAuth2ScopeConsentGrantSource {
     EndUser = <any> 'END_USER',

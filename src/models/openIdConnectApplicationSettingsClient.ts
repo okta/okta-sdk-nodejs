@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { RequestFile } from '.';
+import { RequestFile } from './models';
 import { OAuthGrantType } from './oAuthGrantType';
 import { OAuthResponseType } from './oAuthResponseType';
 import { OpenIdConnectApplicationConsentMethod } from './openIdConnectApplicationConsentMethod';
@@ -21,21 +21,21 @@ import { OpenIdConnectApplicationSettingsRefreshToken } from './openIdConnectApp
 import { OpenIdConnectApplicationType } from './openIdConnectApplicationType';
 
 export class OpenIdConnectApplicationSettingsClient {
-    'applicationType'?: OpenIdConnectApplicationType;
-    'clientUri'?: string;
-    'consentMethod'?: OpenIdConnectApplicationConsentMethod;
-    'grantTypes'?: Array<OAuthGrantType>;
-    'initiateLoginUri'?: string;
-    'issuerMode'?: OpenIdConnectApplicationIssuerMode;
-    'idpInitiatedLogin'?: OpenIdConnectApplicationIdpInitiatedLogin;
-    'logoUri'?: string;
-    'policyUri'?: string;
-    'postLogoutRedirectUris'?: Array<string>;
-    'redirectUris'?: Array<string>;
-    'wildcardRedirect'?: string;
-    'responseTypes'?: Array<OAuthResponseType>;
-    'refreshToken'?: OpenIdConnectApplicationSettingsRefreshToken;
-    'tosUri'?: string;
+    'application_type'?: OpenIdConnectApplicationType;
+    'client_uri'?: string;
+    'consent_method'?: OpenIdConnectApplicationConsentMethod;
+    'grant_types'?: Array<OAuthGrantType>;
+    'initiate_login_uri'?: string;
+    'issuer_mode'?: OpenIdConnectApplicationIssuerMode;
+    'idp_initiated_login'?: OpenIdConnectApplicationIdpInitiatedLogin;
+    'logo_uri'?: string;
+    'policy_uri'?: string;
+    'post_logout_redirect_uris'?: Array<string>;
+    'redirect_uris'?: Array<string>;
+    'wildcard_redirect'?: string;
+    'response_types'?: Array<OAuthResponseType>;
+    'refresh_token'?: OpenIdConnectApplicationSettingsRefreshToken;
+    'tos_uri'?: string;
     'jwks'?: OpenIdConnectApplicationSettingsClientKeys;
 
     static discriminator: string | undefined = undefined;
