@@ -61,6 +61,8 @@ describe('Idp Crud API', () => {
       expect(idp).to.be.instanceOf(IdentityProvider);
       expect(idp).to.have.property('id');
       expect(idp.name).to.equal(mockGenericOidcIdp.name);
+      expect(typeof idp.type).to.equal('string');
+      expect(idp.type).to.equal('OIDC');
     });
   });
 
