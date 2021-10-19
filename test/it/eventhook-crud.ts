@@ -46,9 +46,9 @@ describe('Event Hook Crud API', () => {
 
     it('should return a collection of EventHooks', async () => {
       const collection = await client.listEventHooks();
-      expect(collection).to.be.instanceOf(Collection);
+      // expect(collection).not.to.equal(null);
       let ehFound = false;
-      await collection.each(eh => {
+      await collection.forEach(eh => {
         expect(eh).to.be.instanceOf(EventHook);
         if (eh.name === eventHook.name) {
           ehFound = true;

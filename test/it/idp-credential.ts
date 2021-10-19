@@ -41,11 +41,11 @@ describe('Idp credential API', () => {
 
       it('should return a Collection', async () => {
         const keys = client.listIdentityProviderKeys();
-        expect(keys).to.be.instanceOf(Collection);
+        expect(keys).not.to.equal(null);
       });
 
       it('should resolve JsonWebKey in collection', async () => {
-        await client.listIdentityProviderKeys().each(key => {
+        (await client.listIdentityProviderKeys()).forEach(key => {
           expect(key).to.be.instanceOf(JsonWebKey);
         });
       });
@@ -106,11 +106,11 @@ describe('Idp credential API', () => {
 
       it('should return a Collection', async () => {
         const csrs = idp.listSigningCsrs();
-        expect(csrs).to.be.instanceOf(Collection);
+        expect(csrs).not.to.equal(null);
       });
 
       it('should resolve CSR in collection', async () => {
-        await idp.listSigningCsrs().each(csr => {
+        (await idp.listSigningCsrs()).forEach(csr => {
           expect(csr).to.be.instanceOf(Csr);
         });
       });
@@ -166,11 +166,11 @@ describe('Idp credential API', () => {
 
       it('should return a Collection', async () => {
         const keys = await idp.listSigningKeys();
-        expect(keys).to.be.instanceOf(Collection);
+        expect(keys).not.to.equal(null);
       });
 
       it('should resolve JsonWebKey in collection', async () => {
-        await idp.listSigningKeys().each(key => {
+        (await idp.listSigningKeys()).forEach(key => {
           expect(key).to.be.instanceOf(JsonWebKey);
         });
       });

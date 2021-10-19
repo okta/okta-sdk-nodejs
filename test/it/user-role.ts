@@ -65,8 +65,8 @@ describe('User role API', () => {
 
     it('should return a Collection of roles', async () => {
       const roles = await user.listAssignedRoles();
-      expect(roles).to.be.instanceOf(Collection);
-      await roles.each(roleFromCollection => {
+      expect(roles).not.to.equal(null);
+      await roles.forEach(roleFromCollection => {
         expect(roleFromCollection).to.be.instanceOf(Role);
         expect(roleFromCollection.id).to.be.equal(role.id);
       });
@@ -101,8 +101,8 @@ describe('User role API', () => {
 
       it('should return a Collection of CatalogApplications', async () => {
         const apps = await client.listApplicationTargetsForApplicationAdministratorRoleForUser(user.id, role.id);
-        expect(apps).to.be.instanceOf(Collection);
-        await apps.each(app => {
+        expect(apps).not.to.equal(null);
+        await apps.forEach(app => {
           expect(app).to.be.instanceOf(CatalogApplication);
           expect(app.name).to.be.equal(application.name);
         });
@@ -136,8 +136,8 @@ describe('User role API', () => {
 
       it('should return a Collection of Groups', async () => {
         const groups = await client.listApplicationTargetsForApplicationAdministratorRoleForUser(user.id, role.id);
-        expect(groups).to.be.instanceOf(Collection);
-        await groups.each(groupFromCollection => {
+        expect(groups).not.to.equal(null);
+        await groups.forEach(groupFromCollection => {
           expect(groupFromCollection).to.be.instanceOf(Group);
           expect(groupFromCollection.id).to.be.equal(group.id);
         });

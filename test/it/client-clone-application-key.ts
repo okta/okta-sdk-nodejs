@@ -1,3 +1,4 @@
+import { ApplicationSignOnMode } from './../../src/models/applicationSignOnMode';
 import { expect } from 'chai';
 
 import {
@@ -27,7 +28,7 @@ describe.skip('client.cloneApplicationKey()', () => {
     const application2 = {
       name: 'bookmark',
       label: 'my bookmark app 2',
-      signOnMode: 'BOOKMARK',
+      signOnMode: ApplicationSignOnMode.Bookmark,
       settings: {
         app: {
           requestIntegration: false,
@@ -44,13 +45,11 @@ describe.skip('client.cloneApplicationKey()', () => {
       await utils.removeAppByLabel(client, application2.label);
       createdApplication = await client.createApplication(application);
       createdApplication2 = await client.createApplication(application2);
-      const generatedKey = await client.generateApplicationKey(createdApplication.id, {
-        validityYears: 2
-      });
+      const generatedKey = await client.generateApplicationKey(createdApplication.id, 2);
 
-      const clonedKey = await client.cloneApplicationKey(createdApplication.id, generatedKey.kid, {
-        targetAid: createdApplication2.id
-      });
+      const clonedKey = await client.cloneApplicationKey(createdApplication.id, generatedKey.kid,
+         createdApplication2.id
+      );
       expect(clonedKey).to.be.instanceof(JsonWebKey);
       expect(clonedKey.kid).to.equal(generatedKey.kid);
     } finally {

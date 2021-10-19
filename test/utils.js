@@ -124,8 +124,10 @@ async function cleanupUser(client, user) {
 
   try {
     const existingUser = await client.getUser(user.profile.login);
-    await existingUser.deactivate();
-    await existingUser.delete();
+    await client.deactivateUser(existingUser.id);
+    await client.deleteUser(existingUser.id);
+    // await existingUser.deactivate();
+    // await existingUser.delete();
   } catch (err) {
     expect(err.message).to.contain('Okta HTTP 404');
   }
@@ -133,13 +135,14 @@ async function cleanupUser(client, user) {
 
 async function cleanupGroup(client, expectedGroup) {
   let queryParameters = { q : `${expectedGroup.profile.name}` };
-  await client.listGroups(queryParameters).each(async (group) => {
+  (await client.listGroups(queryParameters)).forEach(async (group) => {
     expect(group).to.be.an.instanceof(models.Group);
     // If search doesn't return any results, listGroups() returns empty collection
     // eslint-disable-next-line no-prototype-builtins
     if (group.hasOwnProperty('profile')) {
       if (group.profile.name === expectedGroup.profile.name) {
-        await group.delete();
+        // await group.delete();
+        await client.deleteGroup(group.id);
       }
     }
   });
@@ -163,7 +166,7 @@ async function cleanup(client, users = null, groups = null) {
 }
 
 async function removeAppByLabel(client, label) {
-  return client.listApplications().each(async (application) => {
+  return (await client.listApplications()).forEach(async (application) => {
     if (application.label === label) {
       await application.deactivate();
       return application.delete();

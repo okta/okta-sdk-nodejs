@@ -1,7 +1,9 @@
+import { FactorType } from './../../src/models/factorType';
 import utils = require('../utils');
 import {
   Client,
   DefaultRequestExecutor,
+  FactorProvider,
   SecurityQuestionUserFactor, SmsUserFactor } from '@okta/okta-sdk-nodejs';
 import { expect } from 'chai';
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
@@ -44,15 +46,15 @@ describe('User API tests', () => {
 
   it('should allow me to list a user\'s enrolled factors', async () => {
     const smsFactor = {
-      factorType: 'sms',
-      provider: 'OKTA',
+      factorType: FactorType.Sms,
+      provider: FactorProvider.Okta,
       profile: {
         phoneNumber: '162 840 01133‬'
       }
     };
     const securityQuestionFactor = {
-      factorType: 'question',
-      provider: 'OKTA',
+      factorType: FactorType.Question,
+      provider: FactorProvider.Okta,
       profile: {
         question: 'disliked_food',
         answer: 'pizza'
@@ -62,7 +64,7 @@ describe('User API tests', () => {
     await client.enrollFactor(createdUser.id, securityQuestionFactor);
     const collection = await createdUser.listFactors();
     const factors = [];
-    await collection.each(factor => factors.push(factor));
+    await collection.forEach(factor => factors.push(factor));
     expect(factors[1]).to.be.instanceof(SmsUserFactor);
     expect(factors[0]).to.be.instanceof(SecurityQuestionUserFactor);
   });

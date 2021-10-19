@@ -32,11 +32,11 @@ describe('Application OAuth2 grant API', () => {
   describe('Grant consent', () => {
     it('should grant consent to scope', async () => {
       grant = await application.grantConsentToScope({
-        issuer: client.baseUrl,
+        issuer: orgUrl,
         scopeId: 'okta.users.manage'
       });
       expect(grant).to.be.instanceOf(OAuth2ScopeConsentGrant);
-      expect(grant.issuer).to.equal(client.baseUrl);
+      expect(grant.issuer).to.equal(orgUrl);
       expect(grant.scopeId).to.equal('okta.users.manage');
     });
   });
@@ -44,7 +44,7 @@ describe('Application OAuth2 grant API', () => {
   describe('List scope consent grants', () => {
     beforeEach(async () => {
       grant = await application.grantConsentToScope({
-        issuer: client.baseUrl,
+        issuer: orgUrl,
         scopeId: 'okta.users.manage'
       });
     });
@@ -56,8 +56,8 @@ describe('Application OAuth2 grant API', () => {
       const grants = await application.listScopeConsentGrants({
         applicationId: application.id
       });
-      expect(grants).to.be.instanceOf(Collection);
-      await grants.each(grantFromCollection => {
+      expect(grants).not.to.equal(null);
+      grants.forEach(grantFromCollection => {
         expect(grantFromCollection).to.be.instanceOf(OAuth2ScopeConsentGrant);
         expect(grantFromCollection.id).to.equal(grant.id);
       });
@@ -67,7 +67,7 @@ describe('Application OAuth2 grant API', () => {
   describe('Get scope consent grant', () => {
     beforeEach(async () => {
       grant = await application.grantConsentToScope({
-        issuer: client.baseUrl,
+        issuer: orgUrl,
         scopeId: 'okta.users.manage'
       });
     });
@@ -85,7 +85,7 @@ describe('Application OAuth2 grant API', () => {
   describe('Revoke grant', () => {
     beforeEach(async () => {
       grant = await application.grantConsentToScope({
-        issuer: client.baseUrl,
+        issuer: orgUrl,
         scopeId: 'okta.users.manage'
       });
     });

@@ -38,10 +38,10 @@ describe('Authorization Server Scope API', () => {
     });
 
     it('should return a collection of scopes', async () => {
-      const collection = authServer.listOAuth2Scopes();
-      expect(collection).to.be.instanceOf(Collection);
+      const collection = await authServer.listOAuth2Scopes();
+      // expect(collection).not.to.equal(null);
       const scopes = [];
-      await collection.each(s => scopes.push(s));
+      await collection.forEach(s => scopes.push(s));
       expect(scopes).is.not.empty;
       const scopeFindByName = scopes.find(s => s.name === mockScope.name);
       expect(scopeFindByName).to.be.exist;

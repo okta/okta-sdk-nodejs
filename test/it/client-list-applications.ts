@@ -1,3 +1,4 @@
+import { ApplicationSignOnMode } from './../../src/models/applicationSignOnMode';
 import { expect } from 'chai';
 import faker = require('faker');
 import {
@@ -25,7 +26,7 @@ describe('client.listApplications()', () => {
   const app1 = {
     name: 'bookmark',
     label: `node-sdk: Bookmark App ${faker.random.word()}`.substring(0, 49),
-    signOnMode: 'BOOKMARK',
+    signOnMode: ApplicationSignOnMode.Bookmark,
     settings: {
       app: {
         requestIntegration: false,
@@ -36,7 +37,7 @@ describe('client.listApplications()', () => {
   const app2 = {
     name: 'template_basic_auth',
     label: `node-sdk: Sample Basic Auth App ${faker.random.word()}`.substring(0, 49),
-    signOnMode: 'BASIC_AUTH',
+    signOnMode: ApplicationSignOnMode.BasicAuth,
     settings: {
       app: {
         authURL: 'https://example.com/auth.html',
@@ -68,7 +69,7 @@ describe('client.listApplications()', () => {
   it('should return the correct application types', async () => {
     let bookmarkApplication;
     let basicApplication;
-    await client.listApplications().each(app => {
+    (await client.listApplications()).forEach(app => {
       if (app.label === app1.label && app instanceof BookmarkApplication) {
         bookmarkApplication = app;
       }

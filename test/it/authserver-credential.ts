@@ -29,8 +29,8 @@ describe('Authorization Server Credential API', () => {
   describe('Get Authorization Server Keys', () => {
     it('should return a collection of JsonWebKey', async () => {
       const collection = await authServer.listKeys();
-      expect(collection).to.be.instanceOf(Collection);
-      await collection.each(key => {
+      // expect(collection).not.to.equal(null);
+      await collection.forEach(key => {
         expect(key).to.be.instanceOf(JsonWebKey);
       });
     });
@@ -39,8 +39,8 @@ describe('Authorization Server Credential API', () => {
   describe('Rotate Authorization Server Keys', () => {
     it('should return a collection of JsonWebKey', async () => {
       const collection = await authServer.rotateKeys({ use: 'sig' });
-      expect(collection).to.be.instanceOf(Collection);
-      await collection.each(key => {
+      // // expect(collection).not.to.equal(null);
+      await collection.forEach(key => {
         expect(key).to.be.instanceOf(JsonWebKey);
       });
     });

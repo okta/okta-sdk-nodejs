@@ -47,11 +47,11 @@ describe('Policy Rule API', () => {
 
       it('should return a Collection', async () => {
         const rules = await policy.listPolicyRules();
-        expect(rules).to.be.instanceOf(Collection);
+        expect(rules).not.to.equal(null);
       });
 
       it('should resolve PolicyRule in collection', async () => {
-        await policy.listPolicyRules().each(rule => {
+        (await policy.listPolicyRules()).forEach(rule => {
           expect(rule).to.be.instanceOf(PolicyRule);
         });
       });

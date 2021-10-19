@@ -1,3 +1,4 @@
+import { FeatureStageValue } from './../../src/models/featureStageValue';
 import { expect } from 'chai';
 import {
   Client,
@@ -18,8 +19,8 @@ const client = new Client({
 
 const getFirstNonBetaFeature = async () => {
   let firstFeatureInList;
-  await client.listFeatures().each((feature) => {
-    if (feature.stage.value !== 'BETA') {
+  (await client.listFeatures()).forEach((feature) => {
+    if (feature.stage.value !== FeatureStageValue.Beta) {
       firstFeatureInList = feature;
       return false;
     }
@@ -33,8 +34,8 @@ describe('Feature Crud API', () => {
   describe('List Features', () => {
     it('should return a collection of Features', async () => {
       const collection = await client.listFeatures();
-      expect(collection).to.be.instanceOf(Collection);
-      await collection.each(feature => {
+      // expect(collection).not.to.equal(null);
+      await collection.forEach(feature => {
         expect(feature).to.be.instanceOf(Feature);
       });
     });
@@ -43,7 +44,7 @@ describe('Feature Crud API', () => {
   describe('Get Feature', () => {
     let firstFeatureInList;
     beforeEach(async () => {
-      firstFeatureInList = (await client.listFeatures().next()).value;
+      firstFeatureInList = (await client.listFeatures())[0];
     });
 
     it('should get Feature by id', async () => {
@@ -106,8 +107,8 @@ describe('Feature Crud API', () => {
     it('should return a collection of Features', async () => {
       if (firstFeatureInList) {
         const collection = await firstFeatureInList.getDependencies();
-        expect(collection).to.be.instanceOf(Collection);
-        await collection.each(dependency => {
+        // expect(collection).not.to.equal(null);
+        await collection.forEach(dependency => {
           expect(dependency).to.be.instanceOf(Feature);
         });
       }
@@ -117,14 +118,14 @@ describe('Feature Crud API', () => {
   describe('List feature dependencies', () => {
     let firstFeatureInList;
     beforeEach(async () => {
-      firstFeatureInList = (await client.listFeatures().next()).value;
+      firstFeatureInList = (await client.listFeatures())[0];
     });
 
     it('should return a collection of Features', async () => {
       if (firstFeatureInList) {
         const collection = await firstFeatureInList.getDependents();
-        expect(collection).to.be.instanceOf(Collection);
-        await collection.each(dependent => {
+        // expect(collection).not.to.equal(null);
+        collection.forEach(dependent => {
           expect(dependent).to.be.instanceOf(Feature);
         });
       }

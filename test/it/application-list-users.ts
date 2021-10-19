@@ -40,7 +40,7 @@ describe('Application.listUsers()', () => {
       createdAppUser = await client.assignUserToApplication(createdApplication.id, {
         id: createdUser.id
       });
-      await createdApplication.listApplicationUsers().each(async (appUser) => {
+      (await createdApplication.listApplicationUsers()).forEach(async (appUser) => {
         expect(appUser.id).to.equal(createdAppUser.id);
       });
     } finally {

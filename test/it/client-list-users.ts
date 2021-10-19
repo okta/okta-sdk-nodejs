@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { expect } from 'chai';
 
 import {
@@ -55,7 +56,7 @@ describe('client.list-users()', () => {
 
     await utils.delay(2000);
     const queryParameters = { search: `profile.nickName eq "${_user.profile.nickName}"` };
-    await client.listUsers(queryParameters).each(user => {
+    (await client.listUsers(`profile.nickName eq "${_user.profile.nickName}"`)).forEach(user => {
       // If tests run in parallel (for different node versions on travis), it might match a different user without this check
       if (user.id === _user.id) {
         foundUser = user;
@@ -72,39 +73,44 @@ describe('client.list-users()', () => {
 
 describe('client.listUsers().each()', () => {
   it('should allow me to iterate the entire collection and return User models', async () => {
-    await client.listUsers().each(user => {
+    (await client.listUsers()).forEach(user => {
       expect(user).to.be.an.instanceof(User);
     });
   });
 
   it('should allow me to abort iteration synchronously', async () => {
     let localCount = 0;
-    await client.listUsers().each(() => {
+    (await client.listUsers()).forEach(() => {
       localCount++;
       return false;
     });
     expect(localCount).to.equal(1);
   });
 
-  it('should allow me to abort iteration asynchronously, using a promise', () => {
+  it('should allow me to abort iteration asynchronously, using a promise', async () => {
     let localCount = 0;
-    return client.listUsers().each(() => {
-      localCount++;
-      return new Promise((resolve) => {
-        setTimeout(resolve.bind(null, false), 1000);
+    return client.listUsers().then(users => {
+      users.forEach(async () => {
+        localCount++;
+        await new Promise((resolve) => {
+          setTimeout(resolve.bind(null, false), 1000);
+        });
       });
+      return Promise.resolve();
     })
       .then(() => {
         expect(localCount).to.equal(1);
       });
   });
 
-  it('should stop iteration if the iterator rejects a promise', () => {
+  it('should stop iteration if the iterator rejects a promise', async () => {
     let localCount = 0;
-    return client.listUsers().each(() => {
-      localCount++;
-      return new Promise((resolve, reject) => {
-        setTimeout(reject.bind(null, 'foo error'), 1000);
+    return (client.listUsers()).then(users => {
+      users.forEach(async () => {
+        localCount++;
+        await new Promise((resolve, reject) => {
+          setTimeout(reject.bind(null, 'foo error'), 1000);
+        });
       });
     }).catch((err)=>{
       expect(localCount).to.equal(1);
@@ -138,14 +144,14 @@ describe('client.listUsers().next()', () => {
   });
 
   it('should return User models', () => {
-    return client.listUsers().next()
+    return client.listUsers()
       .then(result => {
-        expect(result.value).to.be.an.instanceof(User);
+        expect(result[0]).to.be.an.instanceof(User);
       });
   });
 
-  it('should allow me to visit every user', () => {
-    const collection = client.listUsers();
+  it('should allow me to visit every user', async () => {
+    const collection = await client.listUsers();
     let localCount = 0;
     function iter(result) {
       localCount++;

@@ -38,11 +38,11 @@ describe('Group App API', () => {
 
     it('should return a Collection', async () => {
       const applications = await group.listApplications();
-      expect(applications).to.be.instanceOf(Collection);
+      expect(applications).not.to.equal(null);
     });
 
     it('should resolve Application in collection', async () => {
-      await group.listApplications().each(application => {
+      (await group.listApplications()).forEach(application => {
         expect(application).to.be.instanceOf(Application);
       });
     });

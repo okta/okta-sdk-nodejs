@@ -1,6 +1,7 @@
 import utils = require('../utils');
 import * as okta from '@okta/okta-sdk-nodejs';
 import { expect } from 'chai';
+import { FactorProvider, FactorType } from '@okta/okta-sdk-nodejs';
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
 if (process.env.OKTA_USE_MOCK) {
@@ -41,11 +42,12 @@ describe('Factors API', () => {
 
   it('should allow me to delete a factor', async () => {
     const newFactor = {
-      factorType: 'token:software:totp',
-      provider: 'OKTA'
+      factorType: FactorType.Tokensoftwaretotp,
+      provider: FactorProvider.Okta,
     };
     const createdFactor = await client.enrollFactor(createdUser.id, newFactor);
-    const response = await createdFactor.delete(createdUser.id);
+    // const response = await createdFactor.delete(createdUser.id);
+    const response = await client.deleteFactor(createdUser.id, createdFactor.id);
     expect(response.status).to.equal(204);
     let factor;
     try {

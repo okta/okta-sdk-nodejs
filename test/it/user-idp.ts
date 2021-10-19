@@ -43,8 +43,8 @@ describe('User idp API', () => {
 
     it('should return a Collection and resolve IdentityProvider in collection', async () => {
       const idps = await user.listIdentityProviders();
-      expect(idps).to.be.instanceOf(Collection);
-      await idps.each(idpFromCollection => {
+      expect(idps).not.to.equal(null);
+      await idps.forEach(idpFromCollection => {
         expect(idpFromCollection).to.be.instanceOf(IdentityProvider);
         expect(idpFromCollection.id).to.be.equal(idp.id);
       });

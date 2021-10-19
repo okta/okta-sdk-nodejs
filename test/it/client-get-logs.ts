@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { expect } from 'chai';
 
 import {
@@ -21,7 +22,7 @@ const client = new Client({
 describe('client.getLogs()', () => {
 
   it('should allow me to poll the collection but stop when needed', async () => {
-    const collection = await client.getLogs({ since: '2018-01-26T00:00:00Z'});
+    const collection = await client.getLogs(new Date('2018-01-26T00:00:00Z'));
     let iteratorCalledTimes = 0;
     await new Promise<void>((resolve, reject) => {
       const subscription = collection.subscribe({
@@ -42,7 +43,7 @@ describe('client.getLogs()', () => {
   });
 
   it('should allow the iterator to return a Promise', async () => {
-    const collection = await client.getLogs({ since: '2018-01-26T00:00:00Z'});
+    const collection = await client.getLogs(new Date('2018-01-26T00:00:00Z'));
     let iteratorCalledTimes = 0;
     await new Promise<void>((resolve, reject) => {
       const subscription = collection.subscribe({

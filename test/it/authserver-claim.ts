@@ -41,10 +41,10 @@ describe('Authorization Server Claim API', () => {
     });
 
     it('should return a collection of policies', async () => {
-      const collection = authServer.listOAuth2Claims();
-      expect(collection).to.be.instanceOf(Collection);
+      const collection = await authServer.listOAuth2Claims();
+      // expect(collection).not.to.equal(null);
       const claims = [];
-      await collection.each(c => claims.push(c));
+      collection.forEach(c => claims.push(c));
       expect(claims).is.not.empty;
       const claimFindByName = claims.find(c => c.name === mockClaim.name);
       expect(claimFindByName).to.be.exist;

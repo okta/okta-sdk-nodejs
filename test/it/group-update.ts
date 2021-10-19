@@ -34,7 +34,8 @@ describe('Group API tests', () => {
     createdGroup.profile.name = 'Update Test Group - Updated';
     createdGroup.profile.description = 'Description updated';
 
-    const updatedGroup = await createdGroup.update();
+    // const updatedGroup = await createdGroup.update();
+    const updatedGroup = await client.updateGroup(createdGroup.id, createdGroup);
     utils.validateGroup(updatedGroup, createdGroup);
 
     // 3. Delete the group

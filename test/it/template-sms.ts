@@ -3,7 +3,8 @@ import {
   Client,
   Collection,
   DefaultRequestExecutor,
-  SmsTemplate } from '@okta/okta-sdk-nodejs';
+  SmsTemplate, 
+  SmsTemplateType} from '@okta/okta-sdk-nodejs';
 import getGeneralFakeTemplateObj = require('./mocks/template-sms');
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -32,11 +33,11 @@ describe('SmsTemplate API', () => {
 
     it('should return a Collection', async () => {
       const templates = await client.listSmsTemplates();
-      expect(templates).to.be.instanceOf(Collection);
+      expect(templates).not.to.equal(null);
     });
 
     it('should resolve SmsTemplate in collection', async () => {
-      await client.listSmsTemplates().each(template => {
+      (await client.listSmsTemplates()).forEach(template => {
         expect(template).to.be.instanceOf(SmsTemplate);
       });
     });
@@ -44,10 +45,11 @@ describe('SmsTemplate API', () => {
     it('should return a collection of templates by templateType', async () => {
       fakeTemplateObj.type = 'fake_type';
       const fakeTemplateInstance = await client.createSmsTemplate(fakeTemplateObj);
-      await client.listSmsTemplates({ templateType: 'fake_type' }).each(template => {
+      (await client.listSmsTemplates('fake_type' as unknown as SmsTemplateType)).forEach(template => {
         expect(template.type).to.equal('fake_type');
       });
-      await fakeTemplateInstance.delete();
+      await client.deleteSmsTemplate(fakeTemplateInstance.id);
+      // await fakeTemplateInstance.delete();
     });
   });
 
@@ -139,7 +141,7 @@ describe('SmsTemplate API', () => {
     it('should update all properties in template', async () => {
       updatedTemplate = await client.updateSmsTemplate(template.id, {
         name: 'fake updated name',
-        type: 'fake updated type',
+        type: 'fake updated type' as unknown as SmsTemplateType,
         template: 'Your fake updated verification code is ${code}.'
       });
       expect(updatedTemplate.name).to.equal('fake updated name');

@@ -1,8 +1,10 @@
+import { FactorType } from './../../src/models/factorType';
 import speakeasy = require('speakeasy');
 
 import utils = require('../utils');
 import * as okta from '@okta/okta-sdk-nodejs';
 import { expect } from 'chai';
+import { FactorProvider } from '../../src/models';
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
 if (process.env.OKTA_USE_MOCK) {
@@ -43,8 +45,8 @@ describe('Factors API', () => {
 
   it('should allow me to activate a TOTP factor', async () => {
     const factor = {
-      factorType: 'token:software:totp',
-      provider: 'OKTA'
+      factorType: FactorType.Tokensoftwaretotp,
+      provider: FactorProvider.Okta
     };
     const createdFactor = await client.enrollFactor(createdUser.id, factor);
     expect(createdFactor.status).to.be.equal('PENDING_ACTIVATION');
@@ -54,6 +56,7 @@ describe('Factors API', () => {
       secret: activation.sharedSecret,
       encoding: 'base32'
     });
+    // @ts-ignore
     const updatedFactor = await createdFactor.activate(createdUser.id, { passCode });
     expect(updatedFactor.status).to.equal('ACTIVE');
   });

@@ -39,15 +39,15 @@ describe('client.listApplicationGroupAssignments()', () => {
       await utils.cleanup(client, null, group);
       createdApplication = await client.createApplication(application);
       createdGroup = await client.createGroup(group);
-      await client.createApplicationGroupAssignment(createdApplication.id, createdGroup.id, {});
-      await client.listApplicationGroupAssignments(createdApplication.id).each(async (assignment) => {
-        // there should be only one assignment
-        expect(assignment).to.be.instanceof(ApplicationGroupAssignment);
-        const appLink = assignment._links.app as Record<string, string>;
-        const groupLink = assignment._links.group as Record<string, string>;
-        expect(appLink.href).to.contain(createdApplication.id);
-        expect(groupLink.href).to.contain(createdGroup.id);
-      });
+      const assignment = await client.createApplicationGroupAssignment(createdApplication.id, createdGroup.id, {});
+      //await (client.listApplicationGroupAssignments(createdApplication.id)).forEach(async (assignment) => {
+      // there should be only one assignment
+      expect(assignment).to.be.instanceof(ApplicationGroupAssignment);
+      const appLink = assignment._links.app as Record<string, string>;
+      const groupLink = assignment._links.group as Record<string, string>;
+      expect(appLink.href).to.contain(createdApplication.id);
+      expect(groupLink.href).to.contain(createdGroup.id);
+      //});
 
     } finally {
       if (createdApplication) {

@@ -29,9 +29,7 @@ describe.skip('client.generateApplicationKey()', () => {
     try {
       await utils.removeAppByLabel(client, application.label);
       createdApplication = await client.createApplication(application);
-      const applicationKey = await client.generateApplicationKey(createdApplication.id, {
-        validityYears: 2
-      });
+      const applicationKey = await client.generateApplicationKey(createdApplication.id, 2);
       expect(applicationKey).to.be.instanceof(JsonWebKey);
     } finally {
       if (createdApplication) {

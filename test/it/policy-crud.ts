@@ -41,18 +41,18 @@ describe('Policy Crud API', () => {
     });
 
     it('should return a Collection', async () => {
-      const policies = await client.listPolicies({ type: 'OKTA_SIGN_ON' });
-      expect(policies).to.be.instanceOf(Collection);
+      const policies = await client.listPolicies('OKTA_SIGN_ON');
+      expect(policies).not.to.equal(null);
     });
 
     it('should resolve Policy in collection', async () => {
-      await client.listPolicies({ type: 'OKTA_SIGN_ON' }).each(policy => {
+      (await client.listPolicies('OKTA_SIGN_ON')).forEach(policy => {
         expect(policy).to.be.instanceOf(AuthorizationServerPolicy);
       });
     });
 
     it('should return a collection of policies by type', async () => {
-      await client.listPolicies({ type: 'OKTA_SIGN_ON' }).each(policy => {
+      (await client.listPolicies('OKTA_SIGN_ON')).forEach(policy => {
         expect(policy.type).to.equal('OKTA_SIGN_ON');
       });
     });
@@ -98,13 +98,15 @@ describe('Policy Crud API', () => {
       policy = await client.createPolicy(mockPolicy);
     });
     afterEach(async () => {
-      await policy.delete();
+      await client.deletePolicy(policy.id);
+      // await policy.delete();
     });
 
     it('should update name for policy', async () => {
       const mockName = 'Mock update policy';
       policy.name = mockName;
-      const updatedPolicy = await policy.update();
+      const updatedPolicy = await client.updatePolicy(policy.id, policy);
+      // const updatedPolicy = await policy.update();
       expect(updatedPolicy.id).to.equal(policy.id);
       expect(updatedPolicy.name).to.equal(mockName);
     });
@@ -117,7 +119,8 @@ describe('Policy Crud API', () => {
     });
 
     it('should not get policy after deletion', async () => {
-      await policy.delete();
+      await client.deletePolicy(policy.id);
+      // await policy.delete();
       try {
         await client.getPolicy(policy.id);
       } catch (e) {

@@ -6,8 +6,9 @@ import {
   PushUserFactor,
   SecurityQuestionUserFactor,
   SmsUserFactor,
-  UserFactor } from '@okta/okta-sdk-nodejs';
+  UserFactor, FactorProvider } from '@okta/okta-sdk-nodejs';
 import { expect } from 'chai';
+import { FactorType } from '../../src/models';
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
 if (process.env.OKTA_USE_MOCK) {
@@ -48,8 +49,8 @@ describe('Factors API', () => {
 
   it('should allow me to create a Call factor', async () => {
     const factor = {
-      factorType: 'call',
-      provider: 'OKTA',
+      factorType: FactorType.Call,
+      provider: FactorProvider.Okta,
       profile: {
         phoneNumber: '415 123 1234'
       }
@@ -62,8 +63,8 @@ describe('Factors API', () => {
 
   it('should allow me to create a Push factor', async () => {
     const factor = {
-      factorType: 'push',
-      provider: 'OKTA'
+      factorType: FactorType.Push,
+      provider: FactorProvider.Okta
     };
     const createdFactor = await client.enrollFactor(createdUser.id, factor);
     expect(createdFactor.factorType).to.equal('push');
@@ -73,8 +74,8 @@ describe('Factors API', () => {
 
   it('should allow me to create a Security Question factor', async () => {
     const factor = {
-      factorType: 'question',
-      provider: 'OKTA',
+      factorType: FactorType.Question,
+      provider: FactorProvider.Okta,
       profile: {
         question: 'disliked_food',
         answer: 'pizza'
@@ -88,8 +89,8 @@ describe('Factors API', () => {
 
   it('should allow me to create a SMS factor', async () => {
     const factor = {
-      factorType: 'sms',
-      provider: 'OKTA',
+      factorType: FactorType.Sms,
+      provider: FactorProvider.Okta,
       profile: {
         phoneNumber: '162 840 01133‬'
       }

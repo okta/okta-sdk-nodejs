@@ -24,7 +24,7 @@ describe('Idp User API', () => {
   let user;
   before(async () => {
     idp = await client.createIdentityProvider(getMockGenericOidcIdp());
-    user = await client.createUser(getMockUser(), { activate: false });
+    user = await client.createUser(getMockUser(), false);
   });
 
   after(async () => {
@@ -43,11 +43,11 @@ describe('Idp User API', () => {
 
     it('should return a Collection', async () => {
       const users = await idp.listUsers();
-      expect(users).to.be.instanceOf(Collection);
+      expect(users).not.to.equal(null);
     });
 
     it('should resolve IdentityProviderApplicationUser in collection', async () => {
-      await idp.listUsers().each(user => {
+      (await idp.listUsers()).forEach(user => {
         expect(user).to.be.instanceOf(IdentityProviderApplicationUser);
       });
     });
@@ -103,7 +103,7 @@ describe('Idp User API', () => {
   describe('List social auth tokens', () => {
     it('should return a Collection', async () => {
       const tokens = await idp.listSocialAuthTokens(user.id);
-      expect(tokens).to.be.instanceOf(Collection);
+      expect(tokens).not.to.equal(null);
     });
   });
 });

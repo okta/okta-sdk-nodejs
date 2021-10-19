@@ -28,11 +28,12 @@ describe('User API Tests', () => {
     await utils.cleanup(client, newUser);
 
     const queryParameters = { activate : true };
-    const createdUser = await client.createUser(newUser, queryParameters);
+    const createdUser = await client.createUser(newUser, true);
     utils.validateUser(createdUser, newUser);
 
     // 2. Expire the user's password
-    await createdUser.expirePassword();
+    await client.expirePassword(createdUser.id);
+    // await createdUser.expirePassword();
 
     // 3. Verify that password was expired
     const expiredUser = await client.getUser(createdUser.id);
@@ -55,11 +56,12 @@ describe('User API Tests', () => {
     await utils.cleanup(client, newUser);
 
     const queryParameters = { activate : true };
-    const createdUser = await client.createUser(newUser, queryParameters);
+    const createdUser = await client.createUser(newUser, true);
     utils.validateUser(createdUser, newUser);
 
     // 2. Expire the user's password
-    const jsonResponse = await createdUser.expirePasswordAndGetTemporaryPassword();
+    const jsonResponse = await client.expirePasswordAndGetTemporaryPassword(createdUser.id);
+    //const jsonResponse = await createdUser.expirePasswordAndGetTemporaryPassword();
 
     // 3. Verify that password was expired
     const expiredUser = await client.getUser(createdUser.id);

@@ -35,8 +35,8 @@ describe('Group-Rule API tests', () => {
     // Cleanup the user & group if they exist
     await utils.cleanup(client, newUser, newGroup);
 
-    const queryParameters = { activate : true };
-    const createdUser = await client.createUser(newUser, queryParameters);
+    // const queryParameters = { activate : true };
+    const createdUser = await client.createUser(newUser, true);
     const createdGroup = await client.createGroup(newGroup);
 
     // 2. Create a group rule and verify rule executes
@@ -67,7 +67,8 @@ describe('Group-Rule API tests', () => {
     };
 
     const createdRule = await client.createGroupRule(rule);
-    await createdRule.activate();
+    await client.activateGroupRule(createdRule.id);
+    // await createdRule.activate();
 
     // We wait for 30 seconds for the rule to activate i.e. userInGroup = true
     let userInGroup = await utils.waitTillUserInGroup(createdUser, createdGroup, true);
@@ -75,7 +76,7 @@ describe('Group-Rule API tests', () => {
 
     // 3. List group rules
     let foundRule = false;
-    await client.listGroupRules().each(rule => {
+    (await client.listGroupRules()).forEach(rule => {
       if (rule.id === createdRule.id) {
         foundRule = true;
         return false;
@@ -88,16 +89,20 @@ describe('Group-Rule API tests', () => {
 
     createdRule.name = faker.random.word();
     createdRule.conditions.expression.value = 'user.lastName=="incorrect"';
-    const updatedRule = await createdRule.update();
-    await updatedRule.activate();
+    // const updatedRule = await createdRule.update();
+    const updatedRule = await client.updateGroupRule(createdRule.id, createdRule);
+    await client.activateGroupRule(updatedRule.id);
+    // await updatedRule.activate();
 
     // Triggering the updated rule will remove the user from group i.e. userInGroup = false
     userInGroup = await utils.waitTillUserInGroup(createdUser, createdGroup, false);
     expect(userInGroup).to.equal(false);
 
     // 5. Delete the group, user and group rule
-    await updatedRule.deactivate();
-    await updatedRule.delete();
+    //await updatedRule.deactivate();
+    //await updatedRule.delete();
+    await client.deactivateGroupRule(updatedRule.id);
+    await client.deleteGroupRule(updatedRule.id);
     await utils.cleanup(client, createdUser, createdGroup);
   });
 });

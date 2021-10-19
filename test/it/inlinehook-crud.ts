@@ -47,9 +47,9 @@ describe('Inline Hook Crud API', () => {
 
     it('should return a collection of InlineHooks', async () => {
       const collection = await client.listInlineHooks();
-      expect(collection).to.be.instanceOf(Collection);
+      // expect(collection).not.to.equal(null);
       const inlineHooks = [];
-      await collection.each(ih => {
+      await collection.forEach(ih => {
         expect(ih).to.be.instanceOf(InlineHook);
         inlineHooks.push(ih);
       });

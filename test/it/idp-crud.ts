@@ -30,20 +30,20 @@ describe('Idp Crud API', () => {
 
     it('should return a Collection of IdentityProvider', async () => {
       const idps = await client.listIdentityProviders();
-      expect(idps).to.be.instanceOf(Collection);
-      await idps.each(idp => {
+      expect(idps).not.to.equal(null);
+      await idps.forEach(idp => {
         expect(idp).to.be.instanceOf(IdentityProvider);
       });
     });
 
     it('should return a collection of idp by type', async () => {
-      await client.listIdentityProviders({ type: 'OIDC' }).each(idp => {
+      (await client.listIdentityProviders('OIDC')).forEach(idp => {
         expect(idp.type).to.equal('OIDC');
       });
     });
 
     it('should return a collection of idp by q', async () => {
-      await client.listIdentityProviders({ q: 'OIDC' }).each(idp => {
+      (await client.listIdentityProviders('OIDC')).forEach(idp => {
         expect(idp.type).to.equal('OIDC');
       });
     });

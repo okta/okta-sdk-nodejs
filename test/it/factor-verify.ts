@@ -1,6 +1,9 @@
+import { FactorType } from './../../src/models/factorType';
 import utils = require('../utils');
 import * as okta from '@okta/okta-sdk-nodejs';
 import { expect } from 'chai';
+import { FactorProvider } from '@okta/okta-sdk-nodejs';
+import { create } from 'eslint/lib/rules/*';
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
 if (process.env.OKTA_USE_MOCK) {
@@ -47,15 +50,16 @@ describe('Factors API', () => {
 
     const answer = 'pizza';
     const factor = {
-      factorType: 'question',
-      provider: 'OKTA',
+      factorType: FactorType.Question,
+      provider: FactorProvider.Okta,
       profile: {
         question: 'disliked_food',
         answer
       }
     };
     const createdFactor = await client.enrollFactor(createdUser.id, factor);
-    const response = await createdFactor.verify(createdUser.id, { answer });
+    // const response = await createdFactor.verify(createdUser.id, { answer });
+    const response = await client.verifyFactor(createdUser.id, createdFactor.id);
     expect(response.factorResult).to.be.equal('SUCCESS');
   });
 });

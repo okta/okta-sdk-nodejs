@@ -28,7 +28,7 @@ describe('User API Tests', () => {
     await utils.cleanup(client, newUser);
 
     const queryParameters = { activate : true };
-    const createdUser = await client.createUser(newUser, queryParameters);
+    const createdUser = await client.createUser(newUser, true);
     utils.validateUser(createdUser, newUser);
 
     // 2. Change the user's password
@@ -39,7 +39,8 @@ describe('User API Tests', () => {
 
     // Need to wait 1 second here as that is the minimum time resolution of the 'passwordChanged' field
     await utils.delay(1000);
-    await createdUser.changePassword(changePasswordCredentials);
+    await client.changePassword(createdUser.id, changePasswordCredentials);
+    // await createdUser.changePassword(changePasswordCredentials);
 
     // 3. Verify that password was updated
     const updatedUser = await client.getUser(createdUser.id);

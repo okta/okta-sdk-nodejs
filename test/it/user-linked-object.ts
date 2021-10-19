@@ -49,8 +49,8 @@ describe('User linked object API', () => {
 
     it('should return primary linked object value', async () => {
       links = await associateUser.getLinkedObjects(linkedObject.primary.name);
-      expect(links).to.be.instanceOf(Collection);
-      await links.each(link => {
+      expect(links).not.to.equal(null);
+      await links.forEach(link => {
         expect(link).to.be.instanceOf(ResponseLinks);
         expect(link._links.self.href).contains(primaryUser.id);
       });
@@ -58,8 +58,8 @@ describe('User linked object API', () => {
 
     it('should return associate linked object value', async () => {
       links = await primaryUser.getLinkedObjects(linkedObject.associated.name);
-      expect(links).to.be.instanceOf(Collection);
-      await links.each(link => {
+      expect(links).not.to.equal(null);
+      await links.forEach(link => {
         expect(link).to.be.instanceOf(ResponseLinks);
         expect(link._links.self.href).contains(associateUser.id);
       });

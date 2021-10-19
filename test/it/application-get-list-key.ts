@@ -32,7 +32,7 @@ describe('Application.getApplicationKey() / Application.listKeys()', () => {
       await utils.removeAppByLabel(client, application.label);
       createdApplication = await client.createApplication(application);
       const applicationKeys = await createdApplication.listKeys(createdApplication.id);
-      await applicationKeys.each(async (key) => {
+      (await applicationKeys).forEach(async (key) => {
         const fetchedKey = await createdApplication.getApplicationKey(key.kid);
         expect(fetchedKey.kid).to.equal(key.kid);
       });

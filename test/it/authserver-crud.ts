@@ -46,10 +46,10 @@ describe('Authorization Server Crud API', () => {
 
     it('should return a collection of AuthorizationServer', async () => {
       const collection = await client.listAuthorizationServers();
-      expect(collection).to.be.instanceOf(Collection);
-      const authServers = await collection.getNextPage();
-      expect(authServers).to.be.an('array').that.is.not.empty;
-      const authServerFromCollection = authServers.find(as => as.name === authServer.name);
+      // expect(collection).not.to.equal(null);
+      //const authServers = await collection.getNextPage();
+      expect(collection).to.be.an('array').that.is.not.empty;
+      const authServerFromCollection = collection.find(as => as.name === authServer.name);
       expect(authServerFromCollection).to.be.exist;
     });
   });

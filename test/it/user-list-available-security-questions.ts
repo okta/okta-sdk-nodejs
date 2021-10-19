@@ -28,7 +28,7 @@ describe('User API Tests', () => {
     const createdUser = await client.createUser(newUser);
 
     const questions = [];
-    await createdUser.listSupportedSecurityQuestions().each(factor => questions.push(factor));
+    (await createdUser.listSupportedSecurityQuestions()).forEach(factor => questions.push(factor));
     expect(questions.length).to.be.greaterThan(1);
     questions.forEach(factor => expect(factor).to.be.instanceof(models.SecurityQuestion));
     return await utils.deleteUser(createdUser);

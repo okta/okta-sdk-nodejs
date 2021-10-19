@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { expect } from 'chai';
 
 import {
@@ -36,7 +37,7 @@ describe('client.getApplicationKey()', () => {
       await utils.removeAppByLabel(client, application.label);
       createdApplication = await client.createApplication(application);
       const applicationKeys = await client.listApplicationKeys(createdApplication.id);
-      await applicationKeys.each(async (key) => {
+      await applicationKeys.forEach(async (key) => {
         const fetchedKey = await client.getApplicationKey(createdApplication.id, key.kid);
         expect(fetchedKey).to.be.instanceof(JsonWebKey);
         expect(fetchedKey.kid).to.equal(key.kid);

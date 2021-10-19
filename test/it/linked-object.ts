@@ -66,11 +66,11 @@ describe('Linked Object API', () => {
 
       it('should return a Collection', async () => {
         const linkedObjects = await client.listLinkedObjectDefinitions();
-        expect(linkedObjects).to.be.instanceOf(Collection);
+        expect(linkedObjects).not.to.equal(null);
       });
 
       it('should resolve LinkedObject in collection', async () => {
-        await client.listLinkedObjectDefinitions().each(linkedObject => {
+        (await client.listLinkedObjectDefinitions()).forEach(linkedObject => {
           expect(linkedObject).to.be.instanceOf(LinkedObject);
         });
       });

@@ -20,9 +20,9 @@ const client = new Client({
 describe('client.listProfileMappings()', () => {
   // OKTA-397861: update org configuration to enable the test
   xit('should return a collection', async () => {
-    const collection = client.listProfileMappings();
+    const collection = await client.listProfileMappings();
     const profileMappings: ProfileMapping[] = [];
-    await collection.each(profileMapping => profileMappings.push(profileMapping));
+    await collection.forEach(profileMapping => profileMappings.push(profileMapping));
     expect(profileMappings).to.be.an('array').that.is.not.empty;
     expect(profileMappings.pop()).to.be.instanceOf(ProfileMapping);
   });
