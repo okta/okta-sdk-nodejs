@@ -25,8 +25,8 @@ describe('Application OAuth2 grant API', () => {
     application = await client.createApplication(getMockApplication());
   });
   afterEach(async () => {
-    await application.deactivate();
-    await application.delete();
+    await client.deactivateApplication(application.id);
+    await client.deleteApplication(application.id);
   });
 
   describe('Grant consent', () => {
@@ -92,7 +92,7 @@ describe('Application OAuth2 grant API', () => {
 
     it('should revoke grant', async () => {
       const res = await application.revokeScopeConsentGrant(grant.id);
-      expect(res.status).to.equal(204);
+      expect(res.statusCode).to.equal(204);
       try {
         await application.getScopeConsentGrant(grant.id);
       } catch (err) {

@@ -19,20 +19,20 @@ describe('Authorization Server Lifecycle API', () => {
     authServer = await client.createAuthorizationServer(getMockAuthorizationServer());
   });
   afterEach(async () => {
-    await authServer.deactivate();
-    await authServer.delete();
+    await client.deactivateAuthorizationServer(authServer.id);
+    await client.deleteAuthorizationServer(authServer.id);
   });
 
   it('should activate auth server', async () => {
-    const res = await authServer.activate();
-    expect(res.status).to.equal(204);
+    const res = await client.activateAuthorizationServer(authServer.id);
+    expect(res.statusCode).to.equal(204);
     const authServerFromGet = await client.getAuthorizationServer(authServer.id);
     expect(authServerFromGet.status).to.equal('ACTIVE');
   });
 
   it('should deactive auth server', async () => {
-    const res = await authServer.deactivate();
-    expect(res.status).to.equal(204);
+    const res = await client.deactivateAuthorizationServer(authServer.id);
+    expect(res.statusCode).to.equal(204);
     const authServerFromGet = await client.getAuthorizationServer(authServer.id);
     expect(authServerFromGet.status).to.equal('INACTIVE');
   });

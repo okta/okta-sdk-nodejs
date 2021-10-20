@@ -30,9 +30,7 @@ describe.skip('Application.cloneApplicationKey()', () => {
       await utils.removeAppByLabel(client, application2.label);
       createdApplication = await client.createApplication(application);
       createdApplication2 = await client.createApplication(application2);
-      const generatedKey = await createdApplication.generateApplicationKey({
-        validityYears: 2
-      });
+      const generatedKey = await client.generateApplicationKey(createdApplication.id, 2);
 
       const clonedKey = await createdApplication.cloneApplicationKey(generatedKey.kid, {
         targetAid: createdApplication2.id
@@ -41,12 +39,12 @@ describe.skip('Application.cloneApplicationKey()', () => {
       expect(clonedKey.kid).to.equal(generatedKey.kid);
     } finally {
       if (createdApplication) {
-        await createdApplication.deactivate();
-        await createdApplication.delete();
+        await client.deactivateApplication(createdApplication.id);
+        await client.deleteApplication(createdApplication.id);
       }
       if (createdApplication2) {
-        await createdApplication2.deactivate();
-        await createdApplication2.delete();
+        await client.deactivateApplication(createdApplication2.id);
+        await client.deleteApplication(createdApplication2.id);
       }
     }
   });

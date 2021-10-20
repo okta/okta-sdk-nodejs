@@ -28,7 +28,8 @@ describe('Policy Crud API', () => {
     mockPolicy.conditions.people.groups.include.push(group.id);
   });
   afterEach(async () => {
-    await group.delete();
+    await client.deleteGroup(group.id);
+    // await group.delete();
   });
 
   describe('List policies', () => {
@@ -37,7 +38,8 @@ describe('Policy Crud API', () => {
       policy = await client.createPolicy(mockPolicy);
     });
     afterEach(async () => {
-      await policy.delete();
+      await client.deletePolicy(policy.id);
+      // await policy.delete();
     });
 
     it('should return a Collection', async () => {
@@ -61,7 +63,8 @@ describe('Policy Crud API', () => {
   describe('Create policy', () => {
     let policy;
     afterEach(async () => {
-      await policy.delete();
+      await client.deletePolicy(policy.id);
+      //await policy.delete();
     });
 
     it('should return correct model', async () => {
@@ -82,7 +85,8 @@ describe('Policy Crud API', () => {
       policy = await client.createPolicy(mockPolicy);
     });
     afterEach(async () => {
-      await policy.delete();
+      await client.deletePolicy(policy.id);
+      //await policy.delete();
     });
 
     it('should get Policy by id', async () => {

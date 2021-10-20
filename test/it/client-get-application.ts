@@ -35,8 +35,8 @@ describe('client.getApplication()', () => {
       expect(fetchedApplication).to.be.instanceof(BookmarkApplication);
     } finally {
       if (createdApplication) {
-        await createdApplication.deactivate();
-        await createdApplication.delete();
+        await client.deactivateApplication(createdApplication.id);
+        await client.deleteApplication(createdApplication.id);
       }
     }
   });

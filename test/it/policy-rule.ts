@@ -31,27 +31,32 @@ describe('Policy Rule API', () => {
     policy = await client.createPolicy(mockPolicy);
   });
   afterEach(async () => {
-    await policy.delete();
-    await group.delete();
+    await client.deletePolicy(policy.id);
+    await client.deleteGroup(group.id);
+    // await policy.delete();
+    // await group.delete();
   });
 
   describe('Policy rule crud', () => {
     describe('List rules', () => {
       let rule;
       beforeEach(async () => {
-        rule = await policy.createRule(getMockRule());
+        rule = await client.createPolicyRule(policy.id, getMockRule());
+        //rule = await client.createPolicyRule(policy.id, getMockRule());
       });
       afterEach(async () => {
-        await rule.delete(policy.id);
+        await client.deletePolicyRule(policy.id, rule.id);
+        //await rule.delete(policy.id);
       });
 
       it('should return a Collection', async () => {
-        const rules = await policy.listPolicyRules();
+        const rules = await client.listPolicyRules(policy.id);
+        //const rules = await policy.listPolicyRules();
         expect(rules).not.to.equal(null);
       });
 
       it('should resolve PolicyRule in collection', async () => {
-        (await policy.listPolicyRules()).forEach(rule => {
+        (await client.listPolicyRules(policy.id)).forEach(rule => {
           expect(rule).to.be.instanceOf(PolicyRule);
         });
       });
@@ -60,12 +65,12 @@ describe('Policy Rule API', () => {
     describe('Create rule', () => {
       let rule;
       afterEach(async () => {
-        await rule.delete(policy.id);
+        await client.deletePolicyRule(policy.id, rule.id);
       });
 
       it('should return instance of PolicyRule', async () => {
         const mockRule = getMockRule();
-        rule = await policy.createRule(mockRule);
+        rule = await client.createPolicyRule(policy.id, mockRule);
         expect(rule).to.be.instanceOf(PolicyRule);
         expect(rule).to.have.property('id');
         expect(rule.name).to.equal(mockRule.name);
@@ -75,10 +80,10 @@ describe('Policy Rule API', () => {
     describe('Get rule', () => {
       let rule;
       beforeEach(async () => {
-        rule = await policy.createRule(getMockRule());
+        rule = await client.createPolicyRule(policy.id, getMockRule());
       });
       afterEach(async () => {
-        await rule.delete(policy.id);
+        await client.deletePolicyRule(policy.id, rule.id);
       });
 
       it('should get PolicyRule by id', async () => {
@@ -91,16 +96,16 @@ describe('Policy Rule API', () => {
     describe('Update rule', () => {
       let rule;
       beforeEach(async () => {
-        rule = await policy.createRule(getMockRule());
+        rule = await client.createPolicyRule(policy.id, getMockRule());
       });
       afterEach(async () => {
-        await rule.delete(policy.id);
+        await client.deletePolicyRule(policy.id, rule.id);
       });
 
       it('should update name for policy rule', async () => {
         const mockName = 'Mock update policy rule';
         rule.name = mockName;
-        const updatedPolicyRule = await rule.update(policy.id);
+        const updatedPolicyRule = await client.updatePolicyRule(policy.id, rule.id, rule);
         expect(updatedPolicyRule.id).to.equal(rule.id);
         expect(updatedPolicyRule.name).to.equal(mockName);
       });
@@ -109,13 +114,13 @@ describe('Policy Rule API', () => {
     describe('Delete rule', () => {
       let rule;
       beforeEach(async () => {
-        rule = await policy.createRule(getMockRule());
+        rule = await client.createPolicyRule(policy.id, getMockRule());
       });
 
       it('should not get rule after deletion', async () => {
-        await rule.delete(policy.id);
+        await client.deletePolicyRule(policy.id, rule.id);
         try {
-          await policy.getPolicyRule(rule.id);
+          await client.getPolicyRule(policy.id, rule.id);
         } catch (e) {
           expect(e.statusCode).to.equal(404);
         }
@@ -126,19 +131,19 @@ describe('Policy Rule API', () => {
   describe('Policy rule lifecycle', () => {
     let rule;
     beforeEach(async () => {
-      rule = await policy.createRule(getMockRule());
+      rule = await client.createPolicyRule(policy.id, getMockRule());
     });
     afterEach(async () => {
-      await rule.delete(policy.id);
+      await client.deletePolicyRule(policy.id, rule.id);
     });
 
     it('should activate rule', async () => {
-      const response = await rule.activate(policy.id);
+      const response = await client.activatePolicyRule(policy.id, rule.id);
       expect(response.statusCode).to.equal(204);
     });
 
     it('should deactive rule', async () => {
-      const response = await rule.deactivate(policy.id);
+      const response = await client.deactivatePolicyRule(policy.id, rule.id);
       expect(response.statusCode).to.equal(204);
     });
   });

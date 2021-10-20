@@ -88,8 +88,8 @@ describe('client.createApplication()', () => {
       expect(createdApplication.settings.app.url).to.equal(application.settings.app.url);
     } finally {
       if (createdApplication) {
-        await createdApplication.deactivate();
-        await createdApplication.delete();
+        await client.deactivateApplication(createdApplication.id);
+        await client.deleteApplication(createdApplication.id);
       }
     }
   });
@@ -124,8 +124,8 @@ describe('client.createApplication()', () => {
       expect(createdApplication.settings.app.url).to.equal(application.settings.app.url);
     } finally {
       if (createdApplication) {
-        await createdApplication.deactivate();
-        await createdApplication.delete();
+        await client.deactivateApplication(createdApplication.id);
+        await client.deleteApplication(createdApplication.id);
       }
     }
   });
@@ -166,8 +166,8 @@ describe('client.createApplication()', () => {
       expect(createdApplication.settings.app.url).to.equal(application.settings.app.url);
     } finally {
       if (createdApplication) {
-        await createdApplication.deactivate();
-        await createdApplication.delete();
+        await client.deactivateApplication(createdApplication.id);
+        await client.deleteApplication(createdApplication.id);
       }
     }
   });
@@ -212,8 +212,8 @@ describe('client.createApplication()', () => {
       expect(createdApplication.settings.app.targetURL).to.equal(application.settings.app.targetURL);
     } finally {
       if (createdApplication) {
-        await createdApplication.deactivate();
-        await createdApplication.delete();
+        await client.deactivateApplication(createdApplication.id);
+        await client.deleteApplication(createdApplication.id);
       }
     }
   });
@@ -263,8 +263,8 @@ describe('client.createApplication()', () => {
       expect(createdApplication.settings.app.optionalField3Value).to.equal(application.settings.app.optionalField3Value);
     } finally {
       if (createdApplication) {
-        await createdApplication.deactivate();
-        await createdApplication.delete();
+        await client.deactivateApplication(createdApplication.id);
+        await client.deleteApplication(createdApplication.id);
       }
     }
   });
@@ -310,8 +310,8 @@ describe('client.createApplication()', () => {
       expect(createdApplication.settings.signOn.loginUrl).to.equal(application.settings.signOn.loginUrl);
     } finally {
       if (createdApplication) {
-        await createdApplication.deactivate();
-        await createdApplication.delete();
+        await client.deactivateApplication(createdApplication.id);
+        await client.deleteApplication(createdApplication.id);
       }
     }
   });
@@ -399,8 +399,8 @@ describe('client.createApplication()', () => {
 
     } finally {
       if (createdApplication) {
-        await createdApplication.deactivate();
-        await createdApplication.delete();
+        await client.deactivateApplication(createdApplication.id);
+        await client.deleteApplication(createdApplication.id);
       }
     }
   });
@@ -456,8 +456,8 @@ describe('client.createApplication()', () => {
       expect(createdApplication.settings.app.wReplyURL).to.equal(application.settings.app.wReplyURL);
     } finally {
       if (createdApplication) {
-        await createdApplication.deactivate();
-        await createdApplication.delete();
+        await client.deactivateApplication(createdApplication.id);
+        await client.deleteApplication(createdApplication.id);
       }
     }
   });
@@ -522,8 +522,8 @@ describe('client.createApplication()', () => {
       expect(createdApplication.settings.oauthClient.response_types).to.deep.equal(responseTypes);
     } finally {
       if (createdApplication) {
-        await createdApplication.deactivate();
-        await createdApplication.delete();
+        await client.deactivateApplication(createdApplication.id);
+        await client.deleteApplication(createdApplication.id);
       }
     }
   });

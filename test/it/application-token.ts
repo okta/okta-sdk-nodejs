@@ -23,8 +23,8 @@ describe('Application OAuth2 token API', () => {
     application = await client.createApplication(getMockApplication());
   });
   afterEach(async () => {
-    await application.deactivate();
-    await application.delete();
+    await client.deactivateApplication(application.id);
+    await client.deleteApplication(application.id);
   });
 
   it('should list a collection of tokens', async () => {
@@ -36,6 +36,6 @@ describe('Application OAuth2 token API', () => {
 
   it('should return status 204 when revoke tokens for application', async () => {
     const res = await application.revokeOAuth2Tokens();
-    expect(res.status).to.equal(204);
+    expect(res.statusCode).to.equal(204);
   });
 });

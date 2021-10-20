@@ -28,26 +28,30 @@ describe('Idp User API', () => {
   });
 
   after(async () => {
-    await idp.delete();
+    await client.deleteIdentityProvider(idp.id);
+    //await idp.delete();
     await utils.cleanupUser(client, user);
   });
 
   describe('List Linked IdP Users', () => {
     beforeEach(async () => {
-      await idp.linkUser(user.id, { externalId: 'externalId' });
+      await client.linkUserToIdentityProvider(idp.id, user.id, {externalId: 'externalId'});
+      // await idp.linkUser(user.id, { externalId: 'externalId' });
     });
 
     afterEach(async () => {
-      await idp.unlinkUser(user.id);
+      await client.unlinkUserFromIdentityProvider(idp.id, user.id);
+      //await idp.unlinkUser(user.id);
     });
 
     it('should return a Collection', async () => {
-      const users = await idp.listUsers();
+      const users = await client.listIdentityProviderApplicationUsers(idp.id);
+      //const users = await idp.listUsers();
       expect(users).not.to.equal(null);
     });
 
     it('should resolve IdentityProviderApplicationUser in collection', async () => {
-      (await idp.listUsers()).forEach(user => {
+      (await client.listIdentityProviderApplicationUsers(idp.id)).forEach(user => {
         expect(user).to.be.instanceOf(IdentityProviderApplicationUser);
       });
     });
@@ -55,31 +59,39 @@ describe('Idp User API', () => {
 
   describe('Get linked user for Idp', () => {
     beforeEach(async () => {
-      await idp.linkUser(user.id, { externalId: 'externalId' });
+      await client.linkUserToIdentityProvider(idp.id, user.id, {externalId: 'externalId'});
+      //await idp.linkUser(user.id, { externalId: 'externalId' });
     });
 
     afterEach(async () => {
-      await idp.unlinkUser(user.id);
+      await client.unlinkUserFromIdentityProvider(idp.id, user.id);
+      //await idp.unlinkUser(user.id);
     });
 
     it('should return linked user as instanceof IdentityProviderApplicationUser', async () => {
-      const idpUser = await idp.getUser(user.id);
+      const idpUser = await client.getIdentityProviderApplicationUser(idp.id, user.id);
+      //const idpUser = await idp.getUser(user.id);
       expect(idpUser).to.be.instanceOf(IdentityProviderApplicationUser);
     });
 
     it('should link to idp', async () => {
-      const idpUser = await idp.getUser(user.id);
+      const idpUser = await client.getIdentityProviderApplicationUser(idp.id, user.id);
+      //const idpUser = await idp.getUser(user.id);
+      //@ts-ignore
       expect(idpUser._links.idp.href).to.contains(idp.id);
     });
   });
 
   describe('Link user', () => {
     afterEach(async () => {
-      await idp.unlinkUser(user.id);
+      await client.unlinkUserFromIdentityProvider(idp.id, user.id);
+      //await idp.unlinkUser(user.id);
     });
 
     it('should link user to idp', async () => {
-      const linkedUser = await idp.linkUser(user.id, { externalId: 'externalId' });
+      //const linkedUser = await idp.linkUser(user.id, { externalId: 'externalId' });
+      const linkedUser = await client.linkUserToIdentityProvider(idp.id, user.id, {externalId: 'externalId'});
+      //@ts-ignore
       expect(linkedUser._links.idp.href).to.contains(idp.id);
     });
   });
@@ -87,13 +99,16 @@ describe('Idp User API', () => {
   describe('Unlink user', () => {
     let linkedUser;
     beforeEach(async () => {
-      linkedUser = await idp.linkUser(user.id, { externalId: 'externalId' });
+      linkedUser = await client.linkUserToIdentityProvider(idp.id, user.id, {externalId: 'externalId'});
+      //linkedUser = await idp.linkUser(user.id, { externalId: 'externalId' });
     });
 
     it('should unlink user from idp', async () => {
-      await idp.unlinkUser(linkedUser.id);
+      await client.unlinkUserFromIdentityProvider(idp.id, linkedUser.id);
+      //await idp.unlinkUser(linkedUser.id);
       try {
-        await idp.getUser(linkedUser.id);
+        await client.getIdentityProviderApplicationUser(idp.id, linkedUser.id);
+        //await idp.getUser(linkedUser.id);
       } catch (e) {
         expect(e.statusCode).to.equal(404);
       }
@@ -102,7 +117,8 @@ describe('Idp User API', () => {
 
   describe('List social auth tokens', () => {
     it('should return a Collection', async () => {
-      const tokens = await idp.listSocialAuthTokens(user.id);
+      const tokens = await client.listSocialAuthTokens(idp.id, user.id);
+      //const tokens = await idp.listSocialAuthTokens(user.id);
       expect(tokens).not.to.equal(null);
     });
   });

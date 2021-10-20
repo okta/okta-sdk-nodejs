@@ -37,7 +37,7 @@ describe('User linked object API', () => {
   describe('Set linked object value for primary', () => {
     it('should return status 204', async () => {
       const res = await client.setLinkedObjectForUser(associateUser.id, linkedObject.primary.name, primaryUser.id);
-      expect(res.status).to.equal(204);
+      expect(res.statusCode).to.equal(204);
     });
   });
 
@@ -49,7 +49,7 @@ describe('User linked object API', () => {
     });
 
     it('should return primary linked object value', async () => {
-      links = await associateUser.getLinkedObjects(linkedObject.primary.name);
+      links = await client.getLinkedObjectsForUser(primaryUser.id, linkedObject.associated.name);
       expect(links).not.to.equal(null);
       await links.forEach(link => {
         //expect(link).to.be.instanceOf(ResponseLinks);
@@ -76,7 +76,7 @@ describe('User linked object API', () => {
 
     it('should return 204 after deleting linked object', async () => {
       const res = await client.removeLinkedObjectForUser(associateUser.id, linkedObject.primary.name);
-      expect(res.status).to.equal(204);
+      expect(res.statusCode).to.equal(204);
     });
   });
 });

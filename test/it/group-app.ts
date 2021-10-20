@@ -30,10 +30,10 @@ describe('Group App API', () => {
       groupAssignment = await application.createApplicationGroupAssignment(group.id);
     });
     afterEach(async () => {
-      await groupAssignment.delete(application.id);
-      await application.deactivate();
-      await application.delete();
-      await group.delete();
+      await client.deleteApplicationGroupAssignment(application.id, group.id);
+      await client.deactivateApplication(application.id);
+      await client.deleteApplication(application.id);
+      await client.deleteGroup(group.id);
     });
 
     it('should return a Collection', async () => {

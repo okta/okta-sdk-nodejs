@@ -22,8 +22,8 @@ describe('Inline Hook Crud API', () => {
   describe('Create inline hook', () => {
     let inlineHook;
     afterEach(async () => {
-      await inlineHook.deactivate();
-      await inlineHook.delete();
+      await client.deactivateInlineHook(inlineHook.id);
+      await client.deleteInlineHook(inlineHook.id);
     });
 
     it('should return correct model', async () => {
@@ -41,8 +41,8 @@ describe('Inline Hook Crud API', () => {
       inlineHook = await client.createInlineHook(getMockInlineHook());
     });
     afterEach(async () => {
-      await inlineHook.deactivate();
-      await inlineHook.delete();
+      await client.deactivateInlineHook(inlineHook.id);
+      await client.deleteInlineHook(inlineHook.id);
     });
 
     it('should return a collection of InlineHooks', async () => {
@@ -64,8 +64,8 @@ describe('Inline Hook Crud API', () => {
       inlineHook = await client.createInlineHook(getMockInlineHook());
     });
     afterEach(async () => {
-      await inlineHook.deactivate();
-      await inlineHook.delete();
+      await client.deactivateInlineHook(inlineHook.id);
+      await client.deleteInlineHook(inlineHook.id);
     });
 
     it('should get InlineHook by id', async () => {
@@ -81,15 +81,15 @@ describe('Inline Hook Crud API', () => {
       inlineHook = await client.createInlineHook(getMockInlineHook());
     });
     afterEach(async () => {
-      await inlineHook.deactivate();
-      await inlineHook.delete();
+      await client.deactivateInlineHook(inlineHook.id);
+      await client.deleteInlineHook(inlineHook.id);
     });
 
     it('should update name for created inlineHook', async () => {
       inlineHook.name = `node-sdk: Mock inline hook updated ${faker.random.word()}`.substring(0, 49);
       inlineHook.channel.config.headers[0].value = 'my-header-value-updated';
       inlineHook.channel.config.authScheme.value = 'my-shared-secret-updated';
-      const updatedInlineHook = await inlineHook.update();
+      const updatedInlineHook = await client.updateInlineHook(inlineHook.id, inlineHook);
       expect(updatedInlineHook.id).to.equal(inlineHook.id);
       expect(updatedInlineHook.name).to.equal(inlineHook.name);
       expect(updatedInlineHook.channel.config.headers[0].value).to.equal('my-header-value-updated');
@@ -103,9 +103,9 @@ describe('Inline Hook Crud API', () => {
     });
 
     it('should not get inlineHook after deletion', async () => {
-      await inlineHook.deactivate();
-      const res = await inlineHook.delete();
-      expect(res.status).to.equal(204);
+      await client.deactivateInlineHook(inlineHook.id);
+      const res = await client.deleteInlineHook(inlineHook.id);
+      expect(res.statusCode).to.equal(204);
       try {
         await client.getInlineHook(inlineHook.id);
       } catch (e) {

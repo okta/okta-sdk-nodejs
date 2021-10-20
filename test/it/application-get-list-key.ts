@@ -31,15 +31,15 @@ describe('Application.getApplicationKey() / Application.listKeys()', () => {
     try {
       await utils.removeAppByLabel(client, application.label);
       createdApplication = await client.createApplication(application);
-      const applicationKeys = await createdApplication.listKeys(createdApplication.id);
+      const applicationKeys = await client.listApplicationKeys(createdApplication.id);
       (await applicationKeys).forEach(async (key) => {
         const fetchedKey = await createdApplication.getApplicationKey(key.kid);
         expect(fetchedKey.kid).to.equal(key.kid);
       });
     } finally {
       if (createdApplication) {
-        await createdApplication.deactivate();
-        await createdApplication.delete();
+        await client.deactivateApplication(createdApplication.id);
+        await client.deleteApplication(createdApplication.id);
       }
     }
   });

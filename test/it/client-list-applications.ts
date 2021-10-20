@@ -56,10 +56,10 @@ describe('client.listApplications()', () => {
   });
 
   after(async () => {
-    await bookmarkApplication.deactivate();
-    await bookmarkApplication.delete();
-    await basicApplication.deactivate();
-    await basicApplication.delete();
+    await client.deactivateApplication(bookmarkApplication.id);
+    await client.deleteApplication(bookmarkApplication.id);
+    await client.deactivateApplication(basicApplication.id);
+    await client.deleteApplication(basicApplication.id);
   });
 
   it('should return a collection', () => {

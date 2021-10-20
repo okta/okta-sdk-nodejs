@@ -22,7 +22,8 @@ describe('Linked Object API', () => {
     let linkedObject;
     describe('Add linked object definition', () => {
       afterEach(async () => {
-        await linkedObject.delete(linkedObject.primary.name);
+        await client.deleteLinkedObjectDefinition(linkedObject.primary.name);
+        //await linkedObject.delete(linkedObject.primary.name);
       });
 
       it('should return instance of LinkedObject model', async () => {
@@ -40,7 +41,8 @@ describe('Linked Object API', () => {
         linkedObject = await client.addLinkedObjectDefinition(getMockLinkedObject());
       });
       afterEach(async () => {
-        await linkedObject.delete(linkedObject.primary.name);
+        await client.deleteLinkedObjectDefinition(linkedObject.primary.name);
+        //await linkedObject.delete(linkedObject.primary.name);
       });
 
       it('should return LinkedObject by primary name', async () => {
@@ -61,7 +63,8 @@ describe('Linked Object API', () => {
         linkedObject = await client.addLinkedObjectDefinition(getMockLinkedObject());
       });
       afterEach(async () => {
-        await linkedObject.delete(linkedObject.primary.name);
+        await client.deleteLinkedObjectDefinition(linkedObject.primary.name);
+        //await linkedObject.delete(linkedObject.primary.name);
       });
 
       it('should return a Collection', async () => {
@@ -82,7 +85,8 @@ describe('Linked Object API', () => {
       });
 
       it('should not get linkedObject after deletion', async () => {
-        await linkedObject.delete(linkedObject.primary.name);
+        await client.deleteLinkedObjectDefinition(linkedObject.primary.name);
+        //await linkedObject.delete(linkedObject.primary.name);
         try {
           await client.getLinkedObjectDefinition(linkedObject.primary.name);
         } catch (e) {

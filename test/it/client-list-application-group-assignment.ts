@@ -51,8 +51,8 @@ describe('client.listApplicationGroupAssignments()', () => {
 
     } finally {
       if (createdApplication) {
-        await createdApplication.deactivate();
-        await createdApplication.delete();
+        await client.deactivateApplication(createdApplication.id);
+        await client.deleteApplication(createdApplication.id);
       }
       if (createdGroup) {
         await utils.cleanup(client, null, createdGroup);

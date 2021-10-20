@@ -26,14 +26,12 @@ describe.skip('Application.generateApplicationKey()', () => {
     try {
       await utils.removeAppByLabel(client, application.label);
       createdApplication = await client.createApplication(application);
-      const applicationKey = await createdApplication.generateApplicationKey({
-        validityYears: 2
-      });
+      const applicationKey = await client.generateApplicationKey(createdApplication.id, 2);
       expect(applicationKey).to.be.instanceof(okta.JsonWebKey);
     } finally {
       if (createdApplication) {
-        await createdApplication.deactivate();
-        await createdApplication.delete();
+        await client.deactivateApplication(createdApplication.id);
+        await client.deleteApplication(createdApplication.id);
       }
     }
   });

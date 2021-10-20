@@ -21,8 +21,8 @@ describe('Event Hook Crud API', () => {
   describe('Create Event hook', () => {
     let eventHook;
     afterEach(async () => {
-      await eventHook.deactivate();
-      await eventHook.delete();
+      await client.deactivateEventHook(eventHook.id);
+      await client.deleteEventHook(eventHook.id);
     });
 
     it('should return correct model', async () => {
@@ -40,8 +40,8 @@ describe('Event Hook Crud API', () => {
       eventHook = await client.createEventHook(getMockEventHook());
     });
     afterEach(async () => {
-      await eventHook.deactivate();
-      await eventHook.delete();
+      await client.deactivateEventHook(eventHook.id);
+      await client.deleteEventHook(eventHook.id);
     });
 
     it('should return a collection of EventHooks', async () => {
@@ -65,8 +65,8 @@ describe('Event Hook Crud API', () => {
       eventHook = await client.createEventHook(getMockEventHook());
     });
     afterEach(async () => {
-      await eventHook.deactivate();
-      await eventHook.delete();
+      await client.deactivateEventHook(eventHook.id);
+      await client.deleteEventHook(eventHook.id);
     });
 
     it('should get EventHook by id', async () => {
@@ -82,8 +82,8 @@ describe('Event Hook Crud API', () => {
       eventHook = await client.createEventHook(getMockEventHook());
     });
     afterEach(async () => {
-      await eventHook.deactivate();
-      await eventHook.delete();
+      await client.deactivateEventHook(eventHook.id);
+      await client.deleteEventHook(eventHook.id);
     });
 
     it('should update name for created eventHook', async () => {
@@ -102,9 +102,11 @@ describe('Event Hook Crud API', () => {
     });
 
     it('should not get eventHook after deletion', async () => {
-      await eventHook.deactivate();
-      const res = await eventHook.delete();
-      expect(res.status).to.equal(204);
+      await client.deactivateEventHook(eventHook.id);
+      const res = await client.deleteEventHook(eventHook.id);
+      //await eventHook.deactivate();
+      //const res = await eventHook.delete();
+      expect(res.stausCode).to.equal(204);
       try {
         await client.getEventHook(eventHook.id);
       } catch (e) {

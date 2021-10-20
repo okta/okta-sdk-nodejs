@@ -21,8 +21,8 @@ describe('Authorization Server Crud API', () => {
   describe('Create Auth Server', () => {
     let authServer;
     afterEach(async () => {
-      await authServer.deactivate();
-      await authServer.delete();
+      await client.deactivateAuthorizationServer(authServer.id);
+      await client.deleteAuthorizationServer(authServer.id);
     });
 
     it('should return correct model', async () => {
@@ -40,8 +40,8 @@ describe('Authorization Server Crud API', () => {
       authServer = await client.createAuthorizationServer(getMockAuthorizationServer());
     });
     afterEach(async () => {
-      await authServer.deactivate();
-      await authServer.delete();
+      await client.deactivateAuthorizationServer(authServer.id);
+      await client.deleteAuthorizationServer(authServer.id);
     });
 
     it('should return a collection of AuthorizationServer', async () => {
@@ -61,8 +61,8 @@ describe('Authorization Server Crud API', () => {
     });
 
     afterEach(async () => {
-      await authServer.deactivate();
-      await authServer.delete();
+      await client.deactivateAuthorizationServer(authServer.id);
+      await client.deleteAuthorizationServer(authServer.id);
     });
 
     it('should get Authorization Server by id', async () => {
@@ -78,14 +78,14 @@ describe('Authorization Server Crud API', () => {
       authServer = await client.createAuthorizationServer(getMockAuthorizationServer());
     });
     afterEach(async () => {
-      await authServer.deactivate();
-      await authServer.delete();
+      await client.deactivateAuthorizationServer(authServer.id);
+      await client.deleteAuthorizationServer(authServer.id);
     });
 
     it('should update name for created auth server', async () => {
       const mockName = 'Mock update auth server';
       authServer.name = mockName;
-      const updatedAuthServer = await authServer.update();
+      const updatedAuthServer = await client.updateAuthorizationServer(authServer.id, authServer);
       expect(updatedAuthServer.id).to.equal(authServer.id);
       expect(updatedAuthServer.name).to.equal(mockName);
     });
@@ -98,9 +98,9 @@ describe('Authorization Server Crud API', () => {
     });
 
     it('should not get authserver after deletion', async () => {
-      await authServer.deactivate();
-      const res = await authServer.delete();
-      expect(res.status).to.equal(204);
+      await client.deactivateAuthorizationServer(authServer.id);
+      const res = await client.deleteAuthorizationServer(authServer.id);
+      expect(res.statusCode).to.equal(204);
       try {
         await client.getAuthorizationServer(authServer.id);
       } catch (e) {

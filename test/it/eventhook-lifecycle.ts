@@ -19,17 +19,19 @@ describe('Event Hook Lifecycle API', () => {
     eventHook = await client.createEventHook(getMockEventHook());
   });
   afterEach(async () => {
-    await eventHook.deactivate();
-    await eventHook.delete();
+    await client.activateEventHook(eventHook.id);
+    await client.deactivateEventHook(eventHook.id);
+    // await eventHook.deactivate();
+    // await eventHook.delete();
   });
 
   it('should activate event hook', async () => {
-    const res = await eventHook.activate();
+    const res = await client.activateEventHook(eventHook.id);
     expect(res.status).to.equal('ACTIVE');
   });
 
   it('should deactive event hook', async () => {
-    const res = await eventHook.deactivate();
+    const res = await client.deactivateEventHook(eventHook.id);
     expect(res.status).to.equal('INACTIVE');
   });
 

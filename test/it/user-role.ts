@@ -54,7 +54,7 @@ describe('User role API', () => {
     it('should unassign role from user', async () => {
       const res = await client.removeRoleFromUser(user.id, role.id);
       //const res = await user.removeRole(role.id);
-      expect(res.status).to.equal(204);
+      expect(res.statusCode).to.equal(204);
     });
   });
 
@@ -99,7 +99,7 @@ describe('User role API', () => {
       it('should add app target to admin user', async () => {
         const res = await client.addApplicationTargetToAdminRoleForUser(user.id, role.id, application.name);
         // const res = await role.addAppTargetToAdminRoleForUser(user.id, application.name);
-        expect(res.status).to.equal(204);
+        expect(res.statusCode).to.equal(204);
       });
     });
 
@@ -138,7 +138,7 @@ describe('User role API', () => {
       it('should add group target to admin user', async () => {
         const res = await client.addGroupTargetToRole(user.id, role.id, group.id);
         // const res = await user.addGroupTarget(role.id, group.id);
-        expect(res.status).to.equal(204);
+        expect(res.statusCode).to.equal(204);
       });
     });
 

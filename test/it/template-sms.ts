@@ -28,7 +28,8 @@ describe('SmsTemplate API', () => {
     });
 
     afterEach(async () => {
-      await template.delete();
+      await client.deleteSmsTemplate(template.id);
+      //await template.delete();
     });
 
     it('should return a Collection', async () => {
@@ -56,7 +57,8 @@ describe('SmsTemplate API', () => {
   describe('Create template', () => {
     let template;
     afterEach(async () => {
-      await template.delete();
+      await client.deleteSmsTemplate(template.id);
+      //await template.delete();
     });
 
     it('should return correct model', async () => {
@@ -75,7 +77,8 @@ describe('SmsTemplate API', () => {
     });
 
     afterEach(async () => {
-      await template.delete();
+      await client.deleteSmsTemplate(template.id);
+      //await template.delete();
     });
 
     it('should not get template after deletion', async () => {
@@ -95,7 +98,8 @@ describe('SmsTemplate API', () => {
     });
 
     afterEach(async () => {
-      await template.delete();
+      await client.deleteSmsTemplate(template.id);
+      //await template.delete();
     });
 
     it('should get SmsTemplate by id', async () => {
@@ -112,7 +116,8 @@ describe('SmsTemplate API', () => {
     });
 
     afterEach(async () => {
-      await template.delete();
+      await client.deleteSmsTemplate(template.id);
+      //await template.delete();
     });
 
     it('should update template name property', async () => {
@@ -132,10 +137,11 @@ describe('SmsTemplate API', () => {
     });
 
     afterEach(async () => {
-      await template.delete();
+      await client.deleteSmsTemplate(template.id);
+      //await template.delete();
       // Clean up updated resource here
       // Since new resource might be created if template type is changed during update.
-      await updatedTemplate.delete();
+      await client.deleteSmsTemplate(updatedTemplate.id);
     });
 
     it('should update all properties in template', async () => {

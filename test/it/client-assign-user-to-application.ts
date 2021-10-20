@@ -47,8 +47,10 @@ describe('client.assignUserToApplication()', () => {
       expect(createdAppUser._links.user.href).to.contain(createdUser.id);
     } finally {
       if (createdApplication) {
-        await createdApplication.deactivate();
-        await createdApplication.delete();
+        await client.deactivateApplication(createdApplication.id);
+        await client.deleteApplication(createdApplication.id);
+        //await client.deactivateApplication(createdApplication.id);
+        //await client.deleteApplication(createdApplication.id);
       }
       if (createdUser) {
         await utils.cleanup(client, createdUser);

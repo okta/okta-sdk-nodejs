@@ -23,7 +23,7 @@ describe('Authorization Server Credential API', () => {
     authServer = await client.createAuthorizationServer(getMockAuthorizationServer());
   });
   after(async () => {
-    await authServer.delete();
+    await client.deleteAuthorizationServer(authServer.id);
   });
 
   describe('Get Authorization Server Keys', () => {

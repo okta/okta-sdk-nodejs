@@ -1,6 +1,17 @@
 const models = require('../src/models');
 const expect = require('chai').expect;
 const faker = require('faker');
+const fetch = require('node-fetch');
+
+async function postJson(url, payload) {
+
+  const response = await fetch(url, {
+    method: 'post',
+    body: JSON.stringify(payload),
+    headers: {'Content-Type': 'application/json'}
+  });
+  return await response.json();
+}
 
 function delay(t) {
   return new Promise(function (resolve) {
@@ -24,9 +35,7 @@ function authenticateUser(client, userName, password) {
 
   const url = `${client.baseUrl}/api/v1/authn`;
 
-  return client.http.postJson(url, {
-    body: data
-  });
+  return postJson(url, data);
 }
 
 function validateGroup(group, expectedGroup) {
@@ -35,9 +44,9 @@ function validateGroup(group, expectedGroup) {
   expect(group.type).to.equal('OKTA_GROUP');
 }
 
-async function isUserInGroup(groupUser, group) {
+async function isUserInGroup(client, groupUser, group) {
   let userPresent = false;
-  await group.listUsers().each(user => {
+  (await client.listGroupUsers(group.id)).forEach(user => {
     if (user.id === groupUser.id) {
       userPresent = true;
       return false;
@@ -86,7 +95,7 @@ async function isUserPresent(client, expectedUser, queryParameters) {
 
 async function isGroupPresent(client, expectedGroup, queryParameters) {
   let groupPresent = false;
-  await client.listGroups(queryParameters).each(group => {
+  (await client.listGroups(queryParameters)).forEach(group => {
     expect(group).to.be.an.instanceof(models.Group);
     if (group.profile.name === expectedGroup.profile.name) {
       groupPresent = true;
@@ -171,8 +180,8 @@ async function cleanup(client, users = null, groups = null) {
 async function removeAppByLabel(client, label) {
   return (await client.listApplications()).forEach(async (application) => {
     if (application.label === label) {
-      await application.deactivate();
-      return application.delete();
+      await client.deactivateApplication(application.id);
+      return client.deleteApplication(application.id);
     }
   });
 }

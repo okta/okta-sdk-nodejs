@@ -26,19 +26,19 @@ describe('Application.delete()', () => {
     try {
       await utils.removeAppByLabel(client, application.label);
       createdApplication = await client.createApplication(application);
-      await createdApplication.deactivate()
+      await client.deactivateApplication(createdApplication.id)
         .then(response => {
           expect(response.statusCode).to.equal(200);
         });
-      await createdApplication.delete()
+      await client.deleteApplication(createdApplication.id)
         .then(response => {
           expect(response.statusCode).to.equal(204);
           createdApplication = null;
         });
     } finally {
       if (createdApplication) {
-        await createdApplication.deactivate();
-        await createdApplication.delete();
+        await client.deactivateApplication(createdApplication.id);
+        await client.deleteApplication(createdApplication.id);
       }
     }
   });

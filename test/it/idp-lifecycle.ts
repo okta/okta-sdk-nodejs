@@ -1,3 +1,4 @@
+import { IdentityProvider } from './../../src/models/identityProvider';
 import { expect } from 'chai';
 import * as okta from '@okta/okta-sdk-nodejs';
 import getMockGenericOidcIdp = require('./mocks/generic-oidc-idp');
@@ -20,16 +21,19 @@ describe('Idp Lifecycle API', () => {
   });
 
   afterEach(async () => {
-    await idp.delete();
+    await client.deleteIdentityProvider(idp.id);
+    //await idp.delete();
   });
 
   it('should activate idp', async () => {
-    idp = await idp.activate();
-    expect(idp.status).to.equal('ACTIVE');
+    idp = await client.activateIdentityProvider(idp.id);
+    // idp = await idp.activate();
+    expect(idp.status).to.equal(IdentityProvider.StatusEnum.Active);
   });
 
   it('should deactive idp', async () => {
-    idp = await idp.deactivate();
-    expect(idp.status).to.equal('INACTIVE');
+    idp = await client.deactivateIdentityProvider(idp.id);
+    // idp = await idp.deactivate();
+    expect(idp.status).to.equal(IdentityProvider.StatusEnum.Inactive);
   });
 });

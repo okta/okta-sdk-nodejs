@@ -25,7 +25,8 @@ describe('Idp Crud API', () => {
     });
 
     afterEach(async () => {
-      await idp.delete();
+      await client.deleteIdentityProvider(idp.id);
+      //await idp.delete();
     });
 
     it('should return a Collection of IdentityProvider', async () => {
@@ -52,7 +53,8 @@ describe('Idp Crud API', () => {
   describe('Create idp', () => {
     let idp;
     afterEach(async () => {
-      await idp.delete();
+      await client.deleteIdentityProvider(idp.id);
+      //await idp.delete();
     });
 
     it('should create instance of IdentityProvider', async () => {
@@ -71,7 +73,8 @@ describe('Idp Crud API', () => {
     });
 
     afterEach(async () => {
-      await idp.delete();
+      await client.deleteIdentityProvider(idp.id);
+      //await idp.delete();
     });
 
     it('should get IdentityProvider by id', async () => {
@@ -89,13 +92,15 @@ describe('Idp Crud API', () => {
     });
 
     afterEach(async () => {
-      await idp.delete();
+      await client.deleteIdentityProvider(idp.id);
+      //await idp.delete();
     });
 
     it('should update all properties in template', async () => {
       const mockName = 'Mock update idp';
       idp.name = mockName;
-      updatedIdp = await idp.update();
+      updatedIdp = await client.updateIdentityProvider(idp.id, idp);
+      //updatedIdp = await idp.update();
       expect(updatedIdp.id).to.equal(idp.id);
       expect(updatedIdp.name).to.equal(mockName);
     });
@@ -108,7 +113,8 @@ describe('Idp Crud API', () => {
     });
 
     it('should not get idp after deletion', async () => {
-      await idp.delete();
+      await client.deleteIdentityProvider(idp.id);
+      //await idp.delete();
       try {
         await client.getIdentityProvider(idp.id);
       } catch (e) {

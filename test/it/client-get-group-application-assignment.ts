@@ -48,8 +48,8 @@ describe('client.getApplicationGroupAssignment()', () => {
       expect(groupLink.href).to.contain(createdGroup.id);
     } finally {
       if (createdApplication) {
-        await createdApplication.deactivate();
-        await createdApplication.delete();
+        await client.deactivateApplication(createdApplication.id);
+        await client.deleteApplication(createdApplication.id);
       }
       if (createdGroup) {
         await utils.cleanup(client, null, createdGroup);

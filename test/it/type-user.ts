@@ -26,7 +26,8 @@ describe('User Type API', () => {
       userType = await client.createUserType(getMockUserType());
     });
     afterEach(async () => {
-      await userType.delete();
+      await client.deleteUserType(userType.id);
+      //await userType.delete();
     });
 
     it('should return a Collection of UserType', async () => {
@@ -40,7 +41,8 @@ describe('User Type API', () => {
 
   describe('Create userType', () => {
     afterEach(async () => {
-      await userType.delete();
+      await client.deleteUserType(userType.id);
+      //await userType.delete();
     });
 
     it('should return UserType instance', async () => {
@@ -57,7 +59,8 @@ describe('User Type API', () => {
       userType = await client.createUserType(getMockUserType());
     });
     afterEach(async () => {
-      await userType.delete();
+      await client.deleteUserType(userType.id);
+      //await userType.delete();
     });
 
     it('should get userType by id', async () => {
@@ -74,12 +77,14 @@ describe('User Type API', () => {
       userType = await client.createUserType(mockType);
     });
     afterEach(async () => {
-      await userType.delete();
+      await client.deleteUserType(userType.id);
+      //await userType.delete();
     });
 
     it('should update name for userType', async () => {
       userType.displayName = faker.random.word();
-      const updatedUserType = await userType.update();
+      const updatedUserType = await client.updateUserType(userType.id, userType);
+      //const updatedUserType = await userType.update();
       expect(updatedUserType.id).to.equal(userType.id);
       expect(updatedUserType.displayName).to.equal(userType.displayName);
     });

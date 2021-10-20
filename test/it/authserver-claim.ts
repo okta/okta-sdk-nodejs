@@ -107,7 +107,7 @@ describe('Authorization Server Claim API', () => {
 
     it('should not get claim after deletion', async () => {
       const res = await authServer.deleteOAuth2Claim(claim.id);
-      expect(res.status).to.equal(204);
+      expect(res.statusCode).to.equal(204);
       try {
         await authServer.getOAuth2Claim(claim.id);
       } catch (e) {

@@ -70,7 +70,8 @@ describe('Feature Crud API', () => {
     afterEach(async () => {
       if (firstFeatureInList) {
         try {
-          await firstFeatureInList.updateLifecycle(initialStatus === 'ENABLED' ? 'enable' : 'disable');
+          await client.listFeatureDependencies(firstFeatureInList.id);
+          //await firstFeatureInList.updateLifecycle(initialStatus === 'ENABLED' ? 'enable' : 'disable');
         } catch (err) {
           if (err.status === 405 && err.status === 400) {
             console.log(err);
@@ -83,7 +84,8 @@ describe('Feature Crud API', () => {
 
     it('should enable feature', async () => {
       if (firstFeatureInList) {
-        const feature = await firstFeatureInList.updateLifecycle('enable');
+        const feature = await client.updateFeatureLifecycle(firstFeatureInList.id, 'enable');
+        //const feature = await firstFeatureInList.updateLifecycle('enable');
         expect(feature.id).to.equal(firstFeatureInList.id);
         expect(feature.status).to.equal('ENABLED');
       }
@@ -106,8 +108,10 @@ describe('Feature Crud API', () => {
 
     it('should return a collection of Features', async () => {
       if (firstFeatureInList) {
-        const collection = await firstFeatureInList.getDependencies();
-        // expect(collection).not.to.equal(null);
+        const collection = await client.listFeatureDependencies(firstFeatureInList.id);
+
+        //const collection = await firstFeatureInList.getDependencies();
+        expect(collection).not.to.equal(null);
         await collection.forEach(dependency => {
           expect(dependency).to.be.instanceOf(Feature);
         });
@@ -123,8 +127,9 @@ describe('Feature Crud API', () => {
 
     it('should return a collection of Features', async () => {
       if (firstFeatureInList) {
-        const collection = await firstFeatureInList.getDependents();
-        // expect(collection).not.to.equal(null);
+        const collection = await client.listFeatureDependencies(firstFeatureInList.id);
+        // const collection = await firstFeatureInList.getDependents();
+        expect(collection).not.to.equal(null);
         collection.forEach(dependent => {
           expect(dependent).to.be.instanceOf(Feature);
         });

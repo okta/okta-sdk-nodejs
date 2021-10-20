@@ -30,15 +30,15 @@ describe('Application.update()', () => {
 
       const updatedLabel = faker.random.word();
       createdApplication.label = updatedLabel;
-      await createdApplication.update()
+      await client.updateApplication(createdApplication.id, createdApplication)
         .then(response => {
           expect(response.label).to.equal(updatedLabel);
         });
 
     } finally {
       if (createdApplication) {
-        await createdApplication.deactivate();
-        await createdApplication.delete();
+        await client.deactivateApplication(createdApplication.id);
+        await client.deleteApplication(createdApplication.id);
       }
     }
   });

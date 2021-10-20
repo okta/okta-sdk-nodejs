@@ -33,8 +33,8 @@ describe.skip('client.generateApplicationKey()', () => {
       expect(applicationKey).to.be.instanceof(JsonWebKey);
     } finally {
       if (createdApplication) {
-        await createdApplication.deactivate();
-        await createdApplication.delete();
+        await client.deactivateApplication(createdApplication.id);
+        await client.deleteApplication(createdApplication.id);
       }
     }
   });

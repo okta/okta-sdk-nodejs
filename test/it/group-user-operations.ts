@@ -43,13 +43,13 @@ describe('Group-Member API Tests', () => {
     // 2. Add user to the group and validate user present in group
     // await createdUser.addToGroup(createdGroup.id);
     await client.addUserToGroup(createdGroup.id, createdUser.id);
-    let userInGroup = await utils.isUserInGroup(createdUser, createdGroup);
+    let userInGroup = await utils.isUserInGroup(client, createdUser, createdGroup);
     expect(userInGroup).to.equal(true);
 
     // 3. Remove user from group and validate user removed
     // await createdGroup.removeUser(createdUser.id);
     await client.removeUserFromGroup(createdGroup.id, createdUser.id);
-    userInGroup = await utils.isUserInGroup(createdUser, createdGroup);
+    userInGroup = await utils.isUserInGroup(client, createdUser, createdGroup);
     expect(userInGroup).to.equal(false);
 
     // 4. Delete the group and user
