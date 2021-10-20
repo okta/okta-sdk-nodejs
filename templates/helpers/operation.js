@@ -315,7 +315,8 @@ const getModelMethodArgumentsAndReturnType = (method, modelName) => {
   const [args, returnType] = getOperationArgumentsAndReturnType(operation);
 
   operation.pathParams.forEach(param => {
-    const matchingArgument = method.arguments.find(argument => argument.dest === param.name);
+    const methodArguments = method.arguments || [];
+    const matchingArgument = methodArguments.find(argument => argument.dest === param.name);
     // path param should be added to model method arguments if its corresponding 'operation' param does not have src property set
     if (matchingArgument && matchingArgument.src) {
       args.delete(param.name);

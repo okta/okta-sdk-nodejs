@@ -206,7 +206,8 @@ js.process = ({spec, operations, models, handlebars}) => {
     const operation = method.operation;
 
     operation.pathParams.forEach(param => {
-      const matchingArgument = method.arguments.filter(argument => argument.dest === param.name)[0];
+      const methodArguments = method.arguments || [];
+      const matchingArgument = methodArguments.filter(argument => argument.dest === param.name)[0];
       if (!matchingArgument || !matchingArgument.src) {
         args.push(param.name);
       }
@@ -230,7 +231,8 @@ js.process = ({spec, operations, models, handlebars}) => {
     const operation = method.operation;
 
     operation.pathParams.forEach(param => {
-      const matchingArgument = method.arguments.filter(argument => argument.dest === param.name)[0];
+      const methodArguments = method.arguments || [];
+      const matchingArgument = methodArguments.filter(argument => argument.dest === param.name)[0];
       if (matchingArgument && matchingArgument.src) {
         args.push(`this.${matchingArgument.src}`);
       } else {
@@ -256,7 +258,8 @@ js.process = ({spec, operations, models, handlebars}) => {
     const operation = method.operation;
 
     operation.pathParams.forEach(param => {
-      const matchingArgument = method.arguments.filter(argument => argument.dest === param.name)[0];
+      const methodArguments = method.arguments || [];
+      const matchingArgument = methodArguments.filter(argument => argument.dest === param.name)[0];
       if (!matchingArgument || !matchingArgument.src) {
         args.push(`@param {${param.type}} ${param.name}`);
       }
