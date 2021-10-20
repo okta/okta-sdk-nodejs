@@ -18,7 +18,7 @@ describe('User grants API', () => {
   describe('List grants', () => {
     let user;
     beforeEach(async () => {
-      user = await client.createUser(getMockUser(), { activate: false });
+      user = await client.createUser(getMockUser(), false);
     });
     afterEach(async () => {
       await utils.cleanupUser(client, user);
@@ -26,7 +26,7 @@ describe('User grants API', () => {
 
     // Only test on if Collection is returned, since no api has been provided to assign grant to user
     it('should return a Collection', async () => {
-      const grants = await user.listGrants();
+      const grants = await client.listUserGrants(user.id);
       expect(grants).not.to.equal(null);
     });
   });

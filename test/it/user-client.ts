@@ -26,7 +26,7 @@ describe('User client API', () => {
 
     // Only test on if Collection is returned, since no api has been provided to assign client to user
     it('should return a Collection', async () => {
-      const applinks = await user.listClients();
+      const applinks = await client.listUserClients(user.id);
       expect(applinks).not.to.equal(null);
     });
   });

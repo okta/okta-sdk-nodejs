@@ -1,3 +1,5 @@
+import { RoleType } from './../../src/models/roleType';
+import { Role } from './../../src/models/role';
 import faker = require('faker');
 
 import { expect } from 'chai';
@@ -34,19 +36,21 @@ describe('User Role API Tests', () => {
 
     // Cleanup the user & group if they exist
     await utils.cleanup(client, newUser, newGroup);
-    const queryParameters = { activate : true };
-    const createdUser = await client.createUser(newUser, queryParameters);
+    const queryParameters = true;
+    const createdUser = await client.createUser(newUser, true);
     const createdGroup = await client.createGroup(newGroup);
 
     // 2. Assign USER_ADMIN role to the user
-    const roleType = { type: 'USER_ADMIN'  };
-    const role = await createdUser.assignRole(roleType);
+    const roleType = { type: RoleType.UserAdmin };
+    const role = await client.assignRoleToUser(createdUser.id, roleType);
+    //const role = await createdUser.assignRole(roleType);
 
     // 3. Add Group Target to User Admin Role
-    await createdUser.addGroupTarget(role.id, createdGroup.id);
+    await client.addGroupTargetToRole(createdUser.id, role.id, createdGroup.id);
+    //await createdUser.addGroupTarget(role.id, createdGroup.id);
 
     // 4. List Group Targets for Role
-    let groupTargetPresent = await utils.isGroupTargetPresent(createdUser, createdGroup, role);
+    let groupTargetPresent = await utils.isGroupTargetPresent(client, createdUser, createdGroup, role);
     expect(groupTargetPresent).to.equal(true);
 
     // 5. Remove Group Target from Admin User Role and verify removed
@@ -61,10 +65,12 @@ describe('User Role API Tests', () => {
     await utils.cleanup(client, null, group);
 
     const adminGroup = await client.createGroup(group);
-    await createdUser.addGroupTarget(role.id, adminGroup.id);
+    await client.addGroupTargetToRole(createdUser.id, role.id, createdGroup.id);
+    // await createdUser.addGroupTarget(role.id, adminGroup.id);
 
-    await createdUser.removeGroupTarget(role.id, createdGroup.id);
-    groupTargetPresent = await utils.isGroupTargetPresent(createdUser, createdGroup, role);
+    await client.removeGroupTargetFromRole(createdUser.id, role.id, createdGroup.id);
+    // await createdUser.removeGroupTarget(role.id, createdGroup.id);
+    groupTargetPresent = await utils.isGroupTargetPresent(client, createdUser, createdGroup, role);
     expect(groupTargetPresent).to.equal(false);
 
     // 6. Delete the groups and user

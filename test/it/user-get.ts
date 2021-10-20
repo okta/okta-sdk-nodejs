@@ -27,8 +27,8 @@ describe('User API Tests', () => {
     // Cleanup the user if user exists
     await utils.cleanup(client, newUser);
 
-    const queryParameters = { activate : false };
-    const createdUser = await client.createUser(newUser, queryParameters);
+    const queryParameters = false;
+    const createdUser = await client.createUser(newUser, false);
     utils.validateUser(createdUser, newUser);
 
     // 2. Get the user by user ID
@@ -40,7 +40,7 @@ describe('User API Tests', () => {
     utils.validateUser(userByLogin, createdUser);
 
     // 4. Delete the user
-    await utils.deleteUser(createdUser);
+    await utils.deleteUser(client, createdUser);
 
     // 5. Verify user was deleted
     let err;

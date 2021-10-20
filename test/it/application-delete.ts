@@ -28,11 +28,11 @@ describe('Application.delete()', () => {
       createdApplication = await client.createApplication(application);
       await createdApplication.deactivate()
         .then(response => {
-          expect(response.status).to.equal(200);
+          expect(response.statusCode).to.equal(200);
         });
       await createdApplication.delete()
         .then(response => {
-          expect(response.status).to.equal(204);
+          expect(response.statusCode).to.equal(204);
           createdApplication = null;
         });
     } finally {

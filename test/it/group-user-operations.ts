@@ -36,7 +36,7 @@ describe('Group-Member API Tests', () => {
     // Cleanup the user & group if they exist
     await utils.cleanup(client, newUser, newGroup);
 
-    // const queryParameters = { activate : false };
+    // const queryParameters = false;
     const createdUser = await client.createUser(newUser, false);
     const createdGroup = await client.createGroup(newGroup);
 

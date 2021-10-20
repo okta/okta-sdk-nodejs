@@ -48,12 +48,12 @@ describe('Factors API', () => {
     const createdFactor = await client.enrollFactor(createdUser.id, newFactor);
     // const response = await createdFactor.delete(createdUser.id);
     const response = await client.deleteFactor(createdUser.id, createdFactor.id);
-    expect(response.status).to.equal(204);
+    expect(response.statusCode).to.equal(204);
     let factor;
     try {
       factor = await client.getFactor(createdUser.id, createdFactor.id);
     } catch (e) {
-      expect(e.status).to.equal(404);
+      expect(e.statusCode).to.equal(404);
     }
     expect(factor).to.be.undefined;
   });

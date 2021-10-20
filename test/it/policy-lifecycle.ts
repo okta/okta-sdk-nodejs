@@ -31,11 +31,11 @@ describe('Policy Lifecycle API', () => {
 
   it('should activate policy', async () => {
     const response = await policy.activate();
-    expect(response.status).to.equal(204);
+    expect(response.statusCode).to.equal(204);
   });
 
   it('should deactive policy', async () => {
     const response = await policy.deactivate();
-    expect(response.status).to.equal(204);
+    expect(response.statusCode).to.equal(204);
   });
 });

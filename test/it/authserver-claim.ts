@@ -111,7 +111,7 @@ describe('Authorization Server Claim API', () => {
       try {
         await authServer.getOAuth2Claim(claim.id);
       } catch (e) {
-        expect(e.status).to.equal(404);
+        expect(e.statusCode).to.equal(404);
       }
     });
   });

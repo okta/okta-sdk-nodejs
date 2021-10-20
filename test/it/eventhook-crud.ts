@@ -108,7 +108,7 @@ describe('Event Hook Crud API', () => {
       try {
         await client.getEventHook(eventHook.id);
       } catch (e) {
-        expect(e.status).to.equal(404);
+        expect(e.statusCode).to.equal(404);
       }
     });
   });

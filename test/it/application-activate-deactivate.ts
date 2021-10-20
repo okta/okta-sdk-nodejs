@@ -28,7 +28,7 @@ describe('Application.activate() / Application.deactivate()', () => {
       createdApplication = await client.createApplication(application);
       await createdApplication.deactivate()
         .then(response => {
-          expect(response.status).to.equal(200);
+          expect(response.statusCode).to.equal(200);
         });
       await client.getApplication(createdApplication.id)
         .then(application => {
@@ -36,7 +36,7 @@ describe('Application.activate() / Application.deactivate()', () => {
         });
       await createdApplication.activate()
         .then(response => {
-          expect(response.status).to.equal(200);
+          expect(response.statusCode).to.equal(200);
         });
       await client.getApplication(createdApplication.id)
         .then(application => {

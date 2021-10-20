@@ -24,11 +24,12 @@ describe('User idp API', () => {
   let user;
   before(async () => {
     idp = await client.createIdentityProvider(getMockGenericOidcIdp());
-    user = await client.createUser(getMockUser(), { activate: false });
+    user = await client.createUser(getMockUser(), false);
   });
 
   after(async () => {
-    await idp.delete();
+    await client.deleteIdentityProvider(idp.id);
+    // await idp.delete();
     await utils.cleanupUser(client, user);
   });
 

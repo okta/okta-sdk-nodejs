@@ -86,7 +86,7 @@ describe('Linked Object API', () => {
         try {
           await client.getLinkedObjectDefinition(linkedObject.primary.name);
         } catch (e) {
-          expect(e.status).to.equal(404);
+          expect(e.statusCode).to.equal(404);
         }
       });
     });

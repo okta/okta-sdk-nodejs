@@ -83,7 +83,7 @@ describe('SmsTemplate API', () => {
       try {
         await client.getSmsTemplate(template.id);
       } catch (e) {
-        expect(e.status).to.equal(404);
+        expect(e.statusCode).to.equal(404);
       }
     });
   });

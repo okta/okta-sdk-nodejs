@@ -35,7 +35,7 @@ describe('Group-Rule API tests', () => {
     // Cleanup the user & group if they exist
     await utils.cleanup(client, newUser, newGroup);
 
-    // const queryParameters = { activate : true };
+    // const queryParameters = true;
     const createdUser = await client.createUser(newUser, true);
     const createdGroup = await client.createGroup(newGroup);
 

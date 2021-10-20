@@ -117,7 +117,7 @@ describe('Policy Rule API', () => {
         try {
           await policy.getPolicyRule(rule.id);
         } catch (e) {
-          expect(e.status).to.equal(404);
+          expect(e.statusCode).to.equal(404);
         }
       });
     });
@@ -134,12 +134,12 @@ describe('Policy Rule API', () => {
 
     it('should activate rule', async () => {
       const response = await rule.activate(policy.id);
-      expect(response.status).to.equal(204);
+      expect(response.statusCode).to.equal(204);
     });
 
     it('should deactive rule', async () => {
       const response = await rule.deactivate(policy.id);
-      expect(response.status).to.equal(204);
+      expect(response.statusCode).to.equal(204);
     });
   });
 });

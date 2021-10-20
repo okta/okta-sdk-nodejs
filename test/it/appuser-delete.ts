@@ -42,7 +42,7 @@ describe('AppUser.delete()', () => {
       });
       await createdAppUser.delete(createdApplication.id)
         .then(response => {
-          expect(response.status).to.equal(204);
+          expect(response.statusCode).to.equal(204);
         });
     } finally {
       if (createdApplication) {

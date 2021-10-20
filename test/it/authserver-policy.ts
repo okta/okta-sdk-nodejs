@@ -70,7 +70,7 @@ describe('Authorization Server Policies API', () => {
       try {
         await policyFromGet.getPolicyRule(authServer.id, policyRule.id);
       } catch (e) {
-        expect(e.status).to.equal(404);
+        expect(e.statusCode).to.equal(404);
       }
     });
 
@@ -92,12 +92,12 @@ describe('Authorization Server Policies API', () => {
       expect(policyRuleFromGet.status).to.equal('ACTIVE');
 
       let response = await policyRuleFromGet.deactivate(authServer.id, policy.id);
-      expect(response.status).to.equal(204);
+      expect(response.statusCode).to.equal(204);
       policyRuleFromGet = await policyFromGet.getPolicyRule(authServer.id, policyRule.id);
       expect(policyRuleFromGet.status).to.equal('INACTIVE');
 
       response = await policyRuleFromGet.activate(authServer.id, policy.id);
-      expect(response.status).to.equal(204);
+      expect(response.statusCode).to.equal(204);
       policyRuleFromGet = await policyFromGet.getPolicyRule(authServer.id, policyRule.id);
       expect(policyRuleFromGet.status).to.equal('ACTIVE');
     });
@@ -185,7 +185,7 @@ describe('Authorization Server Policies API', () => {
       try {
         await authServer.getPolicy(policy.id);
       } catch (e) {
-        expect(e.status).to.equal(404);
+        expect(e.statusCode).to.equal(404);
       }
     });
   });

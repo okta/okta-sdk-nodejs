@@ -164,12 +164,12 @@ describe('Policy Scenarios', () => {
     const response = await client.deletePolicy(retrievedPolicy.id);
     // const response = await retrievedPolicy.delete();
 
-    expect(response.status).to.equal(204);
+    expect(response.statusCode).to.equal(204);
     let policy;
     try {
       policy = await client.getPolicy(createdPolicy.id);
     } catch (e) {
-      expect(e.status).to.equal(404);
+      expect(e.statusCode).to.equal(404);
     }
     expect(policy).to.be.undefined;
 

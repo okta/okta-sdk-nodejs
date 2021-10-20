@@ -124,7 +124,7 @@ describe('Policy Crud API', () => {
       try {
         await client.getPolicy(policy.id);
       } catch (e) {
-        expect(e.status).to.equal(404);
+        expect(e.statusCode).to.equal(404);
       }
     });
   });

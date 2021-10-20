@@ -27,7 +27,7 @@ describe('User API Tests', () => {
     // Cleanup the user if user exists
     await utils.cleanup(client, newUser);
 
-    const queryParameters = { activate : true };
+    const queryParameters = true;
     const createdUser = await client.createUser(newUser, true);
     utils.validateUser(createdUser, newUser);
 
@@ -55,7 +55,7 @@ describe('User API Tests', () => {
     // Cleanup the user if user exists
     await utils.cleanup(client, newUser);
 
-    const queryParameters = { activate : true };
+    const queryParameters = true;
     const createdUser = await client.createUser(newUser, true);
     utils.validateUser(createdUser, newUser);
 

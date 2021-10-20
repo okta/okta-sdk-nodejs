@@ -28,7 +28,7 @@ describe('User Role API Tests', () => {
     // Cleanup the user if user exists
     await utils.cleanup(client, newUser);
 
-    // const queryParameters = { activate : true };
+    // const queryParameters = true;
     const createdUser = await client.createUser(newUser, true);
     utils.validateUser(createdUser, newUser);
 
@@ -38,7 +38,7 @@ describe('User Role API Tests', () => {
     // const role = await createdUser.assignRole(roleType);
 
     // 3. List roles for the user and verify added role
-    let hasRole = await utils.doesUserHaveRole(createdUser, 'USER_ADMIN');
+    let hasRole = await utils.doesUserHaveRole(client, createdUser, 'USER_ADMIN');
     expect(hasRole).to.equal(true);
 
     // 4. Remove role for the user
@@ -46,7 +46,7 @@ describe('User Role API Tests', () => {
     // await createdUser.removeRole(role.id);
 
     // 5. List roles for user and verify role was removed
-    hasRole = await utils.doesUserHaveRole(createdUser, 'USER_ADMIN');
+    hasRole = await utils.doesUserHaveRole(client, createdUser, 'USER_ADMIN');
     expect(hasRole).to.equal(false);
 
     // 6. Delete the user

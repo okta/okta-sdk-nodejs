@@ -27,7 +27,7 @@ describe('User API Tests', () => {
     // Cleanup the user if user exists
     await utils.cleanup(client, newUser);
 
-    const queryParameters = { activate : false };
+    const queryParameters = false;
     const createdUser = await client.createUser(newUser, queryParameters);
     utils.validateUser(createdUser, newUser);
 
@@ -36,7 +36,8 @@ describe('User API Tests', () => {
     await utils.delay(1000);
     createdUser.profile.nickName = 'Batman';
     // TODO: receiving 403: invalid session
-    const profileUpdateUser = await createdUser.update();
+    // const profileUpdateUser = await createdUser.update();
+    const profileUpdateUser = await client.updateUser(createdUser.id, createdUser);
     expect(new Date(profileUpdateUser.lastUpdated)).to.be.gt(new Date(createdUser.lastUpdated));
 
     const updatedUser = await client.getUser(createdUser.id);

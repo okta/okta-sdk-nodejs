@@ -59,7 +59,7 @@ describe('Sessions API', () => {
     try {
       sess1 = await client.getSession(session1.id);
     } catch (e) {
-      expect(e.status).to.equal(404);
+      expect(e.statusCode).to.equal(404);
     }
     expect(sess1).to.be.undefined;
 
@@ -68,7 +68,7 @@ describe('Sessions API', () => {
     try {
       sess2 = await client.getSession(session2.id);
     } catch (e) {
-      expect(e.status).to.equal(404);
+      expect(e.statusCode).to.equal(404);
     }
     expect(sess2).to.be.undefined;
   });

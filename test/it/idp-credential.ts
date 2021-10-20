@@ -88,7 +88,7 @@ describe('Idp credential API', () => {
         try {
           await client.getIdentityProviderKey(key.kid);
         } catch (e) {
-          expect(e.status).to.equal(404);
+          expect(e.statusCode).to.equal(404);
         }
       });
     });
@@ -137,7 +137,7 @@ describe('Idp credential API', () => {
         try {
           csr = await idp.getSigningCsr(csr.id);
         } catch (e) {
-          expect(e.status).to.equal(404);
+          expect(e.statusCode).to.equal(404);
         }
       });
     });

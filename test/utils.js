@@ -64,14 +64,17 @@ async function waitTillUserInGroup(user, group, condition) {
   return userInGroup;
 }
 
-async function deleteUser(user) {
-  await user.deactivate();
-  await user.delete();
+async function deleteUser(client, user) {
+  // await user.deactivate();
+  // await user.delete();
+  await client.deactivateUser(user.id);
+  await client.deactivateOrDeleteUser(user.id);
 }
 
 async function isUserPresent(client, expectedUser, queryParameters) {
   let userPresent = false;
-  await client.listUsers(queryParameters).each(user => {
+  // const allUsers = await client.listUsers();
+  (await client.listUsers(queryParameters)).forEach(user => {
     expect(user).to.be.an.instanceof(models.User);
     if (user.profile.login === expectedUser.profile.login) {
       userPresent = true;
@@ -93,9 +96,9 @@ async function isGroupPresent(client, expectedGroup, queryParameters) {
   return groupPresent;
 }
 
-async function doesUserHaveRole(user, roleType) {
+async function doesUserHaveRole(client, user, roleType) {
   let hasRole = false;
-  await user.listAssignedRoles().each(role => {
+  (await client.listAssignedRolesForUser(user.id)).forEach(role => {
     expect(role).to.be.an.instanceof(models.Role);
     if (role.type === roleType) {
       hasRole = true;
@@ -105,10 +108,10 @@ async function doesUserHaveRole(user, roleType) {
   return hasRole;
 }
 
-async function isGroupTargetPresent(user, userGroup, role) {
+async function isGroupTargetPresent(client, user, userGroup, role) {
   let groupTargetPresent = false;
-  const groupTargets = user.listGroupTargets(role.id);
-  await groupTargets.each(group => {
+  const groupTargets = await client.listGroupTargetsForGroupRole(userGroup.id, role.id);
+  await groupTargets.forEach(group => {
     if (group.profile.name === userGroup.profile.name) {
       groupTargetPresent = true;
       return false;
@@ -125,7 +128,7 @@ async function cleanupUser(client, user) {
   try {
     const existingUser = await client.getUser(user.profile.login);
     await client.deactivateUser(existingUser.id);
-    await client.deleteUser(existingUser.id);
+    await client.deactivateOrDeleteUser(existingUser.id);
     // await existingUser.deactivate();
     // await existingUser.delete();
   } catch (err) {

@@ -54,7 +54,7 @@ describe('Sessions API', () => {
     try {
       sess = await client.getSession(session.id);
     } catch (e) {
-      expect(e.status).to.equal(404);
+      expect(e.statusCode).to.equal(404);
     }
     expect(sess).to.be.undefined;
   });

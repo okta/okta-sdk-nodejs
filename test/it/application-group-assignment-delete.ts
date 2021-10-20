@@ -39,7 +39,7 @@ describe('ApplicationGroupAssignment.delete(:appId)', () => {
       const groupAssignment = await createdApplication.createApplicationGroupAssignment(createdGroup.id);
       await groupAssignment.delete(createdApplication.id)
         .then(response => {
-          expect(response.status).to.equal(204);
+          expect(response.statusCode).to.equal(204);
         });
     } finally {
       if (createdApplication) {
