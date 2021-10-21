@@ -1175,6 +1175,97 @@ class GeneratedApiClient {
 
   /**
    *
+   * @description
+   * Success
+   * @returns {Collection} A collection that will yield {@link Authenticator} instances.
+   */
+  listAuthenticators() {
+    let url = `${this.baseUrl}/api/v1/authenticators`;
+
+    return new Collection(
+      this,
+      url,
+      new ModelFactory(models.Authenticator),
+    );
+  }
+
+  /**
+   *
+   * @param authenticatorId {String}
+   * @description
+   * Success
+   * @returns {Promise<Authenticator>}
+   */
+  getAuthenticator(authenticatorId) {
+    if (!authenticatorId) {
+      return Promise.reject(new Error('OKTA API getAuthenticator parameter authenticatorId is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/authenticators/${authenticatorId}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/authenticators/${authenticatorId}`
+    ];
+
+    const request = this.http.getJson(
+      url,
+      null,
+      { resources }
+    );
+    return request.then(jsonRes => new models.Authenticator(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param authenticatorId {String}
+   * @description
+   * Success
+   * @returns {Promise<Authenticator>}
+   */
+  activateAuthenticator(authenticatorId) {
+    if (!authenticatorId) {
+      return Promise.reject(new Error('OKTA API activateAuthenticator parameter authenticatorId is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/authenticators/${authenticatorId}/lifecycle/activate`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/authenticators/${authenticatorId}`
+    ];
+
+    const request = this.http.postJson(
+      url,
+      null,
+      { resources }
+    );
+    return request.then(jsonRes => new models.Authenticator(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param authenticatorId {String}
+   * @description
+   * Success
+   * @returns {Promise<Authenticator>}
+   */
+  deactivateAuthenticator(authenticatorId) {
+    if (!authenticatorId) {
+      return Promise.reject(new Error('OKTA API deactivateAuthenticator parameter authenticatorId is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/authenticators/${authenticatorId}/lifecycle/deactivate`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/authenticators/${authenticatorId}`
+    ];
+
+    const request = this.http.postJson(
+      url,
+      null,
+      { resources }
+    );
+    return request.then(jsonRes => new models.Authenticator(jsonRes, this));
+  }
+
+  /**
+   *
    * @param {Object} queryParams Map of query parameters to add to this request
    * @param {String} [queryParams.q]
    * @param {String} [queryParams.limit]
