@@ -1,6 +1,18 @@
 # Okta Node SDK Changelog
 
 ## 6.0.0
+- [#287](https://github.com/okta/okta-sdk-nodejs/pull/287) Adds Authenticators API
+  - Models/Enum:
+    - added `Authenticator`
+    - added `AuthenticatorSettings`
+    - added `AuthenticatorStatus`
+    - added `AuthenticatorType`
+  - Client:
+    - added method `listAuthenticators`
+    - added method `getAuthenticator`
+    - added method `activateAuthenticator`
+    - added method `deactivateAuthenticator`
+
 - [#278](https://github.com/okta/okta-sdk-nodejs/pull/278) Adds Org, Group Schema, Domain API, introduces enum modules. Please see list below for detailed information:
   - Models/Enum:
     - added `AllowedForEnum`
