@@ -228,6 +228,16 @@ function getBookmarkApplication() {
   };
 }
 
+async function verifyOrgIsOIE(client) {
+  const url = `${client.baseUrl}/.well-known/okta-organization`;
+  const request = {
+    method: 'get'
+  };
+  const resp = await client.http.http(url, request);
+  const body = await resp.json();
+  return body.pipeline === 'idx';
+}
+
 module.exports = {
   delay: delay,
   validateUser: validateUser,
@@ -247,4 +257,5 @@ module.exports = {
   getMockProfile: getMockProfile,
   getBookmarkApplication: getBookmarkApplication,
   getOIDCApplication: getOIDCApplication,
+  verifyOrgIsOIE
 };
