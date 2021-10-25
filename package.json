@@ -31,8 +31,6 @@
   "license": "Apache-2.0",
   "repository": "https://github.com/okta/okta-sdk-nodejs",
   "dependencies": {
-    "@types/node-fetch": "^2.5.8",
-    "@types/rasha": "^1.2.2",
     "deep-copy": "^1.4.2",
     "isomorphic-fetch": "^3.0.0",
     "js-yaml": "^4.1.0",
@@ -46,6 +44,8 @@
     "@okta/openapi": "^2.7.2",
     "@types/chai": "^4.2.17",
     "@types/mocha": "^8.2.2",
+    "@types/node-fetch": "^2.5.8",
+    "@types/rasha": "^1.2.2",
     "@typescript-eslint/eslint-plugin": "^4.15.2",
     "@typescript-eslint/parser": "^4.15.2",
     "chai": "^4.2.0",
