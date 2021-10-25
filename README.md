@@ -557,7 +557,7 @@ If providing a yaml file, the structure should be the same as the properties tha
 ```yaml
 okta:
   client:
-    orgUrl: 'https://dev-1234.oktapreview.com/',
+    orgUrl: 'https://dev-1234.oktapreview.com/'
     token: 'xYzabc'
 ```
 
