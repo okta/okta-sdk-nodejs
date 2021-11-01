@@ -11,6 +11,35 @@
  */
 
 const _ = require('lodash');
+const { pipeline, Stream, PassThrough } = require('stream')
+
+
+function cloneNodeFetchResponse(response, highWaterMark) {
+  function setInternalsBodyStream(responseBody, stream) {
+    let internalsSymbol = Object.getOwnPropertySymbols(responseBody).pop();
+    responseBody[internalsSymbol].body = stream;
+  }
+
+  if (response && response.body instanceof Stream) {
+    let body = response.body;
+    let s1 = new PassThrough({highWaterMark});
+    let s2 = new PassThrough({highWaterMark});
+    body.pipe(s1);
+    body.pipe(s2);
+    setInternalsBodyStream(response, s1)
+
+    return new Response(s2, {
+      url: response.url,
+      status: response.status,
+      statusText: response.statusText,
+      headers: response.headers,
+      ok: response.ok,
+      redirected: response.redirected
+    });
+  }
+
+  throw new Error('Unable to clone response');
+}
 
 module.exports = function defaultCacheMiddleware(ctx, next) {
   let cacheCheck, cacheHit = false;
@@ -42,8 +71,8 @@ module.exports = function defaultCacheMiddleware(ctx, next) {
         return;
       }
       if (ctx.req.method.toLowerCase() === 'get') {
-      // store response in cache
-        return ctx.res.clone().text()
+        // store response in cache
+        return cloneNodeFetchResponse(ctx.res, 5 * 1024*1024).text()
           .then(text => {
             try {
               const selfHref = _.get(JSON.parse(text), '_links.self.href');
