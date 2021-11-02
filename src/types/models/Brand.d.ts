@@ -13,20 +13,26 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-var OrgContactUser = require('./OrgContactUser');
+import { Resource } from '../resource';
+import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 
 
-/**
- * @class UserIdString
- * @extends OrgContactUser
- * @property { string } userId
- */
-class UserIdString extends OrgContactUser {
-  constructor(resourceJson, client) {
-    super(resourceJson, client);
+declare class Brand extends Resource {
+  constructor(resourceJson: Record<string, unknown>, client: Client);
 
-  }
+  readonly _links: {[name: string]: unknown};
+  agreeToCustomPrivacyPolicy: boolean;
+  customPrivacyPolicyUrl: string;
+  readonly id: string;
+  removePoweredByOkta: boolean;
 
+  update(): Promise<Brand>;
 }
 
-module.exports = UserIdString;
+type BrandOptions = OptionalKnownProperties<Brand>;
+
+export {
+  Brand,
+  BrandOptions
+};

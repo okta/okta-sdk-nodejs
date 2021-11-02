@@ -13,20 +13,11 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-var OrgContactUser = require('./OrgContactUser');
+var EndUserDashboardTouchPointVariant;
+(function (EndUserDashboardTouchPointVariant) {
+  EndUserDashboardTouchPointVariant['OKTA_DEFAULT'] = 'OKTA_DEFAULT';
+  EndUserDashboardTouchPointVariant['WHITE_LOGO_BACKGROUND'] = 'WHITE_LOGO_BACKGROUND';
+  EndUserDashboardTouchPointVariant['FULL_THEME'] = 'FULL_THEME';
+}(EndUserDashboardTouchPointVariant || (EndUserDashboardTouchPointVariant = {})));
 
-
-/**
- * @class UserIdString
- * @extends OrgContactUser
- * @property { string } userId
- */
-class UserIdString extends OrgContactUser {
-  constructor(resourceJson, client) {
-    super(resourceJson, client);
-
-  }
-
-}
-
-module.exports = UserIdString;
+module.exports = EndUserDashboardTouchPointVariant;

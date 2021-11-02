@@ -13,12 +13,12 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-import { Resource } from '../resource';
+import { OrgContactUser } from './OrgContactUser';
 import { Client } from '../client';
 import { OptionalKnownProperties } from '../optional-known-properties-type';
 
 
-declare class UserIdString extends Resource {
+declare class UserIdString extends OrgContactUser {
   constructor(resourceJson: Record<string, unknown>, client: Client);
 
   userId: string;

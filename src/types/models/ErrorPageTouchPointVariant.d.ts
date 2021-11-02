@@ -13,20 +13,12 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-var OrgContactUser = require('./OrgContactUser');
-
-
-/**
- * @class UserIdString
- * @extends OrgContactUser
- * @property { string } userId
- */
-class UserIdString extends OrgContactUser {
-  constructor(resourceJson, client) {
-    super(resourceJson, client);
-
-  }
-
+declare enum ErrorPageTouchPointVariant {
+  OKTA_DEFAULT = 'OKTA_DEFAULT',
+  BACKGROUND_SECONDARY_COLOR = 'BACKGROUND_SECONDARY_COLOR',
+  BACKGROUND_IMAGE = 'BACKGROUND_IMAGE',
 }
 
-module.exports = UserIdString;
+export {
+  ErrorPageTouchPointVariant
+};

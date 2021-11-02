@@ -41,6 +41,11 @@ import { AuthorizationServerPolicyRule } from './models/AuthorizationServerPolic
 import { AuthorizationServerPolicyRuleOptions } from './models/AuthorizationServerPolicyRule';
 import { OAuth2Scope } from './models/OAuth2Scope';
 import { OAuth2ScopeOptions } from './models/OAuth2Scope';
+import { Brand } from './models/Brand';
+import { BrandOptions } from './models/Brand';
+import { Theme } from './models/Theme';
+import { ThemeOptions } from './models/Theme';
+import { ImageUploadResponse } from './models/ImageUploadResponse';
 import { DomainListResponse } from './models/DomainListResponse';
 import { DomainOptions } from './models/Domain';
 import { Domain } from './models/Domain';
@@ -255,6 +260,18 @@ export declare class GeneratedApiClient {
   deleteOAuth2Scope(authServerId: string, scopeId: string): Promise<Response>;
   getOAuth2Scope(authServerId: string, scopeId: string): Promise<OAuth2Scope>;
   updateOAuth2Scope(authServerId: string, scopeId: string, oAuth2Scope: OAuth2ScopeOptions): Promise<OAuth2Scope>;
+  listBrands(): Collection<Brand>;
+  getBrand(brandId: string): Promise<Brand>;
+  updateBrand(brandId: string, brand: BrandOptions): Promise<Brand>;
+  listBrandThemes(brandId: string): Collection<Theme>;
+  getBrandTheme(brandId: string, themeId: string): Promise<Theme>;
+  updateBrandTheme(brandId: string, themeId: string, theme: ThemeOptions): Promise<Theme>;
+  deleteBrandThemeBackgroundImage(brandId: string, themeId: string): Promise<Response>;
+  uploadBrandThemeBackgroundImage(brandId: string, themeId: string): Promise<ImageUploadResponse>;
+  deleteBrandThemeFavicon(brandId: string, themeId: string): Promise<Response>;
+  uploadBrandThemeFavicon(brandId: string, themeId: string): Promise<ImageUploadResponse>;
+  deleteBrandThemeLogo(brandId: string, themeId: string): Promise<Response>;
+  uploadBrandThemeLogo(brandId: string, themeId: string): Promise<ImageUploadResponse>;
   listDomains(): Promise<DomainListResponse>;
   createDomain(domain: DomainOptions): Promise<Domain>;
   deleteDomain(domainId: string): Promise<Response>;
@@ -425,6 +442,7 @@ export declare class GeneratedApiClient {
   getOrgContactTypes(): Collection<OrgContactTypeObj>;
   getOrgContactUser(contactType: string): Promise<OrgContactUser>;
   updateOrgContactUser(contactType: string, userIdString: UserIdStringOptions): Promise<OrgContactUser>;
+  updateOrgLogo(): Promise<Response>;
   getOrgPreferences(): Promise<OrgPreferences>;
   hideOktaUIFooter(): Promise<OrgPreferences>;
   showOktaUIFooter(): Promise<OrgPreferences>;

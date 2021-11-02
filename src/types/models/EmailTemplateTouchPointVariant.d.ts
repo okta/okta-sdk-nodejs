@@ -13,20 +13,11 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-var OrgContactUser = require('./OrgContactUser');
-
-
-/**
- * @class UserIdString
- * @extends OrgContactUser
- * @property { string } userId
- */
-class UserIdString extends OrgContactUser {
-  constructor(resourceJson, client) {
-    super(resourceJson, client);
-
-  }
-
+declare enum EmailTemplateTouchPointVariant {
+  OKTA_DEFAULT = 'OKTA_DEFAULT',
+  FULL_THEME = 'FULL_THEME',
 }
 
-module.exports = UserIdString;
+export {
+  EmailTemplateTouchPointVariant
+};

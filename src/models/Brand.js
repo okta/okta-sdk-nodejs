@@ -13,20 +13,30 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-var OrgContactUser = require('./OrgContactUser');
+var Resource = require('../resource');
 
 
 /**
- * @class UserIdString
- * @extends OrgContactUser
- * @property { string } userId
+ * @class Brand
+ * @extends Resource
+ * @property { hash } _links
+ * @property { boolean } agreeToCustomPrivacyPolicy
+ * @property { string } customPrivacyPolicyUrl
+ * @property { string } id
+ * @property { boolean } removePoweredByOkta
  */
-class UserIdString extends OrgContactUser {
+class Brand extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
 
   }
 
+  /**
+   * @returns {Promise<Brand>}
+   */
+  update() {
+    return this.httpClient.updateBrand(this.id, this);
+  }
 }
 
-module.exports = UserIdString;
+module.exports = Brand;

@@ -2407,6 +2407,353 @@ class GeneratedApiClient {
   /**
    *
    * @description
+   * List all the brands in your org.
+   * @returns {Collection} A collection that will yield {@link Brand} instances.
+   */
+  listBrands() {
+    let url = `${this.baseUrl}/api/v1/brands`;
+
+    return new Collection(
+      this,
+      url,
+      new ModelFactory(models.Brand),
+    );
+  }
+
+  /**
+   *
+   * @param brandId {String}
+   * @description
+   * Fetches a brand by `brandId`
+   * @returns {Promise<Brand>}
+   */
+  getBrand(brandId) {
+    if (!brandId) {
+      return Promise.reject(new Error('OKTA API getBrand parameter brandId is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/brands/${brandId}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/brands/${brandId}`
+    ];
+
+    const request = this.http.getJson(
+      url,
+      null,
+      { resources }
+    );
+    return request.then(jsonRes => new models.Brand(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param brandId {String}
+   * @param {Brand} brand
+   * @description
+   * Updates a brand by `brandId`
+   * @returns {Promise<Brand>}
+   */
+  updateBrand(brandId, brand) {
+    if (!brandId) {
+      return Promise.reject(new Error('OKTA API updateBrand parameter brandId is required.'));
+    }
+    if (!brand) {
+      return Promise.reject(new Error('OKTA API updateBrand parameter brand is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/brands/${brandId}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/brands/${brandId}`
+    ];
+
+    const request = this.http.putJson(
+      url,
+      {
+        body: brand
+      },
+      { resources }
+    );
+    return request.then(jsonRes => new models.Brand(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param brandId {String}
+   * @description
+   * List all the themes in your brand
+   * @returns {Collection} A collection that will yield {@link Theme} instances.
+   */
+  listBrandThemes(brandId) {
+    if (!brandId) {
+      return Promise.reject(new Error('OKTA API listBrandThemes parameter brandId is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/brands/${brandId}/themes`;
+
+    return new Collection(
+      this,
+      url,
+      new ModelFactory(models.Theme),
+    );
+  }
+
+  /**
+   *
+   * @param brandId {String}
+   * @param themeId {String}
+   * @description
+   * Fetches a theme for a brand
+   * @returns {Promise<Theme>}
+   */
+  getBrandTheme(brandId, themeId) {
+    if (!brandId) {
+      return Promise.reject(new Error('OKTA API getBrandTheme parameter brandId is required.'));
+    }
+    if (!themeId) {
+      return Promise.reject(new Error('OKTA API getBrandTheme parameter themeId is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/brands/${brandId}/themes/${themeId}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/brands/${brandId}/themes/${themeId}`,
+      `${this.baseUrl}/api/v1/brands/${brandId}`
+    ];
+
+    const request = this.http.getJson(
+      url,
+      null,
+      { resources }
+    );
+    return request.then(jsonRes => new models.Theme(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param brandId {String}
+   * @param themeId {String}
+   * @param {Theme} theme
+   * @description
+   * Updates a theme for a brand
+   * @returns {Promise<Theme>}
+   */
+  updateBrandTheme(brandId, themeId, theme) {
+    if (!brandId) {
+      return Promise.reject(new Error('OKTA API updateBrandTheme parameter brandId is required.'));
+    }
+    if (!themeId) {
+      return Promise.reject(new Error('OKTA API updateBrandTheme parameter themeId is required.'));
+    }
+    if (!theme) {
+      return Promise.reject(new Error('OKTA API updateBrandTheme parameter theme is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/brands/${brandId}/themes/${themeId}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/brands/${brandId}/themes/${themeId}`,
+      `${this.baseUrl}/api/v1/brands/${brandId}`
+    ];
+
+    const request = this.http.putJson(
+      url,
+      {
+        body: theme
+      },
+      { resources }
+    );
+    return request.then(jsonRes => new models.Theme(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param brandId {String}
+   * @param themeId {String}
+   * @description
+   * Deletes a Theme background image
+   */
+  deleteBrandThemeBackgroundImage(brandId, themeId) {
+    if (!brandId) {
+      return Promise.reject(new Error('OKTA API deleteBrandThemeBackgroundImage parameter brandId is required.'));
+    }
+    if (!themeId) {
+      return Promise.reject(new Error('OKTA API deleteBrandThemeBackgroundImage parameter themeId is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/brands/${brandId}/themes/${themeId}/background-image`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/brands/${brandId}/themes/${themeId}`,
+      `${this.baseUrl}/api/v1/brands/${brandId}`
+    ];
+
+    const request = this.http.delete(
+      url,
+      null,
+      { resources }
+    );
+    return request;
+  }
+
+  /**
+   *
+   * @param brandId {String}
+   * @param themeId {String}
+   * @description
+   * Updates the background image for your Theme
+   * @returns {Promise<ImageUploadResponse>}
+   */
+  uploadBrandThemeBackgroundImage(brandId, themeId) {
+    if (!brandId) {
+      return Promise.reject(new Error('OKTA API uploadBrandThemeBackgroundImage parameter brandId is required.'));
+    }
+    if (!themeId) {
+      return Promise.reject(new Error('OKTA API uploadBrandThemeBackgroundImage parameter themeId is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/brands/${brandId}/themes/${themeId}/background-image`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/brands/${brandId}/themes/${themeId}`,
+      `${this.baseUrl}/api/v1/brands/${brandId}`
+    ];
+
+    const request = this.http.post(
+      url,
+      {
+        headers: {
+          'Content-Type': 'multipart/form-data', 'Accept': 'application/json',
+        },
+      },
+      { resources }
+    ).then(res => res.json());
+    return request.then(jsonRes => new models.ImageUploadResponse(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param brandId {String}
+   * @param themeId {String}
+   * @description
+   * Deletes a Theme favicon. The org then uses the Okta default favicon.
+   */
+  deleteBrandThemeFavicon(brandId, themeId) {
+    if (!brandId) {
+      return Promise.reject(new Error('OKTA API deleteBrandThemeFavicon parameter brandId is required.'));
+    }
+    if (!themeId) {
+      return Promise.reject(new Error('OKTA API deleteBrandThemeFavicon parameter themeId is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/brands/${brandId}/themes/${themeId}/favicon`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/brands/${brandId}/themes/${themeId}`,
+      `${this.baseUrl}/api/v1/brands/${brandId}`
+    ];
+
+    const request = this.http.delete(
+      url,
+      null,
+      { resources }
+    );
+    return request;
+  }
+
+  /**
+   *
+   * @param brandId {String}
+   * @param themeId {String}
+   * @description
+   * Updates the favicon for your theme
+   * @returns {Promise<ImageUploadResponse>}
+   */
+  uploadBrandThemeFavicon(brandId, themeId) {
+    if (!brandId) {
+      return Promise.reject(new Error('OKTA API uploadBrandThemeFavicon parameter brandId is required.'));
+    }
+    if (!themeId) {
+      return Promise.reject(new Error('OKTA API uploadBrandThemeFavicon parameter themeId is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/brands/${brandId}/themes/${themeId}/favicon`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/brands/${brandId}/themes/${themeId}`,
+      `${this.baseUrl}/api/v1/brands/${brandId}`
+    ];
+
+    const request = this.http.post(
+      url,
+      {
+        headers: {
+          'Content-Type': 'multipart/form-data', 'Accept': 'application/json',
+        },
+      },
+      { resources }
+    ).then(res => res.json());
+    return request.then(jsonRes => new models.ImageUploadResponse(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param brandId {String}
+   * @param themeId {String}
+   * @description
+   * Deletes a Theme logo. The org then uses the Okta default logo.
+   */
+  deleteBrandThemeLogo(brandId, themeId) {
+    if (!brandId) {
+      return Promise.reject(new Error('OKTA API deleteBrandThemeLogo parameter brandId is required.'));
+    }
+    if (!themeId) {
+      return Promise.reject(new Error('OKTA API deleteBrandThemeLogo parameter themeId is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/brands/${brandId}/themes/${themeId}/logo`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/brands/${brandId}/themes/${themeId}`,
+      `${this.baseUrl}/api/v1/brands/${brandId}`
+    ];
+
+    const request = this.http.delete(
+      url,
+      null,
+      { resources }
+    );
+    return request;
+  }
+
+  /**
+   *
+   * @param brandId {String}
+   * @param themeId {String}
+   * @description
+   * Updates the logo for your Theme
+   * @returns {Promise<ImageUploadResponse>}
+   */
+  uploadBrandThemeLogo(brandId, themeId) {
+    if (!brandId) {
+      return Promise.reject(new Error('OKTA API uploadBrandThemeLogo parameter brandId is required.'));
+    }
+    if (!themeId) {
+      return Promise.reject(new Error('OKTA API uploadBrandThemeLogo parameter themeId is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/brands/${brandId}/themes/${themeId}/logo`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/brands/${brandId}/themes/${themeId}`,
+      `${this.baseUrl}/api/v1/brands/${brandId}`
+    ];
+
+    const request = this.http.post(
+      url,
+      {
+        headers: {
+          'Content-Type': 'multipart/form-data', 'Accept': 'application/json',
+        },
+      },
+      { resources }
+    ).then(res => res.json());
+    return request.then(jsonRes => new models.ImageUploadResponse(jsonRes, this));
+  }
+
+  /**
+   *
+   * @description
    * List all verified custom Domains for the org.
    * @returns {Promise<DomainListResponse>}
    */
@@ -5394,6 +5741,28 @@ class GeneratedApiClient {
       { resources }
     );
     return request.then(jsonRes => new models.OrgContactUser(jsonRes, this));
+  }
+
+  /**
+   *
+   * @description
+   * Updates the logo for your organization.
+   */
+  updateOrgLogo() {
+    let url = `${this.baseUrl}/api/v1/org/logo`;
+
+    const resources = [];
+
+    const request = this.http.post(
+      url,
+      {
+        headers: {
+          'Content-Type': 'multipart/form-data', 'Accept': 'application/json',
+        },
+      },
+      { resources }
+    );
+    return request;
   }
 
   /**

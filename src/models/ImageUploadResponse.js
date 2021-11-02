@@ -13,15 +13,15 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-var OrgContactUser = require('./OrgContactUser');
+var Resource = require('../resource');
 
 
 /**
- * @class UserIdString
- * @extends OrgContactUser
- * @property { string } userId
+ * @class ImageUploadResponse
+ * @extends Resource
+ * @property { string } url
  */
-class UserIdString extends OrgContactUser {
+class ImageUploadResponse extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
 
@@ -29,4 +29,4 @@ class UserIdString extends OrgContactUser {
 
 }
 
-module.exports = UserIdString;
+module.exports = ImageUploadResponse;

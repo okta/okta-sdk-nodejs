@@ -50,6 +50,67 @@ class OrgSetting extends Resource {
   update() {
     return this.httpClient.updateOrgSetting(this);
   }
+
+  /**
+   * @returns {Promise<OrgSetting>}
+   */
+  partialUpdate() {
+    return this.httpClient.partialUpdateOrgSetting(this);
+  }
+
+  /**
+   * @returns {Collection} A collection that will yield {@link OrgContactTypeObj} instances.
+   */
+  getContactTypes() {
+    return this.httpClient.getOrgContactTypes();
+  }
+
+  /**
+   * @param {string} contactType
+   * @returns {Promise<OrgContactUser>}
+   */
+  getOrgContactUser(contactType) {
+    return this.httpClient.getOrgContactUser(contactType);
+  }
+
+  /**
+   * @returns {Promise<OrgOktaSupportSettingsObj>}
+   */
+  getSupportSettings() {
+    return this.httpClient.getOrgOktaSupportSettings();
+  }
+
+  /**
+   * @returns {Promise<OrgOktaCommunicationSetting>}
+   */
+  communicationSettings() {
+    return this.httpClient.getOktaCommunicationSettings();
+  }
+
+  /**
+   * @returns {Promise<OrgPreferences>}
+   */
+  orgPreferences() {
+    return this.httpClient.getOrgPreferences();
+  }
+
+  /**
+   * @returns {Promise<OrgPreferences>}
+   */
+  showFooter() {
+    return this.httpClient.showOktaUIFooter();
+  }
+
+  /**
+   * @returns {Promise<OrgPreferences>}
+   */
+  hideFooter() {
+    return this.httpClient.hideOktaUIFooter();
+  }
+
+  updateOrgLogo() {
+    return this.httpClient.updateOrgLogo();
+  }
 }
 
 module.exports = OrgSetting;

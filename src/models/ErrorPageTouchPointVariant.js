@@ -13,20 +13,11 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-var OrgContactUser = require('./OrgContactUser');
+var ErrorPageTouchPointVariant;
+(function (ErrorPageTouchPointVariant) {
+  ErrorPageTouchPointVariant['OKTA_DEFAULT'] = 'OKTA_DEFAULT';
+  ErrorPageTouchPointVariant['BACKGROUND_SECONDARY_COLOR'] = 'BACKGROUND_SECONDARY_COLOR';
+  ErrorPageTouchPointVariant['BACKGROUND_IMAGE'] = 'BACKGROUND_IMAGE';
+}(ErrorPageTouchPointVariant || (ErrorPageTouchPointVariant = {})));
 
-
-/**
- * @class UserIdString
- * @extends OrgContactUser
- * @property { string } userId
- */
-class UserIdString extends OrgContactUser {
-  constructor(resourceJson, client) {
-    super(resourceJson, client);
-
-  }
-
-}
-
-module.exports = UserIdString;
+module.exports = ErrorPageTouchPointVariant;

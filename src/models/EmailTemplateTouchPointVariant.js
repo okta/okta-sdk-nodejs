@@ -13,20 +13,10 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-var OrgContactUser = require('./OrgContactUser');
+var EmailTemplateTouchPointVariant;
+(function (EmailTemplateTouchPointVariant) {
+  EmailTemplateTouchPointVariant['OKTA_DEFAULT'] = 'OKTA_DEFAULT';
+  EmailTemplateTouchPointVariant['FULL_THEME'] = 'FULL_THEME';
+}(EmailTemplateTouchPointVariant || (EmailTemplateTouchPointVariant = {})));
 
-
-/**
- * @class UserIdString
- * @extends OrgContactUser
- * @property { string } userId
- */
-class UserIdString extends OrgContactUser {
-  constructor(resourceJson, client) {
-    super(resourceJson, client);
-
-  }
-
-}
-
-module.exports = UserIdString;
+module.exports = EmailTemplateTouchPointVariant;
