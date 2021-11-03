@@ -68,7 +68,7 @@ const getBodyModelName = operation => {
 const getBodyModelNameInCamelCase = operation => _.camelCase(getBodyModelName(operation));
 
 const getOperationArgument = operation => {
-  const { bodyModel, method, pathParams, queryParams, parameters } = operation;
+  const { bodyModel, method, pathParams, queryParams, formData, parameters } = operation;
 
   const requiredArgs = pathParams.reduce((acc, curr) => {
     acc.push(curr.name);
@@ -92,6 +92,15 @@ const getOperationArgument = operation => {
       requiredArgs.push('queryParameters');
     } else {
       optionalArgs.push('queryParameters');
+    }
+  }
+
+  if (formData.length) {
+    let formDataParameter = [...formData].shift().name;
+    if (hasRequiredParameterInRequestMedia(parameters, 'formData')) {
+      optionalArgs.push(formDataParameter)
+    } else {
+      optionalArgs.push(formDataParameter);
     }
   }
 
@@ -172,6 +181,10 @@ const jsdocBuilder = (operation) => {
     operation.queryParams.map((param) => {
       return `   * @param {String} [queryParams.${param.name}]`;
     }).forEach(line => lines.push(line));
+  }
+
+  if (operation.formData.length) {
+    lines.push(`   * @param {${operation.formData[0].name}} fs.ReadStream`)
   }
   lines.push('   * @description');
 
@@ -270,7 +283,7 @@ const typeScriptModelImportBuilder = model => {
 };
 
 const getOperationArgumentsAndReturnType = operation => {
-  const { bodyModel, method, pathParams, queryParams, parameters } = operation;
+  const { bodyModel, method, pathParams, queryParams, formData, parameters } = operation;
   const args = new Map();
 
   pathParams.forEach(pathParam => {
@@ -296,6 +309,13 @@ const getOperationArgumentsAndReturnType = operation => {
     args.set('queryParameters', {
       isRequired: hasRequiredParameterInRequestMedia(parameters, 'query'),
       type: queryParams,
+    });
+  }
+
+  if (formData.length) {
+    args.set(formData[0].name, {
+      isRequired: hasRequiredParameterInRequestMedia(parameters, 'formData'),
+      type: 'ReadStream',
     });
   }
 

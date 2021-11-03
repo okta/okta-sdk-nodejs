@@ -2,6 +2,7 @@
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
 const qs = require('querystring');
+const FormData = require('form-data');
 
 const Collection = require('./collection');
 const models = require('./models');
@@ -32,6 +33,11 @@ class GeneratedApiClient {
     url += queryString ? ('?' + queryString) : '';
     {{/if}}
 
+    {{#if formData.length}}
+    const form = new FormData();
+    form.append("file", {{formData.[0].name}});
+    {{/if}}
+
     {{#if isArray}}
     return new Collection(
       this,
@@ -54,11 +60,14 @@ class GeneratedApiClient {
       {
         {{#if (hasHeaders this)}}
         headers: {
-          {{#if consumes}}'Content-Type': '{{consumes}}',{{/if}}{{#if produces}} 'Accept': '{{produces}}',{{/if}}{{#if encoding}} 'Content-Transfer-Encoding': '{{encoding}}',{{/if}}
+          {{#if formData.length}}{{else}}{{#if consumes}}'Content-Type': '{{consumes}}',{{/if}}{{/if}}{{#if produces}} 'Accept': '{{produces}}',{{/if}}{{#if encoding}} 'Content-Transfer-Encoding': '{{encoding}}',{{/if}}
         },
         {{/if}}
         {{#if bodyModel}}
         body: {{getBodyModelNameInCamelCase this}}
+        {{/if}}
+        {{#if formData.length}}
+        body: form
         {{/if}}
       },
       {{else}}
