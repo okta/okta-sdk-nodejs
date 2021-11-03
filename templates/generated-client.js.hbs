@@ -66,12 +66,12 @@ class GeneratedApiClient {
         {{#if bodyModel}}
         body: {{getBodyModelNameInCamelCase this}}
         {{/if}}
-        {{#if formData.length}}
-        body: form
-        {{/if}}
       },
       {{else}}
       null,
+      {{/if}}
+      {{#if formData.length}}
+      {{formData.[0].name}},
       {{/if}}
       { resources }
     ){{#if (shouldResolveJson this)}}.then(res => res.json()){{/if}};

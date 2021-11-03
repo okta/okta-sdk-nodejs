@@ -119,7 +119,7 @@ const getRequiredOperationParams = operation => {
   return getOperationArgument(operation).shift();
 };
 
-const getHttpMethod = ({ consumes, produces, method, responseModel, parameters = [] }) => {
+const getHttpMethod = ({ consumes, produces, method, responseModel, formData, parameters = [] }) => {
   let res;
   const hasModelParameterInBody = parameters.some(parameter => parameter.in === 'body' && parameter.schema && parameter.schema.$ref);
   switch (method) {
@@ -130,6 +130,8 @@ const getHttpMethod = ({ consumes, produces, method, responseModel, parameters =
     case 'put':
       if (consumes.includes('application/json') && produces.includes('application/json') && (responseModel || hasModelParameterInBody)) {
         res = `${method}Json`;
+      } else if (formData.length) {
+        res = 'postFormDataFile';
       } else {
         res = method;
       }
