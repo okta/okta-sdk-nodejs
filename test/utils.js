@@ -1,6 +1,8 @@
 const models = require('../src/models');
 const expect = require('chai').expect;
 const faker = require('faker');
+const path = require('path');
+const { createReadStream } = require('fs');
 
 function delay(t) {
   return new Promise(function (resolve) {
@@ -238,6 +240,10 @@ async function verifyOrgIsOIE(client) {
   return body.pipeline === 'idx';
 }
 
+function getMockImage() {
+  return createReadStream(path.join(__dirname, 'it/mocks/logo.png'));
+}
+
 module.exports = {
   delay: delay,
   validateUser: validateUser,
@@ -257,5 +263,6 @@ module.exports = {
   getMockProfile: getMockProfile,
   getBookmarkApplication: getBookmarkApplication,
   getOIDCApplication: getOIDCApplication,
-  verifyOrgIsOIE
+  verifyOrgIsOIE,
+  getMockImage: getMockImage
 };
