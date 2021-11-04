@@ -240,8 +240,8 @@ async function verifyOrgIsOIE(client) {
   return body.pipeline === 'idx';
 }
 
-function getMockImage() {
-  return createReadStream(path.join(__dirname, 'it/mocks/logo.png'));
+function getMockImage(filename) {
+  return createReadStream(path.join(__dirname, `it/mocks/${filename}`));
 }
 
 module.exports = {
