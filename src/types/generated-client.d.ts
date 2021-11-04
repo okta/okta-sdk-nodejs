@@ -27,7 +27,6 @@ import { ApplicationGroupAssignmentOptions } from './models/ApplicationGroupAssi
 import { OAuth2Token } from './models/OAuth2Token';
 import { AppUser } from './models/AppUser';
 import { AppUserOptions } from './models/AppUser';
-import { Authenticator } from './models/Authenticator';
 import { AuthorizationServer } from './models/AuthorizationServer';
 import { AuthorizationServerOptions } from './models/AuthorizationServer';
 import { OAuth2Claim } from './models/OAuth2Claim';

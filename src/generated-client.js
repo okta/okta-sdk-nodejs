@@ -2552,11 +2552,12 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/brands/${brandId}/themes/${themeId}`,
       `${this.baseUrl}/api/v1/brands/${brandId}`
     ];
+    const payload = this._removeRestrictedModelProperties(theme, 'id,backgroundImage,favicon,logo,_links'.split(','));
 
     const request = this.http.putJson(
       url,
       {
-        body: theme
+        body: payload
       },
       { resources }
     );
@@ -2611,7 +2612,7 @@ class GeneratedApiClient {
     let url = `${this.baseUrl}/api/v1/brands/${brandId}/themes/${themeId}/background-image`;
 
     const form = new FormData();
-    form.append("file", file);
+    form.append('file', file);
 
     const resources = [
       `${this.baseUrl}/api/v1/brands/${brandId}/themes/${themeId}`,
@@ -2622,7 +2623,7 @@ class GeneratedApiClient {
       url,
       {
         headers: {
-           'Accept': 'application/json',
+          'Accept': 'application/json',
         },
       },
       file,
@@ -2679,7 +2680,7 @@ class GeneratedApiClient {
     let url = `${this.baseUrl}/api/v1/brands/${brandId}/themes/${themeId}/favicon`;
 
     const form = new FormData();
-    form.append("file", file);
+    form.append('file', file);
 
     const resources = [
       `${this.baseUrl}/api/v1/brands/${brandId}/themes/${themeId}`,
@@ -2690,7 +2691,7 @@ class GeneratedApiClient {
       url,
       {
         headers: {
-           'Accept': 'application/json',
+          'Accept': 'application/json',
         },
       },
       file,
@@ -2747,7 +2748,7 @@ class GeneratedApiClient {
     let url = `${this.baseUrl}/api/v1/brands/${brandId}/themes/${themeId}/logo`;
 
     const form = new FormData();
-    form.append("file", file);
+    form.append('file', file);
 
     const resources = [
       `${this.baseUrl}/api/v1/brands/${brandId}/themes/${themeId}`,
@@ -2758,7 +2759,7 @@ class GeneratedApiClient {
       url,
       {
         headers: {
-           'Accept': 'application/json',
+          'Accept': 'application/json',
         },
       },
       file,
@@ -5769,7 +5770,7 @@ class GeneratedApiClient {
     let url = `${this.baseUrl}/api/v1/org/logo`;
 
     const form = new FormData();
-    form.append("file", file);
+    form.append('file', file);
 
     const resources = [];
 
@@ -5777,7 +5778,7 @@ class GeneratedApiClient {
       url,
       {
         headers: {
-           'Accept': 'application/json',
+          'Accept': 'application/json',
         },
       },
       file,
@@ -8873,6 +8874,13 @@ class GeneratedApiClient {
     return request.then(jsonRes => new models.NetworkZone(jsonRes, this));
   }
 
+  _removeRestrictedModelProperties(instance, restrictedProperties) {
+    const allowedProperties = Object.keys(instance).filter(propertyName => !restrictedProperties.includes(propertyName));
+    return allowedProperties.reduce((properties, propertyName) => ({
+      ...properties,
+      [propertyName]: instance[propertyName]
+    }), Object.create(null));
+  }
 }
 
 module.exports = GeneratedApiClient;

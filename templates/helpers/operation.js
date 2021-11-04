@@ -21,6 +21,11 @@ const RESTRICTED_MODEL_PROPERTY_OVERRIDES = {
   SwaApplication: ['name'],
   SecurePasswordStoreApplication: ['name'],
 };
+
+// properties which should not be included into request payload
+const RESTRICTED_MODEL_PROPERTIES = {
+  Theme: ['id', 'backgroundImage', 'favicon', 'logo', '_links']
+};
 // END Work around spec mismatches and upstream parsing inconsistencies.
 
 const KNOWN_CONFLICTING_PROPERTY_NAMES = {
@@ -96,9 +101,9 @@ const getOperationArgument = operation => {
   }
 
   if (formData.length) {
-    let formDataParameter = [...formData].shift().name;
+    let formDataParameter = formData[0].name;
     if (hasRequiredParameterInRequestMedia(parameters, 'formData')) {
-      optionalArgs.push(formDataParameter)
+      optionalArgs.push(formDataParameter);
     } else {
       optionalArgs.push(formDataParameter);
     }
@@ -186,7 +191,7 @@ const jsdocBuilder = (operation) => {
   }
 
   if (operation.formData.length) {
-    lines.push(`   * @param {${operation.formData[0].name}} fs.ReadStream`)
+    lines.push(`   * @param {${operation.formData[0].name}} fs.ReadStream`);
   }
   lines.push('   * @description');
 
@@ -399,6 +404,10 @@ const shouldGenerateOptionsType = modelName => {
   return !NO_OPTIONS_TYPE_MODELS.includes(modelName);
 };
 
+const getRestrictedProperties = modelName => RESTRICTED_MODEL_PROPERTIES[modelName] || [];
+
+const containsRestrictedProperties = modelName => Boolean(getRestrictedProperties(modelName).length);
+
 module.exports = {
   getBodyModelNameInCamelCase,
   operationArgumentBuilder,
@@ -418,4 +427,6 @@ module.exports = {
   isImportablePropertyType,
   isRestrictedPropertyOverride,
   shouldGenerateOptionsType,
+  getRestrictedProperties,
+  containsRestrictedProperties,
 };

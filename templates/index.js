@@ -222,7 +222,7 @@ js.process = ({spec, operations, models, handlebars}) => {
     }
 
     if (operation.formData.length) {
-      args.push(operation.formData[0].name)
+      args.push(operation.formData[0].name);
     }
 
     return args.join(', ');
@@ -253,7 +253,7 @@ js.process = ({spec, operations, models, handlebars}) => {
     }
 
     if (operation.formData.length) {
-      args.push(operation.formData[0].name)
+      args.push(operation.formData[0].name);
     }
 
     return args.join(', ');
@@ -282,7 +282,7 @@ js.process = ({spec, operations, models, handlebars}) => {
     }
 
     if (operation.formData.length) {
-      args.push(`@param {${operation.formData[0].name}} fs.ReadStream`)
+      args.push(`@param {${operation.formData[0].name}} fs.ReadStream`);
     }
 
     if (operation.responseModel) {
