@@ -1,6 +1,33 @@
 # Okta Node SDK Changelog
 
 ## 6.0.0
+
+### Features
+
+- [#289](https://github.com/okta/okta-sdk-nodejs/pull/289) Adds Brand API
+  - Models/Enum:
+    - added `Brand`
+    - added `EmailTemplateTouchPointVariant`
+    - added `EndUserDashboardTouchPointVariant`
+    - added `ErrorPageTouchPointVariant`
+    - added `ImageUploadResponse`
+    - added `SignInPageTouchPointVariant`
+    - added `Theme`
+  - Client:
+    - added `listBrands`
+    - added `getBrand`
+    - added `updateBrand`
+    - added `listBrandThemes`
+    - added `getBrandTheme`
+    - added `updateBrandTheme`
+    - added `deleteBrandThemeBackgroundImage`
+    - added `uploadBrandThemeBackgroundImage`
+    - added `deleteBrandThemeFavicon`
+    - added `uploadBrandThemeFavicon`
+    - added `deleteBrandThemeLogo`
+    - added `uploadBrandThemeLogo`
+    - added `updateOrgLogo`
+
 - [#287](https://github.com/okta/okta-sdk-nodejs/pull/287) Adds Authenticators API
   - Models/Enum:
     - added `Authenticator`
