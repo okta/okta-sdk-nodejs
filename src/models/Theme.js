@@ -49,10 +49,11 @@ class Theme extends Resource {
 
   /**
    * @param {string} brandId
+   * @param {file} fs.ReadStream
    * @returns {Promise<ImageUploadResponse>}
    */
-  uploadBrandThemeLogo(brandId) {
-    return this.httpClient.uploadBrandThemeLogo(brandId, this.id);
+  uploadBrandThemeLogo(brandId, file) {
+    return this.httpClient.uploadBrandThemeLogo(brandId, this.id, file);
   }
 
   /**
@@ -64,10 +65,11 @@ class Theme extends Resource {
 
   /**
    * @param {string} brandId
+   * @param {file} fs.ReadStream
    * @returns {Promise<ImageUploadResponse>}
    */
-  updateBrandThemeFavicon(brandId) {
-    return this.httpClient.uploadBrandThemeFavicon(brandId, this.id);
+  updateBrandThemeFavicon(brandId, file) {
+    return this.httpClient.uploadBrandThemeFavicon(brandId, this.id, file);
   }
 
   /**
@@ -79,10 +81,11 @@ class Theme extends Resource {
 
   /**
    * @param {string} brandId
+   * @param {file} fs.ReadStream
    * @returns {Promise<ImageUploadResponse>}
    */
-  updateBrandThemeBackgroundImage(brandId) {
-    return this.httpClient.uploadBrandThemeBackgroundImage(brandId, this.id);
+  updateBrandThemeBackgroundImage(brandId, file) {
+    return this.httpClient.uploadBrandThemeBackgroundImage(brandId, this.id, file);
   }
 
   /**

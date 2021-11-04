@@ -14,6 +14,7 @@
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
 const qs = require('querystring');
+const FormData = require('form-data');
 
 const Collection = require('./collection');
 const models = require('./models');
@@ -2595,11 +2596,12 @@ class GeneratedApiClient {
    *
    * @param brandId {String}
    * @param themeId {String}
+   * @param {file} fs.ReadStream
    * @description
    * Updates the background image for your Theme
    * @returns {Promise<ImageUploadResponse>}
    */
-  uploadBrandThemeBackgroundImage(brandId, themeId) {
+  uploadBrandThemeBackgroundImage(brandId, themeId, file) {
     if (!brandId) {
       return Promise.reject(new Error('OKTA API uploadBrandThemeBackgroundImage parameter brandId is required.'));
     }
@@ -2608,18 +2610,22 @@ class GeneratedApiClient {
     }
     let url = `${this.baseUrl}/api/v1/brands/${brandId}/themes/${themeId}/background-image`;
 
+    const form = new FormData();
+    form.append("file", file);
+
     const resources = [
       `${this.baseUrl}/api/v1/brands/${brandId}/themes/${themeId}`,
       `${this.baseUrl}/api/v1/brands/${brandId}`
     ];
 
-    const request = this.http.post(
+    const request = this.http.postFormDataFile(
       url,
       {
         headers: {
-          'Content-Type': 'multipart/form-data', 'Accept': 'application/json',
+           'Accept': 'application/json',
         },
       },
+      file,
       { resources }
     ).then(res => res.json());
     return request.then(jsonRes => new models.ImageUploadResponse(jsonRes, this));
@@ -2658,11 +2664,12 @@ class GeneratedApiClient {
    *
    * @param brandId {String}
    * @param themeId {String}
+   * @param {file} fs.ReadStream
    * @description
    * Updates the favicon for your theme
    * @returns {Promise<ImageUploadResponse>}
    */
-  uploadBrandThemeFavicon(brandId, themeId) {
+  uploadBrandThemeFavicon(brandId, themeId, file) {
     if (!brandId) {
       return Promise.reject(new Error('OKTA API uploadBrandThemeFavicon parameter brandId is required.'));
     }
@@ -2671,18 +2678,22 @@ class GeneratedApiClient {
     }
     let url = `${this.baseUrl}/api/v1/brands/${brandId}/themes/${themeId}/favicon`;
 
+    const form = new FormData();
+    form.append("file", file);
+
     const resources = [
       `${this.baseUrl}/api/v1/brands/${brandId}/themes/${themeId}`,
       `${this.baseUrl}/api/v1/brands/${brandId}`
     ];
 
-    const request = this.http.post(
+    const request = this.http.postFormDataFile(
       url,
       {
         headers: {
-          'Content-Type': 'multipart/form-data', 'Accept': 'application/json',
+           'Accept': 'application/json',
         },
       },
+      file,
       { resources }
     ).then(res => res.json());
     return request.then(jsonRes => new models.ImageUploadResponse(jsonRes, this));
@@ -2721,11 +2732,12 @@ class GeneratedApiClient {
    *
    * @param brandId {String}
    * @param themeId {String}
+   * @param {file} fs.ReadStream
    * @description
    * Updates the logo for your Theme
    * @returns {Promise<ImageUploadResponse>}
    */
-  uploadBrandThemeLogo(brandId, themeId) {
+  uploadBrandThemeLogo(brandId, themeId, file) {
     if (!brandId) {
       return Promise.reject(new Error('OKTA API uploadBrandThemeLogo parameter brandId is required.'));
     }
@@ -2734,18 +2746,22 @@ class GeneratedApiClient {
     }
     let url = `${this.baseUrl}/api/v1/brands/${brandId}/themes/${themeId}/logo`;
 
+    const form = new FormData();
+    form.append("file", file);
+
     const resources = [
       `${this.baseUrl}/api/v1/brands/${brandId}/themes/${themeId}`,
       `${this.baseUrl}/api/v1/brands/${brandId}`
     ];
 
-    const request = this.http.post(
+    const request = this.http.postFormDataFile(
       url,
       {
         headers: {
-          'Content-Type': 'multipart/form-data', 'Accept': 'application/json',
+           'Accept': 'application/json',
         },
       },
+      file,
       { resources }
     ).then(res => res.json());
     return request.then(jsonRes => new models.ImageUploadResponse(jsonRes, this));
@@ -5745,21 +5761,26 @@ class GeneratedApiClient {
 
   /**
    *
+   * @param {file} fs.ReadStream
    * @description
    * Updates the logo for your organization.
    */
-  updateOrgLogo() {
+  updateOrgLogo(file) {
     let url = `${this.baseUrl}/api/v1/org/logo`;
+
+    const form = new FormData();
+    form.append("file", file);
 
     const resources = [];
 
-    const request = this.http.post(
+    const request = this.http.postFormDataFile(
       url,
       {
         headers: {
-          'Content-Type': 'multipart/form-data', 'Accept': 'application/json',
+           'Accept': 'application/json',
         },
       },
+      file,
       { resources }
     );
     return request;

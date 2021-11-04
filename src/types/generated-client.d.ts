@@ -45,6 +45,7 @@ import { Brand } from './models/Brand';
 import { BrandOptions } from './models/Brand';
 import { Theme } from './models/Theme';
 import { ThemeOptions } from './models/Theme';
+import { ReadStream } from 'fs';
 import { ImageUploadResponse } from './models/ImageUploadResponse';
 import { DomainListResponse } from './models/DomainListResponse';
 import { DomainOptions } from './models/Domain';
@@ -203,10 +204,6 @@ export declare class GeneratedApiClient {
     expand?: string,
   }): Promise<AppUser>;
   updateApplicationUser(appId: string, userId: string, appUser: AppUserOptions): Promise<AppUser>;
-  listAuthenticators(): Collection<Authenticator>;
-  getAuthenticator(authenticatorId: string): Promise<Authenticator>;
-  activateAuthenticator(authenticatorId: string): Promise<Authenticator>;
-  deactivateAuthenticator(authenticatorId: string): Promise<Authenticator>;
   listAuthorizationServers(queryParameters?: {
     q?: string,
     limit?: string,
@@ -267,11 +264,11 @@ export declare class GeneratedApiClient {
   getBrandTheme(brandId: string, themeId: string): Promise<Theme>;
   updateBrandTheme(brandId: string, themeId: string, theme: ThemeOptions): Promise<Theme>;
   deleteBrandThemeBackgroundImage(brandId: string, themeId: string): Promise<Response>;
-  uploadBrandThemeBackgroundImage(brandId: string, themeId: string): Promise<ImageUploadResponse>;
+  uploadBrandThemeBackgroundImage(brandId: string, themeId: string, file: ReadStream): Promise<ImageUploadResponse>;
   deleteBrandThemeFavicon(brandId: string, themeId: string): Promise<Response>;
-  uploadBrandThemeFavicon(brandId: string, themeId: string): Promise<ImageUploadResponse>;
+  uploadBrandThemeFavicon(brandId: string, themeId: string, file: ReadStream): Promise<ImageUploadResponse>;
   deleteBrandThemeLogo(brandId: string, themeId: string): Promise<Response>;
-  uploadBrandThemeLogo(brandId: string, themeId: string): Promise<ImageUploadResponse>;
+  uploadBrandThemeLogo(brandId: string, themeId: string, file: ReadStream): Promise<ImageUploadResponse>;
   listDomains(): Promise<DomainListResponse>;
   createDomain(domain: DomainOptions): Promise<Domain>;
   deleteDomain(domainId: string): Promise<Response>;
@@ -442,7 +439,7 @@ export declare class GeneratedApiClient {
   getOrgContactTypes(): Collection<OrgContactTypeObj>;
   getOrgContactUser(contactType: string): Promise<OrgContactUser>;
   updateOrgContactUser(contactType: string, userIdString: UserIdStringOptions): Promise<OrgContactUser>;
-  updateOrgLogo(): Promise<Response>;
+  updateOrgLogo(file: ReadStream): Promise<Response>;
   getOrgPreferences(): Promise<OrgPreferences>;
   hideOktaUIFooter(): Promise<OrgPreferences>;
   showOktaUIFooter(): Promise<OrgPreferences>;

@@ -108,8 +108,11 @@ class OrgSetting extends Resource {
     return this.httpClient.hideOktaUIFooter();
   }
 
-  updateOrgLogo() {
-    return this.httpClient.updateOrgLogo();
+  /**
+   * @param {file} fs.ReadStream
+   */
+  updateOrgLogo(file) {
+    return this.httpClient.updateOrgLogo(file);
   }
 }
 

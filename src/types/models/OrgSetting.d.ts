@@ -22,6 +22,7 @@ import { OrgContactUser } from './OrgContactUser';
 import { OrgOktaSupportSettingsObj } from './OrgOktaSupportSettingsObj';
 import { OrgOktaCommunicationSetting } from './OrgOktaCommunicationSetting';
 import { OrgPreferences } from './OrgPreferences';
+import { ReadStream } from 'fs';
 import { Response } from 'node-fetch';
 
 declare class OrgSetting extends Resource {
@@ -55,7 +56,7 @@ declare class OrgSetting extends Resource {
   orgPreferences(): Promise<OrgPreferences>;
   showFooter(): Promise<OrgPreferences>;
   hideFooter(): Promise<OrgPreferences>;
-  updateOrgLogo(): Promise<Response>;
+  updateOrgLogo(file: ReadStream): Promise<Response>;
 }
 
 type OrgSettingOptions = OptionalKnownProperties<OrgSetting>;

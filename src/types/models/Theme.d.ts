@@ -16,6 +16,7 @@
 import { Resource } from '../resource';
 import { Client } from '../client';
 import { OptionalKnownProperties } from '../optional-known-properties-type';
+import { ReadStream } from 'fs';
 import { ImageUploadResponse } from './ImageUploadResponse';
 import { Response } from 'node-fetch';
 import { EmailTemplateTouchPointVariant } from './EmailTemplateTouchPointVariant';
@@ -41,11 +42,11 @@ declare class Theme extends Resource {
   signInPageTouchPointVariant: SignInPageTouchPointVariant;
 
   update(brandId: string): Promise<Theme>;
-  uploadBrandThemeLogo(brandId: string): Promise<ImageUploadResponse>;
+  uploadBrandThemeLogo(brandId: string, file: ReadStream): Promise<ImageUploadResponse>;
   deleteBrandThemeLogo(brandId: string): Promise<Response>;
-  updateBrandThemeFavicon(brandId: string): Promise<ImageUploadResponse>;
+  updateBrandThemeFavicon(brandId: string, file: ReadStream): Promise<ImageUploadResponse>;
   deleteBrandThemeFavicon(brandId: string): Promise<Response>;
-  updateBrandThemeBackgroundImage(brandId: string): Promise<ImageUploadResponse>;
+  updateBrandThemeBackgroundImage(brandId: string, file: ReadStream): Promise<ImageUploadResponse>;
   deleteBrandThemeBackgroundImage(brandId: string): Promise<Response>;
 }
 
