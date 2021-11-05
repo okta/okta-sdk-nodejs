@@ -27,6 +27,7 @@ import { ApplicationGroupAssignmentOptions } from './models/ApplicationGroupAssi
 import { OAuth2Token } from './models/OAuth2Token';
 import { AppUser } from './models/AppUser';
 import { AppUserOptions } from './models/AppUser';
+import { Authenticator } from './models/Authenticator';
 import { AuthorizationServer } from './models/AuthorizationServer';
 import { AuthorizationServerOptions } from './models/AuthorizationServer';
 import { OAuth2Claim } from './models/OAuth2Claim';
@@ -203,6 +204,10 @@ export declare class GeneratedApiClient {
     expand?: string,
   }): Promise<AppUser>;
   updateApplicationUser(appId: string, userId: string, appUser: AppUserOptions): Promise<AppUser>;
+  listAuthenticators(): Collection<Authenticator>;
+  getAuthenticator(authenticatorId: string): Promise<Authenticator>;
+  activateAuthenticator(authenticatorId: string): Promise<Authenticator>;
+  deactivateAuthenticator(authenticatorId: string): Promise<Authenticator>;
   listAuthorizationServers(queryParameters?: {
     q?: string,
     limit?: string,
