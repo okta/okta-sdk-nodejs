@@ -13,16 +13,16 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-var Authenticator = require('./Authenticator');
+var Resource = require('../resource');
 const AuthenticatorProviderConfiguration = require('./AuthenticatorProviderConfiguration');
 
 /**
  * @class AuthenticatorProvider
- * @extends Authenticator
+ * @extends Resource
  * @property { AuthenticatorProviderConfiguration } configuration
  * @property { string } type
  */
-class AuthenticatorProvider extends Authenticator {
+class AuthenticatorProvider extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
     if (resourceJson && resourceJson.configuration) {

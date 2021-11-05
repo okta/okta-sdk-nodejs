@@ -13,18 +13,18 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-var Authenticator = require('./Authenticator');
+var Resource = require('../resource');
 const AuthenticatorProviderConfigurationUserNamePlate = require('./AuthenticatorProviderConfigurationUserNamePlate');
 
 /**
  * @class AuthenticatorProviderConfiguration
- * @extends Authenticator
+ * @extends Resource
  * @property { integer } authPort
  * @property { string } hostName
  * @property { string } instanceId
  * @property { AuthenticatorProviderConfigurationUserNamePlate } userNameTemplate
  */
-class AuthenticatorProviderConfiguration extends Authenticator {
+class AuthenticatorProviderConfiguration extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
     if (resourceJson && resourceJson.userNameTemplate) {

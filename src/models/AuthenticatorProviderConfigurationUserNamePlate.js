@@ -13,15 +13,15 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-var Authenticator = require('./Authenticator');
+var Resource = require('../resource');
 
 
 /**
  * @class AuthenticatorProviderConfigurationUserNamePlate
- * @extends Authenticator
+ * @extends Resource
  * @property { string } template
  */
-class AuthenticatorProviderConfigurationUserNamePlate extends Authenticator {
+class AuthenticatorProviderConfigurationUserNamePlate extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
 
