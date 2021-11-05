@@ -2611,9 +2611,6 @@ class GeneratedApiClient {
     }
     let url = `${this.baseUrl}/api/v1/brands/${brandId}/themes/${themeId}/background-image`;
 
-    const form = new FormData();
-    form.append('file', file);
-
     const resources = [
       `${this.baseUrl}/api/v1/brands/${brandId}/themes/${themeId}`,
       `${this.baseUrl}/api/v1/brands/${brandId}`
@@ -2679,9 +2676,6 @@ class GeneratedApiClient {
     }
     let url = `${this.baseUrl}/api/v1/brands/${brandId}/themes/${themeId}/favicon`;
 
-    const form = new FormData();
-    form.append('file', file);
-
     const resources = [
       `${this.baseUrl}/api/v1/brands/${brandId}/themes/${themeId}`,
       `${this.baseUrl}/api/v1/brands/${brandId}`
@@ -2746,9 +2740,6 @@ class GeneratedApiClient {
       return Promise.reject(new Error('OKTA API uploadBrandThemeLogo parameter themeId is required.'));
     }
     let url = `${this.baseUrl}/api/v1/brands/${brandId}/themes/${themeId}/logo`;
-
-    const form = new FormData();
-    form.append('file', file);
 
     const resources = [
       `${this.baseUrl}/api/v1/brands/${brandId}/themes/${themeId}`,
@@ -5768,9 +5759,6 @@ class GeneratedApiClient {
    */
   updateOrgLogo(file) {
     let url = `${this.baseUrl}/api/v1/org/logo`;
-
-    const form = new FormData();
-    form.append('file', file);
 
     const resources = [];
 

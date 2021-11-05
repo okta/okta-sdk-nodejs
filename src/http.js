@@ -68,7 +68,7 @@ class Http {
     request = request || {};
     context = context || {};
     request.url = uri;
-    request.headers = Object.assign(this.defaultHeaders, request.headers);
+    request.headers = Object.assign({}, this.defaultHeaders, request.headers);
     request.method = request.method || 'get';
 
     let retriedOnAuthError = false;
@@ -145,8 +145,6 @@ class Http {
       method: 'post',
       body: form
     });
-
-    request.body = form;
     return this.http(uri, request, context);
   }
 

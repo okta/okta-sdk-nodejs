@@ -29,19 +29,16 @@ describe('Brand API', () => {
 
     it('lists all Brand Themes, gets Brand Theme by ID and updates it', async () => {
       const { value: brand } = await client.listBrands().next();
-
       const themes = [];
       await client.listBrandThemes(brand.id).each(theme => themes.push(theme));
       expect(themes.length).to.be.greaterThanOrEqual(1);
 
       const theme = await client.getBrandTheme(brand.id, themes[0].id);
-
       const originalColorValue = theme.primaryColorHex;
       const newColorValue = '#badbed';
       theme.primaryColorHex = newColorValue;
       const updatedTheme = await theme.update(brand.id);
       expect(updatedTheme.primaryColorHex).to.equal(newColorValue);
-
       updatedTheme.primaryColorHex = originalColorValue;
       await updatedTheme.update(brand.id);
     });
@@ -80,12 +77,3 @@ describe('Brand API', () => {
     });
   });
 });
-
-/*
-
-+  deleteBrandThemeBackgroundImage(brandId: string, themeId: string): Promise<Response>;
-+  uploadBrandThemeBackgroundImage(brandId: string, themeId: string, file: ReadStream): Promise<ImageUploadResponse>;
-+  deleteBrandThemeFavicon(brandId: string, themeId: string): Promise<Response>;
-+  uploadBrandThemeFavicon(brandId: string, themeId: string, file: ReadStream): Promise<ImageUploadResponse>;
-+  deleteBrandThemeLogo(brandId: string, themeId: string): Promise<Response>;
-+  uploadBrandThemeLogo(brandId: string, themeId: string, file: ReadStream): Promise<ImageUploadResponse>; */

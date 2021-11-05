@@ -33,11 +33,6 @@ class GeneratedApiClient {
     url += queryString ? ('?' + queryString) : '';
     {{/if}}
 
-    {{#if formData.length}}
-    const form = new FormData();
-    form.append('file', {{formData.[0].name}});
-
-    {{/if}}
     {{#if isArray}}
     return new Collection(
       this,

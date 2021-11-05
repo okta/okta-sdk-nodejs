@@ -94,7 +94,7 @@ describe('Org API', () => {
   });
 
   it('updates Org logo', async () => {
-    const file = utils.getMockImage();
+    const file = utils.getMockImage('logo.png');
     const response = await client.updateOrgLogo(file);
     expect(response.status).to.equal(201);
   });
