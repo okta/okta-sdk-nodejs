@@ -42,7 +42,13 @@ class GeneratedApiClient {
       new ModelFactory(models.{{responseModel}}),
       {{/if}}
       {{#if bodyModel}}
-      { method: '{{method}}', body: JSON.stringify({{getBodyModelNameInCamelCase this}}) }
+      {
+        method: '{{method}}',
+        body: JSON.stringify({{getBodyModelNameInCamelCase this}}),
+        headers: {
+          {{#if consumes}}'Content-Type': '{{consumes}}', {{/if}}{{#if produces}}'Accept': '{{produces}}',{{/if}}{{#if encoding}} 'Content-Transfer-Encoding': '{{encoding}}',{{/if}}
+        }
+      }
       {{/if}}
     );
     {{else}}

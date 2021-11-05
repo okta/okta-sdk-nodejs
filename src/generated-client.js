@@ -1732,7 +1732,13 @@ class GeneratedApiClient {
       this,
       url,
       new ModelFactory(models.JsonWebKey),
-      { method: 'post', body: JSON.stringify(jwkUse) }
+      {
+        method: 'post',
+        body: JSON.stringify(jwkUse),
+        headers: {
+          'Content-Type': 'application/json', 'Accept': 'application/json',
+        }
+      }
     );
   }
 
