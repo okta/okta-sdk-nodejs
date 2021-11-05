@@ -24,9 +24,6 @@ var Resource = require('../resource');
  * @property { EmailTemplateTouchPointVariant } emailTemplateTouchPointVariant
  * @property { EndUserDashboardTouchPointVariant } endUserDashboardTouchPointVariant
  * @property { ErrorPageTouchPointVariant } errorPageTouchPointVariant
- * @property { string } favicon
- * @property { string } id
- * @property { string } logo
  * @property { string } primaryColorContrastHex
  * @property { string } primaryColorHex
  * @property { string } secondaryColorContrastHex
@@ -41,58 +38,65 @@ class Theme extends Resource {
 
   /**
    * @param {string} brandId
-   * @returns {Promise<Theme>}
+   * @param {string} themeId
+   * @returns {Promise<ThemeResponse>}
    */
-  update(brandId) {
-    return this.httpClient.updateBrandTheme(brandId, this.id, this);
+  update(brandId, themeId) {
+    return this.httpClient.updateBrandTheme(brandId, themeId, this);
   }
 
   /**
    * @param {string} brandId
+   * @param {string} themeId
    * @param {file} fs.ReadStream
    * @returns {Promise<ImageUploadResponse>}
    */
-  uploadBrandThemeLogo(brandId, file) {
-    return this.httpClient.uploadBrandThemeLogo(brandId, this.id, file);
+  uploadBrandThemeLogo(brandId, themeId, file) {
+    return this.httpClient.uploadBrandThemeLogo(brandId, themeId, file);
   }
 
   /**
    * @param {string} brandId
+   * @param {string} themeId
    */
-  deleteBrandThemeLogo(brandId) {
-    return this.httpClient.deleteBrandThemeLogo(brandId, this.id);
+  deleteBrandThemeLogo(brandId, themeId) {
+    return this.httpClient.deleteBrandThemeLogo(brandId, themeId);
   }
 
   /**
    * @param {string} brandId
+   * @param {string} themeId
    * @param {file} fs.ReadStream
    * @returns {Promise<ImageUploadResponse>}
    */
-  updateBrandThemeFavicon(brandId, file) {
-    return this.httpClient.uploadBrandThemeFavicon(brandId, this.id, file);
+  updateBrandThemeFavicon(brandId, themeId, file) {
+    return this.httpClient.uploadBrandThemeFavicon(brandId, themeId, file);
   }
 
   /**
    * @param {string} brandId
+   * @param {string} themeId
    */
-  deleteBrandThemeFavicon(brandId) {
-    return this.httpClient.deleteBrandThemeFavicon(brandId, this.id);
+  deleteBrandThemeFavicon(brandId, themeId) {
+    return this.httpClient.deleteBrandThemeFavicon(brandId, themeId);
   }
 
   /**
    * @param {string} brandId
+   * @param {string} themeId
    * @param {file} fs.ReadStream
    * @returns {Promise<ImageUploadResponse>}
    */
-  updateBrandThemeBackgroundImage(brandId, file) {
-    return this.httpClient.uploadBrandThemeBackgroundImage(brandId, this.id, file);
+  updateBrandThemeBackgroundImage(brandId, themeId, file) {
+    return this.httpClient.uploadBrandThemeBackgroundImage(brandId, themeId, file);
   }
 
   /**
    * @param {string} brandId
+   * @param {string} themeId
    */
-  deleteBrandThemeBackgroundImage(brandId) {
-    return this.httpClient.deleteBrandThemeBackgroundImage(brandId, this.id);
+  deleteBrandThemeBackgroundImage(brandId, themeId) {
+    return this.httpClient.deleteBrandThemeBackgroundImage(brandId, themeId);
   }
 }
 

@@ -21,10 +21,12 @@ const models = require('../models');
 class PolicyFactory extends ModelResolutionFactory {
   getMapping() {
     return {
+      'ACCESS_POLICY': models.AccessPolicy,
       'IDP_DISCOVERY': models.IdentityProviderPolicy,
       'OAUTH_AUTHORIZATION_POLICY': models.OAuthAuthorizationPolicy,
       'OKTA_SIGN_ON': models.OktaSignOnPolicy,
       'PASSWORD': models.PasswordPolicy,
+      'PROFILE_ENROLLMENT': models.ProfileEnrollmentPolicy,
     };
   }
 

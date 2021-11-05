@@ -77,7 +77,7 @@ declare class User extends Resource {
     sendEmail?: boolean,
   }): Promise<ForgotPasswordResponse>;
   assignRole(assignRoleRequest: AssignRoleRequestOptions, queryParameters?: {
-    disableNotifications?: string,
+    disableNotifications?: boolean,
   }): Promise<Role>;
   getRole(roleId: string): Promise<Role>;
   removeRole(roleId: string): Promise<Response>;

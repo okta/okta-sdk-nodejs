@@ -17,12 +17,19 @@ import { Resource } from '../resource';
 import { Client } from '../client';
 import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { AllowedForEnum } from './AllowedForEnum';
+import { ChannelBinding } from './ChannelBinding';
+import { Compliance } from './Compliance';
+import { UserVerificationEnum } from './UserVerificationEnum';
 
 declare class AuthenticatorSettings extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
 
   allowedFor: AllowedForEnum;
+  appInstanceId: string;
+  channelBinding: ChannelBinding;
+  compliance: Compliance;
   tokenLifetimeInMinutes: number;
+  userVerification: UserVerificationEnum;
 
 }
 

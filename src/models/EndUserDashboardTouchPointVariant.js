@@ -18,6 +18,7 @@ var EndUserDashboardTouchPointVariant;
   EndUserDashboardTouchPointVariant['OKTA_DEFAULT'] = 'OKTA_DEFAULT';
   EndUserDashboardTouchPointVariant['WHITE_LOGO_BACKGROUND'] = 'WHITE_LOGO_BACKGROUND';
   EndUserDashboardTouchPointVariant['FULL_THEME'] = 'FULL_THEME';
+  EndUserDashboardTouchPointVariant['LOGO_ON_FULL_WHITE_BACKGROUND'] = 'LOGO_ON_FULL_WHITE_BACKGROUND';
 }(EndUserDashboardTouchPointVariant || (EndUserDashboardTouchPointVariant = {})));
 
 module.exports = EndUserDashboardTouchPointVariant;

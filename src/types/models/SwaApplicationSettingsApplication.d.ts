@@ -22,8 +22,10 @@ declare class SwaApplicationSettingsApplication extends ApplicationSettingsAppli
   constructor(resourceJson: Record<string, unknown>, client: Client);
 
   buttonField: string;
+  checkbox: string;
   loginUrlRegex: string;
   passwordField: string;
+  redirectUrl: string;
   url: string;
   usernameField: string;
 

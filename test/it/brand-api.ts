@@ -36,11 +36,24 @@ describe('Brand API', () => {
       const theme = await client.getBrandTheme(brand.id, themes[0].id);
       const originalColorValue = theme.primaryColorHex;
       const newColorValue = '#badbed';
-      theme.primaryColorHex = newColorValue;
-      const updatedTheme = await theme.update(brand.id);
-      expect(updatedTheme.primaryColorHex).to.equal(newColorValue);
-      updatedTheme.primaryColorHex = originalColorValue;
-      await updatedTheme.update(brand.id);
+      const themeOptions = {
+        primaryColorHex: '#ecaffe',
+        secondaryColorHex: '#ebebed',
+        signInPageTouchPointVariant: 'OKTA_DEFAULT',
+        endUserDashboardTouchPointVariant: 'OKTA_DEFAULT',
+        errorPageTouchPointVariant: 'OKTA_DEFAULT',
+        emailTemplateTouchPointVariant: 'OKTA_DEFAULT'
+      };
+      const themeResponse = await client.updateBrandTheme(brand.id, theme.id, {
+        ...themeOptions,
+        primaryColorHex: newColorValue
+      });
+
+      expect(themeResponse.primaryColorHex).to.equal(newColorValue);
+      await client.updateBrandTheme(brand.id, theme.id, {
+        ...themeOptions,
+        primaryColorHex: originalColorValue,
+      });
     });
 
     it('uploads and deletes Theme background image', async () => {

@@ -19,6 +19,8 @@ var PolicyType;
   PolicyType['OKTA_SIGN_ON'] = 'OKTA_SIGN_ON';
   PolicyType['PASSWORD'] = 'PASSWORD';
   PolicyType['IDP_DISCOVERY'] = 'IDP_DISCOVERY';
+  PolicyType['PROFILE_ENROLLMENT'] = 'PROFILE_ENROLLMENT';
+  PolicyType['ACCESS_POLICY'] = 'ACCESS_POLICY';
 }(PolicyType || (PolicyType = {})));
 
 module.exports = PolicyType;

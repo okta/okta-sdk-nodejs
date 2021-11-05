@@ -21,6 +21,7 @@ var AuthenticatorType;
   AuthenticatorType['PHONE'] = 'phone';
   AuthenticatorType['EMAIL'] = 'email';
   AuthenticatorType['SECURITY_KEY'] = 'security_key';
+  AuthenticatorType['FEDERATED'] = 'federated';
 }(AuthenticatorType || (AuthenticatorType = {})));
 
 module.exports = AuthenticatorType;

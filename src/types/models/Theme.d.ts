@@ -19,6 +19,7 @@ import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { ReadStream } from 'fs';
 import { ImageUploadResponse } from './ImageUploadResponse';
 import { Response } from 'node-fetch';
+import { ThemeResponse } from './ThemeResponse';
 import { EmailTemplateTouchPointVariant } from './EmailTemplateTouchPointVariant';
 import { EndUserDashboardTouchPointVariant } from './EndUserDashboardTouchPointVariant';
 import { ErrorPageTouchPointVariant } from './ErrorPageTouchPointVariant';
@@ -32,22 +33,19 @@ declare class Theme extends Resource {
   emailTemplateTouchPointVariant: EmailTemplateTouchPointVariant;
   endUserDashboardTouchPointVariant: EndUserDashboardTouchPointVariant;
   errorPageTouchPointVariant: ErrorPageTouchPointVariant;
-  readonly favicon: string;
-  readonly id: string;
-  readonly logo: string;
   primaryColorContrastHex: string;
   primaryColorHex: string;
   secondaryColorContrastHex: string;
   secondaryColorHex: string;
   signInPageTouchPointVariant: SignInPageTouchPointVariant;
 
-  update(brandId: string): Promise<Theme>;
-  uploadBrandThemeLogo(brandId: string, file: ReadStream): Promise<ImageUploadResponse>;
-  deleteBrandThemeLogo(brandId: string): Promise<Response>;
-  updateBrandThemeFavicon(brandId: string, file: ReadStream): Promise<ImageUploadResponse>;
-  deleteBrandThemeFavicon(brandId: string): Promise<Response>;
-  updateBrandThemeBackgroundImage(brandId: string, file: ReadStream): Promise<ImageUploadResponse>;
-  deleteBrandThemeBackgroundImage(brandId: string): Promise<Response>;
+  update(brandId: string, themeId: string): Promise<ThemeResponse>;
+  uploadBrandThemeLogo(brandId: string, themeId: string, file: ReadStream): Promise<ImageUploadResponse>;
+  deleteBrandThemeLogo(brandId: string, themeId: string): Promise<Response>;
+  updateBrandThemeFavicon(brandId: string, themeId: string, file: ReadStream): Promise<ImageUploadResponse>;
+  deleteBrandThemeFavicon(brandId: string, themeId: string): Promise<Response>;
+  updateBrandThemeBackgroundImage(brandId: string, themeId: string, file: ReadStream): Promise<ImageUploadResponse>;
+  deleteBrandThemeBackgroundImage(brandId: string, themeId: string): Promise<Response>;
 }
 
 type ThemeOptions = OptionalKnownProperties<Theme>;

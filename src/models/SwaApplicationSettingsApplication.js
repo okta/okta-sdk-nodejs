@@ -20,8 +20,10 @@ var ApplicationSettingsApplication = require('./ApplicationSettingsApplication')
  * @class SwaApplicationSettingsApplication
  * @extends ApplicationSettingsApplication
  * @property { string } buttonField
+ * @property { string } checkbox
  * @property { string } loginUrlRegex
  * @property { string } passwordField
+ * @property { string } redirectUrl
  * @property { string } url
  * @property { string } usernameField
  */

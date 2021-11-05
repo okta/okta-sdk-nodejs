@@ -1217,6 +1217,37 @@ class GeneratedApiClient {
   /**
    *
    * @param authenticatorId {String}
+   * @param {Authenticator} authenticator
+   * @description
+   * Updates an authenticator
+   * @returns {Promise<Authenticator>}
+   */
+  updateAuthenticator(authenticatorId, authenticator) {
+    if (!authenticatorId) {
+      return Promise.reject(new Error('OKTA API updateAuthenticator parameter authenticatorId is required.'));
+    }
+    if (!authenticator) {
+      return Promise.reject(new Error('OKTA API updateAuthenticator parameter authenticator is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/authenticators/${authenticatorId}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/authenticators/${authenticatorId}`
+    ];
+
+    const request = this.http.putJson(
+      url,
+      {
+        body: authenticator
+      },
+      { resources }
+    );
+    return request.then(jsonRes => new models.Authenticator(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param authenticatorId {String}
    * @description
    * Success
    * @returns {Promise<Authenticator>}
@@ -2487,7 +2518,7 @@ class GeneratedApiClient {
    * @param brandId {String}
    * @description
    * List all the themes in your brand
-   * @returns {Collection} A collection that will yield {@link Theme} instances.
+   * @returns {Collection} A collection that will yield {@link ThemeResponse} instances.
    */
   listBrandThemes(brandId) {
     if (!brandId) {
@@ -2498,7 +2529,7 @@ class GeneratedApiClient {
     return new Collection(
       this,
       url,
-      new ModelFactory(models.Theme),
+      new ModelFactory(models.ThemeResponse),
     );
   }
 
@@ -2508,7 +2539,7 @@ class GeneratedApiClient {
    * @param themeId {String}
    * @description
    * Fetches a theme for a brand
-   * @returns {Promise<Theme>}
+   * @returns {Promise<ThemeResponse>}
    */
   getBrandTheme(brandId, themeId) {
     if (!brandId) {
@@ -2529,7 +2560,7 @@ class GeneratedApiClient {
       null,
       { resources }
     );
-    return request.then(jsonRes => new models.Theme(jsonRes, this));
+    return request.then(jsonRes => new models.ThemeResponse(jsonRes, this));
   }
 
   /**
@@ -2539,7 +2570,7 @@ class GeneratedApiClient {
    * @param {Theme} theme
    * @description
    * Updates a theme for a brand
-   * @returns {Promise<Theme>}
+   * @returns {Promise<ThemeResponse>}
    */
   updateBrandTheme(brandId, themeId, theme) {
     if (!brandId) {
@@ -2566,7 +2597,7 @@ class GeneratedApiClient {
       },
       { resources }
     );
-    return request.then(jsonRes => new models.Theme(jsonRes, this));
+    return request.then(jsonRes => new models.ThemeResponse(jsonRes, this));
   }
 
   /**
@@ -7910,7 +7941,7 @@ class GeneratedApiClient {
    * @param {Object} queryParams Map of query parameters to add to this request
    * @param {String} [queryParams.sendEmail]
    * @description
-   * Deactivates a user.  This operation can only be performed on users that do not have a `DEPROVISIONED` status.  Deactivation of a user is an asynchronous operation.  The user will have the `transitioningToStatus` property with a value of `DEPROVISIONED` during deactivation to indicate that the user hasn't completed the asynchronous operation.  The user will have a status of `DEPROVISIONED` when the deactivation process is complete.
+   * Deactivates a user. This operation can only be performed on users that do not have a `DEPROVISIONED` status. While the asynchronous operation (triggered by HTTP header `Prefer: respond-async`) is proceeding the user's `transitioningToStatus` property is `DEPROVISIONED`. The user's status is `DEPROVISIONED` when the deactivation process is complete.
    */
   deactivateUser(userId, queryParameters) {
     if (!userId) {

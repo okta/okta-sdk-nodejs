@@ -28,6 +28,7 @@ import { OAuth2Token } from './models/OAuth2Token';
 import { AppUser } from './models/AppUser';
 import { AppUserOptions } from './models/AppUser';
 import { Authenticator } from './models/Authenticator';
+import { AuthenticatorOptions } from './models/Authenticator';
 import { AuthorizationServer } from './models/AuthorizationServer';
 import { AuthorizationServerOptions } from './models/AuthorizationServer';
 import { OAuth2Claim } from './models/OAuth2Claim';
@@ -43,7 +44,7 @@ import { OAuth2Scope } from './models/OAuth2Scope';
 import { OAuth2ScopeOptions } from './models/OAuth2Scope';
 import { Brand } from './models/Brand';
 import { BrandOptions } from './models/Brand';
-import { Theme } from './models/Theme';
+import { ThemeResponse } from './models/ThemeResponse';
 import { ThemeOptions } from './models/Theme';
 import { ReadStream } from 'fs';
 import { ImageUploadResponse } from './models/ImageUploadResponse';
@@ -206,6 +207,7 @@ export declare class GeneratedApiClient {
   updateApplicationUser(appId: string, userId: string, appUser: AppUserOptions): Promise<AppUser>;
   listAuthenticators(): Collection<Authenticator>;
   getAuthenticator(authenticatorId: string): Promise<Authenticator>;
+  updateAuthenticator(authenticatorId: string, authenticator: AuthenticatorOptions): Promise<Authenticator>;
   activateAuthenticator(authenticatorId: string): Promise<Authenticator>;
   deactivateAuthenticator(authenticatorId: string): Promise<Authenticator>;
   listAuthorizationServers(queryParameters?: {
@@ -264,9 +266,9 @@ export declare class GeneratedApiClient {
   listBrands(): Collection<Brand>;
   getBrand(brandId: string): Promise<Brand>;
   updateBrand(brandId: string, brand: BrandOptions): Promise<Brand>;
-  listBrandThemes(brandId: string): Collection<Theme>;
-  getBrandTheme(brandId: string, themeId: string): Promise<Theme>;
-  updateBrandTheme(brandId: string, themeId: string, theme: ThemeOptions): Promise<Theme>;
+  listBrandThemes(brandId: string): Collection<ThemeResponse>;
+  getBrandTheme(brandId: string, themeId: string): Promise<ThemeResponse>;
+  updateBrandTheme(brandId: string, themeId: string, theme: ThemeOptions): Promise<ThemeResponse>;
   deleteBrandThemeBackgroundImage(brandId: string, themeId: string): Promise<Response>;
   uploadBrandThemeBackgroundImage(brandId: string, themeId: string, file: ReadStream): Promise<ImageUploadResponse>;
   deleteBrandThemeFavicon(brandId: string, themeId: string): Promise<Response>;
@@ -329,7 +331,7 @@ export declare class GeneratedApiClient {
     expand?: string,
   }): Collection<Role>;
   assignRoleToGroup(groupId: string, assignRoleRequest: AssignRoleRequestOptions, queryParameters?: {
-    disableNotifications?: string,
+    disableNotifications?: boolean,
   }): Promise<Role>;
   removeRoleFromGroup(groupId: string, roleId: string): Promise<Response>;
   getRole(groupId: string, roleId: string): Promise<Role>;
@@ -614,7 +616,7 @@ export declare class GeneratedApiClient {
     expand?: string,
   }): Collection<Role>;
   assignRoleToUser(userId: string, assignRoleRequest: AssignRoleRequestOptions, queryParameters?: {
-    disableNotifications?: string,
+    disableNotifications?: boolean,
   }): Promise<Role>;
   removeRoleFromUser(userId: string, roleId: string): Promise<Response>;
   getUserRole(userId: string, roleId: string): Promise<Role>;

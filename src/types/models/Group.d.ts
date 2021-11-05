@@ -50,7 +50,7 @@ declare class Group extends Resource {
     limit?: number,
   }): Collection<Application>;
   assignRole(assignRoleRequest: AssignRoleRequestOptions, queryParameters?: {
-    disableNotifications?: string,
+    disableNotifications?: boolean,
   }): Promise<Role>;
 }
 

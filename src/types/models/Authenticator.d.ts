@@ -16,6 +16,7 @@
 import { Resource } from '../resource';
 import { Client } from '../client';
 import { OptionalKnownProperties } from '../optional-known-properties-type';
+import { AuthenticatorProvider } from './AuthenticatorProvider';
 import { AuthenticatorSettings } from './AuthenticatorSettings';
 import { AuthenticatorStatus } from './AuthenticatorStatus';
 import { AuthenticatorType } from './AuthenticatorType';
@@ -29,10 +30,12 @@ declare class Authenticator extends Resource {
   key: string;
   readonly lastUpdated: string;
   name: string;
+  provider: AuthenticatorProvider;
   settings: AuthenticatorSettings;
   status: AuthenticatorStatus;
   type: AuthenticatorType;
 
+  update(): Promise<Authenticator>;
   activate(): Promise<Authenticator>;
   deactivate(): Promise<Authenticator>;
 }

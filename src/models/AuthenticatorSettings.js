@@ -14,18 +14,28 @@
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
 var Resource = require('../resource');
-
+const ChannelBinding = require('./ChannelBinding');
+const Compliance = require('./Compliance');
 
 /**
  * @class AuthenticatorSettings
  * @extends Resource
  * @property { AllowedForEnum } allowedFor
+ * @property { string } appInstanceId
+ * @property { ChannelBinding } channelBinding
+ * @property { Compliance } compliance
  * @property { integer } tokenLifetimeInMinutes
+ * @property { UserVerificationEnum } userVerification
  */
 class AuthenticatorSettings extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-
+    if (resourceJson && resourceJson.channelBinding) {
+      this.channelBinding = new ChannelBinding(resourceJson.channelBinding);
+    }
+    if (resourceJson && resourceJson.compliance) {
+      this.compliance = new Compliance(resourceJson.compliance);
+    }
   }
 
 }
