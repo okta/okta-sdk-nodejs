@@ -911,7 +911,7 @@ Following Client methods signatures have changed:
 
 ### From 4.x to 5.0
 
-The version 5.0 of this SDK dropped support for Node 10, which is EOL (End-of-Life) since 2021-04-30. Current supported minimum Node version is 12.0.0.
+The version 5.0 of this SDK dropped support for Node 10, which is EOL (End-of-Life) since 2021-04-30. Current supported minimal Node version is 12.0.0.
 
 #### Breaking changes
 
