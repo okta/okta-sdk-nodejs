@@ -4,7 +4,7 @@
 
 ### Features
 
-- [#289](https://github.com/okta/okta-sdk-nodejs/pull/289) Adds Brand API
+- [#289](https://github.com/okta/okta-sdk-nodejs/pull/289) Adds Brand API, Profile Enrollment and Access Policy models
   - Models/Enum:
     - added `Brand`
     - added `EmailTemplateTouchPointVariant`
@@ -13,6 +13,33 @@
     - added `ImageUploadResponse`
     - added `SignInPageTouchPointVariant`
     - added `Theme`
+    - added `AccessPolicy`
+    - added `AccessPolicyConstraint`
+    - added `AccessPolicyConstraints`
+    - added `AccessPolicyRule`
+    - added `AccessPolicyRuleActions`
+    - added `AccessPolicyRuleApplicationSignOn`
+    - added `AccessPolicyRuleConditions`
+    - added `AccessPolicyRuleCustomCondition`
+    - added `AuthenticatorProvider`
+    - added `AuthenticatorProviderConfiguration`
+    - added `AuthenticatorProviderConfigurationUserNamePlate`
+    - added `Compliance`
+    - added `ChannelBinding`
+    - added `FipsEnum`
+    - added `KnowledgeConstraint`
+    - added `PossessionConstraint`
+    - added `PreRegistrationInlineHook`
+    - added `ProfileEnrollmentPolicy`
+    - added `ProfileEnrollmentPolicyRule`
+    - added `ProfileEnrollmentPolicyRuleAction`
+    - added `ProfileEnrollmentPolicyRuleActions`
+    - added `ProfileEnrollmentPolicyRuleActivationRequirement`
+    - added `ProfileEnrollmentPolicyRuleProfileAttribute`
+    - added `RequiredEnum`
+    - added `UserTypeCondition`
+    - added `UserVerificationEnum`
+    - added `VerificationMethod`
   - Client:
     - added `listBrands`
     - added `getBrand`
@@ -27,6 +54,7 @@
     - added `deleteBrandThemeLogo`
     - added `uploadBrandThemeLogo`
     - added `updateOrgLogo`
+    - added `updateAuthenticator`
 
 - [#287](https://github.com/okta/okta-sdk-nodejs/pull/287) Adds Authenticators API
   - Models/Enum:
