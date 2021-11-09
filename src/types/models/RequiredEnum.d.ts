@@ -15,7 +15,7 @@
 
 declare enum RequiredEnum {
   ALWAYS = 'ALWAYS',
-  HIGH_RISK_ALWAYS = 'HIGH_RISK_ALWAYS',
+  HIGH_RISK_ONLY = 'HIGH_RISK_ONLY',
   NEVER = 'NEVER',
 }
 

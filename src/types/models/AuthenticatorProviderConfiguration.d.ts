@@ -13,17 +13,18 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-import { Authenticator } from './Authenticator';
+import { Resource } from '../resource';
 import { Client } from '../client';
 import { OptionalKnownProperties } from '../optional-known-properties-type';
 import { AuthenticatorProviderConfigurationUserNamePlate } from './AuthenticatorProviderConfigurationUserNamePlate';
 
-declare class AuthenticatorProviderConfiguration extends Authenticator {
+declare class AuthenticatorProviderConfiguration extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
 
   authPort: number;
   hostName: string;
   instanceId: string;
+  sharedSecret: string;
   userNameTemplate: AuthenticatorProviderConfigurationUserNamePlate;
 
 }

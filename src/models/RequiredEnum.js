@@ -16,7 +16,7 @@
 var RequiredEnum;
 (function (RequiredEnum) {
   RequiredEnum['ALWAYS'] = 'ALWAYS';
-  RequiredEnum['HIGH_RISK_ALWAYS'] = 'HIGH_RISK_ALWAYS';
+  RequiredEnum['HIGH_RISK_ONLY'] = 'HIGH_RISK_ONLY';
   RequiredEnum['NEVER'] = 'NEVER';
 }(RequiredEnum || (RequiredEnum = {})));
 

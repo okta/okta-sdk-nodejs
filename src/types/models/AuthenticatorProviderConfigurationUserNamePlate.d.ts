@@ -13,12 +13,12 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-import { Authenticator } from './Authenticator';
+import { Resource } from '../resource';
 import { Client } from '../client';
 import { OptionalKnownProperties } from '../optional-known-properties-type';
 
 
-declare class AuthenticatorProviderConfigurationUserNamePlate extends Authenticator {
+declare class AuthenticatorProviderConfigurationUserNamePlate extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
 
   template: string;
