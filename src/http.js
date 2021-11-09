@@ -10,6 +10,8 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
+const FormData = require('form-data');
+
 const OktaApiError = require('./api-error');
 const HttpError = require('./http-error');
 const MemoryStore = require('./memory-store');
@@ -66,7 +68,7 @@ class Http {
     request = request || {};
     context = context || {};
     request.url = uri;
-    request.headers = Object.assign(this.defaultHeaders, request.headers);
+    request.headers = Object.assign({}, this.defaultHeaders, request.headers);
     request.method = request.method || 'get';
 
     let retriedOnAuthError = false;
@@ -132,6 +134,17 @@ class Http {
   post(uri, request, context) {
     request = request || {};
     request.method = 'post';
+    return this.http(uri, request, context);
+  }
+
+  postFormDataFile(uri, request, file, context) {
+    const form = new FormData();
+    form.append('file', file);
+
+    request = Object.assign({}, request, {
+      method: 'post',
+      body: form
+    });
     return this.http(uri, request, context);
   }
 

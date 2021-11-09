@@ -16,7 +16,14 @@
 import { Resource } from '../resource';
 import { Client } from '../client';
 import { OptionalKnownProperties } from '../optional-known-properties-type';
-
+import { Collection } from '../collection';
+import { OrgContactTypeObj } from './OrgContactTypeObj';
+import { OrgContactUser } from './OrgContactUser';
+import { OrgOktaSupportSettingsObj } from './OrgOktaSupportSettingsObj';
+import { OrgOktaCommunicationSetting } from './OrgOktaCommunicationSetting';
+import { OrgPreferences } from './OrgPreferences';
+import { ReadStream } from 'fs';
+import { Response } from 'node-fetch';
 
 declare class OrgSetting extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
@@ -41,6 +48,15 @@ declare class OrgSetting extends Resource {
   website: string;
 
   update(): Promise<OrgSetting>;
+  partialUpdate(): Promise<OrgSetting>;
+  getContactTypes(): Collection<OrgContactTypeObj>;
+  getOrgContactUser(contactType: string): Promise<OrgContactUser>;
+  getSupportSettings(): Promise<OrgOktaSupportSettingsObj>;
+  communicationSettings(): Promise<OrgOktaCommunicationSetting>;
+  orgPreferences(): Promise<OrgPreferences>;
+  showFooter(): Promise<OrgPreferences>;
+  hideFooter(): Promise<OrgPreferences>;
+  updateOrgLogo(file: ReadStream): Promise<Response>;
 }
 
 type OrgSettingOptions = OptionalKnownProperties<OrgSetting>;

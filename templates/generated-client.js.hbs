@@ -42,11 +42,20 @@ class GeneratedApiClient {
       new ModelFactory(models.{{responseModel}}),
       {{/if}}
       {{#if bodyModel}}
-      { method: '{{method}}', body: JSON.stringify({{getBodyModelNameInCamelCase this}}) }
+      {
+        method: '{{method}}',
+        body: JSON.stringify({{getBodyModelNameInCamelCase this}}),
+        headers: {
+          {{#if consumes}}'Content-Type': '{{consumes}}', {{/if}}{{#if produces}}'Accept': '{{produces}}',{{/if}}{{#if encoding}} 'Content-Transfer-Encoding': '{{encoding}}',{{/if}}
+        }
+      }
       {{/if}}
     );
     {{else}}
     const resources = {{{getAffectedResources path}}};
+    {{#if (containsRestrictedProperties bodyModel)}}
+    const payload = this._removeRestrictedModelProperties({{getBodyModelNameInCamelCase this}}, '{{getRestrictedProperties bodyModel}}'.split(','));
+    {{/if}}
 
     const request = this.http.{{getHttpMethod this}}(
       url,
@@ -54,15 +63,18 @@ class GeneratedApiClient {
       {
         {{#if (hasHeaders this)}}
         headers: {
-          {{#if consumes}}'Content-Type': '{{consumes}}',{{/if}}{{#if produces}} 'Accept': '{{produces}}',{{/if}}{{#if encoding}} 'Content-Transfer-Encoding': '{{encoding}}',{{/if}}
+          {{#if formData.length}}{{else}}{{#if consumes}}'Content-Type': '{{consumes}}', {{/if}}{{/if}}{{#if produces}}'Accept': '{{produces}}',{{/if}}{{#if encoding}} 'Content-Transfer-Encoding': '{{encoding}}',{{/if}}
         },
         {{/if}}
         {{#if bodyModel}}
-        body: {{getBodyModelNameInCamelCase this}}
+        body: {{#if (containsRestrictedProperties bodyModel)}}payload{{else}}{{getBodyModelNameInCamelCase this}}{{/if}}
         {{/if}}
       },
       {{else}}
       null,
+      {{/if}}
+      {{#if formData.length}}
+      {{formData.[0].name}},
       {{/if}}
       { resources }
     ){{#if (shouldResolveJson this)}}.then(res => res.json()){{/if}};
@@ -79,6 +91,13 @@ class GeneratedApiClient {
   }
 
 {{/each}}
+  _removeRestrictedModelProperties(instance, restrictedProperties) {
+    const allowedProperties = Object.keys(instance).filter(propertyName => !restrictedProperties.includes(propertyName));
+    return allowedProperties.reduce((properties, propertyName) => ({
+      ...properties,
+      [propertyName]: instance[propertyName]
+    }), Object.create(null));
+  }
 }
 
 module.exports = GeneratedApiClient;

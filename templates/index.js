@@ -1,5 +1,5 @@
 const _ = require('lodash');
-const { isConflictingPropertyName, containsRestrictedChars } = require('./helpers/operation');
+const { isConflictingPropertyName, containsRestrictedChars, isRestrictedPropertyOverride } = require('./helpers/operation');
 const js = module.exports;
 const operationUtils = require('./helpers/operation');
 const { convertSwaggerToTSType } = require('./helpers/typescript-formatter');
@@ -167,6 +167,9 @@ js.process = ({spec, operations, models, handlebars}) => {
     const constructorStatements = [];
 
     model.properties.forEach(property => {
+      if (isRestrictedPropertyOverride(model.modelName, property.propertyName)) {
+        return;
+      }
       let propertyName = property.propertyName;
       let dedupedPropertyName = propertyName;
 
@@ -206,7 +209,8 @@ js.process = ({spec, operations, models, handlebars}) => {
     const operation = method.operation;
 
     operation.pathParams.forEach(param => {
-      const matchingArgument = method.arguments.filter(argument => argument.dest === param.name)[0];
+      const methodArguments = method.arguments || [];
+      const matchingArgument = methodArguments.filter(argument => argument.dest === param.name)[0];
       if (!matchingArgument || !matchingArgument.src) {
         args.push(param.name);
       }
@@ -220,6 +224,10 @@ js.process = ({spec, operations, models, handlebars}) => {
       args.push('queryParameters');
     }
 
+    if (operation.formData.length) {
+      args.push(operation.formData[0].name);
+    }
+
     return args.join(', ');
   });
 
@@ -230,7 +238,8 @@ js.process = ({spec, operations, models, handlebars}) => {
     const operation = method.operation;
 
     operation.pathParams.forEach(param => {
-      const matchingArgument = method.arguments.filter(argument => argument.dest === param.name)[0];
+      const methodArguments = method.arguments || [];
+      const matchingArgument = methodArguments.filter(argument => argument.dest === param.name)[0];
       if (matchingArgument && matchingArgument.src) {
         args.push(`this.${matchingArgument.src}`);
       } else {
@@ -246,6 +255,10 @@ js.process = ({spec, operations, models, handlebars}) => {
       args.push('queryParameters');
     }
 
+    if (operation.formData.length) {
+      args.push(operation.formData[0].name);
+    }
+
     return args.join(', ');
   });
 
@@ -256,7 +269,8 @@ js.process = ({spec, operations, models, handlebars}) => {
     const operation = method.operation;
 
     operation.pathParams.forEach(param => {
-      const matchingArgument = method.arguments.filter(argument => argument.dest === param.name)[0];
+      const methodArguments = method.arguments || [];
+      const matchingArgument = methodArguments.filter(argument => argument.dest === param.name)[0];
       if (!matchingArgument || !matchingArgument.src) {
         args.push(`@param {${param.type}} ${param.name}`);
       }
@@ -268,6 +282,10 @@ js.process = ({spec, operations, models, handlebars}) => {
 
     if (operation.queryParams.length) {
       args.push('@param {object} queryParameters');
+    }
+
+    if (operation.formData.length) {
+      args.push(`@param {${operation.formData[0].name}} fs.ReadStream`);
     }
 
     if (operation.responseModel) {

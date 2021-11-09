@@ -21,7 +21,9 @@ const models = require('../models');
 class PolicyRuleFactory extends ModelResolutionFactory {
   getMapping() {
     return {
+      'ACCESS_POLICY': models.AccessPolicyRule,
       'PASSWORD': models.PasswordPolicyRule,
+      'PROFILE_ENROLLMENT': models.ProfileEnrollmentPolicyRule,
       'SIGN_ON': models.OktaSignOnPolicyRule,
     };
   }

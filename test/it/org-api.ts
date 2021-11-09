@@ -92,4 +92,10 @@ describe('Org API', () => {
     supportSettings = await client.revokeOktaSupport();
     expect(supportSettings.support).to.equal(OrgOktaSupportSetting.DISABLED);
   });
+
+  it('updates Org logo', async () => {
+    const file = utils.getMockImage('logo.png');
+    const response = await client.updateOrgLogo(file);
+    expect(response.status).to.equal(201);
+  });
 });

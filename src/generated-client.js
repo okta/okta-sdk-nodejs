@@ -1217,6 +1217,37 @@ class GeneratedApiClient {
   /**
    *
    * @param authenticatorId {String}
+   * @param {Authenticator} authenticator
+   * @description
+   * Updates an authenticator
+   * @returns {Promise<Authenticator>}
+   */
+  updateAuthenticator(authenticatorId, authenticator) {
+    if (!authenticatorId) {
+      return Promise.reject(new Error('OKTA API updateAuthenticator parameter authenticatorId is required.'));
+    }
+    if (!authenticator) {
+      return Promise.reject(new Error('OKTA API updateAuthenticator parameter authenticator is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/authenticators/${authenticatorId}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/authenticators/${authenticatorId}`
+    ];
+
+    const request = this.http.putJson(
+      url,
+      {
+        body: authenticator
+      },
+      { resources }
+    );
+    return request.then(jsonRes => new models.Authenticator(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param authenticatorId {String}
    * @description
    * Success
    * @returns {Promise<Authenticator>}
@@ -1732,7 +1763,13 @@ class GeneratedApiClient {
       this,
       url,
       new ModelFactory(models.JsonWebKey),
-      { method: 'post', body: JSON.stringify(jwkUse) }
+      {
+        method: 'post',
+        body: JSON.stringify(jwkUse),
+        headers: {
+          'Content-Type': 'application/json', 'Accept': 'application/json',
+        }
+      }
     );
   }
 
@@ -2402,6 +2439,360 @@ class GeneratedApiClient {
       { resources }
     );
     return request.then(jsonRes => new models.OAuth2Scope(jsonRes, this));
+  }
+
+  /**
+   *
+   * @description
+   * List all the brands in your org.
+   * @returns {Collection} A collection that will yield {@link Brand} instances.
+   */
+  listBrands() {
+    let url = `${this.baseUrl}/api/v1/brands`;
+
+    return new Collection(
+      this,
+      url,
+      new ModelFactory(models.Brand),
+    );
+  }
+
+  /**
+   *
+   * @param brandId {String}
+   * @description
+   * Fetches a brand by `brandId`
+   * @returns {Promise<Brand>}
+   */
+  getBrand(brandId) {
+    if (!brandId) {
+      return Promise.reject(new Error('OKTA API getBrand parameter brandId is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/brands/${brandId}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/brands/${brandId}`
+    ];
+
+    const request = this.http.getJson(
+      url,
+      null,
+      { resources }
+    );
+    return request.then(jsonRes => new models.Brand(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param brandId {String}
+   * @param {Brand} brand
+   * @description
+   * Updates a brand by `brandId`
+   * @returns {Promise<Brand>}
+   */
+  updateBrand(brandId, brand) {
+    if (!brandId) {
+      return Promise.reject(new Error('OKTA API updateBrand parameter brandId is required.'));
+    }
+    if (!brand) {
+      return Promise.reject(new Error('OKTA API updateBrand parameter brand is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/brands/${brandId}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/brands/${brandId}`
+    ];
+
+    const request = this.http.putJson(
+      url,
+      {
+        body: brand
+      },
+      { resources }
+    );
+    return request.then(jsonRes => new models.Brand(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param brandId {String}
+   * @description
+   * List all the themes in your brand
+   * @returns {Collection} A collection that will yield {@link ThemeResponse} instances.
+   */
+  listBrandThemes(brandId) {
+    if (!brandId) {
+      return Promise.reject(new Error('OKTA API listBrandThemes parameter brandId is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/brands/${brandId}/themes`;
+
+    return new Collection(
+      this,
+      url,
+      new ModelFactory(models.ThemeResponse),
+    );
+  }
+
+  /**
+   *
+   * @param brandId {String}
+   * @param themeId {String}
+   * @description
+   * Fetches a theme for a brand
+   * @returns {Promise<ThemeResponse>}
+   */
+  getBrandTheme(brandId, themeId) {
+    if (!brandId) {
+      return Promise.reject(new Error('OKTA API getBrandTheme parameter brandId is required.'));
+    }
+    if (!themeId) {
+      return Promise.reject(new Error('OKTA API getBrandTheme parameter themeId is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/brands/${brandId}/themes/${themeId}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/brands/${brandId}/themes/${themeId}`,
+      `${this.baseUrl}/api/v1/brands/${brandId}`
+    ];
+
+    const request = this.http.getJson(
+      url,
+      null,
+      { resources }
+    );
+    return request.then(jsonRes => new models.ThemeResponse(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param brandId {String}
+   * @param themeId {String}
+   * @param {Theme} theme
+   * @description
+   * Updates a theme for a brand
+   * @returns {Promise<ThemeResponse>}
+   */
+  updateBrandTheme(brandId, themeId, theme) {
+    if (!brandId) {
+      return Promise.reject(new Error('OKTA API updateBrandTheme parameter brandId is required.'));
+    }
+    if (!themeId) {
+      return Promise.reject(new Error('OKTA API updateBrandTheme parameter themeId is required.'));
+    }
+    if (!theme) {
+      return Promise.reject(new Error('OKTA API updateBrandTheme parameter theme is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/brands/${brandId}/themes/${themeId}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/brands/${brandId}/themes/${themeId}`,
+      `${this.baseUrl}/api/v1/brands/${brandId}`
+    ];
+    const payload = this._removeRestrictedModelProperties(theme, 'id,backgroundImage,favicon,logo,_links'.split(','));
+
+    const request = this.http.putJson(
+      url,
+      {
+        body: payload
+      },
+      { resources }
+    );
+    return request.then(jsonRes => new models.ThemeResponse(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param brandId {String}
+   * @param themeId {String}
+   * @description
+   * Deletes a Theme background image
+   */
+  deleteBrandThemeBackgroundImage(brandId, themeId) {
+    if (!brandId) {
+      return Promise.reject(new Error('OKTA API deleteBrandThemeBackgroundImage parameter brandId is required.'));
+    }
+    if (!themeId) {
+      return Promise.reject(new Error('OKTA API deleteBrandThemeBackgroundImage parameter themeId is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/brands/${brandId}/themes/${themeId}/background-image`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/brands/${brandId}/themes/${themeId}`,
+      `${this.baseUrl}/api/v1/brands/${brandId}`
+    ];
+
+    const request = this.http.delete(
+      url,
+      null,
+      { resources }
+    );
+    return request;
+  }
+
+  /**
+   *
+   * @param brandId {String}
+   * @param themeId {String}
+   * @param {file} fs.ReadStream
+   * @description
+   * Updates the background image for your Theme
+   * @returns {Promise<ImageUploadResponse>}
+   */
+  uploadBrandThemeBackgroundImage(brandId, themeId, file) {
+    if (!brandId) {
+      return Promise.reject(new Error('OKTA API uploadBrandThemeBackgroundImage parameter brandId is required.'));
+    }
+    if (!themeId) {
+      return Promise.reject(new Error('OKTA API uploadBrandThemeBackgroundImage parameter themeId is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/brands/${brandId}/themes/${themeId}/background-image`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/brands/${brandId}/themes/${themeId}`,
+      `${this.baseUrl}/api/v1/brands/${brandId}`
+    ];
+
+    const request = this.http.postFormDataFile(
+      url,
+      {
+        headers: {
+          'Accept': 'application/json',
+        },
+      },
+      file,
+      { resources }
+    ).then(res => res.json());
+    return request.then(jsonRes => new models.ImageUploadResponse(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param brandId {String}
+   * @param themeId {String}
+   * @description
+   * Deletes a Theme favicon. The org then uses the Okta default favicon.
+   */
+  deleteBrandThemeFavicon(brandId, themeId) {
+    if (!brandId) {
+      return Promise.reject(new Error('OKTA API deleteBrandThemeFavicon parameter brandId is required.'));
+    }
+    if (!themeId) {
+      return Promise.reject(new Error('OKTA API deleteBrandThemeFavicon parameter themeId is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/brands/${brandId}/themes/${themeId}/favicon`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/brands/${brandId}/themes/${themeId}`,
+      `${this.baseUrl}/api/v1/brands/${brandId}`
+    ];
+
+    const request = this.http.delete(
+      url,
+      null,
+      { resources }
+    );
+    return request;
+  }
+
+  /**
+   *
+   * @param brandId {String}
+   * @param themeId {String}
+   * @param {file} fs.ReadStream
+   * @description
+   * Updates the favicon for your theme
+   * @returns {Promise<ImageUploadResponse>}
+   */
+  uploadBrandThemeFavicon(brandId, themeId, file) {
+    if (!brandId) {
+      return Promise.reject(new Error('OKTA API uploadBrandThemeFavicon parameter brandId is required.'));
+    }
+    if (!themeId) {
+      return Promise.reject(new Error('OKTA API uploadBrandThemeFavicon parameter themeId is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/brands/${brandId}/themes/${themeId}/favicon`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/brands/${brandId}/themes/${themeId}`,
+      `${this.baseUrl}/api/v1/brands/${brandId}`
+    ];
+
+    const request = this.http.postFormDataFile(
+      url,
+      {
+        headers: {
+          'Accept': 'application/json',
+        },
+      },
+      file,
+      { resources }
+    ).then(res => res.json());
+    return request.then(jsonRes => new models.ImageUploadResponse(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param brandId {String}
+   * @param themeId {String}
+   * @description
+   * Deletes a Theme logo. The org then uses the Okta default logo.
+   */
+  deleteBrandThemeLogo(brandId, themeId) {
+    if (!brandId) {
+      return Promise.reject(new Error('OKTA API deleteBrandThemeLogo parameter brandId is required.'));
+    }
+    if (!themeId) {
+      return Promise.reject(new Error('OKTA API deleteBrandThemeLogo parameter themeId is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/brands/${brandId}/themes/${themeId}/logo`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/brands/${brandId}/themes/${themeId}`,
+      `${this.baseUrl}/api/v1/brands/${brandId}`
+    ];
+
+    const request = this.http.delete(
+      url,
+      null,
+      { resources }
+    );
+    return request;
+  }
+
+  /**
+   *
+   * @param brandId {String}
+   * @param themeId {String}
+   * @param {file} fs.ReadStream
+   * @description
+   * Updates the logo for your Theme
+   * @returns {Promise<ImageUploadResponse>}
+   */
+  uploadBrandThemeLogo(brandId, themeId, file) {
+    if (!brandId) {
+      return Promise.reject(new Error('OKTA API uploadBrandThemeLogo parameter brandId is required.'));
+    }
+    if (!themeId) {
+      return Promise.reject(new Error('OKTA API uploadBrandThemeLogo parameter themeId is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/brands/${brandId}/themes/${themeId}/logo`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/brands/${brandId}/themes/${themeId}`,
+      `${this.baseUrl}/api/v1/brands/${brandId}`
+    ];
+
+    const request = this.http.postFormDataFile(
+      url,
+      {
+        headers: {
+          'Accept': 'application/json',
+        },
+      },
+      file,
+      { resources }
+    ).then(res => res.json());
+    return request.then(jsonRes => new models.ImageUploadResponse(jsonRes, this));
   }
 
   /**
@@ -5398,6 +5789,30 @@ class GeneratedApiClient {
 
   /**
    *
+   * @param {file} fs.ReadStream
+   * @description
+   * Updates the logo for your organization.
+   */
+  updateOrgLogo(file) {
+    let url = `${this.baseUrl}/api/v1/org/logo`;
+
+    const resources = [];
+
+    const request = this.http.postFormDataFile(
+      url,
+      {
+        headers: {
+          'Accept': 'application/json',
+        },
+      },
+      file,
+      { resources }
+    );
+    return request;
+  }
+
+  /**
+   *
    * @description
    * Gets preferences of your organization.
    * @returns {Promise<OrgPreferences>}
@@ -7526,7 +7941,7 @@ class GeneratedApiClient {
    * @param {Object} queryParams Map of query parameters to add to this request
    * @param {String} [queryParams.sendEmail]
    * @description
-   * Deactivates a user.  This operation can only be performed on users that do not have a `DEPROVISIONED` status.  Deactivation of a user is an asynchronous operation.  The user will have the `transitioningToStatus` property with a value of `DEPROVISIONED` during deactivation to indicate that the user hasn't completed the asynchronous operation.  The user will have a status of `DEPROVISIONED` when the deactivation process is complete.
+   * Deactivates a user. This operation can only be performed on users that do not have a `DEPROVISIONED` status. While the asynchronous operation (triggered by HTTP header `Prefer: respond-async`) is proceeding the user's `transitioningToStatus` property is `DEPROVISIONED`. The user's status is `DEPROVISIONED` when the deactivation process is complete.
    */
   deactivateUser(userId, queryParameters) {
     if (!userId) {
@@ -8483,6 +8898,13 @@ class GeneratedApiClient {
     return request.then(jsonRes => new models.NetworkZone(jsonRes, this));
   }
 
+  _removeRestrictedModelProperties(instance, restrictedProperties) {
+    const allowedProperties = Object.keys(instance).filter(propertyName => !restrictedProperties.includes(propertyName));
+    return allowedProperties.reduce((properties, propertyName) => ({
+      ...properties,
+      [propertyName]: instance[propertyName]
+    }), Object.create(null));
+  }
 }
 
 module.exports = GeneratedApiClient;

@@ -19,6 +19,7 @@ var Resource = require('../resource');
 /**
  * @class ApplicationCredentialsUsernameTemplate
  * @extends Resource
+ * @property { string } pushStatus
  * @property { string } suffix
  * @property { string } template
  * @property { string } type

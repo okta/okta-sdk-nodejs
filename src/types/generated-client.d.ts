@@ -28,6 +28,7 @@ import { OAuth2Token } from './models/OAuth2Token';
 import { AppUser } from './models/AppUser';
 import { AppUserOptions } from './models/AppUser';
 import { Authenticator } from './models/Authenticator';
+import { AuthenticatorOptions } from './models/Authenticator';
 import { AuthorizationServer } from './models/AuthorizationServer';
 import { AuthorizationServerOptions } from './models/AuthorizationServer';
 import { OAuth2Claim } from './models/OAuth2Claim';
@@ -41,6 +42,12 @@ import { AuthorizationServerPolicyRule } from './models/AuthorizationServerPolic
 import { AuthorizationServerPolicyRuleOptions } from './models/AuthorizationServerPolicyRule';
 import { OAuth2Scope } from './models/OAuth2Scope';
 import { OAuth2ScopeOptions } from './models/OAuth2Scope';
+import { Brand } from './models/Brand';
+import { BrandOptions } from './models/Brand';
+import { ThemeResponse } from './models/ThemeResponse';
+import { ThemeOptions } from './models/Theme';
+import { ReadStream } from 'fs';
+import { ImageUploadResponse } from './models/ImageUploadResponse';
 import { DomainListResponse } from './models/DomainListResponse';
 import { DomainOptions } from './models/Domain';
 import { Domain } from './models/Domain';
@@ -200,6 +207,7 @@ export declare class GeneratedApiClient {
   updateApplicationUser(appId: string, userId: string, appUser: AppUserOptions): Promise<AppUser>;
   listAuthenticators(): Collection<Authenticator>;
   getAuthenticator(authenticatorId: string): Promise<Authenticator>;
+  updateAuthenticator(authenticatorId: string, authenticator: AuthenticatorOptions): Promise<Authenticator>;
   activateAuthenticator(authenticatorId: string): Promise<Authenticator>;
   deactivateAuthenticator(authenticatorId: string): Promise<Authenticator>;
   listAuthorizationServers(queryParameters?: {
@@ -255,6 +263,18 @@ export declare class GeneratedApiClient {
   deleteOAuth2Scope(authServerId: string, scopeId: string): Promise<Response>;
   getOAuth2Scope(authServerId: string, scopeId: string): Promise<OAuth2Scope>;
   updateOAuth2Scope(authServerId: string, scopeId: string, oAuth2Scope: OAuth2ScopeOptions): Promise<OAuth2Scope>;
+  listBrands(): Collection<Brand>;
+  getBrand(brandId: string): Promise<Brand>;
+  updateBrand(brandId: string, brand: BrandOptions): Promise<Brand>;
+  listBrandThemes(brandId: string): Collection<ThemeResponse>;
+  getBrandTheme(brandId: string, themeId: string): Promise<ThemeResponse>;
+  updateBrandTheme(brandId: string, themeId: string, theme: ThemeOptions): Promise<ThemeResponse>;
+  deleteBrandThemeBackgroundImage(brandId: string, themeId: string): Promise<Response>;
+  uploadBrandThemeBackgroundImage(brandId: string, themeId: string, file: ReadStream): Promise<ImageUploadResponse>;
+  deleteBrandThemeFavicon(brandId: string, themeId: string): Promise<Response>;
+  uploadBrandThemeFavicon(brandId: string, themeId: string, file: ReadStream): Promise<ImageUploadResponse>;
+  deleteBrandThemeLogo(brandId: string, themeId: string): Promise<Response>;
+  uploadBrandThemeLogo(brandId: string, themeId: string, file: ReadStream): Promise<ImageUploadResponse>;
   listDomains(): Promise<DomainListResponse>;
   createDomain(domain: DomainOptions): Promise<Domain>;
   deleteDomain(domainId: string): Promise<Response>;
@@ -311,7 +331,7 @@ export declare class GeneratedApiClient {
     expand?: string,
   }): Collection<Role>;
   assignRoleToGroup(groupId: string, assignRoleRequest: AssignRoleRequestOptions, queryParameters?: {
-    disableNotifications?: string,
+    disableNotifications?: boolean,
   }): Promise<Role>;
   removeRoleFromGroup(groupId: string, roleId: string): Promise<Response>;
   getRole(groupId: string, roleId: string): Promise<Role>;
@@ -425,6 +445,7 @@ export declare class GeneratedApiClient {
   getOrgContactTypes(): Collection<OrgContactTypeObj>;
   getOrgContactUser(contactType: string): Promise<OrgContactUser>;
   updateOrgContactUser(contactType: string, userIdString: UserIdStringOptions): Promise<OrgContactUser>;
+  updateOrgLogo(file: ReadStream): Promise<Response>;
   getOrgPreferences(): Promise<OrgPreferences>;
   hideOktaUIFooter(): Promise<OrgPreferences>;
   showOktaUIFooter(): Promise<OrgPreferences>;
@@ -595,7 +616,7 @@ export declare class GeneratedApiClient {
     expand?: string,
   }): Collection<Role>;
   assignRoleToUser(userId: string, assignRoleRequest: AssignRoleRequestOptions, queryParameters?: {
-    disableNotifications?: string,
+    disableNotifications?: boolean,
   }): Promise<Role>;
   removeRoleFromUser(userId: string, roleId: string): Promise<Response>;
   getUserRole(userId: string, roleId: string): Promise<Role>;

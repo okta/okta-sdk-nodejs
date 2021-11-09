@@ -13,15 +13,15 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-var Resource = require('../resource');
+var OrgContactUser = require('./OrgContactUser');
 
 
 /**
  * @class UserIdString
- * @extends Resource
+ * @extends OrgContactUser
  * @property { string } userId
  */
-class UserIdString extends Resource {
+class UserIdString extends OrgContactUser {
   constructor(resourceJson, client) {
     super(resourceJson, client);
 

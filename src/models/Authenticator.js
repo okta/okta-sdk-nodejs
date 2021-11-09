@@ -14,6 +14,7 @@
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
 var Resource = require('../resource');
+const AuthenticatorProvider = require('./AuthenticatorProvider');
 const AuthenticatorSettings = require('./AuthenticatorSettings');
 
 /**
@@ -25,6 +26,7 @@ const AuthenticatorSettings = require('./AuthenticatorSettings');
  * @property { string } key
  * @property { dateTime } lastUpdated
  * @property { string } name
+ * @property { AuthenticatorProvider } provider
  * @property { AuthenticatorSettings } settings
  * @property { AuthenticatorStatus } status
  * @property { AuthenticatorType } type
@@ -32,11 +34,20 @@ const AuthenticatorSettings = require('./AuthenticatorSettings');
 class Authenticator extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
+    if (resourceJson && resourceJson.provider) {
+      this.provider = new AuthenticatorProvider(resourceJson.provider);
+    }
     if (resourceJson && resourceJson.settings) {
       this.settings = new AuthenticatorSettings(resourceJson.settings);
     }
   }
 
+  /**
+   * @returns {Promise<Authenticator>}
+   */
+  update() {
+    return this.httpClient.updateAuthenticator(this.id, this);
+  }
 
   /**
    * @returns {Promise<Authenticator>}

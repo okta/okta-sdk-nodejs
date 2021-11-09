@@ -21,6 +21,7 @@ import { OptionalKnownProperties } from '../optional-known-properties-type';
 declare class ApplicationCredentialsUsernameTemplate extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
 
+  pushStatus: string;
   suffix: string;
   template: string;
   type: string;

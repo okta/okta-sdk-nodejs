@@ -20,6 +20,7 @@ declare enum AuthenticatorType {
   PHONE = 'phone',
   EMAIL = 'email',
   SECURITY_KEY = 'security_key',
+  FEDERATED = 'federated',
 }
 
 export {

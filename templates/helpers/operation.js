@@ -20,6 +20,12 @@ const RESTRICTED_MODEL_PROPERTY_OVERRIDES = {
   SwaThreeFieldApplication: ['name'],
   SwaApplication: ['name'],
   SecurePasswordStoreApplication: ['name'],
+  AccessPolicyRuleConditions: ['device'],
+};
+
+// properties which should not be included into request payload
+const RESTRICTED_MODEL_PROPERTIES = {
+  Theme: ['id', 'backgroundImage', 'favicon', 'logo', '_links']
 };
 // END Work around spec mismatches and upstream parsing inconsistencies.
 
@@ -68,7 +74,7 @@ const getBodyModelName = operation => {
 const getBodyModelNameInCamelCase = operation => _.camelCase(getBodyModelName(operation));
 
 const getOperationArgument = operation => {
-  const { bodyModel, method, pathParams, queryParams, parameters } = operation;
+  const { bodyModel, method, pathParams, queryParams, formData, parameters } = operation;
 
   const requiredArgs = pathParams.reduce((acc, curr) => {
     acc.push(curr.name);
@@ -95,6 +101,15 @@ const getOperationArgument = operation => {
     }
   }
 
+  if (formData.length) {
+    let formDataParameter = formData[0].name;
+    if (hasRequiredParameterInRequestMedia(parameters, 'formData')) {
+      optionalArgs.push(formDataParameter);
+    } else {
+      optionalArgs.push(formDataParameter);
+    }
+  }
+
   return [requiredArgs, optionalArgs];
 };
 
@@ -110,7 +125,7 @@ const getRequiredOperationParams = operation => {
   return getOperationArgument(operation).shift();
 };
 
-const getHttpMethod = ({ consumes, produces, method, responseModel, parameters = [] }) => {
+const getHttpMethod = ({ consumes, produces, method, responseModel, formData, parameters = [] }) => {
   let res;
   const hasModelParameterInBody = parameters.some(parameter => parameter.in === 'body' && parameter.schema && parameter.schema.$ref);
   switch (method) {
@@ -121,6 +136,8 @@ const getHttpMethod = ({ consumes, produces, method, responseModel, parameters =
     case 'put':
       if (consumes.includes('application/json') && produces.includes('application/json') && (responseModel || hasModelParameterInBody)) {
         res = `${method}Json`;
+      } else if (formData.length) {
+        res = 'postFormDataFile';
       } else {
         res = method;
       }
@@ -172,6 +189,10 @@ const jsdocBuilder = (operation) => {
     operation.queryParams.map((param) => {
       return `   * @param {String} [queryParams.${param.name}]`;
     }).forEach(line => lines.push(line));
+  }
+
+  if (operation.formData.length) {
+    lines.push(`   * @param {${operation.formData[0].name}} fs.ReadStream`);
   }
   lines.push('   * @description');
 
@@ -270,7 +291,7 @@ const typeScriptModelImportBuilder = model => {
 };
 
 const getOperationArgumentsAndReturnType = operation => {
-  const { bodyModel, method, pathParams, queryParams, parameters } = operation;
+  const { bodyModel, method, pathParams, queryParams, formData, parameters } = operation;
   const args = new Map();
 
   pathParams.forEach(pathParam => {
@@ -299,6 +320,13 @@ const getOperationArgumentsAndReturnType = operation => {
     });
   }
 
+  if (formData.length) {
+    args.set(formData[0].name, {
+      isRequired: hasRequiredParameterInRequestMedia(parameters, 'formData'),
+      type: 'ReadStream',
+    });
+  }
+
   let genericType = 'Promise';
   let genericParameterType = 'Response';
   if (operation.responseModel) {
@@ -315,7 +343,8 @@ const getModelMethodArgumentsAndReturnType = (method, modelName) => {
   const [args, returnType] = getOperationArgumentsAndReturnType(operation);
 
   operation.pathParams.forEach(param => {
-    const matchingArgument = method.arguments.find(argument => argument.dest === param.name);
+    const methodArguments = method.arguments || [];
+    const matchingArgument = methodArguments.find(argument => argument.dest === param.name);
     // path param should be added to model method arguments if its corresponding 'operation' param does not have src property set
     if (matchingArgument && matchingArgument.src) {
       args.delete(param.name);
@@ -376,6 +405,10 @@ const shouldGenerateOptionsType = modelName => {
   return !NO_OPTIONS_TYPE_MODELS.includes(modelName);
 };
 
+const getRestrictedProperties = modelName => RESTRICTED_MODEL_PROPERTIES[modelName] || [];
+
+const containsRestrictedProperties = modelName => Boolean(getRestrictedProperties(modelName).length);
+
 module.exports = {
   getBodyModelNameInCamelCase,
   operationArgumentBuilder,
@@ -395,4 +428,6 @@ module.exports = {
   isImportablePropertyType,
   isRestrictedPropertyOverride,
   shouldGenerateOptionsType,
+  getRestrictedProperties,
+  containsRestrictedProperties,
 };
