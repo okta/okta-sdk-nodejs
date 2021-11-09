@@ -16,14 +16,12 @@
 import { PolicyRuleConditions } from './PolicyRuleConditions';
 import { Client } from '../client';
 import { OptionalKnownProperties } from '../optional-known-properties-type';
-import { DeviceAccessPolicyRuleCondition } from './DeviceAccessPolicyRuleCondition';
 import { AccessPolicyRuleCustomCondition } from './AccessPolicyRuleCustomCondition';
 import { UserTypeCondition } from './UserTypeCondition';
 
 declare class AccessPolicyRuleConditions extends PolicyRuleConditions {
   constructor(resourceJson: Record<string, unknown>, client: Client);
 
-  device: DeviceAccessPolicyRuleCondition;
   elCondition: AccessPolicyRuleCustomCondition;
   userType: UserTypeCondition;
 

@@ -1,5 +1,5 @@
 const _ = require('lodash');
-const { isConflictingPropertyName, containsRestrictedChars } = require('./helpers/operation');
+const { isConflictingPropertyName, containsRestrictedChars, isRestrictedPropertyOverride } = require('./helpers/operation');
 const js = module.exports;
 const operationUtils = require('./helpers/operation');
 const { convertSwaggerToTSType } = require('./helpers/typescript-formatter');
@@ -167,6 +167,9 @@ js.process = ({spec, operations, models, handlebars}) => {
     const constructorStatements = [];
 
     model.properties.forEach(property => {
+      if (isRestrictedPropertyOverride(model.modelName, property.propertyName)) {
+        return;
+      }
       let propertyName = property.propertyName;
       let dedupedPropertyName = propertyName;
 
