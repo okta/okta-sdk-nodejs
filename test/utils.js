@@ -241,7 +241,7 @@ async function verifyOrgIsOIE(client) {
 }
 
 function getMockImage(filename) {
-  return createReadStream(path.join(__dirname, `it/mocks/${filename}`));
+  return createReadStream(path.join(__dirname, `it/mocks/images/${filename}`));
 }
 
 module.exports = {
