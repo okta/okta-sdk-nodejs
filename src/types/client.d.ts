@@ -29,6 +29,7 @@ export declare class Client extends ParameterizedOperationsClient {
     privateKey?: string | Record<string, unknown>
     cacheStore?: CacheStorage,
     cacheMiddleware?: typeof defaultCacheMiddleware | unknown
+    defaultCacheMiddlewareResponseBufferSize: number | undefined,
   });
 
   requestExecutor: RequestExecutor;

@@ -11,13 +11,13 @@
  */
 
 const _ = require('lodash');
-const { pipeline, Stream, PassThrough } = require('stream')
+const { Stream, PassThrough } = require('stream')
 
 
 function cloneNodeFetchResponse(response, highWaterMark) {
-  function setInternalsBodyStream(responseBody, stream) {
-    let internalsSymbol = Object.getOwnPropertySymbols(responseBody).pop();
-    responseBody[internalsSymbol].body = stream;
+  function setInternalsBodyStream(response, stream) {
+    let internalsSymbol = Object.getOwnPropertySymbols(response)[0];
+    response[internalsSymbol].body = stream;
   }
 
   if (response && response.body instanceof Stream) {
@@ -26,8 +26,7 @@ function cloneNodeFetchResponse(response, highWaterMark) {
     let s2 = new PassThrough({highWaterMark});
     body.pipe(s1);
     body.pipe(s2);
-    setInternalsBodyStream(response, s1)
-
+    setInternalsBodyStream(response, s1);
     return new Response(s2, {
       url: response.url,
       status: response.status,
@@ -71,8 +70,11 @@ module.exports = function defaultCacheMiddleware(ctx, next) {
         return;
       }
       if (ctx.req.method.toLowerCase() === 'get') {
+        const customResponseBufferSize = ctx.defaultCacheMiddlewareResponseBufferSize;
+        const clonedResponse = customResponseBufferSize ?
+          cloneNodeFetchResponse(ctx.res, customResponseBufferSize) : ctx.res.clone();
         // store response in cache
-        return cloneNodeFetchResponse(ctx.res, 5 * 1024*1024).text()
+        return clonedResponse.text()
           .then(text => {
             try {
               const selfHref = _.get(JSON.parse(text), '_links.self.href');
