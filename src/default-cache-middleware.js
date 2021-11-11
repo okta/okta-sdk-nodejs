@@ -9,9 +9,9 @@
  *
  * See the License for the specific language governing permissions and limitations under the License.
  */
-
+/* global Response */
 const _ = require('lodash');
-const { Stream, PassThrough } = require('stream')
+const { Stream, PassThrough } = require('stream');
 
 
 function cloneNodeFetchResponse(response, highWaterMark) {
