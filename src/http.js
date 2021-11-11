@@ -49,9 +49,10 @@ class Http {
     this.cacheStore = httpConfig.cacheStore || new MemoryStore();
     if (httpConfig.cacheMiddleware) {
       this.cacheMiddleware = httpConfig.cacheMiddleware || defaultCacheMiddleware;
+    // cacheMiddleware is not provided explicitly
     } else if (httpConfig.cacheMiddleware !== null) {
       this.cacheMiddleware = defaultCacheMiddleware;
-      this.defaultCacheMiddlewareResponseBufferSize = httpConfig.defaultCacheMiddlewareResponseBufferSize
+      this.defaultCacheMiddlewareResponseBufferSize = httpConfig.defaultCacheMiddlewareResponseBufferSize;
     }
     this.oauth = httpConfig.oauth;
   }
