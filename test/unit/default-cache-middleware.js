@@ -1,8 +1,13 @@
+const { PassThrough } = require('stream');
+const { Request, Response } = require('node-fetch');
 const expect = require('chai').expect;
 
 const _ = require('lodash');
 const MemoryStore = require('../../src/memory-store');
 const middleware = require('../../src/default-cache-middleware');
+
+const DEFAULT_TEST_TIMEOUT = 2000;
+const KB_512 = 1024 * 512;
 
 async function next(ctx, body = '{}') {
   let used = false;
@@ -24,7 +29,29 @@ async function next(ctx, body = '{}') {
   };
 }
 
-describe('Default cache middleware', () => {
+function createStream(dataSize) {
+  const stream = new PassThrough();
+  stream.write('{ "prop": "');
+  for (let numBytes = 0; numBytes < dataSize; ++numBytes) {
+    stream.write('x');
+  }
+  stream.write('"}');
+  stream.end();
+  return stream;
+}
+
+describe('Default cache middleware', function () {
+  this.timeout(DEFAULT_TEST_TIMEOUT + 10);
+  let globalResponse = global.Response;
+
+  before(() => {
+    global.Response = Response;
+  });
+
+  after(() => {
+    global.Response = globalResponse;
+  });
+
   it('caches GET items with a \'self\' link', async () => {
     const cacheStore = new MemoryStore();
     const ctx = {
@@ -99,5 +126,66 @@ describe('Default cache middleware', () => {
     };
     await middleware(ctx, () => next(ctx));
     expect(await cacheStore.get(ctx.req.uri)).to.be.undefined;
+  });
+
+  it('fails to clone large response using default stream buffer size (highWaterMark)', async () => {
+    try {
+      await new Promise((_, reject) => {
+        const timeout = setTimeout(function () {
+          reject('Default cache middleware failed to cache large response');
+        }, DEFAULT_TEST_TIMEOUT);
+
+        const cacheStore = new MemoryStore();
+        const req = new Request('https://foo.bar', {});
+
+        const res = new Response(createStream(KB_512));
+        const ctx = {
+          req,
+          res,
+          cacheStore,
+          resources: [],
+        };
+
+        middleware(ctx, () => Promise.resolve({})).then(() => {
+          clearTimeout(timeout);
+          reject('Timeout exception was not thrown while cloning large response');
+        });
+      });
+    } catch (e) {
+      expect(e).to.equal('Default cache middleware failed to cache large response');
+    }
+  });
+
+  it('is able to clone large response when custom stream buffer size (highWaterMark) is provided', async () => {
+    try {
+      await new Promise((resolve, reject) => {
+        const timeout = setTimeout(function () {
+          reject('Default cache middleware failed to cache large response');
+        }, DEFAULT_TEST_TIMEOUT);
+
+        const cacheStore = new MemoryStore();
+        const req = new Request('https://foo.bar', {});
+
+        const res = new Response(createStream(KB_512));
+        const ctx = {
+          req,
+          res,
+          cacheStore,
+          resources: [],
+          defaultCacheMiddlewareResponseBufferSize: KB_512
+        };
+
+        middleware(ctx, () => Promise.resolve({})).then(() => {
+          clearTimeout(timeout);
+
+          ctx.res.json().then(response => {
+            expect(response.prop).not.to.be.undefined;
+            resolve();
+          });
+        });
+      });
+    } catch (e) {
+      expect(true, 'Default cache middleware failed to cache large response').to.false;
+    }
   });
 });

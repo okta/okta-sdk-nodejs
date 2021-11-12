@@ -1,5 +1,11 @@
 # Okta Node SDK Changelog
 
+## 6.1.0
+
+### Features
+
+- [#288](https://github.com/okta/okta-sdk-nodejs/pull/288) Adds option for configuring Response internal buffer size for default cache middleware
+
 ## 6.0.0
 
 ### Features

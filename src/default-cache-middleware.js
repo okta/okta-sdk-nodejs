@@ -9,8 +9,36 @@
  *
  * See the License for the specific language governing permissions and limitations under the License.
  */
-
+/* global Response */
 const _ = require('lodash');
+const { Stream, PassThrough } = require('stream');
+
+
+function cloneNodeFetchResponse(response, highWaterMark) {
+  function setInternalsBodyStream(response, stream) {
+    let internalsSymbol = Object.getOwnPropertySymbols(response)[0];
+    response[internalsSymbol].body = stream;
+  }
+
+  if (response && response.body instanceof Stream) {
+    let body = response.body;
+    let s1 = new PassThrough({highWaterMark});
+    let s2 = new PassThrough({highWaterMark});
+    body.pipe(s1);
+    body.pipe(s2);
+    setInternalsBodyStream(response, s1);
+    return new Response(s2, {
+      url: response.url,
+      status: response.status,
+      statusText: response.statusText,
+      headers: response.headers,
+      ok: response.ok,
+      redirected: response.redirected
+    });
+  }
+
+  throw new Error('Unable to clone response');
+}
 
 module.exports = function defaultCacheMiddleware(ctx, next) {
   let cacheCheck, cacheHit = false;
@@ -42,8 +70,11 @@ module.exports = function defaultCacheMiddleware(ctx, next) {
         return;
       }
       if (ctx.req.method.toLowerCase() === 'get') {
-      // store response in cache
-        return ctx.res.clone().text()
+        const customResponseBufferSize = ctx.defaultCacheMiddlewareResponseBufferSize;
+        const clonedResponse = customResponseBufferSize ?
+          cloneNodeFetchResponse(ctx.res, customResponseBufferSize) : ctx.res.clone();
+        // store response in cache
+        return clonedResponse.text()
           .then(text => {
             try {
               const selfHref = _.get(JSON.parse(text), '_links.self.href');

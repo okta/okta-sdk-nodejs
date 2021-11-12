@@ -895,6 +895,23 @@ const applicationOptions: ApplicationOptions = {
 const application: BookmarkApplication = client.createApplication(applicationOptions);
 ```
 
+## Known Issues
+
+Default cache middleware is affected by stream internal buffer size limitation in Node - see [#56](https://github.com/okta/okta-sdk-nodejs/issues/56) and [node-fetch](https://github.com/node-fetch/node-fetch#custom-highwatermark) for more details.
+The recommended solution is to provide custom cache middleware implementation.
+Alternatively, users can pass custom `highWaterMark` parameter to `node-fetch` by specifying parameter `defaultCacheMiddlewareResponseBufferSize` in the Client config:
+
+```
+const client: Client = new Client({
+  orgUrl: 'https://orgname.okta.com',
+  token: 'apiToken',
+  defaultCacheMiddlewareResponseBufferSize: sizeInBytes
+});
+```
+
+`defaultCacheMiddlewareResponseBufferSize` is ignored in case non-default cache middleware is provided.
+> Note: this workaround should be used with caution as it relies on `node-fetch`'s internal detail which can change its implementation.
+
 ## Migrating between versions
 
 ### From 5.x to 6.0

@@ -47,8 +47,12 @@ class Http {
     this.defaultHeaders = {};
     this.requestExecutor = httpConfig.requestExecutor;
     this.cacheStore = httpConfig.cacheStore || new MemoryStore();
-    if (httpConfig.cacheMiddleware !== null) {
+    if (httpConfig.cacheMiddleware) {
       this.cacheMiddleware = httpConfig.cacheMiddleware || defaultCacheMiddleware;
+    // cacheMiddleware is not provided explicitly
+    } else if (httpConfig.cacheMiddleware !== null) {
+      this.cacheMiddleware = defaultCacheMiddleware;
+      this.defaultCacheMiddlewareResponseBufferSize = httpConfig.defaultCacheMiddlewareResponseBufferSize;
     }
     this.oauth = httpConfig.oauth;
   }
@@ -96,7 +100,8 @@ class Http {
         isCollection: context.isCollection,
         resources: context.resources,
         req: request,
-        cacheStore: this.cacheStore
+        cacheStore: this.cacheStore,
+        defaultCacheMiddlewareResponseBufferSize: this.defaultCacheMiddlewareResponseBufferSize
       };
       return this.cacheMiddleware(ctx, () => {
         if (ctx.res) {
