@@ -28,16 +28,16 @@ describe('Authenticators API tests', () => {
     let updatedAuthenticator = await client.updateAuthenticator(authenticator.id, {
       name: authenticator.name,
       settings: {
-        allowedFor: AllowedForEnum.RECOVERY
-      }
-    });
-    expect(updatedAuthenticator.settings.allowedFor).to.equal(AllowedForEnum.RECOVERY);
-    updatedAuthenticator = await client.updateAuthenticator(authenticator.id, {
-      name: authenticator.name,
-      settings: {
         allowedFor: AllowedForEnum.ANY
       }
     });
     expect(updatedAuthenticator.settings.allowedFor).to.equal(AllowedForEnum.ANY);
+    updatedAuthenticator = await client.updateAuthenticator(authenticator.id, {
+      name: authenticator.name,
+      settings: {
+        allowedFor: AllowedForEnum.RECOVERY
+      }
+    });
+    expect(updatedAuthenticator.settings.allowedFor).to.equal(AllowedForEnum.RECOVERY);
   });
 });
