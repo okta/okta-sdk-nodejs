@@ -1,5 +1,11 @@
 # Okta Node SDK Changelog
 
+## 6.0.1
+
+### Bug Fixes
+
+- [#293](https://github.com/okta/okta-sdk-nodejs/pull/293) Sets correct parent class for `DeviceAccessPolicyRuleCondition`
+
 ## 6.0.0
 
 ### Features

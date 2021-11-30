@@ -13,12 +13,12 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-import { Resource } from '../resource';
+import { DevicePolicyRuleCondition } from './DevicePolicyRuleCondition';
 import { Client } from '../client';
 import { OptionalKnownProperties } from '../optional-known-properties-type';
 
 
-declare class DeviceAccessPolicyRuleCondition extends Resource {
+declare class DeviceAccessPolicyRuleCondition extends DevicePolicyRuleCondition {
   constructor(resourceJson: Record<string, unknown>, client: Client);
 
   managed: boolean;

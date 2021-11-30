@@ -13,16 +13,16 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-var Resource = require('../resource');
+var DevicePolicyRuleCondition = require('./DevicePolicyRuleCondition');
 
 
 /**
  * @class DeviceAccessPolicyRuleCondition
- * @extends Resource
+ * @extends DevicePolicyRuleCondition
  * @property { boolean } managed
  * @property { boolean } registered
  */
-class DeviceAccessPolicyRuleCondition extends Resource {
+class DeviceAccessPolicyRuleCondition extends DevicePolicyRuleCondition {
   constructor(resourceJson, client) {
     super(resourceJson, client);
 
