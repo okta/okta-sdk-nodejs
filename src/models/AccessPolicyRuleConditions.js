@@ -14,18 +14,23 @@
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
 var PolicyRuleConditions = require('./PolicyRuleConditions');
+const DeviceAccessPolicyRuleCondition = require('./DeviceAccessPolicyRuleCondition');
 const AccessPolicyRuleCustomCondition = require('./AccessPolicyRuleCustomCondition');
 const UserTypeCondition = require('./UserTypeCondition');
 
 /**
  * @class AccessPolicyRuleConditions
  * @extends PolicyRuleConditions
+ * @property { DeviceAccessPolicyRuleCondition } device
  * @property { AccessPolicyRuleCustomCondition } elCondition
  * @property { UserTypeCondition } userType
  */
 class AccessPolicyRuleConditions extends PolicyRuleConditions {
   constructor(resourceJson, client) {
     super(resourceJson, client);
+    if (resourceJson && resourceJson.device) {
+      this.device = new DeviceAccessPolicyRuleCondition(resourceJson.device);
+    }
     if (resourceJson && resourceJson.elCondition) {
       this.elCondition = new AccessPolicyRuleCustomCondition(resourceJson.elCondition);
     }
