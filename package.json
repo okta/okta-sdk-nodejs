@@ -1,6 +1,6 @@
 {
   "name": "@okta/okta-sdk-nodejs",
-  "version": "6.1.0",
+  "version": "6.2.0",
   "description": "Okta API wrapper for Node.js",
   "engines": {
     "node": ">=12.0"
