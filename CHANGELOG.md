@@ -1,5 +1,11 @@
 # Okta Node SDK Changelog
 
+## 6.2.0
+
+### Others
+
+- [#295](https://github.com/okta/okta-sdk-nodejs/pull/295) Upgrades `parse-link-header` to v2.0 to resolve `ReDos` vulnerability issue.
+
 ## 6.1.0
 
 ### Features
