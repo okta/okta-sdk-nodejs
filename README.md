@@ -5,6 +5,8 @@
 
 # Okta Node.js Management SDK
 
+> ⚠️ This SDK is _NOT_ intended for end user authentication flows. Please see the [auth-js](https://github.com/okta/okta-auth-js) repo instead, it works for both browser and server (Node.js) applications. 
+
 * [Release status](#release-status)
 * [Need help?](#need-help)
 * [Getting started](#getting-started)
