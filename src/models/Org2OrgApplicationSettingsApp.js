@@ -13,10 +13,22 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-/** @ignore */
-exports.Application = require('./ApplicationFactory');
-exports.BrowserPluginApplication = require('./BrowserPluginApplicationFactory');
-exports.Policy = require('./PolicyFactory');
-exports.PolicyRule = require('./PolicyRuleFactory');
-exports.SamlApplication = require('./SamlApplicationFactory');
-exports.UserFactor = require('./UserFactorFactory');
+var ApplicationSettingsApplication = require('./ApplicationSettingsApplication');
+
+
+/**
+ * @class Org2OrgApplicationSettingsApp
+ * @extends ApplicationSettingsApplication
+ * @property { string } acsUrl
+ * @property { string } audRestriction
+ * @property { string } baseUrl
+ */
+class Org2OrgApplicationSettingsApp extends ApplicationSettingsApplication {
+  constructor(resourceJson, client) {
+    super(resourceJson, client);
+
+  }
+
+}
+
+module.exports = Org2OrgApplicationSettingsApp;

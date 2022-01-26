@@ -26,8 +26,8 @@ class ApplicationFactory extends ModelResolutionFactory {
       'BOOKMARK': models.BookmarkApplication,
       'BROWSER_PLUGIN': new factories.BrowserPluginApplication(),
       'OPENID_CONNECT': models.OpenIdConnectApplication,
-      'SAML_1_1': models.SamlApplication,
-      'SAML_2_0': models.SamlApplication,
+      'SAML_1_1': new factories.SamlApplication(),
+      'SAML_2_0': new factories.SamlApplication(),
       'SECURE_PASSWORD_STORE': models.SecurePasswordStoreApplication,
       'WS_FEDERATION': models.WsFederationApplication,
     };

@@ -13,10 +13,23 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-/** @ignore */
-exports.Application = require('./ApplicationFactory');
-exports.BrowserPluginApplication = require('./BrowserPluginApplicationFactory');
-exports.Policy = require('./PolicyFactory');
-exports.PolicyRule = require('./PolicyRuleFactory');
-exports.SamlApplication = require('./SamlApplicationFactory');
-exports.UserFactor = require('./UserFactorFactory');
+var SamlApplication = require('./SamlApplication');
+const Org2OrgApplicationSettings = require('./Org2OrgApplicationSettings');
+
+/**
+ * @class Org2OrgApplication
+ * @extends SamlApplication
+ * @property { object } name
+ * @property { Org2OrgApplicationSettings } settings
+ */
+class Org2OrgApplication extends SamlApplication {
+  constructor(resourceJson, client) {
+    super(resourceJson, client);
+    if (resourceJson && resourceJson.settings) {
+      this.settings = new Org2OrgApplicationSettings(resourceJson.settings);
+    }
+  }
+
+}
+
+module.exports = Org2OrgApplication;

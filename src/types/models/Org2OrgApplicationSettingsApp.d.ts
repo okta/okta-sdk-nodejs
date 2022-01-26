@@ -13,10 +13,23 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-/** @ignore */
-exports.Application = require('./ApplicationFactory');
-exports.BrowserPluginApplication = require('./BrowserPluginApplicationFactory');
-exports.Policy = require('./PolicyFactory');
-exports.PolicyRule = require('./PolicyRuleFactory');
-exports.SamlApplication = require('./SamlApplicationFactory');
-exports.UserFactor = require('./UserFactorFactory');
+import { ApplicationSettingsApplication } from './ApplicationSettingsApplication';
+import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
+
+
+declare class Org2OrgApplicationSettingsApp extends ApplicationSettingsApplication {
+  constructor(resourceJson: Record<string, unknown>, client: Client);
+
+  acsUrl: string;
+  audRestriction: string;
+  baseUrl: string;
+
+}
+
+type Org2OrgApplicationSettingsAppOptions = OptionalKnownProperties<Org2OrgApplicationSettingsApp>;
+
+export {
+  Org2OrgApplicationSettingsApp,
+  Org2OrgApplicationSettingsAppOptions
+};

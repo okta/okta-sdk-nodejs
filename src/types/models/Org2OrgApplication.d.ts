@@ -13,10 +13,22 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-/** @ignore */
-exports.Application = require('./ApplicationFactory');
-exports.BrowserPluginApplication = require('./BrowserPluginApplicationFactory');
-exports.Policy = require('./PolicyFactory');
-exports.PolicyRule = require('./PolicyRuleFactory');
-exports.SamlApplication = require('./SamlApplicationFactory');
-exports.UserFactor = require('./UserFactorFactory');
+import { SamlApplication } from './SamlApplication';
+import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
+import { Org2OrgApplicationSettings } from './Org2OrgApplicationSettings';
+
+declare class Org2OrgApplication extends SamlApplication {
+  constructor(resourceJson: Record<string, unknown>, client: Client);
+
+  name: Record<string, unknown>;
+  settings: Org2OrgApplicationSettings;
+
+}
+
+type Org2OrgApplicationOptions = OptionalKnownProperties<Org2OrgApplication>;
+
+export {
+  Org2OrgApplication,
+  Org2OrgApplicationOptions
+};

@@ -13,10 +13,21 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-/** @ignore */
-exports.Application = require('./ApplicationFactory');
-exports.BrowserPluginApplication = require('./BrowserPluginApplicationFactory');
-exports.Policy = require('./PolicyFactory');
-exports.PolicyRule = require('./PolicyRuleFactory');
-exports.SamlApplication = require('./SamlApplicationFactory');
-exports.UserFactor = require('./UserFactorFactory');
+declare enum NotificationType {
+  CONNECTOR_AGENT = 'CONNECTOR_AGENT',
+  USER_LOCKED_OUT = 'USER_LOCKED_OUT',
+  APP_IMPORT = 'APP_IMPORT',
+  LDAP_AGENT = 'LDAP_AGENT',
+  AD_AGENT = 'AD_AGENT',
+  OKTA_ANNOUNCEMENT = 'OKTA_ANNOUNCEMENT',
+  OKTA_ISSUE = 'OKTA_ISSUE',
+  OKTA_UPDATE = 'OKTA_UPDATE',
+  IWA_AGENT = 'IWA_AGENT',
+  USER_DEPROVISION = 'USER_DEPROVISION',
+  REPORT_SUSPICIOUS_ACTIVITY = 'REPORT_SUSPICIOUS_ACTIVITY',
+  RATELIMIT_NOTIFICATION = 'RATELIMIT_NOTIFICATION',
+}
+
+export {
+  NotificationType
+};

@@ -13,10 +13,20 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-/** @ignore */
-exports.Application = require('./ApplicationFactory');
-exports.BrowserPluginApplication = require('./BrowserPluginApplicationFactory');
-exports.Policy = require('./PolicyFactory');
-exports.PolicyRule = require('./PolicyRuleFactory');
-exports.SamlApplication = require('./SamlApplicationFactory');
-exports.UserFactor = require('./UserFactorFactory');
+var Resource = require('../resource');
+
+
+/**
+ * @class ProfileSettingObject
+ * @extends Resource
+ * @property { EnabledStatus } status
+ */
+class ProfileSettingObject extends Resource {
+  constructor(resourceJson, client) {
+    super(resourceJson, client);
+
+  }
+
+}
+
+module.exports = ProfileSettingObject;

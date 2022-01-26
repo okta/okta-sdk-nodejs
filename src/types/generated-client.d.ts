@@ -17,13 +17,18 @@ import { ApplicationOptions } from './parameterized-operations-client';
 import { Collection } from './collection';
 import { Application } from './models/Application';
 import { Response } from 'node-fetch';
+import { ProvisioningConnection } from './models/ProvisioningConnection';
+import { ProvisioningConnectionRequestOptions } from './models/ProvisioningConnectionRequest';
 import { Csr } from './models/Csr';
 import { CsrMetadataOptions } from './models/CsrMetadata';
 import { JsonWebKey } from './models/JsonWebKey';
+import { ApplicationFeature } from './models/ApplicationFeature';
+import { CapabilitiesObjectOptions } from './models/CapabilitiesObject';
 import { OAuth2ScopeConsentGrant } from './models/OAuth2ScopeConsentGrant';
 import { OAuth2ScopeConsentGrantOptions } from './models/OAuth2ScopeConsentGrant';
 import { ApplicationGroupAssignment } from './models/ApplicationGroupAssignment';
 import { ApplicationGroupAssignmentOptions } from './models/ApplicationGroupAssignment';
+import { ReadStream } from 'fs';
 import { OAuth2Token } from './models/OAuth2Token';
 import { AppUser } from './models/AppUser';
 import { AppUserOptions } from './models/AppUser';
@@ -46,7 +51,6 @@ import { Brand } from './models/Brand';
 import { BrandOptions } from './models/Brand';
 import { ThemeResponse } from './models/ThemeResponse';
 import { ThemeOptions } from './models/Theme';
-import { ReadStream } from 'fs';
 import { ImageUploadResponse } from './models/ImageUploadResponse';
 import { DomainListResponse } from './models/DomainListResponse';
 import { DomainOptions } from './models/Domain';
@@ -96,6 +100,7 @@ import { Policy } from './models/Policy';
 import { PolicyOptions } from './models/Policy';
 import { PolicyRule } from './models/PolicyRule';
 import { PolicyRuleOptions } from './models/PolicyRule';
+import { Subscription } from './models/Subscription';
 import { CreateSessionRequestOptions } from './models/CreateSessionRequest';
 import { Session } from './models/Session';
 import { SmsTemplate } from './models/SmsTemplate';
@@ -141,6 +146,12 @@ export declare class GeneratedApiClient {
     expand?: string,
   }): Promise<Application>;
   updateApplication(appId: string, application: ApplicationOptions): Promise<Application>;
+  getDefaultProvisioningConnectionForApplication(appId: string): Promise<ProvisioningConnection>;
+  setDefaultProvisioningConnectionForApplication(appId: string, provisioningConnectionRequest: ProvisioningConnectionRequestOptions, queryParameters?: {
+    activate?: boolean,
+  }): Promise<ProvisioningConnection>;
+  activateDefaultProvisioningConnectionForApplication(appId: string): Promise<Response>;
+  deactivateDefaultProvisioningConnectionForApplication(appId: string): Promise<Response>;
   listCsrsForApplication(appId: string): Collection<Csr>;
   generateCsrForApplication(appId: string, csrMetadata: CsrMetadataOptions): Promise<Csr>;
   revokeCsrFromApplication(appId: string, csrId: string): Promise<Response>;
@@ -158,6 +169,9 @@ export declare class GeneratedApiClient {
   cloneApplicationKey(appId: string, keyId: string, queryParameters: {
     targetAid: string,
   }): Promise<JsonWebKey>;
+  listFeaturesForApplication(appId: string): Collection<ApplicationFeature>;
+  getFeatureForApplication(appId: string, name: string): Promise<ApplicationFeature>;
+  updateFeatureForApplication(appId: string, name: string, capabilitiesObject: CapabilitiesObjectOptions): Promise<ApplicationFeature>;
   listScopeConsentGrants(appId: string, queryParameters?: {
     expand?: string,
   }): Collection<OAuth2ScopeConsentGrant>;
@@ -179,6 +193,7 @@ export declare class GeneratedApiClient {
   createApplicationGroupAssignment(appId: string, groupId: string, applicationGroupAssignment?: ApplicationGroupAssignmentOptions): Promise<ApplicationGroupAssignment>;
   activateApplication(appId: string): Promise<Response>;
   deactivateApplication(appId: string): Promise<Response>;
+  uploadApplicationLogo(appId: string, file: ReadStream): Promise<Response>;
   revokeOAuth2TokensForApplication(appId: string): Promise<Response>;
   listOAuth2TokensForApplication(appId: string, queryParameters?: {
     expand?: string,
@@ -478,6 +493,10 @@ export declare class GeneratedApiClient {
   updatePolicyRule(policyId: string, ruleId: string, policyRule: PolicyRuleOptions): Promise<PolicyRule>;
   activatePolicyRule(policyId: string, ruleId: string): Promise<Response>;
   deactivatePolicyRule(policyId: string, ruleId: string): Promise<Response>;
+  listRoleSubscriptions(roleTypeOrRoleId: string): Collection<Subscription>;
+  getRoleSubscriptionByNotificationType(roleTypeOrRoleId: string, notificationType: string): Promise<Subscription>;
+  subscribeRoleSubscriptionByNotificationType(roleTypeOrRoleId: string, notificationType: string): Promise<Response>;
+  unsubscribeRoleSubscriptionByNotificationType(roleTypeOrRoleId: string, notificationType: string): Promise<Response>;
   createSession(createSessionRequest: CreateSessionRequestOptions): Promise<Session>;
   endSession(sessionId: string): Promise<Response>;
   getSession(sessionId: string): Promise<Session>;
@@ -638,6 +657,10 @@ export declare class GeneratedApiClient {
   clearUserSessions(userId: string, queryParameters?: {
     oauthTokens?: boolean,
   }): Promise<Response>;
+  listUserSubscriptions(userId: string): Collection<Subscription>;
+  getUserSubscriptionByNotificationType(userId: string, notificationType: string): Promise<Subscription>;
+  subscribeUserSubscriptionByNotificationType(userId: string, notificationType: string): Promise<Response>;
+  unsubscribeUserSubscriptionByNotificationType(userId: string, notificationType: string): Promise<Response>;
   listNetworkZones(queryParameters?: {
     after?: string,
     limit?: number,

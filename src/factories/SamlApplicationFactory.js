@@ -13,10 +13,21 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-/** @ignore */
-exports.Application = require('./ApplicationFactory');
-exports.BrowserPluginApplication = require('./BrowserPluginApplicationFactory');
-exports.Policy = require('./PolicyFactory');
-exports.PolicyRule = require('./PolicyRuleFactory');
-exports.SamlApplication = require('./SamlApplicationFactory');
-exports.UserFactor = require('./UserFactorFactory');
+const ModelResolutionFactory = require('../resolution-factory');
+/*eslint-disable no-unused-vars*/
+const factories = require('./');
+const models = require('../models');
+
+class SamlApplicationFactory extends ModelResolutionFactory {
+  getMapping() {
+    return {
+      'okta_org2org': models.Org2OrgApplication,
+    };
+  }
+
+  getResolutionProperty() {
+    return 'name';
+  }
+}
+
+module.exports = SamlApplicationFactory;
