@@ -1,6 +1,6 @@
 const models = require('../src/models');
 const expect = require('chai').expect;
-const faker = require('faker');
+const faker = require('@faker-js/faker');
 const path = require('path');
 const { createReadStream } = require('fs');
 
