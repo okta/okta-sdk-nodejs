@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import faker = require('faker');
+import faker = require('@faker-js/faker');
 
 import utils = require('../utils');
 import * as okta from '@okta/okta-sdk-nodejs';

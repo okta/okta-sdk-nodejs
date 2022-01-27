@@ -3,7 +3,7 @@ import {
   Client,
   DefaultRequestExecutor,
   OktaSignOnPolicy, OktaSignOnPolicyRule, PasswordPolicy } from '@okta/okta-sdk-nodejs';
-import faker = require('faker');
+import faker = require('@faker-js/faker');
 import { expect } from 'chai';
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 

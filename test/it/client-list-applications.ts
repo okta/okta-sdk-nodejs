@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import faker = require('faker');
+import faker = require('@faker-js/faker');
 import {
   BasicAuthApplication,
   BookmarkApplication,

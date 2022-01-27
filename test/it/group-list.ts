@@ -1,4 +1,4 @@
-import faker = require('faker');
+import faker = require('@faker-js/faker');
 
 import { expect } from 'chai';
 import utils = require('../utils');

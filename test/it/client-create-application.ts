@@ -40,7 +40,7 @@ import {
   WsFederationApplicationSettings,
   WsFederationApplicationSettingsApplication} from '@okta/okta-sdk-nodejs';
 import utils = require('../utils');
-import faker = require('faker');
+import faker = require('@faker-js/faker');
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 

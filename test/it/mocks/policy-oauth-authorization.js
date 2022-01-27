@@ -1,4 +1,4 @@
-const faker = require('faker');
+const faker = require('@faker-js/faker');
 
 module.exports = () => ({
   type: 'OAUTH_AUTHORIZATION_POLICY',
