@@ -20,6 +20,7 @@ const RESTRICTED_MODEL_PROPERTY_OVERRIDES = {
   SwaThreeFieldApplication: ['name'],
   SwaApplication: ['name'],
   SecurePasswordStoreApplication: ['name'],
+  Org2OrgApplication: ['name'],
 };
 
 // properties which should not be included into request payload

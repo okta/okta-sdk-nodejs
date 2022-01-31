@@ -21,7 +21,6 @@ import { Org2OrgApplicationSettings } from './Org2OrgApplicationSettings';
 declare class Org2OrgApplication extends SamlApplication {
   constructor(resourceJson: Record<string, unknown>, client: Client);
 
-  name: Record<string, unknown>;
   settings: Org2OrgApplicationSettings;
 
 }
