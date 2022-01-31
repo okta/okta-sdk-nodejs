@@ -18,6 +18,10 @@ class {{parentModelName}}Factory extends ModelResolutionFactory {
   getResolutionProperty() {
     return '{{propertyName}}';
   }
+
+  getParentModel() {
+    return models.{{parentModelName}};
+  }
 }
 
 module.exports = {{parentModelName}}Factory;

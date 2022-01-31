@@ -28,6 +28,10 @@ class SamlApplicationFactory extends ModelResolutionFactory {
   getResolutionProperty() {
     return 'name';
   }
+
+  getParentModel() {
+    return models.SamlApplication;
+  }
 }
 
 module.exports = SamlApplicationFactory;

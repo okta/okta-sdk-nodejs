@@ -36,6 +36,10 @@ class ApplicationFactory extends ModelResolutionFactory {
   getResolutionProperty() {
     return 'signOnMode';
   }
+
+  getParentModel() {
+    return models.Application;
+  }
 }
 
 module.exports = ApplicationFactory;

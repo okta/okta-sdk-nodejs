@@ -40,6 +40,10 @@ class UserFactorFactory extends ModelResolutionFactory {
   getResolutionProperty() {
     return 'factorType';
   }
+
+  getParentModel() {
+    return models.UserFactor;
+  }
 }
 
 module.exports = UserFactorFactory;
