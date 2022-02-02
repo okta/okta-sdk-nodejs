@@ -232,17 +232,17 @@ function getBookmarkApplication() {
 
 function getOrg2OrgApplictionOptions() {
   return {
-    name: "okta_org2org",
-    label: "Sample Okta Org2Org App",
-    signOnMode: "SAML_2_0",
+    name: 'okta_org2org',
+    label: 'Sample Okta Org2Org App',
+    signOnMode: 'SAML_2_0',
     settings: {
       app: {
-        acsUrl: "https://example.atko.com/sso/saml2/exampleid",
-        audRestriction: "https://www.atko.com/saml2/service-provider/exampleid",
-        baseUrl: "https://example.atko.com"
+        acsUrl: 'https://example.atko.com/sso/saml2/exampleid',
+        audRestriction: 'https://www.atko.com/saml2/service-provider/exampleid',
+        baseUrl: 'https://example.atko.com'
       }
     }
-  }
+  };
 }
 
 async function verifyOrgIsOIE(client) {

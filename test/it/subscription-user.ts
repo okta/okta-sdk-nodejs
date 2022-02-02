@@ -15,7 +15,8 @@ const client = new Client({
 });
 
 describe('Subscription API', () => {
-  let user, userOptions = {
+  let user;
+  const userOptions = {
     profile: utils.getMockProfile('subscription-user'),
     credentials: {
       password: { value: 'Abcd1234' }
@@ -33,7 +34,7 @@ describe('Subscription API', () => {
 
   it('provides method for listing user\'s notification subscriptions', async () => {
     const subscriptions: Subscription[] = [];
-    for await (let subscription of client.listUserSubscriptions('jd.kuckan+test127@gmail.com')) {
+    for await (const subscription of client.listUserSubscriptions('jd.kuckan+test127@gmail.com')) {
       subscriptions.push(subscription);
     }
     expect(subscriptions).to.be.an('array').which.is.not.empty;
@@ -53,5 +54,5 @@ describe('Subscription API', () => {
     expect(response.status).to.equal(200);
     subscription = await client.getUserSubscriptionByNotificationType(user.id, NotificationType.OKTA_ISSUE);
     expect(subscription.status).to.equal(SubscriptionStatus.SUBSCRIBED);
-  })
+  });
 });

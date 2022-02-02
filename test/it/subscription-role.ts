@@ -16,7 +16,7 @@ const client = new Client({
 describe('Subscription API', () => {
   it('provides method for listing notification subscriptions for given user role', async () => {
     const subscriptions = [];
-    for await (let subscription of client.listRoleSubscriptions(RoleType.ORG_ADMIN)) {
+    for await (const subscription of client.listRoleSubscriptions(RoleType.ORG_ADMIN)) {
       subscriptions.push(subscription);
     }
     expect(subscriptions).to.be.an('array').that.is.not.empty;
@@ -36,5 +36,5 @@ describe('Subscription API', () => {
     expect(response.status).to.equal(200);
     subscription = await client.getRoleSubscriptionByNotificationType(RoleType.ORG_ADMIN, NotificationType.OKTA_UPDATE);
     expect(subscription.status).to.equal(SubscriptionStatus.SUBSCRIBED);
-  })
+  });
 });

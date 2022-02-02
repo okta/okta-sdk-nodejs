@@ -29,32 +29,32 @@ describe('Application API: provisioning connection for application', () => {
   });
 
   it('provides method for getting default provisioning connection', async () => {
-    let provisioningConnection = await client.getDefaultProvisioningConnectionForApplication(application.id);
+    const provisioningConnection = await client.getDefaultProvisioningConnectionForApplication(application.id);
     expect(provisioningConnection.status).to.equal(ProvisioningConnectionStatus.DISABLED);
     expect(provisioningConnection.authScheme).to.equal(ProvisioningConnectionAuthScheme.TOKEN);
   });
 
   it('provides methods for activating and deactivating default provisioning connection', async () => {
     try {
-      let response = await client.activateDefaultProvisioningConnectionForApplication(application.id);
+      const response = await client.activateDefaultProvisioningConnectionForApplication(application.id);
       expect(response.status).to.equal(400);
     } catch (err) {
       expect(err.status).to.equal(400);
       expect(err.message).to.contain('Api validation failed: credential. Verification failed: Invalid URL. Not authorized.');
     }
 
-    let response = await client.deactivateDefaultProvisioningConnectionForApplication(application.id);
+    const response = await client.deactivateDefaultProvisioningConnectionForApplication(application.id);
     expect(response.status).to.equal(204);
-    let provisioningConnection = await client.getDefaultProvisioningConnectionForApplication(application.id);
+    const provisioningConnection = await client.getDefaultProvisioningConnectionForApplication(application.id);
     expect(provisioningConnection.status).to.equal(ProvisioningConnectionStatus.DISABLED);
   });
 
   it('provides method for creating provisioning connection for application', async () => {
     try {
-      const provisioningConnection = await client.setDefaultProvisioningConnectionForApplication(application.id, {
+      await client.setDefaultProvisioningConnectionForApplication(application.id, {
         profile: {
           authScheme: ProvisioningConnectionAuthScheme.TOKEN,
-          token: "testToken"
+          token: 'testToken'
         }
       });
     } catch (err) {
