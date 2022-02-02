@@ -18,7 +18,7 @@ describe('Application API: provisioning connection for application', () => {
   let application: Org2OrgApplication;
 
   beforeEach(async () => {
-    application = await client.createApplication(utils.getOrg2OrgApplictionOptions());
+    application = await client.createApplication(utils.getOrg2OrgApplicationOptions());
   });
 
   afterEach(async () => {

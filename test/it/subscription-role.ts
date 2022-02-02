@@ -5,7 +5,7 @@ import { Client, NotificationType, RoleType, SubscriptionStatus } from '@okta/ok
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
 if (process.env.OKTA_USE_MOCK) {
-  orgUrl = `${orgUrl}/role-subsctiption`;
+  orgUrl = `${orgUrl}/subsctiption-role`;
 }
 
 const client = new Client({
