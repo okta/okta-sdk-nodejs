@@ -230,7 +230,7 @@ function getBookmarkApplication() {
   };
 }
 
-function getOrg2OrgApplictionOptions() {
+function getOrg2OrgApplicationOptions() {
   return {
     name: 'okta_org2org',
     label: 'Sample Okta Org2Org App',
@@ -277,7 +277,7 @@ module.exports = {
   removeAppByLabel: removeAppByLabel,
   getMockProfile: getMockProfile,
   getBookmarkApplication: getBookmarkApplication,
-  getOrg2OrgApplictionOptions: getOrg2OrgApplictionOptions,
+  getOrg2OrgApplicationOptions: getOrg2OrgApplicationOptions,
   getOIDCApplication: getOIDCApplication,
   verifyOrgIsOIE,
   getMockImage: getMockImage
