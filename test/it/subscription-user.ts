@@ -14,7 +14,8 @@ const client = new Client({
   token: process.env.OKTA_CLIENT_TOKEN,
 });
 
-describe('Subscription API', () => {
+// User Subscription API endpoints can only be queried by API Token owner
+xdescribe('Subscription API', () => {
   let user;
   const userOptions = {
     profile: utils.getMockProfile('subscription-user'),
