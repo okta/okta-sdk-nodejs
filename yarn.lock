@@ -554,10 +554,10 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
-"@okta/openapi@^2.9.2":
-  version "2.9.2"
-  resolved "https://registry.yarnpkg.com/@okta/openapi/-/openapi-2.9.2.tgz#ab99800eb3d9baecbd81a10331c19f78347ab014"
-  integrity sha512-GhUDr7gawiGz5yGKETqReSgt6PvbKMHnFOxs4Gu/mG6tQAruJ7d42Y6ZK3JA2e0/6bBlxc7IsNfukaCVcOZALg==
+"@okta/openapi@^2.10.0":
+  version "2.10.0"
+  resolved "https://registry.yarnpkg.com/@okta/openapi/-/openapi-2.10.0.tgz#c8b9793395b2c40fad813a9bcb77b2b229c5918b"
+  integrity sha512-QYdQIHy4zGE4MqlAcGMqeuTvH1bPzqlf8rVd0tlKKSbb1UWtu+HSkNnFJj005fE3+OX++Z0YvumygYhpylXsxQ==
   dependencies:
     commander "2.9.0"
     fs-extra "3.0.1"

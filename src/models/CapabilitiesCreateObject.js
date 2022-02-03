@@ -13,10 +13,22 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-/** @ignore */
-exports.Application = require('./ApplicationFactory');
-exports.BrowserPluginApplication = require('./BrowserPluginApplicationFactory');
-exports.Policy = require('./PolicyFactory');
-exports.PolicyRule = require('./PolicyRuleFactory');
-exports.SamlApplication = require('./SamlApplicationFactory');
-exports.UserFactor = require('./UserFactorFactory');
+var Resource = require('../resource');
+const LifecycleCreateSettingObject = require('./LifecycleCreateSettingObject');
+
+/**
+ * @class CapabilitiesCreateObject
+ * @extends Resource
+ * @property { LifecycleCreateSettingObject } lifecycleCreate
+ */
+class CapabilitiesCreateObject extends Resource {
+  constructor(resourceJson, client) {
+    super(resourceJson, client);
+    if (resourceJson && resourceJson.lifecycleCreate) {
+      this.lifecycleCreate = new LifecycleCreateSettingObject(resourceJson.lifecycleCreate);
+    }
+  }
+
+}
+
+module.exports = CapabilitiesCreateObject;

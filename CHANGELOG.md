@@ -1,5 +1,50 @@
 # Okta Node SDK Changelog
 
+## 6.3.0
+
+### Features
+
+- [#299](https://github.com/okta/okta-sdk-nodejs/pull/299/files) Adds Subscription, Application Feature APIs and adds suppport for Org2Org applications.
+  - new Models/Enum:
+    - `ApplicationFeature`
+    - `CapabilitiesCreateObject`
+    - `CapabilitiesObject`
+    - `CapabilitiesUpdateObject`
+    - `ChangeEnum`
+    - `LifecycleCreateSettingsObject`
+    - `LifecycleDeactivateSettingsObject`
+    - `NotificationType`
+    - `Org2OrgApplication`
+    - `Org2OrgApplicationSettings`
+    - `Org2OrgApplicationSettingsApp`
+    - `PasswordSettingObject`
+    - `ProfileSettingObject`
+    - `ProvisioningConnection`
+    - `ProvisioningConnectionAuthScheme`
+    - `ProvisioningConnectionProfile`
+    - `ProvisioningConnectionRequest`
+    - `ProvisioningConnectionStatus`
+    - `SeedEnum`
+    - `Subscription`
+    - `SubscriptionStatus`
+  - Client:
+    - `getDefaultProvisioningConnectionForApplication`
+    - `setDefaultProvisioningConnectionForApplication`
+    - `activateDefaultProvisioningConnectionForApplication`
+    - `deactivateDefaultProvisioningConnectionForApplication`
+    - `listFeaturesForApplication`
+    - `getFeatureForApplication`
+    - `updateFeatureForApplication`
+    - `updateFeatureForApplication`
+    - `listRoleSubscriptions`
+    - `getRoleSubscriptionByNotificationType`
+    - `subscribeRoleSubscriptionByNotificationType`
+    - `unsubscribeRoleSubscriptionByNotificationType`
+    - `listUserSubscriptions`
+    - `getUserSubscriptionByNotificationType`
+    - `subscribeUserSubscriptionByNotificationType`
+    - `unsubscribeUserSubscriptionByNotificationType`
+
 ## 6.2.0
 
 ### Others

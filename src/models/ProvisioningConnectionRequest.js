@@ -13,10 +13,22 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-/** @ignore */
-exports.Application = require('./ApplicationFactory');
-exports.BrowserPluginApplication = require('./BrowserPluginApplicationFactory');
-exports.Policy = require('./PolicyFactory');
-exports.PolicyRule = require('./PolicyRuleFactory');
-exports.SamlApplication = require('./SamlApplicationFactory');
-exports.UserFactor = require('./UserFactorFactory');
+var Resource = require('../resource');
+const ProvisioningConnectionProfile = require('./ProvisioningConnectionProfile');
+
+/**
+ * @class ProvisioningConnectionRequest
+ * @extends Resource
+ * @property { ProvisioningConnectionProfile } profile
+ */
+class ProvisioningConnectionRequest extends Resource {
+  constructor(resourceJson, client) {
+    super(resourceJson, client);
+    if (resourceJson && resourceJson.profile) {
+      this.profile = new ProvisioningConnectionProfile(resourceJson.profile);
+    }
+  }
+
+}
+
+module.exports = ProvisioningConnectionRequest;

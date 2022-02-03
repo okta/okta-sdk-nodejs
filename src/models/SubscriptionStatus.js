@@ -13,10 +13,10 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-/** @ignore */
-exports.Application = require('./ApplicationFactory');
-exports.BrowserPluginApplication = require('./BrowserPluginApplicationFactory');
-exports.Policy = require('./PolicyFactory');
-exports.PolicyRule = require('./PolicyRuleFactory');
-exports.SamlApplication = require('./SamlApplicationFactory');
-exports.UserFactor = require('./UserFactorFactory');
+var SubscriptionStatus;
+(function (SubscriptionStatus) {
+  SubscriptionStatus['SUBSCRIBED'] = 'subscribed';
+  SubscriptionStatus['UNSUBSCRIBED'] = 'unsubscribed';
+}(SubscriptionStatus || (SubscriptionStatus = {})));
+
+module.exports = SubscriptionStatus;

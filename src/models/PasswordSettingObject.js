@@ -13,10 +13,22 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-/** @ignore */
-exports.Application = require('./ApplicationFactory');
-exports.BrowserPluginApplication = require('./BrowserPluginApplicationFactory');
-exports.Policy = require('./PolicyFactory');
-exports.PolicyRule = require('./PolicyRuleFactory');
-exports.SamlApplication = require('./SamlApplicationFactory');
-exports.UserFactor = require('./UserFactorFactory');
+var Resource = require('../resource');
+
+
+/**
+ * @class PasswordSettingObject
+ * @extends Resource
+ * @property { ChangeEnum } change
+ * @property { SeedEnum } seed
+ * @property { EnabledStatus } status
+ */
+class PasswordSettingObject extends Resource {
+  constructor(resourceJson, client) {
+    super(resourceJson, client);
+
+  }
+
+}
+
+module.exports = PasswordSettingObject;

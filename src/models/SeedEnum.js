@@ -13,10 +13,10 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-/** @ignore */
-exports.Application = require('./ApplicationFactory');
-exports.BrowserPluginApplication = require('./BrowserPluginApplicationFactory');
-exports.Policy = require('./PolicyFactory');
-exports.PolicyRule = require('./PolicyRuleFactory');
-exports.SamlApplication = require('./SamlApplicationFactory');
-exports.UserFactor = require('./UserFactorFactory');
+var SeedEnum;
+(function (SeedEnum) {
+  SeedEnum['OKTA'] = 'OKTA';
+  SeedEnum['RANDOM'] = 'RANDOM';
+}(SeedEnum || (SeedEnum = {})));
+
+module.exports = SeedEnum;

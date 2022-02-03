@@ -29,6 +29,10 @@ class BrowserPluginApplicationFactory extends ModelResolutionFactory {
   getResolutionProperty() {
     return 'name';
   }
+
+  getParentModel() {
+    return models.BrowserPluginApplication;
+  }
 }
 
 module.exports = BrowserPluginApplicationFactory;

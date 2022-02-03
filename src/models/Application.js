@@ -295,6 +295,31 @@ class Application extends Resource {
   getScopeConsentGrant(grantId, queryParameters) {
     return this.httpClient.getScopeConsentGrant(this.id, grantId, queryParameters);
   }
+
+  /**
+   * @param {string} appId
+   * @param {file} fs.ReadStream
+   */
+  uploadApplicationLogo(appId, file) {
+    return this.httpClient.uploadApplicationLogo(appId, file);
+  }
+
+  /**
+   * @param {string} name
+   * @returns {Promise<ApplicationFeature>}
+   */
+  getFeatureForApplication(name) {
+    return this.httpClient.getFeatureForApplication(this.id, name);
+  }
+
+  /**
+   * @param {string} name
+   * @param {CapabilitiesObject} capabilitiesObject
+   * @returns {Promise<ApplicationFeature>}
+   */
+  updateFeatureForApplication(name, capabilitiesObject) {
+    return this.httpClient.updateFeatureForApplication(this.id, name, capabilitiesObject);
+  }
 }
 
 module.exports = Application;

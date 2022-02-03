@@ -12,7 +12,11 @@ export OKTA_CLIENT_PRIVATEKEY=$(cat ${OKTA_HOME}/${REPO}/scripts/privateKey.pem)
 export TEST_SUITE_TYPE="junit"
 export TEST_RESULT_FILE_DIR="${REPO}/test-reports"
 
-# Runs unit and jest tests
+if ! yarn test:types; then
+  echo "tsd tests failed! Exiting..."
+  exit $PUBLISH_TYPE_AND_RESULT_DIR_BUT_ALWAYS_FAIL
+fi
+
 if ! yarn test:unit; then
   echo "Unit tests failed! Exiting..."
   exit $PUBLISH_TYPE_AND_RESULT_DIR_BUT_ALWAYS_FAIL

@@ -10,8 +10,6 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
-const Resource = require('./resource');
-
 class ModelResolutionFactory {
 
   getMapping() {
@@ -22,17 +20,23 @@ class ModelResolutionFactory {
     return '';
   }
 
+  getParentModel() {
+    return null;
+  }
+
   createInstance(resource, client) {
     const resolutionProperty = this.getResolutionProperty();
     const mapping = this.getMapping();
+    let Constructor = this.getParentModel();
     if (resolutionProperty && resource[resolutionProperty] && mapping[resource[resolutionProperty]]) {
-      const Constructor = mapping[resource[resolutionProperty]];
+      Constructor = mapping[resource[resolutionProperty]];
       if (Constructor instanceof ModelResolutionFactory) {
         return Constructor.createInstance.apply(Constructor, arguments);
       }
       return new Constructor(resource, client);
     }
-    return new Resource(resource, client);
+
+    return new Constructor(resource, client);
   }
 }
 

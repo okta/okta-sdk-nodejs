@@ -13,10 +13,25 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-/** @ignore */
-exports.Application = require('./ApplicationFactory');
-exports.BrowserPluginApplication = require('./BrowserPluginApplicationFactory');
-exports.Policy = require('./PolicyFactory');
-exports.PolicyRule = require('./PolicyRuleFactory');
-exports.SamlApplication = require('./SamlApplicationFactory');
-exports.UserFactor = require('./UserFactorFactory');
+import { Resource } from '../resource';
+import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
+import { ChangeEnum } from './ChangeEnum';
+import { SeedEnum } from './SeedEnum';
+import { EnabledStatus } from './EnabledStatus';
+
+declare class PasswordSettingObject extends Resource {
+  constructor(resourceJson: Record<string, unknown>, client: Client);
+
+  change: ChangeEnum;
+  seed: SeedEnum;
+  status: EnabledStatus;
+
+}
+
+type PasswordSettingObjectOptions = OptionalKnownProperties<PasswordSettingObject>;
+
+export {
+  PasswordSettingObject,
+  PasswordSettingObjectOptions
+};

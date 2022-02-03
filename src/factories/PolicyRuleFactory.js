@@ -31,6 +31,10 @@ class PolicyRuleFactory extends ModelResolutionFactory {
   getResolutionProperty() {
     return 'type';
   }
+
+  getParentModel() {
+    return models.PolicyRule;
+  }
 }
 
 module.exports = PolicyRuleFactory;

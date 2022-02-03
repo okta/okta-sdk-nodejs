@@ -13,10 +13,21 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-/** @ignore */
-exports.Application = require('./ApplicationFactory');
-exports.BrowserPluginApplication = require('./BrowserPluginApplicationFactory');
-exports.Policy = require('./PolicyFactory');
-exports.PolicyRule = require('./PolicyRuleFactory');
-exports.SamlApplication = require('./SamlApplicationFactory');
-exports.UserFactor = require('./UserFactorFactory');
+import { Resource } from '../resource';
+import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
+import { ProvisioningConnectionProfile } from './ProvisioningConnectionProfile';
+
+declare class ProvisioningConnectionRequest extends Resource {
+  constructor(resourceJson: Record<string, unknown>, client: Client);
+
+  profile: ProvisioningConnectionProfile;
+
+}
+
+type ProvisioningConnectionRequestOptions = OptionalKnownProperties<ProvisioningConnectionRequest>;
+
+export {
+  ProvisioningConnectionRequest,
+  ProvisioningConnectionRequestOptions
+};

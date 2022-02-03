@@ -27,6 +27,9 @@ import { Csr } from './Csr';
 import { OAuth2Token } from './OAuth2Token';
 import { OAuth2ScopeConsentGrant } from './OAuth2ScopeConsentGrant';
 import { OAuth2ScopeConsentGrantOptions } from './OAuth2ScopeConsentGrant';
+import { ReadStream } from 'fs';
+import { ApplicationFeature } from './ApplicationFeature';
+import { CapabilitiesObjectOptions } from './CapabilitiesObject';
 import { ApplicationAccessibility } from './ApplicationAccessibility';
 import { ApplicationCredentials } from './ApplicationCredentials';
 import { ApplicationLicensing } from './ApplicationLicensing';
@@ -115,6 +118,9 @@ declare class Application extends Resource {
   getScopeConsentGrant(grantId: string, queryParameters?: {
     expand?: string,
   }): Promise<OAuth2ScopeConsentGrant>;
+  uploadApplicationLogo(appId: string, file: ReadStream): Promise<Response>;
+  getFeatureForApplication(name: string): Promise<ApplicationFeature>;
+  updateFeatureForApplication(name: string, capabilitiesObject: CapabilitiesObjectOptions): Promise<ApplicationFeature>;
 }
 
 export {

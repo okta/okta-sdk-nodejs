@@ -172,6 +172,123 @@ class GeneratedApiClient {
    *
    * @param appId {String}
    * @description
+   * Get default Provisioning Connection for application
+   * @returns {Promise<ProvisioningConnection>}
+   */
+  getDefaultProvisioningConnectionForApplication(appId) {
+    if (!appId) {
+      return Promise.reject(new Error('OKTA API getDefaultProvisioningConnectionForApplication parameter appId is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/apps/${appId}/connections/default`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/apps/${appId}`
+    ];
+
+    const request = this.http.getJson(
+      url,
+      null,
+      { resources }
+    );
+    return request.then(jsonRes => new models.ProvisioningConnection(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param appId {String}
+   * @param {ProvisioningConnectionRequest} provisioningConnectionRequest
+   * @param {Object} queryParams Map of query parameters to add to this request
+   * @param {String} [queryParams.activate]
+   * @description
+   * Set default Provisioning Connection for application
+   * @returns {Promise<ProvisioningConnection>}
+   */
+  setDefaultProvisioningConnectionForApplication(appId, provisioningConnectionRequest, queryParameters) {
+    if (!appId) {
+      return Promise.reject(new Error('OKTA API setDefaultProvisioningConnectionForApplication parameter appId is required.'));
+    }
+    if (!provisioningConnectionRequest) {
+      return Promise.reject(new Error('OKTA API setDefaultProvisioningConnectionForApplication parameter provisioningConnectionRequest is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/apps/${appId}/connections/default`;
+    const queryString = qs.stringify(queryParameters || {});
+
+    url += queryString ? ('?' + queryString) : '';
+
+    const resources = [
+      `${this.baseUrl}/api/v1/apps/${appId}`
+    ];
+
+    const request = this.http.postJson(
+      url,
+      {
+        body: provisioningConnectionRequest
+      },
+      { resources }
+    );
+    return request.then(jsonRes => new models.ProvisioningConnection(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param appId {String}
+   * @description
+   * Activates the default Provisioning Connection for an application.
+   */
+  activateDefaultProvisioningConnectionForApplication(appId) {
+    if (!appId) {
+      return Promise.reject(new Error('OKTA API activateDefaultProvisioningConnectionForApplication parameter appId is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/apps/${appId}/connections/default/lifecycle/activate`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/apps/${appId}`
+    ];
+
+    const request = this.http.post(
+      url,
+      {
+        headers: {
+          'Content-Type': 'application/json', 'Accept': 'application/json',
+        },
+      },
+      { resources }
+    );
+    return request;
+  }
+
+  /**
+   *
+   * @param appId {String}
+   * @description
+   * Deactivates the default Provisioning Connection for an application.
+   */
+  deactivateDefaultProvisioningConnectionForApplication(appId) {
+    if (!appId) {
+      return Promise.reject(new Error('OKTA API deactivateDefaultProvisioningConnectionForApplication parameter appId is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/apps/${appId}/connections/default/lifecycle/deactivate`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/apps/${appId}`
+    ];
+
+    const request = this.http.post(
+      url,
+      {
+        headers: {
+          'Content-Type': 'application/json', 'Accept': 'application/json',
+        },
+      },
+      { resources }
+    );
+    return request;
+  }
+
+  /**
+   *
+   * @param appId {String}
+   * @description
    * Enumerates Certificate Signing Requests for an application
    * @returns {Collection} A collection that will yield {@link Csr} instances.
    */
@@ -594,6 +711,92 @@ class GeneratedApiClient {
   /**
    *
    * @param appId {String}
+   * @description
+   * List Features for application
+   * @returns {Collection} A collection that will yield {@link ApplicationFeature} instances.
+   */
+  listFeaturesForApplication(appId) {
+    if (!appId) {
+      return Promise.reject(new Error('OKTA API listFeaturesForApplication parameter appId is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/apps/${appId}/features`;
+
+    return new Collection(
+      this,
+      url,
+      new ModelFactory(models.ApplicationFeature),
+    );
+  }
+
+  /**
+   *
+   * @param appId {String}
+   * @param name {String}
+   * @description
+   * Fetches a Feature object for an application.
+   * @returns {Promise<ApplicationFeature>}
+   */
+  getFeatureForApplication(appId, name) {
+    if (!appId) {
+      return Promise.reject(new Error('OKTA API getFeatureForApplication parameter appId is required.'));
+    }
+    if (!name) {
+      return Promise.reject(new Error('OKTA API getFeatureForApplication parameter name is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/apps/${appId}/features/${name}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/apps/${appId}/features/${name}`,
+      `${this.baseUrl}/api/v1/apps/${appId}`
+    ];
+
+    const request = this.http.getJson(
+      url,
+      null,
+      { resources }
+    );
+    return request.then(jsonRes => new models.ApplicationFeature(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param appId {String}
+   * @param name {String}
+   * @param {CapabilitiesObject} capabilitiesObject
+   * @description
+   * Updates a Feature object for an application.
+   * @returns {Promise<ApplicationFeature>}
+   */
+  updateFeatureForApplication(appId, name, capabilitiesObject) {
+    if (!appId) {
+      return Promise.reject(new Error('OKTA API updateFeatureForApplication parameter appId is required.'));
+    }
+    if (!name) {
+      return Promise.reject(new Error('OKTA API updateFeatureForApplication parameter name is required.'));
+    }
+    if (!capabilitiesObject) {
+      return Promise.reject(new Error('OKTA API updateFeatureForApplication parameter capabilitiesObject is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/apps/${appId}/features/${name}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/apps/${appId}/features/${name}`,
+      `${this.baseUrl}/api/v1/apps/${appId}`
+    ];
+
+    const request = this.http.putJson(
+      url,
+      {
+        body: capabilitiesObject
+      },
+      { resources }
+    );
+    return request.then(jsonRes => new models.ApplicationFeature(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param appId {String}
    * @param {Object} queryParams Map of query parameters to add to this request
    * @param {String} [queryParams.expand]
    * @description
@@ -887,6 +1090,36 @@ class GeneratedApiClient {
           'Content-Type': 'application/json', 'Accept': 'application/json',
         },
       },
+      { resources }
+    );
+    return request;
+  }
+
+  /**
+   *
+   * @param appId {String}
+   * @param {file} fs.ReadStream
+   * @description
+   * Update the logo for an application.
+   */
+  uploadApplicationLogo(appId, file) {
+    if (!appId) {
+      return Promise.reject(new Error('OKTA API uploadApplicationLogo parameter appId is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/apps/${appId}/logo`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/apps/${appId}`
+    ];
+
+    const request = this.http.postFormDataFile(
+      url,
+      {
+        headers: {
+          'Accept': 'application/json',
+        },
+      },
+      file,
       { resources }
     );
     return request;
@@ -6412,6 +6645,122 @@ class GeneratedApiClient {
 
   /**
    *
+   * @param roleTypeOrRoleId {String}
+   * @description
+   * When roleType List all subscriptions of a Role. Else when roleId List subscriptions of a Custom Role
+   * @returns {Collection} A collection that will yield {@link Subscription} instances.
+   */
+  listRoleSubscriptions(roleTypeOrRoleId) {
+    if (!roleTypeOrRoleId) {
+      return Promise.reject(new Error('OKTA API listRoleSubscriptions parameter roleTypeOrRoleId is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/roles/${roleTypeOrRoleId}/subscriptions`;
+
+    return new Collection(
+      this,
+      url,
+      new ModelFactory(models.Subscription),
+    );
+  }
+
+  /**
+   *
+   * @param roleTypeOrRoleId {String}
+   * @param notificationType {String}
+   * @description
+   * When roleType Get subscriptions of a Role with a specific notification type. Else when roleId Get subscription of a Custom Role with a specific notification type.
+   * @returns {Promise<Subscription>}
+   */
+  getRoleSubscriptionByNotificationType(roleTypeOrRoleId, notificationType) {
+    if (!roleTypeOrRoleId) {
+      return Promise.reject(new Error('OKTA API getRoleSubscriptionByNotificationType parameter roleTypeOrRoleId is required.'));
+    }
+    if (!notificationType) {
+      return Promise.reject(new Error('OKTA API getRoleSubscriptionByNotificationType parameter notificationType is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/roles/${roleTypeOrRoleId}/subscriptions/${notificationType}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/roles/${roleTypeOrRoleId}/subscriptions/${notificationType}`,
+      `${this.baseUrl}/api/v1/roles/${roleTypeOrRoleId}`
+    ];
+
+    const request = this.http.getJson(
+      url,
+      null,
+      { resources }
+    );
+    return request.then(jsonRes => new models.Subscription(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param roleTypeOrRoleId {String}
+   * @param notificationType {String}
+   * @description
+   * When roleType Subscribes a Role to a specific notification type. When you change the subscription status of a Role, it overrides the subscription of any individual user of that Role. Else when roleId Subscribes a Custom Role to a specific notification type. When you change the subscription status of a Custom Role, it overrides the subscription of any individual user of that Custom Role.
+   */
+  subscribeRoleSubscriptionByNotificationType(roleTypeOrRoleId, notificationType) {
+    if (!roleTypeOrRoleId) {
+      return Promise.reject(new Error('OKTA API subscribeRoleSubscriptionByNotificationType parameter roleTypeOrRoleId is required.'));
+    }
+    if (!notificationType) {
+      return Promise.reject(new Error('OKTA API subscribeRoleSubscriptionByNotificationType parameter notificationType is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/roles/${roleTypeOrRoleId}/subscriptions/${notificationType}/subscribe`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/roles/${roleTypeOrRoleId}/subscriptions/${notificationType}`,
+      `${this.baseUrl}/api/v1/roles/${roleTypeOrRoleId}`
+    ];
+
+    const request = this.http.post(
+      url,
+      {
+        headers: {
+          'Content-Type': 'application/json', 'Accept': 'application/json',
+        },
+      },
+      { resources }
+    );
+    return request;
+  }
+
+  /**
+   *
+   * @param roleTypeOrRoleId {String}
+   * @param notificationType {String}
+   * @description
+   * When roleType Unsubscribes a Role from a specific notification type. When you change the subscription status of a Role, it overrides the subscription of any individual user of that Role. Else when roleId Unsubscribes a Custom Role from a specific notification type. When you change the subscription status of a Custom Role, it overrides the subscription of any individual user of that Custom Role.
+   */
+  unsubscribeRoleSubscriptionByNotificationType(roleTypeOrRoleId, notificationType) {
+    if (!roleTypeOrRoleId) {
+      return Promise.reject(new Error('OKTA API unsubscribeRoleSubscriptionByNotificationType parameter roleTypeOrRoleId is required.'));
+    }
+    if (!notificationType) {
+      return Promise.reject(new Error('OKTA API unsubscribeRoleSubscriptionByNotificationType parameter notificationType is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/roles/${roleTypeOrRoleId}/subscriptions/${notificationType}/unsubscribe`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/roles/${roleTypeOrRoleId}/subscriptions/${notificationType}`,
+      `${this.baseUrl}/api/v1/roles/${roleTypeOrRoleId}`
+    ];
+
+    const request = this.http.post(
+      url,
+      {
+        headers: {
+          'Content-Type': 'application/json', 'Accept': 'application/json',
+        },
+      },
+      { resources }
+    );
+    return request;
+  }
+
+  /**
+   *
    * @param {CreateSessionRequest} createSessionRequest
    * @description
    * Creates a new session for a user with a valid session token. Use this API if, for example, you want to set the session cookie yourself instead of allowing Okta to set it, or want to hold the session ID in order to delete a session via the API instead of visiting the logout URL.
@@ -8715,6 +9064,122 @@ class GeneratedApiClient {
     const request = this.http.delete(
       url,
       null,
+      { resources }
+    );
+    return request;
+  }
+
+  /**
+   *
+   * @param userId {String}
+   * @description
+   * List subscriptions of a User. Only lists subscriptions for current user. An AccessDeniedException message is sent if requests are made from other users.
+   * @returns {Collection} A collection that will yield {@link Subscription} instances.
+   */
+  listUserSubscriptions(userId) {
+    if (!userId) {
+      return Promise.reject(new Error('OKTA API listUserSubscriptions parameter userId is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/users/${userId}/subscriptions`;
+
+    return new Collection(
+      this,
+      url,
+      new ModelFactory(models.Subscription),
+    );
+  }
+
+  /**
+   *
+   * @param userId {String}
+   * @param notificationType {String}
+   * @description
+   * Get the subscriptions of a User with a specific notification type. Only gets subscriptions for current user. An AccessDeniedException message is sent if requests are made from other users.
+   * @returns {Promise<Subscription>}
+   */
+  getUserSubscriptionByNotificationType(userId, notificationType) {
+    if (!userId) {
+      return Promise.reject(new Error('OKTA API getUserSubscriptionByNotificationType parameter userId is required.'));
+    }
+    if (!notificationType) {
+      return Promise.reject(new Error('OKTA API getUserSubscriptionByNotificationType parameter notificationType is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/users/${userId}/subscriptions/${notificationType}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/users/${userId}/subscriptions/${notificationType}`,
+      `${this.baseUrl}/api/v1/users/${userId}`
+    ];
+
+    const request = this.http.getJson(
+      url,
+      null,
+      { resources }
+    );
+    return request.then(jsonRes => new models.Subscription(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param userId {String}
+   * @param notificationType {String}
+   * @description
+   * Subscribes a User to a specific notification type. Only the current User can subscribe to a specific notification type. An AccessDeniedException message is sent if requests are made from other users.
+   */
+  subscribeUserSubscriptionByNotificationType(userId, notificationType) {
+    if (!userId) {
+      return Promise.reject(new Error('OKTA API subscribeUserSubscriptionByNotificationType parameter userId is required.'));
+    }
+    if (!notificationType) {
+      return Promise.reject(new Error('OKTA API subscribeUserSubscriptionByNotificationType parameter notificationType is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/users/${userId}/subscriptions/${notificationType}/subscribe`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/users/${userId}/subscriptions/${notificationType}`,
+      `${this.baseUrl}/api/v1/users/${userId}`
+    ];
+
+    const request = this.http.post(
+      url,
+      {
+        headers: {
+          'Content-Type': 'application/json', 'Accept': 'application/json',
+        },
+      },
+      { resources }
+    );
+    return request;
+  }
+
+  /**
+   *
+   * @param userId {String}
+   * @param notificationType {String}
+   * @description
+   * Unsubscribes a User from a specific notification type. Only the current User can unsubscribe from a specific notification type. An AccessDeniedException message is sent if requests are made from other users.
+   */
+  unsubscribeUserSubscriptionByNotificationType(userId, notificationType) {
+    if (!userId) {
+      return Promise.reject(new Error('OKTA API unsubscribeUserSubscriptionByNotificationType parameter userId is required.'));
+    }
+    if (!notificationType) {
+      return Promise.reject(new Error('OKTA API unsubscribeUserSubscriptionByNotificationType parameter notificationType is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/users/${userId}/subscriptions/${notificationType}/unsubscribe`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/users/${userId}/subscriptions/${notificationType}`,
+      `${this.baseUrl}/api/v1/users/${userId}`
+    ];
+
+    const request = this.http.post(
+      url,
+      {
+        headers: {
+          'Content-Type': 'application/json', 'Accept': 'application/json',
+        },
+      },
       { resources }
     );
     return request;
