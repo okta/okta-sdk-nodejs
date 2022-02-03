@@ -18,13 +18,13 @@ if ! yarn test:unit; then
   exit $PUBLISH_TYPE_AND_RESULT_DIR_BUT_ALWAYS_FAIL
 fi
 
-if ! yarn jest; then
-  echo "jest tests failed! Exiting..."
+if ! yarn test:types; then
+  echo "tsd tests failed! Exiting..."
   exit $PUBLISH_TYPE_AND_RESULT_DIR_BUT_ALWAYS_FAIL
 fi
 
-if ! yarn test:types; then
-  echo "tsd tests failed! Exiting..."
+if ! yarn jest; then
+  echo "jest tests failed! Exiting..."
   exit $PUBLISH_TYPE_AND_RESULT_DIR_BUT_ALWAYS_FAIL
 fi
 
