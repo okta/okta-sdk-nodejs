@@ -51,7 +51,7 @@ describe('Factors API', () => {
       factorType: 'call',
       provider: 'OKTA',
       profile: {
-        phoneNumber: '415 123 1234'
+        phoneNumber: '162 840 01133'
       }
     };
     const createdFactor = await client.enrollFactor(createdUser.id, factor);
