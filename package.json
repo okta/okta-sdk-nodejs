@@ -38,7 +38,7 @@
     "lodash": "^4.17.20",
     "mocha-junit-reporter": "^2.0.0",
     "njwt": "^1.0.0",
-    "parse-link-header": "^1.0.1",
+    "parse-link-header": "^2.0.0",
     "rasha": "^1.2.5",
     "safe-flat": "^2.0.2"
   },
