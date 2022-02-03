@@ -16,7 +16,7 @@
     "prebuild": "rimraf ./src/models ./src/factories ./src/generated-client.js",
     "build": "okta-sdk-generator -t templates/ -o . && yarn banners",
     "eslint": "eslint .",
-    "jest": "JEST_JUNIT_OUTPUT_DIR=./test-reports jest --coverage --ci --testResultsProcessor=jest-junit test/jest/*.js",
+    "jest": "JEST_JUNIT_OUTPUT_DIR=./test-reports jest --coverage --ci --testResultsProcessor=jest-junit test/jest/*.ts",
     "predocs": "rimraf ./jsdocs && mkdir jsdocs/ && ./utils/make-jsdoc-readme.js > ./jsdocs/jsdoc-temp.md",
     "docs": "./node_modules/.bin/jsdoc src/ -c ./docs/config.json -d ./jsdocs/ -P ./package.json -R ./jsdocs/jsdoc-temp.md -r",
     "test:integration": "yarn test:integration:oauth && yarn test:integration:ssws",
@@ -42,7 +42,7 @@
     "safe-flat": "^2.0.2"
   },
   "devDependencies": {
-    "@okta/openapi": "^2.9.2",
+    "@okta/openapi": "^2.10.0",
     "@types/chai": "^4.2.22",
     "@types/mocha": "^9.0.0",
     "@types/node-fetch": "^2.5.8",
@@ -80,7 +80,12 @@
     "rootDir": "./test/jest",
     "setupFiles": [
       "jest-date-mock"
+    ],
+    "moduleFileExtensions": ["js", "ts"],
+    "testMatch": [
+      "**/tests/**/*.test.(ts|js)"
     ]
+
   },
   "tsd": {
     "directory": "test/type"
