@@ -80,12 +80,7 @@
     "rootDir": "./test/jest",
     "setupFiles": [
       "jest-date-mock"
-    ],
-    "moduleFileExtensions": ["js", "ts"],
-    "testMatch": [
-      "**/tests/**/*.test.(ts|js)"
     ]
-
   },
   "tsd": {
     "directory": "test/type"
