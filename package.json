@@ -16,7 +16,7 @@
     "prebuild": "rimraf ./src/models ./src/factories ./src/generated-client.js",
     "build": "okta-sdk-generator -t templates/ -o . && yarn banners",
     "eslint": "eslint .",
-    "jest": "JEST_JUNIT_OUTPUT_DIR=./test-reports jest --coverage --ci --testResultsProcessor=jest-junit test/jest/*.ts",
+    "jest": "JEST_JUNIT_OUTPUT_DIR=./test-reports jest --coverage --ci --testResultsProcessor=jest-junit test/jest/*.js",
     "predocs": "rimraf ./jsdocs && mkdir jsdocs/ && ./utils/make-jsdoc-readme.js > ./jsdocs/jsdoc-temp.md",
     "docs": "./node_modules/.bin/jsdoc src/ -c ./docs/config.json -d ./jsdocs/ -P ./package.json -R ./jsdocs/jsdoc-temp.md -r",
     "test:integration": "yarn test:integration:oauth && yarn test:integration:ssws",
