@@ -357,6 +357,9 @@
     - added method `updateNetworkZone`
     - added method `activateNetworkZone`
     - added method `deactivateNetworkZone`
+## 4.6.1
+- [#300](https://github.com/okta/okta-sdk-nodejs/pull/300) Upgrade parse-link-header for security vuln
+
 ## 4.6.0
 
 ### Features
