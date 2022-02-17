@@ -1,5 +1,15 @@
 # Okta Node SDK Changelog
 
+## 6.3.1
+
+### Bug Fixes
+
+- [#304](https://github.com/okta/okta-sdk-nodejs/pull/304) Fixes TypeScript compilation errors when `isolatedModules` and `importsNotUsedAsValues` flags are enabled
+
+### Other
+
+- [#301](https://github.com/okta/okta-sdk-nodejs/pull/301) Bumps node-fetch to 2.6.7
+
 ## 6.3.0
 
 ### Features
