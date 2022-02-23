@@ -1,0 +1,5 @@
+{
+  "additionalProperties": {
+    "supportsES6": true
+  }
+}

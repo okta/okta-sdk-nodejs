@@ -16,11 +16,11 @@
 import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base';
 import { UserType } from '../models';
 import { Response } from 'node-fetch';
-import { OAuth } from '../../types/OAuth';
-import { Http } from '../../types/Http';
-import { ConfigLoader } from '../../types/config-loader';
-import { DefaultRequestExecutor } from '../../types/default-request-executor';
-import { V2Configuration } from '../../types/client';
+import OAuth = require('../../OAuth');
+import Http = require('../../Http');
+import ConfigLoader = require('../../config-loader');
+import DefaultRequestExecutor = require('../../default-request-executor');
+import V2Configuration = require ('../../client');
 
 
 const os = require('os');
@@ -93,7 +93,7 @@ export const UserTypeApiRequestParamCreator = function (configuration?: Configur
     oauth: oauth
   });
   if (authorizationMode === 'SSWS') {
-    httpClient.defaultHeaders.Authorization = `SSWS ${this.apiToken}`;
+    httpClient.defaultHeaders.Authorization = `SSWS ${apiToken}`;
   }
   httpClient.defaultHeaders['User-Agent'] = parsedConfig.client.userAgent ? parsedConfig.client.userAgent + ' ' + DEFAULT_USER_AGENT : DEFAULT_USER_AGENT;
 
@@ -123,10 +123,10 @@ export const UserTypeApiRequestParamCreator = function (configuration?: Configur
             const localVarQueryParameter = {} as any;
 
             // authentication api_token required
-            if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
-                    ? await configuration.apiKey("Authorization")
-                    : await configuration.apiKey;
+            if (configuration && configuration.apiToken) {
+                const localVarApiKeyValue = typeof configuration.apiToken === 'function'
+                    ? await configuration.apiToken("Authorization")
+                    : await configuration.apiToken;
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
 
@@ -184,10 +184,10 @@ export const UserTypeApiRequestParamCreator = function (configuration?: Configur
             const localVarQueryParameter = {} as any;
 
             // authentication api_token required
-            if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
-                    ? await configuration.apiKey("Authorization")
-                    : await configuration.apiKey;
+            if (configuration && configuration.apiToken) {
+                const localVarApiKeyValue = typeof configuration.apiToken === 'function'
+                    ? await configuration.apiToken("Authorization")
+                    : await configuration.apiToken;
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
 
@@ -241,10 +241,10 @@ export const UserTypeApiRequestParamCreator = function (configuration?: Configur
             const localVarQueryParameter = {} as any;
 
             // authentication api_token required
-            if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
-                    ? await configuration.apiKey("Authorization")
-                    : await configuration.apiKey;
+            if (configuration && configuration.apiToken) {
+                const localVarApiKeyValue = typeof configuration.apiToken === 'function'
+                    ? await configuration.apiToken("Authorization")
+                    : await configuration.apiToken;
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
 
@@ -292,10 +292,10 @@ export const UserTypeApiRequestParamCreator = function (configuration?: Configur
             const localVarQueryParameter = {} as any;
 
             // authentication api_token required
-            if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
-                    ? await configuration.apiKey("Authorization")
-                    : await configuration.apiKey;
+            if (configuration && configuration.apiToken) {
+                const localVarApiKeyValue = typeof configuration.apiToken === 'function'
+                    ? await configuration.apiToken("Authorization")
+                    : await configuration.apiToken;
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
 
@@ -354,10 +354,10 @@ export const UserTypeApiRequestParamCreator = function (configuration?: Configur
             const localVarQueryParameter = {} as any;
 
             // authentication api_token required
-            if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
-                    ? await configuration.apiKey("Authorization")
-                    : await configuration.apiKey;
+            if (configuration && configuration.apiToken) {
+                const localVarApiKeyValue = typeof configuration.apiToken === 'function'
+                    ? await configuration.apiToken("Authorization")
+                    : await configuration.apiToken;
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
 
@@ -420,10 +420,10 @@ export const UserTypeApiRequestParamCreator = function (configuration?: Configur
             const localVarQueryParameter = {} as any;
 
             // authentication api_token required
-            if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
-                    ? await configuration.apiKey("Authorization")
-                    : await configuration.apiKey;
+            if (configuration && configuration.apiToken) {
+                const localVarApiKeyValue = typeof configuration.apiToken === 'function'
+                    ? await configuration.apiToken("Authorization")
+                    : await configuration.apiToken;
                 localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
             }
 
