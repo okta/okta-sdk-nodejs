@@ -19,7 +19,8 @@ export declare class ConfigLoader {
       token: string;
       clientId: string;
       scopes: string;
-      privateKey: string;
+      privateKey?: string;
+      userAgent?: string;
     };
   };
   applyDefaults(): void;

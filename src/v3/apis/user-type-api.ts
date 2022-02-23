@@ -15,15 +15,28 @@
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base';
 import { UserType } from '../models';
-import { OAuth } from '../OAuth';
+import { Response } from 'node-fetch';
+import { OAuth } from '../../types/OAuth';
+import { Http } from '../../types/Http';
+import { ConfigLoader } from '../../types/config-loader';
+import { DefaultRequestExecutor } from '../../types/default-request-executor';
+import { V2Configuration } from '../../types/client';
+
+
+const os = require('os');
+const packageJson = require('../../../package.json');
+
+const DEFAULT_USER_AGENT = `${packageJson.name}/${packageJson.version} node/${process.versions.node} ${os.platform()}/${os.release()}`;
+
+const repoUrl = 'https://github.com/okta/okta-sdk-nodejs';
 
 
 /**
  * UserTypeApi - request parameter creator
  * @export
  */
-export const UserTypeApiRequestParamCreator = function (configuration?: Configuration) {
-    const configLoader = new ConfigLoader();
+export const UserTypeApiRequestParamCreator = function (configuration?: Configuration & V2Configuration) {
+  const configLoader = new ConfigLoader();
   const clientConfig = Object.assign({}, configuration);
   configLoader.applyDefaults();
   configLoader.apply({
@@ -72,7 +85,7 @@ export const UserTypeApiRequestParamCreator = function (configuration?: Configur
     oauth = new OAuth(this);
   }
 
-  const http = new Http({
+  const httpClient = new Http({
     cacheStore: clientConfig.cacheStore,
     cacheMiddleware: clientConfig.cacheMiddleware,
     defaultCacheMiddlewareResponseBufferSize: clientConfig.defaultCacheMiddlewareResponseBufferSize,
@@ -80,12 +93,12 @@ export const UserTypeApiRequestParamCreator = function (configuration?: Configur
     oauth: oauth
   });
   if (authorizationMode === 'SSWS') {
-    http.defaultHeaders.Authorization = `SSWS ${this.apiToken}`;
+    httpClient.defaultHeaders.Authorization = `SSWS ${this.apiToken}`;
   }
-  http.defaultHeaders['User-Agent'] = parsedConfig.client.userAgent ? parsedConfig.client.userAgent + ' ' + DEFAULT_USER_AGENT : DEFAULT_USER_AGENT;
+  httpClient.defaultHeaders['User-Agent'] = parsedConfig.client.userAgent ? parsedConfig.client.userAgent + ' ' + DEFAULT_USER_AGENT : DEFAULT_USER_AGENT;
 
     return {
-      http: http,
+      httpClient,
         /**
          * Creates a new User Type. A default User Type is automatically created along with your org, and you may add another 9 User Types for a maximum of 10.
          * @summary Create User Type
@@ -450,9 +463,8 @@ export const UserTypeApiRequestParamCreator = function (configuration?: Configur
  * UserTypeApi - functional programming interface
  * @export
  */
-export const UserTypeApiFp = function(configuration?: Configuration) {
+export const UserTypeApiFp = function(configuration?: Configuration & V2Configuration) {
     return {
-      This is Array
         /**
          * Creates a new User Type. A default User Type is automatically created along with your org, and you may add another 9 User Types for a maximum of 10.
          * @summary Create User Type
@@ -460,16 +472,15 @@ export const UserTypeApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-                         
-
-        async createUserType(body: UserType, options?: any): Promise<(http?: Http, basePath?: string) => Promise<UserType>> {
-            const api = RequestParamCreator(configuration);
+        async createUserType(body: UserType, options?: any): Promise<(httpClient?: Http, basePath?: string) => Promise<UserType>> {
+            const api = UserTypeApiRequestParamCreator(configuration);
             const localVarRequestArgs = await api.createUserType(body, options);
-            return (httpClient: Http = api.http, basePath: string = BASE_PATH) => {
-              const requestArgs = {...localVarRequestArgs.options, url: basePath + localVarAxiosArgs.url};
-              return httpClient.http(requestArgs);
+            return (httpClient: Http = api.httpClient, basePath: string = configuration.basePath || configuration.orgUrl) => {
+              const requestArgs = {...localVarRequestArgs.options, url: basePath + localVarRequestArgs.url};
+              
+              return httpClient.http(requestArgs.url, requestArgs).then(res => res.json()) as Promise<UserType>;
+            }
         },
-      This is Array
         /**
          * Deletes a User Type permanently. This operation is not permitted for the default type, nor for any User Type that has existing users
          * @summary Delete User Type
@@ -477,16 +488,15 @@ export const UserTypeApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-                         
-
-        async deleteUserType(typeId: string, options?: any): Promise<(http?: Http, basePath?: string) => Promise<void>> {
-            const api = RequestParamCreator(configuration);
+        async deleteUserType(typeId: string, options?: any): Promise<(httpClient?: Http, basePath?: string) => Promise<Response>> {
+            const api = UserTypeApiRequestParamCreator(configuration);
             const localVarRequestArgs = await api.deleteUserType(typeId, options);
-            return (httpClient: Http = api.http, basePath: string = BASE_PATH) => {
-              const requestArgs = {...localVarRequestArgs.options, url: basePath + localVarAxiosArgs.url};
-              return httpClient.http(requestArgs);
+            return (httpClient: Http = api.httpClient, basePath: string = configuration.basePath || configuration.orgUrl) => {
+              const requestArgs = {...localVarRequestArgs.options, url: basePath + localVarRequestArgs.url};
+              
+              return httpClient.http(requestArgs.url, requestArgs) as Promise<Response>;
+            }
         },
-      This is Array
         /**
          * Fetches a User Type by ID. The special identifier `default` may be used to fetch the default User Type.
          * @summary Get User Type
@@ -494,32 +504,30 @@ export const UserTypeApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-                         
-
-        async getUserType(typeId: string, options?: any): Promise<(http?: Http, basePath?: string) => Promise<UserType>> {
-            const api = RequestParamCreator(configuration);
+        async getUserType(typeId: string, options?: any): Promise<(httpClient?: Http, basePath?: string) => Promise<UserType>> {
+            const api = UserTypeApiRequestParamCreator(configuration);
             const localVarRequestArgs = await api.getUserType(typeId, options);
-            return (httpClient: Http = api.http, basePath: string = BASE_PATH) => {
-              const requestArgs = {...localVarRequestArgs.options, url: basePath + localVarAxiosArgs.url};
-              return httpClient.http(requestArgs);
+            return (httpClient: Http = api.httpClient, basePath: string = configuration.basePath || configuration.orgUrl) => {
+              const requestArgs = {...localVarRequestArgs.options, url: basePath + localVarRequestArgs.url};
+              
+              return httpClient.http(requestArgs.url, requestArgs).then(res => res.json()) as Promise<UserType>;
+            }
         },
-      This is Array
         /**
          * Fetches all User Types in your org
          * @summary List User Types
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-                         
-
-        async listUserTypes(options?: any): Promise<(http?: Http, basePath?: string) => Promise<Array<UserType>>> {
-            const api = RequestParamCreator(configuration);
+        async listUserTypes(options?: any): Promise<(httpClient?: Http, basePath?: string) => Promise<Array<UserType>>> {
+            const api = UserTypeApiRequestParamCreator(configuration);
             const localVarRequestArgs = await api.listUserTypes(options);
-            return (httpClient: Http = api.http, basePath: string = BASE_PATH) => {
-              const requestArgs = {...localVarRequestArgs.options, url: basePath + localVarAxiosArgs.url};
-              return httpClient.http(requestArgs);
+            return (httpClient: Http = api.httpClient, basePath: string = configuration.basePath || configuration.orgUrl) => {
+              const requestArgs = {...localVarRequestArgs.options, url: basePath + localVarRequestArgs.url};
+              
+              return httpClient.http(requestArgs.url, requestArgs).then(res => res.json()) as Promise<Array<UserType>>;
+            }
         },
-      This is Array
         /**
          * Replace an existing User Type
          * @summary Replace User Type
@@ -528,16 +536,15 @@ export const UserTypeApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-                         
-
-        async replaceUserType(body: UserType, typeId: string, options?: any): Promise<(http?: Http, basePath?: string) => Promise<UserType>> {
-            const api = RequestParamCreator(configuration);
+        async replaceUserType(body: UserType, typeId: string, options?: any): Promise<(httpClient?: Http, basePath?: string) => Promise<UserType>> {
+            const api = UserTypeApiRequestParamCreator(configuration);
             const localVarRequestArgs = await api.replaceUserType(body, typeId, options);
-            return (httpClient: Http = api.http, basePath: string = BASE_PATH) => {
-              const requestArgs = {...localVarRequestArgs.options, url: basePath + localVarAxiosArgs.url};
-              return httpClient.http(requestArgs);
+            return (httpClient: Http = api.httpClient, basePath: string = configuration.basePath || configuration.orgUrl) => {
+              const requestArgs = {...localVarRequestArgs.options, url: basePath + localVarRequestArgs.url};
+              
+              return httpClient.http(requestArgs.url, requestArgs).then(res => res.json()) as Promise<UserType>;
+            }
         },
-      This is Array
         /**
          * Updates an existing User Type
          * @summary Update User Type
@@ -546,14 +553,14 @@ export const UserTypeApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-                         
-
-        async updateUserType(body: UserType, typeId: string, options?: any): Promise<(http?: Http, basePath?: string) => Promise<UserType>> {
-            const api = RequestParamCreator(configuration);
+        async updateUserType(body: UserType, typeId: string, options?: any): Promise<(httpClient?: Http, basePath?: string) => Promise<UserType>> {
+            const api = UserTypeApiRequestParamCreator(configuration);
             const localVarRequestArgs = await api.updateUserType(body, typeId, options);
-            return (httpClient: Http = api.http, basePath: string = BASE_PATH) => {
-              const requestArgs = {...localVarRequestArgs.options, url: basePath + localVarAxiosArgs.url};
-              return httpClient.http(requestArgs);
+            return (httpClient: Http = api.httpClient, basePath: string = configuration.basePath || configuration.orgUrl) => {
+              const requestArgs = {...localVarRequestArgs.options, url: basePath + localVarRequestArgs.url};
+              
+              return httpClient.http(requestArgs.url, requestArgs).then(res => res.json()) as Promise<UserType>;
+            }
         },
     }
 };
@@ -562,7 +569,7 @@ export const UserTypeApiFp = function(configuration?: Configuration) {
  * UserTypeApi - factory interface
  * @export
  */
-export const UserTypeApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+export const UserTypeApiFactory = function (configuration?: Configuration, basePath?: string, httpClient?: Http) {
     return {
         /**
          * Creates a new User Type. A default User Type is automatically created along with your org, and you may add another 9 User Types for a maximum of 10.
@@ -571,8 +578,8 @@ export const UserTypeApiFactory = function (configuration?: Configuration, baseP
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createUserType(body: UserType, options?: any): AxiosPromise<UserType> {
-            return UserTypeApiFp(configuration).createUserType(body, options).then((request) => request(axios, basePath));
+        createUserType(body: UserType, options?: any): Promise<UserType> {
+            return UserTypeApiFp(configuration).createUserType(body, options).then((request) => request(httpClient, basePath));
         },
         /**
          * Deletes a User Type permanently. This operation is not permitted for the default type, nor for any User Type that has existing users
@@ -581,8 +588,8 @@ export const UserTypeApiFactory = function (configuration?: Configuration, baseP
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteUserType(typeId: string, options?: any): AxiosPromise<void> {
-            return UserTypeApiFp(configuration).deleteUserType(typeId, options).then((request) => request(axios, basePath));
+        deleteUserType(typeId: string, options?: any): Promise<Response> {
+            return UserTypeApiFp(configuration).deleteUserType(typeId, options).then((request) => request(httpClient, basePath));
         },
         /**
          * Fetches a User Type by ID. The special identifier `default` may be used to fetch the default User Type.
@@ -591,8 +598,8 @@ export const UserTypeApiFactory = function (configuration?: Configuration, baseP
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getUserType(typeId: string, options?: any): AxiosPromise<UserType> {
-            return UserTypeApiFp(configuration).getUserType(typeId, options).then((request) => request(axios, basePath));
+        getUserType(typeId: string, options?: any): Promise<UserType> {
+            return UserTypeApiFp(configuration).getUserType(typeId, options).then((request) => request(httpClient, basePath));
         },
         /**
          * Fetches all User Types in your org
@@ -600,8 +607,8 @@ export const UserTypeApiFactory = function (configuration?: Configuration, baseP
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        listUserTypes(options?: any): AxiosPromise<Array<UserType>> {
-            return UserTypeApiFp(configuration).listUserTypes(options).then((request) => request(axios, basePath));
+        listUserTypes(options?: any): Promise<Array<UserType>> {
+            return UserTypeApiFp(configuration).listUserTypes(options).then((request) => request(httpClient, basePath));
         },
         /**
          * Replace an existing User Type
@@ -611,8 +618,8 @@ export const UserTypeApiFactory = function (configuration?: Configuration, baseP
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        replaceUserType(body: UserType, typeId: string, options?: any): AxiosPromise<UserType> {
-            return UserTypeApiFp(configuration).replaceUserType(body, typeId, options).then((request) => request(axios, basePath));
+        replaceUserType(body: UserType, typeId: string, options?: any): Promise<UserType> {
+            return UserTypeApiFp(configuration).replaceUserType(body, typeId, options).then((request) => request(httpClient, basePath));
         },
         /**
          * Updates an existing User Type
@@ -622,8 +629,8 @@ export const UserTypeApiFactory = function (configuration?: Configuration, baseP
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateUserType(body: UserType, typeId: string, options?: any): AxiosPromise<UserType> {
-            return UserTypeApiFp(configuration).updateUserType(body, typeId, options).then((request) => request(axios, basePath));
+        updateUserType(body: UserType, typeId: string, options?: any): Promise<UserType> {
+            return UserTypeApiFp(configuration).updateUserType(body, typeId, options).then((request) => request(httpClient, basePath));
         },
     };
 };
@@ -644,7 +651,8 @@ export class UserTypeApi extends BaseAPI {
      * @memberof UserTypeApi
      */
     public createUserType(body: UserType, options?: any) {
-        return UserTypeApiFp(this.configuration).createUserType(body, options).then((request) => request(this.axios, this.basePath));
+        const api = UserTypeApiRequestParamCreator(this.configuration);
+        return UserTypeApiFp(this.configuration).createUserType(body, options).then((request) => request(api.httpClient, this.basePath));
     }
     /**
      * Deletes a User Type permanently. This operation is not permitted for the default type, nor for any User Type that has existing users
@@ -655,7 +663,8 @@ export class UserTypeApi extends BaseAPI {
      * @memberof UserTypeApi
      */
     public deleteUserType(typeId: string, options?: any) {
-        return UserTypeApiFp(this.configuration).deleteUserType(typeId, options).then((request) => request(this.axios, this.basePath));
+        const api = UserTypeApiRequestParamCreator(this.configuration);
+        return UserTypeApiFp(this.configuration).deleteUserType(typeId, options).then((request) => request(api.httpClient, this.basePath));
     }
     /**
      * Fetches a User Type by ID. The special identifier `default` may be used to fetch the default User Type.
@@ -666,7 +675,8 @@ export class UserTypeApi extends BaseAPI {
      * @memberof UserTypeApi
      */
     public getUserType(typeId: string, options?: any) {
-        return UserTypeApiFp(this.configuration).getUserType(typeId, options).then((request) => request(this.axios, this.basePath));
+        const api = UserTypeApiRequestParamCreator(this.configuration);
+        return UserTypeApiFp(this.configuration).getUserType(typeId, options).then((request) => request(api.httpClient, this.basePath));
     }
     /**
      * Fetches all User Types in your org
@@ -676,7 +686,8 @@ export class UserTypeApi extends BaseAPI {
      * @memberof UserTypeApi
      */
     public listUserTypes(options?: any) {
-        return UserTypeApiFp(this.configuration).listUserTypes(options).then((request) => request(this.axios, this.basePath));
+        const api = UserTypeApiRequestParamCreator(this.configuration);
+        return UserTypeApiFp(this.configuration).listUserTypes(options).then((request) => request(api.httpClient, this.basePath));
     }
     /**
      * Replace an existing User Type
@@ -688,7 +699,8 @@ export class UserTypeApi extends BaseAPI {
      * @memberof UserTypeApi
      */
     public replaceUserType(body: UserType, typeId: string, options?: any) {
-        return UserTypeApiFp(this.configuration).replaceUserType(body, typeId, options).then((request) => request(this.axios, this.basePath));
+        const api = UserTypeApiRequestParamCreator(this.configuration);
+        return UserTypeApiFp(this.configuration).replaceUserType(body, typeId, options).then((request) => request(api.httpClient, this.basePath));
     }
     /**
      * Updates an existing User Type
@@ -700,6 +712,7 @@ export class UserTypeApi extends BaseAPI {
      * @memberof UserTypeApi
      */
     public updateUserType(body: UserType, typeId: string, options?: any) {
-        return UserTypeApiFp(this.configuration).updateUserType(body, typeId, options).then((request) => request(this.axios, this.basePath));
+        const api = UserTypeApiRequestParamCreator(this.configuration);
+        return UserTypeApiFp(this.configuration).updateUserType(body, typeId, options).then((request) => request(api.httpClient, this.basePath));
     }
 }

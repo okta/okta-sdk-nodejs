@@ -17,21 +17,22 @@ import { RequestExecutor } from './request-executor';
 import { defaultCacheMiddleware } from './default-cache-middleware';
 import { CacheStorage } from './memory-store';
 
+export declare interface V2Configuration {
+  orgUrl?: string,
+  token?: string,
+  clientId?: string,
+  scopes?: string[],
+  requestExecutor?: RequestExecutor,
+  authorizationMode?: string,
+  privateKey?: string | Record<string, unknown>
+  cacheStore?: CacheStorage,
+  cacheMiddleware?: typeof defaultCacheMiddleware | unknown
+  defaultCacheMiddlewareResponseBufferSize?: number,
+ httpsProxy?: string | unknown, // https://github.com/TooTallNate/node-agent-base/issues/56
+}
 
 export declare class Client extends ParameterizedOperationsClient {
-  constructor(config?: {
-    orgUrl?: string,
-    token?: string,
-    clientId?: string,
-    scopes?: string[],
-    requestExecutor?: RequestExecutor,
-    authorizationMode?: string,
-    privateKey?: string | Record<string, unknown>
-    cacheStore?: CacheStorage,
-    cacheMiddleware?: typeof defaultCacheMiddleware | unknown
-    defaultCacheMiddlewareResponseBufferSize?: number,
-    httpsProxy?: string | unknown, // https://github.com/TooTallNate/node-agent-base/issues/56
-  });
+  constructor(config?: V2Configuration);
 
   requestExecutor: RequestExecutor;
   authorizationMode: string;

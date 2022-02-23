@@ -7,18 +7,31 @@ import { Configuration } from '{{apiRelativeToRoot}}configuration';
 import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '{{apiRelativeToRoot}}base';
 {{#imports}}
 import { {{import}} } from '{{apiRelativeToRoot}}{{tsModelPackage}}';
-import { OAuth } from '{{apiRelativeToRoot}}OAuth';
+import { Response } from 'node-fetch';
+import { OAuth } from '../../types/OAuth';
+import { Http } from '../../types/Http';
+import { ConfigLoader } from '../../types/config-loader';
+import { DefaultRequestExecutor } from '../../types/default-request-executor';
+import { V2Configuration } from '../../types/client';
+
+
+const os = require('os');
+const packageJson = require('../../../package.json');
+
+const DEFAULT_USER_AGENT = `${packageJson.name}/${packageJson.version} node/${process.versions.node} ${os.platform()}/${os.release()}`;
+
+const repoUrl = 'https://github.com/okta/okta-sdk-nodejs';
+
 {{/imports}}
 {{#operations}}
-
 
 /**
  * {{classname}} - request parameter creator{{#description}}
  * {{&description}}{{/description}}
  * @export
  */
-export const {{classname}}RequestParamCreator = function (configuration?: Configuration) {
-    const configLoader = new ConfigLoader();
+export const {{classname}}RequestParamCreator = function (configuration?: Configuration & V2Configuration) {
+  const configLoader = new ConfigLoader();
   const clientConfig = Object.assign({}, configuration);
   configLoader.applyDefaults();
   configLoader.apply({
@@ -67,7 +80,7 @@ export const {{classname}}RequestParamCreator = function (configuration?: Config
     oauth = new OAuth(this);
   }
 
-  const http = new Http({
+  const httpClient = new Http({
     cacheStore: clientConfig.cacheStore,
     cacheMiddleware: clientConfig.cacheMiddleware,
     defaultCacheMiddlewareResponseBufferSize: clientConfig.defaultCacheMiddlewareResponseBufferSize,
@@ -75,12 +88,12 @@ export const {{classname}}RequestParamCreator = function (configuration?: Config
     oauth: oauth
   });
   if (authorizationMode === 'SSWS') {
-    http.defaultHeaders.Authorization = `SSWS ${this.apiToken}`;
+    httpClient.defaultHeaders.Authorization = `SSWS ${this.apiToken}`;
   }
-  http.defaultHeaders['User-Agent'] = parsedConfig.client.userAgent ? parsedConfig.client.userAgent + ' ' + DEFAULT_USER_AGENT : DEFAULT_USER_AGENT;
+  httpClient.defaultHeaders['User-Agent'] = parsedConfig.client.userAgent ? parsedConfig.client.userAgent + ' ' + DEFAULT_USER_AGENT : DEFAULT_USER_AGENT;
 
     return {
-      http: http,
+      httpClient,
     {{#operation}}
     {{#contents}}
         /**
@@ -280,12 +293,9 @@ export const {{classname}}RequestParamCreator = function (configuration?: Config
  * {{{description}}}{{/description}}
  * @export
  */
-export const {{classname}}Fp = function(configuration?: Configuration) {
+export const {{classname}}Fp = function(configuration?: Configuration & V2Configuration) {
     return {
     {{#operation}}
-    {{#if responses['200'].schema.items.$ref}}
-      This is Array
-    {{/if}}
     {{#contents}}
         /**
          * {{&notes}}
@@ -298,14 +308,19 @@ export const {{classname}}Fp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-                         {{../responses/what/description}}
-
-        async {{nickname}}({{#parameters}}{{paramName}}{{^required}}?{{/required}}: {{{dataType}}}, {{/parameters}}options?: any): Promise<(http?: Http, basePath?: string) => Promise<{{#returnType}}{{{returnType}}}{{/returnType}}{{^returnType}}void{{/returnType}}>> {
-            const api = {{className}}RequestParamCreator(configuration);
+        async {{nickname}}({{#parameters}}{{paramName}}{{^required}}?{{/required}}: {{{dataType}}}, {{/parameters}}options?: any): Promise<(httpClient?: Http, basePath?: string) => Promise<{{#returnType}}{{{returnType}}}{{/returnType}}{{^returnType}}Response{{/returnType}}>> {
+            const api = {{classname}}RequestParamCreator(configuration);
             const localVarRequestArgs = await api.{{nickname}}({{#parameters}}{{paramName}}, {{/parameters}}options);
-            return (httpClient: Http = api.http, basePath: string = BASE_PATH) => {
-              const requestArgs = {...localVarRequestArgs.options, url: basePath + localVarAxiosArgs.url};
-              return httpClient.http(requestArgs);
+            return (httpClient: Http = api.httpClient, basePath: string = configuration.basePath || configuration.orgUrl) => {
+              const requestArgs = {...localVarRequestArgs.options, url: basePath + localVarRequestArgs.url};
+              
+              {{#returnType}}
+              return httpClient.http(requestArgs.url, requestArgs).then(res => res.json()) as Promise<{{{returnType}}}>;
+              {{/returnType}}
+              {{^returnType}}
+              return httpClient.http(requestArgs.url, requestArgs) as Promise<Response>;
+              {{/returnType}}
+            }
         },
     {{/contents}}
     {{/operation}}
@@ -317,7 +332,7 @@ export const {{classname}}Fp = function(configuration?: Configuration) {
  * {{&description}}{{/description}}
  * @export
  */
-export const {{classname}}Factory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+export const {{classname}}Factory = function (configuration?: Configuration, basePath?: string, httpClient?: Http) {
     return {
     {{#operation}}
     {{#contents}}
@@ -332,8 +347,8 @@ export const {{classname}}Factory = function (configuration?: Configuration, bas
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        {{nickname}}({{#parameters}}{{paramName}}{{^required}}?{{/required}}: {{{dataType}}}, {{/parameters}}options?: any): AxiosPromise<{{#returnType}}{{{returnType}}}{{/returnType}}{{^returnType}}void{{/returnType}}> {
-            return {{classname}}Fp(configuration).{{nickname}}({{#parameters}}{{paramName}}, {{/parameters}}options).then((request) => request(axios, basePath));
+        {{nickname}}({{#parameters}}{{paramName}}{{^required}}?{{/required}}: {{{dataType}}}, {{/parameters}}options?: any): Promise<{{#returnType}}{{{returnType}}}{{/returnType}}{{^returnType}}Response{{/returnType}}> {
+            return {{classname}}Fp(configuration).{{nickname}}({{#parameters}}{{paramName}}, {{/parameters}}options).then((request) => request(httpClient, basePath));
         },
     {{/contents}}
     {{/operation}}
@@ -362,7 +377,7 @@ export interface {{classname}}Interface {
      * @throws {RequiredError}
      * @memberof {{classname}}Interface
      */
-    {{nickname}}({{#parameters}}{{paramName}}{{^required}}?{{/required}}: {{{dataType}}}, {{/parameters}}options?: any): AxiosPromise<{{#returnType}}{{{returnType}}}{{/returnType}}{{^returnType}}void{{/returnType}}>;
+    {{nickname}}({{#parameters}}{{paramName}}{{^required}}?{{/required}}: {{{dataType}}}, {{/parameters}}options?: any): Promise<{{#returnType}}{{{returnType}}}{{/returnType}}{{^returnType}}Response{{/returnType}}>;
 
 {{/contents}}
 {{/operation}}
@@ -397,7 +412,8 @@ export class {{classname}} extends BaseAPI {
      * @memberof {{classname}}
      */
     public {{nickname}}({{#parameters}}{{paramName}}{{^required}}?{{/required}}: {{{dataType}}}, {{/parameters}}options?: any) {
-        return {{classname}}Fp(this.configuration).{{nickname}}({{#parameters}}{{paramName}}, {{/parameters}}options).then((request) => request(this.axios, this.basePath));
+        const api = {{classname}}RequestParamCreator(this.configuration);
+        return {{classname}}Fp(this.configuration).{{nickname}}({{#parameters}}{{paramName}}, {{/parameters}}options).then((request) => request(api.httpClient, this.basePath));
     }
     {{^@last}}
 
