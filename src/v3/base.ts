@@ -12,9 +12,10 @@
  * Do not edit the class manually.
  */
 import { Configuration } from "./configuration";
+import { Http } from "../types/http";
+
 // Some imports not used depending on template conditions
 // @ts-ignore
-import globalAxios, { AxiosPromise, AxiosInstance } from 'axios';
 
 export const BASE_PATH = "https://{subdomain}.{domain}".replace(/\/+$/, "");
 
@@ -47,7 +48,7 @@ export interface RequestArgs {
 export class BaseAPI {
     protected configuration: Configuration | undefined;
 
-    constructor(configuration?: Configuration, protected basePath: string = BASE_PATH, protected axios: AxiosInstance = globalAxios) {
+    constructor(configuration?: Configuration, protected basePath: string = BASE_PATH, protected httpClient?: Http) {
         if (configuration) {
             this.configuration = configuration;
             this.basePath = configuration.basePath || this.basePath;
