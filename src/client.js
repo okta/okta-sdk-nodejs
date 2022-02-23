@@ -76,6 +76,7 @@ class Client extends GeneratedApiClient {
     }
 
     this.http = new Http({
+      httpsProxy: clientConfig.httpsProxy,
       cacheStore: clientConfig.cacheStore,
       cacheMiddleware: clientConfig.cacheMiddleware,
       defaultCacheMiddlewareResponseBufferSize: clientConfig.defaultCacheMiddlewareResponseBufferSize,

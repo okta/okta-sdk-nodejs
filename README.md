@@ -806,6 +806,23 @@ const client = new okta.Client({
 })
 ```
 
+## Proxy
+
+If you need to use a proxy, you can configure it with `httpsProxy` property. 
+```javascript
+const okta = require('@okta/okta-sdk-nodejs');
+
+const client = new okta.Client({
+  orgUrl: 'https://dev-1234.oktapreview.com/',
+  token: 'xYzabc', // Obtained from Developer Dashboard
+  httpsProxy: 'http://proxy.example.net:8080/'
+});
+```
+
+When the proxy configuration is not overridden as shown above, Okta client relies on the proxy configuration defined by standard environment variable `https_proxy` or its uppercase variant `HTTPS_PROXY`.
+
+To use HTTP Basic Auth with your proxy, use the `http://user:password@host/` syntax.
+
 ## TypeScript usage
 
 ### 4.5.x

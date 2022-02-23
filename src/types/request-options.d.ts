@@ -11,9 +11,11 @@
  */
 
 import { RequestInit } from 'node-fetch';
+import { HttpsProxyAgent } from 'https-proxy-agent';
 
 /** An extension of node-fetch's request options. */
 export interface RequestOptions extends RequestInit {
   startTime?: Date,
   url?: string,
+  agent?: HttpsProxyAgent,
 }
