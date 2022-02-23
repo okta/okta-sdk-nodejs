@@ -103,6 +103,9 @@ import { PolicyRuleOptions } from './models/PolicyRule';
 import { Subscription } from './models/Subscription';
 import { CreateSessionRequestOptions } from './models/CreateSessionRequest';
 import { Session } from './models/Session';
+import { EmailTemplate } from './models/EmailTemplate';
+import { EmailTemplateOptions } from './models/EmailTemplate';
+import { EmailTestInfo } from './models/EmailTestInfo';
 import { SmsTemplate } from './models/SmsTemplate';
 import { SmsTemplateOptions } from './models/SmsTemplate';
 import { ThreatInsightConfiguration } from './models/ThreatInsightConfiguration';
@@ -501,6 +504,14 @@ export declare class GeneratedApiClient {
   endSession(sessionId: string): Promise<Response>;
   getSession(sessionId: string): Promise<Session>;
   refreshSession(sessionId: string): Promise<Session>;
+  deleteEmailTemplate(templateId: string): Promise<Response>;
+  getEmailTemplate(templateId: string): Promise<EmailTemplate>;
+  updateEmailTemplate(templateId: string, emailTemplate: EmailTemplateOptions): Promise<EmailTemplate>;
+  getTestEmailInfo(templateId: string): Promise<EmailTestInfo>;
+  listEmailTemplates(queryParameters?: {
+    template?: string,
+  }): Collection<EmailTemplate>;
+  createEmailTemplate(emailTemplate: EmailTemplateOptions): Promise<EmailTemplate>;
   listSmsTemplates(queryParameters?: {
     templateType?: string,
   }): Collection<SmsTemplate>;

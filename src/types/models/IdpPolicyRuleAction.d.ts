@@ -16,26 +16,18 @@
 import { Resource } from '../resource';
 import { Client } from '../client';
 import { OptionalKnownProperties } from '../optional-known-properties-type';
-import { PolicyRuleActionsEnroll } from './PolicyRuleActionsEnroll';
-import { IdpPolicyRuleAction } from './IdpPolicyRuleAction';
-import { PasswordPolicyRuleAction } from './PasswordPolicyRuleAction';
-import { OktaSignOnPolicyRuleSignonActions } from './OktaSignOnPolicyRuleSignonActions';
+import { IdpPolicyRuleActionProvider } from './IdpPolicyRuleActionProvider';
 
-declare class PolicyRuleActions extends Resource {
+declare class IdpPolicyRuleAction extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
 
-  enroll: PolicyRuleActionsEnroll;
-  idp: IdpPolicyRuleAction;
-  passwordChange: PasswordPolicyRuleAction;
-  selfServicePasswordReset: PasswordPolicyRuleAction;
-  selfServiceUnlock: PasswordPolicyRuleAction;
-  signon: OktaSignOnPolicyRuleSignonActions;
+  providers: IdpPolicyRuleActionProvider[];
 
 }
 
-type PolicyRuleActionsOptions = OptionalKnownProperties<PolicyRuleActions>;
+type IdpPolicyRuleActionOptions = OptionalKnownProperties<IdpPolicyRuleAction>;
 
 export {
-  PolicyRuleActions,
-  PolicyRuleActionsOptions
+  IdpPolicyRuleAction,
+  IdpPolicyRuleActionOptions
 };

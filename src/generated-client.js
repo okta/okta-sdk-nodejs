@@ -6860,6 +6860,157 @@ class GeneratedApiClient {
 
   /**
    *
+   * @param templateId {String}
+   * @description
+   * Removes Email template.
+   */
+  deleteEmailTemplate(templateId) {
+    if (!templateId) {
+      return Promise.reject(new Error('OKTA API deleteEmailTemplate parameter templateId is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/templates/email/${templateId}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/templates/email/${templateId}`
+    ];
+
+    const request = this.http.delete(
+      url,
+      null,
+      { resources }
+    );
+    return request;
+  }
+
+  /**
+   *
+   * @param templateId {String}
+   * @description
+   * Fetches a specific template by `id`
+   * @returns {Promise<EmailTemplate>}
+   */
+  getEmailTemplate(templateId) {
+    if (!templateId) {
+      return Promise.reject(new Error('OKTA API getEmailTemplate parameter templateId is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/templates/email/${templateId}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/templates/email/${templateId}`
+    ];
+
+    const request = this.http.getJson(
+      url,
+      null,
+      { resources }
+    );
+    return request.then(jsonRes => new models.EmailTemplate(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param templateId {String}
+   * @param {EmailTemplate} emailTemplate
+   * @description
+   * Updates the Email template.
+   * @returns {Promise<EmailTemplate>}
+   */
+  updateEmailTemplate(templateId, emailTemplate) {
+    if (!templateId) {
+      return Promise.reject(new Error('OKTA API updateEmailTemplate parameter templateId is required.'));
+    }
+    if (!emailTemplate) {
+      return Promise.reject(new Error('OKTA API updateEmailTemplate parameter emailTemplate is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/templates/email/${templateId}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/templates/email/${templateId}`
+    ];
+
+    const request = this.http.putJson(
+      url,
+      {
+        body: emailTemplate
+      },
+      { resources }
+    );
+    return request.then(jsonRes => new models.EmailTemplate(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param templateId {String}
+   * @description
+   * Get test email info
+   * @returns {Promise<EmailTestInfo>}
+   */
+  getTestEmailInfo(templateId) {
+    if (!templateId) {
+      return Promise.reject(new Error('OKTA API getTestEmailInfo parameter templateId is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/templates/email/${templateId}/getTestEmailInfo`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/templates/email/${templateId}`
+    ];
+
+    const request = this.http.getJson(
+      url,
+      null,
+      { resources }
+    );
+    return request.then(jsonRes => new models.EmailTestInfo(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param {Object} queryParams Map of query parameters to add to this request
+   * @param {String} [queryParams.template]
+   * @description
+   * Enumerates custom Email templates in your organization.
+   * @returns {Collection} A collection that will yield {@link EmailTemplate} instances.
+   */
+  listEmailTemplates(queryParameters) {
+    let url = `${this.baseUrl}/api/v1/templates/emails`;
+    const queryString = qs.stringify(queryParameters || {});
+
+    url += queryString ? ('?' + queryString) : '';
+
+    return new Collection(
+      this,
+      url,
+      new ModelFactory(models.EmailTemplate),
+    );
+  }
+
+  /**
+   *
+   * @param {EmailTemplate} emailTemplate
+   * @description
+   * Adds a new custom Email template to your organization.
+   * @returns {Promise<EmailTemplate>}
+   */
+  createEmailTemplate(emailTemplate) {
+    if (!emailTemplate) {
+      return Promise.reject(new Error('OKTA API createEmailTemplate parameter emailTemplate is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/templates/emails`;
+
+    const resources = [];
+
+    const request = this.http.postJson(
+      url,
+      {
+        body: emailTemplate
+      },
+      { resources }
+    );
+    return request.then(jsonRes => new models.EmailTemplate(jsonRes, this));
+  }
+
+  /**
+   *
    * @param {Object} queryParams Map of query parameters to add to this request
    * @param {String} [queryParams.templateType]
    * @description

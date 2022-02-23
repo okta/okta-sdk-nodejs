@@ -16,26 +16,27 @@
 import { Resource } from '../resource';
 import { Client } from '../client';
 import { OptionalKnownProperties } from '../optional-known-properties-type';
-import { PolicyRuleActionsEnroll } from './PolicyRuleActionsEnroll';
-import { IdpPolicyRuleAction } from './IdpPolicyRuleAction';
-import { PasswordPolicyRuleAction } from './PasswordPolicyRuleAction';
-import { OktaSignOnPolicyRuleSignonActions } from './OktaSignOnPolicyRuleSignonActions';
+import { EmailTemplateTranslations } from './EmailTemplateTranslations';
+import { EmailTemplateType } from './EmailTemplateType';
 
-declare class PolicyRuleActions extends Resource {
+declare class EmailTemplate extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
 
-  enroll: PolicyRuleActionsEnroll;
-  idp: IdpPolicyRuleAction;
-  passwordChange: PasswordPolicyRuleAction;
-  selfServicePasswordReset: PasswordPolicyRuleAction;
-  selfServiceUnlock: PasswordPolicyRuleAction;
-  signon: OktaSignOnPolicyRuleSignonActions;
+  readonly created: string;
+  defaultLanguage: string;
+  readonly id: string;
+  readonly lastUpdated: string;
+  name: string;
+  subject: string;
+  template: string;
+  translations: EmailTemplateTranslations;
+  type: EmailTemplateType;
 
 }
 
-type PolicyRuleActionsOptions = OptionalKnownProperties<PolicyRuleActions>;
+type EmailTemplateOptions = OptionalKnownProperties<EmailTemplate>;
 
 export {
-  PolicyRuleActions,
-  PolicyRuleActionsOptions
+  EmailTemplate,
+  EmailTemplateOptions
 };
