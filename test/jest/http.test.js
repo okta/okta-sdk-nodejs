@@ -52,26 +52,26 @@ describe('Http class', () => {
     it('accepts a "httpsProxy"', () => {
       const http = new Http({ httpsProxy: 'http://proxy.example.net:8080/' });
       expect(http.agent).toBeInstanceOf(HttpsProxyAgent);
-      expect(http.agent.proxy.host).toBe("proxy.example.net");
+      expect(http.agent.proxy.host).toBe('proxy.example.net');
     });
     it('uses a "https_proxy" env var', () => {
       process.env.https_proxy = 'http://proxy.example.net:8080/';
       const http = new Http({ });
       expect(http.agent).toBeInstanceOf(HttpsProxyAgent);
-      expect(http.agent.proxy.host).toBe("proxy.example.net");
+      expect(http.agent.proxy.host).toBe('proxy.example.net');
     });
     it('uses a "HTTPS_PROXY" env var', () => {
       process.env.HTTPS_PROXY = 'http://proxy.example.net:8080/';
       const http = new Http({ });
       expect(http.agent).toBeInstanceOf(HttpsProxyAgent);
-      expect(http.agent.proxy.host).toBe("proxy.example.net");
+      expect(http.agent.proxy.host).toBe('proxy.example.net');
     });
     it('uses a "httpsProxy" over "https_proxy"/"HTTPS_PROXY" env vars', () => {
       process.env.https_proxy = 'http://proxy1.example.net:8080/';
       process.env.HTTPS_PROXY = 'http://proxy2.example.net:8080/';
       const http = new Http({ httpsProxy: 'http://proxy.example.net:8080/' });
       expect(http.agent).toBeInstanceOf(HttpsProxyAgent);
-      expect(http.agent.proxy.host).toBe("proxy.example.net");
+      expect(http.agent.proxy.host).toBe('proxy.example.net');
     });
   });
   describe('errorFilter', () => {
