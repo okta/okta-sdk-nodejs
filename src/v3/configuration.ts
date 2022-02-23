@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 export interface ConfigurationParameters {
-    apiKey?: string | Promise<string> | ((name: string) => string) | ((name: string) => Promise<string>);
+    apiToken?: string | Promise<string> | ((name: string) => string) | ((name: string) => Promise<string>);
     username?: string;
     password?: string;
     accessToken?: string | Promise<string> | ((name?: string, scopes?: string[]) => string) | ((name?: string, scopes?: string[]) => Promise<string>);
@@ -22,11 +22,11 @@ export interface ConfigurationParameters {
 
 export class Configuration {
     /**
-     * parameter for apiKey security
+     * parameter for apiToken security
      * @param name security name
      * @memberof Configuration
      */
-    apiKey?: string | Promise<string> | ((name: string) => string) | ((name: string) => Promise<string>);
+    apiToken?: string | Promise<string> | ((name: string) => string) | ((name: string) => Promise<string>);
     /**
      * parameter for basic security
      *
@@ -64,7 +64,7 @@ export class Configuration {
     baseOptions?: any;
 
     constructor(param: ConfigurationParameters = {}) {
-        this.apiKey = param.apiKey;
+        this.apiToken = param.apiToken;
         this.username = param.username;
         this.password = param.password;
         this.accessToken = param.accessToken;
