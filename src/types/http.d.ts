@@ -29,11 +29,13 @@ export declare class Http {
     oauth: OAuth,
     cacheStore?: CacheStorage,
     cacheMiddleware?: typeof defaultCacheMiddleware | unknown,
+    httpsProxy?: string | unknown, // https://github.com/TooTallNate/node-agent-base/issues/56
   });
   defaultHeaders: Record<string, unknown>;
   requestExecutor: RequestExecutor;
   cacheStore: CacheStorage;
   cacheMiddleware: typeof defaultCacheMiddleware | unknown;
+  agent: any; // https://github.com/TooTallNate/node-agent-base/issues/56
   oauth: OAuth;
   prepareRequest(request: RequestOptions): Promise<RequestOptions>;
   http(uri: string, request?: RequestOptions, context?: {

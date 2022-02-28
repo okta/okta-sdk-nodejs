@@ -16,4 +16,5 @@ import { RequestInit } from 'node-fetch';
 export interface RequestOptions extends RequestInit {
   startTime?: Date,
   url?: string,
+  agent?: any, // https://github.com/TooTallNate/node-agent-base/issues/56
 }

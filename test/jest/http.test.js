@@ -4,9 +4,19 @@ const MemoryStore = require('../../src/memory-store');
 const defaultCacheMiddleware = require('../../src/default-cache-middleware');
 const OktaApiError = require('../../src/api-error');
 const HttpError = require('../../src/http-error');
+const HttpsProxyAgent = require('https-proxy-agent');
 
 describe('Http class', () => {
   describe('constructor', () => {
+    const OLD_ENV = process.env;
+    beforeEach(() => {
+      jest.resetModules();
+      process.env = { ...OLD_ENV };
+    });
+    afterAll(() => {
+      process.env = OLD_ENV;
+    });
+
     it('creates empty defaultHeaders object', () => {
       const http = new Http({});
       expect(http.defaultHeaders).toEqual({});
@@ -38,6 +48,30 @@ describe('Http class', () => {
       const oauth = { fake: true };
       const http = new Http({ oauth });
       expect(http.oauth).toBe(oauth);
+    });
+    it('accepts a "httpsProxy"', () => {
+      const http = new Http({ httpsProxy: 'http://proxy.example.net:8080/' });
+      expect(http.agent).toBeInstanceOf(HttpsProxyAgent);
+      expect(http.agent.proxy.host).toBe('proxy.example.net');
+    });
+    it('uses a "https_proxy" env var', () => {
+      process.env.https_proxy = 'http://proxy.example.net:8080/';
+      const http = new Http({ });
+      expect(http.agent).toBeInstanceOf(HttpsProxyAgent);
+      expect(http.agent.proxy.host).toBe('proxy.example.net');
+    });
+    it('uses a "HTTPS_PROXY" env var', () => {
+      process.env.HTTPS_PROXY = 'http://proxy.example.net:8080/';
+      const http = new Http({ });
+      expect(http.agent).toBeInstanceOf(HttpsProxyAgent);
+      expect(http.agent.proxy.host).toBe('proxy.example.net');
+    });
+    it('uses a "httpsProxy" over "https_proxy"/"HTTPS_PROXY" env vars', () => {
+      process.env.https_proxy = 'http://proxy1.example.net:8080/';
+      process.env.HTTPS_PROXY = 'http://proxy2.example.net:8080/';
+      const http = new Http({ httpsProxy: 'http://proxy.example.net:8080/' });
+      expect(http.agent).toBeInstanceOf(HttpsProxyAgent);
+      expect(http.agent.proxy.host).toBe('proxy.example.net');
     });
   });
   describe('errorFilter', () => {
@@ -473,6 +507,25 @@ describe('Http class', () => {
         return http.http('http://fakey.local')
           .catch(err => {
             expect(err.message).toEqual('bad jwk');
+          });
+      });
+    });
+
+    describe('proxy', () => {
+      it('should use proxy agent in fetch method', () => {
+        const http = new Http({ requestExecutor, httpsProxy: 'http://proxy.example.net:8080/' });
+        return http.http('http://fakey.local')
+          .then(() => {
+            expect(requestExecutor.fetch).toHaveBeenCalledWith({
+              headers: {},
+              method: 'get',
+              url: 'http://fakey.local',
+              agent: expect.objectContaining({
+                proxy: expect.objectContaining({
+                  host: 'proxy.example.net'
+                })
+              }),
+            });
           });
       });
     });

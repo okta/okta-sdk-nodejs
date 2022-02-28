@@ -16,6 +16,7 @@ const OktaApiError = require('./api-error');
 const HttpError = require('./http-error');
 const MemoryStore = require('./memory-store');
 const defaultCacheMiddleware = require('./default-cache-middleware');
+const HttpsProxyAgent = require('https-proxy-agent');
 
 /**
  * It's like fetch :) plus some extra convenience methods.
@@ -55,6 +56,10 @@ class Http {
       this.defaultCacheMiddlewareResponseBufferSize = httpConfig.defaultCacheMiddlewareResponseBufferSize;
     }
     this.oauth = httpConfig.oauth;
+    const proxy = httpConfig.httpsProxy || process.env.https_proxy || process.env.HTTPS_PROXY;
+    if (proxy) {
+      this.agent = new HttpsProxyAgent(proxy);
+    }
   }
 
   prepareRequest(request) {
@@ -74,6 +79,9 @@ class Http {
     request.url = uri;
     request.headers = Object.assign({}, this.defaultHeaders, request.headers);
     request.method = request.method || 'get';
+    if (this.agent) {
+      request.agent = this.agent;
+    }
 
     let retriedOnAuthError = false;
     const execute = () => {
