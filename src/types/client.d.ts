@@ -16,7 +16,6 @@ import { Http } from './http';
 import { RequestExecutor } from './request-executor';
 import { defaultCacheMiddleware } from './default-cache-middleware';
 import { CacheStorage } from './memory-store';
-import { HttpsProxyAgentOptions } from 'https-proxy-agent';
 
 
 export declare class Client extends ParameterizedOperationsClient {
@@ -31,7 +30,7 @@ export declare class Client extends ParameterizedOperationsClient {
     cacheStore?: CacheStorage,
     cacheMiddleware?: typeof defaultCacheMiddleware | unknown
     defaultCacheMiddlewareResponseBufferSize?: number,
-    httpsProxy?: string | HttpsProxyAgentOptions,
+    httpsProxy?: string | unknown, // https://github.com/TooTallNate/node-agent-base/issues/56
   });
 
   requestExecutor: RequestExecutor;

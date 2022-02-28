@@ -16,7 +16,6 @@ import { RequestExecutor } from './request-executor';
 import { CacheStorage } from './memory-store';
 import { defaultCacheMiddleware } from './default-cache-middleware';
 import { RequestOptions } from './request-options';
-import { HttpsProxyAgent, HttpsProxyAgentOptions } from 'https-proxy-agent';
 
 interface RequestContext {
   isCollection?: boolean,
@@ -30,13 +29,13 @@ export declare class Http {
     oauth: OAuth,
     cacheStore?: CacheStorage,
     cacheMiddleware?: typeof defaultCacheMiddleware | unknown,
-    httpsProxy?: string | HttpsProxyAgentOptions,
+    httpsProxy?: string | unknown, // https://github.com/TooTallNate/node-agent-base/issues/56
   });
   defaultHeaders: Record<string, unknown>;
   requestExecutor: RequestExecutor;
   cacheStore: CacheStorage;
   cacheMiddleware: typeof defaultCacheMiddleware | unknown;
-  agent: typeof HttpsProxyAgent | unknown;
+  agent: any; // https://github.com/TooTallNate/node-agent-base/issues/56
   oauth: OAuth;
   prepareRequest(request: RequestOptions): Promise<RequestOptions>;
   http(uri: string, request?: RequestOptions, context?: {
