@@ -14,29 +14,124 @@
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
 var Resource = require('../resource');
-const EmailTemplateTranslations = require('./EmailTemplateTranslations');
+
 
 /**
  * @class EmailTemplate
  * @extends Resource
- * @property { dateTime } created
- * @property { string } defaultLanguage
- * @property { string } id
- * @property { dateTime } lastUpdated
+ * @property { hash } _links
  * @property { string } name
- * @property { string } subject
- * @property { string } template
- * @property { EmailTemplateTranslations } translations
- * @property { EmailTemplateType } type
  */
 class EmailTemplate extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
-    if (resourceJson && resourceJson.translations) {
-      this.translations = new EmailTemplateTranslations(resourceJson.translations);
-    }
+
   }
 
+
+  /**
+   * @param {string} brandId
+   * @param {string} templateName
+   * @returns {Promise<EmailTemplate>}
+   */
+  getEmailTemplate(brandId, templateName) {
+    return this.httpClient.getEmailTemplate(brandId, templateName);
+  }
+
+  /**
+   * @param {string} brandId
+   * @param {string} templateName
+   */
+  deleteEmailTemplateCustomizations(brandId, templateName) {
+    return this.httpClient.deleteEmailTemplateCustomizations(brandId, templateName);
+  }
+
+  /**
+   * @param {string} brandId
+   * @param {string} templateName
+   * @returns {Collection} A collection that will yield {@link EmailTemplateCustomization} instances.
+   */
+  listEmailTemplateCustomizations(brandId, templateName) {
+    return this.httpClient.listEmailTemplateCustomizations(brandId, templateName);
+  }
+
+  /**
+   * @param {string} brandId
+   * @param {string} templateName
+   * @param {EmailTemplateCustomizationRequest} emailTemplateCustomizationRequest
+   * @returns {Promise<EmailTemplateCustomization>}
+   */
+  createEmailTemplateCustomization(brandId, templateName, emailTemplateCustomizationRequest) {
+    return this.httpClient.createEmailTemplateCustomization(brandId, templateName, emailTemplateCustomizationRequest);
+  }
+
+  /**
+   * @param {string} brandId
+   * @param {string} templateName
+   * @param {string} customizationId
+   */
+  deleteEmailTemplateCustomization(brandId, templateName, customizationId) {
+    return this.httpClient.deleteEmailTemplateCustomization(brandId, templateName, customizationId);
+  }
+
+  /**
+   * @param {string} brandId
+   * @param {string} templateName
+   * @param {string} customizationId
+   * @returns {Promise<EmailTemplateCustomization>}
+   */
+  getEmailTemplateCustomization(brandId, templateName, customizationId) {
+    return this.httpClient.getEmailTemplateCustomization(brandId, templateName, customizationId);
+  }
+
+  /**
+   * @param {string} brandId
+   * @param {string} templateName
+   * @param {string} customizationId
+   * @param {EmailTemplateCustomizationRequest} emailTemplateCustomizationRequest
+   * @returns {Promise<EmailTemplateCustomization>}
+   */
+  updateEmailTemplateCustomization(brandId, templateName, customizationId, emailTemplateCustomizationRequest) {
+    return this.httpClient.updateEmailTemplateCustomization(brandId, templateName, customizationId, emailTemplateCustomizationRequest);
+  }
+
+  /**
+   * @param {string} brandId
+   * @param {string} templateName
+   * @param {string} customizationId
+   * @returns {Promise<EmailTemplateContent>}
+   */
+  getEmailTemplateCustomizationPreview(brandId, templateName, customizationId) {
+    return this.httpClient.getEmailTemplateCustomizationPreview(brandId, templateName, customizationId);
+  }
+
+  /**
+   * @param {string} brandId
+   * @param {string} templateName
+   * @returns {Promise<EmailTemplateContent>}
+   */
+  getEmailTemplateDefaultContent(brandId, templateName) {
+    return this.httpClient.getEmailTemplateDefaultContent(brandId, templateName);
+  }
+
+  /**
+   * @param {string} brandId
+   * @param {string} templateName
+   * @returns {Promise<EmailTemplateContent>}
+   */
+  getEmailTemplateDefaultContentPreview(brandId, templateName) {
+    return this.httpClient.getEmailTemplateDefaultContentPreview(brandId, templateName);
+  }
+
+  /**
+   * @param {string} brandId
+   * @param {string} templateName
+   * @param {EmailTemplateTestRequest} emailTemplateTestRequest
+   * @returns {Promise<EmailTemplateContent>}
+   */
+  sendTestEmail(brandId, templateName, emailTemplateTestRequest) {
+    return this.httpClient.sendTestEmail(brandId, templateName, emailTemplateTestRequest);
+  }
 }
 
 module.exports = EmailTemplate;

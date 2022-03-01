@@ -17,12 +17,14 @@ var Resource = require('../resource');
 
 
 /**
- * @class EmailTemplateTranslation
+ * @class EmailTemplateCustomizationRequest
  * @extends Resource
+ * @property { string } body
+ * @property { boolean } isDefault
+ * @property { string } language
  * @property { string } subject
- * @property { string } template
  */
-class EmailTemplateTranslation extends Resource {
+class EmailTemplateCustomizationRequest extends Resource {
   constructor(resourceJson, client) {
     super(resourceJson, client);
 
@@ -30,4 +32,4 @@ class EmailTemplateTranslation extends Resource {
 
 }
 
-module.exports = EmailTemplateTranslation;
+module.exports = EmailTemplateCustomizationRequest;

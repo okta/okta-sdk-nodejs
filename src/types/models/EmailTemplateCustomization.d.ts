@@ -13,23 +13,28 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-var Resource = require('../resource');
+import { Resource } from '../resource';
+import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 
 
-/**
- * @class EmailTestInfo
- * @extends Resource
- * @property { string } fromAddress
- * @property { string } fromName
- * @property { string } secondaryEmail
- * @property { string } userEmail
- */
-class EmailTestInfo extends Resource {
-  constructor(resourceJson, client) {
-    super(resourceJson, client);
+declare class EmailTemplateCustomization extends Resource {
+  constructor(resourceJson: Record<string, unknown>, client: Client);
 
-  }
+  readonly _links: {[name: string]: unknown};
+  body: string;
+  readonly created: string;
+  readonly id: string;
+  isDefault: boolean;
+  language: string;
+  readonly lastUpdated: string;
+  subject: string;
 
 }
 
-module.exports = EmailTestInfo;
+type EmailTemplateCustomizationOptions = OptionalKnownProperties<EmailTemplateCustomization>;
+
+export {
+  EmailTemplateCustomization,
+  EmailTemplateCustomizationOptions
+};

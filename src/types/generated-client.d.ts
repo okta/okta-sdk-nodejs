@@ -49,6 +49,11 @@ import { OAuth2Scope } from './models/OAuth2Scope';
 import { OAuth2ScopeOptions } from './models/OAuth2Scope';
 import { Brand } from './models/Brand';
 import { BrandOptions } from './models/Brand';
+import { EmailTemplate } from './models/EmailTemplate';
+import { EmailTemplateCustomization } from './models/EmailTemplateCustomization';
+import { EmailTemplateCustomizationRequestOptions } from './models/EmailTemplateCustomizationRequest';
+import { EmailTemplateContent } from './models/EmailTemplateContent';
+import { EmailTemplateTestRequestOptions } from './models/EmailTemplateTestRequest';
 import { ThemeResponse } from './models/ThemeResponse';
 import { ThemeOptions } from './models/Theme';
 import { ImageUploadResponse } from './models/ImageUploadResponse';
@@ -103,9 +108,6 @@ import { PolicyRuleOptions } from './models/PolicyRule';
 import { Subscription } from './models/Subscription';
 import { CreateSessionRequestOptions } from './models/CreateSessionRequest';
 import { Session } from './models/Session';
-import { EmailTemplate } from './models/EmailTemplate';
-import { EmailTemplateOptions } from './models/EmailTemplate';
-import { EmailTestInfo } from './models/EmailTestInfo';
 import { SmsTemplate } from './models/SmsTemplate';
 import { SmsTemplateOptions } from './models/SmsTemplate';
 import { ThreatInsightConfiguration } from './models/ThreatInsightConfiguration';
@@ -284,6 +286,21 @@ export declare class GeneratedApiClient {
   listBrands(): Collection<Brand>;
   getBrand(brandId: string): Promise<Brand>;
   updateBrand(brandId: string, brand: BrandOptions): Promise<Brand>;
+  listEmailTemplates(brandId: string, queryParameters?: {
+    after?: string,
+    limit?: number,
+  }): Collection<EmailTemplate>;
+  getEmailTemplate(brandId: string, templateName: string): Promise<EmailTemplate>;
+  deleteEmailTemplateCustomizations(brandId: string, templateName: string): Promise<Response>;
+  listEmailTemplateCustomizations(brandId: string, templateName: string): Collection<EmailTemplateCustomization>;
+  createEmailTemplateCustomization(brandId: string, templateName: string, emailTemplateCustomizationRequest: EmailTemplateCustomizationRequestOptions): Promise<EmailTemplateCustomization>;
+  deleteEmailTemplateCustomization(brandId: string, templateName: string, customizationId: string): Promise<Response>;
+  getEmailTemplateCustomization(brandId: string, templateName: string, customizationId: string): Promise<EmailTemplateCustomization>;
+  updateEmailTemplateCustomization(brandId: string, templateName: string, customizationId: string, emailTemplateCustomizationRequest: EmailTemplateCustomizationRequestOptions): Promise<EmailTemplateCustomization>;
+  getEmailTemplateCustomizationPreview(brandId: string, templateName: string, customizationId: string): Promise<EmailTemplateContent>;
+  getEmailTemplateDefaultContent(brandId: string, templateName: string): Promise<EmailTemplateContent>;
+  getEmailTemplateDefaultContentPreview(brandId: string, templateName: string): Promise<EmailTemplateContent>;
+  sendTestEmail(brandId: string, templateName: string, emailTemplateTestRequest: EmailTemplateTestRequestOptions): Promise<EmailTemplateContent>;
   listBrandThemes(brandId: string): Collection<ThemeResponse>;
   getBrandTheme(brandId: string, themeId: string): Promise<ThemeResponse>;
   updateBrandTheme(brandId: string, themeId: string, theme: ThemeOptions): Promise<ThemeResponse>;
@@ -504,14 +521,6 @@ export declare class GeneratedApiClient {
   endSession(sessionId: string): Promise<Response>;
   getSession(sessionId: string): Promise<Session>;
   refreshSession(sessionId: string): Promise<Session>;
-  deleteEmailTemplate(templateId: string): Promise<Response>;
-  getEmailTemplate(templateId: string): Promise<EmailTemplate>;
-  updateEmailTemplate(templateId: string, emailTemplate: EmailTemplateOptions): Promise<EmailTemplate>;
-  getTestEmailInfo(templateId: string): Promise<EmailTestInfo>;
-  listEmailTemplates(queryParameters?: {
-    template?: string,
-  }): Collection<EmailTemplate>;
-  createEmailTemplate(emailTemplate: EmailTemplateOptions): Promise<EmailTemplate>;
   listSmsTemplates(queryParameters?: {
     templateType?: string,
   }): Collection<SmsTemplate>;
