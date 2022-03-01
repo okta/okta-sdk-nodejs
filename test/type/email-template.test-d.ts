@@ -1,38 +1,37 @@
-import { expectType, expectAssignable } from 'tsd';
+import { expectType } from 'tsd';
 import { Response } from 'node-fetch';
 import { Client } from '../../src/types/client';
 import { Collection } from '../../src/types/collection';
-import { EmailTemplate, EmailTemplateOptions } from '../../src/types/models/EmailTemplate';
-import { EmailTestInfo } from '../../src/types/models/EmailTestInfo';
+import { EmailTemplate } from '../../src/types/models/EmailTemplate';
+import { EmailTemplateCustomization } from '../../src/types/models/EmailTemplateCustomization';
+import { EmailTemplateContent } from '../../src/types/models/EmailTemplateContent';
 
 const client = new Client();
 (async function () {
-  // deleteEmailTemplate
-  expectType<Response>(await client.deleteEmailTemplate('fake-id'));
+  // listEmailTemplates
+  expectType<Collection<EmailTemplate>>(await client.listEmailTemplates('brand-id'));
 
   // getEmailTemplate
-  expectType<EmailTemplate>(await client.getEmailTemplate('fake-id'));
+  expectType<EmailTemplate>(await client.getEmailTemplate('brand-id', 'name'));
 
-  // updateEmailTemplate
-  const updateOptions = {
-    name: 'fake-name',
-    template: 'fake-template'
-  };
-  expectAssignable<EmailTemplateOptions>(updateOptions);
-  expectType<EmailTemplate>(await client.updateEmailTemplate('fake-id', updateOptions));
+  // deleteEmailTemplateCustomization
+  expectType<Response>(await client.deleteEmailTemplateCustomization('brand-id', 'name', 'customization-id'));
 
-  // getTestEmailInfo
-  expectType<EmailTestInfo>(await client.getTestEmailInfo('fake-id'));
+  // getEmailTemplateCustomization
+  expectType<EmailTemplateCustomization>(await client.getEmailTemplateCustomization('fake-id', 'name', 'customization-id'));
 
-  // listEmailTemplates
-  expectType<Collection<EmailTemplate>>(await client.listEmailTemplates());
-  expectType<Collection<EmailTemplate>>(await client.listEmailTemplates({ template: 'fake-template' }));
+  // updateEmailTemplateCustomization
+  expectType<EmailTemplateCustomization>(await client.updateEmailTemplateCustomization('fake-id', 'name', 'customization-id', {}));
 
-  // createEmailTemplates
-  const createOptions = {
-    name: 'fake-name',
-    template: 'fake-template'
-  };
-  expectAssignable<EmailTemplateOptions>(createOptions);
-  expectType<EmailTemplate>(await client.createEmailTemplate(createOptions));
+  // getEmailTemplateCustomizationPreview
+  expectType<EmailTemplateContent>(await client.getEmailTemplateCustomizationPreview('fake-id', 'name', 'customization-id'));
+
+  // getEmailTemplateDefaultContent
+  expectType<EmailTemplateContent>(await client.getEmailTemplateDefaultContent('fake-id', 'name'));
+
+  // getEmailTemplateDefaultContent
+  expectType<EmailTemplateContent>(await client.getEmailTemplateDefaultContentPreview('fake-id', 'name'));
+
+  // sendTestEmail
+  expectType<EmailTemplateContent>(await client.sendTestEmail('fake-id', 'name', {}));
 }());
