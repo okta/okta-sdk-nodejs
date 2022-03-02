@@ -3121,9 +3121,12 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/brands/${brandId}`
     ];
 
-    const request = this.http.postJson(
+    const request = this.http.post(
       url,
       {
+        headers: {
+          'Content-Type': 'application/json', 'Accept': 'application/json',
+        },
         body: emailTemplateTestRequest
       },
       { resources }
@@ -3526,9 +3529,12 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/domains/${domainId}`
     ];
 
-    const request = this.http.putJson(
+    const request = this.http.put(
       url,
       {
+        headers: {
+          'Content-Type': 'application/json', 'Accept': 'application/json',
+        },
         body: domainCertificate
       },
       { resources }
