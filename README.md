@@ -42,8 +42,9 @@ This library uses semantic versioning and follows Okta's [library version policy
 | 1.x | :x: Retired |
 | 2.x | :x: Retired |
 | 3.x | :x: Retired |
-| 4.x | :heavy_check_mark: Stable ([migration guide](#from-3x-to-40)) |
+| 4.x | :x: Retired |
 | 5.x | :heavy_check_mark: Stable ([migration guide](#from-4x-to-50)) |
+| 6.x | :heavy_check_mark: Stable ([migration guide](#from-5x-to-60)) |
 
 The latest release can always be found on the [releases page][github-releases].
  
