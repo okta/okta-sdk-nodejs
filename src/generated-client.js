@@ -3103,7 +3103,6 @@ class GeneratedApiClient {
    * @param {EmailTemplateTestRequest} emailTemplateTestRequest
    * @description
    * Send a test email to the current users primary and secondary email addresses. The email content is selected based on the following priority: An email customization specifically for the users locale. The default language of email customizations. The email templates default content.
-   * @returns {Promise<EmailTemplateContent>}
    */
   sendTestEmail(brandId, templateName, emailTemplateTestRequest) {
     if (!brandId) {
@@ -3129,7 +3128,7 @@ class GeneratedApiClient {
       },
       { resources }
     );
-    return request.then(jsonRes => new models.EmailTemplateContent(jsonRes, this));
+    return request;
   }
 
   /**

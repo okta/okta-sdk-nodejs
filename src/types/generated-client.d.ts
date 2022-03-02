@@ -300,7 +300,7 @@ export declare class GeneratedApiClient {
   getEmailTemplateCustomizationPreview(brandId: string, templateName: string, customizationId: string): Promise<EmailTemplateContent>;
   getEmailTemplateDefaultContent(brandId: string, templateName: string): Promise<EmailTemplateContent>;
   getEmailTemplateDefaultContentPreview(brandId: string, templateName: string): Promise<EmailTemplateContent>;
-  sendTestEmail(brandId: string, templateName: string, emailTemplateTestRequest: EmailTemplateTestRequestOptions): Promise<EmailTemplateContent>;
+  sendTestEmail(brandId: string, templateName: string, emailTemplateTestRequest: EmailTemplateTestRequestOptions): Promise<Response>;
   listBrandThemes(brandId: string): Collection<ThemeResponse>;
   getBrandTheme(brandId: string, themeId: string): Promise<ThemeResponse>;
   updateBrandTheme(brandId: string, themeId: string, theme: ThemeOptions): Promise<ThemeResponse>;

@@ -39,7 +39,7 @@ declare class EmailTemplate extends Resource {
   getEmailTemplateCustomizationPreview(brandId: string, templateName: string, customizationId: string): Promise<EmailTemplateContent>;
   getEmailTemplateDefaultContent(brandId: string, templateName: string): Promise<EmailTemplateContent>;
   getEmailTemplateDefaultContentPreview(brandId: string, templateName: string): Promise<EmailTemplateContent>;
-  sendTestEmail(brandId: string, templateName: string, emailTemplateTestRequest: EmailTemplateTestRequestOptions): Promise<EmailTemplateContent>;
+  sendTestEmail(brandId: string, templateName: string, emailTemplateTestRequest: EmailTemplateTestRequestOptions): Promise<Response>;
 }
 
 type EmailTemplateOptions = OptionalKnownProperties<EmailTemplate>;

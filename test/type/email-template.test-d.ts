@@ -33,5 +33,5 @@ const client = new Client();
   expectType<EmailTemplateContent>(await client.getEmailTemplateDefaultContentPreview('fake-id', 'name'));
 
   // sendTestEmail
-  expectType<EmailTemplateContent>(await client.sendTestEmail('fake-id', 'name', {}));
+  expectType<Response>(await client.sendTestEmail('fake-id', 'name', {}));
 }());

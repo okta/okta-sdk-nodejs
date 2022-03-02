@@ -127,7 +127,6 @@ class EmailTemplate extends Resource {
    * @param {string} brandId
    * @param {string} templateName
    * @param {EmailTemplateTestRequest} emailTemplateTestRequest
-   * @returns {Promise<EmailTemplateContent>}
    */
   sendTestEmail(brandId, templateName, emailTemplateTestRequest) {
     return this.httpClient.sendTestEmail(brandId, templateName, emailTemplateTestRequest);
