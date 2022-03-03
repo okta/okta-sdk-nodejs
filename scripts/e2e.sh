@@ -10,11 +10,6 @@ get_vault_secret_key devex/okta-sdk-nodejs-vars private_key OKTA_CLIENT_PRIVATEK
 export TEST_SUITE_TYPE="junit"
 export TEST_RESULT_FILE_DIR="${REPO}/test-reports"
 
-echo '########'
-echo "~~$OKTA_CLIENT_TOKEN~~"
-echo "~~$OKTA_CLIENT_PRIVATEKEY~~"
-echo '########'
-
 if ! yarn test:integration; then
   echo "Integration tests failed! Exiting..."
   yarn aftertest
