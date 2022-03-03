@@ -1,16 +1,16 @@
 const mockResponse = { status: 200 };
-jest.mock('isomorphic-fetch', () => {
+jest.mock('node-fetch', () => {
   return jest.fn().mockReturnValue(Promise.resolve(mockResponse));
 });
 
 const RequestExecutor = require('../../src/request-executor');
-const isoFetch = require('isomorphic-fetch');
+const isoFetch = require('node-fetch');
 
 describe('RequestExecutor', () => {
 
   describe('.fetch()', () => {
 
-    it('should delegate requests to isomorphic-fetch as (url, request)', async () => {
+    it('should delegate requests to node-fetch as (url, request)', async () => {
       const requestExecutor = new RequestExecutor();
       const request = { url: '/foo' };
       await requestExecutor.fetch(request);
