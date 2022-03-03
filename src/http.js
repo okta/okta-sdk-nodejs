@@ -191,7 +191,7 @@ class Http {
   putJsonNoContent(uri, request, context) {
     return this.putJson(uri, request, context, false);
   }
-  
+
 }
 
 module.exports = Http;
