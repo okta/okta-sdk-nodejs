@@ -11,8 +11,8 @@ export TEST_SUITE_TYPE="junit"
 export TEST_RESULT_FILE_DIR="${REPO}/test-reports"
 
 echo '########'
-echo $OKTA_CLIENT_TOKEN
-echo $OKTA_CLIENT_PRIVATEKEY
+echo "~~$OKTA_CLIENT_TOKEN~~"
+echo "~~$OKTA_CLIENT_PRIVATEKEY~~"
 echo '########'
 
 if ! yarn test:integration; then
