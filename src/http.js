@@ -128,14 +128,17 @@ class Http {
     return this.http(uri, Object.assign(request || {}, { method: 'delete' }), context);
   }
 
-  json(uri, request, context) {
+  json(uri, request, context, hasContent = true) {
     request = request || {};
     request.headers = Object.assign({
       'Content-Type': 'application/json',
       'Accept': 'application/json'
     }, request.headers);
-    return this.http(uri, request, context)
-      .then(res => res.json());
+
+    if (hasContent) {
+      return this.http(uri, request, context).then(res => res.json());
+    }
+    return this.http(uri, request, context);
   }
 
   getJson(uri, request, context) {
@@ -161,18 +164,15 @@ class Http {
     return this.http(uri, request, context);
   }
 
-  postJson(uri, request, context) {
+  postJson(uri, request, context, hasContent = true) {
     request = request || {};
     request.method = 'post',
     request.body = JSON.stringify(request.body);
-    return this.json(uri, request, context);
+    return this.json(uri, request, context, hasContent);
   }
 
-  putJson(uri, request, context) {
-    request = request || {};
-    request.method = 'put';
-    request.body = JSON.stringify(request.body);
-    return this.json(uri, request, context);
+  postJsonNoContent(uri, request, context) {
+    return this.postJson(uri, request, context, false);
   }
 
   put(uri, request, context) {
@@ -180,6 +180,18 @@ class Http {
     request.method = 'put';
     return this.http(uri, request, context);
   }
+
+  putJson(uri, request, context, hasContent = true) {
+    request = request || {};
+    request.method = 'put';
+    request.body = JSON.stringify(request.body);
+    return this.json(uri, request, context, hasContent);
+  }
+
+  putJsonNoContent(uri, request, context) {
+    return this.putJson(uri, request, context, false);
+  }
+
 }
 
 module.exports = Http;

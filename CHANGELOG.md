@@ -5,7 +5,28 @@
 ### Features
 
 - [#307](https://github.com/okta/okta-sdk-nodejs/pull/307) Supports HTTPS proxy for Okta http client 
-
+- [#306](https://github.com/okta/okta-sdk-nodejs/pull/306) 
+  - Adds Email Template API
+    - new models:
+      - `EmailTemplate`
+      - `EmailTemplateContent`
+      - `EmailTemplateCustomization`
+      - `EmailTemplateCustomizationRequest`
+      - `EmailTemplateTestRequest`
+    - Client:
+      - `listEmailTemplates`
+      - `getEmailTemplate`
+      - `deleteEmailTemplateCustomizations`
+      - `listEmailTemplateCustomizations`
+      - `createEmailTemplateCustomization`
+      - `deleteEmailTemplateCustomization`
+      - `getEmailTemplateCustomization`
+      - `updateEmailTemplateCustomization`
+      - `getEmailTemplateCustomizationPreview`
+      - `getEmailTemplateDefaultContent`
+      - `getEmailTemplateDefaultContentPreview`
+      - `sendTestEmail`
+      
 ## 6.3.1
 
 ### Bug Fixes

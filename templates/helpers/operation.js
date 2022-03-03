@@ -125,7 +125,15 @@ const getRequiredOperationParams = operation => {
   return getOperationArgument(operation).shift();
 };
 
-const getHttpMethod = ({ consumes, produces, method, responseModel, formData, parameters = [] }) => {
+const getHttpMethod = ({
+  consumes,
+  produces,
+  method,
+  responseModel,
+  formData,
+  parameters = [],
+  responses
+}) => {
   let res;
   const hasModelParameterInBody = parameters.some(parameter => parameter.in === 'body' && parameter.schema && parameter.schema.$ref);
   switch (method) {
@@ -134,8 +142,19 @@ const getHttpMethod = ({ consumes, produces, method, responseModel, formData, pa
       break;
     case 'post':
     case 'put':
-      if (consumes.includes('application/json') && produces.includes('application/json') && (responseModel || hasModelParameterInBody)) {
+      if (
+        consumes.includes('application/json')
+        && produces.includes('application/json')
+        && (responseModel || hasModelParameterInBody)
+        && typeof responses['204'] === 'undefined'
+      ) {
         res = `${method}Json`;
+      } else if (
+        consumes.includes('application/json')
+        && (responseModel || hasModelParameterInBody)
+        && typeof responses['204'] !== 'undefined'
+      ) {
+        res = `${method}JsonNoContent`;
       } else if (formData.length) {
         res = 'postFormDataFile';
       } else {

@@ -2749,6 +2749,391 @@ class GeneratedApiClient {
   /**
    *
    * @param brandId {String}
+   * @param {Object} queryParams Map of query parameters to add to this request
+   * @param {String} [queryParams.after]
+   * @param {String} [queryParams.limit]
+   * @description
+   * List email templates in your organization with pagination.
+   * @returns {Collection} A collection that will yield {@link EmailTemplate} instances.
+   */
+  listEmailTemplates(brandId, queryParameters) {
+    if (!brandId) {
+      return Promise.reject(new Error('OKTA API listEmailTemplates parameter brandId is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/brands/${brandId}/templates/email`;
+    const queryString = qs.stringify(queryParameters || {});
+
+    url += queryString ? ('?' + queryString) : '';
+
+    return new Collection(
+      this,
+      url,
+      new ModelFactory(models.EmailTemplate),
+    );
+  }
+
+  /**
+   *
+   * @param brandId {String}
+   * @param templateName {String}
+   * @description
+   * Fetch an email template by templateName
+   * @returns {Promise<EmailTemplate>}
+   */
+  getEmailTemplate(brandId, templateName) {
+    if (!brandId) {
+      return Promise.reject(new Error('OKTA API getEmailTemplate parameter brandId is required.'));
+    }
+    if (!templateName) {
+      return Promise.reject(new Error('OKTA API getEmailTemplate parameter templateName is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/brands/${brandId}/templates/email/${templateName}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/brands/${brandId}/templates/email/${templateName}`,
+      `${this.baseUrl}/api/v1/brands/${brandId}`
+    ];
+
+    const request = this.http.getJson(
+      url,
+      null,
+      { resources }
+    );
+    return request.then(jsonRes => new models.EmailTemplate(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param brandId {String}
+   * @param templateName {String}
+   * @description
+   * Delete all customizations for an email template. Also known as “Reset to Default”.
+   */
+  deleteEmailTemplateCustomizations(brandId, templateName) {
+    if (!brandId) {
+      return Promise.reject(new Error('OKTA API deleteEmailTemplateCustomizations parameter brandId is required.'));
+    }
+    if (!templateName) {
+      return Promise.reject(new Error('OKTA API deleteEmailTemplateCustomizations parameter templateName is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/brands/${brandId}/templates/email/${templateName}/customizations`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/brands/${brandId}/templates/email/${templateName}`,
+      `${this.baseUrl}/api/v1/brands/${brandId}`
+    ];
+
+    const request = this.http.delete(
+      url,
+      null,
+      { resources }
+    );
+    return request;
+  }
+
+  /**
+   *
+   * @param brandId {String}
+   * @param templateName {String}
+   * @description
+   * List all email customizations for an email template
+   * @returns {Collection} A collection that will yield {@link EmailTemplateCustomization} instances.
+   */
+  listEmailTemplateCustomizations(brandId, templateName) {
+    if (!brandId) {
+      return Promise.reject(new Error('OKTA API listEmailTemplateCustomizations parameter brandId is required.'));
+    }
+    if (!templateName) {
+      return Promise.reject(new Error('OKTA API listEmailTemplateCustomizations parameter templateName is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/brands/${brandId}/templates/email/${templateName}/customizations`;
+
+    return new Collection(
+      this,
+      url,
+      new ModelFactory(models.EmailTemplateCustomization),
+    );
+  }
+
+  /**
+   *
+   * @param brandId {String}
+   * @param templateName {String}
+   * @param {EmailTemplateCustomizationRequest} emailTemplateCustomizationRequest
+   * @description
+   * Create an email customization
+   * @returns {Promise<EmailTemplateCustomization>}
+   */
+  createEmailTemplateCustomization(brandId, templateName, emailTemplateCustomizationRequest) {
+    if (!brandId) {
+      return Promise.reject(new Error('OKTA API createEmailTemplateCustomization parameter brandId is required.'));
+    }
+    if (!templateName) {
+      return Promise.reject(new Error('OKTA API createEmailTemplateCustomization parameter templateName is required.'));
+    }
+    if (!emailTemplateCustomizationRequest) {
+      return Promise.reject(new Error('OKTA API createEmailTemplateCustomization parameter emailTemplateCustomizationRequest is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/brands/${brandId}/templates/email/${templateName}/customizations`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/brands/${brandId}/templates/email/${templateName}`,
+      `${this.baseUrl}/api/v1/brands/${brandId}`
+    ];
+
+    const request = this.http.postJson(
+      url,
+      {
+        body: emailTemplateCustomizationRequest
+      },
+      { resources }
+    );
+    return request.then(jsonRes => new models.EmailTemplateCustomization(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param brandId {String}
+   * @param templateName {String}
+   * @param customizationId {String}
+   * @description
+   * Delete an email customization
+   */
+  deleteEmailTemplateCustomization(brandId, templateName, customizationId) {
+    if (!brandId) {
+      return Promise.reject(new Error('OKTA API deleteEmailTemplateCustomization parameter brandId is required.'));
+    }
+    if (!templateName) {
+      return Promise.reject(new Error('OKTA API deleteEmailTemplateCustomization parameter templateName is required.'));
+    }
+    if (!customizationId) {
+      return Promise.reject(new Error('OKTA API deleteEmailTemplateCustomization parameter customizationId is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/brands/${brandId}/templates/email/${templateName}/customizations/${customizationId}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/brands/${brandId}/templates/email/${templateName}/customizations/${customizationId}`,
+      `${this.baseUrl}/api/v1/brands/${brandId}/templates/email/${templateName}`,
+      `${this.baseUrl}/api/v1/brands/${brandId}`
+    ];
+
+    const request = this.http.delete(
+      url,
+      null,
+      { resources }
+    );
+    return request;
+  }
+
+  /**
+   *
+   * @param brandId {String}
+   * @param templateName {String}
+   * @param customizationId {String}
+   * @description
+   * Fetch an email customization by id.
+   * @returns {Promise<EmailTemplateCustomization>}
+   */
+  getEmailTemplateCustomization(brandId, templateName, customizationId) {
+    if (!brandId) {
+      return Promise.reject(new Error('OKTA API getEmailTemplateCustomization parameter brandId is required.'));
+    }
+    if (!templateName) {
+      return Promise.reject(new Error('OKTA API getEmailTemplateCustomization parameter templateName is required.'));
+    }
+    if (!customizationId) {
+      return Promise.reject(new Error('OKTA API getEmailTemplateCustomization parameter customizationId is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/brands/${brandId}/templates/email/${templateName}/customizations/${customizationId}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/brands/${brandId}/templates/email/${templateName}/customizations/${customizationId}`,
+      `${this.baseUrl}/api/v1/brands/${brandId}/templates/email/${templateName}`,
+      `${this.baseUrl}/api/v1/brands/${brandId}`
+    ];
+
+    const request = this.http.getJson(
+      url,
+      null,
+      { resources }
+    );
+    return request.then(jsonRes => new models.EmailTemplateCustomization(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param brandId {String}
+   * @param templateName {String}
+   * @param customizationId {String}
+   * @param {EmailTemplateCustomizationRequest} emailTemplateCustomizationRequest
+   * @description
+   * Update an email customization
+   * @returns {Promise<EmailTemplateCustomization>}
+   */
+  updateEmailTemplateCustomization(brandId, templateName, customizationId, emailTemplateCustomizationRequest) {
+    if (!brandId) {
+      return Promise.reject(new Error('OKTA API updateEmailTemplateCustomization parameter brandId is required.'));
+    }
+    if (!templateName) {
+      return Promise.reject(new Error('OKTA API updateEmailTemplateCustomization parameter templateName is required.'));
+    }
+    if (!customizationId) {
+      return Promise.reject(new Error('OKTA API updateEmailTemplateCustomization parameter customizationId is required.'));
+    }
+    if (!emailTemplateCustomizationRequest) {
+      return Promise.reject(new Error('OKTA API updateEmailTemplateCustomization parameter emailTemplateCustomizationRequest is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/brands/${brandId}/templates/email/${templateName}/customizations/${customizationId}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/brands/${brandId}/templates/email/${templateName}/customizations/${customizationId}`,
+      `${this.baseUrl}/api/v1/brands/${brandId}/templates/email/${templateName}`,
+      `${this.baseUrl}/api/v1/brands/${brandId}`
+    ];
+
+    const request = this.http.putJson(
+      url,
+      {
+        body: emailTemplateCustomizationRequest
+      },
+      { resources }
+    );
+    return request.then(jsonRes => new models.EmailTemplateCustomization(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param brandId {String}
+   * @param templateName {String}
+   * @param customizationId {String}
+   * @description
+   * Get a preview of an email template customization.
+   * @returns {Promise<EmailTemplateContent>}
+   */
+  getEmailTemplateCustomizationPreview(brandId, templateName, customizationId) {
+    if (!brandId) {
+      return Promise.reject(new Error('OKTA API getEmailTemplateCustomizationPreview parameter brandId is required.'));
+    }
+    if (!templateName) {
+      return Promise.reject(new Error('OKTA API getEmailTemplateCustomizationPreview parameter templateName is required.'));
+    }
+    if (!customizationId) {
+      return Promise.reject(new Error('OKTA API getEmailTemplateCustomizationPreview parameter customizationId is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/brands/${brandId}/templates/email/${templateName}/customizations/${customizationId}/preview`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/brands/${brandId}/templates/email/${templateName}/customizations/${customizationId}`,
+      `${this.baseUrl}/api/v1/brands/${brandId}/templates/email/${templateName}`,
+      `${this.baseUrl}/api/v1/brands/${brandId}`
+    ];
+
+    const request = this.http.getJson(
+      url,
+      null,
+      { resources }
+    );
+    return request.then(jsonRes => new models.EmailTemplateContent(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param brandId {String}
+   * @param templateName {String}
+   * @description
+   * Fetch the default content for an email template.
+   * @returns {Promise<EmailTemplateContent>}
+   */
+  getEmailTemplateDefaultContent(brandId, templateName) {
+    if (!brandId) {
+      return Promise.reject(new Error('OKTA API getEmailTemplateDefaultContent parameter brandId is required.'));
+    }
+    if (!templateName) {
+      return Promise.reject(new Error('OKTA API getEmailTemplateDefaultContent parameter templateName is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/brands/${brandId}/templates/email/${templateName}/default-content`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/brands/${brandId}/templates/email/${templateName}`,
+      `${this.baseUrl}/api/v1/brands/${brandId}`
+    ];
+
+    const request = this.http.getJson(
+      url,
+      null,
+      { resources }
+    );
+    return request.then(jsonRes => new models.EmailTemplateContent(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param brandId {String}
+   * @param templateName {String}
+   * @description
+   * Fetch a preview of an email template's default content by populating velocity references with the current user's environment.
+   * @returns {Promise<EmailTemplateContent>}
+   */
+  getEmailTemplateDefaultContentPreview(brandId, templateName) {
+    if (!brandId) {
+      return Promise.reject(new Error('OKTA API getEmailTemplateDefaultContentPreview parameter brandId is required.'));
+    }
+    if (!templateName) {
+      return Promise.reject(new Error('OKTA API getEmailTemplateDefaultContentPreview parameter templateName is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/brands/${brandId}/templates/email/${templateName}/default-content/preview`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/brands/${brandId}/templates/email/${templateName}`,
+      `${this.baseUrl}/api/v1/brands/${brandId}`
+    ];
+
+    const request = this.http.getJson(
+      url,
+      null,
+      { resources }
+    );
+    return request.then(jsonRes => new models.EmailTemplateContent(jsonRes, this));
+  }
+
+  /**
+   *
+   * @param brandId {String}
+   * @param templateName {String}
+   * @param {EmailTemplateTestRequest} emailTemplateTestRequest
+   * @description
+   * Send a test email to the current users primary and secondary email addresses. The email content is selected based on the following priority: An email customization specifically for the users locale. The default language of email customizations. The email templates default content.
+   */
+  sendTestEmail(brandId, templateName, emailTemplateTestRequest) {
+    if (!brandId) {
+      return Promise.reject(new Error('OKTA API sendTestEmail parameter brandId is required.'));
+    }
+    if (!templateName) {
+      return Promise.reject(new Error('OKTA API sendTestEmail parameter templateName is required.'));
+    }
+    if (!emailTemplateTestRequest) {
+      return Promise.reject(new Error('OKTA API sendTestEmail parameter emailTemplateTestRequest is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/brands/${brandId}/templates/email/${templateName}/test`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/brands/${brandId}/templates/email/${templateName}`,
+      `${this.baseUrl}/api/v1/brands/${brandId}`
+    ];
+
+    const request = this.http.postJsonNoContent(
+      url,
+      {
+        body: emailTemplateTestRequest
+      },
+      { resources }
+    );
+    return request;
+  }
+
+  /**
+   *
+   * @param brandId {String}
    * @description
    * List all the themes in your brand
    * @returns {Collection} A collection that will yield {@link ThemeResponse} instances.
@@ -3141,7 +3526,7 @@ class GeneratedApiClient {
       `${this.baseUrl}/api/v1/domains/${domainId}`
     ];
 
-    const request = this.http.putJson(
+    const request = this.http.putJsonNoContent(
       url,
       {
         body: domainCertificate

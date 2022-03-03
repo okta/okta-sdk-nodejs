@@ -49,6 +49,11 @@ import { OAuth2Scope } from './models/OAuth2Scope';
 import { OAuth2ScopeOptions } from './models/OAuth2Scope';
 import { Brand } from './models/Brand';
 import { BrandOptions } from './models/Brand';
+import { EmailTemplate } from './models/EmailTemplate';
+import { EmailTemplateCustomization } from './models/EmailTemplateCustomization';
+import { EmailTemplateCustomizationRequestOptions } from './models/EmailTemplateCustomizationRequest';
+import { EmailTemplateContent } from './models/EmailTemplateContent';
+import { EmailTemplateTestRequestOptions } from './models/EmailTemplateTestRequest';
 import { ThemeResponse } from './models/ThemeResponse';
 import { ThemeOptions } from './models/Theme';
 import { ImageUploadResponse } from './models/ImageUploadResponse';
@@ -281,6 +286,21 @@ export declare class GeneratedApiClient {
   listBrands(): Collection<Brand>;
   getBrand(brandId: string): Promise<Brand>;
   updateBrand(brandId: string, brand: BrandOptions): Promise<Brand>;
+  listEmailTemplates(brandId: string, queryParameters?: {
+    after?: string,
+    limit?: number,
+  }): Collection<EmailTemplate>;
+  getEmailTemplate(brandId: string, templateName: string): Promise<EmailTemplate>;
+  deleteEmailTemplateCustomizations(brandId: string, templateName: string): Promise<Response>;
+  listEmailTemplateCustomizations(brandId: string, templateName: string): Collection<EmailTemplateCustomization>;
+  createEmailTemplateCustomization(brandId: string, templateName: string, emailTemplateCustomizationRequest: EmailTemplateCustomizationRequestOptions): Promise<EmailTemplateCustomization>;
+  deleteEmailTemplateCustomization(brandId: string, templateName: string, customizationId: string): Promise<Response>;
+  getEmailTemplateCustomization(brandId: string, templateName: string, customizationId: string): Promise<EmailTemplateCustomization>;
+  updateEmailTemplateCustomization(brandId: string, templateName: string, customizationId: string, emailTemplateCustomizationRequest: EmailTemplateCustomizationRequestOptions): Promise<EmailTemplateCustomization>;
+  getEmailTemplateCustomizationPreview(brandId: string, templateName: string, customizationId: string): Promise<EmailTemplateContent>;
+  getEmailTemplateDefaultContent(brandId: string, templateName: string): Promise<EmailTemplateContent>;
+  getEmailTemplateDefaultContentPreview(brandId: string, templateName: string): Promise<EmailTemplateContent>;
+  sendTestEmail(brandId: string, templateName: string, emailTemplateTestRequest: EmailTemplateTestRequestOptions): Promise<Response>;
   listBrandThemes(brandId: string): Collection<ThemeResponse>;
   getBrandTheme(brandId: string, themeId: string): Promise<ThemeResponse>;
   updateBrandTheme(brandId: string, themeId: string, theme: ThemeOptions): Promise<ThemeResponse>;

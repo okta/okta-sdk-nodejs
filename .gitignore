@@ -15,3 +15,6 @@ jsdoc/
 okta.yaml
 test-reports/
 
+.yalc
+yalc.lock
+

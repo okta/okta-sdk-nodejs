@@ -15,6 +15,7 @@
 
 var Resource = require('../resource');
 const PolicyRuleActionsEnroll = require('./PolicyRuleActionsEnroll');
+const IdpPolicyRuleAction = require('./IdpPolicyRuleAction');
 const PasswordPolicyRuleAction = require('./PasswordPolicyRuleAction');
 const OktaSignOnPolicyRuleSignonActions = require('./OktaSignOnPolicyRuleSignonActions');
 
@@ -22,6 +23,7 @@ const OktaSignOnPolicyRuleSignonActions = require('./OktaSignOnPolicyRuleSignonA
  * @class PolicyRuleActions
  * @extends Resource
  * @property { PolicyRuleActionsEnroll } enroll
+ * @property { IdpPolicyRuleAction } idp
  * @property { PasswordPolicyRuleAction } passwordChange
  * @property { PasswordPolicyRuleAction } selfServicePasswordReset
  * @property { PasswordPolicyRuleAction } selfServiceUnlock
@@ -32,6 +34,9 @@ class PolicyRuleActions extends Resource {
     super(resourceJson, client);
     if (resourceJson && resourceJson.enroll) {
       this.enroll = new PolicyRuleActionsEnroll(resourceJson.enroll);
+    }
+    if (resourceJson && resourceJson.idp) {
+      this.idp = new IdpPolicyRuleAction(resourceJson.idp);
     }
     if (resourceJson && resourceJson.passwordChange) {
       this.passwordChange = new PasswordPolicyRuleAction(resourceJson.passwordChange);
