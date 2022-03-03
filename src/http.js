@@ -164,11 +164,11 @@ class Http {
     return this.http(uri, request, context);
   }
 
-  postJson(uri, request, context) {
+  postJson(uri, request, context, hasContent = true) {
     request = request || {};
     request.method = 'post',
     request.body = JSON.stringify(request.body);
-    return this.json(uri, request, context);
+    return this.json(uri, request, context, hasContent);
   }
 
   postJsonNoContent(uri, request, context) {
@@ -181,11 +181,11 @@ class Http {
     return this.http(uri, request, context);
   }
 
-  putJson(uri, request, context) {
+  putJson(uri, request, context, hasContent = true) {
     request = request || {};
     request.method = 'put';
     request.body = JSON.stringify(request.body);
-    return this.json(uri, request, context);
+    return this.json(uri, request, context, hasContent);
   }
 
   putJsonNoContent(uri, request, context) {
