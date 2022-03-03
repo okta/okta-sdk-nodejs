@@ -11,12 +11,12 @@
  */
 
 const EventEmitter = require('events').EventEmitter;
-const isoFetch = require('isomorphic-fetch');
+const nodeFetch = require('node-fetch');
 
 class RequestExecutor extends EventEmitter {
   fetch(request) {
     this.emit('request', request);
-    return isoFetch(request.url, request).then(response => {
+    return nodeFetch(request.url, request).then(response => {
       this.emit('response', response);
       return response;
     });
