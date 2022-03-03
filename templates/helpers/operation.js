@@ -149,6 +149,12 @@ const getHttpMethod = ({
         && typeof responses['204'] === 'undefined'
       ) {
         res = `${method}Json`;
+      } else if (
+        consumes.includes('application/json')
+        && (responseModel || hasModelParameterInBody)
+        && typeof responses['204'] !== 'undefined'
+      ) {
+        res = `${method}JsonNoContent`;
       } else if (formData.length) {
         res = 'postFormDataFile';
       } else {
