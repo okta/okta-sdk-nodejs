@@ -8,12 +8,11 @@ import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } fr
 {{#imports}}
 import { {{import}} } from '{{apiRelativeToRoot}}{{tsModelPackage}}';
 import { Response } from 'node-fetch';
-import OAuth = require('../../OAuth');
-import HttpClass = require('../../Http');
+import Oauth = require('../../oauth');
+import Http = require('../../http');
 import ConfigLoader = require('../../config-loader');
 import DefaultRequestExecutor = require('../../default-request-executor');
 import { V2Configuration } from '../../configuration';
-import { Http } from '../../http';
 
 
 const os = require('os');
@@ -78,10 +77,10 @@ export const {{classname}}RequestParamCreator = function (configuration?: Config
     clientId = parsedConfig.client.clientId;
     scopes = parsedConfig.client.scopes.split(' ');
     privateKey = parsedConfig.client.privateKey;
-    oauth = new OAuth(this);
+    oauth = new Oauth(this);
   }
 
-  const httpClient = new HttpClass({
+  const httpClient = new Http({
     cacheStore: clientConfig.cacheStore,
     cacheMiddleware: clientConfig.cacheMiddleware,
     defaultCacheMiddlewareResponseBufferSize: clientConfig.defaultCacheMiddlewareResponseBufferSize,
