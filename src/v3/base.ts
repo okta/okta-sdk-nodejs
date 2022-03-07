@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 import { Configuration } from "./configuration";
-import { Http } from "../types/http";
+import { Http } from "../http";
 
 // Some imports not used depending on template conditions
 // @ts-ignore
