@@ -1,3 +1,4 @@
+'use strict';
 /*!
  * Copyright (c) 2017-present; Okta; Inc. and/or its affiliates. All rights reserved.
  * The Okta software accompanied by this notice is provided pursuant to the Apache License; Version 2.0 (the "License.")
@@ -9,24 +10,4 @@
  *
  * See the License for the specific language governing permissions and limitations under the License.
  */
-
-
-declare interface SecurePasswordStoreApplicationOptions {
-    label: string;
-    name: string;
-    signOnMode: string;
-    settings: {
-        app: {
-            url: string;
-            passwordField: string;
-            usernameField: string;
-            optionalField1?: string;
-            optionalField1Value?: string;
-            optionalField2?: string;
-            optionalField2Value?: string;
-            optionalField3?: string;
-            optionalField3Value?: string;
-        };
-    };
-}
-export { SecurePasswordStoreApplicationOptions };
+exports.__esModule = true;

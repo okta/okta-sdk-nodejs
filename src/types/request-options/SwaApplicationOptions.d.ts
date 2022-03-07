@@ -12,20 +12,16 @@
 
 
 declare interface SwaApplicationOptions {
-  label: string;
-  name: string; /* 'template_swa' */
-  settings: {
-    app: {
-      buttonField: string;
-      passwordField: string;
-      usernameField: string;
-      url: string;
+    label: string;
+    name: string;
+    settings: {
+        app: {
+            buttonField: string;
+            passwordField: string;
+            usernameField: string;
+            url: string;
+        };
     };
-  };
-  signOnMode: string; /* 'BROWSER_PLUGIN' */
-
+    signOnMode: string;
 }
-
-export {
-  SwaApplicationOptions
-};
+export { SwaApplicationOptions };

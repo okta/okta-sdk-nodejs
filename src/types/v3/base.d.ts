@@ -9,8 +9,8 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-import { Configuration } from "./configuration";
-import { Http } from "../http";
+import { Configuration } from './configuration';
+import { Http } from '../http';
 export declare const BASE_PATH: string;
 /**
  *
@@ -37,10 +37,10 @@ export interface RequestArgs {
  * @class BaseAPI
  */
 export declare class BaseAPI {
-    protected basePath: string;
-    protected httpClient?: Http;
-    protected configuration: Configuration | undefined;
-    constructor(configuration?: Configuration, basePath?: string, httpClient?: Http);
+  protected basePath: string;
+  protected httpClient?: Http;
+  protected configuration: Configuration | undefined;
+  constructor(configuration?: Configuration, basePath?: string, httpClient?: Http);
 }
 /**
  *
@@ -49,7 +49,7 @@ export declare class BaseAPI {
  * @extends {Error}
  */
 export declare class RequiredError extends Error {
-    field: string;
-    name: "RequiredError";
-    constructor(field: string, msg?: string);
+  field: string;
+  name: 'RequiredError';
+  constructor(field: string, msg?: string);
 }

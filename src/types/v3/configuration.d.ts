@@ -18,46 +18,46 @@ export interface ConfigurationParameters {
     baseOptions?: any;
 }
 export declare class Configuration {
-    /**
+  /**
      * parameter for apiToken security
      * @param name security name
      * @memberof Configuration
      */
-    apiToken?: string | Promise<string> | ((name: string) => string) | ((name: string) => Promise<string>);
-    /**
+  apiToken?: string | Promise<string> | ((name: string) => string) | ((name: string) => Promise<string>);
+  /**
      * parameter for basic security
      *
      * @type {string}
      * @memberof Configuration
      */
-    username?: string;
-    /**
+  username?: string;
+  /**
      * parameter for basic security
      *
      * @type {string}
      * @memberof Configuration
      */
-    password?: string;
-    /**
+  password?: string;
+  /**
      * parameter for oauth2 security
      * @param name security name
      * @param scopes oauth2 scope
      * @memberof Configuration
      */
-    accessToken?: string | Promise<string> | ((name?: string, scopes?: string[]) => string) | ((name?: string, scopes?: string[]) => Promise<string>);
-    /**
+  accessToken?: string | Promise<string> | ((name?: string, scopes?: string[]) => string) | ((name?: string, scopes?: string[]) => Promise<string>);
+  /**
      * override base path
      *
      * @type {string}
      * @memberof Configuration
      */
-    basePath?: string;
-    /**
+  basePath?: string;
+  /**
      * base options for axios calls
      *
      * @type {any}
      * @memberof Configuration
      */
-    baseOptions?: any;
-    constructor(param?: ConfigurationParameters);
+  baseOptions?: any;
+  constructor(param?: ConfigurationParameters);
 }
