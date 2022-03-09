@@ -12,21 +12,24 @@
 
 
 declare interface SecurePasswordStoreApplicationOptions {
-    label: string;
-    name: string;
-    signOnMode: string;
-    settings: {
-        app: {
-            url: string;
-            passwordField: string;
-            usernameField: string;
-            optionalField1?: string;
-            optionalField1Value?: string;
-            optionalField2?: string;
-            optionalField2Value?: string;
-            optionalField3?: string;
-            optionalField3Value?: string;
-        };
+  label: string;
+  name: string; /* 'template_sps' */
+  signOnMode: string; /* 'SECURE_PASSWORD_STORE' */
+  settings: {
+    app: {
+      url: string;
+      passwordField: string;
+      usernameField: string;
+      optionalField1?: string;
+      optionalField1Value?: string;
+      optionalField2?: string;
+      optionalField2Value?: string;
+      optionalField3?: string;
+      optionalField3Value?: string;
     };
+  };
 }
-export { SecurePasswordStoreApplicationOptions };
+
+export {
+  SecurePasswordStoreApplicationOptions
+};
