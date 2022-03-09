@@ -12,7 +12,7 @@
 import { RequestArgs, BaseAPI } from '../base';
 import { UserType } from '../models';
 import { Response } from 'node-fetch';
-import Http = require('../../Http');
+import Http = require('../../http');
 import { V2Configuration } from '../../configuration';
 import { Configuration } from '../configuration';
 /**
