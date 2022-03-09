@@ -18,5 +18,5 @@ module.exports = Object.assign(
     DefaultRequestExecutor: require('./default-request-executor'),
     Collection: require('./collection'),
   },
-  require('./v3')
+  require('./models')
 );
