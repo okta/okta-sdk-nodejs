@@ -20,6 +20,8 @@ var Resource = require('../resource');
  * @class IdentityProviderCredentialsSigning
  * @extends Resource
  * @property { string } kid
+ * @property { string } privateKey
+ * @property { string } teamId
  */
 class IdentityProviderCredentialsSigning extends Resource {
   constructor(resourceJson, client) {

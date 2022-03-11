@@ -21,6 +21,7 @@ declare enum LogCredentialProvider {
   GOOGLE = 'GOOGLE',
   DUO = 'DUO',
   YUBIKEY = 'YUBIKEY',
+  APPLE = 'APPLE',
 }
 
 export {
