@@ -298,31 +298,30 @@ export const {{classname}}Fp = function(configuration?: Configuration & V2Config
     return {
   {{#operation}}
   {{#contents}}
-      /**
-        * {{&notes}}
-        {{#summary}}
-        * @summary {{&summary}}
-        {{/summary}}
-        {{#parameters}}
-        * @param {{braces "left"}}{{dataType}}{{braces "right"}} {{^required}}[{{/required}}{{paramName}}{{^required}}]{{/required}} {{description}}
-        {{/parameters}}
-        * @param {*} [options] Override http request option.
-        * @throws {RequiredError}
-        */
-      async {{nickname}}({{#parameters}}{{paramName}}{{^required}}?{{/required}}: {{{dataType}}}, {{/parameters}}options?: any): Promise<(httpClient?: Http, basePath?: string) => Promise<{{#returnType}}{{{returnType}}}{{/returnType}}{{^returnType}}Response{{/returnType}}>> {
-          const api = {{classname}}RequestParamCreator(configuration);
-          const localVarRequestArgs = await api.{{nickname}}({{#parameters}}{{paramName}}, {{/parameters}}options);
-          return (httpClient: Http = api.httpClient, basePath: string = configuration.basePath || configuration.orgUrl) => {
-            const requestArgs = {...localVarRequestArgs.options, url: basePath + localVarRequestArgs.url};
-            
-            {{#returnType}}
-            return httpClient.http(requestArgs.url, requestArgs).then(res => res.json()) as Promise<{{{returnType}}}>;
-            {{/returnType}}
-            {{^returnType}}
-            return httpClient.http(requestArgs.url, requestArgs) as Promise<Response>;
-            {{/returnType}}
-          }
-      },
+  /**
+    * {{&notes}}
+    {{#summary}}
+    * @summary {{&summary}}
+    {{/summary}}
+    {{#parameters}}
+    * @param {{braces "left"}}{{dataType}}{{braces "right"}} {{^required}}[{{/required}}{{paramName}}{{^required}}]{{/required}} {{description}}
+    {{/parameters}}
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    */
+  async {{nickname}}({{#parameters}}{{paramName}}{{^required}}?{{/required}}: {{{dataType}}}, {{/parameters}}options?: any): Promise<(httpClient?: Http, basePath?: string) => Promise<{{#returnType}}{{{returnType}}}{{/returnType}}{{^returnType}}Response{{/returnType}}>> {
+      const api = {{classname}}RequestParamCreator(configuration);
+      const localVarRequestArgs = await api.{{nickname}}({{#parameters}}{{paramName}}, {{/parameters}}options);
+      return (httpClient: Http = api.httpClient, basePath: string = configuration.basePath || configuration.orgUrl) => {
+        const requestArgs = {...localVarRequestArgs.options, url: basePath + localVarRequestArgs.url};
+        {{#returnType}}
+        return httpClient.http(requestArgs.url, requestArgs).then(res => res.json()) as Promise<{{{returnType}}}>;
+        {{/returnType}}
+        {{^returnType}}
+        return httpClient.http(requestArgs.url, requestArgs) as Promise<Response>;
+        {{/returnType}}
+      }
+  },
   {{/contents}}
   {{/operation}}
     }
@@ -337,20 +336,20 @@ export const {{classname}}Factory = function (configuration?: Configuration, bas
     return {
   {{#operation}}
   {{#contents}}
-      /**
-        * {{&notes}}
-        {{#summary}}
-        * @summary {{&summary}}
-        {{/summary}}
-        {{#parameters}}
-        * @param {{braces "left"}}{{dataType}}{{braces "right"}} {{^required}}[{{/required}}{{paramName}}{{^required}}]{{/required}} {{description}}
-        {{/parameters}}
-        * @param {*} [options] Override http request option.
-        * @throws {RequiredError}
-        */
-      {{nickname}}({{#parameters}}{{paramName}}{{^required}}?{{/required}}: {{{dataType}}}, {{/parameters}}options?: any): Promise<{{#returnType}}{{{returnType}}}{{/returnType}}{{^returnType}}Response{{/returnType}}> {
-          return {{classname}}Fp(configuration).{{nickname}}({{#parameters}}{{paramName}}, {{/parameters}}options).then((request) => request(httpClient, basePath));
-      },
+  /**
+    * {{&notes}}
+    {{#summary}}
+    * @summary {{&summary}}
+    {{/summary}}
+    {{#parameters}}
+    * @param {{braces "left"}}{{dataType}}{{braces "right"}} {{^required}}[{{/required}}{{paramName}}{{^required}}]{{/required}} {{description}}
+    {{/parameters}}
+    * @param {*} [options] Override http request option.
+    * @throws {RequiredError}
+    */
+  {{nickname}}({{#parameters}}{{paramName}}{{^required}}?{{/required}}: {{{dataType}}}, {{/parameters}}options?: any): Promise<{{#returnType}}{{{returnType}}}{{/returnType}}{{^returnType}}Response{{/returnType}}> {
+      return {{classname}}Fp(configuration).{{nickname}}({{#parameters}}{{paramName}}, {{/parameters}}options).then((request) => request(httpClient, basePath));
+  },
   {{/contents}}
   {{/operation}}
     };
@@ -413,8 +412,8 @@ export class {{classname}} extends BaseAPI {
     * @memberof {{classname}}
     */
   public {{nickname}}({{#parameters}}{{paramName}}{{^required}}?{{/required}}: {{{dataType}}}, {{/parameters}}options?: any) {
-      const api = {{classname}}RequestParamCreator(this.configuration);
-      return {{classname}}Fp(this.configuration).{{nickname}}({{#parameters}}{{paramName}}, {{/parameters}}options).then((request) => request(api.httpClient, this.basePath));
+    const api = {{classname}}RequestParamCreator(this.configuration);
+    return {{classname}}Fp(this.configuration).{{nickname}}({{#parameters}}{{paramName}}, {{/parameters}}options).then((request) => request(api.httpClient, this.basePath));
   }
   {{^@last}}
 
