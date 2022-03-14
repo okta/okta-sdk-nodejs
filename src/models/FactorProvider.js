@@ -23,6 +23,7 @@ var FactorProvider;
   FactorProvider['DUO'] = 'DUO';
   FactorProvider['YUBICO'] = 'YUBICO';
   FactorProvider['CUSTOM'] = 'CUSTOM';
+  FactorProvider['APPLE'] = 'APPLE';
 }(FactorProvider || (FactorProvider = {})));
 
 module.exports = FactorProvider;

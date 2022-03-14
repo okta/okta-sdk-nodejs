@@ -22,6 +22,7 @@ declare enum FactorProvider {
   DUO = 'DUO',
   YUBICO = 'YUBICO',
   CUSTOM = 'CUSTOM',
+  APPLE = 'APPLE',
 }
 
 export {

@@ -22,6 +22,7 @@ var LogCredentialProvider;
   LogCredentialProvider['GOOGLE'] = 'GOOGLE';
   LogCredentialProvider['DUO'] = 'DUO';
   LogCredentialProvider['YUBIKEY'] = 'YUBIKEY';
+  LogCredentialProvider['APPLE'] = 'APPLE';
 }(LogCredentialProvider || (LogCredentialProvider = {})));
 
 module.exports = LogCredentialProvider;

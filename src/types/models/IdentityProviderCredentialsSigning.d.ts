@@ -22,6 +22,8 @@ declare class IdentityProviderCredentialsSigning extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
 
   kid: string;
+  privateKey: string;
+  teamId: string;
 
 }
 
