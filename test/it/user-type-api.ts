@@ -1,11 +1,11 @@
 import { expect } from 'chai';
-import { UserTypeApiFp } from '../../src/v3/apis/user-type-api';
-import { UserType } from '../../src/v3/models/user-type';
+import { v3 } from '@okta/okta-sdk-nodejs';
+//import {  } from '@okta/okta-sdk-nodejs';
 
 
 describe('User Type API', () => {
   it('lists existing user types', async () => {
-    const userTypes: UserType[] = await UserTypeApiFp({
+    const userTypes: v3.model.UserType[] = await v3.api.UserTypeApiFp({
       orgUrl: process.env.OKTA_CLIENT_ORGURL,
       token: process.env.OKTA_CLIENT_TOKEN,
     }).listUserTypes().then(method => method());
