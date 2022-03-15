@@ -14,24 +14,10 @@ import { ParameterizedOperationsClient } from './parameterized-operations-client
 import { OAuth } from './oauth';
 import { Http } from './http';
 import { RequestExecutor } from './request-executor';
-import { defaultCacheMiddleware } from './default-cache-middleware';
-import { CacheStorage } from './memory-store';
-
+import { V2Configuration } from './configuration';
 
 export declare class Client extends ParameterizedOperationsClient {
-  constructor(config?: {
-    orgUrl?: string,
-    token?: string,
-    clientId?: string,
-    scopes?: string[],
-    requestExecutor?: RequestExecutor,
-    authorizationMode?: string,
-    privateKey?: string | Record<string, unknown>
-    cacheStore?: CacheStorage,
-    cacheMiddleware?: typeof defaultCacheMiddleware | unknown
-    defaultCacheMiddlewareResponseBufferSize?: number,
-    httpsProxy?: string | unknown, // https://github.com/TooTallNate/node-agent-base/issues/56
-  });
+  constructor(config?: V2Configuration);
 
   requestExecutor: RequestExecutor;
   authorizationMode: string;
