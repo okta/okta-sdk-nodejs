@@ -987,6 +987,14 @@ This version 4.0 release also updated APIs latest `@okta/openapi` (v2.0.0) that 
 
 Run `yarn build` from repository root.
 
+### Building with swagger-codegen
+ - Obtain OASv3 combined spec
+ - Install [swagger-codegen](https://github.com/swagger-api/swagger-codegen/tree/3.0.0#homebrew)
+ - run `swagger-codegen generate -i ./path/to/specfile.yaml|json -o ./src/v3 -l typescript-axios -t ./templates/swagger-codegen`
+ - remove APIs and models which are not intended to be pushed to upstream from `src/v3`
+ - run `./scripts/emitV3Types.sh` to replace TypeScript modules with typings + javascript modules
+ - commit changes
+
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) if you would like to propose changes to this library.

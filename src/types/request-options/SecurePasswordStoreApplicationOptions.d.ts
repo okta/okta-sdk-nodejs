@@ -33,4 +33,3 @@ declare interface SecurePasswordStoreApplicationOptions {
 export {
   SecurePasswordStoreApplicationOptions
 };
-
