@@ -1,137 +1,17 @@
-'use strict';
-var __extends = (this && this.__extends) || (function () {
-  var extendStatics = function (d, b) {
-    extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) {
-              d.__proto__ = b;
-            }) ||
-            function (d, b) {
-              for (var p in b) {
-                if (Object.prototype.hasOwnProperty.call(b, p)) {
-                  d[p] = b[p];
-                }
-              }
-            };
-    return extendStatics(d, b);
-  };
-  return function (d, b) {
-    if (typeof b !== 'function' && b !== null) {
-      throw new TypeError('Class extends value ' + String(b) + ' is not a constructor or null');
-    }
-    extendStatics(d, b);
-    function __() {
-      this.constructor = d;
-    }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-  };
-}());
-var __assign = (this && this.__assign) || function () {
-  __assign = Object.assign || function (t) {
-    for (var s, i = 1, n = arguments.length; i < n; i++) {
-      s = arguments[i];
-      for (var p in s) {
-        if (Object.prototype.hasOwnProperty.call(s, p)) {
-          t[p] = s[p];
-        }
-      }
-    }
-    return t;
-  };
-  return __assign.apply(this, arguments);
-};
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-  function adopt(value) {
-    return value instanceof P ? value : new P(function (resolve) {
-      resolve(value);
-    });
-  }
-  return new (P || (P = Promise))(function (resolve, reject) {
-    function fulfilled(value) {
-      try {
-        step(generator.next(value));
-      } catch (e) {
-        reject(e);
-      }
-    }
-    function rejected(value) {
-      try {
-        step(generator['throw'](value));
-      } catch (e) {
-        reject(e);
-      }
-    }
-    function step(result) {
-      result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected);
-    }
-    step((generator = generator.apply(thisArg, _arguments || [])).next());
-  });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-  var _ = { label: 0, sent: function () {
-      if (t[0] & 1) {
-        throw t[1];
-      } return t[1];
-    }, trys: [], ops: [] }, f, y, t, g;
-  return g = { next: verb(0), 'throw': verb(1), 'return': verb(2) }, typeof Symbol === 'function' && (g[Symbol.iterator] = function () {
-    return this;
-  }), g;
-  function verb(n) {
-    return function (v) {
-      return step([n, v]);
-    };
-  }
-  function step(op) {
-    if (f) {
-      throw new TypeError('Generator is already executing.');
-    }
-    while (_) {
-      try {
-        if (f = 1, y && (t = op[0] & 2 ? y['return'] : op[0] ? y['throw'] || ((t = y['return']) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) {
-          return t;
-        }
-        if (y = 0, t) {
-          op = [op[0] & 2, t.value];
-        }
-        switch (op[0]) {
-          case 0: case 1: t = op; break;
-          case 4: _.label++; return { value: op[1], done: false };
-          case 5: _.label++; y = op[1]; op = [0]; continue;
-          case 7: op = _.ops.pop(); _.trys.pop(); continue;
-          default:
-            if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) {
-              _ = 0; continue;
-            }
-            if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) {
-              _.label = op[1]; break;
-            }
-            if (op[0] === 6 && _.label < t[1]) {
-              _.label = t[1]; t = op; break;
-            }
-            if (t && _.label < t[2]) {
-              _.label = t[2]; _.ops.push(op); break;
-            }
-            if (t[2]) {
-              _.ops.pop();
-            }
-            _.trys.pop(); continue;
-        }
-        op = body.call(thisArg, _);
-      } catch (e) {
-        op = [6, e]; y = 0;
-      } finally {
-        f = t = 0;
-      }
-    }
-    if (op[0] & 5) {
-      throw op[1];
-    } return { value: op[0] ? op[1] : void 0, done: true };
-  }
-};
-exports.__esModule = true;
-exports.UserTypeApi = exports.UserTypeApiFactory = exports.UserTypeApiFp = exports.UserTypeApiRequestParamCreator = void 0;
+"use strict";
 /* tslint:disable */
 /* eslint-disable */
 /**
+ * Copyright (c) 2022-present, Okta, Inc. and/or its affiliates. All rights reserved.
+ * The Okta software accompanied by this notice is provided pursuant to the Apache License, Version 2.0 (the "License.")
+ *
+ * You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0.
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *
+ * See the License for the specific language governing permissions and limitations under the License.
+ *
  * Okta API
  * Allows customers to easily access the Okta API
  *
@@ -142,6 +22,70 @@ exports.UserTypeApi = exports.UserTypeApiFactory = exports.UserTypeApiFp = expor
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+exports.__esModule = true;
+exports.UserTypeApi = exports.UserTypeApiFactory = exports.UserTypeApiFp = exports.UserTypeApiRequestParamCreator = void 0;
 // Some imports not used depending on template conditions
 // @ts-ignore
 var base_1 = require("../base");
@@ -218,12 +162,12 @@ var UserTypeApiRequestParamCreator = function (configuration) {
     return {
         httpClient: httpClient,
         /**
-         * Creates a new User Type. A default User Type is automatically created along with your org, and you may add another 9 User Types for a maximum of 10.
-         * @summary Create User Type
-         * @param {UserType} body
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
+          * Creates a new User Type. A default User Type is automatically created along with your org, and you may add another 9 User Types for a maximum of 10.
+          * @summary Create User Type
+          * @param {UserType} body
+          * @param {*} [options] Override http request option.
+          * @throws {RequiredError}
+          */
         createUserType: function (body, options) {
             if (options === void 0) { options = {}; }
             return __awaiter(_this, void 0, void 0, function () {
@@ -295,12 +239,12 @@ var UserTypeApiRequestParamCreator = function (configuration) {
             });
         },
         /**
-         * Deletes a User Type permanently. This operation is not permitted for the default type, nor for any User Type that has existing users
-         * @summary Delete User Type
-         * @param {string} typeId
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
+          * Deletes a User Type permanently. This operation is not permitted for the default type, nor for any User Type that has existing users
+          * @summary Delete User Type
+          * @param {string} typeId
+          * @param {*} [options] Override http request option.
+          * @throws {RequiredError}
+          */
         deleteUserType: function (typeId, options) {
             if (options === void 0) { options = {}; }
             return __awaiter(_this, void 0, void 0, function () {
@@ -370,12 +314,12 @@ var UserTypeApiRequestParamCreator = function (configuration) {
             });
         },
         /**
-         * Fetches a User Type by ID. The special identifier `default` may be used to fetch the default User Type.
-         * @summary Get User Type
-         * @param {string} typeId
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
+          * Fetches a User Type by ID. The special identifier `default` may be used to fetch the default User Type.
+          * @summary Get User Type
+          * @param {string} typeId
+          * @param {*} [options] Override http request option.
+          * @throws {RequiredError}
+          */
         getUserType: function (typeId, options) {
             if (options === void 0) { options = {}; }
             return __awaiter(_this, void 0, void 0, function () {
@@ -445,11 +389,11 @@ var UserTypeApiRequestParamCreator = function (configuration) {
             });
         },
         /**
-         * Fetches all User Types in your org
-         * @summary List User Types
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
+          * Fetches all User Types in your org
+          * @summary List User Types
+          * @param {*} [options] Override http request option.
+          * @throws {RequiredError}
+          */
         listUserTypes: function (options) {
             if (options === void 0) { options = {}; }
             return __awaiter(_this, void 0, void 0, function () {
@@ -514,13 +458,13 @@ var UserTypeApiRequestParamCreator = function (configuration) {
             });
         },
         /**
-         * Replace an existing User Type
-         * @summary Replace User Type
-         * @param {UserType} body
-         * @param {string} typeId
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
+          * Replace an existing User Type
+          * @summary Replace User Type
+          * @param {UserType} body
+          * @param {string} typeId
+          * @param {*} [options] Override http request option.
+          * @throws {RequiredError}
+          */
         replaceUserType: function (body, typeId, options) {
             if (options === void 0) { options = {}; }
             return __awaiter(_this, void 0, void 0, function () {
@@ -597,13 +541,13 @@ var UserTypeApiRequestParamCreator = function (configuration) {
             });
         },
         /**
-         * Updates an existing User Type
-         * @summary Update User Type
-         * @param {UserType} body
-         * @param {string} typeId
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
+          * Updates an existing User Type
+          * @summary Update User Type
+          * @param {UserType} body
+          * @param {string} typeId
+          * @param {*} [options] Override http request option.
+          * @throws {RequiredError}
+          */
         updateUserType: function (body, typeId, options) {
             if (options === void 0) { options = {}; }
             return __awaiter(_this, void 0, void 0, function () {
@@ -689,19 +633,19 @@ exports.UserTypeApiRequestParamCreator = UserTypeApiRequestParamCreator;
 var UserTypeApiFp = function (configuration) {
     return {
         /**
-         * Creates a new User Type. A default User Type is automatically created along with your org, and you may add another 9 User Types for a maximum of 10.
-         * @summary Create User Type
-         * @param {UserType} body
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
+          * Creates a new User Type. A default User Type is automatically created along with your org, and you may add another 9 User Types for a maximum of 10.
+          * @summary Create User Type
+          * @param {UserType} body
+          * @param {*} [options] Override http request option.
+          * @throws {RequiredError}
+          */
         createUserType: function (body, options) {
             return __awaiter(this, void 0, void 0, function () {
                 var api, localVarRequestArgs;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
                         case 0:
-                            api = exports.UserTypeApiRequestParamCreator(configuration);
+                            api = (0, exports.UserTypeApiRequestParamCreator)(configuration);
                             return [4 /*yield*/, api.createUserType(body, options)];
                         case 1:
                             localVarRequestArgs = _a.sent();
@@ -716,19 +660,19 @@ var UserTypeApiFp = function (configuration) {
             });
         },
         /**
-         * Deletes a User Type permanently. This operation is not permitted for the default type, nor for any User Type that has existing users
-         * @summary Delete User Type
-         * @param {string} typeId
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
+          * Deletes a User Type permanently. This operation is not permitted for the default type, nor for any User Type that has existing users
+          * @summary Delete User Type
+          * @param {string} typeId
+          * @param {*} [options] Override http request option.
+          * @throws {RequiredError}
+          */
         deleteUserType: function (typeId, options) {
             return __awaiter(this, void 0, void 0, function () {
                 var api, localVarRequestArgs;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
                         case 0:
-                            api = exports.UserTypeApiRequestParamCreator(configuration);
+                            api = (0, exports.UserTypeApiRequestParamCreator)(configuration);
                             return [4 /*yield*/, api.deleteUserType(typeId, options)];
                         case 1:
                             localVarRequestArgs = _a.sent();
@@ -743,19 +687,19 @@ var UserTypeApiFp = function (configuration) {
             });
         },
         /**
-         * Fetches a User Type by ID. The special identifier `default` may be used to fetch the default User Type.
-         * @summary Get User Type
-         * @param {string} typeId
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
+          * Fetches a User Type by ID. The special identifier `default` may be used to fetch the default User Type.
+          * @summary Get User Type
+          * @param {string} typeId
+          * @param {*} [options] Override http request option.
+          * @throws {RequiredError}
+          */
         getUserType: function (typeId, options) {
             return __awaiter(this, void 0, void 0, function () {
                 var api, localVarRequestArgs;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
                         case 0:
-                            api = exports.UserTypeApiRequestParamCreator(configuration);
+                            api = (0, exports.UserTypeApiRequestParamCreator)(configuration);
                             return [4 /*yield*/, api.getUserType(typeId, options)];
                         case 1:
                             localVarRequestArgs = _a.sent();
@@ -770,18 +714,18 @@ var UserTypeApiFp = function (configuration) {
             });
         },
         /**
-         * Fetches all User Types in your org
-         * @summary List User Types
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
+          * Fetches all User Types in your org
+          * @summary List User Types
+          * @param {*} [options] Override http request option.
+          * @throws {RequiredError}
+          */
         listUserTypes: function (options) {
             return __awaiter(this, void 0, void 0, function () {
                 var api, localVarRequestArgs;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
                         case 0:
-                            api = exports.UserTypeApiRequestParamCreator(configuration);
+                            api = (0, exports.UserTypeApiRequestParamCreator)(configuration);
                             return [4 /*yield*/, api.listUserTypes(options)];
                         case 1:
                             localVarRequestArgs = _a.sent();
@@ -796,20 +740,20 @@ var UserTypeApiFp = function (configuration) {
             });
         },
         /**
-         * Replace an existing User Type
-         * @summary Replace User Type
-         * @param {UserType} body
-         * @param {string} typeId
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
+          * Replace an existing User Type
+          * @summary Replace User Type
+          * @param {UserType} body
+          * @param {string} typeId
+          * @param {*} [options] Override http request option.
+          * @throws {RequiredError}
+          */
         replaceUserType: function (body, typeId, options) {
             return __awaiter(this, void 0, void 0, function () {
                 var api, localVarRequestArgs;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
                         case 0:
-                            api = exports.UserTypeApiRequestParamCreator(configuration);
+                            api = (0, exports.UserTypeApiRequestParamCreator)(configuration);
                             return [4 /*yield*/, api.replaceUserType(body, typeId, options)];
                         case 1:
                             localVarRequestArgs = _a.sent();
@@ -824,20 +768,20 @@ var UserTypeApiFp = function (configuration) {
             });
         },
         /**
-         * Updates an existing User Type
-         * @summary Update User Type
-         * @param {UserType} body
-         * @param {string} typeId
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
+          * Updates an existing User Type
+          * @summary Update User Type
+          * @param {UserType} body
+          * @param {string} typeId
+          * @param {*} [options] Override http request option.
+          * @throws {RequiredError}
+          */
         updateUserType: function (body, typeId, options) {
             return __awaiter(this, void 0, void 0, function () {
                 var api, localVarRequestArgs;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
                         case 0:
-                            api = exports.UserTypeApiRequestParamCreator(configuration);
+                            api = (0, exports.UserTypeApiRequestParamCreator)(configuration);
                             return [4 /*yield*/, api.updateUserType(body, typeId, options)];
                         case 1:
                             localVarRequestArgs = _a.sent();
@@ -861,65 +805,65 @@ exports.UserTypeApiFp = UserTypeApiFp;
 var UserTypeApiFactory = function (configuration, basePath, httpClient) {
     return {
         /**
-         * Creates a new User Type. A default User Type is automatically created along with your org, and you may add another 9 User Types for a maximum of 10.
-         * @summary Create User Type
-         * @param {UserType} body
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
+          * Creates a new User Type. A default User Type is automatically created along with your org, and you may add another 9 User Types for a maximum of 10.
+          * @summary Create User Type
+          * @param {UserType} body
+          * @param {*} [options] Override http request option.
+          * @throws {RequiredError}
+          */
         createUserType: function (body, options) {
-            return exports.UserTypeApiFp(configuration).createUserType(body, options).then(function (request) { return request(httpClient, basePath); });
+            return (0, exports.UserTypeApiFp)(configuration).createUserType(body, options).then(function (request) { return request(httpClient, basePath); });
         },
         /**
-         * Deletes a User Type permanently. This operation is not permitted for the default type, nor for any User Type that has existing users
-         * @summary Delete User Type
-         * @param {string} typeId
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
+          * Deletes a User Type permanently. This operation is not permitted for the default type, nor for any User Type that has existing users
+          * @summary Delete User Type
+          * @param {string} typeId
+          * @param {*} [options] Override http request option.
+          * @throws {RequiredError}
+          */
         deleteUserType: function (typeId, options) {
-            return exports.UserTypeApiFp(configuration).deleteUserType(typeId, options).then(function (request) { return request(httpClient, basePath); });
+            return (0, exports.UserTypeApiFp)(configuration).deleteUserType(typeId, options).then(function (request) { return request(httpClient, basePath); });
         },
         /**
-         * Fetches a User Type by ID. The special identifier `default` may be used to fetch the default User Type.
-         * @summary Get User Type
-         * @param {string} typeId
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
+          * Fetches a User Type by ID. The special identifier `default` may be used to fetch the default User Type.
+          * @summary Get User Type
+          * @param {string} typeId
+          * @param {*} [options] Override http request option.
+          * @throws {RequiredError}
+          */
         getUserType: function (typeId, options) {
-            return exports.UserTypeApiFp(configuration).getUserType(typeId, options).then(function (request) { return request(httpClient, basePath); });
+            return (0, exports.UserTypeApiFp)(configuration).getUserType(typeId, options).then(function (request) { return request(httpClient, basePath); });
         },
         /**
-         * Fetches all User Types in your org
-         * @summary List User Types
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
+          * Fetches all User Types in your org
+          * @summary List User Types
+          * @param {*} [options] Override http request option.
+          * @throws {RequiredError}
+          */
         listUserTypes: function (options) {
-            return exports.UserTypeApiFp(configuration).listUserTypes(options).then(function (request) { return request(httpClient, basePath); });
+            return (0, exports.UserTypeApiFp)(configuration).listUserTypes(options).then(function (request) { return request(httpClient, basePath); });
         },
         /**
-         * Replace an existing User Type
-         * @summary Replace User Type
-         * @param {UserType} body
-         * @param {string} typeId
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
+          * Replace an existing User Type
+          * @summary Replace User Type
+          * @param {UserType} body
+          * @param {string} typeId
+          * @param {*} [options] Override http request option.
+          * @throws {RequiredError}
+          */
         replaceUserType: function (body, typeId, options) {
-            return exports.UserTypeApiFp(configuration).replaceUserType(body, typeId, options).then(function (request) { return request(httpClient, basePath); });
+            return (0, exports.UserTypeApiFp)(configuration).replaceUserType(body, typeId, options).then(function (request) { return request(httpClient, basePath); });
         },
         /**
-         * Updates an existing User Type
-         * @summary Update User Type
-         * @param {UserType} body
-         * @param {string} typeId
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
+          * Updates an existing User Type
+          * @summary Update User Type
+          * @param {UserType} body
+          * @param {string} typeId
+          * @param {*} [options] Override http request option.
+          * @throws {RequiredError}
+          */
         updateUserType: function (body, typeId, options) {
-            return exports.UserTypeApiFp(configuration).updateUserType(body, typeId, options).then(function (request) { return request(httpClient, basePath); });
+            return (0, exports.UserTypeApiFp)(configuration).updateUserType(body, typeId, options).then(function (request) { return request(httpClient, basePath); });
         }
     };
 };
@@ -936,83 +880,83 @@ var UserTypeApi = /** @class */ (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     /**
-     * Creates a new User Type. A default User Type is automatically created along with your org, and you may add another 9 User Types for a maximum of 10.
-     * @summary Create User Type
-     * @param {UserType} body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof UserTypeApi
-     */
+      * Creates a new User Type. A default User Type is automatically created along with your org, and you may add another 9 User Types for a maximum of 10.
+      * @summary Create User Type
+      * @param {UserType} body
+      * @param {*} [options] Override http request option.
+      * @throws {RequiredError}
+      * @memberof UserTypeApi
+      */
     UserTypeApi.prototype.createUserType = function (body, options) {
         var _this = this;
-        var api = exports.UserTypeApiRequestParamCreator(this.configuration);
-        return exports.UserTypeApiFp(this.configuration).createUserType(body, options).then(function (request) { return request(api.httpClient, _this.basePath); });
+        var api = (0, exports.UserTypeApiRequestParamCreator)(this.configuration);
+        return (0, exports.UserTypeApiFp)(this.configuration).createUserType(body, options).then(function (request) { return request(api.httpClient, _this.basePath); });
     };
     /**
-     * Deletes a User Type permanently. This operation is not permitted for the default type, nor for any User Type that has existing users
-     * @summary Delete User Type
-     * @param {string} typeId
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof UserTypeApi
-     */
+      * Deletes a User Type permanently. This operation is not permitted for the default type, nor for any User Type that has existing users
+      * @summary Delete User Type
+      * @param {string} typeId
+      * @param {*} [options] Override http request option.
+      * @throws {RequiredError}
+      * @memberof UserTypeApi
+      */
     UserTypeApi.prototype.deleteUserType = function (typeId, options) {
         var _this = this;
-        var api = exports.UserTypeApiRequestParamCreator(this.configuration);
-        return exports.UserTypeApiFp(this.configuration).deleteUserType(typeId, options).then(function (request) { return request(api.httpClient, _this.basePath); });
+        var api = (0, exports.UserTypeApiRequestParamCreator)(this.configuration);
+        return (0, exports.UserTypeApiFp)(this.configuration).deleteUserType(typeId, options).then(function (request) { return request(api.httpClient, _this.basePath); });
     };
     /**
-     * Fetches a User Type by ID. The special identifier `default` may be used to fetch the default User Type.
-     * @summary Get User Type
-     * @param {string} typeId
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof UserTypeApi
-     */
+      * Fetches a User Type by ID. The special identifier `default` may be used to fetch the default User Type.
+      * @summary Get User Type
+      * @param {string} typeId
+      * @param {*} [options] Override http request option.
+      * @throws {RequiredError}
+      * @memberof UserTypeApi
+      */
     UserTypeApi.prototype.getUserType = function (typeId, options) {
         var _this = this;
-        var api = exports.UserTypeApiRequestParamCreator(this.configuration);
-        return exports.UserTypeApiFp(this.configuration).getUserType(typeId, options).then(function (request) { return request(api.httpClient, _this.basePath); });
+        var api = (0, exports.UserTypeApiRequestParamCreator)(this.configuration);
+        return (0, exports.UserTypeApiFp)(this.configuration).getUserType(typeId, options).then(function (request) { return request(api.httpClient, _this.basePath); });
     };
     /**
-     * Fetches all User Types in your org
-     * @summary List User Types
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof UserTypeApi
-     */
+      * Fetches all User Types in your org
+      * @summary List User Types
+      * @param {*} [options] Override http request option.
+      * @throws {RequiredError}
+      * @memberof UserTypeApi
+      */
     UserTypeApi.prototype.listUserTypes = function (options) {
         var _this = this;
-        var api = exports.UserTypeApiRequestParamCreator(this.configuration);
-        return exports.UserTypeApiFp(this.configuration).listUserTypes(options).then(function (request) { return request(api.httpClient, _this.basePath); });
+        var api = (0, exports.UserTypeApiRequestParamCreator)(this.configuration);
+        return (0, exports.UserTypeApiFp)(this.configuration).listUserTypes(options).then(function (request) { return request(api.httpClient, _this.basePath); });
     };
     /**
-     * Replace an existing User Type
-     * @summary Replace User Type
-     * @param {UserType} body
-     * @param {string} typeId
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof UserTypeApi
-     */
+      * Replace an existing User Type
+      * @summary Replace User Type
+      * @param {UserType} body
+      * @param {string} typeId
+      * @param {*} [options] Override http request option.
+      * @throws {RequiredError}
+      * @memberof UserTypeApi
+      */
     UserTypeApi.prototype.replaceUserType = function (body, typeId, options) {
         var _this = this;
-        var api = exports.UserTypeApiRequestParamCreator(this.configuration);
-        return exports.UserTypeApiFp(this.configuration).replaceUserType(body, typeId, options).then(function (request) { return request(api.httpClient, _this.basePath); });
+        var api = (0, exports.UserTypeApiRequestParamCreator)(this.configuration);
+        return (0, exports.UserTypeApiFp)(this.configuration).replaceUserType(body, typeId, options).then(function (request) { return request(api.httpClient, _this.basePath); });
     };
     /**
-     * Updates an existing User Type
-     * @summary Update User Type
-     * @param {UserType} body
-     * @param {string} typeId
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof UserTypeApi
-     */
+      * Updates an existing User Type
+      * @summary Update User Type
+      * @param {UserType} body
+      * @param {string} typeId
+      * @param {*} [options] Override http request option.
+      * @throws {RequiredError}
+      * @memberof UserTypeApi
+      */
     UserTypeApi.prototype.updateUserType = function (body, typeId, options) {
         var _this = this;
-        var api = exports.UserTypeApiRequestParamCreator(this.configuration);
-        return exports.UserTypeApiFp(this.configuration).updateUserType(body, typeId, options).then(function (request) { return request(api.httpClient, _this.basePath); });
+        var api = (0, exports.UserTypeApiRequestParamCreator)(this.configuration);
+        return (0, exports.UserTypeApiFp)(this.configuration).updateUserType(body, typeId, options).then(function (request) { return request(api.httpClient, _this.basePath); });
     };
     return UserTypeApi;
 }(base_1.BaseAPI));

@@ -1,9 +1,9 @@
 /**
  * {{{description}}}
  * @export
- * @interface {{classname}}
+ * @class {{classname}}
  */
-export interface {{classname}} {{#parent}}extends {{{parent}}} {{/parent}}{
+export class {{classname}} {{#parent}}extends {{{parent}}} {{/parent}}{
 {{#additionalPropertiesType}}
   [key: string]: {{{additionalPropertiesType}}}{{#hasVars}} | any{{/hasVars}};
 
