@@ -18,3 +18,10 @@ test-reports/
 .yalc
 yalc.lock
 
+src/v3/.swagger-codegen/
+src/v3/.gitignore
+src/v3/.npmignore
+src/v3/.swagger-codegen-ignore
+src/v3/git_push.sh
+src/v3/README.md
+src/v3/tsconfig.json

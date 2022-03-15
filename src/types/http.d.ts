@@ -29,7 +29,8 @@ export declare class Http {
     oauth: OAuth,
     cacheStore?: CacheStorage,
     cacheMiddleware?: typeof defaultCacheMiddleware | unknown,
-    httpsProxy?: string | unknown, // https://github.com/TooTallNate/node-agent-base/issues/56
+    httpsProxy?: string | unknown, // https://github.com/TooTallNate/node-agent-base/issues/56,
+    defaultCacheMiddlewareResponseBufferSize?: number,
   });
   defaultHeaders: Record<string, unknown>;
   requestExecutor: RequestExecutor;
