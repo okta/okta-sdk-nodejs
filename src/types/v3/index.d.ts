@@ -11,4 +11,4 @@
  */
 export * from './api';
 export * from './configuration';
-export * from './models';
+export * as v3 from './models';
