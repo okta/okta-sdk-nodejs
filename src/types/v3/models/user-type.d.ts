@@ -25,64 +25,64 @@
  * @class UserType
  */
 export declare class UserType {
-    /**
+  /**
       *
       * @type {{ [key, string]: any;}}
       * @memberof UserType
       */
-    links?: any;
-    /**
+  links?: any;
+  /**
       *
       * @type {Date}
       * @memberof UserType
       */
-    created?: any;
-    /**
+  created?: any;
+  /**
       *
       * @type {string}
       * @memberof UserType
       */
-    createdBy?: any;
-    /**
+  createdBy?: any;
+  /**
       *
       * @type {boolean}
       * @memberof UserType
       */
-    _default?: any;
-    /**
+  _default?: any;
+  /**
       *
       * @type {string}
       * @memberof UserType
       */
-    description?: any;
-    /**
+  description?: any;
+  /**
       *
       * @type {string}
       * @memberof UserType
       */
-    displayName?: any;
-    /**
+  displayName?: any;
+  /**
       *
       * @type {string}
       * @memberof UserType
       */
-    id?: any;
-    /**
+  id?: any;
+  /**
       *
       * @type {Date}
       * @memberof UserType
       */
-    lastUpdated?: any;
-    /**
+  lastUpdated?: any;
+  /**
       *
       * @type {string}
       * @memberof UserType
       */
-    lastUpdatedBy?: any;
-    /**
+  lastUpdatedBy?: any;
+  /**
       *
       * @type {string}
       * @memberof UserType
       */
-    name?: any;
+  name?: any;
 }
