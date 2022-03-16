@@ -20,6 +20,8 @@ const Http = require('./http');
 const DEFAULT_USER_AGENT = `${packageJson.name}/${packageJson.version} node/${process.versions.node} ${os.platform()}/${os.release()}`;
 const repoUrl = 'https://github.com/okta/okta-sdk-nodejs';
 const Oauth = require('./oauth');
+const { UserTypeApi } = require('./v3/apis/user-type-api');
+
 
 /**
  * Base client that encapsulates the HTTP request mechanism, and knowledge of how to authenticate with the Okta API
@@ -87,6 +89,8 @@ class Client extends GeneratedApiClient {
       this.http.defaultHeaders.Authorization = `SSWS ${this.apiToken}`;
     }
     this.http.defaultHeaders['User-Agent'] = parsedConfig.client.userAgent ? parsedConfig.client.userAgent + ' ' + DEFAULT_USER_AGENT : DEFAULT_USER_AGENT;
+
+    this.userTypeApi = new UserTypeApi(config, parsedConfig.client.orgUrl, this.http);
   }
 }
 
