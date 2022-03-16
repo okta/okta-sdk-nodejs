@@ -66,6 +66,9 @@ var BaseAPI = /** @class */ (function () {
             this.configuration = configuration;
             this.basePath = configuration.basePath || this.basePath;
         }
+        if (httpClient) {
+            this.httpClient = httpClient;
+        }
     }
     return BaseAPI;
 }());

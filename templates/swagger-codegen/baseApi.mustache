@@ -44,6 +44,9 @@ export class BaseAPI {
             this.configuration = configuration;
             this.basePath = configuration.basePath || this.basePath;
         }
+        if (httpClient) {
+          this.httpClient = httpClient;
+        }
     }
 };
 
