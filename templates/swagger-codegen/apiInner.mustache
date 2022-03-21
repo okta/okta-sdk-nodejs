@@ -8,13 +8,13 @@ import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } fr
 {{#imports}}
 import { {{import}} } from '{{apiRelativeToRoot}}{{tsModelPackage}}';
 import { Response } from 'node-fetch';
-import Oauth = require('../../oauth');
-import Http = require('../../http');
-import ConfigLoader = require('../../config-loader');
-import DefaultRequestExecutor = require('../../default-request-executor');
-import { V2Configuration } from '../../configuration';
-import { Configuration } from '{{apiRelativeToRoot}}configuration';
-
+import { OAuth } from '../../oauth';
+import { Http } from '../../http';
+import ConfigLoader from '../../config-loader';
+import DefaultRequestExecutor from '../../default-request-executor';
+import type { V2Configuration } from '../../configuration';
+import type { Collection } from '../../collection';
+import type { Configuration } from '{{apiRelativeToRoot}}configuration';
 
 const os = require('os');
 const packageJson = require('../../../package.json');
@@ -81,7 +81,7 @@ export const {{classname}}RequestParamCreator = function (configuration?: Config
     oauth = new Oauth(this);
   }
 
-  const httpClient = new Http({
+  const httpClient: Http = new Http({
     cacheStore: clientConfig.cacheStore,
     cacheMiddleware: clientConfig.cacheMiddleware,
     defaultCacheMiddlewareResponseBufferSize: clientConfig.defaultCacheMiddlewareResponseBufferSize,
@@ -309,13 +309,17 @@ export const {{classname}}Fp = function(configuration?: Configuration & V2Config
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     */
-  async {{nickname}}({{#parameters}}{{paramName}}{{^required}}?{{/required}}: {{{dataType}}}, {{/parameters}}options?: any): Promise<(httpClient?: Http, basePath?: string) => Promise<{{#returnType}}{{{returnType}}}{{/returnType}}{{^returnType}}Response{{/returnType}}>> {
+  async {{nickname}}({{#parameters}}{{paramName}}{{^required}}?{{/required}}: {{{dataType}}}, {{/parameters}}options?: any): Promise<(httpClient?: Http, basePath?: string) => {{#returnType}}{{#eq (substring returnType 0 3) 'Arr'}}Collection<{{{substring returnType 6}}}{{else}}Promise<{{{returnType}}}>{{/eq}}{{/returnType}}{{^returnType}}Promise<Response>{{/returnType}}> {
       const api = {{classname}}RequestParamCreator(configuration);
       const localVarRequestArgs = await api.{{nickname}}({{#parameters}}{{paramName}}, {{/parameters}}options);
       return (httpClient: Http = api.httpClient, basePath: string = configuration.basePath || configuration.orgUrl) => {
         const requestArgs = {...localVarRequestArgs.options, url: basePath + localVarRequestArgs.url};
         {{#returnType}}
+        {{#eq (substring returnType 0 3) 'Arr'}}
+        return new Collection<{{{substring returnType 6}}}({http}, `${configuration.orgUrl}/${localVarRequestArgs.url}`, new ModelFactory({{{replace (substring returnType 6) '>' ''}}}));
+        {{else}}
         return httpClient.http(requestArgs.url, requestArgs).then(res => res.json()) as Promise<{{{returnType}}}>;
+        {{/eq}}
         {{/returnType}}
         {{^returnType}}
         return httpClient.http(requestArgs.url, requestArgs) as Promise<Response>;
@@ -347,7 +351,7 @@ export const {{classname}}Factory = function (configuration?: Configuration, bas
     * @param {*} [options] Override http request option.
     * @throws {RequiredError}
     */
-  {{nickname}}({{#parameters}}{{paramName}}{{^required}}?{{/required}}: {{{dataType}}}, {{/parameters}}options?: any): Promise<{{#returnType}}{{{returnType}}}{{/returnType}}{{^returnType}}Response{{/returnType}}> {
+  {{nickname}}({{#parameters}}{{paramName}}{{^required}}?{{/required}}: {{{dataType}}}, {{/parameters}}options?: any): Promise<(httpClient?: Http, basePath?: string) => {{#returnType}}{{#eq (substring returnType 0 3) 'Arr'}}Collection<{{{substring returnType 6}}}{{else}}Promise<{{{returnType}}}>{{/eq}}{{/returnType}}{{^returnType}}Promise<Response>{{/returnType}}> {
       return {{classname}}Fp(configuration).{{nickname}}({{#parameters}}{{paramName}}, {{/parameters}}options).then((request) => request(httpClient, basePath));
   },
   {{/contents}}
