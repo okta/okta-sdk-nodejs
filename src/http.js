@@ -194,4 +194,4 @@ class Http {
 
 }
 
-module.exports = Http;
+module.exports.Http = Http;
