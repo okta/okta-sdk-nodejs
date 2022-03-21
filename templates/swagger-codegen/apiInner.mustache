@@ -10,10 +10,12 @@ import { {{import}} } from '{{apiRelativeToRoot}}{{tsModelPackage}}';
 import { Response } from 'node-fetch';
 import { OAuth } from '../../oauth';
 import { Http } from '../../http';
-import ConfigLoader from '../../config-loader';
-import DefaultRequestExecutor from '../../default-request-executor';
+import { ConfigLoader } from '../../config-loader';
+import { DefaultRequestExecutor } from '../../default-request-executor';
+import { ModelFactory } from '../../model-factory';
+import { Collection } from '../../collection';
+
 import type { V2Configuration } from '../../configuration';
-import type { Collection } from '../../collection';
 import type { Configuration } from '{{apiRelativeToRoot}}configuration';
 
 const os = require('os');
@@ -78,10 +80,10 @@ export const {{classname}}RequestParamCreator = function (configuration?: Config
     clientId = parsedConfig.client.clientId;
     scopes = parsedConfig.client.scopes.split(' ');
     privateKey = parsedConfig.client.privateKey;
-    oauth = new Oauth(this);
+    oauth = new OAuth(this);
   }
 
-  const httpClient: Http = new Http({
+  const http: Http = new Http({
     cacheStore: clientConfig.cacheStore,
     cacheMiddleware: clientConfig.cacheMiddleware,
     defaultCacheMiddlewareResponseBufferSize: clientConfig.defaultCacheMiddlewareResponseBufferSize,
@@ -89,12 +91,12 @@ export const {{classname}}RequestParamCreator = function (configuration?: Config
     oauth: oauth
   });
   if (authorizationMode === 'SSWS') {
-    httpClient.defaultHeaders.Authorization = `SSWS ${apiToken}`;
+    http.defaultHeaders.Authorization = `SSWS ${apiToken}`;
   }
-  httpClient.defaultHeaders['User-Agent'] = parsedConfig.client.userAgent ? parsedConfig.client.userAgent + ' ' + DEFAULT_USER_AGENT : DEFAULT_USER_AGENT;
+  http.defaultHeaders['User-Agent'] = parsedConfig.client.userAgent ? parsedConfig.client.userAgent + ' ' + DEFAULT_USER_AGENT : DEFAULT_USER_AGENT;
 
     return {
-      httpClient,
+      http,
   {{#operation}}
   {{#contents}}
       /**
@@ -312,7 +314,7 @@ export const {{classname}}Fp = function(configuration?: Configuration & V2Config
   async {{nickname}}({{#parameters}}{{paramName}}{{^required}}?{{/required}}: {{{dataType}}}, {{/parameters}}options?: any): Promise<(httpClient?: Http, basePath?: string) => {{#returnType}}{{#eq (substring returnType 0 3) 'Arr'}}Collection<{{{substring returnType 6}}}{{else}}Promise<{{{returnType}}}>{{/eq}}{{/returnType}}{{^returnType}}Promise<Response>{{/returnType}}> {
       const api = {{classname}}RequestParamCreator(configuration);
       const localVarRequestArgs = await api.{{nickname}}({{#parameters}}{{paramName}}, {{/parameters}}options);
-      return (httpClient: Http = api.httpClient, basePath: string = configuration.basePath || configuration.orgUrl) => {
+      return (httpClient: Http = api.http, basePath: string = configuration.basePath || configuration.orgUrl) => {
         const requestArgs = {...localVarRequestArgs.options, url: basePath + localVarRequestArgs.url};
         {{#returnType}}
         {{#eq (substring returnType 0 3) 'Arr'}}
@@ -417,7 +419,7 @@ export class {{classname}} extends BaseAPI {
     */
   public {{nickname}}({{#parameters}}{{paramName}}{{^required}}?{{/required}}: {{{dataType}}}, {{/parameters}}options?: any) {
     const api = {{classname}}RequestParamCreator(this.configuration);
-    return {{classname}}Fp(this.configuration).{{nickname}}({{#parameters}}{{paramName}}, {{/parameters}}options).then((request) => request(api.httpClient, this.basePath));
+    return {{classname}}Fp(this.configuration).{{nickname}}({{#parameters}}{{paramName}}, {{/parameters}}options).then((request) => request(api.http, this.basePath));
   }
   {{^@last}}
 
