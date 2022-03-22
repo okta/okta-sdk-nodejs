@@ -15,10 +15,10 @@
 
 const qs = require('querystring');
 
-const Collection = require('./collection');
+const { Collection } = require('./collection');
 const models = require('./models');
 const factories = require('./factories');
-const ModelFactory = require('./model-factory');
+const { ModelFactory } = require('./model-factory');
 
 /**
  * Auto-Generated API client, implements the operations as defined in the OpenaAPI JSON spec
@@ -6119,8 +6119,8 @@ class GeneratedApiClient {
    * @returns {Collection} A collection that will yield {@link UserType} instances.
    */
   listUserTypes() {
+    // return this.userTypeApi.listUserTypes()
     let url = `${this.baseUrl}/api/v1/meta/types/user`;
-
     return new Collection(
       this,
       url,
