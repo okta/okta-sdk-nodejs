@@ -1,5 +1,7 @@
 const _ = require('lodash');
 const { isConflictingPropertyName, containsRestrictedChars, isRestrictedPropertyOverride } = require('./helpers/operation');
+const { isV3Api, v3ApiByOperationId, getOperationArgumentV3Format } = require('./helpers/operation-v3');
+
 const js = module.exports;
 const operationUtils = require('./helpers/operation');
 const { convertSwaggerToTSType } = require('./helpers/typescript-formatter');
@@ -329,5 +331,12 @@ js.process = ({spec, operations, models, handlebars}) => {
     }
     return '';
   });
+
+  handlebars.registerHelper('isV3Api', isV3Api);
+  handlebars.registerHelper('v3ApiByOperationId', v3ApiByOperationId);
+  handlebars.registerHelper('getOperationArgumentV3Format', getOperationArgumentV3Format);
+
+  handlebars.registerHelper('toCamelCase', _.camelCase);
+
   return templates;
 };

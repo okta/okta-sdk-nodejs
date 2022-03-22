@@ -6119,13 +6119,7 @@ class GeneratedApiClient {
    * @returns {Collection} A collection that will yield {@link UserType} instances.
    */
   listUserTypes() {
-    // return this.userTypeApi.listUserTypes()
-    let url = `${this.baseUrl}/api/v1/meta/types/user`;
-    return new Collection(
-      this,
-      url,
-      new ModelFactory(models.UserType),
-    );
+    return this.userTypeApi.listUserTypes();
   }
 
   /**
@@ -6139,18 +6133,7 @@ class GeneratedApiClient {
     if (!userType) {
       return Promise.reject(new Error('OKTA API createUserType parameter userType is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/meta/types/user`;
-
-    const resources = [];
-
-    const request = this.http.postJson(
-      url,
-      {
-        body: userType
-      },
-      { resources }
-    );
-    return request.then(jsonRes => new models.UserType(jsonRes, this));
+    return this.userTypeApi.createUserType(userType);
   }
 
   /**
@@ -6163,18 +6146,7 @@ class GeneratedApiClient {
     if (!typeId) {
       return Promise.reject(new Error('OKTA API deleteUserType parameter typeId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/meta/types/user/${typeId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/meta/types/user/${typeId}`
-    ];
-
-    const request = this.http.delete(
-      url,
-      null,
-      { resources }
-    );
-    return request;
+    return this.userTypeApi.deleteUserType(typeId);
   }
 
   /**
@@ -6188,18 +6160,7 @@ class GeneratedApiClient {
     if (!typeId) {
       return Promise.reject(new Error('OKTA API getUserType parameter typeId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/meta/types/user/${typeId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/meta/types/user/${typeId}`
-    ];
-
-    const request = this.http.getJson(
-      url,
-      null,
-      { resources }
-    );
-    return request.then(jsonRes => new models.UserType(jsonRes, this));
+    return this.userTypeApi.getUserType(typeId);
   }
 
   /**
@@ -6217,20 +6178,7 @@ class GeneratedApiClient {
     if (!userType) {
       return Promise.reject(new Error('OKTA API updateUserType parameter userType is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/meta/types/user/${typeId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/meta/types/user/${typeId}`
-    ];
-
-    const request = this.http.postJson(
-      url,
-      {
-        body: userType
-      },
-      { resources }
-    );
-    return request.then(jsonRes => new models.UserType(jsonRes, this));
+    return this.userTypeApi.updateUserType(userType, typeId);
   }
 
   /**
@@ -6248,20 +6196,7 @@ class GeneratedApiClient {
     if (!userType) {
       return Promise.reject(new Error('OKTA API replaceUserType parameter userType is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/meta/types/user/${typeId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/meta/types/user/${typeId}`
-    ];
-
-    const request = this.http.putJson(
-      url,
-      {
-        body: userType
-      },
-      { resources }
-    );
-    return request.then(jsonRes => new models.UserType(jsonRes, this));
+    return this.userTypeApi.replaceUserType(userType, typeId);
   }
 
   /**
