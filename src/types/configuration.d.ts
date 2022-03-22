@@ -1,3 +1,4 @@
+import { CacheStorage } from './memory-store.d';
 import { defaultCacheMiddleware } from './default-cache-middleware';
 import { RequestExecutor } from './request-executor';
 
