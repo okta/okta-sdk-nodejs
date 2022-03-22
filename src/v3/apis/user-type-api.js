@@ -89,10 +89,13 @@ exports.UserTypeApi = exports.UserTypeApiFactory = exports.UserTypeApiFp = expor
 // Some imports not used depending on template conditions
 // @ts-ignore
 var base_1 = require("../base");
-var Oauth = require("../../oauth");
-var Http = require("../../http");
-var ConfigLoader = require("../../config-loader");
-var DefaultRequestExecutor = require("../../default-request-executor");
+var models_1 = require("../models");
+var oauth_1 = require("../../oauth");
+var http_1 = require("../../http");
+var config_loader_1 = require("../../config-loader");
+var default_request_executor_1 = require("../../default-request-executor");
+var model_factory_1 = require("../../model-factory");
+var collection_1 = require("../../collection");
 var os = require('os');
 var packageJson = require('../../../package.json');
 var DEFAULT_USER_AGENT = packageJson.name + "/" + packageJson.version + " node/" + process.versions.node + " " + os.platform() + "/" + os.release();
@@ -103,14 +106,14 @@ var repoUrl = 'https://github.com/okta/okta-sdk-nodejs';
  */
 var UserTypeApiRequestParamCreator = function (configuration) {
     var _this = this;
-    var configLoader = new ConfigLoader();
+    var configLoader = new config_loader_1.ConfigLoader();
     var clientConfig = Object.assign({}, configuration);
     configLoader.applyDefaults();
     configLoader.apply({
         client: clientConfig || {}
     });
     var parsedConfig = configLoader.config;
-    var requestExecutor = clientConfig.requestExecutor || new DefaultRequestExecutor();
+    var requestExecutor = clientConfig.requestExecutor || new default_request_executor_1.DefaultRequestExecutor();
     var errors = [];
     if (!parsedConfig.client.orgUrl) {
         errors.push('Okta Org URL not provided');
@@ -146,9 +149,9 @@ var UserTypeApiRequestParamCreator = function (configuration) {
         clientId = parsedConfig.client.clientId;
         scopes = parsedConfig.client.scopes.split(' ');
         privateKey = parsedConfig.client.privateKey;
-        oauth = new Oauth(this);
+        oauth = new oauth_1.OAuth(this);
     }
-    var httpClient = new Http({
+    var http = new http_1.Http({
         cacheStore: clientConfig.cacheStore,
         cacheMiddleware: clientConfig.cacheMiddleware,
         defaultCacheMiddlewareResponseBufferSize: clientConfig.defaultCacheMiddlewareResponseBufferSize,
@@ -156,11 +159,11 @@ var UserTypeApiRequestParamCreator = function (configuration) {
         oauth: oauth
     });
     if (authorizationMode === 'SSWS') {
-        httpClient.defaultHeaders.Authorization = "SSWS " + apiToken;
+        http.defaultHeaders.Authorization = "SSWS " + apiToken;
     }
-    httpClient.defaultHeaders['User-Agent'] = parsedConfig.client.userAgent ? parsedConfig.client.userAgent + ' ' + DEFAULT_USER_AGENT : DEFAULT_USER_AGENT;
+    http.defaultHeaders['User-Agent'] = parsedConfig.client.userAgent ? parsedConfig.client.userAgent + ' ' + DEFAULT_USER_AGENT : DEFAULT_USER_AGENT;
     return {
-        httpClient: httpClient,
+        http: http,
         /**
           * Creates a new User Type. A default User Type is automatically created along with your org, and you may add another 9 User Types for a maximum of 10.
           * @summary Create User Type
@@ -649,11 +652,11 @@ var UserTypeApiFp = function (configuration) {
                             return [4 /*yield*/, api.createUserType(body, options)];
                         case 1:
                             localVarRequestArgs = _a.sent();
-                            return [2 /*return*/, function (httpClient, basePath) {
-                                    if (httpClient === void 0) { httpClient = api.httpClient; }
+                            return [2 /*return*/, function (http, basePath) {
+                                    if (http === void 0) { http = api.http; }
                                     if (basePath === void 0) { basePath = configuration.basePath || configuration.orgUrl; }
                                     var requestArgs = __assign(__assign({}, localVarRequestArgs.options), { url: basePath + localVarRequestArgs.url });
-                                    return httpClient.http(requestArgs.url, requestArgs).then(function (res) { return res.json(); });
+                                    return http.http(requestArgs.url, requestArgs).then(function (res) { return res.json(); });
                                 }];
                     }
                 });
@@ -676,11 +679,11 @@ var UserTypeApiFp = function (configuration) {
                             return [4 /*yield*/, api.deleteUserType(typeId, options)];
                         case 1:
                             localVarRequestArgs = _a.sent();
-                            return [2 /*return*/, function (httpClient, basePath) {
-                                    if (httpClient === void 0) { httpClient = api.httpClient; }
+                            return [2 /*return*/, function (http, basePath) {
+                                    if (http === void 0) { http = api.http; }
                                     if (basePath === void 0) { basePath = configuration.basePath || configuration.orgUrl; }
                                     var requestArgs = __assign(__assign({}, localVarRequestArgs.options), { url: basePath + localVarRequestArgs.url });
-                                    return httpClient.http(requestArgs.url, requestArgs);
+                                    return http.http(requestArgs.url, requestArgs);
                                 }];
                     }
                 });
@@ -703,11 +706,11 @@ var UserTypeApiFp = function (configuration) {
                             return [4 /*yield*/, api.getUserType(typeId, options)];
                         case 1:
                             localVarRequestArgs = _a.sent();
-                            return [2 /*return*/, function (httpClient, basePath) {
-                                    if (httpClient === void 0) { httpClient = api.httpClient; }
+                            return [2 /*return*/, function (http, basePath) {
+                                    if (http === void 0) { http = api.http; }
                                     if (basePath === void 0) { basePath = configuration.basePath || configuration.orgUrl; }
                                     var requestArgs = __assign(__assign({}, localVarRequestArgs.options), { url: basePath + localVarRequestArgs.url });
-                                    return httpClient.http(requestArgs.url, requestArgs).then(function (res) { return res.json(); });
+                                    return http.http(requestArgs.url, requestArgs).then(function (res) { return res.json(); });
                                 }];
                     }
                 });
@@ -729,11 +732,11 @@ var UserTypeApiFp = function (configuration) {
                             return [4 /*yield*/, api.listUserTypes(options)];
                         case 1:
                             localVarRequestArgs = _a.sent();
-                            return [2 /*return*/, function (httpClient, basePath) {
-                                    if (httpClient === void 0) { httpClient = api.httpClient; }
+                            return [2 /*return*/, function (http, basePath) {
+                                    if (http === void 0) { http = api.http; }
                                     if (basePath === void 0) { basePath = configuration.basePath || configuration.orgUrl; }
                                     var requestArgs = __assign(__assign({}, localVarRequestArgs.options), { url: basePath + localVarRequestArgs.url });
-                                    return httpClient.http(requestArgs.url, requestArgs).then(function (res) { return res.json(); });
+                                    return new collection_1.Collection({ http: http }, configuration.orgUrl + "/" + localVarRequestArgs.url, new model_factory_1.ModelFactory(models_1.UserType));
                                 }];
                     }
                 });
@@ -757,11 +760,11 @@ var UserTypeApiFp = function (configuration) {
                             return [4 /*yield*/, api.replaceUserType(body, typeId, options)];
                         case 1:
                             localVarRequestArgs = _a.sent();
-                            return [2 /*return*/, function (httpClient, basePath) {
-                                    if (httpClient === void 0) { httpClient = api.httpClient; }
+                            return [2 /*return*/, function (http, basePath) {
+                                    if (http === void 0) { http = api.http; }
                                     if (basePath === void 0) { basePath = configuration.basePath || configuration.orgUrl; }
                                     var requestArgs = __assign(__assign({}, localVarRequestArgs.options), { url: basePath + localVarRequestArgs.url });
-                                    return httpClient.http(requestArgs.url, requestArgs).then(function (res) { return res.json(); });
+                                    return http.http(requestArgs.url, requestArgs).then(function (res) { return res.json(); });
                                 }];
                     }
                 });
@@ -785,11 +788,11 @@ var UserTypeApiFp = function (configuration) {
                             return [4 /*yield*/, api.updateUserType(body, typeId, options)];
                         case 1:
                             localVarRequestArgs = _a.sent();
-                            return [2 /*return*/, function (httpClient, basePath) {
-                                    if (httpClient === void 0) { httpClient = api.httpClient; }
+                            return [2 /*return*/, function (http, basePath) {
+                                    if (http === void 0) { http = api.http; }
                                     if (basePath === void 0) { basePath = configuration.basePath || configuration.orgUrl; }
                                     var requestArgs = __assign(__assign({}, localVarRequestArgs.options), { url: basePath + localVarRequestArgs.url });
-                                    return httpClient.http(requestArgs.url, requestArgs).then(function (res) { return res.json(); });
+                                    return http.http(requestArgs.url, requestArgs).then(function (res) { return res.json(); });
                                 }];
                     }
                 });
@@ -802,7 +805,7 @@ exports.UserTypeApiFp = UserTypeApiFp;
  * UserTypeApi - factory interface
  * @export
  */
-var UserTypeApiFactory = function (configuration, basePath, httpClient) {
+var UserTypeApiFactory = function (configuration, basePath, http) {
     return {
         /**
           * Creates a new User Type. A default User Type is automatically created along with your org, and you may add another 9 User Types for a maximum of 10.
@@ -812,7 +815,7 @@ var UserTypeApiFactory = function (configuration, basePath, httpClient) {
           * @throws {RequiredError}
           */
         createUserType: function (body, options) {
-            return (0, exports.UserTypeApiFp)(configuration).createUserType(body, options).then(function (request) { return request(httpClient, basePath); });
+            return (0, exports.UserTypeApiFp)(configuration).createUserType(body, options).then(function (request) { return request(http, basePath); });
         },
         /**
           * Deletes a User Type permanently. This operation is not permitted for the default type, nor for any User Type that has existing users
@@ -822,7 +825,7 @@ var UserTypeApiFactory = function (configuration, basePath, httpClient) {
           * @throws {RequiredError}
           */
         deleteUserType: function (typeId, options) {
-            return (0, exports.UserTypeApiFp)(configuration).deleteUserType(typeId, options).then(function (request) { return request(httpClient, basePath); });
+            return (0, exports.UserTypeApiFp)(configuration).deleteUserType(typeId, options).then(function (request) { return request(http, basePath); });
         },
         /**
           * Fetches a User Type by ID. The special identifier `default` may be used to fetch the default User Type.
@@ -832,7 +835,7 @@ var UserTypeApiFactory = function (configuration, basePath, httpClient) {
           * @throws {RequiredError}
           */
         getUserType: function (typeId, options) {
-            return (0, exports.UserTypeApiFp)(configuration).getUserType(typeId, options).then(function (request) { return request(httpClient, basePath); });
+            return (0, exports.UserTypeApiFp)(configuration).getUserType(typeId, options).then(function (request) { return request(http, basePath); });
         },
         /**
           * Fetches all User Types in your org
@@ -841,7 +844,7 @@ var UserTypeApiFactory = function (configuration, basePath, httpClient) {
           * @throws {RequiredError}
           */
         listUserTypes: function (options) {
-            return (0, exports.UserTypeApiFp)(configuration).listUserTypes(options).then(function (request) { return request(httpClient, basePath); });
+            return (0, exports.UserTypeApiFp)(configuration).listUserTypes(options).then(function (request) { return request(http, basePath); });
         },
         /**
           * Replace an existing User Type
@@ -852,7 +855,7 @@ var UserTypeApiFactory = function (configuration, basePath, httpClient) {
           * @throws {RequiredError}
           */
         replaceUserType: function (body, typeId, options) {
-            return (0, exports.UserTypeApiFp)(configuration).replaceUserType(body, typeId, options).then(function (request) { return request(httpClient, basePath); });
+            return (0, exports.UserTypeApiFp)(configuration).replaceUserType(body, typeId, options).then(function (request) { return request(http, basePath); });
         },
         /**
           * Updates an existing User Type
@@ -863,7 +866,7 @@ var UserTypeApiFactory = function (configuration, basePath, httpClient) {
           * @throws {RequiredError}
           */
         updateUserType: function (body, typeId, options) {
-            return (0, exports.UserTypeApiFp)(configuration).updateUserType(body, typeId, options).then(function (request) { return request(httpClient, basePath); });
+            return (0, exports.UserTypeApiFp)(configuration).updateUserType(body, typeId, options).then(function (request) { return request(http, basePath); });
         }
     };
 };
@@ -890,7 +893,7 @@ var UserTypeApi = /** @class */ (function (_super) {
     UserTypeApi.prototype.createUserType = function (body, options) {
         var _this = this;
         var api = (0, exports.UserTypeApiRequestParamCreator)(this.configuration);
-        return (0, exports.UserTypeApiFp)(this.configuration).createUserType(body, options).then(function (request) { return request(api.httpClient, _this.basePath); });
+        return (0, exports.UserTypeApiFp)(this.configuration).createUserType(body, options).then(function (request) { return request(api.http, _this.basePath); });
     };
     /**
       * Deletes a User Type permanently. This operation is not permitted for the default type, nor for any User Type that has existing users
@@ -903,7 +906,7 @@ var UserTypeApi = /** @class */ (function (_super) {
     UserTypeApi.prototype.deleteUserType = function (typeId, options) {
         var _this = this;
         var api = (0, exports.UserTypeApiRequestParamCreator)(this.configuration);
-        return (0, exports.UserTypeApiFp)(this.configuration).deleteUserType(typeId, options).then(function (request) { return request(api.httpClient, _this.basePath); });
+        return (0, exports.UserTypeApiFp)(this.configuration).deleteUserType(typeId, options).then(function (request) { return request(api.http, _this.basePath); });
     };
     /**
       * Fetches a User Type by ID. The special identifier `default` may be used to fetch the default User Type.
@@ -916,7 +919,7 @@ var UserTypeApi = /** @class */ (function (_super) {
     UserTypeApi.prototype.getUserType = function (typeId, options) {
         var _this = this;
         var api = (0, exports.UserTypeApiRequestParamCreator)(this.configuration);
-        return (0, exports.UserTypeApiFp)(this.configuration).getUserType(typeId, options).then(function (request) { return request(api.httpClient, _this.basePath); });
+        return (0, exports.UserTypeApiFp)(this.configuration).getUserType(typeId, options).then(function (request) { return request(api.http, _this.basePath); });
     };
     /**
       * Fetches all User Types in your org
@@ -928,7 +931,7 @@ var UserTypeApi = /** @class */ (function (_super) {
     UserTypeApi.prototype.listUserTypes = function (options) {
         var _this = this;
         var api = (0, exports.UserTypeApiRequestParamCreator)(this.configuration);
-        return (0, exports.UserTypeApiFp)(this.configuration).listUserTypes(options).then(function (request) { return request(api.httpClient, _this.basePath); });
+        return (0, exports.UserTypeApiFp)(this.configuration).listUserTypes(options).then(function (request) { return request(api.http, _this.basePath); });
     };
     /**
       * Replace an existing User Type
@@ -942,7 +945,7 @@ var UserTypeApi = /** @class */ (function (_super) {
     UserTypeApi.prototype.replaceUserType = function (body, typeId, options) {
         var _this = this;
         var api = (0, exports.UserTypeApiRequestParamCreator)(this.configuration);
-        return (0, exports.UserTypeApiFp)(this.configuration).replaceUserType(body, typeId, options).then(function (request) { return request(api.httpClient, _this.basePath); });
+        return (0, exports.UserTypeApiFp)(this.configuration).replaceUserType(body, typeId, options).then(function (request) { return request(api.http, _this.basePath); });
     };
     /**
       * Updates an existing User Type
@@ -956,7 +959,7 @@ var UserTypeApi = /** @class */ (function (_super) {
     UserTypeApi.prototype.updateUserType = function (body, typeId, options) {
         var _this = this;
         var api = (0, exports.UserTypeApiRequestParamCreator)(this.configuration);
-        return (0, exports.UserTypeApiFp)(this.configuration).updateUserType(body, typeId, options).then(function (request) { return request(api.httpClient, _this.basePath); });
+        return (0, exports.UserTypeApiFp)(this.configuration).updateUserType(body, typeId, options).then(function (request) { return request(api.http, _this.basePath); });
     };
     return UserTypeApi;
 }(base_1.BaseAPI));
