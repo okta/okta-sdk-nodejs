@@ -30,7 +30,8 @@ describe('User Schema API', () => {
     schemaId = schemaLink.replace(orgUrl, '').split('/').pop();
   });
   afterEach(async () => {
-    await userType.delete();
+    // await userType.delete();
+    await client.deleteUserType(userType.id);
   });
 
   it('gets UserSchema for custom user type', async () => {
