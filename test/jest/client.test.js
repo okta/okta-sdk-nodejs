@@ -1,4 +1,3 @@
-const okta = require('../../src');
 const { DefaultRequestExecutor, Client } = require('../../src');
 const { ConfigLoader } = require('../../src/config-loader');
 
