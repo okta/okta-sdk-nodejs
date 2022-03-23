@@ -3,10 +3,10 @@
 {{>licenseInfo}}
 
 export interface ConfigurationParameters {
-  apiToken?: string | Promise<string> | ((name: string) => string) | ((name: string) => Promise<string>);
+  apiToken?: string | ((name: string) => string);
   username?: string;
   password?: string;
-  accessToken?: string | Promise<string> | ((name?: string, scopes?: string[]) => string) | ((name?: string, scopes?: string[]) => Promise<string>);
+  accessToken?: string | ((name?: string, scopes?: string[]) => string);
   basePath?: string;
   baseOptions?: any;
 }
@@ -17,7 +17,7 @@ export class Configuration {
     * @param name security name
     * @memberof Configuration
     */
-  apiToken?: string | Promise<string> | ((name: string) => string) | ((name: string) => Promise<string>);
+  apiToken?: string | ((name: string) => string);
   /**
     * parameter for basic security
     *
@@ -38,7 +38,7 @@ export class Configuration {
     * @param scopes oauth2 scope
     * @memberof Configuration
     */
-  accessToken?: string | Promise<string> | ((name?: string, scopes?: string[]) => string) | ((name?: string, scopes?: string[]) => Promise<string>);
+  accessToken?: string | ((name?: string, scopes?: string[]) => string);
   /**
     * override base path
     *

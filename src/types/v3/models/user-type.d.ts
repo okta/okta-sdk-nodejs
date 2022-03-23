@@ -27,7 +27,7 @@
 export declare class UserType {
   /**
       *
-      * @type {{ [key, string]: any;}}
+      * @type {{ [key: string]: any; }}
       * @memberof UserType
       */
   links?: any;

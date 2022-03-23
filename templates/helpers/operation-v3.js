@@ -9,19 +9,20 @@ const V3ApiOperations = {
     'updateUserType',
     'replaceUserType'
   ],
-}
+};
 
 function isV3Api(operationId) {
   return Object.values(V3ApiOperations).find((operations) => operations.includes(operationId));
 }
 
 function v3ApiByOperationId(operationId) {
-  const [api, _] = Object.entries(V3ApiOperations).find(([api, operations]) => operations.includes(operationId));
+  const [api, _] = Object.entries(V3ApiOperations).find(([_, operations]) => operations.includes(operationId));
   return api;
 }
 
 const getOperationArgumentV3Format = operation => {
   const { bodyModel, method, pathParams, queryParams, formData, parameters } = operation;
+  const optionalArgs = [];
   let requiredArgs = [];
   if ((method === 'post' || method === 'put') && bodyModel) {
     const bodyModelName = getBodyModelNameInCamelCase(operation);
@@ -39,7 +40,6 @@ const getOperationArgumentV3Format = operation => {
     return acc;
   }, []));
 
-  const optionalArgs = [];
 
   if (queryParams.length) {
     if (hasRequiredParameterInRequestMedia(parameters, 'query')) {
@@ -66,4 +66,4 @@ module.exports = {
   isV3Api,
   v3ApiByOperationId,
   getOperationArgumentV3Format,
-}
+};

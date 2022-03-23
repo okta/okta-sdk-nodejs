@@ -110,7 +110,7 @@ export const {{classname}}RequestParamCreator = function (configuration?: Config
         * @param {*} [options] Override http request option.
         * @throws {RequiredError}
         */
-      {{nickname}}: async ({{#parameters}}{{paramName}}{{^required}}?{{/required}}: {{{dataType}}}, {{/parameters}}options: any = {}): Promise<RequestArgs> => {
+      {{nickname}}: ({{#parameters}}{{paramName}}{{^required}}?{{/required}}: {{{dataType}}}, {{/parameters}}options: any = {}): RequestArgs => {
   {{#parameters}}
   {{#required}}
         // verify required parameter '{{paramName}}' is not null or undefined
@@ -138,16 +138,16 @@ export const {{classname}}RequestParamCreator = function (configuration?: Config
           {{#isKeyInHeader}}
           if (configuration && configuration.apiToken) {
             const localVarApiKeyValue = typeof configuration.apiToken === 'function'
-                ? await configuration.apiToken("{{keyParamName}}")
-                : await configuration.apiToken;
+                ? configuration.apiToken("{{keyParamName}}")
+                : configuration.apiToken;
             localVarHeaderParameter["{{keyParamName}}"] = localVarApiKeyValue;
           }
           {{/isKeyInHeader}}
           {{#isKeyInQuery}}
           if (configuration && configuration.apiToken) {
             const localVarApiKeyValue = typeof configuration.apiToken === 'function'
-                ? await configuration.apiToken("{{keyParamName}}")
-                : await configuration.apiToken;
+                ? configuration.apiToken("{{keyParamName}}")
+                : configuration.apiToken;
             localVarQueryParameter["{{keyParamName}}"] = localVarApiKeyValue;
           }
           {{/isKeyInQuery}}
@@ -162,8 +162,8 @@ export const {{classname}}RequestParamCreator = function (configuration?: Config
           // http bearer authentication required
           if (configuration && configuration.accessToken) {
             const accessToken = typeof configuration.accessToken === 'function'
-                ? await configuration.accessToken()
-                : await configuration.accessToken;
+                ? configuration.accessToken()
+                : configuration.accessToken;
             localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
           }
           {{/isBasicBearer}}
@@ -171,8 +171,8 @@ export const {{classname}}RequestParamCreator = function (configuration?: Config
           // oauth required
           if (configuration && configuration.accessToken) {
             const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
-                ? await configuration.accessToken("{{name}}", [{{#each scopes}}"{{@key}}"{{^@last}}, {{/@last}}{{/each}}])
-                : await configuration.accessToken;
+                ? configuration.accessToken("{{name}}", [{{#each scopes}}"{{@key}}"{{^@last}}, {{/@last}}{{/each}}])
+                : configuration.accessToken;
             localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
           }
           {{/isOAuth}}
@@ -311,14 +311,14 @@ export const {{classname}}Fp = function(configuration?: Configuration & V2Config
       * @param {*} [options] Override http request option.
       * @throws {RequiredError}
       */
-    async {{nickname}}({{#parameters}}{{paramName}}{{^required}}?{{/required}}: {{{dataType}}}, {{/parameters}}options?: any): Promise<(http?: Http, basePath?: string) => {{#returnType}}{{#eq (substring returnType 0 3) 'Arr'}}Collection<{{{substring returnType 6}}}{{else}}Promise<{{{returnType}}}>{{/eq}}{{/returnType}}{{^returnType}}Promise<Response>{{/returnType}}> {
+    {{nickname}}({{#parameters}}{{paramName}}{{^required}}?{{/required}}: {{{dataType}}}, {{/parameters}}options?: any): (http?: Http, basePath?: string) => {{#returnType}}{{#eq (substring returnType 0 3) 'Arr'}}Collection<{{{substring returnType 6}}}{{else}}Promise<{{{returnType}}}>{{/eq}}{{/returnType}}{{^returnType}}Promise<Response>{{/returnType}} {
       const api = {{classname}}RequestParamCreator(configuration);
-      const localVarRequestArgs = await api.{{nickname}}({{#parameters}}{{paramName}}, {{/parameters}}options);
+      const localVarRequestArgs = api.{{nickname}}({{#parameters}}{{paramName}}, {{/parameters}}options);
       return (http: Http = api.http, basePath: string = configuration.basePath || configuration.orgUrl) => {
         const requestArgs = {...localVarRequestArgs.options, url: basePath + localVarRequestArgs.url};
         {{#returnType}}
         {{#eq (substring returnType 0 3) 'Arr'}}
-        return new Collection<{{{substring returnType 6}}}({http}, `${configuration.orgUrl}/${localVarRequestArgs.url}`, new ModelFactory({{{replace (substring returnType 6) '>' ''}}}));
+        return new Collection<{{{substring returnType 6}}}({http}, `${requestArgs.url}`, new ModelFactory({{{replace (substring returnType 6) '>' ''}}}));
         {{else}}
         return http.http(requestArgs.url, requestArgs).then(res => res.json()) as Promise<{{{returnType}}}>;
         {{/eq}}
@@ -353,8 +353,8 @@ export const {{classname}}Factory = function (configuration?: Configuration, bas
       * @param {*} [options] Override http request option.
       * @throws {RequiredError}
       */
-    {{nickname}}({{#parameters}}{{paramName}}{{^required}}?{{/required}}: {{{dataType}}}, {{/parameters}}options?: any): Promise<{{#returnType}}{{#eq (substring returnType 0 3) 'Arr'}}Collection<{{{substring returnType 6}}}{{else}}{{{returnType}}}{{/eq}}{{/returnType}}{{^returnType}}Response{{/returnType}}> {
-      return {{classname}}Fp(configuration).{{nickname}}({{#parameters}}{{paramName}}, {{/parameters}}options).then((request) => request(http, basePath));
+    {{nickname}}({{#parameters}}{{paramName}}{{^required}}?{{/required}}: {{{dataType}}}, {{/parameters}}options?: any): {{#returnType}}{{#eq (substring returnType 0 3) 'Arr'}}Collection<{{{substring returnType 6}}}{{else}}Promise<{{{returnType}}}>{{/eq}}{{/returnType}}{{^returnType}}Promise<Response>{{/returnType}} {
+      return {{classname}}Fp(configuration).{{nickname}}({{#parameters}}{{paramName}}, {{/parameters}}options)(http, basePath);
     },
     {{/contents}}
     {{/operation}}
@@ -418,7 +418,7 @@ export class {{classname}} extends BaseAPI {
     * @memberof {{classname}}
     */
   public {{nickname}}({{#parameters}}{{paramName}}{{^required}}?{{/required}}: {{{dataType}}}, {{/parameters}}options?: any) {
-    return {{classname}}Fp(this.configuration).{{nickname}}({{#parameters}}{{paramName}}, {{/parameters}}options).then((request) => request(this.httpClient, this.basePath));
+    return {{classname}}Fp(this.configuration).{{nickname}}({{#parameters}}{{paramName}}, {{/parameters}}options)(this.httpClient, this.basePath);
   }
   {{^@last}}
 
