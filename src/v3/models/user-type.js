@@ -22,17 +22,16 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserType = void 0;
 /**
  *
  * @export
  * @class UserType
  */
-var UserType = /** @class */ (function () {
-    function UserType(resourceJson) {
+class UserType {
+    constructor(resourceJson) {
         Object.assign(this, resourceJson);
     }
-    return UserType;
-}());
+}
 exports.UserType = UserType;

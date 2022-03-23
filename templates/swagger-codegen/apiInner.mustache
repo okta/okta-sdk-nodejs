@@ -274,11 +274,11 @@ export const {{classname}}RequestParamCreator = function (configuration?: Config
           let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
           localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
   {{#hasFormParams}}
-          localVarRequestOptions.data = localVarFormParams{{#vendorExtensions}}{{^multipartFormData}}.toString(){{/multipartFormData}}{{/vendorExtensions}};
+          localVarRequestOptions.body = localVarFormParams{{#vendorExtensions}}{{^multipartFormData}}.toString(){{/multipartFormData}}{{/vendorExtensions}};
   {{/hasFormParams}}
   {{#bodyParam}}
           const needsSerialization = (typeof {{paramName}} !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-          localVarRequestOptions.data =  needsSerialization ? JSON.stringify({{paramName}} !== undefined ? {{paramName}} : {}) : ({{paramName}} || "");
+          localVarRequestOptions.body = needsSerialization ? JSON.stringify({{paramName}} !== undefined ? {{paramName}} : {}) : ({{paramName}} || "");
   {{/bodyParam}}
 
           return {
@@ -320,7 +320,7 @@ export const {{classname}}Fp = function(configuration?: Configuration & V2Config
         {{#eq (substring returnType 0 3) 'Arr'}}
         return new Collection<{{{substring returnType 6}}}({http}, `${requestArgs.url}`, new ModelFactory({{{replace (substring returnType 6) '>' ''}}}));
         {{else}}
-        return http.http(requestArgs.url, requestArgs).then(res => res.json()) as Promise<{{{returnType}}}>;
+        return http.http(requestArgs.url, requestArgs).then(res => res.json().then(data => new {{returnType}}(data))) as Promise<{{{returnType}}}>;
         {{/eq}}
         {{/returnType}}
         {{^returnType}}
