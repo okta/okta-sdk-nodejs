@@ -13,7 +13,7 @@
 const Client = require('./client');
 const RequestExecutor = require('./request-executor');
 const { DefaultRequestExecutor } = require('./default-request-executor');
-const { Collection } = ('./collection');
+const { Collection } = require('./collection');
 
 
 module.exports = Object.assign(

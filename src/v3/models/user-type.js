@@ -30,7 +30,8 @@ exports.UserType = void 0;
  * @class UserType
  */
 var UserType = /** @class */ (function () {
-    function UserType() {
+    function UserType(resourceJson) {
+        Object.assign(this, resourceJson);
     }
     return UserType;
 }());
