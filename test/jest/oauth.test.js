@@ -20,7 +20,7 @@ const Http = {
 };
 jest.setMock('../../src/http', Http);
 
-const OAuth = require('../../src/oauth');
+const { OAuth } = require('../../src/oauth');
 
 describe('OAuth', () => {
   let client;

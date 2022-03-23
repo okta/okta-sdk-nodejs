@@ -1,5 +1,5 @@
 const lib = require('../../src');
-const { Client } = require('../../src/client');
+const Client = require('../../src/client');
 const RequestExecutor = require('../../src/request-executor');
 const { DefaultRequestExecutor } = require('../../src/default-request-executor');
 
