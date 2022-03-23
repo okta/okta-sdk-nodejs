@@ -418,8 +418,7 @@ export class {{classname}} extends BaseAPI {
     * @memberof {{classname}}
     */
   public {{nickname}}({{#parameters}}{{paramName}}{{^required}}?{{/required}}: {{{dataType}}}, {{/parameters}}options?: any) {
-    const api = {{classname}}RequestParamCreator(this.configuration);
-    return {{classname}}Fp(this.configuration).{{nickname}}({{#parameters}}{{paramName}}, {{/parameters}}options).then((request) => request(api.http, this.basePath));
+    return {{classname}}Fp(this.configuration).{{nickname}}({{#parameters}}{{paramName}}, {{/parameters}}options).then((request) => request(this.httpClient, this.basePath));
   }
   {{^@last}}
 
