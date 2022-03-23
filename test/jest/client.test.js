@@ -1,5 +1,5 @@
 const okta = require('../../src');
-const ConfigLoader = require('../../src/config-loader');
+const { ConfigLoader } = require('../../src/config-loader');
 
 describe('okta.Client', () => {
   describe('constructor', () => {

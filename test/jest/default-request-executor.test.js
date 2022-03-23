@@ -1,5 +1,5 @@
 const RequestExecutor = require('../../src/request-executor');
-const DefaultRequestExecutor = require('../../src/default-request-executor');
+const { DefaultRequestExecutor } = require('../../src/default-request-executor');
 
 function buildMockResponse(response) {
   response = response || {};
