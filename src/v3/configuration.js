@@ -22,11 +22,10 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.Configuration = void 0;
-var Configuration = /** @class */ (function () {
-    function Configuration(param) {
-        if (param === void 0) { param = {}; }
+class Configuration {
+    constructor(param = {}) {
         this.apiToken = param.apiToken;
         this.username = param.username;
         this.password = param.password;
@@ -34,6 +33,5 @@ var Configuration = /** @class */ (function () {
         this.basePath = param.basePath;
         this.baseOptions = param.baseOptions;
     }
-    return Configuration;
-}());
+}
 exports.Configuration = Configuration;
