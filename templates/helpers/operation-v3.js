@@ -1,5 +1,3 @@
-const { getBodyModelNameInCamelCase, hasRequiredParameterInRequestMedia } = require('./operation');
-
 const V3ApiOperations = {
   UserTypeApi: [
     'createUserType',

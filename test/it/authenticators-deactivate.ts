@@ -24,7 +24,8 @@ describe('Authenticators API tests', () => {
     }
   });
 
-  it('should deactivate an active Authenticator', async () => {
+  // OKTA-483353
+  xit('should deactivate an active Authenticator', async () => {
     const authenticators = client.listAuthenticators();   // returns Collection<Authenticator>
 
     await authenticators.each(async (item) => {
@@ -35,7 +36,7 @@ describe('Authenticators API tests', () => {
 
         sqAuthenticator = await client.deactivateAuthenticator(sqAuthenticator.id);
         expect(sqAuthenticator).to.include({type: 'security_question', name: 'Security Question', status: 'INACTIVE'});
-        
+
         // return to previous state
         sqAuthenticator = await client.activateAuthenticator(sqAuthenticator.id);
         expect(sqAuthenticator).to.include({type: 'security_question', name: 'Security Question', status: 'ACTIVE'});

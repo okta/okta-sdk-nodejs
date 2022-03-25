@@ -61,9 +61,12 @@ function formatImportStatements(importTypes, {
     } else if (type === 'Collection') {
       importStatements.push(`import { Collection } from '${isModelToModelImport ? '..' : '.'}/collection';`);
     } else {
-      const modelPath = isV3Model(type) ? './v3/models/' : './models/';
       const importSource = type.replace(sourceFileSuffixToTrim, '');
-      importStatements.push(`import { ${type} } from '${isModelToModelImport ? './' : modelPath}${importSource}';`);
+      if (isV3Model(type)) {
+        importStatements.push(`import { ${type} } from '${isModelToModelImport ? `./${type}` : './v3/models'}';`);
+      } else {
+        importStatements.push(`import { ${type} } from '${isModelToModelImport ? './' : './models/'}${importSource}';`);
+      }
     }
   });
   return importStatements.join('\n');
