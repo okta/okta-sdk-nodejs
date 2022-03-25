@@ -39,7 +39,7 @@ export declare const UserTypeApiRequestParamCreator: (configuration?: Configurat
       * @param {*} [options] Override http request option.
       * @throws {RequiredError}
       */
-    createUserType: (body: UserType, options?: any) => RequestArgs;
+    createUserType: (body: any, options?: any) => RequestArgs;
     /**
       * Deletes a User Type permanently. This operation is not permitted for the default type, nor for any User Type that has existing users
       * @summary Delete User Type
@@ -71,7 +71,7 @@ export declare const UserTypeApiRequestParamCreator: (configuration?: Configurat
       * @param {*} [options] Override http request option.
       * @throws {RequiredError}
       */
-    replaceUserType: (body: UserType, typeId: string, options?: any) => RequestArgs;
+    replaceUserType: (body: any, typeId: string, options?: any) => RequestArgs;
     /**
       * Updates an existing User Type
       * @summary Update User Type
@@ -80,7 +80,7 @@ export declare const UserTypeApiRequestParamCreator: (configuration?: Configurat
       * @param {*} [options] Override http request option.
       * @throws {RequiredError}
       */
-    updateUserType: (body: UserType, typeId: string, options?: any) => RequestArgs;
+    updateUserType: (body: any, typeId: string, options?: any) => RequestArgs;
 };
 /**
  * UserTypeApi - functional programming interface
@@ -94,7 +94,7 @@ export declare const UserTypeApiFp: (configuration?: Configuration & V2Configura
       * @param {*} [options] Override http request option.
       * @throws {RequiredError}
       */
-    createUserType(body: UserType, options?: any): (http?: Http, basePath?: string) => Promise<UserType>;
+    createUserType(body: any, options?: any): (http?: Http, basePath?: string) => Promise<UserType>;
     /**
       * Deletes a User Type permanently. This operation is not permitted for the default type, nor for any User Type that has existing users
       * @summary Delete User Type
@@ -126,7 +126,7 @@ export declare const UserTypeApiFp: (configuration?: Configuration & V2Configura
       * @param {*} [options] Override http request option.
       * @throws {RequiredError}
       */
-    replaceUserType(body: UserType, typeId: string, options?: any): (http?: Http, basePath?: string) => Promise<UserType>;
+    replaceUserType(body: any, typeId: string, options?: any): (http?: Http, basePath?: string) => Promise<UserType>;
     /**
       * Updates an existing User Type
       * @summary Update User Type
@@ -135,7 +135,7 @@ export declare const UserTypeApiFp: (configuration?: Configuration & V2Configura
       * @param {*} [options] Override http request option.
       * @throws {RequiredError}
       */
-    updateUserType(body: UserType, typeId: string, options?: any): (http?: Http, basePath?: string) => Promise<UserType>;
+    updateUserType(body: any, typeId: string, options?: any): (http?: Http, basePath?: string) => Promise<UserType>;
 };
 /**
  * UserTypeApi - factory interface
@@ -149,7 +149,7 @@ export declare const UserTypeApiFactory: (configuration?: Configuration, basePat
       * @param {*} [options] Override http request option.
       * @throws {RequiredError}
       */
-    createUserType(body: UserType, options?: any): Promise<UserType>;
+    createUserType(body: any, options?: any): Promise<UserType>;
     /**
       * Deletes a User Type permanently. This operation is not permitted for the default type, nor for any User Type that has existing users
       * @summary Delete User Type
@@ -181,7 +181,7 @@ export declare const UserTypeApiFactory: (configuration?: Configuration, basePat
       * @param {*} [options] Override http request option.
       * @throws {RequiredError}
       */
-    replaceUserType(body: UserType, typeId: string, options?: any): Promise<UserType>;
+    replaceUserType(body: any, typeId: string, options?: any): Promise<UserType>;
     /**
       * Updates an existing User Type
       * @summary Update User Type
@@ -190,7 +190,7 @@ export declare const UserTypeApiFactory: (configuration?: Configuration, basePat
       * @param {*} [options] Override http request option.
       * @throws {RequiredError}
       */
-    updateUserType(body: UserType, typeId: string, options?: any): Promise<UserType>;
+    updateUserType(body: any, typeId: string, options?: any): Promise<UserType>;
 };
 /**
  * UserTypeApi - object-oriented interface
@@ -207,7 +207,7 @@ export declare class UserTypeApi extends BaseAPI {
       * @throws {RequiredError}
       * @memberof UserTypeApi
       */
-  createUserType(body: UserType, options?: any): Promise<UserType>;
+  createUserType(body: UserType, options?: any): Promise<any>;
   /**
       * Deletes a User Type permanently. This operation is not permitted for the default type, nor for any User Type that has existing users
       * @summary Delete User Type
@@ -225,7 +225,7 @@ export declare class UserTypeApi extends BaseAPI {
       * @throws {RequiredError}
       * @memberof UserTypeApi
       */
-  getUserType(typeId: string, options?: any): Promise<UserType>;
+  getUserType(typeId: string, options?: any): Promise<any>;
   /**
       * Fetches all User Types in your org
       * @summary List User Types
@@ -233,7 +233,7 @@ export declare class UserTypeApi extends BaseAPI {
       * @throws {RequiredError}
       * @memberof UserTypeApi
       */
-  listUserTypes(options?: any): Collection<UserType>;
+  listUserTypes(options?: any): Collection<any>;
   /**
       * Replace an existing User Type
       * @summary Replace User Type
@@ -243,7 +243,7 @@ export declare class UserTypeApi extends BaseAPI {
       * @throws {RequiredError}
       * @memberof UserTypeApi
       */
-  replaceUserType(body: UserType, typeId: string, options?: any): Promise<UserType>;
+  replaceUserType(body: UserType, typeId: string, options?: any): Promise<any>;
   /**
       * Updates an existing User Type
       * @summary Update User Type
@@ -253,5 +253,5 @@ export declare class UserTypeApi extends BaseAPI {
       * @throws {RequiredError}
       * @memberof UserTypeApi
       */
-  updateUserType(body: UserType, typeId: string, options?: any): Promise<UserType>;
+  updateUserType(body: UserType, typeId: string, options?: any): Promise<any>;
 }

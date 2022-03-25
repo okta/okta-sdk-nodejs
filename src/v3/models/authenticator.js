@@ -23,51 +23,15 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.RequiredError = exports.BaseAPI = exports.COLLECTION_FORMATS = exports.BASE_PATH = void 0;
-// Some imports not used depending on template conditions
-// @ts-ignore
-exports.BASE_PATH = "https://{subdomain}.{domain}".replace(/\/+$/, "");
+exports.Authenticator = void 0;
 /**
  *
  * @export
+ * @class Authenticator
  */
-exports.COLLECTION_FORMATS = {
-    csv: ',',
-    ssv: ' ',
-    tsv: '\t',
-    pipes: '|',
-};
-/**
- *
- * @export
- * @class BaseAPI
- */
-class BaseAPI {
-    constructor(configuration, basePath = exports.BASE_PATH, httpClient) {
-        this.basePath = basePath;
-        this.httpClient = httpClient;
-        if (configuration) {
-            this.configuration = configuration;
-            this.basePath = configuration.basePath || this.basePath;
-        }
-        if (httpClient) {
-            this.httpClient = httpClient;
-        }
+class Authenticator {
+    constructor(resourceJson) {
+        Object.assign(this, resourceJson);
     }
 }
-exports.BaseAPI = BaseAPI;
-;
-/**
- *
- * @export
- * @class RequiredError
- * @extends {Error}
- */
-class RequiredError extends Error {
-    constructor(field, msg) {
-        super(msg);
-        this.field = field;
-        this.name = "RequiredError";
-    }
-}
-exports.RequiredError = RequiredError;
+exports.Authenticator = Authenticator;
