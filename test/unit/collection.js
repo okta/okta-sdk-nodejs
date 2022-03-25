@@ -1,6 +1,6 @@
 const expect = require('chai').expect;
 
-const Collection = require('../../src/collection');
+const { Collection } = require('../../src/collection');
 
 describe('Collection', () => {
   describe('.each()', () => {

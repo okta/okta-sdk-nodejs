@@ -21,4 +21,4 @@ class ModelFactory {
   }
 }
 
-module.exports = ModelFactory;
+module.exports.ModelFactory = ModelFactory;

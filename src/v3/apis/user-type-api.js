@@ -22,96 +22,36 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        if (typeof b !== "function" && b !== null)
-            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [op[0] & 2, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserTypeApi = exports.UserTypeApiFactory = exports.UserTypeApiFp = exports.UserTypeApiRequestParamCreator = void 0;
 // Some imports not used depending on template conditions
 // @ts-ignore
-var base_1 = require("../base");
-var Oauth = require("../../oauth");
-var Http = require("../../http");
-var ConfigLoader = require("../../config-loader");
-var DefaultRequestExecutor = require("../../default-request-executor");
-var os = require('os');
-var packageJson = require('../../../package.json');
-var DEFAULT_USER_AGENT = packageJson.name + "/" + packageJson.version + " node/" + process.versions.node + " " + os.platform() + "/" + os.release();
-var repoUrl = 'https://github.com/okta/okta-sdk-nodejs';
+const base_1 = require("../base");
+const models_1 = require("../models");
+const oauth_1 = require("../../oauth");
+const http_1 = require("../../http");
+const config_loader_1 = require("../../config-loader");
+const default_request_executor_1 = require("../../default-request-executor");
+const model_factory_1 = require("../../model-factory");
+const collection_1 = require("../../collection");
+const os = require('os');
+const packageJson = require('../../../package.json');
+const DEFAULT_USER_AGENT = `${packageJson.name}/${packageJson.version} node/${process.versions.node} ${os.platform()}/${os.release()}`;
+const repoUrl = 'https://github.com/okta/okta-sdk-nodejs';
 /**
  * UserTypeApi - request parameter creator
  * @export
  */
-var UserTypeApiRequestParamCreator = function (configuration) {
-    var _this = this;
-    var configLoader = new ConfigLoader();
-    var clientConfig = Object.assign({}, configuration);
+const UserTypeApiRequestParamCreator = function (configuration) {
+    const configLoader = new config_loader_1.ConfigLoader();
+    const clientConfig = Object.assign({}, configuration);
     configLoader.applyDefaults();
     configLoader.apply({
         client: clientConfig || {}
     });
-    var parsedConfig = configLoader.config;
-    var requestExecutor = clientConfig.requestExecutor || new DefaultRequestExecutor();
-    var errors = [];
+    const parsedConfig = configLoader.config;
+    const requestExecutor = clientConfig.requestExecutor || new default_request_executor_1.DefaultRequestExecutor();
+    const errors = [];
     if (!parsedConfig.client.orgUrl) {
         errors.push('Okta Org URL not provided');
     }
@@ -133,22 +73,22 @@ var UserTypeApiRequestParamCreator = function (configuration) {
         errors.push('Unknown Authorization Mode');
     }
     if (errors.length) {
-        throw new Error("Found " + errors.length + " errors:\n" + errors.join('\n') + "\nSee " + repoUrl + " for usage.");
+        throw new Error(`Found ${errors.length} errors:\n${errors.join('\n')}\nSee ${repoUrl} for usage.`);
     }
-    var authorizationMode = parsedConfig.client.authorizationMode;
-    var baseUrl = parsedConfig.client.orgUrl.replace(/\/$/, '');
-    var apiToken = parsedConfig.client.token;
-    var clientId;
-    var scopes;
-    var privateKey;
-    var oauth;
+    const authorizationMode = parsedConfig.client.authorizationMode;
+    const baseUrl = parsedConfig.client.orgUrl.replace(/\/$/, '');
+    const apiToken = parsedConfig.client.token;
+    let clientId;
+    let scopes;
+    let privateKey;
+    let oauth;
     if (authorizationMode === 'PrivateKey') {
         clientId = parsedConfig.client.clientId;
         scopes = parsedConfig.client.scopes.split(' ');
         privateKey = parsedConfig.client.privateKey;
-        oauth = new Oauth(this);
+        oauth = new oauth_1.OAuth(this);
     }
-    var httpClient = new Http({
+    const http = new http_1.Http({
         cacheStore: clientConfig.cacheStore,
         cacheMiddleware: clientConfig.cacheMiddleware,
         defaultCacheMiddlewareResponseBufferSize: clientConfig.defaultCacheMiddlewareResponseBufferSize,
@@ -156,11 +96,11 @@ var UserTypeApiRequestParamCreator = function (configuration) {
         oauth: oauth
     });
     if (authorizationMode === 'SSWS') {
-        httpClient.defaultHeaders.Authorization = "SSWS " + apiToken;
+        http.defaultHeaders.Authorization = `SSWS ${apiToken}`;
     }
-    httpClient.defaultHeaders['User-Agent'] = parsedConfig.client.userAgent ? parsedConfig.client.userAgent + ' ' + DEFAULT_USER_AGENT : DEFAULT_USER_AGENT;
+    http.defaultHeaders['User-Agent'] = parsedConfig.client.userAgent ? parsedConfig.client.userAgent + ' ' + DEFAULT_USER_AGENT : DEFAULT_USER_AGENT;
     return {
-        httpClient: httpClient,
+        http,
         /**
           * Creates a new User Type. A default User Type is automatically created along with your org, and you may add another 9 User Types for a maximum of 10.
           * @summary Create User Type
@@ -168,75 +108,53 @@ var UserTypeApiRequestParamCreator = function (configuration) {
           * @param {*} [options] Override http request option.
           * @throws {RequiredError}
           */
-        createUserType: function (body, options) {
-            if (options === void 0) { options = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
-                var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, localVarApiKeyValue, _a, localVarAccessTokenValue, _b, query, key, key, headersFromBaseOptions, needsSerialization;
-                return __generator(this, function (_c) {
-                    switch (_c.label) {
-                        case 0:
-                            // verify required parameter 'body' is not null or undefined
-                            if (body === null || body === undefined) {
-                                throw new base_1.RequiredError('body', 'Required parameter body was null or undefined when calling createUserType.');
-                            }
-                            localVarPath = "/api/v1/meta/types/user";
-                            localVarUrlObj = new URL(localVarPath, 'https://example.com');
-                            if (configuration) {
-                                baseOptions = configuration.baseOptions;
-                            }
-                            localVarRequestOptions = __assign(__assign({ method: 'POST' }, baseOptions), options);
-                            localVarHeaderParameter = {};
-                            localVarQueryParameter = {};
-                            if (!(configuration && configuration.apiToken)) return [3 /*break*/, 5];
-                            if (!(typeof configuration.apiToken === 'function')) return [3 /*break*/, 2];
-                            return [4 /*yield*/, configuration.apiToken("Authorization")];
-                        case 1:
-                            _a = _c.sent();
-                            return [3 /*break*/, 4];
-                        case 2: return [4 /*yield*/, configuration.apiToken];
-                        case 3:
-                            _a = _c.sent();
-                            _c.label = 4;
-                        case 4:
-                            localVarApiKeyValue = _a;
-                            localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
-                            _c.label = 5;
-                        case 5:
-                            if (!(configuration && configuration.accessToken)) return [3 /*break*/, 10];
-                            if (!(typeof configuration.accessToken === 'function')) return [3 /*break*/, 7];
-                            return [4 /*yield*/, configuration.accessToken("oauth2", ["okta.apps.read", "okta.apps.manage", "okta.authenticators.read", "okta.authenticators.manage", "okta.authorizationServers.read", "okta.authorizationServers.manage", "okta.brands.read", "okta.brands.manage", "okta.captchas.manage", "okta.captchas.read", "okta.domains.read", "okta.domains.manage", "okta.eventHooks.read", "okta.eventHooks.manage", "okta.groups.read", "okta.groups.manage", "okta.roles.read", "okta.roles.manage", "okta.idps.read", "okta.idps.manage", "okta.users.manage", "okta.inlineHooks.read", "okta.inlineHooks.manage", "okta.logs.read", "okta.profileMappings.read", "okta.profileMappings.manage", "okta.schemas.read", "okta.schemas.manage", "okta.linkedObjects.read", "okta.linkedObjects.manage", "okta.userTypes.read", "okta.userTypes.manage", "okta.orgs.read", "okta.orgs.manage", "okta.policies.read", "okta.policies.manage", "okta.sessions.read", "okta.sessions.manage", "okta.templates.read", "okta.templates.manage", "okta.trustedOrigins.read", "okta.trustedOrigins.manage", "okta.users.read.self", "okta.users.read"])];
-                        case 6:
-                            _b = _c.sent();
-                            return [3 /*break*/, 9];
-                        case 7: return [4 /*yield*/, configuration.accessToken];
-                        case 8:
-                            _b = _c.sent();
-                            _c.label = 9;
-                        case 9:
-                            localVarAccessTokenValue = _b;
-                            localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
-                            _c.label = 10;
-                        case 10:
-                            localVarHeaderParameter['Content-Type'] = 'application/json';
-                            query = new URLSearchParams(localVarUrlObj.search);
-                            for (key in localVarQueryParameter) {
-                                query.set(key, localVarQueryParameter[key]);
-                            }
-                            for (key in options.query) {
-                                query.set(key, options.query[key]);
-                            }
-                            localVarUrlObj.search = (new URLSearchParams(query)).toString();
-                            headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-                            localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), options.headers);
-                            needsSerialization = (typeof body !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-                            localVarRequestOptions.data = needsSerialization ? JSON.stringify(body !== undefined ? body : {}) : (body || "");
-                            return [2 /*return*/, {
-                                    url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
-                                    options: localVarRequestOptions
-                                }];
-                    }
-                });
-            });
+        createUserType: (body, options = {}) => {
+            // verify required parameter 'body' is not null or undefined
+            if (body === null || body === undefined) {
+                throw new base_1.RequiredError('body', 'Required parameter body was null or undefined when calling createUserType.');
+            }
+            const localVarPath = `/api/v1/meta/types/user`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options };
+            const localVarHeaderParameter = {};
+            const localVarQueryParameter = {};
+            // authentication api_token required
+            if (configuration && configuration.apiToken) {
+                const localVarApiKeyValue = typeof configuration.apiToken === 'function'
+                    ? configuration.apiToken("Authorization")
+                    : configuration.apiToken;
+                localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
+            }
+            // authentication oauth2 required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("oauth2", ["okta.apps.read", "okta.apps.manage", "okta.authenticators.read", "okta.authenticators.manage", "okta.authorizationServers.read", "okta.authorizationServers.manage", "okta.brands.read", "okta.brands.manage", "okta.captchas.manage", "okta.captchas.read", "okta.domains.read", "okta.domains.manage", "okta.eventHooks.read", "okta.eventHooks.manage", "okta.groups.read", "okta.groups.manage", "okta.roles.read", "okta.roles.manage", "okta.idps.read", "okta.idps.manage", "okta.users.manage", "okta.inlineHooks.read", "okta.inlineHooks.manage", "okta.logs.read", "okta.profileMappings.read", "okta.profileMappings.manage", "okta.schemas.read", "okta.schemas.manage", "okta.linkedObjects.read", "okta.linkedObjects.manage", "okta.userTypes.read", "okta.userTypes.manage", "okta.orgs.read", "okta.orgs.manage", "okta.policies.read", "okta.policies.manage", "okta.sessions.read", "okta.sessions.manage", "okta.templates.read", "okta.templates.manage", "okta.trustedOrigins.read", "okta.trustedOrigins.manage", "okta.users.read.self", "okta.users.read"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                query.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
+            const needsSerialization = (typeof body !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body = needsSerialization ? JSON.stringify(body !== undefined ? body : {}) : (body || "");
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
         },
         /**
           * Deletes a User Type permanently. This operation is not permitted for the default type, nor for any User Type that has existing users
@@ -245,73 +163,51 @@ var UserTypeApiRequestParamCreator = function (configuration) {
           * @param {*} [options] Override http request option.
           * @throws {RequiredError}
           */
-        deleteUserType: function (typeId, options) {
-            if (options === void 0) { options = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
-                var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, localVarApiKeyValue, _a, localVarAccessTokenValue, _b, query, key, key, headersFromBaseOptions;
-                return __generator(this, function (_c) {
-                    switch (_c.label) {
-                        case 0:
-                            // verify required parameter 'typeId' is not null or undefined
-                            if (typeId === null || typeId === undefined) {
-                                throw new base_1.RequiredError('typeId', 'Required parameter typeId was null or undefined when calling deleteUserType.');
-                            }
-                            localVarPath = "/api/v1/meta/types/user/{typeId}"
-                                .replace("{" + "typeId" + "}", encodeURIComponent(String(typeId)));
-                            localVarUrlObj = new URL(localVarPath, 'https://example.com');
-                            if (configuration) {
-                                baseOptions = configuration.baseOptions;
-                            }
-                            localVarRequestOptions = __assign(__assign({ method: 'DELETE' }, baseOptions), options);
-                            localVarHeaderParameter = {};
-                            localVarQueryParameter = {};
-                            if (!(configuration && configuration.apiToken)) return [3 /*break*/, 5];
-                            if (!(typeof configuration.apiToken === 'function')) return [3 /*break*/, 2];
-                            return [4 /*yield*/, configuration.apiToken("Authorization")];
-                        case 1:
-                            _a = _c.sent();
-                            return [3 /*break*/, 4];
-                        case 2: return [4 /*yield*/, configuration.apiToken];
-                        case 3:
-                            _a = _c.sent();
-                            _c.label = 4;
-                        case 4:
-                            localVarApiKeyValue = _a;
-                            localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
-                            _c.label = 5;
-                        case 5:
-                            if (!(configuration && configuration.accessToken)) return [3 /*break*/, 10];
-                            if (!(typeof configuration.accessToken === 'function')) return [3 /*break*/, 7];
-                            return [4 /*yield*/, configuration.accessToken("oauth2", ["okta.apps.read", "okta.apps.manage", "okta.authenticators.read", "okta.authenticators.manage", "okta.authorizationServers.read", "okta.authorizationServers.manage", "okta.brands.read", "okta.brands.manage", "okta.captchas.manage", "okta.captchas.read", "okta.domains.read", "okta.domains.manage", "okta.eventHooks.read", "okta.eventHooks.manage", "okta.groups.read", "okta.groups.manage", "okta.roles.read", "okta.roles.manage", "okta.idps.read", "okta.idps.manage", "okta.users.manage", "okta.inlineHooks.read", "okta.inlineHooks.manage", "okta.logs.read", "okta.profileMappings.read", "okta.profileMappings.manage", "okta.schemas.read", "okta.schemas.manage", "okta.linkedObjects.read", "okta.linkedObjects.manage", "okta.userTypes.read", "okta.userTypes.manage", "okta.orgs.read", "okta.orgs.manage", "okta.policies.read", "okta.policies.manage", "okta.sessions.read", "okta.sessions.manage", "okta.templates.read", "okta.templates.manage", "okta.trustedOrigins.read", "okta.trustedOrigins.manage", "okta.users.read.self", "okta.users.read"])];
-                        case 6:
-                            _b = _c.sent();
-                            return [3 /*break*/, 9];
-                        case 7: return [4 /*yield*/, configuration.accessToken];
-                        case 8:
-                            _b = _c.sent();
-                            _c.label = 9;
-                        case 9:
-                            localVarAccessTokenValue = _b;
-                            localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
-                            _c.label = 10;
-                        case 10:
-                            query = new URLSearchParams(localVarUrlObj.search);
-                            for (key in localVarQueryParameter) {
-                                query.set(key, localVarQueryParameter[key]);
-                            }
-                            for (key in options.query) {
-                                query.set(key, options.query[key]);
-                            }
-                            localVarUrlObj.search = (new URLSearchParams(query)).toString();
-                            headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-                            localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), options.headers);
-                            return [2 /*return*/, {
-                                    url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
-                                    options: localVarRequestOptions
-                                }];
-                    }
-                });
-            });
+        deleteUserType: (typeId, options = {}) => {
+            // verify required parameter 'typeId' is not null or undefined
+            if (typeId === null || typeId === undefined) {
+                throw new base_1.RequiredError('typeId', 'Required parameter typeId was null or undefined when calling deleteUserType.');
+            }
+            const localVarPath = `/api/v1/meta/types/user/{typeId}`
+                .replace(`{${"typeId"}}`, encodeURIComponent(String(typeId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options };
+            const localVarHeaderParameter = {};
+            const localVarQueryParameter = {};
+            // authentication api_token required
+            if (configuration && configuration.apiToken) {
+                const localVarApiKeyValue = typeof configuration.apiToken === 'function'
+                    ? configuration.apiToken("Authorization")
+                    : configuration.apiToken;
+                localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
+            }
+            // authentication oauth2 required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("oauth2", ["okta.apps.read", "okta.apps.manage", "okta.authenticators.read", "okta.authenticators.manage", "okta.authorizationServers.read", "okta.authorizationServers.manage", "okta.brands.read", "okta.brands.manage", "okta.captchas.manage", "okta.captchas.read", "okta.domains.read", "okta.domains.manage", "okta.eventHooks.read", "okta.eventHooks.manage", "okta.groups.read", "okta.groups.manage", "okta.roles.read", "okta.roles.manage", "okta.idps.read", "okta.idps.manage", "okta.users.manage", "okta.inlineHooks.read", "okta.inlineHooks.manage", "okta.logs.read", "okta.profileMappings.read", "okta.profileMappings.manage", "okta.schemas.read", "okta.schemas.manage", "okta.linkedObjects.read", "okta.linkedObjects.manage", "okta.userTypes.read", "okta.userTypes.manage", "okta.orgs.read", "okta.orgs.manage", "okta.policies.read", "okta.policies.manage", "okta.sessions.read", "okta.sessions.manage", "okta.templates.read", "okta.templates.manage", "okta.trustedOrigins.read", "okta.trustedOrigins.manage", "okta.users.read.self", "okta.users.read"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                query.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
         },
         /**
           * Fetches a User Type by ID. The special identifier `default` may be used to fetch the default User Type.
@@ -320,73 +216,51 @@ var UserTypeApiRequestParamCreator = function (configuration) {
           * @param {*} [options] Override http request option.
           * @throws {RequiredError}
           */
-        getUserType: function (typeId, options) {
-            if (options === void 0) { options = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
-                var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, localVarApiKeyValue, _a, localVarAccessTokenValue, _b, query, key, key, headersFromBaseOptions;
-                return __generator(this, function (_c) {
-                    switch (_c.label) {
-                        case 0:
-                            // verify required parameter 'typeId' is not null or undefined
-                            if (typeId === null || typeId === undefined) {
-                                throw new base_1.RequiredError('typeId', 'Required parameter typeId was null or undefined when calling getUserType.');
-                            }
-                            localVarPath = "/api/v1/meta/types/user/{typeId}"
-                                .replace("{" + "typeId" + "}", encodeURIComponent(String(typeId)));
-                            localVarUrlObj = new URL(localVarPath, 'https://example.com');
-                            if (configuration) {
-                                baseOptions = configuration.baseOptions;
-                            }
-                            localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), options);
-                            localVarHeaderParameter = {};
-                            localVarQueryParameter = {};
-                            if (!(configuration && configuration.apiToken)) return [3 /*break*/, 5];
-                            if (!(typeof configuration.apiToken === 'function')) return [3 /*break*/, 2];
-                            return [4 /*yield*/, configuration.apiToken("Authorization")];
-                        case 1:
-                            _a = _c.sent();
-                            return [3 /*break*/, 4];
-                        case 2: return [4 /*yield*/, configuration.apiToken];
-                        case 3:
-                            _a = _c.sent();
-                            _c.label = 4;
-                        case 4:
-                            localVarApiKeyValue = _a;
-                            localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
-                            _c.label = 5;
-                        case 5:
-                            if (!(configuration && configuration.accessToken)) return [3 /*break*/, 10];
-                            if (!(typeof configuration.accessToken === 'function')) return [3 /*break*/, 7];
-                            return [4 /*yield*/, configuration.accessToken("oauth2", ["okta.apps.read", "okta.apps.manage", "okta.authenticators.read", "okta.authenticators.manage", "okta.authorizationServers.read", "okta.authorizationServers.manage", "okta.brands.read", "okta.brands.manage", "okta.captchas.manage", "okta.captchas.read", "okta.domains.read", "okta.domains.manage", "okta.eventHooks.read", "okta.eventHooks.manage", "okta.groups.read", "okta.groups.manage", "okta.roles.read", "okta.roles.manage", "okta.idps.read", "okta.idps.manage", "okta.users.manage", "okta.inlineHooks.read", "okta.inlineHooks.manage", "okta.logs.read", "okta.profileMappings.read", "okta.profileMappings.manage", "okta.schemas.read", "okta.schemas.manage", "okta.linkedObjects.read", "okta.linkedObjects.manage", "okta.userTypes.read", "okta.userTypes.manage", "okta.orgs.read", "okta.orgs.manage", "okta.policies.read", "okta.policies.manage", "okta.sessions.read", "okta.sessions.manage", "okta.templates.read", "okta.templates.manage", "okta.trustedOrigins.read", "okta.trustedOrigins.manage", "okta.users.read.self", "okta.users.read"])];
-                        case 6:
-                            _b = _c.sent();
-                            return [3 /*break*/, 9];
-                        case 7: return [4 /*yield*/, configuration.accessToken];
-                        case 8:
-                            _b = _c.sent();
-                            _c.label = 9;
-                        case 9:
-                            localVarAccessTokenValue = _b;
-                            localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
-                            _c.label = 10;
-                        case 10:
-                            query = new URLSearchParams(localVarUrlObj.search);
-                            for (key in localVarQueryParameter) {
-                                query.set(key, localVarQueryParameter[key]);
-                            }
-                            for (key in options.query) {
-                                query.set(key, options.query[key]);
-                            }
-                            localVarUrlObj.search = (new URLSearchParams(query)).toString();
-                            headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-                            localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), options.headers);
-                            return [2 /*return*/, {
-                                    url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
-                                    options: localVarRequestOptions
-                                }];
-                    }
-                });
-            });
+        getUserType: (typeId, options = {}) => {
+            // verify required parameter 'typeId' is not null or undefined
+            if (typeId === null || typeId === undefined) {
+                throw new base_1.RequiredError('typeId', 'Required parameter typeId was null or undefined when calling getUserType.');
+            }
+            const localVarPath = `/api/v1/meta/types/user/{typeId}`
+                .replace(`{${"typeId"}}`, encodeURIComponent(String(typeId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
+            const localVarHeaderParameter = {};
+            const localVarQueryParameter = {};
+            // authentication api_token required
+            if (configuration && configuration.apiToken) {
+                const localVarApiKeyValue = typeof configuration.apiToken === 'function'
+                    ? configuration.apiToken("Authorization")
+                    : configuration.apiToken;
+                localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
+            }
+            // authentication oauth2 required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("oauth2", ["okta.apps.read", "okta.apps.manage", "okta.authenticators.read", "okta.authenticators.manage", "okta.authorizationServers.read", "okta.authorizationServers.manage", "okta.brands.read", "okta.brands.manage", "okta.captchas.manage", "okta.captchas.read", "okta.domains.read", "okta.domains.manage", "okta.eventHooks.read", "okta.eventHooks.manage", "okta.groups.read", "okta.groups.manage", "okta.roles.read", "okta.roles.manage", "okta.idps.read", "okta.idps.manage", "okta.users.manage", "okta.inlineHooks.read", "okta.inlineHooks.manage", "okta.logs.read", "okta.profileMappings.read", "okta.profileMappings.manage", "okta.schemas.read", "okta.schemas.manage", "okta.linkedObjects.read", "okta.linkedObjects.manage", "okta.userTypes.read", "okta.userTypes.manage", "okta.orgs.read", "okta.orgs.manage", "okta.policies.read", "okta.policies.manage", "okta.sessions.read", "okta.sessions.manage", "okta.templates.read", "okta.templates.manage", "okta.trustedOrigins.read", "okta.trustedOrigins.manage", "okta.users.read.self", "okta.users.read"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                query.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
         },
         /**
           * Fetches all User Types in your org
@@ -394,68 +268,46 @@ var UserTypeApiRequestParamCreator = function (configuration) {
           * @param {*} [options] Override http request option.
           * @throws {RequiredError}
           */
-        listUserTypes: function (options) {
-            if (options === void 0) { options = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
-                var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, localVarApiKeyValue, _a, localVarAccessTokenValue, _b, query, key, key, headersFromBaseOptions;
-                return __generator(this, function (_c) {
-                    switch (_c.label) {
-                        case 0:
-                            localVarPath = "/api/v1/meta/types/user";
-                            localVarUrlObj = new URL(localVarPath, 'https://example.com');
-                            if (configuration) {
-                                baseOptions = configuration.baseOptions;
-                            }
-                            localVarRequestOptions = __assign(__assign({ method: 'GET' }, baseOptions), options);
-                            localVarHeaderParameter = {};
-                            localVarQueryParameter = {};
-                            if (!(configuration && configuration.apiToken)) return [3 /*break*/, 5];
-                            if (!(typeof configuration.apiToken === 'function')) return [3 /*break*/, 2];
-                            return [4 /*yield*/, configuration.apiToken("Authorization")];
-                        case 1:
-                            _a = _c.sent();
-                            return [3 /*break*/, 4];
-                        case 2: return [4 /*yield*/, configuration.apiToken];
-                        case 3:
-                            _a = _c.sent();
-                            _c.label = 4;
-                        case 4:
-                            localVarApiKeyValue = _a;
-                            localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
-                            _c.label = 5;
-                        case 5:
-                            if (!(configuration && configuration.accessToken)) return [3 /*break*/, 10];
-                            if (!(typeof configuration.accessToken === 'function')) return [3 /*break*/, 7];
-                            return [4 /*yield*/, configuration.accessToken("oauth2", ["okta.apps.read", "okta.apps.manage", "okta.authenticators.read", "okta.authenticators.manage", "okta.authorizationServers.read", "okta.authorizationServers.manage", "okta.brands.read", "okta.brands.manage", "okta.captchas.manage", "okta.captchas.read", "okta.domains.read", "okta.domains.manage", "okta.eventHooks.read", "okta.eventHooks.manage", "okta.groups.read", "okta.groups.manage", "okta.roles.read", "okta.roles.manage", "okta.idps.read", "okta.idps.manage", "okta.users.manage", "okta.inlineHooks.read", "okta.inlineHooks.manage", "okta.logs.read", "okta.profileMappings.read", "okta.profileMappings.manage", "okta.schemas.read", "okta.schemas.manage", "okta.linkedObjects.read", "okta.linkedObjects.manage", "okta.userTypes.read", "okta.userTypes.manage", "okta.orgs.read", "okta.orgs.manage", "okta.policies.read", "okta.policies.manage", "okta.sessions.read", "okta.sessions.manage", "okta.templates.read", "okta.templates.manage", "okta.trustedOrigins.read", "okta.trustedOrigins.manage", "okta.users.read.self", "okta.users.read"])];
-                        case 6:
-                            _b = _c.sent();
-                            return [3 /*break*/, 9];
-                        case 7: return [4 /*yield*/, configuration.accessToken];
-                        case 8:
-                            _b = _c.sent();
-                            _c.label = 9;
-                        case 9:
-                            localVarAccessTokenValue = _b;
-                            localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
-                            _c.label = 10;
-                        case 10:
-                            query = new URLSearchParams(localVarUrlObj.search);
-                            for (key in localVarQueryParameter) {
-                                query.set(key, localVarQueryParameter[key]);
-                            }
-                            for (key in options.query) {
-                                query.set(key, options.query[key]);
-                            }
-                            localVarUrlObj.search = (new URLSearchParams(query)).toString();
-                            headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-                            localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), options.headers);
-                            return [2 /*return*/, {
-                                    url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
-                                    options: localVarRequestOptions
-                                }];
-                    }
-                });
-            });
+        listUserTypes: (options = {}) => {
+            const localVarPath = `/api/v1/meta/types/user`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
+            const localVarHeaderParameter = {};
+            const localVarQueryParameter = {};
+            // authentication api_token required
+            if (configuration && configuration.apiToken) {
+                const localVarApiKeyValue = typeof configuration.apiToken === 'function'
+                    ? configuration.apiToken("Authorization")
+                    : configuration.apiToken;
+                localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
+            }
+            // authentication oauth2 required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("oauth2", ["okta.apps.read", "okta.apps.manage", "okta.authenticators.read", "okta.authenticators.manage", "okta.authorizationServers.read", "okta.authorizationServers.manage", "okta.brands.read", "okta.brands.manage", "okta.captchas.manage", "okta.captchas.read", "okta.domains.read", "okta.domains.manage", "okta.eventHooks.read", "okta.eventHooks.manage", "okta.groups.read", "okta.groups.manage", "okta.roles.read", "okta.roles.manage", "okta.idps.read", "okta.idps.manage", "okta.users.manage", "okta.inlineHooks.read", "okta.inlineHooks.manage", "okta.logs.read", "okta.profileMappings.read", "okta.profileMappings.manage", "okta.schemas.read", "okta.schemas.manage", "okta.linkedObjects.read", "okta.linkedObjects.manage", "okta.userTypes.read", "okta.userTypes.manage", "okta.orgs.read", "okta.orgs.manage", "okta.policies.read", "okta.policies.manage", "okta.sessions.read", "okta.sessions.manage", "okta.templates.read", "okta.templates.manage", "okta.trustedOrigins.read", "okta.trustedOrigins.manage", "okta.users.read.self", "okta.users.read"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                query.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
         },
         /**
           * Replace an existing User Type
@@ -465,80 +317,58 @@ var UserTypeApiRequestParamCreator = function (configuration) {
           * @param {*} [options] Override http request option.
           * @throws {RequiredError}
           */
-        replaceUserType: function (body, typeId, options) {
-            if (options === void 0) { options = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
-                var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, localVarApiKeyValue, _a, localVarAccessTokenValue, _b, query, key, key, headersFromBaseOptions, needsSerialization;
-                return __generator(this, function (_c) {
-                    switch (_c.label) {
-                        case 0:
-                            // verify required parameter 'body' is not null or undefined
-                            if (body === null || body === undefined) {
-                                throw new base_1.RequiredError('body', 'Required parameter body was null or undefined when calling replaceUserType.');
-                            }
-                            // verify required parameter 'typeId' is not null or undefined
-                            if (typeId === null || typeId === undefined) {
-                                throw new base_1.RequiredError('typeId', 'Required parameter typeId was null or undefined when calling replaceUserType.');
-                            }
-                            localVarPath = "/api/v1/meta/types/user/{typeId}"
-                                .replace("{" + "typeId" + "}", encodeURIComponent(String(typeId)));
-                            localVarUrlObj = new URL(localVarPath, 'https://example.com');
-                            if (configuration) {
-                                baseOptions = configuration.baseOptions;
-                            }
-                            localVarRequestOptions = __assign(__assign({ method: 'PUT' }, baseOptions), options);
-                            localVarHeaderParameter = {};
-                            localVarQueryParameter = {};
-                            if (!(configuration && configuration.apiToken)) return [3 /*break*/, 5];
-                            if (!(typeof configuration.apiToken === 'function')) return [3 /*break*/, 2];
-                            return [4 /*yield*/, configuration.apiToken("Authorization")];
-                        case 1:
-                            _a = _c.sent();
-                            return [3 /*break*/, 4];
-                        case 2: return [4 /*yield*/, configuration.apiToken];
-                        case 3:
-                            _a = _c.sent();
-                            _c.label = 4;
-                        case 4:
-                            localVarApiKeyValue = _a;
-                            localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
-                            _c.label = 5;
-                        case 5:
-                            if (!(configuration && configuration.accessToken)) return [3 /*break*/, 10];
-                            if (!(typeof configuration.accessToken === 'function')) return [3 /*break*/, 7];
-                            return [4 /*yield*/, configuration.accessToken("oauth2", ["okta.apps.read", "okta.apps.manage", "okta.authenticators.read", "okta.authenticators.manage", "okta.authorizationServers.read", "okta.authorizationServers.manage", "okta.brands.read", "okta.brands.manage", "okta.captchas.manage", "okta.captchas.read", "okta.domains.read", "okta.domains.manage", "okta.eventHooks.read", "okta.eventHooks.manage", "okta.groups.read", "okta.groups.manage", "okta.roles.read", "okta.roles.manage", "okta.idps.read", "okta.idps.manage", "okta.users.manage", "okta.inlineHooks.read", "okta.inlineHooks.manage", "okta.logs.read", "okta.profileMappings.read", "okta.profileMappings.manage", "okta.schemas.read", "okta.schemas.manage", "okta.linkedObjects.read", "okta.linkedObjects.manage", "okta.userTypes.read", "okta.userTypes.manage", "okta.orgs.read", "okta.orgs.manage", "okta.policies.read", "okta.policies.manage", "okta.sessions.read", "okta.sessions.manage", "okta.templates.read", "okta.templates.manage", "okta.trustedOrigins.read", "okta.trustedOrigins.manage", "okta.users.read.self", "okta.users.read"])];
-                        case 6:
-                            _b = _c.sent();
-                            return [3 /*break*/, 9];
-                        case 7: return [4 /*yield*/, configuration.accessToken];
-                        case 8:
-                            _b = _c.sent();
-                            _c.label = 9;
-                        case 9:
-                            localVarAccessTokenValue = _b;
-                            localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
-                            _c.label = 10;
-                        case 10:
-                            localVarHeaderParameter['Content-Type'] = 'application/json';
-                            query = new URLSearchParams(localVarUrlObj.search);
-                            for (key in localVarQueryParameter) {
-                                query.set(key, localVarQueryParameter[key]);
-                            }
-                            for (key in options.query) {
-                                query.set(key, options.query[key]);
-                            }
-                            localVarUrlObj.search = (new URLSearchParams(query)).toString();
-                            headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-                            localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), options.headers);
-                            needsSerialization = (typeof body !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-                            localVarRequestOptions.data = needsSerialization ? JSON.stringify(body !== undefined ? body : {}) : (body || "");
-                            return [2 /*return*/, {
-                                    url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
-                                    options: localVarRequestOptions
-                                }];
-                    }
-                });
-            });
+        replaceUserType: (body, typeId, options = {}) => {
+            // verify required parameter 'body' is not null or undefined
+            if (body === null || body === undefined) {
+                throw new base_1.RequiredError('body', 'Required parameter body was null or undefined when calling replaceUserType.');
+            }
+            // verify required parameter 'typeId' is not null or undefined
+            if (typeId === null || typeId === undefined) {
+                throw new base_1.RequiredError('typeId', 'Required parameter typeId was null or undefined when calling replaceUserType.');
+            }
+            const localVarPath = `/api/v1/meta/types/user/{typeId}`
+                .replace(`{${"typeId"}}`, encodeURIComponent(String(typeId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options };
+            const localVarHeaderParameter = {};
+            const localVarQueryParameter = {};
+            // authentication api_token required
+            if (configuration && configuration.apiToken) {
+                const localVarApiKeyValue = typeof configuration.apiToken === 'function'
+                    ? configuration.apiToken("Authorization")
+                    : configuration.apiToken;
+                localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
+            }
+            // authentication oauth2 required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("oauth2", ["okta.apps.read", "okta.apps.manage", "okta.authenticators.read", "okta.authenticators.manage", "okta.authorizationServers.read", "okta.authorizationServers.manage", "okta.brands.read", "okta.brands.manage", "okta.captchas.manage", "okta.captchas.read", "okta.domains.read", "okta.domains.manage", "okta.eventHooks.read", "okta.eventHooks.manage", "okta.groups.read", "okta.groups.manage", "okta.roles.read", "okta.roles.manage", "okta.idps.read", "okta.idps.manage", "okta.users.manage", "okta.inlineHooks.read", "okta.inlineHooks.manage", "okta.logs.read", "okta.profileMappings.read", "okta.profileMappings.manage", "okta.schemas.read", "okta.schemas.manage", "okta.linkedObjects.read", "okta.linkedObjects.manage", "okta.userTypes.read", "okta.userTypes.manage", "okta.orgs.read", "okta.orgs.manage", "okta.policies.read", "okta.policies.manage", "okta.sessions.read", "okta.sessions.manage", "okta.templates.read", "okta.templates.manage", "okta.trustedOrigins.read", "okta.trustedOrigins.manage", "okta.users.read.self", "okta.users.read"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                query.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
+            const needsSerialization = (typeof body !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body = needsSerialization ? JSON.stringify(body !== undefined ? body : {}) : (body || "");
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
         },
         /**
           * Updates an existing User Type
@@ -548,81 +378,59 @@ var UserTypeApiRequestParamCreator = function (configuration) {
           * @param {*} [options] Override http request option.
           * @throws {RequiredError}
           */
-        updateUserType: function (body, typeId, options) {
-            if (options === void 0) { options = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
-                var localVarPath, localVarUrlObj, baseOptions, localVarRequestOptions, localVarHeaderParameter, localVarQueryParameter, localVarApiKeyValue, _a, localVarAccessTokenValue, _b, query, key, key, headersFromBaseOptions, needsSerialization;
-                return __generator(this, function (_c) {
-                    switch (_c.label) {
-                        case 0:
-                            // verify required parameter 'body' is not null or undefined
-                            if (body === null || body === undefined) {
-                                throw new base_1.RequiredError('body', 'Required parameter body was null or undefined when calling updateUserType.');
-                            }
-                            // verify required parameter 'typeId' is not null or undefined
-                            if (typeId === null || typeId === undefined) {
-                                throw new base_1.RequiredError('typeId', 'Required parameter typeId was null or undefined when calling updateUserType.');
-                            }
-                            localVarPath = "/api/v1/meta/types/user/{typeId}"
-                                .replace("{" + "typeId" + "}", encodeURIComponent(String(typeId)));
-                            localVarUrlObj = new URL(localVarPath, 'https://example.com');
-                            if (configuration) {
-                                baseOptions = configuration.baseOptions;
-                            }
-                            localVarRequestOptions = __assign(__assign({ method: 'POST' }, baseOptions), options);
-                            localVarHeaderParameter = {};
-                            localVarQueryParameter = {};
-                            if (!(configuration && configuration.apiToken)) return [3 /*break*/, 5];
-                            if (!(typeof configuration.apiToken === 'function')) return [3 /*break*/, 2];
-                            return [4 /*yield*/, configuration.apiToken("Authorization")];
-                        case 1:
-                            _a = _c.sent();
-                            return [3 /*break*/, 4];
-                        case 2: return [4 /*yield*/, configuration.apiToken];
-                        case 3:
-                            _a = _c.sent();
-                            _c.label = 4;
-                        case 4:
-                            localVarApiKeyValue = _a;
-                            localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
-                            _c.label = 5;
-                        case 5:
-                            if (!(configuration && configuration.accessToken)) return [3 /*break*/, 10];
-                            if (!(typeof configuration.accessToken === 'function')) return [3 /*break*/, 7];
-                            return [4 /*yield*/, configuration.accessToken("oauth2", ["okta.apps.read", "okta.apps.manage", "okta.authenticators.read", "okta.authenticators.manage", "okta.authorizationServers.read", "okta.authorizationServers.manage", "okta.brands.read", "okta.brands.manage", "okta.captchas.manage", "okta.captchas.read", "okta.domains.read", "okta.domains.manage", "okta.eventHooks.read", "okta.eventHooks.manage", "okta.groups.read", "okta.groups.manage", "okta.roles.read", "okta.roles.manage", "okta.idps.read", "okta.idps.manage", "okta.users.manage", "okta.inlineHooks.read", "okta.inlineHooks.manage", "okta.logs.read", "okta.profileMappings.read", "okta.profileMappings.manage", "okta.schemas.read", "okta.schemas.manage", "okta.linkedObjects.read", "okta.linkedObjects.manage", "okta.userTypes.read", "okta.userTypes.manage", "okta.orgs.read", "okta.orgs.manage", "okta.policies.read", "okta.policies.manage", "okta.sessions.read", "okta.sessions.manage", "okta.templates.read", "okta.templates.manage", "okta.trustedOrigins.read", "okta.trustedOrigins.manage", "okta.users.read.self", "okta.users.read"])];
-                        case 6:
-                            _b = _c.sent();
-                            return [3 /*break*/, 9];
-                        case 7: return [4 /*yield*/, configuration.accessToken];
-                        case 8:
-                            _b = _c.sent();
-                            _c.label = 9;
-                        case 9:
-                            localVarAccessTokenValue = _b;
-                            localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
-                            _c.label = 10;
-                        case 10:
-                            localVarHeaderParameter['Content-Type'] = 'application/json';
-                            query = new URLSearchParams(localVarUrlObj.search);
-                            for (key in localVarQueryParameter) {
-                                query.set(key, localVarQueryParameter[key]);
-                            }
-                            for (key in options.query) {
-                                query.set(key, options.query[key]);
-                            }
-                            localVarUrlObj.search = (new URLSearchParams(query)).toString();
-                            headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-                            localVarRequestOptions.headers = __assign(__assign(__assign({}, localVarHeaderParameter), headersFromBaseOptions), options.headers);
-                            needsSerialization = (typeof body !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-                            localVarRequestOptions.data = needsSerialization ? JSON.stringify(body !== undefined ? body : {}) : (body || "");
-                            return [2 /*return*/, {
-                                    url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
-                                    options: localVarRequestOptions
-                                }];
-                    }
-                });
-            });
-        }
+        updateUserType: (body, typeId, options = {}) => {
+            // verify required parameter 'body' is not null or undefined
+            if (body === null || body === undefined) {
+                throw new base_1.RequiredError('body', 'Required parameter body was null or undefined when calling updateUserType.');
+            }
+            // verify required parameter 'typeId' is not null or undefined
+            if (typeId === null || typeId === undefined) {
+                throw new base_1.RequiredError('typeId', 'Required parameter typeId was null or undefined when calling updateUserType.');
+            }
+            const localVarPath = `/api/v1/meta/types/user/{typeId}`
+                .replace(`{${"typeId"}}`, encodeURIComponent(String(typeId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options };
+            const localVarHeaderParameter = {};
+            const localVarQueryParameter = {};
+            // authentication api_token required
+            if (configuration && configuration.apiToken) {
+                const localVarApiKeyValue = typeof configuration.apiToken === 'function'
+                    ? configuration.apiToken("Authorization")
+                    : configuration.apiToken;
+                localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
+            }
+            // authentication oauth2 required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("oauth2", ["okta.apps.read", "okta.apps.manage", "okta.authenticators.read", "okta.authenticators.manage", "okta.authorizationServers.read", "okta.authorizationServers.manage", "okta.brands.read", "okta.brands.manage", "okta.captchas.manage", "okta.captchas.read", "okta.domains.read", "okta.domains.manage", "okta.eventHooks.read", "okta.eventHooks.manage", "okta.groups.read", "okta.groups.manage", "okta.roles.read", "okta.roles.manage", "okta.idps.read", "okta.idps.manage", "okta.users.manage", "okta.inlineHooks.read", "okta.inlineHooks.manage", "okta.logs.read", "okta.profileMappings.read", "okta.profileMappings.manage", "okta.schemas.read", "okta.schemas.manage", "okta.linkedObjects.read", "okta.linkedObjects.manage", "okta.userTypes.read", "okta.userTypes.manage", "okta.orgs.read", "okta.orgs.manage", "okta.policies.read", "okta.policies.manage", "okta.sessions.read", "okta.sessions.manage", "okta.templates.read", "okta.templates.manage", "okta.trustedOrigins.read", "okta.trustedOrigins.manage", "okta.users.read.self", "okta.users.read"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                query.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
+            const needsSerialization = (typeof body !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body = needsSerialization ? JSON.stringify(body !== undefined ? body : {}) : (body || "");
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
     };
 };
 exports.UserTypeApiRequestParamCreator = UserTypeApiRequestParamCreator;
@@ -630,7 +438,7 @@ exports.UserTypeApiRequestParamCreator = UserTypeApiRequestParamCreator;
  * UserTypeApi - functional programming interface
  * @export
  */
-var UserTypeApiFp = function (configuration) {
+const UserTypeApiFp = function (configuration) {
     return {
         /**
           * Creates a new User Type. A default User Type is automatically created along with your org, and you may add another 9 User Types for a maximum of 10.
@@ -639,25 +447,13 @@ var UserTypeApiFp = function (configuration) {
           * @param {*} [options] Override http request option.
           * @throws {RequiredError}
           */
-        createUserType: function (body, options) {
-            return __awaiter(this, void 0, void 0, function () {
-                var api, localVarRequestArgs;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0:
-                            api = (0, exports.UserTypeApiRequestParamCreator)(configuration);
-                            return [4 /*yield*/, api.createUserType(body, options)];
-                        case 1:
-                            localVarRequestArgs = _a.sent();
-                            return [2 /*return*/, function (httpClient, basePath) {
-                                    if (httpClient === void 0) { httpClient = api.httpClient; }
-                                    if (basePath === void 0) { basePath = configuration.basePath || configuration.orgUrl; }
-                                    var requestArgs = __assign(__assign({}, localVarRequestArgs.options), { url: basePath + localVarRequestArgs.url });
-                                    return httpClient.http(requestArgs.url, requestArgs).then(function (res) { return res.json(); });
-                                }];
-                    }
-                });
-            });
+        createUserType(body, options) {
+            const api = exports.UserTypeApiRequestParamCreator(configuration);
+            const localVarRequestArgs = api.createUserType(body, options);
+            return (http = api.http, basePath = configuration.basePath || configuration.orgUrl) => {
+                const requestArgs = { ...localVarRequestArgs.options, url: basePath + localVarRequestArgs.url };
+                return http.http(requestArgs.url, requestArgs).then(res => res.json().then(data => new models_1.UserType(data)));
+            };
         },
         /**
           * Deletes a User Type permanently. This operation is not permitted for the default type, nor for any User Type that has existing users
@@ -666,25 +462,13 @@ var UserTypeApiFp = function (configuration) {
           * @param {*} [options] Override http request option.
           * @throws {RequiredError}
           */
-        deleteUserType: function (typeId, options) {
-            return __awaiter(this, void 0, void 0, function () {
-                var api, localVarRequestArgs;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0:
-                            api = (0, exports.UserTypeApiRequestParamCreator)(configuration);
-                            return [4 /*yield*/, api.deleteUserType(typeId, options)];
-                        case 1:
-                            localVarRequestArgs = _a.sent();
-                            return [2 /*return*/, function (httpClient, basePath) {
-                                    if (httpClient === void 0) { httpClient = api.httpClient; }
-                                    if (basePath === void 0) { basePath = configuration.basePath || configuration.orgUrl; }
-                                    var requestArgs = __assign(__assign({}, localVarRequestArgs.options), { url: basePath + localVarRequestArgs.url });
-                                    return httpClient.http(requestArgs.url, requestArgs);
-                                }];
-                    }
-                });
-            });
+        deleteUserType(typeId, options) {
+            const api = exports.UserTypeApiRequestParamCreator(configuration);
+            const localVarRequestArgs = api.deleteUserType(typeId, options);
+            return (http = api.http, basePath = configuration.basePath || configuration.orgUrl) => {
+                const requestArgs = { ...localVarRequestArgs.options, url: basePath + localVarRequestArgs.url };
+                return http.http(requestArgs.url, requestArgs);
+            };
         },
         /**
           * Fetches a User Type by ID. The special identifier `default` may be used to fetch the default User Type.
@@ -693,25 +477,13 @@ var UserTypeApiFp = function (configuration) {
           * @param {*} [options] Override http request option.
           * @throws {RequiredError}
           */
-        getUserType: function (typeId, options) {
-            return __awaiter(this, void 0, void 0, function () {
-                var api, localVarRequestArgs;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0:
-                            api = (0, exports.UserTypeApiRequestParamCreator)(configuration);
-                            return [4 /*yield*/, api.getUserType(typeId, options)];
-                        case 1:
-                            localVarRequestArgs = _a.sent();
-                            return [2 /*return*/, function (httpClient, basePath) {
-                                    if (httpClient === void 0) { httpClient = api.httpClient; }
-                                    if (basePath === void 0) { basePath = configuration.basePath || configuration.orgUrl; }
-                                    var requestArgs = __assign(__assign({}, localVarRequestArgs.options), { url: basePath + localVarRequestArgs.url });
-                                    return httpClient.http(requestArgs.url, requestArgs).then(function (res) { return res.json(); });
-                                }];
-                    }
-                });
-            });
+        getUserType(typeId, options) {
+            const api = exports.UserTypeApiRequestParamCreator(configuration);
+            const localVarRequestArgs = api.getUserType(typeId, options);
+            return (http = api.http, basePath = configuration.basePath || configuration.orgUrl) => {
+                const requestArgs = { ...localVarRequestArgs.options, url: basePath + localVarRequestArgs.url };
+                return http.http(requestArgs.url, requestArgs).then(res => res.json().then(data => new models_1.UserType(data)));
+            };
         },
         /**
           * Fetches all User Types in your org
@@ -719,25 +491,13 @@ var UserTypeApiFp = function (configuration) {
           * @param {*} [options] Override http request option.
           * @throws {RequiredError}
           */
-        listUserTypes: function (options) {
-            return __awaiter(this, void 0, void 0, function () {
-                var api, localVarRequestArgs;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0:
-                            api = (0, exports.UserTypeApiRequestParamCreator)(configuration);
-                            return [4 /*yield*/, api.listUserTypes(options)];
-                        case 1:
-                            localVarRequestArgs = _a.sent();
-                            return [2 /*return*/, function (httpClient, basePath) {
-                                    if (httpClient === void 0) { httpClient = api.httpClient; }
-                                    if (basePath === void 0) { basePath = configuration.basePath || configuration.orgUrl; }
-                                    var requestArgs = __assign(__assign({}, localVarRequestArgs.options), { url: basePath + localVarRequestArgs.url });
-                                    return httpClient.http(requestArgs.url, requestArgs).then(function (res) { return res.json(); });
-                                }];
-                    }
-                });
-            });
+        listUserTypes(options) {
+            const api = exports.UserTypeApiRequestParamCreator(configuration);
+            const localVarRequestArgs = api.listUserTypes(options);
+            return (http = api.http, basePath = configuration.basePath || configuration.orgUrl) => {
+                const requestArgs = { ...localVarRequestArgs.options, url: basePath + localVarRequestArgs.url };
+                return new collection_1.Collection({ http }, `${requestArgs.url}`, new model_factory_1.ModelFactory(models_1.UserType));
+            };
         },
         /**
           * Replace an existing User Type
@@ -747,25 +507,13 @@ var UserTypeApiFp = function (configuration) {
           * @param {*} [options] Override http request option.
           * @throws {RequiredError}
           */
-        replaceUserType: function (body, typeId, options) {
-            return __awaiter(this, void 0, void 0, function () {
-                var api, localVarRequestArgs;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0:
-                            api = (0, exports.UserTypeApiRequestParamCreator)(configuration);
-                            return [4 /*yield*/, api.replaceUserType(body, typeId, options)];
-                        case 1:
-                            localVarRequestArgs = _a.sent();
-                            return [2 /*return*/, function (httpClient, basePath) {
-                                    if (httpClient === void 0) { httpClient = api.httpClient; }
-                                    if (basePath === void 0) { basePath = configuration.basePath || configuration.orgUrl; }
-                                    var requestArgs = __assign(__assign({}, localVarRequestArgs.options), { url: basePath + localVarRequestArgs.url });
-                                    return httpClient.http(requestArgs.url, requestArgs).then(function (res) { return res.json(); });
-                                }];
-                    }
-                });
-            });
+        replaceUserType(body, typeId, options) {
+            const api = exports.UserTypeApiRequestParamCreator(configuration);
+            const localVarRequestArgs = api.replaceUserType(body, typeId, options);
+            return (http = api.http, basePath = configuration.basePath || configuration.orgUrl) => {
+                const requestArgs = { ...localVarRequestArgs.options, url: basePath + localVarRequestArgs.url };
+                return http.http(requestArgs.url, requestArgs).then(res => res.json().then(data => new models_1.UserType(data)));
+            };
         },
         /**
           * Updates an existing User Type
@@ -775,26 +523,14 @@ var UserTypeApiFp = function (configuration) {
           * @param {*} [options] Override http request option.
           * @throws {RequiredError}
           */
-        updateUserType: function (body, typeId, options) {
-            return __awaiter(this, void 0, void 0, function () {
-                var api, localVarRequestArgs;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0:
-                            api = (0, exports.UserTypeApiRequestParamCreator)(configuration);
-                            return [4 /*yield*/, api.updateUserType(body, typeId, options)];
-                        case 1:
-                            localVarRequestArgs = _a.sent();
-                            return [2 /*return*/, function (httpClient, basePath) {
-                                    if (httpClient === void 0) { httpClient = api.httpClient; }
-                                    if (basePath === void 0) { basePath = configuration.basePath || configuration.orgUrl; }
-                                    var requestArgs = __assign(__assign({}, localVarRequestArgs.options), { url: basePath + localVarRequestArgs.url });
-                                    return httpClient.http(requestArgs.url, requestArgs).then(function (res) { return res.json(); });
-                                }];
-                    }
-                });
-            });
-        }
+        updateUserType(body, typeId, options) {
+            const api = exports.UserTypeApiRequestParamCreator(configuration);
+            const localVarRequestArgs = api.updateUserType(body, typeId, options);
+            return (http = api.http, basePath = configuration.basePath || configuration.orgUrl) => {
+                const requestArgs = { ...localVarRequestArgs.options, url: basePath + localVarRequestArgs.url };
+                return http.http(requestArgs.url, requestArgs).then(res => res.json().then(data => new models_1.UserType(data)));
+            };
+        },
     };
 };
 exports.UserTypeApiFp = UserTypeApiFp;
@@ -802,7 +538,7 @@ exports.UserTypeApiFp = UserTypeApiFp;
  * UserTypeApi - factory interface
  * @export
  */
-var UserTypeApiFactory = function (configuration, basePath, httpClient) {
+const UserTypeApiFactory = function (configuration, basePath, http) {
     return {
         /**
           * Creates a new User Type. A default User Type is automatically created along with your org, and you may add another 9 User Types for a maximum of 10.
@@ -811,8 +547,8 @@ var UserTypeApiFactory = function (configuration, basePath, httpClient) {
           * @param {*} [options] Override http request option.
           * @throws {RequiredError}
           */
-        createUserType: function (body, options) {
-            return (0, exports.UserTypeApiFp)(configuration).createUserType(body, options).then(function (request) { return request(httpClient, basePath); });
+        createUserType(body, options) {
+            return exports.UserTypeApiFp(configuration).createUserType(body, options)(http, basePath);
         },
         /**
           * Deletes a User Type permanently. This operation is not permitted for the default type, nor for any User Type that has existing users
@@ -821,8 +557,8 @@ var UserTypeApiFactory = function (configuration, basePath, httpClient) {
           * @param {*} [options] Override http request option.
           * @throws {RequiredError}
           */
-        deleteUserType: function (typeId, options) {
-            return (0, exports.UserTypeApiFp)(configuration).deleteUserType(typeId, options).then(function (request) { return request(httpClient, basePath); });
+        deleteUserType(typeId, options) {
+            return exports.UserTypeApiFp(configuration).deleteUserType(typeId, options)(http, basePath);
         },
         /**
           * Fetches a User Type by ID. The special identifier `default` may be used to fetch the default User Type.
@@ -831,8 +567,8 @@ var UserTypeApiFactory = function (configuration, basePath, httpClient) {
           * @param {*} [options] Override http request option.
           * @throws {RequiredError}
           */
-        getUserType: function (typeId, options) {
-            return (0, exports.UserTypeApiFp)(configuration).getUserType(typeId, options).then(function (request) { return request(httpClient, basePath); });
+        getUserType(typeId, options) {
+            return exports.UserTypeApiFp(configuration).getUserType(typeId, options)(http, basePath);
         },
         /**
           * Fetches all User Types in your org
@@ -840,8 +576,8 @@ var UserTypeApiFactory = function (configuration, basePath, httpClient) {
           * @param {*} [options] Override http request option.
           * @throws {RequiredError}
           */
-        listUserTypes: function (options) {
-            return (0, exports.UserTypeApiFp)(configuration).listUserTypes(options).then(function (request) { return request(httpClient, basePath); });
+        listUserTypes(options) {
+            return exports.UserTypeApiFp(configuration).listUserTypes(options)(http, basePath);
         },
         /**
           * Replace an existing User Type
@@ -851,8 +587,8 @@ var UserTypeApiFactory = function (configuration, basePath, httpClient) {
           * @param {*} [options] Override http request option.
           * @throws {RequiredError}
           */
-        replaceUserType: function (body, typeId, options) {
-            return (0, exports.UserTypeApiFp)(configuration).replaceUserType(body, typeId, options).then(function (request) { return request(httpClient, basePath); });
+        replaceUserType(body, typeId, options) {
+            return exports.UserTypeApiFp(configuration).replaceUserType(body, typeId, options)(http, basePath);
         },
         /**
           * Updates an existing User Type
@@ -862,9 +598,9 @@ var UserTypeApiFactory = function (configuration, basePath, httpClient) {
           * @param {*} [options] Override http request option.
           * @throws {RequiredError}
           */
-        updateUserType: function (body, typeId, options) {
-            return (0, exports.UserTypeApiFp)(configuration).updateUserType(body, typeId, options).then(function (request) { return request(httpClient, basePath); });
-        }
+        updateUserType(body, typeId, options) {
+            return exports.UserTypeApiFp(configuration).updateUserType(body, typeId, options)(http, basePath);
+        },
     };
 };
 exports.UserTypeApiFactory = UserTypeApiFactory;
@@ -874,11 +610,7 @@ exports.UserTypeApiFactory = UserTypeApiFactory;
  * @class UserTypeApi
  * @extends {BaseAPI}
  */
-var UserTypeApi = /** @class */ (function (_super) {
-    __extends(UserTypeApi, _super);
-    function UserTypeApi() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
+class UserTypeApi extends base_1.BaseAPI {
     /**
       * Creates a new User Type. A default User Type is automatically created along with your org, and you may add another 9 User Types for a maximum of 10.
       * @summary Create User Type
@@ -887,11 +619,9 @@ var UserTypeApi = /** @class */ (function (_super) {
       * @throws {RequiredError}
       * @memberof UserTypeApi
       */
-    UserTypeApi.prototype.createUserType = function (body, options) {
-        var _this = this;
-        var api = (0, exports.UserTypeApiRequestParamCreator)(this.configuration);
-        return (0, exports.UserTypeApiFp)(this.configuration).createUserType(body, options).then(function (request) { return request(api.httpClient, _this.basePath); });
-    };
+    createUserType(body, options) {
+        return exports.UserTypeApiFp(this.configuration).createUserType(body, options)(this.httpClient, this.basePath);
+    }
     /**
       * Deletes a User Type permanently. This operation is not permitted for the default type, nor for any User Type that has existing users
       * @summary Delete User Type
@@ -900,11 +630,9 @@ var UserTypeApi = /** @class */ (function (_super) {
       * @throws {RequiredError}
       * @memberof UserTypeApi
       */
-    UserTypeApi.prototype.deleteUserType = function (typeId, options) {
-        var _this = this;
-        var api = (0, exports.UserTypeApiRequestParamCreator)(this.configuration);
-        return (0, exports.UserTypeApiFp)(this.configuration).deleteUserType(typeId, options).then(function (request) { return request(api.httpClient, _this.basePath); });
-    };
+    deleteUserType(typeId, options) {
+        return exports.UserTypeApiFp(this.configuration).deleteUserType(typeId, options)(this.httpClient, this.basePath);
+    }
     /**
       * Fetches a User Type by ID. The special identifier `default` may be used to fetch the default User Type.
       * @summary Get User Type
@@ -913,11 +641,9 @@ var UserTypeApi = /** @class */ (function (_super) {
       * @throws {RequiredError}
       * @memberof UserTypeApi
       */
-    UserTypeApi.prototype.getUserType = function (typeId, options) {
-        var _this = this;
-        var api = (0, exports.UserTypeApiRequestParamCreator)(this.configuration);
-        return (0, exports.UserTypeApiFp)(this.configuration).getUserType(typeId, options).then(function (request) { return request(api.httpClient, _this.basePath); });
-    };
+    getUserType(typeId, options) {
+        return exports.UserTypeApiFp(this.configuration).getUserType(typeId, options)(this.httpClient, this.basePath);
+    }
     /**
       * Fetches all User Types in your org
       * @summary List User Types
@@ -925,11 +651,9 @@ var UserTypeApi = /** @class */ (function (_super) {
       * @throws {RequiredError}
       * @memberof UserTypeApi
       */
-    UserTypeApi.prototype.listUserTypes = function (options) {
-        var _this = this;
-        var api = (0, exports.UserTypeApiRequestParamCreator)(this.configuration);
-        return (0, exports.UserTypeApiFp)(this.configuration).listUserTypes(options).then(function (request) { return request(api.httpClient, _this.basePath); });
-    };
+    listUserTypes(options) {
+        return exports.UserTypeApiFp(this.configuration).listUserTypes(options)(this.httpClient, this.basePath);
+    }
     /**
       * Replace an existing User Type
       * @summary Replace User Type
@@ -939,11 +663,9 @@ var UserTypeApi = /** @class */ (function (_super) {
       * @throws {RequiredError}
       * @memberof UserTypeApi
       */
-    UserTypeApi.prototype.replaceUserType = function (body, typeId, options) {
-        var _this = this;
-        var api = (0, exports.UserTypeApiRequestParamCreator)(this.configuration);
-        return (0, exports.UserTypeApiFp)(this.configuration).replaceUserType(body, typeId, options).then(function (request) { return request(api.httpClient, _this.basePath); });
-    };
+    replaceUserType(body, typeId, options) {
+        return exports.UserTypeApiFp(this.configuration).replaceUserType(body, typeId, options)(this.httpClient, this.basePath);
+    }
     /**
       * Updates an existing User Type
       * @summary Update User Type
@@ -953,11 +675,8 @@ var UserTypeApi = /** @class */ (function (_super) {
       * @throws {RequiredError}
       * @memberof UserTypeApi
       */
-    UserTypeApi.prototype.updateUserType = function (body, typeId, options) {
-        var _this = this;
-        var api = (0, exports.UserTypeApiRequestParamCreator)(this.configuration);
-        return (0, exports.UserTypeApiFp)(this.configuration).updateUserType(body, typeId, options).then(function (request) { return request(api.httpClient, _this.basePath); });
-    };
-    return UserTypeApi;
-}(base_1.BaseAPI));
+    updateUserType(body, typeId, options) {
+        return exports.UserTypeApiFp(this.configuration).updateUserType(body, typeId, options)(this.httpClient, this.basePath);
+    }
+}
 exports.UserTypeApi = UserTypeApi;

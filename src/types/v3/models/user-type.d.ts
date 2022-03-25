@@ -25,9 +25,10 @@
  * @class UserType
  */
 export declare class UserType {
+  constructor(resourceJson: any);
   /**
       *
-      * @type {{ [key, string]: any;}}
+      * @type {{ [key: string]: any; }}
       * @memberof UserType
       */
   links?: any;

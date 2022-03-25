@@ -449,4 +449,5 @@ module.exports = {
   shouldGenerateOptionsType,
   getRestrictedProperties,
   containsRestrictedProperties,
+  hasRequiredParameterInRequestMedia,
 };
