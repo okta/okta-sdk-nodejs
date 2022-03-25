@@ -1,5 +1,6 @@
 import * as okta from '@okta/okta-sdk-nodejs';
 import { expect } from 'chai';
+import { AuthenticatorStatus } from '../../src/types/v3/models';
 import utils = require('../utils');
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -32,11 +33,11 @@ describe('Authenticators API tests', () => {
         let sqAuthenticator = item;
         expect(sqAuthenticator).to.include({type: 'security_question', name: 'Security Question', status: 'ACTIVE'});
 
-        sqAuthenticator = await client.activateAuthenticator(sqAuthenticator.id);
-        expect(sqAuthenticator).to.include({type: 'security_question', name: 'Security Question', status: 'INACTIVE'});
-
-        // return to previous state
         sqAuthenticator = await client.deactivateAuthenticator(sqAuthenticator.id);
+        expect(sqAuthenticator).to.include({type: 'security_question', name: 'Security Question', status: 'INACTIVE'});
+        
+        // return to previous state
+        sqAuthenticator = await client.activateAuthenticator(sqAuthenticator.id);
         expect(sqAuthenticator).to.include({type: 'security_question', name: 'Security Question', status: 'ACTIVE'});
       }
     });
