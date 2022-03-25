@@ -24,9 +24,9 @@ describe('Authenticators API tests', () => {
   });
 
   it('should activate an inactive Authenticator', async () => {
-    const authenticators = await client.listAuthenticators();   // returns Collection<Authenticator>
+    const authenticators = client.listAuthenticators();   // returns Collection<Authenticator>
 
-    authenticators.each(async (item) => {
+    await authenticators.each(async (item) => {
       if (item.type === 'security_question') {
         // access Security Question Authenticator (this is not a part of the Default Authenticator Policy)
         let sqAuthenticator = item;

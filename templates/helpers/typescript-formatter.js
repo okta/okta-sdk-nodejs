@@ -1,3 +1,5 @@
+const { isV3Model } = require('./operation-v3');
+
 function formatMethodSignature(methodName, args, returnType) {
   return `${methodName}(${formatArguments(args)}): ${formatParameterizedReturnType(returnType)};`;
 }
@@ -59,8 +61,9 @@ function formatImportStatements(importTypes, {
     } else if (type === 'Collection') {
       importStatements.push(`import { Collection } from '${isModelToModelImport ? '..' : '.'}/collection';`);
     } else {
+      const modelPath = isV3Model(type) ? './v3/models/' : './models/';
       const importSource = type.replace(sourceFileSuffixToTrim, '');
-      importStatements.push(`import { ${type} } from '${isModelToModelImport ? './' : './models/'}${importSource}';`);
+      importStatements.push(`import { ${type} } from '${isModelToModelImport ? './' : modelPath}${importSource}';`);
     }
   });
   return importStatements.join('\n');

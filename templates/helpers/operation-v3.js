@@ -9,7 +9,36 @@ const V3ApiOperations = {
     'updateUserType',
     'replaceUserType'
   ],
+  AuthenticatorApi: [
+    'activateAuthenticator',
+    'deactivateAuthenticator',
+    'getAuthenticator',
+    'listAuthenticators',
+    'updateAuthenticator',
+  ]
 };
+
+// TODO: make build script read these from v3/models
+const V3Models = [
+  'AllowedForEnum',
+  'AuthenticatorProviderConfigurationUserNameTemplate',
+  'AuthenticatorProviderConfigruation',
+  'AuthenticatorProvider',
+  'AuthenticatorSetting',
+  'AuthenticatorStatus',
+  'AuthenticatorType',
+  'Authenticator',
+  'ChannelBinding',
+  'Compliance',
+  'FipsEnum',
+  'RequiredEnum',
+  'UserType',
+  'UserVerificationEnum'
+];
+
+function isV3Model(modelName) {
+  return V3Models.includes(modelName);
+}
 
 function isV3Api(operationId) {
   return Object.values(V3ApiOperations).find((operations) => operations.includes(operationId));
@@ -20,50 +49,8 @@ function v3ApiByOperationId(operationId) {
   return api;
 }
 
-const getOperationArgumentV3Format = operation => {
-  const { bodyModel, method, pathParams, queryParams, formData, parameters } = operation;
-  const optionalArgs = [];
-  let requiredArgs = [];
-  if ((method === 'post' || method === 'put') && bodyModel) {
-    const bodyModelName = getBodyModelNameInCamelCase(operation);
-    if (bodyModelName) {
-      if (hasRequiredParameterInRequestMedia(parameters, 'body')) {
-        requiredArgs.push(bodyModelName);
-      } else {
-        optionalArgs.push(bodyModelName);
-      }
-    }
-  }
-
-  requiredArgs = requiredArgs.concat(pathParams.reduce((acc, curr) => {
-    acc.push(curr.name);
-    return acc;
-  }, []));
-
-
-  if (queryParams.length) {
-    if (hasRequiredParameterInRequestMedia(parameters, 'query')) {
-      requiredArgs.push('queryParameters');
-    } else {
-      optionalArgs.push('queryParameters');
-    }
-  }
-
-  if (formData.length) {
-    let formDataParameter = formData[0].name;
-    if (hasRequiredParameterInRequestMedia(parameters, 'formData')) {
-      optionalArgs.push(formDataParameter);
-    } else {
-      optionalArgs.push(formDataParameter);
-    }
-  }
-
-  return requiredArgs.concat(optionalArgs).join(', ');
-};
-
-
 module.exports = {
+  isV3Model,
   isV3Api,
   v3ApiByOperationId,
-  getOperationArgumentV3Format,
 };

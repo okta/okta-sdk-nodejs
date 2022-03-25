@@ -1413,13 +1413,7 @@ class GeneratedApiClient {
    * @returns {Collection} A collection that will yield {@link Authenticator} instances.
    */
   listAuthenticators() {
-    let url = `${this.baseUrl}/api/v1/authenticators`;
-
-    return new Collection(
-      this,
-      url,
-      new ModelFactory(models.Authenticator),
-    );
+    return this.authenticatorApi.listAuthenticators();
   }
 
   /**
@@ -1433,18 +1427,7 @@ class GeneratedApiClient {
     if (!authenticatorId) {
       return Promise.reject(new Error('OKTA API getAuthenticator parameter authenticatorId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/authenticators/${authenticatorId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/authenticators/${authenticatorId}`
-    ];
-
-    const request = this.http.getJson(
-      url,
-      null,
-      { resources }
-    );
-    return request.then(jsonRes => new models.Authenticator(jsonRes, this));
+    return this.authenticatorApi.getAuthenticator(authenticatorId);
   }
 
   /**
@@ -1462,20 +1445,7 @@ class GeneratedApiClient {
     if (!authenticator) {
       return Promise.reject(new Error('OKTA API updateAuthenticator parameter authenticator is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/authenticators/${authenticatorId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/authenticators/${authenticatorId}`
-    ];
-
-    const request = this.http.putJson(
-      url,
-      {
-        body: authenticator
-      },
-      { resources }
-    );
-    return request.then(jsonRes => new models.Authenticator(jsonRes, this));
+    return this.authenticatorApi.updateAuthenticator(authenticator, authenticatorId);
   }
 
   /**
@@ -1489,18 +1459,7 @@ class GeneratedApiClient {
     if (!authenticatorId) {
       return Promise.reject(new Error('OKTA API activateAuthenticator parameter authenticatorId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/authenticators/${authenticatorId}/lifecycle/activate`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/authenticators/${authenticatorId}`
-    ];
-
-    const request = this.http.postJson(
-      url,
-      null,
-      { resources }
-    );
-    return request.then(jsonRes => new models.Authenticator(jsonRes, this));
+    return this.authenticatorApi.activateAuthenticator(authenticatorId);
   }
 
   /**
@@ -1514,18 +1473,7 @@ class GeneratedApiClient {
     if (!authenticatorId) {
       return Promise.reject(new Error('OKTA API deactivateAuthenticator parameter authenticatorId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/authenticators/${authenticatorId}/lifecycle/deactivate`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/authenticators/${authenticatorId}`
-    ];
-
-    const request = this.http.postJson(
-      url,
-      null,
-      { resources }
-    );
-    return request.then(jsonRes => new models.Authenticator(jsonRes, this));
+    return this.authenticatorApi.deactivateAuthenticator(authenticatorId);
   }
 
   /**
