@@ -8,13 +8,15 @@ import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } fr
 {{#imports}}
 import { {{import}} } from '{{apiRelativeToRoot}}{{tsModelPackage}}';
 import { Response } from 'node-fetch';
-import Oauth = require('../../oauth');
-import Http = require('../../http');
-import ConfigLoader = require('../../config-loader');
-import DefaultRequestExecutor = require('../../default-request-executor');
-import { V2Configuration } from '../../configuration';
-import { Configuration } from '{{apiRelativeToRoot}}configuration';
+import { OAuth } from '../../oauth';
+import { Http } from '../../http';
+import { ConfigLoader } from '../../config-loader';
+import { DefaultRequestExecutor } from '../../default-request-executor';
+import { ModelFactory } from '../../model-factory';
+import { Collection } from '../../collection';
 
+import type { V2Configuration } from '../../configuration';
+import type { Configuration } from '{{apiRelativeToRoot}}configuration';
 
 const os = require('os');
 const packageJson = require('../../../package.json');
@@ -78,10 +80,10 @@ export const {{classname}}RequestParamCreator = function (configuration?: Config
     clientId = parsedConfig.client.clientId;
     scopes = parsedConfig.client.scopes.split(' ');
     privateKey = parsedConfig.client.privateKey;
-    oauth = new Oauth(this);
+    oauth = new OAuth(this);
   }
 
-  const httpClient = new Http({
+  const http: Http = new Http({
     cacheStore: clientConfig.cacheStore,
     cacheMiddleware: clientConfig.cacheMiddleware,
     defaultCacheMiddlewareResponseBufferSize: clientConfig.defaultCacheMiddlewareResponseBufferSize,
@@ -89,12 +91,12 @@ export const {{classname}}RequestParamCreator = function (configuration?: Config
     oauth: oauth
   });
   if (authorizationMode === 'SSWS') {
-    httpClient.defaultHeaders.Authorization = `SSWS ${apiToken}`;
+    http.defaultHeaders.Authorization = `SSWS ${apiToken}`;
   }
-  httpClient.defaultHeaders['User-Agent'] = parsedConfig.client.userAgent ? parsedConfig.client.userAgent + ' ' + DEFAULT_USER_AGENT : DEFAULT_USER_AGENT;
+  http.defaultHeaders['User-Agent'] = parsedConfig.client.userAgent ? parsedConfig.client.userAgent + ' ' + DEFAULT_USER_AGENT : DEFAULT_USER_AGENT;
 
     return {
-      httpClient,
+      http,
   {{#operation}}
   {{#contents}}
       /**
@@ -108,13 +110,13 @@ export const {{classname}}RequestParamCreator = function (configuration?: Config
         * @param {*} [options] Override http request option.
         * @throws {RequiredError}
         */
-      {{nickname}}: async ({{#parameters}}{{paramName}}{{^required}}?{{/required}}: {{{dataType}}}, {{/parameters}}options: any = {}): Promise<RequestArgs> => {
+      {{nickname}}: ({{#parameters}}{{paramName}}{{^required}}?{{/required}}: {{{dataType}}}, {{/parameters}}options: any = {}): RequestArgs => {
   {{#parameters}}
   {{#required}}
-          // verify required parameter '{{paramName}}' is not null or undefined
-          if ({{paramName}} === null || {{paramName}} === undefined) {
-              throw new RequiredError('{{paramName}}','Required parameter {{paramName}} was null or undefined when calling {{nickname}}.');
-          }
+        // verify required parameter '{{paramName}}' is not null or undefined
+        if ({{paramName}} === null || {{paramName}} === undefined) {
+          throw new RequiredError('{{paramName}}','Required parameter {{paramName}} was null or undefined when calling {{nickname}}.');
+        }
   {{/required}}
   {{/parameters}}
           const localVarPath = `{{{path}}}`{{#pathParams}}
@@ -123,7 +125,7 @@ export const {{classname}}RequestParamCreator = function (configuration?: Config
           const localVarUrlObj = new URL(localVarPath, 'https://example.com');
           let baseOptions;
           if (configuration) {
-              baseOptions = configuration.baseOptions;
+            baseOptions = configuration.baseOptions;
           }
           const localVarRequestOptions = { method: '{{httpMethod}}', ...baseOptions, ...options};
           const localVarHeaderParameter = {} as any;
@@ -135,43 +137,43 @@ export const {{classname}}RequestParamCreator = function (configuration?: Config
           {{#isApiKey}}
           {{#isKeyInHeader}}
           if (configuration && configuration.apiToken) {
-              const localVarApiKeyValue = typeof configuration.apiToken === 'function'
-                  ? await configuration.apiToken("{{keyParamName}}")
-                  : await configuration.apiToken;
-              localVarHeaderParameter["{{keyParamName}}"] = localVarApiKeyValue;
+            const localVarApiKeyValue = typeof configuration.apiToken === 'function'
+                ? configuration.apiToken("{{keyParamName}}")
+                : configuration.apiToken;
+            localVarHeaderParameter["{{keyParamName}}"] = localVarApiKeyValue;
           }
           {{/isKeyInHeader}}
           {{#isKeyInQuery}}
           if (configuration && configuration.apiToken) {
-              const localVarApiKeyValue = typeof configuration.apiToken === 'function'
-                  ? await configuration.apiToken("{{keyParamName}}")
-                  : await configuration.apiToken;
-              localVarQueryParameter["{{keyParamName}}"] = localVarApiKeyValue;
+            const localVarApiKeyValue = typeof configuration.apiToken === 'function'
+                ? configuration.apiToken("{{keyParamName}}")
+                : configuration.apiToken;
+            localVarQueryParameter["{{keyParamName}}"] = localVarApiKeyValue;
           }
           {{/isKeyInQuery}}
           {{/isApiKey}}
           {{#isBasicBasic}}
           // http basic authentication required
           if (configuration && (configuration.username || configuration.password)) {
-              localVarRequestOptions["auth"] = { username: configuration.username, password: configuration.password };
+            localVarRequestOptions["auth"] = { username: configuration.username, password: configuration.password };
           }
           {{/isBasicBasic}}
           {{#isBasicBearer}}
           // http bearer authentication required
           if (configuration && configuration.accessToken) {
-              const accessToken = typeof configuration.accessToken === 'function'
-                  ? await configuration.accessToken()
-                  : await configuration.accessToken;
-              localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
+            const accessToken = typeof configuration.accessToken === 'function'
+                ? configuration.accessToken()
+                : configuration.accessToken;
+            localVarHeaderParameter["Authorization"] = "Bearer " + accessToken;
           }
           {{/isBasicBearer}}
           {{#isOAuth}}
           // oauth required
           if (configuration && configuration.accessToken) {
-              const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
-                  ? await configuration.accessToken("{{name}}", [{{#each scopes}}"{{@key}}"{{^@last}}, {{/@last}}{{/each}}])
-                  : await configuration.accessToken;
-              localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                ? configuration.accessToken("{{name}}", [{{#each scopes}}"{{@key}}"{{^@last}}, {{/@last}}{{/each}}])
+                : configuration.accessToken;
+            localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
           }
           {{/isOAuth}}
 
@@ -180,30 +182,30 @@ export const {{classname}}RequestParamCreator = function (configuration?: Config
           {{#isListContainer}}
           if ({{paramName}}) {
           {{#isCollectionFormatMulti}}
-              localVarQueryParameter['{{baseName}}'] = {{paramName}};
+            localVarQueryParameter['{{baseName}}'] = {{paramName}};
           {{/isCollectionFormatMulti}}
           {{^isCollectionFormatMulti}}
-              localVarQueryParameter['{{baseName}}'] = {{paramName}}.join(COLLECTION_FORMATS.{{collectionFormat}});
+            localVarQueryParameter['{{baseName}}'] = {{paramName}}.join(COLLECTION_FORMATS.{{collectionFormat}});
           {{/isCollectionFormatMulti}}
           }
           {{/isListContainer}}
           {{^isListContainer}}
           if ({{paramName}} !== undefined) {
-              {{#isDateTime}}
-              localVarQueryParameter['{{baseName}}'] = ({{paramName}} as any instanceof Date) ?
-                  ({{paramName}} as any).toISOString() :
-                  {{paramName}};
-              {{/isDateTime}}
-              {{^isDateTime}}
-              {{#isDate}}
-              localVarQueryParameter['{{baseName}}'] = ({{paramName}} as any instanceof Date) ?
-                  ({{paramName}} as any).toISOString().substr(0,10) :
-                  {{paramName}};
-              {{/isDate}}
-              {{^isDate}}
-              localVarQueryParameter['{{baseName}}'] = {{paramName}};
-              {{/isDate}}
-              {{/isDateTime}}
+            {{#isDateTime}}
+            localVarQueryParameter['{{baseName}}'] = ({{paramName}} as any instanceof Date) ?
+                ({{paramName}} as any).toISOString() :
+                {{paramName}};
+            {{/isDateTime}}
+            {{^isDateTime}}
+            {{#isDate}}
+            localVarQueryParameter['{{baseName}}'] = ({{paramName}} as any instanceof Date) ?
+                ({{paramName}} as any).toISOString().substr(0,10) :
+                {{paramName}};
+            {{/isDate}}
+            {{^isDate}}
+            localVarQueryParameter['{{baseName}}'] = {{paramName}};
+            {{/isDate}}
+            {{/isDateTime}}
           }
           {{/isListContainer}}
 
@@ -211,18 +213,18 @@ export const {{classname}}RequestParamCreator = function (configuration?: Config
   {{#headerParams}}
           {{#isListContainer}}
           if ({{paramName}}) {
-              let mapped = {{paramName}}.map(value => (<any>"{{{dataType}}}" !== "Array<string>") ? JSON.stringify(value) : (value || ""));
-              localVarHeaderParameter['{{baseName}}'] = mapped.join(COLLECTION_FORMATS["{{collectionFormat}}"]);
+            let mapped = {{paramName}}.map(value => (<any>"{{{dataType}}}" !== "Array<string>") ? JSON.stringify(value) : (value || ""));
+            localVarHeaderParameter['{{baseName}}'] = mapped.join(COLLECTION_FORMATS["{{collectionFormat}}"]);
           }
           {{/isListContainer}}
           {{^isListContainer}}
           if ({{paramName}} !== undefined && {{paramName}} !== null) {
-              {{#isString}}
-              localVarHeaderParameter['{{baseName}}'] = String({{paramName}});
-              {{/isString}}
-              {{^isString}}
-              localVarHeaderParameter['{{baseName}}'] = String(JSON.stringify({{paramName}}));
-              {{/isString}}
+            {{#isString}}
+            localVarHeaderParameter['{{baseName}}'] = String({{paramName}});
+            {{/isString}}
+            {{^isString}}
+            localVarHeaderParameter['{{baseName}}'] = String(JSON.stringify({{paramName}}));
+            {{/isString}}
           }
           {{/isListContainer}}
 
@@ -232,9 +234,9 @@ export const {{classname}}RequestParamCreator = function (configuration?: Config
           {{#isListContainer}}
           if ({{paramName}}) {
           {{#isCollectionFormatMulti}}
-              {{paramName}}.forEach((element) => {
-                  localVarFormParams.append('{{baseName}}', element as any);
-              })
+            {{paramName}}.forEach((element) => {
+                localVarFormParams.append('{{baseName}}', element as any);
+            })
           {{/isCollectionFormatMulti}}
           {{^isCollectionFormatMulti}}{{^multipartFormData}}
               localVarFormParams.set('{{baseName}}', {{paramName}}.join(COLLECTION_FORMATS.{{collectionFormat}}));{{/multipartFormData}}{{#multipartFormData}}
@@ -243,8 +245,8 @@ export const {{classname}}RequestParamCreator = function (configuration?: Config
           }{{/isListContainer}}
           {{^isListContainer}}
           if ({{paramName}} !== undefined) { {{^multipartFormData}}
-              localVarFormParams.set('{{baseName}}', {{paramName}} as any);{{/multipartFormData}}{{#multipartFormData}}
-              localVarFormParams.append('{{baseName}}', {{paramName}} as any);{{/multipartFormData}}
+            localVarFormParams.set('{{baseName}}', {{paramName}} as any);{{/multipartFormData}}{{#multipartFormData}}
+            localVarFormParams.append('{{baseName}}', {{paramName}} as any);{{/multipartFormData}}
           }
           {{/isListContainer}}
   {{/formParams}}{{/vendorExtensions}}
@@ -263,25 +265,25 @@ export const {{classname}}RequestParamCreator = function (configuration?: Config
   {{/bodyParam}}
           const query = new URLSearchParams(localVarUrlObj.search);
           for (const key in localVarQueryParameter) {
-              query.set(key, localVarQueryParameter[key]);
+            query.set(key, localVarQueryParameter[key]);
           }
           for (const key in options.query) {
-              query.set(key, options.query[key]);
+            query.set(key, options.query[key]);
           }
           localVarUrlObj.search = (new URLSearchParams(query)).toString();
           let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
           localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
   {{#hasFormParams}}
-          localVarRequestOptions.data = localVarFormParams{{#vendorExtensions}}{{^multipartFormData}}.toString(){{/multipartFormData}}{{/vendorExtensions}};
+          localVarRequestOptions.body = localVarFormParams{{#vendorExtensions}}{{^multipartFormData}}.toString(){{/multipartFormData}}{{/vendorExtensions}};
   {{/hasFormParams}}
   {{#bodyParam}}
           const needsSerialization = (typeof {{paramName}} !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-          localVarRequestOptions.data =  needsSerialization ? JSON.stringify({{paramName}} !== undefined ? {{paramName}} : {}) : ({{paramName}} || "");
+          localVarRequestOptions.body = needsSerialization ? JSON.stringify({{paramName}} !== undefined ? {{paramName}} : {}) : ({{paramName}} || "");
   {{/bodyParam}}
 
           return {
-              url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
-              options: localVarRequestOptions,
+            url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+            options: localVarRequestOptions,
           };
       },
   {{/contents}}
@@ -295,36 +297,40 @@ export const {{classname}}RequestParamCreator = function (configuration?: Config
  * @export
  */
 export const {{classname}}Fp = function(configuration?: Configuration & V2Configuration) {
-    return {
-  {{#operation}}
-  {{#contents}}
-  /**
-    * {{&notes}}
-    {{#summary}}
-    * @summary {{&summary}}
-    {{/summary}}
-    {{#parameters}}
-    * @param {{braces "left"}}{{dataType}}{{braces "right"}} {{^required}}[{{/required}}{{paramName}}{{^required}}]{{/required}} {{description}}
-    {{/parameters}}
-    * @param {*} [options] Override http request option.
-    * @throws {RequiredError}
-    */
-  async {{nickname}}({{#parameters}}{{paramName}}{{^required}}?{{/required}}: {{{dataType}}}, {{/parameters}}options?: any): Promise<(httpClient?: Http, basePath?: string) => Promise<{{#returnType}}{{{returnType}}}{{/returnType}}{{^returnType}}Response{{/returnType}}>> {
+  return {
+    {{#operation}}
+    {{#contents}}
+    /**
+      * {{&notes}}
+      {{#summary}}
+      * @summary {{&summary}}
+      {{/summary}}
+      {{#parameters}}
+      * @param {{braces "left"}}{{dataType}}{{braces "right"}} {{^required}}[{{/required}}{{paramName}}{{^required}}]{{/required}} {{description}}
+      {{/parameters}}
+      * @param {*} [options] Override http request option.
+      * @throws {RequiredError}
+      */
+    {{nickname}}({{#parameters}}{{paramName}}{{^required}}?{{/required}}: {{{dataType}}}, {{/parameters}}options?: any): (http?: Http, basePath?: string) => {{#returnType}}{{#eq (substring returnType 0 3) 'Arr'}}Collection<{{{substring returnType 6}}}{{else}}Promise<{{{returnType}}}>{{/eq}}{{/returnType}}{{^returnType}}Promise<Response>{{/returnType}} {
       const api = {{classname}}RequestParamCreator(configuration);
-      const localVarRequestArgs = await api.{{nickname}}({{#parameters}}{{paramName}}, {{/parameters}}options);
-      return (httpClient: Http = api.httpClient, basePath: string = configuration.basePath || configuration.orgUrl) => {
+      const localVarRequestArgs = api.{{nickname}}({{#parameters}}{{paramName}}, {{/parameters}}options);
+      return (http: Http = api.http, basePath: string = configuration.basePath || configuration.orgUrl) => {
         const requestArgs = {...localVarRequestArgs.options, url: basePath + localVarRequestArgs.url};
         {{#returnType}}
-        return httpClient.http(requestArgs.url, requestArgs).then(res => res.json()) as Promise<{{{returnType}}}>;
+        {{#eq (substring returnType 0 3) 'Arr'}}
+        return new Collection<{{{substring returnType 6}}}({http}, `${requestArgs.url}`, new ModelFactory({{{replace (substring returnType 6) '>' ''}}}));
+        {{else}}
+        return http.http(requestArgs.url, requestArgs).then(res => res.json().then(data => new {{returnType}}(data))) as Promise<{{{returnType}}}>;
+        {{/eq}}
         {{/returnType}}
         {{^returnType}}
-        return httpClient.http(requestArgs.url, requestArgs) as Promise<Response>;
+        return http.http(requestArgs.url, requestArgs) as Promise<Response>;
         {{/returnType}}
       }
-  },
-  {{/contents}}
-  {{/operation}}
-    }
+    },
+    {{/contents}}
+    {{/operation}}
+  }
 };
 
 /**
@@ -332,27 +338,27 @@ export const {{classname}}Fp = function(configuration?: Configuration & V2Config
  * {{&description}}{{/description}}
  * @export
  */
-export const {{classname}}Factory = function (configuration?: Configuration, basePath?: string, httpClient?: Http) {
-    return {
-  {{#operation}}
-  {{#contents}}
-  /**
-    * {{&notes}}
-    {{#summary}}
-    * @summary {{&summary}}
-    {{/summary}}
-    {{#parameters}}
-    * @param {{braces "left"}}{{dataType}}{{braces "right"}} {{^required}}[{{/required}}{{paramName}}{{^required}}]{{/required}} {{description}}
-    {{/parameters}}
-    * @param {*} [options] Override http request option.
-    * @throws {RequiredError}
-    */
-  {{nickname}}({{#parameters}}{{paramName}}{{^required}}?{{/required}}: {{{dataType}}}, {{/parameters}}options?: any): Promise<{{#returnType}}{{{returnType}}}{{/returnType}}{{^returnType}}Response{{/returnType}}> {
-      return {{classname}}Fp(configuration).{{nickname}}({{#parameters}}{{paramName}}, {{/parameters}}options).then((request) => request(httpClient, basePath));
-  },
-  {{/contents}}
-  {{/operation}}
-    };
+export const {{classname}}Factory = function (configuration?: Configuration, basePath?: string, http?: Http) {
+  return {
+    {{#operation}}
+    {{#contents}}
+    /**
+      * {{&notes}}
+      {{#summary}}
+      * @summary {{&summary}}
+      {{/summary}}
+      {{#parameters}}
+      * @param {{braces "left"}}{{dataType}}{{braces "right"}} {{^required}}[{{/required}}{{paramName}}{{^required}}]{{/required}} {{description}}
+      {{/parameters}}
+      * @param {*} [options] Override http request option.
+      * @throws {RequiredError}
+      */
+    {{nickname}}({{#parameters}}{{paramName}}{{^required}}?{{/required}}: {{{dataType}}}, {{/parameters}}options?: any): {{#returnType}}{{#eq (substring returnType 0 3) 'Arr'}}Collection<{{{substring returnType 6}}}{{else}}Promise<{{{returnType}}}>{{/eq}}{{/returnType}}{{^returnType}}Promise<Response>{{/returnType}} {
+      return {{classname}}Fp(configuration).{{nickname}}({{#parameters}}{{paramName}}, {{/parameters}}options)(http, basePath);
+    },
+    {{/contents}}
+    {{/operation}}
+  };
 };
 
 {{#withInterfaces}}
@@ -412,8 +418,7 @@ export class {{classname}} extends BaseAPI {
     * @memberof {{classname}}
     */
   public {{nickname}}({{#parameters}}{{paramName}}{{^required}}?{{/required}}: {{{dataType}}}, {{/parameters}}options?: any) {
-    const api = {{classname}}RequestParamCreator(this.configuration);
-    return {{classname}}Fp(this.configuration).{{nickname}}({{#parameters}}{{paramName}}, {{/parameters}}options).then((request) => request(api.httpClient, this.basePath));
+    return {{classname}}Fp(this.configuration).{{nickname}}({{#parameters}}{{paramName}}, {{/parameters}}options)(this.httpClient, this.basePath);
   }
   {{^@last}}
 

@@ -1,4 +1,14 @@
 /**
+ * Copyright (c) 2022-present, Okta, Inc. and/or its affiliates. All rights reserved.
+ * The Okta software accompanied by this notice is provided pursuant to the Apache License, Version 2.0 (the "License.")
+ *
+ * You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0.
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *
+ * See the License for the specific language governing permissions and limitations under the License.
+ *
  * Okta API
  * Allows customers to easily access the Okta API
  *
@@ -10,54 +20,54 @@
  * Do not edit the class manually.
  */
 export interface ConfigurationParameters {
-    apiToken?: string | Promise<string> | ((name: string) => string) | ((name: string) => Promise<string>);
+    apiToken?: string | ((name: string) => string);
     username?: string;
     password?: string;
-    accessToken?: string | Promise<string> | ((name?: string, scopes?: string[]) => string) | ((name?: string, scopes?: string[]) => Promise<string>);
+    accessToken?: string | ((name?: string, scopes?: string[]) => string);
     basePath?: string;
     baseOptions?: any;
 }
 export declare class Configuration {
   /**
-     * parameter for apiToken security
-     * @param name security name
-     * @memberof Configuration
-     */
-  apiToken?: string | Promise<string> | ((name: string) => string) | ((name: string) => Promise<string>);
+      * parameter for apiToken security
+      * @param name security name
+      * @memberof Configuration
+      */
+  apiToken?: string | ((name: string) => string);
   /**
-     * parameter for basic security
-     *
-     * @type {string}
-     * @memberof Configuration
-     */
+      * parameter for basic security
+      *
+      * @type {string}
+      * @memberof Configuration
+      */
   username?: string;
   /**
-     * parameter for basic security
-     *
-     * @type {string}
-     * @memberof Configuration
-     */
+      * parameter for basic security
+      *
+      * @type {string}
+      * @memberof Configuration
+      */
   password?: string;
   /**
-     * parameter for oauth2 security
-     * @param name security name
-     * @param scopes oauth2 scope
-     * @memberof Configuration
-     */
-  accessToken?: string | Promise<string> | ((name?: string, scopes?: string[]) => string) | ((name?: string, scopes?: string[]) => Promise<string>);
+      * parameter for oauth2 security
+      * @param name security name
+      * @param scopes oauth2 scope
+      * @memberof Configuration
+      */
+  accessToken?: string | ((name?: string, scopes?: string[]) => string);
   /**
-     * override base path
-     *
-     * @type {string}
-     * @memberof Configuration
-     */
+      * override base path
+      *
+      * @type {string}
+      * @memberof Configuration
+      */
   basePath?: string;
   /**
-     * base options for axios calls
-     *
-     * @type {any}
-     * @memberof Configuration
-     */
+      * base options for axios calls
+      *
+      * @type {any}
+      * @memberof Configuration
+      */
   baseOptions?: any;
   constructor(param?: ConfigurationParameters);
 }

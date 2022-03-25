@@ -13,13 +13,15 @@
 const os = require('os');
 const packageJson = require('../package.json');
 
-const ConfigLoader = require('./config-loader');
-const DefaultRequestExecutor = require('./default-request-executor');
+const { ConfigLoader } = require('./config-loader');
+const { DefaultRequestExecutor } = require('./default-request-executor');
 const GeneratedApiClient = require('./generated-client');
-const Http = require('./http');
+const { Http } = require('./http');
 const DEFAULT_USER_AGENT = `${packageJson.name}/${packageJson.version} node/${process.versions.node} ${os.platform()}/${os.release()}`;
 const repoUrl = 'https://github.com/okta/okta-sdk-nodejs';
-const Oauth = require('./oauth');
+const { OAuth } = require('./oauth');
+const { UserTypeApi } = require('./v3/apis/user-type-api');
+
 
 /**
  * Base client that encapsulates the HTTP request mechanism, and knowledge of how to authenticate with the Okta API
@@ -72,7 +74,7 @@ class Client extends GeneratedApiClient {
       this.clientId = parsedConfig.client.clientId;
       this.scopes = parsedConfig.client.scopes.split(' ');
       this.privateKey = parsedConfig.client.privateKey;
-      this.oauth = new Oauth(this);
+      this.oauth = new OAuth(this);
     }
 
     this.http = new Http({
@@ -87,6 +89,8 @@ class Client extends GeneratedApiClient {
       this.http.defaultHeaders.Authorization = `SSWS ${this.apiToken}`;
     }
     this.http.defaultHeaders['User-Agent'] = parsedConfig.client.userAgent ? parsedConfig.client.userAgent + ' ' + DEFAULT_USER_AGENT : DEFAULT_USER_AGENT;
+
+    this.userTypeApi = new UserTypeApi(config, parsedConfig.client.orgUrl, this.http);
   }
 }
 

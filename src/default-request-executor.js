@@ -122,4 +122,4 @@ class DefaultRequestExecutor extends RequestExecutor {
   }
 }
 
-module.exports = DefaultRequestExecutor;
+module.exports.DefaultRequestExecutor = DefaultRequestExecutor;
