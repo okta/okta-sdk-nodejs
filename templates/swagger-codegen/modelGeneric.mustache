@@ -4,6 +4,9 @@
  * @class {{classname}}
  */
 export class {{classname}} {{#parent}}extends {{{parent}}} {{/parent}}{
+  constructor(resourceJson) {
+    Object.assign(this, resourceJson);
+  }
 {{#additionalPropertiesType}}
   [key: string]: {{{additionalPropertiesType}}}{{#hasVars}} | any{{/hasVars}};
 

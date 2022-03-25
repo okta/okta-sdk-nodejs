@@ -81,4 +81,4 @@ class OAuth {
   }
 }
 
-module.exports = OAuth;
+module.exports.OAuth = OAuth;

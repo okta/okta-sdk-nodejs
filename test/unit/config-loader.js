@@ -4,7 +4,7 @@ const FakeFS = require('fake-fs');
 const os = require('os');
 const path = require('path');
 const yaml = require('js-yaml');
-const ConfigLoader = require('../../src/config-loader');
+const { ConfigLoader } = require('../../src/config-loader');
 
 describe('ConfigLoader', () => {
   before(() => {

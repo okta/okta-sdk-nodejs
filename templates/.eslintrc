@@ -6,6 +6,14 @@
         "functions": false,
         "variables": false
       }
+    ],
+    "no-unused-vars": [
+      2,
+      {
+        "vars": "all",
+        "varsIgnorePattern": "^_",
+        "argsIgnorePattern": "^_"
+      }
     ]
   }
 }

@@ -3,10 +3,10 @@
 
 const qs = require('querystring');
 
-const Collection = require('./collection');
+const { Collection } = require('./collection');
 const models = require('./models');
 const factories = require('./factories');
-const ModelFactory = require('./model-factory');
+const { ModelFactory } = require('./model-factory');
 
 /**
  * Auto-Generated API client, implements the operations as defined in the OpenaAPI JSON spec
@@ -25,6 +25,9 @@ class GeneratedApiClient {
       return Promise.reject(new Error('OKTA API {{../operationId}} parameter {{this}} is required.'));
     }
     {{/each}}
+  {{#if (isV3Api operationId)}}
+    return this.{{toCamelCase (v3ApiByOperationId operationId)}}.{{operationId}}({{getOperationArgumentV3Format this}});
+  {{else}}
     let url = `${this.baseUrl}{{replacePathParams path}}`;
     {{#if queryParams.length}}
     const queryString = qs.stringify(queryParameters || {});
@@ -88,6 +91,7 @@ class GeneratedApiClient {
     return request;
     {{/if}}
     {{/if}}
+  {{/if}}
   }
 
 {{/each}}

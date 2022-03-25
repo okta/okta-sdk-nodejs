@@ -1,5 +1,5 @@
 /* eslint-disable jest/no-conditional-expect */
-const Http = require('../../src/http');
+const { Http } = require('../../src/http');
 const MemoryStore = require('../../src/memory-store');
 const defaultCacheMiddleware = require('../../src/default-cache-middleware');
 const OktaApiError = require('../../src/api-error');

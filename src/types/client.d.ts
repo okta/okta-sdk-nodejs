@@ -14,9 +14,8 @@ import { ParameterizedOperationsClient } from './parameterized-operations-client
 import { OAuth } from './oauth';
 import { Http } from './http';
 import { RequestExecutor } from './request-executor';
-import { defaultCacheMiddleware } from './default-cache-middleware';
-import { CacheStorage } from './memory-store';
-
+import { V2Configuration } from './configuration';
+import { UserTypeApi } from './v3/apis/user-type-api';
 
 export declare class Client extends ParameterizedOperationsClient {
   constructor(config?: {
@@ -43,4 +42,6 @@ export declare class Client extends ParameterizedOperationsClient {
   privateKey: string;
   oauth: OAuth;
   http: Http;
+
+  userTypeApi: UserTypeApi;
 }
