@@ -19,17 +19,24 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-export * from './allowed-for-enum';
-export * from './authenticator-provider-configuration';
-export * from './authenticator-provider-configuration-user-name-template';
-export * from './authenticator-provider';
-export * from './authenticator-settings';
-export * from './authenticator-status';
-export * from './authenticator-type';
-export * from './authenticator';
-export * from './channel-binding';
-export * from './compliance';
-export * from './fips-enum';
-export * from './required-enum';
-export * from './user-type';
-export * from './user-verification-enum';
+import { RequiredEnum } from './required-enum';
+/**
+ *
+ * @export
+ * @class ChannelBinding
+ */
+export declare class ChannelBinding {
+  constructor(resourceJson: Record<string, unknown>);
+  /**
+      *
+      * @type {RequiredEnum}
+      * @memberof ChannelBinding
+      */
+  required?: RequiredEnum;
+  /**
+      *
+      * @type {string}
+      * @memberof ChannelBinding
+      */
+  style?: string;
+}

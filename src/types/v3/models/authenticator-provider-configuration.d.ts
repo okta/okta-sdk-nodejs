@@ -19,73 +19,42 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+import { AuthenticatorProviderConfigurationUserNameTemplate } from './authenticator-provider-configuration-user-name-template';
 /**
  *
  * @export
- * @class UserType
+ * @class AuthenticatorProviderConfiguration
  */
-export declare class UserType {
+export declare class AuthenticatorProviderConfiguration {
   constructor(resourceJson: Record<string, unknown>);
   /**
       *
-      * @type {{ [key: string]: any; }}
-      * @memberof UserType
+      * @type {number}
+      * @memberof AuthenticatorProviderConfiguration
       */
-  links?: {
-        [key: string]: any;
-    };
-    /**
-      *
-      * @type {Date}
-      * @memberof UserType
-      */
-  created?: Date;
+  authPort?: number;
   /**
       *
       * @type {string}
-      * @memberof UserType
+      * @memberof AuthenticatorProviderConfiguration
       */
-  createdBy?: string;
-  /**
-      *
-      * @type {boolean}
-      * @memberof UserType
-      */
-  _default?: boolean;
+  hostName?: string;
   /**
       *
       * @type {string}
-      * @memberof UserType
+      * @memberof AuthenticatorProviderConfiguration
       */
-  description?: string;
+  instanceId?: string;
   /**
       *
       * @type {string}
-      * @memberof UserType
+      * @memberof AuthenticatorProviderConfiguration
       */
-  displayName?: string;
+  sharedSecret?: string;
   /**
       *
-      * @type {string}
-      * @memberof UserType
+      * @type {AuthenticatorProviderConfigurationUserNameTemplate}
+      * @memberof AuthenticatorProviderConfiguration
       */
-  id?: string;
-  /**
-      *
-      * @type {Date}
-      * @memberof UserType
-      */
-  lastUpdated?: Date;
-  /**
-      *
-      * @type {string}
-      * @memberof UserType
-      */
-  lastUpdatedBy?: string;
-  /**
-      *
-      * @type {string}
-      * @memberof UserType
-      */
-  name?: string;
+  userNameTemplate?: AuthenticatorProviderConfigurationUserNameTemplate;
 }

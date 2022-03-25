@@ -19,71 +19,77 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+import { AuthenticatorProvider } from './authenticator-provider';
+import { AuthenticatorSettings } from './authenticator-settings';
+import { AuthenticatorStatus } from './authenticator-status';
+import { AuthenticatorType } from './authenticator-type';
 /**
  *
  * @export
  * @class Authenticator
  */
 export declare class Authenticator {
-  constructor(resourceJson: any);
+  constructor(resourceJson: Record<string, unknown>);
   /**
       *
       * @type {{ [key: string]: any; }}
       * @memberof Authenticator
       */
-  links?: any;
-  /**
+  links?: {
+        [key: string]: any;
+    };
+    /**
       *
       * @type {Date}
       * @memberof Authenticator
       */
-  created?: any;
+  created?: Date;
   /**
       *
       * @type {string}
       * @memberof Authenticator
       */
-  id?: any;
+  id?: string;
   /**
       *
       * @type {string}
       * @memberof Authenticator
       */
-  key?: any;
+  key?: string;
   /**
       *
       * @type {AuthenticatorStatus}
       * @memberof Authenticator
       */
-  status?: any;
+  status?: AuthenticatorStatus;
   /**
       *
       * @type {Date}
       * @memberof Authenticator
       */
-  lastUpdated?: any;
+  lastUpdated?: Date;
   /**
       *
       * @type {string}
       * @memberof Authenticator
       */
-  name?: any;
+  name?: string;
   /**
       *
       * @type {AuthenticatorProvider}
       * @memberof Authenticator
       */
-  provider?: any;
+  provider?: AuthenticatorProvider;
   /**
       *
       * @type {AuthenticatorType}
       * @memberof Authenticator
       */
-  type?: any;
+  type?: AuthenticatorType;
   /**
       *
       * @type {AuthenticatorSettings}
       * @memberof Authenticator
       */
-  settings?: any;
+  settings?: AuthenticatorSettings;
 }

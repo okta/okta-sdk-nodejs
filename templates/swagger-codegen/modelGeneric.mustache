@@ -20,7 +20,7 @@ export class {{classname}} {{#parent}}extends {{{parent}}} {{/parent}}{
     * @deprecated
   {{/deprecated}}
     */
-  {{name}}{{^required}}?{{/required}}: {{#isEnum}}{{{datatypeWithEnum}}}{{/isEnum}}{{^isEnum}}{{{dataype}}}{{#isNullable}} | null{{/isNullable}}{{/isEnum}};
+  {{name}}{{^required}}?{{/required}}: {{#isEnum}}{{{datatypeWithEnum}}}{{/isEnum}}{{^isEnum}}{{{datatype}}}{{#isNullable}} | null{{/isNullable}}{{/isEnum}};
 {{/vars}}
 }{{#hasEnums}}
 
