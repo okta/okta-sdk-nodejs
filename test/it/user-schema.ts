@@ -4,7 +4,7 @@ import {
   DefaultRequestExecutor,
   UserSchema,
   UserSchemaDefinitions,
-  UserType } from '@okta/okta-sdk-nodejs';
+  v3 } from '@okta/okta-sdk-nodejs';
 import getMockUserType = require('./mocks/user-type');
 import getMockSchemaProperty = require('./mocks/user-schema-property');
 
@@ -21,11 +21,13 @@ const client = new Client({
 });
 
 describe('User Schema API', () => {
-  let userType: UserType;
+  let userType: v3.model.UserType;
   let schemaId: string;
 
   beforeEach(async () => {
     userType = await client.createUserType(getMockUserType());
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore OKTA-483661
     const schemaLink = (userType._links.schema as Record<string, string>).href;
     schemaId = schemaLink.replace(orgUrl, '').split('/').pop();
   });

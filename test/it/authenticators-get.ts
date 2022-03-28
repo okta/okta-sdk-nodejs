@@ -24,7 +24,7 @@ describe('Authenticators API tests', () => {
   });
 
   it('should get the Authenticator by id', async () => {
-    const authenticators = await client.listAuthenticators();   // returns Collection<Authenticator>
+    const authenticators = client.listAuthenticators();   // returns Collection<Authenticator>
 
     const { value: email } = await authenticators.next();       // access the first item of the collect
     const emailAuthenticator = await client.getAuthenticator(email.id);

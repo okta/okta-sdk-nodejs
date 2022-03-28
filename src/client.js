@@ -21,6 +21,8 @@ const DEFAULT_USER_AGENT = `${packageJson.name}/${packageJson.version} node/${pr
 const repoUrl = 'https://github.com/okta/okta-sdk-nodejs';
 const { OAuth } = require('./oauth');
 const { UserTypeApi } = require('./v3/apis/user-type-api');
+const { AuthenticatorApi } = require('./v3/apis/authenticator-api');
+
 
 
 /**
@@ -91,6 +93,8 @@ class Client extends GeneratedApiClient {
     this.http.defaultHeaders['User-Agent'] = parsedConfig.client.userAgent ? parsedConfig.client.userAgent + ' ' + DEFAULT_USER_AGENT : DEFAULT_USER_AGENT;
 
     this.userTypeApi = new UserTypeApi(config, parsedConfig.client.orgUrl, this.http);
+    this.authenticatorApi = new AuthenticatorApi(config, parsedConfig.client.orgUrl, this.http);
+
   }
 }
 

@@ -19,73 +19,51 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+import { AllowedForEnum } from './allowed-for-enum';
+import { ChannelBinding } from './channel-binding';
+import { Compliance } from './compliance';
+import { UserVerificationEnum } from './user-verification-enum';
 /**
  *
  * @export
- * @class UserType
+ * @class AuthenticatorSettings
  */
-export declare class UserType {
+export declare class AuthenticatorSettings {
   constructor(resourceJson: Record<string, unknown>);
   /**
       *
-      * @type {{ [key: string]: any; }}
-      * @memberof UserType
+      * @type {AllowedForEnum}
+      * @memberof AuthenticatorSettings
       */
-  links?: {
-        [key: string]: any;
-    };
-    /**
-      *
-      * @type {Date}
-      * @memberof UserType
-      */
-  created?: Date;
+  allowedFor?: AllowedForEnum;
   /**
       *
       * @type {string}
-      * @memberof UserType
+      * @memberof AuthenticatorSettings
       */
-  createdBy?: string;
+  appInstanceId?: string;
   /**
       *
-      * @type {boolean}
-      * @memberof UserType
+      * @type {ChannelBinding}
+      * @memberof AuthenticatorSettings
       */
-  _default?: boolean;
+  channelBinding?: ChannelBinding;
   /**
       *
-      * @type {string}
-      * @memberof UserType
+      * @type {Compliance}
+      * @memberof AuthenticatorSettings
       */
-  description?: string;
+  compliance?: Compliance;
   /**
       *
-      * @type {string}
-      * @memberof UserType
+      * @type {number}
+      * @memberof AuthenticatorSettings
       */
-  displayName?: string;
+  tokenLifetimeInMinutes?: number;
   /**
       *
-      * @type {string}
-      * @memberof UserType
+      * @type {UserVerificationEnum}
+      * @memberof AuthenticatorSettings
       */
-  id?: string;
-  /**
-      *
-      * @type {Date}
-      * @memberof UserType
-      */
-  lastUpdated?: Date;
-  /**
-      *
-      * @type {string}
-      * @memberof UserType
-      */
-  lastUpdatedBy?: string;
-  /**
-      *
-      * @type {string}
-      * @memberof UserType
-      */
-  name?: string;
+  userVerification?: UserVerificationEnum;
 }
