@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 /* tslint:disable */
 /* eslint-disable */
 /**
@@ -28,6 +28,7 @@ exports.SchemaApi = exports.SchemaApiFactory = exports.SchemaApiFp = exports.Sch
 // @ts-ignore
 const base_1 = require("../base");
 const models_1 = require("../models");
+const models_2 = require("../models");
 const oauth_1 = require("../../oauth");
 const http_1 = require("../../http");
 const config_loader_1 = require("../../config-loader");
@@ -36,8 +37,6 @@ const os = require('os');
 const packageJson = require('../../../package.json');
 const DEFAULT_USER_AGENT = `${packageJson.name}/${packageJson.version} node/${process.versions.node} ${os.platform()}/${os.release()}`;
 const repoUrl = 'https://github.com/okta/okta-sdk-nodejs';
-const models_2 = require("../models");
-
 /**
  * SchemaApi - request parameter creator
  * @export
