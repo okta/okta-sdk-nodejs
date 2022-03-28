@@ -2,6 +2,11 @@
 /* eslint-disable */
 {{>licenseInfo}}
 
-export * from "./api";
-export * from "./configuration";
-export * from "./models";
+import * as models from './models';
+import * as apis from './api';
+import * as config from './configuration';
+export namespace v3 {
+    export import model = models;
+    export import api = apis;
+    export import configuration = config;
+}

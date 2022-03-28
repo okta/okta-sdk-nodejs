@@ -41,4 +41,18 @@ var __exportStar = (this && this.__exportStar) || function (m, exports) {
   }
 };
 Object.defineProperty(exports, '__esModule', { value: true });
+__exportStar(require('./allowed-for-enum'), exports);
+__exportStar(require('./authenticator'), exports);
+__exportStar(require('./authenticator-provider'), exports);
+__exportStar(require('./authenticator-provider-configuration'), exports);
+__exportStar(require('./authenticator-provider-configuration-user-name-template'), exports);
+__exportStar(require('./authenticator-settings'), exports);
+__exportStar(require('./authenticator-status'), exports);
+__exportStar(require('./authenticator-type'), exports);
+__exportStar(require('./channel-binding'), exports);
+__exportStar(require('./compliance'), exports);
+__exportStar(require('./fips-enum'), exports);
+__exportStar(require('./required-enum'), exports);
 __exportStar(require('./user-type'), exports);
+__exportStar(require('./user-verification-enum'), exports);
+

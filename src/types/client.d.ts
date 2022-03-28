@@ -16,6 +16,7 @@ import { Http } from './http';
 import { RequestExecutor } from './request-executor';
 import { V2Configuration } from './configuration';
 import { UserTypeApi } from './v3/apis/user-type-api';
+import { AuthenticatorApi } from './v3/apis/authenticator-api';
 
 export declare class Client extends ParameterizedOperationsClient {
   constructor(config?: V2Configuration);
@@ -31,4 +32,5 @@ export declare class Client extends ParameterizedOperationsClient {
   http: Http;
 
   userTypeApi: UserTypeApi;
+  authenticatorApi: AuthenticatorApi;
 }

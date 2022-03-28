@@ -32,10 +32,10 @@ exports.BASE_PATH = "https://{subdomain}.{domain}".replace(/\/+$/, "");
  * @export
  */
 exports.COLLECTION_FORMATS = {
-    csv: ",",
-    ssv: " ",
-    tsv: "\t",
-    pipes: "|",
+    csv: ',',
+    ssv: ' ',
+    tsv: '\t',
+    pipes: '|',
 };
 /**
  *
