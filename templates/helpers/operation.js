@@ -73,24 +73,39 @@ const getBodyModelName = operation => {
 
 const getBodyModelNameInCamelCase = operation => _.camelCase(getBodyModelName(operation));
 
-const getOperationArgument = operation => {
+const getOperationArgument = (operation, apiVersion) => {
   const { bodyModel, method, pathParams, queryParams, formData, parameters } = operation;
+  const optionalArgs = [];
+  const requiredArgs = [];
 
-  const requiredArgs = pathParams.reduce((acc, curr) => {
+  const requiredBodyArgs = [];
+  const optionalBodyArgs = [];
+
+  const pathParamArgs = pathParams.reduce((acc, curr) => {
     acc.push(curr.name);
     return acc;
   }, []);
-  const optionalArgs = [];
 
   if ((method === 'post' || method === 'put') && bodyModel) {
     const bodyModelName = getBodyModelNameInCamelCase(operation);
     if (bodyModelName) {
       if (hasRequiredParameterInRequestMedia(parameters, 'body')) {
-        requiredArgs.push(bodyModelName);
+        requiredBodyArgs.push(bodyModelName);
       } else {
-        optionalArgs.push(bodyModelName);
+        optionalBodyArgs.push(bodyModelName);
       }
     }
+  }
+
+  if (apiVersion === 'v3') {
+    // body params go first
+    requiredArgs.push(...requiredBodyArgs);
+    requiredArgs.push(...pathParamArgs);
+    optionalArgs.push(...optionalBodyArgs);
+  } else {
+    requiredArgs.push(...pathParamArgs);
+    requiredArgs.push(...requiredBodyArgs);
+    optionalArgs.push(...optionalBodyArgs);
   }
 
   if (queryParams.length) {
@@ -116,8 +131,8 @@ const getOperationArgument = operation => {
 const hasRequiredParameterInRequestMedia = (parameters, requestMedia) =>
   parameters.find(({in: paramMedia, required}) => paramMedia === requestMedia && required);
 
-const operationArgumentBuilder = (operation) => {
-  const [requiredArgs, optionalArgs] = getOperationArgument(operation);
+const operationArgumentBuilder = (operation, apiVersion) => {
+  const [requiredArgs, optionalArgs] = getOperationArgument(operation, apiVersion);
   return requiredArgs.concat(optionalArgs).join(', ');
 };
 

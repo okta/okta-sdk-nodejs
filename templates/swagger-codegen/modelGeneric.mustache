@@ -4,7 +4,7 @@
  * @class {{classname}}
  */
 export class {{classname}} {{#parent}}extends {{{parent}}} {{/parent}}{
-  constructor(resourceJson) {
+  constructor(resourceJson: Record<string, unknown>) {
     Object.assign(this, resourceJson);
   }
 {{#additionalPropertiesType}}
@@ -20,7 +20,7 @@ export class {{classname}} {{#parent}}extends {{{parent}}} {{/parent}}{
     * @deprecated
   {{/deprecated}}
     */
-  {{name}}{{^required}}?{{/required}}: {{#isEnum}}{{{datatypeWithEnum}}}{{/isEnum}}{{^isEnum}}{{{dataType}}}{{#isNullable}} | null{{/isNullable}}{{/isEnum}};
+  {{name}}{{^required}}?{{/required}}: {{#isEnum}}{{{datatypeWithEnum}}}{{/isEnum}}{{^isEnum}}{{{datatype}}}{{#isNullable}} | null{{/isNullable}}{{/isEnum}};
 {{/vars}}
 }{{#hasEnums}}
 

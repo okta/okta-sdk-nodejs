@@ -1,3 +1,6 @@
+'use strict';
+/* tslint:disable */
+/* eslint-disable */
 /**
  * Copyright (c) 2022-present, Okta, Inc. and/or its affiliates. All rights reserved.
  * The Okta software accompanied by this notice is provided pursuant to the Apache License, Version 2.0 (the "License.")
@@ -19,17 +22,16 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-export * from './allowed-for-enum';
-export * from './authenticator-provider-configuration';
-export * from './authenticator-provider-configuration-user-name-template';
-export * from './authenticator-provider';
-export * from './authenticator-settings';
-export * from './authenticator-status';
-export * from './authenticator-type';
-export * from './authenticator';
-export * from './channel-binding';
-export * from './compliance';
-export * from './fips-enum';
-export * from './required-enum';
-export * from './user-type';
-export * from './user-verification-enum';
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.AuthenticatorProviderConfiguration = void 0;
+/**
+ *
+ * @export
+ * @class AuthenticatorProviderConfiguration
+ */
+class AuthenticatorProviderConfiguration {
+    constructor(resourceJson) {
+        Object.assign(this, resourceJson);
+    }
+}
+exports.AuthenticatorProviderConfiguration = AuthenticatorProviderConfiguration;

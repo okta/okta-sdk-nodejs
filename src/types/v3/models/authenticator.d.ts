@@ -19,17 +19,21 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+import { AuthenticatorProvider } from './authenticator-provider';
+import { AuthenticatorSettings } from './authenticator-settings';
+import { AuthenticatorStatus } from './authenticator-status';
+import { AuthenticatorType } from './authenticator-type';
 /**
  *
  * @export
- * @class UserType
+ * @class Authenticator
  */
-export declare class UserType {
+export declare class Authenticator {
   constructor(resourceJson: Record<string, unknown>);
   /**
       *
       * @type {{ [key: string]: any; }}
-      * @memberof UserType
+      * @memberof Authenticator
       */
   links?: {
         [key: string]: any;
@@ -37,55 +41,55 @@ export declare class UserType {
     /**
       *
       * @type {Date}
-      * @memberof UserType
+      * @memberof Authenticator
       */
   created?: Date;
   /**
       *
       * @type {string}
-      * @memberof UserType
-      */
-  createdBy?: string;
-  /**
-      *
-      * @type {boolean}
-      * @memberof UserType
-      */
-  _default?: boolean;
-  /**
-      *
-      * @type {string}
-      * @memberof UserType
-      */
-  description?: string;
-  /**
-      *
-      * @type {string}
-      * @memberof UserType
-      */
-  displayName?: string;
-  /**
-      *
-      * @type {string}
-      * @memberof UserType
+      * @memberof Authenticator
       */
   id?: string;
   /**
       *
+      * @type {string}
+      * @memberof Authenticator
+      */
+  key?: string;
+  /**
+      *
+      * @type {AuthenticatorStatus}
+      * @memberof Authenticator
+      */
+  status?: AuthenticatorStatus;
+  /**
+      *
       * @type {Date}
-      * @memberof UserType
+      * @memberof Authenticator
       */
   lastUpdated?: Date;
   /**
       *
       * @type {string}
-      * @memberof UserType
-      */
-  lastUpdatedBy?: string;
-  /**
-      *
-      * @type {string}
-      * @memberof UserType
+      * @memberof Authenticator
       */
   name?: string;
+  /**
+      *
+      * @type {AuthenticatorProvider}
+      * @memberof Authenticator
+      */
+  provider?: AuthenticatorProvider;
+  /**
+      *
+      * @type {AuthenticatorType}
+      * @memberof Authenticator
+      */
+  type?: AuthenticatorType;
+  /**
+      *
+      * @type {AuthenticatorSettings}
+      * @memberof Authenticator
+      */
+  settings?: AuthenticatorSettings;
 }

@@ -22,11 +22,11 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.v3 = void 0;
-var models = require("./models");
-var apis = require("./api");
-var config = require("./configuration");
+const models = require("./models");
+const apis = require("./api");
+const config = require("./configuration");
 var v3;
 (function (v3) {
     v3.model = models;

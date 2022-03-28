@@ -1,0 +1,6 @@
+{
+  "additionalProperties": {
+    "supportsES6": true,
+    "withSeparateModelsAndApi": true
+  }
+}
