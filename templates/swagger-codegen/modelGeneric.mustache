@@ -3,10 +3,7 @@
  * @export
  * @class {{classname}}
  */
-export class {{classname}} {{#parent}}extends {{{parent}}} {{/parent}}{
-  constructor(resourceJson: Record<string, unknown>) {
-    Object.assign(this, resourceJson);
-  }
+export interface {{classname}} {{#parent}}extends {{{parent}}} {{/parent}}{
 {{#additionalPropertiesType}}
   [key: string]: {{{additionalPropertiesType}}}{{#hasVars}} | any{{/hasVars}};
 

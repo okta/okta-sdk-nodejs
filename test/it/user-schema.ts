@@ -2,9 +2,9 @@ import { expect } from 'chai';
 import {
   Client,
   DefaultRequestExecutor,
-  UserSchema,
-  UserSchemaDefinitions,
-  v3 } from '@okta/okta-sdk-nodejs';
+  v3
+} from '@okta/okta-sdk-nodejs';
+
 import getMockUserType = require('./mocks/user-type');
 import getMockSchemaProperty = require('./mocks/user-schema-property');
 
@@ -38,8 +38,7 @@ describe('User Schema API', () => {
 
   it('gets UserSchema for custom user type', async () => {
     const userSchema = await client.getUserSchema(schemaId);
-    expect(userSchema).to.be.instanceOf(UserSchema);
-    expect(userSchema.definitions).to.be.instanceOf(UserSchemaDefinitions);
+    expect(userSchema.definitions.custom.id).to.equal('#custom');
   });
 
   it('adds property to UserSchema for custom user type', async () => {

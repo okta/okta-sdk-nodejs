@@ -26,7 +26,6 @@ const DEFAULT_USER_AGENT = `${packageJson.name}/${packageJson.version} node/${pr
 
 const repoUrl = 'https://github.com/okta/okta-sdk-nodejs';
 
-
 {{#operations}}
 
 /**
@@ -319,13 +318,13 @@ export const {{classname}}Fp = function(configuration?: Configuration & V2Config
         const requestArgs = {...localVarRequestArgs.options, url: basePath + localVarRequestArgs.url};
         {{#returnType}}
         {{#eq (substring returnType 0 3) 'Arr'}}
-        return new Collection<{{{substring returnType 6}}}({http}, `${requestArgs.url}`, new ModelFactory({{{replace (substring returnType 6) '>' ''}}}));
+        return new Collection<{{{substring returnType 6}}}({http}, `${requestArgs.url}`);
         {{else}}
-        return http.http(requestArgs.url, requestArgs).then(res => res.json().then(data => new {{returnType}}(data))) as Promise<{{{returnType}}}>;
+        return http.http(requestArgs.url, requestArgs).then(res => res.json().then((data: {{returnType}}) => data));
         {{/eq}}
         {{/returnType}}
         {{^returnType}}
-        return http.http(requestArgs.url, requestArgs) as Promise<Response>;
+        return http.http(requestArgs.url, requestArgs);
         {{/returnType}}
       }
     },
