@@ -39,7 +39,7 @@ describe('App User Schema', () => {
 
   it('gets UserSchema for application', async () => {
     const userSchema: v3.model.UserSchema = await client.getApplicationUserSchema(createdApplication.id);
-    expect(userSchema.definitions).not.to.be(null);
+    expect(userSchema.definitions).is.not.null;
   });
 
   it('adds property to application\'s UserSchema', async () => {
