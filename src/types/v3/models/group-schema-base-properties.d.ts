@@ -25,18 +25,17 @@ import { GroupSchemaAttribute } from './group-schema-attribute';
  * @export
  * @class GroupSchemaBaseProperties
  */
-export declare class GroupSchemaBaseProperties {
-  constructor(resourceJson: Record<string, unknown>);
-  /**
+export interface GroupSchemaBaseProperties {
+    /**
       *
       * @type {GroupSchemaAttribute}
       * @memberof GroupSchemaBaseProperties
       */
-  description?: GroupSchemaAttribute;
-  /**
+    description?: GroupSchemaAttribute;
+    /**
       *
       * @type {GroupSchemaAttribute}
       * @memberof GroupSchemaBaseProperties
       */
-  name?: GroupSchemaAttribute;
+    name?: GroupSchemaAttribute;
 }

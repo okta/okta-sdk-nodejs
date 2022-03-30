@@ -24,18 +24,17 @@
  * @export
  * @class UserSchemaAttributeEnum
  */
-export declare class UserSchemaAttributeEnum {
-  constructor(resourceJson: Record<string, unknown>);
-  /**
+export interface UserSchemaAttributeEnum {
+    /**
       *
       * @type {string}
       * @memberof UserSchemaAttributeEnum
       */
-  _const?: string;
-  /**
+    _const?: string;
+    /**
       *
       * @type {string}
       * @memberof UserSchemaAttributeEnum
       */
-  title?: string;
+    title?: string;
 }

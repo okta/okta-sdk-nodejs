@@ -25,20 +25,19 @@ import { GroupSchemaAttribute } from './group-schema-attribute';
  * @export
  * @class GroupSchemaCustom
  */
-export declare class GroupSchemaCustom {
-  constructor(resourceJson: Record<string, unknown>);
-  /**
+export interface GroupSchemaCustom {
+    /**
       *
       * @type {string}
       * @memberof GroupSchemaCustom
       */
-  id?: string;
-  /**
+    id?: string;
+    /**
       *
       * @type {{ [key: string]: GroupSchemaAttribute; }}
       * @memberof GroupSchemaCustom
       */
-  properties?: {
+    properties?: {
         [key: string]: GroupSchemaAttribute;
     };
     /**
@@ -46,11 +45,11 @@ export declare class GroupSchemaCustom {
       * @type {Array<string>}
       * @memberof GroupSchemaCustom
       */
-  required?: Array<string>;
-  /**
+    required?: Array<string>;
+    /**
       *
       * @type {string}
       * @memberof GroupSchemaCustom
       */
-  type?: string;
+    type?: string;
 }

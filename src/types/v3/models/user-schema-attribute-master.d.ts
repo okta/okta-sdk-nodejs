@@ -26,18 +26,17 @@ import { UserSchemaAttributeMasterType } from './user-schema-attribute-master-ty
  * @export
  * @class UserSchemaAttributeMaster
  */
-export declare class UserSchemaAttributeMaster {
-  constructor(resourceJson: Record<string, unknown>);
-  /**
+export interface UserSchemaAttributeMaster {
+    /**
       *
       * @type {UserSchemaAttributeMasterType}
       * @memberof UserSchemaAttributeMaster
       */
-  type?: UserSchemaAttributeMasterType;
-  /**
+    type?: UserSchemaAttributeMasterType;
+    /**
       *
       * @type {Array<UserSchemaAttributeMasterPriority>}
       * @memberof UserSchemaAttributeMaster
       */
-  priority?: Array<UserSchemaAttributeMasterPriority>;
+    priority?: Array<UserSchemaAttributeMasterPriority>;
 }

@@ -25,26 +25,25 @@ import { UserSchemaAttribute } from './user-schema-attribute';
  * @export
  * @class UserSchemaPublic
  */
-export declare class UserSchemaPublic {
-  constructor(resourceJson: Record<string, unknown>);
-  /**
+export interface UserSchemaPublic {
+    /**
       *
       * @type {string}
       * @memberof UserSchemaPublic
       */
-  id?: string;
-  /**
+    id?: string;
+    /**
       *
       * @type {string}
       * @memberof UserSchemaPublic
       */
-  type?: string;
-  /**
+    type?: string;
+    /**
       *
       * @type {{ [key: string]: UserSchemaAttribute; }}
       * @memberof UserSchemaPublic
       */
-  properties?: {
+    properties?: {
         [key: string]: UserSchemaAttribute;
     };
     /**
@@ -52,5 +51,5 @@ export declare class UserSchemaPublic {
       * @type {Array<string>}
       * @memberof UserSchemaPublic
       */
-  required?: Array<string>;
+    required?: Array<string>;
 }

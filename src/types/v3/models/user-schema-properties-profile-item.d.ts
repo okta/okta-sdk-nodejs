@@ -24,12 +24,11 @@
  * @export
  * @class UserSchemaPropertiesProfileItem
  */
-export declare class UserSchemaPropertiesProfileItem {
-  constructor(resourceJson: Record<string, unknown>);
-  /**
+export interface UserSchemaPropertiesProfileItem {
+    /**
       *
       * @type {string}
       * @memberof UserSchemaPropertiesProfileItem
       */
-  ref?: string;
+    ref?: string;
 }

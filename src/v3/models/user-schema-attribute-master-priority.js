@@ -23,15 +23,3 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UserSchemaAttributeMasterPriority = void 0;
-/**
- *
- * @export
- * @class UserSchemaAttributeMasterPriority
- */
-class UserSchemaAttributeMasterPriority {
-    constructor(resourceJson) {
-        Object.assign(this, resourceJson);
-    }
-}
-exports.UserSchemaAttributeMasterPriority = UserSchemaAttributeMasterPriority;

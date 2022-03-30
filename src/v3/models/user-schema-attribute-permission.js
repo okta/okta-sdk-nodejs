@@ -23,15 +23,3 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UserSchemaAttributePermission = void 0;
-/**
- *
- * @export
- * @class UserSchemaAttributePermission
- */
-class UserSchemaAttributePermission {
-    constructor(resourceJson) {
-        Object.assign(this, resourceJson);
-    }
-}
-exports.UserSchemaAttributePermission = UserSchemaAttributePermission;

@@ -24,14 +24,13 @@
  * @export
  * @class UserType
  */
-export declare class UserType {
-  constructor(resourceJson: Record<string, unknown>);
-  /**
+export interface UserType {
+    /**
       *
       * @type {{ [key: string]: any; }}
       * @memberof UserType
       */
-  links?: {
+    links?: {
         [key: string]: any;
     };
     /**
@@ -39,53 +38,53 @@ export declare class UserType {
       * @type {Date}
       * @memberof UserType
       */
-  created?: Date;
-  /**
+    created?: Date;
+    /**
       *
       * @type {string}
       * @memberof UserType
       */
-  createdBy?: string;
-  /**
+    createdBy?: string;
+    /**
       *
       * @type {boolean}
       * @memberof UserType
       */
-  _default?: boolean;
-  /**
+    _default?: boolean;
+    /**
       *
       * @type {string}
       * @memberof UserType
       */
-  description?: string;
-  /**
+    description?: string;
+    /**
       *
       * @type {string}
       * @memberof UserType
       */
-  displayName?: string;
-  /**
+    displayName?: string;
+    /**
       *
       * @type {string}
       * @memberof UserType
       */
-  id?: string;
-  /**
+    id?: string;
+    /**
       *
       * @type {Date}
       * @memberof UserType
       */
-  lastUpdated?: Date;
-  /**
+    lastUpdated?: Date;
+    /**
       *
       * @type {string}
       * @memberof UserType
       */
-  lastUpdatedBy?: string;
-  /**
+    lastUpdatedBy?: string;
+    /**
       *
       * @type {string}
       * @memberof UserType
       */
-  name?: string;
+    name?: string;
 }

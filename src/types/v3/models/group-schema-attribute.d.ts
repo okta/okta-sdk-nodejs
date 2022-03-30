@@ -31,108 +31,107 @@ import { UserSchemaAttributeUnion } from './user-schema-attribute-union';
  * @export
  * @class GroupSchemaAttribute
  */
-export declare class GroupSchemaAttribute {
-  constructor(resourceJson: Record<string, unknown>);
-  /**
+export interface GroupSchemaAttribute {
+    /**
       *
       * @type {string}
       * @memberof GroupSchemaAttribute
       */
-  description?: string;
-  /**
+    description?: string;
+    /**
       *
       * @type {Array<string>}
       * @memberof GroupSchemaAttribute
       */
-  _enum?: Array<string>;
-  /**
+    _enum?: Array<string>;
+    /**
       *
       * @type {string}
       * @memberof GroupSchemaAttribute
       */
-  externalName?: string;
-  /**
+    externalName?: string;
+    /**
       *
       * @type {string}
       * @memberof GroupSchemaAttribute
       */
-  externalNamespace?: string;
-  /**
+    externalNamespace?: string;
+    /**
       *
       * @type {UserSchemaAttributeItems}
       * @memberof GroupSchemaAttribute
       */
-  items?: UserSchemaAttributeItems;
-  /**
+    items?: UserSchemaAttributeItems;
+    /**
       *
       * @type {UserSchemaAttributeMaster}
       * @memberof GroupSchemaAttribute
       */
-  master?: UserSchemaAttributeMaster;
-  /**
+    master?: UserSchemaAttributeMaster;
+    /**
       *
       * @type {number}
       * @memberof GroupSchemaAttribute
       */
-  maxLength?: number;
-  /**
+    maxLength?: number;
+    /**
       *
       * @type {number}
       * @memberof GroupSchemaAttribute
       */
-  minLength?: number;
-  /**
+    minLength?: number;
+    /**
       *
       * @type {string}
       * @memberof GroupSchemaAttribute
       */
-  mutability?: string;
-  /**
+    mutability?: string;
+    /**
       *
       * @type {Array<UserSchemaAttributeEnum>}
       * @memberof GroupSchemaAttribute
       */
-  oneOf?: Array<UserSchemaAttributeEnum>;
-  /**
+    oneOf?: Array<UserSchemaAttributeEnum>;
+    /**
       *
       * @type {Array<UserSchemaAttributePermission>}
       * @memberof GroupSchemaAttribute
       */
-  permissions?: Array<UserSchemaAttributePermission>;
-  /**
+    permissions?: Array<UserSchemaAttributePermission>;
+    /**
       *
       * @type {boolean}
       * @memberof GroupSchemaAttribute
       */
-  required?: boolean;
-  /**
+    required?: boolean;
+    /**
       *
       * @type {UserSchemaAttributeScope}
       * @memberof GroupSchemaAttribute
       */
-  scope?: UserSchemaAttributeScope;
-  /**
+    scope?: UserSchemaAttributeScope;
+    /**
       *
       * @type {string}
       * @memberof GroupSchemaAttribute
       */
-  title?: string;
-  /**
+    title?: string;
+    /**
       *
       * @type {UserSchemaAttributeType}
       * @memberof GroupSchemaAttribute
       */
-  type?: UserSchemaAttributeType;
-  /**
+    type?: UserSchemaAttributeType;
+    /**
       *
       * @type {UserSchemaAttributeUnion}
       * @memberof GroupSchemaAttribute
       */
-  union?: UserSchemaAttributeUnion;
-  /**
+    union?: UserSchemaAttributeUnion;
+    /**
       *
       * @type {string}
       * @memberof GroupSchemaAttribute
       */
-  unique?: string;
+    unique?: string;
 }

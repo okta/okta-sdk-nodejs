@@ -26,18 +26,17 @@ import { UserSchemaPublic } from './user-schema-public';
  * @export
  * @class UserSchemaDefinitions
  */
-export declare class UserSchemaDefinitions {
-  constructor(resourceJson: Record<string, unknown>);
-  /**
+export interface UserSchemaDefinitions {
+    /**
       *
       * @type {UserSchemaBase}
       * @memberof UserSchemaDefinitions
       */
-  base?: UserSchemaBase;
-  /**
+    base?: UserSchemaBase;
+    /**
       *
       * @type {UserSchemaPublic}
       * @memberof UserSchemaDefinitions
       */
-  custom?: UserSchemaPublic;
+    custom?: UserSchemaPublic;
 }

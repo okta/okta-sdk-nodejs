@@ -21,10 +21,10 @@
  */
 import { RequestArgs, BaseAPI } from '../base';
 import { GroupSchema } from '../models';
+import { UserSchema } from '../models';
 import { Http } from '../../http';
 import type { V2Configuration } from '../../configuration';
 import type { Configuration } from '../configuration';
-import { UserSchema } from '../models';
 /**
  * SchemaApi - request parameter creator
  * @export

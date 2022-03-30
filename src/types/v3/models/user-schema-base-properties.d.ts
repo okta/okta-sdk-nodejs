@@ -25,192 +25,191 @@ import { UserSchemaAttribute } from './user-schema-attribute';
  * @export
  * @class UserSchemaBaseProperties
  */
-export declare class UserSchemaBaseProperties {
-  constructor(resourceJson: Record<string, unknown>);
-  /**
+export interface UserSchemaBaseProperties {
+    /**
       *
       * @type {UserSchemaAttribute}
       * @memberof UserSchemaBaseProperties
       */
-  login?: UserSchemaAttribute;
-  /**
+    login?: UserSchemaAttribute;
+    /**
       *
       * @type {UserSchemaAttribute}
       * @memberof UserSchemaBaseProperties
       */
-  firstName?: UserSchemaAttribute;
-  /**
+    firstName?: UserSchemaAttribute;
+    /**
       *
       * @type {UserSchemaAttribute}
       * @memberof UserSchemaBaseProperties
       */
-  lastName?: UserSchemaAttribute;
-  /**
+    lastName?: UserSchemaAttribute;
+    /**
       *
       * @type {UserSchemaAttribute}
       * @memberof UserSchemaBaseProperties
       */
-  middleName?: UserSchemaAttribute;
-  /**
+    middleName?: UserSchemaAttribute;
+    /**
       *
       * @type {UserSchemaAttribute}
       * @memberof UserSchemaBaseProperties
       */
-  honorificPrefix?: UserSchemaAttribute;
-  /**
+    honorificPrefix?: UserSchemaAttribute;
+    /**
       *
       * @type {UserSchemaAttribute}
       * @memberof UserSchemaBaseProperties
       */
-  honorificSuffix?: UserSchemaAttribute;
-  /**
+    honorificSuffix?: UserSchemaAttribute;
+    /**
       *
       * @type {UserSchemaAttribute}
       * @memberof UserSchemaBaseProperties
       */
-  email?: UserSchemaAttribute;
-  /**
+    email?: UserSchemaAttribute;
+    /**
       *
       * @type {UserSchemaAttribute}
       * @memberof UserSchemaBaseProperties
       */
-  title?: UserSchemaAttribute;
-  /**
+    title?: UserSchemaAttribute;
+    /**
       *
       * @type {UserSchemaAttribute}
       * @memberof UserSchemaBaseProperties
       */
-  displayName?: UserSchemaAttribute;
-  /**
+    displayName?: UserSchemaAttribute;
+    /**
       *
       * @type {UserSchemaAttribute}
       * @memberof UserSchemaBaseProperties
       */
-  nickName?: UserSchemaAttribute;
-  /**
+    nickName?: UserSchemaAttribute;
+    /**
       *
       * @type {UserSchemaAttribute}
       * @memberof UserSchemaBaseProperties
       */
-  profileUrl?: UserSchemaAttribute;
-  /**
+    profileUrl?: UserSchemaAttribute;
+    /**
       *
       * @type {UserSchemaAttribute}
       * @memberof UserSchemaBaseProperties
       */
-  secondEmail?: UserSchemaAttribute;
-  /**
+    secondEmail?: UserSchemaAttribute;
+    /**
       *
       * @type {UserSchemaAttribute}
       * @memberof UserSchemaBaseProperties
       */
-  mobilePhone?: UserSchemaAttribute;
-  /**
+    mobilePhone?: UserSchemaAttribute;
+    /**
       *
       * @type {UserSchemaAttribute}
       * @memberof UserSchemaBaseProperties
       */
-  primaryPhone?: UserSchemaAttribute;
-  /**
+    primaryPhone?: UserSchemaAttribute;
+    /**
       *
       * @type {UserSchemaAttribute}
       * @memberof UserSchemaBaseProperties
       */
-  streetAddress?: UserSchemaAttribute;
-  /**
+    streetAddress?: UserSchemaAttribute;
+    /**
       *
       * @type {UserSchemaAttribute}
       * @memberof UserSchemaBaseProperties
       */
-  city?: UserSchemaAttribute;
-  /**
+    city?: UserSchemaAttribute;
+    /**
       *
       * @type {UserSchemaAttribute}
       * @memberof UserSchemaBaseProperties
       */
-  state?: UserSchemaAttribute;
-  /**
+    state?: UserSchemaAttribute;
+    /**
       *
       * @type {UserSchemaAttribute}
       * @memberof UserSchemaBaseProperties
       */
-  zipCode?: UserSchemaAttribute;
-  /**
+    zipCode?: UserSchemaAttribute;
+    /**
       *
       * @type {UserSchemaAttribute}
       * @memberof UserSchemaBaseProperties
       */
-  countryCode?: UserSchemaAttribute;
-  /**
+    countryCode?: UserSchemaAttribute;
+    /**
       *
       * @type {UserSchemaAttribute}
       * @memberof UserSchemaBaseProperties
       */
-  postalAddress?: UserSchemaAttribute;
-  /**
+    postalAddress?: UserSchemaAttribute;
+    /**
       *
       * @type {UserSchemaAttribute}
       * @memberof UserSchemaBaseProperties
       */
-  preferredLanguage?: UserSchemaAttribute;
-  /**
+    preferredLanguage?: UserSchemaAttribute;
+    /**
       *
       * @type {UserSchemaAttribute}
       * @memberof UserSchemaBaseProperties
       */
-  locale?: UserSchemaAttribute;
-  /**
+    locale?: UserSchemaAttribute;
+    /**
       *
       * @type {UserSchemaAttribute}
       * @memberof UserSchemaBaseProperties
       */
-  timezone?: UserSchemaAttribute;
-  /**
+    timezone?: UserSchemaAttribute;
+    /**
       *
       * @type {UserSchemaAttribute}
       * @memberof UserSchemaBaseProperties
       */
-  userType?: UserSchemaAttribute;
-  /**
+    userType?: UserSchemaAttribute;
+    /**
       *
       * @type {UserSchemaAttribute}
       * @memberof UserSchemaBaseProperties
       */
-  employeeNumber?: UserSchemaAttribute;
-  /**
+    employeeNumber?: UserSchemaAttribute;
+    /**
       *
       * @type {UserSchemaAttribute}
       * @memberof UserSchemaBaseProperties
       */
-  costCenter?: UserSchemaAttribute;
-  /**
+    costCenter?: UserSchemaAttribute;
+    /**
       *
       * @type {UserSchemaAttribute}
       * @memberof UserSchemaBaseProperties
       */
-  organization?: UserSchemaAttribute;
-  /**
+    organization?: UserSchemaAttribute;
+    /**
       *
       * @type {UserSchemaAttribute}
       * @memberof UserSchemaBaseProperties
       */
-  division?: UserSchemaAttribute;
-  /**
+    division?: UserSchemaAttribute;
+    /**
       *
       * @type {UserSchemaAttribute}
       * @memberof UserSchemaBaseProperties
       */
-  department?: UserSchemaAttribute;
-  /**
+    department?: UserSchemaAttribute;
+    /**
       *
       * @type {UserSchemaAttribute}
       * @memberof UserSchemaBaseProperties
       */
-  managerId?: UserSchemaAttribute;
-  /**
+    managerId?: UserSchemaAttribute;
+    /**
       *
       * @type {UserSchemaAttribute}
       * @memberof UserSchemaBaseProperties
       */
-  manager?: UserSchemaAttribute;
+    manager?: UserSchemaAttribute;
 }

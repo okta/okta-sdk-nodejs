@@ -25,36 +25,35 @@ import { AuthenticatorProviderConfigurationUserNameTemplate } from './authentica
  * @export
  * @class AuthenticatorProviderConfiguration
  */
-export declare class AuthenticatorProviderConfiguration {
-  constructor(resourceJson: Record<string, unknown>);
-  /**
+export interface AuthenticatorProviderConfiguration {
+    /**
       *
       * @type {number}
       * @memberof AuthenticatorProviderConfiguration
       */
-  authPort?: number;
-  /**
+    authPort?: number;
+    /**
       *
       * @type {string}
       * @memberof AuthenticatorProviderConfiguration
       */
-  hostName?: string;
-  /**
+    hostName?: string;
+    /**
       *
       * @type {string}
       * @memberof AuthenticatorProviderConfiguration
       */
-  instanceId?: string;
-  /**
+    instanceId?: string;
+    /**
       *
       * @type {string}
       * @memberof AuthenticatorProviderConfiguration
       */
-  sharedSecret?: string;
-  /**
+    sharedSecret?: string;
+    /**
       *
       * @type {AuthenticatorProviderConfigurationUserNameTemplate}
       * @memberof AuthenticatorProviderConfiguration
       */
-  userNameTemplate?: AuthenticatorProviderConfigurationUserNameTemplate;
+    userNameTemplate?: AuthenticatorProviderConfigurationUserNameTemplate;
 }

@@ -42,6 +42,8 @@ var __exportStar = (this && this.__exportStar) || function (m, exports) {
 };
 Object.defineProperty(exports, '__esModule', { value: true });
 __exportStar(require('./allowed-for-enum'), exports);
+__exportStar(require('./authentication-provider'), exports);
+__exportStar(require('./authentication-provider-type'), exports);
 __exportStar(require('./authenticator'), exports);
 __exportStar(require('./authenticator-provider'), exports);
 __exportStar(require('./authenticator-provider-configuration'), exports);
@@ -78,5 +80,4 @@ __exportStar(require('./user-schema-properties-profile'), exports);
 __exportStar(require('./user-schema-properties-profile-item'), exports);
 __exportStar(require('./user-schema-public'), exports);
 __exportStar(require('./user-type'), exports);
-__exportStar(require('./user-type-condition'), exports);
 __exportStar(require('./user-verification-enum'), exports);

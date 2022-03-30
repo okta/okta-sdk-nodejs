@@ -26,18 +26,17 @@ import { GroupSchemaCustom } from './group-schema-custom';
  * @export
  * @class GroupSchemaDefinitions
  */
-export declare class GroupSchemaDefinitions {
-  constructor(resourceJson: Record<string, unknown>);
-  /**
+export interface GroupSchemaDefinitions {
+    /**
       *
       * @type {GroupSchemaBase}
       * @memberof GroupSchemaDefinitions
       */
-  base?: GroupSchemaBase;
-  /**
+    base?: GroupSchemaBase;
+    /**
       *
       * @type {GroupSchemaCustom}
       * @memberof GroupSchemaDefinitions
       */
-  custom?: GroupSchemaCustom;
+    custom?: GroupSchemaCustom;
 }

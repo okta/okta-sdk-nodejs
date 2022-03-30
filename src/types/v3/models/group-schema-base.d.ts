@@ -25,30 +25,29 @@ import { GroupSchemaBaseProperties } from './group-schema-base-properties';
  * @export
  * @class GroupSchemaBase
  */
-export declare class GroupSchemaBase {
-  constructor(resourceJson: Record<string, unknown>);
-  /**
+export interface GroupSchemaBase {
+    /**
       *
       * @type {string}
       * @memberof GroupSchemaBase
       */
-  id?: string;
-  /**
+    id?: string;
+    /**
       *
       * @type {GroupSchemaBaseProperties}
       * @memberof GroupSchemaBase
       */
-  properties?: GroupSchemaBaseProperties;
-  /**
+    properties?: GroupSchemaBaseProperties;
+    /**
       *
       * @type {Array<string>}
       * @memberof GroupSchemaBase
       */
-  required?: Array<string>;
-  /**
+    required?: Array<string>;
+    /**
       *
       * @type {string}
       * @memberof GroupSchemaBase
       */
-  type?: string;
+    type?: string;
 }

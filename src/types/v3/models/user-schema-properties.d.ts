@@ -25,12 +25,11 @@ import { UserSchemaPropertiesProfile } from './user-schema-properties-profile';
  * @export
  * @class UserSchemaProperties
  */
-export declare class UserSchemaProperties {
-  constructor(resourceJson: Record<string, unknown>);
-  /**
+export interface UserSchemaProperties {
+    /**
       *
       * @type {UserSchemaPropertiesProfile}
       * @memberof UserSchemaProperties
       */
-  profile?: UserSchemaPropertiesProfile;
+    profile?: UserSchemaPropertiesProfile;
 }

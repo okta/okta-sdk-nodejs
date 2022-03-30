@@ -26,68 +26,67 @@ import { UserSchemaProperties } from './user-schema-properties';
  * @export
  * @class UserSchema
  */
-export declare class UserSchema {
-  constructor(resourceJson: Record<string, unknown>);
-  /**
+export interface UserSchema {
+    /**
       *
       * @type {string}
       * @memberof UserSchema
       */
-  id?: string;
-  /**
+    id?: string;
+    /**
       *
       * @type {string}
       * @memberof UserSchema
       */
-  schema?: string;
-  /**
+    schema?: string;
+    /**
       *
       * @type {string}
       * @memberof UserSchema
       */
-  name?: string;
-  /**
+    name?: string;
+    /**
       *
       * @type {string}
       * @memberof UserSchema
       */
-  title?: string;
-  /**
+    title?: string;
+    /**
       *
       * @type {string}
       * @memberof UserSchema
       */
-  lastUpdated?: string;
-  /**
+    lastUpdated?: string;
+    /**
       *
       * @type {string}
       * @memberof UserSchema
       */
-  created?: string;
-  /**
+    created?: string;
+    /**
       *
       * @type {UserSchemaDefinitions}
       * @memberof UserSchema
       */
-  definitions?: UserSchemaDefinitions;
-  /**
+    definitions?: UserSchemaDefinitions;
+    /**
       *
       * @type {string}
       * @memberof UserSchema
       */
-  type?: string;
-  /**
+    type?: string;
+    /**
       *
       * @type {UserSchemaProperties}
       * @memberof UserSchema
       */
-  properties?: UserSchemaProperties;
-  /**
+    properties?: UserSchemaProperties;
+    /**
       *
       * @type {{ [key: string]: any; }}
       * @memberof UserSchema
       */
-  links?: {
+    links?: {
         [key: string]: any;
     };
 }

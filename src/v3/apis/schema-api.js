@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 /* tslint:disable */
 /* eslint-disable */
 /**
@@ -27,8 +27,6 @@ exports.SchemaApi = exports.SchemaApiFactory = exports.SchemaApiFp = exports.Sch
 // Some imports not used depending on template conditions
 // @ts-ignore
 const base_1 = require("../base");
-const models_1 = require("../models");
-const models_2 = require("../models");
 const oauth_1 = require("../../oauth");
 const http_1 = require("../../http");
 const config_loader_1 = require("../../config-loader");
@@ -443,7 +441,7 @@ const SchemaApiFp = function (configuration) {
             const localVarRequestArgs = api.getApplicationUserSchema(appInstanceId, options);
             return (http = api.http, basePath = configuration.basePath || configuration.orgUrl) => {
                 const requestArgs = { ...localVarRequestArgs.options, url: basePath + localVarRequestArgs.url };
-                return http.http(requestArgs.url, requestArgs).then(res => res.json().then(data => new models_2.UserSchema(data)));
+                return http.http(requestArgs.url, requestArgs).then(res => res.json().then((data) => data));
             };
         },
         /**
@@ -457,7 +455,7 @@ const SchemaApiFp = function (configuration) {
             const localVarRequestArgs = api.getGroupSchema(options);
             return (http = api.http, basePath = configuration.basePath || configuration.orgUrl) => {
                 const requestArgs = { ...localVarRequestArgs.options, url: basePath + localVarRequestArgs.url };
-                return http.http(requestArgs.url, requestArgs).then(res => res.json().then(data => new models_1.GroupSchema(data)));
+                return http.http(requestArgs.url, requestArgs).then(res => res.json().then((data) => data));
             };
         },
         /**
@@ -472,7 +470,7 @@ const SchemaApiFp = function (configuration) {
             const localVarRequestArgs = api.getUserSchema(schemaId, options);
             return (http = api.http, basePath = configuration.basePath || configuration.orgUrl) => {
                 const requestArgs = { ...localVarRequestArgs.options, url: basePath + localVarRequestArgs.url };
-                return http.http(requestArgs.url, requestArgs).then(res => res.json().then(data => new models_2.UserSchema(data)));
+                return http.http(requestArgs.url, requestArgs).then(res => res.json().then((data) => data));
             };
         },
         /**
@@ -488,7 +486,7 @@ const SchemaApiFp = function (configuration) {
             const localVarRequestArgs = api.updateApplicationUserProfile(appInstanceId, body, options);
             return (http = api.http, basePath = configuration.basePath || configuration.orgUrl) => {
                 const requestArgs = { ...localVarRequestArgs.options, url: basePath + localVarRequestArgs.url };
-                return http.http(requestArgs.url, requestArgs).then(res => res.json().then(data => new models_2.UserSchema(data)));
+                return http.http(requestArgs.url, requestArgs).then(res => res.json().then((data) => data));
             };
         },
         /**
@@ -503,7 +501,7 @@ const SchemaApiFp = function (configuration) {
             const localVarRequestArgs = api.updateGroupSchema(body, options);
             return (http = api.http, basePath = configuration.basePath || configuration.orgUrl) => {
                 const requestArgs = { ...localVarRequestArgs.options, url: basePath + localVarRequestArgs.url };
-                return http.http(requestArgs.url, requestArgs).then(res => res.json().then(data => new models_1.GroupSchema(data)));
+                return http.http(requestArgs.url, requestArgs).then(res => res.json().then((data) => data));
             };
         },
         /**
@@ -519,7 +517,7 @@ const SchemaApiFp = function (configuration) {
             const localVarRequestArgs = api.updateUserProfile(body, schemaId, options);
             return (http = api.http, basePath = configuration.basePath || configuration.orgUrl) => {
                 const requestArgs = { ...localVarRequestArgs.options, url: basePath + localVarRequestArgs.url };
-                return http.http(requestArgs.url, requestArgs).then(res => res.json().then(data => new models_2.UserSchema(data)));
+                return http.http(requestArgs.url, requestArgs).then(res => res.json().then((data) => data));
             };
         },
     };

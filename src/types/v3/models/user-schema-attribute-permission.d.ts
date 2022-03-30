@@ -24,18 +24,17 @@
  * @export
  * @class UserSchemaAttributePermission
  */
-export declare class UserSchemaAttributePermission {
-  constructor(resourceJson: Record<string, unknown>);
-  /**
+export interface UserSchemaAttributePermission {
+    /**
       *
       * @type {string}
       * @memberof UserSchemaAttributePermission
       */
-  principal?: string;
-  /**
+    principal?: string;
+    /**
       *
       * @type {string}
       * @memberof UserSchemaAttributePermission
       */
-  action?: string;
+    action?: string;
 }

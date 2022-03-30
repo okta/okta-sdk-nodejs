@@ -23,15 +23,3 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.GroupSchemaAttribute = void 0;
-/**
- *
- * @export
- * @class GroupSchemaAttribute
- */
-class GroupSchemaAttribute {
-    constructor(resourceJson) {
-        Object.assign(this, resourceJson);
-    }
-}
-exports.GroupSchemaAttribute = GroupSchemaAttribute;

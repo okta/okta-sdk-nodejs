@@ -23,15 +23,3 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UserSchemaPropertiesProfileItem = void 0;
-/**
- *
- * @export
- * @class UserSchemaPropertiesProfileItem
- */
-class UserSchemaPropertiesProfileItem {
-    constructor(resourceJson) {
-        Object.assign(this, resourceJson);
-    }
-}
-exports.UserSchemaPropertiesProfileItem = UserSchemaPropertiesProfileItem;

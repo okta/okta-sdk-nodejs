@@ -26,20 +26,19 @@ import { UserSchemaProperties } from './user-schema-properties';
  * @export
  * @class GroupSchema
  */
-export declare class GroupSchema {
-  constructor(resourceJson: Record<string, unknown>);
-  /**
+export interface GroupSchema {
+    /**
       *
       * @type {string}
       * @memberof GroupSchema
       */
-  schema?: string;
-  /**
+    schema?: string;
+    /**
       *
       * @type {{ [key: string]: any; }}
       * @memberof GroupSchema
       */
-  links?: {
+    links?: {
         [key: string]: any;
     };
     /**
@@ -47,53 +46,53 @@ export declare class GroupSchema {
       * @type {string}
       * @memberof GroupSchema
       */
-  created?: string;
-  /**
+    created?: string;
+    /**
       *
       * @type {GroupSchemaDefinitions}
       * @memberof GroupSchema
       */
-  definitions?: GroupSchemaDefinitions;
-  /**
+    definitions?: GroupSchemaDefinitions;
+    /**
       *
       * @type {string}
       * @memberof GroupSchema
       */
-  description?: string;
-  /**
+    description?: string;
+    /**
       *
       * @type {string}
       * @memberof GroupSchema
       */
-  id?: string;
-  /**
+    id?: string;
+    /**
       *
       * @type {string}
       * @memberof GroupSchema
       */
-  lastUpdated?: string;
-  /**
+    lastUpdated?: string;
+    /**
       *
       * @type {string}
       * @memberof GroupSchema
       */
-  name?: string;
-  /**
+    name?: string;
+    /**
       *
       * @type {UserSchemaProperties}
       * @memberof GroupSchema
       */
-  properties?: UserSchemaProperties;
-  /**
+    properties?: UserSchemaProperties;
+    /**
       *
       * @type {string}
       * @memberof GroupSchema
       */
-  title?: string;
-  /**
+    title?: string;
+    /**
       *
       * @type {string}
       * @memberof GroupSchema
       */
-  type?: string;
+    type?: string;
 }

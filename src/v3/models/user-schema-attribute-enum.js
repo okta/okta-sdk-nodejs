@@ -23,15 +23,3 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UserSchemaAttributeEnum = void 0;
-/**
- *
- * @export
- * @class UserSchemaAttributeEnum
- */
-class UserSchemaAttributeEnum {
-    constructor(resourceJson) {
-        Object.assign(this, resourceJson);
-    }
-}
-exports.UserSchemaAttributeEnum = UserSchemaAttributeEnum;

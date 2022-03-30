@@ -70,7 +70,7 @@ export declare const AuthenticatorApiRequestParamCreator: (configuration?: Confi
       * @param {*} [options] Override http request option.
       * @throws {RequiredError}
       */
-    updateAuthenticator: (body: any, authenticatorId: string, options?: any) => RequestArgs;
+    updateAuthenticator: (body: Authenticator, authenticatorId: string, options?: any) => RequestArgs;
 };
 /**
  * AuthenticatorApi - functional programming interface
@@ -116,7 +116,7 @@ export declare const AuthenticatorApiFp: (configuration?: Configuration & V2Conf
       * @param {*} [options] Override http request option.
       * @throws {RequiredError}
       */
-    updateAuthenticator(body: any, authenticatorId: string, options?: any): (http?: Http, basePath?: string) => Promise<Authenticator>;
+    updateAuthenticator(body: Authenticator, authenticatorId: string, options?: any): (http?: Http, basePath?: string) => Promise<Authenticator>;
 };
 /**
  * AuthenticatorApi - factory interface
@@ -162,7 +162,7 @@ export declare const AuthenticatorApiFactory: (configuration?: Configuration, ba
       * @param {*} [options] Override http request option.
       * @throws {RequiredError}
       */
-    updateAuthenticator(body: any, authenticatorId: string, options?: any): Promise<Authenticator>;
+    updateAuthenticator(body: Authenticator, authenticatorId: string, options?: any): Promise<Authenticator>;
 };
 /**
  * AuthenticatorApi - object-oriented interface
@@ -179,7 +179,7 @@ export declare class AuthenticatorApi extends BaseAPI {
       * @throws {RequiredError}
       * @memberof AuthenticatorApi
       */
-  activateAuthenticator(authenticatorId: string, options?: any): Promise<any>;
+  activateAuthenticator(authenticatorId: string, options?: any): Promise<Authenticator>;
   /**
       * Deactivates an authenticator by `authenticatorId`.
       * @summary Deactivate Authenticator
@@ -188,7 +188,7 @@ export declare class AuthenticatorApi extends BaseAPI {
       * @throws {RequiredError}
       * @memberof AuthenticatorApi
       */
-  deactivateAuthenticator(authenticatorId: string, options?: any): Promise<any>;
+  deactivateAuthenticator(authenticatorId: string, options?: any): Promise<Authenticator>;
   /**
       * Fetches an authenticator from your Okta organization by `authenticatorId`.
       * @summary Get Authenticator
@@ -197,7 +197,7 @@ export declare class AuthenticatorApi extends BaseAPI {
       * @throws {RequiredError}
       * @memberof AuthenticatorApi
       */
-  getAuthenticator(authenticatorId: string, options?: any): Promise<any>;
+  getAuthenticator(authenticatorId: string, options?: any): Promise<Authenticator>;
   /**
       * Enumerates authenticators in your organization.
       * @summary List Authenticators
@@ -205,7 +205,7 @@ export declare class AuthenticatorApi extends BaseAPI {
       * @throws {RequiredError}
       * @memberof AuthenticatorApi
       */
-  listAuthenticators(options?: any): Collection<any>;
+  listAuthenticators(options?: any): Collection<Authenticator>;
   /**
       * Updates an authenticator
       * @summary Update Authenticator
@@ -215,5 +215,5 @@ export declare class AuthenticatorApi extends BaseAPI {
       * @throws {RequiredError}
       * @memberof AuthenticatorApi
       */
-  updateAuthenticator(body: Authenticator, authenticatorId: string, options?: any): Promise<any>;
+  updateAuthenticator(body: Authenticator, authenticatorId: string, options?: any): Promise<Authenticator>;
 }

@@ -25,24 +25,23 @@ import { UserSchemaAttributeEnum } from './user-schema-attribute-enum';
  * @export
  * @class UserSchemaAttributeItems
  */
-export declare class UserSchemaAttributeItems {
-  constructor(resourceJson: Record<string, unknown>);
-  /**
+export interface UserSchemaAttributeItems {
+    /**
       *
       * @type {Array<string>}
       * @memberof UserSchemaAttributeItems
       */
-  _enum?: Array<string>;
-  /**
+    _enum?: Array<string>;
+    /**
       *
       * @type {Array<UserSchemaAttributeEnum>}
       * @memberof UserSchemaAttributeItems
       */
-  oneOf?: Array<UserSchemaAttributeEnum>;
-  /**
+    oneOf?: Array<UserSchemaAttributeEnum>;
+    /**
       *
       * @type {string}
       * @memberof UserSchemaAttributeItems
       */
-  type?: string;
+    type?: string;
 }

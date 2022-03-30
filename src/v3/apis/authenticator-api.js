@@ -27,12 +27,10 @@ exports.AuthenticatorApi = exports.AuthenticatorApiFactory = exports.Authenticat
 // Some imports not used depending on template conditions
 // @ts-ignore
 const base_1 = require("../base");
-const models_1 = require("../models");
 const oauth_1 = require("../../oauth");
 const http_1 = require("../../http");
 const config_loader_1 = require("../../config-loader");
 const default_request_executor_1 = require("../../default-request-executor");
-const model_factory_1 = require("../../model-factory");
 const collection_1 = require("../../collection");
 const os = require('os');
 const packageJson = require('../../../package.json');
@@ -389,7 +387,7 @@ const AuthenticatorApiFp = function (configuration) {
             const localVarRequestArgs = api.activateAuthenticator(authenticatorId, options);
             return (http = api.http, basePath = configuration.basePath || configuration.orgUrl) => {
                 const requestArgs = { ...localVarRequestArgs.options, url: basePath + localVarRequestArgs.url };
-                return http.http(requestArgs.url, requestArgs).then(res => res.json().then(data => new models_1.Authenticator(data)));
+                return http.http(requestArgs.url, requestArgs).then(res => res.json().then((data) => data));
             };
         },
         /**
@@ -404,7 +402,7 @@ const AuthenticatorApiFp = function (configuration) {
             const localVarRequestArgs = api.deactivateAuthenticator(authenticatorId, options);
             return (http = api.http, basePath = configuration.basePath || configuration.orgUrl) => {
                 const requestArgs = { ...localVarRequestArgs.options, url: basePath + localVarRequestArgs.url };
-                return http.http(requestArgs.url, requestArgs).then(res => res.json().then(data => new models_1.Authenticator(data)));
+                return http.http(requestArgs.url, requestArgs).then(res => res.json().then((data) => data));
             };
         },
         /**
@@ -419,7 +417,7 @@ const AuthenticatorApiFp = function (configuration) {
             const localVarRequestArgs = api.getAuthenticator(authenticatorId, options);
             return (http = api.http, basePath = configuration.basePath || configuration.orgUrl) => {
                 const requestArgs = { ...localVarRequestArgs.options, url: basePath + localVarRequestArgs.url };
-                return http.http(requestArgs.url, requestArgs).then(res => res.json().then(data => new models_1.Authenticator(data)));
+                return http.http(requestArgs.url, requestArgs).then(res => res.json().then((data) => data));
             };
         },
         /**
@@ -433,7 +431,7 @@ const AuthenticatorApiFp = function (configuration) {
             const localVarRequestArgs = api.listAuthenticators(options);
             return (http = api.http, basePath = configuration.basePath || configuration.orgUrl) => {
                 const requestArgs = { ...localVarRequestArgs.options, url: basePath + localVarRequestArgs.url };
-                return new collection_1.Collection({ http }, `${requestArgs.url}`, new model_factory_1.ModelFactory(models_1.Authenticator));
+                return new collection_1.Collection({ http }, `${requestArgs.url}`);
             };
         },
         /**
@@ -449,7 +447,7 @@ const AuthenticatorApiFp = function (configuration) {
             const localVarRequestArgs = api.updateAuthenticator(body, authenticatorId, options);
             return (http = api.http, basePath = configuration.basePath || configuration.orgUrl) => {
                 const requestArgs = { ...localVarRequestArgs.options, url: basePath + localVarRequestArgs.url };
-                return http.http(requestArgs.url, requestArgs).then(res => res.json().then(data => new models_1.Authenticator(data)));
+                return http.http(requestArgs.url, requestArgs).then(res => res.json().then((data) => data));
             };
         },
     };

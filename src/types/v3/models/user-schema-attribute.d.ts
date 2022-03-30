@@ -31,114 +31,113 @@ import { UserSchemaAttributeUnion } from './user-schema-attribute-union';
  * @export
  * @class UserSchemaAttribute
  */
-export declare class UserSchemaAttribute {
-  constructor(resourceJson: Record<string, unknown>);
-  /**
+export interface UserSchemaAttribute {
+    /**
       *
       * @type {string}
       * @memberof UserSchemaAttribute
       */
-  title?: string;
-  /**
+    title?: string;
+    /**
       *
       * @type {UserSchemaAttributeType}
       * @memberof UserSchemaAttribute
       */
-  type?: UserSchemaAttributeType;
-  /**
+    type?: UserSchemaAttributeType;
+    /**
       *
       * @type {boolean}
       * @memberof UserSchemaAttribute
       */
-  required?: boolean;
-  /**
+    required?: boolean;
+    /**
       *
       * @type {string}
       * @memberof UserSchemaAttribute
       */
-  mutability?: string;
-  /**
+    mutability?: string;
+    /**
       *
       * @type {UserSchemaAttributeScope}
       * @memberof UserSchemaAttribute
       */
-  scope?: UserSchemaAttributeScope;
-  /**
+    scope?: UserSchemaAttributeScope;
+    /**
       *
       * @type {Array<string>}
       * @memberof UserSchemaAttribute
       */
-  _enum?: Array<string>;
-  /**
+    _enum?: Array<string>;
+    /**
       *
       * @type {Array<UserSchemaAttributeEnum>}
       * @memberof UserSchemaAttribute
       */
-  oneOf?: Array<UserSchemaAttributeEnum>;
-  /**
+    oneOf?: Array<UserSchemaAttributeEnum>;
+    /**
       *
       * @type {number}
       * @memberof UserSchemaAttribute
       */
-  minLength?: number;
-  /**
+    minLength?: number;
+    /**
       *
       * @type {number}
       * @memberof UserSchemaAttribute
       */
-  maxLength?: number;
-  /**
+    maxLength?: number;
+    /**
       *
       * @type {string}
       * @memberof UserSchemaAttribute
       */
-  description?: string;
-  /**
+    description?: string;
+    /**
       *
       * @type {Array<UserSchemaAttributePermission>}
       * @memberof UserSchemaAttribute
       */
-  permissions?: Array<UserSchemaAttributePermission>;
-  /**
+    permissions?: Array<UserSchemaAttributePermission>;
+    /**
       *
       * @type {UserSchemaAttributeMaster}
       * @memberof UserSchemaAttribute
       */
-  master?: UserSchemaAttributeMaster;
-  /**
+    master?: UserSchemaAttributeMaster;
+    /**
       *
       * @type {UserSchemaAttributeUnion}
       * @memberof UserSchemaAttribute
       */
-  union?: UserSchemaAttributeUnion;
-  /**
+    union?: UserSchemaAttributeUnion;
+    /**
       *
       * @type {UserSchemaAttributeItems}
       * @memberof UserSchemaAttribute
       */
-  items?: UserSchemaAttributeItems;
-  /**
+    items?: UserSchemaAttributeItems;
+    /**
       *
       * @type {string}
       * @memberof UserSchemaAttribute
       */
-  pattern?: string;
-  /**
+    pattern?: string;
+    /**
       *
       * @type {string}
       * @memberof UserSchemaAttribute
       */
-  unique?: string;
-  /**
+    unique?: string;
+    /**
       *
       * @type {string}
       * @memberof UserSchemaAttribute
       */
-  externalName?: string;
-  /**
+    externalName?: string;
+    /**
       *
       * @type {string}
       * @memberof UserSchemaAttribute
       */
-  externalNamespace?: string;
+    externalNamespace?: string;
 }

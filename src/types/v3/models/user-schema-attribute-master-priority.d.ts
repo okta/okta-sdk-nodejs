@@ -24,18 +24,17 @@
  * @export
  * @class UserSchemaAttributeMasterPriority
  */
-export declare class UserSchemaAttributeMasterPriority {
-  constructor(resourceJson: Record<string, unknown>);
-  /**
+export interface UserSchemaAttributeMasterPriority {
+    /**
       *
       * @type {string}
       * @memberof UserSchemaAttributeMasterPriority
       */
-  type?: string;
-  /**
+    type?: string;
+    /**
       *
       * @type {string}
       * @memberof UserSchemaAttributeMasterPriority
       */
-  value?: string;
+    value?: string;
 }

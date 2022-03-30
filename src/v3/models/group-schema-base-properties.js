@@ -23,15 +23,3 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.GroupSchemaBaseProperties = void 0;
-/**
- *
- * @export
- * @class GroupSchemaBaseProperties
- */
-class GroupSchemaBaseProperties {
-    constructor(resourceJson) {
-        Object.assign(this, resourceJson);
-    }
-}
-exports.GroupSchemaBaseProperties = GroupSchemaBaseProperties;

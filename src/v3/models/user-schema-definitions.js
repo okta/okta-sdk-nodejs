@@ -23,15 +23,3 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UserSchemaDefinitions = void 0;
-/**
- *
- * @export
- * @class UserSchemaDefinitions
- */
-class UserSchemaDefinitions {
-    constructor(resourceJson) {
-        Object.assign(this, resourceJson);
-    }
-}
-exports.UserSchemaDefinitions = UserSchemaDefinitions;

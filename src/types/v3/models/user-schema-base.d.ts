@@ -25,30 +25,29 @@ import { UserSchemaBaseProperties } from './user-schema-base-properties';
  * @export
  * @class UserSchemaBase
  */
-export declare class UserSchemaBase {
-  constructor(resourceJson: Record<string, unknown>);
-  /**
+export interface UserSchemaBase {
+    /**
       *
       * @type {string}
       * @memberof UserSchemaBase
       */
-  id?: string;
-  /**
+    id?: string;
+    /**
       *
       * @type {string}
       * @memberof UserSchemaBase
       */
-  type?: string;
-  /**
+    type?: string;
+    /**
       *
       * @type {UserSchemaBaseProperties}
       * @memberof UserSchemaBase
       */
-  properties?: UserSchemaBaseProperties;
-  /**
+    properties?: UserSchemaBaseProperties;
+    /**
       *
       * @type {Array<string>}
       * @memberof UserSchemaBase
       */
-  required?: Array<string>;
+    required?: Array<string>;
 }
