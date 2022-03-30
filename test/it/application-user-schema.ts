@@ -1,7 +1,13 @@
 import { expect } from 'chai';
 
 import utils = require('../utils');
-import { Client, BookmarkApplication, UserSchema, DefaultRequestExecutor } from '@okta/okta-sdk-nodejs';
+import {
+  Client,
+  BookmarkApplication,
+  UserSchema,
+  DefaultRequestExecutor,
+  v3
+} from '@okta/okta-sdk-nodejs';
 import getMockSchemaProperty = require('./mocks/user-schema-property');
 
 
@@ -32,8 +38,8 @@ describe('App User Schema', () => {
   });
 
   it('gets UserSchema for application', async () => {
-    const userSchema = await client.getApplicationUserSchema(createdApplication.id);
-    expect(userSchema).to.be.instanceOf(UserSchema);
+    const userSchema: v3.model.UserSchema = await client.getApplicationUserSchema(createdApplication.id);
+    expect(userSchema.definitions).not.to.be(null);
   });
 
   it('adds property to application\'s UserSchema', async () => {

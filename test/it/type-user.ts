@@ -36,9 +36,8 @@ describe('User Type API', () => {
     it('should return a Collection of UserType', async () => {
       const userTypes = client.listUserTypes();
       expect(userTypes).to.be.instanceOf(Collection);
-      await userTypes.each(retrievedType => {
-        userType = retrievedType;
-      });
+      const {value: userType } = await userTypes.next();
+      expect(userType.name.length).to.be.greaterThan(0);
     });
   });
 
