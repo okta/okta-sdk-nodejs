@@ -36,6 +36,11 @@ describe('Factors API', () => {
     await utils.cleanup(client, newUser);
     createdUser = await client.createUser(newUser);
 
+    const authenticatorPolicies: okta.Policy[] = [];
+    for await (const policy of client.listPolicies({type: 'MFA_ENROLL'})) {
+      authenticatorPolicies.push(policy);
+    }
+    const defaultPolicy = authenticatorPolicies.find(policy => policy.name === 'Default Policy');
     // enable Okta Verify authenticator so that okta_totp factor can be activated
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore MAR 2022: MFA_ENROLL policy is not added to SDK
@@ -43,6 +48,7 @@ describe('Factors API', () => {
       key: 'okta_verify',
       enroll: {self: 'OPTIONAL'}
     }];
+    await client.updatePolicy(defaultPolicy.id, defaultPolicy);
   });
 
   after(async () => {

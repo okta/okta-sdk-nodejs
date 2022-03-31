@@ -2,7 +2,10 @@ import utils = require('../utils');
 import {
   Client,
   DefaultRequestExecutor,
-  SecurityQuestionUserFactor, SmsUserFactor } from '@okta/okta-sdk-nodejs';
+  SecurityQuestionUserFactor,
+  SmsUserFactor,
+  Policy
+} from '@okta/okta-sdk-nodejs';
 import { expect } from 'chai';
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -36,6 +39,23 @@ describe('User API tests', () => {
     // Cleanup the user if user exists
     await utils.cleanup(client, newUser);
     createdUser = await client.createUser(newUser);
+
+    const authenticatorPolicies: Policy[] = [];
+    for await (const policy of client.listPolicies({type: 'MFA_ENROLL'})) {
+      authenticatorPolicies.push(policy);
+    }
+    const defaultPolicy = authenticatorPolicies.find(policy => policy.name === 'Default Policy');
+    // enable Phone and Security Question authenticators
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore MAR 2022: MFA_ENROLL policy is not added to SDK
+    defaultPolicy.settings.authenticators = [{
+      key: 'phone_number',
+      enroll: {self: 'OPTIONAL'}
+    }, {
+      key: 'security_question',
+      enroll: {self: 'OPTIONAL'}
+    }];
+    await client.updatePolicy(defaultPolicy.id, defaultPolicy);
   });
 
   after(async () => {
