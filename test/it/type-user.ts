@@ -1,10 +1,13 @@
+import { UserType } from './../../src/types/v3/models/user-type.d';
 import { expect } from 'chai';
 import faker = require('@faker-js/faker');
 import {
   Client,
   Collection,
   DefaultRequestExecutor,
-  v3 } from '@okta/okta-sdk-nodejs';
+  v3
+} from '@okta/okta-sdk-nodejs';
+
 import getMockUserType = require('./mocks/user-type');
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -31,11 +34,10 @@ describe('User Type API', () => {
     });
 
     it('should return a Collection of UserType', async () => {
-      const userTypes = await client.listUserTypes();
+      const userTypes = client.listUserTypes();
       expect(userTypes).to.be.instanceOf(Collection);
-      await userTypes.each(userType => {
-        expect(userType).to.be.instanceOf(v3.model.UserType);
-      });
+      const {value: userType } = await userTypes.next();
+      expect(userType.name.length).to.be.greaterThan(0);
     });
   });
 
@@ -48,7 +50,6 @@ describe('User Type API', () => {
     it('should return UserType instance', async () => {
       const mockUserType = getMockUserType();
       userType = await client.createUserType(mockUserType);
-      expect(userType).to.be.instanceOf(v3.model.UserType);
       expect(userType).to.have.property('id');
       expect(userType.name).to.equal(mockUserType.name);
     });
@@ -65,7 +66,6 @@ describe('User Type API', () => {
 
     it('should get userType by id', async () => {
       const userTypeFromGet = await client.getUserType(userType.id);
-      expect(userTypeFromGet).to.be.instanceOf(v3.model.UserType);
       expect(userTypeFromGet.name).to.equal(userType.name);
     });
   });
@@ -92,7 +92,6 @@ describe('User Type API', () => {
     it('should replace userType with a new resource', async () => {
       mockType.displayName = faker.random.word();
       const replacedUserType = await client.replaceUserType(userType.id, mockType);
-      expect(replacedUserType).to.be.instanceOf(v3.model.UserType);
       expect(replacedUserType.id).to.be.equal(userType.id);
       expect(replacedUserType.name).to.be.equal(mockType.name);
     });

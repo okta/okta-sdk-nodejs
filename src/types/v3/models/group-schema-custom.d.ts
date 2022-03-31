@@ -19,72 +19,37 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+import { GroupSchemaAttribute } from './group-schema-attribute';
 /**
  *
  * @export
- * @class UserType
+ * @class GroupSchemaCustom
  */
-export interface UserType {
-    /**
-      *
-      * @type {{ [key: string]: any; }}
-      * @memberof UserType
-      */
-    links?: {
-        [key: string]: any;
-    };
-    /**
-      *
-      * @type {Date}
-      * @memberof UserType
-      */
-    created?: Date;
+export interface GroupSchemaCustom {
     /**
       *
       * @type {string}
-      * @memberof UserType
-      */
-    createdBy?: string;
-    /**
-      *
-      * @type {boolean}
-      * @memberof UserType
-      */
-    _default?: boolean;
-    /**
-      *
-      * @type {string}
-      * @memberof UserType
-      */
-    description?: string;
-    /**
-      *
-      * @type {string}
-      * @memberof UserType
-      */
-    displayName?: string;
-    /**
-      *
-      * @type {string}
-      * @memberof UserType
+      * @memberof GroupSchemaCustom
       */
     id?: string;
     /**
       *
-      * @type {Date}
-      * @memberof UserType
+      * @type {{ [key: string]: GroupSchemaAttribute; }}
+      * @memberof GroupSchemaCustom
       */
-    lastUpdated?: Date;
+    properties?: {
+        [key: string]: GroupSchemaAttribute;
+    };
+    /**
+      *
+      * @type {Array<string>}
+      * @memberof GroupSchemaCustom
+      */
+    required?: Array<string>;
     /**
       *
       * @type {string}
-      * @memberof UserType
+      * @memberof GroupSchemaCustom
       */
-    lastUpdatedBy?: string;
-    /**
-      *
-      * @type {string}
-      * @memberof UserType
-      */
-    name?: string;
+    type?: string;
 }

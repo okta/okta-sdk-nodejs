@@ -5831,18 +5831,7 @@ class GeneratedApiClient {
     if (!appInstanceId) {
       return Promise.reject(new Error('OKTA API getApplicationUserSchema parameter appInstanceId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/meta/schemas/apps/${appInstanceId}/default`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/meta/schemas/apps/${appInstanceId}`
-    ];
-
-    const request = this.http.getJson(
-      url,
-      null,
-      { resources }
-    );
-    return request.then(jsonRes => new models.UserSchema(jsonRes, this));
+    return this.schemaApi.getApplicationUserSchema(appInstanceId);
   }
 
   /**
@@ -5857,20 +5846,7 @@ class GeneratedApiClient {
     if (!appInstanceId) {
       return Promise.reject(new Error('OKTA API updateApplicationUserProfile parameter appInstanceId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/meta/schemas/apps/${appInstanceId}/default`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/meta/schemas/apps/${appInstanceId}`
-    ];
-
-    const request = this.http.postJson(
-      url,
-      {
-        body: userSchema
-      },
-      { resources }
-    );
-    return request.then(jsonRes => new models.UserSchema(jsonRes, this));
+    return this.schemaApi.updateApplicationUserProfile(appInstanceId, userSchema);
   }
 
   /**
@@ -5880,16 +5856,7 @@ class GeneratedApiClient {
    * @returns {Promise<GroupSchema>}
    */
   getGroupSchema() {
-    let url = `${this.baseUrl}/api/v1/meta/schemas/group/default`;
-
-    const resources = [];
-
-    const request = this.http.getJson(
-      url,
-      null,
-      { resources }
-    );
-    return request.then(jsonRes => new models.GroupSchema(jsonRes, this));
+    return this.schemaApi.getGroupSchema();
   }
 
   /**
@@ -5900,18 +5867,7 @@ class GeneratedApiClient {
    * @returns {Promise<GroupSchema>}
    */
   updateGroupSchema(groupSchema) {
-    let url = `${this.baseUrl}/api/v1/meta/schemas/group/default`;
-
-    const resources = [];
-
-    const request = this.http.postJson(
-      url,
-      {
-        body: groupSchema
-      },
-      { resources }
-    );
-    return request.then(jsonRes => new models.GroupSchema(jsonRes, this));
+    return this.schemaApi.updateGroupSchema(groupSchema);
   }
 
   /**
@@ -6015,18 +5971,7 @@ class GeneratedApiClient {
     if (!schemaId) {
       return Promise.reject(new Error('OKTA API getUserSchema parameter schemaId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/meta/schemas/user/${schemaId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/meta/schemas/user/${schemaId}`
-    ];
-
-    const request = this.http.getJson(
-      url,
-      null,
-      { resources }
-    );
-    return request.then(jsonRes => new models.UserSchema(jsonRes, this));
+    return this.schemaApi.getUserSchema(schemaId);
   }
 
   /**
@@ -6044,20 +5989,7 @@ class GeneratedApiClient {
     if (!userSchema) {
       return Promise.reject(new Error('OKTA API updateUserProfile parameter userSchema is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/meta/schemas/user/${schemaId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/meta/schemas/user/${schemaId}`
-    ];
-
-    const request = this.http.postJson(
-      url,
-      {
-        body: userSchema
-      },
-      { resources }
-    );
-    return request.then(jsonRes => new models.UserSchema(jsonRes, this));
+    return this.schemaApi.updateUserProfile(userSchema, schemaId);
   }
 
   /**

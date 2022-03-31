@@ -25,12 +25,11 @@ import { FipsEnum } from './fips-enum';
  * @export
  * @class Compliance
  */
-export declare class Compliance {
-  constructor(resourceJson: Record<string, unknown>);
-  /**
+export interface Compliance {
+    /**
       *
       * @type {FipsEnum}
       * @memberof Compliance
       */
-  fips?: FipsEnum;
+    fips?: FipsEnum;
 }

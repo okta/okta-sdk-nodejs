@@ -23,7 +23,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AuthenticatorApi = exports.AuthenticatorApiFactory = exports.AuthenticatorApiFp = exports.AuthenticatorApiRequestParamCreator = void 0;
+exports.SchemaApi = exports.SchemaApiFactory = exports.SchemaApiFp = exports.SchemaApiRequestParamCreator = void 0;
 // Some imports not used depending on template conditions
 // @ts-ignore
 const base_1 = require("../base");
@@ -31,16 +31,15 @@ const oauth_1 = require("../../oauth");
 const http_1 = require("../../http");
 const config_loader_1 = require("../../config-loader");
 const default_request_executor_1 = require("../../default-request-executor");
-const collection_1 = require("../../collection");
 const os = require('os');
 const packageJson = require('../../../package.json');
 const DEFAULT_USER_AGENT = `${packageJson.name}/${packageJson.version} node/${process.versions.node} ${os.platform()}/${os.release()}`;
 const repoUrl = 'https://github.com/okta/okta-sdk-nodejs';
 /**
- * AuthenticatorApi - request parameter creator
+ * SchemaApi - request parameter creator
  * @export
  */
-const AuthenticatorApiRequestParamCreator = function (configuration) {
+const SchemaApiRequestParamCreator = function (configuration) {
     const configLoader = new config_loader_1.ConfigLoader();
     const clientConfig = Object.assign({}, configuration);
     configLoader.applyDefaults();
@@ -100,125 +99,19 @@ const AuthenticatorApiRequestParamCreator = function (configuration) {
     return {
         http,
         /**
-          * Activates an authenticator by `authenticatorId`.
-          * @summary Activate Authenticator
-          * @param {string} authenticatorId
+          * Fetches the Schema for an App User
+          * @summary Fetches the Schema for an App User
+          * @param {string} appInstanceId
           * @param {*} [options] Override http request option.
           * @throws {RequiredError}
           */
-        activateAuthenticator: (authenticatorId, options = {}) => {
-            // verify required parameter 'authenticatorId' is not null or undefined
-            if (authenticatorId === null || authenticatorId === undefined) {
-                throw new base_1.RequiredError('authenticatorId', 'Required parameter authenticatorId was null or undefined when calling activateAuthenticator.');
+        getApplicationUserSchema: (appInstanceId, options = {}) => {
+            // verify required parameter 'appInstanceId' is not null or undefined
+            if (appInstanceId === null || appInstanceId === undefined) {
+                throw new base_1.RequiredError('appInstanceId', 'Required parameter appInstanceId was null or undefined when calling getApplicationUserSchema.');
             }
-            const localVarPath = `/api/v1/authenticators/{authenticatorId}/lifecycle/activate`
-                .replace(`{${"authenticatorId"}}`, encodeURIComponent(String(authenticatorId)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options };
-            const localVarHeaderParameter = {};
-            const localVarQueryParameter = {};
-            // authentication api_token required
-            if (configuration && configuration.apiToken) {
-                const localVarApiKeyValue = typeof configuration.apiToken === 'function'
-                    ? configuration.apiToken("Authorization")
-                    : configuration.apiToken;
-                localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
-            }
-            // authentication oauth2 required
-            // oauth required
-            if (configuration && configuration.accessToken) {
-                const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
-                    ? configuration.accessToken("oauth2", ["okta.apps.read", "okta.apps.manage", "okta.authenticators.read", "okta.authenticators.manage", "okta.authorizationServers.read", "okta.authorizationServers.manage", "okta.brands.read", "okta.brands.manage", "okta.captchas.manage", "okta.captchas.read", "okta.domains.read", "okta.domains.manage", "okta.eventHooks.read", "okta.eventHooks.manage", "okta.groups.read", "okta.groups.manage", "okta.roles.read", "okta.roles.manage", "okta.idps.read", "okta.idps.manage", "okta.users.manage", "okta.inlineHooks.read", "okta.inlineHooks.manage", "okta.logs.read", "okta.profileMappings.read", "okta.profileMappings.manage", "okta.schemas.read", "okta.schemas.manage", "okta.linkedObjects.read", "okta.linkedObjects.manage", "okta.userTypes.read", "okta.userTypes.manage", "okta.orgs.read", "okta.orgs.manage", "okta.policies.read", "okta.policies.manage", "okta.sessions.read", "okta.sessions.manage", "okta.templates.read", "okta.templates.manage", "okta.trustedOrigins.read", "okta.trustedOrigins.manage", "okta.users.read.self", "okta.users.read"])
-                    : configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
-            }
-            const query = new URLSearchParams(localVarUrlObj.search);
-            for (const key in localVarQueryParameter) {
-                query.set(key, localVarQueryParameter[key]);
-            }
-            for (const key in options.query) {
-                query.set(key, options.query[key]);
-            }
-            localVarUrlObj.search = (new URLSearchParams(query)).toString();
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
-            return {
-                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-          * Deactivates an authenticator by `authenticatorId`.
-          * @summary Deactivate Authenticator
-          * @param {string} authenticatorId
-          * @param {*} [options] Override http request option.
-          * @throws {RequiredError}
-          */
-        deactivateAuthenticator: (authenticatorId, options = {}) => {
-            // verify required parameter 'authenticatorId' is not null or undefined
-            if (authenticatorId === null || authenticatorId === undefined) {
-                throw new base_1.RequiredError('authenticatorId', 'Required parameter authenticatorId was null or undefined when calling deactivateAuthenticator.');
-            }
-            const localVarPath = `/api/v1/authenticators/{authenticatorId}/lifecycle/deactivate`
-                .replace(`{${"authenticatorId"}}`, encodeURIComponent(String(authenticatorId)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options };
-            const localVarHeaderParameter = {};
-            const localVarQueryParameter = {};
-            // authentication api_token required
-            if (configuration && configuration.apiToken) {
-                const localVarApiKeyValue = typeof configuration.apiToken === 'function'
-                    ? configuration.apiToken("Authorization")
-                    : configuration.apiToken;
-                localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
-            }
-            // authentication oauth2 required
-            // oauth required
-            if (configuration && configuration.accessToken) {
-                const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
-                    ? configuration.accessToken("oauth2", ["okta.apps.read", "okta.apps.manage", "okta.authenticators.read", "okta.authenticators.manage", "okta.authorizationServers.read", "okta.authorizationServers.manage", "okta.brands.read", "okta.brands.manage", "okta.captchas.manage", "okta.captchas.read", "okta.domains.read", "okta.domains.manage", "okta.eventHooks.read", "okta.eventHooks.manage", "okta.groups.read", "okta.groups.manage", "okta.roles.read", "okta.roles.manage", "okta.idps.read", "okta.idps.manage", "okta.users.manage", "okta.inlineHooks.read", "okta.inlineHooks.manage", "okta.logs.read", "okta.profileMappings.read", "okta.profileMappings.manage", "okta.schemas.read", "okta.schemas.manage", "okta.linkedObjects.read", "okta.linkedObjects.manage", "okta.userTypes.read", "okta.userTypes.manage", "okta.orgs.read", "okta.orgs.manage", "okta.policies.read", "okta.policies.manage", "okta.sessions.read", "okta.sessions.manage", "okta.templates.read", "okta.templates.manage", "okta.trustedOrigins.read", "okta.trustedOrigins.manage", "okta.users.read.self", "okta.users.read"])
-                    : configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
-            }
-            const query = new URLSearchParams(localVarUrlObj.search);
-            for (const key in localVarQueryParameter) {
-                query.set(key, localVarQueryParameter[key]);
-            }
-            for (const key in options.query) {
-                query.set(key, options.query[key]);
-            }
-            localVarUrlObj.search = (new URLSearchParams(query)).toString();
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
-            return {
-                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-          * Fetches an authenticator from your Okta organization by `authenticatorId`.
-          * @summary Get Authenticator
-          * @param {string} authenticatorId
-          * @param {*} [options] Override http request option.
-          * @throws {RequiredError}
-          */
-        getAuthenticator: (authenticatorId, options = {}) => {
-            // verify required parameter 'authenticatorId' is not null or undefined
-            if (authenticatorId === null || authenticatorId === undefined) {
-                throw new base_1.RequiredError('authenticatorId', 'Required parameter authenticatorId was null or undefined when calling getAuthenticator.');
-            }
-            const localVarPath = `/api/v1/authenticators/{authenticatorId}`
-                .replace(`{${"authenticatorId"}}`, encodeURIComponent(String(authenticatorId)));
+            const localVarPath = `/api/v1/meta/schemas/apps/{appInstanceId}/default`
+                .replace(`{${"appInstanceId"}}`, encodeURIComponent(String(appInstanceId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
             let baseOptions;
@@ -259,13 +152,13 @@ const AuthenticatorApiRequestParamCreator = function (configuration) {
             };
         },
         /**
-          * Enumerates authenticators in your organization.
-          * @summary List Authenticators
+          * Fetches the group schema
+          * @summary Fetches the group schema
           * @param {*} [options] Override http request option.
           * @throws {RequiredError}
           */
-        listAuthenticators: (options = {}) => {
-            const localVarPath = `/api/v1/authenticators`;
+        getGroupSchema: (options = {}) => {
+            const localVarPath = `/api/v1/meta/schemas/group/default`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
             let baseOptions;
@@ -306,31 +199,192 @@ const AuthenticatorApiRequestParamCreator = function (configuration) {
             };
         },
         /**
-          * Updates an authenticator
-          * @summary Update Authenticator
-          * @param {Authenticator} body
-          * @param {string} authenticatorId
+          * Fetches the schema for a Schema Id.
+          * @summary Fetches the schema for a Schema Id.
+          * @param {string} schemaId
           * @param {*} [options] Override http request option.
           * @throws {RequiredError}
           */
-        updateAuthenticator: (body, authenticatorId, options = {}) => {
+        getUserSchema: (schemaId, options = {}) => {
+            // verify required parameter 'schemaId' is not null or undefined
+            if (schemaId === null || schemaId === undefined) {
+                throw new base_1.RequiredError('schemaId', 'Required parameter schemaId was null or undefined when calling getUserSchema.');
+            }
+            const localVarPath = `/api/v1/meta/schemas/user/{schemaId}`
+                .replace(`{${"schemaId"}}`, encodeURIComponent(String(schemaId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
+            const localVarHeaderParameter = {};
+            const localVarQueryParameter = {};
+            // authentication api_token required
+            if (configuration && configuration.apiToken) {
+                const localVarApiKeyValue = typeof configuration.apiToken === 'function'
+                    ? configuration.apiToken("Authorization")
+                    : configuration.apiToken;
+                localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
+            }
+            // authentication oauth2 required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("oauth2", ["okta.apps.read", "okta.apps.manage", "okta.authenticators.read", "okta.authenticators.manage", "okta.authorizationServers.read", "okta.authorizationServers.manage", "okta.brands.read", "okta.brands.manage", "okta.captchas.manage", "okta.captchas.read", "okta.domains.read", "okta.domains.manage", "okta.eventHooks.read", "okta.eventHooks.manage", "okta.groups.read", "okta.groups.manage", "okta.roles.read", "okta.roles.manage", "okta.idps.read", "okta.idps.manage", "okta.users.manage", "okta.inlineHooks.read", "okta.inlineHooks.manage", "okta.logs.read", "okta.profileMappings.read", "okta.profileMappings.manage", "okta.schemas.read", "okta.schemas.manage", "okta.linkedObjects.read", "okta.linkedObjects.manage", "okta.userTypes.read", "okta.userTypes.manage", "okta.orgs.read", "okta.orgs.manage", "okta.policies.read", "okta.policies.manage", "okta.sessions.read", "okta.sessions.manage", "okta.templates.read", "okta.templates.manage", "okta.trustedOrigins.read", "okta.trustedOrigins.manage", "okta.users.read.self", "okta.users.read"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                query.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+          * Partial updates on the User Profile properties of the Application User Schema.
+          * @summary Partial updates on the User Profile properties of the Application User Schema.
+          * @param {string} appInstanceId
+          * @param {UserSchema} [body]
+          * @param {*} [options] Override http request option.
+          * @throws {RequiredError}
+          */
+        updateApplicationUserProfile: (appInstanceId, body, options = {}) => {
+            // verify required parameter 'appInstanceId' is not null or undefined
+            if (appInstanceId === null || appInstanceId === undefined) {
+                throw new base_1.RequiredError('appInstanceId', 'Required parameter appInstanceId was null or undefined when calling updateApplicationUserProfile.');
+            }
+            const localVarPath = `/api/v1/meta/schemas/apps/{appInstanceId}/default`
+                .replace(`{${"appInstanceId"}}`, encodeURIComponent(String(appInstanceId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options };
+            const localVarHeaderParameter = {};
+            const localVarQueryParameter = {};
+            // authentication api_token required
+            if (configuration && configuration.apiToken) {
+                const localVarApiKeyValue = typeof configuration.apiToken === 'function'
+                    ? configuration.apiToken("Authorization")
+                    : configuration.apiToken;
+                localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
+            }
+            // authentication oauth2 required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("oauth2", ["okta.apps.read", "okta.apps.manage", "okta.authenticators.read", "okta.authenticators.manage", "okta.authorizationServers.read", "okta.authorizationServers.manage", "okta.brands.read", "okta.brands.manage", "okta.captchas.manage", "okta.captchas.read", "okta.domains.read", "okta.domains.manage", "okta.eventHooks.read", "okta.eventHooks.manage", "okta.groups.read", "okta.groups.manage", "okta.roles.read", "okta.roles.manage", "okta.idps.read", "okta.idps.manage", "okta.users.manage", "okta.inlineHooks.read", "okta.inlineHooks.manage", "okta.logs.read", "okta.profileMappings.read", "okta.profileMappings.manage", "okta.schemas.read", "okta.schemas.manage", "okta.linkedObjects.read", "okta.linkedObjects.manage", "okta.userTypes.read", "okta.userTypes.manage", "okta.orgs.read", "okta.orgs.manage", "okta.policies.read", "okta.policies.manage", "okta.sessions.read", "okta.sessions.manage", "okta.templates.read", "okta.templates.manage", "okta.trustedOrigins.read", "okta.trustedOrigins.manage", "okta.users.read.self", "okta.users.read"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                query.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
+            const needsSerialization = (typeof body !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body = needsSerialization ? JSON.stringify(body !== undefined ? body : {}) : (body || "");
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+          * Updates, adds ore removes one or more custom Group Profile properties in the schema
+          * @summary Updates, adds ore removes one or more custom Group Profile properties in the schema
+          * @param {GroupSchema} [body]
+          * @param {*} [options] Override http request option.
+          * @throws {RequiredError}
+          */
+        updateGroupSchema: (body, options = {}) => {
+            const localVarPath = `/api/v1/meta/schemas/group/default`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options };
+            const localVarHeaderParameter = {};
+            const localVarQueryParameter = {};
+            // authentication api_token required
+            if (configuration && configuration.apiToken) {
+                const localVarApiKeyValue = typeof configuration.apiToken === 'function'
+                    ? configuration.apiToken("Authorization")
+                    : configuration.apiToken;
+                localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
+            }
+            // authentication oauth2 required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("oauth2", ["okta.apps.read", "okta.apps.manage", "okta.authenticators.read", "okta.authenticators.manage", "okta.authorizationServers.read", "okta.authorizationServers.manage", "okta.brands.read", "okta.brands.manage", "okta.captchas.manage", "okta.captchas.read", "okta.domains.read", "okta.domains.manage", "okta.eventHooks.read", "okta.eventHooks.manage", "okta.groups.read", "okta.groups.manage", "okta.roles.read", "okta.roles.manage", "okta.idps.read", "okta.idps.manage", "okta.users.manage", "okta.inlineHooks.read", "okta.inlineHooks.manage", "okta.logs.read", "okta.profileMappings.read", "okta.profileMappings.manage", "okta.schemas.read", "okta.schemas.manage", "okta.linkedObjects.read", "okta.linkedObjects.manage", "okta.userTypes.read", "okta.userTypes.manage", "okta.orgs.read", "okta.orgs.manage", "okta.policies.read", "okta.policies.manage", "okta.sessions.read", "okta.sessions.manage", "okta.templates.read", "okta.templates.manage", "okta.trustedOrigins.read", "okta.trustedOrigins.manage", "okta.users.read.self", "okta.users.read"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                query.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
+            const needsSerialization = (typeof body !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body = needsSerialization ? JSON.stringify(body !== undefined ? body : {}) : (body || "");
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+          * Partial updates on the User Profile properties of the user schema.
+          * @summary Update User Profile
+          * @param {UserSchema} body
+          * @param {string} schemaId
+          * @param {*} [options] Override http request option.
+          * @throws {RequiredError}
+          */
+        updateUserProfile: (body, schemaId, options = {}) => {
             // verify required parameter 'body' is not null or undefined
             if (body === null || body === undefined) {
-                throw new base_1.RequiredError('body', 'Required parameter body was null or undefined when calling updateAuthenticator.');
+                throw new base_1.RequiredError('body', 'Required parameter body was null or undefined when calling updateUserProfile.');
             }
-            // verify required parameter 'authenticatorId' is not null or undefined
-            if (authenticatorId === null || authenticatorId === undefined) {
-                throw new base_1.RequiredError('authenticatorId', 'Required parameter authenticatorId was null or undefined when calling updateAuthenticator.');
+            // verify required parameter 'schemaId' is not null or undefined
+            if (schemaId === null || schemaId === undefined) {
+                throw new base_1.RequiredError('schemaId', 'Required parameter schemaId was null or undefined when calling updateUserProfile.');
             }
-            const localVarPath = `/api/v1/authenticators/{authenticatorId}`
-                .replace(`{${"authenticatorId"}}`, encodeURIComponent(String(authenticatorId)));
+            const localVarPath = `/api/v1/meta/schemas/user/{schemaId}`
+                .replace(`{${"schemaId"}}`, encodeURIComponent(String(schemaId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
             }
-            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options };
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options };
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
             // authentication api_token required
@@ -368,83 +422,99 @@ const AuthenticatorApiRequestParamCreator = function (configuration) {
         },
     };
 };
-exports.AuthenticatorApiRequestParamCreator = AuthenticatorApiRequestParamCreator;
+exports.SchemaApiRequestParamCreator = SchemaApiRequestParamCreator;
 /**
- * AuthenticatorApi - functional programming interface
+ * SchemaApi - functional programming interface
  * @export
  */
-const AuthenticatorApiFp = function (configuration) {
+const SchemaApiFp = function (configuration) {
     return {
         /**
-          * Activates an authenticator by `authenticatorId`.
-          * @summary Activate Authenticator
-          * @param {string} authenticatorId
+          * Fetches the Schema for an App User
+          * @summary Fetches the Schema for an App User
+          * @param {string} appInstanceId
           * @param {*} [options] Override http request option.
           * @throws {RequiredError}
           */
-        activateAuthenticator(authenticatorId, options) {
-            const api = exports.AuthenticatorApiRequestParamCreator(configuration);
-            const localVarRequestArgs = api.activateAuthenticator(authenticatorId, options);
+        getApplicationUserSchema(appInstanceId, options) {
+            const api = exports.SchemaApiRequestParamCreator(configuration);
+            const localVarRequestArgs = api.getApplicationUserSchema(appInstanceId, options);
             return (http = api.http, basePath = configuration.basePath || configuration.orgUrl) => {
                 const requestArgs = { ...localVarRequestArgs.options, url: basePath + localVarRequestArgs.url };
                 return http.http(requestArgs.url, requestArgs).then(res => res.json().then((data) => data));
             };
         },
         /**
-          * Deactivates an authenticator by `authenticatorId`.
-          * @summary Deactivate Authenticator
-          * @param {string} authenticatorId
+          * Fetches the group schema
+          * @summary Fetches the group schema
           * @param {*} [options] Override http request option.
           * @throws {RequiredError}
           */
-        deactivateAuthenticator(authenticatorId, options) {
-            const api = exports.AuthenticatorApiRequestParamCreator(configuration);
-            const localVarRequestArgs = api.deactivateAuthenticator(authenticatorId, options);
+        getGroupSchema(options) {
+            const api = exports.SchemaApiRequestParamCreator(configuration);
+            const localVarRequestArgs = api.getGroupSchema(options);
             return (http = api.http, basePath = configuration.basePath || configuration.orgUrl) => {
                 const requestArgs = { ...localVarRequestArgs.options, url: basePath + localVarRequestArgs.url };
                 return http.http(requestArgs.url, requestArgs).then(res => res.json().then((data) => data));
             };
         },
         /**
-          * Fetches an authenticator from your Okta organization by `authenticatorId`.
-          * @summary Get Authenticator
-          * @param {string} authenticatorId
+          * Fetches the schema for a Schema Id.
+          * @summary Fetches the schema for a Schema Id.
+          * @param {string} schemaId
           * @param {*} [options] Override http request option.
           * @throws {RequiredError}
           */
-        getAuthenticator(authenticatorId, options) {
-            const api = exports.AuthenticatorApiRequestParamCreator(configuration);
-            const localVarRequestArgs = api.getAuthenticator(authenticatorId, options);
+        getUserSchema(schemaId, options) {
+            const api = exports.SchemaApiRequestParamCreator(configuration);
+            const localVarRequestArgs = api.getUserSchema(schemaId, options);
             return (http = api.http, basePath = configuration.basePath || configuration.orgUrl) => {
                 const requestArgs = { ...localVarRequestArgs.options, url: basePath + localVarRequestArgs.url };
                 return http.http(requestArgs.url, requestArgs).then(res => res.json().then((data) => data));
             };
         },
         /**
-          * Enumerates authenticators in your organization.
-          * @summary List Authenticators
+          * Partial updates on the User Profile properties of the Application User Schema.
+          * @summary Partial updates on the User Profile properties of the Application User Schema.
+          * @param {string} appInstanceId
+          * @param {UserSchema} [body]
           * @param {*} [options] Override http request option.
           * @throws {RequiredError}
           */
-        listAuthenticators(options) {
-            const api = exports.AuthenticatorApiRequestParamCreator(configuration);
-            const localVarRequestArgs = api.listAuthenticators(options);
+        updateApplicationUserProfile(appInstanceId, body, options) {
+            const api = exports.SchemaApiRequestParamCreator(configuration);
+            const localVarRequestArgs = api.updateApplicationUserProfile(appInstanceId, body, options);
             return (http = api.http, basePath = configuration.basePath || configuration.orgUrl) => {
                 const requestArgs = { ...localVarRequestArgs.options, url: basePath + localVarRequestArgs.url };
-                return new collection_1.Collection({ http }, `${requestArgs.url}`);
+                return http.http(requestArgs.url, requestArgs).then(res => res.json().then((data) => data));
             };
         },
         /**
-          * Updates an authenticator
-          * @summary Update Authenticator
-          * @param {Authenticator} body
-          * @param {string} authenticatorId
+          * Updates, adds ore removes one or more custom Group Profile properties in the schema
+          * @summary Updates, adds ore removes one or more custom Group Profile properties in the schema
+          * @param {GroupSchema} [body]
           * @param {*} [options] Override http request option.
           * @throws {RequiredError}
           */
-        updateAuthenticator(body, authenticatorId, options) {
-            const api = exports.AuthenticatorApiRequestParamCreator(configuration);
-            const localVarRequestArgs = api.updateAuthenticator(body, authenticatorId, options);
+        updateGroupSchema(body, options) {
+            const api = exports.SchemaApiRequestParamCreator(configuration);
+            const localVarRequestArgs = api.updateGroupSchema(body, options);
+            return (http = api.http, basePath = configuration.basePath || configuration.orgUrl) => {
+                const requestArgs = { ...localVarRequestArgs.options, url: basePath + localVarRequestArgs.url };
+                return http.http(requestArgs.url, requestArgs).then(res => res.json().then((data) => data));
+            };
+        },
+        /**
+          * Partial updates on the User Profile properties of the user schema.
+          * @summary Update User Profile
+          * @param {UserSchema} body
+          * @param {string} schemaId
+          * @param {*} [options] Override http request option.
+          * @throws {RequiredError}
+          */
+        updateUserProfile(body, schemaId, options) {
+            const api = exports.SchemaApiRequestParamCreator(configuration);
+            const localVarRequestArgs = api.updateUserProfile(body, schemaId, options);
             return (http = api.http, basePath = configuration.basePath || configuration.orgUrl) => {
                 const requestArgs = { ...localVarRequestArgs.options, url: basePath + localVarRequestArgs.url };
                 return http.http(requestArgs.url, requestArgs).then(res => res.json().then((data) => data));
@@ -452,127 +522,150 @@ const AuthenticatorApiFp = function (configuration) {
         },
     };
 };
-exports.AuthenticatorApiFp = AuthenticatorApiFp;
+exports.SchemaApiFp = SchemaApiFp;
 /**
- * AuthenticatorApi - factory interface
+ * SchemaApi - factory interface
  * @export
  */
-const AuthenticatorApiFactory = function (configuration, basePath, http) {
+const SchemaApiFactory = function (configuration, basePath, http) {
     return {
         /**
-          * Activates an authenticator by `authenticatorId`.
-          * @summary Activate Authenticator
-          * @param {string} authenticatorId
+          * Fetches the Schema for an App User
+          * @summary Fetches the Schema for an App User
+          * @param {string} appInstanceId
           * @param {*} [options] Override http request option.
           * @throws {RequiredError}
           */
-        activateAuthenticator(authenticatorId, options) {
-            return exports.AuthenticatorApiFp(configuration).activateAuthenticator(authenticatorId, options)(http, basePath);
+        getApplicationUserSchema(appInstanceId, options) {
+            return exports.SchemaApiFp(configuration).getApplicationUserSchema(appInstanceId, options)(http, basePath);
         },
         /**
-          * Deactivates an authenticator by `authenticatorId`.
-          * @summary Deactivate Authenticator
-          * @param {string} authenticatorId
+          * Fetches the group schema
+          * @summary Fetches the group schema
           * @param {*} [options] Override http request option.
           * @throws {RequiredError}
           */
-        deactivateAuthenticator(authenticatorId, options) {
-            return exports.AuthenticatorApiFp(configuration).deactivateAuthenticator(authenticatorId, options)(http, basePath);
+        getGroupSchema(options) {
+            return exports.SchemaApiFp(configuration).getGroupSchema(options)(http, basePath);
         },
         /**
-          * Fetches an authenticator from your Okta organization by `authenticatorId`.
-          * @summary Get Authenticator
-          * @param {string} authenticatorId
+          * Fetches the schema for a Schema Id.
+          * @summary Fetches the schema for a Schema Id.
+          * @param {string} schemaId
           * @param {*} [options] Override http request option.
           * @throws {RequiredError}
           */
-        getAuthenticator(authenticatorId, options) {
-            return exports.AuthenticatorApiFp(configuration).getAuthenticator(authenticatorId, options)(http, basePath);
+        getUserSchema(schemaId, options) {
+            return exports.SchemaApiFp(configuration).getUserSchema(schemaId, options)(http, basePath);
         },
         /**
-          * Enumerates authenticators in your organization.
-          * @summary List Authenticators
+          * Partial updates on the User Profile properties of the Application User Schema.
+          * @summary Partial updates on the User Profile properties of the Application User Schema.
+          * @param {string} appInstanceId
+          * @param {UserSchema} [body]
           * @param {*} [options] Override http request option.
           * @throws {RequiredError}
           */
-        listAuthenticators(options) {
-            return exports.AuthenticatorApiFp(configuration).listAuthenticators(options)(http, basePath);
+        updateApplicationUserProfile(appInstanceId, body, options) {
+            return exports.SchemaApiFp(configuration).updateApplicationUserProfile(appInstanceId, body, options)(http, basePath);
         },
         /**
-          * Updates an authenticator
-          * @summary Update Authenticator
-          * @param {Authenticator} body
-          * @param {string} authenticatorId
+          * Updates, adds ore removes one or more custom Group Profile properties in the schema
+          * @summary Updates, adds ore removes one or more custom Group Profile properties in the schema
+          * @param {GroupSchema} [body]
           * @param {*} [options] Override http request option.
           * @throws {RequiredError}
           */
-        updateAuthenticator(body, authenticatorId, options) {
-            return exports.AuthenticatorApiFp(configuration).updateAuthenticator(body, authenticatorId, options)(http, basePath);
+        updateGroupSchema(body, options) {
+            return exports.SchemaApiFp(configuration).updateGroupSchema(body, options)(http, basePath);
+        },
+        /**
+          * Partial updates on the User Profile properties of the user schema.
+          * @summary Update User Profile
+          * @param {UserSchema} body
+          * @param {string} schemaId
+          * @param {*} [options] Override http request option.
+          * @throws {RequiredError}
+          */
+        updateUserProfile(body, schemaId, options) {
+            return exports.SchemaApiFp(configuration).updateUserProfile(body, schemaId, options)(http, basePath);
         },
     };
 };
-exports.AuthenticatorApiFactory = AuthenticatorApiFactory;
+exports.SchemaApiFactory = SchemaApiFactory;
 /**
- * AuthenticatorApi - object-oriented interface
+ * SchemaApi - object-oriented interface
  * @export
- * @class AuthenticatorApi
+ * @class SchemaApi
  * @extends {BaseAPI}
  */
-class AuthenticatorApi extends base_1.BaseAPI {
+class SchemaApi extends base_1.BaseAPI {
     /**
-      * Activates an authenticator by `authenticatorId`.
-      * @summary Activate Authenticator
-      * @param {string} authenticatorId
+      * Fetches the Schema for an App User
+      * @summary Fetches the Schema for an App User
+      * @param {string} appInstanceId
       * @param {*} [options] Override http request option.
       * @throws {RequiredError}
-      * @memberof AuthenticatorApi
+      * @memberof SchemaApi
       */
-    activateAuthenticator(authenticatorId, options) {
-        return exports.AuthenticatorApiFp(this.configuration).activateAuthenticator(authenticatorId, options)(this.httpClient, this.basePath);
+    getApplicationUserSchema(appInstanceId, options) {
+        return exports.SchemaApiFp(this.configuration).getApplicationUserSchema(appInstanceId, options)(this.httpClient, this.basePath);
     }
     /**
-      * Deactivates an authenticator by `authenticatorId`.
-      * @summary Deactivate Authenticator
-      * @param {string} authenticatorId
+      * Fetches the group schema
+      * @summary Fetches the group schema
       * @param {*} [options] Override http request option.
       * @throws {RequiredError}
-      * @memberof AuthenticatorApi
+      * @memberof SchemaApi
       */
-    deactivateAuthenticator(authenticatorId, options) {
-        return exports.AuthenticatorApiFp(this.configuration).deactivateAuthenticator(authenticatorId, options)(this.httpClient, this.basePath);
+    getGroupSchema(options) {
+        return exports.SchemaApiFp(this.configuration).getGroupSchema(options)(this.httpClient, this.basePath);
     }
     /**
-      * Fetches an authenticator from your Okta organization by `authenticatorId`.
-      * @summary Get Authenticator
-      * @param {string} authenticatorId
+      * Fetches the schema for a Schema Id.
+      * @summary Fetches the schema for a Schema Id.
+      * @param {string} schemaId
       * @param {*} [options] Override http request option.
       * @throws {RequiredError}
-      * @memberof AuthenticatorApi
+      * @memberof SchemaApi
       */
-    getAuthenticator(authenticatorId, options) {
-        return exports.AuthenticatorApiFp(this.configuration).getAuthenticator(authenticatorId, options)(this.httpClient, this.basePath);
+    getUserSchema(schemaId, options) {
+        return exports.SchemaApiFp(this.configuration).getUserSchema(schemaId, options)(this.httpClient, this.basePath);
     }
     /**
-      * Enumerates authenticators in your organization.
-      * @summary List Authenticators
+      * Partial updates on the User Profile properties of the Application User Schema.
+      * @summary Partial updates on the User Profile properties of the Application User Schema.
+      * @param {string} appInstanceId
+      * @param {UserSchema} [body]
       * @param {*} [options] Override http request option.
       * @throws {RequiredError}
-      * @memberof AuthenticatorApi
+      * @memberof SchemaApi
       */
-    listAuthenticators(options) {
-        return exports.AuthenticatorApiFp(this.configuration).listAuthenticators(options)(this.httpClient, this.basePath);
+    updateApplicationUserProfile(appInstanceId, body, options) {
+        return exports.SchemaApiFp(this.configuration).updateApplicationUserProfile(appInstanceId, body, options)(this.httpClient, this.basePath);
     }
     /**
-      * Updates an authenticator
-      * @summary Update Authenticator
-      * @param {Authenticator} body
-      * @param {string} authenticatorId
+      * Updates, adds ore removes one or more custom Group Profile properties in the schema
+      * @summary Updates, adds ore removes one or more custom Group Profile properties in the schema
+      * @param {GroupSchema} [body]
       * @param {*} [options] Override http request option.
       * @throws {RequiredError}
-      * @memberof AuthenticatorApi
+      * @memberof SchemaApi
       */
-    updateAuthenticator(body, authenticatorId, options) {
-        return exports.AuthenticatorApiFp(this.configuration).updateAuthenticator(body, authenticatorId, options)(this.httpClient, this.basePath);
+    updateGroupSchema(body, options) {
+        return exports.SchemaApiFp(this.configuration).updateGroupSchema(body, options)(this.httpClient, this.basePath);
+    }
+    /**
+      * Partial updates on the User Profile properties of the user schema.
+      * @summary Update User Profile
+      * @param {UserSchema} body
+      * @param {string} schemaId
+      * @param {*} [options] Override http request option.
+      * @throws {RequiredError}
+      * @memberof SchemaApi
+      */
+    updateUserProfile(body, schemaId, options) {
+        return exports.SchemaApiFp(this.configuration).updateUserProfile(body, schemaId, options)(this.httpClient, this.basePath);
     }
 }
-exports.AuthenticatorApi = AuthenticatorApi;
+exports.SchemaApi = SchemaApi;

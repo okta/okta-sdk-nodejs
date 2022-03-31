@@ -25,18 +25,17 @@ import { RequiredEnum } from './required-enum';
  * @export
  * @class ChannelBinding
  */
-export declare class ChannelBinding {
-  constructor(resourceJson: Record<string, unknown>);
-  /**
+export interface ChannelBinding {
+    /**
       *
       * @type {RequiredEnum}
       * @memberof ChannelBinding
       */
-  required?: RequiredEnum;
-  /**
+    required?: RequiredEnum;
+    /**
       *
       * @type {string}
       * @memberof ChannelBinding
       */
-  style?: string;
+    style?: string;
 }

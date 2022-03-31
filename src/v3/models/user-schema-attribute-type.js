@@ -23,3 +23,17 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.UserSchemaAttributeType = void 0;
+/**
+ *
+ * @export
+ * @enum {string}
+ */
+var UserSchemaAttributeType;
+(function (UserSchemaAttributeType) {
+    UserSchemaAttributeType["String"] = "string";
+    UserSchemaAttributeType["Boolean"] = "boolean";
+    UserSchemaAttributeType["Number"] = "number";
+    UserSchemaAttributeType["Integer"] = "integer";
+    UserSchemaAttributeType["Array"] = "array";
+})(UserSchemaAttributeType = exports.UserSchemaAttributeType || (exports.UserSchemaAttributeType = {}));

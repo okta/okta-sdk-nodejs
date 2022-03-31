@@ -23,15 +23,3 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AuthenticatorSettings = void 0;
-/**
- *
- * @export
- * @class AuthenticatorSettings
- */
-class AuthenticatorSettings {
-    constructor(resourceJson) {
-        Object.assign(this, resourceJson);
-    }
-}
-exports.AuthenticatorSettings = AuthenticatorSettings;

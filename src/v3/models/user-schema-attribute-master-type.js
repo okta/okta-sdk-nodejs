@@ -23,3 +23,15 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.UserSchemaAttributeMasterType = void 0;
+/**
+ *
+ * @export
+ * @enum {string}
+ */
+var UserSchemaAttributeMasterType;
+(function (UserSchemaAttributeMasterType) {
+    UserSchemaAttributeMasterType["PROFILEMASTER"] = "PROFILE_MASTER";
+    UserSchemaAttributeMasterType["OKTA"] = "OKTA";
+    UserSchemaAttributeMasterType["OVERRIDE"] = "OVERRIDE";
+})(UserSchemaAttributeMasterType = exports.UserSchemaAttributeMasterType || (exports.UserSchemaAttributeMasterType = {}));

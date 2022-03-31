@@ -19,72 +19,29 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+import { UserSchemaAttributeEnum } from './user-schema-attribute-enum';
 /**
  *
  * @export
- * @class UserType
+ * @class UserSchemaAttributeItems
  */
-export interface UserType {
+export interface UserSchemaAttributeItems {
     /**
       *
-      * @type {{ [key: string]: any; }}
-      * @memberof UserType
+      * @type {Array<string>}
+      * @memberof UserSchemaAttributeItems
       */
-    links?: {
-        [key: string]: any;
-    };
+    _enum?: Array<string>;
     /**
       *
-      * @type {Date}
-      * @memberof UserType
+      * @type {Array<UserSchemaAttributeEnum>}
+      * @memberof UserSchemaAttributeItems
       */
-    created?: Date;
-    /**
-      *
-      * @type {string}
-      * @memberof UserType
-      */
-    createdBy?: string;
-    /**
-      *
-      * @type {boolean}
-      * @memberof UserType
-      */
-    _default?: boolean;
+    oneOf?: Array<UserSchemaAttributeEnum>;
     /**
       *
       * @type {string}
-      * @memberof UserType
+      * @memberof UserSchemaAttributeItems
       */
-    description?: string;
-    /**
-      *
-      * @type {string}
-      * @memberof UserType
-      */
-    displayName?: string;
-    /**
-      *
-      * @type {string}
-      * @memberof UserType
-      */
-    id?: string;
-    /**
-      *
-      * @type {Date}
-      * @memberof UserType
-      */
-    lastUpdated?: Date;
-    /**
-      *
-      * @type {string}
-      * @memberof UserType
-      */
-    lastUpdatedBy?: string;
-    /**
-      *
-      * @type {string}
-      * @memberof UserType
-      */
-    name?: string;
+    type?: string;
 }

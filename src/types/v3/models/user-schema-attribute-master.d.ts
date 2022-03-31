@@ -1,6 +1,3 @@
-'use strict';
-/* tslint:disable */
-/* eslint-disable */
 /**
  * Copyright (c) 2022-present, Okta, Inc. and/or its affiliates. All rights reserved.
  * The Okta software accompanied by this notice is provided pursuant to the Apache License, Version 2.0 (the "License.")
@@ -22,4 +19,24 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-Object.defineProperty(exports, "__esModule", { value: true });
+import { UserSchemaAttributeMasterPriority } from './user-schema-attribute-master-priority';
+import { UserSchemaAttributeMasterType } from './user-schema-attribute-master-type';
+/**
+ *
+ * @export
+ * @class UserSchemaAttributeMaster
+ */
+export interface UserSchemaAttributeMaster {
+    /**
+      *
+      * @type {UserSchemaAttributeMasterType}
+      * @memberof UserSchemaAttributeMaster
+      */
+    type?: UserSchemaAttributeMasterType;
+    /**
+      *
+      * @type {Array<UserSchemaAttributeMasterPriority>}
+      * @memberof UserSchemaAttributeMaster
+      */
+    priority?: Array<UserSchemaAttributeMasterPriority>;
+}

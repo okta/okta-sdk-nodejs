@@ -28,14 +28,13 @@ import { AuthenticatorType } from './authenticator-type';
  * @export
  * @class Authenticator
  */
-export declare class Authenticator {
-  constructor(resourceJson: Record<string, unknown>);
-  /**
+export interface Authenticator {
+    /**
       *
       * @type {{ [key: string]: any; }}
       * @memberof Authenticator
       */
-  links?: {
+    links?: {
         [key: string]: any;
     };
     /**
@@ -43,53 +42,53 @@ export declare class Authenticator {
       * @type {Date}
       * @memberof Authenticator
       */
-  created?: Date;
-  /**
+    created?: Date;
+    /**
       *
       * @type {string}
       * @memberof Authenticator
       */
-  id?: string;
-  /**
+    id?: string;
+    /**
       *
       * @type {string}
       * @memberof Authenticator
       */
-  key?: string;
-  /**
+    key?: string;
+    /**
       *
       * @type {AuthenticatorStatus}
       * @memberof Authenticator
       */
-  status?: AuthenticatorStatus;
-  /**
+    status?: AuthenticatorStatus;
+    /**
       *
       * @type {Date}
       * @memberof Authenticator
       */
-  lastUpdated?: Date;
-  /**
+    lastUpdated?: Date;
+    /**
       *
       * @type {string}
       * @memberof Authenticator
       */
-  name?: string;
-  /**
+    name?: string;
+    /**
       *
       * @type {AuthenticatorProvider}
       * @memberof Authenticator
       */
-  provider?: AuthenticatorProvider;
-  /**
+    provider?: AuthenticatorProvider;
+    /**
       *
       * @type {AuthenticatorType}
       * @memberof Authenticator
       */
-  type?: AuthenticatorType;
-  /**
+    type?: AuthenticatorType;
+    /**
       *
       * @type {AuthenticatorSettings}
       * @memberof Authenticator
       */
-  settings?: AuthenticatorSettings;
+    settings?: AuthenticatorSettings;
 }
