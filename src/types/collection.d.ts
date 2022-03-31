@@ -16,7 +16,7 @@ import { ModelResolutionFactory } from './resolution-factory';
 import { Client } from './client';
 
 export declare class Collection<T> {
-  constructor(client: Client, uri: string, factory: ModelFactory | ModelResolutionFactory, request?: RequestOptions);
+  constructor(client: Client, uri: string, factory?: ModelFactory | ModelResolutionFactory, request?: RequestOptions);
 
   nextUri: string;
   client: Client;

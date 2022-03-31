@@ -19,72 +19,35 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+import { UserSchemaBaseProperties } from './user-schema-base-properties';
 /**
  *
  * @export
- * @class UserType
+ * @class UserSchemaBase
  */
-export interface UserType {
-    /**
-      *
-      * @type {{ [key: string]: any; }}
-      * @memberof UserType
-      */
-    links?: {
-        [key: string]: any;
-    };
-    /**
-      *
-      * @type {Date}
-      * @memberof UserType
-      */
-    created?: Date;
+export interface UserSchemaBase {
     /**
       *
       * @type {string}
-      * @memberof UserType
-      */
-    createdBy?: string;
-    /**
-      *
-      * @type {boolean}
-      * @memberof UserType
-      */
-    _default?: boolean;
-    /**
-      *
-      * @type {string}
-      * @memberof UserType
-      */
-    description?: string;
-    /**
-      *
-      * @type {string}
-      * @memberof UserType
-      */
-    displayName?: string;
-    /**
-      *
-      * @type {string}
-      * @memberof UserType
+      * @memberof UserSchemaBase
       */
     id?: string;
     /**
       *
-      * @type {Date}
-      * @memberof UserType
+      * @type {string}
+      * @memberof UserSchemaBase
       */
-    lastUpdated?: Date;
+    type?: string;
     /**
       *
-      * @type {string}
-      * @memberof UserType
+      * @type {UserSchemaBaseProperties}
+      * @memberof UserSchemaBase
       */
-    lastUpdatedBy?: string;
+    properties?: UserSchemaBaseProperties;
     /**
       *
-      * @type {string}
-      * @memberof UserType
+      * @type {Array<string>}
+      * @memberof UserSchemaBase
       */
-    name?: string;
+    required?: Array<string>;
 }

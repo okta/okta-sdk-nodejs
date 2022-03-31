@@ -23,3 +23,14 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.UserSchemaAttributeScope = void 0;
+/**
+ *
+ * @export
+ * @enum {string}
+ */
+var UserSchemaAttributeScope;
+(function (UserSchemaAttributeScope) {
+    UserSchemaAttributeScope["SELF"] = "SELF";
+    UserSchemaAttributeScope["NONE"] = "NONE";
+})(UserSchemaAttributeScope = exports.UserSchemaAttributeScope || (exports.UserSchemaAttributeScope = {}));

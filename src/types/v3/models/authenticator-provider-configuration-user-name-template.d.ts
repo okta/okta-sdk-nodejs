@@ -24,12 +24,11 @@
  * @export
  * @class AuthenticatorProviderConfigurationUserNameTemplate
  */
-export declare class AuthenticatorProviderConfigurationUserNameTemplate {
-  constructor(resourceJson: Record<string, unknown>);
-  /**
+export interface AuthenticatorProviderConfigurationUserNameTemplate {
+    /**
       *
       * @type {string}
       * @memberof AuthenticatorProviderConfigurationUserNameTemplate
       */
-  template?: string;
+    template?: string;
 }

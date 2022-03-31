@@ -23,15 +23,3 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Compliance = void 0;
-/**
- *
- * @export
- * @class Compliance
- */
-class Compliance {
-    constructor(resourceJson) {
-        Object.assign(this, resourceJson);
-    }
-}
-exports.Compliance = Compliance;

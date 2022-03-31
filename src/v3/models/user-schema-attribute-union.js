@@ -23,3 +23,14 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.UserSchemaAttributeUnion = void 0;
+/**
+ *
+ * @export
+ * @enum {string}
+ */
+var UserSchemaAttributeUnion;
+(function (UserSchemaAttributeUnion) {
+    UserSchemaAttributeUnion["DISABLE"] = "DISABLE";
+    UserSchemaAttributeUnion["ENABLE"] = "ENABLE";
+})(UserSchemaAttributeUnion = exports.UserSchemaAttributeUnion || (exports.UserSchemaAttributeUnion = {}));

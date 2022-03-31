@@ -25,18 +25,17 @@ import { AuthenticatorProviderConfiguration } from './authenticator-provider-con
  * @export
  * @class AuthenticatorProvider
  */
-export declare class AuthenticatorProvider {
-  constructor(resourceJson: Record<string, unknown>);
-  /**
+export interface AuthenticatorProvider {
+    /**
       *
       * @type {AuthenticatorProviderConfiguration}
       * @memberof AuthenticatorProvider
       */
-  configuration?: AuthenticatorProviderConfiguration;
-  /**
+    configuration?: AuthenticatorProviderConfiguration;
+    /**
       *
       * @type {string}
       * @memberof AuthenticatorProvider
       */
-  type?: string;
+    type?: string;
 }

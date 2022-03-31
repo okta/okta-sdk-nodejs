@@ -41,7 +41,7 @@ class Collection {
         const item = self.currentItems.length && self.currentItems.shift();
         const done = !self.currentItems.length && !self.nextUri && !item;
         const result = {
-          value: item ? self.factory.createInstance(item, self.client) : null,
+          value: item ? (self.factory ? self.factory.createInstance(item, self.client) : item) : null,
           done,
         };
         resolve(result);

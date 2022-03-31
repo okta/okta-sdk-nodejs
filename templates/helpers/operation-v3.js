@@ -13,6 +13,14 @@ const V3ApiOperations = {
     'getAuthenticator',
     'listAuthenticators',
     'updateAuthenticator',
+  ],
+  SchemaApi: [
+    'getApplicationUserSchema',
+    'getGroupSchema',
+    'getUserSchema',
+    'updateApplicationUserProfile',
+    'updateGroupSchema',
+    'updateUserProfile',
   ]
 };
 
@@ -31,7 +39,31 @@ const V3Models = [
   'FipsEnum',
   'RequiredEnum',
   'UserType',
-  'UserVerificationEnum'
+  'UserVerificationEnum',
+  'GroupSchemaAttribute',
+  'GroupSchemaBaseProperties',
+  'GroupSchemaBase',
+  'GroupSchemaCustom',
+  'GroupSchemaDefinitions',
+  'GroupSchema',
+  'UserSchemaAttributeEnum',
+  'UserSchemaAttributeItems',
+  'UserSchemaAttributeMasterPriority',
+  'UserSchemaAttributeMasterType',
+  'UserSchemaAttributeMaster',
+  'UserSchemaAttributePermission',
+  'UserSchemaAttributeScope',
+  'UserSchemaAttributeType',
+  'UserSchemaAttributeUnion',
+  'UserSchemaAttribute',
+  'UserSchemaBaseProperties',
+  'UserSchemaBase',
+  'UserSchemaDefinitions',
+  'UserSchemaPropertiesProfileItem',
+  'UserSchemaPropertiesProfile',
+  'UserSchemaProperties',
+  'UserSchemaPublic',
+  'UserSchema',
 ];
 
 function isV3Model(modelName) {

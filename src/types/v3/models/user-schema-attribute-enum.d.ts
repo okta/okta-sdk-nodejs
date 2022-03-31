@@ -22,69 +22,19 @@
 /**
  *
  * @export
- * @class UserType
+ * @class UserSchemaAttributeEnum
  */
-export interface UserType {
-    /**
-      *
-      * @type {{ [key: string]: any; }}
-      * @memberof UserType
-      */
-    links?: {
-        [key: string]: any;
-    };
-    /**
-      *
-      * @type {Date}
-      * @memberof UserType
-      */
-    created?: Date;
+export interface UserSchemaAttributeEnum {
     /**
       *
       * @type {string}
-      * @memberof UserType
+      * @memberof UserSchemaAttributeEnum
       */
-    createdBy?: string;
-    /**
-      *
-      * @type {boolean}
-      * @memberof UserType
-      */
-    _default?: boolean;
+    _const?: string;
     /**
       *
       * @type {string}
-      * @memberof UserType
+      * @memberof UserSchemaAttributeEnum
       */
-    description?: string;
-    /**
-      *
-      * @type {string}
-      * @memberof UserType
-      */
-    displayName?: string;
-    /**
-      *
-      * @type {string}
-      * @memberof UserType
-      */
-    id?: string;
-    /**
-      *
-      * @type {Date}
-      * @memberof UserType
-      */
-    lastUpdated?: Date;
-    /**
-      *
-      * @type {string}
-      * @memberof UserType
-      */
-    lastUpdatedBy?: string;
-    /**
-      *
-      * @type {string}
-      * @memberof UserType
-      */
-    name?: string;
+    title?: string;
 }

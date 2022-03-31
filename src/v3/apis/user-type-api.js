@@ -27,12 +27,10 @@ exports.UserTypeApi = exports.UserTypeApiFactory = exports.UserTypeApiFp = expor
 // Some imports not used depending on template conditions
 // @ts-ignore
 const base_1 = require("../base");
-const models_1 = require("../models");
 const oauth_1 = require("../../oauth");
 const http_1 = require("../../http");
 const config_loader_1 = require("../../config-loader");
 const default_request_executor_1 = require("../../default-request-executor");
-const model_factory_1 = require("../../model-factory");
 const collection_1 = require("../../collection");
 const os = require('os');
 const packageJson = require('../../../package.json');
@@ -452,7 +450,7 @@ const UserTypeApiFp = function (configuration) {
             const localVarRequestArgs = api.createUserType(body, options);
             return (http = api.http, basePath = configuration.basePath || configuration.orgUrl) => {
                 const requestArgs = { ...localVarRequestArgs.options, url: basePath + localVarRequestArgs.url };
-                return http.http(requestArgs.url, requestArgs).then(res => res.json().then(data => new models_1.UserType(data)));
+                return http.http(requestArgs.url, requestArgs).then(res => res.json().then((data) => data));
             };
         },
         /**
@@ -482,7 +480,7 @@ const UserTypeApiFp = function (configuration) {
             const localVarRequestArgs = api.getUserType(typeId, options);
             return (http = api.http, basePath = configuration.basePath || configuration.orgUrl) => {
                 const requestArgs = { ...localVarRequestArgs.options, url: basePath + localVarRequestArgs.url };
-                return http.http(requestArgs.url, requestArgs).then(res => res.json().then(data => new models_1.UserType(data)));
+                return http.http(requestArgs.url, requestArgs).then(res => res.json().then((data) => data));
             };
         },
         /**
@@ -496,7 +494,7 @@ const UserTypeApiFp = function (configuration) {
             const localVarRequestArgs = api.listUserTypes(options);
             return (http = api.http, basePath = configuration.basePath || configuration.orgUrl) => {
                 const requestArgs = { ...localVarRequestArgs.options, url: basePath + localVarRequestArgs.url };
-                return new collection_1.Collection({ http }, `${requestArgs.url}`, new model_factory_1.ModelFactory(models_1.UserType));
+                return new collection_1.Collection({ http }, `${requestArgs.url}`);
             };
         },
         /**
@@ -512,7 +510,7 @@ const UserTypeApiFp = function (configuration) {
             const localVarRequestArgs = api.replaceUserType(body, typeId, options);
             return (http = api.http, basePath = configuration.basePath || configuration.orgUrl) => {
                 const requestArgs = { ...localVarRequestArgs.options, url: basePath + localVarRequestArgs.url };
-                return http.http(requestArgs.url, requestArgs).then(res => res.json().then(data => new models_1.UserType(data)));
+                return http.http(requestArgs.url, requestArgs).then(res => res.json().then((data) => data));
             };
         },
         /**
@@ -528,7 +526,7 @@ const UserTypeApiFp = function (configuration) {
             const localVarRequestArgs = api.updateUserType(body, typeId, options);
             return (http = api.http, basePath = configuration.basePath || configuration.orgUrl) => {
                 const requestArgs = { ...localVarRequestArgs.options, url: basePath + localVarRequestArgs.url };
-                return http.http(requestArgs.url, requestArgs).then(res => res.json().then(data => new models_1.UserType(data)));
+                return http.http(requestArgs.url, requestArgs).then(res => res.json().then((data) => data));
             };
         },
     };

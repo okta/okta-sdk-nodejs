@@ -34,4 +34,5 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 __exportStar(require("./apis/authenticator-api"), exports);
+__exportStar(require("./apis/schema-api"), exports);
 __exportStar(require("./apis/user-type-api"), exports);

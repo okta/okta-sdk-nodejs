@@ -28,42 +28,41 @@ import { UserVerificationEnum } from './user-verification-enum';
  * @export
  * @class AuthenticatorSettings
  */
-export declare class AuthenticatorSettings {
-  constructor(resourceJson: Record<string, unknown>);
-  /**
+export interface AuthenticatorSettings {
+    /**
       *
       * @type {AllowedForEnum}
       * @memberof AuthenticatorSettings
       */
-  allowedFor?: AllowedForEnum;
-  /**
+    allowedFor?: AllowedForEnum;
+    /**
       *
       * @type {string}
       * @memberof AuthenticatorSettings
       */
-  appInstanceId?: string;
-  /**
+    appInstanceId?: string;
+    /**
       *
       * @type {ChannelBinding}
       * @memberof AuthenticatorSettings
       */
-  channelBinding?: ChannelBinding;
-  /**
+    channelBinding?: ChannelBinding;
+    /**
       *
       * @type {Compliance}
       * @memberof AuthenticatorSettings
       */
-  compliance?: Compliance;
-  /**
+    compliance?: Compliance;
+    /**
       *
       * @type {number}
       * @memberof AuthenticatorSettings
       */
-  tokenLifetimeInMinutes?: number;
-  /**
+    tokenLifetimeInMinutes?: number;
+    /**
       *
       * @type {UserVerificationEnum}
       * @memberof AuthenticatorSettings
       */
-  userVerification?: UserVerificationEnum;
+    userVerification?: UserVerificationEnum;
 }

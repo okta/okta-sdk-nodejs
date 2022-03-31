@@ -22,69 +22,19 @@
 /**
  *
  * @export
- * @class UserType
+ * @class UserSchemaAttributeMasterPriority
  */
-export interface UserType {
-    /**
-      *
-      * @type {{ [key: string]: any; }}
-      * @memberof UserType
-      */
-    links?: {
-        [key: string]: any;
-    };
-    /**
-      *
-      * @type {Date}
-      * @memberof UserType
-      */
-    created?: Date;
+export interface UserSchemaAttributeMasterPriority {
     /**
       *
       * @type {string}
-      * @memberof UserType
+      * @memberof UserSchemaAttributeMasterPriority
       */
-    createdBy?: string;
-    /**
-      *
-      * @type {boolean}
-      * @memberof UserType
-      */
-    _default?: boolean;
+    type?: string;
     /**
       *
       * @type {string}
-      * @memberof UserType
+      * @memberof UserSchemaAttributeMasterPriority
       */
-    description?: string;
-    /**
-      *
-      * @type {string}
-      * @memberof UserType
-      */
-    displayName?: string;
-    /**
-      *
-      * @type {string}
-      * @memberof UserType
-      */
-    id?: string;
-    /**
-      *
-      * @type {Date}
-      * @memberof UserType
-      */
-    lastUpdated?: Date;
-    /**
-      *
-      * @type {string}
-      * @memberof UserType
-      */
-    lastUpdatedBy?: string;
-    /**
-      *
-      * @type {string}
-      * @memberof UserType
-      */
-    name?: string;
+    value?: string;
 }

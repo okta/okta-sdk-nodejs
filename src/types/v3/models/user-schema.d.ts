@@ -19,72 +19,74 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+import { UserSchemaDefinitions } from './user-schema-definitions';
+import { UserSchemaProperties } from './user-schema-properties';
 /**
  *
  * @export
- * @class UserType
+ * @class UserSchema
  */
-export interface UserType {
-    /**
-      *
-      * @type {{ [key: string]: any; }}
-      * @memberof UserType
-      */
-    links?: {
-        [key: string]: any;
-    };
-    /**
-      *
-      * @type {Date}
-      * @memberof UserType
-      */
-    created?: Date;
+export interface UserSchema {
     /**
       *
       * @type {string}
-      * @memberof UserType
-      */
-    createdBy?: string;
-    /**
-      *
-      * @type {boolean}
-      * @memberof UserType
-      */
-    _default?: boolean;
-    /**
-      *
-      * @type {string}
-      * @memberof UserType
-      */
-    description?: string;
-    /**
-      *
-      * @type {string}
-      * @memberof UserType
-      */
-    displayName?: string;
-    /**
-      *
-      * @type {string}
-      * @memberof UserType
+      * @memberof UserSchema
       */
     id?: string;
     /**
       *
-      * @type {Date}
-      * @memberof UserType
+      * @type {string}
+      * @memberof UserSchema
       */
-    lastUpdated?: Date;
+    schema?: string;
     /**
       *
       * @type {string}
-      * @memberof UserType
-      */
-    lastUpdatedBy?: string;
-    /**
-      *
-      * @type {string}
-      * @memberof UserType
+      * @memberof UserSchema
       */
     name?: string;
+    /**
+      *
+      * @type {string}
+      * @memberof UserSchema
+      */
+    title?: string;
+    /**
+      *
+      * @type {string}
+      * @memberof UserSchema
+      */
+    lastUpdated?: string;
+    /**
+      *
+      * @type {string}
+      * @memberof UserSchema
+      */
+    created?: string;
+    /**
+      *
+      * @type {UserSchemaDefinitions}
+      * @memberof UserSchema
+      */
+    definitions?: UserSchemaDefinitions;
+    /**
+      *
+      * @type {string}
+      * @memberof UserSchema
+      */
+    type?: string;
+    /**
+      *
+      * @type {UserSchemaProperties}
+      * @memberof UserSchema
+      */
+    properties?: UserSchemaProperties;
+    /**
+      *
+      * @type {{ [key: string]: any; }}
+      * @memberof UserSchema
+      */
+    links?: {
+        [key: string]: any;
+    };
 }

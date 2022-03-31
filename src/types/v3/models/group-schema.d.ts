@@ -19,72 +19,80 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+import { GroupSchemaDefinitions } from './group-schema-definitions';
+import { UserSchemaProperties } from './user-schema-properties';
 /**
  *
  * @export
- * @class UserType
+ * @class GroupSchema
  */
-export interface UserType {
+export interface GroupSchema {
+    /**
+      *
+      * @type {string}
+      * @memberof GroupSchema
+      */
+    schema?: string;
     /**
       *
       * @type {{ [key: string]: any; }}
-      * @memberof UserType
+      * @memberof GroupSchema
       */
     links?: {
         [key: string]: any;
     };
     /**
       *
-      * @type {Date}
-      * @memberof UserType
+      * @type {string}
+      * @memberof GroupSchema
       */
-    created?: Date;
+    created?: string;
+    /**
+      *
+      * @type {GroupSchemaDefinitions}
+      * @memberof GroupSchema
+      */
+    definitions?: GroupSchemaDefinitions;
     /**
       *
       * @type {string}
-      * @memberof UserType
-      */
-    createdBy?: string;
-    /**
-      *
-      * @type {boolean}
-      * @memberof UserType
-      */
-    _default?: boolean;
-    /**
-      *
-      * @type {string}
-      * @memberof UserType
+      * @memberof GroupSchema
       */
     description?: string;
     /**
       *
       * @type {string}
-      * @memberof UserType
-      */
-    displayName?: string;
-    /**
-      *
-      * @type {string}
-      * @memberof UserType
+      * @memberof GroupSchema
       */
     id?: string;
     /**
       *
-      * @type {Date}
-      * @memberof UserType
+      * @type {string}
+      * @memberof GroupSchema
       */
-    lastUpdated?: Date;
+    lastUpdated?: string;
     /**
       *
       * @type {string}
-      * @memberof UserType
-      */
-    lastUpdatedBy?: string;
-    /**
-      *
-      * @type {string}
-      * @memberof UserType
+      * @memberof GroupSchema
       */
     name?: string;
+    /**
+      *
+      * @type {UserSchemaProperties}
+      * @memberof GroupSchema
+      */
+    properties?: UserSchemaProperties;
+    /**
+      *
+      * @type {string}
+      * @memberof GroupSchema
+      */
+    title?: string;
+    /**
+      *
+      * @type {string}
+      * @memberof GroupSchema
+      */
+    type?: string;
 }
