@@ -24,9 +24,10 @@ describe('Authenticators API tests', () => {
     const authenticatorPolicies: okta.Policy[] = [];
     for await (const policy of client.listPolicies({type: 'MFA_ENROLL'})) {
       authenticatorPolicies.push(policy);
-    } 
+    }
     const defaultPolicy = authenticatorPolicies.find(policy => policy.name === 'Default Policy');
 
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore MAR 2022: MFA_ENROLL policy is not added to SDK
     defaultPolicy.settings.authenticators = [{
       key: 'security_question',
