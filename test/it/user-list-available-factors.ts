@@ -16,6 +16,24 @@ const client = new okta.Client({
 });
 
 describe('User API Tests', () => {
+  beforeEach(async () => {
+    const authenticatorPolicies: okta.Policy[] = [];
+    for await (const policy of client.listPolicies({type: 'MFA_ENROLL'})) {
+      authenticatorPolicies.push(policy);
+    }
+    const defaultPolicy = authenticatorPolicies.find(policy => policy.name === 'Default Policy');
+    // enable Okta Verify authenticator so that okta_totp factor can be activated
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore MAR 2022: MFA_ENROLL policy is not added to SDK
+    defaultPolicy.settings.authenticators = [{
+      key: 'phone_number',
+      enroll: {self: 'OPTIONAL'}
+    }, {
+      key: 'security_question',
+      enroll: {self: 'OPTIONAL'}
+    }];
+    await client.updatePolicy(defaultPolicy.id, defaultPolicy);
+  });
   it('should allow the user\'s factor catalog (supported factors) to be listed', async () => {
     const newUser = {
       profile: utils.getMockProfile('user-list-available-factors'),
