@@ -470,7 +470,7 @@ export declare class GeneratedApiClient {
   updateUserProfile(schemaId: string, userSchema: UserSchemaOptions): Promise<UserSchema>;
   listUserTypes(): Collection<UserType>;
   createUserType(userType: UserTypeOptions): Promise<UserType>;
-  deleteUserType(typeId: string): Promise<Response>;
+  deleteUserType(typeId: string): Promise<{}>;
   getUserType(typeId: string): Promise<UserType>;
   updateUserType(typeId: string, userType: UserTypeOptions): Promise<UserType>;
   replaceUserType(typeId: string, userType: UserTypeOptions): Promise<UserType>;

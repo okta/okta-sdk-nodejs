@@ -465,7 +465,13 @@ const UserTypeApiFp = function (configuration) {
             const localVarRequestArgs = api.deleteUserType(typeId, options);
             return (http = api.http, basePath = configuration.basePath || configuration.orgUrl) => {
                 const requestArgs = { ...localVarRequestArgs.options, url: basePath + localVarRequestArgs.url };
-                return http.http(requestArgs.url, requestArgs);
+                return http.http(requestArgs.url, requestArgs).then(resp => {
+                    return new Promise((resolve, reject) => {
+                        resp.body.on('data', () => { });
+                        resp.body.on('error', (err) => reject(err));
+                        resp.body.on('end', () => resolve({}));
+                    });
+                });
             };
         },
         /**

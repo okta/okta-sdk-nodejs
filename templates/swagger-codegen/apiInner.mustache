@@ -311,7 +311,7 @@ export const {{classname}}Fp = function(configuration?: Configuration & V2Config
       * @param {*} [options] Override http request option.
       * @throws {RequiredError}
       */
-    {{nickname}}({{#parameters}}{{paramName}}{{^required}}?{{/required}}: {{{dataType}}}, {{/parameters}}options?: any): (http?: Http, basePath?: string) => {{#returnType}}{{#eq (substring returnType 0 3) 'Arr'}}Collection<{{{substring returnType 6}}}{{else}}Promise<{{{returnType}}}>{{/eq}}{{/returnType}}{{^returnType}}Promise<Response>{{/returnType}} {
+    {{nickname}}({{#parameters}}{{paramName}}{{^required}}?{{/required}}: {{{dataType}}}, {{/parameters}}options?: any): (http?: Http, basePath?: string) => {{#returnType}}{{#eq (substring returnType 0 3) 'Arr'}}Collection<{{{substring returnType 6}}}{{else}}Promise<{{{returnType}}}>{{/eq}}{{/returnType}}{{^returnType}}Promise<{}>{{/returnType}} {
       const api = {{classname}}RequestParamCreator(configuration);
       const localVarRequestArgs = api.{{nickname}}({{#parameters}}{{paramName}}, {{/parameters}}options);
       return (http: Http = api.http, basePath: string = configuration.basePath || configuration.orgUrl) => {
@@ -324,7 +324,13 @@ export const {{classname}}Fp = function(configuration?: Configuration & V2Config
         {{/eq}}
         {{/returnType}}
         {{^returnType}}
-        return http.http(requestArgs.url, requestArgs);
+        return http.http(requestArgs.url, requestArgs).then(resp => {
+          return new Promise((resolve, reject) => {
+            resp.body.on('data', () => {});
+            resp.body.on('error', (err) => reject(err));
+            resp.body.on('end', () => resolve({}));
+          });
+        });
         {{/returnType}}
       }
     },
