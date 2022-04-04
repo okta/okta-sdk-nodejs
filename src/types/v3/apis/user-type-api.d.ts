@@ -102,7 +102,7 @@ export declare const UserTypeApiFp: (configuration?: Configuration & V2Configura
       * @param {*} [options] Override http request option.
       * @throws {RequiredError}
       */
-    deleteUserType(typeId: string, options?: any): (http?: Http, basePath?: string) => Promise<{}>;
+    deleteUserType(typeId: string, options?: any): (http?: Http, basePath?: string) => Promise<Record<string, never>>;
     /**
       * Fetches a User Type by ID. The special identifier `default` may be used to fetch the default User Type.
       * @summary Get User Type
@@ -216,7 +216,7 @@ export declare class UserTypeApi extends BaseAPI {
       * @throws {RequiredError}
       * @memberof UserTypeApi
       */
-  deleteUserType(typeId: string, options?: any): Promise<{}>;
+  deleteUserType(typeId: string, options?: any): Promise<Record<string, never>>;
   /**
       * Fetches a User Type by ID. The special identifier `default` may be used to fetch the default User Type.
       * @summary Get User Type

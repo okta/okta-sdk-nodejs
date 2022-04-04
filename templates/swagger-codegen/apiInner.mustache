@@ -311,7 +311,7 @@ export const {{classname}}Fp = function(configuration?: Configuration & V2Config
       * @param {*} [options] Override http request option.
       * @throws {RequiredError}
       */
-    {{nickname}}({{#parameters}}{{paramName}}{{^required}}?{{/required}}: {{{dataType}}}, {{/parameters}}options?: any): (http?: Http, basePath?: string) => {{#returnType}}{{#eq (substring returnType 0 3) 'Arr'}}Collection<{{{substring returnType 6}}}{{else}}Promise<{{{returnType}}}>{{/eq}}{{/returnType}}{{^returnType}}Promise<{}>{{/returnType}} {
+    {{nickname}}({{#parameters}}{{paramName}}{{^required}}?{{/required}}: {{{dataType}}}, {{/parameters}}options?: any): (http?: Http, basePath?: string) => {{#returnType}}{{#eq (substring returnType 0 3) 'Arr'}}Collection<{{{substring returnType 6}}}{{else}}Promise<{{{returnType}}}>{{/eq}}{{/returnType}}{{^returnType}}Promise<Record<string, never>>{{/returnType}} {
       const api = {{classname}}RequestParamCreator(configuration);
       const localVarRequestArgs = api.{{nickname}}({{#parameters}}{{paramName}}, {{/parameters}}options);
       return (http: Http = api.http, basePath: string = configuration.basePath || configuration.orgUrl) => {
