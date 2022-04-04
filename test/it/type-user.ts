@@ -1,4 +1,3 @@
-import { UserType } from './../../src/types/v3/models/user-type.d';
 import { expect } from 'chai';
 import faker = require('@faker-js/faker');
 import {
@@ -102,10 +101,10 @@ describe('User Type API', () => {
       userType = await client.createUserType(getMockUserType());
     });
 
-    it('should status 204 after deletion', async () => {
+    it('returns empty response on successful deletion', async () => {
       // const res = await userType.delete();
-      const res = await client.deleteUserType(userType.id);
-      expect(res.status).to.be.equal(204);
+      const res: Record<string, never> = await client.deleteUserType(userType.id);
+      expect(Object.keys(res).length).to.equal(0);
     });
   });
 });
