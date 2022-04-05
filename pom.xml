@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.okta.sdk</groupId>
+    <artifactId>okta-sdk-nodejs-codegen</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.okta.sdk</groupId>
+                <artifactId>okta-sdk-codegen-maven-plugin</artifactId>
+                <version>1.0-SNAPSHOT</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <language>typescript-axios</language>
+                            <configFile>${project.basedir}/templates/swagger-codegen-config.json</configFile>
+                            <templateDirectory>${project.basedir}/templates</templateDirectory>
+                            <output>${project.basedir}/src/v3</output>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
