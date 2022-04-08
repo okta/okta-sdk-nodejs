@@ -100,6 +100,53 @@ const UserTypeApiRequestParamCreator = function (configuration) {
     return {
         http,
         /**
+          * Fetches all User Types in your org
+          * @summary List User Types
+          * @param {*} [options] Override http request option.
+          * @throws {RequiredError}
+          */
+        listUserTypes: (options = {}) => {
+            const localVarPath = `/api/v1/meta/types/user`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
+            const localVarHeaderParameter = {};
+            const localVarQueryParameter = {};
+            // authentication api_token required
+            if (configuration && configuration.apiToken) {
+                const localVarApiKeyValue = typeof configuration.apiToken === 'function'
+                    ? configuration.apiToken("Authorization")
+                    : configuration.apiToken;
+                localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
+            }
+            // authentication oauth2 required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("oauth2", ["okta.apps.read", "okta.apps.manage", "okta.authenticators.read", "okta.authenticators.manage", "okta.authorizationServers.read", "okta.authorizationServers.manage", "okta.brands.read", "okta.brands.manage", "okta.captchas.manage", "okta.captchas.read", "okta.domains.read", "okta.domains.manage", "okta.eventHooks.read", "okta.eventHooks.manage", "okta.groups.read", "okta.groups.manage", "okta.roles.read", "okta.roles.manage", "okta.idps.read", "okta.idps.manage", "okta.users.manage", "okta.inlineHooks.read", "okta.inlineHooks.manage", "okta.logs.read", "okta.profileMappings.read", "okta.profileMappings.manage", "okta.schemas.read", "okta.schemas.manage", "okta.linkedObjects.read", "okta.linkedObjects.manage", "okta.userTypes.read", "okta.userTypes.manage", "okta.orgs.read", "okta.orgs.manage", "okta.policies.read", "okta.policies.manage", "okta.sessions.read", "okta.sessions.manage", "okta.templates.read", "okta.templates.manage", "okta.trustedOrigins.read", "okta.trustedOrigins.manage", "okta.users.read.self", "okta.users.read"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                query.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+        /**
           * Creates a new User Type. A default User Type is automatically created along with your org, and you may add another 9 User Types for a maximum of 10.
           * @summary Create User Type
           * @param {UserType} body
@@ -261,20 +308,31 @@ const UserTypeApiRequestParamCreator = function (configuration) {
             };
         },
         /**
-          * Fetches all User Types in your org
-          * @summary List User Types
+          * Updates an existing User Type
+          * @summary Update User Type
+          * @param {UserType} body
+          * @param {string} typeId
           * @param {*} [options] Override http request option.
           * @throws {RequiredError}
           */
-        listUserTypes: (options = {}) => {
-            const localVarPath = `/api/v1/meta/types/user`;
+        updateUserType: (body, typeId, options = {}) => {
+            // verify required parameter 'body' is not null or undefined
+            if (body === null || body === undefined) {
+                throw new base_1.RequiredError('body', 'Required parameter body was null or undefined when calling updateUserType.');
+            }
+            // verify required parameter 'typeId' is not null or undefined
+            if (typeId === null || typeId === undefined) {
+                throw new base_1.RequiredError('typeId', 'Required parameter typeId was null or undefined when calling updateUserType.');
+            }
+            const localVarPath = `/api/v1/meta/types/user/{typeId}`
+                .replace(`{${"typeId"}}`, encodeURIComponent(String(typeId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
             }
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options };
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
             // authentication api_token required
@@ -292,6 +350,7 @@ const UserTypeApiRequestParamCreator = function (configuration) {
                     : configuration.accessToken;
                 localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
             }
+            localVarHeaderParameter['Content-Type'] = 'application/json';
             const query = new URLSearchParams(localVarUrlObj.search);
             for (const key in localVarQueryParameter) {
                 query.set(key, localVarQueryParameter[key]);
@@ -302,6 +361,8 @@ const UserTypeApiRequestParamCreator = function (configuration) {
             localVarUrlObj.search = (new URLSearchParams(query)).toString();
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
+            const needsSerialization = (typeof body !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body = needsSerialization ? JSON.stringify(body !== undefined ? body : {}) : (body || "");
             return {
                 url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
                 options: localVarRequestOptions,
@@ -368,67 +429,6 @@ const UserTypeApiRequestParamCreator = function (configuration) {
                 options: localVarRequestOptions,
             };
         },
-        /**
-          * Updates an existing User Type
-          * @summary Update User Type
-          * @param {UserType} body
-          * @param {string} typeId
-          * @param {*} [options] Override http request option.
-          * @throws {RequiredError}
-          */
-        updateUserType: (body, typeId, options = {}) => {
-            // verify required parameter 'body' is not null or undefined
-            if (body === null || body === undefined) {
-                throw new base_1.RequiredError('body', 'Required parameter body was null or undefined when calling updateUserType.');
-            }
-            // verify required parameter 'typeId' is not null or undefined
-            if (typeId === null || typeId === undefined) {
-                throw new base_1.RequiredError('typeId', 'Required parameter typeId was null or undefined when calling updateUserType.');
-            }
-            const localVarPath = `/api/v1/meta/types/user/{typeId}`
-                .replace(`{${"typeId"}}`, encodeURIComponent(String(typeId)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options };
-            const localVarHeaderParameter = {};
-            const localVarQueryParameter = {};
-            // authentication api_token required
-            if (configuration && configuration.apiToken) {
-                const localVarApiKeyValue = typeof configuration.apiToken === 'function'
-                    ? configuration.apiToken("Authorization")
-                    : configuration.apiToken;
-                localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
-            }
-            // authentication oauth2 required
-            // oauth required
-            if (configuration && configuration.accessToken) {
-                const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
-                    ? configuration.accessToken("oauth2", ["okta.apps.read", "okta.apps.manage", "okta.authenticators.read", "okta.authenticators.manage", "okta.authorizationServers.read", "okta.authorizationServers.manage", "okta.brands.read", "okta.brands.manage", "okta.captchas.manage", "okta.captchas.read", "okta.domains.read", "okta.domains.manage", "okta.eventHooks.read", "okta.eventHooks.manage", "okta.groups.read", "okta.groups.manage", "okta.roles.read", "okta.roles.manage", "okta.idps.read", "okta.idps.manage", "okta.users.manage", "okta.inlineHooks.read", "okta.inlineHooks.manage", "okta.logs.read", "okta.profileMappings.read", "okta.profileMappings.manage", "okta.schemas.read", "okta.schemas.manage", "okta.linkedObjects.read", "okta.linkedObjects.manage", "okta.userTypes.read", "okta.userTypes.manage", "okta.orgs.read", "okta.orgs.manage", "okta.policies.read", "okta.policies.manage", "okta.sessions.read", "okta.sessions.manage", "okta.templates.read", "okta.templates.manage", "okta.trustedOrigins.read", "okta.trustedOrigins.manage", "okta.users.read.self", "okta.users.read"])
-                    : configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
-            }
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-            const query = new URLSearchParams(localVarUrlObj.search);
-            for (const key in localVarQueryParameter) {
-                query.set(key, localVarQueryParameter[key]);
-            }
-            for (const key in options.query) {
-                query.set(key, options.query[key]);
-            }
-            localVarUrlObj.search = (new URLSearchParams(query)).toString();
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
-            const needsSerialization = (typeof body !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.body = needsSerialization ? JSON.stringify(body !== undefined ? body : {}) : (body || "");
-            return {
-                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
-                options: localVarRequestOptions,
-            };
-        },
     };
 };
 exports.UserTypeApiRequestParamCreator = UserTypeApiRequestParamCreator;
@@ -438,6 +438,20 @@ exports.UserTypeApiRequestParamCreator = UserTypeApiRequestParamCreator;
  */
 const UserTypeApiFp = function (configuration) {
     return {
+        /**
+          * Fetches all User Types in your org
+          * @summary List User Types
+          * @param {*} [options] Override http request option.
+          * @throws {RequiredError}
+          */
+        listUserTypes(options) {
+            const api = exports.UserTypeApiRequestParamCreator(configuration);
+            const localVarRequestArgs = api.listUserTypes(options);
+            return (http = api.http, basePath = configuration.basePath || configuration.orgUrl) => {
+                const requestArgs = { ...localVarRequestArgs.options, url: basePath + localVarRequestArgs.url };
+                return new collection_1.Collection({ http }, `${requestArgs.url}`);
+            };
+        },
         /**
           * Creates a new User Type. A default User Type is automatically created along with your org, and you may add another 9 User Types for a maximum of 10.
           * @summary Create User Type
@@ -490,17 +504,19 @@ const UserTypeApiFp = function (configuration) {
             };
         },
         /**
-          * Fetches all User Types in your org
-          * @summary List User Types
+          * Updates an existing User Type
+          * @summary Update User Type
+          * @param {UserType} body
+          * @param {string} typeId
           * @param {*} [options] Override http request option.
           * @throws {RequiredError}
           */
-        listUserTypes(options) {
+        updateUserType(body, typeId, options) {
             const api = exports.UserTypeApiRequestParamCreator(configuration);
-            const localVarRequestArgs = api.listUserTypes(options);
+            const localVarRequestArgs = api.updateUserType(body, typeId, options);
             return (http = api.http, basePath = configuration.basePath || configuration.orgUrl) => {
                 const requestArgs = { ...localVarRequestArgs.options, url: basePath + localVarRequestArgs.url };
-                return new collection_1.Collection({ http }, `${requestArgs.url}`);
+                return http.http(requestArgs.url, requestArgs).then(res => res.json().then((data) => data));
             };
         },
         /**
@@ -519,22 +535,6 @@ const UserTypeApiFp = function (configuration) {
                 return http.http(requestArgs.url, requestArgs).then(res => res.json().then((data) => data));
             };
         },
-        /**
-          * Updates an existing User Type
-          * @summary Update User Type
-          * @param {UserType} body
-          * @param {string} typeId
-          * @param {*} [options] Override http request option.
-          * @throws {RequiredError}
-          */
-        updateUserType(body, typeId, options) {
-            const api = exports.UserTypeApiRequestParamCreator(configuration);
-            const localVarRequestArgs = api.updateUserType(body, typeId, options);
-            return (http = api.http, basePath = configuration.basePath || configuration.orgUrl) => {
-                const requestArgs = { ...localVarRequestArgs.options, url: basePath + localVarRequestArgs.url };
-                return http.http(requestArgs.url, requestArgs).then(res => res.json().then((data) => data));
-            };
-        },
     };
 };
 exports.UserTypeApiFp = UserTypeApiFp;
@@ -544,6 +544,15 @@ exports.UserTypeApiFp = UserTypeApiFp;
  */
 const UserTypeApiFactory = function (configuration, basePath, http) {
     return {
+        /**
+          * Fetches all User Types in your org
+          * @summary List User Types
+          * @param {*} [options] Override http request option.
+          * @throws {RequiredError}
+          */
+        listUserTypes(options) {
+            return exports.UserTypeApiFp(configuration).listUserTypes(options)(http, basePath);
+        },
         /**
           * Creates a new User Type. A default User Type is automatically created along with your org, and you may add another 9 User Types for a maximum of 10.
           * @summary Create User Type
@@ -575,13 +584,15 @@ const UserTypeApiFactory = function (configuration, basePath, http) {
             return exports.UserTypeApiFp(configuration).getUserType(typeId, options)(http, basePath);
         },
         /**
-          * Fetches all User Types in your org
-          * @summary List User Types
+          * Updates an existing User Type
+          * @summary Update User Type
+          * @param {UserType} body
+          * @param {string} typeId
           * @param {*} [options] Override http request option.
           * @throws {RequiredError}
           */
-        listUserTypes(options) {
-            return exports.UserTypeApiFp(configuration).listUserTypes(options)(http, basePath);
+        updateUserType(body, typeId, options) {
+            return exports.UserTypeApiFp(configuration).updateUserType(body, typeId, options)(http, basePath);
         },
         /**
           * Replace an existing User Type
@@ -594,17 +605,6 @@ const UserTypeApiFactory = function (configuration, basePath, http) {
         replaceUserType(body, typeId, options) {
             return exports.UserTypeApiFp(configuration).replaceUserType(body, typeId, options)(http, basePath);
         },
-        /**
-          * Updates an existing User Type
-          * @summary Update User Type
-          * @param {UserType} body
-          * @param {string} typeId
-          * @param {*} [options] Override http request option.
-          * @throws {RequiredError}
-          */
-        updateUserType(body, typeId, options) {
-            return exports.UserTypeApiFp(configuration).updateUserType(body, typeId, options)(http, basePath);
-        },
     };
 };
 exports.UserTypeApiFactory = UserTypeApiFactory;
@@ -615,6 +615,16 @@ exports.UserTypeApiFactory = UserTypeApiFactory;
  * @extends {BaseAPI}
  */
 class UserTypeApi extends base_1.BaseAPI {
+    /**
+      * Fetches all User Types in your org
+      * @summary List User Types
+      * @param {*} [options] Override http request option.
+      * @throws {RequiredError}
+      * @memberof UserTypeApi
+      */
+    listUserTypes(options) {
+        return exports.UserTypeApiFp(this.configuration).listUserTypes(options)(this.httpClient, this.basePath);
+    }
     /**
       * Creates a new User Type. A default User Type is automatically created along with your org, and you may add another 9 User Types for a maximum of 10.
       * @summary Create User Type
@@ -649,14 +659,16 @@ class UserTypeApi extends base_1.BaseAPI {
         return exports.UserTypeApiFp(this.configuration).getUserType(typeId, options)(this.httpClient, this.basePath);
     }
     /**
-      * Fetches all User Types in your org
-      * @summary List User Types
+      * Updates an existing User Type
+      * @summary Update User Type
+      * @param {UserType} body
+      * @param {string} typeId
       * @param {*} [options] Override http request option.
       * @throws {RequiredError}
       * @memberof UserTypeApi
       */
-    listUserTypes(options) {
-        return exports.UserTypeApiFp(this.configuration).listUserTypes(options)(this.httpClient, this.basePath);
+    updateUserType(body, typeId, options) {
+        return exports.UserTypeApiFp(this.configuration).updateUserType(body, typeId, options)(this.httpClient, this.basePath);
     }
     /**
       * Replace an existing User Type
@@ -669,18 +681,6 @@ class UserTypeApi extends base_1.BaseAPI {
       */
     replaceUserType(body, typeId, options) {
         return exports.UserTypeApiFp(this.configuration).replaceUserType(body, typeId, options)(this.httpClient, this.basePath);
-    }
-    /**
-      * Updates an existing User Type
-      * @summary Update User Type
-      * @param {UserType} body
-      * @param {string} typeId
-      * @param {*} [options] Override http request option.
-      * @throws {RequiredError}
-      * @memberof UserTypeApi
-      */
-    updateUserType(body, typeId, options) {
-        return exports.UserTypeApiFp(this.configuration).updateUserType(body, typeId, options)(this.httpClient, this.basePath);
     }
 }
 exports.UserTypeApi = UserTypeApi;

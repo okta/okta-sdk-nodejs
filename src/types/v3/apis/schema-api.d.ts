@@ -40,21 +40,6 @@ export declare const SchemaApiRequestParamCreator: (configuration?: Configuratio
       */
     getApplicationUserSchema: (appInstanceId: string, options?: any) => RequestArgs;
     /**
-      * Fetches the group schema
-      * @summary Fetches the group schema
-      * @param {*} [options] Override http request option.
-      * @throws {RequiredError}
-      */
-    getGroupSchema: (options?: any) => RequestArgs;
-    /**
-      * Fetches the schema for a Schema Id.
-      * @summary Fetches the schema for a Schema Id.
-      * @param {string} schemaId
-      * @param {*} [options] Override http request option.
-      * @throws {RequiredError}
-      */
-    getUserSchema: (schemaId: string, options?: any) => RequestArgs;
-    /**
       * Partial updates on the User Profile properties of the Application User Schema.
       * @summary Partial updates on the User Profile properties of the Application User Schema.
       * @param {string} appInstanceId
@@ -64,6 +49,13 @@ export declare const SchemaApiRequestParamCreator: (configuration?: Configuratio
       */
     updateApplicationUserProfile: (appInstanceId: string, body?: UserSchema, options?: any) => RequestArgs;
     /**
+      * Fetches the group schema
+      * @summary Fetches the group schema
+      * @param {*} [options] Override http request option.
+      * @throws {RequiredError}
+      */
+    getGroupSchema: (options?: any) => RequestArgs;
+    /**
       * Updates, adds ore removes one or more custom Group Profile properties in the schema
       * @summary Updates, adds ore removes one or more custom Group Profile properties in the schema
       * @param {GroupSchema} [body]
@@ -71,6 +63,14 @@ export declare const SchemaApiRequestParamCreator: (configuration?: Configuratio
       * @throws {RequiredError}
       */
     updateGroupSchema: (body?: GroupSchema, options?: any) => RequestArgs;
+    /**
+      * Fetches the schema for a Schema Id.
+      * @summary Fetches the schema for a Schema Id.
+      * @param {string} schemaId
+      * @param {*} [options] Override http request option.
+      * @throws {RequiredError}
+      */
+    getUserSchema: (schemaId: string, options?: any) => RequestArgs;
     /**
       * Partial updates on the User Profile properties of the user schema.
       * @summary Update User Profile
@@ -95,21 +95,6 @@ export declare const SchemaApiFp: (configuration?: Configuration & V2Configurati
       */
     getApplicationUserSchema(appInstanceId: string, options?: any): (http?: Http, basePath?: string) => Promise<UserSchema>;
     /**
-      * Fetches the group schema
-      * @summary Fetches the group schema
-      * @param {*} [options] Override http request option.
-      * @throws {RequiredError}
-      */
-    getGroupSchema(options?: any): (http?: Http, basePath?: string) => Promise<GroupSchema>;
-    /**
-      * Fetches the schema for a Schema Id.
-      * @summary Fetches the schema for a Schema Id.
-      * @param {string} schemaId
-      * @param {*} [options] Override http request option.
-      * @throws {RequiredError}
-      */
-    getUserSchema(schemaId: string, options?: any): (http?: Http, basePath?: string) => Promise<UserSchema>;
-    /**
       * Partial updates on the User Profile properties of the Application User Schema.
       * @summary Partial updates on the User Profile properties of the Application User Schema.
       * @param {string} appInstanceId
@@ -119,6 +104,13 @@ export declare const SchemaApiFp: (configuration?: Configuration & V2Configurati
       */
     updateApplicationUserProfile(appInstanceId: string, body?: UserSchema, options?: any): (http?: Http, basePath?: string) => Promise<UserSchema>;
     /**
+      * Fetches the group schema
+      * @summary Fetches the group schema
+      * @param {*} [options] Override http request option.
+      * @throws {RequiredError}
+      */
+    getGroupSchema(options?: any): (http?: Http, basePath?: string) => Promise<GroupSchema>;
+    /**
       * Updates, adds ore removes one or more custom Group Profile properties in the schema
       * @summary Updates, adds ore removes one or more custom Group Profile properties in the schema
       * @param {GroupSchema} [body]
@@ -126,6 +118,14 @@ export declare const SchemaApiFp: (configuration?: Configuration & V2Configurati
       * @throws {RequiredError}
       */
     updateGroupSchema(body?: GroupSchema, options?: any): (http?: Http, basePath?: string) => Promise<GroupSchema>;
+    /**
+      * Fetches the schema for a Schema Id.
+      * @summary Fetches the schema for a Schema Id.
+      * @param {string} schemaId
+      * @param {*} [options] Override http request option.
+      * @throws {RequiredError}
+      */
+    getUserSchema(schemaId: string, options?: any): (http?: Http, basePath?: string) => Promise<UserSchema>;
     /**
       * Partial updates on the User Profile properties of the user schema.
       * @summary Update User Profile
@@ -150,21 +150,6 @@ export declare const SchemaApiFactory: (configuration?: Configuration, basePath?
       */
     getApplicationUserSchema(appInstanceId: string, options?: any): Promise<UserSchema>;
     /**
-      * Fetches the group schema
-      * @summary Fetches the group schema
-      * @param {*} [options] Override http request option.
-      * @throws {RequiredError}
-      */
-    getGroupSchema(options?: any): Promise<GroupSchema>;
-    /**
-      * Fetches the schema for a Schema Id.
-      * @summary Fetches the schema for a Schema Id.
-      * @param {string} schemaId
-      * @param {*} [options] Override http request option.
-      * @throws {RequiredError}
-      */
-    getUserSchema(schemaId: string, options?: any): Promise<UserSchema>;
-    /**
       * Partial updates on the User Profile properties of the Application User Schema.
       * @summary Partial updates on the User Profile properties of the Application User Schema.
       * @param {string} appInstanceId
@@ -174,6 +159,13 @@ export declare const SchemaApiFactory: (configuration?: Configuration, basePath?
       */
     updateApplicationUserProfile(appInstanceId: string, body?: UserSchema, options?: any): Promise<UserSchema>;
     /**
+      * Fetches the group schema
+      * @summary Fetches the group schema
+      * @param {*} [options] Override http request option.
+      * @throws {RequiredError}
+      */
+    getGroupSchema(options?: any): Promise<GroupSchema>;
+    /**
       * Updates, adds ore removes one or more custom Group Profile properties in the schema
       * @summary Updates, adds ore removes one or more custom Group Profile properties in the schema
       * @param {GroupSchema} [body]
@@ -181,6 +173,14 @@ export declare const SchemaApiFactory: (configuration?: Configuration, basePath?
       * @throws {RequiredError}
       */
     updateGroupSchema(body?: GroupSchema, options?: any): Promise<GroupSchema>;
+    /**
+      * Fetches the schema for a Schema Id.
+      * @summary Fetches the schema for a Schema Id.
+      * @param {string} schemaId
+      * @param {*} [options] Override http request option.
+      * @throws {RequiredError}
+      */
+    getUserSchema(schemaId: string, options?: any): Promise<UserSchema>;
     /**
       * Partial updates on the User Profile properties of the user schema.
       * @summary Update User Profile
@@ -208,23 +208,6 @@ export declare class SchemaApi extends BaseAPI {
       */
   getApplicationUserSchema(appInstanceId: string, options?: any): Promise<UserSchema>;
   /**
-      * Fetches the group schema
-      * @summary Fetches the group schema
-      * @param {*} [options] Override http request option.
-      * @throws {RequiredError}
-      * @memberof SchemaApi
-      */
-  getGroupSchema(options?: any): Promise<GroupSchema>;
-  /**
-      * Fetches the schema for a Schema Id.
-      * @summary Fetches the schema for a Schema Id.
-      * @param {string} schemaId
-      * @param {*} [options] Override http request option.
-      * @throws {RequiredError}
-      * @memberof SchemaApi
-      */
-  getUserSchema(schemaId: string, options?: any): Promise<UserSchema>;
-  /**
       * Partial updates on the User Profile properties of the Application User Schema.
       * @summary Partial updates on the User Profile properties of the Application User Schema.
       * @param {string} appInstanceId
@@ -235,6 +218,14 @@ export declare class SchemaApi extends BaseAPI {
       */
   updateApplicationUserProfile(appInstanceId: string, body?: UserSchema, options?: any): Promise<UserSchema>;
   /**
+      * Fetches the group schema
+      * @summary Fetches the group schema
+      * @param {*} [options] Override http request option.
+      * @throws {RequiredError}
+      * @memberof SchemaApi
+      */
+  getGroupSchema(options?: any): Promise<GroupSchema>;
+  /**
       * Updates, adds ore removes one or more custom Group Profile properties in the schema
       * @summary Updates, adds ore removes one or more custom Group Profile properties in the schema
       * @param {GroupSchema} [body]
@@ -243,6 +234,15 @@ export declare class SchemaApi extends BaseAPI {
       * @memberof SchemaApi
       */
   updateGroupSchema(body?: GroupSchema, options?: any): Promise<GroupSchema>;
+  /**
+      * Fetches the schema for a Schema Id.
+      * @summary Fetches the schema for a Schema Id.
+      * @param {string} schemaId
+      * @param {*} [options] Override http request option.
+      * @throws {RequiredError}
+      * @memberof SchemaApi
+      */
+  getUserSchema(schemaId: string, options?: any): Promise<UserSchema>;
   /**
       * Partial updates on the User Profile properties of the user schema.
       * @summary Update User Profile

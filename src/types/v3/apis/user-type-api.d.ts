@@ -33,6 +33,13 @@ import type { Configuration } from '../configuration';
 export declare const UserTypeApiRequestParamCreator: (configuration?: Configuration & V2Configuration) => {
     http: Http;
     /**
+      * Fetches all User Types in your org
+      * @summary List User Types
+      * @param {*} [options] Override http request option.
+      * @throws {RequiredError}
+      */
+    listUserTypes: (options?: any) => RequestArgs;
+    /**
       * Creates a new User Type. A default User Type is automatically created along with your org, and you may add another 9 User Types for a maximum of 10.
       * @summary Create User Type
       * @param {UserType} body
@@ -57,12 +64,14 @@ export declare const UserTypeApiRequestParamCreator: (configuration?: Configurat
       */
     getUserType: (typeId: string, options?: any) => RequestArgs;
     /**
-      * Fetches all User Types in your org
-      * @summary List User Types
+      * Updates an existing User Type
+      * @summary Update User Type
+      * @param {UserType} body
+      * @param {string} typeId
       * @param {*} [options] Override http request option.
       * @throws {RequiredError}
       */
-    listUserTypes: (options?: any) => RequestArgs;
+    updateUserType: (body: UserType, typeId: string, options?: any) => RequestArgs;
     /**
       * Replace an existing User Type
       * @summary Replace User Type
@@ -72,21 +81,19 @@ export declare const UserTypeApiRequestParamCreator: (configuration?: Configurat
       * @throws {RequiredError}
       */
     replaceUserType: (body: UserType, typeId: string, options?: any) => RequestArgs;
-    /**
-      * Updates an existing User Type
-      * @summary Update User Type
-      * @param {UserType} body
-      * @param {string} typeId
-      * @param {*} [options] Override http request option.
-      * @throws {RequiredError}
-      */
-    updateUserType: (body: UserType, typeId: string, options?: any) => RequestArgs;
 };
 /**
  * UserTypeApi - functional programming interface
  * @export
  */
 export declare const UserTypeApiFp: (configuration?: Configuration & V2Configuration) => {
+    /**
+      * Fetches all User Types in your org
+      * @summary List User Types
+      * @param {*} [options] Override http request option.
+      * @throws {RequiredError}
+      */
+    listUserTypes(options?: any): (http?: Http, basePath?: string) => Collection<UserType>;
     /**
       * Creates a new User Type. A default User Type is automatically created along with your org, and you may add another 9 User Types for a maximum of 10.
       * @summary Create User Type
@@ -112,12 +119,14 @@ export declare const UserTypeApiFp: (configuration?: Configuration & V2Configura
       */
     getUserType(typeId: string, options?: any): (http?: Http, basePath?: string) => Promise<UserType>;
     /**
-      * Fetches all User Types in your org
-      * @summary List User Types
+      * Updates an existing User Type
+      * @summary Update User Type
+      * @param {UserType} body
+      * @param {string} typeId
       * @param {*} [options] Override http request option.
       * @throws {RequiredError}
       */
-    listUserTypes(options?: any): (http?: Http, basePath?: string) => Collection<UserType>;
+    updateUserType(body: UserType, typeId: string, options?: any): (http?: Http, basePath?: string) => Promise<UserType>;
     /**
       * Replace an existing User Type
       * @summary Replace User Type
@@ -127,21 +136,19 @@ export declare const UserTypeApiFp: (configuration?: Configuration & V2Configura
       * @throws {RequiredError}
       */
     replaceUserType(body: UserType, typeId: string, options?: any): (http?: Http, basePath?: string) => Promise<UserType>;
-    /**
-      * Updates an existing User Type
-      * @summary Update User Type
-      * @param {UserType} body
-      * @param {string} typeId
-      * @param {*} [options] Override http request option.
-      * @throws {RequiredError}
-      */
-    updateUserType(body: UserType, typeId: string, options?: any): (http?: Http, basePath?: string) => Promise<UserType>;
 };
 /**
  * UserTypeApi - factory interface
  * @export
  */
 export declare const UserTypeApiFactory: (configuration?: Configuration, basePath?: string, http?: Http) => {
+    /**
+      * Fetches all User Types in your org
+      * @summary List User Types
+      * @param {*} [options] Override http request option.
+      * @throws {RequiredError}
+      */
+    listUserTypes(options?: any): Collection<UserType>;
     /**
       * Creates a new User Type. A default User Type is automatically created along with your org, and you may add another 9 User Types for a maximum of 10.
       * @summary Create User Type
@@ -167,12 +174,14 @@ export declare const UserTypeApiFactory: (configuration?: Configuration, basePat
       */
     getUserType(typeId: string, options?: any): Promise<UserType>;
     /**
-      * Fetches all User Types in your org
-      * @summary List User Types
+      * Updates an existing User Type
+      * @summary Update User Type
+      * @param {UserType} body
+      * @param {string} typeId
       * @param {*} [options] Override http request option.
       * @throws {RequiredError}
       */
-    listUserTypes(options?: any): Collection<UserType>;
+    updateUserType(body: UserType, typeId: string, options?: any): Promise<UserType>;
     /**
       * Replace an existing User Type
       * @summary Replace User Type
@@ -182,15 +191,6 @@ export declare const UserTypeApiFactory: (configuration?: Configuration, basePat
       * @throws {RequiredError}
       */
     replaceUserType(body: UserType, typeId: string, options?: any): Promise<UserType>;
-    /**
-      * Updates an existing User Type
-      * @summary Update User Type
-      * @param {UserType} body
-      * @param {string} typeId
-      * @param {*} [options] Override http request option.
-      * @throws {RequiredError}
-      */
-    updateUserType(body: UserType, typeId: string, options?: any): Promise<UserType>;
 };
 /**
  * UserTypeApi - object-oriented interface
@@ -199,6 +199,14 @@ export declare const UserTypeApiFactory: (configuration?: Configuration, basePat
  * @extends {BaseAPI}
  */
 export declare class UserTypeApi extends BaseAPI {
+  /**
+      * Fetches all User Types in your org
+      * @summary List User Types
+      * @param {*} [options] Override http request option.
+      * @throws {RequiredError}
+      * @memberof UserTypeApi
+      */
+  listUserTypes(options?: any): Collection<UserType>;
   /**
       * Creates a new User Type. A default User Type is automatically created along with your org, and you may add another 9 User Types for a maximum of 10.
       * @summary Create User Type
@@ -227,13 +235,15 @@ export declare class UserTypeApi extends BaseAPI {
       */
   getUserType(typeId: string, options?: any): Promise<UserType>;
   /**
-      * Fetches all User Types in your org
-      * @summary List User Types
+      * Updates an existing User Type
+      * @summary Update User Type
+      * @param {UserType} body
+      * @param {string} typeId
       * @param {*} [options] Override http request option.
       * @throws {RequiredError}
       * @memberof UserTypeApi
       */
-  listUserTypes(options?: any): Collection<UserType>;
+  updateUserType(body: UserType, typeId: string, options?: any): Promise<UserType>;
   /**
       * Replace an existing User Type
       * @summary Replace User Type
@@ -244,14 +254,4 @@ export declare class UserTypeApi extends BaseAPI {
       * @memberof UserTypeApi
       */
   replaceUserType(body: UserType, typeId: string, options?: any): Promise<UserType>;
-  /**
-      * Updates an existing User Type
-      * @summary Update User Type
-      * @param {UserType} body
-      * @param {string} typeId
-      * @param {*} [options] Override http request option.
-      * @throws {RequiredError}
-      * @memberof UserTypeApi
-      */
-  updateUserType(body: UserType, typeId: string, options?: any): Promise<UserType>;
 }
