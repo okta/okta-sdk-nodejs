@@ -3,7 +3,7 @@ import {
   Client,
   Collection,
   DefaultRequestExecutor,
-  } from '@okta/okta-sdk-nodejs';
+} from '@okta/okta-sdk-nodejs';
 import type { v3 } from '@okta/okta-sdk-nodejs';
 import faker = require('@faker-js/faker');
 import getMockInlineHook = require('./mocks/inlinehook');

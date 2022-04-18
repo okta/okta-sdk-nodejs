@@ -41,7 +41,7 @@ const V3ApiOperations = {
 };
 
 function isV3Model(modelName) {
-  let regex = new RegExp(`^${modelName}$`, 'i')
+  let regex = new RegExp(`^${modelName}$`, 'i');
   return v3Models.some(v3Model => regex.test(v3Model));
 }
 
