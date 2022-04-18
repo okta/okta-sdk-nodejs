@@ -435,7 +435,7 @@ export declare class GeneratedApiClient {
     type?: string,
   }): Collection<InlineHook>;
   createInlineHook(inlineHook: InlineHookOptions): Promise<InlineHook>;
-  deleteInlineHook(inlineHookId: string): Promise<Response>;
+  deleteInlineHook(inlineHookId: string): Promise<Record<string, never>>;
   getInlineHook(inlineHookId: string): Promise<InlineHook>;
   updateInlineHook(inlineHookId: string, inlineHook: InlineHookOptions): Promise<InlineHook>;
   executeInlineHook(inlineHookId: string, inlineHookPayload: InlineHookPayloadOptions): Promise<InlineHookResponse>;
@@ -470,7 +470,7 @@ export declare class GeneratedApiClient {
   updateUserProfile(schemaId: string, userSchema: UserSchemaOptions): Promise<UserSchema>;
   listUserTypes(): Collection<UserType>;
   createUserType(userType: UserTypeOptions): Promise<UserType>;
-  deleteUserType(typeId: string): Promise<Response>;
+  deleteUserType(typeId: string): Promise<Record<string, never>>;
   getUserType(typeId: string): Promise<UserType>;
   updateUserType(typeId: string, userType: UserTypeOptions): Promise<UserType>;
   replaceUserType(typeId: string, userType: UserTypeOptions): Promise<UserType>;
