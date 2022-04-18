@@ -78,7 +78,7 @@ import { JsonWebKeyOptions } from './models/JsonWebKey';
 import { IdentityProviderApplicationUser } from './models/IdentityProviderApplicationUser';
 import { UserIdentityProviderLinkRequestOptions } from './models/UserIdentityProviderLinkRequest';
 import { SocialAuthToken } from './models/SocialAuthToken';
-import { InlineHook } from './models/InlineHook';
+import { InlineHook } from './v3/models';
 import { InlineHookOptions } from './models/InlineHook';
 import { InlineHookPayloadOptions } from './models/InlineHookPayload';
 import { InlineHookResponse } from './models/InlineHookResponse';
@@ -470,7 +470,7 @@ export declare class GeneratedApiClient {
   updateUserProfile(schemaId: string, userSchema: UserSchemaOptions): Promise<UserSchema>;
   listUserTypes(): Collection<UserType>;
   createUserType(userType: UserTypeOptions): Promise<UserType>;
-  deleteUserType(typeId: string): Promise<Record<string, never>>;
+  deleteUserType(typeId: string): Promise<Response>;
   getUserType(typeId: string): Promise<UserType>;
   updateUserType(typeId: string, userType: UserTypeOptions): Promise<UserType>;
   replaceUserType(typeId: string, userType: UserTypeOptions): Promise<UserType>;

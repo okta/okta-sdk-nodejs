@@ -19,7 +19,17 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-export * from './apis/authenticator-api';
-export * from './apis/user-type-api';
-export * from './apis/schema-api';
-export * from './apis/inline-hook-api';
+import { InlineHookResponseCommands } from './inline-hook-response-commands';
+/**
+ *
+ * @export
+ * @class InlineHookResponse
+ */
+export interface InlineHookResponse {
+    /**
+      *
+      * @type {Array<InlineHookResponseCommands>}
+      * @memberof InlineHookResponse
+      */
+    commands?: Array<InlineHookResponseCommands>;
+}

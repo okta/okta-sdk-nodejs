@@ -5515,16 +5515,7 @@ class GeneratedApiClient {
    * @returns {Collection} A collection that will yield {@link InlineHook} instances.
    */
   listInlineHooks(queryParameters) {
-    let url = `${this.baseUrl}/api/v1/inlineHooks`;
-    const queryString = qs.stringify(queryParameters || {});
-
-    url += queryString ? ('?' + queryString) : '';
-
-    return new Collection(
-      this,
-      url,
-      new ModelFactory(models.InlineHook),
-    );
+    return this.inlineHookApi.listInlineHooks(queryParameters);
   }
 
   /**
@@ -5538,18 +5529,7 @@ class GeneratedApiClient {
     if (!inlineHook) {
       return Promise.reject(new Error('OKTA API createInlineHook parameter inlineHook is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/inlineHooks`;
-
-    const resources = [];
-
-    const request = this.http.postJson(
-      url,
-      {
-        body: inlineHook
-      },
-      { resources }
-    );
-    return request.then(jsonRes => new models.InlineHook(jsonRes, this));
+    return this.inlineHookApi.createInlineHook(inlineHook);
   }
 
   /**
@@ -5562,18 +5542,7 @@ class GeneratedApiClient {
     if (!inlineHookId) {
       return Promise.reject(new Error('OKTA API deleteInlineHook parameter inlineHookId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/inlineHooks/${inlineHookId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/inlineHooks/${inlineHookId}`
-    ];
-
-    const request = this.http.delete(
-      url,
-      null,
-      { resources }
-    );
-    return request;
+    return this.inlineHookApi.deleteInlineHook(inlineHookId);
   }
 
   /**
@@ -5587,18 +5556,7 @@ class GeneratedApiClient {
     if (!inlineHookId) {
       return Promise.reject(new Error('OKTA API getInlineHook parameter inlineHookId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/inlineHooks/${inlineHookId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/inlineHooks/${inlineHookId}`
-    ];
-
-    const request = this.http.getJson(
-      url,
-      null,
-      { resources }
-    );
-    return request.then(jsonRes => new models.InlineHook(jsonRes, this));
+    return this.inlineHookApi.getInlineHook(inlineHookId);
   }
 
   /**
@@ -5616,20 +5574,7 @@ class GeneratedApiClient {
     if (!inlineHook) {
       return Promise.reject(new Error('OKTA API updateInlineHook parameter inlineHook is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/inlineHooks/${inlineHookId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/inlineHooks/${inlineHookId}`
-    ];
-
-    const request = this.http.putJson(
-      url,
-      {
-        body: inlineHook
-      },
-      { resources }
-    );
-    return request.then(jsonRes => new models.InlineHook(jsonRes, this));
+    return this.inlineHookApi.updateInlineHook(inlineHook, inlineHookId);
   }
 
   /**
@@ -5647,20 +5592,7 @@ class GeneratedApiClient {
     if (!inlineHookPayload) {
       return Promise.reject(new Error('OKTA API executeInlineHook parameter inlineHookPayload is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/inlineHooks/${inlineHookId}/execute`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/inlineHooks/${inlineHookId}`
-    ];
-
-    const request = this.http.postJson(
-      url,
-      {
-        body: inlineHookPayload
-      },
-      { resources }
-    );
-    return request.then(jsonRes => new models.InlineHookResponse(jsonRes, this));
+    return this.inlineHookApi.executeInlineHook(inlineHookPayload, inlineHookId);
   }
 
   /**
@@ -5674,18 +5606,7 @@ class GeneratedApiClient {
     if (!inlineHookId) {
       return Promise.reject(new Error('OKTA API activateInlineHook parameter inlineHookId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/inlineHooks/${inlineHookId}/lifecycle/activate`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/inlineHooks/${inlineHookId}`
-    ];
-
-    const request = this.http.postJson(
-      url,
-      null,
-      { resources }
-    );
-    return request.then(jsonRes => new models.InlineHook(jsonRes, this));
+    return this.inlineHookApi.activateInlineHook(inlineHookId);
   }
 
   /**
@@ -5699,18 +5620,7 @@ class GeneratedApiClient {
     if (!inlineHookId) {
       return Promise.reject(new Error('OKTA API deactivateInlineHook parameter inlineHookId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/inlineHooks/${inlineHookId}/lifecycle/deactivate`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/inlineHooks/${inlineHookId}`
-    ];
-
-    const request = this.http.postJson(
-      url,
-      null,
-      { resources }
-    );
-    return request.then(jsonRes => new models.InlineHook(jsonRes, this));
+    return this.inlineHookApi.deactivateInlineHook(inlineHookId);
   }
 
   /**

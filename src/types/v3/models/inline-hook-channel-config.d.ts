@@ -19,7 +19,36 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-export * from './apis/authenticator-api';
-export * from './apis/user-type-api';
-export * from './apis/schema-api';
-export * from './apis/inline-hook-api';
+import { InlineHookChannelConfigAuthScheme } from './inline-hook-channel-config-auth-scheme';
+import { InlineHookChannelConfigHeaders } from './inline-hook-channel-config-headers';
+/**
+ *
+ * @export
+ * @class InlineHookChannelConfig
+ */
+export interface InlineHookChannelConfig {
+    /**
+      *
+      * @type {InlineHookChannelConfigAuthScheme}
+      * @memberof InlineHookChannelConfig
+      */
+    authScheme?: InlineHookChannelConfigAuthScheme;
+    /**
+      *
+      * @type {Array<InlineHookChannelConfigHeaders>}
+      * @memberof InlineHookChannelConfig
+      */
+    headers?: Array<InlineHookChannelConfigHeaders>;
+    /**
+      *
+      * @type {string}
+      * @memberof InlineHookChannelConfig
+      */
+    uri?: string;
+    /**
+      *
+      * @type {string}
+      * @memberof InlineHookChannelConfig
+      */
+    method?: string;
+}

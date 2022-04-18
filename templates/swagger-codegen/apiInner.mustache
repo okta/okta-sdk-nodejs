@@ -8,7 +8,6 @@ import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } fr
 {{#imports}}
 import { {{import}} } from '{{apiRelativeToRoot}}{{tsModelPackage}}';
 {{/imports}}
-import { Response } from 'node-fetch';
 import { OAuth } from '../../oauth';
 import { Http } from '../../http';
 import { ConfigLoader } from '../../config-loader';
@@ -359,7 +358,7 @@ export const {{classname}}Factory = function (configuration?: Configuration, bas
       * @param {*} [options] Override http request option.
       * @throws {RequiredError}
       */
-    {{nickname}}({{#parameters}}{{paramName}}{{^required}}?{{/required}}: {{{dataType}}}, {{/parameters}}options?: any): {{#returnType}}{{#eq (substring returnType 0 3) 'Arr'}}Collection<{{{substring returnType 6}}}{{else}}Promise<{{{returnType}}}>{{/eq}}{{/returnType}}{{^returnType}}Promise<Response>{{/returnType}} {
+    {{nickname}}({{#parameters}}{{paramName}}{{^required}}?{{/required}}: {{{dataType}}}, {{/parameters}}options?: any): {{#returnType}}{{#eq (substring returnType 0 3) 'Arr'}}Collection<{{{substring returnType 6}}}{{else}}Promise<{{{returnType}}}>{{/eq}}{{/returnType}}{{^returnType}}Promise<Record<string, never>>{{/returnType}} {
       return {{classname}}Fp(configuration).{{nickname}}({{#parameters}}{{paramName}}, {{/parameters}}options)(http, basePath);
     },
     {{/contents}}
@@ -389,7 +388,7 @@ export interface {{classname}}Interface {
     * @throws {RequiredError}
     * @memberof {{classname}}Interface
     */
-  {{nickname}}({{#parameters}}{{paramName}}{{^required}}?{{/required}}: {{{dataType}}}, {{/parameters}}options?: any): Promise<{{#returnType}}{{{returnType}}}{{/returnType}}{{^returnType}}Response{{/returnType}}>;
+  {{nickname}}({{#parameters}}{{paramName}}{{^required}}?{{/required}}: {{{dataType}}}, {{/parameters}}options?: any): Promise<{{#returnType}}{{{returnType}}}{{/returnType}}{{^returnType}}Record<string, never>{{/returnType}}>;
 
 {{/contents}}
 {{/operation}}
