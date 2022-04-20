@@ -24,7 +24,7 @@ describe('Inline Hook Crud API', () => {
     let inlineHook: v3.model.InlineHook;
     afterEach(async () => {
       await client.deactivateInlineHook(inlineHook.id);
-      await client.activateInlineHook(inlineHook.id);
+      await client.deleteInlineHook(inlineHook.id);
     });
 
     it('should return correct model', async () => {
@@ -42,7 +42,7 @@ describe('Inline Hook Crud API', () => {
     });
     afterEach(async () => {
       await client.deactivateInlineHook(inlineHook.id);
-      await client.activateInlineHook(inlineHook.id);
+      await client.deleteInlineHook(inlineHook.id);
     });
 
     it('should return a collection of InlineHooks', async () => {
@@ -64,7 +64,7 @@ describe('Inline Hook Crud API', () => {
     });
     afterEach(async () => {
       await client.deactivateInlineHook(inlineHook.id);
-      await client.activateInlineHook(inlineHook.id);
+      await client.deleteInlineHook(inlineHook.id);
     });
 
     it('should get InlineHook by id', async () => {
@@ -80,7 +80,7 @@ describe('Inline Hook Crud API', () => {
     });
     afterEach(async () => {
       await client.deactivateInlineHook(inlineHook.id);
-      await client.activateInlineHook(inlineHook.id);
+      await client.deleteInlineHook(inlineHook.id);
     });
 
     it('should update name for created inlineHook', async () => {
