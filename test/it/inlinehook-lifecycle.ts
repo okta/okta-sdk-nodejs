@@ -19,17 +19,17 @@ describe('Inline Hook Lifecycle API', () => {
     inlineHook = await client.createInlineHook(getMockInlineHook());
   });
   afterEach(async () => {
-    await inlineHook.deactivate();
-    await inlineHook.delete();
+    await client.deactivateInlineHook(inlineHook.id);
+    await client.activateInlineHook(inlineHook.id);
   });
 
   it('should activate inline hook', async () => {
-    const res = await inlineHook.activate();
+    const res = await client.activateInlineHook(inlineHook.id);
     expect(res.status).to.equal('ACTIVE');
   });
 
   it('should deactive inline hook', async () => {
-    const res = await inlineHook.deactivate();
+    const res = await client.deactivateInlineHook(inlineHook.id);
     expect(res.status).to.equal('INACTIVE');
   });
 });

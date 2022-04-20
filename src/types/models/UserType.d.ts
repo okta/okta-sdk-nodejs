@@ -16,7 +16,7 @@
 import { Resource } from '../resource';
 import { Client } from '../client';
 import { OptionalKnownProperties } from '../optional-known-properties-type';
-import { Response } from 'node-fetch';
+
 
 declare class UserType extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
@@ -33,7 +33,7 @@ declare class UserType extends Resource {
   name: string;
 
   update(): Promise<UserType>;
-  delete(): Promise<Response>;
+  delete(): Promise<Record<string, never>>;
   replaceUserType(typeId: string): Promise<UserType>;
 }
 

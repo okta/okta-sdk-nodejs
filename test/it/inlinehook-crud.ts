@@ -3,7 +3,8 @@ import {
   Client,
   Collection,
   DefaultRequestExecutor,
-  InlineHook } from '@okta/okta-sdk-nodejs';
+} from '@okta/okta-sdk-nodejs';
+import type { v3 } from '@okta/okta-sdk-nodejs';
 import faker = require('@faker-js/faker');
 import getMockInlineHook = require('./mocks/inlinehook');
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
@@ -20,16 +21,15 @@ const client = new Client({
 
 describe('Inline Hook Crud API', () => {
   describe('Create inline hook', () => {
-    let inlineHook;
+    let inlineHook: v3.model.InlineHook;
     afterEach(async () => {
-      await inlineHook.deactivate();
-      await inlineHook.delete();
+      await client.deactivateInlineHook(inlineHook.id);
+      await client.deleteInlineHook(inlineHook.id);
     });
 
     it('should return correct model', async () => {
       const mockInlineHook = getMockInlineHook();
       inlineHook = await client.createInlineHook(mockInlineHook);
-      expect(inlineHook).to.be.instanceOf(InlineHook);
       expect(inlineHook.id).to.be.exist;
       expect(inlineHook.name).to.be.equal(mockInlineHook.name);
     });
@@ -41,8 +41,8 @@ describe('Inline Hook Crud API', () => {
       inlineHook = await client.createInlineHook(getMockInlineHook());
     });
     afterEach(async () => {
-      await inlineHook.deactivate();
-      await inlineHook.delete();
+      await client.deactivateInlineHook(inlineHook.id);
+      await client.deleteInlineHook(inlineHook.id);
     });
 
     it('should return a collection of InlineHooks', async () => {
@@ -50,7 +50,6 @@ describe('Inline Hook Crud API', () => {
       expect(collection).to.be.instanceOf(Collection);
       const inlineHooks = [];
       await collection.each(ih => {
-        expect(ih).to.be.instanceOf(InlineHook);
         inlineHooks.push(ih);
       });
       const inlineHookFromCollection = inlineHooks.find(ih => ih.name === inlineHook.name);
@@ -64,13 +63,12 @@ describe('Inline Hook Crud API', () => {
       inlineHook = await client.createInlineHook(getMockInlineHook());
     });
     afterEach(async () => {
-      await inlineHook.deactivate();
-      await inlineHook.delete();
+      await client.deactivateInlineHook(inlineHook.id);
+      await client.deleteInlineHook(inlineHook.id);
     });
 
     it('should get InlineHook by id', async () => {
       const inlineHookFromGet = await client.getInlineHook(inlineHook.id);
-      expect(inlineHookFromGet).to.be.instanceOf(InlineHook);
       expect(inlineHookFromGet.name).to.equal(inlineHook.name);
     });
   });
@@ -81,15 +79,15 @@ describe('Inline Hook Crud API', () => {
       inlineHook = await client.createInlineHook(getMockInlineHook());
     });
     afterEach(async () => {
-      await inlineHook.deactivate();
-      await inlineHook.delete();
+      await client.deactivateInlineHook(inlineHook.id);
+      await client.deleteInlineHook(inlineHook.id);
     });
 
     it('should update name for created inlineHook', async () => {
       inlineHook.name = `node-sdk: Mock inline hook updated ${faker.random.word()}`.substring(0, 49);
       inlineHook.channel.config.headers[0].value = 'my-header-value-updated';
       inlineHook.channel.config.authScheme.value = 'my-shared-secret-updated';
-      const updatedInlineHook = await inlineHook.update();
+      const updatedInlineHook = await client.updateInlineHook(inlineHook.id, inlineHook);
       expect(updatedInlineHook.id).to.equal(inlineHook.id);
       expect(updatedInlineHook.name).to.equal(inlineHook.name);
       expect(updatedInlineHook.channel.config.headers[0].value).to.equal('my-header-value-updated');
@@ -103,9 +101,8 @@ describe('Inline Hook Crud API', () => {
     });
 
     it('should not get inlineHook after deletion', async () => {
-      await inlineHook.deactivate();
-      const res = await inlineHook.delete();
-      expect(res.status).to.equal(204);
+      await client.deactivateInlineHook(inlineHook.id);
+      await client.deleteInlineHook(inlineHook.id);
       try {
         await client.getInlineHook(inlineHook.id);
       } catch (e) {

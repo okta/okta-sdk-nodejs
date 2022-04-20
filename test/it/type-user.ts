@@ -20,12 +20,26 @@ const client = new Client({
   requestExecutor: new DefaultRequestExecutor()
 });
 
-describe('User Type API', () => {
+async function createUserTypeWithRetry() {
+  try {
+    return await client.createUserType(getMockUserType());
+  } catch (err) {
+    return new Promise((resolve, reject) => {
+      setTimeout(function () {
+        client.createUserType(getMockUserType).then(userType => resolve(userType), err => reject(err));
+      }, 1000);
+    });
+  }
+}
+
+describe('User Type API', async () => {
   let userType: v3.model.UserType;
+
+
 
   describe('List userTypes', () => {
     beforeEach(async () => {
-      userType = await client.createUserType(getMockUserType());
+      userType = await createUserTypeWithRetry();
     });
     afterEach(async () => {
       // await userType.delete();
@@ -56,7 +70,7 @@ describe('User Type API', () => {
 
   describe('Get userType', () => {
     beforeEach(async () => {
-      userType = await client.createUserType(getMockUserType());
+      userType = await createUserTypeWithRetry();
     });
     afterEach(async () => {
       // await userType.delete();
@@ -98,7 +112,7 @@ describe('User Type API', () => {
 
   describe('Delete userType', () => {
     beforeEach(async () => {
-      userType = await client.createUserType(getMockUserType());
+      userType = await createUserTypeWithRetry();
     });
 
     it('returns empty response on successful deletion', async () => {

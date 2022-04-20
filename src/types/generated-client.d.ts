@@ -78,7 +78,7 @@ import { JsonWebKeyOptions } from './models/JsonWebKey';
 import { IdentityProviderApplicationUser } from './models/IdentityProviderApplicationUser';
 import { UserIdentityProviderLinkRequestOptions } from './models/UserIdentityProviderLinkRequest';
 import { SocialAuthToken } from './models/SocialAuthToken';
-import { InlineHook } from './models/InlineHook';
+import { InlineHook } from './v3/models';
 import { InlineHookOptions } from './models/InlineHook';
 import { InlineHookPayloadOptions } from './models/InlineHookPayload';
 import { InlineHookResponse } from './models/InlineHookResponse';
@@ -435,7 +435,7 @@ export declare class GeneratedApiClient {
     type?: string,
   }): Collection<InlineHook>;
   createInlineHook(inlineHook: InlineHookOptions): Promise<InlineHook>;
-  deleteInlineHook(inlineHookId: string): Promise<Response>;
+  deleteInlineHook(inlineHookId: string): Promise<Record<string, never>>;
   getInlineHook(inlineHookId: string): Promise<InlineHook>;
   updateInlineHook(inlineHookId: string, inlineHook: InlineHookOptions): Promise<InlineHook>;
   executeInlineHook(inlineHookId: string, inlineHookPayload: InlineHookPayloadOptions): Promise<InlineHookResponse>;

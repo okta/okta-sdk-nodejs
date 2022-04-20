@@ -60,6 +60,8 @@ function formatImportStatements(importTypes, {
       importStatements.push('import { ReadStream } from \'fs\';');
     } else if (type === 'Collection') {
       importStatements.push(`import { Collection } from '${isModelToModelImport ? '..' : '.'}/collection';`);
+    } else if (type === 'Record<string, never>') {
+      // no - op
     } else {
       const importSource = type.replace(sourceFileSuffixToTrim, '');
       if (isV3Model(type)) {

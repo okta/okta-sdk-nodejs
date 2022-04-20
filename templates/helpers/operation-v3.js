@@ -1,3 +1,9 @@
+const fs = require('fs');
+const path = require('path');
+
+let v3Models = fs.readdirSync(path.join(__dirname, '../../src/types/v3/models/'));
+v3Models = v3Models.map(fileName => fileName.split('.').shift().replace('-', ''));
+
 const V3ApiOperations = {
   UserTypeApi: [
     'createUserType',
@@ -21,53 +27,22 @@ const V3ApiOperations = {
     'updateApplicationUserProfile',
     'updateGroupSchema',
     'updateUserProfile',
+  ],
+  InlineHookApi: [
+    'activateInlineHook',
+    'createInlineHook',
+    'deactivateInlineHook',
+    'deleteInlineHook',
+    'executeInlineHook',
+    'getInlineHook',
+    'listInlineHooks',
+    'updateInlineHook',
   ]
 };
 
-// TODO: make build script read these from v3/models
-const V3Models = [
-  'AllowedForEnum',
-  'AuthenticatorProviderConfigurationUserNameTemplate',
-  'AuthenticatorProviderConfigruation',
-  'AuthenticatorProvider',
-  'AuthenticatorSetting',
-  'AuthenticatorStatus',
-  'AuthenticatorType',
-  'Authenticator',
-  'ChannelBinding',
-  'Compliance',
-  'FipsEnum',
-  'RequiredEnum',
-  'UserType',
-  'UserVerificationEnum',
-  'GroupSchemaAttribute',
-  'GroupSchemaBaseProperties',
-  'GroupSchemaBase',
-  'GroupSchemaCustom',
-  'GroupSchemaDefinitions',
-  'GroupSchema',
-  'UserSchemaAttributeEnum',
-  'UserSchemaAttributeItems',
-  'UserSchemaAttributeMasterPriority',
-  'UserSchemaAttributeMasterType',
-  'UserSchemaAttributeMaster',
-  'UserSchemaAttributePermission',
-  'UserSchemaAttributeScope',
-  'UserSchemaAttributeType',
-  'UserSchemaAttributeUnion',
-  'UserSchemaAttribute',
-  'UserSchemaBaseProperties',
-  'UserSchemaBase',
-  'UserSchemaDefinitions',
-  'UserSchemaPropertiesProfileItem',
-  'UserSchemaPropertiesProfile',
-  'UserSchemaProperties',
-  'UserSchemaPublic',
-  'UserSchema',
-];
-
 function isV3Model(modelName) {
-  return V3Models.includes(modelName);
+  let regex = new RegExp(`^${modelName}$`, 'i');
+  return v3Models.some(v3Model => regex.test(v3Model));
 }
 
 function isV3Api(operationId) {

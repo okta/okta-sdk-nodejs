@@ -10,6 +10,9 @@
         "capIsNew": false,
         "properties": false
       }
+    ],
+    "@typescript-eslint/no-empty-interface": [
+      1
     ]
   },
   "plugins": [
