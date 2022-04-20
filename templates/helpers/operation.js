@@ -3,6 +3,8 @@ const {
   formatImportStatements,
   formatMethodSignature,
 } = require('./typescript-formatter');
+const { isV3Api } = require('./operation-v3');
+
 
 const MODELS_SHOULD_NOT_PROCESS = ['object', 'string', 'undefined', 'Promise'];
 
@@ -325,7 +327,7 @@ const typeScriptModelImportBuilder = model => {
 };
 
 const getOperationArgumentsAndReturnType = operation => {
-  const { bodyModel, method, pathParams, queryParams, formData, parameters } = operation;
+  const { operationId, bodyModel, method, pathParams, queryParams, formData, parameters } = operation;
   const args = new Map();
 
   pathParams.forEach(pathParam => {
@@ -362,7 +364,7 @@ const getOperationArgumentsAndReturnType = operation => {
   }
 
   let genericType = 'Promise';
-  let genericParameterType = 'Response';
+  let genericParameterType = isV3Api(operationId) ? 'Record<string, never>' : 'Response';
   if (operation.responseModel) {
     genericParameterType = operation.responseModel;
     if (operation.isArray) {
