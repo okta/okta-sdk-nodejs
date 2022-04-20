@@ -5685,18 +5685,7 @@ class GeneratedApiClient {
     if (!mappingId) {
       return Promise.reject(new Error('OKTA API getProfileMapping parameter mappingId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/mappings/${mappingId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/mappings/${mappingId}`
-    ];
-
-    const request = this.http.getJson(
-      url,
-      null,
-      { resources }
-    );
-    return request.then(jsonRes => new models.ProfileMapping(jsonRes, this));
+    return this.profileMappingApi.getProfileMapping(mappingId);
   }
 
   /**
@@ -5714,20 +5703,7 @@ class GeneratedApiClient {
     if (!profileMapping) {
       return Promise.reject(new Error('OKTA API updateProfileMapping parameter profileMapping is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/mappings/${mappingId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/mappings/${mappingId}`
-    ];
-
-    const request = this.http.postJson(
-      url,
-      {
-        body: profileMapping
-      },
-      { resources }
-    );
-    return request.then(jsonRes => new models.ProfileMapping(jsonRes, this));
+    return this.profileMappingApi.updateProfileMapping(profileMapping, mappingId);
   }
 
   /**
