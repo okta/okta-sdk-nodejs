@@ -2,7 +2,7 @@ import { expect } from 'chai';
 import {
   Client,
   DefaultRequestExecutor,
-  ProfileMapping } from '@okta/okta-sdk-nodejs';
+  v3 } from '@okta/okta-sdk-nodejs';
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -21,9 +21,8 @@ describe('client.listProfileMappings()', () => {
   // OKTA-397861: update org configuration to enable the test
   xit('should return a collection', async () => {
     const collection = client.listProfileMappings();
-    const profileMappings: ProfileMapping[] = [];
+    const profileMappings: v3.model.ProfileMapping[] = [];
     await collection.each(profileMapping => profileMappings.push(profileMapping));
     expect(profileMappings).to.be.an('array').that.is.not.empty;
-    expect(profileMappings.pop()).to.be.instanceOf(ProfileMapping);
   });
 });

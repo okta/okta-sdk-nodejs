@@ -37,6 +37,11 @@ const V3ApiOperations = {
     'getInlineHook',
     'listInlineHooks',
     'updateInlineHook',
+  ],
+  ProfileMappingApi: [
+    'listProfileMapping',
+    'updateProfileMapping',
+    'getProfileMapping',
   ]
 };
 
