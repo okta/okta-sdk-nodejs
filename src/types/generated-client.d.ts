@@ -83,7 +83,7 @@ import { InlineHookOptions } from './models/InlineHook';
 import { InlineHookPayloadOptions } from './models/InlineHookPayload';
 import { InlineHookResponse } from './models/InlineHookResponse';
 import { LogEvent } from './models/LogEvent';
-import { ProfileMapping } from './models/ProfileMapping';
+import { ProfileMapping } from './v3/models';
 import { ProfileMappingOptions } from './models/ProfileMapping';
 import { UserSchema } from './v3/models';
 import { UserSchemaOptions } from './models/UserSchema';

@@ -1,6 +1,3 @@
-'use strict';
-/* tslint:disable */
-/* eslint-disable */
 /**
  * Copyright (c) 2022-present, Okta, Inc. and/or its affiliates. All rights reserved.
  * The Okta software accompanied by this notice is provided pursuant to the Apache License, Version 2.0 (the "License.")
@@ -22,21 +19,46 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __exportStar = (this && this.__exportStar) || function(m, exports) {
-    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-__exportStar(require("./apis/authenticator-api"), exports);
-__exportStar(require("./apis/schema-api"), exports);
-__exportStar(require("./apis/user-type-api"), exports);
-__exportStar(require("./apis/inline-hook-api"), exports);
-__exportStar(require("./apis/profile-mapping-api"), exports);
-
-
+import { ProfileMappingProperty } from './profile-mapping-property';
+import { ProfileMappingSource } from './profile-mapping-source';
+/**
+ *
+ * @export
+ * @class ProfileMapping
+ */
+export interface ProfileMapping {
+    /**
+      *
+      * @type {{ [key: string]: any; }}
+      * @memberof ProfileMapping
+      */
+    links?: {
+        [key: string]: any;
+    };
+    /**
+      *
+      * @type {string}
+      * @memberof ProfileMapping
+      */
+    id?: string;
+    /**
+      *
+      * @type {{ [key: string]: ProfileMappingProperty; }}
+      * @memberof ProfileMapping
+      */
+    properties?: {
+        [key: string]: ProfileMappingProperty;
+    };
+    /**
+      *
+      * @type {ProfileMappingSource}
+      * @memberof ProfileMapping
+      */
+    source?: ProfileMappingSource;
+    /**
+      *
+      * @type {ProfileMappingSource}
+      * @memberof ProfileMapping
+      */
+    target?: ProfileMappingSource;
+}
