@@ -20,22 +20,21 @@ const client = new Client({
   requestExecutor: new DefaultRequestExecutor()
 });
 
+//
 async function createUserTypeWithRetry() {
   try {
     return await client.createUserType(getMockUserType());
   } catch (err) {
     return new Promise((resolve, reject) => {
       setTimeout(function () {
-        client.createUserType(getMockUserType).then(userType => resolve(userType), err => reject(err));
-      }, 1000);
+        client.createUserType(getMockUserType()).then(userType => resolve(userType), err => reject(err));
+      }, 2000);
     });
   }
 }
 
 describe('User Type API', async () => {
   let userType: v3.model.UserType;
-
-
 
   describe('List userTypes', () => {
     beforeEach(async () => {
