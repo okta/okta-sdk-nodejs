@@ -25,6 +25,6 @@
  * @enum {string}
  */
 export declare enum ProfileMappingPropertyPushStatus {
-    PUSH = "PUSH",
-    DONTPUSH = "DONT_PUSH"
+    PUSH = 'PUSH',
+    DONTPUSH = 'DONT_PUSH'
 }

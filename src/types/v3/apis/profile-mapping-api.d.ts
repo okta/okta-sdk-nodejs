@@ -135,7 +135,7 @@ export declare const ProfileMappingApiFactory: (configuration?: Configuration, b
  * @extends {BaseAPI}
  */
 export declare class ProfileMappingApi extends BaseAPI {
-    /**
+  /**
       * Fetches a single Profile Mapping referenced by its ID.
       * @summary Get Profile Mapping
       * @param {string} mappingId
@@ -143,8 +143,8 @@ export declare class ProfileMappingApi extends BaseAPI {
       * @throws {RequiredError}
       * @memberof ProfileMappingApi
       */
-    getProfileMapping(mappingId: string, options?: any): Promise<ProfileMapping>;
-    /**
+  getProfileMapping(mappingId: string, options?: any): Promise<ProfileMapping>;
+  /**
       * Enumerates Profile Mappings in your organization with pagination.
       * @summary List Profile Mappings
       * @param {string} [after]
@@ -155,8 +155,8 @@ export declare class ProfileMappingApi extends BaseAPI {
       * @throws {RequiredError}
       * @memberof ProfileMappingApi
       */
-    listProfileMappings(after?: string, limit?: number, sourceId?: string, targetId?: string, options?: any): Collection<ProfileMapping>;
-    /**
+  listProfileMappings(after?: string, limit?: number, sourceId?: string, targetId?: string, options?: any): Collection<ProfileMapping>;
+  /**
       * Updates an existing Profile Mapping by adding, updating, or removing one or many Property Mappings.
       * @summary Update Profile Mapping
       * @param {ProfileMapping} body
@@ -165,5 +165,5 @@ export declare class ProfileMappingApi extends BaseAPI {
       * @throws {RequiredError}
       * @memberof ProfileMappingApi
       */
-    updateProfileMapping(body: ProfileMapping, mappingId: string, options?: any): Promise<ProfileMapping>;
+  updateProfileMapping(body: ProfileMapping, mappingId: string, options?: any): Promise<ProfileMapping>;
 }
