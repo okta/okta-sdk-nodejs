@@ -18,9 +18,10 @@ describe('Inline Hook Lifecycle API', () => {
   beforeEach(async () => {
     inlineHook = await client.createInlineHook(getMockInlineHook());
   });
+
   afterEach(async () => {
     await client.deactivateInlineHook(inlineHook.id);
-    await client.activateInlineHook(inlineHook.id);
+    await client.deleteInlineHook(inlineHook.id);
   });
 
   it('should activate inline hook', async () => {
