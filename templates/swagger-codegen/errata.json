@@ -12,5 +12,11 @@
     "parameters": [
       { "from": "CAPTCHAApi", "to": "CaptchaApi" }
     ]
+  },
+  {
+    "type": "renameParameter",
+    "parameters": [
+      { "from": "_default", "to": "default"}
+    ]
   }
 ]
