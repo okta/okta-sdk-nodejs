@@ -86,7 +86,7 @@ export interface UserSchema {
       * @type {{ [key: string]: any; }}
       * @memberof UserSchema
       */
-    links?: {
+    _links?: {
         [key: string]: any;
     };
 }

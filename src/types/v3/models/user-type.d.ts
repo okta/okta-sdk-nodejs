@@ -30,7 +30,7 @@ export interface UserType {
       * @type {{ [key: string]: any; }}
       * @memberof UserType
       */
-    links?: {
+    _links?: {
         [key: string]: any;
     };
     /**

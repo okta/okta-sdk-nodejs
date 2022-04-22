@@ -38,7 +38,7 @@ export interface GroupSchema {
       * @type {{ [key: string]: any; }}
       * @memberof GroupSchema
       */
-    links?: {
+    _links?: {
         [key: string]: any;
     };
     /**

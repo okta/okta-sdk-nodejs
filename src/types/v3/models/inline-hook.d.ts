@@ -33,7 +33,7 @@ export interface InlineHook {
       * @type {{ [key: string]: any; }}
       * @memberof InlineHook
       */
-    links?: {
+    _links?: {
         [key: string]: any;
     };
     /**

@@ -34,7 +34,7 @@ export interface Authenticator {
       * @type {{ [key: string]: any; }}
       * @memberof Authenticator
       */
-    links?: {
+    _links?: {
         [key: string]: any;
     };
     /**

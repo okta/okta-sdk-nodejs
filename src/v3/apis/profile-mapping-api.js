@@ -100,59 +100,6 @@ const ProfileMappingApiRequestParamCreator = function (configuration) {
     return {
         http,
         /**
-          * Fetches a single Profile Mapping referenced by its ID.
-          * @summary Get Profile Mapping
-          * @param {string} mappingId
-          * @param {*} [options] Override http request option.
-          * @throws {RequiredError}
-          */
-        getProfileMapping: (mappingId, options = {}) => {
-            // verify required parameter 'mappingId' is not null or undefined
-            if (mappingId === null || mappingId === undefined) {
-                throw new base_1.RequiredError('mappingId', 'Required parameter mappingId was null or undefined when calling getProfileMapping.');
-            }
-            const localVarPath = `/api/v1/mappings/{mappingId}`
-                .replace(`{${"mappingId"}}`, encodeURIComponent(String(mappingId)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
-            const localVarHeaderParameter = {};
-            const localVarQueryParameter = {};
-            // authentication api_token required
-            if (configuration && configuration.apiToken) {
-                const localVarApiKeyValue = typeof configuration.apiToken === 'function'
-                    ? configuration.apiToken("Authorization")
-                    : configuration.apiToken;
-                localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
-            }
-            // authentication oauth2 required
-            // oauth required
-            if (configuration && configuration.accessToken) {
-                const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
-                    ? configuration.accessToken("oauth2", ["okta.apps.read", "okta.apps.manage", "okta.authenticators.read", "okta.authenticators.manage", "okta.authorizationServers.read", "okta.authorizationServers.manage", "okta.brands.read", "okta.brands.manage", "okta.captchas.manage", "okta.captchas.read", "okta.domains.read", "okta.domains.manage", "okta.eventHooks.read", "okta.eventHooks.manage", "okta.groups.read", "okta.groups.manage", "okta.roles.read", "okta.roles.manage", "okta.idps.read", "okta.idps.manage", "okta.users.manage", "okta.inlineHooks.read", "okta.inlineHooks.manage", "okta.logs.read", "okta.profileMappings.read", "okta.profileMappings.manage", "okta.schemas.read", "okta.schemas.manage", "okta.linkedObjects.read", "okta.linkedObjects.manage", "okta.userTypes.read", "okta.userTypes.manage", "okta.orgs.read", "okta.orgs.manage", "okta.policies.read", "okta.policies.manage", "okta.sessions.read", "okta.sessions.manage", "okta.templates.read", "okta.templates.manage", "okta.trustedOrigins.read", "okta.trustedOrigins.manage", "okta.users.read.self", "okta.users.read"])
-                    : configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
-            }
-            const query = new URLSearchParams(localVarUrlObj.search);
-            for (const key in localVarQueryParameter) {
-                query.set(key, localVarQueryParameter[key]);
-            }
-            for (const key in options.query) {
-                query.set(key, options.query[key]);
-            }
-            localVarUrlObj.search = (new URLSearchParams(query)).toString();
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
-            return {
-                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
-                options: localVarRequestOptions,
-            };
-        },
-        /**
           * Enumerates Profile Mappings in your organization with pagination.
           * @summary List Profile Mappings
           * @param {string} [after]
@@ -199,6 +146,59 @@ const ProfileMappingApiRequestParamCreator = function (configuration) {
             }
             if (targetId !== undefined) {
                 localVarQueryParameter['targetId'] = targetId;
+            }
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                query.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+          * Fetches a single Profile Mapping referenced by its ID.
+          * @summary Get Profile Mapping
+          * @param {string} mappingId
+          * @param {*} [options] Override http request option.
+          * @throws {RequiredError}
+          */
+        getProfileMapping: (mappingId, options = {}) => {
+            // verify required parameter 'mappingId' is not null or undefined
+            if (mappingId === null || mappingId === undefined) {
+                throw new base_1.RequiredError('mappingId', 'Required parameter mappingId was null or undefined when calling getProfileMapping.');
+            }
+            const localVarPath = `/api/v1/mappings/{mappingId}`
+                .replace(`{${"mappingId"}}`, encodeURIComponent(String(mappingId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
+            const localVarHeaderParameter = {};
+            const localVarQueryParameter = {};
+            // authentication api_token required
+            if (configuration && configuration.apiToken) {
+                const localVarApiKeyValue = typeof configuration.apiToken === 'function'
+                    ? configuration.apiToken("Authorization")
+                    : configuration.apiToken;
+                localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
+            }
+            // authentication oauth2 required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("oauth2", ["okta.apps.read", "okta.apps.manage", "okta.authenticators.read", "okta.authenticators.manage", "okta.authorizationServers.read", "okta.authorizationServers.manage", "okta.brands.read", "okta.brands.manage", "okta.captchas.manage", "okta.captchas.read", "okta.domains.read", "okta.domains.manage", "okta.eventHooks.read", "okta.eventHooks.manage", "okta.groups.read", "okta.groups.manage", "okta.roles.read", "okta.roles.manage", "okta.idps.read", "okta.idps.manage", "okta.users.manage", "okta.inlineHooks.read", "okta.inlineHooks.manage", "okta.logs.read", "okta.profileMappings.read", "okta.profileMappings.manage", "okta.schemas.read", "okta.schemas.manage", "okta.linkedObjects.read", "okta.linkedObjects.manage", "okta.userTypes.read", "okta.userTypes.manage", "okta.orgs.read", "okta.orgs.manage", "okta.policies.read", "okta.policies.manage", "okta.sessions.read", "okta.sessions.manage", "okta.templates.read", "okta.templates.manage", "okta.trustedOrigins.read", "okta.trustedOrigins.manage", "okta.users.read.self", "okta.users.read"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
             }
             const query = new URLSearchParams(localVarUrlObj.search);
             for (const key in localVarQueryParameter) {
@@ -286,21 +286,6 @@ exports.ProfileMappingApiRequestParamCreator = ProfileMappingApiRequestParamCrea
 const ProfileMappingApiFp = function (configuration) {
     return {
         /**
-          * Fetches a single Profile Mapping referenced by its ID.
-          * @summary Get Profile Mapping
-          * @param {string} mappingId
-          * @param {*} [options] Override http request option.
-          * @throws {RequiredError}
-          */
-        getProfileMapping(mappingId, options) {
-            const api = exports.ProfileMappingApiRequestParamCreator(configuration);
-            const localVarRequestArgs = api.getProfileMapping(mappingId, options);
-            return (http = api.http, basePath = configuration.basePath || configuration.orgUrl) => {
-                const requestArgs = { ...localVarRequestArgs.options, url: basePath + localVarRequestArgs.url };
-                return http.http(requestArgs.url, requestArgs).then(res => res.json().then((data) => data));
-            };
-        },
-        /**
           * Enumerates Profile Mappings in your organization with pagination.
           * @summary List Profile Mappings
           * @param {string} [after]
@@ -316,6 +301,21 @@ const ProfileMappingApiFp = function (configuration) {
             return (http = api.http, basePath = configuration.basePath || configuration.orgUrl) => {
                 const requestArgs = { ...localVarRequestArgs.options, url: basePath + localVarRequestArgs.url };
                 return new collection_1.Collection({ http }, `${requestArgs.url}`);
+            };
+        },
+        /**
+          * Fetches a single Profile Mapping referenced by its ID.
+          * @summary Get Profile Mapping
+          * @param {string} mappingId
+          * @param {*} [options] Override http request option.
+          * @throws {RequiredError}
+          */
+        getProfileMapping(mappingId, options) {
+            const api = exports.ProfileMappingApiRequestParamCreator(configuration);
+            const localVarRequestArgs = api.getProfileMapping(mappingId, options);
+            return (http = api.http, basePath = configuration.basePath || configuration.orgUrl) => {
+                const requestArgs = { ...localVarRequestArgs.options, url: basePath + localVarRequestArgs.url };
+                return http.http(requestArgs.url, requestArgs).then(res => res.json().then((data) => data));
             };
         },
         /**
@@ -344,16 +344,6 @@ exports.ProfileMappingApiFp = ProfileMappingApiFp;
 const ProfileMappingApiFactory = function (configuration, basePath, http) {
     return {
         /**
-          * Fetches a single Profile Mapping referenced by its ID.
-          * @summary Get Profile Mapping
-          * @param {string} mappingId
-          * @param {*} [options] Override http request option.
-          * @throws {RequiredError}
-          */
-        getProfileMapping(mappingId, options) {
-            return exports.ProfileMappingApiFp(configuration).getProfileMapping(mappingId, options)(http, basePath);
-        },
-        /**
           * Enumerates Profile Mappings in your organization with pagination.
           * @summary List Profile Mappings
           * @param {string} [after]
@@ -365,6 +355,16 @@ const ProfileMappingApiFactory = function (configuration, basePath, http) {
           */
         listProfileMappings(after, limit, sourceId, targetId, options) {
             return exports.ProfileMappingApiFp(configuration).listProfileMappings(after, limit, sourceId, targetId, options)(http, basePath);
+        },
+        /**
+          * Fetches a single Profile Mapping referenced by its ID.
+          * @summary Get Profile Mapping
+          * @param {string} mappingId
+          * @param {*} [options] Override http request option.
+          * @throws {RequiredError}
+          */
+        getProfileMapping(mappingId, options) {
+            return exports.ProfileMappingApiFp(configuration).getProfileMapping(mappingId, options)(http, basePath);
         },
         /**
           * Updates an existing Profile Mapping by adding, updating, or removing one or many Property Mappings.
@@ -388,17 +388,6 @@ exports.ProfileMappingApiFactory = ProfileMappingApiFactory;
  */
 class ProfileMappingApi extends base_1.BaseAPI {
     /**
-      * Fetches a single Profile Mapping referenced by its ID.
-      * @summary Get Profile Mapping
-      * @param {string} mappingId
-      * @param {*} [options] Override http request option.
-      * @throws {RequiredError}
-      * @memberof ProfileMappingApi
-      */
-    getProfileMapping(mappingId, options) {
-        return exports.ProfileMappingApiFp(this.configuration).getProfileMapping(mappingId, options)(this.httpClient, this.basePath);
-    }
-    /**
       * Enumerates Profile Mappings in your organization with pagination.
       * @summary List Profile Mappings
       * @param {string} [after]
@@ -411,6 +400,17 @@ class ProfileMappingApi extends base_1.BaseAPI {
       */
     listProfileMappings(after, limit, sourceId, targetId, options) {
         return exports.ProfileMappingApiFp(this.configuration).listProfileMappings(after, limit, sourceId, targetId, options)(this.httpClient, this.basePath);
+    }
+    /**
+      * Fetches a single Profile Mapping referenced by its ID.
+      * @summary Get Profile Mapping
+      * @param {string} mappingId
+      * @param {*} [options] Override http request option.
+      * @throws {RequiredError}
+      * @memberof ProfileMappingApi
+      */
+    getProfileMapping(mappingId, options) {
+        return exports.ProfileMappingApiFp(this.configuration).getProfileMapping(mappingId, options)(this.httpClient, this.basePath);
     }
     /**
       * Updates an existing Profile Mapping by adding, updating, or removing one or many Property Mappings.
