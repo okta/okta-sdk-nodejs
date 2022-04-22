@@ -989,7 +989,7 @@ Run `yarn build` from repository root.
 
 ### Building with swagger-codegen
  - Obtain OASv3 combined spec
- - Java 8 and Maven
+ - install Java 8 and Maven
  - run `mvn generate-sources`
  - remove APIs and models which are not intended to be pushed to upstream from `src/v3` and `src/types/v3`
  - run `./scripts/emitV3Types.sh` to replace TypeScript modules with typings + javascript modules

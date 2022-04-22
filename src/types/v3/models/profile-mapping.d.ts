@@ -32,7 +32,7 @@ export interface ProfileMapping {
       * @type {{ [key: string]: any; }}
       * @memberof ProfileMapping
       */
-    links?: {
+    _links?: {
         [key: string]: any;
     };
     /**

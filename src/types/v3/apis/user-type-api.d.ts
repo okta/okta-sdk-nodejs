@@ -21,7 +21,6 @@
  */
 import { RequestArgs, BaseAPI } from '../base';
 import { UserType } from '../models';
-import { Response } from 'node-fetch';
 import { Http } from '../../http';
 import { Collection } from '../../collection';
 import type { V2Configuration } from '../../configuration';
@@ -164,7 +163,7 @@ export declare const UserTypeApiFactory: (configuration?: Configuration, basePat
       * @param {*} [options] Override http request option.
       * @throws {RequiredError}
       */
-    deleteUserType(typeId: string, options?: any): Promise<Response>;
+    deleteUserType(typeId: string, options?: any): Promise<Record<string, never>>;
     /**
       * Fetches a User Type by ID. The special identifier `default` may be used to fetch the default User Type.
       * @summary Get User Type
