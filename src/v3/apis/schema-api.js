@@ -152,106 +152,6 @@ const SchemaApiRequestParamCreator = function (configuration) {
             };
         },
         /**
-          * Fetches the group schema
-          * @summary Fetches the group schema
-          * @param {*} [options] Override http request option.
-          * @throws {RequiredError}
-          */
-        getGroupSchema: (options = {}) => {
-            const localVarPath = `/api/v1/meta/schemas/group/default`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
-            const localVarHeaderParameter = {};
-            const localVarQueryParameter = {};
-            // authentication api_token required
-            if (configuration && configuration.apiToken) {
-                const localVarApiKeyValue = typeof configuration.apiToken === 'function'
-                    ? configuration.apiToken("Authorization")
-                    : configuration.apiToken;
-                localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
-            }
-            // authentication oauth2 required
-            // oauth required
-            if (configuration && configuration.accessToken) {
-                const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
-                    ? configuration.accessToken("oauth2", ["okta.apps.read", "okta.apps.manage", "okta.authenticators.read", "okta.authenticators.manage", "okta.authorizationServers.read", "okta.authorizationServers.manage", "okta.brands.read", "okta.brands.manage", "okta.captchas.manage", "okta.captchas.read", "okta.domains.read", "okta.domains.manage", "okta.eventHooks.read", "okta.eventHooks.manage", "okta.groups.read", "okta.groups.manage", "okta.roles.read", "okta.roles.manage", "okta.idps.read", "okta.idps.manage", "okta.users.manage", "okta.inlineHooks.read", "okta.inlineHooks.manage", "okta.logs.read", "okta.profileMappings.read", "okta.profileMappings.manage", "okta.schemas.read", "okta.schemas.manage", "okta.linkedObjects.read", "okta.linkedObjects.manage", "okta.userTypes.read", "okta.userTypes.manage", "okta.orgs.read", "okta.orgs.manage", "okta.policies.read", "okta.policies.manage", "okta.sessions.read", "okta.sessions.manage", "okta.templates.read", "okta.templates.manage", "okta.trustedOrigins.read", "okta.trustedOrigins.manage", "okta.users.read.self", "okta.users.read"])
-                    : configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
-            }
-            const query = new URLSearchParams(localVarUrlObj.search);
-            for (const key in localVarQueryParameter) {
-                query.set(key, localVarQueryParameter[key]);
-            }
-            for (const key in options.query) {
-                query.set(key, options.query[key]);
-            }
-            localVarUrlObj.search = (new URLSearchParams(query)).toString();
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
-            return {
-                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-          * Fetches the schema for a Schema Id.
-          * @summary Fetches the schema for a Schema Id.
-          * @param {string} schemaId
-          * @param {*} [options] Override http request option.
-          * @throws {RequiredError}
-          */
-        getUserSchema: (schemaId, options = {}) => {
-            // verify required parameter 'schemaId' is not null or undefined
-            if (schemaId === null || schemaId === undefined) {
-                throw new base_1.RequiredError('schemaId', 'Required parameter schemaId was null or undefined when calling getUserSchema.');
-            }
-            const localVarPath = `/api/v1/meta/schemas/user/{schemaId}`
-                .replace(`{${"schemaId"}}`, encodeURIComponent(String(schemaId)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
-            const localVarHeaderParameter = {};
-            const localVarQueryParameter = {};
-            // authentication api_token required
-            if (configuration && configuration.apiToken) {
-                const localVarApiKeyValue = typeof configuration.apiToken === 'function'
-                    ? configuration.apiToken("Authorization")
-                    : configuration.apiToken;
-                localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
-            }
-            // authentication oauth2 required
-            // oauth required
-            if (configuration && configuration.accessToken) {
-                const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
-                    ? configuration.accessToken("oauth2", ["okta.apps.read", "okta.apps.manage", "okta.authenticators.read", "okta.authenticators.manage", "okta.authorizationServers.read", "okta.authorizationServers.manage", "okta.brands.read", "okta.brands.manage", "okta.captchas.manage", "okta.captchas.read", "okta.domains.read", "okta.domains.manage", "okta.eventHooks.read", "okta.eventHooks.manage", "okta.groups.read", "okta.groups.manage", "okta.roles.read", "okta.roles.manage", "okta.idps.read", "okta.idps.manage", "okta.users.manage", "okta.inlineHooks.read", "okta.inlineHooks.manage", "okta.logs.read", "okta.profileMappings.read", "okta.profileMappings.manage", "okta.schemas.read", "okta.schemas.manage", "okta.linkedObjects.read", "okta.linkedObjects.manage", "okta.userTypes.read", "okta.userTypes.manage", "okta.orgs.read", "okta.orgs.manage", "okta.policies.read", "okta.policies.manage", "okta.sessions.read", "okta.sessions.manage", "okta.templates.read", "okta.templates.manage", "okta.trustedOrigins.read", "okta.trustedOrigins.manage", "okta.users.read.self", "okta.users.read"])
-                    : configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
-            }
-            const query = new URLSearchParams(localVarUrlObj.search);
-            for (const key in localVarQueryParameter) {
-                query.set(key, localVarQueryParameter[key]);
-            }
-            for (const key in options.query) {
-                query.set(key, options.query[key]);
-            }
-            localVarUrlObj.search = (new URLSearchParams(query)).toString();
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
-            return {
-                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
-                options: localVarRequestOptions,
-            };
-        },
-        /**
           * Partial updates on the User Profile properties of the Application User Schema.
           * @summary Partial updates on the User Profile properties of the Application User Schema.
           * @param {string} appInstanceId
@@ -309,6 +209,53 @@ const SchemaApiRequestParamCreator = function (configuration) {
             };
         },
         /**
+          * Fetches the group schema
+          * @summary Fetches the group schema
+          * @param {*} [options] Override http request option.
+          * @throws {RequiredError}
+          */
+        getGroupSchema: (options = {}) => {
+            const localVarPath = `/api/v1/meta/schemas/group/default`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
+            const localVarHeaderParameter = {};
+            const localVarQueryParameter = {};
+            // authentication api_token required
+            if (configuration && configuration.apiToken) {
+                const localVarApiKeyValue = typeof configuration.apiToken === 'function'
+                    ? configuration.apiToken("Authorization")
+                    : configuration.apiToken;
+                localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
+            }
+            // authentication oauth2 required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("oauth2", ["okta.apps.read", "okta.apps.manage", "okta.authenticators.read", "okta.authenticators.manage", "okta.authorizationServers.read", "okta.authorizationServers.manage", "okta.brands.read", "okta.brands.manage", "okta.captchas.manage", "okta.captchas.read", "okta.domains.read", "okta.domains.manage", "okta.eventHooks.read", "okta.eventHooks.manage", "okta.groups.read", "okta.groups.manage", "okta.roles.read", "okta.roles.manage", "okta.idps.read", "okta.idps.manage", "okta.users.manage", "okta.inlineHooks.read", "okta.inlineHooks.manage", "okta.logs.read", "okta.profileMappings.read", "okta.profileMappings.manage", "okta.schemas.read", "okta.schemas.manage", "okta.linkedObjects.read", "okta.linkedObjects.manage", "okta.userTypes.read", "okta.userTypes.manage", "okta.orgs.read", "okta.orgs.manage", "okta.policies.read", "okta.policies.manage", "okta.sessions.read", "okta.sessions.manage", "okta.templates.read", "okta.templates.manage", "okta.trustedOrigins.read", "okta.trustedOrigins.manage", "okta.users.read.self", "okta.users.read"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                query.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+        /**
           * Updates, adds ore removes one or more custom Group Profile properties in the schema
           * @summary Updates, adds ore removes one or more custom Group Profile properties in the schema
           * @param {GroupSchema} [body]
@@ -354,6 +301,59 @@ const SchemaApiRequestParamCreator = function (configuration) {
             localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
             const needsSerialization = (typeof body !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
             localVarRequestOptions.body = needsSerialization ? JSON.stringify(body !== undefined ? body : {}) : (body || "");
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+          * Fetches the schema for a Schema Id.
+          * @summary Fetches the schema for a Schema Id.
+          * @param {string} schemaId
+          * @param {*} [options] Override http request option.
+          * @throws {RequiredError}
+          */
+        getUserSchema: (schemaId, options = {}) => {
+            // verify required parameter 'schemaId' is not null or undefined
+            if (schemaId === null || schemaId === undefined) {
+                throw new base_1.RequiredError('schemaId', 'Required parameter schemaId was null or undefined when calling getUserSchema.');
+            }
+            const localVarPath = `/api/v1/meta/schemas/user/{schemaId}`
+                .replace(`{${"schemaId"}}`, encodeURIComponent(String(schemaId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
+            const localVarHeaderParameter = {};
+            const localVarQueryParameter = {};
+            // authentication api_token required
+            if (configuration && configuration.apiToken) {
+                const localVarApiKeyValue = typeof configuration.apiToken === 'function'
+                    ? configuration.apiToken("Authorization")
+                    : configuration.apiToken;
+                localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
+            }
+            // authentication oauth2 required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("oauth2", ["okta.apps.read", "okta.apps.manage", "okta.authenticators.read", "okta.authenticators.manage", "okta.authorizationServers.read", "okta.authorizationServers.manage", "okta.brands.read", "okta.brands.manage", "okta.captchas.manage", "okta.captchas.read", "okta.domains.read", "okta.domains.manage", "okta.eventHooks.read", "okta.eventHooks.manage", "okta.groups.read", "okta.groups.manage", "okta.roles.read", "okta.roles.manage", "okta.idps.read", "okta.idps.manage", "okta.users.manage", "okta.inlineHooks.read", "okta.inlineHooks.manage", "okta.logs.read", "okta.profileMappings.read", "okta.profileMappings.manage", "okta.schemas.read", "okta.schemas.manage", "okta.linkedObjects.read", "okta.linkedObjects.manage", "okta.userTypes.read", "okta.userTypes.manage", "okta.orgs.read", "okta.orgs.manage", "okta.policies.read", "okta.policies.manage", "okta.sessions.read", "okta.sessions.manage", "okta.templates.read", "okta.templates.manage", "okta.trustedOrigins.read", "okta.trustedOrigins.manage", "okta.users.read.self", "okta.users.read"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                query.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
             return {
                 url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
                 options: localVarRequestOptions,
@@ -445,35 +445,6 @@ const SchemaApiFp = function (configuration) {
             };
         },
         /**
-          * Fetches the group schema
-          * @summary Fetches the group schema
-          * @param {*} [options] Override http request option.
-          * @throws {RequiredError}
-          */
-        getGroupSchema(options) {
-            const api = exports.SchemaApiRequestParamCreator(configuration);
-            const localVarRequestArgs = api.getGroupSchema(options);
-            return (http = api.http, basePath = configuration.basePath || configuration.orgUrl) => {
-                const requestArgs = { ...localVarRequestArgs.options, url: basePath + localVarRequestArgs.url };
-                return http.http(requestArgs.url, requestArgs).then(res => res.json().then((data) => data));
-            };
-        },
-        /**
-          * Fetches the schema for a Schema Id.
-          * @summary Fetches the schema for a Schema Id.
-          * @param {string} schemaId
-          * @param {*} [options] Override http request option.
-          * @throws {RequiredError}
-          */
-        getUserSchema(schemaId, options) {
-            const api = exports.SchemaApiRequestParamCreator(configuration);
-            const localVarRequestArgs = api.getUserSchema(schemaId, options);
-            return (http = api.http, basePath = configuration.basePath || configuration.orgUrl) => {
-                const requestArgs = { ...localVarRequestArgs.options, url: basePath + localVarRequestArgs.url };
-                return http.http(requestArgs.url, requestArgs).then(res => res.json().then((data) => data));
-            };
-        },
-        /**
           * Partial updates on the User Profile properties of the Application User Schema.
           * @summary Partial updates on the User Profile properties of the Application User Schema.
           * @param {string} appInstanceId
@@ -490,6 +461,20 @@ const SchemaApiFp = function (configuration) {
             };
         },
         /**
+          * Fetches the group schema
+          * @summary Fetches the group schema
+          * @param {*} [options] Override http request option.
+          * @throws {RequiredError}
+          */
+        getGroupSchema(options) {
+            const api = exports.SchemaApiRequestParamCreator(configuration);
+            const localVarRequestArgs = api.getGroupSchema(options);
+            return (http = api.http, basePath = configuration.basePath || configuration.orgUrl) => {
+                const requestArgs = { ...localVarRequestArgs.options, url: basePath + localVarRequestArgs.url };
+                return http.http(requestArgs.url, requestArgs).then(res => res.json().then((data) => data));
+            };
+        },
+        /**
           * Updates, adds ore removes one or more custom Group Profile properties in the schema
           * @summary Updates, adds ore removes one or more custom Group Profile properties in the schema
           * @param {GroupSchema} [body]
@@ -499,6 +484,21 @@ const SchemaApiFp = function (configuration) {
         updateGroupSchema(body, options) {
             const api = exports.SchemaApiRequestParamCreator(configuration);
             const localVarRequestArgs = api.updateGroupSchema(body, options);
+            return (http = api.http, basePath = configuration.basePath || configuration.orgUrl) => {
+                const requestArgs = { ...localVarRequestArgs.options, url: basePath + localVarRequestArgs.url };
+                return http.http(requestArgs.url, requestArgs).then(res => res.json().then((data) => data));
+            };
+        },
+        /**
+          * Fetches the schema for a Schema Id.
+          * @summary Fetches the schema for a Schema Id.
+          * @param {string} schemaId
+          * @param {*} [options] Override http request option.
+          * @throws {RequiredError}
+          */
+        getUserSchema(schemaId, options) {
+            const api = exports.SchemaApiRequestParamCreator(configuration);
+            const localVarRequestArgs = api.getUserSchema(schemaId, options);
             return (http = api.http, basePath = configuration.basePath || configuration.orgUrl) => {
                 const requestArgs = { ...localVarRequestArgs.options, url: basePath + localVarRequestArgs.url };
                 return http.http(requestArgs.url, requestArgs).then(res => res.json().then((data) => data));
@@ -540,25 +540,6 @@ const SchemaApiFactory = function (configuration, basePath, http) {
             return exports.SchemaApiFp(configuration).getApplicationUserSchema(appInstanceId, options)(http, basePath);
         },
         /**
-          * Fetches the group schema
-          * @summary Fetches the group schema
-          * @param {*} [options] Override http request option.
-          * @throws {RequiredError}
-          */
-        getGroupSchema(options) {
-            return exports.SchemaApiFp(configuration).getGroupSchema(options)(http, basePath);
-        },
-        /**
-          * Fetches the schema for a Schema Id.
-          * @summary Fetches the schema for a Schema Id.
-          * @param {string} schemaId
-          * @param {*} [options] Override http request option.
-          * @throws {RequiredError}
-          */
-        getUserSchema(schemaId, options) {
-            return exports.SchemaApiFp(configuration).getUserSchema(schemaId, options)(http, basePath);
-        },
-        /**
           * Partial updates on the User Profile properties of the Application User Schema.
           * @summary Partial updates on the User Profile properties of the Application User Schema.
           * @param {string} appInstanceId
@@ -570,6 +551,15 @@ const SchemaApiFactory = function (configuration, basePath, http) {
             return exports.SchemaApiFp(configuration).updateApplicationUserProfile(appInstanceId, body, options)(http, basePath);
         },
         /**
+          * Fetches the group schema
+          * @summary Fetches the group schema
+          * @param {*} [options] Override http request option.
+          * @throws {RequiredError}
+          */
+        getGroupSchema(options) {
+            return exports.SchemaApiFp(configuration).getGroupSchema(options)(http, basePath);
+        },
+        /**
           * Updates, adds ore removes one or more custom Group Profile properties in the schema
           * @summary Updates, adds ore removes one or more custom Group Profile properties in the schema
           * @param {GroupSchema} [body]
@@ -578,6 +568,16 @@ const SchemaApiFactory = function (configuration, basePath, http) {
           */
         updateGroupSchema(body, options) {
             return exports.SchemaApiFp(configuration).updateGroupSchema(body, options)(http, basePath);
+        },
+        /**
+          * Fetches the schema for a Schema Id.
+          * @summary Fetches the schema for a Schema Id.
+          * @param {string} schemaId
+          * @param {*} [options] Override http request option.
+          * @throws {RequiredError}
+          */
+        getUserSchema(schemaId, options) {
+            return exports.SchemaApiFp(configuration).getUserSchema(schemaId, options)(http, basePath);
         },
         /**
           * Partial updates on the User Profile properties of the user schema.
@@ -612,27 +612,6 @@ class SchemaApi extends base_1.BaseAPI {
         return exports.SchemaApiFp(this.configuration).getApplicationUserSchema(appInstanceId, options)(this.httpClient, this.basePath);
     }
     /**
-      * Fetches the group schema
-      * @summary Fetches the group schema
-      * @param {*} [options] Override http request option.
-      * @throws {RequiredError}
-      * @memberof SchemaApi
-      */
-    getGroupSchema(options) {
-        return exports.SchemaApiFp(this.configuration).getGroupSchema(options)(this.httpClient, this.basePath);
-    }
-    /**
-      * Fetches the schema for a Schema Id.
-      * @summary Fetches the schema for a Schema Id.
-      * @param {string} schemaId
-      * @param {*} [options] Override http request option.
-      * @throws {RequiredError}
-      * @memberof SchemaApi
-      */
-    getUserSchema(schemaId, options) {
-        return exports.SchemaApiFp(this.configuration).getUserSchema(schemaId, options)(this.httpClient, this.basePath);
-    }
-    /**
       * Partial updates on the User Profile properties of the Application User Schema.
       * @summary Partial updates on the User Profile properties of the Application User Schema.
       * @param {string} appInstanceId
@@ -645,6 +624,16 @@ class SchemaApi extends base_1.BaseAPI {
         return exports.SchemaApiFp(this.configuration).updateApplicationUserProfile(appInstanceId, body, options)(this.httpClient, this.basePath);
     }
     /**
+      * Fetches the group schema
+      * @summary Fetches the group schema
+      * @param {*} [options] Override http request option.
+      * @throws {RequiredError}
+      * @memberof SchemaApi
+      */
+    getGroupSchema(options) {
+        return exports.SchemaApiFp(this.configuration).getGroupSchema(options)(this.httpClient, this.basePath);
+    }
+    /**
       * Updates, adds ore removes one or more custom Group Profile properties in the schema
       * @summary Updates, adds ore removes one or more custom Group Profile properties in the schema
       * @param {GroupSchema} [body]
@@ -654,6 +643,17 @@ class SchemaApi extends base_1.BaseAPI {
       */
     updateGroupSchema(body, options) {
         return exports.SchemaApiFp(this.configuration).updateGroupSchema(body, options)(this.httpClient, this.basePath);
+    }
+    /**
+      * Fetches the schema for a Schema Id.
+      * @summary Fetches the schema for a Schema Id.
+      * @param {string} schemaId
+      * @param {*} [options] Override http request option.
+      * @throws {RequiredError}
+      * @memberof SchemaApi
+      */
+    getUserSchema(schemaId, options) {
+        return exports.SchemaApiFp(this.configuration).getUserSchema(schemaId, options)(this.httpClient, this.basePath);
     }
     /**
       * Partial updates on the User Profile properties of the user schema.

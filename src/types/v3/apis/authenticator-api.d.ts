@@ -32,6 +32,30 @@ import type { Configuration } from '../configuration';
 export declare const AuthenticatorApiRequestParamCreator: (configuration?: Configuration & V2Configuration) => {
     http: Http;
     /**
+      * Enumerates authenticators in your organization.
+      * @summary List Authenticators
+      * @param {*} [options] Override http request option.
+      * @throws {RequiredError}
+      */
+    listAuthenticators: (options?: any) => RequestArgs;
+    /**
+      * Fetches an authenticator from your Okta organization by `authenticatorId`.
+      * @summary Get Authenticator
+      * @param {string} authenticatorId
+      * @param {*} [options] Override http request option.
+      * @throws {RequiredError}
+      */
+    getAuthenticator: (authenticatorId: string, options?: any) => RequestArgs;
+    /**
+      * Updates an authenticator
+      * @summary Update Authenticator
+      * @param {Authenticator} body
+      * @param {string} authenticatorId
+      * @param {*} [options] Override http request option.
+      * @throws {RequiredError}
+      */
+    updateAuthenticator: (body: Authenticator, authenticatorId: string, options?: any) => RequestArgs;
+    /**
       * Activates an authenticator by `authenticatorId`.
       * @summary Activate Authenticator
       * @param {string} authenticatorId
@@ -47,6 +71,19 @@ export declare const AuthenticatorApiRequestParamCreator: (configuration?: Confi
       * @throws {RequiredError}
       */
     deactivateAuthenticator: (authenticatorId: string, options?: any) => RequestArgs;
+};
+/**
+ * AuthenticatorApi - functional programming interface
+ * @export
+ */
+export declare const AuthenticatorApiFp: (configuration?: Configuration & V2Configuration) => {
+    /**
+      * Enumerates authenticators in your organization.
+      * @summary List Authenticators
+      * @param {*} [options] Override http request option.
+      * @throws {RequiredError}
+      */
+    listAuthenticators(options?: any): (http?: Http, basePath?: string) => Collection<Authenticator>;
     /**
       * Fetches an authenticator from your Okta organization by `authenticatorId`.
       * @summary Get Authenticator
@@ -54,14 +91,7 @@ export declare const AuthenticatorApiRequestParamCreator: (configuration?: Confi
       * @param {*} [options] Override http request option.
       * @throws {RequiredError}
       */
-    getAuthenticator: (authenticatorId: string, options?: any) => RequestArgs;
-    /**
-      * Enumerates authenticators in your organization.
-      * @summary List Authenticators
-      * @param {*} [options] Override http request option.
-      * @throws {RequiredError}
-      */
-    listAuthenticators: (options?: any) => RequestArgs;
+    getAuthenticator(authenticatorId: string, options?: any): (http?: Http, basePath?: string) => Promise<Authenticator>;
     /**
       * Updates an authenticator
       * @summary Update Authenticator
@@ -70,13 +100,7 @@ export declare const AuthenticatorApiRequestParamCreator: (configuration?: Confi
       * @param {*} [options] Override http request option.
       * @throws {RequiredError}
       */
-    updateAuthenticator: (body: Authenticator, authenticatorId: string, options?: any) => RequestArgs;
-};
-/**
- * AuthenticatorApi - functional programming interface
- * @export
- */
-export declare const AuthenticatorApiFp: (configuration?: Configuration & V2Configuration) => {
+    updateAuthenticator(body: Authenticator, authenticatorId: string, options?: any): (http?: Http, basePath?: string) => Promise<Authenticator>;
     /**
       * Activates an authenticator by `authenticatorId`.
       * @summary Activate Authenticator
@@ -93,6 +117,19 @@ export declare const AuthenticatorApiFp: (configuration?: Configuration & V2Conf
       * @throws {RequiredError}
       */
     deactivateAuthenticator(authenticatorId: string, options?: any): (http?: Http, basePath?: string) => Promise<Authenticator>;
+};
+/**
+ * AuthenticatorApi - factory interface
+ * @export
+ */
+export declare const AuthenticatorApiFactory: (configuration?: Configuration, basePath?: string, http?: Http) => {
+    /**
+      * Enumerates authenticators in your organization.
+      * @summary List Authenticators
+      * @param {*} [options] Override http request option.
+      * @throws {RequiredError}
+      */
+    listAuthenticators(options?: any): Collection<Authenticator>;
     /**
       * Fetches an authenticator from your Okta organization by `authenticatorId`.
       * @summary Get Authenticator
@@ -100,14 +137,7 @@ export declare const AuthenticatorApiFp: (configuration?: Configuration & V2Conf
       * @param {*} [options] Override http request option.
       * @throws {RequiredError}
       */
-    getAuthenticator(authenticatorId: string, options?: any): (http?: Http, basePath?: string) => Promise<Authenticator>;
-    /**
-      * Enumerates authenticators in your organization.
-      * @summary List Authenticators
-      * @param {*} [options] Override http request option.
-      * @throws {RequiredError}
-      */
-    listAuthenticators(options?: any): (http?: Http, basePath?: string) => Collection<Authenticator>;
+    getAuthenticator(authenticatorId: string, options?: any): Promise<Authenticator>;
     /**
       * Updates an authenticator
       * @summary Update Authenticator
@@ -116,13 +146,7 @@ export declare const AuthenticatorApiFp: (configuration?: Configuration & V2Conf
       * @param {*} [options] Override http request option.
       * @throws {RequiredError}
       */
-    updateAuthenticator(body: Authenticator, authenticatorId: string, options?: any): (http?: Http, basePath?: string) => Promise<Authenticator>;
-};
-/**
- * AuthenticatorApi - factory interface
- * @export
- */
-export declare const AuthenticatorApiFactory: (configuration?: Configuration, basePath?: string, http?: Http) => {
+    updateAuthenticator(body: Authenticator, authenticatorId: string, options?: any): Promise<Authenticator>;
     /**
       * Activates an authenticator by `authenticatorId`.
       * @summary Activate Authenticator
@@ -139,30 +163,6 @@ export declare const AuthenticatorApiFactory: (configuration?: Configuration, ba
       * @throws {RequiredError}
       */
     deactivateAuthenticator(authenticatorId: string, options?: any): Promise<Authenticator>;
-    /**
-      * Fetches an authenticator from your Okta organization by `authenticatorId`.
-      * @summary Get Authenticator
-      * @param {string} authenticatorId
-      * @param {*} [options] Override http request option.
-      * @throws {RequiredError}
-      */
-    getAuthenticator(authenticatorId: string, options?: any): Promise<Authenticator>;
-    /**
-      * Enumerates authenticators in your organization.
-      * @summary List Authenticators
-      * @param {*} [options] Override http request option.
-      * @throws {RequiredError}
-      */
-    listAuthenticators(options?: any): Collection<Authenticator>;
-    /**
-      * Updates an authenticator
-      * @summary Update Authenticator
-      * @param {Authenticator} body
-      * @param {string} authenticatorId
-      * @param {*} [options] Override http request option.
-      * @throws {RequiredError}
-      */
-    updateAuthenticator(body: Authenticator, authenticatorId: string, options?: any): Promise<Authenticator>;
 };
 /**
  * AuthenticatorApi - object-oriented interface
@@ -171,6 +171,33 @@ export declare const AuthenticatorApiFactory: (configuration?: Configuration, ba
  * @extends {BaseAPI}
  */
 export declare class AuthenticatorApi extends BaseAPI {
+  /**
+      * Enumerates authenticators in your organization.
+      * @summary List Authenticators
+      * @param {*} [options] Override http request option.
+      * @throws {RequiredError}
+      * @memberof AuthenticatorApi
+      */
+  listAuthenticators(options?: any): Collection<Authenticator>;
+  /**
+      * Fetches an authenticator from your Okta organization by `authenticatorId`.
+      * @summary Get Authenticator
+      * @param {string} authenticatorId
+      * @param {*} [options] Override http request option.
+      * @throws {RequiredError}
+      * @memberof AuthenticatorApi
+      */
+  getAuthenticator(authenticatorId: string, options?: any): Promise<Authenticator>;
+  /**
+      * Updates an authenticator
+      * @summary Update Authenticator
+      * @param {Authenticator} body
+      * @param {string} authenticatorId
+      * @param {*} [options] Override http request option.
+      * @throws {RequiredError}
+      * @memberof AuthenticatorApi
+      */
+  updateAuthenticator(body: Authenticator, authenticatorId: string, options?: any): Promise<Authenticator>;
   /**
       * Activates an authenticator by `authenticatorId`.
       * @summary Activate Authenticator
@@ -189,31 +216,4 @@ export declare class AuthenticatorApi extends BaseAPI {
       * @memberof AuthenticatorApi
       */
   deactivateAuthenticator(authenticatorId: string, options?: any): Promise<Authenticator>;
-  /**
-      * Fetches an authenticator from your Okta organization by `authenticatorId`.
-      * @summary Get Authenticator
-      * @param {string} authenticatorId
-      * @param {*} [options] Override http request option.
-      * @throws {RequiredError}
-      * @memberof AuthenticatorApi
-      */
-  getAuthenticator(authenticatorId: string, options?: any): Promise<Authenticator>;
-  /**
-      * Enumerates authenticators in your organization.
-      * @summary List Authenticators
-      * @param {*} [options] Override http request option.
-      * @throws {RequiredError}
-      * @memberof AuthenticatorApi
-      */
-  listAuthenticators(options?: any): Collection<Authenticator>;
-  /**
-      * Updates an authenticator
-      * @summary Update Authenticator
-      * @param {Authenticator} body
-      * @param {string} authenticatorId
-      * @param {*} [options] Override http request option.
-      * @throws {RequiredError}
-      * @memberof AuthenticatorApi
-      */
-  updateAuthenticator(body: Authenticator, authenticatorId: string, options?: any): Promise<Authenticator>;
 }

@@ -34,13 +34,13 @@ import type { Configuration } from '../configuration';
 export declare const InlineHookApiRequestParamCreator: (configuration?: Configuration & V2Configuration) => {
     http: Http;
     /**
-      * Activates the Inline Hook matching the provided id
-      * @summary Activate Inline Hook
-      * @param {string} inlineHookId
+      * Success
+      * @summary List Inline Hooks
+      * @param {string} [type]
       * @param {*} [options] Override http request option.
       * @throws {RequiredError}
       */
-    activateInlineHook: (inlineHookId: string, options?: any) => RequestArgs;
+    listInlineHooks: (type?: string, options?: any) => RequestArgs;
     /**
       * Success
       * @summary Create Inline Hook
@@ -50,14 +50,6 @@ export declare const InlineHookApiRequestParamCreator: (configuration?: Configur
       */
     createInlineHook: (body: InlineHook, options?: any) => RequestArgs;
     /**
-      * Deactivates the Inline Hook matching the provided id
-      * @summary Deactivate Inline Hook
-      * @param {string} inlineHookId
-      * @param {*} [options] Override http request option.
-      * @throws {RequiredError}
-      */
-    deactivateInlineHook: (inlineHookId: string, options?: any) => RequestArgs;
-    /**
       * Deletes the Inline Hook matching the provided id. Once deleted, the Inline Hook is unrecoverable. As a safety precaution, only Inline Hooks with a status of INACTIVE are eligible for deletion.
       * @summary Delete Inline Hook
       * @param {string} inlineHookId
@@ -65,6 +57,23 @@ export declare const InlineHookApiRequestParamCreator: (configuration?: Configur
       * @throws {RequiredError}
       */
     deleteInlineHook: (inlineHookId: string, options?: any) => RequestArgs;
+    /**
+      * Gets an inline hook by ID
+      * @summary Get Inline Hook
+      * @param {string} inlineHookId
+      * @param {*} [options] Override http request option.
+      * @throws {RequiredError}
+      */
+    getInlineHook: (inlineHookId: string, options?: any) => RequestArgs;
+    /**
+      * Updates an inline hook by ID
+      * @summary Update Inline Hook
+      * @param {InlineHook} body
+      * @param {string} inlineHookId
+      * @param {*} [options] Override http request option.
+      * @throws {RequiredError}
+      */
+    updateInlineHook: (body: InlineHook, inlineHookId: string, options?: any) => RequestArgs;
     /**
       * Executes the Inline Hook matching the provided inlineHookId using the request body as the input. This will send the provided data through the Channel and return a response if it matches the correct data contract. This execution endpoint should only be used for testing purposes.
       * @summary Execute Inline Hook
@@ -75,30 +84,21 @@ export declare const InlineHookApiRequestParamCreator: (configuration?: Configur
       */
     executeInlineHook: (body: InlineHookPayload, inlineHookId: string, options?: any) => RequestArgs;
     /**
-      * Gets an inline hook by ID
-      * @summary Get Inline Hook
+      * Activates the Inline Hook matching the provided id
+      * @summary Activate Inline Hook
       * @param {string} inlineHookId
       * @param {*} [options] Override http request option.
       * @throws {RequiredError}
       */
-    getInlineHook: (inlineHookId: string, options?: any) => RequestArgs;
+    activateInlineHook: (inlineHookId: string, options?: any) => RequestArgs;
     /**
-      * Success
-      * @summary List Inline Hooks
-      * @param {string} [type]
-      * @param {*} [options] Override http request option.
-      * @throws {RequiredError}
-      */
-    listInlineHooks: (type?: string, options?: any) => RequestArgs;
-    /**
-      * Updates an inline hook by ID
-      * @summary Update Inline Hook
-      * @param {InlineHook} body
+      * Deactivates the Inline Hook matching the provided id
+      * @summary Deactivate Inline Hook
       * @param {string} inlineHookId
       * @param {*} [options] Override http request option.
       * @throws {RequiredError}
       */
-    updateInlineHook: (body: InlineHook, inlineHookId: string, options?: any) => RequestArgs;
+    deactivateInlineHook: (inlineHookId: string, options?: any) => RequestArgs;
 };
 /**
  * InlineHookApi - functional programming interface
@@ -106,13 +106,13 @@ export declare const InlineHookApiRequestParamCreator: (configuration?: Configur
  */
 export declare const InlineHookApiFp: (configuration?: Configuration & V2Configuration) => {
     /**
-      * Activates the Inline Hook matching the provided id
-      * @summary Activate Inline Hook
-      * @param {string} inlineHookId
+      * Success
+      * @summary List Inline Hooks
+      * @param {string} [type]
       * @param {*} [options] Override http request option.
       * @throws {RequiredError}
       */
-    activateInlineHook(inlineHookId: string, options?: any): (http?: Http, basePath?: string) => Promise<InlineHook>;
+    listInlineHooks(type?: string, options?: any): (http?: Http, basePath?: string) => Collection<InlineHook>;
     /**
       * Success
       * @summary Create Inline Hook
@@ -122,14 +122,6 @@ export declare const InlineHookApiFp: (configuration?: Configuration & V2Configu
       */
     createInlineHook(body: InlineHook, options?: any): (http?: Http, basePath?: string) => Promise<InlineHook>;
     /**
-      * Deactivates the Inline Hook matching the provided id
-      * @summary Deactivate Inline Hook
-      * @param {string} inlineHookId
-      * @param {*} [options] Override http request option.
-      * @throws {RequiredError}
-      */
-    deactivateInlineHook(inlineHookId: string, options?: any): (http?: Http, basePath?: string) => Promise<InlineHook>;
-    /**
       * Deletes the Inline Hook matching the provided id. Once deleted, the Inline Hook is unrecoverable. As a safety precaution, only Inline Hooks with a status of INACTIVE are eligible for deletion.
       * @summary Delete Inline Hook
       * @param {string} inlineHookId
@@ -137,6 +129,23 @@ export declare const InlineHookApiFp: (configuration?: Configuration & V2Configu
       * @throws {RequiredError}
       */
     deleteInlineHook(inlineHookId: string, options?: any): (http?: Http, basePath?: string) => Promise<Record<string, never>>;
+    /**
+      * Gets an inline hook by ID
+      * @summary Get Inline Hook
+      * @param {string} inlineHookId
+      * @param {*} [options] Override http request option.
+      * @throws {RequiredError}
+      */
+    getInlineHook(inlineHookId: string, options?: any): (http?: Http, basePath?: string) => Promise<InlineHook>;
+    /**
+      * Updates an inline hook by ID
+      * @summary Update Inline Hook
+      * @param {InlineHook} body
+      * @param {string} inlineHookId
+      * @param {*} [options] Override http request option.
+      * @throws {RequiredError}
+      */
+    updateInlineHook(body: InlineHook, inlineHookId: string, options?: any): (http?: Http, basePath?: string) => Promise<InlineHook>;
     /**
       * Executes the Inline Hook matching the provided inlineHookId using the request body as the input. This will send the provided data through the Channel and return a response if it matches the correct data contract. This execution endpoint should only be used for testing purposes.
       * @summary Execute Inline Hook
@@ -147,30 +156,21 @@ export declare const InlineHookApiFp: (configuration?: Configuration & V2Configu
       */
     executeInlineHook(body: InlineHookPayload, inlineHookId: string, options?: any): (http?: Http, basePath?: string) => Promise<InlineHookResponse>;
     /**
-      * Gets an inline hook by ID
-      * @summary Get Inline Hook
+      * Activates the Inline Hook matching the provided id
+      * @summary Activate Inline Hook
       * @param {string} inlineHookId
       * @param {*} [options] Override http request option.
       * @throws {RequiredError}
       */
-    getInlineHook(inlineHookId: string, options?: any): (http?: Http, basePath?: string) => Promise<InlineHook>;
+    activateInlineHook(inlineHookId: string, options?: any): (http?: Http, basePath?: string) => Promise<InlineHook>;
     /**
-      * Success
-      * @summary List Inline Hooks
-      * @param {string} [type]
-      * @param {*} [options] Override http request option.
-      * @throws {RequiredError}
-      */
-    listInlineHooks(type?: string, options?: any): (http?: Http, basePath?: string) => Collection<InlineHook>;
-    /**
-      * Updates an inline hook by ID
-      * @summary Update Inline Hook
-      * @param {InlineHook} body
+      * Deactivates the Inline Hook matching the provided id
+      * @summary Deactivate Inline Hook
       * @param {string} inlineHookId
       * @param {*} [options] Override http request option.
       * @throws {RequiredError}
       */
-    updateInlineHook(body: InlineHook, inlineHookId: string, options?: any): (http?: Http, basePath?: string) => Promise<InlineHook>;
+    deactivateInlineHook(inlineHookId: string, options?: any): (http?: Http, basePath?: string) => Promise<InlineHook>;
 };
 /**
  * InlineHookApi - factory interface
@@ -178,13 +178,13 @@ export declare const InlineHookApiFp: (configuration?: Configuration & V2Configu
  */
 export declare const InlineHookApiFactory: (configuration?: Configuration, basePath?: string, http?: Http) => {
     /**
-      * Activates the Inline Hook matching the provided id
-      * @summary Activate Inline Hook
-      * @param {string} inlineHookId
+      * Success
+      * @summary List Inline Hooks
+      * @param {string} [type]
       * @param {*} [options] Override http request option.
       * @throws {RequiredError}
       */
-    activateInlineHook(inlineHookId: string, options?: any): Promise<InlineHook>;
+    listInlineHooks(type?: string, options?: any): Collection<InlineHook>;
     /**
       * Success
       * @summary Create Inline Hook
@@ -194,14 +194,6 @@ export declare const InlineHookApiFactory: (configuration?: Configuration, baseP
       */
     createInlineHook(body: InlineHook, options?: any): Promise<InlineHook>;
     /**
-      * Deactivates the Inline Hook matching the provided id
-      * @summary Deactivate Inline Hook
-      * @param {string} inlineHookId
-      * @param {*} [options] Override http request option.
-      * @throws {RequiredError}
-      */
-    deactivateInlineHook(inlineHookId: string, options?: any): Promise<InlineHook>;
-    /**
       * Deletes the Inline Hook matching the provided id. Once deleted, the Inline Hook is unrecoverable. As a safety precaution, only Inline Hooks with a status of INACTIVE are eligible for deletion.
       * @summary Delete Inline Hook
       * @param {string} inlineHookId
@@ -209,6 +201,23 @@ export declare const InlineHookApiFactory: (configuration?: Configuration, baseP
       * @throws {RequiredError}
       */
     deleteInlineHook(inlineHookId: string, options?: any): Promise<Record<string, never>>;
+    /**
+      * Gets an inline hook by ID
+      * @summary Get Inline Hook
+      * @param {string} inlineHookId
+      * @param {*} [options] Override http request option.
+      * @throws {RequiredError}
+      */
+    getInlineHook(inlineHookId: string, options?: any): Promise<InlineHook>;
+    /**
+      * Updates an inline hook by ID
+      * @summary Update Inline Hook
+      * @param {InlineHook} body
+      * @param {string} inlineHookId
+      * @param {*} [options] Override http request option.
+      * @throws {RequiredError}
+      */
+    updateInlineHook(body: InlineHook, inlineHookId: string, options?: any): Promise<InlineHook>;
     /**
       * Executes the Inline Hook matching the provided inlineHookId using the request body as the input. This will send the provided data through the Channel and return a response if it matches the correct data contract. This execution endpoint should only be used for testing purposes.
       * @summary Execute Inline Hook
@@ -219,30 +228,21 @@ export declare const InlineHookApiFactory: (configuration?: Configuration, baseP
       */
     executeInlineHook(body: InlineHookPayload, inlineHookId: string, options?: any): Promise<InlineHookResponse>;
     /**
-      * Gets an inline hook by ID
-      * @summary Get Inline Hook
+      * Activates the Inline Hook matching the provided id
+      * @summary Activate Inline Hook
       * @param {string} inlineHookId
       * @param {*} [options] Override http request option.
       * @throws {RequiredError}
       */
-    getInlineHook(inlineHookId: string, options?: any): Promise<InlineHook>;
+    activateInlineHook(inlineHookId: string, options?: any): Promise<InlineHook>;
     /**
-      * Success
-      * @summary List Inline Hooks
-      * @param {string} [type]
-      * @param {*} [options] Override http request option.
-      * @throws {RequiredError}
-      */
-    listInlineHooks(type?: string, options?: any): Collection<InlineHook>;
-    /**
-      * Updates an inline hook by ID
-      * @summary Update Inline Hook
-      * @param {InlineHook} body
+      * Deactivates the Inline Hook matching the provided id
+      * @summary Deactivate Inline Hook
       * @param {string} inlineHookId
       * @param {*} [options] Override http request option.
       * @throws {RequiredError}
       */
-    updateInlineHook(body: InlineHook, inlineHookId: string, options?: any): Promise<InlineHook>;
+    deactivateInlineHook(inlineHookId: string, options?: any): Promise<InlineHook>;
 };
 /**
  * InlineHookApi - object-oriented interface
@@ -252,14 +252,14 @@ export declare const InlineHookApiFactory: (configuration?: Configuration, baseP
  */
 export declare class InlineHookApi extends BaseAPI {
   /**
-      * Activates the Inline Hook matching the provided id
-      * @summary Activate Inline Hook
-      * @param {string} inlineHookId
+      * Success
+      * @summary List Inline Hooks
+      * @param {string} [type]
       * @param {*} [options] Override http request option.
       * @throws {RequiredError}
       * @memberof InlineHookApi
       */
-  activateInlineHook(inlineHookId: string, options?: any): Promise<InlineHook>;
+  listInlineHooks(type?: string, options?: any): Collection<InlineHook>;
   /**
       * Success
       * @summary Create Inline Hook
@@ -270,15 +270,6 @@ export declare class InlineHookApi extends BaseAPI {
       */
   createInlineHook(body: InlineHook, options?: any): Promise<InlineHook>;
   /**
-      * Deactivates the Inline Hook matching the provided id
-      * @summary Deactivate Inline Hook
-      * @param {string} inlineHookId
-      * @param {*} [options] Override http request option.
-      * @throws {RequiredError}
-      * @memberof InlineHookApi
-      */
-  deactivateInlineHook(inlineHookId: string, options?: any): Promise<InlineHook>;
-  /**
       * Deletes the Inline Hook matching the provided id. Once deleted, the Inline Hook is unrecoverable. As a safety precaution, only Inline Hooks with a status of INACTIVE are eligible for deletion.
       * @summary Delete Inline Hook
       * @param {string} inlineHookId
@@ -287,6 +278,25 @@ export declare class InlineHookApi extends BaseAPI {
       * @memberof InlineHookApi
       */
   deleteInlineHook(inlineHookId: string, options?: any): Promise<Record<string, never>>;
+  /**
+      * Gets an inline hook by ID
+      * @summary Get Inline Hook
+      * @param {string} inlineHookId
+      * @param {*} [options] Override http request option.
+      * @throws {RequiredError}
+      * @memberof InlineHookApi
+      */
+  getInlineHook(inlineHookId: string, options?: any): Promise<InlineHook>;
+  /**
+      * Updates an inline hook by ID
+      * @summary Update Inline Hook
+      * @param {InlineHook} body
+      * @param {string} inlineHookId
+      * @param {*} [options] Override http request option.
+      * @throws {RequiredError}
+      * @memberof InlineHookApi
+      */
+  updateInlineHook(body: InlineHook, inlineHookId: string, options?: any): Promise<InlineHook>;
   /**
       * Executes the Inline Hook matching the provided inlineHookId using the request body as the input. This will send the provided data through the Channel and return a response if it matches the correct data contract. This execution endpoint should only be used for testing purposes.
       * @summary Execute Inline Hook
@@ -298,31 +308,21 @@ export declare class InlineHookApi extends BaseAPI {
       */
   executeInlineHook(body: InlineHookPayload, inlineHookId: string, options?: any): Promise<InlineHookResponse>;
   /**
-      * Gets an inline hook by ID
-      * @summary Get Inline Hook
+      * Activates the Inline Hook matching the provided id
+      * @summary Activate Inline Hook
       * @param {string} inlineHookId
       * @param {*} [options] Override http request option.
       * @throws {RequiredError}
       * @memberof InlineHookApi
       */
-  getInlineHook(inlineHookId: string, options?: any): Promise<InlineHook>;
+  activateInlineHook(inlineHookId: string, options?: any): Promise<InlineHook>;
   /**
-      * Success
-      * @summary List Inline Hooks
-      * @param {string} [type]
-      * @param {*} [options] Override http request option.
-      * @throws {RequiredError}
-      * @memberof InlineHookApi
-      */
-  listInlineHooks(type?: string, options?: any): Collection<InlineHook>;
-  /**
-      * Updates an inline hook by ID
-      * @summary Update Inline Hook
-      * @param {InlineHook} body
+      * Deactivates the Inline Hook matching the provided id
+      * @summary Deactivate Inline Hook
       * @param {string} inlineHookId
       * @param {*} [options] Override http request option.
       * @throws {RequiredError}
       * @memberof InlineHookApi
       */
-  updateInlineHook(body: InlineHook, inlineHookId: string, options?: any): Promise<InlineHook>;
+  deactivateInlineHook(inlineHookId: string, options?: any): Promise<InlineHook>;
 }

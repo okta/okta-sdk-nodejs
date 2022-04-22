@@ -100,28 +100,41 @@ const InlineHookApiRequestParamCreator = function (configuration) {
     return {
         http,
         /**
-          * Activates the Inline Hook matching the provided id
-          * @summary Activate Inline Hook
-          * @param {string} inlineHookId
+          * Success
+          * @summary List Inline Hooks
+          * @param {string} [type]
           * @param {*} [options] Override http request option.
           * @throws {RequiredError}
           */
-        activateInlineHook: (inlineHookId, options = {}) => {
-            // verify required parameter 'inlineHookId' is not null or undefined
-            if (inlineHookId === null || inlineHookId === undefined) {
-                throw new base_1.RequiredError('inlineHookId', 'Required parameter inlineHookId was null or undefined when calling activateInlineHook.');
-            }
-            const localVarPath = `/api/v1/inlineHooks/{inlineHookId}/lifecycle/activate`
-                .replace(`{${"inlineHookId"}}`, encodeURIComponent(String(inlineHookId)));
+        listInlineHooks: (type, options = {}) => {
+            const localVarPath = `/api/v1/inlineHooks`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
             let baseOptions;
             if (configuration) {
                 baseOptions = configuration.baseOptions;
             }
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options };
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
             const localVarHeaderParameter = {};
             const localVarQueryParameter = {};
+            // authentication api_token required
+            if (configuration && configuration.apiToken) {
+                const localVarApiKeyValue = typeof configuration.apiToken === 'function'
+                    ? configuration.apiToken("Authorization")
+                    : configuration.apiToken;
+                localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
+            }
+            // authentication oauth2 required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("oauth2", ["okta.apps.read", "okta.apps.manage", "okta.authenticators.read", "okta.authenticators.manage", "okta.authorizationServers.read", "okta.authorizationServers.manage", "okta.brands.read", "okta.brands.manage", "okta.captchas.manage", "okta.captchas.read", "okta.domains.read", "okta.domains.manage", "okta.eventHooks.read", "okta.eventHooks.manage", "okta.groups.read", "okta.groups.manage", "okta.roles.read", "okta.roles.manage", "okta.idps.read", "okta.idps.manage", "okta.users.manage", "okta.inlineHooks.read", "okta.inlineHooks.manage", "okta.logs.read", "okta.profileMappings.read", "okta.profileMappings.manage", "okta.schemas.read", "okta.schemas.manage", "okta.linkedObjects.read", "okta.linkedObjects.manage", "okta.userTypes.read", "okta.userTypes.manage", "okta.orgs.read", "okta.orgs.manage", "okta.policies.read", "okta.policies.manage", "okta.sessions.read", "okta.sessions.manage", "okta.templates.read", "okta.templates.manage", "okta.trustedOrigins.read", "okta.trustedOrigins.manage", "okta.users.read.self", "okta.users.read"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            if (type !== undefined) {
+                localVarQueryParameter['type'] = type;
+            }
             const query = new URLSearchParams(localVarUrlObj.search);
             for (const key in localVarQueryParameter) {
                 query.set(key, localVarQueryParameter[key]);
@@ -193,44 +206,6 @@ const InlineHookApiRequestParamCreator = function (configuration) {
             };
         },
         /**
-          * Deactivates the Inline Hook matching the provided id
-          * @summary Deactivate Inline Hook
-          * @param {string} inlineHookId
-          * @param {*} [options] Override http request option.
-          * @throws {RequiredError}
-          */
-        deactivateInlineHook: (inlineHookId, options = {}) => {
-            // verify required parameter 'inlineHookId' is not null or undefined
-            if (inlineHookId === null || inlineHookId === undefined) {
-                throw new base_1.RequiredError('inlineHookId', 'Required parameter inlineHookId was null or undefined when calling deactivateInlineHook.');
-            }
-            const localVarPath = `/api/v1/inlineHooks/{inlineHookId}/lifecycle/deactivate`
-                .replace(`{${"inlineHookId"}}`, encodeURIComponent(String(inlineHookId)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options };
-            const localVarHeaderParameter = {};
-            const localVarQueryParameter = {};
-            const query = new URLSearchParams(localVarUrlObj.search);
-            for (const key in localVarQueryParameter) {
-                query.set(key, localVarQueryParameter[key]);
-            }
-            for (const key in options.query) {
-                query.set(key, options.query[key]);
-            }
-            localVarUrlObj.search = (new URLSearchParams(query)).toString();
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
-            return {
-                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
-                options: localVarRequestOptions,
-            };
-        },
-        /**
           * Deletes the Inline Hook matching the provided id. Once deleted, the Inline Hook is unrecoverable. As a safety precaution, only Inline Hooks with a status of INACTIVE are eligible for deletion.
           * @summary Delete Inline Hook
           * @param {string} inlineHookId
@@ -284,67 +259,6 @@ const InlineHookApiRequestParamCreator = function (configuration) {
             };
         },
         /**
-          * Executes the Inline Hook matching the provided inlineHookId using the request body as the input. This will send the provided data through the Channel and return a response if it matches the correct data contract. This execution endpoint should only be used for testing purposes.
-          * @summary Execute Inline Hook
-          * @param {InlineHookPayload} body
-          * @param {string} inlineHookId
-          * @param {*} [options] Override http request option.
-          * @throws {RequiredError}
-          */
-        executeInlineHook: (body, inlineHookId, options = {}) => {
-            // verify required parameter 'body' is not null or undefined
-            if (body === null || body === undefined) {
-                throw new base_1.RequiredError('body', 'Required parameter body was null or undefined when calling executeInlineHook.');
-            }
-            // verify required parameter 'inlineHookId' is not null or undefined
-            if (inlineHookId === null || inlineHookId === undefined) {
-                throw new base_1.RequiredError('inlineHookId', 'Required parameter inlineHookId was null or undefined when calling executeInlineHook.');
-            }
-            const localVarPath = `/api/v1/inlineHooks/{inlineHookId}/execute`
-                .replace(`{${"inlineHookId"}}`, encodeURIComponent(String(inlineHookId)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options };
-            const localVarHeaderParameter = {};
-            const localVarQueryParameter = {};
-            // authentication api_token required
-            if (configuration && configuration.apiToken) {
-                const localVarApiKeyValue = typeof configuration.apiToken === 'function'
-                    ? configuration.apiToken("Authorization")
-                    : configuration.apiToken;
-                localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
-            }
-            // authentication oauth2 required
-            // oauth required
-            if (configuration && configuration.accessToken) {
-                const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
-                    ? configuration.accessToken("oauth2", ["okta.apps.read", "okta.apps.manage", "okta.authenticators.read", "okta.authenticators.manage", "okta.authorizationServers.read", "okta.authorizationServers.manage", "okta.brands.read", "okta.brands.manage", "okta.captchas.manage", "okta.captchas.read", "okta.domains.read", "okta.domains.manage", "okta.eventHooks.read", "okta.eventHooks.manage", "okta.groups.read", "okta.groups.manage", "okta.roles.read", "okta.roles.manage", "okta.idps.read", "okta.idps.manage", "okta.users.manage", "okta.inlineHooks.read", "okta.inlineHooks.manage", "okta.logs.read", "okta.profileMappings.read", "okta.profileMappings.manage", "okta.schemas.read", "okta.schemas.manage", "okta.linkedObjects.read", "okta.linkedObjects.manage", "okta.userTypes.read", "okta.userTypes.manage", "okta.orgs.read", "okta.orgs.manage", "okta.policies.read", "okta.policies.manage", "okta.sessions.read", "okta.sessions.manage", "okta.templates.read", "okta.templates.manage", "okta.trustedOrigins.read", "okta.trustedOrigins.manage", "okta.users.read.self", "okta.users.read"])
-                    : configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
-            }
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-            const query = new URLSearchParams(localVarUrlObj.search);
-            for (const key in localVarQueryParameter) {
-                query.set(key, localVarQueryParameter[key]);
-            }
-            for (const key in options.query) {
-                query.set(key, options.query[key]);
-            }
-            localVarUrlObj.search = (new URLSearchParams(query)).toString();
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
-            const needsSerialization = (typeof body !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.body = needsSerialization ? JSON.stringify(body !== undefined ? body : {}) : (body || "");
-            return {
-                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
-                options: localVarRequestOptions,
-            };
-        },
-        /**
           * Gets an inline hook by ID
           * @summary Get Inline Hook
           * @param {string} inlineHookId
@@ -381,57 +295,6 @@ const InlineHookApiRequestParamCreator = function (configuration) {
                     ? configuration.accessToken("oauth2", ["okta.apps.read", "okta.apps.manage", "okta.authenticators.read", "okta.authenticators.manage", "okta.authorizationServers.read", "okta.authorizationServers.manage", "okta.brands.read", "okta.brands.manage", "okta.captchas.manage", "okta.captchas.read", "okta.domains.read", "okta.domains.manage", "okta.eventHooks.read", "okta.eventHooks.manage", "okta.groups.read", "okta.groups.manage", "okta.roles.read", "okta.roles.manage", "okta.idps.read", "okta.idps.manage", "okta.users.manage", "okta.inlineHooks.read", "okta.inlineHooks.manage", "okta.logs.read", "okta.profileMappings.read", "okta.profileMappings.manage", "okta.schemas.read", "okta.schemas.manage", "okta.linkedObjects.read", "okta.linkedObjects.manage", "okta.userTypes.read", "okta.userTypes.manage", "okta.orgs.read", "okta.orgs.manage", "okta.policies.read", "okta.policies.manage", "okta.sessions.read", "okta.sessions.manage", "okta.templates.read", "okta.templates.manage", "okta.trustedOrigins.read", "okta.trustedOrigins.manage", "okta.users.read.self", "okta.users.read"])
                     : configuration.accessToken;
                 localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
-            }
-            const query = new URLSearchParams(localVarUrlObj.search);
-            for (const key in localVarQueryParameter) {
-                query.set(key, localVarQueryParameter[key]);
-            }
-            for (const key in options.query) {
-                query.set(key, options.query[key]);
-            }
-            localVarUrlObj.search = (new URLSearchParams(query)).toString();
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
-            return {
-                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-          * Success
-          * @summary List Inline Hooks
-          * @param {string} [type]
-          * @param {*} [options] Override http request option.
-          * @throws {RequiredError}
-          */
-        listInlineHooks: (type, options = {}) => {
-            const localVarPath = `/api/v1/inlineHooks`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
-            const localVarHeaderParameter = {};
-            const localVarQueryParameter = {};
-            // authentication api_token required
-            if (configuration && configuration.apiToken) {
-                const localVarApiKeyValue = typeof configuration.apiToken === 'function'
-                    ? configuration.apiToken("Authorization")
-                    : configuration.apiToken;
-                localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
-            }
-            // authentication oauth2 required
-            // oauth required
-            if (configuration && configuration.accessToken) {
-                const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
-                    ? configuration.accessToken("oauth2", ["okta.apps.read", "okta.apps.manage", "okta.authenticators.read", "okta.authenticators.manage", "okta.authorizationServers.read", "okta.authorizationServers.manage", "okta.brands.read", "okta.brands.manage", "okta.captchas.manage", "okta.captchas.read", "okta.domains.read", "okta.domains.manage", "okta.eventHooks.read", "okta.eventHooks.manage", "okta.groups.read", "okta.groups.manage", "okta.roles.read", "okta.roles.manage", "okta.idps.read", "okta.idps.manage", "okta.users.manage", "okta.inlineHooks.read", "okta.inlineHooks.manage", "okta.logs.read", "okta.profileMappings.read", "okta.profileMappings.manage", "okta.schemas.read", "okta.schemas.manage", "okta.linkedObjects.read", "okta.linkedObjects.manage", "okta.userTypes.read", "okta.userTypes.manage", "okta.orgs.read", "okta.orgs.manage", "okta.policies.read", "okta.policies.manage", "okta.sessions.read", "okta.sessions.manage", "okta.templates.read", "okta.templates.manage", "okta.trustedOrigins.read", "okta.trustedOrigins.manage", "okta.users.read.self", "okta.users.read"])
-                    : configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
-            }
-            if (type !== undefined) {
-                localVarQueryParameter['type'] = type;
             }
             const query = new URLSearchParams(localVarUrlObj.search);
             for (const key in localVarQueryParameter) {
@@ -509,6 +372,143 @@ const InlineHookApiRequestParamCreator = function (configuration) {
                 options: localVarRequestOptions,
             };
         },
+        /**
+          * Executes the Inline Hook matching the provided inlineHookId using the request body as the input. This will send the provided data through the Channel and return a response if it matches the correct data contract. This execution endpoint should only be used for testing purposes.
+          * @summary Execute Inline Hook
+          * @param {InlineHookPayload} body
+          * @param {string} inlineHookId
+          * @param {*} [options] Override http request option.
+          * @throws {RequiredError}
+          */
+        executeInlineHook: (body, inlineHookId, options = {}) => {
+            // verify required parameter 'body' is not null or undefined
+            if (body === null || body === undefined) {
+                throw new base_1.RequiredError('body', 'Required parameter body was null or undefined when calling executeInlineHook.');
+            }
+            // verify required parameter 'inlineHookId' is not null or undefined
+            if (inlineHookId === null || inlineHookId === undefined) {
+                throw new base_1.RequiredError('inlineHookId', 'Required parameter inlineHookId was null or undefined when calling executeInlineHook.');
+            }
+            const localVarPath = `/api/v1/inlineHooks/{inlineHookId}/execute`
+                .replace(`{${"inlineHookId"}}`, encodeURIComponent(String(inlineHookId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options };
+            const localVarHeaderParameter = {};
+            const localVarQueryParameter = {};
+            // authentication api_token required
+            if (configuration && configuration.apiToken) {
+                const localVarApiKeyValue = typeof configuration.apiToken === 'function'
+                    ? configuration.apiToken("Authorization")
+                    : configuration.apiToken;
+                localVarHeaderParameter["Authorization"] = localVarApiKeyValue;
+            }
+            // authentication oauth2 required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("oauth2", ["okta.apps.read", "okta.apps.manage", "okta.authenticators.read", "okta.authenticators.manage", "okta.authorizationServers.read", "okta.authorizationServers.manage", "okta.brands.read", "okta.brands.manage", "okta.captchas.manage", "okta.captchas.read", "okta.domains.read", "okta.domains.manage", "okta.eventHooks.read", "okta.eventHooks.manage", "okta.groups.read", "okta.groups.manage", "okta.roles.read", "okta.roles.manage", "okta.idps.read", "okta.idps.manage", "okta.users.manage", "okta.inlineHooks.read", "okta.inlineHooks.manage", "okta.logs.read", "okta.profileMappings.read", "okta.profileMappings.manage", "okta.schemas.read", "okta.schemas.manage", "okta.linkedObjects.read", "okta.linkedObjects.manage", "okta.userTypes.read", "okta.userTypes.manage", "okta.orgs.read", "okta.orgs.manage", "okta.policies.read", "okta.policies.manage", "okta.sessions.read", "okta.sessions.manage", "okta.templates.read", "okta.templates.manage", "okta.trustedOrigins.read", "okta.trustedOrigins.manage", "okta.users.read.self", "okta.users.read"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                query.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
+            const needsSerialization = (typeof body !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body = needsSerialization ? JSON.stringify(body !== undefined ? body : {}) : (body || "");
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+          * Activates the Inline Hook matching the provided id
+          * @summary Activate Inline Hook
+          * @param {string} inlineHookId
+          * @param {*} [options] Override http request option.
+          * @throws {RequiredError}
+          */
+        activateInlineHook: (inlineHookId, options = {}) => {
+            // verify required parameter 'inlineHookId' is not null or undefined
+            if (inlineHookId === null || inlineHookId === undefined) {
+                throw new base_1.RequiredError('inlineHookId', 'Required parameter inlineHookId was null or undefined when calling activateInlineHook.');
+            }
+            const localVarPath = `/api/v1/inlineHooks/{inlineHookId}/lifecycle/activate`
+                .replace(`{${"inlineHookId"}}`, encodeURIComponent(String(inlineHookId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options };
+            const localVarHeaderParameter = {};
+            const localVarQueryParameter = {};
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                query.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+          * Deactivates the Inline Hook matching the provided id
+          * @summary Deactivate Inline Hook
+          * @param {string} inlineHookId
+          * @param {*} [options] Override http request option.
+          * @throws {RequiredError}
+          */
+        deactivateInlineHook: (inlineHookId, options = {}) => {
+            // verify required parameter 'inlineHookId' is not null or undefined
+            if (inlineHookId === null || inlineHookId === undefined) {
+                throw new base_1.RequiredError('inlineHookId', 'Required parameter inlineHookId was null or undefined when calling deactivateInlineHook.');
+            }
+            const localVarPath = `/api/v1/inlineHooks/{inlineHookId}/lifecycle/deactivate`
+                .replace(`{${"inlineHookId"}}`, encodeURIComponent(String(inlineHookId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options };
+            const localVarHeaderParameter = {};
+            const localVarQueryParameter = {};
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.query) {
+                query.set(key, options.query[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = { ...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers };
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
     };
 };
 exports.InlineHookApiRequestParamCreator = InlineHookApiRequestParamCreator;
@@ -519,18 +519,18 @@ exports.InlineHookApiRequestParamCreator = InlineHookApiRequestParamCreator;
 const InlineHookApiFp = function (configuration) {
     return {
         /**
-          * Activates the Inline Hook matching the provided id
-          * @summary Activate Inline Hook
-          * @param {string} inlineHookId
+          * Success
+          * @summary List Inline Hooks
+          * @param {string} [type]
           * @param {*} [options] Override http request option.
           * @throws {RequiredError}
           */
-        activateInlineHook(inlineHookId, options) {
+        listInlineHooks(type, options) {
             const api = exports.InlineHookApiRequestParamCreator(configuration);
-            const localVarRequestArgs = api.activateInlineHook(inlineHookId, options);
+            const localVarRequestArgs = api.listInlineHooks(type, options);
             return (http = api.http, basePath = configuration.basePath || configuration.orgUrl) => {
                 const requestArgs = { ...localVarRequestArgs.options, url: basePath + localVarRequestArgs.url };
-                return http.http(requestArgs.url, requestArgs).then(res => res.json().then((data) => data));
+                return new collection_1.Collection({ http }, `${requestArgs.url}`);
             };
         },
         /**
@@ -543,21 +543,6 @@ const InlineHookApiFp = function (configuration) {
         createInlineHook(body, options) {
             const api = exports.InlineHookApiRequestParamCreator(configuration);
             const localVarRequestArgs = api.createInlineHook(body, options);
-            return (http = api.http, basePath = configuration.basePath || configuration.orgUrl) => {
-                const requestArgs = { ...localVarRequestArgs.options, url: basePath + localVarRequestArgs.url };
-                return http.http(requestArgs.url, requestArgs).then(res => res.json().then((data) => data));
-            };
-        },
-        /**
-          * Deactivates the Inline Hook matching the provided id
-          * @summary Deactivate Inline Hook
-          * @param {string} inlineHookId
-          * @param {*} [options] Override http request option.
-          * @throws {RequiredError}
-          */
-        deactivateInlineHook(inlineHookId, options) {
-            const api = exports.InlineHookApiRequestParamCreator(configuration);
-            const localVarRequestArgs = api.deactivateInlineHook(inlineHookId, options);
             return (http = api.http, basePath = configuration.basePath || configuration.orgUrl) => {
                 const requestArgs = { ...localVarRequestArgs.options, url: basePath + localVarRequestArgs.url };
                 return http.http(requestArgs.url, requestArgs).then(res => res.json().then((data) => data));
@@ -585,22 +570,6 @@ const InlineHookApiFp = function (configuration) {
             };
         },
         /**
-          * Executes the Inline Hook matching the provided inlineHookId using the request body as the input. This will send the provided data through the Channel and return a response if it matches the correct data contract. This execution endpoint should only be used for testing purposes.
-          * @summary Execute Inline Hook
-          * @param {InlineHookPayload} body
-          * @param {string} inlineHookId
-          * @param {*} [options] Override http request option.
-          * @throws {RequiredError}
-          */
-        executeInlineHook(body, inlineHookId, options) {
-            const api = exports.InlineHookApiRequestParamCreator(configuration);
-            const localVarRequestArgs = api.executeInlineHook(body, inlineHookId, options);
-            return (http = api.http, basePath = configuration.basePath || configuration.orgUrl) => {
-                const requestArgs = { ...localVarRequestArgs.options, url: basePath + localVarRequestArgs.url };
-                return http.http(requestArgs.url, requestArgs).then(res => res.json().then((data) => data));
-            };
-        },
-        /**
           * Gets an inline hook by ID
           * @summary Get Inline Hook
           * @param {string} inlineHookId
@@ -613,21 +582,6 @@ const InlineHookApiFp = function (configuration) {
             return (http = api.http, basePath = configuration.basePath || configuration.orgUrl) => {
                 const requestArgs = { ...localVarRequestArgs.options, url: basePath + localVarRequestArgs.url };
                 return http.http(requestArgs.url, requestArgs).then(res => res.json().then((data) => data));
-            };
-        },
-        /**
-          * Success
-          * @summary List Inline Hooks
-          * @param {string} [type]
-          * @param {*} [options] Override http request option.
-          * @throws {RequiredError}
-          */
-        listInlineHooks(type, options) {
-            const api = exports.InlineHookApiRequestParamCreator(configuration);
-            const localVarRequestArgs = api.listInlineHooks(type, options);
-            return (http = api.http, basePath = configuration.basePath || configuration.orgUrl) => {
-                const requestArgs = { ...localVarRequestArgs.options, url: basePath + localVarRequestArgs.url };
-                return new collection_1.Collection({ http }, `${requestArgs.url}`);
             };
         },
         /**
@@ -646,6 +600,52 @@ const InlineHookApiFp = function (configuration) {
                 return http.http(requestArgs.url, requestArgs).then(res => res.json().then((data) => data));
             };
         },
+        /**
+          * Executes the Inline Hook matching the provided inlineHookId using the request body as the input. This will send the provided data through the Channel and return a response if it matches the correct data contract. This execution endpoint should only be used for testing purposes.
+          * @summary Execute Inline Hook
+          * @param {InlineHookPayload} body
+          * @param {string} inlineHookId
+          * @param {*} [options] Override http request option.
+          * @throws {RequiredError}
+          */
+        executeInlineHook(body, inlineHookId, options) {
+            const api = exports.InlineHookApiRequestParamCreator(configuration);
+            const localVarRequestArgs = api.executeInlineHook(body, inlineHookId, options);
+            return (http = api.http, basePath = configuration.basePath || configuration.orgUrl) => {
+                const requestArgs = { ...localVarRequestArgs.options, url: basePath + localVarRequestArgs.url };
+                return http.http(requestArgs.url, requestArgs).then(res => res.json().then((data) => data));
+            };
+        },
+        /**
+          * Activates the Inline Hook matching the provided id
+          * @summary Activate Inline Hook
+          * @param {string} inlineHookId
+          * @param {*} [options] Override http request option.
+          * @throws {RequiredError}
+          */
+        activateInlineHook(inlineHookId, options) {
+            const api = exports.InlineHookApiRequestParamCreator(configuration);
+            const localVarRequestArgs = api.activateInlineHook(inlineHookId, options);
+            return (http = api.http, basePath = configuration.basePath || configuration.orgUrl) => {
+                const requestArgs = { ...localVarRequestArgs.options, url: basePath + localVarRequestArgs.url };
+                return http.http(requestArgs.url, requestArgs).then(res => res.json().then((data) => data));
+            };
+        },
+        /**
+          * Deactivates the Inline Hook matching the provided id
+          * @summary Deactivate Inline Hook
+          * @param {string} inlineHookId
+          * @param {*} [options] Override http request option.
+          * @throws {RequiredError}
+          */
+        deactivateInlineHook(inlineHookId, options) {
+            const api = exports.InlineHookApiRequestParamCreator(configuration);
+            const localVarRequestArgs = api.deactivateInlineHook(inlineHookId, options);
+            return (http = api.http, basePath = configuration.basePath || configuration.orgUrl) => {
+                const requestArgs = { ...localVarRequestArgs.options, url: basePath + localVarRequestArgs.url };
+                return http.http(requestArgs.url, requestArgs).then(res => res.json().then((data) => data));
+            };
+        },
     };
 };
 exports.InlineHookApiFp = InlineHookApiFp;
@@ -656,14 +656,14 @@ exports.InlineHookApiFp = InlineHookApiFp;
 const InlineHookApiFactory = function (configuration, basePath, http) {
     return {
         /**
-          * Activates the Inline Hook matching the provided id
-          * @summary Activate Inline Hook
-          * @param {string} inlineHookId
+          * Success
+          * @summary List Inline Hooks
+          * @param {string} [type]
           * @param {*} [options] Override http request option.
           * @throws {RequiredError}
           */
-        activateInlineHook(inlineHookId, options) {
-            return exports.InlineHookApiFp(configuration).activateInlineHook(inlineHookId, options)(http, basePath);
+        listInlineHooks(type, options) {
+            return exports.InlineHookApiFp(configuration).listInlineHooks(type, options)(http, basePath);
         },
         /**
           * Success
@@ -676,16 +676,6 @@ const InlineHookApiFactory = function (configuration, basePath, http) {
             return exports.InlineHookApiFp(configuration).createInlineHook(body, options)(http, basePath);
         },
         /**
-          * Deactivates the Inline Hook matching the provided id
-          * @summary Deactivate Inline Hook
-          * @param {string} inlineHookId
-          * @param {*} [options] Override http request option.
-          * @throws {RequiredError}
-          */
-        deactivateInlineHook(inlineHookId, options) {
-            return exports.InlineHookApiFp(configuration).deactivateInlineHook(inlineHookId, options)(http, basePath);
-        },
-        /**
           * Deletes the Inline Hook matching the provided id. Once deleted, the Inline Hook is unrecoverable. As a safety precaution, only Inline Hooks with a status of INACTIVE are eligible for deletion.
           * @summary Delete Inline Hook
           * @param {string} inlineHookId
@@ -694,6 +684,27 @@ const InlineHookApiFactory = function (configuration, basePath, http) {
           */
         deleteInlineHook(inlineHookId, options) {
             return exports.InlineHookApiFp(configuration).deleteInlineHook(inlineHookId, options)(http, basePath);
+        },
+        /**
+          * Gets an inline hook by ID
+          * @summary Get Inline Hook
+          * @param {string} inlineHookId
+          * @param {*} [options] Override http request option.
+          * @throws {RequiredError}
+          */
+        getInlineHook(inlineHookId, options) {
+            return exports.InlineHookApiFp(configuration).getInlineHook(inlineHookId, options)(http, basePath);
+        },
+        /**
+          * Updates an inline hook by ID
+          * @summary Update Inline Hook
+          * @param {InlineHook} body
+          * @param {string} inlineHookId
+          * @param {*} [options] Override http request option.
+          * @throws {RequiredError}
+          */
+        updateInlineHook(body, inlineHookId, options) {
+            return exports.InlineHookApiFp(configuration).updateInlineHook(body, inlineHookId, options)(http, basePath);
         },
         /**
           * Executes the Inline Hook matching the provided inlineHookId using the request body as the input. This will send the provided data through the Channel and return a response if it matches the correct data contract. This execution endpoint should only be used for testing purposes.
@@ -707,35 +718,24 @@ const InlineHookApiFactory = function (configuration, basePath, http) {
             return exports.InlineHookApiFp(configuration).executeInlineHook(body, inlineHookId, options)(http, basePath);
         },
         /**
-          * Gets an inline hook by ID
-          * @summary Get Inline Hook
+          * Activates the Inline Hook matching the provided id
+          * @summary Activate Inline Hook
           * @param {string} inlineHookId
           * @param {*} [options] Override http request option.
           * @throws {RequiredError}
           */
-        getInlineHook(inlineHookId, options) {
-            return exports.InlineHookApiFp(configuration).getInlineHook(inlineHookId, options)(http, basePath);
+        activateInlineHook(inlineHookId, options) {
+            return exports.InlineHookApiFp(configuration).activateInlineHook(inlineHookId, options)(http, basePath);
         },
         /**
-          * Success
-          * @summary List Inline Hooks
-          * @param {string} [type]
-          * @param {*} [options] Override http request option.
-          * @throws {RequiredError}
-          */
-        listInlineHooks(type, options) {
-            return exports.InlineHookApiFp(configuration).listInlineHooks(type, options)(http, basePath);
-        },
-        /**
-          * Updates an inline hook by ID
-          * @summary Update Inline Hook
-          * @param {InlineHook} body
+          * Deactivates the Inline Hook matching the provided id
+          * @summary Deactivate Inline Hook
           * @param {string} inlineHookId
           * @param {*} [options] Override http request option.
           * @throws {RequiredError}
           */
-        updateInlineHook(body, inlineHookId, options) {
-            return exports.InlineHookApiFp(configuration).updateInlineHook(body, inlineHookId, options)(http, basePath);
+        deactivateInlineHook(inlineHookId, options) {
+            return exports.InlineHookApiFp(configuration).deactivateInlineHook(inlineHookId, options)(http, basePath);
         },
     };
 };
@@ -748,15 +748,15 @@ exports.InlineHookApiFactory = InlineHookApiFactory;
  */
 class InlineHookApi extends base_1.BaseAPI {
     /**
-      * Activates the Inline Hook matching the provided id
-      * @summary Activate Inline Hook
-      * @param {string} inlineHookId
+      * Success
+      * @summary List Inline Hooks
+      * @param {string} [type]
       * @param {*} [options] Override http request option.
       * @throws {RequiredError}
       * @memberof InlineHookApi
       */
-    activateInlineHook(inlineHookId, options) {
-        return exports.InlineHookApiFp(this.configuration).activateInlineHook(inlineHookId, options)(this.httpClient, this.basePath);
+    listInlineHooks(type, options) {
+        return exports.InlineHookApiFp(this.configuration).listInlineHooks(type, options)(this.httpClient, this.basePath);
     }
     /**
       * Success
@@ -770,17 +770,6 @@ class InlineHookApi extends base_1.BaseAPI {
         return exports.InlineHookApiFp(this.configuration).createInlineHook(body, options)(this.httpClient, this.basePath);
     }
     /**
-      * Deactivates the Inline Hook matching the provided id
-      * @summary Deactivate Inline Hook
-      * @param {string} inlineHookId
-      * @param {*} [options] Override http request option.
-      * @throws {RequiredError}
-      * @memberof InlineHookApi
-      */
-    deactivateInlineHook(inlineHookId, options) {
-        return exports.InlineHookApiFp(this.configuration).deactivateInlineHook(inlineHookId, options)(this.httpClient, this.basePath);
-    }
-    /**
       * Deletes the Inline Hook matching the provided id. Once deleted, the Inline Hook is unrecoverable. As a safety precaution, only Inline Hooks with a status of INACTIVE are eligible for deletion.
       * @summary Delete Inline Hook
       * @param {string} inlineHookId
@@ -790,6 +779,29 @@ class InlineHookApi extends base_1.BaseAPI {
       */
     deleteInlineHook(inlineHookId, options) {
         return exports.InlineHookApiFp(this.configuration).deleteInlineHook(inlineHookId, options)(this.httpClient, this.basePath);
+    }
+    /**
+      * Gets an inline hook by ID
+      * @summary Get Inline Hook
+      * @param {string} inlineHookId
+      * @param {*} [options] Override http request option.
+      * @throws {RequiredError}
+      * @memberof InlineHookApi
+      */
+    getInlineHook(inlineHookId, options) {
+        return exports.InlineHookApiFp(this.configuration).getInlineHook(inlineHookId, options)(this.httpClient, this.basePath);
+    }
+    /**
+      * Updates an inline hook by ID
+      * @summary Update Inline Hook
+      * @param {InlineHook} body
+      * @param {string} inlineHookId
+      * @param {*} [options] Override http request option.
+      * @throws {RequiredError}
+      * @memberof InlineHookApi
+      */
+    updateInlineHook(body, inlineHookId, options) {
+        return exports.InlineHookApiFp(this.configuration).updateInlineHook(body, inlineHookId, options)(this.httpClient, this.basePath);
     }
     /**
       * Executes the Inline Hook matching the provided inlineHookId using the request body as the input. This will send the provided data through the Channel and return a response if it matches the correct data contract. This execution endpoint should only be used for testing purposes.
@@ -804,38 +816,26 @@ class InlineHookApi extends base_1.BaseAPI {
         return exports.InlineHookApiFp(this.configuration).executeInlineHook(body, inlineHookId, options)(this.httpClient, this.basePath);
     }
     /**
-      * Gets an inline hook by ID
-      * @summary Get Inline Hook
+      * Activates the Inline Hook matching the provided id
+      * @summary Activate Inline Hook
       * @param {string} inlineHookId
       * @param {*} [options] Override http request option.
       * @throws {RequiredError}
       * @memberof InlineHookApi
       */
-    getInlineHook(inlineHookId, options) {
-        return exports.InlineHookApiFp(this.configuration).getInlineHook(inlineHookId, options)(this.httpClient, this.basePath);
+    activateInlineHook(inlineHookId, options) {
+        return exports.InlineHookApiFp(this.configuration).activateInlineHook(inlineHookId, options)(this.httpClient, this.basePath);
     }
     /**
-      * Success
-      * @summary List Inline Hooks
-      * @param {string} [type]
-      * @param {*} [options] Override http request option.
-      * @throws {RequiredError}
-      * @memberof InlineHookApi
-      */
-    listInlineHooks(type, options) {
-        return exports.InlineHookApiFp(this.configuration).listInlineHooks(type, options)(this.httpClient, this.basePath);
-    }
-    /**
-      * Updates an inline hook by ID
-      * @summary Update Inline Hook
-      * @param {InlineHook} body
+      * Deactivates the Inline Hook matching the provided id
+      * @summary Deactivate Inline Hook
       * @param {string} inlineHookId
       * @param {*} [options] Override http request option.
       * @throws {RequiredError}
       * @memberof InlineHookApi
       */
-    updateInlineHook(body, inlineHookId, options) {
-        return exports.InlineHookApiFp(this.configuration).updateInlineHook(body, inlineHookId, options)(this.httpClient, this.basePath);
+    deactivateInlineHook(inlineHookId, options) {
+        return exports.InlineHookApiFp(this.configuration).deactivateInlineHook(inlineHookId, options)(this.httpClient, this.basePath);
     }
 }
 exports.InlineHookApi = InlineHookApi;

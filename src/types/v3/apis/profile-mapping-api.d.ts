@@ -32,14 +32,6 @@ import type { Configuration } from '../configuration';
 export declare const ProfileMappingApiRequestParamCreator: (configuration?: Configuration & V2Configuration) => {
     http: Http;
     /**
-      * Fetches a single Profile Mapping referenced by its ID.
-      * @summary Get Profile Mapping
-      * @param {string} mappingId
-      * @param {*} [options] Override http request option.
-      * @throws {RequiredError}
-      */
-    getProfileMapping: (mappingId: string, options?: any) => RequestArgs;
-    /**
       * Enumerates Profile Mappings in your organization with pagination.
       * @summary List Profile Mappings
       * @param {string} [after]
@@ -50,6 +42,14 @@ export declare const ProfileMappingApiRequestParamCreator: (configuration?: Conf
       * @throws {RequiredError}
       */
     listProfileMappings: (after?: string, limit?: number, sourceId?: string, targetId?: string, options?: any) => RequestArgs;
+    /**
+      * Fetches a single Profile Mapping referenced by its ID.
+      * @summary Get Profile Mapping
+      * @param {string} mappingId
+      * @param {*} [options] Override http request option.
+      * @throws {RequiredError}
+      */
+    getProfileMapping: (mappingId: string, options?: any) => RequestArgs;
     /**
       * Updates an existing Profile Mapping by adding, updating, or removing one or many Property Mappings.
       * @summary Update Profile Mapping
@@ -66,14 +66,6 @@ export declare const ProfileMappingApiRequestParamCreator: (configuration?: Conf
  */
 export declare const ProfileMappingApiFp: (configuration?: Configuration & V2Configuration) => {
     /**
-      * Fetches a single Profile Mapping referenced by its ID.
-      * @summary Get Profile Mapping
-      * @param {string} mappingId
-      * @param {*} [options] Override http request option.
-      * @throws {RequiredError}
-      */
-    getProfileMapping(mappingId: string, options?: any): (http?: Http, basePath?: string) => Promise<ProfileMapping>;
-    /**
       * Enumerates Profile Mappings in your organization with pagination.
       * @summary List Profile Mappings
       * @param {string} [after]
@@ -84,6 +76,14 @@ export declare const ProfileMappingApiFp: (configuration?: Configuration & V2Con
       * @throws {RequiredError}
       */
     listProfileMappings(after?: string, limit?: number, sourceId?: string, targetId?: string, options?: any): (http?: Http, basePath?: string) => Collection<ProfileMapping>;
+    /**
+      * Fetches a single Profile Mapping referenced by its ID.
+      * @summary Get Profile Mapping
+      * @param {string} mappingId
+      * @param {*} [options] Override http request option.
+      * @throws {RequiredError}
+      */
+    getProfileMapping(mappingId: string, options?: any): (http?: Http, basePath?: string) => Promise<ProfileMapping>;
     /**
       * Updates an existing Profile Mapping by adding, updating, or removing one or many Property Mappings.
       * @summary Update Profile Mapping
@@ -100,14 +100,6 @@ export declare const ProfileMappingApiFp: (configuration?: Configuration & V2Con
  */
 export declare const ProfileMappingApiFactory: (configuration?: Configuration, basePath?: string, http?: Http) => {
     /**
-      * Fetches a single Profile Mapping referenced by its ID.
-      * @summary Get Profile Mapping
-      * @param {string} mappingId
-      * @param {*} [options] Override http request option.
-      * @throws {RequiredError}
-      */
-    getProfileMapping(mappingId: string, options?: any): Promise<ProfileMapping>;
-    /**
       * Enumerates Profile Mappings in your organization with pagination.
       * @summary List Profile Mappings
       * @param {string} [after]
@@ -118,6 +110,14 @@ export declare const ProfileMappingApiFactory: (configuration?: Configuration, b
       * @throws {RequiredError}
       */
     listProfileMappings(after?: string, limit?: number, sourceId?: string, targetId?: string, options?: any): Collection<ProfileMapping>;
+    /**
+      * Fetches a single Profile Mapping referenced by its ID.
+      * @summary Get Profile Mapping
+      * @param {string} mappingId
+      * @param {*} [options] Override http request option.
+      * @throws {RequiredError}
+      */
+    getProfileMapping(mappingId: string, options?: any): Promise<ProfileMapping>;
     /**
       * Updates an existing Profile Mapping by adding, updating, or removing one or many Property Mappings.
       * @summary Update Profile Mapping
@@ -136,15 +136,6 @@ export declare const ProfileMappingApiFactory: (configuration?: Configuration, b
  */
 export declare class ProfileMappingApi extends BaseAPI {
   /**
-      * Fetches a single Profile Mapping referenced by its ID.
-      * @summary Get Profile Mapping
-      * @param {string} mappingId
-      * @param {*} [options] Override http request option.
-      * @throws {RequiredError}
-      * @memberof ProfileMappingApi
-      */
-  getProfileMapping(mappingId: string, options?: any): Promise<ProfileMapping>;
-  /**
       * Enumerates Profile Mappings in your organization with pagination.
       * @summary List Profile Mappings
       * @param {string} [after]
@@ -156,6 +147,15 @@ export declare class ProfileMappingApi extends BaseAPI {
       * @memberof ProfileMappingApi
       */
   listProfileMappings(after?: string, limit?: number, sourceId?: string, targetId?: string, options?: any): Collection<ProfileMapping>;
+  /**
+      * Fetches a single Profile Mapping referenced by its ID.
+      * @summary Get Profile Mapping
+      * @param {string} mappingId
+      * @param {*} [options] Override http request option.
+      * @throws {RequiredError}
+      * @memberof ProfileMappingApi
+      */
+  getProfileMapping(mappingId: string, options?: any): Promise<ProfileMapping>;
   /**
       * Updates an existing Profile Mapping by adding, updating, or removing one or many Property Mappings.
       * @summary Update Profile Mapping

@@ -26,8 +26,6 @@ describe('User Schema API', () => {
 
   beforeEach(async () => {
     userType = await client.createUserType(getMockUserType());
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore OKTA-483661
     const schemaLink = (userType._links.schema as Record<string, string>).href;
     schemaId = schemaLink.replace(orgUrl, '').split('/').pop();
   });
