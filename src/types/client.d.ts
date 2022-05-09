@@ -30,6 +30,7 @@ export declare class Client extends ParameterizedOperationsClient {
     cacheStore?: CacheStorage,
     cacheMiddleware?: typeof defaultCacheMiddleware | unknown
     defaultCacheMiddlewareResponseBufferSize?: number,
+    userAgent?: string,
     httpsProxy?: string | unknown, // https://github.com/TooTallNate/node-agent-base/issues/56
   });
 
