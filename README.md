@@ -824,6 +824,19 @@ When the proxy configuration is not overridden as shown above, Okta client relie
 
 To use HTTP Basic Auth with your proxy, use the `http://user:password@host/` syntax.
 
+## User Agent
+
+If you need to specify a User-Agent for the client requests, you can configure it with `userAgent` property.
+```javascript
+const okta = require('@okta/okta-sdk-nodejs');
+
+const client = new okta.Client({
+  orgUrl: 'https://dev-1234.oktapreview.com/',
+  token: 'xYzabc', // Obtained from Developer Dashboard
+  userAgent: 'example/1.0'
+});
+```
+
 ## TypeScript usage
 
 ### 4.5.x
