@@ -75,7 +75,7 @@ const getBodyModelName = operation => {
 
 const getBodyModelNameInCamelCase = operation => _.camelCase(getBodyModelName(operation));
 
-const getOperationArgument = (operation, apiVersion) => {
+const getOperationArgument = (operation) => {
   const { bodyModel, method, pathParams, queryParams, formData, parameters } = operation;
   const optionalArgs = [];
   const requiredArgs = [];
@@ -99,16 +99,9 @@ const getOperationArgument = (operation, apiVersion) => {
     }
   }
 
-  if (apiVersion === 'v3') {
-    // body params go first
-    requiredArgs.push(...requiredBodyArgs);
-    requiredArgs.push(...pathParamArgs);
-    optionalArgs.push(...optionalBodyArgs);
-  } else {
-    requiredArgs.push(...pathParamArgs);
-    requiredArgs.push(...requiredBodyArgs);
-    optionalArgs.push(...optionalBodyArgs);
-  }
+  requiredArgs.push(...pathParamArgs);
+  requiredArgs.push(...requiredBodyArgs);
+  optionalArgs.push(...optionalBodyArgs);
 
   if (queryParams.length) {
     if (hasRequiredParameterInRequestMedia(parameters, 'query')) {
@@ -252,12 +245,12 @@ const jsdocBuilder = (operation) => {
 
 const typeScriptOperationSignatureBuilder = operation => {
   const [args, returnType] = getOperationArgumentsAndReturnType(operation);
-  return formatMethodSignature(operation.operationId, args, returnType);
+  return formatMethodSignature(operation.operationId, args, returnType, { tagV3Methods: true });
 };
 
 const typeScriptModelMethodSignatureBuilder = (method, modelName) => {
   const [args, returnType] = getModelMethodArgumentsAndReturnType(method, modelName);
-  return formatMethodSignature(method.alias, args, returnType);
+  return formatMethodSignature(method.alias, args, returnType, { tagV3Methods: false });
 };
 
 const typeScriptClientImportBuilder = operations => {
@@ -364,7 +357,7 @@ const getOperationArgumentsAndReturnType = operation => {
   }
 
   let genericType = 'Promise';
-  let genericParameterType = isV3Api(operationId) ? 'Record<string, never>' : 'Response';
+  let genericParameterType = isV3Api(operationId) ? 'void' : 'Response';
   if (operation.responseModel) {
     genericParameterType = operation.responseModel;
     if (operation.isArray) {

@@ -16,13 +16,15 @@ import { RequestExecutor } from './request-executor';
 import { CacheStorage } from './memory-store';
 import { defaultCacheMiddleware } from './default-cache-middleware';
 import { RequestOptions } from './request-options';
+import { HttpLibrary } from './../v3/http/http';
+
 
 interface RequestContext {
   isCollection?: boolean,
   resources?: string[],
 }
 
-export declare class Http {
+export declare class Http implements HttpLibrary {
   static errorFilter(response: Response): Promise<Response>;
   constructor(httpConfig: {
     requestExecutor: RequestExecutor,

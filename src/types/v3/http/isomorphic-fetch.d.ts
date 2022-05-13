@@ -10,20 +10,9 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
-const Client = require('./client');
-const RequestExecutor = require('./request-executor');
-const { DefaultRequestExecutor } = require('./default-request-executor');
-const { Collection } = require('./collection');
-const v3 = require('./v3');
 
-
-module.exports = Object.assign(
-  {}, {
-    Client,
-    RequestExecutor,
-    DefaultRequestExecutor,
-    Collection,
-    v3
-  },
-  require('./models'),
-);
+import { HttpLibrary, RequestContext, ResponseContext } from './http';
+import { Observable } from '../rxjsStub';
+export declare class IsomorphicFetchHttpLibrary implements HttpLibrary {
+  send(request: RequestContext): Observable<ResponseContext>;
+}

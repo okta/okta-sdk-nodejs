@@ -20,8 +20,10 @@ const { Http } = require('./http');
 const DEFAULT_USER_AGENT = `${packageJson.name}/${packageJson.version} node/${process.versions.node} ${os.platform()}/${os.release()}`;
 const repoUrl = 'https://github.com/okta/okta-sdk-nodejs';
 const { OAuth } = require('./oauth');
-const { AuthenticatorApi, SchemaApi, UserTypeApi, InlineHookApi } = require('./v3/api');
-
+const { AuthenticatorApi, SchemaApi, UserTypeApi, InlineHookApi, ProfileMappingApi } = require('./v3');
+const { createConfiguration } = require('./v3/configuration');
+const { ServerConfiguration } = require('./v3/servers');
+const { Observable } = require('./v3/rxjsStub');
 
 
 /**
@@ -91,10 +93,39 @@ class Client extends GeneratedApiClient {
     }
     this.http.defaultHeaders['User-Agent'] = parsedConfig.client.userAgent ? parsedConfig.client.userAgent + ' ' + DEFAULT_USER_AGENT : DEFAULT_USER_AGENT;
 
-    this.userTypeApi = new UserTypeApi(config, parsedConfig.client.orgUrl, this.http);
-    this.authenticatorApi = new AuthenticatorApi(config, parsedConfig.client.orgUrl, this.http);
-    this.schemaApi = new SchemaApi(config, parsedConfig.client.orgUrl, this.http);
-    this.inlineHookApi = new InlineHookApi(config, parsedConfig.client.orgUrl, this.http);
+    function getAffectedResources(path) {
+      const resources = [];
+      let pl = path.length;
+      while (pl--) {
+        if (path[pl] === '}') {
+          const resourcePath = path.slice(0, pl + 1).replace(/{/g, '${');
+          resources.push('${this.baseUrl}' + resourcePath);
+        }
+      }
+      return resources;
+    }
+
+    const configuration = createConfiguration({
+      baseServer: new ServerConfiguration(parsedConfig.client.orgUrl),
+      authMethods: {
+        api_token: `SSWS ${parsedConfig.client.token}`
+      },
+      httpApi: this.http,
+      middleware: [{
+        pre: function (req) {
+          req.affectedResources = getAffectedResources(req.url.href);
+          return new Observable(Promise.resolve(req));
+        },
+        post: function (resp) {
+          return new Observable(Promise.resolve(resp));
+        }
+      }],
+    });
+    this.userTypeApi = new UserTypeApi(configuration);
+    this.authenticatorApi = new AuthenticatorApi(configuration);
+    this.schemaApi = new SchemaApi(configuration);
+    this.inlineHookApi = new InlineHookApi(configuration);
+    this.profileMappingApi = new ProfileMappingApi(configuration);
   }
 }
 

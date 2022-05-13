@@ -37,7 +37,7 @@ class GeneratedApiClient {
 
     {{#if isArray}}
     return new Collection(
-      this,
+      this.http,
       url,
       {{#if responseModelRequiresResolution}}
       new factories.{{responseModel}}(),

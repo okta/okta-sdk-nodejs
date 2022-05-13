@@ -25,9 +25,9 @@ class Collection {
    * @param {Object} Ctor Class of each item in the collection
    * @param {Request} [request] Fetch API request object
    */
-  constructor(client, uri, factory, request) {
+  constructor(httpApi, uri, factory, request) {
     this.nextUri = uri;
-    this.client = client;
+    this.httpApi = httpApi;
     this.factory = factory;
     this.currentItems = [];
     this.request = request;
@@ -41,7 +41,7 @@ class Collection {
         const item = self.currentItems.length && self.currentItems.shift();
         const done = !self.currentItems.length && !self.nextUri && !item;
         const result = {
-          value: item ? (self.factory ? self.factory.createInstance(item, self.client) : item) : null,
+          value: item ? (self.factory.createInstance ? self.factory.createInstance(item, self.client) : item) : null,
           done,
         };
         resolve(result);
@@ -71,14 +71,22 @@ class Collection {
     };
   }
 
+  fetch() {
+    if (typeof this.httpApi.http === 'function') {
+      return this.httpApi.http(this.nextUri, this.request, { isCollection: true });
+    } else {
+      return this.httpApi.send(this.request).toPromise();
+    }
+  }
+
   getNextPage() {
     if (!this.nextUri) {
       return Promise.resolve([]);
     }
 
-    return this.client.http.http(this.nextUri, this.request, {isCollection: true})
+    return this.fetch()
       .then(res => {
-        const link = res.headers.get('link');
+        const link = res.headers.get ? res.headers.get('link') : res.headers['link'];
         if (link) {
           const parsed = parseLinkHeader(link);
           if (parsed.next) {
@@ -87,7 +95,7 @@ class Collection {
           }
         }
         this.nextUri = undefined;
-        return res.json();
+        return res.json ? res.json() : this.factory.parseResponse(res);
       });
   }
 

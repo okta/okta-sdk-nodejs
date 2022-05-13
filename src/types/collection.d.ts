@@ -14,13 +14,19 @@ import { RequestOptions } from './request-options';
 import { ModelFactory } from './model-factory';
 import { ModelResolutionFactory } from './resolution-factory';
 import { Client } from './client';
+import { RequestContext, ResponseContext, HttpLibrary } from './v3/http/http';
+
+
+interface ResponseProcessor {
+  parseResponse: (resource: ResponseContext) => Promise<unknown>
+}
 
 export declare class Collection<T> {
-  constructor(client: Client, uri: string, factory?: ModelFactory | ModelResolutionFactory, request?: RequestOptions);
+  constructor(httpApi: Client, uri: string, factory?: ModelFactory | ModelResolutionFactory | ResponseProcessor, request?: RequestOptions | RequestContext);
 
   nextUri: string;
-  client: Client;
-  factory: ModelFactory | ModelResolutionFactory;
+  httpApi: HttpLibrary;
+  factory: ModelFactory | ModelResolutionFactory | ResponseProcessor;
   currentItems: Record<string, unknown>[];
   request: RequestOptions;
   next(): Promise<{

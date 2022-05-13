@@ -1,7 +1,7 @@
 import { expectType } from 'tsd';
 import { Client } from '../../src/types/client';
-import type { ProfileMappingProperty } from '../../src/types/v3/models/profile-mapping-property';
-import type { ProfileMapping } from '../../src/types/v3/models/profile-mapping';
+import type { ProfileMappingProperty } from '../../src/types/v3/models/ProfileMappingProperty';
+import type { ProfileMapping } from '../../src/types/v3/models/ProfileMapping';
 
 
 const client = new Client();

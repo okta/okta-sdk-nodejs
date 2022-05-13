@@ -47,7 +47,7 @@ class GeneratedApiClient {
     url += queryString ? ('?' + queryString) : '';
 
     return new Collection(
-      this,
+      this.http,
       url,
       new factories.Application(),
     );
@@ -299,7 +299,7 @@ class GeneratedApiClient {
     let url = `${this.baseUrl}/api/v1/apps/${appId}/credentials/csrs`;
 
     return new Collection(
-      this,
+      this.http,
       url,
       new ModelFactory(models.Csr),
     );
@@ -604,7 +604,7 @@ class GeneratedApiClient {
     let url = `${this.baseUrl}/api/v1/apps/${appId}/credentials/keys`;
 
     return new Collection(
-      this,
+      this.http,
       url,
       new ModelFactory(models.JsonWebKey),
     );
@@ -722,7 +722,7 @@ class GeneratedApiClient {
     let url = `${this.baseUrl}/api/v1/apps/${appId}/features`;
 
     return new Collection(
-      this,
+      this.http,
       url,
       new ModelFactory(models.ApplicationFeature),
     );
@@ -813,7 +813,7 @@ class GeneratedApiClient {
     url += queryString ? ('?' + queryString) : '';
 
     return new Collection(
-      this,
+      this.http,
       url,
       new ModelFactory(models.OAuth2ScopeConsentGrant),
     );
@@ -936,7 +936,7 @@ class GeneratedApiClient {
     url += queryString ? ('?' + queryString) : '';
 
     return new Collection(
-      this,
+      this.http,
       url,
       new ModelFactory(models.ApplicationGroupAssignment),
     );
@@ -1170,7 +1170,7 @@ class GeneratedApiClient {
     url += queryString ? ('?' + queryString) : '';
 
     return new Collection(
-      this,
+      this.http,
       url,
       new ModelFactory(models.OAuth2Token),
     );
@@ -1264,7 +1264,7 @@ class GeneratedApiClient {
     url += queryString ? ('?' + queryString) : '';
 
     return new Collection(
-      this,
+      this.http,
       url,
       new ModelFactory(models.AppUser),
     );
@@ -1445,7 +1445,7 @@ class GeneratedApiClient {
     if (!authenticator) {
       return Promise.reject(new Error('OKTA API updateAuthenticator parameter authenticator is required.'));
     }
-    return this.authenticatorApi.updateAuthenticator(authenticator, authenticatorId);
+    return this.authenticatorApi.updateAuthenticator(authenticatorId, authenticator);
   }
 
   /**
@@ -1493,7 +1493,7 @@ class GeneratedApiClient {
     url += queryString ? ('?' + queryString) : '';
 
     return new Collection(
-      this,
+      this.http,
       url,
       new ModelFactory(models.AuthorizationServer),
     );
@@ -1618,7 +1618,7 @@ class GeneratedApiClient {
     let url = `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/claims`;
 
     return new Collection(
-      this,
+      this.http,
       url,
       new ModelFactory(models.OAuth2Claim),
     );
@@ -1764,7 +1764,7 @@ class GeneratedApiClient {
     let url = `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/clients`;
 
     return new Collection(
-      this,
+      this.http,
       url,
       new ModelFactory(models.OAuth2Client),
     );
@@ -1824,7 +1824,7 @@ class GeneratedApiClient {
     url += queryString ? ('?' + queryString) : '';
 
     return new Collection(
-      this,
+      this.http,
       url,
       new ModelFactory(models.OAuth2RefreshToken),
     );
@@ -1918,7 +1918,7 @@ class GeneratedApiClient {
     let url = `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/credentials/keys`;
 
     return new Collection(
-      this,
+      this.http,
       url,
       new ModelFactory(models.JsonWebKey),
     );
@@ -1941,7 +1941,7 @@ class GeneratedApiClient {
     let url = `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/credentials/lifecycle/keyRotate`;
 
     return new Collection(
-      this,
+      this.http,
       url,
       new ModelFactory(models.JsonWebKey),
       {
@@ -2024,7 +2024,7 @@ class GeneratedApiClient {
     let url = `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/policies`;
 
     return new Collection(
-      this,
+      this.http,
       url,
       new ModelFactory(models.AuthorizationServerPolicy),
     );
@@ -2240,7 +2240,7 @@ class GeneratedApiClient {
     let url = `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/policies/${policyId}/rules`;
 
     return new Collection(
-      this,
+      this.http,
       url,
       new ModelFactory(models.AuthorizationServerPolicyRule),
     );
@@ -2490,7 +2490,7 @@ class GeneratedApiClient {
     url += queryString ? ('?' + queryString) : '';
 
     return new Collection(
-      this,
+      this.http,
       url,
       new ModelFactory(models.OAuth2Scope),
     );
@@ -2632,7 +2632,7 @@ class GeneratedApiClient {
     let url = `${this.baseUrl}/api/v1/brands`;
 
     return new Collection(
-      this,
+      this.http,
       url,
       new ModelFactory(models.Brand),
     );
@@ -2714,7 +2714,7 @@ class GeneratedApiClient {
     url += queryString ? ('?' + queryString) : '';
 
     return new Collection(
-      this,
+      this.http,
       url,
       new ModelFactory(models.EmailTemplate),
     );
@@ -2797,7 +2797,7 @@ class GeneratedApiClient {
     let url = `${this.baseUrl}/api/v1/brands/${brandId}/templates/email/${templateName}/customizations`;
 
     return new Collection(
-      this,
+      this.http,
       url,
       new ModelFactory(models.EmailTemplateCustomization),
     );
@@ -3093,7 +3093,7 @@ class GeneratedApiClient {
     let url = `${this.baseUrl}/api/v1/brands/${brandId}/themes`;
 
     return new Collection(
-      this,
+      this.http,
       url,
       new ModelFactory(models.ThemeResponse),
     );
@@ -3519,7 +3519,7 @@ class GeneratedApiClient {
     let url = `${this.baseUrl}/api/v1/eventHooks`;
 
     return new Collection(
-      this,
+      this.http,
       url,
       new ModelFactory(models.EventHook),
     );
@@ -3715,7 +3715,7 @@ class GeneratedApiClient {
     let url = `${this.baseUrl}/api/v1/features`;
 
     return new Collection(
-      this,
+      this.http,
       url,
       new ModelFactory(models.Feature),
     );
@@ -3760,7 +3760,7 @@ class GeneratedApiClient {
     let url = `${this.baseUrl}/api/v1/features/${featureId}/dependencies`;
 
     return new Collection(
-      this,
+      this.http,
       url,
       new ModelFactory(models.Feature),
     );
@@ -3780,7 +3780,7 @@ class GeneratedApiClient {
     let url = `${this.baseUrl}/api/v1/features/${featureId}/dependents`;
 
     return new Collection(
-      this,
+      this.http,
       url,
       new ModelFactory(models.Feature),
     );
@@ -3840,7 +3840,7 @@ class GeneratedApiClient {
     url += queryString ? ('?' + queryString) : '';
 
     return new Collection(
-      this,
+      this.http,
       url,
       new ModelFactory(models.Group),
     );
@@ -3889,7 +3889,7 @@ class GeneratedApiClient {
     url += queryString ? ('?' + queryString) : '';
 
     return new Collection(
-      this,
+      this.http,
       url,
       new ModelFactory(models.GroupRule),
     );
@@ -4166,7 +4166,7 @@ class GeneratedApiClient {
     url += queryString ? ('?' + queryString) : '';
 
     return new Collection(
-      this,
+      this.http,
       url,
       new factories.Application(),
     );
@@ -4191,7 +4191,7 @@ class GeneratedApiClient {
     url += queryString ? ('?' + queryString) : '';
 
     return new Collection(
-      this,
+      this.http,
       url,
       new ModelFactory(models.Role),
     );
@@ -4316,7 +4316,7 @@ class GeneratedApiClient {
     url += queryString ? ('?' + queryString) : '';
 
     return new Collection(
-      this,
+      this.http,
       url,
       new ModelFactory(models.CatalogApplication),
     );
@@ -4500,7 +4500,7 @@ class GeneratedApiClient {
     url += queryString ? ('?' + queryString) : '';
 
     return new Collection(
-      this,
+      this.http,
       url,
       new ModelFactory(models.Group),
     );
@@ -4598,7 +4598,7 @@ class GeneratedApiClient {
     url += queryString ? ('?' + queryString) : '';
 
     return new Collection(
-      this,
+      this.http,
       url,
       new ModelFactory(models.User),
     );
@@ -4684,7 +4684,7 @@ class GeneratedApiClient {
     url += queryString ? ('?' + queryString) : '';
 
     return new Collection(
-      this,
+      this.http,
       url,
       new ModelFactory(models.IdentityProvider),
     );
@@ -4731,7 +4731,7 @@ class GeneratedApiClient {
     url += queryString ? ('?' + queryString) : '';
 
     return new Collection(
-      this,
+      this.http,
       url,
       new ModelFactory(models.JsonWebKey),
     );
@@ -4905,7 +4905,7 @@ class GeneratedApiClient {
     let url = `${this.baseUrl}/api/v1/idps/${idpId}/credentials/csrs`;
 
     return new Collection(
-      this,
+      this.http,
       url,
       new ModelFactory(models.Csr),
     );
@@ -5210,7 +5210,7 @@ class GeneratedApiClient {
     let url = `${this.baseUrl}/api/v1/idps/${idpId}/credentials/keys`;
 
     return new Collection(
-      this,
+      this.http,
       url,
       new ModelFactory(models.JsonWebKey),
     );
@@ -5381,7 +5381,7 @@ class GeneratedApiClient {
     let url = `${this.baseUrl}/api/v1/idps/${idpId}/users`;
 
     return new Collection(
-      this,
+      this.http,
       url,
       new ModelFactory(models.IdentityProviderApplicationUser),
     );
@@ -5500,7 +5500,7 @@ class GeneratedApiClient {
     let url = `${this.baseUrl}/api/v1/idps/${idpId}/users/${userId}/credentials/tokens`;
 
     return new Collection(
-      this,
+      this.http,
       url,
       new ModelFactory(models.SocialAuthToken),
     );
@@ -5574,7 +5574,7 @@ class GeneratedApiClient {
     if (!inlineHook) {
       return Promise.reject(new Error('OKTA API updateInlineHook parameter inlineHook is required.'));
     }
-    return this.inlineHookApi.updateInlineHook(inlineHook, inlineHookId);
+    return this.inlineHookApi.updateInlineHook(inlineHookId, inlineHook);
   }
 
   /**
@@ -5592,7 +5592,7 @@ class GeneratedApiClient {
     if (!inlineHookPayload) {
       return Promise.reject(new Error('OKTA API executeInlineHook parameter inlineHookPayload is required.'));
     }
-    return this.inlineHookApi.executeInlineHook(inlineHookPayload, inlineHookId);
+    return this.inlineHookApi.executeInlineHook(inlineHookId, inlineHookPayload);
   }
 
   /**
@@ -5644,7 +5644,7 @@ class GeneratedApiClient {
     url += queryString ? ('?' + queryString) : '';
 
     return new Collection(
-      this,
+      this.http,
       url,
       new ModelFactory(models.LogEvent),
     );
@@ -5662,16 +5662,7 @@ class GeneratedApiClient {
    * @returns {Collection} A collection that will yield {@link ProfileMapping} instances.
    */
   listProfileMappings(queryParameters) {
-    let url = `${this.baseUrl}/api/v1/mappings`;
-    const queryString = qs.stringify(queryParameters || {});
-
-    url += queryString ? ('?' + queryString) : '';
-
-    return new Collection(
-      this,
-      url,
-      new ModelFactory(models.ProfileMapping),
-    );
+    return this.profileMappingApi.listProfileMappings(queryParameters);
   }
 
   /**
@@ -5703,7 +5694,7 @@ class GeneratedApiClient {
     if (!profileMapping) {
       return Promise.reject(new Error('OKTA API updateProfileMapping parameter profileMapping is required.'));
     }
-    return this.profileMappingApi.updateProfileMapping(profileMapping, mappingId);
+    return this.profileMappingApi.updateProfileMapping(mappingId, profileMapping);
   }
 
   /**
@@ -5766,7 +5757,7 @@ class GeneratedApiClient {
     let url = `${this.baseUrl}/api/v1/meta/schemas/user/linkedObjects`;
 
     return new Collection(
-      this,
+      this.http,
       url,
       new ModelFactory(models.LinkedObject),
     );
@@ -5875,7 +5866,7 @@ class GeneratedApiClient {
     if (!userSchema) {
       return Promise.reject(new Error('OKTA API updateUserProfile parameter userSchema is required.'));
     }
-    return this.schemaApi.updateUserProfile(userSchema, schemaId);
+    return this.schemaApi.updateUserProfile(schemaId, userSchema);
   }
 
   /**
@@ -5944,7 +5935,7 @@ class GeneratedApiClient {
     if (!userType) {
       return Promise.reject(new Error('OKTA API updateUserType parameter userType is required.'));
     }
-    return this.userTypeApi.updateUserType(userType, typeId);
+    return this.userTypeApi.updateUserType(typeId, userType);
   }
 
   /**
@@ -5962,7 +5953,7 @@ class GeneratedApiClient {
     if (!userType) {
       return Promise.reject(new Error('OKTA API replaceUserType parameter userType is required.'));
     }
-    return this.userTypeApi.replaceUserType(userType, typeId);
+    return this.userTypeApi.replaceUserType(typeId, userType);
   }
 
   /**
@@ -6044,7 +6035,7 @@ class GeneratedApiClient {
     let url = `${this.baseUrl}/api/v1/org/contacts`;
 
     return new Collection(
-      this,
+      this.http,
       url,
       new ModelFactory(models.OrgContactTypeObj),
     );
@@ -6340,7 +6331,7 @@ class GeneratedApiClient {
     url += queryString ? ('?' + queryString) : '';
 
     return new Collection(
-      this,
+      this.http,
       url,
       new factories.Policy(),
     );
@@ -6531,7 +6522,7 @@ class GeneratedApiClient {
     let url = `${this.baseUrl}/api/v1/policies/${policyId}/rules`;
 
     return new Collection(
-      this,
+      this.http,
       url,
       new factories.PolicyRule(),
     );
@@ -6743,7 +6734,7 @@ class GeneratedApiClient {
     let url = `${this.baseUrl}/api/v1/roles/${roleTypeOrRoleId}/subscriptions`;
 
     return new Collection(
-      this,
+      this.http,
       url,
       new ModelFactory(models.Subscription),
     );
@@ -6959,7 +6950,7 @@ class GeneratedApiClient {
     url += queryString ? ('?' + queryString) : '';
 
     return new Collection(
-      this,
+      this.http,
       url,
       new ModelFactory(models.SmsTemplate),
     );
@@ -7163,7 +7154,7 @@ class GeneratedApiClient {
     url += queryString ? ('?' + queryString) : '';
 
     return new Collection(
-      this,
+      this.http,
       url,
       new ModelFactory(models.TrustedOrigin),
     );
@@ -7345,7 +7336,7 @@ class GeneratedApiClient {
     url += queryString ? ('?' + queryString) : '';
 
     return new Collection(
-      this,
+      this.http,
       url,
       new ModelFactory(models.User),
     );
@@ -7561,7 +7552,7 @@ class GeneratedApiClient {
     let url = `${this.baseUrl}/api/v1/users/${userId}/appLinks`;
 
     return new Collection(
-      this,
+      this.http,
       url,
       new ModelFactory(models.AppLink),
     );
@@ -7581,7 +7572,7 @@ class GeneratedApiClient {
     let url = `${this.baseUrl}/api/v1/users/${userId}/clients`;
 
     return new Collection(
-      this,
+      this.http,
       url,
       new ModelFactory(models.OAuth2Client),
     );
@@ -7641,7 +7632,7 @@ class GeneratedApiClient {
     url += queryString ? ('?' + queryString) : '';
 
     return new Collection(
-      this,
+      this.http,
       url,
       new ModelFactory(models.OAuth2ScopeConsentGrant),
     );
@@ -7701,7 +7692,7 @@ class GeneratedApiClient {
     url += queryString ? ('?' + queryString) : '';
 
     return new Collection(
-      this,
+      this.http,
       url,
       new ModelFactory(models.OAuth2RefreshToken),
     );
@@ -7930,7 +7921,7 @@ class GeneratedApiClient {
     let url = `${this.baseUrl}/api/v1/users/${userId}/factors`;
 
     return new Collection(
-      this,
+      this.http,
       url,
       new factories.UserFactor(),
     );
@@ -7989,7 +7980,7 @@ class GeneratedApiClient {
     let url = `${this.baseUrl}/api/v1/users/${userId}/factors/catalog`;
 
     return new Collection(
-      this,
+      this.http,
       url,
       new factories.UserFactor(),
     );
@@ -8009,7 +8000,7 @@ class GeneratedApiClient {
     let url = `${this.baseUrl}/api/v1/users/${userId}/factors/questions`;
 
     return new Collection(
-      this,
+      this.http,
       url,
       new ModelFactory(models.SecurityQuestion),
     );
@@ -8227,7 +8218,7 @@ class GeneratedApiClient {
     url += queryString ? ('?' + queryString) : '';
 
     return new Collection(
-      this,
+      this.http,
       url,
       new ModelFactory(models.OAuth2ScopeConsentGrant),
     );
@@ -8311,7 +8302,7 @@ class GeneratedApiClient {
     let url = `${this.baseUrl}/api/v1/users/${userId}/groups`;
 
     return new Collection(
-      this,
+      this.http,
       url,
       new ModelFactory(models.Group),
     );
@@ -8331,7 +8322,7 @@ class GeneratedApiClient {
     let url = `${this.baseUrl}/api/v1/users/${userId}/idps`;
 
     return new Collection(
-      this,
+      this.http,
       url,
       new ModelFactory(models.IdentityProvider),
     );
@@ -8681,7 +8672,7 @@ class GeneratedApiClient {
     url += queryString ? ('?' + queryString) : '';
 
     return new Collection(
-      this,
+      this.http,
       url,
       new ModelFactory(models.ResponseLinks),
     );
@@ -8706,7 +8697,7 @@ class GeneratedApiClient {
     url += queryString ? ('?' + queryString) : '';
 
     return new Collection(
-      this,
+      this.http,
       url,
       new ModelFactory(models.Role),
     );
@@ -8831,7 +8822,7 @@ class GeneratedApiClient {
     url += queryString ? ('?' + queryString) : '';
 
     return new Collection(
-      this,
+      this.http,
       url,
       new ModelFactory(models.CatalogApplication),
     );
@@ -9048,7 +9039,7 @@ class GeneratedApiClient {
     url += queryString ? ('?' + queryString) : '';
 
     return new Collection(
-      this,
+      this.http,
       url,
       new ModelFactory(models.Group),
     );
@@ -9169,7 +9160,7 @@ class GeneratedApiClient {
     let url = `${this.baseUrl}/api/v1/users/${userId}/subscriptions`;
 
     return new Collection(
-      this,
+      this.http,
       url,
       new ModelFactory(models.Subscription),
     );
@@ -9288,7 +9279,7 @@ class GeneratedApiClient {
     url += queryString ? ('?' + queryString) : '';
 
     return new Collection(
-      this,
+      this.http,
       url,
       new ModelFactory(models.NetworkZone),
     );

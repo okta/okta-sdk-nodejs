@@ -10,20 +10,20 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
-const Client = require('./client');
-const RequestExecutor = require('./request-executor');
-const { DefaultRequestExecutor } = require('./default-request-executor');
-const { Collection } = require('./collection');
-const v3 = require('./v3');
 
-
-module.exports = Object.assign(
-  {}, {
-    Client,
-    RequestExecutor,
-    DefaultRequestExecutor,
-    Collection,
-    v3
-  },
-  require('./models'),
-);
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+exports.PromiseMiddlewareWrapper = void 0;
+const rxjsStub_1 = require('./rxjsStub');
+class PromiseMiddlewareWrapper {
+  constructor(middleware) {
+    this.middleware = middleware;
+  }
+  pre(context) {
+    return rxjsStub_1.from(this.middleware.pre(context));
+  }
+  post(context) {
+    return rxjsStub_1.from(this.middleware.post(context));
+  }
+}
+exports.PromiseMiddlewareWrapper = PromiseMiddlewareWrapper;
