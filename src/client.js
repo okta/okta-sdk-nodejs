@@ -20,7 +20,7 @@ const { Http } = require('./http');
 const DEFAULT_USER_AGENT = `${packageJson.name}/${packageJson.version} node/${process.versions.node} ${os.platform()}/${os.release()}`;
 const repoUrl = 'https://github.com/okta/okta-sdk-nodejs';
 const { OAuth } = require('./oauth');
-const { AuthenticatorApi, SchemaApi, UserTypeApi, InlineHookApi, ProfileMappingApi } = require('./v3');
+const { AuthenticatorApi, SchemaApi, UserTypeApi, InlineHookApi, ProfileMappingApi, DomainApi, LinkedObjectApi } = require('./v3');
 const { createConfiguration } = require('./v3/configuration');
 const { ServerConfiguration } = require('./v3/servers');
 const { Observable } = require('./v3/rxjsStub');
@@ -126,6 +126,8 @@ class Client extends GeneratedApiClient {
     this.schemaApi = new SchemaApi(configuration);
     this.inlineHookApi = new InlineHookApi(configuration);
     this.profileMappingApi = new ProfileMappingApi(configuration);
+    this.domainApi = new DomainApi(configuration);
+    this.linkedObjectApi = new LinkedObjectApi(configuration);
   }
 }
 

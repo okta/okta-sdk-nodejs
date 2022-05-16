@@ -14,7 +14,8 @@ import { RequestOptions } from './request-options';
 import { ModelFactory } from './model-factory';
 import { ModelResolutionFactory } from './resolution-factory';
 import { Client } from './client';
-import { RequestContext, ResponseContext, HttpLibrary } from './v3/http/http';
+import { Http } from './http';
+import { RequestContext, ResponseContext } from './v3/http/http';
 
 
 interface ResponseProcessor {
@@ -25,7 +26,7 @@ export declare class Collection<T> {
   constructor(httpApi: Client, uri: string, factory?: ModelFactory | ModelResolutionFactory | ResponseProcessor, request?: RequestOptions | RequestContext);
 
   nextUri: string;
-  httpApi: HttpLibrary;
+  httpApi: Http;
   factory: ModelFactory | ModelResolutionFactory | ResponseProcessor;
   currentItems: Record<string, unknown>[];
   request: RequestOptions;

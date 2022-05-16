@@ -41,7 +41,7 @@ class Collection {
         const item = self.currentItems.length && self.currentItems.shift();
         const done = !self.currentItems.length && !self.nextUri && !item;
         const result = {
-          value: item ? (self.factory.createInstance ? self.factory.createInstance(item, self.client) : item) : null,
+          value: item ? (self.factory.createInstance ? self.factory.createInstance(item) : item) : null,
           done,
         };
         resolve(result);
@@ -72,10 +72,10 @@ class Collection {
   }
 
   fetch() {
-    if (typeof this.httpApi.http === 'function') {
-      return this.httpApi.http(this.nextUri, this.request, { isCollection: true });
-    } else {
+    if (typeof this.httpApi.send === 'function' && this.request) {
       return this.httpApi.send(this.request).toPromise();
+    } else {
+      return this.httpApi.http(this.nextUri, this.request, { isCollection: true });
     }
   }
 

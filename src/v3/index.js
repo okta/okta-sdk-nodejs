@@ -15,7 +15,7 @@ const { PromiseUserTypeApi } = require('./types/PromiseAPI');
 const { PromiseAuthenticatorApi } = require('./types/PromiseAPI');
 const { PromiseSchemaApi } = require('./types/PromiseAPI');
 const { PromiseInlineHookApi } = require('./types/PromiseAPI');
-const { PromiseProfileMappingApi } = require('./types/PromiseAPI');
+const { PromiseProfileMappingApi, PromiseDomainApi, PromiseLinkedObjectApi } = require('./types/PromiseAPI');
 
 
 module.exports = Object.assign(
@@ -25,7 +25,9 @@ module.exports = Object.assign(
     AuthenticatorApi: PromiseAuthenticatorApi,
     SchemaApi: PromiseSchemaApi,
     InlineHookApi: PromiseInlineHookApi,
-    ProfileMappingApi: PromiseProfileMappingApi
+    ProfileMappingApi: PromiseProfileMappingApi,
+    DomainApi: PromiseDomainApi,
+    LinkedObjectApi: PromiseLinkedObjectApi
   },
   require('./models/all'),
 );
