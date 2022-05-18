@@ -23,7 +23,7 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.wrapHttpLibrary = exports.ResponseContext = exports.SelfDecodingBody = exports.RequestContext = exports.HttpException = exports.HttpMethod = void 0;
+exports.wrapHttpLibrary = exports.ResponseContext = exports.SelfDecodingBody = exports.RequestContext = exports.HttpException = exports.HttpMethodEnum = void 0;
 // typings of url-parse are incorrect...
 // @ts-ignore
 const URLParse = require("url-parse");
@@ -32,18 +32,18 @@ __exportStar(require("./isomorphic-fetch"), exports);
 /**
  * Represents an HTTP method.
  */
-var HttpMethod;
-(function (HttpMethod) {
-    HttpMethod["GET"] = "GET";
-    HttpMethod["HEAD"] = "HEAD";
-    HttpMethod["POST"] = "POST";
-    HttpMethod["PUT"] = "PUT";
-    HttpMethod["DELETE"] = "DELETE";
-    HttpMethod["CONNECT"] = "CONNECT";
-    HttpMethod["OPTIONS"] = "OPTIONS";
-    HttpMethod["TRACE"] = "TRACE";
-    HttpMethod["PATCH"] = "PATCH";
-})(HttpMethod = exports.HttpMethod || (exports.HttpMethod = {}));
+var HttpMethodEnum;
+(function (HttpMethodEnum) {
+    HttpMethodEnum["GET"] = "GET";
+    HttpMethodEnum["HEAD"] = "HEAD";
+    HttpMethodEnum["POST"] = "POST";
+    HttpMethodEnum["PUT"] = "PUT";
+    HttpMethodEnum["DELETE"] = "DELETE";
+    HttpMethodEnum["CONNECT"] = "CONNECT";
+    HttpMethodEnum["OPTIONS"] = "OPTIONS";
+    HttpMethodEnum["TRACE"] = "TRACE";
+    HttpMethodEnum["PATCH"] = "PATCH";
+})(HttpMethodEnum = exports.HttpMethodEnum || (exports.HttpMethodEnum = {}));
 class HttpException extends Error {
     constructor(msg) {
         super(msg);
@@ -64,6 +64,8 @@ class RequestContext {
         this.httpMethod = httpMethod;
         this.headers = {};
         this.body = undefined;
+        this.affectedResources = [];
+        this.isCollection = false;
         this.agent = undefined;
         this.url = new URLParse(url, true);
     }
@@ -119,6 +121,18 @@ class RequestContext {
     }
     setHeaderParam(key, value) {
         this.headers[key] = value;
+    }
+    setAffectedResources(affectedResources) {
+        this.affectedResources = affectedResources;
+    }
+    setIsCollection(isCollection) {
+        this.isCollection = isCollection;
+    }
+    setStartTime(startTime) {
+        this.startTime = startTime;
+    }
+    getStartTime() {
+        return this.startTime;
     }
     setAgent(agent) {
         this.agent = agent;

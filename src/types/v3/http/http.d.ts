@@ -54,6 +54,9 @@ export declare class RequestContext {
   private headers;
   private body;
   private url;
+  private affectedResources;
+  private isCollection;
+  private startTime;
   private agent;
   /**
       * Creates the request context using a http method and request resource url
@@ -90,6 +93,10 @@ export declare class RequestContext {
       */
   addCookie(name: string, value: string): void;
   setHeaderParam(key: string, value: string): void;
+  setAffectedResources(affectedResources: string[]): void;
+  setIsCollection(isCollection: boolean): void;
+  setStartTime(startTime: Date): void;
+  getStartTime(): Date;
   setAgent(agent: http.Agent | https.Agent): void;
   getAgent(): http.Agent | https.Agent | undefined;
 }

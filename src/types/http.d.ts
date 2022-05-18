@@ -43,7 +43,7 @@ export declare class Http implements HttpLibrary {
   agent: any; // https://github.com/TooTallNate/node-agent-base/issues/56
   oauth: OAuth;
   prepareRequest(request: RequestOptions): Promise<RequestOptions>;
-  http(uri: string, request?: RequestOptions, context?: {
+  http(uri: string, request?: RequestOptions | RequestContext, context?: {
       isCollection: boolean,
       resources: string[],
   }): Promise<Response>;

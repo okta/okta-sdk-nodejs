@@ -12,6 +12,7 @@
 
 
 const parseLinkHeader = require('parse-link-header');
+const { RequestContext, ResponseContext } = require('./v3/http/http');
 
 /**
  * Provides an interface to iterate over all objects in a collection that has pagination via Link headers
@@ -72,7 +73,8 @@ class Collection {
   }
 
   fetch() {
-    if (typeof this.httpApi.send === 'function' && this.request) {
+    if (this.request instanceof RequestContext) {
+      this.request.setIsCollection(true);
       return this.httpApi.send(this.request).toPromise();
     } else {
       return this.httpApi.http(this.nextUri, this.request, { isCollection: true });
@@ -86,16 +88,16 @@ class Collection {
 
     return this.fetch()
       .then(res => {
-        const link = res.headers.get ? res.headers.get('link') : res.headers['link'];
+        const link = res instanceof ResponseContext ? res.headers['link'] : res.headers.get('link');
         if (link) {
           const parsed = parseLinkHeader(link);
           if (parsed.next) {
             this.nextUri = parsed.next.url;
-            return res.json();
+            return res instanceof ResponseContext ? this.factory.parseResponse(res) : res.json();
           }
         }
         this.nextUri = undefined;
-        return res.json ? res.json() : this.factory.parseResponse(res);
+        return res instanceof ResponseContext ? this.factory.parseResponse(res) : res.json();
       });
   }
 

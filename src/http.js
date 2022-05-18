@@ -77,7 +77,11 @@ class Http {
   }
 
   send(requestContext) {
-    const responsePromise = this.http(requestContext.url.href, requestContext, requestContext.affectedResources).then(resp => {
+    const requestOptions = {
+      isCollection: requestContext.isCollection,
+      resources: requestContext.affectedResources
+    };
+    const responsePromise = this.http(requestContext.url.href, requestContext, requestOptions).then(resp => {
       const headers = {};
       resp.headers.forEach((value, name) => {
         headers[name] = value;

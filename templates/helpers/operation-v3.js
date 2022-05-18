@@ -42,6 +42,20 @@ const V3ApiOperations = {
     'listProfileMappings',
     'updateProfileMapping',
     'getProfileMapping',
+  ],
+  DomainApi: [
+    'createCertificate',
+    'createDomain',
+    'getDomain',
+    'deleteDomain',
+    'listDomains',
+    'verifyDomain'
+  ],
+  LinkedObjectApi: [
+    'addLinkedObjectDefinition',
+    'getLinkedObjectDefinition',
+    'deleteLinkedObjectDefinition',
+    'listLinkedObjectDefinitions'
   ]
 };
 

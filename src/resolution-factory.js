@@ -11,6 +11,9 @@
  */
 
 class ModelResolutionFactory {
+  constructor(client) {
+    this.client = client;
+  }
 
   getMapping() {
     return {};
@@ -24,7 +27,7 @@ class ModelResolutionFactory {
     return null;
   }
 
-  createInstance(resource, client) {
+  createInstance(resource) {
     const resolutionProperty = this.getResolutionProperty();
     const mapping = this.getMapping();
     let Constructor = this.getParentModel();
@@ -33,10 +36,10 @@ class ModelResolutionFactory {
       if (Constructor instanceof ModelResolutionFactory) {
         return Constructor.createInstance.apply(Constructor, arguments);
       }
-      return new Constructor(resource, client);
+      return new Constructor(resource, this.client);
     }
 
-    return new Constructor(resource, client);
+    return new Constructor(resource, this.client);
   }
 }
 

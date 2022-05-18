@@ -40,7 +40,7 @@ class GeneratedApiClient {
       this.http,
       url,
       {{#if responseModelRequiresResolution}}
-      new factories.{{responseModel}}(),
+      new factories.{{responseModel}}(this),
       {{else}}
       new ModelFactory(models.{{responseModel}}),
       {{/if}}
@@ -83,7 +83,7 @@ class GeneratedApiClient {
     ){{#if (shouldResolveJson this)}}.then(res => res.json()){{/if}};
     {{#if responseModel}}
     {{#if responseModelRequiresResolution}}
-    return request.then(jsonRes => new factories.{{responseModel}}().createInstance(jsonRes, this));
+    return request.then(jsonRes => new factories.{{responseModel}}(this).createInstance(jsonRes, this));
     {{else}}
     return request.then(jsonRes => new models.{{responseModel}}(jsonRes, this));
     {{/if}}
