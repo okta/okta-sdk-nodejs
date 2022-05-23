@@ -1,11 +1,18 @@
-const { isV3Model } = require('./operation-v3');
+const { isV3Api } = require('./operation-v3');
 
-function formatMethodSignature(methodName, args, returnType) {
-  return `${methodName}(${formatArguments(args)}): ${formatParameterizedReturnType(returnType)};`;
+function formatMethodSignature(methodName, args, returnType, options = {}) {
+  return `${methodName}(${formatArguments(args)}): ${formatParameterizedReturnType(returnType, isV3Api(methodName), options.tagV3Methods)};`;
 }
 
-function formatParameterizedReturnType({genericType, genericParameterType}) {
-  return `${genericType}<${genericParameterType}>`;
+function formatParameterizedReturnType({genericType, genericParameterType}, isV3Api, tagV3Methods) {
+  let versionedReturnType = `${genericType}<${genericParameterType}>`;
+  if (tagV3Methods && isV3Api && genericParameterType !== 'void') {
+    versionedReturnType = `${genericType}<v3.${genericParameterType}>`;
+    if (genericType === 'Collection') {
+      versionedReturnType = `Promise<${versionedReturnType}>`;
+    }
+  }
+  return versionedReturnType;
 }
 
 function formatArguments(args) {
@@ -60,15 +67,11 @@ function formatImportStatements(importTypes, {
       importStatements.push('import { ReadStream } from \'fs\';');
     } else if (type === 'Collection') {
       importStatements.push(`import { Collection } from '${isModelToModelImport ? '..' : '.'}/collection';`);
-    } else if (type === 'Record<string, never>') {
+    } else if (type === 'void') {
       // no - op
     } else {
       const importSource = type.replace(sourceFileSuffixToTrim, '');
-      if (isV3Model(type)) {
-        importStatements.push(`import { ${type} } from '${isModelToModelImport ? `./${type}` : './v3/models'}';`);
-      } else {
-        importStatements.push(`import { ${type} } from '${isModelToModelImport ? './' : './models/'}${importSource}';`);
-      }
+      importStatements.push(`import { ${type} } from '${isModelToModelImport ? './' : './models/'}${importSource}';`);
     }
   });
   return importStatements.join('\n');

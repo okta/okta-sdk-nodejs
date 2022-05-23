@@ -13,6 +13,9 @@
     ],
     "@typescript-eslint/no-empty-interface": [
       1
+    ],
+    "no-use-before-define": [
+      0
     ]
   },
   "plugins": [

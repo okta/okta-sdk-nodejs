@@ -6,17 +6,15 @@ describe('Collection', () => {
   describe('.each()', () => {
     it('should resolve immediately when there are no items in the collection', async () => {
       const mockClient = {
-        http: {
-          http: () => {
-            return Promise.resolve({
-              headers: {
-                get: () => {}
-              },
-              json: () => {
-                return Promise.resolve([]);
-              }
-            });
-          }
+        http: () => {
+          return Promise.resolve({
+            headers: {
+              get: () => {}
+            },
+            json: () => {
+              return Promise.resolve([]);
+            }
+          });
         }
       };
       const mockFactory = {
@@ -33,26 +31,24 @@ describe('Collection', () => {
 
     it('should follow pagination', async () => {
       const mockClient = {
-        http: {
-          http: (uri) => {
-            return Promise.resolve({
-              headers: {
-                get: () => {
-                  if (uri === '/') {
-                    return '</next>; rel="next"';
-                  }
-                },
-              },
-              json: () => {
+        http: (uri) => {
+          return Promise.resolve({
+            headers: {
+              get: () => {
                 if (uri === '/') {
-                  return Promise.resolve([1]);
+                  return '</next>; rel="next"';
                 }
-                if (uri === '/next') {
-                  return Promise.resolve([2]);
-                }
+              },
+            },
+            json: () => {
+              if (uri === '/') {
+                return Promise.resolve([1]);
               }
-            });
-          }
+              if (uri === '/next') {
+                return Promise.resolve([2]);
+              }
+            }
+          });
         }
       };
       const mockFactory = {
@@ -72,14 +68,12 @@ describe('Collection', () => {
       const noop = () => {};
       const mockRequest = { method: 'post' };
       const mockClient = {
-        http: {
-          http: (_, request) => {
-            expect(request).to.deep.equal(mockRequest);
-            return Promise.resolve({
-              headers: { get: noop },
-              json: () => Promise.resolve([1, 2, 3])
-            });
-          }
+        http: (_, request) => {
+          expect(request).to.deep.equal(mockRequest);
+          return Promise.resolve({
+            headers: { get: noop },
+            json: () => Promise.resolve([1, 2, 3])
+          });
         }
       };
       const mockFactory = {
@@ -105,26 +99,24 @@ describe('Collection', () => {
     });
     it('should handle null, then continue', async () => {
       const mockClient = {
-        http: {
-          http: (uri) => {
-            return Promise.resolve({
-              headers: {
-                get: () => {
-                  if (uri === '/') {
-                    return '</next>; rel="next"';
-                  }
-                },
-              },
-              json: () => {
+        http: (uri) => {
+          return Promise.resolve({
+            headers: {
+              get: () => {
                 if (uri === '/') {
-                  return Promise.resolve([]);
+                  return '</next>; rel="next"';
                 }
-                if (uri === '/next') {
-                  return Promise.resolve([1]);
-                }
+              },
+            },
+            json: () => {
+              if (uri === '/') {
+                return Promise.resolve([]);
               }
-            });
-          }
+              if (uri === '/next') {
+                return Promise.resolve([1]);
+              }
+            }
+          });
         }
       };
       const mockFactory = {
@@ -153,26 +145,24 @@ describe('Collection', () => {
     });
     it('should catch errors if thrown, then continue', async () => {
       const mockClient = {
-        http: {
-          http: (uri) => {
-            return Promise.resolve({
-              headers: {
-                get: () => {
-                  if (uri === '/') {
-                    return '</next>; rel="next"';
-                  }
-                },
-              },
-              json: () => {
+        http: (uri) => {
+          return Promise.resolve({
+            headers: {
+              get: () => {
                 if (uri === '/') {
-                  return Promise.reject(new Error('some failure'));
+                  return '</next>; rel="next"';
                 }
-                if (uri === '/next') {
-                  return Promise.resolve([1]);
-                }
+              },
+            },
+            json: () => {
+              if (uri === '/') {
+                return Promise.reject(new Error('some failure'));
               }
-            });
-          }
+              if (uri === '/next') {
+                return Promise.resolve([1]);
+              }
+            }
+          });
         }
       };
       const mockFactory = {
@@ -201,18 +191,16 @@ describe('Collection', () => {
     });
     it('does not call next if cancelled during fetch', async () => {
       const mockClient = {
-        http: {
-          http: () => new Promise(resolve => setTimeout(() => resolve({
-            headers: {
-              get: () => {
-                return '</next>; rel="next"';
-              },
+        http: () => new Promise(resolve => setTimeout(() => resolve({
+          headers: {
+            get: () => {
+              return '</next>; rel="next"';
             },
-            json: () => {
-              return Promise.resolve([1]);
-            }
-          }), 100))
-        }
+          },
+          json: () => {
+            return Promise.resolve([1]);
+          }
+        }), 100))
       };
       const mockFactory = {
         createInstance: (item) => item
@@ -239,26 +227,24 @@ describe('Collection', () => {
     });
     it('should wait for error handler to return, then continue', async () => {
       const mockClient = {
-        http: {
-          http: (uri) => {
-            return Promise.resolve({
-              headers: {
-                get: () => {
-                  if (uri === '/') {
-                    return '</next>; rel="next"';
-                  }
-                },
-              },
-              json: () => {
+        http: (uri) => {
+          return Promise.resolve({
+            headers: {
+              get: () => {
                 if (uri === '/') {
-                  return Promise.reject(new Error('some failure'));
+                  return '</next>; rel="next"';
                 }
-                if (uri === '/next') {
-                  return Promise.resolve([1]);
-                }
+              },
+            },
+            json: () => {
+              if (uri === '/') {
+                return Promise.reject(new Error('some failure'));
               }
-            });
-          }
+              if (uri === '/next') {
+                return Promise.resolve([1]);
+              }
+            }
+          });
         }
       };
       const mockFactory = {
@@ -296,17 +282,15 @@ describe('Collection', () => {
   describe('.next()', () => {
     it('should return { done: true } only _after_ all items in the collection have been returned', async () => {
       const mockClient = {
-        http: {
-          http: () => {
-            return Promise.resolve({
-              headers: {
-                get: () => {}
-              },
-              json: () => {
-                return Promise.resolve([1, 2, 3]);
-              }
-            });
-          }
+        http: () => {
+          return Promise.resolve({
+            headers: {
+              get: () => {}
+            },
+            json: () => {
+              return Promise.resolve([1, 2, 3]);
+            }
+          });
         }
       };
       const mockFactory = {
@@ -321,26 +305,24 @@ describe('Collection', () => {
 
     it('should return { done: true } only _after_ all items in the collection have been returned when paginating', async () => {
       const mockClient = {
-        http: {
-          http: (uri) => {
-            return Promise.resolve({
-              headers: {
-                get: () => {
-                  if (uri === '/') {
-                    return '</next>; rel="next"';
-                  }
-                },
-              },
-              json: () => {
+        http: (uri) => {
+          return Promise.resolve({
+            headers: {
+              get: () => {
                 if (uri === '/') {
-                  return Promise.resolve([1]);
+                  return '</next>; rel="next"';
                 }
-                if (uri === '/next') {
-                  return Promise.resolve([2, 3]);
-                }
+              },
+            },
+            json: () => {
+              if (uri === '/') {
+                return Promise.resolve([1]);
               }
-            });
-          }
+              if (uri === '/next') {
+                return Promise.resolve([2, 3]);
+              }
+            }
+          });
         }
       };
       const mockFactory = {
@@ -357,17 +339,15 @@ describe('Collection', () => {
   describe('for...of', () => {
     it('should resolve immediately when there are no items in the collection', async () => {
       const mockClient = {
-        http: {
-          http: () => {
-            return Promise.resolve({
-              headers: {
-                get: () => {}
-              },
-              json: () => {
-                return Promise.resolve([]);
-              }
-            });
-          }
+        http: () => {
+          return Promise.resolve({
+            headers: {
+              get: () => {}
+            },
+            json: () => {
+              return Promise.resolve([]);
+            }
+          });
         }
       };
       const mockFactory = {
@@ -383,26 +363,24 @@ describe('Collection', () => {
 
     it('should follow pagination', async () => {
       const mockClient = {
-        http: {
-          http: (uri) => {
-            return Promise.resolve({
-              headers: {
-                get: () => {
-                  if (uri === '/') {
-                    return '</next>; rel="next"';
-                  }
-                },
-              },
-              json: () => {
+        http: (uri) => {
+          return Promise.resolve({
+            headers: {
+              get: () => {
                 if (uri === '/') {
-                  return Promise.resolve([1]);
+                  return '</next>; rel="next"';
                 }
-                if (uri === '/next') {
-                  return Promise.resolve([2]);
-                }
+              },
+            },
+            json: () => {
+              if (uri === '/') {
+                return Promise.resolve([1]);
               }
-            });
-          }
+              if (uri === '/next') {
+                return Promise.resolve([2]);
+              }
+            }
+          });
         }
       };
       const mockFactory = {

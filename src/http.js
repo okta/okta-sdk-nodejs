@@ -17,6 +17,9 @@ const HttpError = require('./http-error');
 const MemoryStore = require('./memory-store');
 const defaultCacheMiddleware = require('./default-cache-middleware');
 const HttpsProxyAgent = require('https-proxy-agent');
+const { from } = require('./v3/rxjsStub');
+const { ResponseContext } = require('./v3/http/http');
+
 
 /**
  * It's like fetch :) plus some extra convenience methods.
@@ -73,12 +76,32 @@ class Http {
       });
   }
 
+  send(requestContext) {
+    const requestOptions = {
+      isCollection: requestContext.isCollection,
+      resources: requestContext.affectedResources
+    };
+    const responsePromise = this.http(requestContext.url.href, requestContext, requestOptions).then(resp => {
+      const headers = {};
+      resp.headers.forEach((value, name) => {
+        headers[name] = value;
+      });
+
+      const body = {
+        text: () => resp.text(),
+        binary: () => resp.buffer()
+      };
+      return new ResponseContext(resp.status, headers, body);
+    });
+    return from(responsePromise);
+  }
+
   http(uri, request, context) {
     request = request || {};
     context = context || {};
     request.url = uri;
     request.headers = Object.assign({}, this.defaultHeaders, request.headers);
-    request.method = request.method || 'get';
+    request.method = request.method || request.httpMethod || 'get';
     if (this.agent) {
       request.agent = this.agent;
     }

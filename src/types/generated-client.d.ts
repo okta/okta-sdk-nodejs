@@ -14,6 +14,7 @@
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
 import { ApplicationOptions } from './parameterized-operations-client';
+import * as v3 from './v3';
 import { Collection } from './collection';
 import { Application } from './models/Application';
 import { Response } from 'node-fetch';
@@ -32,7 +33,7 @@ import { ReadStream } from 'fs';
 import { OAuth2Token } from './models/OAuth2Token';
 import { AppUser } from './models/AppUser';
 import { AppUserOptions } from './models/AppUser';
-import { Authenticator } from './v3/models';
+import { Authenticator } from './models/Authenticator';
 import { AuthenticatorOptions } from './models/Authenticator';
 import { AuthorizationServer } from './models/AuthorizationServer';
 import { AuthorizationServerOptions } from './models/AuthorizationServer';
@@ -78,20 +79,20 @@ import { JsonWebKeyOptions } from './models/JsonWebKey';
 import { IdentityProviderApplicationUser } from './models/IdentityProviderApplicationUser';
 import { UserIdentityProviderLinkRequestOptions } from './models/UserIdentityProviderLinkRequest';
 import { SocialAuthToken } from './models/SocialAuthToken';
-import { InlineHook } from './v3/models';
+import { InlineHook } from './models/InlineHook';
 import { InlineHookOptions } from './models/InlineHook';
 import { InlineHookPayloadOptions } from './models/InlineHookPayload';
 import { InlineHookResponse } from './models/InlineHookResponse';
 import { LogEvent } from './models/LogEvent';
-import { ProfileMapping } from './v3/models';
+import { ProfileMapping } from './models/ProfileMapping';
 import { ProfileMappingOptions } from './models/ProfileMapping';
-import { UserSchema } from './v3/models';
+import { UserSchema } from './models/UserSchema';
 import { UserSchemaOptions } from './models/UserSchema';
-import { GroupSchema } from './v3/models';
+import { GroupSchema } from './models/GroupSchema';
 import { GroupSchemaOptions } from './models/GroupSchema';
 import { LinkedObject } from './models/LinkedObject';
 import { LinkedObjectOptions } from './models/LinkedObject';
-import { UserType } from './v3/models';
+import { UserType } from './models/UserType';
 import { UserTypeOptions } from './models/UserType';
 import { OrgSetting } from './models/OrgSetting';
 import { OrgSettingOptions } from './models/OrgSetting';
@@ -225,11 +226,11 @@ export declare class GeneratedApiClient {
     expand?: string,
   }): Promise<AppUser>;
   updateApplicationUser(appId: string, userId: string, appUser: AppUserOptions): Promise<AppUser>;
-  listAuthenticators(): Collection<Authenticator>;
-  getAuthenticator(authenticatorId: string): Promise<Authenticator>;
-  updateAuthenticator(authenticatorId: string, authenticator: AuthenticatorOptions): Promise<Authenticator>;
-  activateAuthenticator(authenticatorId: string): Promise<Authenticator>;
-  deactivateAuthenticator(authenticatorId: string): Promise<Authenticator>;
+  listAuthenticators(): Promise<Collection<v3.Authenticator>>;
+  getAuthenticator(authenticatorId: string): Promise<v3.Authenticator>;
+  updateAuthenticator(authenticatorId: string, authenticator: AuthenticatorOptions): Promise<v3.Authenticator>;
+  activateAuthenticator(authenticatorId: string): Promise<v3.Authenticator>;
+  deactivateAuthenticator(authenticatorId: string): Promise<v3.Authenticator>;
   listAuthorizationServers(queryParameters?: {
     q?: string,
     limit?: string,
@@ -310,12 +311,12 @@ export declare class GeneratedApiClient {
   uploadBrandThemeFavicon(brandId: string, themeId: string, file: ReadStream): Promise<ImageUploadResponse>;
   deleteBrandThemeLogo(brandId: string, themeId: string): Promise<Response>;
   uploadBrandThemeLogo(brandId: string, themeId: string, file: ReadStream): Promise<ImageUploadResponse>;
-  listDomains(): Promise<DomainListResponse>;
-  createDomain(domain: DomainOptions): Promise<Domain>;
-  deleteDomain(domainId: string): Promise<Response>;
-  getDomain(domainId: string): Promise<Domain>;
-  createCertificate(domainId: string, domainCertificate: DomainCertificateOptions): Promise<Response>;
-  verifyDomain(domainId: string): Promise<Domain>;
+  listDomains(): Promise<v3.DomainListResponse>;
+  createDomain(domain: DomainOptions): Promise<v3.Domain>;
+  deleteDomain(domainId: string): Promise<void>;
+  getDomain(domainId: string): Promise<v3.Domain>;
+  createCertificate(domainId: string, domainCertificate: DomainCertificateOptions): Promise<void>;
+  verifyDomain(domainId: string): Promise<v3.Domain>;
   listEventHooks(): Collection<EventHook>;
   createEventHook(eventHook: EventHookOptions): Promise<EventHook>;
   deleteEventHook(eventHookId: string): Promise<Response>;
@@ -433,14 +434,14 @@ export declare class GeneratedApiClient {
   listSocialAuthTokens(idpId: string, userId: string): Collection<SocialAuthToken>;
   listInlineHooks(queryParameters?: {
     type?: string,
-  }): Collection<InlineHook>;
-  createInlineHook(inlineHook: InlineHookOptions): Promise<InlineHook>;
-  deleteInlineHook(inlineHookId: string): Promise<Record<string, never>>;
-  getInlineHook(inlineHookId: string): Promise<InlineHook>;
-  updateInlineHook(inlineHookId: string, inlineHook: InlineHookOptions): Promise<InlineHook>;
-  executeInlineHook(inlineHookId: string, inlineHookPayload: InlineHookPayloadOptions): Promise<InlineHookResponse>;
-  activateInlineHook(inlineHookId: string): Promise<InlineHook>;
-  deactivateInlineHook(inlineHookId: string): Promise<InlineHook>;
+  }): Promise<Collection<v3.InlineHook>>;
+  createInlineHook(inlineHook: InlineHookOptions): Promise<v3.InlineHook>;
+  deleteInlineHook(inlineHookId: string): Promise<void>;
+  getInlineHook(inlineHookId: string): Promise<v3.InlineHook>;
+  updateInlineHook(inlineHookId: string, inlineHook: InlineHookOptions): Promise<v3.InlineHook>;
+  executeInlineHook(inlineHookId: string, inlineHookPayload: InlineHookPayloadOptions): Promise<v3.InlineHookResponse>;
+  activateInlineHook(inlineHookId: string): Promise<v3.InlineHook>;
+  deactivateInlineHook(inlineHookId: string): Promise<v3.InlineHook>;
   getLogs(queryParameters?: {
     since?: string,
     until?: string,
@@ -455,25 +456,25 @@ export declare class GeneratedApiClient {
     limit?: number,
     sourceId?: string,
     targetId?: string,
-  }): Collection<ProfileMapping>;
-  getProfileMapping(mappingId: string): Promise<ProfileMapping>;
-  updateProfileMapping(mappingId: string, profileMapping: ProfileMappingOptions): Promise<ProfileMapping>;
-  getApplicationUserSchema(appInstanceId: string): Promise<UserSchema>;
-  updateApplicationUserProfile(appInstanceId: string, userSchema?: UserSchemaOptions): Promise<UserSchema>;
-  getGroupSchema(): Promise<GroupSchema>;
-  updateGroupSchema(groupSchema?: GroupSchemaOptions): Promise<GroupSchema>;
-  listLinkedObjectDefinitions(): Collection<LinkedObject>;
-  addLinkedObjectDefinition(linkedObject: LinkedObjectOptions): Promise<LinkedObject>;
-  deleteLinkedObjectDefinition(linkedObjectName: string): Promise<Response>;
-  getLinkedObjectDefinition(linkedObjectName: string): Promise<LinkedObject>;
-  getUserSchema(schemaId: string): Promise<UserSchema>;
-  updateUserProfile(schemaId: string, userSchema: UserSchemaOptions): Promise<UserSchema>;
-  listUserTypes(): Collection<UserType>;
-  createUserType(userType: UserTypeOptions): Promise<UserType>;
-  deleteUserType(typeId: string): Promise<Record<string, never>>;
-  getUserType(typeId: string): Promise<UserType>;
-  updateUserType(typeId: string, userType: UserTypeOptions): Promise<UserType>;
-  replaceUserType(typeId: string, userType: UserTypeOptions): Promise<UserType>;
+  }): Promise<Collection<v3.ProfileMapping>>;
+  getProfileMapping(mappingId: string): Promise<v3.ProfileMapping>;
+  updateProfileMapping(mappingId: string, profileMapping: ProfileMappingOptions): Promise<v3.ProfileMapping>;
+  getApplicationUserSchema(appInstanceId: string): Promise<v3.UserSchema>;
+  updateApplicationUserProfile(appInstanceId: string, userSchema?: UserSchemaOptions): Promise<v3.UserSchema>;
+  getGroupSchema(): Promise<v3.GroupSchema>;
+  updateGroupSchema(groupSchema?: GroupSchemaOptions): Promise<v3.GroupSchema>;
+  listLinkedObjectDefinitions(): Promise<Collection<v3.LinkedObject>>;
+  addLinkedObjectDefinition(linkedObject: LinkedObjectOptions): Promise<v3.LinkedObject>;
+  deleteLinkedObjectDefinition(linkedObjectName: string): Promise<void>;
+  getLinkedObjectDefinition(linkedObjectName: string): Promise<v3.LinkedObject>;
+  getUserSchema(schemaId: string): Promise<v3.UserSchema>;
+  updateUserProfile(schemaId: string, userSchema: UserSchemaOptions): Promise<v3.UserSchema>;
+  listUserTypes(): Promise<Collection<v3.UserType>>;
+  createUserType(userType: UserTypeOptions): Promise<v3.UserType>;
+  deleteUserType(typeId: string): Promise<void>;
+  getUserType(typeId: string): Promise<v3.UserType>;
+  updateUserType(typeId: string, userType: UserTypeOptions): Promise<v3.UserType>;
+  replaceUserType(typeId: string, userType: UserTypeOptions): Promise<v3.UserType>;
   getOrgSettings(): Promise<OrgSetting>;
   partialUpdateOrgSetting(orgSetting: OrgSettingOptions): Promise<OrgSetting>;
   updateOrgSetting(orgSetting: OrgSettingOptions): Promise<OrgSetting>;

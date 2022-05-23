@@ -16,7 +16,6 @@
 import { Resource } from '../resource';
 import { Client } from '../client';
 import { OptionalKnownProperties } from '../optional-known-properties-type';
-import { Response } from 'node-fetch';
 import { DomainCertificateType } from './DomainCertificateType';
 
 declare class DomainCertificate extends Resource {
@@ -27,7 +26,7 @@ declare class DomainCertificate extends Resource {
   privateKey: string;
   type: DomainCertificateType;
 
-  createCertificate(domainId: string): Promise<Response>;
+  createCertificate(domainId: string): Promise<void>;
 }
 
 type DomainCertificateOptions = OptionalKnownProperties<DomainCertificate>;

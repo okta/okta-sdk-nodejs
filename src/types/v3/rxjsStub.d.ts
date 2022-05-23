@@ -10,16 +10,14 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
-class ModelFactory {
 
-  constructor(Ctor, client) {
-    this.Ctor = Ctor;
-    this.client = client;
-  }
-
-  createInstance(resource) {
-    return new this.Ctor(resource, this.client);
-  }
+export declare class Observable<T> {
+  private promise;
+  constructor(promise: Promise<T>);
+  toPromise(): Promise<T>;
+  pipe<S>(callback: (value: T) => S | Promise<S>): Observable<S>;
 }
-
-module.exports.ModelFactory = ModelFactory;
+export declare function from<T>(promise: Promise<any>): Observable<any>;
+export declare function of<T>(value: T): Observable<T>;
+export declare function mergeMap<T, S>(callback: (value: T) => Observable<S>): (value: T) => Promise<S>;
+export declare function map(callback: any): any;

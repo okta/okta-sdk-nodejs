@@ -29,7 +29,8 @@ describe('User linked object API', () => {
     linkedObject = await client.addLinkedObjectDefinition(getMockLinkedObject());
   });
   afterEach(async () => {
-    await linkedObject.delete(linkedObject.primary.name);
+    linkedObject = await client.deleteLinkedObjectDefinition(linkedObject.primary.name);
+
     await utils.cleanupUser(client, primaryUser);
     await utils.cleanupUser(client, associateUser);
   });

@@ -39,9 +39,23 @@ const V3ApiOperations = {
     'updateInlineHook',
   ],
   ProfileMappingApi: [
-    'listProfileMapping',
+    'listProfileMappings',
     'updateProfileMapping',
     'getProfileMapping',
+  ],
+  DomainApi: [
+    'createCertificate',
+    'createDomain',
+    'getDomain',
+    'deleteDomain',
+    'listDomains',
+    'verifyDomain'
+  ],
+  LinkedObjectApi: [
+    'addLinkedObjectDefinition',
+    'getLinkedObjectDefinition',
+    'deleteLinkedObjectDefinition',
+    'listLinkedObjectDefinitions'
   ]
 };
 

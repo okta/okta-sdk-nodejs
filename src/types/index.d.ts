@@ -28,7 +28,7 @@ export * from './request-options/SecurePasswordStoreApplicationOptions';
 export * from './request-options/SwaApplicationOptions';
 export * from './request-options/SwaThreeFieldApplicationOptions';
 export * from './request-options/WsFederationApplicationOptions';
-export * from './v3';
+export * as v3 from './v3';
 
 export * from './models/AccessPolicy';
 export * from './models/AccessPolicyConstraint';

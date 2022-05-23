@@ -2,6 +2,8 @@
   "additionalProperties": {
     "supportsES6": true,
     "withSeparateModelsAndApi": true,
-    "modelPropertyNaming": "original"
+    "modelPropertyNaming": "original",
+    "platform": "node",
+    "enumPropertyNaming": "original"
   }
 }

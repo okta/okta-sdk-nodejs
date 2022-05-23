@@ -10,16 +10,20 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
-class ModelFactory {
 
-  constructor(Ctor, client) {
-    this.Ctor = Ctor;
-    this.client = client;
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+exports.PromiseMiddlewareWrapper = void 0;
+const rxjsStub_1 = require('./rxjsStub');
+class PromiseMiddlewareWrapper {
+  constructor(middleware) {
+    this.middleware = middleware;
   }
-
-  createInstance(resource) {
-    return new this.Ctor(resource, this.client);
+  pre(context) {
+    return rxjsStub_1.from(this.middleware.pre(context));
+  }
+  post(context) {
+    return rxjsStub_1.from(this.middleware.post(context));
   }
 }
-
-module.exports.ModelFactory = ModelFactory;
+exports.PromiseMiddlewareWrapper = PromiseMiddlewareWrapper;
