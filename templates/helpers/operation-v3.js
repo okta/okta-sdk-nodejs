@@ -1,9 +1,3 @@
-const fs = require('fs');
-const path = require('path');
-
-let v3Models = fs.readdirSync(path.join(__dirname, '../../src/types/v3/models/'));
-v3Models = v3Models.map(fileName => fileName.split('.').shift().replace('-', ''));
-
 const V3ApiOperations = {
   UserTypeApi: [
     'createUserType',
@@ -59,11 +53,6 @@ const V3ApiOperations = {
   ]
 };
 
-function isV3Model(modelName) {
-  let regex = new RegExp(`^${modelName}$`, 'i');
-  return v3Models.some(v3Model => regex.test(v3Model));
-}
-
 function isV3Api(operationId) {
   return Object.values(V3ApiOperations).find((operations) => operations.includes(operationId));
 }
@@ -74,7 +63,6 @@ function v3ApiByOperationId(operationId) {
 }
 
 module.exports = {
-  isV3Model,
   isV3Api,
   v3ApiByOperationId,
 };

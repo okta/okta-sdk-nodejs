@@ -80,7 +80,7 @@ class GeneratedApiClient {
       },
       { resources }
     );
-    return request.then(jsonRes => new factories.Application(this).createInstance(jsonRes, this));
+    return request.then(jsonRes => new factories.Application(this).createInstance(jsonRes));
   }
 
   /**
@@ -134,7 +134,7 @@ class GeneratedApiClient {
       null,
       { resources }
     );
-    return request.then(jsonRes => new factories.Application(this).createInstance(jsonRes, this));
+    return request.then(jsonRes => new factories.Application(this).createInstance(jsonRes));
   }
 
   /**
@@ -165,7 +165,7 @@ class GeneratedApiClient {
       },
       { resources }
     );
-    return request.then(jsonRes => new factories.Application(this).createInstance(jsonRes, this));
+    return request.then(jsonRes => new factories.Application(this).createInstance(jsonRes));
   }
 
   /**
@@ -6259,7 +6259,7 @@ class GeneratedApiClient {
       },
       { resources }
     );
-    return request.then(jsonRes => new factories.Policy(this).createInstance(jsonRes, this));
+    return request.then(jsonRes => new factories.Policy(this).createInstance(jsonRes));
   }
 
   /**
@@ -6313,7 +6313,7 @@ class GeneratedApiClient {
       null,
       { resources }
     );
-    return request.then(jsonRes => new factories.Policy(this).createInstance(jsonRes, this));
+    return request.then(jsonRes => new factories.Policy(this).createInstance(jsonRes));
   }
 
   /**
@@ -6344,7 +6344,7 @@ class GeneratedApiClient {
       },
       { resources }
     );
-    return request.then(jsonRes => new factories.Policy(this).createInstance(jsonRes, this));
+    return request.then(jsonRes => new factories.Policy(this).createInstance(jsonRes));
   }
 
   /**
@@ -6451,7 +6451,7 @@ class GeneratedApiClient {
       },
       { resources }
     );
-    return request.then(jsonRes => new factories.PolicyRule(this).createInstance(jsonRes, this));
+    return request.then(jsonRes => new factories.PolicyRule(this).createInstance(jsonRes));
   }
 
   /**
@@ -6510,7 +6510,7 @@ class GeneratedApiClient {
       null,
       { resources }
     );
-    return request.then(jsonRes => new factories.PolicyRule(this).createInstance(jsonRes, this));
+    return request.then(jsonRes => new factories.PolicyRule(this).createInstance(jsonRes));
   }
 
   /**
@@ -6546,7 +6546,7 @@ class GeneratedApiClient {
       },
       { resources }
     );
-    return request.then(jsonRes => new factories.PolicyRule(this).createInstance(jsonRes, this));
+    return request.then(jsonRes => new factories.PolicyRule(this).createInstance(jsonRes));
   }
 
   /**
@@ -7858,7 +7858,7 @@ class GeneratedApiClient {
       },
       { resources }
     );
-    return request.then(jsonRes => new factories.UserFactor(this).createInstance(jsonRes, this));
+    return request.then(jsonRes => new factories.UserFactor(this).createInstance(jsonRes));
   }
 
   /**
@@ -7957,7 +7957,7 @@ class GeneratedApiClient {
       null,
       { resources }
     );
-    return request.then(jsonRes => new factories.UserFactor(this).createInstance(jsonRes, this));
+    return request.then(jsonRes => new factories.UserFactor(this).createInstance(jsonRes));
   }
 
   /**
@@ -7990,7 +7990,7 @@ class GeneratedApiClient {
       },
       { resources }
     );
-    return request.then(jsonRes => new factories.UserFactor(this).createInstance(jsonRes, this));
+    return request.then(jsonRes => new factories.UserFactor(this).createInstance(jsonRes));
   }
 
   /**

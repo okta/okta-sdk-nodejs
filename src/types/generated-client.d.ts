@@ -14,7 +14,7 @@
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
 import { ApplicationOptions } from './parameterized-operations-client';
-import * as v3 from './v3';
+import * as v3 from './generated';
 import { Collection } from './collection';
 import { Application } from './models/Application';
 import { Response } from 'node-fetch';
@@ -34,7 +34,6 @@ import { OAuth2Token } from './models/OAuth2Token';
 import { AppUser } from './models/AppUser';
 import { AppUserOptions } from './models/AppUser';
 import { Authenticator } from './models/Authenticator';
-import { AuthenticatorOptions } from './models/Authenticator';
 import { AuthorizationServer } from './models/AuthorizationServer';
 import { AuthorizationServerOptions } from './models/AuthorizationServer';
 import { OAuth2Claim } from './models/OAuth2Claim';
@@ -59,9 +58,8 @@ import { ThemeResponse } from './models/ThemeResponse';
 import { ThemeOptions } from './models/Theme';
 import { ImageUploadResponse } from './models/ImageUploadResponse';
 import { DomainListResponse } from './models/DomainListResponse';
-import { DomainOptions } from './models/Domain';
 import { Domain } from './models/Domain';
-import { DomainCertificateOptions } from './models/DomainCertificate';
+import { DomainCertificate } from './models/DomainCertificate';
 import { EventHook } from './models/EventHook';
 import { EventHookOptions } from './models/EventHook';
 import { Feature } from './models/Feature';
@@ -80,20 +78,14 @@ import { IdentityProviderApplicationUser } from './models/IdentityProviderApplic
 import { UserIdentityProviderLinkRequestOptions } from './models/UserIdentityProviderLinkRequest';
 import { SocialAuthToken } from './models/SocialAuthToken';
 import { InlineHook } from './models/InlineHook';
-import { InlineHookOptions } from './models/InlineHook';
-import { InlineHookPayloadOptions } from './models/InlineHookPayload';
+import { InlineHookPayload } from './models/InlineHookPayload';
 import { InlineHookResponse } from './models/InlineHookResponse';
 import { LogEvent } from './models/LogEvent';
 import { ProfileMapping } from './models/ProfileMapping';
-import { ProfileMappingOptions } from './models/ProfileMapping';
 import { UserSchema } from './models/UserSchema';
-import { UserSchemaOptions } from './models/UserSchema';
 import { GroupSchema } from './models/GroupSchema';
-import { GroupSchemaOptions } from './models/GroupSchema';
 import { LinkedObject } from './models/LinkedObject';
-import { LinkedObjectOptions } from './models/LinkedObject';
 import { UserType } from './models/UserType';
-import { UserTypeOptions } from './models/UserType';
 import { OrgSetting } from './models/OrgSetting';
 import { OrgSettingOptions } from './models/OrgSetting';
 import { OrgContactTypeObj } from './models/OrgContactTypeObj';
@@ -228,7 +220,7 @@ export declare class GeneratedApiClient {
   updateApplicationUser(appId: string, userId: string, appUser: AppUserOptions): Promise<AppUser>;
   listAuthenticators(): Promise<Collection<v3.Authenticator>>;
   getAuthenticator(authenticatorId: string): Promise<v3.Authenticator>;
-  updateAuthenticator(authenticatorId: string, authenticator: AuthenticatorOptions): Promise<v3.Authenticator>;
+  updateAuthenticator(authenticatorId: string, authenticator: v3.Authenticator): Promise<v3.Authenticator>;
   activateAuthenticator(authenticatorId: string): Promise<v3.Authenticator>;
   deactivateAuthenticator(authenticatorId: string): Promise<v3.Authenticator>;
   listAuthorizationServers(queryParameters?: {
@@ -312,10 +304,10 @@ export declare class GeneratedApiClient {
   deleteBrandThemeLogo(brandId: string, themeId: string): Promise<Response>;
   uploadBrandThemeLogo(brandId: string, themeId: string, file: ReadStream): Promise<ImageUploadResponse>;
   listDomains(): Promise<v3.DomainListResponse>;
-  createDomain(domain: DomainOptions): Promise<v3.Domain>;
+  createDomain(domain: v3.Domain): Promise<v3.Domain>;
   deleteDomain(domainId: string): Promise<void>;
   getDomain(domainId: string): Promise<v3.Domain>;
-  createCertificate(domainId: string, domainCertificate: DomainCertificateOptions): Promise<void>;
+  createCertificate(domainId: string, domainCertificate: v3.DomainCertificate): Promise<void>;
   verifyDomain(domainId: string): Promise<v3.Domain>;
   listEventHooks(): Collection<EventHook>;
   createEventHook(eventHook: EventHookOptions): Promise<EventHook>;
@@ -435,11 +427,11 @@ export declare class GeneratedApiClient {
   listInlineHooks(queryParameters?: {
     type?: string,
   }): Promise<Collection<v3.InlineHook>>;
-  createInlineHook(inlineHook: InlineHookOptions): Promise<v3.InlineHook>;
+  createInlineHook(inlineHook: v3.InlineHook): Promise<v3.InlineHook>;
   deleteInlineHook(inlineHookId: string): Promise<void>;
   getInlineHook(inlineHookId: string): Promise<v3.InlineHook>;
-  updateInlineHook(inlineHookId: string, inlineHook: InlineHookOptions): Promise<v3.InlineHook>;
-  executeInlineHook(inlineHookId: string, inlineHookPayload: InlineHookPayloadOptions): Promise<v3.InlineHookResponse>;
+  updateInlineHook(inlineHookId: string, inlineHook: v3.InlineHook): Promise<v3.InlineHook>;
+  executeInlineHook(inlineHookId: string, inlineHookPayload: v3.InlineHookPayload): Promise<v3.InlineHookResponse>;
   activateInlineHook(inlineHookId: string): Promise<v3.InlineHook>;
   deactivateInlineHook(inlineHookId: string): Promise<v3.InlineHook>;
   getLogs(queryParameters?: {
@@ -458,23 +450,23 @@ export declare class GeneratedApiClient {
     targetId?: string,
   }): Promise<Collection<v3.ProfileMapping>>;
   getProfileMapping(mappingId: string): Promise<v3.ProfileMapping>;
-  updateProfileMapping(mappingId: string, profileMapping: ProfileMappingOptions): Promise<v3.ProfileMapping>;
+  updateProfileMapping(mappingId: string, profileMapping: v3.ProfileMapping): Promise<v3.ProfileMapping>;
   getApplicationUserSchema(appInstanceId: string): Promise<v3.UserSchema>;
-  updateApplicationUserProfile(appInstanceId: string, userSchema?: UserSchemaOptions): Promise<v3.UserSchema>;
+  updateApplicationUserProfile(appInstanceId: string, userSchema?: v3.UserSchema): Promise<v3.UserSchema>;
   getGroupSchema(): Promise<v3.GroupSchema>;
-  updateGroupSchema(groupSchema?: GroupSchemaOptions): Promise<v3.GroupSchema>;
+  updateGroupSchema(groupSchema?: v3.GroupSchema): Promise<v3.GroupSchema>;
   listLinkedObjectDefinitions(): Promise<Collection<v3.LinkedObject>>;
-  addLinkedObjectDefinition(linkedObject: LinkedObjectOptions): Promise<v3.LinkedObject>;
+  addLinkedObjectDefinition(linkedObject: v3.LinkedObject): Promise<v3.LinkedObject>;
   deleteLinkedObjectDefinition(linkedObjectName: string): Promise<void>;
   getLinkedObjectDefinition(linkedObjectName: string): Promise<v3.LinkedObject>;
   getUserSchema(schemaId: string): Promise<v3.UserSchema>;
-  updateUserProfile(schemaId: string, userSchema: UserSchemaOptions): Promise<v3.UserSchema>;
+  updateUserProfile(schemaId: string, userSchema: v3.UserSchema): Promise<v3.UserSchema>;
   listUserTypes(): Promise<Collection<v3.UserType>>;
-  createUserType(userType: UserTypeOptions): Promise<v3.UserType>;
+  createUserType(userType: v3.UserType): Promise<v3.UserType>;
   deleteUserType(typeId: string): Promise<void>;
   getUserType(typeId: string): Promise<v3.UserType>;
-  updateUserType(typeId: string, userType: UserTypeOptions): Promise<v3.UserType>;
-  replaceUserType(typeId: string, userType: UserTypeOptions): Promise<v3.UserType>;
+  updateUserType(typeId: string, userType: v3.UserType): Promise<v3.UserType>;
+  replaceUserType(typeId: string, userType: v3.UserType): Promise<v3.UserType>;
   getOrgSettings(): Promise<OrgSetting>;
   partialUpdateOrgSetting(orgSetting: OrgSettingOptions): Promise<OrgSetting>;
   updateOrgSetting(orgSetting: OrgSettingOptions): Promise<OrgSetting>;

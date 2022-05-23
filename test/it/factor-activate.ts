@@ -46,7 +46,10 @@ describe('Factors API', () => {
     // @ts-ignore MAR 2022: MFA_ENROLL policy is not added to SDK
     defaultPolicy.settings.authenticators = [{
       key: 'okta_verify',
-      enroll: {self: 'OPTIONAL'}
+      enroll: {self: 'OPTIONAL'},
+    }, {
+      key: 'okta_password',
+      enroll: {self: 'REQUIRED'}
     }];
     await client.updatePolicy(defaultPolicy.id, defaultPolicy);
   });

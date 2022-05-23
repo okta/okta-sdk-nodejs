@@ -1,15 +1,21 @@
+import { ServerConfiguration } from './../../src/generated/servers';
+import  { createConfiguration } from './../../src/generated/configuration';
 import { expect } from 'chai';
-import { Client, Collection, v3 } from '@okta/okta-sdk-nodejs';
+import { Client, UserType, v3} from '@okta/okta-sdk-nodejs';
 
 
 describe('User Type API', () => {
   it('lists existing user types', async () => {
-    const userTypeApi = await v3.api.UserTypeApiFp({
-      orgUrl: process.env.OKTA_CLIENT_ORGURL,
-      token: process.env.OKTA_CLIENT_TOKEN,
+    const configuration = createConfiguration({
+      baseServer: new ServerConfiguration(process.env.OKTA_CLIENT_ORGURL, {}),
+      authMethods: {
+        api_token: `SSWS ${process.env.OKTA_CLIENT_TOKEN}`
+      }
     });
-    const collection: Collection<v3.model.UserType> = (await userTypeApi.listUserTypes())();
-    const userTypes: v3.model.UserType[] = [];
+    const userTypeApi = new v3.UserTypeApi(configuration);
+
+    const collection = await userTypeApi.listUserTypes();
+    const userTypes: v3.UserType[] = [];
     for await (const userType of collection) {
       userTypes.push(userType);
     }
@@ -26,7 +32,7 @@ describe('User Type API', () => {
         token
       });
       const userTypes = [];
-      const collection = client.listUserTypes();
+      const collection = await client.listUserTypes();
       for await (const userType of collection) {
         userTypes.push(userType);
       }

@@ -12,7 +12,7 @@
 
 
 const parseLinkHeader = require('parse-link-header');
-const { RequestContext, ResponseContext } = require('./v3/http/http');
+const { RequestContext, ResponseContext } = require('./generated/http/http');
 
 /**
  * Provides an interface to iterate over all objects in a collection that has pagination via Link headers

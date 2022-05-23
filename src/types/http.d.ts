@@ -16,8 +16,8 @@ import { RequestExecutor } from './request-executor';
 import { CacheStorage } from './memory-store';
 import { defaultCacheMiddleware } from './default-cache-middleware';
 import { RequestOptions } from './request-options';
-import { HttpLibrary, RequestContext, ResponseContext } from './v3/http/http';
-import { Observable } from './v3/rxjsStub';
+import { HttpLibrary, RequestContext, ResponseContext } from './generated/http/http';
+import { Observable } from './generated/rxjsStub';
 
 
 interface OktaRequestContext {

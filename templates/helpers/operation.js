@@ -334,10 +334,11 @@ const getOperationArgumentsAndReturnType = operation => {
     const bodyParamName = getBodyModelName(operation);
     if (bodyParamName) {
       const modelPropertiesType = operation.bodyModel === 'string' ?
-        operation.bodyModel :  `${operation.bodyModel}${OPTIONS_TYPE_SUFFIX}`;
+        operation.bodyModel : isV3Api(operationId) ? `${operation.bodyModel}` : `${operation.bodyModel}${OPTIONS_TYPE_SUFFIX}`;
       args.set(_.camelCase(bodyParamName), {
         isRequired: hasRequiredParameterInRequestMedia(parameters, 'body'),
         type: modelPropertiesType,
+        namespace: isV3Api(operationId) ? 'v3' : '',
       });
     }
   }
@@ -388,7 +389,7 @@ const getModelMethodArgumentsAndReturnType = (method, modelName) => {
   return [args, returnType];
 };
 
-const convertTypeObjectsToTypeNames = (args, returnType) => {
+const convertTypeObjectsToTypeNames = (args, returnType,) => {
   const argTypes = Array.from(args.values()).map(arg => arg.type);
   return [...argTypes, returnType.genericType, returnType.genericParameterType];
 };

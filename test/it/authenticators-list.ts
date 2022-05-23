@@ -24,7 +24,7 @@ describe('Authenticators API tests', () => {
   });
 
   it('should list all available Authenticators', async () => {
-    const authenticators = client.listAuthenticators();
+    const authenticators = await client.listAuthenticators();
     const expectedAuthenticators = ['email', 'app', 'password', 'phone', 'security_question'];
     await authenticators.each(a => {
       expect(a.type).to.equal(expectedAuthenticators.shift());

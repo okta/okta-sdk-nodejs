@@ -14,7 +14,7 @@ const Client = require('./client');
 const RequestExecutor = require('./request-executor');
 const { DefaultRequestExecutor } = require('./default-request-executor');
 const { Collection } = require('./collection');
-const v3 = require('./v3');
+const v3 = require('./generated');
 
 
 module.exports = Object.assign(

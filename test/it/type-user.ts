@@ -34,7 +34,7 @@ async function createUserTypeWithRetry() {
 }
 
 describe('User Type API', async () => {
-  let userType: v3.model.UserType;
+  let userType: v3.UserType;
 
   describe('List userTypes', () => {
     beforeEach(async () => {
@@ -46,10 +46,11 @@ describe('User Type API', async () => {
     });
 
     it('should return a Collection of UserType', async () => {
-      const userTypes = client.listUserTypes();
+      const userTypes = await client.listUserTypes();
       expect(userTypes).to.be.instanceOf(Collection);
-      const {value: userType } = await userTypes.next();
-      expect(userType.name.length).to.be.greaterThan(0);
+      //const {value: userType } = await userTypes.next();
+      const nextValue = await userTypes.next();
+      expect(nextValue.value.name.length).to.be.greaterThan(0);
     });
   });
 
@@ -116,8 +117,8 @@ describe('User Type API', async () => {
 
     it('returns empty response on successful deletion', async () => {
       // const res = await userType.delete();
-      const res: Record<string, never> = await client.deleteUserType(userType.id);
-      expect(Object.keys(res).length).to.equal(0);
+      const res = await client.deleteUserType(userType.id);
+      expect(res).to.be.undefined;
     });
   });
 });

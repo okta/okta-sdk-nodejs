@@ -1,7 +1,7 @@
 const { isV3Api } = require('./operation-v3');
 
 function formatMethodSignature(methodName, args, returnType, options = {}) {
-  return `${methodName}(${formatArguments(args)}): ${formatParameterizedReturnType(returnType, isV3Api(methodName), options.tagV3Methods)};`;
+  return `${methodName}(${formatArguments(args, options)}): ${formatParameterizedReturnType(returnType, isV3Api(methodName), options.tagV3Methods)};`;
 }
 
 function formatParameterizedReturnType({genericType, genericParameterType}, isV3Api, tagV3Methods) {
@@ -15,14 +15,14 @@ function formatParameterizedReturnType({genericType, genericParameterType}, isV3
   return versionedReturnType;
 }
 
-function formatArguments(args) {
+function formatArguments(args, options) {
   const typedArgs = [];
-  for (let [argName, {type, isRequired}] of args) {
+  for (let [argName, {type, isRequired, namespace}] of args) {
     let argument = `${argName}${isRequired ? '' : '?'}`;
     if (Array.isArray(type)) {
       argument = `${argument}: ${formatObjectLiteralType(type)}`;
     } else {
-      argument = `${argument}: ${type}`;
+      argument = `${argument}: ${options.tagV3Methods && namespace ? `${namespace}.${type}` : type}`;
     }
     typedArgs.push(argument);
   }

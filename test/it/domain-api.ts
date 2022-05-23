@@ -4,6 +4,7 @@ import {
   DomainCertificateSourceType,
 } from '@okta/okta-sdk-nodejs';
 import { expect } from 'chai';
+import utils = require('../utils');
 
 
 const client = new Client({
@@ -13,7 +14,11 @@ const client = new Client({
 
 describe('Domains API', () => {
   afterEach(async () => {
-    (await client.listDomains()).domains.forEach(domain => client.deleteDomain(domain.id));
+    (await client.listDomains()).domains.forEach(async (domain) => {
+      await client.deleteDomain(domain.id);
+    });
+    await utils.delay(3000);
+
   });
 
   it('can create, list and get domains by id', async () => {
