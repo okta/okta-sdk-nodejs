@@ -827,6 +827,7 @@ To use HTTP Basic Auth with your proxy, use the `http://user:password@host/` syn
 ## User Agent
 
 If you need to specify a User-Agent for the client requests, you can configure it with `userAgent` property.
+`userAgent` property will be prepended to the user agent string created by SDK.
 ```javascript
 const okta = require('@okta/okta-sdk-nodejs');
 

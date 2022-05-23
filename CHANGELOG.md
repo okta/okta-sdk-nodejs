@@ -1,5 +1,11 @@
 # Okta Node SDK Changelog
 
+# 6.5.0
+
+### Other 
+
+- [#323](https://github.com/okta/okta-sdk-nodejs/pull/323) Adds `userAgent` property to configurtation type and documents its usage
+
 ## 6.4.0
 
 ### Features
