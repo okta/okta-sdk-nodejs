@@ -45,8 +45,10 @@
   "devDependencies": {
     "@faker-js/faker": "^5.5.3",
     "@okta/openapi": "^2.11.1",
+    "@openapitools/openapi-generator-cli": "^2.5.1",
     "@types/chai": "^4.2.22",
     "@types/mocha": "^9.0.0",
+    "@types/node": "^17.0.34",
     "@types/node-fetch": "^2.5.8",
     "@types/rasha": "^1.2.3",
     "@typescript-eslint/eslint-plugin": "^5.3.0",

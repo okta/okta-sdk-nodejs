@@ -7,27 +7,29 @@ import { ApplicationOptions } from '../../src/types/parameterized-operations-cli
 
 
 const client = new Client();
+(async function () {
+  // mandatory query parameters
+  expectError(client.listPolicies());
 
-// mandatory query parameters
-expectError(client.listPolicies());
+  // non-string query parameters
+  expectError(client.deleteApplicationUser('appId', 'userId', {sendEmail: 0}));
 
-// non-string query parameters
-expectError(client.deleteApplicationUser('appId', 'userId', {sendEmail: 0}));
+  // Client methods return either Promise or Collection
+  expectType<Promise<Response>>(client.deletePolicy('policyId'));
+  expectType<Collection<Application>>(await client.listApplications());
 
-// Client methods return either Promise or Collection
-expectType<Promise<Response>>(client.deletePolicy('policyId'));
-expectType<Collection<Application>>(client.listApplications());
-
-// methods expecting body request parameters
-const appOptions: ApplicationOptions = {
-  name: 'bookmark',
-  label: 'Bookmark app',
-  signOnMode: 'BOOKMARK',
-  settings: {
-    app: {
-      requestIntegration: false,
-      url: 'https://example.com/bookmark.htm'
+  // methods expecting body request parameters
+  const appOptions: ApplicationOptions = {
+    name: 'bookmark',
+    label: 'Bookmark app',
+    signOnMode: 'BOOKMARK',
+    settings: {
+      app: {
+        requestIntegration: false,
+        url: 'https://example.com/bookmark.htm'
+      }
     }
-  }
-};
-expectType<Promise<Application>>(client.createApplication(appOptions));
+  };
+  expectType<Promise<Application>>(client.createApplication(appOptions));
+}());
+

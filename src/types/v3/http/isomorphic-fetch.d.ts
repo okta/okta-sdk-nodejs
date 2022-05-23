@@ -10,16 +10,9 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
-class ModelFactory {
 
-  constructor(Ctor, client) {
-    this.Ctor = Ctor;
-    this.client = client;
-  }
-
-  createInstance(resource) {
-    return new this.Ctor(resource, this.client);
-  }
+import { HttpLibrary, RequestContext, ResponseContext } from './http';
+import { Observable } from '../rxjsStub';
+export declare class IsomorphicFetchHttpLibrary implements HttpLibrary {
+  send(request: RequestContext): Observable<ResponseContext>;
 }
-
-module.exports.ModelFactory = ModelFactory;

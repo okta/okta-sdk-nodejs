@@ -14,6 +14,7 @@ const Client = require('./client');
 const RequestExecutor = require('./request-executor');
 const { DefaultRequestExecutor } = require('./default-request-executor');
 const { Collection } = require('./collection');
+const v3 = require('./v3');
 
 
 module.exports = Object.assign(
@@ -21,8 +22,8 @@ module.exports = Object.assign(
     Client,
     RequestExecutor,
     DefaultRequestExecutor,
-    Collection
+    Collection,
+    v3
   },
   require('./models'),
-  require('./v3')
 );
