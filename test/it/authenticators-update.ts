@@ -1,5 +1,4 @@
 import * as okta from '@okta/okta-sdk-nodejs';
-import { AllowedForEnum } from '@okta/okta-sdk-nodejs';
 import { expect } from 'chai';
 import utils = require('../utils');
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
@@ -23,21 +22,21 @@ describe('Authenticators API tests', () => {
   });
 
   it('should update Authenticator', async () => {
-    const { value: authenticator} = await client.listAuthenticators().next();
+    const { value: authenticator} = await (await client.listAuthenticators()).next();
 
     let updatedAuthenticator = await client.updateAuthenticator(authenticator.id, {
       name: authenticator.name,
       settings: {
-        allowedFor: AllowedForEnum.ANY
+        allowedFor: 'any'
       }
     });
-    expect(updatedAuthenticator.settings.allowedFor).to.equal(AllowedForEnum.ANY);
+    expect(updatedAuthenticator.settings.allowedFor).to.equal('any');
     updatedAuthenticator = await client.updateAuthenticator(authenticator.id, {
       name: authenticator.name,
       settings: {
-        allowedFor: AllowedForEnum.RECOVERY
+        allowedFor: 'recovery'
       }
     });
-    expect(updatedAuthenticator.settings.allowedFor).to.equal(AllowedForEnum.RECOVERY);
+    expect(updatedAuthenticator.settings.allowedFor).to.equal('recovery');
   });
 });

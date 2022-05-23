@@ -21,10 +21,10 @@ const DEFAULT_USER_AGENT = `${packageJson.name}/${packageJson.version} node/${pr
 const repoUrl = 'https://github.com/okta/okta-sdk-nodejs';
 const { OAuth } = require('./oauth');
 const { getAffectedResources } = require('./request-middleware');
-const { AuthenticatorApi, SchemaApi, UserTypeApi, InlineHookApi, ProfileMappingApi, DomainApi, LinkedObjectApi } = require('./v3');
-const { createConfiguration } = require('./v3/configuration');
-const { ServerConfiguration } = require('./v3/servers');
-const { Observable } = require('./v3/rxjsStub');
+const { AuthenticatorApi, SchemaApi, UserTypeApi, InlineHookApi, ProfileMappingApi, DomainApi, LinkedObjectApi } = require('./generated');
+const { createConfiguration } = require('./generated/configuration');
+const { ServerConfiguration } = require('./generated/servers');
+const { Observable } = require('./generated/rxjsStub');
 
 
 /**

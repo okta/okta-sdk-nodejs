@@ -102,7 +102,7 @@ js.process = ({spec, operations, models, handlebars}) => {
     if (model.resolutionStrategy) {
       const mapping = Object.entries(model.resolutionStrategy.valueToModelMapping).map(([propertyValue, className]) => {
         const classModel = models.filter(model => model.modelName === className)[0];
-        return { propertyValue, modelName: classModel.resolutionStrategy ? `new factories.${className}()` : `models.${className}` };
+        return { propertyValue, modelName: classModel.resolutionStrategy ? `new factories.${className}(this.client)` : `models.${className}` };
       });
       templates.push({
         src: 'factory.js.hbs',

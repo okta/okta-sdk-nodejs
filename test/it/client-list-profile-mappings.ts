@@ -20,8 +20,8 @@ const client = new Client({
 describe('client.listProfileMappings()', () => {
   // OKTA-397861: update org configuration to enable the test
   xit('should return a collection', async () => {
-    const collection = client.listProfileMappings();
-    const profileMappings: v3.model.ProfileMapping[] = [];
+    const collection = await client.listProfileMappings();
+    const profileMappings: v3.ProfileMapping[] = [];
     await collection.each(profileMapping => profileMappings.push(profileMapping));
     expect(profileMappings).to.be.an('array').that.is.not.empty;
   });

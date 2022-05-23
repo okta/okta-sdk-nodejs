@@ -18,20 +18,19 @@ test-reports/
 .yalc
 yalc.lock
 
-src/v3/.swagger-codegen/
-src/v3/.gitignore
-src/v3/.npmignore
-src/v3/.swagger-codegen-ignore
-src/v3/git_push.sh
-src/v3/README.md
-src/v3/tsconfig.json
-src/v3/package.json
+src/generated/.swagger-codegen/
+src/generated/.gitignore
+src/generated/.npmignore
+src/generated/.swagger-codegen-ignore
+src/generated/git_push.sh
+src/generated/README.md
+src/generated/package.json
 
-src/types/v3/.swagger-codegen/
-src/types/v3/.gitignore
-src/types/v3/.npmignore
-src/types/v3/.swagger-codegen-ignore
-src/types/v3/git_push.sh
-src/types/v3/README.md
-src/types/v3/tsconfig.json
-src/types/v3/package.json
+src/types/generated/.swagger-codegen/
+src/types/generated/.gitignore
+src/types/generated/.npmignore
+src/types/generated/.swagger-codegen-ignore
+src/types/generated/git_push.sh
+src/types/generated/README.md
+src/types/generated/tsconfig.json
+src/types/generated/package.json

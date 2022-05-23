@@ -1001,15 +1001,11 @@ This version 4.0 release also updated APIs latest `@okta/openapi` (v2.0.0) that 
 
 Run `yarn build` from repository root.
 
-### Building with swagger-codegen
- - Obtain OASv3 combined spec
- - install Java 8 and Maven
- - run `mvn generate-sources`
- - remove APIs and models which are not intended to be pushed to upstream from `src/v3` and `src/types/v3`
- - run `./scripts/emitV3Types.sh` to replace TypeScript modules with typings + javascript modules
- - update `templates/helpers/operation-v3.js` with newly generated APIs and their methods (so v2 client includes them)
+### Building with openapi-generator
+ - Obtain OASv3 combined spec and place it under `spec` dir
+ - run `yarn build:openapi`
+ - update `templates/helpers/operation-v3.js` with APIs and their methods that need to be included into v2 client
  - run `yarn build`
- - commit changes
 
 ## Contributing
 

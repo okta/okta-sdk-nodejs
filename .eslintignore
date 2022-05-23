@@ -1,1 +1,5 @@
 test/jest/coverage/
+src/generated/util.js
+src/generated/types/ObjectParamApi.js
+src/generated/models/ObjectSerializer.js
+src/generated/http/http.js

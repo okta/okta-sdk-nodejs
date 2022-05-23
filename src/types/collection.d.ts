@@ -13,35 +13,38 @@
 import { RequestOptions } from './request-options';
 import { ModelFactory } from './model-factory';
 import { ModelResolutionFactory } from './resolution-factory';
-import { Client } from './client';
-import { Http } from './http';
-import { RequestContext, ResponseContext } from './v3/http/http';
-
+import { HttpLibrary } from './generated/http/http';
+import { RequestContext, ResponseContext } from './generated/http/http';
 
 interface ResponseProcessor {
-  parseResponse: (resource: ResponseContext) => Promise<unknown>
+  parseResponse: (resource: ResponseContext) => Promise<unknown>;
 }
 
 export declare class Collection<T> {
-  constructor(httpApi: Client, uri: string, factory?: ModelFactory | ModelResolutionFactory | ResponseProcessor, request?: RequestOptions | RequestContext);
+  constructor(
+    httpApi: HttpLibrary,
+    uri: string,
+    factory?: ModelFactory | ModelResolutionFactory | ResponseProcessor,
+    request?: RequestOptions | RequestContext
+  );
 
   nextUri: string;
-  httpApi: Http;
+  httpApi: HttpLibrary;
   factory: ModelFactory | ModelResolutionFactory | ResponseProcessor;
   currentItems: Record<string, unknown>[];
   request: RequestOptions;
   next(): Promise<{
-    done: boolean,
-    value: T | null
+    done: boolean;
+    value: T | null;
   }>;
   [Symbol.asyncIterator](): {
     next: () => Promise<{
-      done: boolean,
-      value: T | null
+      done: boolean;
+      value: T | null;
     }>;
   };
   getNextPage(): Promise<Record<string, unknown>[]>;
-  each(iterator: (item: T) =>  Promise<unknown> | boolean | unknown): Promise<unknown>;
+  each(iterator: (item: T) => Promise<unknown> | boolean | unknown): Promise<unknown>;
   subscribe(config: {
     interval?: number;
     next: (item: T) => unknown | Promise<unknown>;

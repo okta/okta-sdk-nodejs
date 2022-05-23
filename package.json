@@ -3,7 +3,7 @@
   "version": "6.5.0",
   "description": "Okta API wrapper for Node.js",
   "engines": {
-    "node": ">=12.0"
+    "node": ">=14.0"
   },
   "files": [
     "src/",
@@ -15,6 +15,7 @@
     "banners": "./utils/maintain-banners.js",
     "prebuild": "rimraf ./src/models ./src/factories ./src/generated-client.js",
     "build": "okta-sdk-generator -t templates/ -o . && yarn banners",
+    "build:openapi": "openapi-generator-cli generate -i ./spec/management.yaml -g typescript -o ./src/generated  -c templates/swagger-codegen-config.json -t templates/openapi-generator && ./scripts/emitV3Types.sh",
     "eslint": "eslint .",
     "jest": "JEST_JUNIT_OUTPUT_DIR=./test-reports jest --coverage --ci --testResultsProcessor=jest-junit test/jest/*.js",
     "predocs": "rimraf ./jsdocs && mkdir jsdocs/ && ./utils/make-jsdoc-readme.js > ./jsdocs/jsdoc-temp.md",
@@ -23,7 +24,7 @@
     "test:integration:ssws": "TS_NODE_PROJECT=./test/it/tsconfig.json MOCHA_FILE=./test-reports/it-results.xml OKTA_CLIENT_AUTHORIZATIONMODE=SSWS nyc --reporter=text --reporter=html mocha -r ts-node/register -r tsconfig-paths/register --reporter=mocha-junit-reporter --reporter-options toConsole=true --retries 2 test/it/*.ts --no-timeouts",
     "test:integration:oauth": "TS_NODE_PROJECT=./test/it/tsconfig.json OKTA_CLIENT_AUTHORIZATIONMODE=PrivateKey nyc --reporter=text --reporter=html mocha -r ts-node/register -r tsconfig-paths/register test/it/user-get.ts --no-timeouts",
     "test:unit": "MOCHA_FILE=./test-reports/junit-results.xml nyc --reporter=text --reporter=html mocha --reporter=mocha-junit-reporter test/unit/*.js --no-timeouts",
-    "test:types": "tsd && tsc --noEmit --isolatedModules --importsNotUsedAsValues error src/types/**/*.*",
+    "test:types": "tsd && tsc --noEmit --isolatedModules --importsNotUsedAsValues error src/types/**/*.ts",
     "test": "yarn eslint && yarn test:types && yarn test:unit && yarn test:integration && yarn jest",
     "aftertest": "mocha test/delete-resources.js --no-timeouts"
   },
@@ -40,7 +41,8 @@
     "node-fetch": "^2.6.7",
     "parse-link-header": "^2.0.0",
     "rasha": "^1.2.5",
-    "safe-flat": "^2.0.2"
+    "safe-flat": "^2.0.2",
+    "url-parse": "^1.5.10"
   },
   "devDependencies": {
     "@faker-js/faker": "^5.5.3",

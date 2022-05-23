@@ -135,7 +135,7 @@ async function cleanupUser(client, user) {
 
 async function cleanupGroup(client, expectedGroup) {
   let queryParameters = { q : `${expectedGroup.profile.name}` };
-  await client.listGroups(queryParameters).each(async (group) => {
+  (await client.listGroups(queryParameters)).each(async (group) => {
     expect(group).to.be.an.instanceof(models.Group);
     // If search doesn't return any results, listGroups() returns empty collection
     // eslint-disable-next-line no-prototype-builtins
@@ -259,6 +259,18 @@ function getMockImage(filename) {
   return createReadStream(path.join(__dirname, `it/mocks/images/${filename}`));
 }
 
+async function runWithRetry(clientMethod) {
+  try {
+    return await clientMethod();
+  } catch (err) {
+    return new Promise((resolve, reject) => {
+      setTimeout(function () {
+        clientMethod().then(userType => resolve(userType), err => reject(err));
+      }, 2000);
+    });
+  }
+}
+
 module.exports = {
   delay: delay,
   validateUser: validateUser,
@@ -280,5 +292,6 @@ module.exports = {
   getOrg2OrgApplicationOptions: getOrg2OrgApplicationOptions,
   getOIDCApplication: getOIDCApplication,
   verifyOrgIsOIE,
-  getMockImage: getMockImage
+  getMockImage: getMockImage,
+  runWithRetry
 };

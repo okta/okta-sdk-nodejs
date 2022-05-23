@@ -4,9 +4,8 @@ import utils = require('../utils');
 import {
   Client,
   BookmarkApplication,
-  UserSchema,
   DefaultRequestExecutor,
-  v3
+  v3,
 } from '@okta/okta-sdk-nodejs';
 import getMockSchemaProperty = require('./mocks/user-schema-property');
 
@@ -29,8 +28,7 @@ describe('App User Schema', () => {
   let createdApplication: BookmarkApplication;
 
   beforeEach(async () => {
-    createdApplication = await client.createApplication(applicationOptions) as BookmarkApplication;
-
+    createdApplication = await client.createApplication<BookmarkApplication>(applicationOptions);
   });
   afterEach(async () => {
     await client.deactivateApplication(createdApplication.id);
@@ -38,7 +36,7 @@ describe('App User Schema', () => {
   });
 
   it('gets UserSchema for application', async () => {
-    const userSchema: v3.model.UserSchema = await client.getApplicationUserSchema(createdApplication.id);
+    const userSchema: v3.UserSchema = await client.getApplicationUserSchema(createdApplication.id);
     expect(userSchema.definitions).is.not.null;
   });
 

@@ -33,7 +33,7 @@ declare class UserType extends Resource {
   name: string;
 
   update(): Promise<UserType>;
-  delete(): Promise<Record<string, never>>;
+  delete(): Promise<void>;
   replaceUserType(typeId: string): Promise<UserType>;
 }
 

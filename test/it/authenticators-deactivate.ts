@@ -1,4 +1,4 @@
-import * as okta from '@okta/okta-sdk-nodejs';
+import { Client, DefaultRequestExecutor, Policy, AuthenticatorStatus } from '@okta/okta-sdk-nodejs';
 import { expect } from 'chai';
 import utils = require('../utils');
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
@@ -7,11 +7,11 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/authenticators-active`;
 }
 
-const client = new okta.Client({
+const client = new Client({
   scopes: ['okta.authenticators.read', 'okta.authenticators.manage'],
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
-  requestExecutor: new okta.DefaultRequestExecutor()
+  requestExecutor: new DefaultRequestExecutor()
 });
 
 describe('Authenticators API tests', () => {
@@ -21,8 +21,8 @@ describe('Authenticators API tests', () => {
     if (!isOIEOrg) {
       this.skip();
     }
-    const authenticatorPolicies: okta.Policy[] = [];
-    for await (const policy of client.listPolicies({type: 'MFA_ENROLL'})) {
+    const authenticatorPolicies: Policy[] = [];
+    for await (const policy of await client.listPolicies({type: 'MFA_ENROLL'})) {
       authenticatorPolicies.push(policy);
     }
     const defaultPolicy = authenticatorPolicies.find(policy => policy.name === 'Default Policy');
@@ -40,20 +40,20 @@ describe('Authenticators API tests', () => {
   });
 
   it('should deactivate an active Authenticator', async () => {
-    const authenticators = client.listAuthenticators();   // returns Collection<Authenticator>
+    const authenticators = await client.listAuthenticators();   // returns Collection<Authenticator>
 
     await authenticators.each(async (item) => {
       if (item.type === 'security_question') {
         // access Security Question Authenticator (this is not a part of the Default Authenticator Policy)
         let sqAuthenticator = item;
-        expect(sqAuthenticator).to.include({type: 'security_question', name: 'Security Question', status: okta.AuthenticatorStatus.ACTIVE});
+        expect(sqAuthenticator).to.include({type: 'security_question', name: 'Security Question', status: 'ACTIVE'});
 
         sqAuthenticator = await client.deactivateAuthenticator(sqAuthenticator.id);
-        expect(sqAuthenticator).to.include({type: 'security_question', name: 'Security Question', status: okta.AuthenticatorStatus.INACTIVE});
+        expect(sqAuthenticator).to.include({type: 'security_question', name: 'Security Question', status: 'INACTIVE'});
 
         // return to previous state
         sqAuthenticator = await client.activateAuthenticator(sqAuthenticator.id);
-        expect(sqAuthenticator).to.include({type: 'security_question', name: 'Security Question', status: okta.AuthenticatorStatus.ACTIVE});
+        expect(sqAuthenticator).to.include({type: 'security_question', name: 'Security Question', status: 'ACTIVE'});
       }
     });
   });

@@ -24,10 +24,10 @@ class ApplicationFactory extends ModelResolutionFactory {
       'AUTO_LOGIN': models.AutoLoginApplication,
       'BASIC_AUTH': models.BasicAuthApplication,
       'BOOKMARK': models.BookmarkApplication,
-      'BROWSER_PLUGIN': new factories.BrowserPluginApplication(),
+      'BROWSER_PLUGIN': new factories.BrowserPluginApplication(this.client),
       'OPENID_CONNECT': models.OpenIdConnectApplication,
-      'SAML_1_1': new factories.SamlApplication(),
-      'SAML_2_0': new factories.SamlApplication(),
+      'SAML_1_1': new factories.SamlApplication(this.client),
+      'SAML_2_0': new factories.SamlApplication(this.client),
       'SECURE_PASSWORD_STORE': models.SecurePasswordStoreApplication,
       'WS_FEDERATION': models.WsFederationApplication,
     };

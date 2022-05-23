@@ -17,8 +17,8 @@ const HttpError = require('./http-error');
 const MemoryStore = require('./memory-store');
 const defaultCacheMiddleware = require('./default-cache-middleware');
 const HttpsProxyAgent = require('https-proxy-agent');
-const { from } = require('./v3/rxjsStub');
-const { ResponseContext } = require('./v3/http/http');
+const { from } = require('./generated/rxjsStub');
+const { ResponseContext } = require('./generated/http/http');
 
 
 /**
