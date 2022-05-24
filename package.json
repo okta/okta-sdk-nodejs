@@ -77,7 +77,8 @@
     "sanitize-html": "^2.7.0",
     "tmpl": "^1.0.5",
     "moment": "^2.29.2",
-    "nanoid": "^3.1.31"
+    "nanoid": "^3.1.31",
+    "klaw": "^3.0.0"
   },
   "jest": {
     "restoreMocks": true,
