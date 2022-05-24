@@ -32,6 +32,9 @@ describe('Authenticators API tests', () => {
     defaultPolicy.settings.authenticators = [{
       key: 'security_question',
       enroll: {self: 'NOT_ALLOWED'}
+    }, {
+      key: 'okta_password',
+      enroll: {self: 'REQUIRED'}
     }];
     await client.updatePolicy(defaultPolicy.id, defaultPolicy);
   });
