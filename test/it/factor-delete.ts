@@ -45,6 +45,9 @@ describe('Factors API', () => {
     defaultPolicy.settings.authenticators = [{
       key: 'okta_verify',
       enroll: {self: 'OPTIONAL'}
+    }, {
+      key: 'okta_password',
+      enroll: {self: 'REQUIRED'}
     }];
     await client.updatePolicy(defaultPolicy.id, defaultPolicy);
   });

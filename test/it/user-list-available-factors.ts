@@ -31,6 +31,9 @@ describe('User API Tests', () => {
     }, {
       key: 'security_question',
       enroll: {self: 'OPTIONAL'}
+    }, {
+      key: 'okta_password',
+      enroll: {self: 'REQUIRED'}
     }];
     await client.updatePolicy(defaultPolicy.id, defaultPolicy);
   });
