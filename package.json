@@ -76,7 +76,8 @@
     "node-fetch": "^2.6.7",
     "sanitize-html": "^2.7.0",
     "tmpl": "^1.0.5",
-    "moment": "^2.29.2"
+    "moment": "^2.29.2",
+    "nanoid": "^3.1.31"
   },
   "jest": {
     "restoreMocks": true,
