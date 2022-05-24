@@ -74,8 +74,9 @@
   },
   "resolutions": {
     "node-fetch": "^2.6.7",
-    "sanitize-html": "^2.3.1",
-    "tmpl": "^1.0.5"
+    "sanitize-html": "^2.7.0",
+    "tmpl": "^1.0.5",
+    "moment": "^2.29.2"
   },
   "jest": {
     "restoreMocks": true,
