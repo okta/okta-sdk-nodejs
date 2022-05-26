@@ -27,6 +27,7 @@ export declare class Client extends ParameterizedOperationsClient {
     requestExecutor?: RequestExecutor,
     authorizationMode?: string,
     privateKey?: string | Record<string, unknown>
+    keyId?: string;
     cacheStore?: CacheStorage,
     cacheMiddleware?: typeof defaultCacheMiddleware | unknown
     defaultCacheMiddlewareResponseBufferSize?: number,
@@ -41,6 +42,7 @@ export declare class Client extends ParameterizedOperationsClient {
   clientId: string;
   scopes: string[];
   privateKey: string;
+  keyId: string;
   oauth: OAuth;
   http: Http;
 }

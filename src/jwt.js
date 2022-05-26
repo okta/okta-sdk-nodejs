@@ -13,7 +13,9 @@
 
 const nJwt = require('njwt');
 const Rasha = require('rasha');
-const DEFAULT_ALG = 'RS256';
+const Eckles = require('eckles');
+const DEFAULT_RSA_ALG = 'RS256';
+const DEFAULT_EC_ALG = 'ES256';
 
 function getPemAndJwk(privateKey) {
   let jwk;
@@ -33,14 +35,33 @@ function getPemAndJwk(privateKey) {
   }
 
   if (jwk) {
-    return Rasha.export({ jwk }).then(function (pem) {
+    let keyParsingLib;
+    let defaultAlgo;
+    if (jwk.kty === 'EC') {
+      keyParsingLib = Eckles;
+      defaultAlgo = DEFAULT_EC_ALG;
+    } else if (jwk.kty === 'RSA') {
+      keyParsingLib = Rasha;
+      defaultAlgo = DEFAULT_RSA_ALG;
+    } else {
+      throw new Error(`Key type ${jwk.kty} is not supported.`);
+    }
+    return keyParsingLib.export({ jwk }).then(function (pem) {
       // PEM in PKCS1 (traditional) format
+      jwk.alg = jwk.alg || defaultAlgo;
       return { pem, jwk };
     });
   } else {
     return Rasha.import({ pem }).then(function (jwk) {
-      jwk.alg = jwk.alg || DEFAULT_ALG;
+      jwk.alg = jwk.alg || DEFAULT_RSA_ALG;
       return { pem, jwk };
+    }, function (_err) {
+      return Eckles.import({ pem }).then(function (jwk) {
+        jwk.alg = jwk.alg || DEFAULT_EC_ALG;
+        return { pem, jwk };
+      });
+    }).catch(function (err) {
+      throw new Error(`Unable to convert private key from PEM to JWK: ${err.message}`);
     });
   }
 }
@@ -55,14 +76,15 @@ function makeJwt(client, endpoint) {
   return getPemAndJwk(client.privateKey)
     .then(res => {
       const { pem, jwk } = res;
-      const alg = jwk.alg || DEFAULT_ALG;
+      const alg = jwk.alg;
       let jwt = nJwt.create(claims, pem, alg)
         .setIssuedAt(now)
         .setExpiration(plus5Minutes)
         .setIssuer(client.clientId)
         .setSubject(client.clientId);
-      if (jwk.kid) {
-        jwt = jwt.setHeader('kid', jwk.kid);
+      const kid = jwk.kid || client.keyId;
+      if (kid) {
+        jwt = jwt.setHeader('kid', kid);
       }
       // JWT object is returned. It needs to be compacted with jwt.compact() before it can be used
       return jwt;
