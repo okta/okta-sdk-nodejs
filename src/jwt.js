@@ -37,17 +37,19 @@ function getPemAndJwk(privateKey) {
   if (jwk) {
     let keyParsingLib;
     let defaultAlgo;
+    const options = {};
     if (jwk.kty === 'EC') {
       keyParsingLib = Eckles;
       defaultAlgo = DEFAULT_EC_ALG;
+      options.format = 'pkcs8';
     } else if (jwk.kty === 'RSA') {
       keyParsingLib = Rasha;
       defaultAlgo = DEFAULT_RSA_ALG;
     } else {
-      throw new Error(`Key type ${jwk.kty} is not supported.`);
+      return Promise.reject(new Error(`Key type ${jwk.kty} is not supported.`));
     }
-    return keyParsingLib.export({ jwk }).then(function (pem) {
-      // PEM in PKCS1 (traditional) format
+    return keyParsingLib.export({ jwk, ...options }).then(function (pem) {
+      // PEM in PKCS1 (traditional) format for RSA keys and PKCS8 for EC keys
       jwk.alg = jwk.alg || defaultAlgo;
       return { pem, jwk };
     });
@@ -55,13 +57,13 @@ function getPemAndJwk(privateKey) {
     return Rasha.import({ pem }).then(function (jwk) {
       jwk.alg = jwk.alg || DEFAULT_RSA_ALG;
       return { pem, jwk };
-    }, function (_err) {
+    }).catch(function (rsaError) {
       return Eckles.import({ pem }).then(function (jwk) {
         jwk.alg = jwk.alg || DEFAULT_EC_ALG;
         return { pem, jwk };
+      }).catch(function (ecError) {
+        throw new Error(`Unable to convert private key from PEM to JWK: ${rsaError.message}, ${ecError.message}`);
       });
-    }).catch(function (err) {
-      throw new Error(`Unable to convert private key from PEM to JWK: ${err.message}`);
     });
   }
 }
