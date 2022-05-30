@@ -5449,7 +5449,8 @@ class GeneratedApiClient {
    * @returns {Collection} A collection that will yield {@link InlineHook} instances.
    */
   listInlineHooks(queryParameters) {
-    return this.inlineHookApi.listInlineHooks(queryParameters);
+    const {  type,  } = queryParameters;
+    return this.inlineHookApi.listInlineHooks(type);
   }
 
   /**
@@ -5572,16 +5573,8 @@ class GeneratedApiClient {
    * @returns {Collection} A collection that will yield {@link LogEvent} instances.
    */
   getLogs(queryParameters) {
-    let url = `${this.baseUrl}/api/v1/logs`;
-    const queryString = qs.stringify(queryParameters || {});
-
-    url += queryString ? ('?' + queryString) : '';
-
-    return new Collection(
-      this.http,
-      url,
-      new ModelFactory(models.LogEvent, this),
-    );
+    const {  since,  until,  filter,  q,  limit,  sortOrder,  after,  } = queryParameters;
+    return this.systemLogApi.getLogs(since, until, filter, q, limit, sortOrder, after);
   }
 
   /**
@@ -5596,7 +5589,8 @@ class GeneratedApiClient {
    * @returns {Collection} A collection that will yield {@link ProfileMapping} instances.
    */
   listProfileMappings(queryParameters) {
-    return this.profileMappingApi.listProfileMappings(queryParameters);
+    const {  after,  limit,  sourceId,  targetId,  } = queryParameters;
+    return this.profileMappingApi.listProfileMappings(after, limit, sourceId, targetId);
   }
 
   /**

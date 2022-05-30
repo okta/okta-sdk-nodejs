@@ -75,6 +75,7 @@ class Collection {
   fetch() {
     if (this.request instanceof RequestContext) {
       this.request.setIsCollection(true);
+      this.request.setUrl(this.nextUri);
       return this.httpApi.send(this.request).toPromise();
     } else {
       return this.httpApi.http(this.nextUri, this.request, { isCollection: true });
