@@ -17,20 +17,7 @@ import { RequestExecutor } from './request-executor';
 import { V2Configuration } from './configuration';
 import { AuthenticatorApi, SchemaApi, UserTypeApi, InlineHookApi, ProfileMappingApi, DomainApi, LinkedObjectApi } from './generated';
 export declare class Client extends ParameterizedOperationsClient {
-  constructor(config?: {
-    orgUrl?: string,
-    token?: string,
-    clientId?: string,
-    scopes?: string[],
-    requestExecutor?: RequestExecutor,
-    authorizationMode?: string,
-    privateKey?: string | Record<string, unknown>
-    cacheStore?: CacheStorage,
-    cacheMiddleware?: typeof defaultCacheMiddleware | unknown
-    defaultCacheMiddlewareResponseBufferSize?: number,
-    userAgent?: string,
-    httpsProxy?: string | unknown, // https://github.com/TooTallNate/node-agent-base/issues/56
-  });
+  constructor(config?: V2Configuration);
 
   requestExecutor: RequestExecutor;
   authorizationMode: string;
