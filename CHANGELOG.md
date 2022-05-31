@@ -2,10 +2,13 @@
 
 # 6.5.0
 
+### Features
+
+- [#329](https://github.com/okta/okta-sdk-nodejs/pull/329) Supports EC private keys for OAuth2 service applications
+
 ### Other 
 
 - [#323](https://github.com/okta/okta-sdk-nodejs/pull/323) Adds `userAgent` property to configurtation type and documents its usage
-- [#329](https://github.com/okta/okta-sdk-nodejs/pull/329) Supports EC private keys for OAuth2 service applications
 
 ## 6.4.0
 
