@@ -5449,7 +5449,10 @@ class GeneratedApiClient {
    * @returns {Collection} A collection that will yield {@link InlineHook} instances.
    */
   listInlineHooks(queryParameters) {
-    const {  type,  } = queryParameters;
+    let type;
+    if (queryParameters) {
+      type = queryParameters.type;
+    }
     return this.inlineHookApi.listInlineHooks(type);
   }
 
@@ -5573,7 +5576,22 @@ class GeneratedApiClient {
    * @returns {Collection} A collection that will yield {@link LogEvent} instances.
    */
   getLogs(queryParameters) {
-    const {  since,  until,  filter,  q,  limit,  sortOrder,  after,  } = queryParameters;
+    let since;
+    let until;
+    let filter;
+    let q;
+    let limit;
+    let sortOrder;
+    let after;
+    if (queryParameters) {
+      since = queryParameters.since;
+      until = queryParameters.until;
+      filter = queryParameters.filter;
+      q = queryParameters.q;
+      limit = queryParameters.limit;
+      sortOrder = queryParameters.sortOrder;
+      after = queryParameters.after;
+    }
     return this.systemLogApi.getLogs(since, until, filter, q, limit, sortOrder, after);
   }
 
@@ -5589,7 +5607,16 @@ class GeneratedApiClient {
    * @returns {Collection} A collection that will yield {@link ProfileMapping} instances.
    */
   listProfileMappings(queryParameters) {
-    const {  after,  limit,  sourceId,  targetId,  } = queryParameters;
+    let after;
+    let limit;
+    let sourceId;
+    let targetId;
+    if (queryParameters) {
+      after = queryParameters.after;
+      limit = queryParameters.limit;
+      sourceId = queryParameters.sourceId;
+      targetId = queryParameters.targetId;
+    }
     return this.profileMappingApi.listProfileMappings(after, limit, sourceId, targetId);
   }
 

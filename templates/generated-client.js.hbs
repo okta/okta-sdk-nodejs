@@ -27,7 +27,14 @@ class GeneratedApiClient {
     {{/each}}
   {{#if (isV3Api operationId)}}
     {{#if queryParams.length}}
-    const { {{#each queryParams}} {{name}}, {{/each}} } = queryParameters;
+    {{#each queryParams}}
+    let {{name}};
+    {{/each}}
+    if (queryParameters) {
+    {{#each queryParams}}
+      {{name}} = queryParameters.{{name}};
+    {{/each}}
+    }
     {{/if}}
     return this.{{toCamelCase (v3ApiByOperationId operationId)}}.{{operationId}}({{operationArgumentBuilder this 'v3'}});
   {{else}}
