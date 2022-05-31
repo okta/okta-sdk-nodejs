@@ -15,7 +15,7 @@ import { OAuth } from './oauth';
 import { Http } from './http';
 import { RequestExecutor } from './request-executor';
 import { V2Configuration } from './configuration';
-import { AuthenticatorApi, SchemaApi, UserTypeApi, InlineHookApi, ProfileMappingApi, DomainApi, LinkedObjectApi } from './generated';
+import { AuthenticatorApi, SchemaApi, UserTypeApi, InlineHookApi, ProfileMappingApi, DomainApi, LinkedObjectApi, SystemLogApi } from './generated';
 export declare class Client extends ParameterizedOperationsClient {
   constructor(config?: V2Configuration);
 
@@ -36,4 +36,5 @@ export declare class Client extends ParameterizedOperationsClient {
   profileMappingApi: ProfileMappingApi;
   domainApi: DomainApi;
   linkedObjectApi: LinkedObjectApi;
+  systemLogApi: SystemLogApi;
 }
