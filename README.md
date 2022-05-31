@@ -98,6 +98,7 @@ const client = new okta.Client({
   clientId: '{oauth application ID}',
   scopes: ['okta.users.manage'],
   privateKey: '{JWK}' // <-- see notes below
+  keyId: 'kidValue'
 });
 ```
 
@@ -106,7 +107,7 @@ The `privateKey` can be passed in the following ways:
 - A string in PEM format
 - As a JSON object, in JWK format
 
-> Note: in case OAuth client app uses multiple JWKs, `privateKey` should specify `kid` attribute.
+> Note: in case OAuth client app uses multiple JWKs, `privateKey` should specify `kid` attribute. When `privateKey` is passed in PEM format, `keyId` value should be provided in SDK configuation.
 
 
 ## Examples

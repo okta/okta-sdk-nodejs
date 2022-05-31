@@ -26,6 +26,12 @@ TSuuiZ8CgYEAyCXs6/IIwf3cyXQ45iEuOPHi3uY1jPGoJPZk1p4ZOzNsS3OQBFqb
 diTDByp4vF0qGVwDRaHF0nXE1CRw0gLeEz1dAB6+2MPFK0EUC5ko6Z4=
 -----END RSA PRIVATE KEY-----`;
 
+const EC_PEM = `-----BEGIN PRIVATE KEY-----
+MIGHAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBG0wawIBAQQgrYhWdq/JkPbEyAyI
+mEJtcnvsNDbj62cS+ej0gknNI1ShRANCAATmrCLEisgrNoavcGXB7ih2La9vfH8J
+Xp2fqN0FcthAfsOPyHHkaCJMYTNYmYbbbUQzF2p5q+IaqUvh4c/FCY27
+-----END PRIVATE KEY-----`;
+
 const INVALID_PEM = `-----BEGIN RSA PRIVATE KEY-----
 IAMGARBAGE
 -----END RSA PRIVATE KEY-----`;
@@ -43,11 +49,29 @@ const JWK =  {
   n: 'u7p0yhCzkbK5gF_WleqnpI1wRX5-B-j4DIY-aSDcnDYENIIzf4Kc4DX7bTxVvApx5KlFqj3D6rMk92oZTeiTzz-Tz22gEeubSLhMPq_TuvMYKUySGGctK9yJ1VIvUxT8ZMo48KX_iD_6TGiOcHtgx9jHLQxfNAr12kG-w8Yc1zUiJtEXxJsRtwOGDmGTB4IUtpepbyKKR3E3tiqTqHjzfoTaIh0VcuOijp9P5BlZH8e2z5ABTcmlgwuSegARC7iDbmuVTRXro1eZQ2suGFN-dcs0iPkpHB6KzSrMU_-5zWFwV6vSCEtVNONqijjSnjO6_bDOZey0z70cCYWHqNKj8w'
 };
 
-const INVALID_JWK = {};
+const EC_JWK = {
+  kty: 'EC',
+  crv: 'P-256',
+  d: 'rYhWdq_JkPbEyAyImEJtcnvsNDbj62cS-ej0gknNI1Q',
+  x: '5qwixIrIKzaGr3Blwe4odi2vb3x_CV6dn6jdBXLYQH4',
+  y: 'w4_IceRoIkxhM1iZhtttRDMXanmr4hqpS-Hhz8UJjbs'
+};
+
+
+const UNKWNOWN_KEY_TYPE_JWK = {
+  kty: 'OKP'
+};
+const INVALID_RSA_JWK = {
+  kty: 'RSA'
+};
+
 
 module.exports = {
   PEM,
+  EC_PEM,
   INVALID_PEM,
   JWK,
-  INVALID_JWK
+  EC_JWK,
+  UNKWNOWN_KEY_TYPE_JWK,
+  INVALID_RSA_JWK
 };
