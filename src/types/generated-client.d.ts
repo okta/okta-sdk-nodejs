@@ -317,13 +317,13 @@ export declare class GeneratedApiClient {
   activateEventHook(eventHookId: string): Promise<EventHook>;
   deactivateEventHook(eventHookId: string): Promise<EventHook>;
   verifyEventHook(eventHookId: string): Promise<EventHook>;
-  listFeatures(): Collection<Feature>;
-  getFeature(featureId: string): Promise<Feature>;
-  listFeatureDependencies(featureId: string): Collection<Feature>;
-  listFeatureDependents(featureId: string): Collection<Feature>;
+  listFeatures(): Promise<Collection<v3.Feature>>;
+  getFeature(featureId: string): Promise<v3.Feature>;
+  listFeatureDependencies(featureId: string): Promise<Collection<v3.Feature>>;
+  listFeatureDependents(featureId: string): Promise<Collection<v3.Feature>>;
   updateFeatureLifecycle(featureId: string, lifecycle: string, queryParameters?: {
     mode?: string,
-  }): Promise<Feature>;
+  }): Promise<v3.Feature>;
   listGroups(queryParameters?: {
     q?: string,
     search?: string,

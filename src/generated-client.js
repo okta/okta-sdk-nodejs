@@ -3646,13 +3646,7 @@ class GeneratedApiClient {
    * @returns {Collection} A collection that will yield {@link Feature} instances.
    */
   listFeatures() {
-    let url = `${this.baseUrl}/api/v1/features`;
-
-    return new Collection(
-      this.http,
-      url,
-      new ModelFactory(models.Feature, this),
-    );
+    return this.featureApi.listFeatures();
   }
 
   /**
@@ -3666,18 +3660,7 @@ class GeneratedApiClient {
     if (!featureId) {
       return Promise.reject(new Error('OKTA API getFeature parameter featureId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/features/${featureId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/features/${featureId}`
-    ];
-
-    const request = this.http.getJson(
-      url,
-      null,
-      { resources }
-    );
-    return request.then(jsonRes => new models.Feature(jsonRes, this));
+    return this.featureApi.getFeature(featureId);
   }
 
   /**
@@ -3691,13 +3674,7 @@ class GeneratedApiClient {
     if (!featureId) {
       return Promise.reject(new Error('OKTA API listFeatureDependencies parameter featureId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/features/${featureId}/dependencies`;
-
-    return new Collection(
-      this.http,
-      url,
-      new ModelFactory(models.Feature, this),
-    );
+    return this.featureApi.listFeatureDependencies(featureId);
   }
 
   /**
@@ -3711,13 +3688,7 @@ class GeneratedApiClient {
     if (!featureId) {
       return Promise.reject(new Error('OKTA API listFeatureDependents parameter featureId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/features/${featureId}/dependents`;
-
-    return new Collection(
-      this.http,
-      url,
-      new ModelFactory(models.Feature, this),
-    );
+    return this.featureApi.listFeatureDependents(featureId);
   }
 
   /**
@@ -3737,22 +3708,7 @@ class GeneratedApiClient {
     if (!lifecycle) {
       return Promise.reject(new Error('OKTA API updateFeatureLifecycle parameter lifecycle is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/features/${featureId}/${lifecycle}`;
-    const queryString = qs.stringify(queryParameters || {});
-
-    url += queryString ? ('?' + queryString) : '';
-
-    const resources = [
-      `${this.baseUrl}/api/v1/features/${featureId}/${lifecycle}`,
-      `${this.baseUrl}/api/v1/features/${featureId}`
-    ];
-
-    const request = this.http.postJson(
-      url,
-      null,
-      { resources }
-    );
-    return request.then(jsonRes => new models.Feature(jsonRes, this));
+    return this.featureApi.updateFeatureLifecycle(featureId, lifecycle, queryParameters);
   }
 
   /**

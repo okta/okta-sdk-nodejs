@@ -53,6 +53,13 @@ const V3ApiOperations = {
   ],
   SystemLogApi: [
     'getLogs'
+  ],
+  FeatureApi: [
+    'getFeature',
+    'listFeatures',
+    'listFeatureDependencies',
+    'listFeatureDependents',
+    'updateFeatureLifecycle'
   ]
 };
 
