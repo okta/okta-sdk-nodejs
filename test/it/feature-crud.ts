@@ -3,7 +3,7 @@ import {
   Client,
   Collection,
   DefaultRequestExecutor,
-  Feature } from '@okta/okta-sdk-nodejs';
+  v3 } from '@okta/okta-sdk-nodejs';
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
 if (process.env.OKTA_USE_MOCK) {
@@ -18,7 +18,7 @@ const client = new Client({
 
 const getFirstNonBetaFeature = async () => {
   let firstFeatureInList;
-  await client.listFeatures().each((feature) => {
+  await (await client.listFeatures()).each((feature) => {
     if (feature.stage.value !== 'BETA') {
       firstFeatureInList = feature;
       return false;
@@ -35,7 +35,7 @@ describe('Feature Crud API', () => {
       const collection = await client.listFeatures();
       expect(collection).to.be.instanceOf(Collection);
       await collection.each(feature => {
-        expect(feature).to.be.instanceOf(Feature);
+        expect(feature).to.be.instanceOf(v3.Feature);
       });
     });
   });
@@ -43,13 +43,13 @@ describe('Feature Crud API', () => {
   describe('Get Feature', () => {
     let firstFeatureInList;
     beforeEach(async () => {
-      firstFeatureInList = (await client.listFeatures().next()).value;
+      firstFeatureInList = (await (await client.listFeatures()).next()).value;
     });
 
     it('should get Feature by id', async () => {
       if (firstFeatureInList) {
         const feature = await client.getFeature(firstFeatureInList.id);
-        expect(feature).to.be.instanceOf(Feature);
+        expect(feature).to.be.instanceOf(v3.Feature);
         expect(feature.id).to.equal(firstFeatureInList.id);
       }
     });
@@ -69,7 +69,7 @@ describe('Feature Crud API', () => {
     afterEach(async () => {
       if (firstFeatureInList) {
         try {
-          await firstFeatureInList.updateLifecycle(initialStatus === 'ENABLED' ? 'enable' : 'disable');
+          await client.updateFeatureLifecycle(firstFeatureInList.id, initialStatus === 'ENABLED' ? 'enable' : 'disable');
         } catch (err) {
           if (err.status === 405 && err.status === 400) {
             console.log(err);
@@ -82,7 +82,8 @@ describe('Feature Crud API', () => {
 
     it('should enable feature', async () => {
       if (firstFeatureInList) {
-        const feature = await firstFeatureInList.updateLifecycle('enable');
+        const feature = await client.updateFeatureLifecycle(firstFeatureInList.id, 'enable');
+        //const feature = await firstFeatureInList.updateLifecycle('enable');
         expect(feature.id).to.equal(firstFeatureInList.id);
         expect(feature.status).to.equal('ENABLED');
       }
@@ -90,7 +91,7 @@ describe('Feature Crud API', () => {
 
     it('should disable feature', async () => {
       if (firstFeatureInList) {
-        const feature = await firstFeatureInList.updateLifecycle('disable');
+        const feature = await client.updateFeatureLifecycle(firstFeatureInList.id, 'disable');
         expect(feature.id).to.equal(firstFeatureInList.id);
         expect(feature.status).to.equal('DISABLED');
       }
@@ -105,10 +106,10 @@ describe('Feature Crud API', () => {
 
     it('should return a collection of Features', async () => {
       if (firstFeatureInList) {
-        const collection = await firstFeatureInList.getDependencies();
+        const collection = await client.listFeatureDependencies(firstFeatureInList.id);
         expect(collection).to.be.instanceOf(Collection);
         await collection.each(dependency => {
-          expect(dependency).to.be.instanceOf(Feature);
+          expect(dependency).to.be.instanceOf(v3.Feature);
         });
       }
     });
@@ -117,15 +118,15 @@ describe('Feature Crud API', () => {
   describe('List feature dependencies', () => {
     let firstFeatureInList;
     beforeEach(async () => {
-      firstFeatureInList = (await client.listFeatures().next()).value;
+      firstFeatureInList = (await (await client.listFeatures()).next()).value;
     });
 
     it('should return a collection of Features', async () => {
       if (firstFeatureInList) {
-        const collection = await firstFeatureInList.getDependents();
+        const collection = await client.listFeatureDependents(firstFeatureInList.id);
         expect(collection).to.be.instanceOf(Collection);
         await collection.each(dependent => {
-          expect(dependent).to.be.instanceOf(Feature);
+          expect(dependent).to.be.instanceOf(v3.Feature);
         });
       }
     });
