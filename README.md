@@ -155,7 +155,7 @@ const newUser = {
   }
 };
 
-client.createUser(newUser)
+client.userApi.createUser(newUser)
 .then(user => {
   console.log('Created user', user);
 });
@@ -166,12 +166,12 @@ client.createUser(newUser)
 The [Users: Get User] API can be used to fetch a user by id or login (as defined on their `profile.login` property), and is wrapped by `client.getUser(:id|:login)`:
 
 ```javascript
-client.getUser('ausmvdt5xg8wRVI1d0g3')
+client.userApi.getUser('ausmvdt5xg8wRVI1d0g3')
 .then(user => {
   console.log(user);
 });
 
-client.getUser('foo@bar.com')
+client.userApi.getUser('foo@bar.com')
 .then(user => {
   console.log(user);
 });
@@ -203,10 +203,11 @@ user.deactivate()
 The client can be used to fetch collections of resources, in this example we'll use the [Users: List Users] API.  When fetching collections, you can use the `each()` method to iterate through the collection.  For more information see [Collection](#collection).
 
 ```javascript
-const orgUsersCollection = client.listUsers();
-
-orgUsersCollection.each(user => {
-  console.log(user);
+client.listUsers()
+.then(orgUsersCollection => {
+  orgUsersCollection.each(user => {
+    console.log(user);
+  });
 })
 .then(() => console.log('All users have been listed'));
 ```
@@ -214,8 +215,9 @@ orgUsersCollection.each(user => {
 You can also use async iterators.
 
 ```javascript
-for await (let user of client.listUsers()) {
-    console.log(user);
+const collection = await client.userApi.listUsers();
+for await (let user of collection) {
+  console.log(user);
 }
 ```
 
@@ -223,25 +225,36 @@ For more information about this API see [Users: Get User].
 
 #### Search for Users
 
-The [Users: List Users] API provides three ways to search for users, `q`, `filter`, or `search`, and all of these approaches can be achieved by passing them as query parameters to the `client.listUser()` method.  The library will URL-encode the values for you.
+The [Users: List Users] API provides three ways to search for users, `q`, `filter`, or `search`, and all of these approaches can be achieved by passing them as query parameters to the `client.userApi.listUsers()` method.  The library will URL-encode the values for you.
 
 ```javascript
-client.listUsers({
+client.userApi.listUsers({
   q: 'Robert'
-}).each(user => {
-  console.log('User matches query: ', user);
+})
+.then(collection => {
+  collection.each(user => {
+    console.log('User matches query: ', user);
+  });
 });
 
-client.listUsers({
+
+client.userApi.listUsers({
   search: 'profile.nickName eq "abc 1234"'
-}).each(user => {
-  console.log('User matches search:', user);
+})
+.then(collection => {
+  collection.each(user => {
+    console.log('User matches search:', user);
+  });
 });
 
-client.listUsers({
+
+client.userApi.listUsers({
   filter: 'lastUpdated gt "2017-06-05T23:00:00.000Z"'
-}).each(user => {
-  console.log('User matches filter:', user);
+})
+.then(collection => {
+  collection.each(user => {
+    console.log('User matches filter:', user);
+  });
 });
 ```
 
@@ -249,7 +262,7 @@ client.listUsers({
 
 #### Create a Group
 
-The [Groups: Add Group] API allows you to create Groups, and this is wrapped by `client.createGroup(:newGroup)`:
+The [Groups: Add Group] API allows you to create Groups, and this is wrapped by `client.groupApi.createGroup(:newGroup)`:
 
 ```javascript
 const newGroup = {
@@ -258,7 +271,7 @@ const newGroup = {
   }
 };
 
-client.createGroup(newGroup)
+client.groupApi.createGroup(newGroup)
 .then(group => {
   console.log('Created group', group);
 });
@@ -266,10 +279,10 @@ client.createGroup(newGroup)
 
 #### Assign a User to a Group
 
-With a user and group instance, you can use the `addToGroup(:groupId)` method of the user to add the user to the known group:
+With a user and group instance, you can use the `addUserToGroup(:groupId, :clientId)` method to add the user to the known group:
 
 ```javascript
-user.addToGroup(group.id)
+client.groupApi.addUserToGroup(group.id, user.id)
 .then(() => console.log('User has been added to group'));
 ```
 
@@ -294,7 +307,7 @@ const application = {
   }
 };
 
-client.createApplication(application)
+client.applicationApi.createApplication(application)
 .then(application => {
   console.log('Created application:', application);
 });
@@ -305,7 +318,7 @@ client.createApplication(application)
 To assign a user to an application, you must know the ID of the application and the user:
 
 ```javascript
-client.assignUserToApplication(createdApplication.id, {
+client.applicationApi.assignUserToApplication(createdApplication.id, {
   id: createdUser.id
 })
 .then(appUser => {
@@ -320,7 +333,7 @@ An App User is created, which is a new user instance that is specific to this ap
 To assign a group to an application, you must know the ID of the application and the group:
 
 ```javascript
-client.createApplicationGroupAssignment(createdApplication.id, createdGroup.id);
+client.applicationApi.createApplicationGroupAssignment(createdApplication.id, createdGroup.id);
 ```
 
 ### Sessions
@@ -330,7 +343,7 @@ client.createApplicationGroupAssignment(createdApplication.id, createdGroup.id);
 This is a rarely used method. See [Sessions: Create Session with Session Token] for the common ways to create a session. To use this method, you must have a sessionToken:
 
 ```javascript
-client.createSession({
+client.sessionApi.createSession({
   sessionToken: 'your session token'
 })
 .then(session => {
@@ -343,7 +356,7 @@ client.createSession({
 To retrieve details about a session, you must know the ID of the session:
 
 ```javascript
-client.getSession(session.id)
+client.sessionApi.getSession(session.id)
 .then(session => {
   console.log('Session details:' session);
 });
@@ -356,7 +369,7 @@ These details include when and how the user authenticated and the session expira
 To refresh a session before it expires, you must know the ID of the session:
 
 ```javascript
-client.refreshSession(session.id)
+client.sessionApi.refreshSession(session.id)
 .then(session => {
   console.log('Refreshed session expiration:', session.expiresAt);
 });
@@ -367,7 +380,7 @@ client.refreshSession(session.id)
 To end a session, you must know the ID of the session:
 
 ```javascript
-client.endSession(session.id)
+client.sessionApi.endSession(session.id)
 .then(() => {
   console.log('Session ended');
 });
@@ -378,7 +391,7 @@ client.endSession(session.id)
 To end all sessions for a user, you must know the ID of the user:
 
 ```javascript
-client.clearUserSessions(user.id)
+client.sessionApi.clearUserSessions(user.id)
 .then(() => {
   console.log('All user sessions have ended');
 });
@@ -391,7 +404,7 @@ client.clearUserSessions(user.id)
 To query logs, first get a collection and specify your query filter:
 
 ```javascript
-const collection = client.getLogs({ since: '2018-01-25T00:00:00Z' });
+const collection = await client.systemLogApi.getLogs({ since: '2018-01-25T00:00:00Z' });
 ```
 
 Please refer to the [System Log API] Documentation for a full query reference.
@@ -401,7 +414,7 @@ If you wish to paginate the entire result set until there are no more records, s
 If you wish to continue polling the collection for new results as they arrive, then start a [subscription](#subscribeconfig):
 
 ```javascript
-const collection = client.getLogs({ since: '2018-01-24T23:00:00Z' });
+const collection = await client.systemLogApi.getLogs({ since: '2018-01-24T23:00:00Z' });
 
 const subscription = collection.subscribe({
   interval: 5000, // Time in ms before fetching new logs when all existing logs are read
@@ -462,9 +475,12 @@ Allows you to visit every item in the collection, while optionally doing work at
 If no value is returned, `each()` will continue to the next item:
 
 ```javascript
-client.listUsers().each(user => {
-  console.log(user);
-  logUserToRemoteSystem(user);
+client.userApi.listUsers()
+.then(collection => {
+  collection.each(user => {
+    console.log(user);
+    logUserToRemoteSystem(user);
+  });
 })
 .then(() => {
   console.log('All users have been visited');
@@ -476,11 +492,15 @@ client.listUsers().each(user => {
 Returning a promise will pause the iterator until the promise is resolved:
 
 ```javascript
-client.listUsers().each(user => {
-  return new Promise((resolve, reject) => {
-    // do work, then resolve or reject the promise
-  })
+client.userApi.listUsers()
+.then(collection => {
+  collection.each(user => {
+    return new Promise((resolve, reject) => {
+      // do work, then resolve or reject the promise
+    });
+  });
 });
+
 ```
 
 ##### Ending Iteration
@@ -488,9 +508,12 @@ client.listUsers().each(user => {
 Returning `false` will end iteration:
 
 ```javascript
-client.listUsers().each(user => {
-  console.log(user);
-  return false;
+client.userApi.listUsers()
+.then(collection => {
+  collection.each(user => {
+    console.log(user);
+    return false;
+  });
 })
 .then(() => {
   console.log('Only one user was visited');
@@ -500,9 +523,12 @@ client.listUsers().each(user => {
 Returning `false` in a promise will also end iteration:
 
 ```javascript
-client.listUsers().each(user => {
-  console.log(user);
-  return Promise.resolve(false);
+client.userApi.listUsers()
+.then(collection => {
+  collection.each(user => {
+    console.log(user);
+    return Promise.resolve(false);
+  });
 })
 .then(() => {
   console.log('Only one user was visited');
@@ -512,10 +538,14 @@ client.listUsers().each(user => {
 Rejecting a promise will end iteration with an error:
 
 ```javascript
-return client.listUsers().each(user => {
-  console.log(user);
-  return Promise.reject('foo error');
-}).catch(err => {
+return client.userApi.listUsers()
+.then(collection => {
+  collection.each(user => {
+    console.log(user);
+    return Promise.reject('foo error');
+  })
+})
+.catch(err => {
   console.log(err); // 'foo error'
 });
 ```
@@ -692,7 +722,7 @@ If you wish to manually retry the request, you can do so by reading the `X-Rate-
 This example shows you how to determine how long you should wait before retrying the request. You then must decide how many times you would like to retry, and how you would like to call the client method again (not shown):
 
 ```javascript
-client.createUser()
+client.userApi.createUser()
   .catch(err => {
     if (err.status == 429) {
       const retryEpochMs = parseInt(err.headers.get('x-rate-limit-reset'), 10) * 1000;
@@ -887,7 +917,7 @@ const bookmarkAppOptions: ApplicationOptions = {
   }
 };
 
-client.createApplication(bookmarkAppOptions).then((createdApp: Application) => {
+client.applicationApi.createApplication(bookmarkAppOptions).then((createdApp: Application) => {
   console.log(createdApp);
 });
 ```
@@ -902,14 +932,14 @@ import { Client, LogEvent } from '@okta/okta-sdk-nodejs';
 
 ### 5.1.0
 
-`client.createApplication` and `client.getApplication` methods can be parameterized with application type:
+`client.applicationApi.createApplication` and `client.applicationApi.getApplication` methods can be parameterized with application type:
 
 ```typescript
-const oidcApp: OpenIdConnectApplication = client.getApplication<OpenIdConnectApplication>(appId);
+const oidcApp: OpenIdConnectApplication = client.applicationApi.getApplication<OpenIdConnectApplication>(appId);
 ```
 or
 ```typescript
-const oidcApp: OpenIdConnectApplication = client.getApplication(appId);
+const oidcApp: OpenIdConnectApplication = client.applicationApi.getApplication(appId);
 ```
 
 ```typescript
@@ -926,7 +956,7 @@ const applicationOptions: ApplicationOptions = {
   };
 };
 
-const application: BookmarkApplication = client.createApplication(applicationOptions);
+const application: BookmarkApplication = client.applicationApi.createApplication(applicationOptions);
 ```
 
 ## Known Issues
@@ -947,6 +977,13 @@ const client: Client = new Client({
 > Note: this workaround should be used with caution as it relies on `node-fetch`'s internal detail which can change its implementation.
 
 ## Migrating between versions
+
+### From 6.x to 7.0
+
+#### Breaking changes
+
+ - Models no longer have CRUD methods
+ - Methods which return `Collection` become async
 
 ### From 5.x to 6.0
 
@@ -993,7 +1030,7 @@ This version 4.0 release also updated APIs latest `@okta/openapi` (v2.0.0) that 
 #### Main breaking changes
 
 - Renamed `Factor` related factories/models/client methods to `UserFactor`
-- Renamed `client.endAllUserSessions` to `client.clearUserSessions`
+- Renamed `client.sessionApi.endAllUserSessions` to `client.sessionApi.clearUserSessions`
 - Model and Client methods change for `User` related operations
 - Model and Client methods change for `Rule` related operations
 
