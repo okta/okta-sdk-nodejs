@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import {
   Client,
   DefaultRequestExecutor,
-  LogEvent } from '@okta/okta-sdk-nodejs';
+  v3 } from '@okta/okta-sdk-nodejs';
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -27,7 +27,7 @@ describe('client.getLogs()', () => {
       const subscription = collection.subscribe({
         next(logEvent) {
           iteratorCalledTimes++;
-          expect(logEvent).to.be.instanceof(LogEvent);
+          expect(logEvent).to.be.instanceof(v3.LogEvent);
           subscription.unsubscribe();
         },
         error(e) {
@@ -49,7 +49,7 @@ describe('client.getLogs()', () => {
         interval: 1000,
         next(logEvent) {
           iteratorCalledTimes++;
-          expect(logEvent).to.be.instanceof(LogEvent);
+          expect(logEvent).to.be.instanceof(v3.LogEvent);
           return new Promise<void>(resolve => setTimeout(() => {
             subscription.unsubscribe();
             resolve();

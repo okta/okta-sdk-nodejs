@@ -50,6 +50,9 @@ const V3ApiOperations = {
     'getLinkedObjectDefinition',
     'deleteLinkedObjectDefinition',
     'listLinkedObjectDefinitions'
+  ],
+  SystemLogApi: [
+    'getLogs'
   ]
 };
 

@@ -1,5 +1,11 @@
 # Okta Node SDK Changelog
 
+# 7.0.0
+
+### Other
+
+- [#]() SDK methods are invoked through scoped API clients. Uses openapi-generator for creating SDK.
+
 # 6.5.0
 
 ### Other 

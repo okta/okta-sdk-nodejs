@@ -75,7 +75,7 @@ const getBodyModelName = operation => {
 
 const getBodyModelNameInCamelCase = operation => _.camelCase(getBodyModelName(operation));
 
-const getOperationArgument = (operation) => {
+const getOperationArgument = (operation, apiVersion) => {
   const { bodyModel, method, pathParams, queryParams, formData, parameters } = operation;
   const optionalArgs = [];
   const requiredArgs = [];
@@ -104,10 +104,14 @@ const getOperationArgument = (operation) => {
   optionalArgs.push(...optionalBodyArgs);
 
   if (queryParams.length) {
+    let qp = ['queryParameters'];
+    if (apiVersion === 'v3') {
+      qp = queryParams.map(({name}) => name);
+    }
     if (hasRequiredParameterInRequestMedia(parameters, 'query')) {
-      requiredArgs.push('queryParameters');
+      requiredArgs.push(...qp);
     } else {
-      optionalArgs.push('queryParameters');
+      optionalArgs.push(...qp);
     }
   }
 

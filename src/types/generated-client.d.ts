@@ -442,7 +442,7 @@ export declare class GeneratedApiClient {
     limit?: number,
     sortOrder?: string,
     after?: string,
-  }): Collection<LogEvent>;
+  }): Promise<Collection<v3.LogEvent>>;
   listProfileMappings(queryParameters?: {
     after?: string,
     limit?: number,
