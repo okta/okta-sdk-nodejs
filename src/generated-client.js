@@ -3450,13 +3450,7 @@ class GeneratedApiClient {
    * @returns {Collection} A collection that will yield {@link EventHook} instances.
    */
   listEventHooks() {
-    let url = `${this.baseUrl}/api/v1/eventHooks`;
-
-    return new Collection(
-      this.http,
-      url,
-      new ModelFactory(models.EventHook, this),
-    );
+    return this.eventHookApi.listEventHooks();
   }
 
   /**
@@ -3470,18 +3464,7 @@ class GeneratedApiClient {
     if (!eventHook) {
       return Promise.reject(new Error('OKTA API createEventHook parameter eventHook is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/eventHooks`;
-
-    const resources = [];
-
-    const request = this.http.postJson(
-      url,
-      {
-        body: eventHook
-      },
-      { resources }
-    );
-    return request.then(jsonRes => new models.EventHook(jsonRes, this));
+    return this.eventHookApi.createEventHook(eventHook);
   }
 
   /**
@@ -3494,18 +3477,7 @@ class GeneratedApiClient {
     if (!eventHookId) {
       return Promise.reject(new Error('OKTA API deleteEventHook parameter eventHookId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/eventHooks/${eventHookId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/eventHooks/${eventHookId}`
-    ];
-
-    const request = this.http.delete(
-      url,
-      null,
-      { resources }
-    );
-    return request;
+    return this.eventHookApi.deleteEventHook(eventHookId);
   }
 
   /**
@@ -3519,18 +3491,7 @@ class GeneratedApiClient {
     if (!eventHookId) {
       return Promise.reject(new Error('OKTA API getEventHook parameter eventHookId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/eventHooks/${eventHookId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/eventHooks/${eventHookId}`
-    ];
-
-    const request = this.http.getJson(
-      url,
-      null,
-      { resources }
-    );
-    return request.then(jsonRes => new models.EventHook(jsonRes, this));
+    return this.eventHookApi.getEventHook(eventHookId);
   }
 
   /**
@@ -3548,20 +3509,7 @@ class GeneratedApiClient {
     if (!eventHook) {
       return Promise.reject(new Error('OKTA API updateEventHook parameter eventHook is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/eventHooks/${eventHookId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/eventHooks/${eventHookId}`
-    ];
-
-    const request = this.http.putJson(
-      url,
-      {
-        body: eventHook
-      },
-      { resources }
-    );
-    return request.then(jsonRes => new models.EventHook(jsonRes, this));
+    return this.eventHookApi.updateEventHook(eventHookId, eventHook);
   }
 
   /**
@@ -3575,18 +3523,7 @@ class GeneratedApiClient {
     if (!eventHookId) {
       return Promise.reject(new Error('OKTA API activateEventHook parameter eventHookId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/eventHooks/${eventHookId}/lifecycle/activate`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/eventHooks/${eventHookId}`
-    ];
-
-    const request = this.http.postJson(
-      url,
-      null,
-      { resources }
-    );
-    return request.then(jsonRes => new models.EventHook(jsonRes, this));
+    return this.eventHookApi.activateEventHook(eventHookId);
   }
 
   /**
@@ -3600,18 +3537,7 @@ class GeneratedApiClient {
     if (!eventHookId) {
       return Promise.reject(new Error('OKTA API deactivateEventHook parameter eventHookId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/eventHooks/${eventHookId}/lifecycle/deactivate`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/eventHooks/${eventHookId}`
-    ];
-
-    const request = this.http.postJson(
-      url,
-      null,
-      { resources }
-    );
-    return request.then(jsonRes => new models.EventHook(jsonRes, this));
+    return this.eventHookApi.deactivateEventHook(eventHookId);
   }
 
   /**
@@ -3625,18 +3551,7 @@ class GeneratedApiClient {
     if (!eventHookId) {
       return Promise.reject(new Error('OKTA API verifyEventHook parameter eventHookId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/eventHooks/${eventHookId}/lifecycle/verify`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/eventHooks/${eventHookId}`
-    ];
-
-    const request = this.http.postJson(
-      url,
-      null,
-      { resources }
-    );
-    return request.then(jsonRes => new models.EventHook(jsonRes, this));
+    return this.eventHookApi.verifyEventHook(eventHookId);
   }
 
   /**

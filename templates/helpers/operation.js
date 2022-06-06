@@ -262,7 +262,11 @@ const typeScriptClientImportBuilder = operations => {
     const [args, returnType] = getOperationArgumentsAndReturnType(operation, { tagV3Methods: true });
     const typeNames = convertTypeObjectsToTypeNames(args, returnType);
     const importableTypes = typeNames.filter(isImportableType);
-    return acc.concat(importableTypes);
+    if (!isV3Api(operation.operationId)) {
+      return acc.concat(importableTypes);
+    } else {
+      return acc;
+    }
   }, []);
 
   const uniqueImportTypes = new Set([...operationsImportTypes]);
