@@ -119,7 +119,7 @@ describe('User role API', () => {
     });
     afterEach(async () => {
       await user.removeRole(role.id);
-      await group.delete();
+      await client.groupApi.deleteGroup(group.id);
     });
 
     describe('Add group target', () => {
