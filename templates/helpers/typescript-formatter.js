@@ -1,13 +1,14 @@
-const { isV3Api } = require('./operation-v3');
+const { isV3Api, getV3ReturnType } = require('./operation-v3');
 
-function formatMethodSignature(methodName, args, returnType, options = {}) {
-  return `${methodName}(${formatArguments(args, options)}): ${formatParameterizedReturnType(returnType, isV3Api(methodName), options.tagV3Methods)};`;
+function formatMethodSignature(methodName, args, returnType, options = { tagV3Methods: false }) {
+  return `${methodName}(${formatArguments(args, options)}): ${formatParameterizedReturnType(methodName, returnType, options.tagV3Methods)};`;
 }
 
-function formatParameterizedReturnType({genericType, genericParameterType}, isV3Api, tagV3Methods) {
-  let versionedReturnType = `${genericType}<${genericParameterType}>`;
-  if (tagV3Methods && isV3Api && genericParameterType !== 'void') {
-    versionedReturnType = `${genericType}<v3.${genericParameterType}>`;
+function formatParameterizedReturnType(methodName, {genericType, genericParameterType}, tagV3Methods) {
+  let returnType = getV3ReturnType(methodName) ? getV3ReturnType(methodName) : genericParameterType;
+  let versionedReturnType = `${genericType}<${returnType}>`;
+  if (tagV3Methods && isV3Api(methodName) && returnType !== 'void') {
+    versionedReturnType = `${genericType}<v3.${returnType}>`;
     if (genericType === 'Collection') {
       versionedReturnType = `Promise<${versionedReturnType}>`;
     }

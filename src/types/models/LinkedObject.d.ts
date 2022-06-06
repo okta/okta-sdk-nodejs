@@ -16,6 +16,7 @@
 import { Resource } from '../resource';
 import { Client } from '../client';
 import { OptionalKnownProperties } from '../optional-known-properties-type';
+import { Response } from 'node-fetch';
 import { LinkedObjectDetails } from './LinkedObjectDetails';
 
 declare class LinkedObject extends Resource {
@@ -25,7 +26,7 @@ declare class LinkedObject extends Resource {
   associated: LinkedObjectDetails;
   primary: LinkedObjectDetails;
 
-  delete(linkedObjectName: string): Promise<void>;
+  delete(linkedObjectName: string): Promise<Response>;
 }
 
 type LinkedObjectOptions = OptionalKnownProperties<LinkedObject>;

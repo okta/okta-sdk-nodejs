@@ -64,11 +64,9 @@ import { EventHook } from './models/EventHook';
 import { EventHookOptions } from './models/EventHook';
 import { Feature } from './models/Feature';
 import { Group } from './models/Group';
-import { GroupOptions } from './models/Group';
 import { GroupRule } from './models/GroupRule';
-import { GroupRuleOptions } from './models/GroupRule';
 import { Role } from './models/Role';
-import { AssignRoleRequestOptions } from './models/AssignRoleRequest';
+import { AssignRoleRequest } from './models/AssignRoleRequest';
 import { CatalogApplication } from './models/CatalogApplication';
 import { User } from './models/User';
 import { IdentityProvider } from './models/IdentityProvider';
@@ -124,6 +122,7 @@ import { UserActivationToken } from './models/UserActivationToken';
 import { TempPassword } from './models/TempPassword';
 import { ResetPasswordToken } from './models/ResetPasswordToken';
 import { ResponseLinks } from './models/ResponseLinks';
+import { AssignRoleRequestOptions } from './models/AssignRoleRequest';
 import { NetworkZone } from './models/NetworkZone';
 import { NetworkZoneOptions } from './models/NetworkZone';
 
@@ -330,59 +329,59 @@ export declare class GeneratedApiClient {
     after?: string,
     limit?: number,
     expand?: string,
-  }): Collection<Group>;
-  createGroup(group: GroupOptions): Promise<Group>;
+  }): Promise<Collection<v3.Group>>;
+  createGroup(group: v3.Group): Promise<v3.Group>;
   listGroupRules(queryParameters?: {
     limit?: number,
     after?: string,
     search?: string,
     expand?: string,
-  }): Collection<GroupRule>;
-  createGroupRule(groupRule: GroupRuleOptions): Promise<GroupRule>;
+  }): Promise<Collection<v3.GroupRule>>;
+  createGroupRule(groupRule: v3.GroupRule): Promise<v3.GroupRule>;
   deleteGroupRule(ruleId: string, queryParameters?: {
     removeUsers?: boolean,
-  }): Promise<Response>;
+  }): Promise<void>;
   getGroupRule(ruleId: string, queryParameters?: {
     expand?: string,
-  }): Promise<GroupRule>;
-  updateGroupRule(ruleId: string, groupRule: GroupRuleOptions): Promise<GroupRule>;
-  activateGroupRule(ruleId: string): Promise<Response>;
-  deactivateGroupRule(ruleId: string): Promise<Response>;
-  deleteGroup(groupId: string): Promise<Response>;
-  getGroup(groupId: string): Promise<Group>;
-  updateGroup(groupId: string, group: GroupOptions): Promise<Group>;
+  }): Promise<v3.GroupRule>;
+  updateGroupRule(ruleId: string, groupRule: v3.GroupRule): Promise<v3.GroupRule>;
+  activateGroupRule(ruleId: string): Promise<void>;
+  deactivateGroupRule(ruleId: string): Promise<void>;
+  deleteGroup(groupId: string): Promise<void>;
+  getGroup(groupId: string): Promise<v3.Group>;
+  updateGroup(groupId: string, group: v3.Group): Promise<v3.Group>;
   listAssignedApplicationsForGroup(groupId: string, queryParameters?: {
     after?: string,
     limit?: number,
-  }): Collection<Application>;
+  }): Promise<Collection<v3.Application>>;
   listGroupAssignedRoles(groupId: string, queryParameters?: {
     expand?: string,
-  }): Collection<Role>;
-  assignRoleToGroup(groupId: string, assignRoleRequest: AssignRoleRequestOptions, queryParameters?: {
+  }): Promise<Collection<v3.Role>>;
+  assignRoleToGroup(groupId: string, assignRoleRequest: v3.AssignRoleRequest, queryParameters?: {
     disableNotifications?: boolean,
-  }): Promise<Role>;
-  removeRoleFromGroup(groupId: string, roleId: string): Promise<Response>;
-  getRole(groupId: string, roleId: string): Promise<Role>;
+  }): Promise<v3.Role | void>;
+  removeRoleFromGroup(groupId: string, roleId: string): Promise<void>;
+  getRole(groupId: string, roleId: string): Promise<v3.Role>;
   listApplicationTargetsForApplicationAdministratorRoleForGroup(groupId: string, roleId: string, queryParameters?: {
     after?: string,
     limit?: number,
-  }): Collection<CatalogApplication>;
-  removeApplicationTargetFromApplicationAdministratorRoleGivenToGroup(groupId: string, roleId: string, appName: string): Promise<Response>;
-  addApplicationTargetToAdminRoleGivenToGroup(groupId: string, roleId: string, appName: string): Promise<Response>;
-  removeApplicationTargetFromAdministratorRoleGivenToGroup(groupId: string, roleId: string, appName: string, applicationId: string): Promise<Response>;
-  addApplicationInstanceTargetToAppAdminRoleGivenToGroup(groupId: string, roleId: string, appName: string, applicationId: string): Promise<Response>;
+  }): Promise<Collection<v3.CatalogApplication>>;
+  removeApplicationTargetFromApplicationAdministratorRoleGivenToGroup(groupId: string, roleId: string, appName: string): Promise<void>;
+  addApplicationTargetToAdminRoleGivenToGroup(groupId: string, roleId: string, appName: string): Promise<void>;
+  removeApplicationTargetFromAdministratorRoleGivenToGroup(groupId: string, roleId: string, appName: string, applicationId: string): Promise<void>;
+  addApplicationInstanceTargetToAppAdminRoleGivenToGroup(groupId: string, roleId: string, appName: string, applicationId: string): Promise<void>;
   listGroupTargetsForGroupRole(groupId: string, roleId: string, queryParameters?: {
     after?: string,
     limit?: number,
-  }): Collection<Group>;
-  removeGroupTargetFromGroupAdministratorRoleGivenToGroup(groupId: string, roleId: string, targetGroupId: string): Promise<Response>;
-  addGroupTargetToGroupAdministratorRoleForGroup(groupId: string, roleId: string, targetGroupId: string): Promise<Response>;
+  }): Promise<Collection<v3.Group>>;
+  removeGroupTargetFromGroupAdministratorRoleGivenToGroup(groupId: string, roleId: string, targetGroupId: string): Promise<void>;
+  addGroupTargetToGroupAdministratorRoleForGroup(groupId: string, roleId: string, targetGroupId: string): Promise<void>;
   listGroupUsers(groupId: string, queryParameters?: {
     after?: string,
     limit?: number,
-  }): Collection<User>;
-  removeUserFromGroup(groupId: string, userId: string): Promise<Response>;
-  addUserToGroup(groupId: string, userId: string): Promise<Response>;
+  }): Promise<Collection<v3.User>>;
+  removeUserFromGroup(groupId: string, userId: string): Promise<void>;
+  addUserToGroup(groupId: string, userId: string): Promise<void>;
   listIdentityProviders(queryParameters?: {
     q?: string,
     after?: string,

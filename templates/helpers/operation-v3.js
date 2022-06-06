@@ -60,8 +60,44 @@ const V3ApiOperations = {
     'listFeatureDependencies',
     'listFeatureDependents',
     'updateFeatureLifecycle'
+  ],
+  GroupApi: [
+    'activateGroupRule',
+    'addApplicationInstanceTargetToAppAdminRoleGivenToGroup',
+    'addApplicationTargetToAdminRoleGivenToGroup',
+    'addGroupTargetToGroupAdministratorRoleForGroup',
+    'addUserToGroup',
+    'assignRoleToGroup',
+    'createGroup',
+    'createGroupRule',
+    'deactivateGroupRule',
+    'deleteGroup',
+    'deleteGroupRule',
+    'getGroup',
+    'getGroupRule',
+    'getRole',
+    'listApplicationTargetsForApplicationAdministratorRoleForGroup',
+    'listAssignedApplicationsForGroup',
+    'listGroupAssignedRoles',
+    'listGroupRules',
+    'listGroupTargetsForGroupRole',
+    'listGroupUsers',
+    'listGroups',
+    'removeApplicationTargetFromAdministratorRoleGivenToGroup',
+    'removeApplicationTargetFromApplicationAdministratorRoleGivenToGroup',
+    'removeGroupTargetFromGroupAdministratorRoleGivenToGroup',
+    'removeRoleFromGroup',
+    'removeUserFromGroup',
+    'updateGroup',
+    'updateGroupRule',
   ]
 };
+
+function getV3ReturnType(operationId) {
+  return {
+    assignRoleToGroup: 'Role | void'
+  }[operationId];
+}
 
 function isV3Api(operationId) {
   return Object.values(V3ApiOperations).find((operations) => operations.includes(operationId));
@@ -75,4 +111,5 @@ function v3ApiByOperationId(operationId) {
 module.exports = {
   isV3Api,
   v3ApiByOperationId,
+  getV3ReturnType,
 };
