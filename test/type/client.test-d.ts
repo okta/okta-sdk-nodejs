@@ -2,8 +2,8 @@ import { expectError, expectType } from 'tsd';
 import { Response } from 'node-fetch';
 import { Client } from '../../src/types/client';
 import { Collection } from '../../src/types/collection';
-import { Application } from '../../src/types/models/Application';
-import { ApplicationOptions } from '../../src/types/parameterized-operations-client';
+import { Application } from '../../src/types/generated/models/Application';
+import { BookmarkApplication } from '../../src/types/generated/models/BookmarkApplication';
 
 
 const client = new Client();
@@ -19,7 +19,7 @@ const client = new Client();
   expectType<Collection<Application>>(await client.listApplications());
 
   // methods expecting body request parameters
-  const appOptions: ApplicationOptions = {
+  const appOptions: BookmarkApplication = {
     name: 'bookmark',
     label: 'Bookmark app',
     signOnMode: 'BOOKMARK',
@@ -30,6 +30,7 @@ const client = new Client();
       }
     }
   };
+
   expectType<Promise<Application>>(client.createApplication(appOptions));
 }());
 

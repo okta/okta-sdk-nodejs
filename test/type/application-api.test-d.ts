@@ -1,7 +1,7 @@
 import { expectType } from 'tsd';
 import { EnabledStatus } from '../../src/types/models/EnabledStatus';
 import { Client } from '../../src/types/client';
-import { ApplicationFeature } from '../../src/types/models/ApplicationFeature';
+import { ApplicationFeature } from '../../src/types/generated/models/ApplicationFeature';
 
 const client = new Client();
 (async function () {
