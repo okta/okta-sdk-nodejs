@@ -3,7 +3,8 @@ import { expect } from 'chai';
 import {
   Client,
   DefaultRequestExecutor,
-  JsonWebKey } from '@okta/okta-sdk-nodejs';
+  JsonWebKey,
+  v3 } from '@okta/okta-sdk-nodejs';
 import utils = require('../utils');
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
@@ -27,7 +28,7 @@ describe.skip('client.cloneApplicationKey()', () => {
     const application2 = {
       name: 'bookmark',
       label: 'my bookmark app 2',
-      signOnMode: 'BOOKMARK',
+      signOnMode: 'BOOKMARK' as v3.ApplicationSignOnMode,
       settings: {
         app: {
           requestIntegration: false,
@@ -55,12 +56,12 @@ describe.skip('client.cloneApplicationKey()', () => {
       expect(clonedKey.kid).to.equal(generatedKey.kid);
     } finally {
       if (createdApplication) {
-        await createdApplication.deactivate();
-        await createdApplication.delete();
+        await client.deactivateApplication(createdApplication.id);
+        await client.deleteApplication(createdApplication.id);
       }
       if (createdApplication2) {
-        await createdApplication2.deactivate();
-        await createdApplication2.delete();
+        await client.deactivateApplication(createdApplication2.id);
+        await client.deleteApplication(createdApplication2.id);
       }
     }
   });

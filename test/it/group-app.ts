@@ -31,8 +31,8 @@ describe('Group App API', () => {
     });
     afterEach(async () => {
       await groupAssignment.delete(application.id);
-      await application.deactivate();
-      await application.delete();
+      await client.deactivateApplication(application.id);
+      await client.deleteApplication(application.id);
       await client.deleteGroup(group.id);
     });
 

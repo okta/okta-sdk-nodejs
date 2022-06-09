@@ -12,7 +12,7 @@
 
 
 import { GeneratedApiClient } from './generated-client';
-import { Application } from './models/Application';
+import { Application } from './generated/models/Application';
 import { BasicAuthApplicationOptions } from './request-options/BasicAuthApplicationOptions';
 import { BookmarkApplicationOptions } from './request-options/BookmarkApplicationOptions';
 import { OpenIdConnectApplicationOptions } from './request-options/OpenIdConnectApplicationOptions';
@@ -29,7 +29,7 @@ type ApplicationOptions =
   AutoLoginApplicationOptions | SecurePasswordStoreApplicationOptions | WsFederationApplicationOptions;
 
 declare class ParameterizedOperationsClient extends GeneratedApiClient {
-  createApplication<T extends Application = Application>(applicationOptions: ApplicationOptions, queryParameters?: {
+  createApplication<T extends Application = Application>(applicationOptions: Application, queryParameters?: {
     activate?: boolean,
   }): Promise<T>;
   getApplication<T extends Application>(appId: string): Promise<T>;

@@ -1,5 +1,6 @@
 import { expect } from 'chai';
 import * as okta from '@okta/okta-sdk-nodejs';
+import { v3 } from '@okta/okta-sdk-nodejs';
 
 import utils = require('../utils');
 
@@ -28,7 +29,7 @@ describe('Application.assignUserToApplication()', () => {
       }
     };
 
-    let createdApplication;
+    let createdApplication: v3.BookmarkApplication;
     let createdUser;
     let createdAppUser;
 
@@ -36,15 +37,16 @@ describe('Application.assignUserToApplication()', () => {
       await utils.removeAppByLabel(client, application.label);
       await utils.cleanup(client, user);
       createdApplication = await client.createApplication(application);
+      expect(createdApplication).to.be.instanceOf(v3.BookmarkApplication);
       createdUser = await client.createUser(user);
-      createdAppUser = await createdApplication.assignUserToApplication({
+      createdAppUser = await client.assignUserToApplication(createdApplication.id, {
         id: createdUser.id
       });
       expect(createdAppUser._links.user.href).to.contain(createdUser.id);
     } finally {
       if (createdApplication) {
-        await createdApplication.deactivate();
-        await createdApplication.delete();
+        await client.deactivateApplication(createdApplication.id);
+        await client.deleteApplication(createdApplication.id);
       }
       if (createdUser) {
         await utils.cleanup(client, createdUser);

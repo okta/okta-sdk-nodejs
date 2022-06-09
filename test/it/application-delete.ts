@@ -26,19 +26,14 @@ describe('Application.delete()', () => {
     try {
       await utils.removeAppByLabel(client, application.label);
       createdApplication = await client.createApplication(application);
-      await createdApplication.deactivate()
-        .then(response => {
-          expect(response.status).to.equal(200);
-        });
-      await createdApplication.delete()
-        .then(response => {
-          expect(response.status).to.equal(204);
-          createdApplication = null;
-        });
+      await client.deactivateApplication(createdApplication.id);
+      const response = await client.deleteApplication(createdApplication.id);
+      createdApplication = null;
+      expect(response).to.be.undefined;
     } finally {
       if (createdApplication) {
-        await createdApplication.deactivate();
-        await createdApplication.delete();
+        await client.deactivateApplication(createdApplication.id);
+        await client.deleteApplication(createdApplication.id);
       }
     }
   });

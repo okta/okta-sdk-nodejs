@@ -26,26 +26,20 @@ describe('Application.activate() / Application.deactivate()', () => {
     try {
       await utils.removeAppByLabel(client, application.label);
       createdApplication = await client.createApplication(application);
-      await createdApplication.deactivate()
-        .then(response => {
-          expect(response.status).to.equal(200);
-        });
+      await client.deactivateApplication(createdApplication.id);
       await client.getApplication(createdApplication.id)
         .then(application => {
           expect(application.status).to.equal('INACTIVE');
         });
-      await createdApplication.activate()
-        .then(response => {
-          expect(response.status).to.equal(200);
-        });
+      await client.activateApplication(createdApplication.id);
       await client.getApplication(createdApplication.id)
         .then(application => {
           expect(application.status).to.equal('ACTIVE');
         });
     } finally {
       if (createdApplication) {
-        await createdApplication.deactivate();
-        await createdApplication.delete();
+        await client.deactivateApplication(createdApplication.id);
+        await client.deleteApplication(createdApplication.id);
       }
     }
   });

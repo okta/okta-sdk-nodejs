@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 
 import utils = require('../utils');
-import { Client, Org2OrgApplication, ProvisioningConnectionAuthScheme, ProvisioningConnectionStatus } from '@okta/okta-sdk-nodejs';
+import { Client, v3, ProvisioningConnectionAuthScheme, ProvisioningConnectionStatus } from '@okta/okta-sdk-nodejs';
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -15,7 +15,7 @@ const client = new Client({
 });
 
 describe('Application API: provisioning connection for application', () => {
-  let application: Org2OrgApplication;
+  let application: v3.Org2OrgApplication;
 
   beforeEach(async () => {
     application = await client.createApplication(utils.getOrg2OrgApplicationOptions());
@@ -37,14 +37,14 @@ describe('Application API: provisioning connection for application', () => {
   it('provides methods for activating and deactivating default provisioning connection', async () => {
     try {
       const response = await client.activateDefaultProvisioningConnectionForApplication(application.id);
-      expect(response.status).to.equal(400);
+      expect(response).to.be.undefined;
     } catch (err) {
       expect(err.status).to.equal(400);
       expect(err.message).to.contain('Api validation failed: credential. Verification failed: Invalid URL. Not authorized.');
     }
 
     const response = await client.deactivateDefaultProvisioningConnectionForApplication(application.id);
-    expect(response.status).to.equal(204);
+    expect(response).to.be.undefined;
     const provisioningConnection = await client.getDefaultProvisioningConnectionForApplication(application.id);
     expect(provisioningConnection.status).to.equal(ProvisioningConnectionStatus.DISABLED);
   });

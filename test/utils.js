@@ -168,7 +168,7 @@ async function cleanup(client, users = null, groups = null) {
 }
 
 async function removeAppByLabel(client, label) {
-  return client.listApplications().each(async (application) => {
+  return (await client.listApplications()).each(async (application) => {
     if (application.label === label) {
       await application.deactivate();
       return application.delete();

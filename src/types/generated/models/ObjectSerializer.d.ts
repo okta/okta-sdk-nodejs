@@ -619,7 +619,7 @@ export * from './WsFederationApplicationSettingsAllOf';
 export * from './WsFederationApplicationSettingsApplication';
 export * from './WsFederationApplicationSettingsApplicationAllOf';
 export declare class ObjectSerializer {
-  static findCorrectType(data: any, expectedType: string): any;
+  static findCorrectType(data: any, expectedType: string, discriminator?: string): any;
   static serialize(data: any, type: string, format: string): any;
   static deserialize(data: any, type: string, format: string): any;
   /**

@@ -25,10 +25,10 @@ const client = new Client({
 
 describe('App User Schema', () => {
   const applicationOptions = utils.getOIDCApplication();
-  let createdApplication: BookmarkApplication;
+  let createdApplication: v3.BookmarkApplication;
 
   beforeEach(async () => {
-    createdApplication = await client.createApplication<BookmarkApplication>(applicationOptions);
+    createdApplication = await client.createApplication<v3.BookmarkApplication>(applicationOptions);
   });
   afterEach(async () => {
     await client.deactivateApplication(createdApplication.id);

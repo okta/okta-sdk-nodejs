@@ -36,15 +36,13 @@ describe('ApplicationGroupAssignment.delete(:appId)', () => {
       await utils.cleanup(client, null, group);
       createdApplication = await client.createApplication(application);
       createdGroup = await client.createGroup(group);
-      const groupAssignment = await createdApplication.createApplicationGroupAssignment(createdGroup.id);
-      await groupAssignment.delete(createdApplication.id)
-        .then(response => {
-          expect(response.status).to.equal(204);
-        });
+      await client.createApplicationGroupAssignment(createdApplication.id, createdGroup.id);
+      const response = await client.deleteApplicationGroupAssignment(createdApplication.id, createdGroup.id);
+      expect(response).to.be.undefined;
     } finally {
       if (createdApplication) {
-        await createdApplication.deactivate();
-        await createdApplication.delete();
+        await client.deactivateApplication(createdApplication.id);
+        await client.deleteApplication(createdApplication.id);
       }
       if (createdGroup) {
         await utils.cleanup(client, null, createdGroup);

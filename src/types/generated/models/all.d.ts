@@ -620,3 +620,7 @@ export * from './WsFederationApplicationSettingsApplication';
 export * from './WsFederationApplicationSettingsApplicationAllOf';
 export declare class InlineHookPayload {
 }
+export declare class InlineHookPayload {
+}
+export declare class ApplicationSettingsApplication {
+}

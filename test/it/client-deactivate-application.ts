@@ -31,8 +31,8 @@ describe('client.deactivateApplication()', () => {
       expect(fetchedApplication.status).to.equal('INACTIVE');
     } finally {
       if (createdApplication) {
-        await createdApplication.deactivate();
-        await createdApplication.delete();
+        await client.deactivateApplication(createdApplication.id);
+        await client.deleteApplication(createdApplication.id);
       }
     }
   });

@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import {
   Client,
   DefaultRequestExecutor,
-  BookmarkApplication } from '@okta/okta-sdk-nodejs';
+  v3 } from '@okta/okta-sdk-nodejs';
 import utils = require('../utils');
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
@@ -29,13 +29,13 @@ describe('client.getApplication()', () => {
     try {
       await utils.removeAppByLabel(client, application.label);
       createdApplication = await client.createApplication(application);
-      const fetchedApplication: BookmarkApplication = await client.getApplication(createdApplication.id);
+      const fetchedApplication: v3.BookmarkApplication = await client.getApplication(createdApplication.id);
       expect(fetchedApplication.id).to.equal(createdApplication.id);
-      expect(fetchedApplication).to.be.instanceof(BookmarkApplication);
+      expect(fetchedApplication).to.be.instanceof(v3.BookmarkApplication);
     } finally {
       if (createdApplication) {
-        await createdApplication.deactivate();
-        await createdApplication.delete();
+        await client.deactivateApplication(createdApplication.id);
+        await client.deleteApplication(createdApplication.id);
       }
     }
   });
