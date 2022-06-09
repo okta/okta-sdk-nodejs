@@ -100,7 +100,16 @@ const V3ApiOperations = {
     'listEventHooks',
     'updateEventHook',
     'verifyEventHook',
-  ]
+  ],
+  NetworkZoneApi: [
+    'listNetworkZones',
+    'createNetworkZone',
+    'deleteNetworkZone',
+    'getNetworkZone',
+    'updateNetworkZone',
+    'activateNetworkZone',
+    'deactivateNetworkZone'
+  ],
 };
 
 function getV3ReturnType(operationId) {
