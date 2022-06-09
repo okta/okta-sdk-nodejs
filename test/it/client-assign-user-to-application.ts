@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import {
   Client,
   DefaultRequestExecutor,
-  AppUser } from '@okta/okta-sdk-nodejs';
+  v3 } from '@okta/okta-sdk-nodejs';
 import utils = require('../utils');
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
@@ -43,12 +43,12 @@ describe('client.assignUserToApplication()', () => {
       createdAppUser = await client.assignUserToApplication(createdApplication.id, {
         id: createdUser.id
       });
-      expect(createdAppUser).to.be.instanceof(AppUser);
+      expect(createdAppUser).to.be.instanceof(v3.AppUser);
       expect(createdAppUser._links.user.href).to.contain(createdUser.id);
     } finally {
       if (createdApplication) {
-        await createdApplication.deactivate();
-        await createdApplication.delete();
+        await client.deactivateApplication(createdApplication.id);
+        await client.deleteApplication(createdApplication.id);
       }
       if (createdUser) {
         await utils.cleanup(client, createdUser);

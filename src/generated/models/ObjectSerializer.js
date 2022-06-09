@@ -1733,9 +1733,21 @@ let typeMap = {
     'WsFederationApplicationSettingsAllOf': WsFederationApplicationSettingsAllOf_1.WsFederationApplicationSettingsAllOf,
     'WsFederationApplicationSettingsApplication': WsFederationApplicationSettingsApplication_1.WsFederationApplicationSettingsApplication,
     'WsFederationApplicationSettingsApplicationAllOf': WsFederationApplicationSettingsApplicationAllOf_1.WsFederationApplicationSettingsApplicationAllOf,
+    'AUTO_LOGIN': AutoLoginApplication_1.AutoLoginApplication,
+    'BASIC_AUTH': BasicAuthApplication_1.BasicAuthApplication,
+    'BOOKMARK': BookmarkApplication_1.BookmarkApplication,
+    'BROWSER_PLUGIN': BrowserPluginApplication_1.BrowserPluginApplication,
+    'template_swa': SwaApplication_1.SwaApplication,
+    'template_swa3field': SwaThreeFieldApplication_1.SwaThreeFieldApplication,
+    'OPENID_CONNECT': OpenIdConnectApplication_1.OpenIdConnectApplication,
+    'SAML_1_1': SamlApplication_1.SamlApplication,
+    'SAML_2_0': SamlApplication_1.SamlApplication,
+    'okta_org2org': Org2OrgApplication_1.Org2OrgApplication,
+    'SECURE_PASSWORD_STORE': SecurePasswordStoreApplication_1.SecurePasswordStoreApplication,
+    'WS_FEDERATION': WsFederationApplication_1.WsFederationApplication,
 };
 class ObjectSerializer {
-    static findCorrectType(data, expectedType) {
+    static findCorrectType(data, expectedType, discriminator) {
         if (data == undefined) {
             return expectedType;
         }
@@ -1753,15 +1765,16 @@ class ObjectSerializer {
                 return expectedType; // w/e we don't know the type
             }
             // Check the discriminator
-            let discriminatorProperty = typeMap[expectedType].discriminator;
+            let discriminatorProperty = discriminator || typeMap[expectedType].discriminator;
             if (discriminatorProperty == null) {
                 return expectedType; // the type does not have a discriminator. use it.
             }
             else {
                 if (data[discriminatorProperty]) {
                     var discriminatorType = data[discriminatorProperty];
-                    if (typeMap[discriminatorType]) {
-                        return discriminatorType; // use the type given in the discriminator
+                    var discriminatedType = typeMap[discriminatorType];
+                    if (discriminatedType) {
+                        return discriminatedType.discriminator ? ObjectSerializer.findCorrectType(data, discriminatorType, discriminatedType.discriminator) : discriminatorType; // use the type given in the discriminator
                     }
                     else {
                         return expectedType; // discriminator did not map to a type

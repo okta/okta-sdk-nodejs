@@ -33,7 +33,7 @@ var __exportStar = (this && this.__exportStar) || function (m, exports) {
   }
 };
 Object.defineProperty(exports, '__esModule', { value: true });
-exports.InlineHookPayload = void 0;
+exports.ApplicationSettingsApplication = exports.InlineHookPayload = void 0;
 __exportStar(require('./AccessPolicy'), exports);
 __exportStar(require('./AccessPolicyConstraint'), exports);
 __exportStar(require('./AccessPolicyConstraints'), exports);
@@ -641,7 +641,12 @@ __exportStar(require('./WsFederationApplicationSettings'), exports);
 __exportStar(require('./WsFederationApplicationSettingsAllOf'), exports);
 __exportStar(require('./WsFederationApplicationSettingsApplication'), exports);
 __exportStar(require('./WsFederationApplicationSettingsApplicationAllOf'), exports);
-// InlineHookPayload is not generated as it does not have properties set in the spec
+// InlineHookPayload and ApplicationSettingsAppliation are not generated as it does not have properties set in the spec
 class InlineHookPayload {
 }
 exports.InlineHookPayload = InlineHookPayload;
+
+class ApplicationSettingsApplication {
+}
+exports.ApplicationSettingsApplication = ApplicationSettingsApplication;
+

@@ -82,8 +82,8 @@ describe('User role API', () => {
       application = await client.createApplication(mockApplication);
     });
     afterEach(async () => {
-      await application.deactivate();
-      await application.delete();
+      await client.deactivateApplication(application.id);
+      await client.deleteApplication(application.id);
       await user.removeRole(role.id);
     });
 

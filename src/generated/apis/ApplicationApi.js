@@ -1766,7 +1766,7 @@ class ApplicationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     if (file !== undefined) {
       // TODO: replace .append with .set
       if (localVarFormParams instanceof FormData) {
-        localVarFormParams.append('file', file.data, file.name);
+        localVarFormParams.append('file', file);
       }
     }
     requestContext.setBody(localVarFormParams);

@@ -54,10 +54,22 @@ let typeMap: {[index: string]: any} = {
           {{/isEnum}}
       {{/model}}
   {{/models}}
+  'AUTO_LOGIN': AutoLoginApplication,
+  'BASIC_AUTH': BasicAuthApplication,
+  'BOOKMARK': BookmarkApplication,
+  'BROWSER_PLUGIN': BrowserPluginApplication,
+  'template_swa': SwaApplication,
+  'template_swa3field': SwaThreeFieldApplication,
+  'OPENID_CONNECT': OpenIdConnectApplication,
+  'SAML_1_1': SamlApplication,
+  'SAML_2_0': SamlApplication,
+  'okta_org2org': Org2OrgApplication,
+  'SECURE_PASSWORD_STORE': SecurePasswordStoreApplication,
+  'WS_FEDERATION': WsFederationApplication,
 }
 
 export class ObjectSerializer {
-  public static findCorrectType(data: any, expectedType: string) {
+  public static findCorrectType(data: any, expectedType: string, discriminator?: string): any {
     if (data == undefined) {
       return expectedType;
     } else if (primitives.indexOf(expectedType.toLowerCase()) !== -1) {
@@ -74,14 +86,15 @@ export class ObjectSerializer {
       }
 
       // Check the discriminator
-      let discriminatorProperty = typeMap[expectedType].discriminator;
+      let discriminatorProperty = discriminator || typeMap[expectedType].discriminator;
       if (discriminatorProperty == null) {
         return expectedType; // the type does not have a discriminator. use it.
       } else {
         if (data[discriminatorProperty]) {
           var discriminatorType = data[discriminatorProperty];
-          if(typeMap[discriminatorType]){
-            return discriminatorType; // use the type given in the discriminator
+          var discriminatedType = typeMap[discriminatorType];
+          if(discriminatedType){
+            return discriminatedType.discriminator ? ObjectSerializer.findCorrectType(data, discriminatorType, discriminatedType.discriminator) : discriminatorType; // use the type given in the discriminator
           } else {
             return expectedType; // discriminator did not map to a type
           }
