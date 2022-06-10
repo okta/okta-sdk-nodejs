@@ -9,7 +9,7 @@ describe('User Type API', () => {
     const configuration = createConfiguration({
       baseServer: new ServerConfiguration(process.env.OKTA_CLIENT_ORGURL, {}),
       authMethods: {
-        api_token: `SSWS ${process.env.OKTA_CLIENT_TOKEN}`
+        API_Token: `SSWS ${process.env.OKTA_CLIENT_TOKEN}`
       }
     });
     const userTypeApi = new v3.UserTypeApi(configuration);
