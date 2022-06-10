@@ -1827,7 +1827,7 @@ class ObjectSerializer {
     static deserialize(data, type, format) {
         // polymorphism may change the actual type.
         type = ObjectSerializer.findCorrectType(data, type);
-        if (data == undefined) {
+        if (data === undefined || type === 'void') {
             return data;
         }
         else if (primitives.indexOf(type.toLowerCase()) !== -1) {

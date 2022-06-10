@@ -11,7 +11,7 @@
  */
 
 
-/* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
+/* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */ 
 
 import { ApplicationOptions } from './parameterized-operations-client';
 import * as v3 from './generated';
@@ -106,7 +106,6 @@ import { Role } from './models/Role';
 import { AssignRoleRequestOptions } from './models/AssignRoleRequest';
 import { CatalogApplication } from './models/CatalogApplication';
 import { NetworkZone } from './models/NetworkZone';
-import { NetworkZoneOptions } from './models/NetworkZone';
 
 export declare class GeneratedApiClient {
   listApplications(queryParameters?: {
@@ -659,11 +658,11 @@ export declare class GeneratedApiClient {
     after?: string,
     limit?: number,
     filter?: string,
-  }): Collection<NetworkZone>;
-  createNetworkZone(networkZone: NetworkZoneOptions): Promise<NetworkZone>;
-  deleteNetworkZone(zoneId: string): Promise<Response>;
-  getNetworkZone(zoneId: string): Promise<NetworkZone>;
-  updateNetworkZone(zoneId: string, networkZone: NetworkZoneOptions): Promise<NetworkZone>;
-  activateNetworkZone(zoneId: string): Promise<NetworkZone>;
-  deactivateNetworkZone(zoneId: string): Promise<NetworkZone>;
+  }): Promise<Collection<v3.NetworkZone>>;
+  createNetworkZone(networkZone: v3.NetworkZone): Promise<v3.NetworkZone>;
+  deleteNetworkZone(zoneId: string): Promise<void>;
+  getNetworkZone(zoneId: string): Promise<v3.NetworkZone>;
+  updateNetworkZone(zoneId: string, networkZone: v3.NetworkZone): Promise<v3.NetworkZone>;
+  activateNetworkZone(zoneId: string): Promise<v3.NetworkZone>;
+  deactivateNetworkZone(zoneId: string): Promise<v3.NetworkZone>;
 }
