@@ -183,10 +183,6 @@ const getHttpMethod = ({
   return res;
 };
 
-const isVoid = (type) => {
-  return !type || type !== 'void';
-};
-
 const hasRequest = (operation) => {
   const { method, bodyModel } = operation;
   if (method === 'post' || method === 'put') {
@@ -472,6 +468,5 @@ module.exports = {
   shouldGenerateOptionsType,
   getRestrictedProperties,
   containsRestrictedProperties,
-  hasRequiredParameterInRequestMedia,
-  isVoid
+  hasRequiredParameterInRequestMedia
 };
