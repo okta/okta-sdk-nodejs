@@ -36,8 +36,9 @@ export declare class UserFactorApiRequestFactory extends BaseAPIRequestFactory {
      * Delete Factor
      * @param userId
      * @param factorId
+     * @param removeEnrollmentRecovery
      */
-  deleteFactor(userId: string, factorId: string, _options?: Configuration): Promise<RequestContext>;
+  deleteFactor(userId: string, factorId: string, removeEnrollmentRecovery?: boolean, _options?: Configuration): Promise<RequestContext>;
   /**
      * Enrolls a user with a supported factor.
      * Enroll Factor

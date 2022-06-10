@@ -18,6 +18,7 @@ import { Brand } from '../models/Brand';
 import { EmailCustomization } from '../models/EmailCustomization';
 import { EmailDefaultContent } from '../models/EmailDefaultContent';
 import { EmailPreview } from '../models/EmailPreview';
+import { EmailSettings } from '../models/EmailSettings';
 import { EmailTemplate } from '../models/EmailTemplate';
 import { ImageUploadResponse } from '../models/ImageUploadResponse';
 import { Theme } from '../models/Theme';
@@ -116,12 +117,20 @@ export declare class CustomizationApiRequestFactory extends BaseAPIRequestFactor
      */
   getEmailDefaultPreview(brandId: string, templateName: string, language?: string, _options?: Configuration): Promise<RequestContext>;
   /**
+     * Gets an email template's settings.
+     * Get Email Template Settings
+     * @param brandId The ID of the brand.
+     * @param templateName The name of the email template.
+     */
+  getEmailSettings(brandId: string, templateName: string, _options?: Configuration): Promise<RequestContext>;
+  /**
      * Gets the details of an email template by name.
      * Get Email Template
      * @param brandId The ID of the brand.
      * @param templateName The name of the email template.
+     * @param expand Specifies additional metadata to be included in the response.
      */
-  getEmailTemplate(brandId: string, templateName: string, _options?: Configuration): Promise<RequestContext>;
+  getEmailTemplate(brandId: string, templateName: string, expand?: Array<'settings' | 'customizationCount'>, _options?: Configuration): Promise<RequestContext>;
   /**
      * List all the themes in your brand
      * Get Brand Themes
@@ -148,8 +157,9 @@ export declare class CustomizationApiRequestFactory extends BaseAPIRequestFactor
      * @param brandId The ID of the brand.
      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/reference/core-okta-api/#pagination) for more information.
      * @param limit A limit on the number of objects to return.
+     * @param expand Specifies additional metadata to be included in the response.
      */
-  listEmailTemplates(brandId: string, after?: string, limit?: number, _options?: Configuration): Promise<RequestContext>;
+  listEmailTemplates(brandId: string, after?: string, limit?: number, expand?: Array<'settings' | 'customizationCount'>, _options?: Configuration): Promise<RequestContext>;
   /**
      * Sends a test email to the current user’s primary and secondary email addresses. The email content is selected based on the following priority: 1. The email customization for the language specified in the `language` query parameter. 2. The email template's default customization. 3. The email template’s default content, translated to the current user's language.
      * Send Test Email
@@ -182,6 +192,14 @@ export declare class CustomizationApiRequestFactory extends BaseAPIRequestFactor
      * @param instance Request
      */
   updateEmailCustomization(brandId: string, templateName: string, customizationId: string, instance?: EmailCustomization, _options?: Configuration): Promise<RequestContext>;
+  /**
+     * Updates an email template's settings.
+     * Update Email Template Settings
+     * @param brandId The ID of the brand.
+     * @param templateName The name of the email template.
+     * @param EmailSettings
+     */
+  updateEmailSettings(brandId: string, templateName: string, EmailSettings?: EmailSettings, _options?: Configuration): Promise<RequestContext>;
   /**
      * Updates the background image for your Theme
      * Updates the background image for your Theme
@@ -305,6 +323,14 @@ export declare class CustomizationApiResponseProcessor {
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
+     * @params response Response returned by the server for a request to getEmailSettings
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+  getEmailSettings(response: ResponseContext): Promise<EmailSettings>;
+  /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
      * @params response Response returned by the server for a request to getEmailTemplate
      * @throws ApiException if the response code was not in [200, 299]
      */
@@ -373,6 +399,14 @@ export declare class CustomizationApiResponseProcessor {
      * @throws ApiException if the response code was not in [200, 299]
      */
   updateEmailCustomization(response: ResponseContext): Promise<EmailCustomization>;
+  /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
+     * @params response Response returned by the server for a request to updateEmailSettings
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+  updateEmailSettings(response: ResponseContext): Promise<void>;
   /**
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects

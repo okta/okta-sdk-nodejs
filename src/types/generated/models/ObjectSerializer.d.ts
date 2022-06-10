@@ -24,7 +24,16 @@ export * from './AccessPolicyRuleConditionsAllOf';
 export * from './AccessPolicyRuleCustomCondition';
 export * from './AcsEndpoint';
 export * from './ActivateFactorRequest';
+export * from './Agent';
+export * from './AgentPool';
+export * from './AgentPoolUpdate';
+export * from './AgentPoolUpdateSetting';
+export * from './AgentType';
+export * from './AgentUpdateInstanceStatus';
+export * from './AgentUpdateJobStatus';
 export * from './AllowedForEnum';
+export * from './ApiToken';
+export * from './ApiTokenLink';
 export * from './AppAndInstanceConditionEvaluatorAppOrInstance';
 export * from './AppAndInstancePolicyRuleCondition';
 export * from './AppAndInstanceType';
@@ -80,6 +89,7 @@ export * from './AutoLoginApplicationAllOf';
 export * from './AutoLoginApplicationSettings';
 export * from './AutoLoginApplicationSettingsAllOf';
 export * from './AutoLoginApplicationSettingsSignOn';
+export * from './AutoUpdateSchedule';
 export * from './BasicApplicationSettings';
 export * from './BasicApplicationSettingsAllOf';
 export * from './BasicApplicationSettingsApplication';
@@ -87,6 +97,25 @@ export * from './BasicApplicationSettingsApplicationAllOf';
 export * from './BasicAuthApplication';
 export * from './BasicAuthApplicationAllOf';
 export * from './BeforeScheduledActionPolicyRuleCondition';
+export * from './BehaviorDetectionRuleSettingsBasedOnDeviceVelocityInKilometersPerHour';
+export * from './BehaviorDetectionRuleSettingsBasedOnEventHistory';
+export * from './BehaviorRule';
+export * from './BehaviorRuleAnomalousDevice';
+export * from './BehaviorRuleAnomalousDeviceAllOf';
+export * from './BehaviorRuleAnomalousIP';
+export * from './BehaviorRuleAnomalousIPAllOf';
+export * from './BehaviorRuleAnomalousLocation';
+export * from './BehaviorRuleAnomalousLocationAllOf';
+export * from './BehaviorRuleSettingsAnomalousDevice';
+export * from './BehaviorRuleSettingsAnomalousIP';
+export * from './BehaviorRuleSettingsAnomalousIPAllOf';
+export * from './BehaviorRuleSettingsAnomalousLocation';
+export * from './BehaviorRuleSettingsAnomalousLocationAllOf';
+export * from './BehaviorRuleSettingsHistoryBased';
+export * from './BehaviorRuleSettingsVelocity';
+export * from './BehaviorRuleType';
+export * from './BehaviorRuleVelocity';
+export * from './BehaviorRuleVelocityAllOf';
 export * from './BookmarkApplication';
 export * from './BookmarkApplicationAllOf';
 export * from './BookmarkApplicationSettings';
@@ -100,7 +129,6 @@ export * from './Brand';
 export * from './BrowserPluginApplication';
 export * from './BrowserPluginApplicationAllOf';
 export * from './CAPTCHAInstance';
-export * from './CAPTCHAInstanceLink';
 export * from './CAPTCHAType';
 export * from './CallUserFactor';
 export * from './CallUserFactorAllOf';
@@ -154,7 +182,9 @@ export * from './EmailDefaultContentAllOf';
 export * from './EmailDefaultContentAllOfLinks';
 export * from './EmailPreview';
 export * from './EmailPreviewLinks';
+export * from './EmailSettings';
 export * from './EmailTemplate';
+export * from './EmailTemplateEmbedded';
 export * from './EmailTemplateLinks';
 export * from './EmailTemplateTouchPointVariant';
 export * from './EmailUserFactor';
@@ -226,6 +256,7 @@ export * from './IdentityProviderPolicyProvider';
 export * from './IdentityProviderPolicyRuleCondition';
 export * from './IdpPolicyRuleAction';
 export * from './IdpPolicyRuleActionProvider';
+export * from './IframeEmbedScopeAllowedApps';
 export * from './ImageUploadResponse';
 export * from './InactivityPolicyRuleCondition';
 export * from './InlineHook';
@@ -251,6 +282,7 @@ export * from './LifecycleStatus';
 export * from './LinkedObject';
 export * from './LinkedObjectDetails';
 export * from './LinkedObjectDetailsType';
+export * from './LocationGranularity';
 export * from './LogActor';
 export * from './LogAuthenticationContext';
 export * from './LogAuthenticationProvider';
@@ -326,6 +358,7 @@ export * from './OpenIdConnectApplicationSettingsClientKeys';
 export * from './OpenIdConnectApplicationSettingsRefreshToken';
 export * from './OpenIdConnectApplicationType';
 export * from './OpenIdConnectRefreshTokenRotationType';
+export * from './OperationalStatus';
 export * from './Org2OrgApplication';
 export * from './Org2OrgApplicationAllOf';
 export * from './Org2OrgApplicationSettings';
@@ -409,6 +442,8 @@ export * from './PolicyUserStatus';
 export * from './PossessionConstraint';
 export * from './PossessionConstraintAllOf';
 export * from './PreRegistrationInlineHook';
+export * from './PrincipalRateLimitEntity';
+export * from './PrincipalType';
 export * from './ProfileEnrollmentPolicy';
 export * from './ProfileEnrollmentPolicyRule';
 export * from './ProfileEnrollmentPolicyRuleAction';
@@ -453,6 +488,7 @@ export * from './PushUserFactor';
 export * from './PushUserFactorAllOf';
 export * from './PushUserFactorProfile';
 export * from './RecoveryQuestionCredential';
+export * from './ReleaseChannel';
 export * from './RequiredEnum';
 export * from './ResetPasswordToken';
 export * from './RiskPolicyRuleCondition';
@@ -527,6 +563,7 @@ export * from './TrustedOriginScopeType';
 export * from './U2fUserFactor';
 export * from './U2fUserFactorAllOf';
 export * from './U2fUserFactorProfile';
+export * from './UpdateUserRequest';
 export * from './User';
 export * from './UserActivationToken';
 export * from './UserCondition';
@@ -586,25 +623,25 @@ export declare class ObjectSerializer {
   static serialize(data: any, type: string, format: string): any;
   static deserialize(data: any, type: string, format: string): any;
   /**
-     * Normalize media type
-     *
-     * We currently do not handle any media types attributes, i.e. anything
-     * after a semicolon. All content is assumed to be UTF-8 compatible.
-     */
+      * Normalize media type
+      *
+      * We currently do not handle any media types attributes, i.e. anything
+      * after a semicolon. All content is assumed to be UTF-8 compatible.
+      */
   static normalizeMediaType(mediaType: string | undefined): string | undefined;
   /**
-     * From a list of possible media types, choose the one we can handle best.
-     *
-     * The order of the given media types does not have any impact on the choice
-     * made.
-     */
+      * From a list of possible media types, choose the one we can handle best.
+      *
+      * The order of the given media types does not have any impact on the choice
+      * made.
+      */
   static getPreferredMediaType(mediaTypes: Array<string>): string;
   /**
-     * Convert data to a string according the given media type
-     */
+      * Convert data to a string according the given media type
+      */
   static stringify(data: any, mediaType: string): string;
   /**
-     * Parse data from a string according to the given media type
-     */
+      * Parse data from a string according to the given media type
+      */
   static parse(rawData: string, mediaType: string | undefined): any;
 }

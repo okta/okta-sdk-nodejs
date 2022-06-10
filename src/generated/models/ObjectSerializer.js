@@ -37,7 +37,16 @@ __exportStar(require("./AccessPolicyRuleConditionsAllOf"), exports);
 __exportStar(require("./AccessPolicyRuleCustomCondition"), exports);
 __exportStar(require("./AcsEndpoint"), exports);
 __exportStar(require("./ActivateFactorRequest"), exports);
+__exportStar(require("./Agent"), exports);
+__exportStar(require("./AgentPool"), exports);
+__exportStar(require("./AgentPoolUpdate"), exports);
+__exportStar(require("./AgentPoolUpdateSetting"), exports);
+__exportStar(require("./AgentType"), exports);
+__exportStar(require("./AgentUpdateInstanceStatus"), exports);
+__exportStar(require("./AgentUpdateJobStatus"), exports);
 __exportStar(require("./AllowedForEnum"), exports);
+__exportStar(require("./ApiToken"), exports);
+__exportStar(require("./ApiTokenLink"), exports);
 __exportStar(require("./AppAndInstanceConditionEvaluatorAppOrInstance"), exports);
 __exportStar(require("./AppAndInstancePolicyRuleCondition"), exports);
 __exportStar(require("./AppAndInstanceType"), exports);
@@ -93,6 +102,7 @@ __exportStar(require("./AutoLoginApplicationAllOf"), exports);
 __exportStar(require("./AutoLoginApplicationSettings"), exports);
 __exportStar(require("./AutoLoginApplicationSettingsAllOf"), exports);
 __exportStar(require("./AutoLoginApplicationSettingsSignOn"), exports);
+__exportStar(require("./AutoUpdateSchedule"), exports);
 __exportStar(require("./BasicApplicationSettings"), exports);
 __exportStar(require("./BasicApplicationSettingsAllOf"), exports);
 __exportStar(require("./BasicApplicationSettingsApplication"), exports);
@@ -100,6 +110,25 @@ __exportStar(require("./BasicApplicationSettingsApplicationAllOf"), exports);
 __exportStar(require("./BasicAuthApplication"), exports);
 __exportStar(require("./BasicAuthApplicationAllOf"), exports);
 __exportStar(require("./BeforeScheduledActionPolicyRuleCondition"), exports);
+__exportStar(require("./BehaviorDetectionRuleSettingsBasedOnDeviceVelocityInKilometersPerHour"), exports);
+__exportStar(require("./BehaviorDetectionRuleSettingsBasedOnEventHistory"), exports);
+__exportStar(require("./BehaviorRule"), exports);
+__exportStar(require("./BehaviorRuleAnomalousDevice"), exports);
+__exportStar(require("./BehaviorRuleAnomalousDeviceAllOf"), exports);
+__exportStar(require("./BehaviorRuleAnomalousIP"), exports);
+__exportStar(require("./BehaviorRuleAnomalousIPAllOf"), exports);
+__exportStar(require("./BehaviorRuleAnomalousLocation"), exports);
+__exportStar(require("./BehaviorRuleAnomalousLocationAllOf"), exports);
+__exportStar(require("./BehaviorRuleSettingsAnomalousDevice"), exports);
+__exportStar(require("./BehaviorRuleSettingsAnomalousIP"), exports);
+__exportStar(require("./BehaviorRuleSettingsAnomalousIPAllOf"), exports);
+__exportStar(require("./BehaviorRuleSettingsAnomalousLocation"), exports);
+__exportStar(require("./BehaviorRuleSettingsAnomalousLocationAllOf"), exports);
+__exportStar(require("./BehaviorRuleSettingsHistoryBased"), exports);
+__exportStar(require("./BehaviorRuleSettingsVelocity"), exports);
+__exportStar(require("./BehaviorRuleType"), exports);
+__exportStar(require("./BehaviorRuleVelocity"), exports);
+__exportStar(require("./BehaviorRuleVelocityAllOf"), exports);
 __exportStar(require("./BookmarkApplication"), exports);
 __exportStar(require("./BookmarkApplicationAllOf"), exports);
 __exportStar(require("./BookmarkApplicationSettings"), exports);
@@ -113,7 +142,6 @@ __exportStar(require("./Brand"), exports);
 __exportStar(require("./BrowserPluginApplication"), exports);
 __exportStar(require("./BrowserPluginApplicationAllOf"), exports);
 __exportStar(require("./CAPTCHAInstance"), exports);
-__exportStar(require("./CAPTCHAInstanceLink"), exports);
 __exportStar(require("./CAPTCHAType"), exports);
 __exportStar(require("./CallUserFactor"), exports);
 __exportStar(require("./CallUserFactorAllOf"), exports);
@@ -167,7 +195,9 @@ __exportStar(require("./EmailDefaultContentAllOf"), exports);
 __exportStar(require("./EmailDefaultContentAllOfLinks"), exports);
 __exportStar(require("./EmailPreview"), exports);
 __exportStar(require("./EmailPreviewLinks"), exports);
+__exportStar(require("./EmailSettings"), exports);
 __exportStar(require("./EmailTemplate"), exports);
+__exportStar(require("./EmailTemplateEmbedded"), exports);
 __exportStar(require("./EmailTemplateLinks"), exports);
 __exportStar(require("./EmailTemplateTouchPointVariant"), exports);
 __exportStar(require("./EmailUserFactor"), exports);
@@ -239,6 +269,7 @@ __exportStar(require("./IdentityProviderPolicyProvider"), exports);
 __exportStar(require("./IdentityProviderPolicyRuleCondition"), exports);
 __exportStar(require("./IdpPolicyRuleAction"), exports);
 __exportStar(require("./IdpPolicyRuleActionProvider"), exports);
+__exportStar(require("./IframeEmbedScopeAllowedApps"), exports);
 __exportStar(require("./ImageUploadResponse"), exports);
 __exportStar(require("./InactivityPolicyRuleCondition"), exports);
 __exportStar(require("./InlineHook"), exports);
@@ -264,6 +295,7 @@ __exportStar(require("./LifecycleStatus"), exports);
 __exportStar(require("./LinkedObject"), exports);
 __exportStar(require("./LinkedObjectDetails"), exports);
 __exportStar(require("./LinkedObjectDetailsType"), exports);
+__exportStar(require("./LocationGranularity"), exports);
 __exportStar(require("./LogActor"), exports);
 __exportStar(require("./LogAuthenticationContext"), exports);
 __exportStar(require("./LogAuthenticationProvider"), exports);
@@ -339,6 +371,7 @@ __exportStar(require("./OpenIdConnectApplicationSettingsClientKeys"), exports);
 __exportStar(require("./OpenIdConnectApplicationSettingsRefreshToken"), exports);
 __exportStar(require("./OpenIdConnectApplicationType"), exports);
 __exportStar(require("./OpenIdConnectRefreshTokenRotationType"), exports);
+__exportStar(require("./OperationalStatus"), exports);
 __exportStar(require("./Org2OrgApplication"), exports);
 __exportStar(require("./Org2OrgApplicationAllOf"), exports);
 __exportStar(require("./Org2OrgApplicationSettings"), exports);
@@ -422,6 +455,8 @@ __exportStar(require("./PolicyUserStatus"), exports);
 __exportStar(require("./PossessionConstraint"), exports);
 __exportStar(require("./PossessionConstraintAllOf"), exports);
 __exportStar(require("./PreRegistrationInlineHook"), exports);
+__exportStar(require("./PrincipalRateLimitEntity"), exports);
+__exportStar(require("./PrincipalType"), exports);
 __exportStar(require("./ProfileEnrollmentPolicy"), exports);
 __exportStar(require("./ProfileEnrollmentPolicyRule"), exports);
 __exportStar(require("./ProfileEnrollmentPolicyRuleAction"), exports);
@@ -466,6 +501,7 @@ __exportStar(require("./PushUserFactor"), exports);
 __exportStar(require("./PushUserFactorAllOf"), exports);
 __exportStar(require("./PushUserFactorProfile"), exports);
 __exportStar(require("./RecoveryQuestionCredential"), exports);
+__exportStar(require("./ReleaseChannel"), exports);
 __exportStar(require("./RequiredEnum"), exports);
 __exportStar(require("./ResetPasswordToken"), exports);
 __exportStar(require("./RiskPolicyRuleCondition"), exports);
@@ -540,6 +576,7 @@ __exportStar(require("./TrustedOriginScopeType"), exports);
 __exportStar(require("./U2fUserFactor"), exports);
 __exportStar(require("./U2fUserFactorAllOf"), exports);
 __exportStar(require("./U2fUserFactorProfile"), exports);
+__exportStar(require("./UpdateUserRequest"), exports);
 __exportStar(require("./User"), exports);
 __exportStar(require("./UserActivationToken"), exports);
 __exportStar(require("./UserCondition"), exports);
@@ -607,6 +644,12 @@ const AccessPolicyRuleConditionsAllOf_1 = require("./AccessPolicyRuleConditionsA
 const AccessPolicyRuleCustomCondition_1 = require("./AccessPolicyRuleCustomCondition");
 const AcsEndpoint_1 = require("./AcsEndpoint");
 const ActivateFactorRequest_1 = require("./ActivateFactorRequest");
+const Agent_1 = require("./Agent");
+const AgentPool_1 = require("./AgentPool");
+const AgentPoolUpdate_1 = require("./AgentPoolUpdate");
+const AgentPoolUpdateSetting_1 = require("./AgentPoolUpdateSetting");
+const ApiToken_1 = require("./ApiToken");
+const ApiTokenLink_1 = require("./ApiTokenLink");
 const AppAndInstanceConditionEvaluatorAppOrInstance_1 = require("./AppAndInstanceConditionEvaluatorAppOrInstance");
 const AppAndInstancePolicyRuleCondition_1 = require("./AppAndInstancePolicyRuleCondition");
 const AppInstancePolicyRuleCondition_1 = require("./AppInstancePolicyRuleCondition");
@@ -652,6 +695,7 @@ const AutoLoginApplicationAllOf_1 = require("./AutoLoginApplicationAllOf");
 const AutoLoginApplicationSettings_1 = require("./AutoLoginApplicationSettings");
 const AutoLoginApplicationSettingsAllOf_1 = require("./AutoLoginApplicationSettingsAllOf");
 const AutoLoginApplicationSettingsSignOn_1 = require("./AutoLoginApplicationSettingsSignOn");
+const AutoUpdateSchedule_1 = require("./AutoUpdateSchedule");
 const BasicApplicationSettings_1 = require("./BasicApplicationSettings");
 const BasicApplicationSettingsAllOf_1 = require("./BasicApplicationSettingsAllOf");
 const BasicApplicationSettingsApplication_1 = require("./BasicApplicationSettingsApplication");
@@ -659,6 +703,24 @@ const BasicApplicationSettingsApplicationAllOf_1 = require("./BasicApplicationSe
 const BasicAuthApplication_1 = require("./BasicAuthApplication");
 const BasicAuthApplicationAllOf_1 = require("./BasicAuthApplicationAllOf");
 const BeforeScheduledActionPolicyRuleCondition_1 = require("./BeforeScheduledActionPolicyRuleCondition");
+const BehaviorDetectionRuleSettingsBasedOnDeviceVelocityInKilometersPerHour_1 = require("./BehaviorDetectionRuleSettingsBasedOnDeviceVelocityInKilometersPerHour");
+const BehaviorDetectionRuleSettingsBasedOnEventHistory_1 = require("./BehaviorDetectionRuleSettingsBasedOnEventHistory");
+const BehaviorRule_1 = require("./BehaviorRule");
+const BehaviorRuleAnomalousDevice_1 = require("./BehaviorRuleAnomalousDevice");
+const BehaviorRuleAnomalousDeviceAllOf_1 = require("./BehaviorRuleAnomalousDeviceAllOf");
+const BehaviorRuleAnomalousIP_1 = require("./BehaviorRuleAnomalousIP");
+const BehaviorRuleAnomalousIPAllOf_1 = require("./BehaviorRuleAnomalousIPAllOf");
+const BehaviorRuleAnomalousLocation_1 = require("./BehaviorRuleAnomalousLocation");
+const BehaviorRuleAnomalousLocationAllOf_1 = require("./BehaviorRuleAnomalousLocationAllOf");
+const BehaviorRuleSettingsAnomalousDevice_1 = require("./BehaviorRuleSettingsAnomalousDevice");
+const BehaviorRuleSettingsAnomalousIP_1 = require("./BehaviorRuleSettingsAnomalousIP");
+const BehaviorRuleSettingsAnomalousIPAllOf_1 = require("./BehaviorRuleSettingsAnomalousIPAllOf");
+const BehaviorRuleSettingsAnomalousLocation_1 = require("./BehaviorRuleSettingsAnomalousLocation");
+const BehaviorRuleSettingsAnomalousLocationAllOf_1 = require("./BehaviorRuleSettingsAnomalousLocationAllOf");
+const BehaviorRuleSettingsHistoryBased_1 = require("./BehaviorRuleSettingsHistoryBased");
+const BehaviorRuleSettingsVelocity_1 = require("./BehaviorRuleSettingsVelocity");
+const BehaviorRuleVelocity_1 = require("./BehaviorRuleVelocity");
+const BehaviorRuleVelocityAllOf_1 = require("./BehaviorRuleVelocityAllOf");
 const BookmarkApplication_1 = require("./BookmarkApplication");
 const BookmarkApplicationAllOf_1 = require("./BookmarkApplicationAllOf");
 const BookmarkApplicationSettings_1 = require("./BookmarkApplicationSettings");
@@ -672,7 +734,6 @@ const Brand_1 = require("./Brand");
 const BrowserPluginApplication_1 = require("./BrowserPluginApplication");
 const BrowserPluginApplicationAllOf_1 = require("./BrowserPluginApplicationAllOf");
 const CAPTCHAInstance_1 = require("./CAPTCHAInstance");
-const CAPTCHAInstanceLink_1 = require("./CAPTCHAInstanceLink");
 const CallUserFactor_1 = require("./CallUserFactor");
 const CallUserFactorAllOf_1 = require("./CallUserFactorAllOf");
 const CallUserFactorProfile_1 = require("./CallUserFactorProfile");
@@ -716,7 +777,9 @@ const EmailDefaultContentAllOf_1 = require("./EmailDefaultContentAllOf");
 const EmailDefaultContentAllOfLinks_1 = require("./EmailDefaultContentAllOfLinks");
 const EmailPreview_1 = require("./EmailPreview");
 const EmailPreviewLinks_1 = require("./EmailPreviewLinks");
+const EmailSettings_1 = require("./EmailSettings");
 const EmailTemplate_1 = require("./EmailTemplate");
+const EmailTemplateEmbedded_1 = require("./EmailTemplateEmbedded");
 const EmailTemplateLinks_1 = require("./EmailTemplateLinks");
 const EmailUserFactor_1 = require("./EmailUserFactor");
 const EmailUserFactorAllOf_1 = require("./EmailUserFactorAllOf");
@@ -902,6 +965,7 @@ const PolicyUserNameTemplate_1 = require("./PolicyUserNameTemplate");
 const PossessionConstraint_1 = require("./PossessionConstraint");
 const PossessionConstraintAllOf_1 = require("./PossessionConstraintAllOf");
 const PreRegistrationInlineHook_1 = require("./PreRegistrationInlineHook");
+const PrincipalRateLimitEntity_1 = require("./PrincipalRateLimitEntity");
 const ProfileEnrollmentPolicy_1 = require("./ProfileEnrollmentPolicy");
 const ProfileEnrollmentPolicyRule_1 = require("./ProfileEnrollmentPolicyRule");
 const ProfileEnrollmentPolicyRuleAction_1 = require("./ProfileEnrollmentPolicyRuleAction");
@@ -997,6 +1061,7 @@ const TrustedOriginScope_1 = require("./TrustedOriginScope");
 const U2fUserFactor_1 = require("./U2fUserFactor");
 const U2fUserFactorAllOf_1 = require("./U2fUserFactorAllOf");
 const U2fUserFactorProfile_1 = require("./U2fUserFactorProfile");
+const UpdateUserRequest_1 = require("./UpdateUserRequest");
 const User_1 = require("./User");
 const UserActivationToken_1 = require("./UserActivationToken");
 const UserCondition_1 = require("./UserCondition");
@@ -1058,6 +1123,9 @@ const supportedMediaTypes = {
     'application/x-www-form-urlencoded': 0
 };
 let enumsMap = new Set([
+    'AgentType',
+    'AgentUpdateInstanceStatus',
+    'AgentUpdateJobStatus',
     'AllowedForEnum',
     'AppAndInstanceType',
     'ApplicationCredentialsScheme',
@@ -1069,6 +1137,7 @@ let enumsMap = new Set([
     'AuthenticatorType',
     'AuthorizationServerCredentialsRotationMode',
     'AuthorizationServerCredentialsUse',
+    'BehaviorRuleType',
     'CAPTCHAType',
     'CatalogApplicationStatus',
     'ChangeEnum',
@@ -1079,6 +1148,7 @@ let enumsMap = new Set([
     'DomainCertificateSourceType',
     'DomainCertificateType',
     'DomainValidationStatus',
+    'EmailSettingsRecipientsEnum',
     'EmailTemplateTouchPointVariant',
     'EnabledStatus',
     'EndUserDashboardTouchPointVariant',
@@ -1101,6 +1171,7 @@ let enumsMap = new Set([
     'HttpMethod',
     'IdentityProviderCredentialsTrustRevocation',
     'IdentityProviderPolicyProvider',
+    'IframeEmbedScopeAllowedApps',
     'InlineHookChannelType',
     'InlineHookStatus',
     'InlineHookType',
@@ -1108,6 +1179,7 @@ let enumsMap = new Set([
     'JwkUseType',
     'LifecycleStatus',
     'LinkedObjectDetailsType',
+    'LocationGranularity',
     'LogAuthenticationProvider',
     'LogCredentialProvider',
     'LogCredentialType',
@@ -1132,6 +1204,7 @@ let enumsMap = new Set([
     'OpenIdConnectApplicationIssuerMode',
     'OpenIdConnectApplicationType',
     'OpenIdConnectRefreshTokenRotationType',
+    'OperationalStatus',
     'OrgContactType',
     'OrgOktaSupportSetting',
     'PasswordCredentialHashAlgorithm',
@@ -1148,6 +1221,7 @@ let enumsMap = new Set([
     'PolicySubjectMatchType',
     'PolicyType',
     'PolicyUserStatus',
+    'PrincipalType',
     'ProfileMappingPropertyPushStatus',
     'ProtocolAlgorithmTypeSignatureScope',
     'ProtocolEndpointBinding',
@@ -1160,6 +1234,7 @@ let enumsMap = new Set([
     'ProvisioningDeprovisionedAction',
     'ProvisioningGroupsAction',
     'ProvisioningSuspendedAction',
+    'ReleaseChannel',
     'RequiredEnum',
     'RoleAssignmentType',
     'RoleType',
@@ -1196,6 +1271,12 @@ let typeMap = {
     'AccessPolicyRuleCustomCondition': AccessPolicyRuleCustomCondition_1.AccessPolicyRuleCustomCondition,
     'AcsEndpoint': AcsEndpoint_1.AcsEndpoint,
     'ActivateFactorRequest': ActivateFactorRequest_1.ActivateFactorRequest,
+    'Agent': Agent_1.Agent,
+    'AgentPool': AgentPool_1.AgentPool,
+    'AgentPoolUpdate': AgentPoolUpdate_1.AgentPoolUpdate,
+    'AgentPoolUpdateSetting': AgentPoolUpdateSetting_1.AgentPoolUpdateSetting,
+    'ApiToken': ApiToken_1.ApiToken,
+    'ApiTokenLink': ApiTokenLink_1.ApiTokenLink,
     'AppAndInstanceConditionEvaluatorAppOrInstance': AppAndInstanceConditionEvaluatorAppOrInstance_1.AppAndInstanceConditionEvaluatorAppOrInstance,
     'AppAndInstancePolicyRuleCondition': AppAndInstancePolicyRuleCondition_1.AppAndInstancePolicyRuleCondition,
     'AppInstancePolicyRuleCondition': AppInstancePolicyRuleCondition_1.AppInstancePolicyRuleCondition,
@@ -1241,6 +1322,7 @@ let typeMap = {
     'AutoLoginApplicationSettings': AutoLoginApplicationSettings_1.AutoLoginApplicationSettings,
     'AutoLoginApplicationSettingsAllOf': AutoLoginApplicationSettingsAllOf_1.AutoLoginApplicationSettingsAllOf,
     'AutoLoginApplicationSettingsSignOn': AutoLoginApplicationSettingsSignOn_1.AutoLoginApplicationSettingsSignOn,
+    'AutoUpdateSchedule': AutoUpdateSchedule_1.AutoUpdateSchedule,
     'BasicApplicationSettings': BasicApplicationSettings_1.BasicApplicationSettings,
     'BasicApplicationSettingsAllOf': BasicApplicationSettingsAllOf_1.BasicApplicationSettingsAllOf,
     'BasicApplicationSettingsApplication': BasicApplicationSettingsApplication_1.BasicApplicationSettingsApplication,
@@ -1248,6 +1330,24 @@ let typeMap = {
     'BasicAuthApplication': BasicAuthApplication_1.BasicAuthApplication,
     'BasicAuthApplicationAllOf': BasicAuthApplicationAllOf_1.BasicAuthApplicationAllOf,
     'BeforeScheduledActionPolicyRuleCondition': BeforeScheduledActionPolicyRuleCondition_1.BeforeScheduledActionPolicyRuleCondition,
+    'BehaviorDetectionRuleSettingsBasedOnDeviceVelocityInKilometersPerHour': BehaviorDetectionRuleSettingsBasedOnDeviceVelocityInKilometersPerHour_1.BehaviorDetectionRuleSettingsBasedOnDeviceVelocityInKilometersPerHour,
+    'BehaviorDetectionRuleSettingsBasedOnEventHistory': BehaviorDetectionRuleSettingsBasedOnEventHistory_1.BehaviorDetectionRuleSettingsBasedOnEventHistory,
+    'BehaviorRule': BehaviorRule_1.BehaviorRule,
+    'BehaviorRuleAnomalousDevice': BehaviorRuleAnomalousDevice_1.BehaviorRuleAnomalousDevice,
+    'BehaviorRuleAnomalousDeviceAllOf': BehaviorRuleAnomalousDeviceAllOf_1.BehaviorRuleAnomalousDeviceAllOf,
+    'BehaviorRuleAnomalousIP': BehaviorRuleAnomalousIP_1.BehaviorRuleAnomalousIP,
+    'BehaviorRuleAnomalousIPAllOf': BehaviorRuleAnomalousIPAllOf_1.BehaviorRuleAnomalousIPAllOf,
+    'BehaviorRuleAnomalousLocation': BehaviorRuleAnomalousLocation_1.BehaviorRuleAnomalousLocation,
+    'BehaviorRuleAnomalousLocationAllOf': BehaviorRuleAnomalousLocationAllOf_1.BehaviorRuleAnomalousLocationAllOf,
+    'BehaviorRuleSettingsAnomalousDevice': BehaviorRuleSettingsAnomalousDevice_1.BehaviorRuleSettingsAnomalousDevice,
+    'BehaviorRuleSettingsAnomalousIP': BehaviorRuleSettingsAnomalousIP_1.BehaviorRuleSettingsAnomalousIP,
+    'BehaviorRuleSettingsAnomalousIPAllOf': BehaviorRuleSettingsAnomalousIPAllOf_1.BehaviorRuleSettingsAnomalousIPAllOf,
+    'BehaviorRuleSettingsAnomalousLocation': BehaviorRuleSettingsAnomalousLocation_1.BehaviorRuleSettingsAnomalousLocation,
+    'BehaviorRuleSettingsAnomalousLocationAllOf': BehaviorRuleSettingsAnomalousLocationAllOf_1.BehaviorRuleSettingsAnomalousLocationAllOf,
+    'BehaviorRuleSettingsHistoryBased': BehaviorRuleSettingsHistoryBased_1.BehaviorRuleSettingsHistoryBased,
+    'BehaviorRuleSettingsVelocity': BehaviorRuleSettingsVelocity_1.BehaviorRuleSettingsVelocity,
+    'BehaviorRuleVelocity': BehaviorRuleVelocity_1.BehaviorRuleVelocity,
+    'BehaviorRuleVelocityAllOf': BehaviorRuleVelocityAllOf_1.BehaviorRuleVelocityAllOf,
     'BookmarkApplication': BookmarkApplication_1.BookmarkApplication,
     'BookmarkApplicationAllOf': BookmarkApplicationAllOf_1.BookmarkApplicationAllOf,
     'BookmarkApplicationSettings': BookmarkApplicationSettings_1.BookmarkApplicationSettings,
@@ -1261,7 +1361,6 @@ let typeMap = {
     'BrowserPluginApplication': BrowserPluginApplication_1.BrowserPluginApplication,
     'BrowserPluginApplicationAllOf': BrowserPluginApplicationAllOf_1.BrowserPluginApplicationAllOf,
     'CAPTCHAInstance': CAPTCHAInstance_1.CAPTCHAInstance,
-    'CAPTCHAInstanceLink': CAPTCHAInstanceLink_1.CAPTCHAInstanceLink,
     'CallUserFactor': CallUserFactor_1.CallUserFactor,
     'CallUserFactorAllOf': CallUserFactorAllOf_1.CallUserFactorAllOf,
     'CallUserFactorProfile': CallUserFactorProfile_1.CallUserFactorProfile,
@@ -1305,7 +1404,9 @@ let typeMap = {
     'EmailDefaultContentAllOfLinks': EmailDefaultContentAllOfLinks_1.EmailDefaultContentAllOfLinks,
     'EmailPreview': EmailPreview_1.EmailPreview,
     'EmailPreviewLinks': EmailPreviewLinks_1.EmailPreviewLinks,
+    'EmailSettings': EmailSettings_1.EmailSettings,
     'EmailTemplate': EmailTemplate_1.EmailTemplate,
+    'EmailTemplateEmbedded': EmailTemplateEmbedded_1.EmailTemplateEmbedded,
     'EmailTemplateLinks': EmailTemplateLinks_1.EmailTemplateLinks,
     'EmailUserFactor': EmailUserFactor_1.EmailUserFactor,
     'EmailUserFactorAllOf': EmailUserFactorAllOf_1.EmailUserFactorAllOf,
@@ -1491,6 +1592,7 @@ let typeMap = {
     'PossessionConstraint': PossessionConstraint_1.PossessionConstraint,
     'PossessionConstraintAllOf': PossessionConstraintAllOf_1.PossessionConstraintAllOf,
     'PreRegistrationInlineHook': PreRegistrationInlineHook_1.PreRegistrationInlineHook,
+    'PrincipalRateLimitEntity': PrincipalRateLimitEntity_1.PrincipalRateLimitEntity,
     'ProfileEnrollmentPolicy': ProfileEnrollmentPolicy_1.ProfileEnrollmentPolicy,
     'ProfileEnrollmentPolicyRule': ProfileEnrollmentPolicyRule_1.ProfileEnrollmentPolicyRule,
     'ProfileEnrollmentPolicyRuleAction': ProfileEnrollmentPolicyRuleAction_1.ProfileEnrollmentPolicyRuleAction,
@@ -1586,6 +1688,7 @@ let typeMap = {
     'U2fUserFactor': U2fUserFactor_1.U2fUserFactor,
     'U2fUserFactorAllOf': U2fUserFactorAllOf_1.U2fUserFactorAllOf,
     'U2fUserFactorProfile': U2fUserFactorProfile_1.U2fUserFactorProfile,
+    'UpdateUserRequest': UpdateUserRequest_1.UpdateUserRequest,
     'User': User_1.User,
     'UserActivationToken': UserActivationToken_1.UserActivationToken,
     'UserCondition': UserCondition_1.UserCondition,

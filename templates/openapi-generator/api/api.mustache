@@ -66,7 +66,7 @@ export class {{classname}}RequestFactory extends BaseAPIRequestFactory {
 
         // Query Params
         if ({{paramName}} !== undefined) {
-            requestContext.setQueryParam('{{baseName}}', ObjectSerializer.serialize({{paramName}}, '{{{dataType}}}', '{{dataFormat}}'));
+            requestContext.setQueryParam('{{baseName}}', ObjectSerializer.serialize({{paramName}}, "{{{dataType}}}", '{{dataFormat}}'));
         }
         {{/queryParams}}
         {{#headerParams}}

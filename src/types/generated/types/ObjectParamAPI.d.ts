@@ -15,6 +15,11 @@ import { Collection } from '../../collection';
 import { HttpFile } from '../http/http';
 import { Configuration } from '../configuration';
 import { ActivateFactorRequest } from '../models/ActivateFactorRequest';
+import { AgentPool } from '../models/AgentPool';
+import { AgentPoolUpdate } from '../models/AgentPoolUpdate';
+import { AgentPoolUpdateSetting } from '../models/AgentPoolUpdateSetting';
+import { AgentType } from '../models/AgentType';
+import { ApiToken } from '../models/ApiToken';
 import { AppLink } from '../models/AppLink';
 import { AppUser } from '../models/AppUser';
 import { Application } from '../models/Application';
@@ -25,6 +30,7 @@ import { Authenticator } from '../models/Authenticator';
 import { AuthorizationServer } from '../models/AuthorizationServer';
 import { AuthorizationServerPolicy } from '../models/AuthorizationServerPolicy';
 import { AuthorizationServerPolicyRule } from '../models/AuthorizationServerPolicyRule';
+import { BehaviorRule } from '../models/BehaviorRule';
 import { BouncesRemoveListObj } from '../models/BouncesRemoveListObj';
 import { BouncesRemoveListResult } from '../models/BouncesRemoveListResult';
 import { Brand } from '../models/Brand';
@@ -43,6 +49,7 @@ import { DomainResponse } from '../models/DomainResponse';
 import { EmailCustomization } from '../models/EmailCustomization';
 import { EmailDefaultContent } from '../models/EmailDefaultContent';
 import { EmailPreview } from '../models/EmailPreview';
+import { EmailSettings } from '../models/EmailSettings';
 import { EmailTemplate } from '../models/EmailTemplate';
 import { EventHook } from '../models/EventHook';
 import { Feature } from '../models/Feature';
@@ -74,6 +81,7 @@ import { OrgPreferences } from '../models/OrgPreferences';
 import { OrgSetting } from '../models/OrgSetting';
 import { Policy } from '../models/Policy';
 import { PolicyRule } from '../models/PolicyRule';
+import { PrincipalRateLimitEntity } from '../models/PrincipalRateLimitEntity';
 import { ProfileMapping } from '../models/ProfileMapping';
 import { ProvisioningConnection } from '../models/ProvisioningConnection';
 import { ProvisioningConnectionRequest } from '../models/ProvisioningConnectionRequest';
@@ -90,6 +98,7 @@ import { Theme } from '../models/Theme';
 import { ThemeResponse } from '../models/ThemeResponse';
 import { ThreatInsightConfiguration } from '../models/ThreatInsightConfiguration';
 import { TrustedOrigin } from '../models/TrustedOrigin';
+import { UpdateUserRequest } from '../models/UpdateUserRequest';
 import { User } from '../models/User';
 import { UserActivationToken } from '../models/UserActivationToken';
 import { UserCredentials } from '../models/UserCredentials';
@@ -100,6 +109,364 @@ import { UserSchema } from '../models/UserSchema';
 import { UserType } from '../models/UserType';
 import { VerifyFactorRequest } from '../models/VerifyFactorRequest';
 import { VerifyUserFactorResponse } from '../models/VerifyUserFactorResponse';
+import { AgentPoolsApiRequestFactory, AgentPoolsApiResponseProcessor } from '../apis/AgentPoolsApi';
+export interface AgentPoolsApiActivateAgentPoolsUpdateRequest {
+    /**
+      * Id of the agent pool for which the settings will apply
+      * @type string
+      * @memberof AgentPoolsApiactivateAgentPoolsUpdate
+      */
+    poolId: string;
+    /**
+      * Id of the update
+      * @type string
+      * @memberof AgentPoolsApiactivateAgentPoolsUpdate
+      */
+    updateId: string;
+}
+export interface AgentPoolsApiCreateAgentPoolsUpdateRequest {
+    /**
+      * Id of the agent pool for which the settings will apply
+      * @type string
+      * @memberof AgentPoolsApicreateAgentPoolsUpdate
+      */
+    poolId: string;
+    /**
+      *
+      * @type AgentPoolUpdate
+      * @memberof AgentPoolsApicreateAgentPoolsUpdate
+      */
+    AgentPoolUpdate: AgentPoolUpdate;
+}
+export interface AgentPoolsApiDeactivateAgentPoolsUpdateRequest {
+    /**
+      * Id of the agent pool for which the settings will apply
+      * @type string
+      * @memberof AgentPoolsApideactivateAgentPoolsUpdate
+      */
+    poolId: string;
+    /**
+      * Id of the update
+      * @type string
+      * @memberof AgentPoolsApideactivateAgentPoolsUpdate
+      */
+    updateId: string;
+}
+export interface AgentPoolsApiDeleteAgentPoolsUpdateRequest {
+    /**
+      * Id of the agent pool for which the settings will apply
+      * @type string
+      * @memberof AgentPoolsApideleteAgentPoolsUpdate
+      */
+    poolId: string;
+    /**
+      * Id of the update
+      * @type string
+      * @memberof AgentPoolsApideleteAgentPoolsUpdate
+      */
+    updateId: string;
+}
+export interface AgentPoolsApiGetAgentPoolsRequest {
+    /**
+      * Maximum number of AgentPools being returned
+      * @type number
+      * @memberof AgentPoolsApigetAgentPools
+      */
+    limitPerPoolType?: number;
+    /**
+      * Agent type to search for
+      * @type AgentType
+      * @memberof AgentPoolsApigetAgentPools
+      */
+    poolType?: AgentType;
+    /**
+      * The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/reference/core-okta-api/#pagination) for more information.
+      * @type string
+      * @memberof AgentPoolsApigetAgentPools
+      */
+    after?: string;
+}
+export interface AgentPoolsApiGetAgentPoolsUpdateInstanceRequest {
+    /**
+      * Id of the agent pool for which the settings will apply
+      * @type string
+      * @memberof AgentPoolsApigetAgentPoolsUpdateInstance
+      */
+    poolId: string;
+    /**
+      * Id of the update
+      * @type string
+      * @memberof AgentPoolsApigetAgentPoolsUpdateInstance
+      */
+    updateId: string;
+}
+export interface AgentPoolsApiGetAgentPoolsUpdateSettingsRequest {
+    /**
+      * Id of the agent pool for which the settings will apply
+      * @type string
+      * @memberof AgentPoolsApigetAgentPoolsUpdateSettings
+      */
+    poolId: string;
+}
+export interface AgentPoolsApiGetAgentPoolsUpdatesRequest {
+    /**
+      * Id of the agent pool for which the settings will apply
+      * @type string
+      * @memberof AgentPoolsApigetAgentPoolsUpdates
+      */
+    poolId: string;
+    /**
+      * Scope the list only to scheduled or ad-hoc updates. If the parameter is not provided we will return the whole list of updates.
+      * @type boolean
+      * @memberof AgentPoolsApigetAgentPoolsUpdates
+      */
+    scheduled?: boolean;
+}
+export interface AgentPoolsApiPauseAgentPoolsUpdateRequest {
+    /**
+      * Id of the agent pool for which the settings will apply
+      * @type string
+      * @memberof AgentPoolsApipauseAgentPoolsUpdate
+      */
+    poolId: string;
+    /**
+      * Id of the update
+      * @type string
+      * @memberof AgentPoolsApipauseAgentPoolsUpdate
+      */
+    updateId: string;
+}
+export interface AgentPoolsApiResumeAgentPoolsUpdateRequest {
+    /**
+      * Id of the agent pool for which the settings will apply
+      * @type string
+      * @memberof AgentPoolsApiresumeAgentPoolsUpdate
+      */
+    poolId: string;
+    /**
+      * Id of the update
+      * @type string
+      * @memberof AgentPoolsApiresumeAgentPoolsUpdate
+      */
+    updateId: string;
+}
+export interface AgentPoolsApiRetryAgentPoolsUpdateRequest {
+    /**
+      * Id of the agent pool for which the settings will apply
+      * @type string
+      * @memberof AgentPoolsApiretryAgentPoolsUpdate
+      */
+    poolId: string;
+    /**
+      * Id of the update
+      * @type string
+      * @memberof AgentPoolsApiretryAgentPoolsUpdate
+      */
+    updateId: string;
+}
+export interface AgentPoolsApiSetAgentPoolsUpdateSettingsRequest {
+    /**
+      * Id of the agent pool for which the settings will apply
+      * @type string
+      * @memberof AgentPoolsApisetAgentPoolsUpdateSettings
+      */
+    poolId: string;
+    /**
+      *
+      * @type AgentPoolUpdateSetting
+      * @memberof AgentPoolsApisetAgentPoolsUpdateSettings
+      */
+    AgentPoolUpdateSetting: AgentPoolUpdateSetting;
+}
+export interface AgentPoolsApiStopAgentPoolsUpdateRequest {
+    /**
+      * Id of the agent pool for which the settings will apply
+      * @type string
+      * @memberof AgentPoolsApistopAgentPoolsUpdate
+      */
+    poolId: string;
+    /**
+      * Id of the update
+      * @type string
+      * @memberof AgentPoolsApistopAgentPoolsUpdate
+      */
+    updateId: string;
+}
+export interface AgentPoolsApiUpdateAgentPoolsUpdateRequest {
+    /**
+      * Id of the agent pool for which the settings will apply
+      * @type string
+      * @memberof AgentPoolsApiupdateAgentPoolsUpdate
+      */
+    poolId: string;
+    /**
+      * Id of the update
+      * @type string
+      * @memberof AgentPoolsApiupdateAgentPoolsUpdate
+      */
+    updateId: string;
+    /**
+      *
+      * @type AgentPoolUpdate
+      * @memberof AgentPoolsApiupdateAgentPoolsUpdate
+      */
+    AgentPoolUpdate: AgentPoolUpdate;
+}
+export declare class ObjectAgentPoolsApi {
+  private api;
+  constructor(configuration: Configuration, requestFactory?: AgentPoolsApiRequestFactory, responseProcessor?: AgentPoolsApiResponseProcessor);
+  /**
+      * Activates scheduled Agent pool update
+      * Activate Agent pool update
+      * @param param the request object
+      */
+  activateAgentPoolsUpdate(param: AgentPoolsApiActivateAgentPoolsUpdateRequest, options?: Configuration): Promise<AgentPoolUpdate>;
+  /**
+      * Creates an Agent pool update \\n For user flow 2 manual update, starts the update immediately. \\n For user flow 3, schedules the update based on the configured update window and delay.
+      * Create an Agent pool update
+      * @param param the request object
+      */
+  createAgentPoolsUpdate(param: AgentPoolsApiCreateAgentPoolsUpdateRequest, options?: Configuration): Promise<AgentPoolUpdate>;
+  /**
+      * Deactivates scheduled Agent pool update
+      * Deactivate Agent pool update
+      * @param param the request object
+      */
+  deactivateAgentPoolsUpdate(param: AgentPoolsApiDeactivateAgentPoolsUpdateRequest, options?: Configuration): Promise<AgentPoolUpdate>;
+  /**
+      * Deletes Agent pool update
+      * Delete Agent pool update
+      * @param param the request object
+      */
+  deleteAgentPoolsUpdate(param: AgentPoolsApiDeleteAgentPoolsUpdateRequest, options?: Configuration): Promise<void>;
+  /**
+      * Fetches AgentPools based on request parameters for a given org
+      * Fetch AgentPools
+      * @param param the request object
+      */
+  getAgentPools(param?: AgentPoolsApiGetAgentPoolsRequest, options?: Configuration): Promise<Collection<AgentPool>>;
+  /**
+      * Gets Agent pool update from updateId
+      * Get Agent pool update by id
+      * @param param the request object
+      */
+  getAgentPoolsUpdateInstance(param: AgentPoolsApiGetAgentPoolsUpdateInstanceRequest, options?: Configuration): Promise<AgentPoolUpdate>;
+  /**
+      * Gets the current state of the agent pool update instance settings
+      * Get Agent pool update settings
+      * @param param the request object
+      */
+  getAgentPoolsUpdateSettings(param: AgentPoolsApiGetAgentPoolsUpdateSettingsRequest, options?: Configuration): Promise<AgentPoolUpdateSetting>;
+  /**
+      * Gets List of Agent pool updates
+      * List Agent pool updates
+      * @param param the request object
+      */
+  getAgentPoolsUpdates(param: AgentPoolsApiGetAgentPoolsUpdatesRequest, options?: Configuration): Promise<Collection<AgentPoolUpdate>>;
+  /**
+      * Pauses running or queued Agent pool update
+      * Pause Agent pool update
+      * @param param the request object
+      */
+  pauseAgentPoolsUpdate(param: AgentPoolsApiPauseAgentPoolsUpdateRequest, options?: Configuration): Promise<AgentPoolUpdate>;
+  /**
+      * Resumes running or queued Agent pool update
+      * Resume Agent pool update
+      * @param param the request object
+      */
+  resumeAgentPoolsUpdate(param: AgentPoolsApiResumeAgentPoolsUpdateRequest, options?: Configuration): Promise<AgentPoolUpdate>;
+  /**
+      * Retries Agent pool update
+      * Retry Agent pool update
+      * @param param the request object
+      */
+  retryAgentPoolsUpdate(param: AgentPoolsApiRetryAgentPoolsUpdateRequest, options?: Configuration): Promise<AgentPoolUpdate>;
+  /**
+      * Updates Agent pool update settings
+      * Update Agent pool update settings
+      * @param param the request object
+      */
+  setAgentPoolsUpdateSettings(param: AgentPoolsApiSetAgentPoolsUpdateSettingsRequest, options?: Configuration): Promise<AgentPoolUpdateSetting>;
+  /**
+      * Stops Agent pool update
+      * Stop Agent pool update
+      * @param param the request object
+      */
+  stopAgentPoolsUpdate(param: AgentPoolsApiStopAgentPoolsUpdateRequest, options?: Configuration): Promise<AgentPoolUpdate>;
+  /**
+      * Updates Agent pool update and return latest agent pool update
+      * Change Agent pool update by id
+      * @param param the request object
+      */
+  updateAgentPoolsUpdate(param: AgentPoolsApiUpdateAgentPoolsUpdateRequest, options?: Configuration): Promise<AgentPoolUpdate>;
+}
+import { ApiTokenApiRequestFactory, ApiTokenApiResponseProcessor } from '../apis/ApiTokenApi';
+export interface ApiTokenApiGetApiTokenRequest {
+    /**
+      * id of the API Token
+      * @type string
+      * @memberof ApiTokenApigetApiToken
+      */
+    apiTokenId: string;
+}
+export interface ApiTokenApiListApiTokensRequest {
+    /**
+      * The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/reference/core-okta-api/#pagination) for more information.
+      * @type string
+      * @memberof ApiTokenApilistApiTokens
+      */
+    after?: string;
+    /**
+      * A limit on the number of objects to return.
+      * @type number
+      * @memberof ApiTokenApilistApiTokens
+      */
+    limit?: number;
+    /**
+      * Finds a token that matches the name or clientName.
+      * @type string
+      * @memberof ApiTokenApilistApiTokens
+      */
+    q?: string;
+}
+export interface ApiTokenApiRevokeApiTokenRequest {
+    /**
+      * id of the API Token
+      * @type string
+      * @memberof ApiTokenApirevokeApiToken
+      */
+    apiTokenId: string;
+}
+export interface ApiTokenApiRevokeCurrentApiTokenRequest {
+}
+export declare class ObjectApiTokenApi {
+  private api;
+  constructor(configuration: Configuration, requestFactory?: ApiTokenApiRequestFactory, responseProcessor?: ApiTokenApiResponseProcessor);
+  /**
+      * Get the metadata for an active API token by id.
+      * Get the Metadata for an API Token
+      * @param param the request object
+      */
+  getApiToken(param: ApiTokenApiGetApiTokenRequest, options?: Configuration): Promise<ApiToken>;
+  /**
+      * Enumerates the metadata of the active API tokens in your organization.
+      * List API Token Metadata
+      * @param param the request object
+      */
+  listApiTokens(param?: ApiTokenApiListApiTokensRequest, options?: Configuration): Promise<Collection<ApiToken>>;
+  /**
+      * Revoke an API token by id.
+      * Revoke an API Token
+      * @param param the request object
+      */
+  revokeApiToken(param: ApiTokenApiRevokeApiTokenRequest, options?: Configuration): Promise<void>;
+  /**
+      * Revokes the API token provided in the Authorization header.
+      * Revoke the Current API Token
+      * @param param the request object
+      */
+  revokeCurrentApiToken(param?: ApiTokenApiRevokeCurrentApiTokenRequest, options?: Configuration): Promise<void>;
+}
 import { ApplicationApiRequestFactory, ApplicationApiResponseProcessor } from '../apis/ApplicationApi';
 export interface ApplicationApiActivateApplicationRequest {
     /**
@@ -1927,6 +2294,109 @@ export declare class ObjectAuthorizationServerApi {
       */
   updateOAuth2Scope(param: AuthorizationServerApiUpdateOAuth2ScopeRequest, options?: Configuration): Promise<OAuth2Scope>;
 }
+import { BehaviorApiRequestFactory, BehaviorApiResponseProcessor } from '../apis/BehaviorApi';
+export interface BehaviorApiActivateBehaviorDetectionRuleRequest {
+    /**
+      * id of the Behavior Detection Rule
+      * @type string
+      * @memberof BehaviorApiactivateBehaviorDetectionRule
+      */
+    behaviorId: string;
+}
+export interface BehaviorApiCreateBehaviorDetectionRuleRequest {
+    /**
+      *
+      * @type BehaviorRule
+      * @memberof BehaviorApicreateBehaviorDetectionRule
+      */
+    rule: BehaviorRule;
+}
+export interface BehaviorApiDeactivateBehaviorDetectionRuleRequest {
+    /**
+      * id of the Behavior Detection Rule
+      * @type string
+      * @memberof BehaviorApideactivateBehaviorDetectionRule
+      */
+    behaviorId: string;
+}
+export interface BehaviorApiDeleteBehaviorDetectionRuleRequest {
+    /**
+      * id of the Behavior Detection Rule
+      * @type string
+      * @memberof BehaviorApideleteBehaviorDetectionRule
+      */
+    behaviorId: string;
+}
+export interface BehaviorApiGetBehaviorDetectionRuleRequest {
+    /**
+      * id of the Behavior Detection Rule
+      * @type string
+      * @memberof BehaviorApigetBehaviorDetectionRule
+      */
+    behaviorId: string;
+}
+export interface BehaviorApiListBehaviorDetectionRulesRequest {
+}
+export interface BehaviorApiUpdateBehaviorDetectionRuleRequest {
+    /**
+      * id of the Behavior Detection Rule
+      * @type string
+      * @memberof BehaviorApiupdateBehaviorDetectionRule
+      */
+    behaviorId: string;
+    /**
+      *
+      * @type BehaviorRule
+      * @memberof BehaviorApiupdateBehaviorDetectionRule
+      */
+    rule: BehaviorRule;
+}
+export declare class ObjectBehaviorApi {
+  private api;
+  constructor(configuration: Configuration, requestFactory?: BehaviorApiRequestFactory, responseProcessor?: BehaviorApiResponseProcessor);
+  /**
+      * Activate Behavior Detection Rule
+      * Activate Behavior Detection Rule
+      * @param param the request object
+      */
+  activateBehaviorDetectionRule(param: BehaviorApiActivateBehaviorDetectionRuleRequest, options?: Configuration): Promise<BehaviorRule>;
+  /**
+      * Adds a new Behavior Detection Rule to your organization.
+      * Create new Behavior Detection Rule
+      * @param param the request object
+      */
+  createBehaviorDetectionRule(param: BehaviorApiCreateBehaviorDetectionRuleRequest, options?: Configuration): Promise<BehaviorRule>;
+  /**
+      * Deactivate Behavior Detection Rule
+      * Deactivate Behavior Detection Rule
+      * @param param the request object
+      */
+  deactivateBehaviorDetectionRule(param: BehaviorApiDeactivateBehaviorDetectionRuleRequest, options?: Configuration): Promise<BehaviorRule>;
+  /**
+      * Delete a Behavior Detection Rule by `behaviorId`.
+      * Delete Behavior Detection Rule
+      * @param param the request object
+      */
+  deleteBehaviorDetectionRule(param: BehaviorApiDeleteBehaviorDetectionRuleRequest, options?: Configuration): Promise<void>;
+  /**
+      * Fetches a Behavior Detection Rule by `behaviorId`.
+      * Get Behavior Detection Rule
+      * @param param the request object
+      */
+  getBehaviorDetectionRule(param: BehaviorApiGetBehaviorDetectionRuleRequest, options?: Configuration): Promise<Collection<BehaviorRule>>;
+  /**
+      * Enumerates Behavior Detection Rules in your organization with pagination.
+      * List Behavior Detection Rules
+      * @param param the request object
+      */
+  listBehaviorDetectionRules(param?: BehaviorApiListBehaviorDetectionRulesRequest, options?: Configuration): Promise<Collection<BehaviorRule>>;
+  /**
+      * Update a Behavior Detection Rule by `behaviorId`.
+      * Update Behavior Detection Rule
+      * @param param the request object
+      */
+  updateBehaviorDetectionRule(param: BehaviorApiUpdateBehaviorDetectionRuleRequest, options?: Configuration): Promise<BehaviorRule>;
+}
 import { CAPTCHAApiRequestFactory, CAPTCHAApiResponseProcessor } from '../apis/CAPTCHAApi';
 export interface CAPTCHAApiCreateCaptchaInstanceRequest {
     /**
@@ -1992,13 +2462,13 @@ export declare class ObjectCAPTCHAApi {
       */
   createCaptchaInstance(param: CAPTCHAApiCreateCaptchaInstanceRequest, options?: Configuration): Promise<CAPTCHAInstance>;
   /**
-      * Delete a CAPTCHA instance by `id`. If the CAPTCHA instance is currently being used in the org, the delete will not be allowed.
+      * Delete a CAPTCHA instance by `captchaId`. If the CAPTCHA instance is currently being used in the org, the delete will not be allowed.
       * Delete CAPTCHA Instance
       * @param param the request object
       */
   deleteCaptchaInstance(param: CAPTCHAApiDeleteCaptchaInstanceRequest, options?: Configuration): Promise<void>;
   /**
-      * Fetches a CAPTCHA instance by `id`.
+      * Fetches a CAPTCHA instance by `captchaId`.
       * Get CAPTCHA Instance
       * @param param the request object
       */
@@ -2010,13 +2480,13 @@ export declare class ObjectCAPTCHAApi {
       */
   listCaptchaInstances(param?: CAPTCHAApiListCaptchaInstancesRequest, options?: Configuration): Promise<Collection<CAPTCHAInstance>>;
   /**
-      * Partially update a CAPTCHA instance by `id`.
+      * Partially update a CAPTCHA instance by `captchaId`.
       * Partial Update CAPTCHA instance
       * @param param the request object
       */
   partialUpdateCaptchaInstance(param: CAPTCHAApiPartialUpdateCaptchaInstanceRequest, options?: Configuration): Promise<CAPTCHAInstance>;
   /**
-      * Update a CAPTCHA instance by `id`.
+      * Update a CAPTCHA instance by `captchaId`.
       * Update CAPTCHA instance
       * @param param the request object
       */
@@ -2221,6 +2691,20 @@ export interface CustomizationApiGetEmailDefaultPreviewRequest {
       */
     language?: string;
 }
+export interface CustomizationApiGetEmailSettingsRequest {
+    /**
+      * The ID of the brand.
+      * @type string
+      * @memberof CustomizationApigetEmailSettings
+      */
+    brandId: string;
+    /**
+      * The name of the email template.
+      * @type string
+      * @memberof CustomizationApigetEmailSettings
+      */
+    templateName: string;
+}
 export interface CustomizationApiGetEmailTemplateRequest {
     /**
       * The ID of the brand.
@@ -2234,6 +2718,12 @@ export interface CustomizationApiGetEmailTemplateRequest {
       * @memberof CustomizationApigetEmailTemplate
       */
     templateName: string;
+    /**
+      * Specifies additional metadata to be included in the response.
+      * @type Array&lt;&#39;settings&#39; | &#39;customizationCount&#39;&gt;
+      * @memberof CustomizationApigetEmailTemplate
+      */
+    expand?: Array<'settings' | 'customizationCount'>;
 }
 export interface CustomizationApiListBrandThemesRequest {
     /**
@@ -2290,6 +2780,12 @@ export interface CustomizationApiListEmailTemplatesRequest {
       * @memberof CustomizationApilistEmailTemplates
       */
     limit?: number;
+    /**
+      * Specifies additional metadata to be included in the response.
+      * @type Array&lt;&#39;settings&#39; | &#39;customizationCount&#39;&gt;
+      * @memberof CustomizationApilistEmailTemplates
+      */
+    expand?: Array<'settings' | 'customizationCount'>;
 }
 export interface CustomizationApiSendTestEmailRequest {
     /**
@@ -2370,6 +2866,26 @@ export interface CustomizationApiUpdateEmailCustomizationRequest {
       * @memberof CustomizationApiupdateEmailCustomization
       */
     instance?: EmailCustomization;
+}
+export interface CustomizationApiUpdateEmailSettingsRequest {
+    /**
+      * The ID of the brand.
+      * @type string
+      * @memberof CustomizationApiupdateEmailSettings
+      */
+    brandId: string;
+    /**
+      * The name of the email template.
+      * @type string
+      * @memberof CustomizationApiupdateEmailSettings
+      */
+    templateName: string;
+    /**
+      *
+      * @type EmailSettings
+      * @memberof CustomizationApiupdateEmailSettings
+      */
+    EmailSettings?: EmailSettings;
 }
 export interface CustomizationApiUploadBrandThemeBackgroundImageRequest {
     /**
@@ -2489,6 +3005,12 @@ export declare class ObjectCustomizationApi {
       */
   getEmailDefaultPreview(param: CustomizationApiGetEmailDefaultPreviewRequest, options?: Configuration): Promise<EmailPreview>;
   /**
+      * Gets an email template's settings.
+      * Get Email Template Settings
+      * @param param the request object
+      */
+  getEmailSettings(param: CustomizationApiGetEmailSettingsRequest, options?: Configuration): Promise<EmailSettings>;
+  /**
       * Gets the details of an email template by name.
       * Get Email Template
       * @param param the request object
@@ -2542,6 +3064,12 @@ export declare class ObjectCustomizationApi {
       * @param param the request object
       */
   updateEmailCustomization(param: CustomizationApiUpdateEmailCustomizationRequest, options?: Configuration): Promise<EmailCustomization>;
+  /**
+      * Updates an email template's settings.
+      * Update Email Template Settings
+      * @param param the request object
+      */
+  updateEmailSettings(param: CustomizationApiUpdateEmailSettingsRequest, options?: Configuration): Promise<void>;
   /**
       * Updates the background image for your Theme
       * Updates the background image for your Theme
@@ -4729,6 +5257,85 @@ export declare class ObjectPolicyApi {
       */
   updatePolicyRule(param: PolicyApiUpdatePolicyRuleRequest, options?: Configuration): Promise<PolicyRule>;
 }
+import { PrincipalRateLimitApiRequestFactory, PrincipalRateLimitApiResponseProcessor } from '../apis/PrincipalRateLimitApi';
+export interface PrincipalRateLimitApiCreatePrincipalRateLimitEntityRequest {
+    /**
+      *
+      * @type PrincipalRateLimitEntity
+      * @memberof PrincipalRateLimitApicreatePrincipalRateLimitEntity
+      */
+    entity: PrincipalRateLimitEntity;
+}
+export interface PrincipalRateLimitApiGetPrincipalRateLimitEntityRequest {
+    /**
+      * id of the Principal Rate Limit
+      * @type string
+      * @memberof PrincipalRateLimitApigetPrincipalRateLimitEntity
+      */
+    principalRateLimitId: string;
+}
+export interface PrincipalRateLimitApiListPrincipalRateLimitEntitiesRequest {
+    /**
+      *
+      * @type string
+      * @memberof PrincipalRateLimitApilistPrincipalRateLimitEntities
+      */
+    filter?: string;
+    /**
+      *
+      * @type string
+      * @memberof PrincipalRateLimitApilistPrincipalRateLimitEntities
+      */
+    after?: string;
+    /**
+      *
+      * @type number
+      * @memberof PrincipalRateLimitApilistPrincipalRateLimitEntities
+      */
+    limit?: number;
+}
+export interface PrincipalRateLimitApiUpdatePrincipalRateLimitEntityRequest {
+    /**
+      * id of the Principal Rate Limit
+      * @type string
+      * @memberof PrincipalRateLimitApiupdatePrincipalRateLimitEntity
+      */
+    principalRateLimitId: string;
+    /**
+      *
+      * @type PrincipalRateLimitEntity
+      * @memberof PrincipalRateLimitApiupdatePrincipalRateLimitEntity
+      */
+    entity: PrincipalRateLimitEntity;
+}
+export declare class ObjectPrincipalRateLimitApi {
+  private api;
+  constructor(configuration: Configuration, requestFactory?: PrincipalRateLimitApiRequestFactory, responseProcessor?: PrincipalRateLimitApiResponseProcessor);
+  /**
+      * Adds a new Principal Rate Limit entity to your organization. In the current release, we only allow one Principal Rate Limit entity per org and principal.
+      * Create Principal Rate Limit entity
+      * @param param the request object
+      */
+  createPrincipalRateLimitEntity(param: PrincipalRateLimitApiCreatePrincipalRateLimitEntityRequest, options?: Configuration): Promise<PrincipalRateLimitEntity>;
+  /**
+      * Fetches a Principal Rate Limit entity by `principalRateLimitId`.
+      * Get Principal Rate Limit entity
+      * @param param the request object
+      */
+  getPrincipalRateLimitEntity(param: PrincipalRateLimitApiGetPrincipalRateLimitEntityRequest, options?: Configuration): Promise<PrincipalRateLimitEntity>;
+  /**
+      * Lists all Principal Rate Limit entities considering the provided parameters.
+      * List Principal Rate Limit entities
+      * @param param the request object
+      */
+  listPrincipalRateLimitEntities(param?: PrincipalRateLimitApiListPrincipalRateLimitEntitiesRequest, options?: Configuration): Promise<Collection<PrincipalRateLimitEntity>>;
+  /**
+      * Update a  Principal Rate Limit entity by `principalRateLimitId`.
+      * Update Principal Rate Limit entity
+      * @param param the request object
+      */
+  updatePrincipalRateLimitEntity(param: PrincipalRateLimitApiUpdatePrincipalRateLimitEntityRequest, options?: Configuration): Promise<PrincipalRateLimitEntity>;
+}
 import { ProfileMappingApiRequestFactory, ProfileMappingApiResponseProcessor } from '../apis/ProfileMappingApi';
 export interface ProfileMappingApiGetProfileMappingRequest {
     /**
@@ -5988,19 +6595,19 @@ export interface UserApiListUserIdentityProvidersRequest {
 }
 export interface UserApiListUsersRequest {
     /**
+      * The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/reference/core-okta-api/#pagination) for more information.
+      * @type string
+      * @memberof UserApilistUsers
+      */
+    after?: string;
+    /**
       * Finds a user that matches firstName, lastName, and email properties
       * @type string
       * @memberof UserApilistUsers
       */
     q?: string;
     /**
-      * Specifies the pagination cursor for the next page of users
-      * @type string
-      * @memberof UserApilistUsers
-      */
-    after?: string;
-    /**
-      * Specifies the number of results returned
+      * Specifies the number of results returned. Defaults to 10 if &#x60;q&#x60; is provided.
       * @type number
       * @memberof UserApilistUsers
       */
@@ -6039,10 +6646,10 @@ export interface UserApiPartialUpdateUserRequest {
     userId: string;
     /**
       *
-      * @type User
+      * @type UpdateUserRequest
       * @memberof UserApipartialUpdateUser
       */
-    user: User;
+    user: UpdateUserRequest;
     /**
       *
       * @type boolean
@@ -6303,10 +6910,10 @@ export interface UserApiUpdateUserRequest {
     userId: string;
     /**
       *
-      * @type User
+      * @type UpdateUserRequest
       * @memberof UserApiupdateUser
       */
-    user: User;
+    user: UpdateUserRequest;
     /**
       *
       * @type boolean
@@ -6658,6 +7265,12 @@ export interface UserFactorApiDeleteFactorRequest {
       * @memberof UserFactorApideleteFactor
       */
     factorId: string;
+    /**
+      *
+      * @type boolean
+      * @memberof UserFactorApideleteFactor
+      */
+    removeEnrollmentRecovery?: boolean;
 }
 export interface UserFactorApiEnrollFactorRequest {
     /**

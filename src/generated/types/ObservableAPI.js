@@ -13,10 +13,401 @@
 
 'use strict';
 Object.defineProperty(exports, '__esModule', { value: true });
-exports.ObservableUserTypeApi = exports.ObservableUserFactorApi = exports.ObservableUserApi = exports.ObservableTrustedOriginApi = exports.ObservableThreatInsightApi = exports.ObservableTemplateApi = exports.ObservableSystemLogApi = exports.ObservableSubscriptionApi = exports.ObservableSessionApi = exports.ObservableSchemaApi = exports.ObservableProfileMappingApi = exports.ObservablePolicyApi = exports.ObservableOrgSettingApi = exports.ObservableNetworkZoneApi = exports.ObservableLinkedObjectApi = exports.ObservableInlineHookApi = exports.ObservableIdentityProviderApi = exports.ObservableGroupApi = exports.ObservableFeatureApi = exports.ObservableEventHookApi = exports.ObservableDomainApi = exports.ObservableCustomizationApi = exports.ObservableCAPTCHAApi = exports.ObservableAuthorizationServerApi = exports.ObservableAuthenticatorApi = exports.ObservableApplicationApi = void 0;
+exports.ObservableUserTypeApi = exports.ObservableUserFactorApi = exports.ObservableUserApi = exports.ObservableTrustedOriginApi = exports.ObservableThreatInsightApi = exports.ObservableTemplateApi = exports.ObservableSystemLogApi = exports.ObservableSubscriptionApi = exports.ObservableSessionApi = exports.ObservableSchemaApi = exports.ObservableProfileMappingApi = exports.ObservablePrincipalRateLimitApi = exports.ObservablePolicyApi = exports.ObservableOrgSettingApi = exports.ObservableNetworkZoneApi = exports.ObservableLinkedObjectApi = exports.ObservableInlineHookApi = exports.ObservableIdentityProviderApi = exports.ObservableGroupApi = exports.ObservableFeatureApi = exports.ObservableEventHookApi = exports.ObservableDomainApi = exports.ObservableCustomizationApi = exports.ObservableCAPTCHAApi = exports.ObservableBehaviorApi = exports.ObservableAuthorizationServerApi = exports.ObservableAuthenticatorApi = exports.ObservableApplicationApi = exports.ObservableApiTokenApi = exports.ObservableAgentPoolsApi = void 0;
 const collection_1 = require('../../collection');
 const rxjsStub_1 = require('../rxjsStub');
 const rxjsStub_2 = require('../rxjsStub');
+const AgentPoolsApi_1 = require('../apis/AgentPoolsApi');
+class ObservableAgentPoolsApi {
+  constructor(configuration, requestFactory, responseProcessor) {
+    this.configuration = configuration;
+    this.requestFactory = requestFactory || new AgentPoolsApi_1.AgentPoolsApiRequestFactory(configuration);
+    this.responseProcessor = responseProcessor || new AgentPoolsApi_1.AgentPoolsApiResponseProcessor();
+  }
+  /**
+      * Activates scheduled Agent pool update
+      * Activate Agent pool update
+      * @param poolId Id of the agent pool for which the settings will apply
+      * @param updateId Id of the update
+      */
+  activateAgentPoolsUpdate(poolId, updateId, _options) {
+    const requestContextPromise = this.requestFactory.activateAgentPoolsUpdate(poolId, updateId, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.activateAgentPoolsUpdate(rsp)));
+      }));
+  }
+  /**
+      * Creates an Agent pool update \\n For user flow 2 manual update, starts the update immediately. \\n For user flow 3, schedules the update based on the configured update window and delay.
+      * Create an Agent pool update
+      * @param poolId Id of the agent pool for which the settings will apply
+      * @param AgentPoolUpdate
+      */
+  createAgentPoolsUpdate(poolId, AgentPoolUpdate, _options) {
+    const requestContextPromise = this.requestFactory.createAgentPoolsUpdate(poolId, AgentPoolUpdate, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.createAgentPoolsUpdate(rsp)));
+      }));
+  }
+  /**
+      * Deactivates scheduled Agent pool update
+      * Deactivate Agent pool update
+      * @param poolId Id of the agent pool for which the settings will apply
+      * @param updateId Id of the update
+      */
+  deactivateAgentPoolsUpdate(poolId, updateId, _options) {
+    const requestContextPromise = this.requestFactory.deactivateAgentPoolsUpdate(poolId, updateId, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.deactivateAgentPoolsUpdate(rsp)));
+      }));
+  }
+  /**
+      * Deletes Agent pool update
+      * Delete Agent pool update
+      * @param poolId Id of the agent pool for which the settings will apply
+      * @param updateId Id of the update
+      */
+  deleteAgentPoolsUpdate(poolId, updateId, _options) {
+    const requestContextPromise = this.requestFactory.deleteAgentPoolsUpdate(poolId, updateId, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.deleteAgentPoolsUpdate(rsp)));
+      }));
+  }
+  /**
+      * Fetches AgentPools based on request parameters for a given org
+      * Fetch AgentPools
+      * @param limitPerPoolType Maximum number of AgentPools being returned
+      * @param poolType Agent type to search for
+      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/reference/core-okta-api/#pagination) for more information.
+      */
+  getAgentPools(limitPerPoolType, poolType, after, _options) {
+    const requestContextPromise = this.requestFactory.getAgentPools(limitPerPoolType, poolType, after, _options);
+    const modelFactory = {
+      parseResponse: (rsp) => this.responseProcessor.getAgentPools(rsp),
+    };
+    return (0, rxjsStub_1.from)(requestContextPromise).pipe((0, rxjsStub_2.mergeMap)((ctx) => {
+      return (0, rxjsStub_1.from)(Promise.resolve(new collection_1.Collection(this.configuration.httpApi, ctx.getUrl(), modelFactory, ctx)));
+    }));
+  }
+  /**
+      * Gets Agent pool update from updateId
+      * Get Agent pool update by id
+      * @param poolId Id of the agent pool for which the settings will apply
+      * @param updateId Id of the update
+      */
+  getAgentPoolsUpdateInstance(poolId, updateId, _options) {
+    const requestContextPromise = this.requestFactory.getAgentPoolsUpdateInstance(poolId, updateId, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.getAgentPoolsUpdateInstance(rsp)));
+      }));
+  }
+  /**
+      * Gets the current state of the agent pool update instance settings
+      * Get Agent pool update settings
+      * @param poolId Id of the agent pool for which the settings will apply
+      */
+  getAgentPoolsUpdateSettings(poolId, _options) {
+    const requestContextPromise = this.requestFactory.getAgentPoolsUpdateSettings(poolId, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.getAgentPoolsUpdateSettings(rsp)));
+      }));
+  }
+  /**
+      * Gets List of Agent pool updates
+      * List Agent pool updates
+      * @param poolId Id of the agent pool for which the settings will apply
+      * @param scheduled Scope the list only to scheduled or ad-hoc updates. If the parameter is not provided we will return the whole list of updates.
+      */
+  getAgentPoolsUpdates(poolId, scheduled, _options) {
+    const requestContextPromise = this.requestFactory.getAgentPoolsUpdates(poolId, scheduled, _options);
+    const modelFactory = {
+      parseResponse: (rsp) => this.responseProcessor.getAgentPoolsUpdates(rsp),
+    };
+    return (0, rxjsStub_1.from)(requestContextPromise).pipe((0, rxjsStub_2.mergeMap)((ctx) => {
+      return (0, rxjsStub_1.from)(Promise.resolve(new collection_1.Collection(this.configuration.httpApi, ctx.getUrl(), modelFactory, ctx)));
+    }));
+  }
+  /**
+      * Pauses running or queued Agent pool update
+      * Pause Agent pool update
+      * @param poolId Id of the agent pool for which the settings will apply
+      * @param updateId Id of the update
+      */
+  pauseAgentPoolsUpdate(poolId, updateId, _options) {
+    const requestContextPromise = this.requestFactory.pauseAgentPoolsUpdate(poolId, updateId, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.pauseAgentPoolsUpdate(rsp)));
+      }));
+  }
+  /**
+      * Resumes running or queued Agent pool update
+      * Resume Agent pool update
+      * @param poolId Id of the agent pool for which the settings will apply
+      * @param updateId Id of the update
+      */
+  resumeAgentPoolsUpdate(poolId, updateId, _options) {
+    const requestContextPromise = this.requestFactory.resumeAgentPoolsUpdate(poolId, updateId, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.resumeAgentPoolsUpdate(rsp)));
+      }));
+  }
+  /**
+      * Retries Agent pool update
+      * Retry Agent pool update
+      * @param poolId Id of the agent pool for which the settings will apply
+      * @param updateId Id of the update
+      */
+  retryAgentPoolsUpdate(poolId, updateId, _options) {
+    const requestContextPromise = this.requestFactory.retryAgentPoolsUpdate(poolId, updateId, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.retryAgentPoolsUpdate(rsp)));
+      }));
+  }
+  /**
+      * Updates Agent pool update settings
+      * Update Agent pool update settings
+      * @param poolId Id of the agent pool for which the settings will apply
+      * @param AgentPoolUpdateSetting
+      */
+  setAgentPoolsUpdateSettings(poolId, AgentPoolUpdateSetting, _options) {
+    const requestContextPromise = this.requestFactory.setAgentPoolsUpdateSettings(poolId, AgentPoolUpdateSetting, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.setAgentPoolsUpdateSettings(rsp)));
+      }));
+  }
+  /**
+      * Stops Agent pool update
+      * Stop Agent pool update
+      * @param poolId Id of the agent pool for which the settings will apply
+      * @param updateId Id of the update
+      */
+  stopAgentPoolsUpdate(poolId, updateId, _options) {
+    const requestContextPromise = this.requestFactory.stopAgentPoolsUpdate(poolId, updateId, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.stopAgentPoolsUpdate(rsp)));
+      }));
+  }
+  /**
+      * Updates Agent pool update and return latest agent pool update
+      * Change Agent pool update by id
+      * @param poolId Id of the agent pool for which the settings will apply
+      * @param updateId Id of the update
+      * @param AgentPoolUpdate
+      */
+  updateAgentPoolsUpdate(poolId, updateId, AgentPoolUpdate, _options) {
+    const requestContextPromise = this.requestFactory.updateAgentPoolsUpdate(poolId, updateId, AgentPoolUpdate, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.updateAgentPoolsUpdate(rsp)));
+      }));
+  }
+}
+exports.ObservableAgentPoolsApi = ObservableAgentPoolsApi;
+const ApiTokenApi_1 = require('../apis/ApiTokenApi');
+class ObservableApiTokenApi {
+  constructor(configuration, requestFactory, responseProcessor) {
+    this.configuration = configuration;
+    this.requestFactory = requestFactory || new ApiTokenApi_1.ApiTokenApiRequestFactory(configuration);
+    this.responseProcessor = responseProcessor || new ApiTokenApi_1.ApiTokenApiResponseProcessor();
+  }
+  /**
+      * Get the metadata for an active API token by id.
+      * Get the Metadata for an API Token
+      * @param apiTokenId id of the API Token
+      */
+  getApiToken(apiTokenId, _options) {
+    const requestContextPromise = this.requestFactory.getApiToken(apiTokenId, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.getApiToken(rsp)));
+      }));
+  }
+  /**
+      * Enumerates the metadata of the active API tokens in your organization.
+      * List API Token Metadata
+      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/reference/core-okta-api/#pagination) for more information.
+      * @param limit A limit on the number of objects to return.
+      * @param q Finds a token that matches the name or clientName.
+      */
+  listApiTokens(after, limit, q, _options) {
+    const requestContextPromise = this.requestFactory.listApiTokens(after, limit, q, _options);
+    const modelFactory = {
+      parseResponse: (rsp) => this.responseProcessor.listApiTokens(rsp),
+    };
+    return (0, rxjsStub_1.from)(requestContextPromise).pipe((0, rxjsStub_2.mergeMap)((ctx) => {
+      return (0, rxjsStub_1.from)(Promise.resolve(new collection_1.Collection(this.configuration.httpApi, ctx.getUrl(), modelFactory, ctx)));
+    }));
+  }
+  /**
+      * Revoke an API token by id.
+      * Revoke an API Token
+      * @param apiTokenId id of the API Token
+      */
+  revokeApiToken(apiTokenId, _options) {
+    const requestContextPromise = this.requestFactory.revokeApiToken(apiTokenId, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.revokeApiToken(rsp)));
+      }));
+  }
+  /**
+      * Revokes the API token provided in the Authorization header.
+      * Revoke the Current API Token
+      */
+  revokeCurrentApiToken(_options) {
+    const requestContextPromise = this.requestFactory.revokeCurrentApiToken(_options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.revokeCurrentApiToken(rsp)));
+      }));
+  }
+}
+exports.ObservableApiTokenApi = ObservableApiTokenApi;
 const ApplicationApi_1 = require('../apis/ApplicationApi');
 class ObservableApplicationApi {
   constructor(configuration, requestFactory, responseProcessor) {
@@ -1788,6 +2179,148 @@ class ObservableAuthorizationServerApi {
   }
 }
 exports.ObservableAuthorizationServerApi = ObservableAuthorizationServerApi;
+const BehaviorApi_1 = require('../apis/BehaviorApi');
+class ObservableBehaviorApi {
+  constructor(configuration, requestFactory, responseProcessor) {
+    this.configuration = configuration;
+    this.requestFactory = requestFactory || new BehaviorApi_1.BehaviorApiRequestFactory(configuration);
+    this.responseProcessor = responseProcessor || new BehaviorApi_1.BehaviorApiResponseProcessor();
+  }
+  /**
+      * Activate Behavior Detection Rule
+      * Activate Behavior Detection Rule
+      * @param behaviorId id of the Behavior Detection Rule
+      */
+  activateBehaviorDetectionRule(behaviorId, _options) {
+    const requestContextPromise = this.requestFactory.activateBehaviorDetectionRule(behaviorId, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.activateBehaviorDetectionRule(rsp)));
+      }));
+  }
+  /**
+      * Adds a new Behavior Detection Rule to your organization.
+      * Create new Behavior Detection Rule
+      * @param rule
+      */
+  createBehaviorDetectionRule(rule, _options) {
+    const requestContextPromise = this.requestFactory.createBehaviorDetectionRule(rule, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.createBehaviorDetectionRule(rsp)));
+      }));
+  }
+  /**
+      * Deactivate Behavior Detection Rule
+      * Deactivate Behavior Detection Rule
+      * @param behaviorId id of the Behavior Detection Rule
+      */
+  deactivateBehaviorDetectionRule(behaviorId, _options) {
+    const requestContextPromise = this.requestFactory.deactivateBehaviorDetectionRule(behaviorId, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.deactivateBehaviorDetectionRule(rsp)));
+      }));
+  }
+  /**
+      * Delete a Behavior Detection Rule by `behaviorId`.
+      * Delete Behavior Detection Rule
+      * @param behaviorId id of the Behavior Detection Rule
+      */
+  deleteBehaviorDetectionRule(behaviorId, _options) {
+    const requestContextPromise = this.requestFactory.deleteBehaviorDetectionRule(behaviorId, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.deleteBehaviorDetectionRule(rsp)));
+      }));
+  }
+  /**
+      * Fetches a Behavior Detection Rule by `behaviorId`.
+      * Get Behavior Detection Rule
+      * @param behaviorId id of the Behavior Detection Rule
+      */
+  getBehaviorDetectionRule(behaviorId, _options) {
+    const requestContextPromise = this.requestFactory.getBehaviorDetectionRule(behaviorId, _options);
+    const modelFactory = {
+      parseResponse: (rsp) => this.responseProcessor.getBehaviorDetectionRule(rsp),
+    };
+    return (0, rxjsStub_1.from)(requestContextPromise).pipe((0, rxjsStub_2.mergeMap)((ctx) => {
+      return (0, rxjsStub_1.from)(Promise.resolve(new collection_1.Collection(this.configuration.httpApi, ctx.getUrl(), modelFactory, ctx)));
+    }));
+  }
+  /**
+      * Enumerates Behavior Detection Rules in your organization with pagination.
+      * List Behavior Detection Rules
+      */
+  listBehaviorDetectionRules(_options) {
+    const requestContextPromise = this.requestFactory.listBehaviorDetectionRules(_options);
+    const modelFactory = {
+      parseResponse: (rsp) => this.responseProcessor.listBehaviorDetectionRules(rsp),
+    };
+    return (0, rxjsStub_1.from)(requestContextPromise).pipe((0, rxjsStub_2.mergeMap)((ctx) => {
+      return (0, rxjsStub_1.from)(Promise.resolve(new collection_1.Collection(this.configuration.httpApi, ctx.getUrl(), modelFactory, ctx)));
+    }));
+  }
+  /**
+      * Update a Behavior Detection Rule by `behaviorId`.
+      * Update Behavior Detection Rule
+      * @param behaviorId id of the Behavior Detection Rule
+      * @param rule
+      */
+  updateBehaviorDetectionRule(behaviorId, rule, _options) {
+    const requestContextPromise = this.requestFactory.updateBehaviorDetectionRule(behaviorId, rule, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.updateBehaviorDetectionRule(rsp)));
+      }));
+  }
+}
+exports.ObservableBehaviorApi = ObservableBehaviorApi;
 const CAPTCHAApi_1 = require('../apis/CAPTCHAApi');
 class ObservableCAPTCHAApi {
   constructor(configuration, requestFactory, responseProcessor) {
@@ -1817,7 +2350,7 @@ class ObservableCAPTCHAApi {
       }));
   }
   /**
-      * Delete a CAPTCHA instance by `id`. If the CAPTCHA instance is currently being used in the org, the delete will not be allowed.
+      * Delete a CAPTCHA instance by `captchaId`. If the CAPTCHA instance is currently being used in the org, the delete will not be allowed.
       * Delete CAPTCHA Instance
       * @param captchaId id of the CAPTCHA
       */
@@ -1838,7 +2371,7 @@ class ObservableCAPTCHAApi {
       }));
   }
   /**
-      * Fetches a CAPTCHA instance by `id`.
+      * Fetches a CAPTCHA instance by `captchaId`.
       * Get CAPTCHA Instance
       * @param captchaId id of the CAPTCHA
       */
@@ -1872,7 +2405,7 @@ class ObservableCAPTCHAApi {
     }));
   }
   /**
-      * Partially update a CAPTCHA instance by `id`.
+      * Partially update a CAPTCHA instance by `captchaId`.
       * Partial Update CAPTCHA instance
       * @param captchaId id of the CAPTCHA
       * @param instance
@@ -1894,7 +2427,7 @@ class ObservableCAPTCHAApi {
       }));
   }
   /**
-      * Update a CAPTCHA instance by `id`.
+      * Update a CAPTCHA instance by `captchaId`.
       * Update CAPTCHA instance
       * @param captchaId id of the CAPTCHA
       * @param instance
@@ -2194,13 +2727,36 @@ class ObservableCustomizationApi {
       }));
   }
   /**
+      * Gets an email template's settings.
+      * Get Email Template Settings
+      * @param brandId The ID of the brand.
+      * @param templateName The name of the email template.
+      */
+  getEmailSettings(brandId, templateName, _options) {
+    const requestContextPromise = this.requestFactory.getEmailSettings(brandId, templateName, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.getEmailSettings(rsp)));
+      }));
+  }
+  /**
       * Gets the details of an email template by name.
       * Get Email Template
       * @param brandId The ID of the brand.
       * @param templateName The name of the email template.
+      * @param expand Specifies additional metadata to be included in the response.
       */
-  getEmailTemplate(brandId, templateName, _options) {
-    const requestContextPromise = this.requestFactory.getEmailTemplate(brandId, templateName, _options);
+  getEmailTemplate(brandId, templateName, expand, _options) {
+    const requestContextPromise = this.requestFactory.getEmailTemplate(brandId, templateName, expand, _options);
     // build promise chain
     let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
     for (let middleware of this.configuration.middleware) {
@@ -2265,9 +2821,10 @@ class ObservableCustomizationApi {
       * @param brandId The ID of the brand.
       * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/reference/core-okta-api/#pagination) for more information.
       * @param limit A limit on the number of objects to return.
+      * @param expand Specifies additional metadata to be included in the response.
       */
-  listEmailTemplates(brandId, after, limit, _options) {
-    const requestContextPromise = this.requestFactory.listEmailTemplates(brandId, after, limit, _options);
+  listEmailTemplates(brandId, after, limit, expand, _options) {
+    const requestContextPromise = this.requestFactory.listEmailTemplates(brandId, after, limit, expand, _options);
     const modelFactory = {
       parseResponse: (rsp) => this.responseProcessor.listEmailTemplates(rsp),
     };
@@ -2365,6 +2922,29 @@ class ObservableCustomizationApi {
           middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
         }
         return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.updateEmailCustomization(rsp)));
+      }));
+  }
+  /**
+      * Updates an email template's settings.
+      * Update Email Template Settings
+      * @param brandId The ID of the brand.
+      * @param templateName The name of the email template.
+      * @param EmailSettings
+      */
+  updateEmailSettings(brandId, templateName, EmailSettings, _options) {
+    const requestContextPromise = this.requestFactory.updateEmailSettings(brandId, templateName, EmailSettings, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.updateEmailSettings(rsp)));
       }));
   }
   /**
@@ -5013,6 +5593,95 @@ class ObservablePolicyApi {
   }
 }
 exports.ObservablePolicyApi = ObservablePolicyApi;
+const PrincipalRateLimitApi_1 = require('../apis/PrincipalRateLimitApi');
+class ObservablePrincipalRateLimitApi {
+  constructor(configuration, requestFactory, responseProcessor) {
+    this.configuration = configuration;
+    this.requestFactory = requestFactory || new PrincipalRateLimitApi_1.PrincipalRateLimitApiRequestFactory(configuration);
+    this.responseProcessor = responseProcessor || new PrincipalRateLimitApi_1.PrincipalRateLimitApiResponseProcessor();
+  }
+  /**
+      * Adds a new Principal Rate Limit entity to your organization. In the current release, we only allow one Principal Rate Limit entity per org and principal.
+      * Create Principal Rate Limit entity
+      * @param entity
+      */
+  createPrincipalRateLimitEntity(entity, _options) {
+    const requestContextPromise = this.requestFactory.createPrincipalRateLimitEntity(entity, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.createPrincipalRateLimitEntity(rsp)));
+      }));
+  }
+  /**
+      * Fetches a Principal Rate Limit entity by `principalRateLimitId`.
+      * Get Principal Rate Limit entity
+      * @param principalRateLimitId id of the Principal Rate Limit
+      */
+  getPrincipalRateLimitEntity(principalRateLimitId, _options) {
+    const requestContextPromise = this.requestFactory.getPrincipalRateLimitEntity(principalRateLimitId, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.getPrincipalRateLimitEntity(rsp)));
+      }));
+  }
+  /**
+      * Lists all Principal Rate Limit entities considering the provided parameters.
+      * List Principal Rate Limit entities
+      * @param filter
+      * @param after
+      * @param limit
+      */
+  listPrincipalRateLimitEntities(filter, after, limit, _options) {
+    const requestContextPromise = this.requestFactory.listPrincipalRateLimitEntities(filter, after, limit, _options);
+    const modelFactory = {
+      parseResponse: (rsp) => this.responseProcessor.listPrincipalRateLimitEntities(rsp),
+    };
+    return (0, rxjsStub_1.from)(requestContextPromise).pipe((0, rxjsStub_2.mergeMap)((ctx) => {
+      return (0, rxjsStub_1.from)(Promise.resolve(new collection_1.Collection(this.configuration.httpApi, ctx.getUrl(), modelFactory, ctx)));
+    }));
+  }
+  /**
+      * Update a  Principal Rate Limit entity by `principalRateLimitId`.
+      * Update Principal Rate Limit entity
+      * @param principalRateLimitId id of the Principal Rate Limit
+      * @param entity
+      */
+  updatePrincipalRateLimitEntity(principalRateLimitId, entity, _options) {
+    const requestContextPromise = this.requestFactory.updatePrincipalRateLimitEntity(principalRateLimitId, entity, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.updatePrincipalRateLimitEntity(rsp)));
+      }));
+  }
+}
+exports.ObservablePrincipalRateLimitApi = ObservablePrincipalRateLimitApi;
 const ProfileMappingApi_1 = require('../apis/ProfileMappingApi');
 class ObservableProfileMappingApi {
   constructor(configuration, requestFactory, responseProcessor) {
@@ -6479,16 +7148,16 @@ class ObservableUserApi {
   /**
       * Lists users in your organization with pagination in most cases.  A subset of users can be returned that match a supported filter expression or search criteria.
       * List Users
+      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/reference/core-okta-api/#pagination) for more information.
       * @param q Finds a user that matches firstName, lastName, and email properties
-      * @param after Specifies the pagination cursor for the next page of users
-      * @param limit Specifies the number of results returned
+      * @param limit Specifies the number of results returned. Defaults to 10 if &#x60;q&#x60; is provided.
       * @param filter Filters users with a supported expression for a subset of properties
       * @param search Searches for users with a supported filtering  expression for most properties
       * @param sortBy
       * @param sortOrder
       */
-  listUsers(q, after, limit, filter, search, sortBy, sortOrder, _options) {
-    const requestContextPromise = this.requestFactory.listUsers(q, after, limit, filter, search, sortBy, sortOrder, _options);
+  listUsers(after, q, limit, filter, search, sortBy, sortOrder, _options) {
+    const requestContextPromise = this.requestFactory.listUsers(after, q, limit, filter, search, sortBy, sortOrder, _options);
     const modelFactory = {
       parseResponse: (rsp) => this.responseProcessor.listUsers(rsp),
     };
@@ -6954,9 +7623,10 @@ class ObservableUserFactorApi {
       * Delete Factor
       * @param userId
       * @param factorId
+      * @param removeEnrollmentRecovery
       */
-  deleteFactor(userId, factorId, _options) {
-    const requestContextPromise = this.requestFactory.deleteFactor(userId, factorId, _options);
+  deleteFactor(userId, factorId, removeEnrollmentRecovery, _options) {
+    const requestContextPromise = this.requestFactory.deleteFactor(userId, factorId, removeEnrollmentRecovery, _options);
     // build promise chain
     let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
     for (let middleware of this.configuration.middleware) {

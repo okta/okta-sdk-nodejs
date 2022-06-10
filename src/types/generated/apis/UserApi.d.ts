@@ -28,6 +28,7 @@ import { OAuth2ScopeConsentGrant } from '../models/OAuth2ScopeConsentGrant';
 import { ResetPasswordToken } from '../models/ResetPasswordToken';
 import { Role } from '../models/Role';
 import { TempPassword } from '../models/TempPassword';
+import { UpdateUserRequest } from '../models/UpdateUserRequest';
 import { User } from '../models/User';
 import { UserActivationToken } from '../models/UserActivationToken';
 import { UserCredentials } from '../models/UserCredentials';
@@ -278,15 +279,15 @@ export declare class UserApiRequestFactory extends BaseAPIRequestFactory {
   /**
      * Lists users in your organization with pagination in most cases.  A subset of users can be returned that match a supported filter expression or search criteria.
      * List Users
+     * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/reference/core-okta-api/#pagination) for more information.
      * @param q Finds a user that matches firstName, lastName, and email properties
-     * @param after Specifies the pagination cursor for the next page of users
-     * @param limit Specifies the number of results returned
+     * @param limit Specifies the number of results returned. Defaults to 10 if &#x60;q&#x60; is provided.
      * @param filter Filters users with a supported expression for a subset of properties
      * @param search Searches for users with a supported filtering  expression for most properties
      * @param sortBy
      * @param sortOrder
      */
-  listUsers(q?: string, after?: string, limit?: number, filter?: string, search?: string, sortBy?: string, sortOrder?: string, _options?: Configuration): Promise<RequestContext>;
+  listUsers(after?: string, q?: string, limit?: number, filter?: string, search?: string, sortBy?: string, sortOrder?: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Fetch a user by `id`, `login`, or `login shortname` if the short name is unambiguous.
      * Partial Update User
@@ -294,7 +295,7 @@ export declare class UserApiRequestFactory extends BaseAPIRequestFactory {
      * @param user
      * @param strict
      */
-  partialUpdateUser(userId: string, user: User, strict?: boolean, _options?: Configuration): Promise<RequestContext>;
+  partialUpdateUser(userId: string, user: UpdateUserRequest, strict?: boolean, _options?: Configuration): Promise<RequestContext>;
   /**
      * Reactivates a user.  This operation can only be performed on users with a `PROVISIONED` status.  This operation restarts the activation workflow if for some reason the user activation was not completed when using the activationToken from [Activate User](#activate-user).
      * Reactivate User
@@ -422,7 +423,7 @@ export declare class UserApiRequestFactory extends BaseAPIRequestFactory {
      * @param user
      * @param strict
      */
-  updateUser(userId: string, user: User, strict?: boolean, _options?: Configuration): Promise<RequestContext>;
+  updateUser(userId: string, user: UpdateUserRequest, strict?: boolean, _options?: Configuration): Promise<RequestContext>;
 }
 export declare class UserApiResponseProcessor {
   /**

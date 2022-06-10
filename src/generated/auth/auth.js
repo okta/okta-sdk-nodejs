@@ -13,11 +13,11 @@
 
 'use strict';
 Object.defineProperty(exports, '__esModule', { value: true });
-exports.configureAuthMethods = exports.Oauth2Authentication = exports.ApiTokenAuthentication = void 0;
+exports.configureAuthMethods = exports.OAuth20Authentication = exports.APITokenAuthentication = void 0;
 /**
  * Applies apiKey authentication to the request context.
  */
-class ApiTokenAuthentication {
+class APITokenAuthentication {
   /**
      * Configures this api key authentication with the necessary properties
      *
@@ -27,17 +27,17 @@ class ApiTokenAuthentication {
     this.apiKey = apiKey;
   }
   getName() {
-    return 'api_token';
+    return 'API_Token';
   }
   applySecurityAuthentication(context) {
     context.setHeaderParam('Authorization', this.apiKey);
   }
 }
-exports.ApiTokenAuthentication = ApiTokenAuthentication;
+exports.APITokenAuthentication = APITokenAuthentication;
 /**
  * Applies oauth2 authentication to the request context.
  */
-class Oauth2Authentication {
+class OAuth20Authentication {
   /**
      * Configures OAuth2 with the necessary properties
      *
@@ -47,13 +47,13 @@ class Oauth2Authentication {
     this.accessToken = accessToken;
   }
   getName() {
-    return 'oauth2';
+    return 'OAuth_2.0';
   }
   applySecurityAuthentication(context) {
     context.setHeaderParam('Authorization', 'Bearer ' + this.accessToken);
   }
 }
-exports.Oauth2Authentication = Oauth2Authentication;
+exports.OAuth20Authentication = OAuth20Authentication;
 /**
  * Creates the authentication methods from a swagger description.
  *
@@ -64,11 +64,11 @@ function configureAuthMethods(config) {
     return authMethods;
   }
   authMethods['default'] = config['default'];
-  if (config['api_token']) {
-    authMethods['api_token'] = new ApiTokenAuthentication(config['api_token']);
+  if (config['API_Token']) {
+    authMethods['API_Token'] = new APITokenAuthentication(config['API_Token']);
   }
-  if (config['oauth2']) {
-    authMethods['oauth2'] = new Oauth2Authentication(config['oauth2']['accessToken']);
+  if (config['OAuth_2.0']) {
+    authMethods['OAuth_2.0'] = new OAuth20Authentication(config['OAuth_2.0']['accessToken']);
   }
   return authMethods;
 }
