@@ -13,11 +13,169 @@
 
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ObjectUserTypeApi = exports.ObjectUserFactorApi = exports.ObjectUserApi = exports.ObjectTrustedOriginApi = exports.ObjectThreatInsightApi = exports.ObjectTemplateApi = exports.ObjectSystemLogApi = exports.ObjectSubscriptionApi = exports.ObjectSessionApi = exports.ObjectSchemaApi = exports.ObjectProfileMappingApi = exports.ObjectPolicyApi = exports.ObjectOrgSettingApi = exports.ObjectNetworkZoneApi = exports.ObjectLinkedObjectApi = exports.ObjectInlineHookApi = exports.ObjectIdentityProviderApi = exports.ObjectGroupApi = exports.ObjectFeatureApi = exports.ObjectEventHookApi = exports.ObjectDomainApi = exports.ObjectCustomizationApi = exports.ObjectCAPTCHAApi = exports.ObjectAuthorizationServerApi = exports.ObjectAuthenticatorApi = exports.ObjectApplicationApi = void 0;
+exports.ObjectUserTypeApi = exports.ObjectUserFactorApi = exports.ObjectUserApi = exports.ObjectTrustedOriginApi = exports.ObjectThreatInsightApi = exports.ObjectTemplateApi = exports.ObjectSystemLogApi = exports.ObjectSubscriptionApi = exports.ObjectSessionApi = exports.ObjectSchemaApi = exports.ObjectProfileMappingApi = exports.ObjectPrincipalRateLimitApi = exports.ObjectPolicyApi = exports.ObjectOrgSettingApi = exports.ObjectNetworkZoneApi = exports.ObjectLinkedObjectApi = exports.ObjectInlineHookApi = exports.ObjectIdentityProviderApi = exports.ObjectGroupApi = exports.ObjectFeatureApi = exports.ObjectEventHookApi = exports.ObjectDomainApi = exports.ObjectCustomizationApi = exports.ObjectCAPTCHAApi = exports.ObjectBehaviorApi = exports.ObjectAuthorizationServerApi = exports.ObjectAuthenticatorApi = exports.ObjectApplicationApi = exports.ObjectApiTokenApi = exports.ObjectAgentPoolsApi = void 0;
 const ObservableAPI_1 = require("./ObservableAPI");
+class ObjectAgentPoolsApi {
+    constructor(configuration, requestFactory, responseProcessor) {
+        this.api = new ObservableAPI_1.ObservableAgentPoolsApi(configuration, requestFactory, responseProcessor);
+    }
+    /**
+      * Activates scheduled Agent pool update
+      * Activate Agent pool update
+      * @param param the request object
+      */
+    activateAgentPoolsUpdate(param, options) {
+        return this.api.activateAgentPoolsUpdate(param.poolId, param.updateId, options).toPromise();
+    }
+    /**
+      * Creates an Agent pool update \\n For user flow 2 manual update, starts the update immediately. \\n For user flow 3, schedules the update based on the configured update window and delay.
+      * Create an Agent pool update
+      * @param param the request object
+      */
+    createAgentPoolsUpdate(param, options) {
+        return this.api.createAgentPoolsUpdate(param.poolId, param.AgentPoolUpdate, options).toPromise();
+    }
+    /**
+      * Deactivates scheduled Agent pool update
+      * Deactivate Agent pool update
+      * @param param the request object
+      */
+    deactivateAgentPoolsUpdate(param, options) {
+        return this.api.deactivateAgentPoolsUpdate(param.poolId, param.updateId, options).toPromise();
+    }
+    /**
+      * Deletes Agent pool update
+      * Delete Agent pool update
+      * @param param the request object
+      */
+    deleteAgentPoolsUpdate(param, options) {
+        return this.api.deleteAgentPoolsUpdate(param.poolId, param.updateId, options).toPromise();
+    }
+    /**
+      * Fetches AgentPools based on request parameters for a given org
+      * Fetch AgentPools
+      * @param param the request object
+      */
+    getAgentPools(param = {}, options) {
+        return this.api.getAgentPools(param.limitPerPoolType, param.poolType, param.after, options).toPromise();
+    }
+    /**
+      * Gets Agent pool update from updateId
+      * Get Agent pool update by id
+      * @param param the request object
+      */
+    getAgentPoolsUpdateInstance(param, options) {
+        return this.api.getAgentPoolsUpdateInstance(param.poolId, param.updateId, options).toPromise();
+    }
+    /**
+      * Gets the current state of the agent pool update instance settings
+      * Get Agent pool update settings
+      * @param param the request object
+      */
+    getAgentPoolsUpdateSettings(param, options) {
+        return this.api.getAgentPoolsUpdateSettings(param.poolId, options).toPromise();
+    }
+    /**
+      * Gets List of Agent pool updates
+      * List Agent pool updates
+      * @param param the request object
+      */
+    getAgentPoolsUpdates(param, options) {
+        return this.api.getAgentPoolsUpdates(param.poolId, param.scheduled, options).toPromise();
+    }
+    /**
+      * Pauses running or queued Agent pool update
+      * Pause Agent pool update
+      * @param param the request object
+      */
+    pauseAgentPoolsUpdate(param, options) {
+        return this.api.pauseAgentPoolsUpdate(param.poolId, param.updateId, options).toPromise();
+    }
+    /**
+      * Resumes running or queued Agent pool update
+      * Resume Agent pool update
+      * @param param the request object
+      */
+    resumeAgentPoolsUpdate(param, options) {
+        return this.api.resumeAgentPoolsUpdate(param.poolId, param.updateId, options).toPromise();
+    }
+    /**
+      * Retries Agent pool update
+      * Retry Agent pool update
+      * @param param the request object
+      */
+    retryAgentPoolsUpdate(param, options) {
+        return this.api.retryAgentPoolsUpdate(param.poolId, param.updateId, options).toPromise();
+    }
+    /**
+      * Updates Agent pool update settings
+      * Update Agent pool update settings
+      * @param param the request object
+      */
+    setAgentPoolsUpdateSettings(param, options) {
+        return this.api.setAgentPoolsUpdateSettings(param.poolId, param.AgentPoolUpdateSetting, options).toPromise();
+    }
+    /**
+      * Stops Agent pool update
+      * Stop Agent pool update
+      * @param param the request object
+      */
+    stopAgentPoolsUpdate(param, options) {
+        return this.api.stopAgentPoolsUpdate(param.poolId, param.updateId, options).toPromise();
+    }
+    /**
+      * Updates Agent pool update and return latest agent pool update
+      * Change Agent pool update by id
+      * @param param the request object
+      */
+    updateAgentPoolsUpdate(param, options) {
+        return this.api.updateAgentPoolsUpdate(param.poolId, param.updateId, param.AgentPoolUpdate, options).toPromise();
+    }
+}
+exports.ObjectAgentPoolsApi = ObjectAgentPoolsApi;
+const ObservableAPI_2 = require("./ObservableAPI");
+class ObjectApiTokenApi {
+    constructor(configuration, requestFactory, responseProcessor) {
+        this.api = new ObservableAPI_2.ObservableApiTokenApi(configuration, requestFactory, responseProcessor);
+    }
+    /**
+      * Get the metadata for an active API token by id.
+      * Get the Metadata for an API Token
+      * @param param the request object
+      */
+    getApiToken(param, options) {
+        return this.api.getApiToken(param.apiTokenId, options).toPromise();
+    }
+    /**
+      * Enumerates the metadata of the active API tokens in your organization.
+      * List API Token Metadata
+      * @param param the request object
+      */
+    listApiTokens(param = {}, options) {
+        return this.api.listApiTokens(param.after, param.limit, param.q, options).toPromise();
+    }
+    /**
+      * Revoke an API token by id.
+      * Revoke an API Token
+      * @param param the request object
+      */
+    revokeApiToken(param, options) {
+        return this.api.revokeApiToken(param.apiTokenId, options).toPromise();
+    }
+    /**
+      * Revokes the API token provided in the Authorization header.
+      * Revoke the Current API Token
+      * @param param the request object
+      */
+    revokeCurrentApiToken(param = {}, options) {
+        return this.api.revokeCurrentApiToken(options).toPromise();
+    }
+}
+exports.ObjectApiTokenApi = ObjectApiTokenApi;
+const ObservableAPI_3 = require("./ObservableAPI");
 class ObjectApplicationApi {
     constructor(configuration, requestFactory, responseProcessor) {
-        this.api = new ObservableAPI_1.ObservableApplicationApi(configuration, requestFactory, responseProcessor);
+        this.api = new ObservableAPI_3.ObservableApplicationApi(configuration, requestFactory, responseProcessor);
     }
     /**
       * Activates an inactive application.
@@ -349,10 +507,10 @@ class ObjectApplicationApi {
     }
 }
 exports.ObjectApplicationApi = ObjectApplicationApi;
-const ObservableAPI_2 = require("./ObservableAPI");
+const ObservableAPI_4 = require("./ObservableAPI");
 class ObjectAuthenticatorApi {
     constructor(configuration, requestFactory, responseProcessor) {
-        this.api = new ObservableAPI_2.ObservableAuthenticatorApi(configuration, requestFactory, responseProcessor);
+        this.api = new ObservableAPI_4.ObservableAuthenticatorApi(configuration, requestFactory, responseProcessor);
     }
     /**
       * Activates an authenticator by `authenticatorId`.
@@ -396,10 +554,10 @@ class ObjectAuthenticatorApi {
     }
 }
 exports.ObjectAuthenticatorApi = ObjectAuthenticatorApi;
-const ObservableAPI_3 = require("./ObservableAPI");
+const ObservableAPI_5 = require("./ObservableAPI");
 class ObjectAuthorizationServerApi {
     constructor(configuration, requestFactory, responseProcessor) {
-        this.api = new ObservableAPI_3.ObservableAuthorizationServerApi(configuration, requestFactory, responseProcessor);
+        this.api = new ObservableAPI_5.ObservableAuthorizationServerApi(configuration, requestFactory, responseProcessor);
     }
     /**
       * Success
@@ -707,10 +865,73 @@ class ObjectAuthorizationServerApi {
     }
 }
 exports.ObjectAuthorizationServerApi = ObjectAuthorizationServerApi;
-const ObservableAPI_4 = require("./ObservableAPI");
+const ObservableAPI_6 = require("./ObservableAPI");
+class ObjectBehaviorApi {
+    constructor(configuration, requestFactory, responseProcessor) {
+        this.api = new ObservableAPI_6.ObservableBehaviorApi(configuration, requestFactory, responseProcessor);
+    }
+    /**
+      * Activate Behavior Detection Rule
+      * Activate Behavior Detection Rule
+      * @param param the request object
+      */
+    activateBehaviorDetectionRule(param, options) {
+        return this.api.activateBehaviorDetectionRule(param.behaviorId, options).toPromise();
+    }
+    /**
+      * Adds a new Behavior Detection Rule to your organization.
+      * Create new Behavior Detection Rule
+      * @param param the request object
+      */
+    createBehaviorDetectionRule(param, options) {
+        return this.api.createBehaviorDetectionRule(param.rule, options).toPromise();
+    }
+    /**
+      * Deactivate Behavior Detection Rule
+      * Deactivate Behavior Detection Rule
+      * @param param the request object
+      */
+    deactivateBehaviorDetectionRule(param, options) {
+        return this.api.deactivateBehaviorDetectionRule(param.behaviorId, options).toPromise();
+    }
+    /**
+      * Delete a Behavior Detection Rule by `behaviorId`.
+      * Delete Behavior Detection Rule
+      * @param param the request object
+      */
+    deleteBehaviorDetectionRule(param, options) {
+        return this.api.deleteBehaviorDetectionRule(param.behaviorId, options).toPromise();
+    }
+    /**
+      * Fetches a Behavior Detection Rule by `behaviorId`.
+      * Get Behavior Detection Rule
+      * @param param the request object
+      */
+    getBehaviorDetectionRule(param, options) {
+        return this.api.getBehaviorDetectionRule(param.behaviorId, options).toPromise();
+    }
+    /**
+      * Enumerates Behavior Detection Rules in your organization with pagination.
+      * List Behavior Detection Rules
+      * @param param the request object
+      */
+    listBehaviorDetectionRules(param = {}, options) {
+        return this.api.listBehaviorDetectionRules(options).toPromise();
+    }
+    /**
+      * Update a Behavior Detection Rule by `behaviorId`.
+      * Update Behavior Detection Rule
+      * @param param the request object
+      */
+    updateBehaviorDetectionRule(param, options) {
+        return this.api.updateBehaviorDetectionRule(param.behaviorId, param.rule, options).toPromise();
+    }
+}
+exports.ObjectBehaviorApi = ObjectBehaviorApi;
+const ObservableAPI_7 = require("./ObservableAPI");
 class ObjectCAPTCHAApi {
     constructor(configuration, requestFactory, responseProcessor) {
-        this.api = new ObservableAPI_4.ObservableCAPTCHAApi(configuration, requestFactory, responseProcessor);
+        this.api = new ObservableAPI_7.ObservableCAPTCHAApi(configuration, requestFactory, responseProcessor);
     }
     /**
       * Adds a new CAPTCHA instance to your organization. In the current release, we only allow one CAPTCHA instance per org.
@@ -721,7 +942,7 @@ class ObjectCAPTCHAApi {
         return this.api.createCaptchaInstance(param.instance, options).toPromise();
     }
     /**
-      * Delete a CAPTCHA instance by `id`. If the CAPTCHA instance is currently being used in the org, the delete will not be allowed.
+      * Delete a CAPTCHA instance by `captchaId`. If the CAPTCHA instance is currently being used in the org, the delete will not be allowed.
       * Delete CAPTCHA Instance
       * @param param the request object
       */
@@ -729,7 +950,7 @@ class ObjectCAPTCHAApi {
         return this.api.deleteCaptchaInstance(param.captchaId, options).toPromise();
     }
     /**
-      * Fetches a CAPTCHA instance by `id`.
+      * Fetches a CAPTCHA instance by `captchaId`.
       * Get CAPTCHA Instance
       * @param param the request object
       */
@@ -745,7 +966,7 @@ class ObjectCAPTCHAApi {
         return this.api.listCaptchaInstances(options).toPromise();
     }
     /**
-      * Partially update a CAPTCHA instance by `id`.
+      * Partially update a CAPTCHA instance by `captchaId`.
       * Partial Update CAPTCHA instance
       * @param param the request object
       */
@@ -753,7 +974,7 @@ class ObjectCAPTCHAApi {
         return this.api.partialUpdateCaptchaInstance(param.captchaId, param.instance, options).toPromise();
     }
     /**
-      * Update a CAPTCHA instance by `id`.
+      * Update a CAPTCHA instance by `captchaId`.
       * Update CAPTCHA instance
       * @param param the request object
       */
@@ -762,10 +983,10 @@ class ObjectCAPTCHAApi {
     }
 }
 exports.ObjectCAPTCHAApi = ObjectCAPTCHAApi;
-const ObservableAPI_5 = require("./ObservableAPI");
+const ObservableAPI_8 = require("./ObservableAPI");
 class ObjectCustomizationApi {
     constructor(configuration, requestFactory, responseProcessor) {
-        this.api = new ObservableAPI_5.ObservableCustomizationApi(configuration, requestFactory, responseProcessor);
+        this.api = new ObservableAPI_8.ObservableCustomizationApi(configuration, requestFactory, responseProcessor);
     }
     /**
       * Creates a new email customization.
@@ -864,12 +1085,20 @@ class ObjectCustomizationApi {
         return this.api.getEmailDefaultPreview(param.brandId, param.templateName, param.language, options).toPromise();
     }
     /**
+      * Gets an email template's settings.
+      * Get Email Template Settings
+      * @param param the request object
+      */
+    getEmailSettings(param, options) {
+        return this.api.getEmailSettings(param.brandId, param.templateName, options).toPromise();
+    }
+    /**
       * Gets the details of an email template by name.
       * Get Email Template
       * @param param the request object
       */
     getEmailTemplate(param, options) {
-        return this.api.getEmailTemplate(param.brandId, param.templateName, options).toPromise();
+        return this.api.getEmailTemplate(param.brandId, param.templateName, param.expand, options).toPromise();
     }
     /**
       * List all the themes in your brand
@@ -901,7 +1130,7 @@ class ObjectCustomizationApi {
       * @param param the request object
       */
     listEmailTemplates(param, options) {
-        return this.api.listEmailTemplates(param.brandId, param.after, param.limit, options).toPromise();
+        return this.api.listEmailTemplates(param.brandId, param.after, param.limit, param.expand, options).toPromise();
     }
     /**
       * Sends a test email to the current user’s primary and secondary email addresses. The email content is selected based on the following priority: 1. The email customization for the language specified in the `language` query parameter. 2. The email template's default customization. 3. The email template’s default content, translated to the current user's language.
@@ -936,6 +1165,14 @@ class ObjectCustomizationApi {
         return this.api.updateEmailCustomization(param.brandId, param.templateName, param.customizationId, param.instance, options).toPromise();
     }
     /**
+      * Updates an email template's settings.
+      * Update Email Template Settings
+      * @param param the request object
+      */
+    updateEmailSettings(param, options) {
+        return this.api.updateEmailSettings(param.brandId, param.templateName, param.EmailSettings, options).toPromise();
+    }
+    /**
       * Updates the background image for your Theme
       * Updates the background image for your Theme
       * @param param the request object
@@ -961,10 +1198,10 @@ class ObjectCustomizationApi {
     }
 }
 exports.ObjectCustomizationApi = ObjectCustomizationApi;
-const ObservableAPI_6 = require("./ObservableAPI");
+const ObservableAPI_9 = require("./ObservableAPI");
 class ObjectDomainApi {
     constructor(configuration, requestFactory, responseProcessor) {
-        this.api = new ObservableAPI_6.ObservableDomainApi(configuration, requestFactory, responseProcessor);
+        this.api = new ObservableAPI_9.ObservableDomainApi(configuration, requestFactory, responseProcessor);
     }
     /**
       * Creates the Certificate for the Domain.
@@ -1016,10 +1253,10 @@ class ObjectDomainApi {
     }
 }
 exports.ObjectDomainApi = ObjectDomainApi;
-const ObservableAPI_7 = require("./ObservableAPI");
+const ObservableAPI_10 = require("./ObservableAPI");
 class ObjectEventHookApi {
     constructor(configuration, requestFactory, responseProcessor) {
-        this.api = new ObservableAPI_7.ObservableEventHookApi(configuration, requestFactory, responseProcessor);
+        this.api = new ObservableAPI_10.ObservableEventHookApi(configuration, requestFactory, responseProcessor);
     }
     /**
       * Success
@@ -1087,10 +1324,10 @@ class ObjectEventHookApi {
     }
 }
 exports.ObjectEventHookApi = ObjectEventHookApi;
-const ObservableAPI_8 = require("./ObservableAPI");
+const ObservableAPI_11 = require("./ObservableAPI");
 class ObjectFeatureApi {
     constructor(configuration, requestFactory, responseProcessor) {
-        this.api = new ObservableAPI_8.ObservableFeatureApi(configuration, requestFactory, responseProcessor);
+        this.api = new ObservableAPI_11.ObservableFeatureApi(configuration, requestFactory, responseProcessor);
     }
     /**
       * Success
@@ -1134,10 +1371,10 @@ class ObjectFeatureApi {
     }
 }
 exports.ObjectFeatureApi = ObjectFeatureApi;
-const ObservableAPI_9 = require("./ObservableAPI");
+const ObservableAPI_12 = require("./ObservableAPI");
 class ObjectGroupApi {
     constructor(configuration, requestFactory, responseProcessor) {
-        this.api = new ObservableAPI_9.ObservableGroupApi(configuration, requestFactory, responseProcessor);
+        this.api = new ObservableAPI_12.ObservableGroupApi(configuration, requestFactory, responseProcessor);
     }
     /**
       * Activates a specific group rule by id from your organization
@@ -1365,10 +1602,10 @@ class ObjectGroupApi {
     }
 }
 exports.ObjectGroupApi = ObjectGroupApi;
-const ObservableAPI_10 = require("./ObservableAPI");
+const ObservableAPI_13 = require("./ObservableAPI");
 class ObjectIdentityProviderApi {
     constructor(configuration, requestFactory, responseProcessor) {
-        this.api = new ObservableAPI_10.ObservableIdentityProviderApi(configuration, requestFactory, responseProcessor);
+        this.api = new ObservableAPI_13.ObservableIdentityProviderApi(configuration, requestFactory, responseProcessor);
     }
     /**
       * Activates an inactive IdP.
@@ -1572,10 +1809,10 @@ class ObjectIdentityProviderApi {
     }
 }
 exports.ObjectIdentityProviderApi = ObjectIdentityProviderApi;
-const ObservableAPI_11 = require("./ObservableAPI");
+const ObservableAPI_14 = require("./ObservableAPI");
 class ObjectInlineHookApi {
     constructor(configuration, requestFactory, responseProcessor) {
-        this.api = new ObservableAPI_11.ObservableInlineHookApi(configuration, requestFactory, responseProcessor);
+        this.api = new ObservableAPI_14.ObservableInlineHookApi(configuration, requestFactory, responseProcessor);
     }
     /**
       * Activates the Inline Hook matching the provided id
@@ -1643,10 +1880,10 @@ class ObjectInlineHookApi {
     }
 }
 exports.ObjectInlineHookApi = ObjectInlineHookApi;
-const ObservableAPI_12 = require("./ObservableAPI");
+const ObservableAPI_15 = require("./ObservableAPI");
 class ObjectLinkedObjectApi {
     constructor(configuration, requestFactory, responseProcessor) {
-        this.api = new ObservableAPI_12.ObservableLinkedObjectApi(configuration, requestFactory, responseProcessor);
+        this.api = new ObservableAPI_15.ObservableLinkedObjectApi(configuration, requestFactory, responseProcessor);
     }
     /**
       * Success
@@ -1682,10 +1919,10 @@ class ObjectLinkedObjectApi {
     }
 }
 exports.ObjectLinkedObjectApi = ObjectLinkedObjectApi;
-const ObservableAPI_13 = require("./ObservableAPI");
+const ObservableAPI_16 = require("./ObservableAPI");
 class ObjectNetworkZoneApi {
     constructor(configuration, requestFactory, responseProcessor) {
-        this.api = new ObservableAPI_13.ObservableNetworkZoneApi(configuration, requestFactory, responseProcessor);
+        this.api = new ObservableAPI_16.ObservableNetworkZoneApi(configuration, requestFactory, responseProcessor);
     }
     /**
       * Activate Network Zone
@@ -1745,10 +1982,10 @@ class ObjectNetworkZoneApi {
     }
 }
 exports.ObjectNetworkZoneApi = ObjectNetworkZoneApi;
-const ObservableAPI_14 = require("./ObservableAPI");
+const ObservableAPI_17 = require("./ObservableAPI");
 class ObjectOrgSettingApi {
     constructor(configuration, requestFactory, responseProcessor) {
-        this.api = new ObservableAPI_14.ObservableOrgSettingApi(configuration, requestFactory, responseProcessor);
+        this.api = new ObservableAPI_17.ObservableOrgSettingApi(configuration, requestFactory, responseProcessor);
     }
     /**
       * A list of email addresses to be removed from the set of email addresses that are bounced.
@@ -1896,10 +2133,10 @@ class ObjectOrgSettingApi {
     }
 }
 exports.ObjectOrgSettingApi = ObjectOrgSettingApi;
-const ObservableAPI_15 = require("./ObservableAPI");
+const ObservableAPI_18 = require("./ObservableAPI");
 class ObjectPolicyApi {
     constructor(configuration, requestFactory, responseProcessor) {
-        this.api = new ObservableAPI_15.ObservablePolicyApi(configuration, requestFactory, responseProcessor);
+        this.api = new ObservableAPI_18.ObservablePolicyApi(configuration, requestFactory, responseProcessor);
     }
     /**
       * Activates a policy.
@@ -2015,10 +2252,49 @@ class ObjectPolicyApi {
     }
 }
 exports.ObjectPolicyApi = ObjectPolicyApi;
-const ObservableAPI_16 = require("./ObservableAPI");
+const ObservableAPI_19 = require("./ObservableAPI");
+class ObjectPrincipalRateLimitApi {
+    constructor(configuration, requestFactory, responseProcessor) {
+        this.api = new ObservableAPI_19.ObservablePrincipalRateLimitApi(configuration, requestFactory, responseProcessor);
+    }
+    /**
+      * Adds a new Principal Rate Limit entity to your organization. In the current release, we only allow one Principal Rate Limit entity per org and principal.
+      * Create Principal Rate Limit entity
+      * @param param the request object
+      */
+    createPrincipalRateLimitEntity(param, options) {
+        return this.api.createPrincipalRateLimitEntity(param.entity, options).toPromise();
+    }
+    /**
+      * Fetches a Principal Rate Limit entity by `principalRateLimitId`.
+      * Get Principal Rate Limit entity
+      * @param param the request object
+      */
+    getPrincipalRateLimitEntity(param, options) {
+        return this.api.getPrincipalRateLimitEntity(param.principalRateLimitId, options).toPromise();
+    }
+    /**
+      * Lists all Principal Rate Limit entities considering the provided parameters.
+      * List Principal Rate Limit entities
+      * @param param the request object
+      */
+    listPrincipalRateLimitEntities(param = {}, options) {
+        return this.api.listPrincipalRateLimitEntities(param.filter, param.after, param.limit, options).toPromise();
+    }
+    /**
+      * Update a  Principal Rate Limit entity by `principalRateLimitId`.
+      * Update Principal Rate Limit entity
+      * @param param the request object
+      */
+    updatePrincipalRateLimitEntity(param, options) {
+        return this.api.updatePrincipalRateLimitEntity(param.principalRateLimitId, param.entity, options).toPromise();
+    }
+}
+exports.ObjectPrincipalRateLimitApi = ObjectPrincipalRateLimitApi;
+const ObservableAPI_20 = require("./ObservableAPI");
 class ObjectProfileMappingApi {
     constructor(configuration, requestFactory, responseProcessor) {
-        this.api = new ObservableAPI_16.ObservableProfileMappingApi(configuration, requestFactory, responseProcessor);
+        this.api = new ObservableAPI_20.ObservableProfileMappingApi(configuration, requestFactory, responseProcessor);
     }
     /**
       * Fetches a single Profile Mapping referenced by its ID.
@@ -2046,10 +2322,10 @@ class ObjectProfileMappingApi {
     }
 }
 exports.ObjectProfileMappingApi = ObjectProfileMappingApi;
-const ObservableAPI_17 = require("./ObservableAPI");
+const ObservableAPI_21 = require("./ObservableAPI");
 class ObjectSchemaApi {
     constructor(configuration, requestFactory, responseProcessor) {
-        this.api = new ObservableAPI_17.ObservableSchemaApi(configuration, requestFactory, responseProcessor);
+        this.api = new ObservableAPI_21.ObservableSchemaApi(configuration, requestFactory, responseProcessor);
     }
     /**
       * Fetches the Schema for an App User
@@ -2101,10 +2377,10 @@ class ObjectSchemaApi {
     }
 }
 exports.ObjectSchemaApi = ObjectSchemaApi;
-const ObservableAPI_18 = require("./ObservableAPI");
+const ObservableAPI_22 = require("./ObservableAPI");
 class ObjectSessionApi {
     constructor(configuration, requestFactory, responseProcessor) {
-        this.api = new ObservableAPI_18.ObservableSessionApi(configuration, requestFactory, responseProcessor);
+        this.api = new ObservableAPI_22.ObservableSessionApi(configuration, requestFactory, responseProcessor);
     }
     /**
       * Creates a new session for a user with a valid session token. Use this API if, for example, you want to set the session cookie yourself instead of allowing Okta to set it, or want to hold the session ID in order to delete a session via the API instead of visiting the logout URL.
@@ -2140,10 +2416,10 @@ class ObjectSessionApi {
     }
 }
 exports.ObjectSessionApi = ObjectSessionApi;
-const ObservableAPI_19 = require("./ObservableAPI");
+const ObservableAPI_23 = require("./ObservableAPI");
 class ObjectSubscriptionApi {
     constructor(configuration, requestFactory, responseProcessor) {
-        this.api = new ObservableAPI_19.ObservableSubscriptionApi(configuration, requestFactory, responseProcessor);
+        this.api = new ObservableAPI_23.ObservableSubscriptionApi(configuration, requestFactory, responseProcessor);
     }
     /**
       * When roleType Get subscriptions of a Role with a specific notification type. Else when roleId Get subscription of a Custom Role with a specific notification type.
@@ -2211,10 +2487,10 @@ class ObjectSubscriptionApi {
     }
 }
 exports.ObjectSubscriptionApi = ObjectSubscriptionApi;
-const ObservableAPI_20 = require("./ObservableAPI");
+const ObservableAPI_24 = require("./ObservableAPI");
 class ObjectSystemLogApi {
     constructor(configuration, requestFactory, responseProcessor) {
-        this.api = new ObservableAPI_20.ObservableSystemLogApi(configuration, requestFactory, responseProcessor);
+        this.api = new ObservableAPI_24.ObservableSystemLogApi(configuration, requestFactory, responseProcessor);
     }
     /**
       * The Okta System Log API provides read access to your organization’s system log. This API provides more functionality than the Events API
@@ -2226,10 +2502,10 @@ class ObjectSystemLogApi {
     }
 }
 exports.ObjectSystemLogApi = ObjectSystemLogApi;
-const ObservableAPI_21 = require("./ObservableAPI");
+const ObservableAPI_25 = require("./ObservableAPI");
 class ObjectTemplateApi {
     constructor(configuration, requestFactory, responseProcessor) {
-        this.api = new ObservableAPI_21.ObservableTemplateApi(configuration, requestFactory, responseProcessor);
+        this.api = new ObservableAPI_25.ObservableTemplateApi(configuration, requestFactory, responseProcessor);
     }
     /**
       * Adds a new custom SMS template to your organization.
@@ -2281,10 +2557,10 @@ class ObjectTemplateApi {
     }
 }
 exports.ObjectTemplateApi = ObjectTemplateApi;
-const ObservableAPI_22 = require("./ObservableAPI");
+const ObservableAPI_26 = require("./ObservableAPI");
 class ObjectThreatInsightApi {
     constructor(configuration, requestFactory, responseProcessor) {
-        this.api = new ObservableAPI_22.ObservableThreatInsightApi(configuration, requestFactory, responseProcessor);
+        this.api = new ObservableAPI_26.ObservableThreatInsightApi(configuration, requestFactory, responseProcessor);
     }
     /**
       * Gets current ThreatInsight configuration
@@ -2304,10 +2580,10 @@ class ObjectThreatInsightApi {
     }
 }
 exports.ObjectThreatInsightApi = ObjectThreatInsightApi;
-const ObservableAPI_23 = require("./ObservableAPI");
+const ObservableAPI_27 = require("./ObservableAPI");
 class ObjectTrustedOriginApi {
     constructor(configuration, requestFactory, responseProcessor) {
-        this.api = new ObservableAPI_23.ObservableTrustedOriginApi(configuration, requestFactory, responseProcessor);
+        this.api = new ObservableAPI_27.ObservableTrustedOriginApi(configuration, requestFactory, responseProcessor);
     }
     /**
       * Success
@@ -2367,10 +2643,10 @@ class ObjectTrustedOriginApi {
     }
 }
 exports.ObjectTrustedOriginApi = ObjectTrustedOriginApi;
-const ObservableAPI_24 = require("./ObservableAPI");
+const ObservableAPI_28 = require("./ObservableAPI");
 class ObjectUserApi {
     constructor(configuration, requestFactory, responseProcessor) {
-        this.api = new ObservableAPI_24.ObservableUserApi(configuration, requestFactory, responseProcessor);
+        this.api = new ObservableAPI_28.ObservableUserApi(configuration, requestFactory, responseProcessor);
     }
     /**
       * Activates a user.  This operation can only be performed on users with a `STAGED` status.  Activation of a user is an asynchronous operation. The user will have the `transitioningToStatus` property with a value of `ACTIVE` during activation to indicate that the user hasn't completed the asynchronous operation.  The user will have a status of `ACTIVE` when the activation process is complete.
@@ -2626,7 +2902,7 @@ class ObjectUserApi {
       * @param param the request object
       */
     listUsers(param = {}, options) {
-        return this.api.listUsers(param.q, param.after, param.limit, param.filter, param.search, param.sortBy, param.sortOrder, options).toPromise();
+        return this.api.listUsers(param.after, param.q, param.limit, param.filter, param.search, param.sortBy, param.sortOrder, options).toPromise();
     }
     /**
       * Fetch a user by `id`, `login`, or `login shortname` if the short name is unambiguous.
@@ -2782,10 +3058,10 @@ class ObjectUserApi {
     }
 }
 exports.ObjectUserApi = ObjectUserApi;
-const ObservableAPI_25 = require("./ObservableAPI");
+const ObservableAPI_29 = require("./ObservableAPI");
 class ObjectUserFactorApi {
     constructor(configuration, requestFactory, responseProcessor) {
-        this.api = new ObservableAPI_25.ObservableUserFactorApi(configuration, requestFactory, responseProcessor);
+        this.api = new ObservableAPI_29.ObservableUserFactorApi(configuration, requestFactory, responseProcessor);
     }
     /**
       * The `sms` and `token:software:totp` factor types require activation to complete the enrollment process.
@@ -2801,7 +3077,7 @@ class ObjectUserFactorApi {
       * @param param the request object
       */
     deleteFactor(param, options) {
-        return this.api.deleteFactor(param.userId, param.factorId, options).toPromise();
+        return this.api.deleteFactor(param.userId, param.factorId, param.removeEnrollmentRecovery, options).toPromise();
     }
     /**
       * Enrolls a user with a supported factor.
@@ -2861,10 +3137,10 @@ class ObjectUserFactorApi {
     }
 }
 exports.ObjectUserFactorApi = ObjectUserFactorApi;
-const ObservableAPI_26 = require("./ObservableAPI");
+const ObservableAPI_30 = require("./ObservableAPI");
 class ObjectUserTypeApi {
     constructor(configuration, requestFactory, responseProcessor) {
-        this.api = new ObservableAPI_26.ObservableUserTypeApi(configuration, requestFactory, responseProcessor);
+        this.api = new ObservableAPI_30.ObservableUserTypeApi(configuration, requestFactory, responseProcessor);
     }
     /**
       * Creates a new User Type. A default User Type is automatically created along with your org, and you may add another 9 User Types for a maximum of 10.

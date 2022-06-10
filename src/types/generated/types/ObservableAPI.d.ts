@@ -16,6 +16,11 @@ import { HttpFile } from '../http/http';
 import { Configuration } from '../configuration';
 import { Observable } from '../rxjsStub';
 import { ActivateFactorRequest } from '../models/ActivateFactorRequest';
+import { AgentPool } from '../models/AgentPool';
+import { AgentPoolUpdate } from '../models/AgentPoolUpdate';
+import { AgentPoolUpdateSetting } from '../models/AgentPoolUpdateSetting';
+import { AgentType } from '../models/AgentType';
+import { ApiToken } from '../models/ApiToken';
 import { AppLink } from '../models/AppLink';
 import { AppUser } from '../models/AppUser';
 import { Application } from '../models/Application';
@@ -26,6 +31,7 @@ import { Authenticator } from '../models/Authenticator';
 import { AuthorizationServer } from '../models/AuthorizationServer';
 import { AuthorizationServerPolicy } from '../models/AuthorizationServerPolicy';
 import { AuthorizationServerPolicyRule } from '../models/AuthorizationServerPolicyRule';
+import { BehaviorRule } from '../models/BehaviorRule';
 import { BouncesRemoveListObj } from '../models/BouncesRemoveListObj';
 import { BouncesRemoveListResult } from '../models/BouncesRemoveListResult';
 import { Brand } from '../models/Brand';
@@ -44,6 +50,7 @@ import { DomainResponse } from '../models/DomainResponse';
 import { EmailCustomization } from '../models/EmailCustomization';
 import { EmailDefaultContent } from '../models/EmailDefaultContent';
 import { EmailPreview } from '../models/EmailPreview';
+import { EmailSettings } from '../models/EmailSettings';
 import { EmailTemplate } from '../models/EmailTemplate';
 import { EventHook } from '../models/EventHook';
 import { Feature } from '../models/Feature';
@@ -75,6 +82,7 @@ import { OrgPreferences } from '../models/OrgPreferences';
 import { OrgSetting } from '../models/OrgSetting';
 import { Policy } from '../models/Policy';
 import { PolicyRule } from '../models/PolicyRule';
+import { PrincipalRateLimitEntity } from '../models/PrincipalRateLimitEntity';
 import { ProfileMapping } from '../models/ProfileMapping';
 import { ProvisioningConnection } from '../models/ProvisioningConnection';
 import { ProvisioningConnectionRequest } from '../models/ProvisioningConnectionRequest';
@@ -91,6 +99,7 @@ import { Theme } from '../models/Theme';
 import { ThemeResponse } from '../models/ThemeResponse';
 import { ThreatInsightConfiguration } from '../models/ThreatInsightConfiguration';
 import { TrustedOrigin } from '../models/TrustedOrigin';
+import { UpdateUserRequest } from '../models/UpdateUserRequest';
 import { User } from '../models/User';
 import { UserActivationToken } from '../models/UserActivationToken';
 import { UserCredentials } from '../models/UserCredentials';
@@ -101,6 +110,144 @@ import { UserSchema } from '../models/UserSchema';
 import { UserType } from '../models/UserType';
 import { VerifyFactorRequest } from '../models/VerifyFactorRequest';
 import { VerifyUserFactorResponse } from '../models/VerifyUserFactorResponse';
+import { AgentPoolsApiRequestFactory, AgentPoolsApiResponseProcessor } from '../apis/AgentPoolsApi';
+export declare class ObservableAgentPoolsApi {
+  private requestFactory;
+  private responseProcessor;
+  private configuration;
+  constructor(configuration: Configuration, requestFactory?: AgentPoolsApiRequestFactory, responseProcessor?: AgentPoolsApiResponseProcessor);
+  /**
+      * Activates scheduled Agent pool update
+      * Activate Agent pool update
+      * @param poolId Id of the agent pool for which the settings will apply
+      * @param updateId Id of the update
+      */
+  activateAgentPoolsUpdate(poolId: string, updateId: string, _options?: Configuration): Observable<AgentPoolUpdate>;
+  /**
+      * Creates an Agent pool update \\n For user flow 2 manual update, starts the update immediately. \\n For user flow 3, schedules the update based on the configured update window and delay.
+      * Create an Agent pool update
+      * @param poolId Id of the agent pool for which the settings will apply
+      * @param AgentPoolUpdate
+      */
+  createAgentPoolsUpdate(poolId: string, AgentPoolUpdate: AgentPoolUpdate, _options?: Configuration): Observable<AgentPoolUpdate>;
+  /**
+      * Deactivates scheduled Agent pool update
+      * Deactivate Agent pool update
+      * @param poolId Id of the agent pool for which the settings will apply
+      * @param updateId Id of the update
+      */
+  deactivateAgentPoolsUpdate(poolId: string, updateId: string, _options?: Configuration): Observable<AgentPoolUpdate>;
+  /**
+      * Deletes Agent pool update
+      * Delete Agent pool update
+      * @param poolId Id of the agent pool for which the settings will apply
+      * @param updateId Id of the update
+      */
+  deleteAgentPoolsUpdate(poolId: string, updateId: string, _options?: Configuration): Observable<void>;
+  /**
+      * Fetches AgentPools based on request parameters for a given org
+      * Fetch AgentPools
+      * @param limitPerPoolType Maximum number of AgentPools being returned
+      * @param poolType Agent type to search for
+      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/reference/core-okta-api/#pagination) for more information.
+      */
+  getAgentPools(limitPerPoolType?: number, poolType?: AgentType, after?: string, _options?: Configuration): Observable<Collection<AgentPool>>;
+  /**
+      * Gets Agent pool update from updateId
+      * Get Agent pool update by id
+      * @param poolId Id of the agent pool for which the settings will apply
+      * @param updateId Id of the update
+      */
+  getAgentPoolsUpdateInstance(poolId: string, updateId: string, _options?: Configuration): Observable<AgentPoolUpdate>;
+  /**
+      * Gets the current state of the agent pool update instance settings
+      * Get Agent pool update settings
+      * @param poolId Id of the agent pool for which the settings will apply
+      */
+  getAgentPoolsUpdateSettings(poolId: string, _options?: Configuration): Observable<AgentPoolUpdateSetting>;
+  /**
+      * Gets List of Agent pool updates
+      * List Agent pool updates
+      * @param poolId Id of the agent pool for which the settings will apply
+      * @param scheduled Scope the list only to scheduled or ad-hoc updates. If the parameter is not provided we will return the whole list of updates.
+      */
+  getAgentPoolsUpdates(poolId: string, scheduled?: boolean, _options?: Configuration): Observable<Collection<AgentPoolUpdate>>;
+  /**
+      * Pauses running or queued Agent pool update
+      * Pause Agent pool update
+      * @param poolId Id of the agent pool for which the settings will apply
+      * @param updateId Id of the update
+      */
+  pauseAgentPoolsUpdate(poolId: string, updateId: string, _options?: Configuration): Observable<AgentPoolUpdate>;
+  /**
+      * Resumes running or queued Agent pool update
+      * Resume Agent pool update
+      * @param poolId Id of the agent pool for which the settings will apply
+      * @param updateId Id of the update
+      */
+  resumeAgentPoolsUpdate(poolId: string, updateId: string, _options?: Configuration): Observable<AgentPoolUpdate>;
+  /**
+      * Retries Agent pool update
+      * Retry Agent pool update
+      * @param poolId Id of the agent pool for which the settings will apply
+      * @param updateId Id of the update
+      */
+  retryAgentPoolsUpdate(poolId: string, updateId: string, _options?: Configuration): Observable<AgentPoolUpdate>;
+  /**
+      * Updates Agent pool update settings
+      * Update Agent pool update settings
+      * @param poolId Id of the agent pool for which the settings will apply
+      * @param AgentPoolUpdateSetting
+      */
+  setAgentPoolsUpdateSettings(poolId: string, AgentPoolUpdateSetting: AgentPoolUpdateSetting, _options?: Configuration): Observable<AgentPoolUpdateSetting>;
+  /**
+      * Stops Agent pool update
+      * Stop Agent pool update
+      * @param poolId Id of the agent pool for which the settings will apply
+      * @param updateId Id of the update
+      */
+  stopAgentPoolsUpdate(poolId: string, updateId: string, _options?: Configuration): Observable<AgentPoolUpdate>;
+  /**
+      * Updates Agent pool update and return latest agent pool update
+      * Change Agent pool update by id
+      * @param poolId Id of the agent pool for which the settings will apply
+      * @param updateId Id of the update
+      * @param AgentPoolUpdate
+      */
+  updateAgentPoolsUpdate(poolId: string, updateId: string, AgentPoolUpdate: AgentPoolUpdate, _options?: Configuration): Observable<AgentPoolUpdate>;
+}
+import { ApiTokenApiRequestFactory, ApiTokenApiResponseProcessor } from '../apis/ApiTokenApi';
+export declare class ObservableApiTokenApi {
+  private requestFactory;
+  private responseProcessor;
+  private configuration;
+  constructor(configuration: Configuration, requestFactory?: ApiTokenApiRequestFactory, responseProcessor?: ApiTokenApiResponseProcessor);
+  /**
+      * Get the metadata for an active API token by id.
+      * Get the Metadata for an API Token
+      * @param apiTokenId id of the API Token
+      */
+  getApiToken(apiTokenId: string, _options?: Configuration): Observable<ApiToken>;
+  /**
+      * Enumerates the metadata of the active API tokens in your organization.
+      * List API Token Metadata
+      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/reference/core-okta-api/#pagination) for more information.
+      * @param limit A limit on the number of objects to return.
+      * @param q Finds a token that matches the name or clientName.
+      */
+  listApiTokens(after?: string, limit?: number, q?: string, _options?: Configuration): Observable<Collection<ApiToken>>;
+  /**
+      * Revoke an API token by id.
+      * Revoke an API Token
+      * @param apiTokenId id of the API Token
+      */
+  revokeApiToken(apiTokenId: string, _options?: Configuration): Observable<void>;
+  /**
+      * Revokes the API token provided in the Authorization header.
+      * Revoke the Current API Token
+      */
+  revokeCurrentApiToken(_options?: Configuration): Observable<void>;
+}
 import { ApplicationApiRequestFactory, ApplicationApiResponseProcessor } from '../apis/ApplicationApi';
 export declare class ObservableApplicationApi {
   private requestFactory;
@@ -732,6 +879,55 @@ export declare class ObservableAuthorizationServerApi {
       */
   updateOAuth2Scope(authServerId: string, scopeId: string, oAuth2Scope: OAuth2Scope, _options?: Configuration): Observable<OAuth2Scope>;
 }
+import { BehaviorApiRequestFactory, BehaviorApiResponseProcessor } from '../apis/BehaviorApi';
+export declare class ObservableBehaviorApi {
+  private requestFactory;
+  private responseProcessor;
+  private configuration;
+  constructor(configuration: Configuration, requestFactory?: BehaviorApiRequestFactory, responseProcessor?: BehaviorApiResponseProcessor);
+  /**
+      * Activate Behavior Detection Rule
+      * Activate Behavior Detection Rule
+      * @param behaviorId id of the Behavior Detection Rule
+      */
+  activateBehaviorDetectionRule(behaviorId: string, _options?: Configuration): Observable<BehaviorRule>;
+  /**
+      * Adds a new Behavior Detection Rule to your organization.
+      * Create new Behavior Detection Rule
+      * @param rule
+      */
+  createBehaviorDetectionRule(rule: BehaviorRule, _options?: Configuration): Observable<BehaviorRule>;
+  /**
+      * Deactivate Behavior Detection Rule
+      * Deactivate Behavior Detection Rule
+      * @param behaviorId id of the Behavior Detection Rule
+      */
+  deactivateBehaviorDetectionRule(behaviorId: string, _options?: Configuration): Observable<BehaviorRule>;
+  /**
+      * Delete a Behavior Detection Rule by `behaviorId`.
+      * Delete Behavior Detection Rule
+      * @param behaviorId id of the Behavior Detection Rule
+      */
+  deleteBehaviorDetectionRule(behaviorId: string, _options?: Configuration): Observable<void>;
+  /**
+      * Fetches a Behavior Detection Rule by `behaviorId`.
+      * Get Behavior Detection Rule
+      * @param behaviorId id of the Behavior Detection Rule
+      */
+  getBehaviorDetectionRule(behaviorId: string, _options?: Configuration): Observable<Collection<BehaviorRule>>;
+  /**
+      * Enumerates Behavior Detection Rules in your organization with pagination.
+      * List Behavior Detection Rules
+      */
+  listBehaviorDetectionRules(_options?: Configuration): Observable<Collection<BehaviorRule>>;
+  /**
+      * Update a Behavior Detection Rule by `behaviorId`.
+      * Update Behavior Detection Rule
+      * @param behaviorId id of the Behavior Detection Rule
+      * @param rule
+      */
+  updateBehaviorDetectionRule(behaviorId: string, rule: BehaviorRule, _options?: Configuration): Observable<BehaviorRule>;
+}
 import { CAPTCHAApiRequestFactory, CAPTCHAApiResponseProcessor } from '../apis/CAPTCHAApi';
 export declare class ObservableCAPTCHAApi {
   private requestFactory;
@@ -745,13 +941,13 @@ export declare class ObservableCAPTCHAApi {
       */
   createCaptchaInstance(instance: CAPTCHAInstance, _options?: Configuration): Observable<CAPTCHAInstance>;
   /**
-      * Delete a CAPTCHA instance by `id`. If the CAPTCHA instance is currently being used in the org, the delete will not be allowed.
+      * Delete a CAPTCHA instance by `captchaId`. If the CAPTCHA instance is currently being used in the org, the delete will not be allowed.
       * Delete CAPTCHA Instance
       * @param captchaId id of the CAPTCHA
       */
   deleteCaptchaInstance(captchaId: string, _options?: Configuration): Observable<void>;
   /**
-      * Fetches a CAPTCHA instance by `id`.
+      * Fetches a CAPTCHA instance by `captchaId`.
       * Get CAPTCHA Instance
       * @param captchaId id of the CAPTCHA
       */
@@ -762,14 +958,14 @@ export declare class ObservableCAPTCHAApi {
       */
   listCaptchaInstances(_options?: Configuration): Observable<Collection<CAPTCHAInstance>>;
   /**
-      * Partially update a CAPTCHA instance by `id`.
+      * Partially update a CAPTCHA instance by `captchaId`.
       * Partial Update CAPTCHA instance
       * @param captchaId id of the CAPTCHA
       * @param instance
       */
   partialUpdateCaptchaInstance(captchaId: string, instance: CAPTCHAInstance, _options?: Configuration): Observable<CAPTCHAInstance>;
   /**
-      * Update a CAPTCHA instance by `id`.
+      * Update a CAPTCHA instance by `captchaId`.
       * Update CAPTCHA instance
       * @param captchaId id of the CAPTCHA
       * @param instance
@@ -872,12 +1068,20 @@ export declare class ObservableCustomizationApi {
       */
   getEmailDefaultPreview(brandId: string, templateName: string, language?: string, _options?: Configuration): Observable<EmailPreview>;
   /**
+      * Gets an email template's settings.
+      * Get Email Template Settings
+      * @param brandId The ID of the brand.
+      * @param templateName The name of the email template.
+      */
+  getEmailSettings(brandId: string, templateName: string, _options?: Configuration): Observable<EmailSettings>;
+  /**
       * Gets the details of an email template by name.
       * Get Email Template
       * @param brandId The ID of the brand.
       * @param templateName The name of the email template.
+      * @param expand Specifies additional metadata to be included in the response.
       */
-  getEmailTemplate(brandId: string, templateName: string, _options?: Configuration): Observable<EmailTemplate>;
+  getEmailTemplate(brandId: string, templateName: string, expand?: Array<'settings' | 'customizationCount'>, _options?: Configuration): Observable<EmailTemplate>;
   /**
       * List all the themes in your brand
       * Get Brand Themes
@@ -904,8 +1108,9 @@ export declare class ObservableCustomizationApi {
       * @param brandId The ID of the brand.
       * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/reference/core-okta-api/#pagination) for more information.
       * @param limit A limit on the number of objects to return.
+      * @param expand Specifies additional metadata to be included in the response.
       */
-  listEmailTemplates(brandId: string, after?: string, limit?: number, _options?: Configuration): Observable<Collection<EmailTemplate>>;
+  listEmailTemplates(brandId: string, after?: string, limit?: number, expand?: Array<'settings' | 'customizationCount'>, _options?: Configuration): Observable<Collection<EmailTemplate>>;
   /**
       * Sends a test email to the current user’s primary and secondary email addresses. The email content is selected based on the following priority: 1. The email customization for the language specified in the `language` query parameter. 2. The email template's default customization. 3. The email template’s default content, translated to the current user's language.
       * Send Test Email
@@ -938,6 +1143,14 @@ export declare class ObservableCustomizationApi {
       * @param instance Request
       */
   updateEmailCustomization(brandId: string, templateName: string, customizationId: string, instance?: EmailCustomization, _options?: Configuration): Observable<EmailCustomization>;
+  /**
+      * Updates an email template's settings.
+      * Update Email Template Settings
+      * @param brandId The ID of the brand.
+      * @param templateName The name of the email template.
+      * @param EmailSettings
+      */
+  updateEmailSettings(brandId: string, templateName: string, EmailSettings?: EmailSettings, _options?: Configuration): Observable<void>;
   /**
       * Updates the background image for your Theme
       * Updates the background image for your Theme
@@ -1834,6 +2047,40 @@ export declare class ObservablePolicyApi {
       */
   updatePolicyRule(policyId: string, ruleId: string, policyRule: PolicyRule, _options?: Configuration): Observable<PolicyRule>;
 }
+import { PrincipalRateLimitApiRequestFactory, PrincipalRateLimitApiResponseProcessor } from '../apis/PrincipalRateLimitApi';
+export declare class ObservablePrincipalRateLimitApi {
+  private requestFactory;
+  private responseProcessor;
+  private configuration;
+  constructor(configuration: Configuration, requestFactory?: PrincipalRateLimitApiRequestFactory, responseProcessor?: PrincipalRateLimitApiResponseProcessor);
+  /**
+      * Adds a new Principal Rate Limit entity to your organization. In the current release, we only allow one Principal Rate Limit entity per org and principal.
+      * Create Principal Rate Limit entity
+      * @param entity
+      */
+  createPrincipalRateLimitEntity(entity: PrincipalRateLimitEntity, _options?: Configuration): Observable<PrincipalRateLimitEntity>;
+  /**
+      * Fetches a Principal Rate Limit entity by `principalRateLimitId`.
+      * Get Principal Rate Limit entity
+      * @param principalRateLimitId id of the Principal Rate Limit
+      */
+  getPrincipalRateLimitEntity(principalRateLimitId: string, _options?: Configuration): Observable<PrincipalRateLimitEntity>;
+  /**
+      * Lists all Principal Rate Limit entities considering the provided parameters.
+      * List Principal Rate Limit entities
+      * @param filter
+      * @param after
+      * @param limit
+      */
+  listPrincipalRateLimitEntities(filter?: string, after?: string, limit?: number, _options?: Configuration): Observable<Collection<PrincipalRateLimitEntity>>;
+  /**
+      * Update a  Principal Rate Limit entity by `principalRateLimitId`.
+      * Update Principal Rate Limit entity
+      * @param principalRateLimitId id of the Principal Rate Limit
+      * @param entity
+      */
+  updatePrincipalRateLimitEntity(principalRateLimitId: string, entity: PrincipalRateLimitEntity, _options?: Configuration): Observable<PrincipalRateLimitEntity>;
+}
 import { ProfileMappingApiRequestFactory, ProfileMappingApiResponseProcessor } from '../apis/ProfileMappingApi';
 export declare class ObservableProfileMappingApi {
   private requestFactory;
@@ -2382,15 +2629,15 @@ export declare class ObservableUserApi {
   /**
       * Lists users in your organization with pagination in most cases.  A subset of users can be returned that match a supported filter expression or search criteria.
       * List Users
+      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/reference/core-okta-api/#pagination) for more information.
       * @param q Finds a user that matches firstName, lastName, and email properties
-      * @param after Specifies the pagination cursor for the next page of users
-      * @param limit Specifies the number of results returned
+      * @param limit Specifies the number of results returned. Defaults to 10 if &#x60;q&#x60; is provided.
       * @param filter Filters users with a supported expression for a subset of properties
       * @param search Searches for users with a supported filtering  expression for most properties
       * @param sortBy
       * @param sortOrder
       */
-  listUsers(q?: string, after?: string, limit?: number, filter?: string, search?: string, sortBy?: string, sortOrder?: string, _options?: Configuration): Observable<Collection<User>>;
+  listUsers(after?: string, q?: string, limit?: number, filter?: string, search?: string, sortBy?: string, sortOrder?: string, _options?: Configuration): Observable<Collection<User>>;
   /**
       * Fetch a user by `id`, `login`, or `login shortname` if the short name is unambiguous.
       * Partial Update User
@@ -2398,7 +2645,7 @@ export declare class ObservableUserApi {
       * @param user
       * @param strict
       */
-  partialUpdateUser(userId: string, user: User, strict?: boolean, _options?: Configuration): Observable<User>;
+  partialUpdateUser(userId: string, user: UpdateUserRequest, strict?: boolean, _options?: Configuration): Observable<User>;
   /**
       * Reactivates a user.  This operation can only be performed on users with a `PROVISIONED` status.  This operation restarts the activation workflow if for some reason the user activation was not completed when using the activationToken from [Activate User](#activate-user).
       * Reactivate User
@@ -2526,7 +2773,7 @@ export declare class ObservableUserApi {
       * @param user
       * @param strict
       */
-  updateUser(userId: string, user: User, strict?: boolean, _options?: Configuration): Observable<User>;
+  updateUser(userId: string, user: UpdateUserRequest, strict?: boolean, _options?: Configuration): Observable<User>;
 }
 import { UserFactorApiRequestFactory, UserFactorApiResponseProcessor } from '../apis/UserFactorApi';
 export declare class ObservableUserFactorApi {
@@ -2547,8 +2794,9 @@ export declare class ObservableUserFactorApi {
       * Delete Factor
       * @param userId
       * @param factorId
+      * @param removeEnrollmentRecovery
       */
-  deleteFactor(userId: string, factorId: string, _options?: Configuration): Observable<void>;
+  deleteFactor(userId: string, factorId: string, removeEnrollmentRecovery?: boolean, _options?: Configuration): Observable<void>;
   /**
       * Enrolls a user with a supported factor.
       * Enroll Factor

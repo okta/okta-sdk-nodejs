@@ -26,13 +26,13 @@ export declare class CAPTCHAApiRequestFactory extends BaseAPIRequestFactory {
      */
   createCaptchaInstance(instance: CAPTCHAInstance, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Delete a CAPTCHA instance by `id`. If the CAPTCHA instance is currently being used in the org, the delete will not be allowed.
+     * Delete a CAPTCHA instance by `captchaId`. If the CAPTCHA instance is currently being used in the org, the delete will not be allowed.
      * Delete CAPTCHA Instance
      * @param captchaId id of the CAPTCHA
      */
   deleteCaptchaInstance(captchaId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Fetches a CAPTCHA instance by `id`.
+     * Fetches a CAPTCHA instance by `captchaId`.
      * Get CAPTCHA Instance
      * @param captchaId id of the CAPTCHA
      */
@@ -43,14 +43,14 @@ export declare class CAPTCHAApiRequestFactory extends BaseAPIRequestFactory {
      */
   listCaptchaInstances(_options?: Configuration): Promise<RequestContext>;
   /**
-     * Partially update a CAPTCHA instance by `id`.
+     * Partially update a CAPTCHA instance by `captchaId`.
      * Partial Update CAPTCHA instance
      * @param captchaId id of the CAPTCHA
      * @param instance
      */
   partialUpdateCaptchaInstance(captchaId: string, instance: CAPTCHAInstance, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Update a CAPTCHA instance by `id`.
+     * Update a CAPTCHA instance by `captchaId`.
      * Update CAPTCHA instance
      * @param captchaId id of the CAPTCHA
      * @param instance

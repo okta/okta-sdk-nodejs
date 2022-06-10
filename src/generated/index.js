@@ -33,7 +33,7 @@ var __exportStar = (this && this.__exportStar) || function (m, exports) {
   }
 };
 Object.defineProperty(exports, '__esModule', { value: true });
-exports.UserTypeApi = exports.UserFactorApi = exports.UserApi = exports.TrustedOriginApi = exports.ThreatInsightApi = exports.TemplateApi = exports.SystemLogApi = exports.SubscriptionApi = exports.SessionApi = exports.SchemaApi = exports.ProfileMappingApi = exports.PolicyApi = exports.OrgSettingApi = exports.NetworkZoneApi = exports.LinkedObjectApi = exports.InlineHookApi = exports.IdentityProviderApi = exports.GroupApi = exports.FeatureApi = exports.EventHookApi = exports.DomainApi = exports.CustomizationApi = exports.CAPTCHAApi = exports.AuthorizationServerApi = exports.AuthenticatorApi = exports.ApplicationApi = exports.createConfiguration = void 0;
+exports.UserTypeApi = exports.UserFactorApi = exports.UserApi = exports.TrustedOriginApi = exports.ThreatInsightApi = exports.TemplateApi = exports.SystemLogApi = exports.SubscriptionApi = exports.SessionApi = exports.SchemaApi = exports.ProfileMappingApi = exports.PrincipalRateLimitApi = exports.PolicyApi = exports.OrgSettingApi = exports.NetworkZoneApi = exports.LinkedObjectApi = exports.InlineHookApi = exports.IdentityProviderApi = exports.GroupApi = exports.FeatureApi = exports.EventHookApi = exports.DomainApi = exports.CustomizationApi = exports.CAPTCHAApi = exports.BehaviorApi = exports.AuthorizationServerApi = exports.AuthenticatorApi = exports.ApplicationApi = exports.ApiTokenApi = exports.AgentPoolsApi = exports.createConfiguration = void 0;
 __exportStar(require('./http/http'), exports);
 __exportStar(require('./auth/auth'), exports);
 __exportStar(require('./models/all'), exports);
@@ -44,6 +44,12 @@ Object.defineProperty(exports, 'createConfiguration', { enumerable: true, get: f
 __exportStar(require('./apis/exception'), exports);
 __exportStar(require('./servers'), exports);
 var PromiseAPI_1 = require('./types/PromiseAPI');
+Object.defineProperty(exports, 'AgentPoolsApi', { enumerable: true, get: function () {
+  return PromiseAPI_1.PromiseAgentPoolsApi;
+} });
+Object.defineProperty(exports, 'ApiTokenApi', { enumerable: true, get: function () {
+  return PromiseAPI_1.PromiseApiTokenApi;
+} });
 Object.defineProperty(exports, 'ApplicationApi', { enumerable: true, get: function () {
   return PromiseAPI_1.PromiseApplicationApi;
 } });
@@ -52,6 +58,9 @@ Object.defineProperty(exports, 'AuthenticatorApi', { enumerable: true, get: func
 } });
 Object.defineProperty(exports, 'AuthorizationServerApi', { enumerable: true, get: function () {
   return PromiseAPI_1.PromiseAuthorizationServerApi;
+} });
+Object.defineProperty(exports, 'BehaviorApi', { enumerable: true, get: function () {
+  return PromiseAPI_1.PromiseBehaviorApi;
 } });
 Object.defineProperty(exports, 'CAPTCHAApi', { enumerable: true, get: function () {
   return PromiseAPI_1.PromiseCAPTCHAApi;
@@ -88,6 +97,9 @@ Object.defineProperty(exports, 'OrgSettingApi', { enumerable: true, get: functio
 } });
 Object.defineProperty(exports, 'PolicyApi', { enumerable: true, get: function () {
   return PromiseAPI_1.PromisePolicyApi;
+} });
+Object.defineProperty(exports, 'PrincipalRateLimitApi', { enumerable: true, get: function () {
+  return PromiseAPI_1.PromisePrincipalRateLimitApi;
 } });
 Object.defineProperty(exports, 'ProfileMappingApi', { enumerable: true, get: function () {
   return PromiseAPI_1.PromiseProfileMappingApi;

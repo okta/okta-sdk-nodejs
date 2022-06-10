@@ -96,7 +96,7 @@ export declare class RequestContext {
   setAffectedResources(affectedResources: string[]): void;
   setIsCollection(isCollection: boolean): void;
   setStartTime(startTime: Date): void;
-  getStartTime(): Date;
+  getStartTime(): Date | undefined;
   setAgent(agent: http.Agent | https.Agent): void;
   getAgent(): http.Agent | https.Agent | undefined;
 }
