@@ -1827,7 +1827,7 @@ class ObjectSerializer {
     static deserialize(data, type, format) {
         // polymorphism may change the actual type.
         type = ObjectSerializer.findCorrectType(data, type);
-        if (data === undefined || type === 'void') {
+        if (data == undefined) {
             return data;
         }
         else if (primitives.indexOf(type.toLowerCase()) !== -1) {
@@ -1911,7 +1911,10 @@ class ObjectSerializer {
     /**
       * Parse data from a string according to the given media type
       */
-    static parse(rawData, mediaType) {
+    static parse(rawData, mediaType, dataType) {
+        if (dataType === 'void') {
+            return null;
+        }
         if (mediaType === undefined) {
             throw new Error('Cannot parse content. No Content-Type defined.');
         }
