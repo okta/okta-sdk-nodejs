@@ -16,6 +16,7 @@
 import { Resource } from '../resource';
 import { Client } from '../client';
 import { OptionalKnownProperties } from '../optional-known-properties-type';
+import { Response } from 'node-fetch';
 import { NetworkZoneAddress } from './NetworkZoneAddress';
 import { NetworkZoneLocation } from './NetworkZoneLocation';
 import { NetworkZoneStatus } from './NetworkZoneStatus';
@@ -41,7 +42,7 @@ declare class NetworkZone extends Resource {
   usage: NetworkZoneUsage;
 
   update(): Promise<NetworkZone>;
-  delete(): Promise<void>;
+  delete(): Promise<Response>;
   activate(): Promise<NetworkZone>;
   deactivate(): Promise<NetworkZone>;
 }

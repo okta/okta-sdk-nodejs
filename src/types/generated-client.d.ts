@@ -105,7 +105,6 @@ import { ResponseLinks } from './models/ResponseLinks';
 import { Role } from './models/Role';
 import { AssignRoleRequestOptions } from './models/AssignRoleRequest';
 import { CatalogApplication } from './models/CatalogApplication';
-import { NetworkZone } from './models/NetworkZone';
 
 export declare class GeneratedApiClient {
   listApplications(queryParameters?: {

@@ -1911,10 +1911,7 @@ class ObjectSerializer {
     /**
       * Parse data from a string according to the given media type
       */
-    static parse(rawData, mediaType, dataType) {
-        if (dataType === 'void') {
-            return null;
-        }
+    static parse(rawData, mediaType) {
         if (mediaType === undefined) {
             throw new Error('Cannot parse content. No Content-Type defined.');
         }
