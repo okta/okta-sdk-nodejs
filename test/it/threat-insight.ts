@@ -2,7 +2,7 @@ import { expect } from 'chai';
 import {
   Client,
   DefaultRequestExecutor,
-  ThreatInsightConfiguration} from '@okta/okta-sdk-nodejs';
+  v3} from '@okta/okta-sdk-nodejs';
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 if (process.env.OKTA_USE_MOCK) {
@@ -30,14 +30,14 @@ describe('Threat Insight API', () => {
 
   it('gets configuration', async () => {
     const configuration = await client.getCurrentConfiguration();
-    expect(configuration).to.be.instanceOf(ThreatInsightConfiguration);
+    expect(configuration).to.be.instanceOf(v3.ThreatInsightConfiguration);
   });
 
   it('updates configuration', async () => {
     const configuration = await client.updateConfiguration({
       action: 'audit'
     });
-    expect(configuration).to.be.instanceOf(ThreatInsightConfiguration);
+    expect(configuration).to.be.instanceOf(v3.ThreatInsightConfiguration);
     expect(configuration.action).to.equal('audit');
   });
 });

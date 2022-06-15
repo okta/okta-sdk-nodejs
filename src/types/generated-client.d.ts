@@ -80,7 +80,6 @@ import { Session } from './models/Session';
 import { SmsTemplate } from './models/SmsTemplate';
 import { SmsTemplateOptions } from './models/SmsTemplate';
 import { ThreatInsightConfiguration } from './models/ThreatInsightConfiguration';
-import { ThreatInsightConfigurationOptions } from './models/ThreatInsightConfiguration';
 import { TrustedOrigin } from './models/TrustedOrigin';
 import { TrustedOriginOptions } from './models/TrustedOrigin';
 import { User } from './models/User';
@@ -501,8 +500,8 @@ export declare class GeneratedApiClient {
   getSmsTemplate(templateId: string): Promise<SmsTemplate>;
   partialUpdateSmsTemplate(templateId: string, smsTemplate: SmsTemplateOptions): Promise<SmsTemplate>;
   updateSmsTemplate(templateId: string, smsTemplate: SmsTemplateOptions): Promise<SmsTemplate>;
-  getCurrentConfiguration(): Promise<ThreatInsightConfiguration>;
-  updateConfiguration(threatInsightConfiguration: ThreatInsightConfigurationOptions): Promise<ThreatInsightConfiguration>;
+  getCurrentConfiguration(): Promise<v3.ThreatInsightConfiguration>;
+  updateConfiguration(threatInsightConfiguration: v3.ThreatInsightConfiguration): Promise<v3.ThreatInsightConfiguration>;
   listOrigins(queryParameters?: {
     q?: string,
     filter?: string,

@@ -6601,16 +6601,7 @@ class GeneratedApiClient {
    * @returns {Promise<ThreatInsightConfiguration>}
    */
   getCurrentConfiguration() {
-    let url = `${this.baseUrl}/api/v1/threats/configuration`;
-
-    const resources = [];
-
-    const request = this.http.getJson(
-      url,
-      null,
-      { resources }
-    );
-    return request.then(jsonRes => new models.ThreatInsightConfiguration(jsonRes, this));
+    return this.threatInsightApi.getCurrentConfiguration();
   }
 
   /**
@@ -6624,18 +6615,7 @@ class GeneratedApiClient {
     if (!threatInsightConfiguration) {
       return Promise.reject(new Error('OKTA API updateConfiguration parameter threatInsightConfiguration is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/threats/configuration`;
-
-    const resources = [];
-
-    const request = this.http.postJson(
-      url,
-      {
-        body: threatInsightConfiguration
-      },
-      { resources }
-    );
-    return request.then(jsonRes => new models.ThreatInsightConfiguration(jsonRes, this));
+    return this.threatInsightApi.updateConfiguration(threatInsightConfiguration);
   }
 
   /**
