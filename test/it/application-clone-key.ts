@@ -45,8 +45,8 @@ describe.skip('Application.cloneApplicationKey()', () => {
         await client.deleteApplication(createdApplication.id);
       }
       if (createdApplication2) {
-        await createdApplication2.deactivate();
-        await createdApplication2.delete();
+        await client.deactivateApplication(createdApplication2.id);
+        await client.deleteApplication(createdApplication2.id);
       }
     }
   });

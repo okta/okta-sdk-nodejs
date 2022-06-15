@@ -170,8 +170,8 @@ async function cleanup(client, users = null, groups = null) {
 async function removeAppByLabel(client, label) {
   return (await client.listApplications()).each(async (application) => {
     if (application.label === label) {
-      await application.deactivate();
-      return application.delete();
+      await client.deactivateApplication(application.id);
+      return client.deleteApplication(application.id);
     }
   });
 }

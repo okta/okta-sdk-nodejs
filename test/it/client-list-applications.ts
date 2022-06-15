@@ -2,7 +2,6 @@ import { expect } from 'chai';
 import faker = require('@faker-js/faker');
 import {
   v3,
-  BookmarkApplication,
   Client,
   Collection,
   DefaultRequestExecutor } from '@okta/okta-sdk-nodejs';
