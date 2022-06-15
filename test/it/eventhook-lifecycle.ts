@@ -19,17 +19,17 @@ describe('Event Hook Lifecycle API', () => {
     eventHook = await client.createEventHook(getMockEventHook());
   });
   afterEach(async () => {
-    await eventHook.deactivate();
-    await eventHook.delete();
+    await client.deactivateEventHook(eventHook.id);
+    await client.deleteEventHook(eventHook.id);
   });
 
   it('should activate event hook', async () => {
-    const res = await eventHook.activate();
+    const res = await client.activateEventHook(eventHook.id);
     expect(res.status).to.equal('ACTIVE');
   });
 
   it('should deactive event hook', async () => {
-    const res = await eventHook.deactivate();
+    const res = await client.deactivateEventHook(eventHook.id);
     expect(res.status).to.equal('INACTIVE');
   });
 
@@ -38,7 +38,7 @@ describe('Event Hook Lifecycle API', () => {
   // https://developer.okta.com/docs/reference/api/event-hooks/#verify-event-hook
   it('should get error response with status 400 and code E0000001', async () => {
     try {
-      await eventHook.verify();
+      await client.verifyEventHook(eventHook.id);
     } catch (err) {
       expect(err.status).to.equal(400);
       expect(err.errorCode).to.equal('E0000001');

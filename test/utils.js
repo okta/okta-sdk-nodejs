@@ -1,3 +1,4 @@
+const v3 = require('../src/generated');
 const models = require('../src/models');
 const expect = require('chai').expect;
 const faker = require('@faker-js/faker');
@@ -32,14 +33,15 @@ function authenticateUser(client, userName, password) {
 }
 
 function validateGroup(group, expectedGroup) {
-  expect(group).to.be.an.instanceof(models.Group);
+  expect(group).to.be.an.instanceof(v3.Group);
   expect(group.profile.name).to.equal(expectedGroup.profile.name);
   expect(group.type).to.equal('OKTA_GROUP');
 }
 
-async function isUserInGroup(groupUser, group) {
+async function isUserInGroup(client, groupUser, group) {
   let userPresent = false;
-  await group.listUsers().each(user => {
+  const collection = await client.listGroupUsers(group.id);
+  await collection.each(user => {
     if (user.id === groupUser.id) {
       userPresent = true;
       return false;
@@ -48,11 +50,11 @@ async function isUserInGroup(groupUser, group) {
   return userPresent;
 }
 
-async function waitTillUserInGroup(user, group, condition) {
-  let userInGroup = await isUserInGroup(user, group);
+async function waitTillUserInGroup(client, user, group, condition) {
+  let userInGroup = await isUserInGroup(client, user, group);
   let timeOut = 0;
   while (userInGroup !== condition) {
-    userInGroup = await isUserInGroup(user, group);
+    userInGroup = await isUserInGroup(client, user, group);
     if (userInGroup === condition) {
       return userInGroup;
     }
@@ -85,8 +87,9 @@ async function isUserPresent(client, expectedUser, queryParameters) {
 
 async function isGroupPresent(client, expectedGroup, queryParameters) {
   let groupPresent = false;
-  await client.listGroups(queryParameters).each(group => {
-    expect(group).to.be.an.instanceof(models.Group);
+  const collection = await client.listGroups(queryParameters);
+  await collection.each(async group => {
+    expect(group).to.be.an.instanceof(v3.Group);
     if (group.profile.name === expectedGroup.profile.name) {
       groupPresent = true;
       return false;

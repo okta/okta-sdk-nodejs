@@ -2,7 +2,7 @@ import { expect } from 'chai';
 import {
   Client,
   DefaultRequestExecutor,
-  Role } from '@okta/okta-sdk-nodejs';
+  v3 } from '@okta/okta-sdk-nodejs';
 import getMockGroup = require('./mocks/group');
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -23,15 +23,22 @@ describe('Group role API', () => {
       group = await client.createGroup(getMockGroup());
     });
     afterEach(async () => {
-      await group.delete();
+      await client.deleteGroup(group.id);
     });
 
     it('should assign and unassign role to/from group', async () => {
-      const role = await group.assignRole({ type: 'APP_ADMIN' });
-      expect(role).to.be.instanceOf(Role);
-
-      const res = await client.removeRoleFromGroup(group.id, role.id);
-      expect(res.status).to.equal(204);
+      const role = await client.assignRoleToGroup(group.id, { type: 'APP_ADMIN' });
+      if (role instanceof v3.Role) {
+        const res = await client.removeRoleFromGroup(group.id, role.id);
+        expect(res).to.be.undefined;
+      } else {
+        const collection = await client.listGroupAssignedRoles(group.id);
+        const roles: v3.Role[] = [];
+        for await (const role of collection) {
+          roles.push(role);
+        }
+        expect(roles.some(role => role.type === 'APP_ADMIN')).to.be.true;
+      }
     });
   });
 });

@@ -3450,13 +3450,7 @@ class GeneratedApiClient {
    * @returns {Collection} A collection that will yield {@link EventHook} instances.
    */
   listEventHooks() {
-    let url = `${this.baseUrl}/api/v1/eventHooks`;
-
-    return new Collection(
-      this.http,
-      url,
-      new ModelFactory(models.EventHook, this),
-    );
+    return this.eventHookApi.listEventHooks();
   }
 
   /**
@@ -3470,18 +3464,7 @@ class GeneratedApiClient {
     if (!eventHook) {
       return Promise.reject(new Error('OKTA API createEventHook parameter eventHook is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/eventHooks`;
-
-    const resources = [];
-
-    const request = this.http.postJson(
-      url,
-      {
-        body: eventHook
-      },
-      { resources }
-    );
-    return request.then(jsonRes => new models.EventHook(jsonRes, this));
+    return this.eventHookApi.createEventHook(eventHook);
   }
 
   /**
@@ -3494,18 +3477,7 @@ class GeneratedApiClient {
     if (!eventHookId) {
       return Promise.reject(new Error('OKTA API deleteEventHook parameter eventHookId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/eventHooks/${eventHookId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/eventHooks/${eventHookId}`
-    ];
-
-    const request = this.http.delete(
-      url,
-      null,
-      { resources }
-    );
-    return request;
+    return this.eventHookApi.deleteEventHook(eventHookId);
   }
 
   /**
@@ -3519,18 +3491,7 @@ class GeneratedApiClient {
     if (!eventHookId) {
       return Promise.reject(new Error('OKTA API getEventHook parameter eventHookId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/eventHooks/${eventHookId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/eventHooks/${eventHookId}`
-    ];
-
-    const request = this.http.getJson(
-      url,
-      null,
-      { resources }
-    );
-    return request.then(jsonRes => new models.EventHook(jsonRes, this));
+    return this.eventHookApi.getEventHook(eventHookId);
   }
 
   /**
@@ -3548,20 +3509,7 @@ class GeneratedApiClient {
     if (!eventHook) {
       return Promise.reject(new Error('OKTA API updateEventHook parameter eventHook is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/eventHooks/${eventHookId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/eventHooks/${eventHookId}`
-    ];
-
-    const request = this.http.putJson(
-      url,
-      {
-        body: eventHook
-      },
-      { resources }
-    );
-    return request.then(jsonRes => new models.EventHook(jsonRes, this));
+    return this.eventHookApi.updateEventHook(eventHookId, eventHook);
   }
 
   /**
@@ -3575,18 +3523,7 @@ class GeneratedApiClient {
     if (!eventHookId) {
       return Promise.reject(new Error('OKTA API activateEventHook parameter eventHookId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/eventHooks/${eventHookId}/lifecycle/activate`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/eventHooks/${eventHookId}`
-    ];
-
-    const request = this.http.postJson(
-      url,
-      null,
-      { resources }
-    );
-    return request.then(jsonRes => new models.EventHook(jsonRes, this));
+    return this.eventHookApi.activateEventHook(eventHookId);
   }
 
   /**
@@ -3600,18 +3537,7 @@ class GeneratedApiClient {
     if (!eventHookId) {
       return Promise.reject(new Error('OKTA API deactivateEventHook parameter eventHookId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/eventHooks/${eventHookId}/lifecycle/deactivate`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/eventHooks/${eventHookId}`
-    ];
-
-    const request = this.http.postJson(
-      url,
-      null,
-      { resources }
-    );
-    return request.then(jsonRes => new models.EventHook(jsonRes, this));
+    return this.eventHookApi.deactivateEventHook(eventHookId);
   }
 
   /**
@@ -3625,18 +3551,7 @@ class GeneratedApiClient {
     if (!eventHookId) {
       return Promise.reject(new Error('OKTA API verifyEventHook parameter eventHookId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/eventHooks/${eventHookId}/lifecycle/verify`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/eventHooks/${eventHookId}`
-    ];
-
-    const request = this.http.postJson(
-      url,
-      null,
-      { resources }
-    );
-    return request.then(jsonRes => new models.EventHook(jsonRes, this));
+    return this.eventHookApi.verifyEventHook(eventHookId);
   }
 
   /**
@@ -3708,7 +3623,11 @@ class GeneratedApiClient {
     if (!lifecycle) {
       return Promise.reject(new Error('OKTA API updateFeatureLifecycle parameter lifecycle is required.'));
     }
-    return this.featureApi.updateFeatureLifecycle(featureId, lifecycle, queryParameters);
+    let mode;
+    if (queryParameters) {
+      mode = queryParameters.mode;
+    }
+    return this.featureApi.updateFeatureLifecycle(featureId, lifecycle, mode);
   }
 
   /**
@@ -3724,16 +3643,19 @@ class GeneratedApiClient {
    * @returns {Collection} A collection that will yield {@link Group} instances.
    */
   listGroups(queryParameters) {
-    let url = `${this.baseUrl}/api/v1/groups`;
-    const queryString = qs.stringify(queryParameters || {});
-
-    url += queryString ? ('?' + queryString) : '';
-
-    return new Collection(
-      this.http,
-      url,
-      new ModelFactory(models.Group, this),
-    );
+    let q;
+    let search;
+    let after;
+    let limit;
+    let expand;
+    if (queryParameters) {
+      q = queryParameters.q;
+      search = queryParameters.search;
+      after = queryParameters.after;
+      limit = queryParameters.limit;
+      expand = queryParameters.expand;
+    }
+    return this.groupApi.listGroups(q, search, after, limit, expand);
   }
 
   /**
@@ -3747,18 +3669,7 @@ class GeneratedApiClient {
     if (!group) {
       return Promise.reject(new Error('OKTA API createGroup parameter group is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/groups`;
-
-    const resources = [];
-
-    const request = this.http.postJson(
-      url,
-      {
-        body: group
-      },
-      { resources }
-    );
-    return request.then(jsonRes => new models.Group(jsonRes, this));
+    return this.groupApi.createGroup(group);
   }
 
   /**
@@ -3773,16 +3684,17 @@ class GeneratedApiClient {
    * @returns {Collection} A collection that will yield {@link GroupRule} instances.
    */
   listGroupRules(queryParameters) {
-    let url = `${this.baseUrl}/api/v1/groups/rules`;
-    const queryString = qs.stringify(queryParameters || {});
-
-    url += queryString ? ('?' + queryString) : '';
-
-    return new Collection(
-      this.http,
-      url,
-      new ModelFactory(models.GroupRule, this),
-    );
+    let limit;
+    let after;
+    let search;
+    let expand;
+    if (queryParameters) {
+      limit = queryParameters.limit;
+      after = queryParameters.after;
+      search = queryParameters.search;
+      expand = queryParameters.expand;
+    }
+    return this.groupApi.listGroupRules(limit, after, search, expand);
   }
 
   /**
@@ -3796,18 +3708,7 @@ class GeneratedApiClient {
     if (!groupRule) {
       return Promise.reject(new Error('OKTA API createGroupRule parameter groupRule is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/groups/rules`;
-
-    const resources = [];
-
-    const request = this.http.postJson(
-      url,
-      {
-        body: groupRule
-      },
-      { resources }
-    );
-    return request.then(jsonRes => new models.GroupRule(jsonRes, this));
+    return this.groupApi.createGroupRule(groupRule);
   }
 
   /**
@@ -3822,21 +3723,11 @@ class GeneratedApiClient {
     if (!ruleId) {
       return Promise.reject(new Error('OKTA API deleteGroupRule parameter ruleId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/groups/rules/${ruleId}`;
-    const queryString = qs.stringify(queryParameters || {});
-
-    url += queryString ? ('?' + queryString) : '';
-
-    const resources = [
-      `${this.baseUrl}/api/v1/groups/rules/${ruleId}`
-    ];
-
-    const request = this.http.delete(
-      url,
-      null,
-      { resources }
-    );
-    return request;
+    let removeUsers;
+    if (queryParameters) {
+      removeUsers = queryParameters.removeUsers;
+    }
+    return this.groupApi.deleteGroupRule(ruleId, removeUsers);
   }
 
   /**
@@ -3852,21 +3743,11 @@ class GeneratedApiClient {
     if (!ruleId) {
       return Promise.reject(new Error('OKTA API getGroupRule parameter ruleId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/groups/rules/${ruleId}`;
-    const queryString = qs.stringify(queryParameters || {});
-
-    url += queryString ? ('?' + queryString) : '';
-
-    const resources = [
-      `${this.baseUrl}/api/v1/groups/rules/${ruleId}`
-    ];
-
-    const request = this.http.getJson(
-      url,
-      null,
-      { resources }
-    );
-    return request.then(jsonRes => new models.GroupRule(jsonRes, this));
+    let expand;
+    if (queryParameters) {
+      expand = queryParameters.expand;
+    }
+    return this.groupApi.getGroupRule(ruleId, expand);
   }
 
   /**
@@ -3884,20 +3765,7 @@ class GeneratedApiClient {
     if (!groupRule) {
       return Promise.reject(new Error('OKTA API updateGroupRule parameter groupRule is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/groups/rules/${ruleId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/groups/rules/${ruleId}`
-    ];
-
-    const request = this.http.putJson(
-      url,
-      {
-        body: groupRule
-      },
-      { resources }
-    );
-    return request.then(jsonRes => new models.GroupRule(jsonRes, this));
+    return this.groupApi.updateGroupRule(ruleId, groupRule);
   }
 
   /**
@@ -3910,22 +3778,7 @@ class GeneratedApiClient {
     if (!ruleId) {
       return Promise.reject(new Error('OKTA API activateGroupRule parameter ruleId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/groups/rules/${ruleId}/lifecycle/activate`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/groups/rules/${ruleId}`
-    ];
-
-    const request = this.http.post(
-      url,
-      {
-        headers: {
-          'Content-Type': 'application/json', 'Accept': 'application/json',
-        },
-      },
-      { resources }
-    );
-    return request;
+    return this.groupApi.activateGroupRule(ruleId);
   }
 
   /**
@@ -3938,22 +3791,7 @@ class GeneratedApiClient {
     if (!ruleId) {
       return Promise.reject(new Error('OKTA API deactivateGroupRule parameter ruleId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/groups/rules/${ruleId}/lifecycle/deactivate`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/groups/rules/${ruleId}`
-    ];
-
-    const request = this.http.post(
-      url,
-      {
-        headers: {
-          'Content-Type': 'application/json', 'Accept': 'application/json',
-        },
-      },
-      { resources }
-    );
-    return request;
+    return this.groupApi.deactivateGroupRule(ruleId);
   }
 
   /**
@@ -3966,18 +3804,7 @@ class GeneratedApiClient {
     if (!groupId) {
       return Promise.reject(new Error('OKTA API deleteGroup parameter groupId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/groups/${groupId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/groups/${groupId}`
-    ];
-
-    const request = this.http.delete(
-      url,
-      null,
-      { resources }
-    );
-    return request;
+    return this.groupApi.deleteGroup(groupId);
   }
 
   /**
@@ -3991,18 +3818,7 @@ class GeneratedApiClient {
     if (!groupId) {
       return Promise.reject(new Error('OKTA API getGroup parameter groupId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/groups/${groupId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/groups/${groupId}`
-    ];
-
-    const request = this.http.getJson(
-      url,
-      null,
-      { resources }
-    );
-    return request.then(jsonRes => new models.Group(jsonRes, this));
+    return this.groupApi.getGroup(groupId);
   }
 
   /**
@@ -4020,20 +3836,7 @@ class GeneratedApiClient {
     if (!group) {
       return Promise.reject(new Error('OKTA API updateGroup parameter group is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/groups/${groupId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/groups/${groupId}`
-    ];
-
-    const request = this.http.putJson(
-      url,
-      {
-        body: group
-      },
-      { resources }
-    );
-    return request.then(jsonRes => new models.Group(jsonRes, this));
+    return this.groupApi.updateGroup(groupId, group);
   }
 
   /**
@@ -4050,16 +3853,13 @@ class GeneratedApiClient {
     if (!groupId) {
       return Promise.reject(new Error('OKTA API listAssignedApplicationsForGroup parameter groupId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/groups/${groupId}/apps`;
-    const queryString = qs.stringify(queryParameters || {});
-
-    url += queryString ? ('?' + queryString) : '';
-
-    return new Collection(
-      this.http,
-      url,
-      new factories.Application(this),
-    );
+    let after;
+    let limit;
+    if (queryParameters) {
+      after = queryParameters.after;
+      limit = queryParameters.limit;
+    }
+    return this.groupApi.listAssignedApplicationsForGroup(groupId, after, limit);
   }
 
   /**
@@ -4075,16 +3875,11 @@ class GeneratedApiClient {
     if (!groupId) {
       return Promise.reject(new Error('OKTA API listGroupAssignedRoles parameter groupId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/groups/${groupId}/roles`;
-    const queryString = qs.stringify(queryParameters || {});
-
-    url += queryString ? ('?' + queryString) : '';
-
-    return new Collection(
-      this.http,
-      url,
-      new ModelFactory(models.Role, this),
-    );
+    let expand;
+    if (queryParameters) {
+      expand = queryParameters.expand;
+    }
+    return this.groupApi.listGroupAssignedRoles(groupId, expand);
   }
 
   /**
@@ -4104,23 +3899,11 @@ class GeneratedApiClient {
     if (!assignRoleRequest) {
       return Promise.reject(new Error('OKTA API assignRoleToGroup parameter assignRoleRequest is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/groups/${groupId}/roles`;
-    const queryString = qs.stringify(queryParameters || {});
-
-    url += queryString ? ('?' + queryString) : '';
-
-    const resources = [
-      `${this.baseUrl}/api/v1/groups/${groupId}`
-    ];
-
-    const request = this.http.postJson(
-      url,
-      {
-        body: assignRoleRequest
-      },
-      { resources }
-    );
-    return request.then(jsonRes => new models.Role(jsonRes, this));
+    let disableNotifications;
+    if (queryParameters) {
+      disableNotifications = queryParameters.disableNotifications;
+    }
+    return this.groupApi.assignRoleToGroup(groupId, assignRoleRequest, disableNotifications);
   }
 
   /**
@@ -4137,19 +3920,7 @@ class GeneratedApiClient {
     if (!roleId) {
       return Promise.reject(new Error('OKTA API removeRoleFromGroup parameter roleId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/groups/${groupId}/roles/${roleId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/groups/${groupId}/roles/${roleId}`,
-      `${this.baseUrl}/api/v1/groups/${groupId}`
-    ];
-
-    const request = this.http.delete(
-      url,
-      null,
-      { resources }
-    );
-    return request;
+    return this.groupApi.removeRoleFromGroup(groupId, roleId);
   }
 
   /**
@@ -4167,19 +3938,7 @@ class GeneratedApiClient {
     if (!roleId) {
       return Promise.reject(new Error('OKTA API getRole parameter roleId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/groups/${groupId}/roles/${roleId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/groups/${groupId}/roles/${roleId}`,
-      `${this.baseUrl}/api/v1/groups/${groupId}`
-    ];
-
-    const request = this.http.getJson(
-      url,
-      null,
-      { resources }
-    );
-    return request.then(jsonRes => new models.Role(jsonRes, this));
+    return this.groupApi.getRole(groupId, roleId);
   }
 
   /**
@@ -4200,16 +3959,13 @@ class GeneratedApiClient {
     if (!roleId) {
       return Promise.reject(new Error('OKTA API listApplicationTargetsForApplicationAdministratorRoleForGroup parameter roleId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/groups/${groupId}/roles/${roleId}/targets/catalog/apps`;
-    const queryString = qs.stringify(queryParameters || {});
-
-    url += queryString ? ('?' + queryString) : '';
-
-    return new Collection(
-      this.http,
-      url,
-      new ModelFactory(models.CatalogApplication, this),
-    );
+    let after;
+    let limit;
+    if (queryParameters) {
+      after = queryParameters.after;
+      limit = queryParameters.limit;
+    }
+    return this.groupApi.listApplicationTargetsForApplicationAdministratorRoleForGroup(groupId, roleId, after, limit);
   }
 
   /**
@@ -4230,20 +3986,7 @@ class GeneratedApiClient {
     if (!appName) {
       return Promise.reject(new Error('OKTA API removeApplicationTargetFromApplicationAdministratorRoleGivenToGroup parameter appName is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/groups/${groupId}/roles/${roleId}/targets/catalog/apps/${appName}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/groups/${groupId}/roles/${roleId}/targets/catalog/apps/${appName}`,
-      `${this.baseUrl}/api/v1/groups/${groupId}/roles/${roleId}`,
-      `${this.baseUrl}/api/v1/groups/${groupId}`
-    ];
-
-    const request = this.http.delete(
-      url,
-      null,
-      { resources }
-    );
-    return request;
+    return this.groupApi.removeApplicationTargetFromApplicationAdministratorRoleGivenToGroup(groupId, roleId, appName);
   }
 
   /**
@@ -4264,24 +4007,7 @@ class GeneratedApiClient {
     if (!appName) {
       return Promise.reject(new Error('OKTA API addApplicationTargetToAdminRoleGivenToGroup parameter appName is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/groups/${groupId}/roles/${roleId}/targets/catalog/apps/${appName}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/groups/${groupId}/roles/${roleId}/targets/catalog/apps/${appName}`,
-      `${this.baseUrl}/api/v1/groups/${groupId}/roles/${roleId}`,
-      `${this.baseUrl}/api/v1/groups/${groupId}`
-    ];
-
-    const request = this.http.put(
-      url,
-      {
-        headers: {
-          'Content-Type': 'application/json', 'Accept': 'application/json',
-        },
-      },
-      { resources }
-    );
-    return request;
+    return this.groupApi.addApplicationTargetToAdminRoleGivenToGroup(groupId, roleId, appName);
   }
 
   /**
@@ -4306,21 +4032,7 @@ class GeneratedApiClient {
     if (!applicationId) {
       return Promise.reject(new Error('OKTA API removeApplicationTargetFromAdministratorRoleGivenToGroup parameter applicationId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/groups/${groupId}/roles/${roleId}/targets/catalog/apps/${appName}/${applicationId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/groups/${groupId}/roles/${roleId}/targets/catalog/apps/${appName}/${applicationId}`,
-      `${this.baseUrl}/api/v1/groups/${groupId}/roles/${roleId}/targets/catalog/apps/${appName}`,
-      `${this.baseUrl}/api/v1/groups/${groupId}/roles/${roleId}`,
-      `${this.baseUrl}/api/v1/groups/${groupId}`
-    ];
-
-    const request = this.http.delete(
-      url,
-      null,
-      { resources }
-    );
-    return request;
+    return this.groupApi.removeApplicationTargetFromAdministratorRoleGivenToGroup(groupId, roleId, appName, applicationId);
   }
 
   /**
@@ -4345,25 +4057,7 @@ class GeneratedApiClient {
     if (!applicationId) {
       return Promise.reject(new Error('OKTA API addApplicationInstanceTargetToAppAdminRoleGivenToGroup parameter applicationId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/groups/${groupId}/roles/${roleId}/targets/catalog/apps/${appName}/${applicationId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/groups/${groupId}/roles/${roleId}/targets/catalog/apps/${appName}/${applicationId}`,
-      `${this.baseUrl}/api/v1/groups/${groupId}/roles/${roleId}/targets/catalog/apps/${appName}`,
-      `${this.baseUrl}/api/v1/groups/${groupId}/roles/${roleId}`,
-      `${this.baseUrl}/api/v1/groups/${groupId}`
-    ];
-
-    const request = this.http.put(
-      url,
-      {
-        headers: {
-          'Content-Type': 'application/json', 'Accept': 'application/json',
-        },
-      },
-      { resources }
-    );
-    return request;
+    return this.groupApi.addApplicationInstanceTargetToAppAdminRoleGivenToGroup(groupId, roleId, appName, applicationId);
   }
 
   /**
@@ -4384,16 +4078,13 @@ class GeneratedApiClient {
     if (!roleId) {
       return Promise.reject(new Error('OKTA API listGroupTargetsForGroupRole parameter roleId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/groups/${groupId}/roles/${roleId}/targets/groups`;
-    const queryString = qs.stringify(queryParameters || {});
-
-    url += queryString ? ('?' + queryString) : '';
-
-    return new Collection(
-      this.http,
-      url,
-      new ModelFactory(models.Group, this),
-    );
+    let after;
+    let limit;
+    if (queryParameters) {
+      after = queryParameters.after;
+      limit = queryParameters.limit;
+    }
+    return this.groupApi.listGroupTargetsForGroupRole(groupId, roleId, after, limit);
   }
 
   /**
@@ -4414,20 +4105,7 @@ class GeneratedApiClient {
     if (!targetGroupId) {
       return Promise.reject(new Error('OKTA API removeGroupTargetFromGroupAdministratorRoleGivenToGroup parameter targetGroupId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/groups/${groupId}/roles/${roleId}/targets/groups/${targetGroupId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/groups/${groupId}/roles/${roleId}/targets/groups/${targetGroupId}`,
-      `${this.baseUrl}/api/v1/groups/${groupId}/roles/${roleId}`,
-      `${this.baseUrl}/api/v1/groups/${groupId}`
-    ];
-
-    const request = this.http.delete(
-      url,
-      null,
-      { resources }
-    );
-    return request;
+    return this.groupApi.removeGroupTargetFromGroupAdministratorRoleGivenToGroup(groupId, roleId, targetGroupId);
   }
 
   /**
@@ -4448,24 +4126,7 @@ class GeneratedApiClient {
     if (!targetGroupId) {
       return Promise.reject(new Error('OKTA API addGroupTargetToGroupAdministratorRoleForGroup parameter targetGroupId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/groups/${groupId}/roles/${roleId}/targets/groups/${targetGroupId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/groups/${groupId}/roles/${roleId}/targets/groups/${targetGroupId}`,
-      `${this.baseUrl}/api/v1/groups/${groupId}/roles/${roleId}`,
-      `${this.baseUrl}/api/v1/groups/${groupId}`
-    ];
-
-    const request = this.http.put(
-      url,
-      {
-        headers: {
-          'Content-Type': 'application/json', 'Accept': 'application/json',
-        },
-      },
-      { resources }
-    );
-    return request;
+    return this.groupApi.addGroupTargetToGroupAdministratorRoleForGroup(groupId, roleId, targetGroupId);
   }
 
   /**
@@ -4482,16 +4143,13 @@ class GeneratedApiClient {
     if (!groupId) {
       return Promise.reject(new Error('OKTA API listGroupUsers parameter groupId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/groups/${groupId}/users`;
-    const queryString = qs.stringify(queryParameters || {});
-
-    url += queryString ? ('?' + queryString) : '';
-
-    return new Collection(
-      this.http,
-      url,
-      new ModelFactory(models.User, this),
-    );
+    let after;
+    let limit;
+    if (queryParameters) {
+      after = queryParameters.after;
+      limit = queryParameters.limit;
+    }
+    return this.groupApi.listGroupUsers(groupId, after, limit);
   }
 
   /**
@@ -4508,19 +4166,7 @@ class GeneratedApiClient {
     if (!userId) {
       return Promise.reject(new Error('OKTA API removeUserFromGroup parameter userId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/groups/${groupId}/users/${userId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/groups/${groupId}/users/${userId}`,
-      `${this.baseUrl}/api/v1/groups/${groupId}`
-    ];
-
-    const request = this.http.delete(
-      url,
-      null,
-      { resources }
-    );
-    return request;
+    return this.groupApi.removeUserFromGroup(groupId, userId);
   }
 
   /**
@@ -4537,23 +4183,7 @@ class GeneratedApiClient {
     if (!userId) {
       return Promise.reject(new Error('OKTA API addUserToGroup parameter userId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/groups/${groupId}/users/${userId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/groups/${groupId}/users/${userId}`,
-      `${this.baseUrl}/api/v1/groups/${groupId}`
-    ];
-
-    const request = this.http.put(
-      url,
-      {
-        headers: {
-          'Content-Type': 'application/json', 'Accept': 'application/json',
-        },
-      },
-      { resources }
-    );
-    return request;
+    return this.groupApi.addUserToGroup(groupId, userId);
   }
 
   /**

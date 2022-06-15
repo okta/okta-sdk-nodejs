@@ -248,21 +248,25 @@ const jsdocBuilder = (operation) => {
 };
 
 const typeScriptOperationSignatureBuilder = operation => {
-  const [args, returnType] = getOperationArgumentsAndReturnType(operation);
+  const [args, returnType] = getOperationArgumentsAndReturnType(operation, { tagV3Methods: true});
   return formatMethodSignature(operation.operationId, args, returnType, { tagV3Methods: true });
 };
 
 const typeScriptModelMethodSignatureBuilder = (method, modelName) => {
   const [args, returnType] = getModelMethodArgumentsAndReturnType(method, modelName);
-  return formatMethodSignature(method.alias, args, returnType, { tagV3Methods: false });
+  return formatMethodSignature(method.alias, args, returnType);
 };
 
 const typeScriptClientImportBuilder = operations => {
   const operationsImportTypes = operations.reduce((acc, operation) => {
-    const [args, returnType] = getOperationArgumentsAndReturnType(operation);
+    const [args, returnType] = getOperationArgumentsAndReturnType(operation, { tagV3Methods: true });
     const typeNames = convertTypeObjectsToTypeNames(args, returnType);
     const importableTypes = typeNames.filter(isImportableType);
-    return acc.concat(importableTypes);
+    if (!isV3Api(operation.operationId)) {
+      return acc.concat(importableTypes);
+    } else {
+      return acc;
+    }
   }, []);
 
   const uniqueImportTypes = new Set([...operationsImportTypes]);
@@ -323,7 +327,7 @@ const typeScriptModelImportBuilder = model => {
   }, model.modelName);
 };
 
-const getOperationArgumentsAndReturnType = operation => {
+const getOperationArgumentsAndReturnType = (operation, options = { tagV3Methods: false }) => {
   const { operationId, bodyModel, method, pathParams, queryParams, formData, parameters } = operation;
   const args = new Map();
 
@@ -338,11 +342,11 @@ const getOperationArgumentsAndReturnType = operation => {
     const bodyParamName = getBodyModelName(operation);
     if (bodyParamName) {
       const modelPropertiesType = operation.bodyModel === 'string' ?
-        operation.bodyModel : isV3Api(operationId) ? `${operation.bodyModel}` : `${operation.bodyModel}${OPTIONS_TYPE_SUFFIX}`;
+        operation.bodyModel : isV3Api(operationId) && options.tagV3Methods ? `${operation.bodyModel}` : `${operation.bodyModel}${OPTIONS_TYPE_SUFFIX}`;
       args.set(_.camelCase(bodyParamName), {
         isRequired: hasRequiredParameterInRequestMedia(parameters, 'body'),
         type: modelPropertiesType,
-        namespace: isV3Api(operationId) ? 'v3' : '',
+        namespace: isV3Api(operationId) && options.tagV3Methods ? 'v3' : '',
       });
     }
   }
@@ -362,7 +366,7 @@ const getOperationArgumentsAndReturnType = operation => {
   }
 
   let genericType = 'Promise';
-  let genericParameterType = isV3Api(operationId) ? 'void' : 'Response';
+  let genericParameterType = isV3Api(operationId) && options.tagV3Methods ? 'void' : 'Response';
   if (operation.responseModel) {
     genericParameterType = operation.responseModel;
     if (operation.isArray) {

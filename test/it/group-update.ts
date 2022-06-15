@@ -37,7 +37,8 @@ describe('Group API tests', () => {
     group.profile.name = 'Update Test Group - Updated';
     group.profile.description = 'Description updated';
 
-    const updatedGroup = await group.update();
+    // const updatedGroup = await group.update();
+    const updatedGroup = await client.updateGroup(group.id, group);
     utils.validateGroup(updatedGroup, group);
   });
 });

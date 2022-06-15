@@ -32,7 +32,7 @@ describe('Policy Rule API', () => {
   });
   afterEach(async () => {
     await policy.delete();
-    await group.delete();
+    await client.groupApi.deleteGroup(group.id);
   });
 
   describe('Policy rule crud', () => {

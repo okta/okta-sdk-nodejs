@@ -3,7 +3,7 @@ import {
   Client,
   Collection,
   DefaultRequestExecutor,
-  EventHook } from '@okta/okta-sdk-nodejs';
+  v3 } from '@okta/okta-sdk-nodejs';
 import getMockEventHook = require('./mocks/eventhook');
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -21,14 +21,14 @@ describe('Event Hook Crud API', () => {
   describe('Create Event hook', () => {
     let eventHook;
     afterEach(async () => {
-      await eventHook.deactivate();
-      await eventHook.delete();
+      await client.deactivateEventHook(eventHook.id);
+      await client.deleteEventHook(eventHook.id);
     });
 
     it('should return correct model', async () => {
       const mockEventHook = getMockEventHook();
       eventHook = await client.createEventHook(mockEventHook);
-      expect(eventHook).to.be.instanceOf(EventHook);
+      expect(eventHook).to.be.instanceOf(v3.EventHook);
       expect(eventHook.id).to.be.exist;
       expect(eventHook.name).to.be.equal(mockEventHook.name);
     });
@@ -40,8 +40,8 @@ describe('Event Hook Crud API', () => {
       eventHook = await client.createEventHook(getMockEventHook());
     });
     afterEach(async () => {
-      await eventHook.deactivate();
-      await eventHook.delete();
+      await client.deactivateEventHook(eventHook.id);
+      await client.deleteEventHook(eventHook.id);
     });
 
     it('should return a collection of EventHooks', async () => {
@@ -49,7 +49,7 @@ describe('Event Hook Crud API', () => {
       expect(collection).to.be.instanceOf(Collection);
       let ehFound = false;
       await collection.each(eh => {
-        expect(eh).to.be.instanceOf(EventHook);
+        expect(eh).to.be.instanceOf(v3.EventHook);
         if (eh.name === eventHook.name) {
           ehFound = true;
           return false;
@@ -65,13 +65,13 @@ describe('Event Hook Crud API', () => {
       eventHook = await client.createEventHook(getMockEventHook());
     });
     afterEach(async () => {
-      await eventHook.deactivate();
-      await eventHook.delete();
+      await client.deactivateEventHook(eventHook.id);
+      await client.deleteEventHook(eventHook.id);
     });
 
     it('should get EventHook by id', async () => {
       const eventHookFromGet = await client.getEventHook(eventHook.id);
-      expect(eventHookFromGet).to.be.instanceOf(EventHook);
+      expect(eventHookFromGet).to.be.instanceOf(v3.EventHook);
       expect(eventHookFromGet.name).to.equal(eventHook.name);
     });
   });
@@ -82,14 +82,14 @@ describe('Event Hook Crud API', () => {
       eventHook = await client.createEventHook(getMockEventHook());
     });
     afterEach(async () => {
-      await eventHook.deactivate();
-      await eventHook.delete();
+      await client.deactivateEventHook(eventHook.id);
+      await client.deleteEventHook(eventHook.id);
     });
 
     it('should update name for created eventHook', async () => {
       const mockName = 'Mock update event hook';
       eventHook.name = mockName;
-      const updatedEventHook = await eventHook.update();
+      const updatedEventHook = await client.updateEventHook(eventHook.id, eventHook);
       expect(updatedEventHook.id).to.equal(eventHook.id);
       expect(updatedEventHook.name).to.equal(mockName);
     });
@@ -102,9 +102,9 @@ describe('Event Hook Crud API', () => {
     });
 
     it('should not get eventHook after deletion', async () => {
-      await eventHook.deactivate();
-      const res = await eventHook.delete();
-      expect(res.status).to.equal(204);
+      await client.deactivateEventHook(eventHook.id);
+      const res = await client.deleteEventHook(eventHook.id);
+      expect(res).to.be.undefined;
       try {
         await client.getEventHook(eventHook.id);
       } catch (e) {

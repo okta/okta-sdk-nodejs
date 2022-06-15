@@ -3,7 +3,7 @@ import {
   Client,
   Collection,
   DefaultRequestExecutor,
-  Application } from '@okta/okta-sdk-nodejs';
+  v3 } from '@okta/okta-sdk-nodejs';
 import utils = require('../utils');
 import getMockGroup = require('./mocks/group');
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
@@ -33,17 +33,17 @@ describe('Group App API', () => {
       await groupAssignment.delete(application.id);
       await application.deactivate();
       await application.delete();
-      await group.delete();
+      await client.deleteGroup(group.id);
     });
 
     it('should return a Collection', async () => {
-      const applications = await group.listApplications();
+      const applications = await client.listAssignedApplicationsForGroup(group.id);
       expect(applications).to.be.instanceOf(Collection);
     });
 
     it('should resolve Application in collection', async () => {
-      await group.listApplications().each(application => {
-        expect(application).to.be.instanceOf(Application);
+      await (await client.listAssignedApplicationsForGroup(group.id)).each(application => {
+        expect(application).to.be.instanceOf(v3.Application);
       });
     });
   });

@@ -33,7 +33,6 @@ import { ReadStream } from 'fs';
 import { OAuth2Token } from './models/OAuth2Token';
 import { AppUser } from './models/AppUser';
 import { AppUserOptions } from './models/AppUser';
-import { Authenticator } from './models/Authenticator';
 import { AuthorizationServer } from './models/AuthorizationServer';
 import { AuthorizationServerOptions } from './models/AuthorizationServer';
 import { OAuth2Claim } from './models/OAuth2Claim';
@@ -57,35 +56,12 @@ import { EmailTemplateTestRequestOptions } from './models/EmailTemplateTestReque
 import { ThemeResponse } from './models/ThemeResponse';
 import { ThemeOptions } from './models/Theme';
 import { ImageUploadResponse } from './models/ImageUploadResponse';
-import { DomainListResponse } from './models/DomainListResponse';
-import { Domain } from './models/Domain';
-import { DomainCertificate } from './models/DomainCertificate';
-import { EventHook } from './models/EventHook';
-import { EventHookOptions } from './models/EventHook';
-import { Feature } from './models/Feature';
-import { Group } from './models/Group';
-import { GroupOptions } from './models/Group';
-import { GroupRule } from './models/GroupRule';
-import { GroupRuleOptions } from './models/GroupRule';
-import { Role } from './models/Role';
-import { AssignRoleRequestOptions } from './models/AssignRoleRequest';
-import { CatalogApplication } from './models/CatalogApplication';
-import { User } from './models/User';
 import { IdentityProvider } from './models/IdentityProvider';
 import { IdentityProviderOptions } from './models/IdentityProvider';
 import { JsonWebKeyOptions } from './models/JsonWebKey';
 import { IdentityProviderApplicationUser } from './models/IdentityProviderApplicationUser';
 import { UserIdentityProviderLinkRequestOptions } from './models/UserIdentityProviderLinkRequest';
 import { SocialAuthToken } from './models/SocialAuthToken';
-import { InlineHook } from './models/InlineHook';
-import { InlineHookPayload } from './models/InlineHookPayload';
-import { InlineHookResponse } from './models/InlineHookResponse';
-import { LogEvent } from './models/LogEvent';
-import { ProfileMapping } from './models/ProfileMapping';
-import { UserSchema } from './models/UserSchema';
-import { GroupSchema } from './models/GroupSchema';
-import { LinkedObject } from './models/LinkedObject';
-import { UserType } from './models/UserType';
 import { OrgSetting } from './models/OrgSetting';
 import { OrgSettingOptions } from './models/OrgSetting';
 import { OrgContactTypeObj } from './models/OrgContactTypeObj';
@@ -107,6 +83,7 @@ import { ThreatInsightConfiguration } from './models/ThreatInsightConfiguration'
 import { ThreatInsightConfigurationOptions } from './models/ThreatInsightConfiguration';
 import { TrustedOrigin } from './models/TrustedOrigin';
 import { TrustedOriginOptions } from './models/TrustedOrigin';
+import { User } from './models/User';
 import { CreateUserRequestOptions } from './models/CreateUserRequest';
 import { UserOptions } from './models/User';
 import { AppLink } from './models/AppLink';
@@ -120,10 +97,14 @@ import { SecurityQuestion } from './models/SecurityQuestion';
 import { ActivateFactorRequestOptions } from './models/ActivateFactorRequest';
 import { VerifyUserFactorResponse } from './models/VerifyUserFactorResponse';
 import { VerifyFactorRequestOptions } from './models/VerifyFactorRequest';
+import { Group } from './models/Group';
 import { UserActivationToken } from './models/UserActivationToken';
 import { TempPassword } from './models/TempPassword';
 import { ResetPasswordToken } from './models/ResetPasswordToken';
 import { ResponseLinks } from './models/ResponseLinks';
+import { Role } from './models/Role';
+import { AssignRoleRequestOptions } from './models/AssignRoleRequest';
+import { CatalogApplication } from './models/CatalogApplication';
 import { NetworkZone } from './models/NetworkZone';
 import { NetworkZoneOptions } from './models/NetworkZone';
 
@@ -309,14 +290,14 @@ export declare class GeneratedApiClient {
   getDomain(domainId: string): Promise<v3.Domain>;
   createCertificate(domainId: string, domainCertificate: v3.DomainCertificate): Promise<void>;
   verifyDomain(domainId: string): Promise<v3.Domain>;
-  listEventHooks(): Collection<EventHook>;
-  createEventHook(eventHook: EventHookOptions): Promise<EventHook>;
-  deleteEventHook(eventHookId: string): Promise<Response>;
-  getEventHook(eventHookId: string): Promise<EventHook>;
-  updateEventHook(eventHookId: string, eventHook: EventHookOptions): Promise<EventHook>;
-  activateEventHook(eventHookId: string): Promise<EventHook>;
-  deactivateEventHook(eventHookId: string): Promise<EventHook>;
-  verifyEventHook(eventHookId: string): Promise<EventHook>;
+  listEventHooks(): Promise<Collection<v3.EventHook>>;
+  createEventHook(eventHook: v3.EventHook): Promise<v3.EventHook>;
+  deleteEventHook(eventHookId: string): Promise<void>;
+  getEventHook(eventHookId: string): Promise<v3.EventHook>;
+  updateEventHook(eventHookId: string, eventHook: v3.EventHook): Promise<v3.EventHook>;
+  activateEventHook(eventHookId: string): Promise<v3.EventHook>;
+  deactivateEventHook(eventHookId: string): Promise<v3.EventHook>;
+  verifyEventHook(eventHookId: string): Promise<v3.EventHook>;
   listFeatures(): Promise<Collection<v3.Feature>>;
   getFeature(featureId: string): Promise<v3.Feature>;
   listFeatureDependencies(featureId: string): Promise<Collection<v3.Feature>>;
@@ -330,59 +311,59 @@ export declare class GeneratedApiClient {
     after?: string,
     limit?: number,
     expand?: string,
-  }): Collection<Group>;
-  createGroup(group: GroupOptions): Promise<Group>;
+  }): Promise<Collection<v3.Group>>;
+  createGroup(group: v3.Group): Promise<v3.Group>;
   listGroupRules(queryParameters?: {
     limit?: number,
     after?: string,
     search?: string,
     expand?: string,
-  }): Collection<GroupRule>;
-  createGroupRule(groupRule: GroupRuleOptions): Promise<GroupRule>;
+  }): Promise<Collection<v3.GroupRule>>;
+  createGroupRule(groupRule: v3.GroupRule): Promise<v3.GroupRule>;
   deleteGroupRule(ruleId: string, queryParameters?: {
     removeUsers?: boolean,
-  }): Promise<Response>;
+  }): Promise<void>;
   getGroupRule(ruleId: string, queryParameters?: {
     expand?: string,
-  }): Promise<GroupRule>;
-  updateGroupRule(ruleId: string, groupRule: GroupRuleOptions): Promise<GroupRule>;
-  activateGroupRule(ruleId: string): Promise<Response>;
-  deactivateGroupRule(ruleId: string): Promise<Response>;
-  deleteGroup(groupId: string): Promise<Response>;
-  getGroup(groupId: string): Promise<Group>;
-  updateGroup(groupId: string, group: GroupOptions): Promise<Group>;
+  }): Promise<v3.GroupRule>;
+  updateGroupRule(ruleId: string, groupRule: v3.GroupRule): Promise<v3.GroupRule>;
+  activateGroupRule(ruleId: string): Promise<void>;
+  deactivateGroupRule(ruleId: string): Promise<void>;
+  deleteGroup(groupId: string): Promise<void>;
+  getGroup(groupId: string): Promise<v3.Group>;
+  updateGroup(groupId: string, group: v3.Group): Promise<v3.Group>;
   listAssignedApplicationsForGroup(groupId: string, queryParameters?: {
     after?: string,
     limit?: number,
-  }): Collection<Application>;
+  }): Promise<Collection<v3.Application>>;
   listGroupAssignedRoles(groupId: string, queryParameters?: {
     expand?: string,
-  }): Collection<Role>;
-  assignRoleToGroup(groupId: string, assignRoleRequest: AssignRoleRequestOptions, queryParameters?: {
+  }): Promise<Collection<v3.Role>>;
+  assignRoleToGroup(groupId: string, assignRoleRequest: v3.AssignRoleRequest, queryParameters?: {
     disableNotifications?: boolean,
-  }): Promise<Role>;
-  removeRoleFromGroup(groupId: string, roleId: string): Promise<Response>;
-  getRole(groupId: string, roleId: string): Promise<Role>;
+  }): Promise<v3.Role | void>;
+  removeRoleFromGroup(groupId: string, roleId: string): Promise<void>;
+  getRole(groupId: string, roleId: string): Promise<v3.Role>;
   listApplicationTargetsForApplicationAdministratorRoleForGroup(groupId: string, roleId: string, queryParameters?: {
     after?: string,
     limit?: number,
-  }): Collection<CatalogApplication>;
-  removeApplicationTargetFromApplicationAdministratorRoleGivenToGroup(groupId: string, roleId: string, appName: string): Promise<Response>;
-  addApplicationTargetToAdminRoleGivenToGroup(groupId: string, roleId: string, appName: string): Promise<Response>;
-  removeApplicationTargetFromAdministratorRoleGivenToGroup(groupId: string, roleId: string, appName: string, applicationId: string): Promise<Response>;
-  addApplicationInstanceTargetToAppAdminRoleGivenToGroup(groupId: string, roleId: string, appName: string, applicationId: string): Promise<Response>;
+  }): Promise<Collection<v3.CatalogApplication>>;
+  removeApplicationTargetFromApplicationAdministratorRoleGivenToGroup(groupId: string, roleId: string, appName: string): Promise<void>;
+  addApplicationTargetToAdminRoleGivenToGroup(groupId: string, roleId: string, appName: string): Promise<void>;
+  removeApplicationTargetFromAdministratorRoleGivenToGroup(groupId: string, roleId: string, appName: string, applicationId: string): Promise<void>;
+  addApplicationInstanceTargetToAppAdminRoleGivenToGroup(groupId: string, roleId: string, appName: string, applicationId: string): Promise<void>;
   listGroupTargetsForGroupRole(groupId: string, roleId: string, queryParameters?: {
     after?: string,
     limit?: number,
-  }): Collection<Group>;
-  removeGroupTargetFromGroupAdministratorRoleGivenToGroup(groupId: string, roleId: string, targetGroupId: string): Promise<Response>;
-  addGroupTargetToGroupAdministratorRoleForGroup(groupId: string, roleId: string, targetGroupId: string): Promise<Response>;
+  }): Promise<Collection<v3.Group>>;
+  removeGroupTargetFromGroupAdministratorRoleGivenToGroup(groupId: string, roleId: string, targetGroupId: string): Promise<void>;
+  addGroupTargetToGroupAdministratorRoleForGroup(groupId: string, roleId: string, targetGroupId: string): Promise<void>;
   listGroupUsers(groupId: string, queryParameters?: {
     after?: string,
     limit?: number,
-  }): Collection<User>;
-  removeUserFromGroup(groupId: string, userId: string): Promise<Response>;
-  addUserToGroup(groupId: string, userId: string): Promise<Response>;
+  }): Promise<Collection<v3.User>>;
+  removeUserFromGroup(groupId: string, userId: string): Promise<void>;
+  addUserToGroup(groupId: string, userId: string): Promise<void>;
   listIdentityProviders(queryParameters?: {
     q?: string,
     after?: string,
