@@ -90,6 +90,16 @@ const V3ApiOperations = {
     'removeUserFromGroup',
     'updateGroup',
     'updateGroupRule',
+  ],
+  EventHookApi: [
+    'activateEventHook',
+    'createEventHook',
+    'deactivateEventHook',
+    'deleteEventHook',
+    'getEventHook',
+    'listEventHooks',
+    'updateEventHook',
+    'verifyEventHook',
   ]
 };
 
