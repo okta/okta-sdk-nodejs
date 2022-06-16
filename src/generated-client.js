@@ -5465,16 +5465,7 @@ class GeneratedApiClient {
    * @returns {Promise<OrgSetting>}
    */
   getOrgSettings() {
-    let url = `${this.baseUrl}/api/v1/org`;
-
-    const resources = [];
-
-    const request = this.http.getJson(
-      url,
-      null,
-      { resources }
-    );
-    return request.then(jsonRes => new models.OrgSetting(jsonRes, this));
+    return this.orgSettingApi.getOrgSettings();
   }
 
   /**
@@ -5488,18 +5479,7 @@ class GeneratedApiClient {
     if (!orgSetting) {
       return Promise.reject(new Error('OKTA API partialUpdateOrgSetting parameter orgSetting is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/org`;
-
-    const resources = [];
-
-    const request = this.http.postJson(
-      url,
-      {
-        body: orgSetting
-      },
-      { resources }
-    );
-    return request.then(jsonRes => new models.OrgSetting(jsonRes, this));
+    return this.orgSettingApi.partialUpdateOrgSetting(orgSetting);
   }
 
   /**
@@ -5513,18 +5493,7 @@ class GeneratedApiClient {
     if (!orgSetting) {
       return Promise.reject(new Error('OKTA API updateOrgSetting parameter orgSetting is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/org`;
-
-    const resources = [];
-
-    const request = this.http.putJson(
-      url,
-      {
-        body: orgSetting
-      },
-      { resources }
-    );
-    return request.then(jsonRes => new models.OrgSetting(jsonRes, this));
+    return this.orgSettingApi.updateOrgSetting(orgSetting);
   }
 
   /**
@@ -5534,13 +5503,7 @@ class GeneratedApiClient {
    * @returns {Collection} A collection that will yield {@link OrgContactTypeObj} instances.
    */
   getOrgContactTypes() {
-    let url = `${this.baseUrl}/api/v1/org/contacts`;
-
-    return new Collection(
-      this.http,
-      url,
-      new ModelFactory(models.OrgContactTypeObj, this),
-    );
+    return this.orgSettingApi.getOrgContactTypes();
   }
 
   /**
@@ -5554,18 +5517,7 @@ class GeneratedApiClient {
     if (!contactType) {
       return Promise.reject(new Error('OKTA API getOrgContactUser parameter contactType is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/org/contacts/${contactType}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/org/contacts/${contactType}`
-    ];
-
-    const request = this.http.getJson(
-      url,
-      null,
-      { resources }
-    );
-    return request.then(jsonRes => new models.OrgContactUser(jsonRes, this));
+    return this.orgSettingApi.getOrgContactUser(contactType);
   }
 
   /**
@@ -5583,20 +5535,7 @@ class GeneratedApiClient {
     if (!userIdString) {
       return Promise.reject(new Error('OKTA API updateOrgContactUser parameter userIdString is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/org/contacts/${contactType}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/org/contacts/${contactType}`
-    ];
-
-    const request = this.http.putJson(
-      url,
-      {
-        body: userIdString
-      },
-      { resources }
-    );
-    return request.then(jsonRes => new models.OrgContactUser(jsonRes, this));
+    return this.orgSettingApi.updateOrgContactUser(contactType, userIdString);
   }
 
   /**
@@ -5606,21 +5545,7 @@ class GeneratedApiClient {
    * Updates the logo for your organization.
    */
   updateOrgLogo(file) {
-    let url = `${this.baseUrl}/api/v1/org/logo`;
-
-    const resources = [];
-
-    const request = this.http.postFormDataFile(
-      url,
-      {
-        headers: {
-          'Accept': 'application/json',
-        },
-      },
-      file,
-      { resources }
-    );
-    return request;
+    return this.orgSettingApi.updateOrgLogo(file);
   }
 
   /**
@@ -5630,16 +5555,7 @@ class GeneratedApiClient {
    * @returns {Promise<OrgPreferences>}
    */
   getOrgPreferences() {
-    let url = `${this.baseUrl}/api/v1/org/preferences`;
-
-    const resources = [];
-
-    const request = this.http.getJson(
-      url,
-      null,
-      { resources }
-    );
-    return request.then(jsonRes => new models.OrgPreferences(jsonRes, this));
+    return this.orgSettingApi.getOrgPreferences();
   }
 
   /**
@@ -5649,16 +5565,7 @@ class GeneratedApiClient {
    * @returns {Promise<OrgPreferences>}
    */
   hideOktaUIFooter() {
-    let url = `${this.baseUrl}/api/v1/org/preferences/hideEndUserFooter`;
-
-    const resources = [];
-
-    const request = this.http.postJson(
-      url,
-      null,
-      { resources }
-    );
-    return request.then(jsonRes => new models.OrgPreferences(jsonRes, this));
+    return this.orgSettingApi.hideOktaUIFooter();
   }
 
   /**
@@ -5668,16 +5575,7 @@ class GeneratedApiClient {
    * @returns {Promise<OrgPreferences>}
    */
   showOktaUIFooter() {
-    let url = `${this.baseUrl}/api/v1/org/preferences/showEndUserFooter`;
-
-    const resources = [];
-
-    const request = this.http.postJson(
-      url,
-      null,
-      { resources }
-    );
-    return request.then(jsonRes => new models.OrgPreferences(jsonRes, this));
+    return this.orgSettingApi.showOktaUIFooter();
   }
 
   /**
@@ -5687,16 +5585,7 @@ class GeneratedApiClient {
    * @returns {Promise<OrgOktaCommunicationSetting>}
    */
   getOktaCommunicationSettings() {
-    let url = `${this.baseUrl}/api/v1/org/privacy/oktaCommunication`;
-
-    const resources = [];
-
-    const request = this.http.getJson(
-      url,
-      null,
-      { resources }
-    );
-    return request.then(jsonRes => new models.OrgOktaCommunicationSetting(jsonRes, this));
+    return this.orgSettingApi.getOktaCommunicationSettings();
   }
 
   /**
@@ -5706,16 +5595,7 @@ class GeneratedApiClient {
    * @returns {Promise<OrgOktaCommunicationSetting>}
    */
   optInUsersToOktaCommunicationEmails() {
-    let url = `${this.baseUrl}/api/v1/org/privacy/oktaCommunication/optIn`;
-
-    const resources = [];
-
-    const request = this.http.postJson(
-      url,
-      null,
-      { resources }
-    );
-    return request.then(jsonRes => new models.OrgOktaCommunicationSetting(jsonRes, this));
+    return this.orgSettingApi.optInUsersToOktaCommunicationEmails();
   }
 
   /**
@@ -5725,16 +5605,7 @@ class GeneratedApiClient {
    * @returns {Promise<OrgOktaCommunicationSetting>}
    */
   optOutUsersFromOktaCommunicationEmails() {
-    let url = `${this.baseUrl}/api/v1/org/privacy/oktaCommunication/optOut`;
-
-    const resources = [];
-
-    const request = this.http.postJson(
-      url,
-      null,
-      { resources }
-    );
-    return request.then(jsonRes => new models.OrgOktaCommunicationSetting(jsonRes, this));
+    return this.orgSettingApi.optOutUsersFromOktaCommunicationEmails();
   }
 
   /**
@@ -5744,16 +5615,7 @@ class GeneratedApiClient {
    * @returns {Promise<OrgOktaSupportSettingsObj>}
    */
   getOrgOktaSupportSettings() {
-    let url = `${this.baseUrl}/api/v1/org/privacy/oktaSupport`;
-
-    const resources = [];
-
-    const request = this.http.getJson(
-      url,
-      null,
-      { resources }
-    );
-    return request.then(jsonRes => new models.OrgOktaSupportSettingsObj(jsonRes, this));
+    return this.orgSettingApi.getOrgOktaSupportSettings();
   }
 
   /**
@@ -5763,16 +5625,7 @@ class GeneratedApiClient {
    * @returns {Promise<OrgOktaSupportSettingsObj>}
    */
   extendOktaSupport() {
-    let url = `${this.baseUrl}/api/v1/org/privacy/oktaSupport/extend`;
-
-    const resources = [];
-
-    const request = this.http.postJson(
-      url,
-      null,
-      { resources }
-    );
-    return request.then(jsonRes => new models.OrgOktaSupportSettingsObj(jsonRes, this));
+    return this.orgSettingApi.extendOktaSupport();
   }
 
   /**
@@ -5782,16 +5635,7 @@ class GeneratedApiClient {
    * @returns {Promise<OrgOktaSupportSettingsObj>}
    */
   grantOktaSupport() {
-    let url = `${this.baseUrl}/api/v1/org/privacy/oktaSupport/grant`;
-
-    const resources = [];
-
-    const request = this.http.postJson(
-      url,
-      null,
-      { resources }
-    );
-    return request.then(jsonRes => new models.OrgOktaSupportSettingsObj(jsonRes, this));
+    return this.orgSettingApi.grantOktaSupport();
   }
 
   /**
@@ -5801,16 +5645,7 @@ class GeneratedApiClient {
    * @returns {Promise<OrgOktaSupportSettingsObj>}
    */
   revokeOktaSupport() {
-    let url = `${this.baseUrl}/api/v1/org/privacy/oktaSupport/revoke`;
-
-    const resources = [];
-
-    const request = this.http.postJson(
-      url,
-      null,
-      { resources }
-    );
-    return request.then(jsonRes => new models.OrgOktaSupportSettingsObj(jsonRes, this));
+    return this.orgSettingApi.revokeOktaSupport();
   }
 
   /**
