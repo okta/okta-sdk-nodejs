@@ -8775,16 +8775,15 @@ class GeneratedApiClient {
    * @returns {Collection} A collection that will yield {@link NetworkZone} instances.
    */
   listNetworkZones(queryParameters) {
-    let url = `${this.baseUrl}/api/v1/zones`;
-    const queryString = qs.stringify(queryParameters || {});
-
-    url += queryString ? ('?' + queryString) : '';
-
-    return new Collection(
-      this.http,
-      url,
-      new ModelFactory(models.NetworkZone, this),
-    );
+    let after;
+    let limit;
+    let filter;
+    if (queryParameters) {
+      after = queryParameters.after;
+      limit = queryParameters.limit;
+      filter = queryParameters.filter;
+    }
+    return this.networkZoneApi.listNetworkZones(after, limit, filter);
   }
 
   /**
@@ -8798,18 +8797,7 @@ class GeneratedApiClient {
     if (!networkZone) {
       return Promise.reject(new Error('OKTA API createNetworkZone parameter networkZone is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/zones`;
-
-    const resources = [];
-
-    const request = this.http.postJson(
-      url,
-      {
-        body: networkZone
-      },
-      { resources }
-    );
-    return request.then(jsonRes => new models.NetworkZone(jsonRes, this));
+    return this.networkZoneApi.createNetworkZone(networkZone);
   }
 
   /**
@@ -8822,18 +8810,7 @@ class GeneratedApiClient {
     if (!zoneId) {
       return Promise.reject(new Error('OKTA API deleteNetworkZone parameter zoneId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/zones/${zoneId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/zones/${zoneId}`
-    ];
-
-    const request = this.http.delete(
-      url,
-      null,
-      { resources }
-    );
-    return request;
+    return this.networkZoneApi.deleteNetworkZone(zoneId);
   }
 
   /**
@@ -8847,18 +8824,7 @@ class GeneratedApiClient {
     if (!zoneId) {
       return Promise.reject(new Error('OKTA API getNetworkZone parameter zoneId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/zones/${zoneId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/zones/${zoneId}`
-    ];
-
-    const request = this.http.getJson(
-      url,
-      null,
-      { resources }
-    );
-    return request.then(jsonRes => new models.NetworkZone(jsonRes, this));
+    return this.networkZoneApi.getNetworkZone(zoneId);
   }
 
   /**
@@ -8876,20 +8842,7 @@ class GeneratedApiClient {
     if (!networkZone) {
       return Promise.reject(new Error('OKTA API updateNetworkZone parameter networkZone is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/zones/${zoneId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/zones/${zoneId}`
-    ];
-
-    const request = this.http.putJson(
-      url,
-      {
-        body: networkZone
-      },
-      { resources }
-    );
-    return request.then(jsonRes => new models.NetworkZone(jsonRes, this));
+    return this.networkZoneApi.updateNetworkZone(zoneId, networkZone);
   }
 
   /**
@@ -8903,18 +8856,7 @@ class GeneratedApiClient {
     if (!zoneId) {
       return Promise.reject(new Error('OKTA API activateNetworkZone parameter zoneId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/zones/${zoneId}/lifecycle/activate`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/zones/${zoneId}`
-    ];
-
-    const request = this.http.postJson(
-      url,
-      null,
-      { resources }
-    );
-    return request.then(jsonRes => new models.NetworkZone(jsonRes, this));
+    return this.networkZoneApi.activateNetworkZone(zoneId);
   }
 
   /**
@@ -8928,18 +8870,7 @@ class GeneratedApiClient {
     if (!zoneId) {
       return Promise.reject(new Error('OKTA API deactivateNetworkZone parameter zoneId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/zones/${zoneId}/lifecycle/deactivate`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/zones/${zoneId}`
-    ];
-
-    const request = this.http.postJson(
-      url,
-      null,
-      { resources }
-    );
-    return request.then(jsonRes => new models.NetworkZone(jsonRes, this));
+    return this.networkZoneApi.deactivateNetworkZone(zoneId);
   }
 
   _removeRestrictedModelProperties(instance, restrictedProperties) {
