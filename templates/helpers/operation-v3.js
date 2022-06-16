@@ -110,6 +110,10 @@ const V3ApiOperations = {
     'activateNetworkZone',
     'deactivateNetworkZone'
   ],
+  ThreatInsightApi: [
+    'getCurrentConfiguration',
+    'updateConfiguration'
+  ],
 };
 
 function getV3ReturnType(operationId) {
