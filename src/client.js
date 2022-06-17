@@ -118,6 +118,8 @@ class Client extends GeneratedApiClient {
     this.featureApi = new FeatureApi(configuration);
     this.groupApi = new GroupApi(configuration);
     this.eventHookApi = new EventHookApi(configuration);
+    this.networkZoneApi = new NetworkZoneApi(configuration);
+    this.threatInsightApi = new ThreatInsightApi(configuration);
     this.applicationApi = new ApplicationApi(configuration);
   }
 }
