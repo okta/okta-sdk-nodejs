@@ -3,7 +3,8 @@ import {
   Client,
   Collection,
   DefaultRequestExecutor,
-  JsonWebKey } from '@okta/okta-sdk-nodejs';
+  v3
+} from '@okta/okta-sdk-nodejs';
 import getMockAuthorizationServer = require('./mocks/authorization-server');
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -18,30 +19,30 @@ const client = new Client({
 });
 
 describe('Authorization Server Credential API', () => {
-  let authServer;
+  let authServer: v3.AuthorizationServer;
   before(async () => {
     authServer = await client.createAuthorizationServer(getMockAuthorizationServer());
   });
   after(async () => {
-    await authServer.delete();
+    await client.deleteAuthorizationServer(authServer.id);
   });
 
   describe('Get Authorization Server Keys', () => {
     it('should return a collection of JsonWebKey', async () => {
-      const collection = await authServer.listKeys();
+      const collection = await client.listAuthorizationServerKeys(authServer.id);
       expect(collection).to.be.instanceOf(Collection);
       await collection.each(key => {
-        expect(key).to.be.instanceOf(JsonWebKey);
+        expect(key).to.be.instanceOf(v3.JsonWebKey);
       });
     });
   });
 
   describe('Rotate Authorization Server Keys', () => {
     it('should return a collection of JsonWebKey', async () => {
-      const collection = await authServer.rotateKeys({ use: 'sig' });
+      const collection = await client.rotateAuthorizationServerKeys(authServer.id, { use: 'sig' });
       expect(collection).to.be.instanceOf(Collection);
       await collection.each(key => {
-        expect(key).to.be.instanceOf(JsonWebKey);
+        expect(key).to.be.instanceOf(v3.JsonWebKey);
       });
     });
   });
