@@ -26,7 +26,7 @@ const util_1 = require('../util');
 class TemplateApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   /**
      * Adds a new custom SMS template to your organization.
-     * Add SMS Template
+     * Create an SMS Template
      * @param smsTemplate
      */
   async createSmsTemplate(smsTemplate, _options) {
@@ -66,7 +66,7 @@ class TemplateApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Removes an SMS template.
-     * Remove SMS Template
+     * Delete an SMS Template
      * @param templateId
      */
   async deleteSmsTemplate(templateId, _options) {
@@ -100,7 +100,7 @@ class TemplateApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Fetches a specific template by `id`
-     * Get SMS Template
+     * Retrieve an SMS Template
      * @param templateId
      */
   async getSmsTemplate(templateId, _options) {
@@ -134,7 +134,7 @@ class TemplateApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Enumerates custom SMS templates in your organization. A subset of templates can be returned that match a template type.
-     * List SMS Templates
+     * List all SMS Templates
      * @param templateType
      */
   async listSmsTemplates(templateType, _options) {
@@ -167,7 +167,7 @@ class TemplateApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Updates only some of the SMS template properties:
-     * Partial SMS Template Update
+     * Update an SMS Template
      * @param templateId
      * @param smsTemplate
      */
@@ -213,7 +213,7 @@ class TemplateApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Updates the SMS template.
-     * Update SMS Template
+     * Replace an SMS Template
      * @param templateId
      * @param smsTemplate
      */

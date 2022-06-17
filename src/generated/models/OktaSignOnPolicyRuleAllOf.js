@@ -46,11 +46,5 @@ OktaSignOnPolicyRuleAllOf.attributeTypeMap = [
     'baseName': 'conditions',
     'type': 'OktaSignOnPolicyRuleConditions',
     'format': ''
-  },
-  {
-    'name': 'name',
-    'baseName': 'name',
-    'type': 'string',
-    'format': ''
   }
 ];

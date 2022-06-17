@@ -26,7 +26,7 @@ const util_1 = require('../util');
 class AuthenticatorApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   /**
      * Activates an authenticator by `authenticatorId`.
-     * Activate Authenticator
+     * Activate an Authenticator
      * @param authenticatorId
      */
   async activateAuthenticator(authenticatorId, _options) {
@@ -60,7 +60,7 @@ class AuthenticatorApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Deactivates an authenticator by `authenticatorId`.
-     * Deactivate Authenticator
+     * Deactivate an Authenticator
      * @param authenticatorId
      */
   async deactivateAuthenticator(authenticatorId, _options) {
@@ -94,7 +94,7 @@ class AuthenticatorApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Fetches an authenticator from your Okta organization by `authenticatorId`.
-     * Get Authenticator
+     * Retrieve an Authenticator
      * @param authenticatorId
      */
   async getAuthenticator(authenticatorId, _options) {
@@ -128,7 +128,7 @@ class AuthenticatorApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Enumerates authenticators in your organization.
-     * List Authenticators
+     * List all Authenticators
      */
   async listAuthenticators(_options) {
     let _config = _options || this.configuration;
@@ -156,7 +156,7 @@ class AuthenticatorApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Updates an authenticator
-     * Update Authenticator
+     * Replace an Authenticator
      * @param authenticatorId
      * @param authenticator
      */

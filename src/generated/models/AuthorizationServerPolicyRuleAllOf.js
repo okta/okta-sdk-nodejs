@@ -36,15 +36,15 @@ exports.AuthorizationServerPolicyRuleAllOf = AuthorizationServerPolicyRuleAllOf;
 AuthorizationServerPolicyRuleAllOf.discriminator = undefined;
 AuthorizationServerPolicyRuleAllOf.attributeTypeMap = [
   {
-    'name': 'conditions',
-    'baseName': 'conditions',
-    'type': 'AuthorizationServerPolicyRuleConditions',
-    'format': ''
-  },
-  {
     'name': 'actions',
     'baseName': 'actions',
     'type': 'AuthorizationServerPolicyRuleActions',
+    'format': ''
+  },
+  {
+    'name': 'conditions',
+    'baseName': 'conditions',
+    'type': 'AuthorizationServerPolicyRuleConditions',
     'format': ''
   }
 ];

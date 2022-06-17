@@ -27,9 +27,9 @@ import { ApplicationSettingsNotifications } from './ApplicationSettingsNotificat
 import { SwaThreeFieldApplicationSettingsApplication } from './SwaThreeFieldApplicationSettingsApplication';
 export declare class SwaThreeFieldApplicationSettings {
   'app'?: SwaThreeFieldApplicationSettingsApplication;
+  'identityStoreId'?: string;
   'implicitAssignment'?: boolean;
   'inlineHookId'?: string;
-  'identityStoreId'?: string;
   'notes'?: ApplicationSettingsNotes;
   'notifications'?: ApplicationSettingsNotifications;
   static readonly discriminator: string | undefined;

@@ -22,37 +22,37 @@ import { UserSchema } from '../models/UserSchema';
 export declare class SchemaApiRequestFactory extends BaseAPIRequestFactory {
   /**
      * Fetches the Schema for an App User
-     * Fetches the Schema for an App User
+     * Retrieve the default Application User Schema for an Application
      * @param appInstanceId
      */
   getApplicationUserSchema(appInstanceId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Fetches the group schema
-     * Fetches the group schema
+     * Retrieve the default Group Schema
      */
   getGroupSchema(_options?: Configuration): Promise<RequestContext>;
   /**
      * Fetches the schema for a Schema Id.
-     * Fetches the schema for a Schema Id.
+     * Retrieve a User Schema
      * @param schemaId
      */
   getUserSchema(schemaId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Partial updates on the User Profile properties of the Application User Schema.
-     * Partial updates on the User Profile properties of the Application User Schema.
+     * Update the default Application User Schema for an Application
      * @param appInstanceId
      * @param body
      */
   updateApplicationUserProfile(appInstanceId: string, body?: UserSchema, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Updates, adds ore removes one or more custom Group Profile properties in the schema
-     * Updates, adds ore removes one or more custom Group Profile properties in the schema
+     * Updates, adds or removes one or more custom Group Profile properties in the schema
+     * Update the default Group Schema
      * @param GroupSchema
      */
   updateGroupSchema(GroupSchema?: GroupSchema, _options?: Configuration): Promise<RequestContext>;
   /**
      * Partial updates on the User Profile properties of the user schema.
-     * Update User Profile
+     * Update a User Schema
      * @param schemaId
      * @param userSchema
      */

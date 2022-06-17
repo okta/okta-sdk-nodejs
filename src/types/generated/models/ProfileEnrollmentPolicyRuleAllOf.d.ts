@@ -22,10 +22,11 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { PolicyRuleConditions } from './PolicyRuleConditions';
 import { ProfileEnrollmentPolicyRuleActions } from './ProfileEnrollmentPolicyRuleActions';
 export declare class ProfileEnrollmentPolicyRuleAllOf {
   'actions'?: ProfileEnrollmentPolicyRuleActions;
-  'name'?: string;
+  'conditions'?: PolicyRuleConditions;
   static readonly discriminator: string | undefined;
   static readonly attributeTypeMap: Array<{
         name: string;

@@ -26,7 +26,7 @@ const util_1 = require('../util');
 class LinkedObjectApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   /**
      * Success
-     * Add Linked Object Definition
+     * Create a Linked Object Definition
      * @param linkedObject
      */
   async addLinkedObjectDefinition(linkedObject, _options) {
@@ -66,7 +66,7 @@ class LinkedObjectApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Success
-     * Delete Linked Object Definition
+     * Delete a Linked Object Definition
      * @param linkedObjectName
      */
   async deleteLinkedObjectDefinition(linkedObjectName, _options) {
@@ -100,7 +100,7 @@ class LinkedObjectApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Success
-     * Get Linked Object Definition
+     * Retrieve a Linked Object Definition
      * @param linkedObjectName
      */
   async getLinkedObjectDefinition(linkedObjectName, _options) {
@@ -134,7 +134,7 @@ class LinkedObjectApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Success
-     * List Linked Object Definitions
+     * List all Linked Object Definitions
      */
   async listLinkedObjectDefinitions(_options) {
     let _config = _options || this.configuration;

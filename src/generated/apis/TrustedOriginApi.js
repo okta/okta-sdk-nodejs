@@ -26,7 +26,7 @@ const util_1 = require('../util');
 class TrustedOriginApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   /**
      * Success
-     * Activate Trusted Origin
+     * Activate a Trusted Origin
      * @param trustedOriginId
      */
   async activateOrigin(trustedOriginId, _options) {
@@ -60,7 +60,7 @@ class TrustedOriginApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Success
-     * Create Trusted Origin
+     * Create a Trusted Origin
      * @param trustedOrigin
      */
   async createOrigin(trustedOrigin, _options) {
@@ -100,7 +100,7 @@ class TrustedOriginApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Success
-     * Deactivate Trusted Origin
+     * Deactivate a Trusted Origin
      * @param trustedOriginId
      */
   async deactivateOrigin(trustedOriginId, _options) {
@@ -134,7 +134,7 @@ class TrustedOriginApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Success
-     * Delete Trusted Origin
+     * Delete a Trusted Origin
      * @param trustedOriginId
      */
   async deleteOrigin(trustedOriginId, _options) {
@@ -168,7 +168,7 @@ class TrustedOriginApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Success
-     * Get Trusted Origin
+     * Retrieve a Trusted Origin
      * @param trustedOriginId
      */
   async getOrigin(trustedOriginId, _options) {
@@ -202,7 +202,7 @@ class TrustedOriginApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Success
-     * List Trusted Origins
+     * List all Trusted Origins
      * @param q
      * @param filter
      * @param after
@@ -250,7 +250,7 @@ class TrustedOriginApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Success
-     * Update Trusted Origin
+     * Replace a Trusted Origin
      * @param trustedOriginId
      * @param trustedOrigin
      */

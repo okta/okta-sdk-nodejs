@@ -21,12 +21,12 @@ import { ThreatInsightConfiguration } from '../models/ThreatInsightConfiguration
 export declare class ThreatInsightApiRequestFactory extends BaseAPIRequestFactory {
   /**
      * Gets current ThreatInsight configuration
-     * Get Current Configuration
+     * Retrieve the ThreatInsight Configuration
      */
   getCurrentConfiguration(_options?: Configuration): Promise<RequestContext>;
   /**
      * Updates ThreatInsight configuration
-     * Update Configuration
+     * Update the ThreatInsight Configuration
      * @param threatInsightConfiguration
      */
   updateConfiguration(threatInsightConfiguration: ThreatInsightConfiguration, _options?: Configuration): Promise<RequestContext>;

@@ -23,8 +23,8 @@
  * Do not edit the class manually.
  */
 export declare class BehaviorDetectionRuleSettingsBasedOnEventHistory {
-  'minEventsNeededForEvaluation'?: number;
   'maxEventsUsedForEvaluation'?: number;
+  'minEventsNeededForEvaluation'?: number;
   static readonly discriminator: string | undefined;
   static readonly attributeTypeMap: Array<{
         name: string;

@@ -46,11 +46,5 @@ AccessPolicyRuleAllOf.attributeTypeMap = [
     'baseName': 'conditions',
     'type': 'AccessPolicyRuleConditions',
     'format': ''
-  },
-  {
-    'name': 'name',
-    'baseName': 'name',
-    'type': 'string',
-    'format': ''
   }
 ];

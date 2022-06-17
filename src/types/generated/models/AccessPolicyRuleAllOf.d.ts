@@ -27,7 +27,6 @@ import { AccessPolicyRuleConditions } from './AccessPolicyRuleConditions';
 export declare class AccessPolicyRuleAllOf {
   'actions'?: AccessPolicyRuleActions;
   'conditions'?: AccessPolicyRuleConditions;
-  'name'?: string;
   static readonly discriminator: string | undefined;
   static readonly attributeTypeMap: Array<{
         name: string;

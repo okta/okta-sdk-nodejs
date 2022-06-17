@@ -28,7 +28,7 @@ const util_1 = require('../util');
 class ApplicationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   /**
      * Activates an inactive application.
-     * Activate Application
+     * Activate an Application
      * @param appId
      */
   async activateApplication(appId, _options) {
@@ -62,7 +62,7 @@ class ApplicationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Activates the default Provisioning Connection for an application.
-     * Activate default Provisioning Connection for application
+     * Activate the default Provisioning Connection
      * @param appId
      */
   async activateDefaultProvisioningConnectionForApplication(appId, _options) {
@@ -96,7 +96,7 @@ class ApplicationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Assigns an user to an application with [credentials](#application-user-credentials-object) and an app-specific [profile](#application-user-profile-object). Profile mappings defined for the application are first applied before applying any profile properties specified in the request.
-     * Assign User to Application for SSO & Provisioning
+     * Assign a User
      * @param appId
      * @param appUser
      */
@@ -142,7 +142,7 @@ class ApplicationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Clones a X.509 certificate for an application key credential from a source application to target application.
-     * Clone Application Key Credential
+     * Clone a Key Credential
      * @param appId
      * @param keyId
      * @param targetAid Unique key of the target Application
@@ -191,7 +191,7 @@ class ApplicationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Adds a new application to your Okta organization.
-     * Add Application
+     * Create an Application
      * @param application
      * @param activate Executes activation lifecycle operation when creating the app
      * @param OktaAccessGateway_Agent
@@ -239,7 +239,7 @@ class ApplicationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Assigns a group to an application
-     * Assign Group to Application
+     * Assign a Group
      * @param appId
      * @param groupId
      * @param applicationGroupAssignment
@@ -287,7 +287,7 @@ class ApplicationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Deactivates an active application.
-     * Deactivate Application
+     * Deactivate an Application
      * @param appId
      */
   async deactivateApplication(appId, _options) {
@@ -321,7 +321,7 @@ class ApplicationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Deactivates the default Provisioning Connection for an application.
-     * Deactivate default Provisioning Connection for application
+     * Deactivate the default Provisioning Connection for an Application
      * @param appId
      */
   async deactivateDefaultProvisioningConnectionForApplication(appId, _options) {
@@ -355,7 +355,7 @@ class ApplicationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Removes an inactive application.
-     * Delete Application
+     * Delete an Application
      * @param appId
      */
   async deleteApplication(appId, _options) {
@@ -389,7 +389,7 @@ class ApplicationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Removes a group assignment from an application.
-     * Remove Group from Application
+     * Unassign a Group
      * @param appId
      * @param groupId
      */
@@ -429,7 +429,7 @@ class ApplicationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Removes an assignment for a user from an application.
-     * Remove User from Application
+     * Unassign a User
      * @param appId
      * @param userId
      * @param sendEmail
@@ -474,7 +474,7 @@ class ApplicationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Generates a new X.509 certificate for an application key credential
-     * Generate Key Credential for Application
+     * Generate a Key Credential
      * @param appId
      * @param validityYears
      */
@@ -513,7 +513,7 @@ class ApplicationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Generates a new key pair and returns the Certificate Signing Request for it.
-     * Generate Certificate Signing Request for Application
+     * Generate a Certificate Signing Request
      * @param appId
      * @param metadata
      */
@@ -559,7 +559,7 @@ class ApplicationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Fetches an application from your Okta organization by `id`.
-     * Get Application
+     * Retrieve an Application
      * @param appId
      * @param expand
      */
@@ -598,7 +598,7 @@ class ApplicationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Fetches an application group assignment
-     * Get Assigned Group for Application
+     * Retrieve an Assigned Group
      * @param appId
      * @param groupId
      * @param expand
@@ -643,7 +643,7 @@ class ApplicationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Gets a specific application key credential by kid
-     * Get Key Credential for Application
+     * Retrieve a Key Credential
      * @param appId
      * @param keyId
      */
@@ -683,7 +683,7 @@ class ApplicationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Fetches a specific user assignment for application by `id`.
-     * Get Assigned User for Application
+     * Retrieve an Assigned User
      * @param appId
      * @param userId
      * @param expand
@@ -728,7 +728,7 @@ class ApplicationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Fetches a certificate signing request for the app by `id`.
-     * Get Certificate Signing Request
+     * Retrieve a Certificate Signing Request
      * @param appId
      * @param csrId
      */
@@ -768,7 +768,7 @@ class ApplicationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Get default Provisioning Connection for application
-     * Fetches the default Provisioning Connection for an application.
+     * Retrieve the default Provisioning Connection
      * @param appId
      */
   async getDefaultProvisioningConnectionForApplication(appId, _options) {
@@ -802,7 +802,7 @@ class ApplicationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Fetches a Feature object for an application.
-     * Fetches a Feature object for an application.
+     * Retrieve a Feature
      * @param appId
      * @param name
      */
@@ -842,7 +842,7 @@ class ApplicationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Gets a token for the specified application
-     * Get OAuth 2.0 Token for Application
+     * Retrieve an OAuth 2.0 Token
      * @param appId
      * @param tokenId
      * @param expand
@@ -887,7 +887,7 @@ class ApplicationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Fetches a single scope consent grant for the application
-     * Get Scope Consent Grant for Application
+     * Retrieve a Scope Consent Grant
      * @param appId
      * @param grantId
      * @param expand
@@ -927,7 +927,7 @@ class ApplicationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Grants consent for the application to request an OAuth 2.0 Okta scope
-     * Grant Consent to Scope for Application
+     * Grant Consent to Scope
      * @param appId
      * @param oAuth2ScopeConsentGrant
      */
@@ -968,7 +968,7 @@ class ApplicationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Enumerates group assignments for an application.
-     * List Groups Assigned to Application
+     * List all Assigned Groups
      * @param appId
      * @param q
      * @param after Specifies the pagination cursor for the next page of assignments
@@ -1022,7 +1022,7 @@ class ApplicationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Enumerates key credentials for an application
-     * List Key Credentials for Application
+     * List all Key Credentials
      * @param appId
      */
   async listApplicationKeys(appId, _options) {
@@ -1056,7 +1056,7 @@ class ApplicationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Enumerates all assigned [application users](#application-user-model) for an application.
-     * List Users Assigned to Application
+     * List all Assigned Users
      * @param appId
      * @param q
      * @param query_scope
@@ -1120,7 +1120,7 @@ class ApplicationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Enumerates apps added to your organization with pagination. A subset of apps can be returned that match a supported filter expression or query.
-     * List Applications
+     * List all Applications
      * @param q
      * @param after Specifies the pagination cursor for the next page of apps
      * @param limit Specifies the number of results for a page
@@ -1178,7 +1178,7 @@ class ApplicationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Enumerates Certificate Signing Requests for an application
-     * List Certificate Signing Requests for Application
+     * List all Certificate Signing Requests
      * @param appId
      */
   async listCsrsForApplication(appId, _options) {
@@ -1212,7 +1212,7 @@ class ApplicationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * List Features for application
-     * Fetches the Feature objects for an application.
+     * List all Features
      * @param appId
      */
   async listFeaturesForApplication(appId, _options) {
@@ -1246,7 +1246,7 @@ class ApplicationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Lists all tokens for the application
-     * Lists OAuth 2.0 Tokens for Application
+     * List all OAuth 2.0 Tokens
      * @param appId
      * @param expand
      * @param after
@@ -1295,7 +1295,7 @@ class ApplicationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Lists all scope consent grants for the application
-     * List Scope Consent Grants for Application
+     * List all Scope Consent Grants
      * @param appId
      * @param expand
      */
@@ -1329,7 +1329,7 @@ class ApplicationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Updates a certificate signing request for the app with a signed X.509 certificate and adds it into the application key credentials
-     * Publish Certificate Signing Request
+     * Publish a Certificate Signing Request
      * @param appId
      * @param csrId
      * @param body
@@ -1383,7 +1383,7 @@ class ApplicationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Revokes a certificate signing request and deletes the key pair from the application.
-     * Revoke Certificate Signing Request
+     * Revoke a Certificate Signing Request
      * @param appId
      * @param csrId
      */
@@ -1423,7 +1423,7 @@ class ApplicationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Revokes the specified token for the specified application
-     * Revoke an OAuth 2.0 Token for Application
+     * Revoke an OAuth 2.0 Token
      * @param appId
      * @param tokenId
      */
@@ -1463,7 +1463,7 @@ class ApplicationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Revokes all tokens for the specified application
-     * Revoke All OAuth 2.0 Tokens for Application
+     * Revoke all OAuth 2.0 Tokens
      * @param appId
      */
   async revokeOAuth2TokensForApplication(appId, _options) {
@@ -1497,7 +1497,7 @@ class ApplicationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Revokes permission for the application to request the given scope
-     * Revoke Scope Consent Grant for Application
+     * Revoke a Scope Consent Grant
      * @param appId
      * @param grantId
      */
@@ -1532,7 +1532,7 @@ class ApplicationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Set default Provisioning Connection for application
-     * Sets the default Provisioning Connection for an application.
+     * Update the default Provisioning Connection
      * @param appId
      * @param ProvisioningConnectionRequest
      * @param activate
@@ -1583,7 +1583,7 @@ class ApplicationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Updates an application in your organization.
-     * Update Application
+     * Replace an Application
      * @param appId
      * @param application
      */
@@ -1629,7 +1629,7 @@ class ApplicationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Updates a user's profile for an application
-     * Update Application Profile for Assigned User
+     * Update an Application Profile for Assigned User
      * @param appId
      * @param userId
      * @param appUser
@@ -1681,7 +1681,7 @@ class ApplicationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Updates a Feature object for an application.
-     * Updates a Feature object for an application.
+     * Update a Feature
      * @param appId
      * @param name
      * @param CapabilitiesObject
@@ -1732,8 +1732,8 @@ class ApplicationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     return requestContext;
   }
   /**
-     * Update the logo for an application.
      * The file must be in PNG, JPG, or GIF format, and less than 1 MB in size. For best results use landscape orientation, a transparent background, and a minimum size of 420px by 120px to prevent upscaling.
+     * Upload a Logo
      * @param appId
      * @param file
      */

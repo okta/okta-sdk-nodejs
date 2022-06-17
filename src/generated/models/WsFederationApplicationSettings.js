@@ -36,9 +36,9 @@ exports.WsFederationApplicationSettings = WsFederationApplicationSettings;
 WsFederationApplicationSettings.discriminator = undefined;
 WsFederationApplicationSettings.attributeTypeMap = [
   {
-    'name': 'app',
-    'baseName': 'app',
-    'type': 'WsFederationApplicationSettingsApplication',
+    'name': 'identityStoreId',
+    'baseName': 'identityStoreId',
+    'type': 'string',
     'format': ''
   },
   {
@@ -54,12 +54,6 @@ WsFederationApplicationSettings.attributeTypeMap = [
     'format': ''
   },
   {
-    'name': 'identityStoreId',
-    'baseName': 'identityStoreId',
-    'type': 'string',
-    'format': ''
-  },
-  {
     'name': 'notes',
     'baseName': 'notes',
     'type': 'ApplicationSettingsNotes',
@@ -69,6 +63,12 @@ WsFederationApplicationSettings.attributeTypeMap = [
     'name': 'notifications',
     'baseName': 'notifications',
     'type': 'ApplicationSettingsNotifications',
+    'format': ''
+  },
+  {
+    'name': 'app',
+    'baseName': 'app',
+    'type': 'WsFederationApplicationSettingsApplication',
     'format': ''
   }
 ];

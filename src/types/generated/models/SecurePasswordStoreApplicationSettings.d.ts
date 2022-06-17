@@ -26,12 +26,12 @@ import { ApplicationSettingsNotes } from './ApplicationSettingsNotes';
 import { ApplicationSettingsNotifications } from './ApplicationSettingsNotifications';
 import { SecurePasswordStoreApplicationSettingsApplication } from './SecurePasswordStoreApplicationSettingsApplication';
 export declare class SecurePasswordStoreApplicationSettings {
-  'app'?: SecurePasswordStoreApplicationSettingsApplication;
+  'identityStoreId'?: string;
   'implicitAssignment'?: boolean;
   'inlineHookId'?: string;
-  'identityStoreId'?: string;
   'notes'?: ApplicationSettingsNotes;
   'notifications'?: ApplicationSettingsNotifications;
+  'app'?: SecurePasswordStoreApplicationSettingsApplication;
   static readonly discriminator: string | undefined;
   static readonly attributeTypeMap: Array<{
         name: string;

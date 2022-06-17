@@ -25,10 +25,9 @@
 import { ApplicationSettingsNotes } from './ApplicationSettingsNotes';
 import { ApplicationSettingsNotifications } from './ApplicationSettingsNotifications';
 export declare class ApplicationSettings {
-  'app'?: any;
+  'identityStoreId'?: string;
   'implicitAssignment'?: boolean;
   'inlineHookId'?: string;
-  'identityStoreId'?: string;
   'notes'?: ApplicationSettingsNotes;
   'notifications'?: ApplicationSettingsNotifications;
   static readonly discriminator: string | undefined;

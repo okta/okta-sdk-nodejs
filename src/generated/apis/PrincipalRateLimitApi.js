@@ -26,7 +26,7 @@ const util_1 = require('../util');
 class PrincipalRateLimitApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   /**
      * Adds a new Principal Rate Limit entity to your organization. In the current release, we only allow one Principal Rate Limit entity per org and principal.
-     * Create Principal Rate Limit entity
+     * Create a Principal Rate Limit
      * @param entity
      */
   async createPrincipalRateLimitEntity(entity, _options) {
@@ -66,7 +66,7 @@ class PrincipalRateLimitApiRequestFactory extends baseapi_1.BaseAPIRequestFactor
   }
   /**
      * Fetches a Principal Rate Limit entity by `principalRateLimitId`.
-     * Get Principal Rate Limit entity
+     * Retrieve a Principal Rate Limit
      * @param principalRateLimitId id of the Principal Rate Limit
      */
   async getPrincipalRateLimitEntity(principalRateLimitId, _options) {
@@ -100,7 +100,7 @@ class PrincipalRateLimitApiRequestFactory extends baseapi_1.BaseAPIRequestFactor
   }
   /**
      * Lists all Principal Rate Limit entities considering the provided parameters.
-     * List Principal Rate Limit entities
+     * List all Principal Rate Limits
      * @param filter
      * @param after
      * @param limit
@@ -143,7 +143,7 @@ class PrincipalRateLimitApiRequestFactory extends baseapi_1.BaseAPIRequestFactor
   }
   /**
      * Update a  Principal Rate Limit entity by `principalRateLimitId`.
-     * Update Principal Rate Limit entity
+     * Replace a Principal Rate Limit
      * @param principalRateLimitId id of the Principal Rate Limit
      * @param entity
      */

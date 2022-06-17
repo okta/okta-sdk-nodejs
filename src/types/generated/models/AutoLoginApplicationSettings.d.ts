@@ -26,10 +26,9 @@ import { ApplicationSettingsNotes } from './ApplicationSettingsNotes';
 import { ApplicationSettingsNotifications } from './ApplicationSettingsNotifications';
 import { AutoLoginApplicationSettingsSignOn } from './AutoLoginApplicationSettingsSignOn';
 export declare class AutoLoginApplicationSettings {
-  'app'?: any;
+  'identityStoreId'?: string;
   'implicitAssignment'?: boolean;
   'inlineHookId'?: string;
-  'identityStoreId'?: string;
   'notes'?: ApplicationSettingsNotes;
   'notifications'?: ApplicationSettingsNotifications;
   'signOn'?: AutoLoginApplicationSettingsSignOn;

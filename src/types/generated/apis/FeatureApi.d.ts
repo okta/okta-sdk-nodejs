@@ -21,30 +21,30 @@ import { Feature } from '../models/Feature';
 export declare class FeatureApiRequestFactory extends BaseAPIRequestFactory {
   /**
      * Success
-     * Get Feature
+     * Retrieve a Feature
      * @param featureId
      */
   getFeature(featureId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Success
-     * List Feature Dependencies
+     * List all Dependencies
      * @param featureId
      */
   listFeatureDependencies(featureId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Success
-     * List Feature Dependents
+     * List all Dependents
      * @param featureId
      */
   listFeatureDependents(featureId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Success
-     * List Features
+     * List all Features
      */
   listFeatures(_options?: Configuration): Promise<RequestContext>;
   /**
      * Success
-     * Update Feature Lifecycle
+     * Update a Feature Lifecycle
      * @param featureId
      * @param lifecycle
      * @param mode

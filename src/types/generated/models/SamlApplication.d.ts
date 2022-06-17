@@ -23,8 +23,11 @@
  * Do not edit the class manually.
  */
 import { Application } from './Application';
+import { ApplicationCredentials } from './ApplicationCredentials';
 import { SamlApplicationSettings } from './SamlApplicationSettings';
 export declare class SamlApplication extends Application {
+  'credentials'?: ApplicationCredentials;
+  'name'?: string;
   'settings'?: SamlApplicationSettings;
   static readonly discriminator: string | undefined;
   static readonly attributeTypeMap: Array<{

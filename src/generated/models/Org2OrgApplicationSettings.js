@@ -42,6 +42,12 @@ Org2OrgApplicationSettings.attributeTypeMap = [
     'format': ''
   },
   {
+    'name': 'identityStoreId',
+    'baseName': 'identityStoreId',
+    'type': 'string',
+    'format': ''
+  },
+  {
     'name': 'implicitAssignment',
     'baseName': 'implicitAssignment',
     'type': 'boolean',
@@ -50,12 +56,6 @@ Org2OrgApplicationSettings.attributeTypeMap = [
   {
     'name': 'inlineHookId',
     'baseName': 'inlineHookId',
-    'type': 'string',
-    'format': ''
-  },
-  {
-    'name': 'identityStoreId',
-    'baseName': 'identityStoreId',
     'type': 'string',
     'format': ''
   },

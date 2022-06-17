@@ -21,49 +21,49 @@ import { EventHook } from '../models/EventHook';
 export declare class EventHookApiRequestFactory extends BaseAPIRequestFactory {
   /**
      * Success
-     * Activate Event Hook
+     * Activate an Event Hook
      * @param eventHookId
      */
   activateEventHook(eventHookId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Success
-     * Create Event Hook
+     * Create an Event Hook
      * @param eventHook
      */
   createEventHook(eventHook: EventHook, _options?: Configuration): Promise<RequestContext>;
   /**
      * Success
-     * Deactivate Event Hook
+     * Deactivate an Event Hook
      * @param eventHookId
      */
   deactivateEventHook(eventHookId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Success
-     * Delete Event Hook
+     * Delete an Event Hook
      * @param eventHookId
      */
   deleteEventHook(eventHookId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Success
-     * Get Event Hook
+     * Retrieve an Event Hook
      * @param eventHookId
      */
   getEventHook(eventHookId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Success
-     * List Event Hooks
+     * List all Event Hooks
      */
   listEventHooks(_options?: Configuration): Promise<RequestContext>;
   /**
      * Success
-     * Update Event Hook
+     * Replace an Event Hook
      * @param eventHookId
      * @param eventHook
      */
   updateEventHook(eventHookId: string, eventHook: EventHook, _options?: Configuration): Promise<RequestContext>;
   /**
      * Success
-     * Verify Event Hook
+     * Verify an Event Hook
      * @param eventHookId
      */
   verifyEventHook(eventHookId: string, _options?: Configuration): Promise<RequestContext>;

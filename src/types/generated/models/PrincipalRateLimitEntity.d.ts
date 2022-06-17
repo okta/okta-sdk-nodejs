@@ -23,6 +23,9 @@
  * Do not edit the class manually.
  */
 import { PrincipalType } from './PrincipalType';
+/**
+*
+*/
 export declare class PrincipalRateLimitEntity {
   'createdBy'?: string;
   'createdDate'?: Date;

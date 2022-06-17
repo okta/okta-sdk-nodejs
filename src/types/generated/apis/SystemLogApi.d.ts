@@ -21,7 +21,7 @@ import { LogEvent } from '../models/LogEvent';
 export declare class SystemLogApiRequestFactory extends BaseAPIRequestFactory {
   /**
      * The Okta System Log API provides read access to your organization’s system log. This API provides more functionality than the Events API
-     * Fetch a list of events from your Okta organization system log.
+     * List all System Log Events
      * @param since
      * @param until
      * @param filter

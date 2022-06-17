@@ -36,9 +36,9 @@ exports.BookmarkApplicationSettings = BookmarkApplicationSettings;
 BookmarkApplicationSettings.discriminator = undefined;
 BookmarkApplicationSettings.attributeTypeMap = [
   {
-    'name': 'app',
-    'baseName': 'app',
-    'type': 'BookmarkApplicationSettingsApplication',
+    'name': 'identityStoreId',
+    'baseName': 'identityStoreId',
+    'type': 'string',
     'format': ''
   },
   {
@@ -54,12 +54,6 @@ BookmarkApplicationSettings.attributeTypeMap = [
     'format': ''
   },
   {
-    'name': 'identityStoreId',
-    'baseName': 'identityStoreId',
-    'type': 'string',
-    'format': ''
-  },
-  {
     'name': 'notes',
     'baseName': 'notes',
     'type': 'ApplicationSettingsNotes',
@@ -69,6 +63,12 @@ BookmarkApplicationSettings.attributeTypeMap = [
     'name': 'notifications',
     'baseName': 'notifications',
     'type': 'ApplicationSettingsNotifications',
+    'format': ''
+  },
+  {
+    'name': 'app',
+    'baseName': 'app',
+    'type': 'BookmarkApplicationSettingsApplication',
     'format': ''
   }
 ];

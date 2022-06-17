@@ -7,7 +7,8 @@ sed -i '' '/this.factorType =/d' ./src/generated/models/*.ts
 sed -i '' '/this.signOnMode =/d' ./src/generated/models/*.ts
 sed -i '' '/this.type =/d' ./src/generated/models/*.ts
 sed -i '' '/^import { Set }/d' ./src/generated/models/*.ts
-ignoredFiles=(
+ignoredFiles=()
+_ignoredFiles=(
     "AccessPolicy"
     "AccessPolicyRule"
     "Application"

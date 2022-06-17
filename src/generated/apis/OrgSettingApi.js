@@ -64,7 +64,7 @@ class OrgSettingApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Extends the length of time that Okta Support can access your org by 24 hours. This means that 24 hours are added to the remaining access time.
-     * Extend Okta Support
+     * Extend Okta Support Access
      */
   async extendOktaSupport(_options) {
     let _config = _options || this.configuration;
@@ -92,7 +92,7 @@ class OrgSettingApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Gets Okta Communication Settings of your organization.
-     * Get Okta Communication Settings
+     * Retreive the Okta Communication Settings
      */
   async getOktaCommunicationSettings(_options) {
     let _config = _options || this.configuration;
@@ -120,7 +120,7 @@ class OrgSettingApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Gets Contact Types of your organization.
-     * Get org contact types
+     * Retrieve the Org Contact Types
      */
   async getOrgContactTypes(_options) {
     let _config = _options || this.configuration;
@@ -148,7 +148,7 @@ class OrgSettingApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Retrieves the URL of the User associated with the specified Contact Type.
-     * Get org contact user
+     * Retrieve the User of the Contact Type
      * @param contactType
      */
   async getOrgContactUser(contactType, _options) {
@@ -182,7 +182,7 @@ class OrgSettingApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Gets Okta Support Settings of your organization.
-     * Get Okta Support settings
+     * Retrieve the Okta Support Settings
      */
   async getOrgOktaSupportSettings(_options) {
     let _config = _options || this.configuration;
@@ -210,7 +210,7 @@ class OrgSettingApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Gets preferences of your organization.
-     * Get org preferences
+     * Retrieve the Org Preferences
      */
   async getOrgPreferences(_options) {
     let _config = _options || this.configuration;
@@ -238,7 +238,7 @@ class OrgSettingApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Get settings of your organization.
-     * Get org settings
+     * Retrieve the Org Settings
      */
   async getOrgSettings(_options) {
     let _config = _options || this.configuration;
@@ -266,7 +266,7 @@ class OrgSettingApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Enables you to temporarily allow Okta Support to access your org as an administrator for eight hours.
-     * Grant Okta Support
+     * Grant Okta Support Access to your Org
      */
   async grantOktaSupport(_options) {
     let _config = _options || this.configuration;
@@ -294,7 +294,7 @@ class OrgSettingApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Hide the Okta UI footer for all end users of your organization.
-     * Show Okta UI Footer
+     * Update the Preference to Hide the Okta Dashboard Footer
      */
   async hideOktaUIFooter(_options) {
     let _config = _options || this.configuration;
@@ -322,7 +322,7 @@ class OrgSettingApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Opts in all users of this org to Okta Communication emails.
-     * Opt in all users to Okta Communication emails
+     * Opt in all Users to Okta Communication emails
      */
   async optInUsersToOktaCommunicationEmails(_options) {
     let _config = _options || this.configuration;
@@ -350,7 +350,7 @@ class OrgSettingApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Opts out all users of this org from Okta Communication emails.
-     * Opt out all users from Okta Communication emails
+     * Opt out all Users from Okta Communication emails
      */
   async optOutUsersFromOktaCommunicationEmails(_options) {
     let _config = _options || this.configuration;
@@ -378,7 +378,7 @@ class OrgSettingApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Partial update settings of your organization.
-     * Partial update Org Setting
+     * Update the Org Settings
      * @param OrgSetting
      */
   async partialUpdateOrgSetting(OrgSetting, _options) {
@@ -414,7 +414,7 @@ class OrgSettingApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Revokes Okta Support access to your organization.
-     * Extend Okta Support
+     * Revoke Okta Support Access
      */
   async revokeOktaSupport(_options) {
     let _config = _options || this.configuration;
@@ -442,7 +442,7 @@ class OrgSettingApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Makes the Okta UI footer visible for all end users of your organization.
-     * Show Okta UI Footer
+     * Update the Preference to Show the Okta Dashboard Footer
      */
   async showOktaUIFooter(_options) {
     let _config = _options || this.configuration;
@@ -470,7 +470,7 @@ class OrgSettingApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Updates the User associated with the specified Contact Type.
-     * Update org contact user
+     * Replace the User of the Contact Type
      * @param contactType
      * @param orgContactUser
      */
@@ -572,7 +572,7 @@ class OrgSettingApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Update settings of your organization.
-     * Update Org setting
+     * Replace the Org Settings
      * @param orgSetting
      */
   async updateOrgSetting(orgSetting, _options) {

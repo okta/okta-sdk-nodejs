@@ -21,25 +21,25 @@ import { LinkedObject } from '../models/LinkedObject';
 export declare class LinkedObjectApiRequestFactory extends BaseAPIRequestFactory {
   /**
      * Success
-     * Add Linked Object Definition
+     * Create a Linked Object Definition
      * @param linkedObject
      */
   addLinkedObjectDefinition(linkedObject: LinkedObject, _options?: Configuration): Promise<RequestContext>;
   /**
      * Success
-     * Delete Linked Object Definition
+     * Delete a Linked Object Definition
      * @param linkedObjectName
      */
   deleteLinkedObjectDefinition(linkedObjectName: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Success
-     * Get Linked Object Definition
+     * Retrieve a Linked Object Definition
      * @param linkedObjectName
      */
   getLinkedObjectDefinition(linkedObjectName: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Success
-     * List Linked Object Definitions
+     * List all Linked Object Definitions
      */
   listLinkedObjectDefinitions(_options?: Configuration): Promise<RequestContext>;
 }

@@ -26,7 +26,7 @@ const util_1 = require('../util');
 class UserFactorApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   /**
      * The `sms` and `token:software:totp` factor types require activation to complete the enrollment process.
-     * Activate Factor
+     * Activate a Factor
      * @param userId
      * @param factorId
      * @param body
@@ -74,7 +74,7 @@ class UserFactorApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Unenrolls an existing factor for the specified user, allowing the user to enroll a new factor.
-     * Delete Factor
+     * Delete a Factor
      * @param userId
      * @param factorId
      * @param removeEnrollmentRecovery
@@ -119,7 +119,7 @@ class UserFactorApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Enrolls a user with a supported factor.
-     * Enroll Factor
+     * Enroll a Factor
      * @param userId
      * @param body Factor
      * @param updatePhone
@@ -185,7 +185,7 @@ class UserFactorApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Fetches a factor for the specified user
-     * Get Factor
+     * Retrieve a Factor
      * @param userId
      * @param factorId
      */
@@ -225,7 +225,7 @@ class UserFactorApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Polls factors verification transaction for status.
-     * Get Factor Transaction Status
+     * Retrieve a Factor Transaction Status
      * @param userId
      * @param factorId
      * @param transactionId
@@ -271,7 +271,7 @@ class UserFactorApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Enumerates all the enrolled factors for the specified user
-     * List Factors
+     * List all Factors
      * @param userId
      */
   async listFactors(userId, _options) {
@@ -305,7 +305,7 @@ class UserFactorApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Enumerates all the supported factors that can be enrolled for the specified user
-     * List Supported Factors
+     * List all Supported Factors
      * @param userId
      */
   async listSupportedFactors(userId, _options) {
@@ -339,7 +339,7 @@ class UserFactorApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Enumerates all available security questions for a user's `question` factor
-     * List Supported Security Questions
+     * List all Supported Security Questions
      * @param userId
      */
   async listSupportedSecurityQuestions(userId, _options) {
@@ -368,7 +368,7 @@ class UserFactorApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Verifies an OTP for a `token` or `token:hardware` factor
-     * Verify MFA Factor
+     * Verify an MFA Factor
      * @param userId
      * @param factorId
      * @param templateId

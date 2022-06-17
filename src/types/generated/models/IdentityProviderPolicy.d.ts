@@ -24,10 +24,12 @@
  */
 import { Policy } from './Policy';
 import { PolicyAccountLink } from './PolicyAccountLink';
+import { PolicyRuleConditions } from './PolicyRuleConditions';
 import { PolicySubject } from './PolicySubject';
 import { Provisioning } from './Provisioning';
 export declare class IdentityProviderPolicy extends Policy {
   'accountLink'?: PolicyAccountLink;
+  'conditions'?: PolicyRuleConditions;
   'maxClockSkew'?: number;
   'provisioning'?: Provisioning;
   'subject'?: PolicySubject;

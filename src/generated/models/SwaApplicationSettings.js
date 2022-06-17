@@ -36,9 +36,9 @@ exports.SwaApplicationSettings = SwaApplicationSettings;
 SwaApplicationSettings.discriminator = undefined;
 SwaApplicationSettings.attributeTypeMap = [
   {
-    'name': 'app',
-    'baseName': 'app',
-    'type': 'SwaApplicationSettingsApplication',
+    'name': 'identityStoreId',
+    'baseName': 'identityStoreId',
+    'type': 'string',
     'format': ''
   },
   {
@@ -54,12 +54,6 @@ SwaApplicationSettings.attributeTypeMap = [
     'format': ''
   },
   {
-    'name': 'identityStoreId',
-    'baseName': 'identityStoreId',
-    'type': 'string',
-    'format': ''
-  },
-  {
     'name': 'notes',
     'baseName': 'notes',
     'type': 'ApplicationSettingsNotes',
@@ -69,6 +63,12 @@ SwaApplicationSettings.attributeTypeMap = [
     'name': 'notifications',
     'baseName': 'notifications',
     'type': 'ApplicationSettingsNotifications',
+    'format': ''
+  },
+  {
+    'name': 'app',
+    'baseName': 'app',
+    'type': 'SwaApplicationSettingsApplication',
     'format': ''
   }
 ];

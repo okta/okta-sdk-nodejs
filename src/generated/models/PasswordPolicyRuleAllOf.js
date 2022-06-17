@@ -46,11 +46,5 @@ PasswordPolicyRuleAllOf.attributeTypeMap = [
     'baseName': 'conditions',
     'type': 'PasswordPolicyRuleConditions',
     'format': ''
-  },
-  {
-    'name': 'name',
-    'baseName': 'name',
-    'type': 'string',
-    'format': ''
   }
 ];

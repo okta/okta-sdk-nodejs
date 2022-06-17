@@ -24,8 +24,8 @@
  */
 import { LocationGranularity } from './LocationGranularity';
 export declare class BehaviorRuleSettingsAnomalousLocation {
-  'minEventsNeededForEvaluation'?: number;
   'maxEventsUsedForEvaluation'?: number;
+  'minEventsNeededForEvaluation'?: number;
   'granularity': LocationGranularity;
   /**
     * Required when `granularity` is `LAT_LONG`. Radius from the provided coordinates in kilometers.

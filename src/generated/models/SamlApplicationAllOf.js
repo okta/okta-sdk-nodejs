@@ -36,6 +36,18 @@ exports.SamlApplicationAllOf = SamlApplicationAllOf;
 SamlApplicationAllOf.discriminator = undefined;
 SamlApplicationAllOf.attributeTypeMap = [
   {
+    'name': 'credentials',
+    'baseName': 'credentials',
+    'type': 'ApplicationCredentials',
+    'format': ''
+  },
+  {
+    'name': 'name',
+    'baseName': 'name',
+    'type': 'string',
+    'format': ''
+  },
+  {
     'name': 'settings',
     'baseName': 'settings',
     'type': 'SamlApplicationSettings',

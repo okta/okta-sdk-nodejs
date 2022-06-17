@@ -26,12 +26,12 @@ import { ApplicationSettingsNotes } from './ApplicationSettingsNotes';
 import { ApplicationSettingsNotifications } from './ApplicationSettingsNotifications';
 import { BasicApplicationSettingsApplication } from './BasicApplicationSettingsApplication';
 export declare class BasicApplicationSettings {
-  'app'?: BasicApplicationSettingsApplication;
+  'identityStoreId'?: string;
   'implicitAssignment'?: boolean;
   'inlineHookId'?: string;
-  'identityStoreId'?: string;
   'notes'?: ApplicationSettingsNotes;
   'notifications'?: ApplicationSettingsNotifications;
+  'app'?: BasicApplicationSettingsApplication;
   static readonly discriminator: string | undefined;
   static readonly attributeTypeMap: Array<{
         name: string;

@@ -23,7 +23,9 @@
  * Do not edit the class manually.
  */
 import { Policy } from './Policy';
+import { PolicyRuleConditions } from './PolicyRuleConditions';
 export declare class AccessPolicy extends Policy {
+  'conditions'?: PolicyRuleConditions;
   static readonly discriminator: string | undefined;
   static readonly attributeTypeMap: Array<{
         name: string;

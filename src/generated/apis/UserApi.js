@@ -26,7 +26,7 @@ const util_1 = require('../util');
 class UserApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   /**
      * Activates a user.  This operation can only be performed on users with a `STAGED` status.  Activation of a user is an asynchronous operation. The user will have the `transitioningToStatus` property with a value of `ACTIVE` during activation to indicate that the user hasn't completed the asynchronous operation.  The user will have a status of `ACTIVE` when the activation process is complete.
-     * Activate User
+     * Activate a User
      * @param userId
      * @param sendEmail Sends an activation email to the user if true
      */
@@ -68,8 +68,8 @@ class UserApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     return requestContext;
   }
   /**
-     * Success
-     * Add All Apps as Target to Role
+     * Assign all Apps as Target to Role
+     * Assign all Apps as Target to Role
      * @param userId
      * @param roleId
      */
@@ -109,7 +109,7 @@ class UserApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Success
-     * Add Application Target to Admin Role for User
+     * Assign an Application Target to Administrator Role
      * @param userId
      * @param roleId
      * @param appName
@@ -155,7 +155,7 @@ class UserApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Add App Instance Target to App Administrator Role given to a User
-     * Add App Instance Target to App Administrator Role given to a User
+     * Assign an Application Instance Target to an Application Administrator Role
      * @param userId
      * @param roleId
      * @param appName
@@ -206,8 +206,8 @@ class UserApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     return requestContext;
   }
   /**
-     * Success
-     * Add Group Target to Role
+     * Assign a Group Target to Role
+     * Assign a Group Target to Role
      * @param userId
      * @param roleId
      * @param groupId
@@ -253,7 +253,7 @@ class UserApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Assigns a role to a user.
-     * Assign Role to User
+     * Assign a Role
      * @param userId
      * @param assignRoleRequest
      * @param disableNotifications
@@ -401,7 +401,7 @@ class UserApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Removes all active identity provider sessions. This forces the user to authenticate on the next operation. Optionally revokes OpenID Connect and OAuth refresh and access tokens issued to the user.
-     * Clear User Sessions
+     * Delete all User Sessions
      * @param userId
      * @param oauthTokens Revoke issued OpenID Connect and OAuth refresh and access tokens
      */
@@ -440,7 +440,7 @@ class UserApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Creates a new user in your Okta organization with or without credentials.
-     * Create User
+     * Create a User
      * @param body
      * @param activate Executes activation lifecycle operation when creating the user
      * @param provider Indicates whether to create a user with a specified authentication provider
@@ -495,7 +495,7 @@ class UserApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Deletes a user permanently.  This operation can only be performed on users that have a `DEPROVISIONED` status.  **This action cannot be recovered!**
-     * Delete User
+     * Delete a User
      * @param userId
      * @param sendEmail
      */
@@ -534,7 +534,7 @@ class UserApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Deactivates a user. This operation can only be performed on users that do not have a `DEPROVISIONED` status. While the asynchronous operation (triggered by HTTP header `Prefer: respond-async`) is proceeding the user's `transitioningToStatus` property is `DEPROVISIONED`. The user's status is `DEPROVISIONED` when the deactivation process is complete.
-     * Deactivate User
+     * Deactivate a User
      * @param userId
      * @param sendEmail
      */
@@ -731,7 +731,7 @@ class UserApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Get linked objects for a user, relationshipName can be a primary or associated relationship name
-     * Get Linked Objects for User
+     * List all Linked Objects
      * @param userId
      * @param relationshipName
      * @param after
@@ -781,7 +781,7 @@ class UserApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Gets a refresh token issued for the specified User and Client.
-     * Get Refresh Token for User and Client
+     * Retrieve a Refresh Token for a Client
      * @param userId
      * @param clientId
      * @param tokenId
@@ -842,7 +842,7 @@ class UserApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Fetches a user from your Okta organization.
-     * Get User
+     * Retrieve a User
      * @param userId
      */
   async getUser(userId, _options) {
@@ -876,7 +876,7 @@ class UserApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Gets a grant for the specified user
-     * Get User Grant
+     * Retrieve a User Grant
      * @param userId
      * @param grantId
      * @param expand
@@ -921,7 +921,7 @@ class UserApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Gets role that is assigned to user.
-     * Get User Role
+     * Retrieve a Role
      * @param userId
      * @param roleId
      */
@@ -961,7 +961,7 @@ class UserApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Fetches appLinks for all direct or indirect (via group membership) assigned applications.
-     * Get Assigned App Links
+     * List all Assigned Application Links
      * @param userId
      */
   async listAppLinks(userId, _options) {
@@ -995,7 +995,7 @@ class UserApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Lists all App targets for an `APP_ADMIN` Role assigned to a User. This methods return list may include full Applications or Instances. The response for an instance will have an `ID` value, while Application will not have an ID.
-     * List Application Targets for Application Administrator Role for User
+     * List all Application Targets for Application Administrator Role
      * @param userId
      * @param roleId
      * @param after
@@ -1045,7 +1045,7 @@ class UserApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Lists all roles assigned to a user.
-     * List Assigned Roles for User
+     * List all Assigned Roles
      * @param userId
      * @param expand
      */
@@ -1084,7 +1084,7 @@ class UserApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Lists all grants for a specified user and client
-     * List Grants for User and Client
+     * List all Grants for a Client
      * @param userId
      * @param clientId
      * @param expand
@@ -1139,7 +1139,7 @@ class UserApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Success
-     * List Group Targets for Role
+     * List all Group Targets for Role
      * @param userId
      * @param roleId
      * @param after
@@ -1189,7 +1189,7 @@ class UserApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Lists all refresh tokens issued for the specified User and Client.
-     * List Refresh Tokens for User and Client
+     * List all Refresh Tokens for a Client
      * @param userId
      * @param clientId
      * @param expand
@@ -1244,7 +1244,7 @@ class UserApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Lists all client resources for which the specified user has grants or tokens.
-     * List User Clients
+     * List all Clients
      * @param userId
      */
   async listUserClients(userId, _options) {
@@ -1278,7 +1278,7 @@ class UserApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Lists all grants for the specified user
-     * List User Grants
+     * List all User Grants
      * @param userId
      * @param scopeId
      * @param expand
@@ -1332,7 +1332,7 @@ class UserApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Fetches the groups of which the user is a member.
-     * Get Member Groups
+     * List all Groups
      * @param userId
      */
   async listUserGroups(userId, _options) {
@@ -1366,7 +1366,7 @@ class UserApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Lists the IdPs associated with the user.
-     * Listing IdPs associated with a user
+     * List all Identity Providers
      * @param userId
      */
   async listUserIdentityProviders(userId, _options) {
@@ -1400,7 +1400,7 @@ class UserApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Lists users in your organization with pagination in most cases.  A subset of users can be returned that match a supported filter expression or search criteria.
-     * List Users
+     * List all Users
      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/reference/core-okta-api/#pagination) for more information.
      * @param q Finds a user that matches firstName, lastName, and email properties
      * @param limit Specifies the number of results returned. Defaults to 10 if &#x60;q&#x60; is provided.
@@ -1463,7 +1463,7 @@ class UserApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Fetch a user by `id`, `login`, or `login shortname` if the short name is unambiguous.
-     * Partial Update User
+     * Update a User
      * @param userId
      * @param user
      * @param strict
@@ -1514,7 +1514,7 @@ class UserApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Reactivates a user.  This operation can only be performed on users with a `PROVISIONED` status.  This operation restarts the activation workflow if for some reason the user activation was not completed when using the activationToken from [Activate User](#activate-user).
-     * Reactivate User
+     * Reactivate a User
      * @param userId
      * @param sendEmail Sends an activation email to the user if true
      */
@@ -1553,7 +1553,7 @@ class UserApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Remove App Instance Target to App Administrator Role given to a User
-     * Remove App Instance Target to App Administrator Role given to a User
+     * Unassign an Application Instance Target to Application Administrator Role
      * @param userId
      * @param roleId
      * @param appName
@@ -1605,7 +1605,7 @@ class UserApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Success
-     * Remove Application Target from Application Administrator Role for User
+     * Unassign an Application Target from Application Administrator Role
      * @param userId
      * @param roleId
      * @param appName
@@ -1650,8 +1650,8 @@ class UserApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     return requestContext;
   }
   /**
-     * Success
-     * Remove Group Target from Role
+     * Unassign a Group Target from Role
+     * Unassign a Group Target from Role
      * @param userId
      * @param roleId
      * @param groupId
@@ -1697,7 +1697,7 @@ class UserApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Delete linked objects for a user, relationshipName can be ONLY a primary relationship name
-     * Remove Linked Object for User
+     * Delete a Linked Object
      * @param userId
      * @param relationshipName
      */
@@ -1737,7 +1737,7 @@ class UserApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Unassigns a role from a user.
-     * Remove Role from User
+     * Delete a Role
      * @param userId
      * @param roleId
      */
@@ -1777,7 +1777,7 @@ class UserApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * This operation resets all factors for the specified user. All MFA factor enrollments returned to the unenrolled state. The user's status remains ACTIVE. This link is present only if the user is currently enrolled in one or more MFA factors.
-     * Reset Factors
+     * Reset all Factors
      * @param userId
      */
   async resetFactors(userId, _options) {
@@ -1854,7 +1854,7 @@ class UserApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Revokes all grants for the specified user and client
-     * Revoke Grants for User and Client
+     * Revoke all Grants for a Client
      * @param userId
      * @param clientId
      */
@@ -1894,7 +1894,7 @@ class UserApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Revokes the specified refresh token.
-     * Revoke Token for User and Client
+     * Revoke a Token for a Client
      * @param userId
      * @param clientId
      * @param tokenId
@@ -1940,7 +1940,7 @@ class UserApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Revokes all refresh tokens issued for the specified User and Client.
-     * Revoke Tokens for User and Client
+     * Revoke all Refresh Tokens for a Client
      * @param userId
      * @param clientId
      */
@@ -1980,7 +1980,7 @@ class UserApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Revokes one grant for a specified user
-     * Revoke User Grant
+     * Revoke a User Grant
      * @param userId
      * @param grantId
      */
@@ -2020,7 +2020,7 @@ class UserApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Revokes all grants for a specified user
-     * Revoke User Grants
+     * Revoke all User Grants
      * @param userId
      */
   async revokeUserGrants(userId, _options) {
@@ -2053,8 +2053,8 @@ class UserApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     return requestContext;
   }
   /**
-     * Sets a linked object for a user.
-     * Set Linked Object for User
+     * Sets a linked object for two users.
+     * Create a Linked Object for two User
      * @param associatedUserId
      * @param primaryRelationshipName
      * @param primaryUserId
@@ -2095,7 +2095,7 @@ class UserApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Suspends a user.  This operation can only be performed on users with an `ACTIVE` status.  The user will have a status of `SUSPENDED` when the process is complete.
-     * Suspend User
+     * Suspend a User
      * @param userId
      */
   async suspendUser(userId, _options) {
@@ -2129,7 +2129,7 @@ class UserApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Unlocks a user with a `LOCKED_OUT` status and returns them to `ACTIVE` status.  Users will be able to login with their current password.
-     * Unlock User
+     * Unlock a User
      * @param userId
      */
   async unlockUser(userId, _options) {
@@ -2163,7 +2163,7 @@ class UserApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Unsuspends a user and returns them to the `ACTIVE` state.  This operation can only be performed on users that have a `SUSPENDED` status.
-     * Unsuspend User
+     * Unsuspend a User
      * @param userId
      */
   async unsuspendUser(userId, _options) {
@@ -2197,7 +2197,7 @@ class UserApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Update a user's profile and/or credentials using strict-update semantics.
-     * Update User
+     * Replace a User
      * @param userId
      * @param user
      * @param strict
