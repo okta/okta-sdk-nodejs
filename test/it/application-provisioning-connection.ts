@@ -15,10 +15,10 @@ const client = new Client({
 });
 
 describe('Application API: provisioning connection for application', () => {
-  let application: v3.Org2OrgApplication;
+  let application: v3.BookmarkApplication;
 
   beforeEach(async () => {
-    application = await client.createApplication(utils.getOrg2OrgApplicationOptions());
+    application = await client.createApplication(utils.getBookmarkApplication());
   });
 
   afterEach(async () => {

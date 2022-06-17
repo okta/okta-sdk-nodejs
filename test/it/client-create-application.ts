@@ -96,7 +96,7 @@ describe('client.createApplication()', () => {
   });
 
   it('should allow me to create a SWA plugin application', async () => {
-    const application: v3.SwaApplication = {
+    const application: v3.BrowserPluginApplication = {
       name: 'template_swa',
       label: `node-sdk: Sample Plugin App - ${faker.random.word()}`.substring(0, 49),
       signOnMode: 'BROWSER_PLUGIN',
@@ -110,14 +110,13 @@ describe('client.createApplication()', () => {
       }
     };
 
-    let createdApplication: v3.SwaApplication;
+    let createdApplication: v3.BrowserPluginApplication;
 
     try {
       await utils.removeAppByLabel(client, application.label);
       createdApplication = await client.createApplication(application);
       expect(createdApplication).to.be.instanceof(v3.Application);
       expect(createdApplication).to.be.instanceof(v3.BrowserPluginApplication);
-      expect(createdApplication).to.be.instanceof(v3.SwaApplication);
       expect(createdApplication.name).to.equal(application.name);
       expect(createdApplication.label).to.equal(application.label);
       expect(createdApplication.signOnMode).to.equal(application.signOnMode);
@@ -138,7 +137,7 @@ describe('client.createApplication()', () => {
   });
 
   it('should allow me to create a 3-field SWA plugin application', async () => {
-    const application: v3.SwaThreeFieldApplication = {
+    const application: v3.BrowserPluginApplication = {
       name: 'template_swa3field',
       label: `node-sdk: Sample Plugin App 3-field - ${faker.random.word()}`.substring(0, 49),
       signOnMode: 'BROWSER_PLUGIN',
@@ -154,21 +153,18 @@ describe('client.createApplication()', () => {
       }
     };
 
-    let createdApplication: v3.SwaThreeFieldApplication;
+    let createdApplication: v3.BrowserPluginApplication;
 
     try {
       await utils.removeAppByLabel(client, application.label);
       createdApplication = await client.createApplication(application);
       expect(createdApplication).to.be.instanceof(v3.Application);
       expect(createdApplication).to.be.instanceof(v3.BrowserPluginApplication);
-      expect(createdApplication).to.be.instanceof(v3.SwaThreeFieldApplication);
       expect(createdApplication.name).to.equal(application.name);
       expect(createdApplication.label).to.equal(application.label);
       expect(createdApplication.signOnMode).to.equal(application.signOnMode);
       // expect(createdApplication.settings).to.be.instanceof(v3.ApplicationSettings);
-      expect(createdApplication.settings).to.be.instanceof(v3.SwaThreeFieldApplicationSettings);
       // expect(createdApplication.settings.app).to.be.instanceof(v3.ApplicationSettingsApplication);
-      expect(createdApplication.settings.app).to.be.instanceof(v3.SwaThreeFieldApplicationSettingsApplication);
       expect(createdApplication.settings.app.buttonSelector).to.equal(application.settings.app.buttonSelector);
       expect(createdApplication.settings.app.passwordSelector).to.equal(application.settings.app.passwordSelector);
       expect(createdApplication.settings.app.userNameSelector).to.equal(application.settings.app.userNameSelector);
