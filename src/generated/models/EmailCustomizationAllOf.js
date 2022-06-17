@@ -36,8 +36,14 @@ exports.EmailCustomizationAllOf = EmailCustomizationAllOf;
 EmailCustomizationAllOf.discriminator = undefined;
 EmailCustomizationAllOf.attributeTypeMap = [
   {
-    'name': 'language',
-    'baseName': 'language',
+    'name': 'created',
+    'baseName': 'created',
+    'type': 'Date',
+    'format': 'date-time'
+  },
+  {
+    'name': 'id',
+    'baseName': 'id',
     'type': 'string',
     'format': ''
   },
@@ -48,16 +54,10 @@ EmailCustomizationAllOf.attributeTypeMap = [
     'format': ''
   },
   {
-    'name': 'id',
-    'baseName': 'id',
+    'name': 'language',
+    'baseName': 'language',
     'type': 'string',
     'format': ''
-  },
-  {
-    'name': 'created',
-    'baseName': 'created',
-    'type': 'Date',
-    'format': 'date-time'
   },
   {
     'name': 'lastUpdated',

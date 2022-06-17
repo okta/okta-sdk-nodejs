@@ -21,7 +21,7 @@ class PromiseAgentPoolsApi {
   }
   /**
       * Activates scheduled Agent pool update
-      * Activate Agent pool update
+      * Activate an Agent Pool update
       * @param poolId Id of the agent pool for which the settings will apply
       * @param updateId Id of the update
       */
@@ -31,7 +31,7 @@ class PromiseAgentPoolsApi {
   }
   /**
       * Creates an Agent pool update \\n For user flow 2 manual update, starts the update immediately. \\n For user flow 3, schedules the update based on the configured update window and delay.
-      * Create an Agent pool update
+      * Create an Agent Pool update
       * @param poolId Id of the agent pool for which the settings will apply
       * @param AgentPoolUpdate
       */
@@ -41,7 +41,7 @@ class PromiseAgentPoolsApi {
   }
   /**
       * Deactivates scheduled Agent pool update
-      * Deactivate Agent pool update
+      * Deactivate an Agent Pool update
       * @param poolId Id of the agent pool for which the settings will apply
       * @param updateId Id of the update
       */
@@ -51,7 +51,7 @@ class PromiseAgentPoolsApi {
   }
   /**
       * Deletes Agent pool update
-      * Delete Agent pool update
+      * Delete an Agent Pool update
       * @param poolId Id of the agent pool for which the settings will apply
       * @param updateId Id of the update
       */
@@ -61,7 +61,7 @@ class PromiseAgentPoolsApi {
   }
   /**
       * Fetches AgentPools based on request parameters for a given org
-      * Fetch AgentPools
+      * List all Agent Pools
       * @param limitPerPoolType Maximum number of AgentPools being returned
       * @param poolType Agent type to search for
       * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/reference/core-okta-api/#pagination) for more information.
@@ -72,7 +72,7 @@ class PromiseAgentPoolsApi {
   }
   /**
       * Gets Agent pool update from updateId
-      * Get Agent pool update by id
+      * Retrieve an Agent Pool update by id
       * @param poolId Id of the agent pool for which the settings will apply
       * @param updateId Id of the update
       */
@@ -82,7 +82,7 @@ class PromiseAgentPoolsApi {
   }
   /**
       * Gets the current state of the agent pool update instance settings
-      * Get Agent pool update settings
+      * Retrieve an Agent Pool update's settings
       * @param poolId Id of the agent pool for which the settings will apply
       */
   getAgentPoolsUpdateSettings(poolId, _options) {
@@ -91,7 +91,7 @@ class PromiseAgentPoolsApi {
   }
   /**
       * Gets List of Agent pool updates
-      * List Agent pool updates
+      * List all Agent Pool updates
       * @param poolId Id of the agent pool for which the settings will apply
       * @param scheduled Scope the list only to scheduled or ad-hoc updates. If the parameter is not provided we will return the whole list of updates.
       */
@@ -101,7 +101,7 @@ class PromiseAgentPoolsApi {
   }
   /**
       * Pauses running or queued Agent pool update
-      * Pause Agent pool update
+      * Pause an Agent Pool update
       * @param poolId Id of the agent pool for which the settings will apply
       * @param updateId Id of the update
       */
@@ -111,7 +111,7 @@ class PromiseAgentPoolsApi {
   }
   /**
       * Resumes running or queued Agent pool update
-      * Resume Agent pool update
+      * Resume an Agent Pool update
       * @param poolId Id of the agent pool for which the settings will apply
       * @param updateId Id of the update
       */
@@ -121,7 +121,7 @@ class PromiseAgentPoolsApi {
   }
   /**
       * Retries Agent pool update
-      * Retry Agent pool update
+      * Retry an Agent Pool update
       * @param poolId Id of the agent pool for which the settings will apply
       * @param updateId Id of the update
       */
@@ -131,7 +131,7 @@ class PromiseAgentPoolsApi {
   }
   /**
       * Updates Agent pool update settings
-      * Update Agent pool update settings
+      * Update an Agent pool update settings
       * @param poolId Id of the agent pool for which the settings will apply
       * @param AgentPoolUpdateSetting
       */
@@ -141,7 +141,7 @@ class PromiseAgentPoolsApi {
   }
   /**
       * Stops Agent pool update
-      * Stop Agent pool update
+      * Stop an Agent Pool update
       * @param poolId Id of the agent pool for which the settings will apply
       * @param updateId Id of the update
       */
@@ -151,7 +151,7 @@ class PromiseAgentPoolsApi {
   }
   /**
       * Updates Agent pool update and return latest agent pool update
-      * Change Agent pool update by id
+      * Update an Agent Pool update by id
       * @param poolId Id of the agent pool for which the settings will apply
       * @param updateId Id of the update
       * @param AgentPoolUpdate
@@ -169,7 +169,7 @@ class PromiseApiTokenApi {
   }
   /**
       * Get the metadata for an active API token by id.
-      * Get the Metadata for an API Token
+      * Retrieve an API Token's Metadata
       * @param apiTokenId id of the API Token
       */
   getApiToken(apiTokenId, _options) {
@@ -178,7 +178,7 @@ class PromiseApiTokenApi {
   }
   /**
       * Enumerates the metadata of the active API tokens in your organization.
-      * List API Token Metadata
+      * List all API Token Metadata
       * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/reference/core-okta-api/#pagination) for more information.
       * @param limit A limit on the number of objects to return.
       * @param q Finds a token that matches the name or clientName.
@@ -213,7 +213,7 @@ class PromiseApplicationApi {
   }
   /**
       * Activates an inactive application.
-      * Activate Application
+      * Activate an Application
       * @param appId
       */
   activateApplication(appId, _options) {
@@ -222,7 +222,7 @@ class PromiseApplicationApi {
   }
   /**
       * Activates the default Provisioning Connection for an application.
-      * Activate default Provisioning Connection for application
+      * Activate the default Provisioning Connection
       * @param appId
       */
   activateDefaultProvisioningConnectionForApplication(appId, _options) {
@@ -231,7 +231,7 @@ class PromiseApplicationApi {
   }
   /**
       * Assigns an user to an application with [credentials](#application-user-credentials-object) and an app-specific [profile](#application-user-profile-object). Profile mappings defined for the application are first applied before applying any profile properties specified in the request.
-      * Assign User to Application for SSO & Provisioning
+      * Assign a User
       * @param appId
       * @param appUser
       */
@@ -241,7 +241,7 @@ class PromiseApplicationApi {
   }
   /**
       * Clones a X.509 certificate for an application key credential from a source application to target application.
-      * Clone Application Key Credential
+      * Clone a Key Credential
       * @param appId
       * @param keyId
       * @param targetAid Unique key of the target Application
@@ -252,7 +252,7 @@ class PromiseApplicationApi {
   }
   /**
       * Adds a new application to your Okta organization.
-      * Add Application
+      * Create an Application
       * @param application
       * @param activate Executes activation lifecycle operation when creating the app
       * @param OktaAccessGateway_Agent
@@ -263,7 +263,7 @@ class PromiseApplicationApi {
   }
   /**
       * Assigns a group to an application
-      * Assign Group to Application
+      * Assign a Group
       * @param appId
       * @param groupId
       * @param applicationGroupAssignment
@@ -274,7 +274,7 @@ class PromiseApplicationApi {
   }
   /**
       * Deactivates an active application.
-      * Deactivate Application
+      * Deactivate an Application
       * @param appId
       */
   deactivateApplication(appId, _options) {
@@ -283,7 +283,7 @@ class PromiseApplicationApi {
   }
   /**
       * Deactivates the default Provisioning Connection for an application.
-      * Deactivate default Provisioning Connection for application
+      * Deactivate the default Provisioning Connection for an Application
       * @param appId
       */
   deactivateDefaultProvisioningConnectionForApplication(appId, _options) {
@@ -292,7 +292,7 @@ class PromiseApplicationApi {
   }
   /**
       * Removes an inactive application.
-      * Delete Application
+      * Delete an Application
       * @param appId
       */
   deleteApplication(appId, _options) {
@@ -301,7 +301,7 @@ class PromiseApplicationApi {
   }
   /**
       * Removes a group assignment from an application.
-      * Remove Group from Application
+      * Unassign a Group
       * @param appId
       * @param groupId
       */
@@ -311,7 +311,7 @@ class PromiseApplicationApi {
   }
   /**
       * Removes an assignment for a user from an application.
-      * Remove User from Application
+      * Unassign a User
       * @param appId
       * @param userId
       * @param sendEmail
@@ -322,7 +322,7 @@ class PromiseApplicationApi {
   }
   /**
       * Generates a new X.509 certificate for an application key credential
-      * Generate Key Credential for Application
+      * Generate a Key Credential
       * @param appId
       * @param validityYears
       */
@@ -332,7 +332,7 @@ class PromiseApplicationApi {
   }
   /**
       * Generates a new key pair and returns the Certificate Signing Request for it.
-      * Generate Certificate Signing Request for Application
+      * Generate a Certificate Signing Request
       * @param appId
       * @param metadata
       */
@@ -342,7 +342,7 @@ class PromiseApplicationApi {
   }
   /**
       * Fetches an application from your Okta organization by `id`.
-      * Get Application
+      * Retrieve an Application
       * @param appId
       * @param expand
       */
@@ -352,7 +352,7 @@ class PromiseApplicationApi {
   }
   /**
       * Fetches an application group assignment
-      * Get Assigned Group for Application
+      * Retrieve an Assigned Group
       * @param appId
       * @param groupId
       * @param expand
@@ -363,7 +363,7 @@ class PromiseApplicationApi {
   }
   /**
       * Gets a specific application key credential by kid
-      * Get Key Credential for Application
+      * Retrieve a Key Credential
       * @param appId
       * @param keyId
       */
@@ -373,7 +373,7 @@ class PromiseApplicationApi {
   }
   /**
       * Fetches a specific user assignment for application by `id`.
-      * Get Assigned User for Application
+      * Retrieve an Assigned User
       * @param appId
       * @param userId
       * @param expand
@@ -384,7 +384,7 @@ class PromiseApplicationApi {
   }
   /**
       * Fetches a certificate signing request for the app by `id`.
-      * Get Certificate Signing Request
+      * Retrieve a Certificate Signing Request
       * @param appId
       * @param csrId
       */
@@ -394,7 +394,7 @@ class PromiseApplicationApi {
   }
   /**
       * Get default Provisioning Connection for application
-      * Fetches the default Provisioning Connection for an application.
+      * Retrieve the default Provisioning Connection
       * @param appId
       */
   getDefaultProvisioningConnectionForApplication(appId, _options) {
@@ -403,7 +403,7 @@ class PromiseApplicationApi {
   }
   /**
       * Fetches a Feature object for an application.
-      * Fetches a Feature object for an application.
+      * Retrieve a Feature
       * @param appId
       * @param name
       */
@@ -413,7 +413,7 @@ class PromiseApplicationApi {
   }
   /**
       * Gets a token for the specified application
-      * Get OAuth 2.0 Token for Application
+      * Retrieve an OAuth 2.0 Token
       * @param appId
       * @param tokenId
       * @param expand
@@ -424,7 +424,7 @@ class PromiseApplicationApi {
   }
   /**
       * Fetches a single scope consent grant for the application
-      * Get Scope Consent Grant for Application
+      * Retrieve a Scope Consent Grant
       * @param appId
       * @param grantId
       * @param expand
@@ -435,7 +435,7 @@ class PromiseApplicationApi {
   }
   /**
       * Grants consent for the application to request an OAuth 2.0 Okta scope
-      * Grant Consent to Scope for Application
+      * Grant Consent to Scope
       * @param appId
       * @param oAuth2ScopeConsentGrant
       */
@@ -445,7 +445,7 @@ class PromiseApplicationApi {
   }
   /**
       * Enumerates group assignments for an application.
-      * List Groups Assigned to Application
+      * List all Assigned Groups
       * @param appId
       * @param q
       * @param after Specifies the pagination cursor for the next page of assignments
@@ -458,7 +458,7 @@ class PromiseApplicationApi {
   }
   /**
       * Enumerates key credentials for an application
-      * List Key Credentials for Application
+      * List all Key Credentials
       * @param appId
       */
   listApplicationKeys(appId, _options) {
@@ -467,7 +467,7 @@ class PromiseApplicationApi {
   }
   /**
       * Enumerates all assigned [application users](#application-user-model) for an application.
-      * List Users Assigned to Application
+      * List all Assigned Users
       * @param appId
       * @param q
       * @param query_scope
@@ -482,7 +482,7 @@ class PromiseApplicationApi {
   }
   /**
       * Enumerates apps added to your organization with pagination. A subset of apps can be returned that match a supported filter expression or query.
-      * List Applications
+      * List all Applications
       * @param q
       * @param after Specifies the pagination cursor for the next page of apps
       * @param limit Specifies the number of results for a page
@@ -496,7 +496,7 @@ class PromiseApplicationApi {
   }
   /**
       * Enumerates Certificate Signing Requests for an application
-      * List Certificate Signing Requests for Application
+      * List all Certificate Signing Requests
       * @param appId
       */
   listCsrsForApplication(appId, _options) {
@@ -505,7 +505,7 @@ class PromiseApplicationApi {
   }
   /**
       * List Features for application
-      * Fetches the Feature objects for an application.
+      * List all Features
       * @param appId
       */
   listFeaturesForApplication(appId, _options) {
@@ -514,7 +514,7 @@ class PromiseApplicationApi {
   }
   /**
       * Lists all tokens for the application
-      * Lists OAuth 2.0 Tokens for Application
+      * List all OAuth 2.0 Tokens
       * @param appId
       * @param expand
       * @param after
@@ -526,7 +526,7 @@ class PromiseApplicationApi {
   }
   /**
       * Lists all scope consent grants for the application
-      * List Scope Consent Grants for Application
+      * List all Scope Consent Grants
       * @param appId
       * @param expand
       */
@@ -536,7 +536,7 @@ class PromiseApplicationApi {
   }
   /**
       * Updates a certificate signing request for the app with a signed X.509 certificate and adds it into the application key credentials
-      * Publish Certificate Signing Request
+      * Publish a Certificate Signing Request
       * @param appId
       * @param csrId
       * @param body
@@ -547,7 +547,7 @@ class PromiseApplicationApi {
   }
   /**
       * Revokes a certificate signing request and deletes the key pair from the application.
-      * Revoke Certificate Signing Request
+      * Revoke a Certificate Signing Request
       * @param appId
       * @param csrId
       */
@@ -557,7 +557,7 @@ class PromiseApplicationApi {
   }
   /**
       * Revokes the specified token for the specified application
-      * Revoke an OAuth 2.0 Token for Application
+      * Revoke an OAuth 2.0 Token
       * @param appId
       * @param tokenId
       */
@@ -567,7 +567,7 @@ class PromiseApplicationApi {
   }
   /**
       * Revokes all tokens for the specified application
-      * Revoke All OAuth 2.0 Tokens for Application
+      * Revoke all OAuth 2.0 Tokens
       * @param appId
       */
   revokeOAuth2TokensForApplication(appId, _options) {
@@ -576,7 +576,7 @@ class PromiseApplicationApi {
   }
   /**
       * Revokes permission for the application to request the given scope
-      * Revoke Scope Consent Grant for Application
+      * Revoke a Scope Consent Grant
       * @param appId
       * @param grantId
       */
@@ -586,7 +586,7 @@ class PromiseApplicationApi {
   }
   /**
       * Set default Provisioning Connection for application
-      * Sets the default Provisioning Connection for an application.
+      * Update the default Provisioning Connection
       * @param appId
       * @param ProvisioningConnectionRequest
       * @param activate
@@ -597,7 +597,7 @@ class PromiseApplicationApi {
   }
   /**
       * Updates an application in your organization.
-      * Update Application
+      * Replace an Application
       * @param appId
       * @param application
       */
@@ -607,7 +607,7 @@ class PromiseApplicationApi {
   }
   /**
       * Updates a user's profile for an application
-      * Update Application Profile for Assigned User
+      * Update an Application Profile for Assigned User
       * @param appId
       * @param userId
       * @param appUser
@@ -618,7 +618,7 @@ class PromiseApplicationApi {
   }
   /**
       * Updates a Feature object for an application.
-      * Updates a Feature object for an application.
+      * Update a Feature
       * @param appId
       * @param name
       * @param CapabilitiesObject
@@ -628,8 +628,8 @@ class PromiseApplicationApi {
     return result.toPromise();
   }
   /**
-      * Update the logo for an application.
       * The file must be in PNG, JPG, or GIF format, and less than 1 MB in size. For best results use landscape orientation, a transparent background, and a minimum size of 420px by 120px to prevent upscaling.
+      * Upload a Logo
       * @param appId
       * @param file
       */
@@ -646,7 +646,7 @@ class PromiseAuthenticatorApi {
   }
   /**
       * Activates an authenticator by `authenticatorId`.
-      * Activate Authenticator
+      * Activate an Authenticator
       * @param authenticatorId
       */
   activateAuthenticator(authenticatorId, _options) {
@@ -655,7 +655,7 @@ class PromiseAuthenticatorApi {
   }
   /**
       * Deactivates an authenticator by `authenticatorId`.
-      * Deactivate Authenticator
+      * Deactivate an Authenticator
       * @param authenticatorId
       */
   deactivateAuthenticator(authenticatorId, _options) {
@@ -664,7 +664,7 @@ class PromiseAuthenticatorApi {
   }
   /**
       * Fetches an authenticator from your Okta organization by `authenticatorId`.
-      * Get Authenticator
+      * Retrieve an Authenticator
       * @param authenticatorId
       */
   getAuthenticator(authenticatorId, _options) {
@@ -673,7 +673,7 @@ class PromiseAuthenticatorApi {
   }
   /**
       * Enumerates authenticators in your organization.
-      * List Authenticators
+      * List all Authenticators
       */
   listAuthenticators(_options) {
     const result = this.api.listAuthenticators(_options);
@@ -681,7 +681,7 @@ class PromiseAuthenticatorApi {
   }
   /**
       * Updates an authenticator
-      * Update Authenticator
+      * Replace an Authenticator
       * @param authenticatorId
       * @param authenticator
       */
@@ -698,7 +698,7 @@ class PromiseAuthorizationServerApi {
   }
   /**
       * Success
-      * Activate Authorization Server
+      * Activate an Authorization Server
       * @param authServerId
       */
   activateAuthorizationServer(authServerId, _options) {
@@ -707,7 +707,7 @@ class PromiseAuthorizationServerApi {
   }
   /**
       * Activate Authorization Server Policy
-      * Activate Authorization Server Policy
+      * Activate a Policy
       * @param authServerId
       * @param policyId
       */
@@ -717,7 +717,7 @@ class PromiseAuthorizationServerApi {
   }
   /**
       * Activate Authorization Server Policy Rule
-      * Activate Authorization Server Policy Rule
+      * Activate a Policy Rule
       * @param authServerId
       * @param policyId
       * @param ruleId
@@ -728,7 +728,7 @@ class PromiseAuthorizationServerApi {
   }
   /**
       * Success
-      * Create Authorization Server
+      * Create an Authorization Server
       * @param authorizationServer
       */
   createAuthorizationServer(authorizationServer, _options) {
@@ -737,7 +737,7 @@ class PromiseAuthorizationServerApi {
   }
   /**
       * Success
-      * Create Authorization Server Policy
+      * Create a Policy
       * @param authServerId
       * @param policy
       */
@@ -747,7 +747,7 @@ class PromiseAuthorizationServerApi {
   }
   /**
       * Creates a policy rule for the specified Custom Authorization Server and Policy.
-      * Create Authorization Server Policy Rule
+      * Create a Policy Rule
       * @param policyId
       * @param authServerId
       * @param policyRule
@@ -758,7 +758,7 @@ class PromiseAuthorizationServerApi {
   }
   /**
       * Success
-      * Create Custom OAuth 2.0 Token Claim
+      * Create a Custom Token Claim
       * @param authServerId
       * @param oAuth2Claim
       */
@@ -768,7 +768,7 @@ class PromiseAuthorizationServerApi {
   }
   /**
       * Success
-      * Create Oauth2scope
+      * Create a Custom Token Scope
       * @param authServerId
       * @param oAuth2Scope
       */
@@ -778,7 +778,7 @@ class PromiseAuthorizationServerApi {
   }
   /**
       * Success
-      * Deactivate Authorization Server
+      * Deactivate an Authorization Server
       * @param authServerId
       */
   deactivateAuthorizationServer(authServerId, _options) {
@@ -787,7 +787,7 @@ class PromiseAuthorizationServerApi {
   }
   /**
       * Deactivate Authorization Server Policy
-      * Deactivate Authorization Server Policy
+      * Deactivate a Policy
       * @param authServerId
       * @param policyId
       */
@@ -797,7 +797,7 @@ class PromiseAuthorizationServerApi {
   }
   /**
       * Deactivate Authorization Server Policy Rule
-      * Deactivate Authorization Server Policy Rule
+      * Deactivate a Policy Rule
       * @param authServerId
       * @param policyId
       * @param ruleId
@@ -808,7 +808,7 @@ class PromiseAuthorizationServerApi {
   }
   /**
       * Success
-      * Delete Authorization Server
+      * Delete an Authorization Server
       * @param authServerId
       */
   deleteAuthorizationServer(authServerId, _options) {
@@ -817,7 +817,7 @@ class PromiseAuthorizationServerApi {
   }
   /**
       * Success
-      * Delete Authorization Server Policy
+      * Delete a Policy
       * @param authServerId
       * @param policyId
       */
@@ -827,7 +827,7 @@ class PromiseAuthorizationServerApi {
   }
   /**
       * Deletes a Policy Rule defined in the specified Custom Authorization Server and Policy.
-      * Delete Authorization Server Policy Rule
+      * Delete a Policy Rule
       * @param policyId
       * @param authServerId
       * @param ruleId
@@ -838,7 +838,7 @@ class PromiseAuthorizationServerApi {
   }
   /**
       * Success
-      * Delete Custom OAuth 2.0 Token Claim
+      * Delete a Custom Token Claim
       * @param authServerId
       * @param claimId
       */
@@ -848,7 +848,7 @@ class PromiseAuthorizationServerApi {
   }
   /**
       * Success
-      * Delete Oauth2scope
+      * Delete a Custom Token Scope
       * @param authServerId
       * @param scopeId
       */
@@ -858,7 +858,7 @@ class PromiseAuthorizationServerApi {
   }
   /**
       * Success
-      * Get Authorization Server
+      * Retrieve an Authorization Server
       * @param authServerId
       */
   getAuthorizationServer(authServerId, _options) {
@@ -867,7 +867,7 @@ class PromiseAuthorizationServerApi {
   }
   /**
       * Success
-      * Get Authorization Server Policy
+      * Retrieve a Policy
       * @param authServerId
       * @param policyId
       */
@@ -877,7 +877,7 @@ class PromiseAuthorizationServerApi {
   }
   /**
       * Returns a Policy Rule by ID that is defined in the specified Custom Authorization Server and Policy.
-      * Get Authorization Server Policy Rule
+      * Retrieve a Policy Rule
       * @param policyId
       * @param authServerId
       * @param ruleId
@@ -888,7 +888,7 @@ class PromiseAuthorizationServerApi {
   }
   /**
       * Success
-      * Get Oauth2claim
+      * Retrieve a Custom Token Claim
       * @param authServerId
       * @param claimId
       */
@@ -898,7 +898,7 @@ class PromiseAuthorizationServerApi {
   }
   /**
       * Success
-      * Get Oauth2scope
+      * Retrieve a Custom Token Scope
       * @param authServerId
       * @param scopeId
       */
@@ -908,7 +908,7 @@ class PromiseAuthorizationServerApi {
   }
   /**
       * Success
-      * Get Refresh Token for Authorization Server and Client
+      * Retrieve a Refresh Token for a Client
       * @param authServerId
       * @param clientId
       * @param tokenId
@@ -920,7 +920,7 @@ class PromiseAuthorizationServerApi {
   }
   /**
       * Success
-      * List Authorization Server Keys
+      * List all Credential Keys
       * @param authServerId
       */
   listAuthorizationServerKeys(authServerId, _options) {
@@ -929,7 +929,7 @@ class PromiseAuthorizationServerApi {
   }
   /**
       * Success
-      * List Authorization Server Policies
+      * List all Policies
       * @param authServerId
       */
   listAuthorizationServerPolicies(authServerId, _options) {
@@ -938,7 +938,7 @@ class PromiseAuthorizationServerApi {
   }
   /**
       * Enumerates all policy rules for the specified Custom Authorization Server and Policy.
-      * List Authorization Server Policy Rules
+      * List all Policy Rules
       * @param policyId
       * @param authServerId
       */
@@ -948,7 +948,7 @@ class PromiseAuthorizationServerApi {
   }
   /**
       * Success
-      * List Authorization Servers
+      * List all Authorization Servers
       * @param q
       * @param limit
       * @param after
@@ -959,7 +959,7 @@ class PromiseAuthorizationServerApi {
   }
   /**
       * Success
-      * List Custom OAuth 2.0 Token Claims
+      * List all Custom Token Claims
       * @param authServerId
       */
   listOAuth2Claims(authServerId, _options) {
@@ -968,7 +968,7 @@ class PromiseAuthorizationServerApi {
   }
   /**
       * Success
-      * List Oauth2clients for Authorization Server
+      * List all Clients
       * @param authServerId
       */
   listOAuth2ClientsForAuthorizationServer(authServerId, _options) {
@@ -977,7 +977,7 @@ class PromiseAuthorizationServerApi {
   }
   /**
       * Success
-      * List Oauth2scopes
+      * List all Custom Token Scopes
       * @param authServerId
       * @param q
       * @param filter
@@ -990,7 +990,7 @@ class PromiseAuthorizationServerApi {
   }
   /**
       * Success
-      * List Refresh Tokens for Authorization Server and Client
+      * List all Refresh Tokens for a Client
       * @param authServerId
       * @param clientId
       * @param expand
@@ -1003,7 +1003,7 @@ class PromiseAuthorizationServerApi {
   }
   /**
       * Success
-      * Revoke Refresh Token for Authorization Server and Client
+      * Revoke a Refresh Token for a Client
       * @param authServerId
       * @param clientId
       * @param tokenId
@@ -1014,7 +1014,7 @@ class PromiseAuthorizationServerApi {
   }
   /**
       * Success
-      * Revoke Refresh Tokens for Authorization Server and Client
+      * Revoke all Refresh Tokens for a Client
       * @param authServerId
       * @param clientId
       */
@@ -1024,7 +1024,7 @@ class PromiseAuthorizationServerApi {
   }
   /**
       * Success
-      * Rotate Authorization Server Keys
+      * Rotate all Credential Keys
       * @param authServerId
       * @param use
       */
@@ -1034,7 +1034,7 @@ class PromiseAuthorizationServerApi {
   }
   /**
       * Success
-      * Update Authorization Server
+      * Replace an Authorization Server
       * @param authServerId
       * @param authorizationServer
       */
@@ -1044,7 +1044,7 @@ class PromiseAuthorizationServerApi {
   }
   /**
       * Success
-      * Update Authorization Server Policy
+      * Replace a Policy
       * @param authServerId
       * @param policyId
       * @param policy
@@ -1055,7 +1055,7 @@ class PromiseAuthorizationServerApi {
   }
   /**
       * Updates the configuration of the Policy Rule defined in the specified Custom Authorization Server and Policy.
-      * Update Authorization Server Policy Rule
+      * Replace a Policy Rule
       * @param policyId
       * @param authServerId
       * @param ruleId
@@ -1067,7 +1067,7 @@ class PromiseAuthorizationServerApi {
   }
   /**
       * Success
-      * Update Custom OAuth 2.0 Token Claim
+      * Replace a Custom Token Claim
       * @param authServerId
       * @param claimId
       * @param oAuth2Claim
@@ -1078,7 +1078,7 @@ class PromiseAuthorizationServerApi {
   }
   /**
       * Success
-      * Update Oauth2scope
+      * Replace a Custom Token Scope
       * @param authServerId
       * @param scopeId
       * @param oAuth2Scope
@@ -1096,7 +1096,7 @@ class PromiseBehaviorApi {
   }
   /**
       * Activate Behavior Detection Rule
-      * Activate Behavior Detection Rule
+      * Activate a Behavior Detection Rule
       * @param behaviorId id of the Behavior Detection Rule
       */
   activateBehaviorDetectionRule(behaviorId, _options) {
@@ -1105,7 +1105,7 @@ class PromiseBehaviorApi {
   }
   /**
       * Adds a new Behavior Detection Rule to your organization.
-      * Create new Behavior Detection Rule
+      * Create a Behavior Detection Rule
       * @param rule
       */
   createBehaviorDetectionRule(rule, _options) {
@@ -1114,7 +1114,7 @@ class PromiseBehaviorApi {
   }
   /**
       * Deactivate Behavior Detection Rule
-      * Deactivate Behavior Detection Rule
+      * Deactivate a Behavior Detection Rule
       * @param behaviorId id of the Behavior Detection Rule
       */
   deactivateBehaviorDetectionRule(behaviorId, _options) {
@@ -1123,7 +1123,7 @@ class PromiseBehaviorApi {
   }
   /**
       * Delete a Behavior Detection Rule by `behaviorId`.
-      * Delete Behavior Detection Rule
+      * Delete a Behavior Detection Rule
       * @param behaviorId id of the Behavior Detection Rule
       */
   deleteBehaviorDetectionRule(behaviorId, _options) {
@@ -1132,7 +1132,7 @@ class PromiseBehaviorApi {
   }
   /**
       * Fetches a Behavior Detection Rule by `behaviorId`.
-      * Get Behavior Detection Rule
+      * Retrieve a Behavior Detection Rule
       * @param behaviorId id of the Behavior Detection Rule
       */
   getBehaviorDetectionRule(behaviorId, _options) {
@@ -1141,7 +1141,7 @@ class PromiseBehaviorApi {
   }
   /**
       * Enumerates Behavior Detection Rules in your organization with pagination.
-      * List Behavior Detection Rules
+      * List all Behavior Detection Rules
       */
   listBehaviorDetectionRules(_options) {
     const result = this.api.listBehaviorDetectionRules(_options);
@@ -1149,7 +1149,7 @@ class PromiseBehaviorApi {
   }
   /**
       * Update a Behavior Detection Rule by `behaviorId`.
-      * Update Behavior Detection Rule
+      * Replace a Behavior Detection Rule
       * @param behaviorId id of the Behavior Detection Rule
       * @param rule
       */
@@ -1166,7 +1166,7 @@ class PromiseCAPTCHAApi {
   }
   /**
       * Adds a new CAPTCHA instance to your organization. In the current release, we only allow one CAPTCHA instance per org.
-      * Create new CAPTCHA instance
+      * Create a CAPTCHA instance
       * @param instance
       */
   createCaptchaInstance(instance, _options) {
@@ -1175,7 +1175,7 @@ class PromiseCAPTCHAApi {
   }
   /**
       * Delete a CAPTCHA instance by `captchaId`. If the CAPTCHA instance is currently being used in the org, the delete will not be allowed.
-      * Delete CAPTCHA Instance
+      * Delete a CAPTCHA Instance
       * @param captchaId id of the CAPTCHA
       */
   deleteCaptchaInstance(captchaId, _options) {
@@ -1184,7 +1184,7 @@ class PromiseCAPTCHAApi {
   }
   /**
       * Fetches a CAPTCHA instance by `captchaId`.
-      * Get CAPTCHA Instance
+      * Retrieve a CAPTCHA Instance
       * @param captchaId id of the CAPTCHA
       */
   getCaptchaInstance(captchaId, _options) {
@@ -1193,7 +1193,7 @@ class PromiseCAPTCHAApi {
   }
   /**
       * Enumerates CAPTCHA instances in your organization with pagination. A subset of CAPTCHA instances can be returned that match a supported filter expression or query.
-      * List CAPTCHA instances
+      * List all CAPTCHA instances
       */
   listCaptchaInstances(_options) {
     const result = this.api.listCaptchaInstances(_options);
@@ -1201,7 +1201,7 @@ class PromiseCAPTCHAApi {
   }
   /**
       * Partially update a CAPTCHA instance by `captchaId`.
-      * Partial Update CAPTCHA instance
+      * Update a CAPTCHA instance
       * @param captchaId id of the CAPTCHA
       * @param instance
       */
@@ -1211,7 +1211,7 @@ class PromiseCAPTCHAApi {
   }
   /**
       * Update a CAPTCHA instance by `captchaId`.
-      * Update CAPTCHA instance
+      * Replace a CAPTCHA instance
       * @param captchaId id of the CAPTCHA
       * @param instance
       */
@@ -1228,7 +1228,7 @@ class PromiseCustomizationApi {
   }
   /**
       * Creates a new email customization.
-      * Create Email Customization
+      * Create an Email Customization
       * @param brandId The ID of the brand.
       * @param templateName The name of the email template.
       * @param instance
@@ -1239,7 +1239,7 @@ class PromiseCustomizationApi {
   }
   /**
       * Deletes all customizations for an email template.
-      * Delete All Email Customizations
+      * Delete all Email Customizations
       * @param brandId The ID of the brand.
       * @param templateName The name of the email template.
       */
@@ -1248,8 +1248,8 @@ class PromiseCustomizationApi {
     return result.toPromise();
   }
   /**
-      * Deletes a Theme background image
-      * Deletes a Theme background image
+      * Deletes a Theme background image.
+      * Delete the Background Image
       * @param brandId
       * @param themeId
       */
@@ -1258,8 +1258,8 @@ class PromiseCustomizationApi {
     return result.toPromise();
   }
   /**
-      * Deletes a Theme favicon. The org then uses the Okta default favicon.
-      * Deletes a Theme favicon. The org then uses the Okta default favicon.
+      * Deletes a Theme favicon. The theme will use the default Okta favicon.
+      * Delete the Favicon
       * @param brandId
       * @param themeId
       */
@@ -1268,8 +1268,8 @@ class PromiseCustomizationApi {
     return result.toPromise();
   }
   /**
-      * Deletes a Theme logo. The org then uses the Okta default logo.
-      * Deletes a Theme logo. The org then uses the Okta default logo.
+      * Deletes a Theme logo. The theme will use the default Okta logo.
+      * Delete the Logo
       * @param brandId
       * @param themeId
       */
@@ -1279,7 +1279,7 @@ class PromiseCustomizationApi {
   }
   /**
       * Deletes an email customization by its unique identifier.
-      * Delete Email Customization
+      * Delete an Email Customization
       * @param brandId The ID of the brand.
       * @param templateName The name of the email template.
       * @param customizationId The ID of the email customization.
@@ -1290,7 +1290,7 @@ class PromiseCustomizationApi {
   }
   /**
       * Fetches a brand by `brandId`
-      * Get Brand
+      * Retrieve a Brand
       * @param brandId
       */
   getBrand(brandId, _options) {
@@ -1299,7 +1299,7 @@ class PromiseCustomizationApi {
   }
   /**
       * Fetches a theme for a brand
-      * Get a theme for a brand
+      * Retrieve a Theme
       * @param brandId
       * @param themeId
       */
@@ -1309,7 +1309,7 @@ class PromiseCustomizationApi {
   }
   /**
       * Generates a preview of an email customization. All variable references (e.g., `${user.profile.firstName}`) are populated using the current user's context.
-      * Preview Email Customization
+      * Preview an Email Customization
       * @param brandId The ID of the brand.
       * @param templateName The name of the email template.
       * @param customizationId The ID of the email customization.
@@ -1320,7 +1320,7 @@ class PromiseCustomizationApi {
   }
   /**
       * Gets an email customization by its unique identifier.
-      * Get Email Customization
+      * Retrieve an Email Customization
       * @param brandId The ID of the brand.
       * @param templateName The name of the email template.
       * @param customizationId The ID of the email customization.
@@ -1331,7 +1331,7 @@ class PromiseCustomizationApi {
   }
   /**
       * Gets an email template's default content.
-      * Get Email Template Default Content
+      * Retrieve an Email Template Default Content
       * @param brandId The ID of the brand.
       * @param templateName The name of the email template.
       * @param language The language to use for the email. Defaults to the current user&#39;s language if unspecified.
@@ -1342,7 +1342,7 @@ class PromiseCustomizationApi {
   }
   /**
       * Generates a preview of an email template's default content. All variable references (e.g., `${user.profile.firstName}`) are populated using the current user's context.
-      * Preview Email Template Default Content
+      * Preview the Email Template Default Content
       * @param brandId The ID of the brand.
       * @param templateName The name of the email template.
       * @param language The language to use for the email. Defaults to the current user&#39;s language if unspecified.
@@ -1353,7 +1353,7 @@ class PromiseCustomizationApi {
   }
   /**
       * Gets an email template's settings.
-      * Get Email Template Settings
+      * Retrieve the Email Template Settings
       * @param brandId The ID of the brand.
       * @param templateName The name of the email template.
       */
@@ -1363,7 +1363,7 @@ class PromiseCustomizationApi {
   }
   /**
       * Gets the details of an email template by name.
-      * Get Email Template
+      * Retrieve an Email Template
       * @param brandId The ID of the brand.
       * @param templateName The name of the email template.
       * @param expand Specifies additional metadata to be included in the response.
@@ -1374,7 +1374,7 @@ class PromiseCustomizationApi {
   }
   /**
       * List all the themes in your brand
-      * Get Brand Themes
+      * List all Themes
       * @param brandId
       */
   listBrandThemes(brandId, _options) {
@@ -1383,7 +1383,7 @@ class PromiseCustomizationApi {
   }
   /**
       * List all the brands in your org.
-      * List Brands
+      * List all Brands
       */
   listBrands(_options) {
     const result = this.api.listBrands(_options);
@@ -1391,7 +1391,7 @@ class PromiseCustomizationApi {
   }
   /**
       * Lists all customizations of an email template.
-      * List Email Customizations
+      * List all Email Customizations
       * @param brandId The ID of the brand.
       * @param templateName The name of the email template.
       * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/reference/core-okta-api/#pagination) for more information.
@@ -1403,7 +1403,7 @@ class PromiseCustomizationApi {
   }
   /**
       * Lists all email templates.
-      * List Email Templates
+      * List all Email Templates
       * @param brandId The ID of the brand.
       * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/reference/core-okta-api/#pagination) for more information.
       * @param limit A limit on the number of objects to return.
@@ -1415,7 +1415,7 @@ class PromiseCustomizationApi {
   }
   /**
       * Sends a test email to the current user’s primary and secondary email addresses. The email content is selected based on the following priority: 1. The email customization for the language specified in the `language` query parameter. 2. The email template's default customization. 3. The email template’s default content, translated to the current user's language.
-      * Send Test Email
+      * Send a Test Email
       * @param brandId The ID of the brand.
       * @param templateName The name of the email template.
       * @param language The language to use for the email. Defaults to the current user&#39;s language if unspecified.
@@ -1426,7 +1426,7 @@ class PromiseCustomizationApi {
   }
   /**
       * Updates a brand by `brandId`
-      * Update Brand
+      * Replace a Brand
       * @param brandId
       * @param brand
       */
@@ -1436,7 +1436,7 @@ class PromiseCustomizationApi {
   }
   /**
       * Updates a theme for a brand
-      * Update a theme for a brand
+      * Replace a Theme
       * @param brandId
       * @param themeId
       * @param theme
@@ -1447,7 +1447,7 @@ class PromiseCustomizationApi {
   }
   /**
       * Updates an existing email customization using the property values provided.
-      * Update Email Customization
+      * Replace an Email Customization
       * @param brandId The ID of the brand.
       * @param templateName The name of the email template.
       * @param customizationId The ID of the email customization.
@@ -1459,7 +1459,7 @@ class PromiseCustomizationApi {
   }
   /**
       * Updates an email template's settings.
-      * Update Email Template Settings
+      * Replace the Email Template Settings
       * @param brandId The ID of the brand.
       * @param templateName The name of the email template.
       * @param EmailSettings
@@ -1470,7 +1470,7 @@ class PromiseCustomizationApi {
   }
   /**
       * Updates the background image for your Theme
-      * Updates the background image for your Theme
+      * Upload the Background Image
       * @param brandId
       * @param themeId
       */
@@ -1480,7 +1480,7 @@ class PromiseCustomizationApi {
   }
   /**
       * Updates the favicon for your theme
-      * Updates the favicon for your theme
+      * Upload the Favicon
       * @param brandId
       * @param themeId
       */
@@ -1490,7 +1490,7 @@ class PromiseCustomizationApi {
   }
   /**
       * Updates the logo for your Theme
-      * Update a themes logo
+      * Upload the Logo
       * @param brandId
       * @param themeId
       */
@@ -1507,7 +1507,7 @@ class PromiseDomainApi {
   }
   /**
       * Creates the Certificate for the Domain.
-      * Create Certificate
+      * Replace the Certificate
       * @param domainId
       * @param certificate
       */
@@ -1517,7 +1517,7 @@ class PromiseDomainApi {
   }
   /**
       * Creates your domain.
-      * Create Domain
+      * Create a Domain
       * @param domain
       */
   createDomain(domain, _options) {
@@ -1526,7 +1526,7 @@ class PromiseDomainApi {
   }
   /**
       * Deletes a Domain by `id`.
-      * Delete Domain
+      * Delete a Domain
       * @param domainId
       */
   deleteDomain(domainId, _options) {
@@ -1535,7 +1535,7 @@ class PromiseDomainApi {
   }
   /**
       * Fetches a Domain by `id`.
-      * Get Domain
+      * Retrieve a Domain
       * @param domainId
       */
   getDomain(domainId, _options) {
@@ -1544,7 +1544,7 @@ class PromiseDomainApi {
   }
   /**
       * List all verified custom Domains for the org.
-      * List Domains
+      * List all Domains
       */
   listDomains(_options) {
     const result = this.api.listDomains(_options);
@@ -1552,7 +1552,7 @@ class PromiseDomainApi {
   }
   /**
       * Verifies the Domain by `id`.
-      * Verify Domain
+      * Verify a Domain
       * @param domainId
       */
   verifyDomain(domainId, _options) {
@@ -1568,7 +1568,7 @@ class PromiseEventHookApi {
   }
   /**
       * Success
-      * Activate Event Hook
+      * Activate an Event Hook
       * @param eventHookId
       */
   activateEventHook(eventHookId, _options) {
@@ -1577,7 +1577,7 @@ class PromiseEventHookApi {
   }
   /**
       * Success
-      * Create Event Hook
+      * Create an Event Hook
       * @param eventHook
       */
   createEventHook(eventHook, _options) {
@@ -1586,7 +1586,7 @@ class PromiseEventHookApi {
   }
   /**
       * Success
-      * Deactivate Event Hook
+      * Deactivate an Event Hook
       * @param eventHookId
       */
   deactivateEventHook(eventHookId, _options) {
@@ -1595,7 +1595,7 @@ class PromiseEventHookApi {
   }
   /**
       * Success
-      * Delete Event Hook
+      * Delete an Event Hook
       * @param eventHookId
       */
   deleteEventHook(eventHookId, _options) {
@@ -1604,7 +1604,7 @@ class PromiseEventHookApi {
   }
   /**
       * Success
-      * Get Event Hook
+      * Retrieve an Event Hook
       * @param eventHookId
       */
   getEventHook(eventHookId, _options) {
@@ -1613,7 +1613,7 @@ class PromiseEventHookApi {
   }
   /**
       * Success
-      * List Event Hooks
+      * List all Event Hooks
       */
   listEventHooks(_options) {
     const result = this.api.listEventHooks(_options);
@@ -1621,7 +1621,7 @@ class PromiseEventHookApi {
   }
   /**
       * Success
-      * Update Event Hook
+      * Replace an Event Hook
       * @param eventHookId
       * @param eventHook
       */
@@ -1631,7 +1631,7 @@ class PromiseEventHookApi {
   }
   /**
       * Success
-      * Verify Event Hook
+      * Verify an Event Hook
       * @param eventHookId
       */
   verifyEventHook(eventHookId, _options) {
@@ -1647,7 +1647,7 @@ class PromiseFeatureApi {
   }
   /**
       * Success
-      * Get Feature
+      * Retrieve a Feature
       * @param featureId
       */
   getFeature(featureId, _options) {
@@ -1656,7 +1656,7 @@ class PromiseFeatureApi {
   }
   /**
       * Success
-      * List Feature Dependencies
+      * List all Dependencies
       * @param featureId
       */
   listFeatureDependencies(featureId, _options) {
@@ -1665,7 +1665,7 @@ class PromiseFeatureApi {
   }
   /**
       * Success
-      * List Feature Dependents
+      * List all Dependents
       * @param featureId
       */
   listFeatureDependents(featureId, _options) {
@@ -1674,7 +1674,7 @@ class PromiseFeatureApi {
   }
   /**
       * Success
-      * List Features
+      * List all Features
       */
   listFeatures(_options) {
     const result = this.api.listFeatures(_options);
@@ -1682,7 +1682,7 @@ class PromiseFeatureApi {
   }
   /**
       * Success
-      * Update Feature Lifecycle
+      * Update a Feature Lifecycle
       * @param featureId
       * @param lifecycle
       * @param mode
@@ -1700,7 +1700,7 @@ class PromiseGroupApi {
   }
   /**
       * Activates a specific group rule by id from your organization
-      * Activate a group Rule
+      * Activate a Group Rule
       * @param ruleId
       */
   activateGroupRule(ruleId, _options) {
@@ -1709,7 +1709,7 @@ class PromiseGroupApi {
   }
   /**
       * Add App Instance Target to App Administrator Role given to a Group
-      * Add App Instance Target to App Administrator Role given to a Group
+      * Assign an Application Instance Target to Application Administrator Role
       * @param groupId
       * @param roleId
       * @param appName
@@ -1721,7 +1721,7 @@ class PromiseGroupApi {
   }
   /**
       * Success
-      * Add Application Target to Admin Role Given to Group
+      * Assign an Application Target to Administrator Role
       * @param groupId
       * @param roleId
       * @param appName
@@ -1732,7 +1732,7 @@ class PromiseGroupApi {
   }
   /**
       * Enumerates group targets for a group role.
-      * Add Group Target for Group Role
+      * Assign a Group Target for Group Role
       * @param groupId
       * @param roleId
       * @param targetGroupId
@@ -1743,7 +1743,7 @@ class PromiseGroupApi {
   }
   /**
       * Adds a user to a group with 'OKTA_GROUP' type.
-      * Add User to Group
+      * Assign a User
       * @param groupId
       * @param userId
       */
@@ -1753,7 +1753,7 @@ class PromiseGroupApi {
   }
   /**
       * Assigns a Role to a Group
-      * Assign Role to Group
+      * Assign a Role
       * @param groupId
       * @param assignRoleRequest
       * @param disableNotifications
@@ -1764,7 +1764,7 @@ class PromiseGroupApi {
   }
   /**
       * Adds a new group with `OKTA_GROUP` type to your organization.
-      * Add Group
+      * Create a Group
       * @param group
       */
   createGroup(group, _options) {
@@ -1773,7 +1773,7 @@ class PromiseGroupApi {
   }
   /**
       * Creates a group rule to dynamically add users to the specified group if they match the condition
-      * Create Group Rule
+      * Create a Group Rule
       * @param groupRule
       */
   createGroupRule(groupRule, _options) {
@@ -1782,7 +1782,7 @@ class PromiseGroupApi {
   }
   /**
       * Deactivates a specific group rule by id from your organization
-      * Deactivate a group Rule
+      * Deactivate a Group Rule
       * @param ruleId
       */
   deactivateGroupRule(ruleId, _options) {
@@ -1791,7 +1791,7 @@ class PromiseGroupApi {
   }
   /**
       * Removes a group with `OKTA_GROUP` type from your organization.
-      * Remove Group
+      * Delete a Group
       * @param groupId
       */
   deleteGroup(groupId, _options) {
@@ -1810,7 +1810,7 @@ class PromiseGroupApi {
   }
   /**
       * Fetches a group from your organization.
-      * List Group Rules
+      * List all Group Rules
       * @param groupId
       */
   getGroup(groupId, _options) {
@@ -1819,7 +1819,7 @@ class PromiseGroupApi {
   }
   /**
       * Fetches a specific group rule by id from your organization
-      * Get Group Rule
+      * Retrieve a Group Rule
       * @param ruleId
       * @param expand
       */
@@ -1829,7 +1829,7 @@ class PromiseGroupApi {
   }
   /**
       * Success
-      * Get Role
+      * Retrieve a Role
       * @param groupId
       * @param roleId
       */
@@ -1839,7 +1839,7 @@ class PromiseGroupApi {
   }
   /**
       * Lists all App targets for an `APP_ADMIN` Role assigned to a Group. This methods return list may include full Applications or Instances. The response for an instance will have an `ID` value, while Application will not have an ID.
-      * List Application Targets for Application Administrator Role for Group
+      * List all Application Targets for an Application Administrator Role
       * @param groupId
       * @param roleId
       * @param after
@@ -1851,7 +1851,7 @@ class PromiseGroupApi {
   }
   /**
       * Enumerates all applications that are assigned to a group.
-      * List Assigned Applications
+      * List all Assigned Applications
       * @param groupId
       * @param after Specifies the pagination cursor for the next page of apps
       * @param limit Specifies the number of app results for a page
@@ -1862,7 +1862,7 @@ class PromiseGroupApi {
   }
   /**
       * Success
-      * List Group Assigned Roles
+      * List all Assigned Roles
       * @param groupId
       * @param expand
       */
@@ -1872,7 +1872,7 @@ class PromiseGroupApi {
   }
   /**
       * Lists all group rules for your organization.
-      * List Group Rules
+      * List all Group Rules
       * @param limit Specifies the number of rule results in a page
       * @param after Specifies the pagination cursor for the next page of rules
       * @param search Specifies the keyword to search fules for
@@ -1884,7 +1884,7 @@ class PromiseGroupApi {
   }
   /**
       * Enumerates group targets for a group role.
-      * List Group Targets for Group Role
+      * List all Group Targets for a Group Role
       * @param groupId
       * @param roleId
       * @param after
@@ -1896,7 +1896,7 @@ class PromiseGroupApi {
   }
   /**
       * Enumerates all users that are a member of a group.
-      * List Group Members
+      * List all Member Users
       * @param groupId
       * @param after Specifies the pagination cursor for the next page of users
       * @param limit Specifies the number of user results in a page
@@ -1907,7 +1907,7 @@ class PromiseGroupApi {
   }
   /**
       * Enumerates groups in your organization with pagination. A subset of groups can be returned that match a supported filter expression or query.
-      * List Groups
+      * List all Groups
       * @param q Searches the name property of groups for matching value
       * @param search Filter expression for groups
       * @param after Specifies the pagination cursor for the next page of groups
@@ -1920,7 +1920,7 @@ class PromiseGroupApi {
   }
   /**
       * Remove App Instance Target to App Administrator Role given to a Group
-      * Remove App Instance Target to App Administrator Role given to a Group
+      * Delete an Application Instance Target to Application Administrator Role
       * @param groupId
       * @param roleId
       * @param appName
@@ -1932,7 +1932,7 @@ class PromiseGroupApi {
   }
   /**
       * Success
-      * Remove Application Target from Application Administrator Role Given to Group
+      * Delete an Application Target from Application Administrator Role
       * @param groupId
       * @param roleId
       * @param appName
@@ -1943,7 +1943,7 @@ class PromiseGroupApi {
   }
   /**
       * remove group target for a group role.
-      * Delete Group Target for Group Role
+      * Delete a Group Target for Group Role
       * @param groupId
       * @param roleId
       * @param targetGroupId
@@ -1954,7 +1954,7 @@ class PromiseGroupApi {
   }
   /**
       * Unassigns a Role from a Group
-      * Remove Role from Group
+      * Delete a Role
       * @param groupId
       * @param roleId
       */
@@ -1964,7 +1964,7 @@ class PromiseGroupApi {
   }
   /**
       * Removes a user from a group with 'OKTA_GROUP' type.
-      * Remove User from Group
+      * Unassign a User
       * @param groupId
       * @param userId
       */
@@ -1974,7 +1974,7 @@ class PromiseGroupApi {
   }
   /**
       * Updates the profile for a group with `OKTA_GROUP` type from your organization.
-      * Update Group
+      * Replace a Group
       * @param groupId
       * @param group
       */
@@ -1984,7 +1984,7 @@ class PromiseGroupApi {
   }
   /**
       * Updates a group rule. Only `INACTIVE` rules can be updated.
-      * Update Group Rule
+      * Replace a Group Rule
       * @param ruleId
       * @param groupRule
       */
@@ -2001,7 +2001,7 @@ class PromiseIdentityProviderApi {
   }
   /**
       * Activates an inactive IdP.
-      * Activate Identity Provider
+      * Activate an Identity Provider
       * @param idpId
       */
   activateIdentityProvider(idpId, _options) {
@@ -2010,7 +2010,7 @@ class PromiseIdentityProviderApi {
   }
   /**
       * Clones a X.509 certificate for an IdP signing key credential from a source IdP to target IdP
-      * Clone Signing Key Credential for IdP
+      * Clone a Signing Credential Key
       * @param idpId
       * @param keyId
       * @param targetIdpId
@@ -2021,7 +2021,7 @@ class PromiseIdentityProviderApi {
   }
   /**
       * Adds a new IdP to your organization.
-      * Add Identity Provider
+      * Create an Identity Provider
       * @param identityProvider
       */
   createIdentityProvider(identityProvider, _options) {
@@ -2030,7 +2030,7 @@ class PromiseIdentityProviderApi {
   }
   /**
       * Adds a new X.509 certificate credential to the IdP key store.
-      * Add X.509 Certificate Public Key for Identity Providers
+      * Create an X.509 Certificate Public Key
       * @param jsonWebKey
       */
   createIdentityProviderKey(jsonWebKey, _options) {
@@ -2039,7 +2039,7 @@ class PromiseIdentityProviderApi {
   }
   /**
       * Deactivates an active IdP.
-      * Deactivate Identity Provider
+      * Deactivate an Identity Provider
       * @param idpId
       */
   deactivateIdentityProvider(idpId, _options) {
@@ -2048,7 +2048,7 @@ class PromiseIdentityProviderApi {
   }
   /**
       * Removes an IdP from your organization.
-      * Delete Identity Provider
+      * Delete an Identity Provider
       * @param idpId
       */
   deleteIdentityProvider(idpId, _options) {
@@ -2057,7 +2057,7 @@ class PromiseIdentityProviderApi {
   }
   /**
       * Deletes a specific IdP Key Credential by `kid` if it is not currently being used by an Active or Inactive IdP.
-      * Delete Key
+      * Delete a Signing Credential Key
       * @param keyId
       */
   deleteIdentityProviderKey(keyId, _options) {
@@ -2066,7 +2066,7 @@ class PromiseIdentityProviderApi {
   }
   /**
       * Generates a new key pair and returns a Certificate Signing Request for it.
-      * Generate Certificate Signing Request for IdP
+      * Generate a Certificate Signing Request
       * @param idpId
       * @param metadata
       */
@@ -2076,7 +2076,7 @@ class PromiseIdentityProviderApi {
   }
   /**
       * Generates a new X.509 certificate for an IdP signing key credential to be used for signing assertions sent to the IdP
-      * Generate New IdP Signing Key Credential
+      * Generate a new Signing Credential Key
       * @param idpId
       * @param validityYears expiry of the IdP Key Credential
       */
@@ -2086,7 +2086,7 @@ class PromiseIdentityProviderApi {
   }
   /**
       * Gets a specific Certificate Signing Request model by id
-      * Get Csr for Identity Provider
+      * Retrieve a Certificate Signing Request
       * @param idpId
       * @param csrId
       */
@@ -2096,7 +2096,7 @@ class PromiseIdentityProviderApi {
   }
   /**
       * Fetches an IdP by `id`.
-      * Get Identity Provider
+      * Retrieve an Identity Provider
       * @param idpId
       */
   getIdentityProvider(idpId, _options) {
@@ -2105,7 +2105,7 @@ class PromiseIdentityProviderApi {
   }
   /**
       * Fetches a linked IdP user by ID
-      * Get Identity Provider Application User
+      * Retrieve a User
       * @param idpId
       * @param userId
       */
@@ -2115,7 +2115,7 @@ class PromiseIdentityProviderApi {
   }
   /**
       * Gets a specific IdP Key Credential by `kid`
-      * Get Identity Provider Key
+      * Retrieve an Credential Key
       * @param keyId
       */
   getIdentityProviderKey(keyId, _options) {
@@ -2124,7 +2124,7 @@ class PromiseIdentityProviderApi {
   }
   /**
       * Gets a specific IdP Key Credential by `kid`
-      * Get Signing Key Credential for IdP
+      * Retrieve a Signing Credential Key
       * @param idpId
       * @param keyId
       */
@@ -2134,7 +2134,7 @@ class PromiseIdentityProviderApi {
   }
   /**
       * Links an Okta user to an existing Social Identity Provider. This does not support the SAML2 Identity Provider Type
-      * Link a user to a Social IdP without a transaction
+      * Link a User to a Social IdP
       * @param idpId
       * @param userId
       * @param userIdentityProviderLinkRequest
@@ -2145,7 +2145,7 @@ class PromiseIdentityProviderApi {
   }
   /**
       * Enumerates Certificate Signing Requests for an IdP
-      * List Certificate Signing Requests for IdP
+      * List all Certificate Signing Requests
       * @param idpId
       */
   listCsrsForIdentityProvider(idpId, _options) {
@@ -2154,7 +2154,7 @@ class PromiseIdentityProviderApi {
   }
   /**
       * Find all the users linked to an identity provider
-      * Find Users
+      * List all Users
       * @param idpId
       */
   listIdentityProviderApplicationUsers(idpId, _options) {
@@ -2163,7 +2163,7 @@ class PromiseIdentityProviderApi {
   }
   /**
       * Enumerates IdP key credentials.
-      * List Identity Provider Keys
+      * List all Credential Keys
       * @param after Specifies the pagination cursor for the next page of keys
       * @param limit Specifies the number of key results in a page
       */
@@ -2173,7 +2173,7 @@ class PromiseIdentityProviderApi {
   }
   /**
       * Enumerates signing key credentials for an IdP
-      * List Signing Key Credentials for IdP
+      * List all Signing Credential Keys
       * @param idpId
       */
   listIdentityProviderSigningKeys(idpId, _options) {
@@ -2182,7 +2182,7 @@ class PromiseIdentityProviderApi {
   }
   /**
       * Enumerates IdPs in your organization with pagination. A subset of IdPs can be returned that match a supported filter expression or query.
-      * List Identity Providers
+      * List all Identity Providers
       * @param q Searches the name property of IdPs for matching value
       * @param after Specifies the pagination cursor for the next page of IdPs
       * @param limit Specifies the number of IdP results in a page
@@ -2194,7 +2194,7 @@ class PromiseIdentityProviderApi {
   }
   /**
       * Fetches the tokens minted by the Social Authentication Provider when the user authenticates with Okta via Social Auth.
-      * Social Authentication Token Operation
+      * List all Tokens from a OIDC Identity Provider
       * @param idpId
       * @param userId
       */
@@ -2204,7 +2204,7 @@ class PromiseIdentityProviderApi {
   }
   /**
       * Update the Certificate Signing Request with a signed X.509 certificate and add it into the signing key credentials for the IdP.
-      * Publish Csr for Identity Provider
+      * Publish a Certificate Signing Request
       * @param idpId
       * @param csrId
       * @param body
@@ -2215,7 +2215,7 @@ class PromiseIdentityProviderApi {
   }
   /**
       * Revoke a Certificate Signing Request and delete the key pair from the IdP
-      * Revoke Csr for Identity Provider
+      * Revoke a Certificate Signing Request
       * @param idpId
       * @param csrId
       */
@@ -2225,7 +2225,7 @@ class PromiseIdentityProviderApi {
   }
   /**
       * Removes the link between the Okta user and the IdP user.
-      * Unlink User from IdP
+      * Unlink a User from IdP
       * @param idpId
       * @param userId
       */
@@ -2235,7 +2235,7 @@ class PromiseIdentityProviderApi {
   }
   /**
       * Updates the configuration for an IdP.
-      * Update Identity Provider
+      * Replace an Identity Provider
       * @param idpId
       * @param identityProvider
       */
@@ -2252,7 +2252,7 @@ class PromiseInlineHookApi {
   }
   /**
       * Activates the Inline Hook matching the provided id
-      * Activate Inline Hook
+      * Activate an Inline Hook
       * @param inlineHookId
       */
   activateInlineHook(inlineHookId, _options) {
@@ -2261,7 +2261,7 @@ class PromiseInlineHookApi {
   }
   /**
       * Success
-      * Create Inline Hook
+      * Create an Inline Hook
       * @param inlineHook
       */
   createInlineHook(inlineHook, _options) {
@@ -2270,7 +2270,7 @@ class PromiseInlineHookApi {
   }
   /**
       * Deactivates the Inline Hook matching the provided id
-      * Deactivate Inline Hook
+      * Deactivate an Inline Hook
       * @param inlineHookId
       */
   deactivateInlineHook(inlineHookId, _options) {
@@ -2279,7 +2279,7 @@ class PromiseInlineHookApi {
   }
   /**
       * Deletes the Inline Hook matching the provided id. Once deleted, the Inline Hook is unrecoverable. As a safety precaution, only Inline Hooks with a status of INACTIVE are eligible for deletion.
-      * Delete Inline Hook
+      * Delete an Inline Hook
       * @param inlineHookId
       */
   deleteInlineHook(inlineHookId, _options) {
@@ -2288,7 +2288,7 @@ class PromiseInlineHookApi {
   }
   /**
       * Executes the Inline Hook matching the provided inlineHookId using the request body as the input. This will send the provided data through the Channel and return a response if it matches the correct data contract. This execution endpoint should only be used for testing purposes.
-      * Execute Inline Hook
+      * Execute an Inline Hook
       * @param inlineHookId
       * @param payloadData
       */
@@ -2298,7 +2298,7 @@ class PromiseInlineHookApi {
   }
   /**
       * Gets an inline hook by ID
-      * Get Inline Hook
+      * Retrieve an Inline Hook
       * @param inlineHookId
       */
   getInlineHook(inlineHookId, _options) {
@@ -2307,7 +2307,7 @@ class PromiseInlineHookApi {
   }
   /**
       * Success
-      * List Inline Hooks
+      * List all Inline Hooks
       * @param type
       */
   listInlineHooks(type, _options) {
@@ -2316,7 +2316,7 @@ class PromiseInlineHookApi {
   }
   /**
       * Updates an inline hook by ID
-      * Update Inline Hook
+      * Replace an Inline Hook
       * @param inlineHookId
       * @param inlineHook
       */
@@ -2333,7 +2333,7 @@ class PromiseLinkedObjectApi {
   }
   /**
       * Success
-      * Add Linked Object Definition
+      * Create a Linked Object Definition
       * @param linkedObject
       */
   addLinkedObjectDefinition(linkedObject, _options) {
@@ -2342,7 +2342,7 @@ class PromiseLinkedObjectApi {
   }
   /**
       * Success
-      * Delete Linked Object Definition
+      * Delete a Linked Object Definition
       * @param linkedObjectName
       */
   deleteLinkedObjectDefinition(linkedObjectName, _options) {
@@ -2351,7 +2351,7 @@ class PromiseLinkedObjectApi {
   }
   /**
       * Success
-      * Get Linked Object Definition
+      * Retrieve a Linked Object Definition
       * @param linkedObjectName
       */
   getLinkedObjectDefinition(linkedObjectName, _options) {
@@ -2360,7 +2360,7 @@ class PromiseLinkedObjectApi {
   }
   /**
       * Success
-      * List Linked Object Definitions
+      * List all Linked Object Definitions
       */
   listLinkedObjectDefinitions(_options) {
     const result = this.api.listLinkedObjectDefinitions(_options);
@@ -2375,7 +2375,7 @@ class PromiseNetworkZoneApi {
   }
   /**
       * Activate Network Zone
-      * Activate Network Zone
+      * Activate a Network Zone
       * @param zoneId
       */
   activateNetworkZone(zoneId, _options) {
@@ -2384,7 +2384,7 @@ class PromiseNetworkZoneApi {
   }
   /**
       * Adds a new network zone to your Okta organization.
-      * Add Network Zone
+      * Create a Network Zone
       * @param zone
       */
   createNetworkZone(zone, _options) {
@@ -2393,7 +2393,7 @@ class PromiseNetworkZoneApi {
   }
   /**
       * Deactivates a network zone.
-      * Deactivate Network Zone
+      * Deactivate a Network Zone
       * @param zoneId
       */
   deactivateNetworkZone(zoneId, _options) {
@@ -2402,7 +2402,7 @@ class PromiseNetworkZoneApi {
   }
   /**
       * Removes network zone.
-      * Delete Network Zone
+      * Delete a Network Zone
       * @param zoneId
       */
   deleteNetworkZone(zoneId, _options) {
@@ -2411,7 +2411,7 @@ class PromiseNetworkZoneApi {
   }
   /**
       * Fetches a network zone from your Okta organization by `id`.
-      * Get Network Zone
+      * Retrieve a Network Zone
       * @param zoneId
       */
   getNetworkZone(zoneId, _options) {
@@ -2420,7 +2420,7 @@ class PromiseNetworkZoneApi {
   }
   /**
       * Enumerates network zones added to your organization with pagination. A subset of zones can be returned that match a supported filter expression or query.
-      * List Network Zones
+      * List all Network Zones
       * @param after Specifies the pagination cursor for the next page of network zones
       * @param limit Specifies the number of results for a page
       * @param filter Filters zones by usage or id expression
@@ -2431,7 +2431,7 @@ class PromiseNetworkZoneApi {
   }
   /**
       * Updates a network zone in your organization.
-      * Update Network Zone
+      * Replace a Network Zone
       * @param zoneId
       * @param zone
       */
@@ -2457,7 +2457,7 @@ class PromiseOrgSettingApi {
   }
   /**
       * Extends the length of time that Okta Support can access your org by 24 hours. This means that 24 hours are added to the remaining access time.
-      * Extend Okta Support
+      * Extend Okta Support Access
       */
   extendOktaSupport(_options) {
     const result = this.api.extendOktaSupport(_options);
@@ -2465,7 +2465,7 @@ class PromiseOrgSettingApi {
   }
   /**
       * Gets Okta Communication Settings of your organization.
-      * Get Okta Communication Settings
+      * Retreive the Okta Communication Settings
       */
   getOktaCommunicationSettings(_options) {
     const result = this.api.getOktaCommunicationSettings(_options);
@@ -2473,7 +2473,7 @@ class PromiseOrgSettingApi {
   }
   /**
       * Gets Contact Types of your organization.
-      * Get org contact types
+      * Retrieve the Org Contact Types
       */
   getOrgContactTypes(_options) {
     const result = this.api.getOrgContactTypes(_options);
@@ -2481,7 +2481,7 @@ class PromiseOrgSettingApi {
   }
   /**
       * Retrieves the URL of the User associated with the specified Contact Type.
-      * Get org contact user
+      * Retrieve the User of the Contact Type
       * @param contactType
       */
   getOrgContactUser(contactType, _options) {
@@ -2490,7 +2490,7 @@ class PromiseOrgSettingApi {
   }
   /**
       * Gets Okta Support Settings of your organization.
-      * Get Okta Support settings
+      * Retrieve the Okta Support Settings
       */
   getOrgOktaSupportSettings(_options) {
     const result = this.api.getOrgOktaSupportSettings(_options);
@@ -2498,7 +2498,7 @@ class PromiseOrgSettingApi {
   }
   /**
       * Gets preferences of your organization.
-      * Get org preferences
+      * Retrieve the Org Preferences
       */
   getOrgPreferences(_options) {
     const result = this.api.getOrgPreferences(_options);
@@ -2506,7 +2506,7 @@ class PromiseOrgSettingApi {
   }
   /**
       * Get settings of your organization.
-      * Get org settings
+      * Retrieve the Org Settings
       */
   getOrgSettings(_options) {
     const result = this.api.getOrgSettings(_options);
@@ -2514,7 +2514,7 @@ class PromiseOrgSettingApi {
   }
   /**
       * Enables you to temporarily allow Okta Support to access your org as an administrator for eight hours.
-      * Grant Okta Support
+      * Grant Okta Support Access to your Org
       */
   grantOktaSupport(_options) {
     const result = this.api.grantOktaSupport(_options);
@@ -2522,7 +2522,7 @@ class PromiseOrgSettingApi {
   }
   /**
       * Hide the Okta UI footer for all end users of your organization.
-      * Show Okta UI Footer
+      * Update the Preference to Hide the Okta Dashboard Footer
       */
   hideOktaUIFooter(_options) {
     const result = this.api.hideOktaUIFooter(_options);
@@ -2530,7 +2530,7 @@ class PromiseOrgSettingApi {
   }
   /**
       * Opts in all users of this org to Okta Communication emails.
-      * Opt in all users to Okta Communication emails
+      * Opt in all Users to Okta Communication emails
       */
   optInUsersToOktaCommunicationEmails(_options) {
     const result = this.api.optInUsersToOktaCommunicationEmails(_options);
@@ -2538,7 +2538,7 @@ class PromiseOrgSettingApi {
   }
   /**
       * Opts out all users of this org from Okta Communication emails.
-      * Opt out all users from Okta Communication emails
+      * Opt out all Users from Okta Communication emails
       */
   optOutUsersFromOktaCommunicationEmails(_options) {
     const result = this.api.optOutUsersFromOktaCommunicationEmails(_options);
@@ -2546,7 +2546,7 @@ class PromiseOrgSettingApi {
   }
   /**
       * Partial update settings of your organization.
-      * Partial update Org Setting
+      * Update the Org Settings
       * @param OrgSetting
       */
   partialUpdateOrgSetting(OrgSetting, _options) {
@@ -2555,7 +2555,7 @@ class PromiseOrgSettingApi {
   }
   /**
       * Revokes Okta Support access to your organization.
-      * Extend Okta Support
+      * Revoke Okta Support Access
       */
   revokeOktaSupport(_options) {
     const result = this.api.revokeOktaSupport(_options);
@@ -2563,7 +2563,7 @@ class PromiseOrgSettingApi {
   }
   /**
       * Makes the Okta UI footer visible for all end users of your organization.
-      * Show Okta UI Footer
+      * Update the Preference to Show the Okta Dashboard Footer
       */
   showOktaUIFooter(_options) {
     const result = this.api.showOktaUIFooter(_options);
@@ -2571,7 +2571,7 @@ class PromiseOrgSettingApi {
   }
   /**
       * Updates the User associated with the specified Contact Type.
-      * Update org contact user
+      * Replace the User of the Contact Type
       * @param contactType
       * @param orgContactUser
       */
@@ -2581,7 +2581,7 @@ class PromiseOrgSettingApi {
   }
   /**
       * Updates the logo for your organization.
-      * Update org logo
+      * Upload the Org Logo
       */
   updateOrgLogo(_options) {
     const result = this.api.updateOrgLogo(_options);
@@ -2589,7 +2589,7 @@ class PromiseOrgSettingApi {
   }
   /**
       * Update settings of your organization.
-      * Update Org setting
+      * Replace the Org Settings
       * @param orgSetting
       */
   updateOrgSetting(orgSetting, _options) {
@@ -2605,7 +2605,7 @@ class PromisePolicyApi {
   }
   /**
       * Activates a policy.
-      * Activate Policy
+      * Activate a Policy
       * @param policyId
       */
   activatePolicy(policyId, _options) {
@@ -2614,7 +2614,7 @@ class PromisePolicyApi {
   }
   /**
       * Activates a policy rule.
-      * Activate Policy Rule
+      * Activate a Policy Rule
       * @param policyId
       * @param ruleId
       */
@@ -2624,7 +2624,7 @@ class PromisePolicyApi {
   }
   /**
       * Creates a policy.
-      * Create Policy
+      * Create a Policy
       * @param policy
       * @param activate
       */
@@ -2634,7 +2634,7 @@ class PromisePolicyApi {
   }
   /**
       * Creates a policy rule.
-      * Create Policy Rule
+      * Create a Policy Rule
       * @param policyId
       * @param policyRule
       */
@@ -2644,7 +2644,7 @@ class PromisePolicyApi {
   }
   /**
       * Deactivates a policy.
-      * Deactivate Policy
+      * Deactivate a Policy
       * @param policyId
       */
   deactivatePolicy(policyId, _options) {
@@ -2653,7 +2653,7 @@ class PromisePolicyApi {
   }
   /**
       * Deactivates a policy rule.
-      * Deactivate Policy Rule
+      * Deactivate a Policy Rule
       * @param policyId
       * @param ruleId
       */
@@ -2663,7 +2663,7 @@ class PromisePolicyApi {
   }
   /**
       * Removes a policy.
-      * Delete Policy
+      * Delete a Policy
       * @param policyId
       */
   deletePolicy(policyId, _options) {
@@ -2672,7 +2672,7 @@ class PromisePolicyApi {
   }
   /**
       * Removes a policy rule.
-      * Delete Policy Rule
+      * Delete a Policy Rule
       * @param policyId
       * @param ruleId
       */
@@ -2682,7 +2682,7 @@ class PromisePolicyApi {
   }
   /**
       * Gets a policy.
-      * Get Policy
+      * Retrieve a Policy
       * @param policyId
       * @param expand
       */
@@ -2692,7 +2692,7 @@ class PromisePolicyApi {
   }
   /**
       * Gets a policy rule.
-      * Get Policy Rule
+      * Retrieve a Policy Rule
       * @param policyId
       * @param ruleId
       */
@@ -2702,7 +2702,7 @@ class PromisePolicyApi {
   }
   /**
       * Gets all policies with the specified type.
-      * List Policies
+      * List all Policies
       * @param type
       * @param status
       * @param expand
@@ -2713,7 +2713,7 @@ class PromisePolicyApi {
   }
   /**
       * Enumerates all policy rules.
-      * List Policy Rules
+      * List all Policy Rules
       * @param policyId
       */
   listPolicyRules(policyId, _options) {
@@ -2722,7 +2722,7 @@ class PromisePolicyApi {
   }
   /**
       * Updates a policy.
-      * Update Policy
+      * Replace a Policy
       * @param policyId
       * @param policy
       */
@@ -2732,7 +2732,7 @@ class PromisePolicyApi {
   }
   /**
       * Updates a policy rule.
-      * Update Policy Rule
+      * Replace a Policy Rule
       * @param policyId
       * @param ruleId
       * @param policyRule
@@ -2750,7 +2750,7 @@ class PromisePrincipalRateLimitApi {
   }
   /**
       * Adds a new Principal Rate Limit entity to your organization. In the current release, we only allow one Principal Rate Limit entity per org and principal.
-      * Create Principal Rate Limit entity
+      * Create a Principal Rate Limit
       * @param entity
       */
   createPrincipalRateLimitEntity(entity, _options) {
@@ -2759,7 +2759,7 @@ class PromisePrincipalRateLimitApi {
   }
   /**
       * Fetches a Principal Rate Limit entity by `principalRateLimitId`.
-      * Get Principal Rate Limit entity
+      * Retrieve a Principal Rate Limit
       * @param principalRateLimitId id of the Principal Rate Limit
       */
   getPrincipalRateLimitEntity(principalRateLimitId, _options) {
@@ -2768,7 +2768,7 @@ class PromisePrincipalRateLimitApi {
   }
   /**
       * Lists all Principal Rate Limit entities considering the provided parameters.
-      * List Principal Rate Limit entities
+      * List all Principal Rate Limits
       * @param filter
       * @param after
       * @param limit
@@ -2779,7 +2779,7 @@ class PromisePrincipalRateLimitApi {
   }
   /**
       * Update a  Principal Rate Limit entity by `principalRateLimitId`.
-      * Update Principal Rate Limit entity
+      * Replace a Principal Rate Limit
       * @param principalRateLimitId id of the Principal Rate Limit
       * @param entity
       */
@@ -2796,7 +2796,7 @@ class PromiseProfileMappingApi {
   }
   /**
       * Fetches a single Profile Mapping referenced by its ID.
-      * Get Profile Mapping
+      * Retrieve a Profile Mapping
       * @param mappingId
       */
   getProfileMapping(mappingId, _options) {
@@ -2805,7 +2805,7 @@ class PromiseProfileMappingApi {
   }
   /**
       * Enumerates Profile Mappings in your organization with pagination.
-      * List Profile Mappings
+      * List all Profile Mappings
       * @param after
       * @param limit
       * @param sourceId
@@ -2817,7 +2817,7 @@ class PromiseProfileMappingApi {
   }
   /**
       * Updates an existing Profile Mapping by adding, updating, or removing one or many Property Mappings.
-      * Update Profile Mapping
+      * Update a Profile Mapping
       * @param mappingId
       * @param profileMapping
       */
@@ -2834,7 +2834,7 @@ class PromiseSchemaApi {
   }
   /**
       * Fetches the Schema for an App User
-      * Fetches the Schema for an App User
+      * Retrieve the default Application User Schema for an Application
       * @param appInstanceId
       */
   getApplicationUserSchema(appInstanceId, _options) {
@@ -2843,7 +2843,7 @@ class PromiseSchemaApi {
   }
   /**
       * Fetches the group schema
-      * Fetches the group schema
+      * Retrieve the default Group Schema
       */
   getGroupSchema(_options) {
     const result = this.api.getGroupSchema(_options);
@@ -2851,7 +2851,7 @@ class PromiseSchemaApi {
   }
   /**
       * Fetches the schema for a Schema Id.
-      * Fetches the schema for a Schema Id.
+      * Retrieve a User Schema
       * @param schemaId
       */
   getUserSchema(schemaId, _options) {
@@ -2860,7 +2860,7 @@ class PromiseSchemaApi {
   }
   /**
       * Partial updates on the User Profile properties of the Application User Schema.
-      * Partial updates on the User Profile properties of the Application User Schema.
+      * Update the default Application User Schema for an Application
       * @param appInstanceId
       * @param body
       */
@@ -2869,8 +2869,8 @@ class PromiseSchemaApi {
     return result.toPromise();
   }
   /**
-      * Updates, adds ore removes one or more custom Group Profile properties in the schema
-      * Updates, adds ore removes one or more custom Group Profile properties in the schema
+      * Updates, adds or removes one or more custom Group Profile properties in the schema
+      * Update the default Group Schema
       * @param GroupSchema
       */
   updateGroupSchema(GroupSchema, _options) {
@@ -2879,7 +2879,7 @@ class PromiseSchemaApi {
   }
   /**
       * Partial updates on the User Profile properties of the user schema.
-      * Update User Profile
+      * Update a User Schema
       * @param schemaId
       * @param userSchema
       */
@@ -2896,7 +2896,7 @@ class PromiseSessionApi {
   }
   /**
       * Creates a new session for a user with a valid session token. Use this API if, for example, you want to set the session cookie yourself instead of allowing Okta to set it, or want to hold the session ID in order to delete a session via the API instead of visiting the logout URL.
-      * Create Session with Session Token
+      * Create a Session with Session Token
       * @param createSessionRequest
       */
   createSession(createSessionRequest, _options) {
@@ -2905,7 +2905,7 @@ class PromiseSessionApi {
   }
   /**
       * End a session.
-      * End Session
+      * Delete a Session
       * @param sessionId
       */
   endSession(sessionId, _options) {
@@ -2914,7 +2914,7 @@ class PromiseSessionApi {
   }
   /**
       * Get details about a session.
-      * Get Session
+      * Retrieve a Session
       * @param sessionId
       */
   getSession(sessionId, _options) {
@@ -2923,7 +2923,7 @@ class PromiseSessionApi {
   }
   /**
       * Refresh a session.
-      * Refresh Session
+      * Refresh a Session
       * @param sessionId
       */
   refreshSession(sessionId, _options) {
@@ -2939,7 +2939,7 @@ class PromiseSubscriptionApi {
   }
   /**
       * When roleType Get subscriptions of a Role with a specific notification type. Else when roleId Get subscription of a Custom Role with a specific notification type.
-      * Get subscriptions of a Custom Role with a specific notification type
+      * List all Subscriptions of a Custom Role with a specific notification type
       * @param roleTypeOrRoleId
       * @param notificationType
       */
@@ -2949,7 +2949,7 @@ class PromiseSubscriptionApi {
   }
   /**
       * Get the subscriptions of a User with a specific notification type. Only gets subscriptions for current user. An AccessDeniedException message is sent if requests are made from other users.
-      * Get the subscription of a User with a specific notification type
+      * List all Subscriptions by type
       * @param userId
       * @param notificationType
       */
@@ -2959,7 +2959,7 @@ class PromiseSubscriptionApi {
   }
   /**
       * When roleType List all subscriptions of a Role. Else when roleId List subscriptions of a Custom Role
-      * List all subscriptions of a Custom Role
+      * List all Subscriptions of a Custom Role
       * @param roleTypeOrRoleId
       */
   listRoleSubscriptions(roleTypeOrRoleId, _options) {
@@ -2968,7 +2968,7 @@ class PromiseSubscriptionApi {
   }
   /**
       * List subscriptions of a User. Only lists subscriptions for current user. An AccessDeniedException message is sent if requests are made from other users.
-      * List subscriptions of a User
+      * List all Subscriptions
       * @param userId
       */
   listUserSubscriptions(userId, _options) {
@@ -3024,7 +3024,7 @@ class PromiseSystemLogApi {
   }
   /**
       * The Okta System Log API provides read access to your organization’s system log. This API provides more functionality than the Events API
-      * Fetch a list of events from your Okta organization system log.
+      * List all System Log Events
       * @param since
       * @param until
       * @param filter
@@ -3046,7 +3046,7 @@ class PromiseTemplateApi {
   }
   /**
       * Adds a new custom SMS template to your organization.
-      * Add SMS Template
+      * Create an SMS Template
       * @param smsTemplate
       */
   createSmsTemplate(smsTemplate, _options) {
@@ -3055,7 +3055,7 @@ class PromiseTemplateApi {
   }
   /**
       * Removes an SMS template.
-      * Remove SMS Template
+      * Delete an SMS Template
       * @param templateId
       */
   deleteSmsTemplate(templateId, _options) {
@@ -3064,7 +3064,7 @@ class PromiseTemplateApi {
   }
   /**
       * Fetches a specific template by `id`
-      * Get SMS Template
+      * Retrieve an SMS Template
       * @param templateId
       */
   getSmsTemplate(templateId, _options) {
@@ -3073,7 +3073,7 @@ class PromiseTemplateApi {
   }
   /**
       * Enumerates custom SMS templates in your organization. A subset of templates can be returned that match a template type.
-      * List SMS Templates
+      * List all SMS Templates
       * @param templateType
       */
   listSmsTemplates(templateType, _options) {
@@ -3082,7 +3082,7 @@ class PromiseTemplateApi {
   }
   /**
       * Updates only some of the SMS template properties:
-      * Partial SMS Template Update
+      * Update an SMS Template
       * @param templateId
       * @param smsTemplate
       */
@@ -3092,7 +3092,7 @@ class PromiseTemplateApi {
   }
   /**
       * Updates the SMS template.
-      * Update SMS Template
+      * Replace an SMS Template
       * @param templateId
       * @param smsTemplate
       */
@@ -3109,7 +3109,7 @@ class PromiseThreatInsightApi {
   }
   /**
       * Gets current ThreatInsight configuration
-      * Get Current Configuration
+      * Retrieve the ThreatInsight Configuration
       */
   getCurrentConfiguration(_options) {
     const result = this.api.getCurrentConfiguration(_options);
@@ -3117,7 +3117,7 @@ class PromiseThreatInsightApi {
   }
   /**
       * Updates ThreatInsight configuration
-      * Update Configuration
+      * Update the ThreatInsight Configuration
       * @param threatInsightConfiguration
       */
   updateConfiguration(threatInsightConfiguration, _options) {
@@ -3133,7 +3133,7 @@ class PromiseTrustedOriginApi {
   }
   /**
       * Success
-      * Activate Trusted Origin
+      * Activate a Trusted Origin
       * @param trustedOriginId
       */
   activateOrigin(trustedOriginId, _options) {
@@ -3142,7 +3142,7 @@ class PromiseTrustedOriginApi {
   }
   /**
       * Success
-      * Create Trusted Origin
+      * Create a Trusted Origin
       * @param trustedOrigin
       */
   createOrigin(trustedOrigin, _options) {
@@ -3151,7 +3151,7 @@ class PromiseTrustedOriginApi {
   }
   /**
       * Success
-      * Deactivate Trusted Origin
+      * Deactivate a Trusted Origin
       * @param trustedOriginId
       */
   deactivateOrigin(trustedOriginId, _options) {
@@ -3160,7 +3160,7 @@ class PromiseTrustedOriginApi {
   }
   /**
       * Success
-      * Delete Trusted Origin
+      * Delete a Trusted Origin
       * @param trustedOriginId
       */
   deleteOrigin(trustedOriginId, _options) {
@@ -3169,7 +3169,7 @@ class PromiseTrustedOriginApi {
   }
   /**
       * Success
-      * Get Trusted Origin
+      * Retrieve a Trusted Origin
       * @param trustedOriginId
       */
   getOrigin(trustedOriginId, _options) {
@@ -3178,7 +3178,7 @@ class PromiseTrustedOriginApi {
   }
   /**
       * Success
-      * List Trusted Origins
+      * List all Trusted Origins
       * @param q
       * @param filter
       * @param after
@@ -3190,7 +3190,7 @@ class PromiseTrustedOriginApi {
   }
   /**
       * Success
-      * Update Trusted Origin
+      * Replace a Trusted Origin
       * @param trustedOriginId
       * @param trustedOrigin
       */
@@ -3207,7 +3207,7 @@ class PromiseUserApi {
   }
   /**
       * Activates a user.  This operation can only be performed on users with a `STAGED` status.  Activation of a user is an asynchronous operation. The user will have the `transitioningToStatus` property with a value of `ACTIVE` during activation to indicate that the user hasn't completed the asynchronous operation.  The user will have a status of `ACTIVE` when the activation process is complete.
-      * Activate User
+      * Activate a User
       * @param userId
       * @param sendEmail Sends an activation email to the user if true
       */
@@ -3216,8 +3216,8 @@ class PromiseUserApi {
     return result.toPromise();
   }
   /**
-      * Success
-      * Add All Apps as Target to Role
+      * Assign all Apps as Target to Role
+      * Assign all Apps as Target to Role
       * @param userId
       * @param roleId
       */
@@ -3227,7 +3227,7 @@ class PromiseUserApi {
   }
   /**
       * Success
-      * Add Application Target to Admin Role for User
+      * Assign an Application Target to Administrator Role
       * @param userId
       * @param roleId
       * @param appName
@@ -3238,7 +3238,7 @@ class PromiseUserApi {
   }
   /**
       * Add App Instance Target to App Administrator Role given to a User
-      * Add App Instance Target to App Administrator Role given to a User
+      * Assign an Application Instance Target to an Application Administrator Role
       * @param userId
       * @param roleId
       * @param appName
@@ -3249,8 +3249,8 @@ class PromiseUserApi {
     return result.toPromise();
   }
   /**
-      * Success
-      * Add Group Target to Role
+      * Assign a Group Target to Role
+      * Assign a Group Target to Role
       * @param userId
       * @param roleId
       * @param groupId
@@ -3261,7 +3261,7 @@ class PromiseUserApi {
   }
   /**
       * Assigns a role to a user.
-      * Assign Role to User
+      * Assign a Role
       * @param userId
       * @param assignRoleRequest
       * @param disableNotifications
@@ -3293,7 +3293,7 @@ class PromiseUserApi {
   }
   /**
       * Removes all active identity provider sessions. This forces the user to authenticate on the next operation. Optionally revokes OpenID Connect and OAuth refresh and access tokens issued to the user.
-      * Clear User Sessions
+      * Delete all User Sessions
       * @param userId
       * @param oauthTokens Revoke issued OpenID Connect and OAuth refresh and access tokens
       */
@@ -3303,7 +3303,7 @@ class PromiseUserApi {
   }
   /**
       * Creates a new user in your Okta organization with or without credentials.
-      * Create User
+      * Create a User
       * @param body
       * @param activate Executes activation lifecycle operation when creating the user
       * @param provider Indicates whether to create a user with a specified authentication provider
@@ -3315,7 +3315,7 @@ class PromiseUserApi {
   }
   /**
       * Deletes a user permanently.  This operation can only be performed on users that have a `DEPROVISIONED` status.  **This action cannot be recovered!**
-      * Delete User
+      * Delete a User
       * @param userId
       * @param sendEmail
       */
@@ -3325,7 +3325,7 @@ class PromiseUserApi {
   }
   /**
       * Deactivates a user. This operation can only be performed on users that do not have a `DEPROVISIONED` status. While the asynchronous operation (triggered by HTTP header `Prefer: respond-async`) is proceeding the user's `transitioningToStatus` property is `DEPROVISIONED`. The user's status is `DEPROVISIONED` when the deactivation process is complete.
-      * Deactivate User
+      * Deactivate a User
       * @param userId
       * @param sendEmail
       */
@@ -3374,7 +3374,7 @@ class PromiseUserApi {
   }
   /**
       * Get linked objects for a user, relationshipName can be a primary or associated relationship name
-      * Get Linked Objects for User
+      * List all Linked Objects
       * @param userId
       * @param relationshipName
       * @param after
@@ -3386,7 +3386,7 @@ class PromiseUserApi {
   }
   /**
       * Gets a refresh token issued for the specified User and Client.
-      * Get Refresh Token for User and Client
+      * Retrieve a Refresh Token for a Client
       * @param userId
       * @param clientId
       * @param tokenId
@@ -3400,7 +3400,7 @@ class PromiseUserApi {
   }
   /**
       * Fetches a user from your Okta organization.
-      * Get User
+      * Retrieve a User
       * @param userId
       */
   getUser(userId, _options) {
@@ -3409,7 +3409,7 @@ class PromiseUserApi {
   }
   /**
       * Gets a grant for the specified user
-      * Get User Grant
+      * Retrieve a User Grant
       * @param userId
       * @param grantId
       * @param expand
@@ -3420,7 +3420,7 @@ class PromiseUserApi {
   }
   /**
       * Gets role that is assigned to user.
-      * Get User Role
+      * Retrieve a Role
       * @param userId
       * @param roleId
       */
@@ -3430,7 +3430,7 @@ class PromiseUserApi {
   }
   /**
       * Fetches appLinks for all direct or indirect (via group membership) assigned applications.
-      * Get Assigned App Links
+      * List all Assigned Application Links
       * @param userId
       */
   listAppLinks(userId, _options) {
@@ -3439,7 +3439,7 @@ class PromiseUserApi {
   }
   /**
       * Lists all App targets for an `APP_ADMIN` Role assigned to a User. This methods return list may include full Applications or Instances. The response for an instance will have an `ID` value, while Application will not have an ID.
-      * List Application Targets for Application Administrator Role for User
+      * List all Application Targets for Application Administrator Role
       * @param userId
       * @param roleId
       * @param after
@@ -3451,7 +3451,7 @@ class PromiseUserApi {
   }
   /**
       * Lists all roles assigned to a user.
-      * List Assigned Roles for User
+      * List all Assigned Roles
       * @param userId
       * @param expand
       */
@@ -3461,7 +3461,7 @@ class PromiseUserApi {
   }
   /**
       * Lists all grants for a specified user and client
-      * List Grants for User and Client
+      * List all Grants for a Client
       * @param userId
       * @param clientId
       * @param expand
@@ -3474,7 +3474,7 @@ class PromiseUserApi {
   }
   /**
       * Success
-      * List Group Targets for Role
+      * List all Group Targets for Role
       * @param userId
       * @param roleId
       * @param after
@@ -3486,7 +3486,7 @@ class PromiseUserApi {
   }
   /**
       * Lists all refresh tokens issued for the specified User and Client.
-      * List Refresh Tokens for User and Client
+      * List all Refresh Tokens for a Client
       * @param userId
       * @param clientId
       * @param expand
@@ -3499,7 +3499,7 @@ class PromiseUserApi {
   }
   /**
       * Lists all client resources for which the specified user has grants or tokens.
-      * List User Clients
+      * List all Clients
       * @param userId
       */
   listUserClients(userId, _options) {
@@ -3508,7 +3508,7 @@ class PromiseUserApi {
   }
   /**
       * Lists all grants for the specified user
-      * List User Grants
+      * List all User Grants
       * @param userId
       * @param scopeId
       * @param expand
@@ -3521,7 +3521,7 @@ class PromiseUserApi {
   }
   /**
       * Fetches the groups of which the user is a member.
-      * Get Member Groups
+      * List all Groups
       * @param userId
       */
   listUserGroups(userId, _options) {
@@ -3530,7 +3530,7 @@ class PromiseUserApi {
   }
   /**
       * Lists the IdPs associated with the user.
-      * Listing IdPs associated with a user
+      * List all Identity Providers
       * @param userId
       */
   listUserIdentityProviders(userId, _options) {
@@ -3539,7 +3539,7 @@ class PromiseUserApi {
   }
   /**
       * Lists users in your organization with pagination in most cases.  A subset of users can be returned that match a supported filter expression or search criteria.
-      * List Users
+      * List all Users
       * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/reference/core-okta-api/#pagination) for more information.
       * @param q Finds a user that matches firstName, lastName, and email properties
       * @param limit Specifies the number of results returned. Defaults to 10 if &#x60;q&#x60; is provided.
@@ -3554,7 +3554,7 @@ class PromiseUserApi {
   }
   /**
       * Fetch a user by `id`, `login`, or `login shortname` if the short name is unambiguous.
-      * Partial Update User
+      * Update a User
       * @param userId
       * @param user
       * @param strict
@@ -3565,7 +3565,7 @@ class PromiseUserApi {
   }
   /**
       * Reactivates a user.  This operation can only be performed on users with a `PROVISIONED` status.  This operation restarts the activation workflow if for some reason the user activation was not completed when using the activationToken from [Activate User](#activate-user).
-      * Reactivate User
+      * Reactivate a User
       * @param userId
       * @param sendEmail Sends an activation email to the user if true
       */
@@ -3575,7 +3575,7 @@ class PromiseUserApi {
   }
   /**
       * Remove App Instance Target to App Administrator Role given to a User
-      * Remove App Instance Target to App Administrator Role given to a User
+      * Unassign an Application Instance Target to Application Administrator Role
       * @param userId
       * @param roleId
       * @param appName
@@ -3587,7 +3587,7 @@ class PromiseUserApi {
   }
   /**
       * Success
-      * Remove Application Target from Application Administrator Role for User
+      * Unassign an Application Target from Application Administrator Role
       * @param userId
       * @param roleId
       * @param appName
@@ -3597,8 +3597,8 @@ class PromiseUserApi {
     return result.toPromise();
   }
   /**
-      * Success
-      * Remove Group Target from Role
+      * Unassign a Group Target from Role
+      * Unassign a Group Target from Role
       * @param userId
       * @param roleId
       * @param groupId
@@ -3609,7 +3609,7 @@ class PromiseUserApi {
   }
   /**
       * Delete linked objects for a user, relationshipName can be ONLY a primary relationship name
-      * Remove Linked Object for User
+      * Delete a Linked Object
       * @param userId
       * @param relationshipName
       */
@@ -3619,7 +3619,7 @@ class PromiseUserApi {
   }
   /**
       * Unassigns a role from a user.
-      * Remove Role from User
+      * Delete a Role
       * @param userId
       * @param roleId
       */
@@ -3629,7 +3629,7 @@ class PromiseUserApi {
   }
   /**
       * This operation resets all factors for the specified user. All MFA factor enrollments returned to the unenrolled state. The user's status remains ACTIVE. This link is present only if the user is currently enrolled in one or more MFA factors.
-      * Reset Factors
+      * Reset all Factors
       * @param userId
       */
   resetFactors(userId, _options) {
@@ -3648,7 +3648,7 @@ class PromiseUserApi {
   }
   /**
       * Revokes all grants for the specified user and client
-      * Revoke Grants for User and Client
+      * Revoke all Grants for a Client
       * @param userId
       * @param clientId
       */
@@ -3658,7 +3658,7 @@ class PromiseUserApi {
   }
   /**
       * Revokes the specified refresh token.
-      * Revoke Token for User and Client
+      * Revoke a Token for a Client
       * @param userId
       * @param clientId
       * @param tokenId
@@ -3669,7 +3669,7 @@ class PromiseUserApi {
   }
   /**
       * Revokes all refresh tokens issued for the specified User and Client.
-      * Revoke Tokens for User and Client
+      * Revoke all Refresh Tokens for a Client
       * @param userId
       * @param clientId
       */
@@ -3679,7 +3679,7 @@ class PromiseUserApi {
   }
   /**
       * Revokes one grant for a specified user
-      * Revoke User Grant
+      * Revoke a User Grant
       * @param userId
       * @param grantId
       */
@@ -3689,7 +3689,7 @@ class PromiseUserApi {
   }
   /**
       * Revokes all grants for a specified user
-      * Revoke User Grants
+      * Revoke all User Grants
       * @param userId
       */
   revokeUserGrants(userId, _options) {
@@ -3697,8 +3697,8 @@ class PromiseUserApi {
     return result.toPromise();
   }
   /**
-      * Sets a linked object for a user.
-      * Set Linked Object for User
+      * Sets a linked object for two users.
+      * Create a Linked Object for two User
       * @param associatedUserId
       * @param primaryRelationshipName
       * @param primaryUserId
@@ -3709,7 +3709,7 @@ class PromiseUserApi {
   }
   /**
       * Suspends a user.  This operation can only be performed on users with an `ACTIVE` status.  The user will have a status of `SUSPENDED` when the process is complete.
-      * Suspend User
+      * Suspend a User
       * @param userId
       */
   suspendUser(userId, _options) {
@@ -3718,7 +3718,7 @@ class PromiseUserApi {
   }
   /**
       * Unlocks a user with a `LOCKED_OUT` status and returns them to `ACTIVE` status.  Users will be able to login with their current password.
-      * Unlock User
+      * Unlock a User
       * @param userId
       */
   unlockUser(userId, _options) {
@@ -3727,7 +3727,7 @@ class PromiseUserApi {
   }
   /**
       * Unsuspends a user and returns them to the `ACTIVE` state.  This operation can only be performed on users that have a `SUSPENDED` status.
-      * Unsuspend User
+      * Unsuspend a User
       * @param userId
       */
   unsuspendUser(userId, _options) {
@@ -3736,7 +3736,7 @@ class PromiseUserApi {
   }
   /**
       * Update a user's profile and/or credentials using strict-update semantics.
-      * Update User
+      * Replace a User
       * @param userId
       * @param user
       * @param strict
@@ -3754,7 +3754,7 @@ class PromiseUserFactorApi {
   }
   /**
       * The `sms` and `token:software:totp` factor types require activation to complete the enrollment process.
-      * Activate Factor
+      * Activate a Factor
       * @param userId
       * @param factorId
       * @param body
@@ -3765,7 +3765,7 @@ class PromiseUserFactorApi {
   }
   /**
       * Unenrolls an existing factor for the specified user, allowing the user to enroll a new factor.
-      * Delete Factor
+      * Delete a Factor
       * @param userId
       * @param factorId
       * @param removeEnrollmentRecovery
@@ -3776,7 +3776,7 @@ class PromiseUserFactorApi {
   }
   /**
       * Enrolls a user with a supported factor.
-      * Enroll Factor
+      * Enroll a Factor
       * @param userId
       * @param body Factor
       * @param updatePhone
@@ -3790,7 +3790,7 @@ class PromiseUserFactorApi {
   }
   /**
       * Fetches a factor for the specified user
-      * Get Factor
+      * Retrieve a Factor
       * @param userId
       * @param factorId
       */
@@ -3800,7 +3800,7 @@ class PromiseUserFactorApi {
   }
   /**
       * Polls factors verification transaction for status.
-      * Get Factor Transaction Status
+      * Retrieve a Factor Transaction Status
       * @param userId
       * @param factorId
       * @param transactionId
@@ -3811,7 +3811,7 @@ class PromiseUserFactorApi {
   }
   /**
       * Enumerates all the enrolled factors for the specified user
-      * List Factors
+      * List all Factors
       * @param userId
       */
   listFactors(userId, _options) {
@@ -3820,7 +3820,7 @@ class PromiseUserFactorApi {
   }
   /**
       * Enumerates all the supported factors that can be enrolled for the specified user
-      * List Supported Factors
+      * List all Supported Factors
       * @param userId
       */
   listSupportedFactors(userId, _options) {
@@ -3829,7 +3829,7 @@ class PromiseUserFactorApi {
   }
   /**
       * Enumerates all available security questions for a user's `question` factor
-      * List Supported Security Questions
+      * List all Supported Security Questions
       * @param userId
       */
   listSupportedSecurityQuestions(userId, _options) {
@@ -3838,7 +3838,7 @@ class PromiseUserFactorApi {
   }
   /**
       * Verifies an OTP for a `token` or `token:hardware` factor
-      * Verify MFA Factor
+      * Verify an MFA Factor
       * @param userId
       * @param factorId
       * @param templateId
@@ -3861,7 +3861,7 @@ class PromiseUserTypeApi {
   }
   /**
       * Creates a new User Type. A default User Type is automatically created along with your org, and you may add another 9 User Types for a maximum of 10.
-      * Create User Type
+      * Create a User Type
       * @param userType
       */
   createUserType(userType, _options) {
@@ -3870,7 +3870,7 @@ class PromiseUserTypeApi {
   }
   /**
       * Deletes a User Type permanently. This operation is not permitted for the default type, nor for any User Type that has existing users
-      * Delete User Type
+      * Delete a User Type
       * @param typeId
       */
   deleteUserType(typeId, _options) {
@@ -3879,7 +3879,7 @@ class PromiseUserTypeApi {
   }
   /**
       * Fetches a User Type by ID. The special identifier `default` may be used to fetch the default User Type.
-      * Get User Type
+      * Retrieve a User Type
       * @param typeId
       */
   getUserType(typeId, _options) {
@@ -3888,7 +3888,7 @@ class PromiseUserTypeApi {
   }
   /**
       * Fetches all User Types in your org
-      * List User Types
+      * List all User Types
       */
   listUserTypes(_options) {
     const result = this.api.listUserTypes(_options);
@@ -3896,7 +3896,7 @@ class PromiseUserTypeApi {
   }
   /**
       * Replace an existing User Type
-      * Replace User Type
+      * Replace a User Type
       * @param typeId
       * @param userType
       */
@@ -3906,7 +3906,7 @@ class PromiseUserTypeApi {
   }
   /**
       * Updates an existing User Type
-      * Update User Type
+      * Update a User Type
       * @param typeId
       * @param userType
       */

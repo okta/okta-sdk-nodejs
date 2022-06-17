@@ -23,10 +23,8 @@
  * Do not edit the class manually.
  */
 import { LifecycleStatus } from './LifecycleStatus';
-import { PolicyRuleConditions } from './PolicyRuleConditions';
 import { PolicyType } from './PolicyType';
 export declare class Policy {
-  'conditions'?: PolicyRuleConditions;
   'created'?: Date;
   'description'?: string;
   'id'?: string;

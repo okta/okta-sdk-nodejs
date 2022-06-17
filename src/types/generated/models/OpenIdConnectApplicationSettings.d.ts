@@ -26,10 +26,9 @@ import { ApplicationSettingsNotes } from './ApplicationSettingsNotes';
 import { ApplicationSettingsNotifications } from './ApplicationSettingsNotifications';
 import { OpenIdConnectApplicationSettingsClient } from './OpenIdConnectApplicationSettingsClient';
 export declare class OpenIdConnectApplicationSettings {
-  'app'?: any;
+  'identityStoreId'?: string;
   'implicitAssignment'?: boolean;
   'inlineHookId'?: string;
-  'identityStoreId'?: string;
   'notes'?: ApplicationSettingsNotes;
   'notifications'?: ApplicationSettingsNotifications;
   'oauthClient'?: OpenIdConnectApplicationSettingsClient;

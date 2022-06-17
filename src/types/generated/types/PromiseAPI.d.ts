@@ -115,35 +115,35 @@ export declare class PromiseAgentPoolsApi {
   constructor(configuration: Configuration, requestFactory?: AgentPoolsApiRequestFactory, responseProcessor?: AgentPoolsApiResponseProcessor);
   /**
       * Activates scheduled Agent pool update
-      * Activate Agent pool update
+      * Activate an Agent Pool update
       * @param poolId Id of the agent pool for which the settings will apply
       * @param updateId Id of the update
       */
   activateAgentPoolsUpdate(poolId: string, updateId: string, _options?: Configuration): Promise<AgentPoolUpdate>;
   /**
       * Creates an Agent pool update \\n For user flow 2 manual update, starts the update immediately. \\n For user flow 3, schedules the update based on the configured update window and delay.
-      * Create an Agent pool update
+      * Create an Agent Pool update
       * @param poolId Id of the agent pool for which the settings will apply
       * @param AgentPoolUpdate
       */
   createAgentPoolsUpdate(poolId: string, AgentPoolUpdate: AgentPoolUpdate, _options?: Configuration): Promise<AgentPoolUpdate>;
   /**
       * Deactivates scheduled Agent pool update
-      * Deactivate Agent pool update
+      * Deactivate an Agent Pool update
       * @param poolId Id of the agent pool for which the settings will apply
       * @param updateId Id of the update
       */
   deactivateAgentPoolsUpdate(poolId: string, updateId: string, _options?: Configuration): Promise<AgentPoolUpdate>;
   /**
       * Deletes Agent pool update
-      * Delete Agent pool update
+      * Delete an Agent Pool update
       * @param poolId Id of the agent pool for which the settings will apply
       * @param updateId Id of the update
       */
   deleteAgentPoolsUpdate(poolId: string, updateId: string, _options?: Configuration): Promise<void>;
   /**
       * Fetches AgentPools based on request parameters for a given org
-      * Fetch AgentPools
+      * List all Agent Pools
       * @param limitPerPoolType Maximum number of AgentPools being returned
       * @param poolType Agent type to search for
       * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/reference/core-okta-api/#pagination) for more information.
@@ -151,62 +151,62 @@ export declare class PromiseAgentPoolsApi {
   getAgentPools(limitPerPoolType?: number, poolType?: AgentType, after?: string, _options?: Configuration): Promise<Collection<AgentPool>>;
   /**
       * Gets Agent pool update from updateId
-      * Get Agent pool update by id
+      * Retrieve an Agent Pool update by id
       * @param poolId Id of the agent pool for which the settings will apply
       * @param updateId Id of the update
       */
   getAgentPoolsUpdateInstance(poolId: string, updateId: string, _options?: Configuration): Promise<AgentPoolUpdate>;
   /**
       * Gets the current state of the agent pool update instance settings
-      * Get Agent pool update settings
+      * Retrieve an Agent Pool update's settings
       * @param poolId Id of the agent pool for which the settings will apply
       */
   getAgentPoolsUpdateSettings(poolId: string, _options?: Configuration): Promise<AgentPoolUpdateSetting>;
   /**
       * Gets List of Agent pool updates
-      * List Agent pool updates
+      * List all Agent Pool updates
       * @param poolId Id of the agent pool for which the settings will apply
       * @param scheduled Scope the list only to scheduled or ad-hoc updates. If the parameter is not provided we will return the whole list of updates.
       */
   getAgentPoolsUpdates(poolId: string, scheduled?: boolean, _options?: Configuration): Promise<Collection<AgentPoolUpdate>>;
   /**
       * Pauses running or queued Agent pool update
-      * Pause Agent pool update
+      * Pause an Agent Pool update
       * @param poolId Id of the agent pool for which the settings will apply
       * @param updateId Id of the update
       */
   pauseAgentPoolsUpdate(poolId: string, updateId: string, _options?: Configuration): Promise<AgentPoolUpdate>;
   /**
       * Resumes running or queued Agent pool update
-      * Resume Agent pool update
+      * Resume an Agent Pool update
       * @param poolId Id of the agent pool for which the settings will apply
       * @param updateId Id of the update
       */
   resumeAgentPoolsUpdate(poolId: string, updateId: string, _options?: Configuration): Promise<AgentPoolUpdate>;
   /**
       * Retries Agent pool update
-      * Retry Agent pool update
+      * Retry an Agent Pool update
       * @param poolId Id of the agent pool for which the settings will apply
       * @param updateId Id of the update
       */
   retryAgentPoolsUpdate(poolId: string, updateId: string, _options?: Configuration): Promise<AgentPoolUpdate>;
   /**
       * Updates Agent pool update settings
-      * Update Agent pool update settings
+      * Update an Agent pool update settings
       * @param poolId Id of the agent pool for which the settings will apply
       * @param AgentPoolUpdateSetting
       */
   setAgentPoolsUpdateSettings(poolId: string, AgentPoolUpdateSetting: AgentPoolUpdateSetting, _options?: Configuration): Promise<AgentPoolUpdateSetting>;
   /**
       * Stops Agent pool update
-      * Stop Agent pool update
+      * Stop an Agent Pool update
       * @param poolId Id of the agent pool for which the settings will apply
       * @param updateId Id of the update
       */
   stopAgentPoolsUpdate(poolId: string, updateId: string, _options?: Configuration): Promise<AgentPoolUpdate>;
   /**
       * Updates Agent pool update and return latest agent pool update
-      * Change Agent pool update by id
+      * Update an Agent Pool update by id
       * @param poolId Id of the agent pool for which the settings will apply
       * @param updateId Id of the update
       * @param AgentPoolUpdate
@@ -219,13 +219,13 @@ export declare class PromiseApiTokenApi {
   constructor(configuration: Configuration, requestFactory?: ApiTokenApiRequestFactory, responseProcessor?: ApiTokenApiResponseProcessor);
   /**
       * Get the metadata for an active API token by id.
-      * Get the Metadata for an API Token
+      * Retrieve an API Token's Metadata
       * @param apiTokenId id of the API Token
       */
   getApiToken(apiTokenId: string, _options?: Configuration): Promise<ApiToken>;
   /**
       * Enumerates the metadata of the active API tokens in your organization.
-      * List API Token Metadata
+      * List all API Token Metadata
       * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/reference/core-okta-api/#pagination) for more information.
       * @param limit A limit on the number of objects to return.
       * @param q Finds a token that matches the name or clientName.
@@ -249,26 +249,26 @@ export declare class PromiseApplicationApi {
   constructor(configuration: Configuration, requestFactory?: ApplicationApiRequestFactory, responseProcessor?: ApplicationApiResponseProcessor);
   /**
       * Activates an inactive application.
-      * Activate Application
+      * Activate an Application
       * @param appId
       */
   activateApplication(appId: string, _options?: Configuration): Promise<void>;
   /**
       * Activates the default Provisioning Connection for an application.
-      * Activate default Provisioning Connection for application
+      * Activate the default Provisioning Connection
       * @param appId
       */
   activateDefaultProvisioningConnectionForApplication(appId: string, _options?: Configuration): Promise<void>;
   /**
       * Assigns an user to an application with [credentials](#application-user-credentials-object) and an app-specific [profile](#application-user-profile-object). Profile mappings defined for the application are first applied before applying any profile properties specified in the request.
-      * Assign User to Application for SSO & Provisioning
+      * Assign a User
       * @param appId
       * @param appUser
       */
   assignUserToApplication(appId: string, appUser: AppUser, _options?: Configuration): Promise<AppUser>;
   /**
       * Clones a X.509 certificate for an application key credential from a source application to target application.
-      * Clone Application Key Credential
+      * Clone a Key Credential
       * @param appId
       * @param keyId
       * @param targetAid Unique key of the target Application
@@ -276,7 +276,7 @@ export declare class PromiseApplicationApi {
   cloneApplicationKey(appId: string, keyId: string, targetAid: string, _options?: Configuration): Promise<JsonWebKey>;
   /**
       * Adds a new application to your Okta organization.
-      * Add Application
+      * Create an Application
       * @param application
       * @param activate Executes activation lifecycle operation when creating the app
       * @param OktaAccessGateway_Agent
@@ -284,7 +284,7 @@ export declare class PromiseApplicationApi {
   createApplication(application: Application, activate?: boolean, OktaAccessGateway_Agent?: string, _options?: Configuration): Promise<Application>;
   /**
       * Assigns a group to an application
-      * Assign Group to Application
+      * Assign a Group
       * @param appId
       * @param groupId
       * @param applicationGroupAssignment
@@ -292,32 +292,32 @@ export declare class PromiseApplicationApi {
   createApplicationGroupAssignment(appId: string, groupId: string, applicationGroupAssignment?: ApplicationGroupAssignment, _options?: Configuration): Promise<ApplicationGroupAssignment>;
   /**
       * Deactivates an active application.
-      * Deactivate Application
+      * Deactivate an Application
       * @param appId
       */
   deactivateApplication(appId: string, _options?: Configuration): Promise<void>;
   /**
       * Deactivates the default Provisioning Connection for an application.
-      * Deactivate default Provisioning Connection for application
+      * Deactivate the default Provisioning Connection for an Application
       * @param appId
       */
   deactivateDefaultProvisioningConnectionForApplication(appId: string, _options?: Configuration): Promise<void>;
   /**
       * Removes an inactive application.
-      * Delete Application
+      * Delete an Application
       * @param appId
       */
   deleteApplication(appId: string, _options?: Configuration): Promise<void>;
   /**
       * Removes a group assignment from an application.
-      * Remove Group from Application
+      * Unassign a Group
       * @param appId
       * @param groupId
       */
   deleteApplicationGroupAssignment(appId: string, groupId: string, _options?: Configuration): Promise<void>;
   /**
       * Removes an assignment for a user from an application.
-      * Remove User from Application
+      * Unassign a User
       * @param appId
       * @param userId
       * @param sendEmail
@@ -325,28 +325,28 @@ export declare class PromiseApplicationApi {
   deleteApplicationUser(appId: string, userId: string, sendEmail?: boolean, _options?: Configuration): Promise<void>;
   /**
       * Generates a new X.509 certificate for an application key credential
-      * Generate Key Credential for Application
+      * Generate a Key Credential
       * @param appId
       * @param validityYears
       */
   generateApplicationKey(appId: string, validityYears?: number, _options?: Configuration): Promise<JsonWebKey>;
   /**
       * Generates a new key pair and returns the Certificate Signing Request for it.
-      * Generate Certificate Signing Request for Application
+      * Generate a Certificate Signing Request
       * @param appId
       * @param metadata
       */
   generateCsrForApplication(appId: string, metadata: CsrMetadata, _options?: Configuration): Promise<Csr>;
   /**
       * Fetches an application from your Okta organization by `id`.
-      * Get Application
+      * Retrieve an Application
       * @param appId
       * @param expand
       */
   getApplication(appId: string, expand?: string, _options?: Configuration): Promise<Application>;
   /**
       * Fetches an application group assignment
-      * Get Assigned Group for Application
+      * Retrieve an Assigned Group
       * @param appId
       * @param groupId
       * @param expand
@@ -354,14 +354,14 @@ export declare class PromiseApplicationApi {
   getApplicationGroupAssignment(appId: string, groupId: string, expand?: string, _options?: Configuration): Promise<ApplicationGroupAssignment>;
   /**
       * Gets a specific application key credential by kid
-      * Get Key Credential for Application
+      * Retrieve a Key Credential
       * @param appId
       * @param keyId
       */
   getApplicationKey(appId: string, keyId: string, _options?: Configuration): Promise<JsonWebKey>;
   /**
       * Fetches a specific user assignment for application by `id`.
-      * Get Assigned User for Application
+      * Retrieve an Assigned User
       * @param appId
       * @param userId
       * @param expand
@@ -369,27 +369,27 @@ export declare class PromiseApplicationApi {
   getApplicationUser(appId: string, userId: string, expand?: string, _options?: Configuration): Promise<AppUser>;
   /**
       * Fetches a certificate signing request for the app by `id`.
-      * Get Certificate Signing Request
+      * Retrieve a Certificate Signing Request
       * @param appId
       * @param csrId
       */
   getCsrForApplication(appId: string, csrId: string, _options?: Configuration): Promise<Csr>;
   /**
       * Get default Provisioning Connection for application
-      * Fetches the default Provisioning Connection for an application.
+      * Retrieve the default Provisioning Connection
       * @param appId
       */
   getDefaultProvisioningConnectionForApplication(appId: string, _options?: Configuration): Promise<ProvisioningConnection>;
   /**
       * Fetches a Feature object for an application.
-      * Fetches a Feature object for an application.
+      * Retrieve a Feature
       * @param appId
       * @param name
       */
   getFeatureForApplication(appId: string, name: string, _options?: Configuration): Promise<ApplicationFeature>;
   /**
       * Gets a token for the specified application
-      * Get OAuth 2.0 Token for Application
+      * Retrieve an OAuth 2.0 Token
       * @param appId
       * @param tokenId
       * @param expand
@@ -397,7 +397,7 @@ export declare class PromiseApplicationApi {
   getOAuth2TokenForApplication(appId: string, tokenId: string, expand?: string, _options?: Configuration): Promise<OAuth2Token>;
   /**
       * Fetches a single scope consent grant for the application
-      * Get Scope Consent Grant for Application
+      * Retrieve a Scope Consent Grant
       * @param appId
       * @param grantId
       * @param expand
@@ -405,14 +405,14 @@ export declare class PromiseApplicationApi {
   getScopeConsentGrant(appId: string, grantId: string, expand?: string, _options?: Configuration): Promise<OAuth2ScopeConsentGrant>;
   /**
       * Grants consent for the application to request an OAuth 2.0 Okta scope
-      * Grant Consent to Scope for Application
+      * Grant Consent to Scope
       * @param appId
       * @param oAuth2ScopeConsentGrant
       */
   grantConsentToScope(appId: string, oAuth2ScopeConsentGrant: OAuth2ScopeConsentGrant, _options?: Configuration): Promise<OAuth2ScopeConsentGrant>;
   /**
       * Enumerates group assignments for an application.
-      * List Groups Assigned to Application
+      * List all Assigned Groups
       * @param appId
       * @param q
       * @param after Specifies the pagination cursor for the next page of assignments
@@ -422,13 +422,13 @@ export declare class PromiseApplicationApi {
   listApplicationGroupAssignments(appId: string, q?: string, after?: string, limit?: number, expand?: string, _options?: Configuration): Promise<Collection<ApplicationGroupAssignment>>;
   /**
       * Enumerates key credentials for an application
-      * List Key Credentials for Application
+      * List all Key Credentials
       * @param appId
       */
   listApplicationKeys(appId: string, _options?: Configuration): Promise<Collection<JsonWebKey>>;
   /**
       * Enumerates all assigned [application users](#application-user-model) for an application.
-      * List Users Assigned to Application
+      * List all Assigned Users
       * @param appId
       * @param q
       * @param query_scope
@@ -440,7 +440,7 @@ export declare class PromiseApplicationApi {
   listApplicationUsers(appId: string, q?: string, query_scope?: string, after?: string, limit?: number, filter?: string, expand?: string, _options?: Configuration): Promise<Collection<AppUser>>;
   /**
       * Enumerates apps added to your organization with pagination. A subset of apps can be returned that match a supported filter expression or query.
-      * List Applications
+      * List all Applications
       * @param q
       * @param after Specifies the pagination cursor for the next page of apps
       * @param limit Specifies the number of results for a page
@@ -451,19 +451,19 @@ export declare class PromiseApplicationApi {
   listApplications(q?: string, after?: string, limit?: number, filter?: string, expand?: string, includeNonDeleted?: boolean, _options?: Configuration): Promise<Collection<Application>>;
   /**
       * Enumerates Certificate Signing Requests for an application
-      * List Certificate Signing Requests for Application
+      * List all Certificate Signing Requests
       * @param appId
       */
   listCsrsForApplication(appId: string, _options?: Configuration): Promise<Collection<Csr>>;
   /**
       * List Features for application
-      * Fetches the Feature objects for an application.
+      * List all Features
       * @param appId
       */
   listFeaturesForApplication(appId: string, _options?: Configuration): Promise<Collection<ApplicationFeature>>;
   /**
       * Lists all tokens for the application
-      * Lists OAuth 2.0 Tokens for Application
+      * List all OAuth 2.0 Tokens
       * @param appId
       * @param expand
       * @param after
@@ -472,14 +472,14 @@ export declare class PromiseApplicationApi {
   listOAuth2TokensForApplication(appId: string, expand?: string, after?: string, limit?: number, _options?: Configuration): Promise<Collection<OAuth2Token>>;
   /**
       * Lists all scope consent grants for the application
-      * List Scope Consent Grants for Application
+      * List all Scope Consent Grants
       * @param appId
       * @param expand
       */
   listScopeConsentGrants(appId: string, expand?: string, _options?: Configuration): Promise<Collection<OAuth2ScopeConsentGrant>>;
   /**
       * Updates a certificate signing request for the app with a signed X.509 certificate and adds it into the application key credentials
-      * Publish Certificate Signing Request
+      * Publish a Certificate Signing Request
       * @param appId
       * @param csrId
       * @param body
@@ -487,34 +487,34 @@ export declare class PromiseApplicationApi {
   publishCsrFromApplication(appId: string, csrId: string, body: HttpFile, _options?: Configuration): Promise<JsonWebKey>;
   /**
       * Revokes a certificate signing request and deletes the key pair from the application.
-      * Revoke Certificate Signing Request
+      * Revoke a Certificate Signing Request
       * @param appId
       * @param csrId
       */
   revokeCsrFromApplication(appId: string, csrId: string, _options?: Configuration): Promise<void>;
   /**
       * Revokes the specified token for the specified application
-      * Revoke an OAuth 2.0 Token for Application
+      * Revoke an OAuth 2.0 Token
       * @param appId
       * @param tokenId
       */
   revokeOAuth2TokenForApplication(appId: string, tokenId: string, _options?: Configuration): Promise<void>;
   /**
       * Revokes all tokens for the specified application
-      * Revoke All OAuth 2.0 Tokens for Application
+      * Revoke all OAuth 2.0 Tokens
       * @param appId
       */
   revokeOAuth2TokensForApplication(appId: string, _options?: Configuration): Promise<void>;
   /**
       * Revokes permission for the application to request the given scope
-      * Revoke Scope Consent Grant for Application
+      * Revoke a Scope Consent Grant
       * @param appId
       * @param grantId
       */
   revokeScopeConsentGrant(appId: string, grantId: string, _options?: Configuration): Promise<void>;
   /**
       * Set default Provisioning Connection for application
-      * Sets the default Provisioning Connection for an application.
+      * Update the default Provisioning Connection
       * @param appId
       * @param ProvisioningConnectionRequest
       * @param activate
@@ -522,14 +522,14 @@ export declare class PromiseApplicationApi {
   setDefaultProvisioningConnectionForApplication(appId: string, ProvisioningConnectionRequest: ProvisioningConnectionRequest, activate?: boolean, _options?: Configuration): Promise<ProvisioningConnection>;
   /**
       * Updates an application in your organization.
-      * Update Application
+      * Replace an Application
       * @param appId
       * @param application
       */
   updateApplication(appId: string, application: Application, _options?: Configuration): Promise<Application>;
   /**
       * Updates a user's profile for an application
-      * Update Application Profile for Assigned User
+      * Update an Application Profile for Assigned User
       * @param appId
       * @param userId
       * @param appUser
@@ -537,15 +537,15 @@ export declare class PromiseApplicationApi {
   updateApplicationUser(appId: string, userId: string, appUser: AppUser, _options?: Configuration): Promise<AppUser>;
   /**
       * Updates a Feature object for an application.
-      * Updates a Feature object for an application.
+      * Update a Feature
       * @param appId
       * @param name
       * @param CapabilitiesObject
       */
   updateFeatureForApplication(appId: string, name: string, CapabilitiesObject: CapabilitiesObject, _options?: Configuration): Promise<ApplicationFeature>;
   /**
-      * Update the logo for an application.
       * The file must be in PNG, JPG, or GIF format, and less than 1 MB in size. For best results use landscape orientation, a transparent background, and a minimum size of 420px by 120px to prevent upscaling.
+      * Upload a Logo
       * @param appId
       * @param file
       */
@@ -557,30 +557,30 @@ export declare class PromiseAuthenticatorApi {
   constructor(configuration: Configuration, requestFactory?: AuthenticatorApiRequestFactory, responseProcessor?: AuthenticatorApiResponseProcessor);
   /**
       * Activates an authenticator by `authenticatorId`.
-      * Activate Authenticator
+      * Activate an Authenticator
       * @param authenticatorId
       */
   activateAuthenticator(authenticatorId: string, _options?: Configuration): Promise<Authenticator>;
   /**
       * Deactivates an authenticator by `authenticatorId`.
-      * Deactivate Authenticator
+      * Deactivate an Authenticator
       * @param authenticatorId
       */
   deactivateAuthenticator(authenticatorId: string, _options?: Configuration): Promise<Authenticator>;
   /**
       * Fetches an authenticator from your Okta organization by `authenticatorId`.
-      * Get Authenticator
+      * Retrieve an Authenticator
       * @param authenticatorId
       */
   getAuthenticator(authenticatorId: string, _options?: Configuration): Promise<Authenticator>;
   /**
       * Enumerates authenticators in your organization.
-      * List Authenticators
+      * List all Authenticators
       */
   listAuthenticators(_options?: Configuration): Promise<Collection<Authenticator>>;
   /**
       * Updates an authenticator
-      * Update Authenticator
+      * Replace an Authenticator
       * @param authenticatorId
       * @param authenticator
       */
@@ -592,20 +592,20 @@ export declare class PromiseAuthorizationServerApi {
   constructor(configuration: Configuration, requestFactory?: AuthorizationServerApiRequestFactory, responseProcessor?: AuthorizationServerApiResponseProcessor);
   /**
       * Success
-      * Activate Authorization Server
+      * Activate an Authorization Server
       * @param authServerId
       */
   activateAuthorizationServer(authServerId: string, _options?: Configuration): Promise<void>;
   /**
       * Activate Authorization Server Policy
-      * Activate Authorization Server Policy
+      * Activate a Policy
       * @param authServerId
       * @param policyId
       */
   activateAuthorizationServerPolicy(authServerId: string, policyId: string, _options?: Configuration): Promise<void>;
   /**
       * Activate Authorization Server Policy Rule
-      * Activate Authorization Server Policy Rule
+      * Activate a Policy Rule
       * @param authServerId
       * @param policyId
       * @param ruleId
@@ -613,20 +613,20 @@ export declare class PromiseAuthorizationServerApi {
   activateAuthorizationServerPolicyRule(authServerId: string, policyId: string, ruleId: string, _options?: Configuration): Promise<void>;
   /**
       * Success
-      * Create Authorization Server
+      * Create an Authorization Server
       * @param authorizationServer
       */
   createAuthorizationServer(authorizationServer: AuthorizationServer, _options?: Configuration): Promise<AuthorizationServer | void>;
   /**
       * Success
-      * Create Authorization Server Policy
+      * Create a Policy
       * @param authServerId
       * @param policy
       */
   createAuthorizationServerPolicy(authServerId: string, policy: AuthorizationServerPolicy, _options?: Configuration): Promise<void | AuthorizationServerPolicy>;
   /**
       * Creates a policy rule for the specified Custom Authorization Server and Policy.
-      * Create Authorization Server Policy Rule
+      * Create a Policy Rule
       * @param policyId
       * @param authServerId
       * @param policyRule
@@ -634,34 +634,34 @@ export declare class PromiseAuthorizationServerApi {
   createAuthorizationServerPolicyRule(policyId: string, authServerId: string, policyRule: AuthorizationServerPolicyRule, _options?: Configuration): Promise<AuthorizationServerPolicyRule>;
   /**
       * Success
-      * Create Custom OAuth 2.0 Token Claim
+      * Create a Custom Token Claim
       * @param authServerId
       * @param oAuth2Claim
       */
   createOAuth2Claim(authServerId: string, oAuth2Claim: OAuth2Claim, _options?: Configuration): Promise<void | OAuth2Claim>;
   /**
       * Success
-      * Create Oauth2scope
+      * Create a Custom Token Scope
       * @param authServerId
       * @param oAuth2Scope
       */
   createOAuth2Scope(authServerId: string, oAuth2Scope: OAuth2Scope, _options?: Configuration): Promise<void | OAuth2Scope>;
   /**
       * Success
-      * Deactivate Authorization Server
+      * Deactivate an Authorization Server
       * @param authServerId
       */
   deactivateAuthorizationServer(authServerId: string, _options?: Configuration): Promise<void>;
   /**
       * Deactivate Authorization Server Policy
-      * Deactivate Authorization Server Policy
+      * Deactivate a Policy
       * @param authServerId
       * @param policyId
       */
   deactivateAuthorizationServerPolicy(authServerId: string, policyId: string, _options?: Configuration): Promise<void>;
   /**
       * Deactivate Authorization Server Policy Rule
-      * Deactivate Authorization Server Policy Rule
+      * Deactivate a Policy Rule
       * @param authServerId
       * @param policyId
       * @param ruleId
@@ -669,20 +669,20 @@ export declare class PromiseAuthorizationServerApi {
   deactivateAuthorizationServerPolicyRule(authServerId: string, policyId: string, ruleId: string, _options?: Configuration): Promise<void>;
   /**
       * Success
-      * Delete Authorization Server
+      * Delete an Authorization Server
       * @param authServerId
       */
   deleteAuthorizationServer(authServerId: string, _options?: Configuration): Promise<void>;
   /**
       * Success
-      * Delete Authorization Server Policy
+      * Delete a Policy
       * @param authServerId
       * @param policyId
       */
   deleteAuthorizationServerPolicy(authServerId: string, policyId: string, _options?: Configuration): Promise<void>;
   /**
       * Deletes a Policy Rule defined in the specified Custom Authorization Server and Policy.
-      * Delete Authorization Server Policy Rule
+      * Delete a Policy Rule
       * @param policyId
       * @param authServerId
       * @param ruleId
@@ -690,34 +690,34 @@ export declare class PromiseAuthorizationServerApi {
   deleteAuthorizationServerPolicyRule(policyId: string, authServerId: string, ruleId: string, _options?: Configuration): Promise<void>;
   /**
       * Success
-      * Delete Custom OAuth 2.0 Token Claim
+      * Delete a Custom Token Claim
       * @param authServerId
       * @param claimId
       */
   deleteOAuth2Claim(authServerId: string, claimId: string, _options?: Configuration): Promise<void>;
   /**
       * Success
-      * Delete Oauth2scope
+      * Delete a Custom Token Scope
       * @param authServerId
       * @param scopeId
       */
   deleteOAuth2Scope(authServerId: string, scopeId: string, _options?: Configuration): Promise<void>;
   /**
       * Success
-      * Get Authorization Server
+      * Retrieve an Authorization Server
       * @param authServerId
       */
   getAuthorizationServer(authServerId: string, _options?: Configuration): Promise<AuthorizationServer>;
   /**
       * Success
-      * Get Authorization Server Policy
+      * Retrieve a Policy
       * @param authServerId
       * @param policyId
       */
   getAuthorizationServerPolicy(authServerId: string, policyId: string, _options?: Configuration): Promise<AuthorizationServerPolicy>;
   /**
       * Returns a Policy Rule by ID that is defined in the specified Custom Authorization Server and Policy.
-      * Get Authorization Server Policy Rule
+      * Retrieve a Policy Rule
       * @param policyId
       * @param authServerId
       * @param ruleId
@@ -725,21 +725,21 @@ export declare class PromiseAuthorizationServerApi {
   getAuthorizationServerPolicyRule(policyId: string, authServerId: string, ruleId: string, _options?: Configuration): Promise<AuthorizationServerPolicyRule>;
   /**
       * Success
-      * Get Oauth2claim
+      * Retrieve a Custom Token Claim
       * @param authServerId
       * @param claimId
       */
   getOAuth2Claim(authServerId: string, claimId: string, _options?: Configuration): Promise<OAuth2Claim>;
   /**
       * Success
-      * Get Oauth2scope
+      * Retrieve a Custom Token Scope
       * @param authServerId
       * @param scopeId
       */
   getOAuth2Scope(authServerId: string, scopeId: string, _options?: Configuration): Promise<OAuth2Scope>;
   /**
       * Success
-      * Get Refresh Token for Authorization Server and Client
+      * Retrieve a Refresh Token for a Client
       * @param authServerId
       * @param clientId
       * @param tokenId
@@ -748,26 +748,26 @@ export declare class PromiseAuthorizationServerApi {
   getRefreshTokenForAuthorizationServerAndClient(authServerId: string, clientId: string, tokenId: string, expand?: string, _options?: Configuration): Promise<OAuth2RefreshToken>;
   /**
       * Success
-      * List Authorization Server Keys
+      * List all Credential Keys
       * @param authServerId
       */
   listAuthorizationServerKeys(authServerId: string, _options?: Configuration): Promise<Collection<JsonWebKey>>;
   /**
       * Success
-      * List Authorization Server Policies
+      * List all Policies
       * @param authServerId
       */
   listAuthorizationServerPolicies(authServerId: string, _options?: Configuration): Promise<Collection<AuthorizationServerPolicy>>;
   /**
       * Enumerates all policy rules for the specified Custom Authorization Server and Policy.
-      * List Authorization Server Policy Rules
+      * List all Policy Rules
       * @param policyId
       * @param authServerId
       */
   listAuthorizationServerPolicyRules(policyId: string, authServerId: string, _options?: Configuration): Promise<Collection<AuthorizationServerPolicyRule>>;
   /**
       * Success
-      * List Authorization Servers
+      * List all Authorization Servers
       * @param q
       * @param limit
       * @param after
@@ -775,19 +775,19 @@ export declare class PromiseAuthorizationServerApi {
   listAuthorizationServers(q?: string, limit?: string, after?: string, _options?: Configuration): Promise<Collection<AuthorizationServer>>;
   /**
       * Success
-      * List Custom OAuth 2.0 Token Claims
+      * List all Custom Token Claims
       * @param authServerId
       */
   listOAuth2Claims(authServerId: string, _options?: Configuration): Promise<Collection<OAuth2Claim>>;
   /**
       * Success
-      * List Oauth2clients for Authorization Server
+      * List all Clients
       * @param authServerId
       */
   listOAuth2ClientsForAuthorizationServer(authServerId: string, _options?: Configuration): Promise<Collection<OAuth2Client>>;
   /**
       * Success
-      * List Oauth2scopes
+      * List all Custom Token Scopes
       * @param authServerId
       * @param q
       * @param filter
@@ -797,7 +797,7 @@ export declare class PromiseAuthorizationServerApi {
   listOAuth2Scopes(authServerId: string, q?: string, filter?: string, cursor?: string, limit?: number, _options?: Configuration): Promise<Collection<OAuth2Scope>>;
   /**
       * Success
-      * List Refresh Tokens for Authorization Server and Client
+      * List all Refresh Tokens for a Client
       * @param authServerId
       * @param clientId
       * @param expand
@@ -807,7 +807,7 @@ export declare class PromiseAuthorizationServerApi {
   listRefreshTokensForAuthorizationServerAndClient(authServerId: string, clientId: string, expand?: string, after?: string, limit?: number, _options?: Configuration): Promise<Collection<OAuth2RefreshToken>>;
   /**
       * Success
-      * Revoke Refresh Token for Authorization Server and Client
+      * Revoke a Refresh Token for a Client
       * @param authServerId
       * @param clientId
       * @param tokenId
@@ -815,28 +815,28 @@ export declare class PromiseAuthorizationServerApi {
   revokeRefreshTokenForAuthorizationServerAndClient(authServerId: string, clientId: string, tokenId: string, _options?: Configuration): Promise<void>;
   /**
       * Success
-      * Revoke Refresh Tokens for Authorization Server and Client
+      * Revoke all Refresh Tokens for a Client
       * @param authServerId
       * @param clientId
       */
   revokeRefreshTokensForAuthorizationServerAndClient(authServerId: string, clientId: string, _options?: Configuration): Promise<void>;
   /**
       * Success
-      * Rotate Authorization Server Keys
+      * Rotate all Credential Keys
       * @param authServerId
       * @param use
       */
   rotateAuthorizationServerKeys(authServerId: string, use: JwkUse, _options?: Configuration): Promise<Collection<JsonWebKey>>;
   /**
       * Success
-      * Update Authorization Server
+      * Replace an Authorization Server
       * @param authServerId
       * @param authorizationServer
       */
   updateAuthorizationServer(authServerId: string, authorizationServer: AuthorizationServer, _options?: Configuration): Promise<AuthorizationServer>;
   /**
       * Success
-      * Update Authorization Server Policy
+      * Replace a Policy
       * @param authServerId
       * @param policyId
       * @param policy
@@ -844,7 +844,7 @@ export declare class PromiseAuthorizationServerApi {
   updateAuthorizationServerPolicy(authServerId: string, policyId: string, policy: AuthorizationServerPolicy, _options?: Configuration): Promise<AuthorizationServerPolicy>;
   /**
       * Updates the configuration of the Policy Rule defined in the specified Custom Authorization Server and Policy.
-      * Update Authorization Server Policy Rule
+      * Replace a Policy Rule
       * @param policyId
       * @param authServerId
       * @param ruleId
@@ -853,7 +853,7 @@ export declare class PromiseAuthorizationServerApi {
   updateAuthorizationServerPolicyRule(policyId: string, authServerId: string, ruleId: string, policyRule: AuthorizationServerPolicyRule, _options?: Configuration): Promise<AuthorizationServerPolicyRule>;
   /**
       * Success
-      * Update Custom OAuth 2.0 Token Claim
+      * Replace a Custom Token Claim
       * @param authServerId
       * @param claimId
       * @param oAuth2Claim
@@ -861,7 +861,7 @@ export declare class PromiseAuthorizationServerApi {
   updateOAuth2Claim(authServerId: string, claimId: string, oAuth2Claim: OAuth2Claim, _options?: Configuration): Promise<OAuth2Claim>;
   /**
       * Success
-      * Update Oauth2scope
+      * Replace a Custom Token Scope
       * @param authServerId
       * @param scopeId
       * @param oAuth2Scope
@@ -874,42 +874,42 @@ export declare class PromiseBehaviorApi {
   constructor(configuration: Configuration, requestFactory?: BehaviorApiRequestFactory, responseProcessor?: BehaviorApiResponseProcessor);
   /**
       * Activate Behavior Detection Rule
-      * Activate Behavior Detection Rule
+      * Activate a Behavior Detection Rule
       * @param behaviorId id of the Behavior Detection Rule
       */
   activateBehaviorDetectionRule(behaviorId: string, _options?: Configuration): Promise<BehaviorRule>;
   /**
       * Adds a new Behavior Detection Rule to your organization.
-      * Create new Behavior Detection Rule
+      * Create a Behavior Detection Rule
       * @param rule
       */
   createBehaviorDetectionRule(rule: BehaviorRule, _options?: Configuration): Promise<BehaviorRule>;
   /**
       * Deactivate Behavior Detection Rule
-      * Deactivate Behavior Detection Rule
+      * Deactivate a Behavior Detection Rule
       * @param behaviorId id of the Behavior Detection Rule
       */
   deactivateBehaviorDetectionRule(behaviorId: string, _options?: Configuration): Promise<BehaviorRule>;
   /**
       * Delete a Behavior Detection Rule by `behaviorId`.
-      * Delete Behavior Detection Rule
+      * Delete a Behavior Detection Rule
       * @param behaviorId id of the Behavior Detection Rule
       */
   deleteBehaviorDetectionRule(behaviorId: string, _options?: Configuration): Promise<void>;
   /**
       * Fetches a Behavior Detection Rule by `behaviorId`.
-      * Get Behavior Detection Rule
+      * Retrieve a Behavior Detection Rule
       * @param behaviorId id of the Behavior Detection Rule
       */
   getBehaviorDetectionRule(behaviorId: string, _options?: Configuration): Promise<Collection<BehaviorRule>>;
   /**
       * Enumerates Behavior Detection Rules in your organization with pagination.
-      * List Behavior Detection Rules
+      * List all Behavior Detection Rules
       */
   listBehaviorDetectionRules(_options?: Configuration): Promise<Collection<BehaviorRule>>;
   /**
       * Update a Behavior Detection Rule by `behaviorId`.
-      * Update Behavior Detection Rule
+      * Replace a Behavior Detection Rule
       * @param behaviorId id of the Behavior Detection Rule
       * @param rule
       */
@@ -921,37 +921,37 @@ export declare class PromiseCAPTCHAApi {
   constructor(configuration: Configuration, requestFactory?: CAPTCHAApiRequestFactory, responseProcessor?: CAPTCHAApiResponseProcessor);
   /**
       * Adds a new CAPTCHA instance to your organization. In the current release, we only allow one CAPTCHA instance per org.
-      * Create new CAPTCHA instance
+      * Create a CAPTCHA instance
       * @param instance
       */
   createCaptchaInstance(instance: CAPTCHAInstance, _options?: Configuration): Promise<CAPTCHAInstance>;
   /**
       * Delete a CAPTCHA instance by `captchaId`. If the CAPTCHA instance is currently being used in the org, the delete will not be allowed.
-      * Delete CAPTCHA Instance
+      * Delete a CAPTCHA Instance
       * @param captchaId id of the CAPTCHA
       */
   deleteCaptchaInstance(captchaId: string, _options?: Configuration): Promise<void>;
   /**
       * Fetches a CAPTCHA instance by `captchaId`.
-      * Get CAPTCHA Instance
+      * Retrieve a CAPTCHA Instance
       * @param captchaId id of the CAPTCHA
       */
   getCaptchaInstance(captchaId: string, _options?: Configuration): Promise<CAPTCHAInstance>;
   /**
       * Enumerates CAPTCHA instances in your organization with pagination. A subset of CAPTCHA instances can be returned that match a supported filter expression or query.
-      * List CAPTCHA instances
+      * List all CAPTCHA instances
       */
   listCaptchaInstances(_options?: Configuration): Promise<Collection<CAPTCHAInstance>>;
   /**
       * Partially update a CAPTCHA instance by `captchaId`.
-      * Partial Update CAPTCHA instance
+      * Update a CAPTCHA instance
       * @param captchaId id of the CAPTCHA
       * @param instance
       */
   partialUpdateCaptchaInstance(captchaId: string, instance: CAPTCHAInstance, _options?: Configuration): Promise<CAPTCHAInstance>;
   /**
       * Update a CAPTCHA instance by `captchaId`.
-      * Update CAPTCHA instance
+      * Replace a CAPTCHA instance
       * @param captchaId id of the CAPTCHA
       * @param instance
       */
@@ -963,7 +963,7 @@ export declare class PromiseCustomizationApi {
   constructor(configuration: Configuration, requestFactory?: CustomizationApiRequestFactory, responseProcessor?: CustomizationApiResponseProcessor);
   /**
       * Creates a new email customization.
-      * Create Email Customization
+      * Create an Email Customization
       * @param brandId The ID of the brand.
       * @param templateName The name of the email template.
       * @param instance
@@ -971,35 +971,35 @@ export declare class PromiseCustomizationApi {
   createEmailCustomization(brandId: string, templateName: string, instance?: EmailCustomization, _options?: Configuration): Promise<EmailCustomization>;
   /**
       * Deletes all customizations for an email template.
-      * Delete All Email Customizations
+      * Delete all Email Customizations
       * @param brandId The ID of the brand.
       * @param templateName The name of the email template.
       */
   deleteAllCustomizations(brandId: string, templateName: string, _options?: Configuration): Promise<void>;
   /**
-      * Deletes a Theme background image
-      * Deletes a Theme background image
+      * Deletes a Theme background image.
+      * Delete the Background Image
       * @param brandId
       * @param themeId
       */
   deleteBrandThemeBackgroundImage(brandId: string, themeId: string, _options?: Configuration): Promise<void>;
   /**
-      * Deletes a Theme favicon. The org then uses the Okta default favicon.
-      * Deletes a Theme favicon. The org then uses the Okta default favicon.
+      * Deletes a Theme favicon. The theme will use the default Okta favicon.
+      * Delete the Favicon
       * @param brandId
       * @param themeId
       */
   deleteBrandThemeFavicon(brandId: string, themeId: string, _options?: Configuration): Promise<void>;
   /**
-      * Deletes a Theme logo. The org then uses the Okta default logo.
-      * Deletes a Theme logo. The org then uses the Okta default logo.
+      * Deletes a Theme logo. The theme will use the default Okta logo.
+      * Delete the Logo
       * @param brandId
       * @param themeId
       */
   deleteBrandThemeLogo(brandId: string, themeId: string, _options?: Configuration): Promise<void>;
   /**
       * Deletes an email customization by its unique identifier.
-      * Delete Email Customization
+      * Delete an Email Customization
       * @param brandId The ID of the brand.
       * @param templateName The name of the email template.
       * @param customizationId The ID of the email customization.
@@ -1007,20 +1007,20 @@ export declare class PromiseCustomizationApi {
   deleteEmailCustomization(brandId: string, templateName: string, customizationId: string, _options?: Configuration): Promise<void>;
   /**
       * Fetches a brand by `brandId`
-      * Get Brand
+      * Retrieve a Brand
       * @param brandId
       */
   getBrand(brandId: string, _options?: Configuration): Promise<Brand>;
   /**
       * Fetches a theme for a brand
-      * Get a theme for a brand
+      * Retrieve a Theme
       * @param brandId
       * @param themeId
       */
   getBrandTheme(brandId: string, themeId: string, _options?: Configuration): Promise<ThemeResponse>;
   /**
       * Generates a preview of an email customization. All variable references (e.g., `${user.profile.firstName}`) are populated using the current user's context.
-      * Preview Email Customization
+      * Preview an Email Customization
       * @param brandId The ID of the brand.
       * @param templateName The name of the email template.
       * @param customizationId The ID of the email customization.
@@ -1028,7 +1028,7 @@ export declare class PromiseCustomizationApi {
   getCustomizationPreview(brandId: string, templateName: string, customizationId: string, _options?: Configuration): Promise<EmailPreview>;
   /**
       * Gets an email customization by its unique identifier.
-      * Get Email Customization
+      * Retrieve an Email Customization
       * @param brandId The ID of the brand.
       * @param templateName The name of the email template.
       * @param customizationId The ID of the email customization.
@@ -1036,7 +1036,7 @@ export declare class PromiseCustomizationApi {
   getEmailCustomization(brandId: string, templateName: string, customizationId: string, _options?: Configuration): Promise<EmailCustomization>;
   /**
       * Gets an email template's default content.
-      * Get Email Template Default Content
+      * Retrieve an Email Template Default Content
       * @param brandId The ID of the brand.
       * @param templateName The name of the email template.
       * @param language The language to use for the email. Defaults to the current user&#39;s language if unspecified.
@@ -1044,7 +1044,7 @@ export declare class PromiseCustomizationApi {
   getEmailDefaultContent(brandId: string, templateName: string, language?: string, _options?: Configuration): Promise<EmailDefaultContent>;
   /**
       * Generates a preview of an email template's default content. All variable references (e.g., `${user.profile.firstName}`) are populated using the current user's context.
-      * Preview Email Template Default Content
+      * Preview the Email Template Default Content
       * @param brandId The ID of the brand.
       * @param templateName The name of the email template.
       * @param language The language to use for the email. Defaults to the current user&#39;s language if unspecified.
@@ -1052,14 +1052,14 @@ export declare class PromiseCustomizationApi {
   getEmailDefaultPreview(brandId: string, templateName: string, language?: string, _options?: Configuration): Promise<EmailPreview>;
   /**
       * Gets an email template's settings.
-      * Get Email Template Settings
+      * Retrieve the Email Template Settings
       * @param brandId The ID of the brand.
       * @param templateName The name of the email template.
       */
   getEmailSettings(brandId: string, templateName: string, _options?: Configuration): Promise<EmailSettings>;
   /**
       * Gets the details of an email template by name.
-      * Get Email Template
+      * Retrieve an Email Template
       * @param brandId The ID of the brand.
       * @param templateName The name of the email template.
       * @param expand Specifies additional metadata to be included in the response.
@@ -1067,18 +1067,18 @@ export declare class PromiseCustomizationApi {
   getEmailTemplate(brandId: string, templateName: string, expand?: Array<'settings' | 'customizationCount'>, _options?: Configuration): Promise<EmailTemplate>;
   /**
       * List all the themes in your brand
-      * Get Brand Themes
+      * List all Themes
       * @param brandId
       */
   listBrandThemes(brandId: string, _options?: Configuration): Promise<Collection<ThemeResponse>>;
   /**
       * List all the brands in your org.
-      * List Brands
+      * List all Brands
       */
   listBrands(_options?: Configuration): Promise<Collection<Brand>>;
   /**
       * Lists all customizations of an email template.
-      * List Email Customizations
+      * List all Email Customizations
       * @param brandId The ID of the brand.
       * @param templateName The name of the email template.
       * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/reference/core-okta-api/#pagination) for more information.
@@ -1087,7 +1087,7 @@ export declare class PromiseCustomizationApi {
   listEmailCustomizations(brandId: string, templateName: string, after?: string, limit?: number, _options?: Configuration): Promise<Collection<EmailCustomization>>;
   /**
       * Lists all email templates.
-      * List Email Templates
+      * List all Email Templates
       * @param brandId The ID of the brand.
       * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/reference/core-okta-api/#pagination) for more information.
       * @param limit A limit on the number of objects to return.
@@ -1096,7 +1096,7 @@ export declare class PromiseCustomizationApi {
   listEmailTemplates(brandId: string, after?: string, limit?: number, expand?: Array<'settings' | 'customizationCount'>, _options?: Configuration): Promise<Collection<EmailTemplate>>;
   /**
       * Sends a test email to the current user’s primary and secondary email addresses. The email content is selected based on the following priority: 1. The email customization for the language specified in the `language` query parameter. 2. The email template's default customization. 3. The email template’s default content, translated to the current user's language.
-      * Send Test Email
+      * Send a Test Email
       * @param brandId The ID of the brand.
       * @param templateName The name of the email template.
       * @param language The language to use for the email. Defaults to the current user&#39;s language if unspecified.
@@ -1104,14 +1104,14 @@ export declare class PromiseCustomizationApi {
   sendTestEmail(brandId: string, templateName: string, language?: string, _options?: Configuration): Promise<void>;
   /**
       * Updates a brand by `brandId`
-      * Update Brand
+      * Replace a Brand
       * @param brandId
       * @param brand
       */
   updateBrand(brandId: string, brand: Brand, _options?: Configuration): Promise<Brand>;
   /**
       * Updates a theme for a brand
-      * Update a theme for a brand
+      * Replace a Theme
       * @param brandId
       * @param themeId
       * @param theme
@@ -1119,7 +1119,7 @@ export declare class PromiseCustomizationApi {
   updateBrandTheme(brandId: string, themeId: string, theme: Theme, _options?: Configuration): Promise<ThemeResponse>;
   /**
       * Updates an existing email customization using the property values provided.
-      * Update Email Customization
+      * Replace an Email Customization
       * @param brandId The ID of the brand.
       * @param templateName The name of the email template.
       * @param customizationId The ID of the email customization.
@@ -1128,7 +1128,7 @@ export declare class PromiseCustomizationApi {
   updateEmailCustomization(brandId: string, templateName: string, customizationId: string, instance?: EmailCustomization, _options?: Configuration): Promise<EmailCustomization>;
   /**
       * Updates an email template's settings.
-      * Update Email Template Settings
+      * Replace the Email Template Settings
       * @param brandId The ID of the brand.
       * @param templateName The name of the email template.
       * @param EmailSettings
@@ -1136,21 +1136,21 @@ export declare class PromiseCustomizationApi {
   updateEmailSettings(brandId: string, templateName: string, EmailSettings?: EmailSettings, _options?: Configuration): Promise<void>;
   /**
       * Updates the background image for your Theme
-      * Updates the background image for your Theme
+      * Upload the Background Image
       * @param brandId
       * @param themeId
       */
   uploadBrandThemeBackgroundImage(brandId: string, themeId: string, _options?: Configuration): Promise<ImageUploadResponse>;
   /**
       * Updates the favicon for your theme
-      * Updates the favicon for your theme
+      * Upload the Favicon
       * @param brandId
       * @param themeId
       */
   uploadBrandThemeFavicon(brandId: string, themeId: string, _options?: Configuration): Promise<ImageUploadResponse>;
   /**
       * Updates the logo for your Theme
-      * Update a themes logo
+      * Upload the Logo
       * @param brandId
       * @param themeId
       */
@@ -1162,37 +1162,37 @@ export declare class PromiseDomainApi {
   constructor(configuration: Configuration, requestFactory?: DomainApiRequestFactory, responseProcessor?: DomainApiResponseProcessor);
   /**
       * Creates the Certificate for the Domain.
-      * Create Certificate
+      * Replace the Certificate
       * @param domainId
       * @param certificate
       */
   createCertificate(domainId: string, certificate: DomainCertificate, _options?: Configuration): Promise<void>;
   /**
       * Creates your domain.
-      * Create Domain
+      * Create a Domain
       * @param domain
       */
   createDomain(domain: Domain, _options?: Configuration): Promise<DomainResponse>;
   /**
       * Deletes a Domain by `id`.
-      * Delete Domain
+      * Delete a Domain
       * @param domainId
       */
   deleteDomain(domainId: string, _options?: Configuration): Promise<void>;
   /**
       * Fetches a Domain by `id`.
-      * Get Domain
+      * Retrieve a Domain
       * @param domainId
       */
   getDomain(domainId: string, _options?: Configuration): Promise<DomainResponse>;
   /**
       * List all verified custom Domains for the org.
-      * List Domains
+      * List all Domains
       */
   listDomains(_options?: Configuration): Promise<DomainListResponse>;
   /**
       * Verifies the Domain by `id`.
-      * Verify Domain
+      * Verify a Domain
       * @param domainId
       */
   verifyDomain(domainId: string, _options?: Configuration): Promise<DomainResponse>;
@@ -1203,49 +1203,49 @@ export declare class PromiseEventHookApi {
   constructor(configuration: Configuration, requestFactory?: EventHookApiRequestFactory, responseProcessor?: EventHookApiResponseProcessor);
   /**
       * Success
-      * Activate Event Hook
+      * Activate an Event Hook
       * @param eventHookId
       */
   activateEventHook(eventHookId: string, _options?: Configuration): Promise<EventHook>;
   /**
       * Success
-      * Create Event Hook
+      * Create an Event Hook
       * @param eventHook
       */
   createEventHook(eventHook: EventHook, _options?: Configuration): Promise<EventHook>;
   /**
       * Success
-      * Deactivate Event Hook
+      * Deactivate an Event Hook
       * @param eventHookId
       */
   deactivateEventHook(eventHookId: string, _options?: Configuration): Promise<EventHook>;
   /**
       * Success
-      * Delete Event Hook
+      * Delete an Event Hook
       * @param eventHookId
       */
   deleteEventHook(eventHookId: string, _options?: Configuration): Promise<void>;
   /**
       * Success
-      * Get Event Hook
+      * Retrieve an Event Hook
       * @param eventHookId
       */
   getEventHook(eventHookId: string, _options?: Configuration): Promise<EventHook>;
   /**
       * Success
-      * List Event Hooks
+      * List all Event Hooks
       */
   listEventHooks(_options?: Configuration): Promise<Collection<EventHook>>;
   /**
       * Success
-      * Update Event Hook
+      * Replace an Event Hook
       * @param eventHookId
       * @param eventHook
       */
   updateEventHook(eventHookId: string, eventHook: EventHook, _options?: Configuration): Promise<EventHook>;
   /**
       * Success
-      * Verify Event Hook
+      * Verify an Event Hook
       * @param eventHookId
       */
   verifyEventHook(eventHookId: string, _options?: Configuration): Promise<EventHook>;
@@ -1256,30 +1256,30 @@ export declare class PromiseFeatureApi {
   constructor(configuration: Configuration, requestFactory?: FeatureApiRequestFactory, responseProcessor?: FeatureApiResponseProcessor);
   /**
       * Success
-      * Get Feature
+      * Retrieve a Feature
       * @param featureId
       */
   getFeature(featureId: string, _options?: Configuration): Promise<Feature>;
   /**
       * Success
-      * List Feature Dependencies
+      * List all Dependencies
       * @param featureId
       */
   listFeatureDependencies(featureId: string, _options?: Configuration): Promise<Collection<Feature>>;
   /**
       * Success
-      * List Feature Dependents
+      * List all Dependents
       * @param featureId
       */
   listFeatureDependents(featureId: string, _options?: Configuration): Promise<Collection<Feature>>;
   /**
       * Success
-      * List Features
+      * List all Features
       */
   listFeatures(_options?: Configuration): Promise<Collection<Feature>>;
   /**
       * Success
-      * Update Feature Lifecycle
+      * Update a Feature Lifecycle
       * @param featureId
       * @param lifecycle
       * @param mode
@@ -1292,13 +1292,13 @@ export declare class PromiseGroupApi {
   constructor(configuration: Configuration, requestFactory?: GroupApiRequestFactory, responseProcessor?: GroupApiResponseProcessor);
   /**
       * Activates a specific group rule by id from your organization
-      * Activate a group Rule
+      * Activate a Group Rule
       * @param ruleId
       */
   activateGroupRule(ruleId: string, _options?: Configuration): Promise<void>;
   /**
       * Add App Instance Target to App Administrator Role given to a Group
-      * Add App Instance Target to App Administrator Role given to a Group
+      * Assign an Application Instance Target to Application Administrator Role
       * @param groupId
       * @param roleId
       * @param appName
@@ -1307,7 +1307,7 @@ export declare class PromiseGroupApi {
   addApplicationInstanceTargetToAppAdminRoleGivenToGroup(groupId: string, roleId: string, appName: string, applicationId: string, _options?: Configuration): Promise<void>;
   /**
       * Success
-      * Add Application Target to Admin Role Given to Group
+      * Assign an Application Target to Administrator Role
       * @param groupId
       * @param roleId
       * @param appName
@@ -1315,7 +1315,7 @@ export declare class PromiseGroupApi {
   addApplicationTargetToAdminRoleGivenToGroup(groupId: string, roleId: string, appName: string, _options?: Configuration): Promise<void>;
   /**
       * Enumerates group targets for a group role.
-      * Add Group Target for Group Role
+      * Assign a Group Target for Group Role
       * @param groupId
       * @param roleId
       * @param targetGroupId
@@ -1323,14 +1323,14 @@ export declare class PromiseGroupApi {
   addGroupTargetToGroupAdministratorRoleForGroup(groupId: string, roleId: string, targetGroupId: string, _options?: Configuration): Promise<void>;
   /**
       * Adds a user to a group with 'OKTA_GROUP' type.
-      * Add User to Group
+      * Assign a User
       * @param groupId
       * @param userId
       */
   addUserToGroup(groupId: string, userId: string, _options?: Configuration): Promise<void>;
   /**
       * Assigns a Role to a Group
-      * Assign Role to Group
+      * Assign a Role
       * @param groupId
       * @param assignRoleRequest
       * @param disableNotifications
@@ -1338,25 +1338,25 @@ export declare class PromiseGroupApi {
   assignRoleToGroup(groupId: string, assignRoleRequest: AssignRoleRequest, disableNotifications?: boolean, _options?: Configuration): Promise<Role | void>;
   /**
       * Adds a new group with `OKTA_GROUP` type to your organization.
-      * Add Group
+      * Create a Group
       * @param group
       */
   createGroup(group: Group, _options?: Configuration): Promise<Group>;
   /**
       * Creates a group rule to dynamically add users to the specified group if they match the condition
-      * Create Group Rule
+      * Create a Group Rule
       * @param groupRule
       */
   createGroupRule(groupRule: GroupRule, _options?: Configuration): Promise<GroupRule>;
   /**
       * Deactivates a specific group rule by id from your organization
-      * Deactivate a group Rule
+      * Deactivate a Group Rule
       * @param ruleId
       */
   deactivateGroupRule(ruleId: string, _options?: Configuration): Promise<void>;
   /**
       * Removes a group with `OKTA_GROUP` type from your organization.
-      * Remove Group
+      * Delete a Group
       * @param groupId
       */
   deleteGroup(groupId: string, _options?: Configuration): Promise<void>;
@@ -1369,27 +1369,27 @@ export declare class PromiseGroupApi {
   deleteGroupRule(ruleId: string, removeUsers?: boolean, _options?: Configuration): Promise<void>;
   /**
       * Fetches a group from your organization.
-      * List Group Rules
+      * List all Group Rules
       * @param groupId
       */
   getGroup(groupId: string, _options?: Configuration): Promise<Group>;
   /**
       * Fetches a specific group rule by id from your organization
-      * Get Group Rule
+      * Retrieve a Group Rule
       * @param ruleId
       * @param expand
       */
   getGroupRule(ruleId: string, expand?: string, _options?: Configuration): Promise<GroupRule>;
   /**
       * Success
-      * Get Role
+      * Retrieve a Role
       * @param groupId
       * @param roleId
       */
   getRole(groupId: string, roleId: string, _options?: Configuration): Promise<Role>;
   /**
       * Lists all App targets for an `APP_ADMIN` Role assigned to a Group. This methods return list may include full Applications or Instances. The response for an instance will have an `ID` value, while Application will not have an ID.
-      * List Application Targets for Application Administrator Role for Group
+      * List all Application Targets for an Application Administrator Role
       * @param groupId
       * @param roleId
       * @param after
@@ -1398,7 +1398,7 @@ export declare class PromiseGroupApi {
   listApplicationTargetsForApplicationAdministratorRoleForGroup(groupId: string, roleId: string, after?: string, limit?: number, _options?: Configuration): Promise<Collection<CatalogApplication>>;
   /**
       * Enumerates all applications that are assigned to a group.
-      * List Assigned Applications
+      * List all Assigned Applications
       * @param groupId
       * @param after Specifies the pagination cursor for the next page of apps
       * @param limit Specifies the number of app results for a page
@@ -1406,14 +1406,14 @@ export declare class PromiseGroupApi {
   listAssignedApplicationsForGroup(groupId: string, after?: string, limit?: number, _options?: Configuration): Promise<Collection<Application>>;
   /**
       * Success
-      * List Group Assigned Roles
+      * List all Assigned Roles
       * @param groupId
       * @param expand
       */
   listGroupAssignedRoles(groupId: string, expand?: string, _options?: Configuration): Promise<Collection<Role>>;
   /**
       * Lists all group rules for your organization.
-      * List Group Rules
+      * List all Group Rules
       * @param limit Specifies the number of rule results in a page
       * @param after Specifies the pagination cursor for the next page of rules
       * @param search Specifies the keyword to search fules for
@@ -1422,7 +1422,7 @@ export declare class PromiseGroupApi {
   listGroupRules(limit?: number, after?: string, search?: string, expand?: string, _options?: Configuration): Promise<Collection<GroupRule>>;
   /**
       * Enumerates group targets for a group role.
-      * List Group Targets for Group Role
+      * List all Group Targets for a Group Role
       * @param groupId
       * @param roleId
       * @param after
@@ -1431,7 +1431,7 @@ export declare class PromiseGroupApi {
   listGroupTargetsForGroupRole(groupId: string, roleId: string, after?: string, limit?: number, _options?: Configuration): Promise<Collection<Group>>;
   /**
       * Enumerates all users that are a member of a group.
-      * List Group Members
+      * List all Member Users
       * @param groupId
       * @param after Specifies the pagination cursor for the next page of users
       * @param limit Specifies the number of user results in a page
@@ -1439,7 +1439,7 @@ export declare class PromiseGroupApi {
   listGroupUsers(groupId: string, after?: string, limit?: number, _options?: Configuration): Promise<Collection<User>>;
   /**
       * Enumerates groups in your organization with pagination. A subset of groups can be returned that match a supported filter expression or query.
-      * List Groups
+      * List all Groups
       * @param q Searches the name property of groups for matching value
       * @param search Filter expression for groups
       * @param after Specifies the pagination cursor for the next page of groups
@@ -1449,7 +1449,7 @@ export declare class PromiseGroupApi {
   listGroups(q?: string, search?: string, after?: string, limit?: number, expand?: string, _options?: Configuration): Promise<Collection<Group>>;
   /**
       * Remove App Instance Target to App Administrator Role given to a Group
-      * Remove App Instance Target to App Administrator Role given to a Group
+      * Delete an Application Instance Target to Application Administrator Role
       * @param groupId
       * @param roleId
       * @param appName
@@ -1458,7 +1458,7 @@ export declare class PromiseGroupApi {
   removeApplicationTargetFromAdministratorRoleGivenToGroup(groupId: string, roleId: string, appName: string, applicationId: string, _options?: Configuration): Promise<void>;
   /**
       * Success
-      * Remove Application Target from Application Administrator Role Given to Group
+      * Delete an Application Target from Application Administrator Role
       * @param groupId
       * @param roleId
       * @param appName
@@ -1466,7 +1466,7 @@ export declare class PromiseGroupApi {
   removeApplicationTargetFromApplicationAdministratorRoleGivenToGroup(groupId: string, roleId: string, appName: string, _options?: Configuration): Promise<void>;
   /**
       * remove group target for a group role.
-      * Delete Group Target for Group Role
+      * Delete a Group Target for Group Role
       * @param groupId
       * @param roleId
       * @param targetGroupId
@@ -1474,28 +1474,28 @@ export declare class PromiseGroupApi {
   removeGroupTargetFromGroupAdministratorRoleGivenToGroup(groupId: string, roleId: string, targetGroupId: string, _options?: Configuration): Promise<void>;
   /**
       * Unassigns a Role from a Group
-      * Remove Role from Group
+      * Delete a Role
       * @param groupId
       * @param roleId
       */
   removeRoleFromGroup(groupId: string, roleId: string, _options?: Configuration): Promise<void>;
   /**
       * Removes a user from a group with 'OKTA_GROUP' type.
-      * Remove User from Group
+      * Unassign a User
       * @param groupId
       * @param userId
       */
   removeUserFromGroup(groupId: string, userId: string, _options?: Configuration): Promise<void>;
   /**
       * Updates the profile for a group with `OKTA_GROUP` type from your organization.
-      * Update Group
+      * Replace a Group
       * @param groupId
       * @param group
       */
   updateGroup(groupId: string, group: Group, _options?: Configuration): Promise<Group>;
   /**
       * Updates a group rule. Only `INACTIVE` rules can be updated.
-      * Update Group Rule
+      * Replace a Group Rule
       * @param ruleId
       * @param groupRule
       */
@@ -1507,13 +1507,13 @@ export declare class PromiseIdentityProviderApi {
   constructor(configuration: Configuration, requestFactory?: IdentityProviderApiRequestFactory, responseProcessor?: IdentityProviderApiResponseProcessor);
   /**
       * Activates an inactive IdP.
-      * Activate Identity Provider
+      * Activate an Identity Provider
       * @param idpId
       */
   activateIdentityProvider(idpId: string, _options?: Configuration): Promise<IdentityProvider>;
   /**
       * Clones a X.509 certificate for an IdP signing key credential from a source IdP to target IdP
-      * Clone Signing Key Credential for IdP
+      * Clone a Signing Credential Key
       * @param idpId
       * @param keyId
       * @param targetIdpId
@@ -1521,84 +1521,84 @@ export declare class PromiseIdentityProviderApi {
   cloneIdentityProviderKey(idpId: string, keyId: string, targetIdpId: string, _options?: Configuration): Promise<JsonWebKey>;
   /**
       * Adds a new IdP to your organization.
-      * Add Identity Provider
+      * Create an Identity Provider
       * @param identityProvider
       */
   createIdentityProvider(identityProvider: IdentityProvider, _options?: Configuration): Promise<IdentityProvider>;
   /**
       * Adds a new X.509 certificate credential to the IdP key store.
-      * Add X.509 Certificate Public Key for Identity Providers
+      * Create an X.509 Certificate Public Key
       * @param jsonWebKey
       */
   createIdentityProviderKey(jsonWebKey: JsonWebKey, _options?: Configuration): Promise<JsonWebKey>;
   /**
       * Deactivates an active IdP.
-      * Deactivate Identity Provider
+      * Deactivate an Identity Provider
       * @param idpId
       */
   deactivateIdentityProvider(idpId: string, _options?: Configuration): Promise<IdentityProvider>;
   /**
       * Removes an IdP from your organization.
-      * Delete Identity Provider
+      * Delete an Identity Provider
       * @param idpId
       */
   deleteIdentityProvider(idpId: string, _options?: Configuration): Promise<void>;
   /**
       * Deletes a specific IdP Key Credential by `kid` if it is not currently being used by an Active or Inactive IdP.
-      * Delete Key
+      * Delete a Signing Credential Key
       * @param keyId
       */
   deleteIdentityProviderKey(keyId: string, _options?: Configuration): Promise<void>;
   /**
       * Generates a new key pair and returns a Certificate Signing Request for it.
-      * Generate Certificate Signing Request for IdP
+      * Generate a Certificate Signing Request
       * @param idpId
       * @param metadata
       */
   generateCsrForIdentityProvider(idpId: string, metadata: CsrMetadata, _options?: Configuration): Promise<Csr>;
   /**
       * Generates a new X.509 certificate for an IdP signing key credential to be used for signing assertions sent to the IdP
-      * Generate New IdP Signing Key Credential
+      * Generate a new Signing Credential Key
       * @param idpId
       * @param validityYears expiry of the IdP Key Credential
       */
   generateIdentityProviderSigningKey(idpId: string, validityYears: number, _options?: Configuration): Promise<JsonWebKey>;
   /**
       * Gets a specific Certificate Signing Request model by id
-      * Get Csr for Identity Provider
+      * Retrieve a Certificate Signing Request
       * @param idpId
       * @param csrId
       */
   getCsrForIdentityProvider(idpId: string, csrId: string, _options?: Configuration): Promise<Csr>;
   /**
       * Fetches an IdP by `id`.
-      * Get Identity Provider
+      * Retrieve an Identity Provider
       * @param idpId
       */
   getIdentityProvider(idpId: string, _options?: Configuration): Promise<IdentityProvider>;
   /**
       * Fetches a linked IdP user by ID
-      * Get Identity Provider Application User
+      * Retrieve a User
       * @param idpId
       * @param userId
       */
   getIdentityProviderApplicationUser(idpId: string, userId: string, _options?: Configuration): Promise<IdentityProviderApplicationUser>;
   /**
       * Gets a specific IdP Key Credential by `kid`
-      * Get Identity Provider Key
+      * Retrieve an Credential Key
       * @param keyId
       */
   getIdentityProviderKey(keyId: string, _options?: Configuration): Promise<JsonWebKey>;
   /**
       * Gets a specific IdP Key Credential by `kid`
-      * Get Signing Key Credential for IdP
+      * Retrieve a Signing Credential Key
       * @param idpId
       * @param keyId
       */
   getIdentityProviderSigningKey(idpId: string, keyId: string, _options?: Configuration): Promise<JsonWebKey>;
   /**
       * Links an Okta user to an existing Social Identity Provider. This does not support the SAML2 Identity Provider Type
-      * Link a user to a Social IdP without a transaction
+      * Link a User to a Social IdP
       * @param idpId
       * @param userId
       * @param userIdentityProviderLinkRequest
@@ -1606,32 +1606,32 @@ export declare class PromiseIdentityProviderApi {
   linkUserToIdentityProvider(idpId: string, userId: string, userIdentityProviderLinkRequest: UserIdentityProviderLinkRequest, _options?: Configuration): Promise<IdentityProviderApplicationUser>;
   /**
       * Enumerates Certificate Signing Requests for an IdP
-      * List Certificate Signing Requests for IdP
+      * List all Certificate Signing Requests
       * @param idpId
       */
   listCsrsForIdentityProvider(idpId: string, _options?: Configuration): Promise<Collection<Csr>>;
   /**
       * Find all the users linked to an identity provider
-      * Find Users
+      * List all Users
       * @param idpId
       */
   listIdentityProviderApplicationUsers(idpId: string, _options?: Configuration): Promise<Collection<IdentityProviderApplicationUser>>;
   /**
       * Enumerates IdP key credentials.
-      * List Identity Provider Keys
+      * List all Credential Keys
       * @param after Specifies the pagination cursor for the next page of keys
       * @param limit Specifies the number of key results in a page
       */
   listIdentityProviderKeys(after?: string, limit?: number, _options?: Configuration): Promise<Collection<JsonWebKey>>;
   /**
       * Enumerates signing key credentials for an IdP
-      * List Signing Key Credentials for IdP
+      * List all Signing Credential Keys
       * @param idpId
       */
   listIdentityProviderSigningKeys(idpId: string, _options?: Configuration): Promise<Collection<JsonWebKey>>;
   /**
       * Enumerates IdPs in your organization with pagination. A subset of IdPs can be returned that match a supported filter expression or query.
-      * List Identity Providers
+      * List all Identity Providers
       * @param q Searches the name property of IdPs for matching value
       * @param after Specifies the pagination cursor for the next page of IdPs
       * @param limit Specifies the number of IdP results in a page
@@ -1640,14 +1640,14 @@ export declare class PromiseIdentityProviderApi {
   listIdentityProviders(q?: string, after?: string, limit?: number, type?: string, _options?: Configuration): Promise<Collection<IdentityProvider>>;
   /**
       * Fetches the tokens minted by the Social Authentication Provider when the user authenticates with Okta via Social Auth.
-      * Social Authentication Token Operation
+      * List all Tokens from a OIDC Identity Provider
       * @param idpId
       * @param userId
       */
   listSocialAuthTokens(idpId: string, userId: string, _options?: Configuration): Promise<Collection<SocialAuthToken>>;
   /**
       * Update the Certificate Signing Request with a signed X.509 certificate and add it into the signing key credentials for the IdP.
-      * Publish Csr for Identity Provider
+      * Publish a Certificate Signing Request
       * @param idpId
       * @param csrId
       * @param body
@@ -1655,21 +1655,21 @@ export declare class PromiseIdentityProviderApi {
   publishCsrForIdentityProvider(idpId: string, csrId: string, body: HttpFile, _options?: Configuration): Promise<JsonWebKey>;
   /**
       * Revoke a Certificate Signing Request and delete the key pair from the IdP
-      * Revoke Csr for Identity Provider
+      * Revoke a Certificate Signing Request
       * @param idpId
       * @param csrId
       */
   revokeCsrForIdentityProvider(idpId: string, csrId: string, _options?: Configuration): Promise<void>;
   /**
       * Removes the link between the Okta user and the IdP user.
-      * Unlink User from IdP
+      * Unlink a User from IdP
       * @param idpId
       * @param userId
       */
   unlinkUserFromIdentityProvider(idpId: string, userId: string, _options?: Configuration): Promise<void>;
   /**
       * Updates the configuration for an IdP.
-      * Update Identity Provider
+      * Replace an Identity Provider
       * @param idpId
       * @param identityProvider
       */
@@ -1681,50 +1681,50 @@ export declare class PromiseInlineHookApi {
   constructor(configuration: Configuration, requestFactory?: InlineHookApiRequestFactory, responseProcessor?: InlineHookApiResponseProcessor);
   /**
       * Activates the Inline Hook matching the provided id
-      * Activate Inline Hook
+      * Activate an Inline Hook
       * @param inlineHookId
       */
   activateInlineHook(inlineHookId: string, _options?: Configuration): Promise<InlineHook>;
   /**
       * Success
-      * Create Inline Hook
+      * Create an Inline Hook
       * @param inlineHook
       */
   createInlineHook(inlineHook: InlineHook, _options?: Configuration): Promise<InlineHook>;
   /**
       * Deactivates the Inline Hook matching the provided id
-      * Deactivate Inline Hook
+      * Deactivate an Inline Hook
       * @param inlineHookId
       */
   deactivateInlineHook(inlineHookId: string, _options?: Configuration): Promise<InlineHook>;
   /**
       * Deletes the Inline Hook matching the provided id. Once deleted, the Inline Hook is unrecoverable. As a safety precaution, only Inline Hooks with a status of INACTIVE are eligible for deletion.
-      * Delete Inline Hook
+      * Delete an Inline Hook
       * @param inlineHookId
       */
   deleteInlineHook(inlineHookId: string, _options?: Configuration): Promise<void>;
   /**
       * Executes the Inline Hook matching the provided inlineHookId using the request body as the input. This will send the provided data through the Channel and return a response if it matches the correct data contract. This execution endpoint should only be used for testing purposes.
-      * Execute Inline Hook
+      * Execute an Inline Hook
       * @param inlineHookId
       * @param payloadData
       */
   executeInlineHook(inlineHookId: string, payloadData: any, _options?: Configuration): Promise<InlineHookResponse>;
   /**
       * Gets an inline hook by ID
-      * Get Inline Hook
+      * Retrieve an Inline Hook
       * @param inlineHookId
       */
   getInlineHook(inlineHookId: string, _options?: Configuration): Promise<InlineHook>;
   /**
       * Success
-      * List Inline Hooks
+      * List all Inline Hooks
       * @param type
       */
   listInlineHooks(type?: string, _options?: Configuration): Promise<Collection<InlineHook>>;
   /**
       * Updates an inline hook by ID
-      * Update Inline Hook
+      * Replace an Inline Hook
       * @param inlineHookId
       * @param inlineHook
       */
@@ -1736,25 +1736,25 @@ export declare class PromiseLinkedObjectApi {
   constructor(configuration: Configuration, requestFactory?: LinkedObjectApiRequestFactory, responseProcessor?: LinkedObjectApiResponseProcessor);
   /**
       * Success
-      * Add Linked Object Definition
+      * Create a Linked Object Definition
       * @param linkedObject
       */
   addLinkedObjectDefinition(linkedObject: LinkedObject, _options?: Configuration): Promise<LinkedObject>;
   /**
       * Success
-      * Delete Linked Object Definition
+      * Delete a Linked Object Definition
       * @param linkedObjectName
       */
   deleteLinkedObjectDefinition(linkedObjectName: string, _options?: Configuration): Promise<void>;
   /**
       * Success
-      * Get Linked Object Definition
+      * Retrieve a Linked Object Definition
       * @param linkedObjectName
       */
   getLinkedObjectDefinition(linkedObjectName: string, _options?: Configuration): Promise<LinkedObject>;
   /**
       * Success
-      * List Linked Object Definitions
+      * List all Linked Object Definitions
       */
   listLinkedObjectDefinitions(_options?: Configuration): Promise<Collection<LinkedObject>>;
 }
@@ -1764,37 +1764,37 @@ export declare class PromiseNetworkZoneApi {
   constructor(configuration: Configuration, requestFactory?: NetworkZoneApiRequestFactory, responseProcessor?: NetworkZoneApiResponseProcessor);
   /**
       * Activate Network Zone
-      * Activate Network Zone
+      * Activate a Network Zone
       * @param zoneId
       */
   activateNetworkZone(zoneId: string, _options?: Configuration): Promise<NetworkZone>;
   /**
       * Adds a new network zone to your Okta organization.
-      * Add Network Zone
+      * Create a Network Zone
       * @param zone
       */
   createNetworkZone(zone: NetworkZone, _options?: Configuration): Promise<NetworkZone>;
   /**
       * Deactivates a network zone.
-      * Deactivate Network Zone
+      * Deactivate a Network Zone
       * @param zoneId
       */
   deactivateNetworkZone(zoneId: string, _options?: Configuration): Promise<NetworkZone>;
   /**
       * Removes network zone.
-      * Delete Network Zone
+      * Delete a Network Zone
       * @param zoneId
       */
   deleteNetworkZone(zoneId: string, _options?: Configuration): Promise<void>;
   /**
       * Fetches a network zone from your Okta organization by `id`.
-      * Get Network Zone
+      * Retrieve a Network Zone
       * @param zoneId
       */
   getNetworkZone(zoneId: string, _options?: Configuration): Promise<NetworkZone>;
   /**
       * Enumerates network zones added to your organization with pagination. A subset of zones can be returned that match a supported filter expression or query.
-      * List Network Zones
+      * List all Network Zones
       * @param after Specifies the pagination cursor for the next page of network zones
       * @param limit Specifies the number of results for a page
       * @param filter Filters zones by usage or id expression
@@ -1802,7 +1802,7 @@ export declare class PromiseNetworkZoneApi {
   listNetworkZones(after?: string, limit?: number, filter?: string, _options?: Configuration): Promise<Collection<NetworkZone>>;
   /**
       * Updates a network zone in your organization.
-      * Update Network Zone
+      * Replace a Network Zone
       * @param zoneId
       * @param zone
       */
@@ -1820,91 +1820,91 @@ export declare class PromiseOrgSettingApi {
   bulkRemoveEmailAddressBounces(BouncesRemoveListObj?: BouncesRemoveListObj, _options?: Configuration): Promise<BouncesRemoveListResult>;
   /**
       * Extends the length of time that Okta Support can access your org by 24 hours. This means that 24 hours are added to the remaining access time.
-      * Extend Okta Support
+      * Extend Okta Support Access
       */
   extendOktaSupport(_options?: Configuration): Promise<OrgOktaSupportSettingsObj>;
   /**
       * Gets Okta Communication Settings of your organization.
-      * Get Okta Communication Settings
+      * Retreive the Okta Communication Settings
       */
   getOktaCommunicationSettings(_options?: Configuration): Promise<OrgOktaCommunicationSetting>;
   /**
       * Gets Contact Types of your organization.
-      * Get org contact types
+      * Retrieve the Org Contact Types
       */
   getOrgContactTypes(_options?: Configuration): Promise<Collection<OrgContactTypeObj>>;
   /**
       * Retrieves the URL of the User associated with the specified Contact Type.
-      * Get org contact user
+      * Retrieve the User of the Contact Type
       * @param contactType
       */
   getOrgContactUser(contactType: string, _options?: Configuration): Promise<OrgContactUser>;
   /**
       * Gets Okta Support Settings of your organization.
-      * Get Okta Support settings
+      * Retrieve the Okta Support Settings
       */
   getOrgOktaSupportSettings(_options?: Configuration): Promise<OrgOktaSupportSettingsObj>;
   /**
       * Gets preferences of your organization.
-      * Get org preferences
+      * Retrieve the Org Preferences
       */
   getOrgPreferences(_options?: Configuration): Promise<OrgPreferences>;
   /**
       * Get settings of your organization.
-      * Get org settings
+      * Retrieve the Org Settings
       */
   getOrgSettings(_options?: Configuration): Promise<OrgSetting>;
   /**
       * Enables you to temporarily allow Okta Support to access your org as an administrator for eight hours.
-      * Grant Okta Support
+      * Grant Okta Support Access to your Org
       */
   grantOktaSupport(_options?: Configuration): Promise<OrgOktaSupportSettingsObj>;
   /**
       * Hide the Okta UI footer for all end users of your organization.
-      * Show Okta UI Footer
+      * Update the Preference to Hide the Okta Dashboard Footer
       */
   hideOktaUIFooter(_options?: Configuration): Promise<OrgPreferences>;
   /**
       * Opts in all users of this org to Okta Communication emails.
-      * Opt in all users to Okta Communication emails
+      * Opt in all Users to Okta Communication emails
       */
   optInUsersToOktaCommunicationEmails(_options?: Configuration): Promise<OrgOktaCommunicationSetting>;
   /**
       * Opts out all users of this org from Okta Communication emails.
-      * Opt out all users from Okta Communication emails
+      * Opt out all Users from Okta Communication emails
       */
   optOutUsersFromOktaCommunicationEmails(_options?: Configuration): Promise<OrgOktaCommunicationSetting>;
   /**
       * Partial update settings of your organization.
-      * Partial update Org Setting
+      * Update the Org Settings
       * @param OrgSetting
       */
   partialUpdateOrgSetting(OrgSetting?: OrgSetting, _options?: Configuration): Promise<OrgSetting>;
   /**
       * Revokes Okta Support access to your organization.
-      * Extend Okta Support
+      * Revoke Okta Support Access
       */
   revokeOktaSupport(_options?: Configuration): Promise<OrgOktaSupportSettingsObj>;
   /**
       * Makes the Okta UI footer visible for all end users of your organization.
-      * Show Okta UI Footer
+      * Update the Preference to Show the Okta Dashboard Footer
       */
   showOktaUIFooter(_options?: Configuration): Promise<OrgPreferences>;
   /**
       * Updates the User associated with the specified Contact Type.
-      * Update org contact user
+      * Replace the User of the Contact Type
       * @param contactType
       * @param orgContactUser
       */
   updateOrgContactUser(contactType: string, orgContactUser: OrgContactUser, _options?: Configuration): Promise<OrgContactUser>;
   /**
       * Updates the logo for your organization.
-      * Update org logo
+      * Upload the Org Logo
       */
   updateOrgLogo(_options?: Configuration): Promise<void>;
   /**
       * Update settings of your organization.
-      * Update Org setting
+      * Replace the Org Settings
       * @param orgSetting
       */
   updateOrgSetting(orgSetting: OrgSetting, _options?: Configuration): Promise<OrgSetting>;
@@ -1915,74 +1915,74 @@ export declare class PromisePolicyApi {
   constructor(configuration: Configuration, requestFactory?: PolicyApiRequestFactory, responseProcessor?: PolicyApiResponseProcessor);
   /**
       * Activates a policy.
-      * Activate Policy
+      * Activate a Policy
       * @param policyId
       */
   activatePolicy(policyId: string, _options?: Configuration): Promise<void>;
   /**
       * Activates a policy rule.
-      * Activate Policy Rule
+      * Activate a Policy Rule
       * @param policyId
       * @param ruleId
       */
   activatePolicyRule(policyId: string, ruleId: string, _options?: Configuration): Promise<void>;
   /**
       * Creates a policy.
-      * Create Policy
+      * Create a Policy
       * @param policy
       * @param activate
       */
   createPolicy(policy: Policy, activate?: boolean, _options?: Configuration): Promise<Policy>;
   /**
       * Creates a policy rule.
-      * Create Policy Rule
+      * Create a Policy Rule
       * @param policyId
       * @param policyRule
       */
   createPolicyRule(policyId: string, policyRule: PolicyRule, _options?: Configuration): Promise<PolicyRule>;
   /**
       * Deactivates a policy.
-      * Deactivate Policy
+      * Deactivate a Policy
       * @param policyId
       */
   deactivatePolicy(policyId: string, _options?: Configuration): Promise<void>;
   /**
       * Deactivates a policy rule.
-      * Deactivate Policy Rule
+      * Deactivate a Policy Rule
       * @param policyId
       * @param ruleId
       */
   deactivatePolicyRule(policyId: string, ruleId: string, _options?: Configuration): Promise<void>;
   /**
       * Removes a policy.
-      * Delete Policy
+      * Delete a Policy
       * @param policyId
       */
   deletePolicy(policyId: string, _options?: Configuration): Promise<void>;
   /**
       * Removes a policy rule.
-      * Delete Policy Rule
+      * Delete a Policy Rule
       * @param policyId
       * @param ruleId
       */
   deletePolicyRule(policyId: string, ruleId: string, _options?: Configuration): Promise<void>;
   /**
       * Gets a policy.
-      * Get Policy
+      * Retrieve a Policy
       * @param policyId
       * @param expand
       */
   getPolicy(policyId: string, expand?: string, _options?: Configuration): Promise<Policy>;
   /**
       * Gets a policy rule.
-      * Get Policy Rule
+      * Retrieve a Policy Rule
       * @param policyId
       * @param ruleId
       */
   getPolicyRule(policyId: string, ruleId: string, _options?: Configuration): Promise<PolicyRule>;
   /**
       * Gets all policies with the specified type.
-      * List Policies
+      * List all Policies
       * @param type
       * @param status
       * @param expand
@@ -1990,20 +1990,20 @@ export declare class PromisePolicyApi {
   listPolicies(type: string, status?: string, expand?: string, _options?: Configuration): Promise<Collection<Policy>>;
   /**
       * Enumerates all policy rules.
-      * List Policy Rules
+      * List all Policy Rules
       * @param policyId
       */
   listPolicyRules(policyId: string, _options?: Configuration): Promise<Collection<PolicyRule>>;
   /**
       * Updates a policy.
-      * Update Policy
+      * Replace a Policy
       * @param policyId
       * @param policy
       */
   updatePolicy(policyId: string, policy: Policy, _options?: Configuration): Promise<Policy>;
   /**
       * Updates a policy rule.
-      * Update Policy Rule
+      * Replace a Policy Rule
       * @param policyId
       * @param ruleId
       * @param policyRule
@@ -2016,19 +2016,19 @@ export declare class PromisePrincipalRateLimitApi {
   constructor(configuration: Configuration, requestFactory?: PrincipalRateLimitApiRequestFactory, responseProcessor?: PrincipalRateLimitApiResponseProcessor);
   /**
       * Adds a new Principal Rate Limit entity to your organization. In the current release, we only allow one Principal Rate Limit entity per org and principal.
-      * Create Principal Rate Limit entity
+      * Create a Principal Rate Limit
       * @param entity
       */
   createPrincipalRateLimitEntity(entity: PrincipalRateLimitEntity, _options?: Configuration): Promise<PrincipalRateLimitEntity>;
   /**
       * Fetches a Principal Rate Limit entity by `principalRateLimitId`.
-      * Get Principal Rate Limit entity
+      * Retrieve a Principal Rate Limit
       * @param principalRateLimitId id of the Principal Rate Limit
       */
   getPrincipalRateLimitEntity(principalRateLimitId: string, _options?: Configuration): Promise<PrincipalRateLimitEntity>;
   /**
       * Lists all Principal Rate Limit entities considering the provided parameters.
-      * List Principal Rate Limit entities
+      * List all Principal Rate Limits
       * @param filter
       * @param after
       * @param limit
@@ -2036,7 +2036,7 @@ export declare class PromisePrincipalRateLimitApi {
   listPrincipalRateLimitEntities(filter?: string, after?: string, limit?: number, _options?: Configuration): Promise<Collection<PrincipalRateLimitEntity>>;
   /**
       * Update a  Principal Rate Limit entity by `principalRateLimitId`.
-      * Update Principal Rate Limit entity
+      * Replace a Principal Rate Limit
       * @param principalRateLimitId id of the Principal Rate Limit
       * @param entity
       */
@@ -2048,13 +2048,13 @@ export declare class PromiseProfileMappingApi {
   constructor(configuration: Configuration, requestFactory?: ProfileMappingApiRequestFactory, responseProcessor?: ProfileMappingApiResponseProcessor);
   /**
       * Fetches a single Profile Mapping referenced by its ID.
-      * Get Profile Mapping
+      * Retrieve a Profile Mapping
       * @param mappingId
       */
   getProfileMapping(mappingId: string, _options?: Configuration): Promise<ProfileMapping>;
   /**
       * Enumerates Profile Mappings in your organization with pagination.
-      * List Profile Mappings
+      * List all Profile Mappings
       * @param after
       * @param limit
       * @param sourceId
@@ -2063,7 +2063,7 @@ export declare class PromiseProfileMappingApi {
   listProfileMappings(after?: string, limit?: number, sourceId?: string, targetId?: string, _options?: Configuration): Promise<Collection<ProfileMapping>>;
   /**
       * Updates an existing Profile Mapping by adding, updating, or removing one or many Property Mappings.
-      * Update Profile Mapping
+      * Update a Profile Mapping
       * @param mappingId
       * @param profileMapping
       */
@@ -2075,37 +2075,37 @@ export declare class PromiseSchemaApi {
   constructor(configuration: Configuration, requestFactory?: SchemaApiRequestFactory, responseProcessor?: SchemaApiResponseProcessor);
   /**
       * Fetches the Schema for an App User
-      * Fetches the Schema for an App User
+      * Retrieve the default Application User Schema for an Application
       * @param appInstanceId
       */
   getApplicationUserSchema(appInstanceId: string, _options?: Configuration): Promise<UserSchema>;
   /**
       * Fetches the group schema
-      * Fetches the group schema
+      * Retrieve the default Group Schema
       */
   getGroupSchema(_options?: Configuration): Promise<GroupSchema>;
   /**
       * Fetches the schema for a Schema Id.
-      * Fetches the schema for a Schema Id.
+      * Retrieve a User Schema
       * @param schemaId
       */
   getUserSchema(schemaId: string, _options?: Configuration): Promise<UserSchema>;
   /**
       * Partial updates on the User Profile properties of the Application User Schema.
-      * Partial updates on the User Profile properties of the Application User Schema.
+      * Update the default Application User Schema for an Application
       * @param appInstanceId
       * @param body
       */
   updateApplicationUserProfile(appInstanceId: string, body?: UserSchema, _options?: Configuration): Promise<UserSchema>;
   /**
-      * Updates, adds ore removes one or more custom Group Profile properties in the schema
-      * Updates, adds ore removes one or more custom Group Profile properties in the schema
+      * Updates, adds or removes one or more custom Group Profile properties in the schema
+      * Update the default Group Schema
       * @param GroupSchema
       */
   updateGroupSchema(GroupSchema?: GroupSchema, _options?: Configuration): Promise<GroupSchema>;
   /**
       * Partial updates on the User Profile properties of the user schema.
-      * Update User Profile
+      * Update a User Schema
       * @param schemaId
       * @param userSchema
       */
@@ -2117,25 +2117,25 @@ export declare class PromiseSessionApi {
   constructor(configuration: Configuration, requestFactory?: SessionApiRequestFactory, responseProcessor?: SessionApiResponseProcessor);
   /**
       * Creates a new session for a user with a valid session token. Use this API if, for example, you want to set the session cookie yourself instead of allowing Okta to set it, or want to hold the session ID in order to delete a session via the API instead of visiting the logout URL.
-      * Create Session with Session Token
+      * Create a Session with Session Token
       * @param createSessionRequest
       */
   createSession(createSessionRequest: CreateSessionRequest, _options?: Configuration): Promise<Session>;
   /**
       * End a session.
-      * End Session
+      * Delete a Session
       * @param sessionId
       */
   endSession(sessionId: string, _options?: Configuration): Promise<void>;
   /**
       * Get details about a session.
-      * Get Session
+      * Retrieve a Session
       * @param sessionId
       */
   getSession(sessionId: string, _options?: Configuration): Promise<Session>;
   /**
       * Refresh a session.
-      * Refresh Session
+      * Refresh a Session
       * @param sessionId
       */
   refreshSession(sessionId: string, _options?: Configuration): Promise<Session>;
@@ -2146,27 +2146,27 @@ export declare class PromiseSubscriptionApi {
   constructor(configuration: Configuration, requestFactory?: SubscriptionApiRequestFactory, responseProcessor?: SubscriptionApiResponseProcessor);
   /**
       * When roleType Get subscriptions of a Role with a specific notification type. Else when roleId Get subscription of a Custom Role with a specific notification type.
-      * Get subscriptions of a Custom Role with a specific notification type
+      * List all Subscriptions of a Custom Role with a specific notification type
       * @param roleTypeOrRoleId
       * @param notificationType
       */
   getRoleSubscriptionByNotificationType(roleTypeOrRoleId: string, notificationType: string, _options?: Configuration): Promise<Subscription>;
   /**
       * Get the subscriptions of a User with a specific notification type. Only gets subscriptions for current user. An AccessDeniedException message is sent if requests are made from other users.
-      * Get the subscription of a User with a specific notification type
+      * List all Subscriptions by type
       * @param userId
       * @param notificationType
       */
   getUserSubscriptionByNotificationType(userId: string, notificationType: string, _options?: Configuration): Promise<Subscription>;
   /**
       * When roleType List all subscriptions of a Role. Else when roleId List subscriptions of a Custom Role
-      * List all subscriptions of a Custom Role
+      * List all Subscriptions of a Custom Role
       * @param roleTypeOrRoleId
       */
   listRoleSubscriptions(roleTypeOrRoleId: string, _options?: Configuration): Promise<Collection<Subscription>>;
   /**
       * List subscriptions of a User. Only lists subscriptions for current user. An AccessDeniedException message is sent if requests are made from other users.
-      * List subscriptions of a User
+      * List all Subscriptions
       * @param userId
       */
   listUserSubscriptions(userId: string, _options?: Configuration): Promise<Collection<Subscription>>;
@@ -2205,7 +2205,7 @@ export declare class PromiseSystemLogApi {
   constructor(configuration: Configuration, requestFactory?: SystemLogApiRequestFactory, responseProcessor?: SystemLogApiResponseProcessor);
   /**
       * The Okta System Log API provides read access to your organization’s system log. This API provides more functionality than the Events API
-      * Fetch a list of events from your Okta organization system log.
+      * List all System Log Events
       * @param since
       * @param until
       * @param filter
@@ -2222,38 +2222,38 @@ export declare class PromiseTemplateApi {
   constructor(configuration: Configuration, requestFactory?: TemplateApiRequestFactory, responseProcessor?: TemplateApiResponseProcessor);
   /**
       * Adds a new custom SMS template to your organization.
-      * Add SMS Template
+      * Create an SMS Template
       * @param smsTemplate
       */
   createSmsTemplate(smsTemplate: SmsTemplate, _options?: Configuration): Promise<SmsTemplate>;
   /**
       * Removes an SMS template.
-      * Remove SMS Template
+      * Delete an SMS Template
       * @param templateId
       */
   deleteSmsTemplate(templateId: string, _options?: Configuration): Promise<void>;
   /**
       * Fetches a specific template by `id`
-      * Get SMS Template
+      * Retrieve an SMS Template
       * @param templateId
       */
   getSmsTemplate(templateId: string, _options?: Configuration): Promise<SmsTemplate>;
   /**
       * Enumerates custom SMS templates in your organization. A subset of templates can be returned that match a template type.
-      * List SMS Templates
+      * List all SMS Templates
       * @param templateType
       */
   listSmsTemplates(templateType?: SmsTemplateType, _options?: Configuration): Promise<Collection<SmsTemplate>>;
   /**
       * Updates only some of the SMS template properties:
-      * Partial SMS Template Update
+      * Update an SMS Template
       * @param templateId
       * @param smsTemplate
       */
   partialUpdateSmsTemplate(templateId: string, smsTemplate: SmsTemplate, _options?: Configuration): Promise<SmsTemplate>;
   /**
       * Updates the SMS template.
-      * Update SMS Template
+      * Replace an SMS Template
       * @param templateId
       * @param smsTemplate
       */
@@ -2265,12 +2265,12 @@ export declare class PromiseThreatInsightApi {
   constructor(configuration: Configuration, requestFactory?: ThreatInsightApiRequestFactory, responseProcessor?: ThreatInsightApiResponseProcessor);
   /**
       * Gets current ThreatInsight configuration
-      * Get Current Configuration
+      * Retrieve the ThreatInsight Configuration
       */
   getCurrentConfiguration(_options?: Configuration): Promise<ThreatInsightConfiguration>;
   /**
       * Updates ThreatInsight configuration
-      * Update Configuration
+      * Update the ThreatInsight Configuration
       * @param threatInsightConfiguration
       */
   updateConfiguration(threatInsightConfiguration: ThreatInsightConfiguration, _options?: Configuration): Promise<ThreatInsightConfiguration>;
@@ -2281,37 +2281,37 @@ export declare class PromiseTrustedOriginApi {
   constructor(configuration: Configuration, requestFactory?: TrustedOriginApiRequestFactory, responseProcessor?: TrustedOriginApiResponseProcessor);
   /**
       * Success
-      * Activate Trusted Origin
+      * Activate a Trusted Origin
       * @param trustedOriginId
       */
   activateOrigin(trustedOriginId: string, _options?: Configuration): Promise<TrustedOrigin>;
   /**
       * Success
-      * Create Trusted Origin
+      * Create a Trusted Origin
       * @param trustedOrigin
       */
   createOrigin(trustedOrigin: TrustedOrigin, _options?: Configuration): Promise<TrustedOrigin>;
   /**
       * Success
-      * Deactivate Trusted Origin
+      * Deactivate a Trusted Origin
       * @param trustedOriginId
       */
   deactivateOrigin(trustedOriginId: string, _options?: Configuration): Promise<TrustedOrigin>;
   /**
       * Success
-      * Delete Trusted Origin
+      * Delete a Trusted Origin
       * @param trustedOriginId
       */
   deleteOrigin(trustedOriginId: string, _options?: Configuration): Promise<void>;
   /**
       * Success
-      * Get Trusted Origin
+      * Retrieve a Trusted Origin
       * @param trustedOriginId
       */
   getOrigin(trustedOriginId: string, _options?: Configuration): Promise<TrustedOrigin>;
   /**
       * Success
-      * List Trusted Origins
+      * List all Trusted Origins
       * @param q
       * @param filter
       * @param after
@@ -2320,7 +2320,7 @@ export declare class PromiseTrustedOriginApi {
   listOrigins(q?: string, filter?: string, after?: string, limit?: number, _options?: Configuration): Promise<Collection<TrustedOrigin>>;
   /**
       * Success
-      * Update Trusted Origin
+      * Replace a Trusted Origin
       * @param trustedOriginId
       * @param trustedOrigin
       */
@@ -2332,21 +2332,21 @@ export declare class PromiseUserApi {
   constructor(configuration: Configuration, requestFactory?: UserApiRequestFactory, responseProcessor?: UserApiResponseProcessor);
   /**
       * Activates a user.  This operation can only be performed on users with a `STAGED` status.  Activation of a user is an asynchronous operation. The user will have the `transitioningToStatus` property with a value of `ACTIVE` during activation to indicate that the user hasn't completed the asynchronous operation.  The user will have a status of `ACTIVE` when the activation process is complete.
-      * Activate User
+      * Activate a User
       * @param userId
       * @param sendEmail Sends an activation email to the user if true
       */
   activateUser(userId: string, sendEmail: boolean, _options?: Configuration): Promise<UserActivationToken>;
   /**
-      * Success
-      * Add All Apps as Target to Role
+      * Assign all Apps as Target to Role
+      * Assign all Apps as Target to Role
       * @param userId
       * @param roleId
       */
   addAllAppsAsTargetToRole(userId: string, roleId: string, _options?: Configuration): Promise<void>;
   /**
       * Success
-      * Add Application Target to Admin Role for User
+      * Assign an Application Target to Administrator Role
       * @param userId
       * @param roleId
       * @param appName
@@ -2354,7 +2354,7 @@ export declare class PromiseUserApi {
   addApplicationTargetToAdminRoleForUser(userId: string, roleId: string, appName: string, _options?: Configuration): Promise<void>;
   /**
       * Add App Instance Target to App Administrator Role given to a User
-      * Add App Instance Target to App Administrator Role given to a User
+      * Assign an Application Instance Target to an Application Administrator Role
       * @param userId
       * @param roleId
       * @param appName
@@ -2362,8 +2362,8 @@ export declare class PromiseUserApi {
       */
   addApplicationTargetToAppAdminRoleForUser(userId: string, roleId: string, appName: string, applicationId: string, _options?: Configuration): Promise<void>;
   /**
-      * Success
-      * Add Group Target to Role
+      * Assign a Group Target to Role
+      * Assign a Group Target to Role
       * @param userId
       * @param roleId
       * @param groupId
@@ -2371,7 +2371,7 @@ export declare class PromiseUserApi {
   addGroupTargetToRole(userId: string, roleId: string, groupId: string, _options?: Configuration): Promise<void>;
   /**
       * Assigns a role to a user.
-      * Assign Role to User
+      * Assign a Role
       * @param userId
       * @param assignRoleRequest
       * @param disableNotifications
@@ -2394,14 +2394,14 @@ export declare class PromiseUserApi {
   changeRecoveryQuestion(userId: string, userCredentials: UserCredentials, _options?: Configuration): Promise<UserCredentials>;
   /**
       * Removes all active identity provider sessions. This forces the user to authenticate on the next operation. Optionally revokes OpenID Connect and OAuth refresh and access tokens issued to the user.
-      * Clear User Sessions
+      * Delete all User Sessions
       * @param userId
       * @param oauthTokens Revoke issued OpenID Connect and OAuth refresh and access tokens
       */
   clearUserSessions(userId: string, oauthTokens?: boolean, _options?: Configuration): Promise<void>;
   /**
       * Creates a new user in your Okta organization with or without credentials.
-      * Create User
+      * Create a User
       * @param body
       * @param activate Executes activation lifecycle operation when creating the user
       * @param provider Indicates whether to create a user with a specified authentication provider
@@ -2410,14 +2410,14 @@ export declare class PromiseUserApi {
   createUser(body: CreateUserRequest, activate?: boolean, provider?: boolean, nextLogin?: UserNextLogin, _options?: Configuration): Promise<User>;
   /**
       * Deletes a user permanently.  This operation can only be performed on users that have a `DEPROVISIONED` status.  **This action cannot be recovered!**
-      * Delete User
+      * Delete a User
       * @param userId
       * @param sendEmail
       */
   deactivateOrDeleteUser(userId: string, sendEmail?: boolean, _options?: Configuration): Promise<void>;
   /**
       * Deactivates a user. This operation can only be performed on users that do not have a `DEPROVISIONED` status. While the asynchronous operation (triggered by HTTP header `Prefer: respond-async`) is proceeding the user's `transitioningToStatus` property is `DEPROVISIONED`. The user's status is `DEPROVISIONED` when the deactivation process is complete.
-      * Deactivate User
+      * Deactivate a User
       * @param userId
       * @param sendEmail
       */
@@ -2451,7 +2451,7 @@ export declare class PromiseUserApi {
   forgotPasswordSetNewPassword(userId: string, userCredentials: UserCredentials, sendEmail?: boolean, _options?: Configuration): Promise<UserCredentials>;
   /**
       * Get linked objects for a user, relationshipName can be a primary or associated relationship name
-      * Get Linked Objects for User
+      * List all Linked Objects
       * @param userId
       * @param relationshipName
       * @param after
@@ -2460,7 +2460,7 @@ export declare class PromiseUserApi {
   getLinkedObjectsForUser(userId: string, relationshipName: string, after?: string, limit?: number, _options?: Configuration): Promise<Collection<any>>;
   /**
       * Gets a refresh token issued for the specified User and Client.
-      * Get Refresh Token for User and Client
+      * Retrieve a Refresh Token for a Client
       * @param userId
       * @param clientId
       * @param tokenId
@@ -2471,13 +2471,13 @@ export declare class PromiseUserApi {
   getRefreshTokenForUserAndClient(userId: string, clientId: string, tokenId: string, expand?: string, limit?: number, after?: string, _options?: Configuration): Promise<OAuth2RefreshToken>;
   /**
       * Fetches a user from your Okta organization.
-      * Get User
+      * Retrieve a User
       * @param userId
       */
   getUser(userId: string, _options?: Configuration): Promise<User>;
   /**
       * Gets a grant for the specified user
-      * Get User Grant
+      * Retrieve a User Grant
       * @param userId
       * @param grantId
       * @param expand
@@ -2485,20 +2485,20 @@ export declare class PromiseUserApi {
   getUserGrant(userId: string, grantId: string, expand?: string, _options?: Configuration): Promise<OAuth2ScopeConsentGrant>;
   /**
       * Gets role that is assigned to user.
-      * Get User Role
+      * Retrieve a Role
       * @param userId
       * @param roleId
       */
   getUserRole(userId: string, roleId: string, _options?: Configuration): Promise<Role>;
   /**
       * Fetches appLinks for all direct or indirect (via group membership) assigned applications.
-      * Get Assigned App Links
+      * List all Assigned Application Links
       * @param userId
       */
   listAppLinks(userId: string, _options?: Configuration): Promise<Collection<AppLink>>;
   /**
       * Lists all App targets for an `APP_ADMIN` Role assigned to a User. This methods return list may include full Applications or Instances. The response for an instance will have an `ID` value, while Application will not have an ID.
-      * List Application Targets for Application Administrator Role for User
+      * List all Application Targets for Application Administrator Role
       * @param userId
       * @param roleId
       * @param after
@@ -2507,14 +2507,14 @@ export declare class PromiseUserApi {
   listApplicationTargetsForApplicationAdministratorRoleForUser(userId: string, roleId: string, after?: string, limit?: number, _options?: Configuration): Promise<Collection<CatalogApplication>>;
   /**
       * Lists all roles assigned to a user.
-      * List Assigned Roles for User
+      * List all Assigned Roles
       * @param userId
       * @param expand
       */
   listAssignedRolesForUser(userId: string, expand?: string, _options?: Configuration): Promise<Collection<Role>>;
   /**
       * Lists all grants for a specified user and client
-      * List Grants for User and Client
+      * List all Grants for a Client
       * @param userId
       * @param clientId
       * @param expand
@@ -2524,7 +2524,7 @@ export declare class PromiseUserApi {
   listGrantsForUserAndClient(userId: string, clientId: string, expand?: string, after?: string, limit?: number, _options?: Configuration): Promise<Collection<OAuth2ScopeConsentGrant>>;
   /**
       * Success
-      * List Group Targets for Role
+      * List all Group Targets for Role
       * @param userId
       * @param roleId
       * @param after
@@ -2533,7 +2533,7 @@ export declare class PromiseUserApi {
   listGroupTargetsForRole(userId: string, roleId: string, after?: string, limit?: number, _options?: Configuration): Promise<Collection<Group>>;
   /**
       * Lists all refresh tokens issued for the specified User and Client.
-      * List Refresh Tokens for User and Client
+      * List all Refresh Tokens for a Client
       * @param userId
       * @param clientId
       * @param expand
@@ -2543,13 +2543,13 @@ export declare class PromiseUserApi {
   listRefreshTokensForUserAndClient(userId: string, clientId: string, expand?: string, after?: string, limit?: number, _options?: Configuration): Promise<Collection<OAuth2RefreshToken>>;
   /**
       * Lists all client resources for which the specified user has grants or tokens.
-      * List User Clients
+      * List all Clients
       * @param userId
       */
   listUserClients(userId: string, _options?: Configuration): Promise<Collection<OAuth2Client>>;
   /**
       * Lists all grants for the specified user
-      * List User Grants
+      * List all User Grants
       * @param userId
       * @param scopeId
       * @param expand
@@ -2559,19 +2559,19 @@ export declare class PromiseUserApi {
   listUserGrants(userId: string, scopeId?: string, expand?: string, after?: string, limit?: number, _options?: Configuration): Promise<Collection<OAuth2ScopeConsentGrant>>;
   /**
       * Fetches the groups of which the user is a member.
-      * Get Member Groups
+      * List all Groups
       * @param userId
       */
   listUserGroups(userId: string, _options?: Configuration): Promise<Collection<Group>>;
   /**
       * Lists the IdPs associated with the user.
-      * Listing IdPs associated with a user
+      * List all Identity Providers
       * @param userId
       */
   listUserIdentityProviders(userId: string, _options?: Configuration): Promise<Collection<IdentityProvider>>;
   /**
       * Lists users in your organization with pagination in most cases.  A subset of users can be returned that match a supported filter expression or search criteria.
-      * List Users
+      * List all Users
       * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/reference/core-okta-api/#pagination) for more information.
       * @param q Finds a user that matches firstName, lastName, and email properties
       * @param limit Specifies the number of results returned. Defaults to 10 if &#x60;q&#x60; is provided.
@@ -2583,7 +2583,7 @@ export declare class PromiseUserApi {
   listUsers(after?: string, q?: string, limit?: number, filter?: string, search?: string, sortBy?: string, sortOrder?: string, _options?: Configuration): Promise<Collection<User>>;
   /**
       * Fetch a user by `id`, `login`, or `login shortname` if the short name is unambiguous.
-      * Partial Update User
+      * Update a User
       * @param userId
       * @param user
       * @param strict
@@ -2591,14 +2591,14 @@ export declare class PromiseUserApi {
   partialUpdateUser(userId: string, user: UpdateUserRequest, strict?: boolean, _options?: Configuration): Promise<User>;
   /**
       * Reactivates a user.  This operation can only be performed on users with a `PROVISIONED` status.  This operation restarts the activation workflow if for some reason the user activation was not completed when using the activationToken from [Activate User](#activate-user).
-      * Reactivate User
+      * Reactivate a User
       * @param userId
       * @param sendEmail Sends an activation email to the user if true
       */
   reactivateUser(userId: string, sendEmail?: boolean, _options?: Configuration): Promise<UserActivationToken>;
   /**
       * Remove App Instance Target to App Administrator Role given to a User
-      * Remove App Instance Target to App Administrator Role given to a User
+      * Unassign an Application Instance Target to Application Administrator Role
       * @param userId
       * @param roleId
       * @param appName
@@ -2607,15 +2607,15 @@ export declare class PromiseUserApi {
   removeApplicationTargetFromAdministratorRoleForUser(userId: string, roleId: string, appName: string, applicationId: string, _options?: Configuration): Promise<void>;
   /**
       * Success
-      * Remove Application Target from Application Administrator Role for User
+      * Unassign an Application Target from Application Administrator Role
       * @param userId
       * @param roleId
       * @param appName
       */
   removeApplicationTargetFromApplicationAdministratorRoleForUser(userId: string, roleId: string, appName: string, _options?: Configuration): Promise<void>;
   /**
-      * Success
-      * Remove Group Target from Role
+      * Unassign a Group Target from Role
+      * Unassign a Group Target from Role
       * @param userId
       * @param roleId
       * @param groupId
@@ -2623,21 +2623,21 @@ export declare class PromiseUserApi {
   removeGroupTargetFromRole(userId: string, roleId: string, groupId: string, _options?: Configuration): Promise<void>;
   /**
       * Delete linked objects for a user, relationshipName can be ONLY a primary relationship name
-      * Remove Linked Object for User
+      * Delete a Linked Object
       * @param userId
       * @param relationshipName
       */
   removeLinkedObjectForUser(userId: string, relationshipName: string, _options?: Configuration): Promise<void>;
   /**
       * Unassigns a role from a user.
-      * Remove Role from User
+      * Delete a Role
       * @param userId
       * @param roleId
       */
   removeRoleFromUser(userId: string, roleId: string, _options?: Configuration): Promise<void>;
   /**
       * This operation resets all factors for the specified user. All MFA factor enrollments returned to the unenrolled state. The user's status remains ACTIVE. This link is present only if the user is currently enrolled in one or more MFA factors.
-      * Reset Factors
+      * Reset all Factors
       * @param userId
       */
   resetFactors(userId: string, _options?: Configuration): Promise<void>;
@@ -2650,14 +2650,14 @@ export declare class PromiseUserApi {
   resetPassword(userId: string, sendEmail: boolean, _options?: Configuration): Promise<ResetPasswordToken>;
   /**
       * Revokes all grants for the specified user and client
-      * Revoke Grants for User and Client
+      * Revoke all Grants for a Client
       * @param userId
       * @param clientId
       */
   revokeGrantsForUserAndClient(userId: string, clientId: string, _options?: Configuration): Promise<void>;
   /**
       * Revokes the specified refresh token.
-      * Revoke Token for User and Client
+      * Revoke a Token for a Client
       * @param userId
       * @param clientId
       * @param tokenId
@@ -2665,27 +2665,27 @@ export declare class PromiseUserApi {
   revokeTokenForUserAndClient(userId: string, clientId: string, tokenId: string, _options?: Configuration): Promise<void>;
   /**
       * Revokes all refresh tokens issued for the specified User and Client.
-      * Revoke Tokens for User and Client
+      * Revoke all Refresh Tokens for a Client
       * @param userId
       * @param clientId
       */
   revokeTokensForUserAndClient(userId: string, clientId: string, _options?: Configuration): Promise<void>;
   /**
       * Revokes one grant for a specified user
-      * Revoke User Grant
+      * Revoke a User Grant
       * @param userId
       * @param grantId
       */
   revokeUserGrant(userId: string, grantId: string, _options?: Configuration): Promise<void>;
   /**
       * Revokes all grants for a specified user
-      * Revoke User Grants
+      * Revoke all User Grants
       * @param userId
       */
   revokeUserGrants(userId: string, _options?: Configuration): Promise<void>;
   /**
-      * Sets a linked object for a user.
-      * Set Linked Object for User
+      * Sets a linked object for two users.
+      * Create a Linked Object for two User
       * @param associatedUserId
       * @param primaryRelationshipName
       * @param primaryUserId
@@ -2693,25 +2693,25 @@ export declare class PromiseUserApi {
   setLinkedObjectForUser(associatedUserId: string, primaryRelationshipName: string, primaryUserId: string, _options?: Configuration): Promise<void>;
   /**
       * Suspends a user.  This operation can only be performed on users with an `ACTIVE` status.  The user will have a status of `SUSPENDED` when the process is complete.
-      * Suspend User
+      * Suspend a User
       * @param userId
       */
   suspendUser(userId: string, _options?: Configuration): Promise<void>;
   /**
       * Unlocks a user with a `LOCKED_OUT` status and returns them to `ACTIVE` status.  Users will be able to login with their current password.
-      * Unlock User
+      * Unlock a User
       * @param userId
       */
   unlockUser(userId: string, _options?: Configuration): Promise<void>;
   /**
       * Unsuspends a user and returns them to the `ACTIVE` state.  This operation can only be performed on users that have a `SUSPENDED` status.
-      * Unsuspend User
+      * Unsuspend a User
       * @param userId
       */
   unsuspendUser(userId: string, _options?: Configuration): Promise<void>;
   /**
       * Update a user's profile and/or credentials using strict-update semantics.
-      * Update User
+      * Replace a User
       * @param userId
       * @param user
       * @param strict
@@ -2724,7 +2724,7 @@ export declare class PromiseUserFactorApi {
   constructor(configuration: Configuration, requestFactory?: UserFactorApiRequestFactory, responseProcessor?: UserFactorApiResponseProcessor);
   /**
       * The `sms` and `token:software:totp` factor types require activation to complete the enrollment process.
-      * Activate Factor
+      * Activate a Factor
       * @param userId
       * @param factorId
       * @param body
@@ -2732,7 +2732,7 @@ export declare class PromiseUserFactorApi {
   activateFactor(userId: string, factorId: string, body?: ActivateFactorRequest, _options?: Configuration): Promise<UserFactor>;
   /**
       * Unenrolls an existing factor for the specified user, allowing the user to enroll a new factor.
-      * Delete Factor
+      * Delete a Factor
       * @param userId
       * @param factorId
       * @param removeEnrollmentRecovery
@@ -2740,7 +2740,7 @@ export declare class PromiseUserFactorApi {
   deleteFactor(userId: string, factorId: string, removeEnrollmentRecovery?: boolean, _options?: Configuration): Promise<void>;
   /**
       * Enrolls a user with a supported factor.
-      * Enroll Factor
+      * Enroll a Factor
       * @param userId
       * @param body Factor
       * @param updatePhone
@@ -2751,14 +2751,14 @@ export declare class PromiseUserFactorApi {
   enrollFactor(userId: string, body: UserFactor, updatePhone?: boolean, templateId?: string, tokenLifetimeSeconds?: number, activate?: boolean, _options?: Configuration): Promise<UserFactor>;
   /**
       * Fetches a factor for the specified user
-      * Get Factor
+      * Retrieve a Factor
       * @param userId
       * @param factorId
       */
   getFactor(userId: string, factorId: string, _options?: Configuration): Promise<UserFactor>;
   /**
       * Polls factors verification transaction for status.
-      * Get Factor Transaction Status
+      * Retrieve a Factor Transaction Status
       * @param userId
       * @param factorId
       * @param transactionId
@@ -2766,25 +2766,25 @@ export declare class PromiseUserFactorApi {
   getFactorTransactionStatus(userId: string, factorId: string, transactionId: string, _options?: Configuration): Promise<VerifyUserFactorResponse>;
   /**
       * Enumerates all the enrolled factors for the specified user
-      * List Factors
+      * List all Factors
       * @param userId
       */
   listFactors(userId: string, _options?: Configuration): Promise<Collection<UserFactor>>;
   /**
       * Enumerates all the supported factors that can be enrolled for the specified user
-      * List Supported Factors
+      * List all Supported Factors
       * @param userId
       */
   listSupportedFactors(userId: string, _options?: Configuration): Promise<Collection<UserFactor>>;
   /**
       * Enumerates all available security questions for a user's `question` factor
-      * List Supported Security Questions
+      * List all Supported Security Questions
       * @param userId
       */
   listSupportedSecurityQuestions(userId: string, _options?: Configuration): Promise<Collection<SecurityQuestion>>;
   /**
       * Verifies an OTP for a `token` or `token:hardware` factor
-      * Verify MFA Factor
+      * Verify an MFA Factor
       * @param userId
       * @param factorId
       * @param templateId
@@ -2802,37 +2802,37 @@ export declare class PromiseUserTypeApi {
   constructor(configuration: Configuration, requestFactory?: UserTypeApiRequestFactory, responseProcessor?: UserTypeApiResponseProcessor);
   /**
       * Creates a new User Type. A default User Type is automatically created along with your org, and you may add another 9 User Types for a maximum of 10.
-      * Create User Type
+      * Create a User Type
       * @param userType
       */
   createUserType(userType: UserType, _options?: Configuration): Promise<UserType>;
   /**
       * Deletes a User Type permanently. This operation is not permitted for the default type, nor for any User Type that has existing users
-      * Delete User Type
+      * Delete a User Type
       * @param typeId
       */
   deleteUserType(typeId: string, _options?: Configuration): Promise<void>;
   /**
       * Fetches a User Type by ID. The special identifier `default` may be used to fetch the default User Type.
-      * Get User Type
+      * Retrieve a User Type
       * @param typeId
       */
   getUserType(typeId: string, _options?: Configuration): Promise<UserType>;
   /**
       * Fetches all User Types in your org
-      * List User Types
+      * List all User Types
       */
   listUserTypes(_options?: Configuration): Promise<Collection<UserType>>;
   /**
       * Replace an existing User Type
-      * Replace User Type
+      * Replace a User Type
       * @param typeId
       * @param userType
       */
   replaceUserType(typeId: string, userType: UserType, _options?: Configuration): Promise<UserType>;
   /**
       * Updates an existing User Type
-      * Update User Type
+      * Update a User Type
       * @param typeId
       * @param userType
       */

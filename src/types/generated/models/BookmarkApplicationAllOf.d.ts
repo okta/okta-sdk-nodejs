@@ -22,8 +22,10 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { ApplicationCredentials } from './ApplicationCredentials';
 import { BookmarkApplicationSettings } from './BookmarkApplicationSettings';
 export declare class BookmarkApplicationAllOf {
+  'credentials'?: ApplicationCredentials;
   'name'?: string;
   'settings'?: BookmarkApplicationSettings;
   static readonly discriminator: string | undefined;

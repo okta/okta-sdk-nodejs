@@ -21,37 +21,37 @@ import { NetworkZone } from '../models/NetworkZone';
 export declare class NetworkZoneApiRequestFactory extends BaseAPIRequestFactory {
   /**
      * Activate Network Zone
-     * Activate Network Zone
+     * Activate a Network Zone
      * @param zoneId
      */
   activateNetworkZone(zoneId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Adds a new network zone to your Okta organization.
-     * Add Network Zone
+     * Create a Network Zone
      * @param zone
      */
   createNetworkZone(zone: NetworkZone, _options?: Configuration): Promise<RequestContext>;
   /**
      * Deactivates a network zone.
-     * Deactivate Network Zone
+     * Deactivate a Network Zone
      * @param zoneId
      */
   deactivateNetworkZone(zoneId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Removes network zone.
-     * Delete Network Zone
+     * Delete a Network Zone
      * @param zoneId
      */
   deleteNetworkZone(zoneId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Fetches a network zone from your Okta organization by `id`.
-     * Get Network Zone
+     * Retrieve a Network Zone
      * @param zoneId
      */
   getNetworkZone(zoneId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Enumerates network zones added to your organization with pagination. A subset of zones can be returned that match a supported filter expression or query.
-     * List Network Zones
+     * List all Network Zones
      * @param after Specifies the pagination cursor for the next page of network zones
      * @param limit Specifies the number of results for a page
      * @param filter Filters zones by usage or id expression
@@ -59,7 +59,7 @@ export declare class NetworkZoneApiRequestFactory extends BaseAPIRequestFactory 
   listNetworkZones(after?: string, limit?: number, filter?: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Updates a network zone in your organization.
-     * Update Network Zone
+     * Replace a Network Zone
      * @param zoneId
      * @param zone
      */

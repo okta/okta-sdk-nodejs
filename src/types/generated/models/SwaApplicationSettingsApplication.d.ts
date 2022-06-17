@@ -24,12 +24,18 @@
  */
 export declare class SwaApplicationSettingsApplication {
   'buttonField'?: string;
+  'buttonSelector'?: string;
   'checkbox'?: string;
+  'extraFieldSelector'?: string;
+  'extraFieldValue'?: string;
   'loginUrlRegex'?: string;
   'passwordField'?: string;
+  'passwordSelector'?: string;
   'redirectUrl'?: string;
+  'targetURL'?: string;
   'url'?: string;
   'usernameField'?: string;
+  'userNameSelector'?: string;
   static readonly discriminator: string | undefined;
   static readonly attributeTypeMap: Array<{
         name: string;

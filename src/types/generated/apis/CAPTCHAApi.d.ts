@@ -21,37 +21,37 @@ import { CAPTCHAInstance } from '../models/CAPTCHAInstance';
 export declare class CAPTCHAApiRequestFactory extends BaseAPIRequestFactory {
   /**
      * Adds a new CAPTCHA instance to your organization. In the current release, we only allow one CAPTCHA instance per org.
-     * Create new CAPTCHA instance
+     * Create a CAPTCHA instance
      * @param instance
      */
   createCaptchaInstance(instance: CAPTCHAInstance, _options?: Configuration): Promise<RequestContext>;
   /**
      * Delete a CAPTCHA instance by `captchaId`. If the CAPTCHA instance is currently being used in the org, the delete will not be allowed.
-     * Delete CAPTCHA Instance
+     * Delete a CAPTCHA Instance
      * @param captchaId id of the CAPTCHA
      */
   deleteCaptchaInstance(captchaId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Fetches a CAPTCHA instance by `captchaId`.
-     * Get CAPTCHA Instance
+     * Retrieve a CAPTCHA Instance
      * @param captchaId id of the CAPTCHA
      */
   getCaptchaInstance(captchaId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Enumerates CAPTCHA instances in your organization with pagination. A subset of CAPTCHA instances can be returned that match a supported filter expression or query.
-     * List CAPTCHA instances
+     * List all CAPTCHA instances
      */
   listCaptchaInstances(_options?: Configuration): Promise<RequestContext>;
   /**
      * Partially update a CAPTCHA instance by `captchaId`.
-     * Partial Update CAPTCHA instance
+     * Update a CAPTCHA instance
      * @param captchaId id of the CAPTCHA
      * @param instance
      */
   partialUpdateCaptchaInstance(captchaId: string, instance: CAPTCHAInstance, _options?: Configuration): Promise<RequestContext>;
   /**
      * Update a CAPTCHA instance by `captchaId`.
-     * Update CAPTCHA instance
+     * Replace a CAPTCHA instance
      * @param captchaId id of the CAPTCHA
      * @param instance
      */

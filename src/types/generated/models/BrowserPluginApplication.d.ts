@@ -24,8 +24,11 @@
  */
 import { Application } from './Application';
 import { SchemeApplicationCredentials } from './SchemeApplicationCredentials';
+import { SwaApplicationSettings } from './SwaApplicationSettings';
 export declare class BrowserPluginApplication extends Application {
   'credentials'?: SchemeApplicationCredentials;
+  'name'?: string;
+  'settings'?: SwaApplicationSettings;
   static readonly discriminator: string | undefined;
   static readonly attributeTypeMap: Array<{
         name: string;

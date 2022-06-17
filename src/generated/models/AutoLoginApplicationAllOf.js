@@ -42,6 +42,12 @@ AutoLoginApplicationAllOf.attributeTypeMap = [
     'format': ''
   },
   {
+    'name': 'name',
+    'baseName': 'name',
+    'type': 'string',
+    'format': ''
+  },
+  {
     'name': 'settings',
     'baseName': 'settings',
     'type': 'AutoLoginApplicationSettings',

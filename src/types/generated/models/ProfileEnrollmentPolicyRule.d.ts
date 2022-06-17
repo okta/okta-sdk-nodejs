@@ -23,10 +23,11 @@
  * Do not edit the class manually.
  */
 import { PolicyRule } from './PolicyRule';
+import { PolicyRuleConditions } from './PolicyRuleConditions';
 import { ProfileEnrollmentPolicyRuleActions } from './ProfileEnrollmentPolicyRuleActions';
 export declare class ProfileEnrollmentPolicyRule extends PolicyRule {
   'actions'?: ProfileEnrollmentPolicyRuleActions;
-  'name'?: string;
+  'conditions'?: PolicyRuleConditions;
   static readonly discriminator: string | undefined;
   static readonly attributeTypeMap: Array<{
         name: string;

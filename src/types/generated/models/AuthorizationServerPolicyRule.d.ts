@@ -26,8 +26,8 @@ import { AuthorizationServerPolicyRuleActions } from './AuthorizationServerPolic
 import { AuthorizationServerPolicyRuleConditions } from './AuthorizationServerPolicyRuleConditions';
 import { PolicyRule } from './PolicyRule';
 export declare class AuthorizationServerPolicyRule extends PolicyRule {
-  'conditions'?: AuthorizationServerPolicyRuleConditions;
   'actions'?: AuthorizationServerPolicyRuleActions;
+  'conditions'?: AuthorizationServerPolicyRuleConditions;
   static readonly discriminator: string | undefined;
   static readonly attributeTypeMap: Array<{
         name: string;

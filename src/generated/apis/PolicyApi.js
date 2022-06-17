@@ -26,7 +26,7 @@ const util_1 = require('../util');
 class PolicyApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   /**
      * Activates a policy.
-     * Activate Policy
+     * Activate a Policy
      * @param policyId
      */
   async activatePolicy(policyId, _options) {
@@ -60,7 +60,7 @@ class PolicyApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Activates a policy rule.
-     * Activate Policy Rule
+     * Activate a Policy Rule
      * @param policyId
      * @param ruleId
      */
@@ -100,7 +100,7 @@ class PolicyApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Creates a policy.
-     * Create Policy
+     * Create a Policy
      * @param policy
      * @param activate
      */
@@ -145,7 +145,7 @@ class PolicyApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Creates a policy rule.
-     * Create Policy Rule
+     * Create a Policy Rule
      * @param policyId
      * @param policyRule
      */
@@ -191,7 +191,7 @@ class PolicyApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Deactivates a policy.
-     * Deactivate Policy
+     * Deactivate a Policy
      * @param policyId
      */
   async deactivatePolicy(policyId, _options) {
@@ -225,7 +225,7 @@ class PolicyApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Deactivates a policy rule.
-     * Deactivate Policy Rule
+     * Deactivate a Policy Rule
      * @param policyId
      * @param ruleId
      */
@@ -265,7 +265,7 @@ class PolicyApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Removes a policy.
-     * Delete Policy
+     * Delete a Policy
      * @param policyId
      */
   async deletePolicy(policyId, _options) {
@@ -299,7 +299,7 @@ class PolicyApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Removes a policy rule.
-     * Delete Policy Rule
+     * Delete a Policy Rule
      * @param policyId
      * @param ruleId
      */
@@ -339,7 +339,7 @@ class PolicyApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Gets a policy.
-     * Get Policy
+     * Retrieve a Policy
      * @param policyId
      * @param expand
      */
@@ -378,7 +378,7 @@ class PolicyApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Gets a policy rule.
-     * Get Policy Rule
+     * Retrieve a Policy Rule
      * @param policyId
      * @param ruleId
      */
@@ -418,7 +418,7 @@ class PolicyApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Gets all policies with the specified type.
-     * List Policies
+     * List all Policies
      * @param type
      * @param status
      * @param expand
@@ -465,7 +465,7 @@ class PolicyApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Enumerates all policy rules.
-     * List Policy Rules
+     * List all Policy Rules
      * @param policyId
      */
   async listPolicyRules(policyId, _options) {
@@ -499,7 +499,7 @@ class PolicyApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Updates a policy.
-     * Update Policy
+     * Replace a Policy
      * @param policyId
      * @param policy
      */
@@ -545,7 +545,7 @@ class PolicyApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Updates a policy rule.
-     * Update Policy Rule
+     * Replace a Policy Rule
      * @param policyId
      * @param ruleId
      * @param policyRule

@@ -26,7 +26,7 @@ const util_1 = require('../util');
 class InlineHookApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   /**
      * Activates the Inline Hook matching the provided id
-     * Activate Inline Hook
+     * Activate an Inline Hook
      * @param inlineHookId
      */
   async activateInlineHook(inlineHookId, _options) {
@@ -49,7 +49,7 @@ class InlineHookApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Success
-     * Create Inline Hook
+     * Create an Inline Hook
      * @param inlineHook
      */
   async createInlineHook(inlineHook, _options) {
@@ -89,7 +89,7 @@ class InlineHookApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Deactivates the Inline Hook matching the provided id
-     * Deactivate Inline Hook
+     * Deactivate an Inline Hook
      * @param inlineHookId
      */
   async deactivateInlineHook(inlineHookId, _options) {
@@ -112,7 +112,7 @@ class InlineHookApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Deletes the Inline Hook matching the provided id. Once deleted, the Inline Hook is unrecoverable. As a safety precaution, only Inline Hooks with a status of INACTIVE are eligible for deletion.
-     * Delete Inline Hook
+     * Delete an Inline Hook
      * @param inlineHookId
      */
   async deleteInlineHook(inlineHookId, _options) {
@@ -146,7 +146,7 @@ class InlineHookApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Executes the Inline Hook matching the provided inlineHookId using the request body as the input. This will send the provided data through the Channel and return a response if it matches the correct data contract. This execution endpoint should only be used for testing purposes.
-     * Execute Inline Hook
+     * Execute an Inline Hook
      * @param inlineHookId
      * @param payloadData
      */
@@ -192,7 +192,7 @@ class InlineHookApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Gets an inline hook by ID
-     * Get Inline Hook
+     * Retrieve an Inline Hook
      * @param inlineHookId
      */
   async getInlineHook(inlineHookId, _options) {
@@ -226,7 +226,7 @@ class InlineHookApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Success
-     * List Inline Hooks
+     * List all Inline Hooks
      * @param type
      */
   async listInlineHooks(type, _options) {
@@ -259,7 +259,7 @@ class InlineHookApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Updates an inline hook by ID
-     * Update Inline Hook
+     * Replace an Inline Hook
      * @param inlineHookId
      * @param inlineHook
      */

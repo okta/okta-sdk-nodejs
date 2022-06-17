@@ -25,6 +25,9 @@
  */
 Object.defineProperty(exports, '__esModule', { value: true });
 exports.CAPTCHAInstance = void 0;
+/**
+*
+*/
 class CAPTCHAInstance {
   constructor() {
   }

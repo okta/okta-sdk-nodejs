@@ -25,7 +25,7 @@ import { VerifyUserFactorResponse } from '../models/VerifyUserFactorResponse';
 export declare class UserFactorApiRequestFactory extends BaseAPIRequestFactory {
   /**
      * The `sms` and `token:software:totp` factor types require activation to complete the enrollment process.
-     * Activate Factor
+     * Activate a Factor
      * @param userId
      * @param factorId
      * @param body
@@ -33,7 +33,7 @@ export declare class UserFactorApiRequestFactory extends BaseAPIRequestFactory {
   activateFactor(userId: string, factorId: string, body?: ActivateFactorRequest, _options?: Configuration): Promise<RequestContext>;
   /**
      * Unenrolls an existing factor for the specified user, allowing the user to enroll a new factor.
-     * Delete Factor
+     * Delete a Factor
      * @param userId
      * @param factorId
      * @param removeEnrollmentRecovery
@@ -41,7 +41,7 @@ export declare class UserFactorApiRequestFactory extends BaseAPIRequestFactory {
   deleteFactor(userId: string, factorId: string, removeEnrollmentRecovery?: boolean, _options?: Configuration): Promise<RequestContext>;
   /**
      * Enrolls a user with a supported factor.
-     * Enroll Factor
+     * Enroll a Factor
      * @param userId
      * @param body Factor
      * @param updatePhone
@@ -52,14 +52,14 @@ export declare class UserFactorApiRequestFactory extends BaseAPIRequestFactory {
   enrollFactor(userId: string, body: UserFactor, updatePhone?: boolean, templateId?: string, tokenLifetimeSeconds?: number, activate?: boolean, _options?: Configuration): Promise<RequestContext>;
   /**
      * Fetches a factor for the specified user
-     * Get Factor
+     * Retrieve a Factor
      * @param userId
      * @param factorId
      */
   getFactor(userId: string, factorId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Polls factors verification transaction for status.
-     * Get Factor Transaction Status
+     * Retrieve a Factor Transaction Status
      * @param userId
      * @param factorId
      * @param transactionId
@@ -67,25 +67,25 @@ export declare class UserFactorApiRequestFactory extends BaseAPIRequestFactory {
   getFactorTransactionStatus(userId: string, factorId: string, transactionId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Enumerates all the enrolled factors for the specified user
-     * List Factors
+     * List all Factors
      * @param userId
      */
   listFactors(userId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Enumerates all the supported factors that can be enrolled for the specified user
-     * List Supported Factors
+     * List all Supported Factors
      * @param userId
      */
   listSupportedFactors(userId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Enumerates all available security questions for a user's `question` factor
-     * List Supported Security Questions
+     * List all Supported Security Questions
      * @param userId
      */
   listSupportedSecurityQuestions(userId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Verifies an OTP for a `token` or `token:hardware` factor
-     * Verify MFA Factor
+     * Verify an MFA Factor
      * @param userId
      * @param factorId
      * @param templateId

@@ -42,9 +42,9 @@ ProfileEnrollmentPolicyRuleAllOf.attributeTypeMap = [
     'format': ''
   },
   {
-    'name': 'name',
-    'baseName': 'name',
-    'type': 'string',
+    'name': 'conditions',
+    'baseName': 'conditions',
+    'type': 'PolicyRuleConditions',
     'format': ''
   }
 ];

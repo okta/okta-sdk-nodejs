@@ -38,7 +38,7 @@ ModelError.attributeTypeMap = [
   {
     'name': 'errorCauses',
     'baseName': 'errorCauses',
-    'type': 'Array<ErrorErrorCauses>',
+    'type': 'Array<ErrorErrorCausesInner>',
     'format': ''
   },
   {

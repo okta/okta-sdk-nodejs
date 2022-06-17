@@ -22,74 +22,74 @@ import { PolicyRule } from '../models/PolicyRule';
 export declare class PolicyApiRequestFactory extends BaseAPIRequestFactory {
   /**
      * Activates a policy.
-     * Activate Policy
+     * Activate a Policy
      * @param policyId
      */
   activatePolicy(policyId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Activates a policy rule.
-     * Activate Policy Rule
+     * Activate a Policy Rule
      * @param policyId
      * @param ruleId
      */
   activatePolicyRule(policyId: string, ruleId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Creates a policy.
-     * Create Policy
+     * Create a Policy
      * @param policy
      * @param activate
      */
   createPolicy(policy: Policy, activate?: boolean, _options?: Configuration): Promise<RequestContext>;
   /**
      * Creates a policy rule.
-     * Create Policy Rule
+     * Create a Policy Rule
      * @param policyId
      * @param policyRule
      */
   createPolicyRule(policyId: string, policyRule: PolicyRule, _options?: Configuration): Promise<RequestContext>;
   /**
      * Deactivates a policy.
-     * Deactivate Policy
+     * Deactivate a Policy
      * @param policyId
      */
   deactivatePolicy(policyId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Deactivates a policy rule.
-     * Deactivate Policy Rule
+     * Deactivate a Policy Rule
      * @param policyId
      * @param ruleId
      */
   deactivatePolicyRule(policyId: string, ruleId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Removes a policy.
-     * Delete Policy
+     * Delete a Policy
      * @param policyId
      */
   deletePolicy(policyId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Removes a policy rule.
-     * Delete Policy Rule
+     * Delete a Policy Rule
      * @param policyId
      * @param ruleId
      */
   deletePolicyRule(policyId: string, ruleId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Gets a policy.
-     * Get Policy
+     * Retrieve a Policy
      * @param policyId
      * @param expand
      */
   getPolicy(policyId: string, expand?: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Gets a policy rule.
-     * Get Policy Rule
+     * Retrieve a Policy Rule
      * @param policyId
      * @param ruleId
      */
   getPolicyRule(policyId: string, ruleId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Gets all policies with the specified type.
-     * List Policies
+     * List all Policies
      * @param type
      * @param status
      * @param expand
@@ -97,20 +97,20 @@ export declare class PolicyApiRequestFactory extends BaseAPIRequestFactory {
   listPolicies(type: string, status?: string, expand?: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Enumerates all policy rules.
-     * List Policy Rules
+     * List all Policy Rules
      * @param policyId
      */
   listPolicyRules(policyId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Updates a policy.
-     * Update Policy
+     * Replace a Policy
      * @param policyId
      * @param policy
      */
   updatePolicy(policyId: string, policy: Policy, _options?: Configuration): Promise<RequestContext>;
   /**
      * Updates a policy rule.
-     * Update Policy Rule
+     * Replace a Policy Rule
      * @param policyId
      * @param ruleId
      * @param policyRule

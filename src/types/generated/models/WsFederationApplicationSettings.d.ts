@@ -26,12 +26,12 @@ import { ApplicationSettingsNotes } from './ApplicationSettingsNotes';
 import { ApplicationSettingsNotifications } from './ApplicationSettingsNotifications';
 import { WsFederationApplicationSettingsApplication } from './WsFederationApplicationSettingsApplication';
 export declare class WsFederationApplicationSettings {
-  'app'?: WsFederationApplicationSettingsApplication;
+  'identityStoreId'?: string;
   'implicitAssignment'?: boolean;
   'inlineHookId'?: string;
-  'identityStoreId'?: string;
   'notes'?: ApplicationSettingsNotes;
   'notifications'?: ApplicationSettingsNotifications;
+  'app'?: WsFederationApplicationSettingsApplication;
   static readonly discriminator: string | undefined;
   static readonly attributeTypeMap: Array<{
         name: string;

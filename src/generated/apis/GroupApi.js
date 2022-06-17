@@ -26,7 +26,7 @@ const util_1 = require('../util');
 class GroupApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   /**
      * Activates a specific group rule by id from your organization
-     * Activate a group Rule
+     * Activate a Group Rule
      * @param ruleId
      */
   async activateGroupRule(ruleId, _options) {
@@ -60,7 +60,7 @@ class GroupApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Add App Instance Target to App Administrator Role given to a Group
-     * Add App Instance Target to App Administrator Role given to a Group
+     * Assign an Application Instance Target to Application Administrator Role
      * @param groupId
      * @param roleId
      * @param appName
@@ -112,7 +112,7 @@ class GroupApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Success
-     * Add Application Target to Admin Role Given to Group
+     * Assign an Application Target to Administrator Role
      * @param groupId
      * @param roleId
      * @param appName
@@ -158,7 +158,7 @@ class GroupApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Enumerates group targets for a group role.
-     * Add Group Target for Group Role
+     * Assign a Group Target for Group Role
      * @param groupId
      * @param roleId
      * @param targetGroupId
@@ -199,7 +199,7 @@ class GroupApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Adds a user to a group with 'OKTA_GROUP' type.
-     * Add User to Group
+     * Assign a User
      * @param groupId
      * @param userId
      */
@@ -239,7 +239,7 @@ class GroupApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Assigns a Role to a Group
-     * Assign Role to Group
+     * Assign a Role
      * @param groupId
      * @param assignRoleRequest
      * @param disableNotifications
@@ -290,7 +290,7 @@ class GroupApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Adds a new group with `OKTA_GROUP` type to your organization.
-     * Add Group
+     * Create a Group
      * @param group
      */
   async createGroup(group, _options) {
@@ -330,7 +330,7 @@ class GroupApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Creates a group rule to dynamically add users to the specified group if they match the condition
-     * Create Group Rule
+     * Create a Group Rule
      * @param groupRule
      */
   async createGroupRule(groupRule, _options) {
@@ -370,7 +370,7 @@ class GroupApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Deactivates a specific group rule by id from your organization
-     * Deactivate a group Rule
+     * Deactivate a Group Rule
      * @param ruleId
      */
   async deactivateGroupRule(ruleId, _options) {
@@ -404,7 +404,7 @@ class GroupApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Removes a group with `OKTA_GROUP` type from your organization.
-     * Remove Group
+     * Delete a Group
      * @param groupId
      */
   async deleteGroup(groupId, _options) {
@@ -477,7 +477,7 @@ class GroupApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Fetches a group from your organization.
-     * List Group Rules
+     * List all Group Rules
      * @param groupId
      */
   async getGroup(groupId, _options) {
@@ -511,7 +511,7 @@ class GroupApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Fetches a specific group rule by id from your organization
-     * Get Group Rule
+     * Retrieve a Group Rule
      * @param ruleId
      * @param expand
      */
@@ -550,7 +550,7 @@ class GroupApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Success
-     * Get Role
+     * Retrieve a Role
      * @param groupId
      * @param roleId
      */
@@ -590,7 +590,7 @@ class GroupApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Lists all App targets for an `APP_ADMIN` Role assigned to a Group. This methods return list may include full Applications or Instances. The response for an instance will have an `ID` value, while Application will not have an ID.
-     * List Application Targets for Application Administrator Role for Group
+     * List all Application Targets for an Application Administrator Role
      * @param groupId
      * @param roleId
      * @param after
@@ -640,7 +640,7 @@ class GroupApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Enumerates all applications that are assigned to a group.
-     * List Assigned Applications
+     * List all Assigned Applications
      * @param groupId
      * @param after Specifies the pagination cursor for the next page of apps
      * @param limit Specifies the number of app results for a page
@@ -684,7 +684,7 @@ class GroupApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Success
-     * List Group Assigned Roles
+     * List all Assigned Roles
      * @param groupId
      * @param expand
      */
@@ -723,7 +723,7 @@ class GroupApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Lists all group rules for your organization.
-     * List Group Rules
+     * List all Group Rules
      * @param limit Specifies the number of rule results in a page
      * @param after Specifies the pagination cursor for the next page of rules
      * @param search Specifies the keyword to search fules for
@@ -771,7 +771,7 @@ class GroupApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Enumerates group targets for a group role.
-     * List Group Targets for Group Role
+     * List all Group Targets for a Group Role
      * @param groupId
      * @param roleId
      * @param after
@@ -821,7 +821,7 @@ class GroupApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Enumerates all users that are a member of a group.
-     * List Group Members
+     * List all Member Users
      * @param groupId
      * @param after Specifies the pagination cursor for the next page of users
      * @param limit Specifies the number of user results in a page
@@ -865,7 +865,7 @@ class GroupApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Enumerates groups in your organization with pagination. A subset of groups can be returned that match a supported filter expression or query.
-     * List Groups
+     * List all Groups
      * @param q Searches the name property of groups for matching value
      * @param search Filter expression for groups
      * @param after Specifies the pagination cursor for the next page of groups
@@ -918,7 +918,7 @@ class GroupApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Remove App Instance Target to App Administrator Role given to a Group
-     * Remove App Instance Target to App Administrator Role given to a Group
+     * Delete an Application Instance Target to Application Administrator Role
      * @param groupId
      * @param roleId
      * @param appName
@@ -970,7 +970,7 @@ class GroupApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Success
-     * Remove Application Target from Application Administrator Role Given to Group
+     * Delete an Application Target from Application Administrator Role
      * @param groupId
      * @param roleId
      * @param appName
@@ -1016,7 +1016,7 @@ class GroupApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * remove group target for a group role.
-     * Delete Group Target for Group Role
+     * Delete a Group Target for Group Role
      * @param groupId
      * @param roleId
      * @param targetGroupId
@@ -1057,7 +1057,7 @@ class GroupApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Unassigns a Role from a Group
-     * Remove Role from Group
+     * Delete a Role
      * @param groupId
      * @param roleId
      */
@@ -1097,7 +1097,7 @@ class GroupApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Removes a user from a group with 'OKTA_GROUP' type.
-     * Remove User from Group
+     * Unassign a User
      * @param groupId
      * @param userId
      */
@@ -1137,7 +1137,7 @@ class GroupApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Updates the profile for a group with `OKTA_GROUP` type from your organization.
-     * Update Group
+     * Replace a Group
      * @param groupId
      * @param group
      */
@@ -1183,7 +1183,7 @@ class GroupApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Updates a group rule. Only `INACTIVE` rules can be updated.
-     * Update Group Rule
+     * Replace a Group Rule
      * @param ruleId
      * @param groupRule
      */

@@ -21,7 +21,7 @@ class ObjectAgentPoolsApi {
     }
     /**
       * Activates scheduled Agent pool update
-      * Activate Agent pool update
+      * Activate an Agent Pool update
       * @param param the request object
       */
     activateAgentPoolsUpdate(param, options) {
@@ -29,7 +29,7 @@ class ObjectAgentPoolsApi {
     }
     /**
       * Creates an Agent pool update \\n For user flow 2 manual update, starts the update immediately. \\n For user flow 3, schedules the update based on the configured update window and delay.
-      * Create an Agent pool update
+      * Create an Agent Pool update
       * @param param the request object
       */
     createAgentPoolsUpdate(param, options) {
@@ -37,7 +37,7 @@ class ObjectAgentPoolsApi {
     }
     /**
       * Deactivates scheduled Agent pool update
-      * Deactivate Agent pool update
+      * Deactivate an Agent Pool update
       * @param param the request object
       */
     deactivateAgentPoolsUpdate(param, options) {
@@ -45,7 +45,7 @@ class ObjectAgentPoolsApi {
     }
     /**
       * Deletes Agent pool update
-      * Delete Agent pool update
+      * Delete an Agent Pool update
       * @param param the request object
       */
     deleteAgentPoolsUpdate(param, options) {
@@ -53,7 +53,7 @@ class ObjectAgentPoolsApi {
     }
     /**
       * Fetches AgentPools based on request parameters for a given org
-      * Fetch AgentPools
+      * List all Agent Pools
       * @param param the request object
       */
     getAgentPools(param = {}, options) {
@@ -61,7 +61,7 @@ class ObjectAgentPoolsApi {
     }
     /**
       * Gets Agent pool update from updateId
-      * Get Agent pool update by id
+      * Retrieve an Agent Pool update by id
       * @param param the request object
       */
     getAgentPoolsUpdateInstance(param, options) {
@@ -69,7 +69,7 @@ class ObjectAgentPoolsApi {
     }
     /**
       * Gets the current state of the agent pool update instance settings
-      * Get Agent pool update settings
+      * Retrieve an Agent Pool update's settings
       * @param param the request object
       */
     getAgentPoolsUpdateSettings(param, options) {
@@ -77,7 +77,7 @@ class ObjectAgentPoolsApi {
     }
     /**
       * Gets List of Agent pool updates
-      * List Agent pool updates
+      * List all Agent Pool updates
       * @param param the request object
       */
     getAgentPoolsUpdates(param, options) {
@@ -85,7 +85,7 @@ class ObjectAgentPoolsApi {
     }
     /**
       * Pauses running or queued Agent pool update
-      * Pause Agent pool update
+      * Pause an Agent Pool update
       * @param param the request object
       */
     pauseAgentPoolsUpdate(param, options) {
@@ -93,7 +93,7 @@ class ObjectAgentPoolsApi {
     }
     /**
       * Resumes running or queued Agent pool update
-      * Resume Agent pool update
+      * Resume an Agent Pool update
       * @param param the request object
       */
     resumeAgentPoolsUpdate(param, options) {
@@ -101,7 +101,7 @@ class ObjectAgentPoolsApi {
     }
     /**
       * Retries Agent pool update
-      * Retry Agent pool update
+      * Retry an Agent Pool update
       * @param param the request object
       */
     retryAgentPoolsUpdate(param, options) {
@@ -109,7 +109,7 @@ class ObjectAgentPoolsApi {
     }
     /**
       * Updates Agent pool update settings
-      * Update Agent pool update settings
+      * Update an Agent pool update settings
       * @param param the request object
       */
     setAgentPoolsUpdateSettings(param, options) {
@@ -117,7 +117,7 @@ class ObjectAgentPoolsApi {
     }
     /**
       * Stops Agent pool update
-      * Stop Agent pool update
+      * Stop an Agent Pool update
       * @param param the request object
       */
     stopAgentPoolsUpdate(param, options) {
@@ -125,7 +125,7 @@ class ObjectAgentPoolsApi {
     }
     /**
       * Updates Agent pool update and return latest agent pool update
-      * Change Agent pool update by id
+      * Update an Agent Pool update by id
       * @param param the request object
       */
     updateAgentPoolsUpdate(param, options) {
@@ -140,7 +140,7 @@ class ObjectApiTokenApi {
     }
     /**
       * Get the metadata for an active API token by id.
-      * Get the Metadata for an API Token
+      * Retrieve an API Token's Metadata
       * @param param the request object
       */
     getApiToken(param, options) {
@@ -148,7 +148,7 @@ class ObjectApiTokenApi {
     }
     /**
       * Enumerates the metadata of the active API tokens in your organization.
-      * List API Token Metadata
+      * List all API Token Metadata
       * @param param the request object
       */
     listApiTokens(param = {}, options) {
@@ -179,7 +179,7 @@ class ObjectApplicationApi {
     }
     /**
       * Activates an inactive application.
-      * Activate Application
+      * Activate an Application
       * @param param the request object
       */
     activateApplication(param, options) {
@@ -187,7 +187,7 @@ class ObjectApplicationApi {
     }
     /**
       * Activates the default Provisioning Connection for an application.
-      * Activate default Provisioning Connection for application
+      * Activate the default Provisioning Connection
       * @param param the request object
       */
     activateDefaultProvisioningConnectionForApplication(param, options) {
@@ -195,7 +195,7 @@ class ObjectApplicationApi {
     }
     /**
       * Assigns an user to an application with [credentials](#application-user-credentials-object) and an app-specific [profile](#application-user-profile-object). Profile mappings defined for the application are first applied before applying any profile properties specified in the request.
-      * Assign User to Application for SSO & Provisioning
+      * Assign a User
       * @param param the request object
       */
     assignUserToApplication(param, options) {
@@ -203,7 +203,7 @@ class ObjectApplicationApi {
     }
     /**
       * Clones a X.509 certificate for an application key credential from a source application to target application.
-      * Clone Application Key Credential
+      * Clone a Key Credential
       * @param param the request object
       */
     cloneApplicationKey(param, options) {
@@ -211,7 +211,7 @@ class ObjectApplicationApi {
     }
     /**
       * Adds a new application to your Okta organization.
-      * Add Application
+      * Create an Application
       * @param param the request object
       */
     createApplication(param, options) {
@@ -219,7 +219,7 @@ class ObjectApplicationApi {
     }
     /**
       * Assigns a group to an application
-      * Assign Group to Application
+      * Assign a Group
       * @param param the request object
       */
     createApplicationGroupAssignment(param, options) {
@@ -227,7 +227,7 @@ class ObjectApplicationApi {
     }
     /**
       * Deactivates an active application.
-      * Deactivate Application
+      * Deactivate an Application
       * @param param the request object
       */
     deactivateApplication(param, options) {
@@ -235,7 +235,7 @@ class ObjectApplicationApi {
     }
     /**
       * Deactivates the default Provisioning Connection for an application.
-      * Deactivate default Provisioning Connection for application
+      * Deactivate the default Provisioning Connection for an Application
       * @param param the request object
       */
     deactivateDefaultProvisioningConnectionForApplication(param, options) {
@@ -243,7 +243,7 @@ class ObjectApplicationApi {
     }
     /**
       * Removes an inactive application.
-      * Delete Application
+      * Delete an Application
       * @param param the request object
       */
     deleteApplication(param, options) {
@@ -251,7 +251,7 @@ class ObjectApplicationApi {
     }
     /**
       * Removes a group assignment from an application.
-      * Remove Group from Application
+      * Unassign a Group
       * @param param the request object
       */
     deleteApplicationGroupAssignment(param, options) {
@@ -259,7 +259,7 @@ class ObjectApplicationApi {
     }
     /**
       * Removes an assignment for a user from an application.
-      * Remove User from Application
+      * Unassign a User
       * @param param the request object
       */
     deleteApplicationUser(param, options) {
@@ -267,7 +267,7 @@ class ObjectApplicationApi {
     }
     /**
       * Generates a new X.509 certificate for an application key credential
-      * Generate Key Credential for Application
+      * Generate a Key Credential
       * @param param the request object
       */
     generateApplicationKey(param, options) {
@@ -275,7 +275,7 @@ class ObjectApplicationApi {
     }
     /**
       * Generates a new key pair and returns the Certificate Signing Request for it.
-      * Generate Certificate Signing Request for Application
+      * Generate a Certificate Signing Request
       * @param param the request object
       */
     generateCsrForApplication(param, options) {
@@ -283,7 +283,7 @@ class ObjectApplicationApi {
     }
     /**
       * Fetches an application from your Okta organization by `id`.
-      * Get Application
+      * Retrieve an Application
       * @param param the request object
       */
     getApplication(param, options) {
@@ -291,7 +291,7 @@ class ObjectApplicationApi {
     }
     /**
       * Fetches an application group assignment
-      * Get Assigned Group for Application
+      * Retrieve an Assigned Group
       * @param param the request object
       */
     getApplicationGroupAssignment(param, options) {
@@ -299,7 +299,7 @@ class ObjectApplicationApi {
     }
     /**
       * Gets a specific application key credential by kid
-      * Get Key Credential for Application
+      * Retrieve a Key Credential
       * @param param the request object
       */
     getApplicationKey(param, options) {
@@ -307,7 +307,7 @@ class ObjectApplicationApi {
     }
     /**
       * Fetches a specific user assignment for application by `id`.
-      * Get Assigned User for Application
+      * Retrieve an Assigned User
       * @param param the request object
       */
     getApplicationUser(param, options) {
@@ -315,7 +315,7 @@ class ObjectApplicationApi {
     }
     /**
       * Fetches a certificate signing request for the app by `id`.
-      * Get Certificate Signing Request
+      * Retrieve a Certificate Signing Request
       * @param param the request object
       */
     getCsrForApplication(param, options) {
@@ -323,7 +323,7 @@ class ObjectApplicationApi {
     }
     /**
       * Get default Provisioning Connection for application
-      * Fetches the default Provisioning Connection for an application.
+      * Retrieve the default Provisioning Connection
       * @param param the request object
       */
     getDefaultProvisioningConnectionForApplication(param, options) {
@@ -331,7 +331,7 @@ class ObjectApplicationApi {
     }
     /**
       * Fetches a Feature object for an application.
-      * Fetches a Feature object for an application.
+      * Retrieve a Feature
       * @param param the request object
       */
     getFeatureForApplication(param, options) {
@@ -339,7 +339,7 @@ class ObjectApplicationApi {
     }
     /**
       * Gets a token for the specified application
-      * Get OAuth 2.0 Token for Application
+      * Retrieve an OAuth 2.0 Token
       * @param param the request object
       */
     getOAuth2TokenForApplication(param, options) {
@@ -347,7 +347,7 @@ class ObjectApplicationApi {
     }
     /**
       * Fetches a single scope consent grant for the application
-      * Get Scope Consent Grant for Application
+      * Retrieve a Scope Consent Grant
       * @param param the request object
       */
     getScopeConsentGrant(param, options) {
@@ -355,7 +355,7 @@ class ObjectApplicationApi {
     }
     /**
       * Grants consent for the application to request an OAuth 2.0 Okta scope
-      * Grant Consent to Scope for Application
+      * Grant Consent to Scope
       * @param param the request object
       */
     grantConsentToScope(param, options) {
@@ -363,7 +363,7 @@ class ObjectApplicationApi {
     }
     /**
       * Enumerates group assignments for an application.
-      * List Groups Assigned to Application
+      * List all Assigned Groups
       * @param param the request object
       */
     listApplicationGroupAssignments(param, options) {
@@ -371,7 +371,7 @@ class ObjectApplicationApi {
     }
     /**
       * Enumerates key credentials for an application
-      * List Key Credentials for Application
+      * List all Key Credentials
       * @param param the request object
       */
     listApplicationKeys(param, options) {
@@ -379,7 +379,7 @@ class ObjectApplicationApi {
     }
     /**
       * Enumerates all assigned [application users](#application-user-model) for an application.
-      * List Users Assigned to Application
+      * List all Assigned Users
       * @param param the request object
       */
     listApplicationUsers(param, options) {
@@ -387,7 +387,7 @@ class ObjectApplicationApi {
     }
     /**
       * Enumerates apps added to your organization with pagination. A subset of apps can be returned that match a supported filter expression or query.
-      * List Applications
+      * List all Applications
       * @param param the request object
       */
     listApplications(param = {}, options) {
@@ -395,7 +395,7 @@ class ObjectApplicationApi {
     }
     /**
       * Enumerates Certificate Signing Requests for an application
-      * List Certificate Signing Requests for Application
+      * List all Certificate Signing Requests
       * @param param the request object
       */
     listCsrsForApplication(param, options) {
@@ -403,7 +403,7 @@ class ObjectApplicationApi {
     }
     /**
       * List Features for application
-      * Fetches the Feature objects for an application.
+      * List all Features
       * @param param the request object
       */
     listFeaturesForApplication(param, options) {
@@ -411,7 +411,7 @@ class ObjectApplicationApi {
     }
     /**
       * Lists all tokens for the application
-      * Lists OAuth 2.0 Tokens for Application
+      * List all OAuth 2.0 Tokens
       * @param param the request object
       */
     listOAuth2TokensForApplication(param, options) {
@@ -419,7 +419,7 @@ class ObjectApplicationApi {
     }
     /**
       * Lists all scope consent grants for the application
-      * List Scope Consent Grants for Application
+      * List all Scope Consent Grants
       * @param param the request object
       */
     listScopeConsentGrants(param, options) {
@@ -427,7 +427,7 @@ class ObjectApplicationApi {
     }
     /**
       * Updates a certificate signing request for the app with a signed X.509 certificate and adds it into the application key credentials
-      * Publish Certificate Signing Request
+      * Publish a Certificate Signing Request
       * @param param the request object
       */
     publishCsrFromApplication(param, options) {
@@ -435,7 +435,7 @@ class ObjectApplicationApi {
     }
     /**
       * Revokes a certificate signing request and deletes the key pair from the application.
-      * Revoke Certificate Signing Request
+      * Revoke a Certificate Signing Request
       * @param param the request object
       */
     revokeCsrFromApplication(param, options) {
@@ -443,7 +443,7 @@ class ObjectApplicationApi {
     }
     /**
       * Revokes the specified token for the specified application
-      * Revoke an OAuth 2.0 Token for Application
+      * Revoke an OAuth 2.0 Token
       * @param param the request object
       */
     revokeOAuth2TokenForApplication(param, options) {
@@ -451,7 +451,7 @@ class ObjectApplicationApi {
     }
     /**
       * Revokes all tokens for the specified application
-      * Revoke All OAuth 2.0 Tokens for Application
+      * Revoke all OAuth 2.0 Tokens
       * @param param the request object
       */
     revokeOAuth2TokensForApplication(param, options) {
@@ -459,7 +459,7 @@ class ObjectApplicationApi {
     }
     /**
       * Revokes permission for the application to request the given scope
-      * Revoke Scope Consent Grant for Application
+      * Revoke a Scope Consent Grant
       * @param param the request object
       */
     revokeScopeConsentGrant(param, options) {
@@ -467,7 +467,7 @@ class ObjectApplicationApi {
     }
     /**
       * Set default Provisioning Connection for application
-      * Sets the default Provisioning Connection for an application.
+      * Update the default Provisioning Connection
       * @param param the request object
       */
     setDefaultProvisioningConnectionForApplication(param, options) {
@@ -475,7 +475,7 @@ class ObjectApplicationApi {
     }
     /**
       * Updates an application in your organization.
-      * Update Application
+      * Replace an Application
       * @param param the request object
       */
     updateApplication(param, options) {
@@ -483,7 +483,7 @@ class ObjectApplicationApi {
     }
     /**
       * Updates a user's profile for an application
-      * Update Application Profile for Assigned User
+      * Update an Application Profile for Assigned User
       * @param param the request object
       */
     updateApplicationUser(param, options) {
@@ -491,15 +491,15 @@ class ObjectApplicationApi {
     }
     /**
       * Updates a Feature object for an application.
-      * Updates a Feature object for an application.
+      * Update a Feature
       * @param param the request object
       */
     updateFeatureForApplication(param, options) {
         return this.api.updateFeatureForApplication(param.appId, param.name, param.CapabilitiesObject, options).toPromise();
     }
     /**
-      * Update the logo for an application.
       * The file must be in PNG, JPG, or GIF format, and less than 1 MB in size. For best results use landscape orientation, a transparent background, and a minimum size of 420px by 120px to prevent upscaling.
+      * Upload a Logo
       * @param param the request object
       */
     uploadApplicationLogo(param, options) {
@@ -514,7 +514,7 @@ class ObjectAuthenticatorApi {
     }
     /**
       * Activates an authenticator by `authenticatorId`.
-      * Activate Authenticator
+      * Activate an Authenticator
       * @param param the request object
       */
     activateAuthenticator(param, options) {
@@ -522,7 +522,7 @@ class ObjectAuthenticatorApi {
     }
     /**
       * Deactivates an authenticator by `authenticatorId`.
-      * Deactivate Authenticator
+      * Deactivate an Authenticator
       * @param param the request object
       */
     deactivateAuthenticator(param, options) {
@@ -530,7 +530,7 @@ class ObjectAuthenticatorApi {
     }
     /**
       * Fetches an authenticator from your Okta organization by `authenticatorId`.
-      * Get Authenticator
+      * Retrieve an Authenticator
       * @param param the request object
       */
     getAuthenticator(param, options) {
@@ -538,7 +538,7 @@ class ObjectAuthenticatorApi {
     }
     /**
       * Enumerates authenticators in your organization.
-      * List Authenticators
+      * List all Authenticators
       * @param param the request object
       */
     listAuthenticators(param = {}, options) {
@@ -546,7 +546,7 @@ class ObjectAuthenticatorApi {
     }
     /**
       * Updates an authenticator
-      * Update Authenticator
+      * Replace an Authenticator
       * @param param the request object
       */
     updateAuthenticator(param, options) {
@@ -561,7 +561,7 @@ class ObjectAuthorizationServerApi {
     }
     /**
       * Success
-      * Activate Authorization Server
+      * Activate an Authorization Server
       * @param param the request object
       */
     activateAuthorizationServer(param, options) {
@@ -569,7 +569,7 @@ class ObjectAuthorizationServerApi {
     }
     /**
       * Activate Authorization Server Policy
-      * Activate Authorization Server Policy
+      * Activate a Policy
       * @param param the request object
       */
     activateAuthorizationServerPolicy(param, options) {
@@ -577,7 +577,7 @@ class ObjectAuthorizationServerApi {
     }
     /**
       * Activate Authorization Server Policy Rule
-      * Activate Authorization Server Policy Rule
+      * Activate a Policy Rule
       * @param param the request object
       */
     activateAuthorizationServerPolicyRule(param, options) {
@@ -585,7 +585,7 @@ class ObjectAuthorizationServerApi {
     }
     /**
       * Success
-      * Create Authorization Server
+      * Create an Authorization Server
       * @param param the request object
       */
     createAuthorizationServer(param, options) {
@@ -593,7 +593,7 @@ class ObjectAuthorizationServerApi {
     }
     /**
       * Success
-      * Create Authorization Server Policy
+      * Create a Policy
       * @param param the request object
       */
     createAuthorizationServerPolicy(param, options) {
@@ -601,7 +601,7 @@ class ObjectAuthorizationServerApi {
     }
     /**
       * Creates a policy rule for the specified Custom Authorization Server and Policy.
-      * Create Authorization Server Policy Rule
+      * Create a Policy Rule
       * @param param the request object
       */
     createAuthorizationServerPolicyRule(param, options) {
@@ -609,7 +609,7 @@ class ObjectAuthorizationServerApi {
     }
     /**
       * Success
-      * Create Custom OAuth 2.0 Token Claim
+      * Create a Custom Token Claim
       * @param param the request object
       */
     createOAuth2Claim(param, options) {
@@ -617,7 +617,7 @@ class ObjectAuthorizationServerApi {
     }
     /**
       * Success
-      * Create Oauth2scope
+      * Create a Custom Token Scope
       * @param param the request object
       */
     createOAuth2Scope(param, options) {
@@ -625,7 +625,7 @@ class ObjectAuthorizationServerApi {
     }
     /**
       * Success
-      * Deactivate Authorization Server
+      * Deactivate an Authorization Server
       * @param param the request object
       */
     deactivateAuthorizationServer(param, options) {
@@ -633,7 +633,7 @@ class ObjectAuthorizationServerApi {
     }
     /**
       * Deactivate Authorization Server Policy
-      * Deactivate Authorization Server Policy
+      * Deactivate a Policy
       * @param param the request object
       */
     deactivateAuthorizationServerPolicy(param, options) {
@@ -641,7 +641,7 @@ class ObjectAuthorizationServerApi {
     }
     /**
       * Deactivate Authorization Server Policy Rule
-      * Deactivate Authorization Server Policy Rule
+      * Deactivate a Policy Rule
       * @param param the request object
       */
     deactivateAuthorizationServerPolicyRule(param, options) {
@@ -649,7 +649,7 @@ class ObjectAuthorizationServerApi {
     }
     /**
       * Success
-      * Delete Authorization Server
+      * Delete an Authorization Server
       * @param param the request object
       */
     deleteAuthorizationServer(param, options) {
@@ -657,7 +657,7 @@ class ObjectAuthorizationServerApi {
     }
     /**
       * Success
-      * Delete Authorization Server Policy
+      * Delete a Policy
       * @param param the request object
       */
     deleteAuthorizationServerPolicy(param, options) {
@@ -665,7 +665,7 @@ class ObjectAuthorizationServerApi {
     }
     /**
       * Deletes a Policy Rule defined in the specified Custom Authorization Server and Policy.
-      * Delete Authorization Server Policy Rule
+      * Delete a Policy Rule
       * @param param the request object
       */
     deleteAuthorizationServerPolicyRule(param, options) {
@@ -673,7 +673,7 @@ class ObjectAuthorizationServerApi {
     }
     /**
       * Success
-      * Delete Custom OAuth 2.0 Token Claim
+      * Delete a Custom Token Claim
       * @param param the request object
       */
     deleteOAuth2Claim(param, options) {
@@ -681,7 +681,7 @@ class ObjectAuthorizationServerApi {
     }
     /**
       * Success
-      * Delete Oauth2scope
+      * Delete a Custom Token Scope
       * @param param the request object
       */
     deleteOAuth2Scope(param, options) {
@@ -689,7 +689,7 @@ class ObjectAuthorizationServerApi {
     }
     /**
       * Success
-      * Get Authorization Server
+      * Retrieve an Authorization Server
       * @param param the request object
       */
     getAuthorizationServer(param, options) {
@@ -697,7 +697,7 @@ class ObjectAuthorizationServerApi {
     }
     /**
       * Success
-      * Get Authorization Server Policy
+      * Retrieve a Policy
       * @param param the request object
       */
     getAuthorizationServerPolicy(param, options) {
@@ -705,7 +705,7 @@ class ObjectAuthorizationServerApi {
     }
     /**
       * Returns a Policy Rule by ID that is defined in the specified Custom Authorization Server and Policy.
-      * Get Authorization Server Policy Rule
+      * Retrieve a Policy Rule
       * @param param the request object
       */
     getAuthorizationServerPolicyRule(param, options) {
@@ -713,7 +713,7 @@ class ObjectAuthorizationServerApi {
     }
     /**
       * Success
-      * Get Oauth2claim
+      * Retrieve a Custom Token Claim
       * @param param the request object
       */
     getOAuth2Claim(param, options) {
@@ -721,7 +721,7 @@ class ObjectAuthorizationServerApi {
     }
     /**
       * Success
-      * Get Oauth2scope
+      * Retrieve a Custom Token Scope
       * @param param the request object
       */
     getOAuth2Scope(param, options) {
@@ -729,7 +729,7 @@ class ObjectAuthorizationServerApi {
     }
     /**
       * Success
-      * Get Refresh Token for Authorization Server and Client
+      * Retrieve a Refresh Token for a Client
       * @param param the request object
       */
     getRefreshTokenForAuthorizationServerAndClient(param, options) {
@@ -737,7 +737,7 @@ class ObjectAuthorizationServerApi {
     }
     /**
       * Success
-      * List Authorization Server Keys
+      * List all Credential Keys
       * @param param the request object
       */
     listAuthorizationServerKeys(param, options) {
@@ -745,7 +745,7 @@ class ObjectAuthorizationServerApi {
     }
     /**
       * Success
-      * List Authorization Server Policies
+      * List all Policies
       * @param param the request object
       */
     listAuthorizationServerPolicies(param, options) {
@@ -753,7 +753,7 @@ class ObjectAuthorizationServerApi {
     }
     /**
       * Enumerates all policy rules for the specified Custom Authorization Server and Policy.
-      * List Authorization Server Policy Rules
+      * List all Policy Rules
       * @param param the request object
       */
     listAuthorizationServerPolicyRules(param, options) {
@@ -761,7 +761,7 @@ class ObjectAuthorizationServerApi {
     }
     /**
       * Success
-      * List Authorization Servers
+      * List all Authorization Servers
       * @param param the request object
       */
     listAuthorizationServers(param = {}, options) {
@@ -769,7 +769,7 @@ class ObjectAuthorizationServerApi {
     }
     /**
       * Success
-      * List Custom OAuth 2.0 Token Claims
+      * List all Custom Token Claims
       * @param param the request object
       */
     listOAuth2Claims(param, options) {
@@ -777,7 +777,7 @@ class ObjectAuthorizationServerApi {
     }
     /**
       * Success
-      * List Oauth2clients for Authorization Server
+      * List all Clients
       * @param param the request object
       */
     listOAuth2ClientsForAuthorizationServer(param, options) {
@@ -785,7 +785,7 @@ class ObjectAuthorizationServerApi {
     }
     /**
       * Success
-      * List Oauth2scopes
+      * List all Custom Token Scopes
       * @param param the request object
       */
     listOAuth2Scopes(param, options) {
@@ -793,7 +793,7 @@ class ObjectAuthorizationServerApi {
     }
     /**
       * Success
-      * List Refresh Tokens for Authorization Server and Client
+      * List all Refresh Tokens for a Client
       * @param param the request object
       */
     listRefreshTokensForAuthorizationServerAndClient(param, options) {
@@ -801,7 +801,7 @@ class ObjectAuthorizationServerApi {
     }
     /**
       * Success
-      * Revoke Refresh Token for Authorization Server and Client
+      * Revoke a Refresh Token for a Client
       * @param param the request object
       */
     revokeRefreshTokenForAuthorizationServerAndClient(param, options) {
@@ -809,7 +809,7 @@ class ObjectAuthorizationServerApi {
     }
     /**
       * Success
-      * Revoke Refresh Tokens for Authorization Server and Client
+      * Revoke all Refresh Tokens for a Client
       * @param param the request object
       */
     revokeRefreshTokensForAuthorizationServerAndClient(param, options) {
@@ -817,7 +817,7 @@ class ObjectAuthorizationServerApi {
     }
     /**
       * Success
-      * Rotate Authorization Server Keys
+      * Rotate all Credential Keys
       * @param param the request object
       */
     rotateAuthorizationServerKeys(param, options) {
@@ -825,7 +825,7 @@ class ObjectAuthorizationServerApi {
     }
     /**
       * Success
-      * Update Authorization Server
+      * Replace an Authorization Server
       * @param param the request object
       */
     updateAuthorizationServer(param, options) {
@@ -833,7 +833,7 @@ class ObjectAuthorizationServerApi {
     }
     /**
       * Success
-      * Update Authorization Server Policy
+      * Replace a Policy
       * @param param the request object
       */
     updateAuthorizationServerPolicy(param, options) {
@@ -841,7 +841,7 @@ class ObjectAuthorizationServerApi {
     }
     /**
       * Updates the configuration of the Policy Rule defined in the specified Custom Authorization Server and Policy.
-      * Update Authorization Server Policy Rule
+      * Replace a Policy Rule
       * @param param the request object
       */
     updateAuthorizationServerPolicyRule(param, options) {
@@ -849,7 +849,7 @@ class ObjectAuthorizationServerApi {
     }
     /**
       * Success
-      * Update Custom OAuth 2.0 Token Claim
+      * Replace a Custom Token Claim
       * @param param the request object
       */
     updateOAuth2Claim(param, options) {
@@ -857,7 +857,7 @@ class ObjectAuthorizationServerApi {
     }
     /**
       * Success
-      * Update Oauth2scope
+      * Replace a Custom Token Scope
       * @param param the request object
       */
     updateOAuth2Scope(param, options) {
@@ -872,7 +872,7 @@ class ObjectBehaviorApi {
     }
     /**
       * Activate Behavior Detection Rule
-      * Activate Behavior Detection Rule
+      * Activate a Behavior Detection Rule
       * @param param the request object
       */
     activateBehaviorDetectionRule(param, options) {
@@ -880,7 +880,7 @@ class ObjectBehaviorApi {
     }
     /**
       * Adds a new Behavior Detection Rule to your organization.
-      * Create new Behavior Detection Rule
+      * Create a Behavior Detection Rule
       * @param param the request object
       */
     createBehaviorDetectionRule(param, options) {
@@ -888,7 +888,7 @@ class ObjectBehaviorApi {
     }
     /**
       * Deactivate Behavior Detection Rule
-      * Deactivate Behavior Detection Rule
+      * Deactivate a Behavior Detection Rule
       * @param param the request object
       */
     deactivateBehaviorDetectionRule(param, options) {
@@ -896,7 +896,7 @@ class ObjectBehaviorApi {
     }
     /**
       * Delete a Behavior Detection Rule by `behaviorId`.
-      * Delete Behavior Detection Rule
+      * Delete a Behavior Detection Rule
       * @param param the request object
       */
     deleteBehaviorDetectionRule(param, options) {
@@ -904,7 +904,7 @@ class ObjectBehaviorApi {
     }
     /**
       * Fetches a Behavior Detection Rule by `behaviorId`.
-      * Get Behavior Detection Rule
+      * Retrieve a Behavior Detection Rule
       * @param param the request object
       */
     getBehaviorDetectionRule(param, options) {
@@ -912,7 +912,7 @@ class ObjectBehaviorApi {
     }
     /**
       * Enumerates Behavior Detection Rules in your organization with pagination.
-      * List Behavior Detection Rules
+      * List all Behavior Detection Rules
       * @param param the request object
       */
     listBehaviorDetectionRules(param = {}, options) {
@@ -920,7 +920,7 @@ class ObjectBehaviorApi {
     }
     /**
       * Update a Behavior Detection Rule by `behaviorId`.
-      * Update Behavior Detection Rule
+      * Replace a Behavior Detection Rule
       * @param param the request object
       */
     updateBehaviorDetectionRule(param, options) {
@@ -935,7 +935,7 @@ class ObjectCAPTCHAApi {
     }
     /**
       * Adds a new CAPTCHA instance to your organization. In the current release, we only allow one CAPTCHA instance per org.
-      * Create new CAPTCHA instance
+      * Create a CAPTCHA instance
       * @param param the request object
       */
     createCaptchaInstance(param, options) {
@@ -943,7 +943,7 @@ class ObjectCAPTCHAApi {
     }
     /**
       * Delete a CAPTCHA instance by `captchaId`. If the CAPTCHA instance is currently being used in the org, the delete will not be allowed.
-      * Delete CAPTCHA Instance
+      * Delete a CAPTCHA Instance
       * @param param the request object
       */
     deleteCaptchaInstance(param, options) {
@@ -951,7 +951,7 @@ class ObjectCAPTCHAApi {
     }
     /**
       * Fetches a CAPTCHA instance by `captchaId`.
-      * Get CAPTCHA Instance
+      * Retrieve a CAPTCHA Instance
       * @param param the request object
       */
     getCaptchaInstance(param, options) {
@@ -959,7 +959,7 @@ class ObjectCAPTCHAApi {
     }
     /**
       * Enumerates CAPTCHA instances in your organization with pagination. A subset of CAPTCHA instances can be returned that match a supported filter expression or query.
-      * List CAPTCHA instances
+      * List all CAPTCHA instances
       * @param param the request object
       */
     listCaptchaInstances(param = {}, options) {
@@ -967,7 +967,7 @@ class ObjectCAPTCHAApi {
     }
     /**
       * Partially update a CAPTCHA instance by `captchaId`.
-      * Partial Update CAPTCHA instance
+      * Update a CAPTCHA instance
       * @param param the request object
       */
     partialUpdateCaptchaInstance(param, options) {
@@ -975,7 +975,7 @@ class ObjectCAPTCHAApi {
     }
     /**
       * Update a CAPTCHA instance by `captchaId`.
-      * Update CAPTCHA instance
+      * Replace a CAPTCHA instance
       * @param param the request object
       */
     updateCaptchaInstance(param, options) {
@@ -990,7 +990,7 @@ class ObjectCustomizationApi {
     }
     /**
       * Creates a new email customization.
-      * Create Email Customization
+      * Create an Email Customization
       * @param param the request object
       */
     createEmailCustomization(param, options) {
@@ -998,31 +998,31 @@ class ObjectCustomizationApi {
     }
     /**
       * Deletes all customizations for an email template.
-      * Delete All Email Customizations
+      * Delete all Email Customizations
       * @param param the request object
       */
     deleteAllCustomizations(param, options) {
         return this.api.deleteAllCustomizations(param.brandId, param.templateName, options).toPromise();
     }
     /**
-      * Deletes a Theme background image
-      * Deletes a Theme background image
+      * Deletes a Theme background image.
+      * Delete the Background Image
       * @param param the request object
       */
     deleteBrandThemeBackgroundImage(param, options) {
         return this.api.deleteBrandThemeBackgroundImage(param.brandId, param.themeId, options).toPromise();
     }
     /**
-      * Deletes a Theme favicon. The org then uses the Okta default favicon.
-      * Deletes a Theme favicon. The org then uses the Okta default favicon.
+      * Deletes a Theme favicon. The theme will use the default Okta favicon.
+      * Delete the Favicon
       * @param param the request object
       */
     deleteBrandThemeFavicon(param, options) {
         return this.api.deleteBrandThemeFavicon(param.brandId, param.themeId, options).toPromise();
     }
     /**
-      * Deletes a Theme logo. The org then uses the Okta default logo.
-      * Deletes a Theme logo. The org then uses the Okta default logo.
+      * Deletes a Theme logo. The theme will use the default Okta logo.
+      * Delete the Logo
       * @param param the request object
       */
     deleteBrandThemeLogo(param, options) {
@@ -1030,7 +1030,7 @@ class ObjectCustomizationApi {
     }
     /**
       * Deletes an email customization by its unique identifier.
-      * Delete Email Customization
+      * Delete an Email Customization
       * @param param the request object
       */
     deleteEmailCustomization(param, options) {
@@ -1038,7 +1038,7 @@ class ObjectCustomizationApi {
     }
     /**
       * Fetches a brand by `brandId`
-      * Get Brand
+      * Retrieve a Brand
       * @param param the request object
       */
     getBrand(param, options) {
@@ -1046,7 +1046,7 @@ class ObjectCustomizationApi {
     }
     /**
       * Fetches a theme for a brand
-      * Get a theme for a brand
+      * Retrieve a Theme
       * @param param the request object
       */
     getBrandTheme(param, options) {
@@ -1054,7 +1054,7 @@ class ObjectCustomizationApi {
     }
     /**
       * Generates a preview of an email customization. All variable references (e.g., `${user.profile.firstName}`) are populated using the current user's context.
-      * Preview Email Customization
+      * Preview an Email Customization
       * @param param the request object
       */
     getCustomizationPreview(param, options) {
@@ -1062,7 +1062,7 @@ class ObjectCustomizationApi {
     }
     /**
       * Gets an email customization by its unique identifier.
-      * Get Email Customization
+      * Retrieve an Email Customization
       * @param param the request object
       */
     getEmailCustomization(param, options) {
@@ -1070,7 +1070,7 @@ class ObjectCustomizationApi {
     }
     /**
       * Gets an email template's default content.
-      * Get Email Template Default Content
+      * Retrieve an Email Template Default Content
       * @param param the request object
       */
     getEmailDefaultContent(param, options) {
@@ -1078,7 +1078,7 @@ class ObjectCustomizationApi {
     }
     /**
       * Generates a preview of an email template's default content. All variable references (e.g., `${user.profile.firstName}`) are populated using the current user's context.
-      * Preview Email Template Default Content
+      * Preview the Email Template Default Content
       * @param param the request object
       */
     getEmailDefaultPreview(param, options) {
@@ -1086,7 +1086,7 @@ class ObjectCustomizationApi {
     }
     /**
       * Gets an email template's settings.
-      * Get Email Template Settings
+      * Retrieve the Email Template Settings
       * @param param the request object
       */
     getEmailSettings(param, options) {
@@ -1094,7 +1094,7 @@ class ObjectCustomizationApi {
     }
     /**
       * Gets the details of an email template by name.
-      * Get Email Template
+      * Retrieve an Email Template
       * @param param the request object
       */
     getEmailTemplate(param, options) {
@@ -1102,7 +1102,7 @@ class ObjectCustomizationApi {
     }
     /**
       * List all the themes in your brand
-      * Get Brand Themes
+      * List all Themes
       * @param param the request object
       */
     listBrandThemes(param, options) {
@@ -1110,7 +1110,7 @@ class ObjectCustomizationApi {
     }
     /**
       * List all the brands in your org.
-      * List Brands
+      * List all Brands
       * @param param the request object
       */
     listBrands(param = {}, options) {
@@ -1118,7 +1118,7 @@ class ObjectCustomizationApi {
     }
     /**
       * Lists all customizations of an email template.
-      * List Email Customizations
+      * List all Email Customizations
       * @param param the request object
       */
     listEmailCustomizations(param, options) {
@@ -1126,7 +1126,7 @@ class ObjectCustomizationApi {
     }
     /**
       * Lists all email templates.
-      * List Email Templates
+      * List all Email Templates
       * @param param the request object
       */
     listEmailTemplates(param, options) {
@@ -1134,7 +1134,7 @@ class ObjectCustomizationApi {
     }
     /**
       * Sends a test email to the current user’s primary and secondary email addresses. The email content is selected based on the following priority: 1. The email customization for the language specified in the `language` query parameter. 2. The email template's default customization. 3. The email template’s default content, translated to the current user's language.
-      * Send Test Email
+      * Send a Test Email
       * @param param the request object
       */
     sendTestEmail(param, options) {
@@ -1142,7 +1142,7 @@ class ObjectCustomizationApi {
     }
     /**
       * Updates a brand by `brandId`
-      * Update Brand
+      * Replace a Brand
       * @param param the request object
       */
     updateBrand(param, options) {
@@ -1150,7 +1150,7 @@ class ObjectCustomizationApi {
     }
     /**
       * Updates a theme for a brand
-      * Update a theme for a brand
+      * Replace a Theme
       * @param param the request object
       */
     updateBrandTheme(param, options) {
@@ -1158,7 +1158,7 @@ class ObjectCustomizationApi {
     }
     /**
       * Updates an existing email customization using the property values provided.
-      * Update Email Customization
+      * Replace an Email Customization
       * @param param the request object
       */
     updateEmailCustomization(param, options) {
@@ -1166,7 +1166,7 @@ class ObjectCustomizationApi {
     }
     /**
       * Updates an email template's settings.
-      * Update Email Template Settings
+      * Replace the Email Template Settings
       * @param param the request object
       */
     updateEmailSettings(param, options) {
@@ -1174,7 +1174,7 @@ class ObjectCustomizationApi {
     }
     /**
       * Updates the background image for your Theme
-      * Updates the background image for your Theme
+      * Upload the Background Image
       * @param param the request object
       */
     uploadBrandThemeBackgroundImage(param, options) {
@@ -1182,7 +1182,7 @@ class ObjectCustomizationApi {
     }
     /**
       * Updates the favicon for your theme
-      * Updates the favicon for your theme
+      * Upload the Favicon
       * @param param the request object
       */
     uploadBrandThemeFavicon(param, options) {
@@ -1190,7 +1190,7 @@ class ObjectCustomizationApi {
     }
     /**
       * Updates the logo for your Theme
-      * Update a themes logo
+      * Upload the Logo
       * @param param the request object
       */
     uploadBrandThemeLogo(param, options) {
@@ -1205,7 +1205,7 @@ class ObjectDomainApi {
     }
     /**
       * Creates the Certificate for the Domain.
-      * Create Certificate
+      * Replace the Certificate
       * @param param the request object
       */
     createCertificate(param, options) {
@@ -1213,7 +1213,7 @@ class ObjectDomainApi {
     }
     /**
       * Creates your domain.
-      * Create Domain
+      * Create a Domain
       * @param param the request object
       */
     createDomain(param, options) {
@@ -1221,7 +1221,7 @@ class ObjectDomainApi {
     }
     /**
       * Deletes a Domain by `id`.
-      * Delete Domain
+      * Delete a Domain
       * @param param the request object
       */
     deleteDomain(param, options) {
@@ -1229,7 +1229,7 @@ class ObjectDomainApi {
     }
     /**
       * Fetches a Domain by `id`.
-      * Get Domain
+      * Retrieve a Domain
       * @param param the request object
       */
     getDomain(param, options) {
@@ -1237,7 +1237,7 @@ class ObjectDomainApi {
     }
     /**
       * List all verified custom Domains for the org.
-      * List Domains
+      * List all Domains
       * @param param the request object
       */
     listDomains(param = {}, options) {
@@ -1245,7 +1245,7 @@ class ObjectDomainApi {
     }
     /**
       * Verifies the Domain by `id`.
-      * Verify Domain
+      * Verify a Domain
       * @param param the request object
       */
     verifyDomain(param, options) {
@@ -1260,7 +1260,7 @@ class ObjectEventHookApi {
     }
     /**
       * Success
-      * Activate Event Hook
+      * Activate an Event Hook
       * @param param the request object
       */
     activateEventHook(param, options) {
@@ -1268,7 +1268,7 @@ class ObjectEventHookApi {
     }
     /**
       * Success
-      * Create Event Hook
+      * Create an Event Hook
       * @param param the request object
       */
     createEventHook(param, options) {
@@ -1276,7 +1276,7 @@ class ObjectEventHookApi {
     }
     /**
       * Success
-      * Deactivate Event Hook
+      * Deactivate an Event Hook
       * @param param the request object
       */
     deactivateEventHook(param, options) {
@@ -1284,7 +1284,7 @@ class ObjectEventHookApi {
     }
     /**
       * Success
-      * Delete Event Hook
+      * Delete an Event Hook
       * @param param the request object
       */
     deleteEventHook(param, options) {
@@ -1292,7 +1292,7 @@ class ObjectEventHookApi {
     }
     /**
       * Success
-      * Get Event Hook
+      * Retrieve an Event Hook
       * @param param the request object
       */
     getEventHook(param, options) {
@@ -1300,7 +1300,7 @@ class ObjectEventHookApi {
     }
     /**
       * Success
-      * List Event Hooks
+      * List all Event Hooks
       * @param param the request object
       */
     listEventHooks(param = {}, options) {
@@ -1308,7 +1308,7 @@ class ObjectEventHookApi {
     }
     /**
       * Success
-      * Update Event Hook
+      * Replace an Event Hook
       * @param param the request object
       */
     updateEventHook(param, options) {
@@ -1316,7 +1316,7 @@ class ObjectEventHookApi {
     }
     /**
       * Success
-      * Verify Event Hook
+      * Verify an Event Hook
       * @param param the request object
       */
     verifyEventHook(param, options) {
@@ -1331,7 +1331,7 @@ class ObjectFeatureApi {
     }
     /**
       * Success
-      * Get Feature
+      * Retrieve a Feature
       * @param param the request object
       */
     getFeature(param, options) {
@@ -1339,7 +1339,7 @@ class ObjectFeatureApi {
     }
     /**
       * Success
-      * List Feature Dependencies
+      * List all Dependencies
       * @param param the request object
       */
     listFeatureDependencies(param, options) {
@@ -1347,7 +1347,7 @@ class ObjectFeatureApi {
     }
     /**
       * Success
-      * List Feature Dependents
+      * List all Dependents
       * @param param the request object
       */
     listFeatureDependents(param, options) {
@@ -1355,7 +1355,7 @@ class ObjectFeatureApi {
     }
     /**
       * Success
-      * List Features
+      * List all Features
       * @param param the request object
       */
     listFeatures(param = {}, options) {
@@ -1363,7 +1363,7 @@ class ObjectFeatureApi {
     }
     /**
       * Success
-      * Update Feature Lifecycle
+      * Update a Feature Lifecycle
       * @param param the request object
       */
     updateFeatureLifecycle(param, options) {
@@ -1378,7 +1378,7 @@ class ObjectGroupApi {
     }
     /**
       * Activates a specific group rule by id from your organization
-      * Activate a group Rule
+      * Activate a Group Rule
       * @param param the request object
       */
     activateGroupRule(param, options) {
@@ -1386,7 +1386,7 @@ class ObjectGroupApi {
     }
     /**
       * Add App Instance Target to App Administrator Role given to a Group
-      * Add App Instance Target to App Administrator Role given to a Group
+      * Assign an Application Instance Target to Application Administrator Role
       * @param param the request object
       */
     addApplicationInstanceTargetToAppAdminRoleGivenToGroup(param, options) {
@@ -1394,7 +1394,7 @@ class ObjectGroupApi {
     }
     /**
       * Success
-      * Add Application Target to Admin Role Given to Group
+      * Assign an Application Target to Administrator Role
       * @param param the request object
       */
     addApplicationTargetToAdminRoleGivenToGroup(param, options) {
@@ -1402,7 +1402,7 @@ class ObjectGroupApi {
     }
     /**
       * Enumerates group targets for a group role.
-      * Add Group Target for Group Role
+      * Assign a Group Target for Group Role
       * @param param the request object
       */
     addGroupTargetToGroupAdministratorRoleForGroup(param, options) {
@@ -1410,7 +1410,7 @@ class ObjectGroupApi {
     }
     /**
       * Adds a user to a group with 'OKTA_GROUP' type.
-      * Add User to Group
+      * Assign a User
       * @param param the request object
       */
     addUserToGroup(param, options) {
@@ -1418,7 +1418,7 @@ class ObjectGroupApi {
     }
     /**
       * Assigns a Role to a Group
-      * Assign Role to Group
+      * Assign a Role
       * @param param the request object
       */
     assignRoleToGroup(param, options) {
@@ -1426,7 +1426,7 @@ class ObjectGroupApi {
     }
     /**
       * Adds a new group with `OKTA_GROUP` type to your organization.
-      * Add Group
+      * Create a Group
       * @param param the request object
       */
     createGroup(param, options) {
@@ -1434,7 +1434,7 @@ class ObjectGroupApi {
     }
     /**
       * Creates a group rule to dynamically add users to the specified group if they match the condition
-      * Create Group Rule
+      * Create a Group Rule
       * @param param the request object
       */
     createGroupRule(param, options) {
@@ -1442,7 +1442,7 @@ class ObjectGroupApi {
     }
     /**
       * Deactivates a specific group rule by id from your organization
-      * Deactivate a group Rule
+      * Deactivate a Group Rule
       * @param param the request object
       */
     deactivateGroupRule(param, options) {
@@ -1450,7 +1450,7 @@ class ObjectGroupApi {
     }
     /**
       * Removes a group with `OKTA_GROUP` type from your organization.
-      * Remove Group
+      * Delete a Group
       * @param param the request object
       */
     deleteGroup(param, options) {
@@ -1466,7 +1466,7 @@ class ObjectGroupApi {
     }
     /**
       * Fetches a group from your organization.
-      * List Group Rules
+      * List all Group Rules
       * @param param the request object
       */
     getGroup(param, options) {
@@ -1474,7 +1474,7 @@ class ObjectGroupApi {
     }
     /**
       * Fetches a specific group rule by id from your organization
-      * Get Group Rule
+      * Retrieve a Group Rule
       * @param param the request object
       */
     getGroupRule(param, options) {
@@ -1482,7 +1482,7 @@ class ObjectGroupApi {
     }
     /**
       * Success
-      * Get Role
+      * Retrieve a Role
       * @param param the request object
       */
     getRole(param, options) {
@@ -1490,7 +1490,7 @@ class ObjectGroupApi {
     }
     /**
       * Lists all App targets for an `APP_ADMIN` Role assigned to a Group. This methods return list may include full Applications or Instances. The response for an instance will have an `ID` value, while Application will not have an ID.
-      * List Application Targets for Application Administrator Role for Group
+      * List all Application Targets for an Application Administrator Role
       * @param param the request object
       */
     listApplicationTargetsForApplicationAdministratorRoleForGroup(param, options) {
@@ -1498,7 +1498,7 @@ class ObjectGroupApi {
     }
     /**
       * Enumerates all applications that are assigned to a group.
-      * List Assigned Applications
+      * List all Assigned Applications
       * @param param the request object
       */
     listAssignedApplicationsForGroup(param, options) {
@@ -1506,7 +1506,7 @@ class ObjectGroupApi {
     }
     /**
       * Success
-      * List Group Assigned Roles
+      * List all Assigned Roles
       * @param param the request object
       */
     listGroupAssignedRoles(param, options) {
@@ -1514,7 +1514,7 @@ class ObjectGroupApi {
     }
     /**
       * Lists all group rules for your organization.
-      * List Group Rules
+      * List all Group Rules
       * @param param the request object
       */
     listGroupRules(param = {}, options) {
@@ -1522,7 +1522,7 @@ class ObjectGroupApi {
     }
     /**
       * Enumerates group targets for a group role.
-      * List Group Targets for Group Role
+      * List all Group Targets for a Group Role
       * @param param the request object
       */
     listGroupTargetsForGroupRole(param, options) {
@@ -1530,7 +1530,7 @@ class ObjectGroupApi {
     }
     /**
       * Enumerates all users that are a member of a group.
-      * List Group Members
+      * List all Member Users
       * @param param the request object
       */
     listGroupUsers(param, options) {
@@ -1538,7 +1538,7 @@ class ObjectGroupApi {
     }
     /**
       * Enumerates groups in your organization with pagination. A subset of groups can be returned that match a supported filter expression or query.
-      * List Groups
+      * List all Groups
       * @param param the request object
       */
     listGroups(param = {}, options) {
@@ -1546,7 +1546,7 @@ class ObjectGroupApi {
     }
     /**
       * Remove App Instance Target to App Administrator Role given to a Group
-      * Remove App Instance Target to App Administrator Role given to a Group
+      * Delete an Application Instance Target to Application Administrator Role
       * @param param the request object
       */
     removeApplicationTargetFromAdministratorRoleGivenToGroup(param, options) {
@@ -1554,7 +1554,7 @@ class ObjectGroupApi {
     }
     /**
       * Success
-      * Remove Application Target from Application Administrator Role Given to Group
+      * Delete an Application Target from Application Administrator Role
       * @param param the request object
       */
     removeApplicationTargetFromApplicationAdministratorRoleGivenToGroup(param, options) {
@@ -1562,7 +1562,7 @@ class ObjectGroupApi {
     }
     /**
       * remove group target for a group role.
-      * Delete Group Target for Group Role
+      * Delete a Group Target for Group Role
       * @param param the request object
       */
     removeGroupTargetFromGroupAdministratorRoleGivenToGroup(param, options) {
@@ -1570,7 +1570,7 @@ class ObjectGroupApi {
     }
     /**
       * Unassigns a Role from a Group
-      * Remove Role from Group
+      * Delete a Role
       * @param param the request object
       */
     removeRoleFromGroup(param, options) {
@@ -1578,7 +1578,7 @@ class ObjectGroupApi {
     }
     /**
       * Removes a user from a group with 'OKTA_GROUP' type.
-      * Remove User from Group
+      * Unassign a User
       * @param param the request object
       */
     removeUserFromGroup(param, options) {
@@ -1586,7 +1586,7 @@ class ObjectGroupApi {
     }
     /**
       * Updates the profile for a group with `OKTA_GROUP` type from your organization.
-      * Update Group
+      * Replace a Group
       * @param param the request object
       */
     updateGroup(param, options) {
@@ -1594,7 +1594,7 @@ class ObjectGroupApi {
     }
     /**
       * Updates a group rule. Only `INACTIVE` rules can be updated.
-      * Update Group Rule
+      * Replace a Group Rule
       * @param param the request object
       */
     updateGroupRule(param, options) {
@@ -1609,7 +1609,7 @@ class ObjectIdentityProviderApi {
     }
     /**
       * Activates an inactive IdP.
-      * Activate Identity Provider
+      * Activate an Identity Provider
       * @param param the request object
       */
     activateIdentityProvider(param, options) {
@@ -1617,7 +1617,7 @@ class ObjectIdentityProviderApi {
     }
     /**
       * Clones a X.509 certificate for an IdP signing key credential from a source IdP to target IdP
-      * Clone Signing Key Credential for IdP
+      * Clone a Signing Credential Key
       * @param param the request object
       */
     cloneIdentityProviderKey(param, options) {
@@ -1625,7 +1625,7 @@ class ObjectIdentityProviderApi {
     }
     /**
       * Adds a new IdP to your organization.
-      * Add Identity Provider
+      * Create an Identity Provider
       * @param param the request object
       */
     createIdentityProvider(param, options) {
@@ -1633,7 +1633,7 @@ class ObjectIdentityProviderApi {
     }
     /**
       * Adds a new X.509 certificate credential to the IdP key store.
-      * Add X.509 Certificate Public Key for Identity Providers
+      * Create an X.509 Certificate Public Key
       * @param param the request object
       */
     createIdentityProviderKey(param, options) {
@@ -1641,7 +1641,7 @@ class ObjectIdentityProviderApi {
     }
     /**
       * Deactivates an active IdP.
-      * Deactivate Identity Provider
+      * Deactivate an Identity Provider
       * @param param the request object
       */
     deactivateIdentityProvider(param, options) {
@@ -1649,7 +1649,7 @@ class ObjectIdentityProviderApi {
     }
     /**
       * Removes an IdP from your organization.
-      * Delete Identity Provider
+      * Delete an Identity Provider
       * @param param the request object
       */
     deleteIdentityProvider(param, options) {
@@ -1657,7 +1657,7 @@ class ObjectIdentityProviderApi {
     }
     /**
       * Deletes a specific IdP Key Credential by `kid` if it is not currently being used by an Active or Inactive IdP.
-      * Delete Key
+      * Delete a Signing Credential Key
       * @param param the request object
       */
     deleteIdentityProviderKey(param, options) {
@@ -1665,7 +1665,7 @@ class ObjectIdentityProviderApi {
     }
     /**
       * Generates a new key pair and returns a Certificate Signing Request for it.
-      * Generate Certificate Signing Request for IdP
+      * Generate a Certificate Signing Request
       * @param param the request object
       */
     generateCsrForIdentityProvider(param, options) {
@@ -1673,7 +1673,7 @@ class ObjectIdentityProviderApi {
     }
     /**
       * Generates a new X.509 certificate for an IdP signing key credential to be used for signing assertions sent to the IdP
-      * Generate New IdP Signing Key Credential
+      * Generate a new Signing Credential Key
       * @param param the request object
       */
     generateIdentityProviderSigningKey(param, options) {
@@ -1681,7 +1681,7 @@ class ObjectIdentityProviderApi {
     }
     /**
       * Gets a specific Certificate Signing Request model by id
-      * Get Csr for Identity Provider
+      * Retrieve a Certificate Signing Request
       * @param param the request object
       */
     getCsrForIdentityProvider(param, options) {
@@ -1689,7 +1689,7 @@ class ObjectIdentityProviderApi {
     }
     /**
       * Fetches an IdP by `id`.
-      * Get Identity Provider
+      * Retrieve an Identity Provider
       * @param param the request object
       */
     getIdentityProvider(param, options) {
@@ -1697,7 +1697,7 @@ class ObjectIdentityProviderApi {
     }
     /**
       * Fetches a linked IdP user by ID
-      * Get Identity Provider Application User
+      * Retrieve a User
       * @param param the request object
       */
     getIdentityProviderApplicationUser(param, options) {
@@ -1705,7 +1705,7 @@ class ObjectIdentityProviderApi {
     }
     /**
       * Gets a specific IdP Key Credential by `kid`
-      * Get Identity Provider Key
+      * Retrieve an Credential Key
       * @param param the request object
       */
     getIdentityProviderKey(param, options) {
@@ -1713,7 +1713,7 @@ class ObjectIdentityProviderApi {
     }
     /**
       * Gets a specific IdP Key Credential by `kid`
-      * Get Signing Key Credential for IdP
+      * Retrieve a Signing Credential Key
       * @param param the request object
       */
     getIdentityProviderSigningKey(param, options) {
@@ -1721,7 +1721,7 @@ class ObjectIdentityProviderApi {
     }
     /**
       * Links an Okta user to an existing Social Identity Provider. This does not support the SAML2 Identity Provider Type
-      * Link a user to a Social IdP without a transaction
+      * Link a User to a Social IdP
       * @param param the request object
       */
     linkUserToIdentityProvider(param, options) {
@@ -1729,7 +1729,7 @@ class ObjectIdentityProviderApi {
     }
     /**
       * Enumerates Certificate Signing Requests for an IdP
-      * List Certificate Signing Requests for IdP
+      * List all Certificate Signing Requests
       * @param param the request object
       */
     listCsrsForIdentityProvider(param, options) {
@@ -1737,7 +1737,7 @@ class ObjectIdentityProviderApi {
     }
     /**
       * Find all the users linked to an identity provider
-      * Find Users
+      * List all Users
       * @param param the request object
       */
     listIdentityProviderApplicationUsers(param, options) {
@@ -1745,7 +1745,7 @@ class ObjectIdentityProviderApi {
     }
     /**
       * Enumerates IdP key credentials.
-      * List Identity Provider Keys
+      * List all Credential Keys
       * @param param the request object
       */
     listIdentityProviderKeys(param = {}, options) {
@@ -1753,7 +1753,7 @@ class ObjectIdentityProviderApi {
     }
     /**
       * Enumerates signing key credentials for an IdP
-      * List Signing Key Credentials for IdP
+      * List all Signing Credential Keys
       * @param param the request object
       */
     listIdentityProviderSigningKeys(param, options) {
@@ -1761,7 +1761,7 @@ class ObjectIdentityProviderApi {
     }
     /**
       * Enumerates IdPs in your organization with pagination. A subset of IdPs can be returned that match a supported filter expression or query.
-      * List Identity Providers
+      * List all Identity Providers
       * @param param the request object
       */
     listIdentityProviders(param = {}, options) {
@@ -1769,7 +1769,7 @@ class ObjectIdentityProviderApi {
     }
     /**
       * Fetches the tokens minted by the Social Authentication Provider when the user authenticates with Okta via Social Auth.
-      * Social Authentication Token Operation
+      * List all Tokens from a OIDC Identity Provider
       * @param param the request object
       */
     listSocialAuthTokens(param, options) {
@@ -1777,7 +1777,7 @@ class ObjectIdentityProviderApi {
     }
     /**
       * Update the Certificate Signing Request with a signed X.509 certificate and add it into the signing key credentials for the IdP.
-      * Publish Csr for Identity Provider
+      * Publish a Certificate Signing Request
       * @param param the request object
       */
     publishCsrForIdentityProvider(param, options) {
@@ -1785,7 +1785,7 @@ class ObjectIdentityProviderApi {
     }
     /**
       * Revoke a Certificate Signing Request and delete the key pair from the IdP
-      * Revoke Csr for Identity Provider
+      * Revoke a Certificate Signing Request
       * @param param the request object
       */
     revokeCsrForIdentityProvider(param, options) {
@@ -1793,7 +1793,7 @@ class ObjectIdentityProviderApi {
     }
     /**
       * Removes the link between the Okta user and the IdP user.
-      * Unlink User from IdP
+      * Unlink a User from IdP
       * @param param the request object
       */
     unlinkUserFromIdentityProvider(param, options) {
@@ -1801,7 +1801,7 @@ class ObjectIdentityProviderApi {
     }
     /**
       * Updates the configuration for an IdP.
-      * Update Identity Provider
+      * Replace an Identity Provider
       * @param param the request object
       */
     updateIdentityProvider(param, options) {
@@ -1816,7 +1816,7 @@ class ObjectInlineHookApi {
     }
     /**
       * Activates the Inline Hook matching the provided id
-      * Activate Inline Hook
+      * Activate an Inline Hook
       * @param param the request object
       */
     activateInlineHook(param, options) {
@@ -1824,7 +1824,7 @@ class ObjectInlineHookApi {
     }
     /**
       * Success
-      * Create Inline Hook
+      * Create an Inline Hook
       * @param param the request object
       */
     createInlineHook(param, options) {
@@ -1832,7 +1832,7 @@ class ObjectInlineHookApi {
     }
     /**
       * Deactivates the Inline Hook matching the provided id
-      * Deactivate Inline Hook
+      * Deactivate an Inline Hook
       * @param param the request object
       */
     deactivateInlineHook(param, options) {
@@ -1840,7 +1840,7 @@ class ObjectInlineHookApi {
     }
     /**
       * Deletes the Inline Hook matching the provided id. Once deleted, the Inline Hook is unrecoverable. As a safety precaution, only Inline Hooks with a status of INACTIVE are eligible for deletion.
-      * Delete Inline Hook
+      * Delete an Inline Hook
       * @param param the request object
       */
     deleteInlineHook(param, options) {
@@ -1848,7 +1848,7 @@ class ObjectInlineHookApi {
     }
     /**
       * Executes the Inline Hook matching the provided inlineHookId using the request body as the input. This will send the provided data through the Channel and return a response if it matches the correct data contract. This execution endpoint should only be used for testing purposes.
-      * Execute Inline Hook
+      * Execute an Inline Hook
       * @param param the request object
       */
     executeInlineHook(param, options) {
@@ -1856,7 +1856,7 @@ class ObjectInlineHookApi {
     }
     /**
       * Gets an inline hook by ID
-      * Get Inline Hook
+      * Retrieve an Inline Hook
       * @param param the request object
       */
     getInlineHook(param, options) {
@@ -1864,7 +1864,7 @@ class ObjectInlineHookApi {
     }
     /**
       * Success
-      * List Inline Hooks
+      * List all Inline Hooks
       * @param param the request object
       */
     listInlineHooks(param = {}, options) {
@@ -1872,7 +1872,7 @@ class ObjectInlineHookApi {
     }
     /**
       * Updates an inline hook by ID
-      * Update Inline Hook
+      * Replace an Inline Hook
       * @param param the request object
       */
     updateInlineHook(param, options) {
@@ -1887,7 +1887,7 @@ class ObjectLinkedObjectApi {
     }
     /**
       * Success
-      * Add Linked Object Definition
+      * Create a Linked Object Definition
       * @param param the request object
       */
     addLinkedObjectDefinition(param, options) {
@@ -1895,7 +1895,7 @@ class ObjectLinkedObjectApi {
     }
     /**
       * Success
-      * Delete Linked Object Definition
+      * Delete a Linked Object Definition
       * @param param the request object
       */
     deleteLinkedObjectDefinition(param, options) {
@@ -1903,7 +1903,7 @@ class ObjectLinkedObjectApi {
     }
     /**
       * Success
-      * Get Linked Object Definition
+      * Retrieve a Linked Object Definition
       * @param param the request object
       */
     getLinkedObjectDefinition(param, options) {
@@ -1911,7 +1911,7 @@ class ObjectLinkedObjectApi {
     }
     /**
       * Success
-      * List Linked Object Definitions
+      * List all Linked Object Definitions
       * @param param the request object
       */
     listLinkedObjectDefinitions(param = {}, options) {
@@ -1926,7 +1926,7 @@ class ObjectNetworkZoneApi {
     }
     /**
       * Activate Network Zone
-      * Activate Network Zone
+      * Activate a Network Zone
       * @param param the request object
       */
     activateNetworkZone(param, options) {
@@ -1934,7 +1934,7 @@ class ObjectNetworkZoneApi {
     }
     /**
       * Adds a new network zone to your Okta organization.
-      * Add Network Zone
+      * Create a Network Zone
       * @param param the request object
       */
     createNetworkZone(param, options) {
@@ -1942,7 +1942,7 @@ class ObjectNetworkZoneApi {
     }
     /**
       * Deactivates a network zone.
-      * Deactivate Network Zone
+      * Deactivate a Network Zone
       * @param param the request object
       */
     deactivateNetworkZone(param, options) {
@@ -1950,7 +1950,7 @@ class ObjectNetworkZoneApi {
     }
     /**
       * Removes network zone.
-      * Delete Network Zone
+      * Delete a Network Zone
       * @param param the request object
       */
     deleteNetworkZone(param, options) {
@@ -1958,7 +1958,7 @@ class ObjectNetworkZoneApi {
     }
     /**
       * Fetches a network zone from your Okta organization by `id`.
-      * Get Network Zone
+      * Retrieve a Network Zone
       * @param param the request object
       */
     getNetworkZone(param, options) {
@@ -1966,7 +1966,7 @@ class ObjectNetworkZoneApi {
     }
     /**
       * Enumerates network zones added to your organization with pagination. A subset of zones can be returned that match a supported filter expression or query.
-      * List Network Zones
+      * List all Network Zones
       * @param param the request object
       */
     listNetworkZones(param = {}, options) {
@@ -1974,7 +1974,7 @@ class ObjectNetworkZoneApi {
     }
     /**
       * Updates a network zone in your organization.
-      * Update Network Zone
+      * Replace a Network Zone
       * @param param the request object
       */
     updateNetworkZone(param, options) {
@@ -1997,7 +1997,7 @@ class ObjectOrgSettingApi {
     }
     /**
       * Extends the length of time that Okta Support can access your org by 24 hours. This means that 24 hours are added to the remaining access time.
-      * Extend Okta Support
+      * Extend Okta Support Access
       * @param param the request object
       */
     extendOktaSupport(param = {}, options) {
@@ -2005,7 +2005,7 @@ class ObjectOrgSettingApi {
     }
     /**
       * Gets Okta Communication Settings of your organization.
-      * Get Okta Communication Settings
+      * Retreive the Okta Communication Settings
       * @param param the request object
       */
     getOktaCommunicationSettings(param = {}, options) {
@@ -2013,7 +2013,7 @@ class ObjectOrgSettingApi {
     }
     /**
       * Gets Contact Types of your organization.
-      * Get org contact types
+      * Retrieve the Org Contact Types
       * @param param the request object
       */
     getOrgContactTypes(param = {}, options) {
@@ -2021,7 +2021,7 @@ class ObjectOrgSettingApi {
     }
     /**
       * Retrieves the URL of the User associated with the specified Contact Type.
-      * Get org contact user
+      * Retrieve the User of the Contact Type
       * @param param the request object
       */
     getOrgContactUser(param, options) {
@@ -2029,7 +2029,7 @@ class ObjectOrgSettingApi {
     }
     /**
       * Gets Okta Support Settings of your organization.
-      * Get Okta Support settings
+      * Retrieve the Okta Support Settings
       * @param param the request object
       */
     getOrgOktaSupportSettings(param = {}, options) {
@@ -2037,7 +2037,7 @@ class ObjectOrgSettingApi {
     }
     /**
       * Gets preferences of your organization.
-      * Get org preferences
+      * Retrieve the Org Preferences
       * @param param the request object
       */
     getOrgPreferences(param = {}, options) {
@@ -2045,7 +2045,7 @@ class ObjectOrgSettingApi {
     }
     /**
       * Get settings of your organization.
-      * Get org settings
+      * Retrieve the Org Settings
       * @param param the request object
       */
     getOrgSettings(param = {}, options) {
@@ -2053,7 +2053,7 @@ class ObjectOrgSettingApi {
     }
     /**
       * Enables you to temporarily allow Okta Support to access your org as an administrator for eight hours.
-      * Grant Okta Support
+      * Grant Okta Support Access to your Org
       * @param param the request object
       */
     grantOktaSupport(param = {}, options) {
@@ -2061,7 +2061,7 @@ class ObjectOrgSettingApi {
     }
     /**
       * Hide the Okta UI footer for all end users of your organization.
-      * Show Okta UI Footer
+      * Update the Preference to Hide the Okta Dashboard Footer
       * @param param the request object
       */
     hideOktaUIFooter(param = {}, options) {
@@ -2069,7 +2069,7 @@ class ObjectOrgSettingApi {
     }
     /**
       * Opts in all users of this org to Okta Communication emails.
-      * Opt in all users to Okta Communication emails
+      * Opt in all Users to Okta Communication emails
       * @param param the request object
       */
     optInUsersToOktaCommunicationEmails(param = {}, options) {
@@ -2077,7 +2077,7 @@ class ObjectOrgSettingApi {
     }
     /**
       * Opts out all users of this org from Okta Communication emails.
-      * Opt out all users from Okta Communication emails
+      * Opt out all Users from Okta Communication emails
       * @param param the request object
       */
     optOutUsersFromOktaCommunicationEmails(param = {}, options) {
@@ -2085,7 +2085,7 @@ class ObjectOrgSettingApi {
     }
     /**
       * Partial update settings of your organization.
-      * Partial update Org Setting
+      * Update the Org Settings
       * @param param the request object
       */
     partialUpdateOrgSetting(param = {}, options) {
@@ -2093,7 +2093,7 @@ class ObjectOrgSettingApi {
     }
     /**
       * Revokes Okta Support access to your organization.
-      * Extend Okta Support
+      * Revoke Okta Support Access
       * @param param the request object
       */
     revokeOktaSupport(param = {}, options) {
@@ -2101,7 +2101,7 @@ class ObjectOrgSettingApi {
     }
     /**
       * Makes the Okta UI footer visible for all end users of your organization.
-      * Show Okta UI Footer
+      * Update the Preference to Show the Okta Dashboard Footer
       * @param param the request object
       */
     showOktaUIFooter(param = {}, options) {
@@ -2109,7 +2109,7 @@ class ObjectOrgSettingApi {
     }
     /**
       * Updates the User associated with the specified Contact Type.
-      * Update org contact user
+      * Replace the User of the Contact Type
       * @param param the request object
       */
     updateOrgContactUser(param, options) {
@@ -2117,7 +2117,7 @@ class ObjectOrgSettingApi {
     }
     /**
       * Updates the logo for your organization.
-      * Update org logo
+      * Upload the Org Logo
       * @param param the request object
       */
     updateOrgLogo(param = {}, options) {
@@ -2125,7 +2125,7 @@ class ObjectOrgSettingApi {
     }
     /**
       * Update settings of your organization.
-      * Update Org setting
+      * Replace the Org Settings
       * @param param the request object
       */
     updateOrgSetting(param, options) {
@@ -2140,7 +2140,7 @@ class ObjectPolicyApi {
     }
     /**
       * Activates a policy.
-      * Activate Policy
+      * Activate a Policy
       * @param param the request object
       */
     activatePolicy(param, options) {
@@ -2148,7 +2148,7 @@ class ObjectPolicyApi {
     }
     /**
       * Activates a policy rule.
-      * Activate Policy Rule
+      * Activate a Policy Rule
       * @param param the request object
       */
     activatePolicyRule(param, options) {
@@ -2156,7 +2156,7 @@ class ObjectPolicyApi {
     }
     /**
       * Creates a policy.
-      * Create Policy
+      * Create a Policy
       * @param param the request object
       */
     createPolicy(param, options) {
@@ -2164,7 +2164,7 @@ class ObjectPolicyApi {
     }
     /**
       * Creates a policy rule.
-      * Create Policy Rule
+      * Create a Policy Rule
       * @param param the request object
       */
     createPolicyRule(param, options) {
@@ -2172,7 +2172,7 @@ class ObjectPolicyApi {
     }
     /**
       * Deactivates a policy.
-      * Deactivate Policy
+      * Deactivate a Policy
       * @param param the request object
       */
     deactivatePolicy(param, options) {
@@ -2180,7 +2180,7 @@ class ObjectPolicyApi {
     }
     /**
       * Deactivates a policy rule.
-      * Deactivate Policy Rule
+      * Deactivate a Policy Rule
       * @param param the request object
       */
     deactivatePolicyRule(param, options) {
@@ -2188,7 +2188,7 @@ class ObjectPolicyApi {
     }
     /**
       * Removes a policy.
-      * Delete Policy
+      * Delete a Policy
       * @param param the request object
       */
     deletePolicy(param, options) {
@@ -2196,7 +2196,7 @@ class ObjectPolicyApi {
     }
     /**
       * Removes a policy rule.
-      * Delete Policy Rule
+      * Delete a Policy Rule
       * @param param the request object
       */
     deletePolicyRule(param, options) {
@@ -2204,7 +2204,7 @@ class ObjectPolicyApi {
     }
     /**
       * Gets a policy.
-      * Get Policy
+      * Retrieve a Policy
       * @param param the request object
       */
     getPolicy(param, options) {
@@ -2212,7 +2212,7 @@ class ObjectPolicyApi {
     }
     /**
       * Gets a policy rule.
-      * Get Policy Rule
+      * Retrieve a Policy Rule
       * @param param the request object
       */
     getPolicyRule(param, options) {
@@ -2220,7 +2220,7 @@ class ObjectPolicyApi {
     }
     /**
       * Gets all policies with the specified type.
-      * List Policies
+      * List all Policies
       * @param param the request object
       */
     listPolicies(param, options) {
@@ -2228,7 +2228,7 @@ class ObjectPolicyApi {
     }
     /**
       * Enumerates all policy rules.
-      * List Policy Rules
+      * List all Policy Rules
       * @param param the request object
       */
     listPolicyRules(param, options) {
@@ -2236,7 +2236,7 @@ class ObjectPolicyApi {
     }
     /**
       * Updates a policy.
-      * Update Policy
+      * Replace a Policy
       * @param param the request object
       */
     updatePolicy(param, options) {
@@ -2244,7 +2244,7 @@ class ObjectPolicyApi {
     }
     /**
       * Updates a policy rule.
-      * Update Policy Rule
+      * Replace a Policy Rule
       * @param param the request object
       */
     updatePolicyRule(param, options) {
@@ -2259,7 +2259,7 @@ class ObjectPrincipalRateLimitApi {
     }
     /**
       * Adds a new Principal Rate Limit entity to your organization. In the current release, we only allow one Principal Rate Limit entity per org and principal.
-      * Create Principal Rate Limit entity
+      * Create a Principal Rate Limit
       * @param param the request object
       */
     createPrincipalRateLimitEntity(param, options) {
@@ -2267,7 +2267,7 @@ class ObjectPrincipalRateLimitApi {
     }
     /**
       * Fetches a Principal Rate Limit entity by `principalRateLimitId`.
-      * Get Principal Rate Limit entity
+      * Retrieve a Principal Rate Limit
       * @param param the request object
       */
     getPrincipalRateLimitEntity(param, options) {
@@ -2275,7 +2275,7 @@ class ObjectPrincipalRateLimitApi {
     }
     /**
       * Lists all Principal Rate Limit entities considering the provided parameters.
-      * List Principal Rate Limit entities
+      * List all Principal Rate Limits
       * @param param the request object
       */
     listPrincipalRateLimitEntities(param = {}, options) {
@@ -2283,7 +2283,7 @@ class ObjectPrincipalRateLimitApi {
     }
     /**
       * Update a  Principal Rate Limit entity by `principalRateLimitId`.
-      * Update Principal Rate Limit entity
+      * Replace a Principal Rate Limit
       * @param param the request object
       */
     updatePrincipalRateLimitEntity(param, options) {
@@ -2298,7 +2298,7 @@ class ObjectProfileMappingApi {
     }
     /**
       * Fetches a single Profile Mapping referenced by its ID.
-      * Get Profile Mapping
+      * Retrieve a Profile Mapping
       * @param param the request object
       */
     getProfileMapping(param, options) {
@@ -2306,7 +2306,7 @@ class ObjectProfileMappingApi {
     }
     /**
       * Enumerates Profile Mappings in your organization with pagination.
-      * List Profile Mappings
+      * List all Profile Mappings
       * @param param the request object
       */
     listProfileMappings(param = {}, options) {
@@ -2314,7 +2314,7 @@ class ObjectProfileMappingApi {
     }
     /**
       * Updates an existing Profile Mapping by adding, updating, or removing one or many Property Mappings.
-      * Update Profile Mapping
+      * Update a Profile Mapping
       * @param param the request object
       */
     updateProfileMapping(param, options) {
@@ -2329,7 +2329,7 @@ class ObjectSchemaApi {
     }
     /**
       * Fetches the Schema for an App User
-      * Fetches the Schema for an App User
+      * Retrieve the default Application User Schema for an Application
       * @param param the request object
       */
     getApplicationUserSchema(param, options) {
@@ -2337,7 +2337,7 @@ class ObjectSchemaApi {
     }
     /**
       * Fetches the group schema
-      * Fetches the group schema
+      * Retrieve the default Group Schema
       * @param param the request object
       */
     getGroupSchema(param = {}, options) {
@@ -2345,7 +2345,7 @@ class ObjectSchemaApi {
     }
     /**
       * Fetches the schema for a Schema Id.
-      * Fetches the schema for a Schema Id.
+      * Retrieve a User Schema
       * @param param the request object
       */
     getUserSchema(param, options) {
@@ -2353,15 +2353,15 @@ class ObjectSchemaApi {
     }
     /**
       * Partial updates on the User Profile properties of the Application User Schema.
-      * Partial updates on the User Profile properties of the Application User Schema.
+      * Update the default Application User Schema for an Application
       * @param param the request object
       */
     updateApplicationUserProfile(param, options) {
         return this.api.updateApplicationUserProfile(param.appInstanceId, param.body, options).toPromise();
     }
     /**
-      * Updates, adds ore removes one or more custom Group Profile properties in the schema
-      * Updates, adds ore removes one or more custom Group Profile properties in the schema
+      * Updates, adds or removes one or more custom Group Profile properties in the schema
+      * Update the default Group Schema
       * @param param the request object
       */
     updateGroupSchema(param = {}, options) {
@@ -2369,7 +2369,7 @@ class ObjectSchemaApi {
     }
     /**
       * Partial updates on the User Profile properties of the user schema.
-      * Update User Profile
+      * Update a User Schema
       * @param param the request object
       */
     updateUserProfile(param, options) {
@@ -2384,7 +2384,7 @@ class ObjectSessionApi {
     }
     /**
       * Creates a new session for a user with a valid session token. Use this API if, for example, you want to set the session cookie yourself instead of allowing Okta to set it, or want to hold the session ID in order to delete a session via the API instead of visiting the logout URL.
-      * Create Session with Session Token
+      * Create a Session with Session Token
       * @param param the request object
       */
     createSession(param, options) {
@@ -2392,7 +2392,7 @@ class ObjectSessionApi {
     }
     /**
       * End a session.
-      * End Session
+      * Delete a Session
       * @param param the request object
       */
     endSession(param, options) {
@@ -2400,7 +2400,7 @@ class ObjectSessionApi {
     }
     /**
       * Get details about a session.
-      * Get Session
+      * Retrieve a Session
       * @param param the request object
       */
     getSession(param, options) {
@@ -2408,7 +2408,7 @@ class ObjectSessionApi {
     }
     /**
       * Refresh a session.
-      * Refresh Session
+      * Refresh a Session
       * @param param the request object
       */
     refreshSession(param, options) {
@@ -2423,7 +2423,7 @@ class ObjectSubscriptionApi {
     }
     /**
       * When roleType Get subscriptions of a Role with a specific notification type. Else when roleId Get subscription of a Custom Role with a specific notification type.
-      * Get subscriptions of a Custom Role with a specific notification type
+      * List all Subscriptions of a Custom Role with a specific notification type
       * @param param the request object
       */
     getRoleSubscriptionByNotificationType(param, options) {
@@ -2431,7 +2431,7 @@ class ObjectSubscriptionApi {
     }
     /**
       * Get the subscriptions of a User with a specific notification type. Only gets subscriptions for current user. An AccessDeniedException message is sent if requests are made from other users.
-      * Get the subscription of a User with a specific notification type
+      * List all Subscriptions by type
       * @param param the request object
       */
     getUserSubscriptionByNotificationType(param, options) {
@@ -2439,7 +2439,7 @@ class ObjectSubscriptionApi {
     }
     /**
       * When roleType List all subscriptions of a Role. Else when roleId List subscriptions of a Custom Role
-      * List all subscriptions of a Custom Role
+      * List all Subscriptions of a Custom Role
       * @param param the request object
       */
     listRoleSubscriptions(param, options) {
@@ -2447,7 +2447,7 @@ class ObjectSubscriptionApi {
     }
     /**
       * List subscriptions of a User. Only lists subscriptions for current user. An AccessDeniedException message is sent if requests are made from other users.
-      * List subscriptions of a User
+      * List all Subscriptions
       * @param param the request object
       */
     listUserSubscriptions(param, options) {
@@ -2494,7 +2494,7 @@ class ObjectSystemLogApi {
     }
     /**
       * The Okta System Log API provides read access to your organization’s system log. This API provides more functionality than the Events API
-      * Fetch a list of events from your Okta organization system log.
+      * List all System Log Events
       * @param param the request object
       */
     getLogs(param = {}, options) {
@@ -2509,7 +2509,7 @@ class ObjectTemplateApi {
     }
     /**
       * Adds a new custom SMS template to your organization.
-      * Add SMS Template
+      * Create an SMS Template
       * @param param the request object
       */
     createSmsTemplate(param, options) {
@@ -2517,7 +2517,7 @@ class ObjectTemplateApi {
     }
     /**
       * Removes an SMS template.
-      * Remove SMS Template
+      * Delete an SMS Template
       * @param param the request object
       */
     deleteSmsTemplate(param, options) {
@@ -2525,7 +2525,7 @@ class ObjectTemplateApi {
     }
     /**
       * Fetches a specific template by `id`
-      * Get SMS Template
+      * Retrieve an SMS Template
       * @param param the request object
       */
     getSmsTemplate(param, options) {
@@ -2533,7 +2533,7 @@ class ObjectTemplateApi {
     }
     /**
       * Enumerates custom SMS templates in your organization. A subset of templates can be returned that match a template type.
-      * List SMS Templates
+      * List all SMS Templates
       * @param param the request object
       */
     listSmsTemplates(param = {}, options) {
@@ -2541,7 +2541,7 @@ class ObjectTemplateApi {
     }
     /**
       * Updates only some of the SMS template properties:
-      * Partial SMS Template Update
+      * Update an SMS Template
       * @param param the request object
       */
     partialUpdateSmsTemplate(param, options) {
@@ -2549,7 +2549,7 @@ class ObjectTemplateApi {
     }
     /**
       * Updates the SMS template.
-      * Update SMS Template
+      * Replace an SMS Template
       * @param param the request object
       */
     updateSmsTemplate(param, options) {
@@ -2564,7 +2564,7 @@ class ObjectThreatInsightApi {
     }
     /**
       * Gets current ThreatInsight configuration
-      * Get Current Configuration
+      * Retrieve the ThreatInsight Configuration
       * @param param the request object
       */
     getCurrentConfiguration(param = {}, options) {
@@ -2572,7 +2572,7 @@ class ObjectThreatInsightApi {
     }
     /**
       * Updates ThreatInsight configuration
-      * Update Configuration
+      * Update the ThreatInsight Configuration
       * @param param the request object
       */
     updateConfiguration(param, options) {
@@ -2587,7 +2587,7 @@ class ObjectTrustedOriginApi {
     }
     /**
       * Success
-      * Activate Trusted Origin
+      * Activate a Trusted Origin
       * @param param the request object
       */
     activateOrigin(param, options) {
@@ -2595,7 +2595,7 @@ class ObjectTrustedOriginApi {
     }
     /**
       * Success
-      * Create Trusted Origin
+      * Create a Trusted Origin
       * @param param the request object
       */
     createOrigin(param, options) {
@@ -2603,7 +2603,7 @@ class ObjectTrustedOriginApi {
     }
     /**
       * Success
-      * Deactivate Trusted Origin
+      * Deactivate a Trusted Origin
       * @param param the request object
       */
     deactivateOrigin(param, options) {
@@ -2611,7 +2611,7 @@ class ObjectTrustedOriginApi {
     }
     /**
       * Success
-      * Delete Trusted Origin
+      * Delete a Trusted Origin
       * @param param the request object
       */
     deleteOrigin(param, options) {
@@ -2619,7 +2619,7 @@ class ObjectTrustedOriginApi {
     }
     /**
       * Success
-      * Get Trusted Origin
+      * Retrieve a Trusted Origin
       * @param param the request object
       */
     getOrigin(param, options) {
@@ -2627,7 +2627,7 @@ class ObjectTrustedOriginApi {
     }
     /**
       * Success
-      * List Trusted Origins
+      * List all Trusted Origins
       * @param param the request object
       */
     listOrigins(param = {}, options) {
@@ -2635,7 +2635,7 @@ class ObjectTrustedOriginApi {
     }
     /**
       * Success
-      * Update Trusted Origin
+      * Replace a Trusted Origin
       * @param param the request object
       */
     updateOrigin(param, options) {
@@ -2650,15 +2650,15 @@ class ObjectUserApi {
     }
     /**
       * Activates a user.  This operation can only be performed on users with a `STAGED` status.  Activation of a user is an asynchronous operation. The user will have the `transitioningToStatus` property with a value of `ACTIVE` during activation to indicate that the user hasn't completed the asynchronous operation.  The user will have a status of `ACTIVE` when the activation process is complete.
-      * Activate User
+      * Activate a User
       * @param param the request object
       */
     activateUser(param, options) {
         return this.api.activateUser(param.userId, param.sendEmail, options).toPromise();
     }
     /**
-      * Success
-      * Add All Apps as Target to Role
+      * Assign all Apps as Target to Role
+      * Assign all Apps as Target to Role
       * @param param the request object
       */
     addAllAppsAsTargetToRole(param, options) {
@@ -2666,7 +2666,7 @@ class ObjectUserApi {
     }
     /**
       * Success
-      * Add Application Target to Admin Role for User
+      * Assign an Application Target to Administrator Role
       * @param param the request object
       */
     addApplicationTargetToAdminRoleForUser(param, options) {
@@ -2674,15 +2674,15 @@ class ObjectUserApi {
     }
     /**
       * Add App Instance Target to App Administrator Role given to a User
-      * Add App Instance Target to App Administrator Role given to a User
+      * Assign an Application Instance Target to an Application Administrator Role
       * @param param the request object
       */
     addApplicationTargetToAppAdminRoleForUser(param, options) {
         return this.api.addApplicationTargetToAppAdminRoleForUser(param.userId, param.roleId, param.appName, param.applicationId, options).toPromise();
     }
     /**
-      * Success
-      * Add Group Target to Role
+      * Assign a Group Target to Role
+      * Assign a Group Target to Role
       * @param param the request object
       */
     addGroupTargetToRole(param, options) {
@@ -2690,7 +2690,7 @@ class ObjectUserApi {
     }
     /**
       * Assigns a role to a user.
-      * Assign Role to User
+      * Assign a Role
       * @param param the request object
       */
     assignRoleToUser(param, options) {
@@ -2714,7 +2714,7 @@ class ObjectUserApi {
     }
     /**
       * Removes all active identity provider sessions. This forces the user to authenticate on the next operation. Optionally revokes OpenID Connect and OAuth refresh and access tokens issued to the user.
-      * Clear User Sessions
+      * Delete all User Sessions
       * @param param the request object
       */
     clearUserSessions(param, options) {
@@ -2722,7 +2722,7 @@ class ObjectUserApi {
     }
     /**
       * Creates a new user in your Okta organization with or without credentials.
-      * Create User
+      * Create a User
       * @param param the request object
       */
     createUser(param, options) {
@@ -2730,7 +2730,7 @@ class ObjectUserApi {
     }
     /**
       * Deletes a user permanently.  This operation can only be performed on users that have a `DEPROVISIONED` status.  **This action cannot be recovered!**
-      * Delete User
+      * Delete a User
       * @param param the request object
       */
     deactivateOrDeleteUser(param, options) {
@@ -2738,7 +2738,7 @@ class ObjectUserApi {
     }
     /**
       * Deactivates a user. This operation can only be performed on users that do not have a `DEPROVISIONED` status. While the asynchronous operation (triggered by HTTP header `Prefer: respond-async`) is proceeding the user's `transitioningToStatus` property is `DEPROVISIONED`. The user's status is `DEPROVISIONED` when the deactivation process is complete.
-      * Deactivate User
+      * Deactivate a User
       * @param param the request object
       */
     deactivateUser(param, options) {
@@ -2778,7 +2778,7 @@ class ObjectUserApi {
     }
     /**
       * Get linked objects for a user, relationshipName can be a primary or associated relationship name
-      * Get Linked Objects for User
+      * List all Linked Objects
       * @param param the request object
       */
     getLinkedObjectsForUser(param, options) {
@@ -2786,7 +2786,7 @@ class ObjectUserApi {
     }
     /**
       * Gets a refresh token issued for the specified User and Client.
-      * Get Refresh Token for User and Client
+      * Retrieve a Refresh Token for a Client
       * @param param the request object
       */
     getRefreshTokenForUserAndClient(param, options) {
@@ -2794,7 +2794,7 @@ class ObjectUserApi {
     }
     /**
       * Fetches a user from your Okta organization.
-      * Get User
+      * Retrieve a User
       * @param param the request object
       */
     getUser(param, options) {
@@ -2802,7 +2802,7 @@ class ObjectUserApi {
     }
     /**
       * Gets a grant for the specified user
-      * Get User Grant
+      * Retrieve a User Grant
       * @param param the request object
       */
     getUserGrant(param, options) {
@@ -2810,7 +2810,7 @@ class ObjectUserApi {
     }
     /**
       * Gets role that is assigned to user.
-      * Get User Role
+      * Retrieve a Role
       * @param param the request object
       */
     getUserRole(param, options) {
@@ -2818,7 +2818,7 @@ class ObjectUserApi {
     }
     /**
       * Fetches appLinks for all direct or indirect (via group membership) assigned applications.
-      * Get Assigned App Links
+      * List all Assigned Application Links
       * @param param the request object
       */
     listAppLinks(param, options) {
@@ -2826,7 +2826,7 @@ class ObjectUserApi {
     }
     /**
       * Lists all App targets for an `APP_ADMIN` Role assigned to a User. This methods return list may include full Applications or Instances. The response for an instance will have an `ID` value, while Application will not have an ID.
-      * List Application Targets for Application Administrator Role for User
+      * List all Application Targets for Application Administrator Role
       * @param param the request object
       */
     listApplicationTargetsForApplicationAdministratorRoleForUser(param, options) {
@@ -2834,7 +2834,7 @@ class ObjectUserApi {
     }
     /**
       * Lists all roles assigned to a user.
-      * List Assigned Roles for User
+      * List all Assigned Roles
       * @param param the request object
       */
     listAssignedRolesForUser(param, options) {
@@ -2842,7 +2842,7 @@ class ObjectUserApi {
     }
     /**
       * Lists all grants for a specified user and client
-      * List Grants for User and Client
+      * List all Grants for a Client
       * @param param the request object
       */
     listGrantsForUserAndClient(param, options) {
@@ -2850,7 +2850,7 @@ class ObjectUserApi {
     }
     /**
       * Success
-      * List Group Targets for Role
+      * List all Group Targets for Role
       * @param param the request object
       */
     listGroupTargetsForRole(param, options) {
@@ -2858,7 +2858,7 @@ class ObjectUserApi {
     }
     /**
       * Lists all refresh tokens issued for the specified User and Client.
-      * List Refresh Tokens for User and Client
+      * List all Refresh Tokens for a Client
       * @param param the request object
       */
     listRefreshTokensForUserAndClient(param, options) {
@@ -2866,7 +2866,7 @@ class ObjectUserApi {
     }
     /**
       * Lists all client resources for which the specified user has grants or tokens.
-      * List User Clients
+      * List all Clients
       * @param param the request object
       */
     listUserClients(param, options) {
@@ -2874,7 +2874,7 @@ class ObjectUserApi {
     }
     /**
       * Lists all grants for the specified user
-      * List User Grants
+      * List all User Grants
       * @param param the request object
       */
     listUserGrants(param, options) {
@@ -2882,7 +2882,7 @@ class ObjectUserApi {
     }
     /**
       * Fetches the groups of which the user is a member.
-      * Get Member Groups
+      * List all Groups
       * @param param the request object
       */
     listUserGroups(param, options) {
@@ -2890,7 +2890,7 @@ class ObjectUserApi {
     }
     /**
       * Lists the IdPs associated with the user.
-      * Listing IdPs associated with a user
+      * List all Identity Providers
       * @param param the request object
       */
     listUserIdentityProviders(param, options) {
@@ -2898,7 +2898,7 @@ class ObjectUserApi {
     }
     /**
       * Lists users in your organization with pagination in most cases.  A subset of users can be returned that match a supported filter expression or search criteria.
-      * List Users
+      * List all Users
       * @param param the request object
       */
     listUsers(param = {}, options) {
@@ -2906,7 +2906,7 @@ class ObjectUserApi {
     }
     /**
       * Fetch a user by `id`, `login`, or `login shortname` if the short name is unambiguous.
-      * Partial Update User
+      * Update a User
       * @param param the request object
       */
     partialUpdateUser(param, options) {
@@ -2914,7 +2914,7 @@ class ObjectUserApi {
     }
     /**
       * Reactivates a user.  This operation can only be performed on users with a `PROVISIONED` status.  This operation restarts the activation workflow if for some reason the user activation was not completed when using the activationToken from [Activate User](#activate-user).
-      * Reactivate User
+      * Reactivate a User
       * @param param the request object
       */
     reactivateUser(param, options) {
@@ -2922,7 +2922,7 @@ class ObjectUserApi {
     }
     /**
       * Remove App Instance Target to App Administrator Role given to a User
-      * Remove App Instance Target to App Administrator Role given to a User
+      * Unassign an Application Instance Target to Application Administrator Role
       * @param param the request object
       */
     removeApplicationTargetFromAdministratorRoleForUser(param, options) {
@@ -2930,15 +2930,15 @@ class ObjectUserApi {
     }
     /**
       * Success
-      * Remove Application Target from Application Administrator Role for User
+      * Unassign an Application Target from Application Administrator Role
       * @param param the request object
       */
     removeApplicationTargetFromApplicationAdministratorRoleForUser(param, options) {
         return this.api.removeApplicationTargetFromApplicationAdministratorRoleForUser(param.userId, param.roleId, param.appName, options).toPromise();
     }
     /**
-      * Success
-      * Remove Group Target from Role
+      * Unassign a Group Target from Role
+      * Unassign a Group Target from Role
       * @param param the request object
       */
     removeGroupTargetFromRole(param, options) {
@@ -2946,7 +2946,7 @@ class ObjectUserApi {
     }
     /**
       * Delete linked objects for a user, relationshipName can be ONLY a primary relationship name
-      * Remove Linked Object for User
+      * Delete a Linked Object
       * @param param the request object
       */
     removeLinkedObjectForUser(param, options) {
@@ -2954,7 +2954,7 @@ class ObjectUserApi {
     }
     /**
       * Unassigns a role from a user.
-      * Remove Role from User
+      * Delete a Role
       * @param param the request object
       */
     removeRoleFromUser(param, options) {
@@ -2962,7 +2962,7 @@ class ObjectUserApi {
     }
     /**
       * This operation resets all factors for the specified user. All MFA factor enrollments returned to the unenrolled state. The user's status remains ACTIVE. This link is present only if the user is currently enrolled in one or more MFA factors.
-      * Reset Factors
+      * Reset all Factors
       * @param param the request object
       */
     resetFactors(param, options) {
@@ -2978,7 +2978,7 @@ class ObjectUserApi {
     }
     /**
       * Revokes all grants for the specified user and client
-      * Revoke Grants for User and Client
+      * Revoke all Grants for a Client
       * @param param the request object
       */
     revokeGrantsForUserAndClient(param, options) {
@@ -2986,7 +2986,7 @@ class ObjectUserApi {
     }
     /**
       * Revokes the specified refresh token.
-      * Revoke Token for User and Client
+      * Revoke a Token for a Client
       * @param param the request object
       */
     revokeTokenForUserAndClient(param, options) {
@@ -2994,7 +2994,7 @@ class ObjectUserApi {
     }
     /**
       * Revokes all refresh tokens issued for the specified User and Client.
-      * Revoke Tokens for User and Client
+      * Revoke all Refresh Tokens for a Client
       * @param param the request object
       */
     revokeTokensForUserAndClient(param, options) {
@@ -3002,7 +3002,7 @@ class ObjectUserApi {
     }
     /**
       * Revokes one grant for a specified user
-      * Revoke User Grant
+      * Revoke a User Grant
       * @param param the request object
       */
     revokeUserGrant(param, options) {
@@ -3010,15 +3010,15 @@ class ObjectUserApi {
     }
     /**
       * Revokes all grants for a specified user
-      * Revoke User Grants
+      * Revoke all User Grants
       * @param param the request object
       */
     revokeUserGrants(param, options) {
         return this.api.revokeUserGrants(param.userId, options).toPromise();
     }
     /**
-      * Sets a linked object for a user.
-      * Set Linked Object for User
+      * Sets a linked object for two users.
+      * Create a Linked Object for two User
       * @param param the request object
       */
     setLinkedObjectForUser(param, options) {
@@ -3026,7 +3026,7 @@ class ObjectUserApi {
     }
     /**
       * Suspends a user.  This operation can only be performed on users with an `ACTIVE` status.  The user will have a status of `SUSPENDED` when the process is complete.
-      * Suspend User
+      * Suspend a User
       * @param param the request object
       */
     suspendUser(param, options) {
@@ -3034,7 +3034,7 @@ class ObjectUserApi {
     }
     /**
       * Unlocks a user with a `LOCKED_OUT` status and returns them to `ACTIVE` status.  Users will be able to login with their current password.
-      * Unlock User
+      * Unlock a User
       * @param param the request object
       */
     unlockUser(param, options) {
@@ -3042,7 +3042,7 @@ class ObjectUserApi {
     }
     /**
       * Unsuspends a user and returns them to the `ACTIVE` state.  This operation can only be performed on users that have a `SUSPENDED` status.
-      * Unsuspend User
+      * Unsuspend a User
       * @param param the request object
       */
     unsuspendUser(param, options) {
@@ -3050,7 +3050,7 @@ class ObjectUserApi {
     }
     /**
       * Update a user's profile and/or credentials using strict-update semantics.
-      * Update User
+      * Replace a User
       * @param param the request object
       */
     updateUser(param, options) {
@@ -3065,7 +3065,7 @@ class ObjectUserFactorApi {
     }
     /**
       * The `sms` and `token:software:totp` factor types require activation to complete the enrollment process.
-      * Activate Factor
+      * Activate a Factor
       * @param param the request object
       */
     activateFactor(param, options) {
@@ -3073,7 +3073,7 @@ class ObjectUserFactorApi {
     }
     /**
       * Unenrolls an existing factor for the specified user, allowing the user to enroll a new factor.
-      * Delete Factor
+      * Delete a Factor
       * @param param the request object
       */
     deleteFactor(param, options) {
@@ -3081,7 +3081,7 @@ class ObjectUserFactorApi {
     }
     /**
       * Enrolls a user with a supported factor.
-      * Enroll Factor
+      * Enroll a Factor
       * @param param the request object
       */
     enrollFactor(param, options) {
@@ -3089,7 +3089,7 @@ class ObjectUserFactorApi {
     }
     /**
       * Fetches a factor for the specified user
-      * Get Factor
+      * Retrieve a Factor
       * @param param the request object
       */
     getFactor(param, options) {
@@ -3097,7 +3097,7 @@ class ObjectUserFactorApi {
     }
     /**
       * Polls factors verification transaction for status.
-      * Get Factor Transaction Status
+      * Retrieve a Factor Transaction Status
       * @param param the request object
       */
     getFactorTransactionStatus(param, options) {
@@ -3105,7 +3105,7 @@ class ObjectUserFactorApi {
     }
     /**
       * Enumerates all the enrolled factors for the specified user
-      * List Factors
+      * List all Factors
       * @param param the request object
       */
     listFactors(param, options) {
@@ -3113,7 +3113,7 @@ class ObjectUserFactorApi {
     }
     /**
       * Enumerates all the supported factors that can be enrolled for the specified user
-      * List Supported Factors
+      * List all Supported Factors
       * @param param the request object
       */
     listSupportedFactors(param, options) {
@@ -3121,7 +3121,7 @@ class ObjectUserFactorApi {
     }
     /**
       * Enumerates all available security questions for a user's `question` factor
-      * List Supported Security Questions
+      * List all Supported Security Questions
       * @param param the request object
       */
     listSupportedSecurityQuestions(param, options) {
@@ -3129,7 +3129,7 @@ class ObjectUserFactorApi {
     }
     /**
       * Verifies an OTP for a `token` or `token:hardware` factor
-      * Verify MFA Factor
+      * Verify an MFA Factor
       * @param param the request object
       */
     verifyFactor(param, options) {
@@ -3144,7 +3144,7 @@ class ObjectUserTypeApi {
     }
     /**
       * Creates a new User Type. A default User Type is automatically created along with your org, and you may add another 9 User Types for a maximum of 10.
-      * Create User Type
+      * Create a User Type
       * @param param the request object
       */
     createUserType(param, options) {
@@ -3152,7 +3152,7 @@ class ObjectUserTypeApi {
     }
     /**
       * Deletes a User Type permanently. This operation is not permitted for the default type, nor for any User Type that has existing users
-      * Delete User Type
+      * Delete a User Type
       * @param param the request object
       */
     deleteUserType(param, options) {
@@ -3160,7 +3160,7 @@ class ObjectUserTypeApi {
     }
     /**
       * Fetches a User Type by ID. The special identifier `default` may be used to fetch the default User Type.
-      * Get User Type
+      * Retrieve a User Type
       * @param param the request object
       */
     getUserType(param, options) {
@@ -3168,7 +3168,7 @@ class ObjectUserTypeApi {
     }
     /**
       * Fetches all User Types in your org
-      * List User Types
+      * List all User Types
       * @param param the request object
       */
     listUserTypes(param = {}, options) {
@@ -3176,7 +3176,7 @@ class ObjectUserTypeApi {
     }
     /**
       * Replace an existing User Type
-      * Replace User Type
+      * Replace a User Type
       * @param param the request object
       */
     replaceUserType(param, options) {
@@ -3184,7 +3184,7 @@ class ObjectUserTypeApi {
     }
     /**
       * Updates an existing User Type
-      * Update User Type
+      * Update a User Type
       * @param param the request object
       */
     updateUserType(param, options) {

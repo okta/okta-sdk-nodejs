@@ -26,7 +26,7 @@ const util_1 = require('../util');
 class CAPTCHAApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   /**
      * Adds a new CAPTCHA instance to your organization. In the current release, we only allow one CAPTCHA instance per org.
-     * Create new CAPTCHA instance
+     * Create a CAPTCHA instance
      * @param instance
      */
   async createCaptchaInstance(instance, _options) {
@@ -66,7 +66,7 @@ class CAPTCHAApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Delete a CAPTCHA instance by `captchaId`. If the CAPTCHA instance is currently being used in the org, the delete will not be allowed.
-     * Delete CAPTCHA Instance
+     * Delete a CAPTCHA Instance
      * @param captchaId id of the CAPTCHA
      */
   async deleteCaptchaInstance(captchaId, _options) {
@@ -100,7 +100,7 @@ class CAPTCHAApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Fetches a CAPTCHA instance by `captchaId`.
-     * Get CAPTCHA Instance
+     * Retrieve a CAPTCHA Instance
      * @param captchaId id of the CAPTCHA
      */
   async getCaptchaInstance(captchaId, _options) {
@@ -134,7 +134,7 @@ class CAPTCHAApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Enumerates CAPTCHA instances in your organization with pagination. A subset of CAPTCHA instances can be returned that match a supported filter expression or query.
-     * List CAPTCHA instances
+     * List all CAPTCHA instances
      */
   async listCaptchaInstances(_options) {
     let _config = _options || this.configuration;
@@ -162,7 +162,7 @@ class CAPTCHAApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Partially update a CAPTCHA instance by `captchaId`.
-     * Partial Update CAPTCHA instance
+     * Update a CAPTCHA instance
      * @param captchaId id of the CAPTCHA
      * @param instance
      */
@@ -208,7 +208,7 @@ class CAPTCHAApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Update a CAPTCHA instance by `captchaId`.
-     * Update CAPTCHA instance
+     * Replace a CAPTCHA instance
      * @param captchaId id of the CAPTCHA
      * @param instance
      */

@@ -42,6 +42,12 @@ IdentityProviderPolicyAllOf.attributeTypeMap = [
     'format': ''
   },
   {
+    'name': 'conditions',
+    'baseName': 'conditions',
+    'type': 'PolicyRuleConditions',
+    'format': ''
+  },
+  {
     'name': 'maxClockSkew',
     'baseName': 'maxClockSkew',
     'type': 'number',

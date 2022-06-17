@@ -26,7 +26,7 @@ const util_1 = require('../util');
 class SessionApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   /**
      * Creates a new session for a user with a valid session token. Use this API if, for example, you want to set the session cookie yourself instead of allowing Okta to set it, or want to hold the session ID in order to delete a session via the API instead of visiting the logout URL.
-     * Create Session with Session Token
+     * Create a Session with Session Token
      * @param createSessionRequest
      */
   async createSession(createSessionRequest, _options) {
@@ -61,7 +61,7 @@ class SessionApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * End a session.
-     * End Session
+     * Delete a Session
      * @param sessionId
      */
   async endSession(sessionId, _options) {
@@ -95,7 +95,7 @@ class SessionApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Get details about a session.
-     * Get Session
+     * Retrieve a Session
      * @param sessionId
      */
   async getSession(sessionId, _options) {
@@ -129,7 +129,7 @@ class SessionApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Refresh a session.
-     * Refresh Session
+     * Refresh a Session
      * @param sessionId
      */
   async refreshSession(sessionId, _options) {

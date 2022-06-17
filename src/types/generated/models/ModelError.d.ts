@@ -22,9 +22,9 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { ErrorErrorCauses } from './ErrorErrorCauses';
+import { ErrorErrorCausesInner } from './ErrorErrorCausesInner';
 export declare class ModelError {
-  'errorCauses'?: Array<ErrorErrorCauses>;
+  'errorCauses'?: Array<ErrorErrorCausesInner>;
   /**
     * An Okta code for this type of error
     */

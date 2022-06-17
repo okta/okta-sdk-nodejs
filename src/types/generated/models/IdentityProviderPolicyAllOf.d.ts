@@ -23,10 +23,12 @@
  * Do not edit the class manually.
  */
 import { PolicyAccountLink } from './PolicyAccountLink';
+import { PolicyRuleConditions } from './PolicyRuleConditions';
 import { PolicySubject } from './PolicySubject';
 import { Provisioning } from './Provisioning';
 export declare class IdentityProviderPolicyAllOf {
   'accountLink'?: PolicyAccountLink;
+  'conditions'?: PolicyRuleConditions;
   'maxClockSkew'?: number;
   'provisioning'?: Provisioning;
   'subject'?: PolicySubject;

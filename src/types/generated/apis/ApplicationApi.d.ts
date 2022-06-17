@@ -32,26 +32,26 @@ import { ProvisioningConnectionRequest } from '../models/ProvisioningConnectionR
 export declare class ApplicationApiRequestFactory extends BaseAPIRequestFactory {
   /**
      * Activates an inactive application.
-     * Activate Application
+     * Activate an Application
      * @param appId
      */
   activateApplication(appId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Activates the default Provisioning Connection for an application.
-     * Activate default Provisioning Connection for application
+     * Activate the default Provisioning Connection
      * @param appId
      */
   activateDefaultProvisioningConnectionForApplication(appId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Assigns an user to an application with [credentials](#application-user-credentials-object) and an app-specific [profile](#application-user-profile-object). Profile mappings defined for the application are first applied before applying any profile properties specified in the request.
-     * Assign User to Application for SSO & Provisioning
+     * Assign a User
      * @param appId
      * @param appUser
      */
   assignUserToApplication(appId: string, appUser: AppUser, _options?: Configuration): Promise<RequestContext>;
   /**
      * Clones a X.509 certificate for an application key credential from a source application to target application.
-     * Clone Application Key Credential
+     * Clone a Key Credential
      * @param appId
      * @param keyId
      * @param targetAid Unique key of the target Application
@@ -59,7 +59,7 @@ export declare class ApplicationApiRequestFactory extends BaseAPIRequestFactory 
   cloneApplicationKey(appId: string, keyId: string, targetAid: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Adds a new application to your Okta organization.
-     * Add Application
+     * Create an Application
      * @param application
      * @param activate Executes activation lifecycle operation when creating the app
      * @param OktaAccessGateway_Agent
@@ -67,7 +67,7 @@ export declare class ApplicationApiRequestFactory extends BaseAPIRequestFactory 
   createApplication(application: Application, activate?: boolean, OktaAccessGateway_Agent?: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Assigns a group to an application
-     * Assign Group to Application
+     * Assign a Group
      * @param appId
      * @param groupId
      * @param applicationGroupAssignment
@@ -75,32 +75,32 @@ export declare class ApplicationApiRequestFactory extends BaseAPIRequestFactory 
   createApplicationGroupAssignment(appId: string, groupId: string, applicationGroupAssignment?: ApplicationGroupAssignment, _options?: Configuration): Promise<RequestContext>;
   /**
      * Deactivates an active application.
-     * Deactivate Application
+     * Deactivate an Application
      * @param appId
      */
   deactivateApplication(appId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Deactivates the default Provisioning Connection for an application.
-     * Deactivate default Provisioning Connection for application
+     * Deactivate the default Provisioning Connection for an Application
      * @param appId
      */
   deactivateDefaultProvisioningConnectionForApplication(appId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Removes an inactive application.
-     * Delete Application
+     * Delete an Application
      * @param appId
      */
   deleteApplication(appId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Removes a group assignment from an application.
-     * Remove Group from Application
+     * Unassign a Group
      * @param appId
      * @param groupId
      */
   deleteApplicationGroupAssignment(appId: string, groupId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Removes an assignment for a user from an application.
-     * Remove User from Application
+     * Unassign a User
      * @param appId
      * @param userId
      * @param sendEmail
@@ -108,28 +108,28 @@ export declare class ApplicationApiRequestFactory extends BaseAPIRequestFactory 
   deleteApplicationUser(appId: string, userId: string, sendEmail?: boolean, _options?: Configuration): Promise<RequestContext>;
   /**
      * Generates a new X.509 certificate for an application key credential
-     * Generate Key Credential for Application
+     * Generate a Key Credential
      * @param appId
      * @param validityYears
      */
   generateApplicationKey(appId: string, validityYears?: number, _options?: Configuration): Promise<RequestContext>;
   /**
      * Generates a new key pair and returns the Certificate Signing Request for it.
-     * Generate Certificate Signing Request for Application
+     * Generate a Certificate Signing Request
      * @param appId
      * @param metadata
      */
   generateCsrForApplication(appId: string, metadata: CsrMetadata, _options?: Configuration): Promise<RequestContext>;
   /**
      * Fetches an application from your Okta organization by `id`.
-     * Get Application
+     * Retrieve an Application
      * @param appId
      * @param expand
      */
   getApplication(appId: string, expand?: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Fetches an application group assignment
-     * Get Assigned Group for Application
+     * Retrieve an Assigned Group
      * @param appId
      * @param groupId
      * @param expand
@@ -137,14 +137,14 @@ export declare class ApplicationApiRequestFactory extends BaseAPIRequestFactory 
   getApplicationGroupAssignment(appId: string, groupId: string, expand?: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Gets a specific application key credential by kid
-     * Get Key Credential for Application
+     * Retrieve a Key Credential
      * @param appId
      * @param keyId
      */
   getApplicationKey(appId: string, keyId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Fetches a specific user assignment for application by `id`.
-     * Get Assigned User for Application
+     * Retrieve an Assigned User
      * @param appId
      * @param userId
      * @param expand
@@ -152,27 +152,27 @@ export declare class ApplicationApiRequestFactory extends BaseAPIRequestFactory 
   getApplicationUser(appId: string, userId: string, expand?: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Fetches a certificate signing request for the app by `id`.
-     * Get Certificate Signing Request
+     * Retrieve a Certificate Signing Request
      * @param appId
      * @param csrId
      */
   getCsrForApplication(appId: string, csrId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Get default Provisioning Connection for application
-     * Fetches the default Provisioning Connection for an application.
+     * Retrieve the default Provisioning Connection
      * @param appId
      */
   getDefaultProvisioningConnectionForApplication(appId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Fetches a Feature object for an application.
-     * Fetches a Feature object for an application.
+     * Retrieve a Feature
      * @param appId
      * @param name
      */
   getFeatureForApplication(appId: string, name: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Gets a token for the specified application
-     * Get OAuth 2.0 Token for Application
+     * Retrieve an OAuth 2.0 Token
      * @param appId
      * @param tokenId
      * @param expand
@@ -180,7 +180,7 @@ export declare class ApplicationApiRequestFactory extends BaseAPIRequestFactory 
   getOAuth2TokenForApplication(appId: string, tokenId: string, expand?: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Fetches a single scope consent grant for the application
-     * Get Scope Consent Grant for Application
+     * Retrieve a Scope Consent Grant
      * @param appId
      * @param grantId
      * @param expand
@@ -188,14 +188,14 @@ export declare class ApplicationApiRequestFactory extends BaseAPIRequestFactory 
   getScopeConsentGrant(appId: string, grantId: string, expand?: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Grants consent for the application to request an OAuth 2.0 Okta scope
-     * Grant Consent to Scope for Application
+     * Grant Consent to Scope
      * @param appId
      * @param oAuth2ScopeConsentGrant
      */
   grantConsentToScope(appId: string, oAuth2ScopeConsentGrant: OAuth2ScopeConsentGrant, _options?: Configuration): Promise<RequestContext>;
   /**
      * Enumerates group assignments for an application.
-     * List Groups Assigned to Application
+     * List all Assigned Groups
      * @param appId
      * @param q
      * @param after Specifies the pagination cursor for the next page of assignments
@@ -205,13 +205,13 @@ export declare class ApplicationApiRequestFactory extends BaseAPIRequestFactory 
   listApplicationGroupAssignments(appId: string, q?: string, after?: string, limit?: number, expand?: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Enumerates key credentials for an application
-     * List Key Credentials for Application
+     * List all Key Credentials
      * @param appId
      */
   listApplicationKeys(appId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Enumerates all assigned [application users](#application-user-model) for an application.
-     * List Users Assigned to Application
+     * List all Assigned Users
      * @param appId
      * @param q
      * @param query_scope
@@ -223,7 +223,7 @@ export declare class ApplicationApiRequestFactory extends BaseAPIRequestFactory 
   listApplicationUsers(appId: string, q?: string, query_scope?: string, after?: string, limit?: number, filter?: string, expand?: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Enumerates apps added to your organization with pagination. A subset of apps can be returned that match a supported filter expression or query.
-     * List Applications
+     * List all Applications
      * @param q
      * @param after Specifies the pagination cursor for the next page of apps
      * @param limit Specifies the number of results for a page
@@ -234,19 +234,19 @@ export declare class ApplicationApiRequestFactory extends BaseAPIRequestFactory 
   listApplications(q?: string, after?: string, limit?: number, filter?: string, expand?: string, includeNonDeleted?: boolean, _options?: Configuration): Promise<RequestContext>;
   /**
      * Enumerates Certificate Signing Requests for an application
-     * List Certificate Signing Requests for Application
+     * List all Certificate Signing Requests
      * @param appId
      */
   listCsrsForApplication(appId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * List Features for application
-     * Fetches the Feature objects for an application.
+     * List all Features
      * @param appId
      */
   listFeaturesForApplication(appId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Lists all tokens for the application
-     * Lists OAuth 2.0 Tokens for Application
+     * List all OAuth 2.0 Tokens
      * @param appId
      * @param expand
      * @param after
@@ -255,14 +255,14 @@ export declare class ApplicationApiRequestFactory extends BaseAPIRequestFactory 
   listOAuth2TokensForApplication(appId: string, expand?: string, after?: string, limit?: number, _options?: Configuration): Promise<RequestContext>;
   /**
      * Lists all scope consent grants for the application
-     * List Scope Consent Grants for Application
+     * List all Scope Consent Grants
      * @param appId
      * @param expand
      */
   listScopeConsentGrants(appId: string, expand?: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Updates a certificate signing request for the app with a signed X.509 certificate and adds it into the application key credentials
-     * Publish Certificate Signing Request
+     * Publish a Certificate Signing Request
      * @param appId
      * @param csrId
      * @param body
@@ -270,34 +270,34 @@ export declare class ApplicationApiRequestFactory extends BaseAPIRequestFactory 
   publishCsrFromApplication(appId: string, csrId: string, body: HttpFile, _options?: Configuration): Promise<RequestContext>;
   /**
      * Revokes a certificate signing request and deletes the key pair from the application.
-     * Revoke Certificate Signing Request
+     * Revoke a Certificate Signing Request
      * @param appId
      * @param csrId
      */
   revokeCsrFromApplication(appId: string, csrId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Revokes the specified token for the specified application
-     * Revoke an OAuth 2.0 Token for Application
+     * Revoke an OAuth 2.0 Token
      * @param appId
      * @param tokenId
      */
   revokeOAuth2TokenForApplication(appId: string, tokenId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Revokes all tokens for the specified application
-     * Revoke All OAuth 2.0 Tokens for Application
+     * Revoke all OAuth 2.0 Tokens
      * @param appId
      */
   revokeOAuth2TokensForApplication(appId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Revokes permission for the application to request the given scope
-     * Revoke Scope Consent Grant for Application
+     * Revoke a Scope Consent Grant
      * @param appId
      * @param grantId
      */
   revokeScopeConsentGrant(appId: string, grantId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Set default Provisioning Connection for application
-     * Sets the default Provisioning Connection for an application.
+     * Update the default Provisioning Connection
      * @param appId
      * @param ProvisioningConnectionRequest
      * @param activate
@@ -305,14 +305,14 @@ export declare class ApplicationApiRequestFactory extends BaseAPIRequestFactory 
   setDefaultProvisioningConnectionForApplication(appId: string, ProvisioningConnectionRequest: ProvisioningConnectionRequest, activate?: boolean, _options?: Configuration): Promise<RequestContext>;
   /**
      * Updates an application in your organization.
-     * Update Application
+     * Replace an Application
      * @param appId
      * @param application
      */
   updateApplication(appId: string, application: Application, _options?: Configuration): Promise<RequestContext>;
   /**
      * Updates a user's profile for an application
-     * Update Application Profile for Assigned User
+     * Update an Application Profile for Assigned User
      * @param appId
      * @param userId
      * @param appUser
@@ -320,15 +320,15 @@ export declare class ApplicationApiRequestFactory extends BaseAPIRequestFactory 
   updateApplicationUser(appId: string, userId: string, appUser: AppUser, _options?: Configuration): Promise<RequestContext>;
   /**
      * Updates a Feature object for an application.
-     * Updates a Feature object for an application.
+     * Update a Feature
      * @param appId
      * @param name
      * @param CapabilitiesObject
      */
   updateFeatureForApplication(appId: string, name: string, CapabilitiesObject: CapabilitiesObject, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Update the logo for an application.
      * The file must be in PNG, JPG, or GIF format, and less than 1 MB in size. For best results use landscape orientation, a transparent background, and a minimum size of 420px by 120px to prevent upscaling.
+     * Upload a Logo
      * @param appId
      * @param file
      */

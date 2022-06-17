@@ -24,6 +24,9 @@
  */
 import { ApiTokenLink } from './ApiTokenLink';
 import { CAPTCHAType } from './CAPTCHAType';
+/**
+*
+*/
 export declare class CAPTCHAInstance {
   'id'?: string;
   'name'?: string;

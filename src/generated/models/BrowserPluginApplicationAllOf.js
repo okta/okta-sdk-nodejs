@@ -40,5 +40,17 @@ BrowserPluginApplicationAllOf.attributeTypeMap = [
     'baseName': 'credentials',
     'type': 'SchemeApplicationCredentials',
     'format': ''
+  },
+  {
+    'name': 'name',
+    'baseName': 'name',
+    'type': 'string',
+    'format': ''
+  },
+  {
+    'name': 'settings',
+    'baseName': 'settings',
+    'type': 'SwaApplicationSettings',
+    'format': ''
   }
 ];

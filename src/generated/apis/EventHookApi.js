@@ -26,7 +26,7 @@ const util_1 = require('../util');
 class EventHookApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   /**
      * Success
-     * Activate Event Hook
+     * Activate an Event Hook
      * @param eventHookId
      */
   async activateEventHook(eventHookId, _options) {
@@ -60,7 +60,7 @@ class EventHookApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Success
-     * Create Event Hook
+     * Create an Event Hook
      * @param eventHook
      */
   async createEventHook(eventHook, _options) {
@@ -100,7 +100,7 @@ class EventHookApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Success
-     * Deactivate Event Hook
+     * Deactivate an Event Hook
      * @param eventHookId
      */
   async deactivateEventHook(eventHookId, _options) {
@@ -134,7 +134,7 @@ class EventHookApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Success
-     * Delete Event Hook
+     * Delete an Event Hook
      * @param eventHookId
      */
   async deleteEventHook(eventHookId, _options) {
@@ -168,7 +168,7 @@ class EventHookApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Success
-     * Get Event Hook
+     * Retrieve an Event Hook
      * @param eventHookId
      */
   async getEventHook(eventHookId, _options) {
@@ -202,7 +202,7 @@ class EventHookApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Success
-     * List Event Hooks
+     * List all Event Hooks
      */
   async listEventHooks(_options) {
     let _config = _options || this.configuration;
@@ -230,7 +230,7 @@ class EventHookApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Success
-     * Update Event Hook
+     * Replace an Event Hook
      * @param eventHookId
      * @param eventHook
      */
@@ -276,7 +276,7 @@ class EventHookApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Success
-     * Verify Event Hook
+     * Verify an Event Hook
      * @param eventHookId
      */
   async verifyEventHook(eventHookId, _options) {

@@ -26,12 +26,12 @@ import { ApplicationSettingsNotes } from './ApplicationSettingsNotes';
 import { ApplicationSettingsNotifications } from './ApplicationSettingsNotifications';
 import { BookmarkApplicationSettingsApplication } from './BookmarkApplicationSettingsApplication';
 export declare class BookmarkApplicationSettings {
-  'app'?: BookmarkApplicationSettingsApplication;
+  'identityStoreId'?: string;
   'implicitAssignment'?: boolean;
   'inlineHookId'?: string;
-  'identityStoreId'?: string;
   'notes'?: ApplicationSettingsNotes;
   'notifications'?: ApplicationSettingsNotifications;
+  'app'?: BookmarkApplicationSettingsApplication;
   static readonly discriminator: string | undefined;
   static readonly attributeTypeMap: Array<{
         name: string;

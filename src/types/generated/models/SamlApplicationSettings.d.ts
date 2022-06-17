@@ -24,14 +24,15 @@
  */
 import { ApplicationSettingsNotes } from './ApplicationSettingsNotes';
 import { ApplicationSettingsNotifications } from './ApplicationSettingsNotifications';
+import { SamlApplicationSettingsApplication } from './SamlApplicationSettingsApplication';
 import { SamlApplicationSettingsSignOn } from './SamlApplicationSettingsSignOn';
 export declare class SamlApplicationSettings {
-  'app'?: any;
+  'identityStoreId'?: string;
   'implicitAssignment'?: boolean;
   'inlineHookId'?: string;
-  'identityStoreId'?: string;
   'notes'?: ApplicationSettingsNotes;
   'notifications'?: ApplicationSettingsNotifications;
+  'app'?: SamlApplicationSettingsApplication;
   'signOn'?: SamlApplicationSettingsSignOn;
   static readonly discriminator: string | undefined;
   static readonly attributeTypeMap: Array<{

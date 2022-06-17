@@ -25,21 +25,21 @@
 import { EmailCustomizationAllOfLinks } from './EmailCustomizationAllOfLinks';
 export declare class EmailCustomizationAllOf {
   /**
-    * The language specified as an [IETF BCP 47 language tag](https://datatracker.ietf.org/doc/html/rfc5646).
+    * The UTC time at which this email customization was created.
     */
-  'language': string;
-  /**
-    * Whether this is the default customization for the email template. Each customized email template must have exactly one default customization. Defaults to `true` for the first customization and `false` thereafter.
-    */
-  'isDefault'?: boolean;
+  'created'?: Date;
   /**
     * A unique identifier for this email customization.
     */
   'id'?: string;
   /**
-    * The UTC time at which this email customization was created.
+    * Whether this is the default customization for the email template. Each customized email template must have exactly one default customization. Defaults to `true` for the first customization and `false` thereafter.
     */
-  'created'?: Date;
+  'isDefault'?: boolean;
+  /**
+    * The language specified as an [IETF BCP 47 language tag](https://datatracker.ietf.org/doc/html/rfc5646).
+    */
+  'language': string;
   /**
     * The UTC time at which this email customization was last updated.
     */

@@ -42,8 +42,26 @@ SwaApplicationSettingsApplication.attributeTypeMap = [
     'format': ''
   },
   {
+    'name': 'buttonSelector',
+    'baseName': 'buttonSelector',
+    'type': 'string',
+    'format': ''
+  },
+  {
     'name': 'checkbox',
     'baseName': 'checkbox',
+    'type': 'string',
+    'format': ''
+  },
+  {
+    'name': 'extraFieldSelector',
+    'baseName': 'extraFieldSelector',
+    'type': 'string',
+    'format': ''
+  },
+  {
+    'name': 'extraFieldValue',
+    'baseName': 'extraFieldValue',
     'type': 'string',
     'format': ''
   },
@@ -60,8 +78,20 @@ SwaApplicationSettingsApplication.attributeTypeMap = [
     'format': ''
   },
   {
+    'name': 'passwordSelector',
+    'baseName': 'passwordSelector',
+    'type': 'string',
+    'format': ''
+  },
+  {
     'name': 'redirectUrl',
     'baseName': 'redirectUrl',
+    'type': 'string',
+    'format': ''
+  },
+  {
+    'name': 'targetURL',
+    'baseName': 'targetURL',
     'type': 'string',
     'format': ''
   },
@@ -74,6 +104,12 @@ SwaApplicationSettingsApplication.attributeTypeMap = [
   {
     'name': 'usernameField',
     'baseName': 'usernameField',
+    'type': 'string',
+    'format': ''
+  },
+  {
+    'name': 'userNameSelector',
+    'baseName': 'userNameSelector',
     'type': 'string',
     'format': ''
   }

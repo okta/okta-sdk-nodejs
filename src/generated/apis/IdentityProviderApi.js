@@ -26,7 +26,7 @@ const util_1 = require('../util');
 class IdentityProviderApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   /**
      * Activates an inactive IdP.
-     * Activate Identity Provider
+     * Activate an Identity Provider
      * @param idpId
      */
   async activateIdentityProvider(idpId, _options) {
@@ -60,7 +60,7 @@ class IdentityProviderApiRequestFactory extends baseapi_1.BaseAPIRequestFactory 
   }
   /**
      * Clones a X.509 certificate for an IdP signing key credential from a source IdP to target IdP
-     * Clone Signing Key Credential for IdP
+     * Clone a Signing Credential Key
      * @param idpId
      * @param keyId
      * @param targetIdpId
@@ -109,7 +109,7 @@ class IdentityProviderApiRequestFactory extends baseapi_1.BaseAPIRequestFactory 
   }
   /**
      * Adds a new IdP to your organization.
-     * Add Identity Provider
+     * Create an Identity Provider
      * @param identityProvider
      */
   async createIdentityProvider(identityProvider, _options) {
@@ -149,7 +149,7 @@ class IdentityProviderApiRequestFactory extends baseapi_1.BaseAPIRequestFactory 
   }
   /**
      * Adds a new X.509 certificate credential to the IdP key store.
-     * Add X.509 Certificate Public Key for Identity Providers
+     * Create an X.509 Certificate Public Key
      * @param jsonWebKey
      */
   async createIdentityProviderKey(jsonWebKey, _options) {
@@ -189,7 +189,7 @@ class IdentityProviderApiRequestFactory extends baseapi_1.BaseAPIRequestFactory 
   }
   /**
      * Deactivates an active IdP.
-     * Deactivate Identity Provider
+     * Deactivate an Identity Provider
      * @param idpId
      */
   async deactivateIdentityProvider(idpId, _options) {
@@ -223,7 +223,7 @@ class IdentityProviderApiRequestFactory extends baseapi_1.BaseAPIRequestFactory 
   }
   /**
      * Removes an IdP from your organization.
-     * Delete Identity Provider
+     * Delete an Identity Provider
      * @param idpId
      */
   async deleteIdentityProvider(idpId, _options) {
@@ -257,7 +257,7 @@ class IdentityProviderApiRequestFactory extends baseapi_1.BaseAPIRequestFactory 
   }
   /**
      * Deletes a specific IdP Key Credential by `kid` if it is not currently being used by an Active or Inactive IdP.
-     * Delete Key
+     * Delete a Signing Credential Key
      * @param keyId
      */
   async deleteIdentityProviderKey(keyId, _options) {
@@ -291,7 +291,7 @@ class IdentityProviderApiRequestFactory extends baseapi_1.BaseAPIRequestFactory 
   }
   /**
      * Generates a new key pair and returns a Certificate Signing Request for it.
-     * Generate Certificate Signing Request for IdP
+     * Generate a Certificate Signing Request
      * @param idpId
      * @param metadata
      */
@@ -337,7 +337,7 @@ class IdentityProviderApiRequestFactory extends baseapi_1.BaseAPIRequestFactory 
   }
   /**
      * Generates a new X.509 certificate for an IdP signing key credential to be used for signing assertions sent to the IdP
-     * Generate New IdP Signing Key Credential
+     * Generate a new Signing Credential Key
      * @param idpId
      * @param validityYears expiry of the IdP Key Credential
      */
@@ -380,7 +380,7 @@ class IdentityProviderApiRequestFactory extends baseapi_1.BaseAPIRequestFactory 
   }
   /**
      * Gets a specific Certificate Signing Request model by id
-     * Get Csr for Identity Provider
+     * Retrieve a Certificate Signing Request
      * @param idpId
      * @param csrId
      */
@@ -420,7 +420,7 @@ class IdentityProviderApiRequestFactory extends baseapi_1.BaseAPIRequestFactory 
   }
   /**
      * Fetches an IdP by `id`.
-     * Get Identity Provider
+     * Retrieve an Identity Provider
      * @param idpId
      */
   async getIdentityProvider(idpId, _options) {
@@ -454,7 +454,7 @@ class IdentityProviderApiRequestFactory extends baseapi_1.BaseAPIRequestFactory 
   }
   /**
      * Fetches a linked IdP user by ID
-     * Get Identity Provider Application User
+     * Retrieve a User
      * @param idpId
      * @param userId
      */
@@ -494,7 +494,7 @@ class IdentityProviderApiRequestFactory extends baseapi_1.BaseAPIRequestFactory 
   }
   /**
      * Gets a specific IdP Key Credential by `kid`
-     * Get Identity Provider Key
+     * Retrieve an Credential Key
      * @param keyId
      */
   async getIdentityProviderKey(keyId, _options) {
@@ -528,7 +528,7 @@ class IdentityProviderApiRequestFactory extends baseapi_1.BaseAPIRequestFactory 
   }
   /**
      * Gets a specific IdP Key Credential by `kid`
-     * Get Signing Key Credential for IdP
+     * Retrieve a Signing Credential Key
      * @param idpId
      * @param keyId
      */
@@ -568,7 +568,7 @@ class IdentityProviderApiRequestFactory extends baseapi_1.BaseAPIRequestFactory 
   }
   /**
      * Links an Okta user to an existing Social Identity Provider. This does not support the SAML2 Identity Provider Type
-     * Link a user to a Social IdP without a transaction
+     * Link a User to a Social IdP
      * @param idpId
      * @param userId
      * @param userIdentityProviderLinkRequest
@@ -620,7 +620,7 @@ class IdentityProviderApiRequestFactory extends baseapi_1.BaseAPIRequestFactory 
   }
   /**
      * Enumerates Certificate Signing Requests for an IdP
-     * List Certificate Signing Requests for IdP
+     * List all Certificate Signing Requests
      * @param idpId
      */
   async listCsrsForIdentityProvider(idpId, _options) {
@@ -654,7 +654,7 @@ class IdentityProviderApiRequestFactory extends baseapi_1.BaseAPIRequestFactory 
   }
   /**
      * Find all the users linked to an identity provider
-     * Find Users
+     * List all Users
      * @param idpId
      */
   async listIdentityProviderApplicationUsers(idpId, _options) {
@@ -688,7 +688,7 @@ class IdentityProviderApiRequestFactory extends baseapi_1.BaseAPIRequestFactory 
   }
   /**
      * Enumerates IdP key credentials.
-     * List Identity Provider Keys
+     * List all Credential Keys
      * @param after Specifies the pagination cursor for the next page of keys
      * @param limit Specifies the number of key results in a page
      */
@@ -726,7 +726,7 @@ class IdentityProviderApiRequestFactory extends baseapi_1.BaseAPIRequestFactory 
   }
   /**
      * Enumerates signing key credentials for an IdP
-     * List Signing Key Credentials for IdP
+     * List all Signing Credential Keys
      * @param idpId
      */
   async listIdentityProviderSigningKeys(idpId, _options) {
@@ -760,7 +760,7 @@ class IdentityProviderApiRequestFactory extends baseapi_1.BaseAPIRequestFactory 
   }
   /**
      * Enumerates IdPs in your organization with pagination. A subset of IdPs can be returned that match a supported filter expression or query.
-     * List Identity Providers
+     * List all Identity Providers
      * @param q Searches the name property of IdPs for matching value
      * @param after Specifies the pagination cursor for the next page of IdPs
      * @param limit Specifies the number of IdP results in a page
@@ -808,7 +808,7 @@ class IdentityProviderApiRequestFactory extends baseapi_1.BaseAPIRequestFactory 
   }
   /**
      * Fetches the tokens minted by the Social Authentication Provider when the user authenticates with Okta via Social Auth.
-     * Social Authentication Token Operation
+     * List all Tokens from a OIDC Identity Provider
      * @param idpId
      * @param userId
      */
@@ -848,7 +848,7 @@ class IdentityProviderApiRequestFactory extends baseapi_1.BaseAPIRequestFactory 
   }
   /**
      * Update the Certificate Signing Request with a signed X.509 certificate and add it into the signing key credentials for the IdP.
-     * Publish Csr for Identity Provider
+     * Publish a Certificate Signing Request
      * @param idpId
      * @param csrId
      * @param body
@@ -902,7 +902,7 @@ class IdentityProviderApiRequestFactory extends baseapi_1.BaseAPIRequestFactory 
   }
   /**
      * Revoke a Certificate Signing Request and delete the key pair from the IdP
-     * Revoke Csr for Identity Provider
+     * Revoke a Certificate Signing Request
      * @param idpId
      * @param csrId
      */
@@ -942,7 +942,7 @@ class IdentityProviderApiRequestFactory extends baseapi_1.BaseAPIRequestFactory 
   }
   /**
      * Removes the link between the Okta user and the IdP user.
-     * Unlink User from IdP
+     * Unlink a User from IdP
      * @param idpId
      * @param userId
      */
@@ -982,7 +982,7 @@ class IdentityProviderApiRequestFactory extends baseapi_1.BaseAPIRequestFactory 
   }
   /**
      * Updates the configuration for an IdP.
-     * Update Identity Provider
+     * Replace an Identity Provider
      * @param idpId
      * @param identityProvider
      */

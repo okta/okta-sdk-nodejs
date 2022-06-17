@@ -26,7 +26,7 @@ const util_1 = require('../util');
 class FeatureApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   /**
      * Success
-     * Get Feature
+     * Retrieve a Feature
      * @param featureId
      */
   async getFeature(featureId, _options) {
@@ -60,7 +60,7 @@ class FeatureApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Success
-     * List Feature Dependencies
+     * List all Dependencies
      * @param featureId
      */
   async listFeatureDependencies(featureId, _options) {
@@ -94,7 +94,7 @@ class FeatureApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Success
-     * List Feature Dependents
+     * List all Dependents
      * @param featureId
      */
   async listFeatureDependents(featureId, _options) {
@@ -128,7 +128,7 @@ class FeatureApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Success
-     * List Features
+     * List all Features
      */
   async listFeatures(_options) {
     let _config = _options || this.configuration;
@@ -156,7 +156,7 @@ class FeatureApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Success
-     * Update Feature Lifecycle
+     * Update a Feature Lifecycle
      * @param featureId
      * @param lifecycle
      * @param mode

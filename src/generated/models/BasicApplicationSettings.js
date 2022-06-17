@@ -36,9 +36,9 @@ exports.BasicApplicationSettings = BasicApplicationSettings;
 BasicApplicationSettings.discriminator = undefined;
 BasicApplicationSettings.attributeTypeMap = [
   {
-    'name': 'app',
-    'baseName': 'app',
-    'type': 'BasicApplicationSettingsApplication',
+    'name': 'identityStoreId',
+    'baseName': 'identityStoreId',
+    'type': 'string',
     'format': ''
   },
   {
@@ -54,12 +54,6 @@ BasicApplicationSettings.attributeTypeMap = [
     'format': ''
   },
   {
-    'name': 'identityStoreId',
-    'baseName': 'identityStoreId',
-    'type': 'string',
-    'format': ''
-  },
-  {
     'name': 'notes',
     'baseName': 'notes',
     'type': 'ApplicationSettingsNotes',
@@ -69,6 +63,12 @@ BasicApplicationSettings.attributeTypeMap = [
     'name': 'notifications',
     'baseName': 'notifications',
     'type': 'ApplicationSettingsNotifications',
+    'format': ''
+  },
+  {
+    'name': 'app',
+    'baseName': 'app',
+    'type': 'BasicApplicationSettingsApplication',
     'format': ''
   }
 ];

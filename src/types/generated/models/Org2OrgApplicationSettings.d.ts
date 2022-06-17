@@ -28,9 +28,9 @@ import { Org2OrgApplicationSettingsApp } from './Org2OrgApplicationSettingsApp';
 import { SamlApplicationSettingsSignOn } from './SamlApplicationSettingsSignOn';
 export declare class Org2OrgApplicationSettings {
   'app'?: Org2OrgApplicationSettingsApp;
+  'identityStoreId'?: string;
   'implicitAssignment'?: boolean;
   'inlineHookId'?: string;
-  'identityStoreId'?: string;
   'notes'?: ApplicationSettingsNotes;
   'notifications'?: ApplicationSettingsNotifications;
   'signOn'?: SamlApplicationSettingsSignOn;

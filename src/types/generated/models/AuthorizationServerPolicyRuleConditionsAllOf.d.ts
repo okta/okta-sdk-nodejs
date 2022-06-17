@@ -27,9 +27,9 @@ import { GrantTypePolicyRuleCondition } from './GrantTypePolicyRuleCondition';
 import { OAuth2ScopesMediationPolicyRuleCondition } from './OAuth2ScopesMediationPolicyRuleCondition';
 import { PolicyPeopleCondition } from './PolicyPeopleCondition';
 export declare class AuthorizationServerPolicyRuleConditionsAllOf {
-  'people'?: PolicyPeopleCondition;
   'clients'?: ClientPolicyCondition;
   'grantTypes'?: GrantTypePolicyRuleCondition;
+  'people'?: PolicyPeopleCondition;
   'scopes'?: OAuth2ScopesMediationPolicyRuleCondition;
   static readonly discriminator: string | undefined;
   static readonly attributeTypeMap: Array<{

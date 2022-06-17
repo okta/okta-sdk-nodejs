@@ -28,7 +28,6 @@ import { PolicyRule } from './PolicyRule';
 export declare class OktaSignOnPolicyRule extends PolicyRule {
   'actions'?: OktaSignOnPolicyRuleActions;
   'conditions'?: OktaSignOnPolicyRuleConditions;
-  'name'?: string;
   static readonly discriminator: string | undefined;
   static readonly attributeTypeMap: Array<{
         name: string;

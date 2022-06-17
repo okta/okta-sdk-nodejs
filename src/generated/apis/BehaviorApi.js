@@ -26,7 +26,7 @@ const util_1 = require('../util');
 class BehaviorApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   /**
      * Activate Behavior Detection Rule
-     * Activate Behavior Detection Rule
+     * Activate a Behavior Detection Rule
      * @param behaviorId id of the Behavior Detection Rule
      */
   async activateBehaviorDetectionRule(behaviorId, _options) {
@@ -60,7 +60,7 @@ class BehaviorApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Adds a new Behavior Detection Rule to your organization.
-     * Create new Behavior Detection Rule
+     * Create a Behavior Detection Rule
      * @param rule
      */
   async createBehaviorDetectionRule(rule, _options) {
@@ -100,7 +100,7 @@ class BehaviorApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Deactivate Behavior Detection Rule
-     * Deactivate Behavior Detection Rule
+     * Deactivate a Behavior Detection Rule
      * @param behaviorId id of the Behavior Detection Rule
      */
   async deactivateBehaviorDetectionRule(behaviorId, _options) {
@@ -134,7 +134,7 @@ class BehaviorApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Delete a Behavior Detection Rule by `behaviorId`.
-     * Delete Behavior Detection Rule
+     * Delete a Behavior Detection Rule
      * @param behaviorId id of the Behavior Detection Rule
      */
   async deleteBehaviorDetectionRule(behaviorId, _options) {
@@ -168,7 +168,7 @@ class BehaviorApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Fetches a Behavior Detection Rule by `behaviorId`.
-     * Get Behavior Detection Rule
+     * Retrieve a Behavior Detection Rule
      * @param behaviorId id of the Behavior Detection Rule
      */
   async getBehaviorDetectionRule(behaviorId, _options) {
@@ -202,7 +202,7 @@ class BehaviorApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Enumerates Behavior Detection Rules in your organization with pagination.
-     * List Behavior Detection Rules
+     * List all Behavior Detection Rules
      */
   async listBehaviorDetectionRules(_options) {
     let _config = _options || this.configuration;
@@ -230,7 +230,7 @@ class BehaviorApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Update a Behavior Detection Rule by `behaviorId`.
-     * Update Behavior Detection Rule
+     * Replace a Behavior Detection Rule
      * @param behaviorId id of the Behavior Detection Rule
      * @param rule
      */
