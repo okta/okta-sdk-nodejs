@@ -2582,9 +2582,10 @@ class PromiseOrgSettingApi {
   /**
       * Updates the logo for your organization.
       * Update org logo
+      * @param file
       */
-  updateOrgLogo(_options) {
-    const result = this.api.updateOrgLogo(_options);
+  updateOrgLogo(file, _options) {
+    const result = this.api.updateOrgLogo(file, _options);
     return result.toPromise();
   }
   /**

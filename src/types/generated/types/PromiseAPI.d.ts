@@ -1900,8 +1900,9 @@ export declare class PromiseOrgSettingApi {
   /**
       * Updates the logo for your organization.
       * Update org logo
+      * @param file
       */
-  updateOrgLogo(_options?: Configuration): Promise<void>;
+  updateOrgLogo(file: HttpFile, _options?: Configuration): Promise<void>;
   /**
       * Update settings of your organization.
       * Update Org setting
