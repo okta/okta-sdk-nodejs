@@ -34,11 +34,4 @@ class ApplicationSettingsApplication {
 }
 exports.ApplicationSettingsApplication = ApplicationSettingsApplication;
 ApplicationSettingsApplication.discriminator = undefined;
-ApplicationSettingsApplication.attributeTypeMap = [
-  {
-    'name': 'noop',
-    'baseName': 'noop',
-    'type': 'any',
-    'format': ''
-  }
-];
+ApplicationSettingsApplication.attributeTypeMap = [];
