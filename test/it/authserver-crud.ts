@@ -1,9 +1,10 @@
 import { expect } from 'chai';
 import {
+  v3,
   Client,
   Collection,
-  DefaultRequestExecutor,
-  AuthorizationServer } from '@okta/okta-sdk-nodejs';
+  DefaultRequestExecutor
+} from '@okta/okta-sdk-nodejs';
 import getMockAuthorizationServer = require('./mocks/authorization-server');
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -19,29 +20,29 @@ const client = new Client({
 
 describe('Authorization Server Crud API', () => {
   describe('Create Auth Server', () => {
-    let authServer;
+    let authServer: v3.AuthorizationServer;
     afterEach(async () => {
-      await authServer.deactivate();
-      await authServer.delete();
+      await client.deactivateAuthorizationServer(authServer.id);
+      await client.deleteAuthorizationServer(authServer.id);
     });
 
     it('should return correct model', async () => {
       const mockAuthorizationServer = getMockAuthorizationServer();
       authServer = await client.createAuthorizationServer(mockAuthorizationServer);
-      expect(authServer).to.be.instanceOf(AuthorizationServer);
+      expect(authServer).to.be.instanceOf(v3.AuthorizationServer);
       expect(authServer.id).to.be.exist;
       expect(authServer.name).to.be.equal(mockAuthorizationServer.name);
     });
   });
 
   describe('List Authorization Server', () => {
-    let authServer;
+    let authServer: v3.AuthorizationServer;
     beforeEach(async () => {
       authServer = await client.createAuthorizationServer(getMockAuthorizationServer());
     });
     afterEach(async () => {
-      await authServer.deactivate();
-      await authServer.delete();
+      await client.deactivateAuthorizationServer(authServer.id);
+      await client.deleteAuthorizationServer(authServer.id);
     });
 
     it('should return a collection of AuthorizationServer', async () => {
@@ -55,52 +56,52 @@ describe('Authorization Server Crud API', () => {
   });
 
   describe('Get Authorization Server', () => {
-    let authServer;
+    let authServer: v3.AuthorizationServer;
     beforeEach(async () => {
       authServer = await client.createAuthorizationServer(getMockAuthorizationServer());
     });
 
     afterEach(async () => {
-      await authServer.deactivate();
-      await authServer.delete();
+      await client.deactivateAuthorizationServer(authServer.id);
+      await client.deleteAuthorizationServer(authServer.id);
     });
 
     it('should get Authorization Server by id', async () => {
       const authServerFromGet = await client.getAuthorizationServer(authServer.id);
-      expect(authServerFromGet).to.be.instanceOf(AuthorizationServer);
+      expect(authServerFromGet).to.be.instanceOf(v3.AuthorizationServer);
       expect(authServerFromGet.name).to.equal(authServer.name);
     });
   });
 
   describe('Update Authorization Server', () => {
-    let authServer;
+    let authServer: v3.AuthorizationServer;
     beforeEach(async () => {
       authServer = await client.createAuthorizationServer(getMockAuthorizationServer());
     });
     afterEach(async () => {
-      await authServer.deactivate();
-      await authServer.delete();
+      await client.deactivateAuthorizationServer(authServer.id);
+      await client.deleteAuthorizationServer(authServer.id);
     });
 
     it('should update name for created auth server', async () => {
       const mockName = 'Mock update auth server';
       authServer.name = mockName;
-      const updatedAuthServer = await authServer.update();
+      const updatedAuthServer = await client.updateAuthorizationServer(authServer.id, authServer);
       expect(updatedAuthServer.id).to.equal(authServer.id);
       expect(updatedAuthServer.name).to.equal(mockName);
     });
   });
 
   describe('Delete Authorization Server', () => {
-    let authServer;
+    let authServer: v3.AuthorizationServer;
     beforeEach(async () => {
       authServer = await client.createAuthorizationServer(getMockAuthorizationServer());
     });
 
     it('should not get authserver after deletion', async () => {
-      await authServer.deactivate();
-      const res = await authServer.delete();
-      expect(res.status).to.equal(204);
+      await client.deactivateAuthorizationServer(authServer.id);
+      const res = await client.deleteAuthorizationServer(authServer.id);
+      expect(res).to.equal(undefined);
       try {
         await client.getAuthorizationServer(authServer.id);
       } catch (e) {

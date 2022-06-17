@@ -361,7 +361,7 @@ export declare class AuthorizationServerApiResponseProcessor {
      * @params response Response returned by the server for a request to createOAuth2Claim
      * @throws ApiException if the response code was not in [200, 299]
      */
-  createOAuth2Claim(response: ResponseContext): Promise<void | OAuth2Claim>;
+  createOAuth2Claim(response: ResponseContext): Promise<OAuth2Claim>;
   /**
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
@@ -369,7 +369,7 @@ export declare class AuthorizationServerApiResponseProcessor {
      * @params response Response returned by the server for a request to createOAuth2Scope
      * @throws ApiException if the response code was not in [200, 299]
      */
-  createOAuth2Scope(response: ResponseContext): Promise<void | OAuth2Scope>;
+  createOAuth2Scope(response: ResponseContext): Promise<OAuth2Scope>;
   /**
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
