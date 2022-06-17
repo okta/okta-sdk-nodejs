@@ -40,5 +40,7 @@ export declare class Client extends ParameterizedOperationsClient {
   featureApi: FeatureApi;
   groupApi: GroupApi;
   eventHookApi: EventHookApi;
+  networkZoneApi: NetworkZoneApi;
+  threatInsightApi: ThreatInsightApi;
   applicationApi: ApplicationApi;
 }
