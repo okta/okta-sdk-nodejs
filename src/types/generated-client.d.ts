@@ -17,20 +17,7 @@ import { ApplicationOptions } from './parameterized-operations-client';
 import * as v3 from './generated';
 import { JsonWebKey } from './models/JsonWebKey';
 import { Collection } from './collection';
-import { AuthorizationServer } from './models/AuthorizationServer';
-import { AuthorizationServerOptions } from './models/AuthorizationServer';
 import { Response } from 'node-fetch';
-import { OAuth2Claim } from './models/OAuth2Claim';
-import { OAuth2ClaimOptions } from './models/OAuth2Claim';
-import { OAuth2Client } from './models/OAuth2Client';
-import { OAuth2RefreshToken } from './models/OAuth2RefreshToken';
-import { JwkUseOptions } from './models/JwkUse';
-import { AuthorizationServerPolicy } from './models/AuthorizationServerPolicy';
-import { AuthorizationServerPolicyOptions } from './models/AuthorizationServerPolicy';
-import { AuthorizationServerPolicyRule } from './models/AuthorizationServerPolicyRule';
-import { AuthorizationServerPolicyRuleOptions } from './models/AuthorizationServerPolicyRule';
-import { OAuth2Scope } from './models/OAuth2Scope';
-import { OAuth2ScopeOptions } from './models/OAuth2Scope';
 import { Brand } from './models/Brand';
 import { BrandOptions } from './models/Brand';
 import { EmailTemplate } from './models/EmailTemplate';
@@ -59,7 +46,6 @@ import { CreateSessionRequestOptions } from './models/CreateSessionRequest';
 import { Session } from './models/Session';
 import { SmsTemplate } from './models/SmsTemplate';
 import { SmsTemplateOptions } from './models/SmsTemplate';
-import { ThreatInsightConfiguration } from './models/ThreatInsightConfiguration';
 import { TrustedOrigin } from './models/TrustedOrigin';
 import { TrustedOriginOptions } from './models/TrustedOrigin';
 import { User } from './models/User';
@@ -67,6 +53,8 @@ import { CreateUserRequestOptions } from './models/CreateUserRequest';
 import { UserOptions } from './models/User';
 import { AppLink } from './models/AppLink';
 import { OAuth2ScopeConsentGrant } from './models/OAuth2ScopeConsentGrant';
+import { OAuth2Client } from './models/OAuth2Client';
+import { OAuth2RefreshToken } from './models/OAuth2RefreshToken';
 import { ChangePasswordRequestOptions } from './models/ChangePasswordRequest';
 import { UserCredentials } from './models/UserCredentials';
 import { UserCredentialsOptions } from './models/UserCredentials';
@@ -186,55 +174,55 @@ export declare class GeneratedApiClient {
     q?: string,
     limit?: string,
     after?: string,
-  }): Collection<AuthorizationServer>;
-  createAuthorizationServer(authorizationServer: AuthorizationServerOptions): Promise<AuthorizationServer>;
-  deleteAuthorizationServer(authServerId: string): Promise<Response>;
-  getAuthorizationServer(authServerId: string): Promise<AuthorizationServer>;
-  updateAuthorizationServer(authServerId: string, authorizationServer: AuthorizationServerOptions): Promise<AuthorizationServer>;
-  listOAuth2Claims(authServerId: string): Collection<OAuth2Claim>;
-  createOAuth2Claim(authServerId: string, oAuth2Claim: OAuth2ClaimOptions): Promise<OAuth2Claim>;
-  deleteOAuth2Claim(authServerId: string, claimId: string): Promise<Response>;
-  getOAuth2Claim(authServerId: string, claimId: string): Promise<OAuth2Claim>;
-  updateOAuth2Claim(authServerId: string, claimId: string, oAuth2Claim: OAuth2ClaimOptions): Promise<OAuth2Claim>;
-  listOAuth2ClientsForAuthorizationServer(authServerId: string): Collection<OAuth2Client>;
-  revokeRefreshTokensForAuthorizationServerAndClient(authServerId: string, clientId: string): Promise<Response>;
+  }): Promise<Collection<v3.AuthorizationServer>>;
+  createAuthorizationServer(authorizationServer: v3.AuthorizationServer): Promise<v3.AuthorizationServer>;
+  deleteAuthorizationServer(authServerId: string): Promise<void>;
+  getAuthorizationServer(authServerId: string): Promise<v3.AuthorizationServer>;
+  updateAuthorizationServer(authServerId: string, authorizationServer: v3.AuthorizationServer): Promise<v3.AuthorizationServer>;
+  listOAuth2Claims(authServerId: string): Promise<Collection<v3.OAuth2Claim>>;
+  createOAuth2Claim(authServerId: string, oAuth2Claim: v3.OAuth2Claim): Promise<v3.OAuth2Claim>;
+  deleteOAuth2Claim(authServerId: string, claimId: string): Promise<void>;
+  getOAuth2Claim(authServerId: string, claimId: string): Promise<v3.OAuth2Claim>;
+  updateOAuth2Claim(authServerId: string, claimId: string, oAuth2Claim: v3.OAuth2Claim): Promise<v3.OAuth2Claim>;
+  listOAuth2ClientsForAuthorizationServer(authServerId: string): Promise<Collection<v3.OAuth2Client>>;
+  revokeRefreshTokensForAuthorizationServerAndClient(authServerId: string, clientId: string): Promise<void>;
   listRefreshTokensForAuthorizationServerAndClient(authServerId: string, clientId: string, queryParameters?: {
     expand?: string,
     after?: string,
     limit?: number,
-  }): Collection<OAuth2RefreshToken>;
-  revokeRefreshTokenForAuthorizationServerAndClient(authServerId: string, clientId: string, tokenId: string): Promise<Response>;
+  }): Promise<Collection<v3.OAuth2RefreshToken>>;
+  revokeRefreshTokenForAuthorizationServerAndClient(authServerId: string, clientId: string, tokenId: string): Promise<void>;
   getRefreshTokenForAuthorizationServerAndClient(authServerId: string, clientId: string, tokenId: string, queryParameters?: {
     expand?: string,
-  }): Promise<OAuth2RefreshToken>;
-  listAuthorizationServerKeys(authServerId: string): Collection<JsonWebKey>;
-  rotateAuthorizationServerKeys(authServerId: string, jwkUse: JwkUseOptions): Collection<JsonWebKey>;
-  activateAuthorizationServer(authServerId: string): Promise<Response>;
-  deactivateAuthorizationServer(authServerId: string): Promise<Response>;
-  listAuthorizationServerPolicies(authServerId: string): Collection<AuthorizationServerPolicy>;
-  createAuthorizationServerPolicy(authServerId: string, authorizationServerPolicy: AuthorizationServerPolicyOptions): Promise<AuthorizationServerPolicy>;
-  deleteAuthorizationServerPolicy(authServerId: string, policyId: string): Promise<Response>;
-  getAuthorizationServerPolicy(authServerId: string, policyId: string): Promise<AuthorizationServerPolicy>;
-  updateAuthorizationServerPolicy(authServerId: string, policyId: string, authorizationServerPolicy: AuthorizationServerPolicyOptions): Promise<AuthorizationServerPolicy>;
-  activateAuthorizationServerPolicy(authServerId: string, policyId: string): Promise<Response>;
-  deactivateAuthorizationServerPolicy(authServerId: string, policyId: string): Promise<Response>;
-  listAuthorizationServerPolicyRules(policyId: string, authServerId: string): Collection<AuthorizationServerPolicyRule>;
-  createAuthorizationServerPolicyRule(policyId: string, authServerId: string, authorizationServerPolicyRule: AuthorizationServerPolicyRuleOptions): Promise<AuthorizationServerPolicyRule>;
-  deleteAuthorizationServerPolicyRule(policyId: string, authServerId: string, ruleId: string): Promise<Response>;
-  getAuthorizationServerPolicyRule(policyId: string, authServerId: string, ruleId: string): Promise<AuthorizationServerPolicyRule>;
-  updateAuthorizationServerPolicyRule(policyId: string, authServerId: string, ruleId: string, authorizationServerPolicyRule: AuthorizationServerPolicyRuleOptions): Promise<AuthorizationServerPolicyRule>;
-  activateAuthorizationServerPolicyRule(authServerId: string, policyId: string, ruleId: string): Promise<Response>;
-  deactivateAuthorizationServerPolicyRule(authServerId: string, policyId: string, ruleId: string): Promise<Response>;
+  }): Promise<v3.OAuth2RefreshToken>;
+  listAuthorizationServerKeys(authServerId: string): Promise<Collection<v3.JsonWebKey>>;
+  rotateAuthorizationServerKeys(authServerId: string, jwkUse: v3.JwkUse): Promise<Collection<v3.JsonWebKey>>;
+  activateAuthorizationServer(authServerId: string): Promise<void>;
+  deactivateAuthorizationServer(authServerId: string): Promise<void>;
+  listAuthorizationServerPolicies(authServerId: string): Promise<Collection<v3.AuthorizationServerPolicy>>;
+  createAuthorizationServerPolicy(authServerId: string, authorizationServerPolicy: v3.AuthorizationServerPolicy): Promise<v3.AuthorizationServerPolicy>;
+  deleteAuthorizationServerPolicy(authServerId: string, policyId: string): Promise<void>;
+  getAuthorizationServerPolicy(authServerId: string, policyId: string): Promise<v3.AuthorizationServerPolicy>;
+  updateAuthorizationServerPolicy(authServerId: string, policyId: string, authorizationServerPolicy: v3.AuthorizationServerPolicy): Promise<v3.AuthorizationServerPolicy>;
+  activateAuthorizationServerPolicy(authServerId: string, policyId: string): Promise<void>;
+  deactivateAuthorizationServerPolicy(authServerId: string, policyId: string): Promise<void>;
+  listAuthorizationServerPolicyRules(policyId: string, authServerId: string): Promise<Collection<v3.AuthorizationServerPolicyRule>>;
+  createAuthorizationServerPolicyRule(policyId: string, authServerId: string, authorizationServerPolicyRule: v3.AuthorizationServerPolicyRule): Promise<v3.AuthorizationServerPolicyRule>;
+  deleteAuthorizationServerPolicyRule(policyId: string, authServerId: string, ruleId: string): Promise<void>;
+  getAuthorizationServerPolicyRule(policyId: string, authServerId: string, ruleId: string): Promise<v3.AuthorizationServerPolicyRule>;
+  updateAuthorizationServerPolicyRule(policyId: string, authServerId: string, ruleId: string, authorizationServerPolicyRule: v3.AuthorizationServerPolicyRule): Promise<v3.AuthorizationServerPolicyRule>;
+  activateAuthorizationServerPolicyRule(authServerId: string, policyId: string, ruleId: string): Promise<void>;
+  deactivateAuthorizationServerPolicyRule(authServerId: string, policyId: string, ruleId: string): Promise<void>;
   listOAuth2Scopes(authServerId: string, queryParameters?: {
     q?: string,
     filter?: string,
     cursor?: string,
     limit?: number,
-  }): Collection<OAuth2Scope>;
-  createOAuth2Scope(authServerId: string, oAuth2Scope: OAuth2ScopeOptions): Promise<OAuth2Scope>;
-  deleteOAuth2Scope(authServerId: string, scopeId: string): Promise<Response>;
-  getOAuth2Scope(authServerId: string, scopeId: string): Promise<OAuth2Scope>;
-  updateOAuth2Scope(authServerId: string, scopeId: string, oAuth2Scope: OAuth2ScopeOptions): Promise<OAuth2Scope>;
+  }): Promise<Collection<v3.OAuth2Scope>>;
+  createOAuth2Scope(authServerId: string, oAuth2Scope: v3.OAuth2Scope): Promise<v3.OAuth2Scope>;
+  deleteOAuth2Scope(authServerId: string, scopeId: string): Promise<void>;
+  getOAuth2Scope(authServerId: string, scopeId: string): Promise<v3.OAuth2Scope>;
+  updateOAuth2Scope(authServerId: string, scopeId: string, oAuth2Scope: v3.OAuth2Scope): Promise<v3.OAuth2Scope>;
   listBrands(): Collection<Brand>;
   getBrand(brandId: string): Promise<Brand>;
   updateBrand(brandId: string, brand: BrandOptions): Promise<Brand>;

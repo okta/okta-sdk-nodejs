@@ -1079,16 +1079,15 @@ class GeneratedApiClient {
    * @returns {Collection} A collection that will yield {@link AuthorizationServer} instances.
    */
   listAuthorizationServers(queryParameters) {
-    let url = `${this.baseUrl}/api/v1/authorizationServers`;
-    const queryString = qs.stringify(queryParameters || {});
-
-    url += queryString ? ('?' + queryString) : '';
-
-    return new Collection(
-      this.http,
-      url,
-      new ModelFactory(models.AuthorizationServer, this),
-    );
+    let q;
+    let limit;
+    let after;
+    if (queryParameters) {
+      q = queryParameters.q;
+      limit = queryParameters.limit;
+      after = queryParameters.after;
+    }
+    return this.authorizationServerApi.listAuthorizationServers(q, limit, after);
   }
 
   /**
@@ -1102,18 +1101,7 @@ class GeneratedApiClient {
     if (!authorizationServer) {
       return Promise.reject(new Error('OKTA API createAuthorizationServer parameter authorizationServer is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/authorizationServers`;
-
-    const resources = [];
-
-    const request = this.http.postJson(
-      url,
-      {
-        body: authorizationServer
-      },
-      { resources }
-    );
-    return request.then(jsonRes => new models.AuthorizationServer(jsonRes, this));
+    return this.authorizationServerApi.createAuthorizationServer(authorizationServer);
   }
 
   /**
@@ -1126,18 +1114,7 @@ class GeneratedApiClient {
     if (!authServerId) {
       return Promise.reject(new Error('OKTA API deleteAuthorizationServer parameter authServerId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/authorizationServers/${authServerId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}`
-    ];
-
-    const request = this.http.delete(
-      url,
-      null,
-      { resources }
-    );
-    return request;
+    return this.authorizationServerApi.deleteAuthorizationServer(authServerId);
   }
 
   /**
@@ -1151,18 +1128,7 @@ class GeneratedApiClient {
     if (!authServerId) {
       return Promise.reject(new Error('OKTA API getAuthorizationServer parameter authServerId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/authorizationServers/${authServerId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}`
-    ];
-
-    const request = this.http.getJson(
-      url,
-      null,
-      { resources }
-    );
-    return request.then(jsonRes => new models.AuthorizationServer(jsonRes, this));
+    return this.authorizationServerApi.getAuthorizationServer(authServerId);
   }
 
   /**
@@ -1180,20 +1146,7 @@ class GeneratedApiClient {
     if (!authorizationServer) {
       return Promise.reject(new Error('OKTA API updateAuthorizationServer parameter authorizationServer is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/authorizationServers/${authServerId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}`
-    ];
-
-    const request = this.http.putJson(
-      url,
-      {
-        body: authorizationServer
-      },
-      { resources }
-    );
-    return request.then(jsonRes => new models.AuthorizationServer(jsonRes, this));
+    return this.authorizationServerApi.updateAuthorizationServer(authServerId, authorizationServer);
   }
 
   /**
@@ -1207,13 +1160,7 @@ class GeneratedApiClient {
     if (!authServerId) {
       return Promise.reject(new Error('OKTA API listOAuth2Claims parameter authServerId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/claims`;
-
-    return new Collection(
-      this.http,
-      url,
-      new ModelFactory(models.OAuth2Claim, this),
-    );
+    return this.authorizationServerApi.listOAuth2Claims(authServerId);
   }
 
   /**
@@ -1231,20 +1178,7 @@ class GeneratedApiClient {
     if (!oAuth2Claim) {
       return Promise.reject(new Error('OKTA API createOAuth2Claim parameter oAuth2Claim is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/claims`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}`
-    ];
-
-    const request = this.http.postJson(
-      url,
-      {
-        body: oAuth2Claim
-      },
-      { resources }
-    );
-    return request.then(jsonRes => new models.OAuth2Claim(jsonRes, this));
+    return this.authorizationServerApi.createOAuth2Claim(authServerId, oAuth2Claim);
   }
 
   /**
@@ -1261,19 +1195,7 @@ class GeneratedApiClient {
     if (!claimId) {
       return Promise.reject(new Error('OKTA API deleteOAuth2Claim parameter claimId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/claims/${claimId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/claims/${claimId}`,
-      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}`
-    ];
-
-    const request = this.http.delete(
-      url,
-      null,
-      { resources }
-    );
-    return request;
+    return this.authorizationServerApi.deleteOAuth2Claim(authServerId, claimId);
   }
 
   /**
@@ -1291,19 +1213,7 @@ class GeneratedApiClient {
     if (!claimId) {
       return Promise.reject(new Error('OKTA API getOAuth2Claim parameter claimId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/claims/${claimId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/claims/${claimId}`,
-      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}`
-    ];
-
-    const request = this.http.getJson(
-      url,
-      null,
-      { resources }
-    );
-    return request.then(jsonRes => new models.OAuth2Claim(jsonRes, this));
+    return this.authorizationServerApi.getOAuth2Claim(authServerId, claimId);
   }
 
   /**
@@ -1325,21 +1235,7 @@ class GeneratedApiClient {
     if (!oAuth2Claim) {
       return Promise.reject(new Error('OKTA API updateOAuth2Claim parameter oAuth2Claim is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/claims/${claimId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/claims/${claimId}`,
-      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}`
-    ];
-
-    const request = this.http.putJson(
-      url,
-      {
-        body: oAuth2Claim
-      },
-      { resources }
-    );
-    return request.then(jsonRes => new models.OAuth2Claim(jsonRes, this));
+    return this.authorizationServerApi.updateOAuth2Claim(authServerId, claimId, oAuth2Claim);
   }
 
   /**
@@ -1353,13 +1249,7 @@ class GeneratedApiClient {
     if (!authServerId) {
       return Promise.reject(new Error('OKTA API listOAuth2ClientsForAuthorizationServer parameter authServerId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/clients`;
-
-    return new Collection(
-      this.http,
-      url,
-      new ModelFactory(models.OAuth2Client, this),
-    );
+    return this.authorizationServerApi.listOAuth2ClientsForAuthorizationServer(authServerId);
   }
 
   /**
@@ -1376,19 +1266,7 @@ class GeneratedApiClient {
     if (!clientId) {
       return Promise.reject(new Error('OKTA API revokeRefreshTokensForAuthorizationServerAndClient parameter clientId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/clients/${clientId}/tokens`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/clients/${clientId}`,
-      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}`
-    ];
-
-    const request = this.http.delete(
-      url,
-      null,
-      { resources }
-    );
-    return request;
+    return this.authorizationServerApi.revokeRefreshTokensForAuthorizationServerAndClient(authServerId, clientId);
   }
 
   /**
@@ -1410,16 +1288,15 @@ class GeneratedApiClient {
     if (!clientId) {
       return Promise.reject(new Error('OKTA API listRefreshTokensForAuthorizationServerAndClient parameter clientId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/clients/${clientId}/tokens`;
-    const queryString = qs.stringify(queryParameters || {});
-
-    url += queryString ? ('?' + queryString) : '';
-
-    return new Collection(
-      this.http,
-      url,
-      new ModelFactory(models.OAuth2RefreshToken, this),
-    );
+    let expand;
+    let after;
+    let limit;
+    if (queryParameters) {
+      expand = queryParameters.expand;
+      after = queryParameters.after;
+      limit = queryParameters.limit;
+    }
+    return this.authorizationServerApi.listRefreshTokensForAuthorizationServerAndClient(authServerId, clientId, expand, after, limit);
   }
 
   /**
@@ -1440,20 +1317,7 @@ class GeneratedApiClient {
     if (!tokenId) {
       return Promise.reject(new Error('OKTA API revokeRefreshTokenForAuthorizationServerAndClient parameter tokenId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/clients/${clientId}/tokens/${tokenId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/clients/${clientId}/tokens/${tokenId}`,
-      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/clients/${clientId}`,
-      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}`
-    ];
-
-    const request = this.http.delete(
-      url,
-      null,
-      { resources }
-    );
-    return request;
+    return this.authorizationServerApi.revokeRefreshTokenForAuthorizationServerAndClient(authServerId, clientId, tokenId);
   }
 
   /**
@@ -1477,23 +1341,11 @@ class GeneratedApiClient {
     if (!tokenId) {
       return Promise.reject(new Error('OKTA API getRefreshTokenForAuthorizationServerAndClient parameter tokenId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/clients/${clientId}/tokens/${tokenId}`;
-    const queryString = qs.stringify(queryParameters || {});
-
-    url += queryString ? ('?' + queryString) : '';
-
-    const resources = [
-      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/clients/${clientId}/tokens/${tokenId}`,
-      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/clients/${clientId}`,
-      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}`
-    ];
-
-    const request = this.http.getJson(
-      url,
-      null,
-      { resources }
-    );
-    return request.then(jsonRes => new models.OAuth2RefreshToken(jsonRes, this));
+    let expand;
+    if (queryParameters) {
+      expand = queryParameters.expand;
+    }
+    return this.authorizationServerApi.getRefreshTokenForAuthorizationServerAndClient(authServerId, clientId, tokenId, expand);
   }
 
   /**
@@ -1507,13 +1359,7 @@ class GeneratedApiClient {
     if (!authServerId) {
       return Promise.reject(new Error('OKTA API listAuthorizationServerKeys parameter authServerId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/credentials/keys`;
-
-    return new Collection(
-      this.http,
-      url,
-      new ModelFactory(models.JsonWebKey, this),
-    );
+    return this.authorizationServerApi.listAuthorizationServerKeys(authServerId);
   }
 
   /**
@@ -1530,20 +1376,7 @@ class GeneratedApiClient {
     if (!jwkUse) {
       return Promise.reject(new Error('OKTA API rotateAuthorizationServerKeys parameter jwkUse is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/credentials/lifecycle/keyRotate`;
-
-    return new Collection(
-      this.http,
-      url,
-      new ModelFactory(models.JsonWebKey, this),
-      {
-        method: 'post',
-        body: JSON.stringify(jwkUse),
-        headers: {
-          'Content-Type': 'application/json', 'Accept': 'application/json',
-        }
-      }
-    );
+    return this.authorizationServerApi.rotateAuthorizationServerKeys(authServerId, jwkUse);
   }
 
   /**
@@ -1556,22 +1389,7 @@ class GeneratedApiClient {
     if (!authServerId) {
       return Promise.reject(new Error('OKTA API activateAuthorizationServer parameter authServerId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/lifecycle/activate`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}`
-    ];
-
-    const request = this.http.post(
-      url,
-      {
-        headers: {
-          'Content-Type': 'application/json', 'Accept': 'application/json',
-        },
-      },
-      { resources }
-    );
-    return request;
+    return this.authorizationServerApi.activateAuthorizationServer(authServerId);
   }
 
   /**
@@ -1584,22 +1402,7 @@ class GeneratedApiClient {
     if (!authServerId) {
       return Promise.reject(new Error('OKTA API deactivateAuthorizationServer parameter authServerId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/lifecycle/deactivate`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}`
-    ];
-
-    const request = this.http.post(
-      url,
-      {
-        headers: {
-          'Content-Type': 'application/json', 'Accept': 'application/json',
-        },
-      },
-      { resources }
-    );
-    return request;
+    return this.authorizationServerApi.deactivateAuthorizationServer(authServerId);
   }
 
   /**
@@ -1613,13 +1416,7 @@ class GeneratedApiClient {
     if (!authServerId) {
       return Promise.reject(new Error('OKTA API listAuthorizationServerPolicies parameter authServerId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/policies`;
-
-    return new Collection(
-      this.http,
-      url,
-      new ModelFactory(models.AuthorizationServerPolicy, this),
-    );
+    return this.authorizationServerApi.listAuthorizationServerPolicies(authServerId);
   }
 
   /**
@@ -1637,20 +1434,7 @@ class GeneratedApiClient {
     if (!authorizationServerPolicy) {
       return Promise.reject(new Error('OKTA API createAuthorizationServerPolicy parameter authorizationServerPolicy is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/policies`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}`
-    ];
-
-    const request = this.http.postJson(
-      url,
-      {
-        body: authorizationServerPolicy
-      },
-      { resources }
-    );
-    return request.then(jsonRes => new models.AuthorizationServerPolicy(jsonRes, this));
+    return this.authorizationServerApi.createAuthorizationServerPolicy(authServerId, authorizationServerPolicy);
   }
 
   /**
@@ -1667,19 +1451,7 @@ class GeneratedApiClient {
     if (!policyId) {
       return Promise.reject(new Error('OKTA API deleteAuthorizationServerPolicy parameter policyId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/policies/${policyId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/policies/${policyId}`,
-      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}`
-    ];
-
-    const request = this.http.delete(
-      url,
-      null,
-      { resources }
-    );
-    return request;
+    return this.authorizationServerApi.deleteAuthorizationServerPolicy(authServerId, policyId);
   }
 
   /**
@@ -1697,19 +1469,7 @@ class GeneratedApiClient {
     if (!policyId) {
       return Promise.reject(new Error('OKTA API getAuthorizationServerPolicy parameter policyId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/policies/${policyId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/policies/${policyId}`,
-      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}`
-    ];
-
-    const request = this.http.getJson(
-      url,
-      null,
-      { resources }
-    );
-    return request.then(jsonRes => new models.AuthorizationServerPolicy(jsonRes, this));
+    return this.authorizationServerApi.getAuthorizationServerPolicy(authServerId, policyId);
   }
 
   /**
@@ -1731,21 +1491,7 @@ class GeneratedApiClient {
     if (!authorizationServerPolicy) {
       return Promise.reject(new Error('OKTA API updateAuthorizationServerPolicy parameter authorizationServerPolicy is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/policies/${policyId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/policies/${policyId}`,
-      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}`
-    ];
-
-    const request = this.http.putJson(
-      url,
-      {
-        body: authorizationServerPolicy
-      },
-      { resources }
-    );
-    return request.then(jsonRes => new models.AuthorizationServerPolicy(jsonRes, this));
+    return this.authorizationServerApi.updateAuthorizationServerPolicy(authServerId, policyId, authorizationServerPolicy);
   }
 
   /**
@@ -1762,23 +1508,7 @@ class GeneratedApiClient {
     if (!policyId) {
       return Promise.reject(new Error('OKTA API activateAuthorizationServerPolicy parameter policyId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/policies/${policyId}/lifecycle/activate`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/policies/${policyId}`,
-      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}`
-    ];
-
-    const request = this.http.post(
-      url,
-      {
-        headers: {
-          'Content-Type': 'application/json', 'Accept': 'application/json',
-        },
-      },
-      { resources }
-    );
-    return request;
+    return this.authorizationServerApi.activateAuthorizationServerPolicy(authServerId, policyId);
   }
 
   /**
@@ -1795,23 +1525,7 @@ class GeneratedApiClient {
     if (!policyId) {
       return Promise.reject(new Error('OKTA API deactivateAuthorizationServerPolicy parameter policyId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/policies/${policyId}/lifecycle/deactivate`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/policies/${policyId}`,
-      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}`
-    ];
-
-    const request = this.http.post(
-      url,
-      {
-        headers: {
-          'Content-Type': 'application/json', 'Accept': 'application/json',
-        },
-      },
-      { resources }
-    );
-    return request;
+    return this.authorizationServerApi.deactivateAuthorizationServerPolicy(authServerId, policyId);
   }
 
   /**
@@ -1829,13 +1543,7 @@ class GeneratedApiClient {
     if (!authServerId) {
       return Promise.reject(new Error('OKTA API listAuthorizationServerPolicyRules parameter authServerId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/policies/${policyId}/rules`;
-
-    return new Collection(
-      this.http,
-      url,
-      new ModelFactory(models.AuthorizationServerPolicyRule, this),
-    );
+    return this.authorizationServerApi.listAuthorizationServerPolicyRules(policyId, authServerId);
   }
 
   /**
@@ -1857,21 +1565,7 @@ class GeneratedApiClient {
     if (!authorizationServerPolicyRule) {
       return Promise.reject(new Error('OKTA API createAuthorizationServerPolicyRule parameter authorizationServerPolicyRule is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/policies/${policyId}/rules`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/policies/${policyId}`,
-      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}`
-    ];
-
-    const request = this.http.postJson(
-      url,
-      {
-        body: authorizationServerPolicyRule
-      },
-      { resources }
-    );
-    return request.then(jsonRes => new models.AuthorizationServerPolicyRule(jsonRes, this));
+    return this.authorizationServerApi.createAuthorizationServerPolicyRule(policyId, authServerId, authorizationServerPolicyRule);
   }
 
   /**
@@ -1892,20 +1586,7 @@ class GeneratedApiClient {
     if (!ruleId) {
       return Promise.reject(new Error('OKTA API deleteAuthorizationServerPolicyRule parameter ruleId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/policies/${policyId}/rules/${ruleId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/policies/${policyId}/rules/${ruleId}`,
-      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/policies/${policyId}`,
-      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}`
-    ];
-
-    const request = this.http.delete(
-      url,
-      null,
-      { resources }
-    );
-    return request;
+    return this.authorizationServerApi.deleteAuthorizationServerPolicyRule(policyId, authServerId, ruleId);
   }
 
   /**
@@ -1927,20 +1608,7 @@ class GeneratedApiClient {
     if (!ruleId) {
       return Promise.reject(new Error('OKTA API getAuthorizationServerPolicyRule parameter ruleId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/policies/${policyId}/rules/${ruleId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/policies/${policyId}/rules/${ruleId}`,
-      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/policies/${policyId}`,
-      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}`
-    ];
-
-    const request = this.http.getJson(
-      url,
-      null,
-      { resources }
-    );
-    return request.then(jsonRes => new models.AuthorizationServerPolicyRule(jsonRes, this));
+    return this.authorizationServerApi.getAuthorizationServerPolicyRule(policyId, authServerId, ruleId);
   }
 
   /**
@@ -1966,22 +1634,7 @@ class GeneratedApiClient {
     if (!authorizationServerPolicyRule) {
       return Promise.reject(new Error('OKTA API updateAuthorizationServerPolicyRule parameter authorizationServerPolicyRule is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/policies/${policyId}/rules/${ruleId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/policies/${policyId}/rules/${ruleId}`,
-      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/policies/${policyId}`,
-      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}`
-    ];
-
-    const request = this.http.putJson(
-      url,
-      {
-        body: authorizationServerPolicyRule
-      },
-      { resources }
-    );
-    return request.then(jsonRes => new models.AuthorizationServerPolicyRule(jsonRes, this));
+    return this.authorizationServerApi.updateAuthorizationServerPolicyRule(policyId, authServerId, ruleId, authorizationServerPolicyRule);
   }
 
   /**
@@ -2002,24 +1655,7 @@ class GeneratedApiClient {
     if (!ruleId) {
       return Promise.reject(new Error('OKTA API activateAuthorizationServerPolicyRule parameter ruleId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/policies/${policyId}/rules/${ruleId}/lifecycle/activate`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/policies/${policyId}/rules/${ruleId}`,
-      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/policies/${policyId}`,
-      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}`
-    ];
-
-    const request = this.http.post(
-      url,
-      {
-        headers: {
-          'Content-Type': 'application/json', 'Accept': 'application/json',
-        },
-      },
-      { resources }
-    );
-    return request;
+    return this.authorizationServerApi.activateAuthorizationServerPolicyRule(authServerId, policyId, ruleId);
   }
 
   /**
@@ -2040,24 +1676,7 @@ class GeneratedApiClient {
     if (!ruleId) {
       return Promise.reject(new Error('OKTA API deactivateAuthorizationServerPolicyRule parameter ruleId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/policies/${policyId}/rules/${ruleId}/lifecycle/deactivate`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/policies/${policyId}/rules/${ruleId}`,
-      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/policies/${policyId}`,
-      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}`
-    ];
-
-    const request = this.http.post(
-      url,
-      {
-        headers: {
-          'Content-Type': 'application/json', 'Accept': 'application/json',
-        },
-      },
-      { resources }
-    );
-    return request;
+    return this.authorizationServerApi.deactivateAuthorizationServerPolicyRule(authServerId, policyId, ruleId);
   }
 
   /**
@@ -2076,16 +1695,17 @@ class GeneratedApiClient {
     if (!authServerId) {
       return Promise.reject(new Error('OKTA API listOAuth2Scopes parameter authServerId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/scopes`;
-    const queryString = qs.stringify(queryParameters || {});
-
-    url += queryString ? ('?' + queryString) : '';
-
-    return new Collection(
-      this.http,
-      url,
-      new ModelFactory(models.OAuth2Scope, this),
-    );
+    let q;
+    let filter;
+    let cursor;
+    let limit;
+    if (queryParameters) {
+      q = queryParameters.q;
+      filter = queryParameters.filter;
+      cursor = queryParameters.cursor;
+      limit = queryParameters.limit;
+    }
+    return this.authorizationServerApi.listOAuth2Scopes(authServerId, q, filter, cursor, limit);
   }
 
   /**
@@ -2103,20 +1723,7 @@ class GeneratedApiClient {
     if (!oAuth2Scope) {
       return Promise.reject(new Error('OKTA API createOAuth2Scope parameter oAuth2Scope is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/scopes`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}`
-    ];
-
-    const request = this.http.postJson(
-      url,
-      {
-        body: oAuth2Scope
-      },
-      { resources }
-    );
-    return request.then(jsonRes => new models.OAuth2Scope(jsonRes, this));
+    return this.authorizationServerApi.createOAuth2Scope(authServerId, oAuth2Scope);
   }
 
   /**
@@ -2133,19 +1740,7 @@ class GeneratedApiClient {
     if (!scopeId) {
       return Promise.reject(new Error('OKTA API deleteOAuth2Scope parameter scopeId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/scopes/${scopeId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/scopes/${scopeId}`,
-      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}`
-    ];
-
-    const request = this.http.delete(
-      url,
-      null,
-      { resources }
-    );
-    return request;
+    return this.authorizationServerApi.deleteOAuth2Scope(authServerId, scopeId);
   }
 
   /**
@@ -2163,19 +1758,7 @@ class GeneratedApiClient {
     if (!scopeId) {
       return Promise.reject(new Error('OKTA API getOAuth2Scope parameter scopeId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/scopes/${scopeId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/scopes/${scopeId}`,
-      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}`
-    ];
-
-    const request = this.http.getJson(
-      url,
-      null,
-      { resources }
-    );
-    return request.then(jsonRes => new models.OAuth2Scope(jsonRes, this));
+    return this.authorizationServerApi.getOAuth2Scope(authServerId, scopeId);
   }
 
   /**
@@ -2197,21 +1780,7 @@ class GeneratedApiClient {
     if (!oAuth2Scope) {
       return Promise.reject(new Error('OKTA API updateOAuth2Scope parameter oAuth2Scope is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/scopes/${scopeId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}/scopes/${scopeId}`,
-      `${this.baseUrl}/api/v1/authorizationServers/${authServerId}`
-    ];
-
-    const request = this.http.putJson(
-      url,
-      {
-        body: oAuth2Scope
-      },
-      { resources }
-    );
-    return request.then(jsonRes => new models.OAuth2Scope(jsonRes, this));
+    return this.authorizationServerApi.updateOAuth2Scope(authServerId, scopeId, oAuth2Scope);
   }
 
   /**
