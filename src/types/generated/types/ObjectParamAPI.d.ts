@@ -2088,7 +2088,7 @@ export declare class ObjectAuthorizationServerApi {
       * Create an Authorization Server
       * @param param the request object
       */
-  createAuthorizationServer(param: AuthorizationServerApiCreateAuthorizationServerRequest, options?: Configuration): Promise<AuthorizationServer | void>;
+  createAuthorizationServer(param: AuthorizationServerApiCreateAuthorizationServerRequest, options?: Configuration): Promise<AuthorizationServer>;
   /**
       * Success
       * Create a Policy

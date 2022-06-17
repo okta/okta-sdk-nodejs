@@ -616,7 +616,7 @@ export declare class PromiseAuthorizationServerApi {
       * Create an Authorization Server
       * @param authorizationServer
       */
-  createAuthorizationServer(authorizationServer: AuthorizationServer, _options?: Configuration): Promise<AuthorizationServer | void>;
+  createAuthorizationServer(authorizationServer: AuthorizationServer, _options?: Configuration): Promise<AuthorizationServer>;
   /**
       * Success
       * Create a Policy

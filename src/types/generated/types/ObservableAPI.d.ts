@@ -627,7 +627,7 @@ export declare class ObservableAuthorizationServerApi {
       * Create an Authorization Server
       * @param authorizationServer
       */
-  createAuthorizationServer(authorizationServer: AuthorizationServer, _options?: Configuration): Observable<AuthorizationServer | void>;
+  createAuthorizationServer(authorizationServer: AuthorizationServer, _options?: Configuration): Observable<AuthorizationServer>;
   /**
       * Success
       * Create a Policy

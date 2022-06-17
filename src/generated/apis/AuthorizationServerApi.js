@@ -1677,7 +1677,7 @@ class AuthorizationServerApiResponseProcessor {
      */
   async activateAuthorizationServer(response) {
     const contentType = ObjectSerializer_1.ObjectSerializer.normalizeMediaType(response.headers['content-type']);
-    if ((0, util_1.isCodeInRange)('200', response.httpStatusCode)) {
+    if ((0, util_1.isCodeInRange)('204', response.httpStatusCode)) {
       return;
     }
     if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
@@ -1708,7 +1708,7 @@ class AuthorizationServerApiResponseProcessor {
      */
   async activateAuthorizationServerPolicy(response) {
     const contentType = ObjectSerializer_1.ObjectSerializer.normalizeMediaType(response.headers['content-type']);
-    if ((0, util_1.isCodeInRange)('200', response.httpStatusCode)) {
+    if ((0, util_1.isCodeInRange)('204', response.httpStatusCode)) {
       return;
     }
     if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
@@ -1739,7 +1739,7 @@ class AuthorizationServerApiResponseProcessor {
      */
   async activateAuthorizationServerPolicyRule(response) {
     const contentType = ObjectSerializer_1.ObjectSerializer.normalizeMediaType(response.headers['content-type']);
-    if ((0, util_1.isCodeInRange)('200', response.httpStatusCode)) {
+    if ((0, util_1.isCodeInRange)('204', response.httpStatusCode)) {
       return;
     }
     if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
@@ -1770,12 +1770,9 @@ class AuthorizationServerApiResponseProcessor {
      */
   async createAuthorizationServer(response) {
     const contentType = ObjectSerializer_1.ObjectSerializer.normalizeMediaType(response.headers['content-type']);
-    if ((0, util_1.isCodeInRange)('200', response.httpStatusCode)) {
+    if ((0, util_1.isCodeInRange)('201', response.httpStatusCode)) {
       const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'AuthorizationServer', '');
       return body;
-    }
-    if ((0, util_1.isCodeInRange)('201', response.httpStatusCode)) {
-      return;
     }
     if ((0, util_1.isCodeInRange)('400', response.httpStatusCode)) {
       const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
@@ -1791,7 +1788,7 @@ class AuthorizationServerApiResponseProcessor {
     }
     // Work around for missing responses in specification, e.g. for petstore.yaml
     if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'AuthorizationServer | void', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'AuthorizationServer', '');
       return body;
     }
     throw new exception_1.ApiException(response.httpStatusCode, 'Unknown API Status Code!', await response.getBodyAsAny(), response.headers);
@@ -1805,12 +1802,9 @@ class AuthorizationServerApiResponseProcessor {
      */
   async createAuthorizationServerPolicy(response) {
     const contentType = ObjectSerializer_1.ObjectSerializer.normalizeMediaType(response.headers['content-type']);
-    if ((0, util_1.isCodeInRange)('200', response.httpStatusCode)) {
+    if ((0, util_1.isCodeInRange)('201', response.httpStatusCode)) {
       const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'AuthorizationServerPolicy', '');
       return body;
-    }
-    if ((0, util_1.isCodeInRange)('201', response.httpStatusCode)) {
-      return;
     }
     if ((0, util_1.isCodeInRange)('400', response.httpStatusCode)) {
       const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
@@ -1830,7 +1824,7 @@ class AuthorizationServerApiResponseProcessor {
     }
     // Work around for missing responses in specification, e.g. for petstore.yaml
     if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'void | AuthorizationServerPolicy', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'AuthorizationServerPolicy', '');
       return body;
     }
     throw new exception_1.ApiException(response.httpStatusCode, 'Unknown API Status Code!', await response.getBodyAsAny(), response.headers);
@@ -1844,7 +1838,7 @@ class AuthorizationServerApiResponseProcessor {
      */
   async createAuthorizationServerPolicyRule(response) {
     const contentType = ObjectSerializer_1.ObjectSerializer.normalizeMediaType(response.headers['content-type']);
-    if ((0, util_1.isCodeInRange)('200', response.httpStatusCode)) {
+    if ((0, util_1.isCodeInRange)('201', response.httpStatusCode)) {
       const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'AuthorizationServerPolicyRule', '');
       return body;
     }
@@ -1958,7 +1952,7 @@ class AuthorizationServerApiResponseProcessor {
      */
   async deactivateAuthorizationServer(response) {
     const contentType = ObjectSerializer_1.ObjectSerializer.normalizeMediaType(response.headers['content-type']);
-    if ((0, util_1.isCodeInRange)('200', response.httpStatusCode)) {
+    if ((0, util_1.isCodeInRange)('204', response.httpStatusCode)) {
       return;
     }
     if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
@@ -1989,7 +1983,7 @@ class AuthorizationServerApiResponseProcessor {
      */
   async deactivateAuthorizationServerPolicy(response) {
     const contentType = ObjectSerializer_1.ObjectSerializer.normalizeMediaType(response.headers['content-type']);
-    if ((0, util_1.isCodeInRange)('200', response.httpStatusCode)) {
+    if ((0, util_1.isCodeInRange)('204', response.httpStatusCode)) {
       return;
     }
     if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
@@ -2020,7 +2014,7 @@ class AuthorizationServerApiResponseProcessor {
      */
   async deactivateAuthorizationServerPolicyRule(response) {
     const contentType = ObjectSerializer_1.ObjectSerializer.normalizeMediaType(response.headers['content-type']);
-    if ((0, util_1.isCodeInRange)('200', response.httpStatusCode)) {
+    if ((0, util_1.isCodeInRange)('204', response.httpStatusCode)) {
       return;
     }
     if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
