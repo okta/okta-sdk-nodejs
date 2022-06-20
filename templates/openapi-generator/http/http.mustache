@@ -5,6 +5,7 @@ import * as FormData from 'form-data';
 import { URLSearchParams } from 'url';
 import * as http from 'http';
 import * as https from 'https';
+import { ReadStream } from 'fs';
 {{/node}}
 {{/platforms}}
 {{#platforms}}
@@ -49,10 +50,7 @@ export enum HttpMethodEnum {
  */
 {{#platforms}}
 {{#node}}
-export type HttpFile = {
-  data: {{{fileContentDataType}}},
-  name: string
-};
+export type HttpFile = ReadStream;
 {{/node}}
 {{^node}}
 export type HttpFile = {{{fileContentDataType}}} & { readonly name: string };
@@ -306,12 +304,12 @@ export class ResponseContext {
 
     public async getBodyAsFile(): Promise<HttpFile> {
         const data = await this.body.binary();
-        const fileName = this.getParsedHeader('content-disposition')['filename'] || '';
         {{#platforms}}
         {{#node}}
-        return { data, name: fileName };
+        return Readable.from(data);
         {{/node}}
         {{^node}}
+        const fileName = this.getParsedHeader('content-disposition')['filename'] || '';
         const contentType = this.headers['content-type'] || '';
         try {
             return new File([data], fileName, { type: contentType });

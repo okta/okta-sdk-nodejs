@@ -2,7 +2,7 @@ import { expect } from 'chai';
 import utils = require('../utils');
 
 import {
-  Client, OrgContactType, OrgOktaSupportSetting
+  Client
 } from '@okta/okta-sdk-nodejs';
 
 const client = new Client({
@@ -29,13 +29,15 @@ describe('Org API', () => {
 
   it('allows fetching and updating Org contact user', async () => {
     const contactTypes = [];
-    await client.getOrgContactTypes().each(contactTypeObj => contactTypes.push(contactTypeObj.contactType));
-    expect(contactTypes).to.contain(OrgContactType.BILLING, OrgContactType.TECHNICAL);
+    await (await client.getOrgContactTypes()).each(async contactTypeObj =>
+      contactTypes.push(contactTypeObj.contactType)
+    );
+    expect(contactTypes).to.contain('BILLING', 'TECHNICAL');
     for (const contactType of contactTypes) {
       const newUser = {
         profile: utils.getMockProfile('org-api-update-contact-user'),
         credentials: {
-          password: { value: 'Abcd1234' }
+          password: { value: 'Abcd1234#@' }
         }
       };
 
@@ -45,7 +47,7 @@ describe('Org API', () => {
       const createdUser = await client.createUser({
         profile: utils.getMockProfile('org-api-update-contact-user'),
         credentials: {
-          password: { value: 'Abcd1234' }
+          password: { value: 'Abcd1234#@' }
         }
       }, {activate: true});
 
@@ -62,11 +64,11 @@ describe('Org API', () => {
   it('gets Org preferences and allows toggling footer visibility', async () => {
     await client.hideOktaUIFooter();
     let orgPreferences = await client.getOrgPreferences();
-    expect(orgPreferences._showEndUserFooter).to.equal(false);
-    orgPreferences = await orgPreferences.showEndUserFooter();
-    expect(orgPreferences._showEndUserFooter).to.equal(true);
+    expect(orgPreferences.showEndUserFooter).to.equal(false);
+    orgPreferences = await client.showOktaUIFooter();
+    expect(orgPreferences.showEndUserFooter).to.equal(true);
     orgPreferences = await client.hideOktaUIFooter();
-    expect(orgPreferences._showEndUserFooter).to.equal(false);
+    expect(orgPreferences.showEndUserFooter).to.equal(false);
   });
 
   it('allows listing and configuring Org communication settings', async () => {
@@ -75,27 +77,27 @@ describe('Org API', () => {
     expect(communicationSettings.optOutEmailUsers).to.equal(false);
     communicationSettings = await client.optOutUsersFromOktaCommunicationEmails();
     expect(communicationSettings.optOutEmailUsers).to.equal(true);
-    communicationSettings = await communicationSettings.optInUsersToOktaCommunicationEmails();
+    communicationSettings = await client.optInUsersToOktaCommunicationEmails();
     expect(communicationSettings.optOutEmailUsers).to.equal(false);
   });
 
   it('allows listing and configuring Org support settings', async () => {
     await client.revokeOktaSupport();
     let supportSettings = await client.getOrgOktaSupportSettings();
-    expect(supportSettings.support).to.equal(OrgOktaSupportSetting.DISABLED);
+    expect(supportSettings.support).to.equal('DISABLED');
     supportSettings = await client.grantOktaSupport();
-    expect(supportSettings.support).to.equal(OrgOktaSupportSetting.ENABLED);
+    expect(supportSettings.support).to.equal('ENABLED');
 
     const currentExpirationDate = new Date(supportSettings.expiration);
-    supportSettings = await supportSettings.extendOktaSupport();
+    supportSettings = await client.extendOktaSupport();
     expect(new Date(supportSettings.expiration)).to.be.greaterThanOrEqual(currentExpirationDate);
     supportSettings = await client.revokeOktaSupport();
-    expect(supportSettings.support).to.equal(OrgOktaSupportSetting.DISABLED);
+    expect(supportSettings.support).to.equal('DISABLED');
   });
 
   it('updates Org logo', async () => {
     const file = utils.getMockImage('logo.png');
     const response = await client.updateOrgLogo(file);
-    expect(response.status).to.equal(201);
+    expect(response).to.equal(undefined);
   });
 });

@@ -5252,9 +5252,10 @@ class ObservableOrgSettingApi {
   /**
       * Updates the logo for your organization.
       * Update org logo
+      * @param file
       */
-  updateOrgLogo(_options) {
-    const requestContextPromise = this.requestFactory.updateOrgLogo(_options);
+  updateOrgLogo(file, _options) {
+    const requestContextPromise = this.requestFactory.updateOrgLogo(file, _options);
     // build promise chain
     let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
     for (let middleware of this.configuration.middleware) {

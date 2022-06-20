@@ -2120,8 +2120,8 @@ class ObjectOrgSettingApi {
       * Update org logo
       * @param param the request object
       */
-    updateOrgLogo(param = {}, options) {
-        return this.api.updateOrgLogo(options).toPromise();
+    updateOrgLogo(param, options) {
+        return this.api.updateOrgLogo(param.file, options).toPromise();
     }
     /**
       * Update settings of your organization.

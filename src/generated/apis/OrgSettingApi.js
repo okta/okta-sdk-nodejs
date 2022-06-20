@@ -17,6 +17,8 @@ exports.OrgSettingApiResponseProcessor = exports.OrgSettingApiRequestFactory = v
 // TODO: better import syntax?
 const baseapi_1 = require('./baseapi');
 const http_1 = require('../http/http');
+const FormData = require('form-data');
+const url_1 = require('url');
 const ObjectSerializer_1 = require('../models/ObjectSerializer');
 const exception_1 = require('./exception');
 const util_1 = require('../util');
@@ -515,14 +517,42 @@ class OrgSettingApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   /**
      * Updates the logo for your organization.
      * Update org logo
+     * @param file
      */
-  async updateOrgLogo(_options) {
+  async updateOrgLogo(file, _options) {
     let _config = _options || this.configuration;
+    // verify required parameter 'file' is not null or undefined
+    if (file === null || file === undefined) {
+      throw new baseapi_1.RequiredError('OrgSettingApi', 'updateOrgLogo', 'file');
+    }
     // Path Params
     const localVarPath = '/api/v1/org/logo';
     // Make Request Context
     const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.POST);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
+    // Form Params
+    const useForm = (0, util_1.canConsumeForm)([
+      'multipart/form-data',
+    ]);
+    let localVarFormParams;
+    if (useForm) {
+      localVarFormParams = new FormData();
+    } else {
+      localVarFormParams = new url_1.URLSearchParams();
+    }
+    if (file !== undefined) {
+      // TODO: replace .append with .set
+      if (localVarFormParams instanceof FormData) {
+        localVarFormParams.append('file', file);
+      }
+    }
+    requestContext.setBody(localVarFormParams);
+    if (!useForm) {
+      const contentType = ObjectSerializer_1.ObjectSerializer.getPreferredMediaType([
+        'multipart/form-data'
+      ]);
+      requestContext.setHeaderParam('Content-Type', contentType);
+    }
     let authMethod;
     // Apply auth methods
     authMethod = _config.authMethods['API_Token'];

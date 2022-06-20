@@ -114,6 +114,26 @@ const V3ApiOperations = {
     'getCurrentConfiguration',
     'updateConfiguration'
   ],
+  OrgSettingApi: [
+    'bulkRemoveEmailAddressBounces',
+    'extendOktaSupport',
+    'getOktaCommunicationSettings',
+    'getOrgContactTypes',
+    'getOrgContactUser',
+    'getOrgOktaSupportSettings',
+    'getOrgPreferences',
+    'getOrgSettings',
+    'grantOktaSupport',
+    'hideOktaUIFooter',
+    'optInUsersToOktaCommunicationEmails',
+    'optOutUsersFromOktaCommunicationEmails',
+    'partialUpdateOrgSetting',
+    'revokeOktaSupport',
+    'showOktaUIFooter',
+    'updateOrgContactUser',
+    'updateOrgLogo',
+    'updateOrgSetting'
+  ],
 };
 
 function getV3ReturnType(operationId) {

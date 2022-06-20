@@ -15,7 +15,7 @@ import { OAuth } from './oauth';
 import { Http } from './http';
 import { RequestExecutor } from './request-executor';
 import { V2Configuration } from './configuration';
-import { AuthenticatorApi, SchemaApi, UserTypeApi, InlineHookApi, ProfileMappingApi, DomainApi, LinkedObjectApi, SystemLogApi, FeatureApi, GroupApi, EventHookApi, NetworkZoneApi, ThreatInsightApi } from './generated';
+import { AuthenticatorApi, SchemaApi, UserTypeApi, InlineHookApi, ProfileMappingApi, DomainApi, LinkedObjectApi, SystemLogApi, FeatureApi, GroupApi, EventHookApi, NetworkZoneApi, ThreatInsightApi, OrgSettingApi } from './generated';
 export declare class Client extends ParameterizedOperationsClient {
   constructor(config?: V2Configuration);
 
@@ -42,4 +42,5 @@ export declare class Client extends ParameterizedOperationsClient {
   eventHookApi: EventHookApi;
   networkZoneApi: NetworkZoneApi;
   threatInsightApi: ThreatInsightApi;
+  orgSettingApi: OrgSettingApi;
 }

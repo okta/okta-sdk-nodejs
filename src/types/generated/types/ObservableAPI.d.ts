@@ -1935,8 +1935,9 @@ export declare class ObservableOrgSettingApi {
   /**
       * Updates the logo for your organization.
       * Update org logo
+      * @param file
       */
-  updateOrgLogo(_options?: Configuration): Observable<void>;
+  updateOrgLogo(file: HttpFile, _options?: Configuration): Observable<void>;
   /**
       * Update settings of your organization.
       * Update Org setting
