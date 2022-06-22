@@ -63,6 +63,7 @@ import { ResponseLinks } from './models/ResponseLinks';
 import { Role } from './models/Role';
 import { AssignRoleRequestOptions } from './models/AssignRoleRequest';
 import { CatalogApplication } from './models/CatalogApplication';
+import { ReadStream } from 'fs';
 
 export declare class GeneratedApiClient {
   listApplications(queryParameters?: {
