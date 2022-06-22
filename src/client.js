@@ -23,7 +23,6 @@ const { OAuth } = require('./oauth');
 const { AuthenticatorApi, SchemaApi, UserTypeApi, InlineHookApi, ProfileMappingApi, DomainApi, LinkedObjectApi, SystemLogApi, FeatureApi, GroupApi, EventHookApi, NetworkZoneApi, ThreatInsightApi, OrgSettingApi, ApplicationApi, AuthorizationServerApi } = require('./generated');
 const { createConfiguration } = require('./generated/configuration');
 const { ServerConfiguration } = require('./generated/servers');
-const { Observable } = require('./generated/rxjsStub');
 
 
 /**
