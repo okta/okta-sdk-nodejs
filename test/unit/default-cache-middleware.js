@@ -9,7 +9,9 @@ const middleware = require('../../src/default-cache-middleware');
 const DEFAULT_TEST_TIMEOUT = 2000;
 const KB_512 = 1024 * 512;
 
-async function next(ctx, body = '{}') {
+async function next(ctx, body = '{}', headers = {}) {
+  const headersMap = new Map(Object.entries(headers));
+  headers.forEach = headersMap.forEach.bind(headersMap);
   let used = false;
   ctx.res = ctx.res || {
     async text() {
@@ -19,8 +21,10 @@ async function next(ctx, body = '{}') {
       used = true;
       return body;
     },
+    headers,
     clone() {
       return {
+        headers,
         async text() {
           return body;
         }
@@ -62,8 +66,10 @@ describe('Default cache middleware', function () {
       cacheStore
     };
     const body = JSON.stringify(_.set({}, '_links.self.href', 'http://example.com/item'));
-    await middleware(ctx, () => next(ctx, body));
-    expect(await cacheStore.get(ctx.req.url)).to.equal(body);
+    const headers = { test: 'value' };
+    const headersStr = JSON.stringify(headers);
+    await middleware(ctx, () => next(ctx, body, headers));
+    expect(await cacheStore.get(ctx.req.url)).to.equal(`${body}\0${headersStr}`);
     // make sure the middleware doesn't flush the stream
     expect(await ctx.res.text()).to.equal(body);
   });
@@ -77,12 +83,20 @@ describe('Default cache middleware', function () {
       },
       cacheStore
     };
+    const headers = { test: 'value' };
+    const headersStr = JSON.stringify(headers);
     const bodyObj = _.set({}, '_links.self.href', 'http://example.com/item');
     const bodyStr = JSON.stringify(bodyObj);
-    await cacheStore.set(ctx.req.url, bodyStr);
+    await cacheStore.set(ctx.req.url, `${bodyStr}\0${headersStr}`);
     await middleware(ctx, () => next(ctx));
     expect(await ctx.res.json()).to.eql(bodyObj);
     expect(await ctx.res.text()).to.equal(bodyStr);
+    expect(ctx.res.headers.forEach).to.not.equal(undefined);
+    const cachedHeaders = {};
+    ctx.res.headers.forEach((value, name) => {
+      cachedHeaders[name] = value;
+    });
+    expect(cachedHeaders).to.eql(headers);
   });
 
   it('doesn\'t cache GET items without a \'self\' link', async () => {

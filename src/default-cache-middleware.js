@@ -76,10 +76,10 @@ module.exports = function defaultCacheMiddleware(ctx, next) {
       }
       if (ctx.req.method.toLowerCase() === 'get') {
         const headers = {};
-        ctx.res.headers.forEach((value, name) => {
+        ctx.res.headers?.forEach((value, name) => {
           headers[name] = value;
         });
-        const headersStr = JSON.stringify(headers);
+        const headersStr = Object.keys(headers).length ? JSON.stringify(headers) : '';
 
         const customResponseBufferSize = ctx.defaultCacheMiddlewareResponseBufferSize;
         const clonedResponse = customResponseBufferSize ?
@@ -87,7 +87,7 @@ module.exports = function defaultCacheMiddleware(ctx, next) {
         // store response in cache
         return clonedResponse.text()
           .then(text => {
-            const valueToCache = text + '\0' + headersStr;
+            const valueToCache = text + (headersStr ? '\0' + headersStr : '');
             try {
               const selfHref = _.get(JSON.parse(text), '_links.self.href');
               if (selfHref) {
