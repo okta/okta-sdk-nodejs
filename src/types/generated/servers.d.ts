@@ -13,7 +13,9 @@
 
 import { RequestContext, HttpMethodEnum as HttpMethod } from './http/http';
 export interface BaseServerConfiguration {
-    makeRequestContext(endpoint: string, httpMethod: HttpMethod): RequestContext;
+    makeRequestContext(endpoint: string, httpMethod: HttpMethod, vars: Partial<{
+        [key: string]: string;
+    }>): RequestContext;
 }
 /**
  *

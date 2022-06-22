@@ -5,7 +5,7 @@ import * as FormData from 'form-data';
 import { URLSearchParams } from 'url';
 import * as http from 'http';
 import * as https from 'https';
-import { ReadStream } from 'fs';
+import { Readable } from 'stream';
 {{/node}}
 {{/platforms}}
 {{#platforms}}
@@ -50,7 +50,7 @@ export enum HttpMethodEnum {
  */
 {{#platforms}}
 {{#node}}
-export type HttpFile = ReadStream;
+export type HttpFile = Readable;
 {{/node}}
 {{^node}}
 export type HttpFile = {{{fileContentDataType}}} & { readonly name: string };
