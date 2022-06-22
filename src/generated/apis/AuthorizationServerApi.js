@@ -36,10 +36,12 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
       throw new baseapi_1.RequiredError('AuthorizationServerApi', 'activateAuthorizationServer', 'authServerId');
     }
     // Path Params
-    const localVarPath = '/api/v1/authorizationServers/{authServerId}/lifecycle/activate'
-      .replace('{' + 'authServerId' + '}', encodeURIComponent(String(authServerId)));
+    const path = '/api/v1/authorizationServers/{authServerId}/lifecycle/activate';
+    const vars = {
+      ['authServerId']: String(authServerId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.POST);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -75,11 +77,13 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
       throw new baseapi_1.RequiredError('AuthorizationServerApi', 'activateAuthorizationServerPolicy', 'policyId');
     }
     // Path Params
-    const localVarPath = '/api/v1/authorizationServers/{authServerId}/policies/{policyId}/lifecycle/activate'
-      .replace('{' + 'authServerId' + '}', encodeURIComponent(String(authServerId)))
-      .replace('{' + 'policyId' + '}', encodeURIComponent(String(policyId)));
+    const path = '/api/v1/authorizationServers/{authServerId}/policies/{policyId}/lifecycle/activate';
+    const vars = {
+      ['authServerId']: String(authServerId),
+      ['policyId']: String(policyId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.POST);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -120,12 +124,14 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
       throw new baseapi_1.RequiredError('AuthorizationServerApi', 'activateAuthorizationServerPolicyRule', 'ruleId');
     }
     // Path Params
-    const localVarPath = '/api/v1/authorizationServers/{authServerId}/policies/{policyId}/rules/{ruleId}/lifecycle/activate'
-      .replace('{' + 'authServerId' + '}', encodeURIComponent(String(authServerId)))
-      .replace('{' + 'policyId' + '}', encodeURIComponent(String(policyId)))
-      .replace('{' + 'ruleId' + '}', encodeURIComponent(String(ruleId)));
+    const path = '/api/v1/authorizationServers/{authServerId}/policies/{policyId}/rules/{ruleId}/lifecycle/activate';
+    const vars = {
+      ['authServerId']: String(authServerId),
+      ['policyId']: String(policyId),
+      ['ruleId']: String(ruleId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.POST);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -156,9 +162,10 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
       throw new baseapi_1.RequiredError('AuthorizationServerApi', 'createAuthorizationServer', 'authorizationServer');
     }
     // Path Params
-    const localVarPath = '/api/v1/authorizationServers';
+    const path = '/api/v1/authorizationServers';
+    const vars = {};
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.POST);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Body Params
     const contentType = ObjectSerializer_1.ObjectSerializer.getPreferredMediaType([
@@ -201,10 +208,12 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
       throw new baseapi_1.RequiredError('AuthorizationServerApi', 'createAuthorizationServerPolicy', 'policy');
     }
     // Path Params
-    const localVarPath = '/api/v1/authorizationServers/{authServerId}/policies'
-      .replace('{' + 'authServerId' + '}', encodeURIComponent(String(authServerId)));
+    const path = '/api/v1/authorizationServers/{authServerId}/policies';
+    const vars = {
+      ['authServerId']: String(authServerId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.POST);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Body Params
     const contentType = ObjectSerializer_1.ObjectSerializer.getPreferredMediaType([
@@ -252,11 +261,13 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
       throw new baseapi_1.RequiredError('AuthorizationServerApi', 'createAuthorizationServerPolicyRule', 'policyRule');
     }
     // Path Params
-    const localVarPath = '/api/v1/authorizationServers/{authServerId}/policies/{policyId}/rules'
-      .replace('{' + 'policyId' + '}', encodeURIComponent(String(policyId)))
-      .replace('{' + 'authServerId' + '}', encodeURIComponent(String(authServerId)));
+    const path = '/api/v1/authorizationServers/{authServerId}/policies/{policyId}/rules';
+    const vars = {
+      ['policyId']: String(policyId),
+      ['authServerId']: String(authServerId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.POST);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Body Params
     const contentType = ObjectSerializer_1.ObjectSerializer.getPreferredMediaType([
@@ -299,10 +310,12 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
       throw new baseapi_1.RequiredError('AuthorizationServerApi', 'createOAuth2Claim', 'oAuth2Claim');
     }
     // Path Params
-    const localVarPath = '/api/v1/authorizationServers/{authServerId}/claims'
-      .replace('{' + 'authServerId' + '}', encodeURIComponent(String(authServerId)));
+    const path = '/api/v1/authorizationServers/{authServerId}/claims';
+    const vars = {
+      ['authServerId']: String(authServerId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.POST);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Body Params
     const contentType = ObjectSerializer_1.ObjectSerializer.getPreferredMediaType([
@@ -345,10 +358,12 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
       throw new baseapi_1.RequiredError('AuthorizationServerApi', 'createOAuth2Scope', 'oAuth2Scope');
     }
     // Path Params
-    const localVarPath = '/api/v1/authorizationServers/{authServerId}/scopes'
-      .replace('{' + 'authServerId' + '}', encodeURIComponent(String(authServerId)));
+    const path = '/api/v1/authorizationServers/{authServerId}/scopes';
+    const vars = {
+      ['authServerId']: String(authServerId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.POST);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Body Params
     const contentType = ObjectSerializer_1.ObjectSerializer.getPreferredMediaType([
@@ -386,10 +401,12 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
       throw new baseapi_1.RequiredError('AuthorizationServerApi', 'deactivateAuthorizationServer', 'authServerId');
     }
     // Path Params
-    const localVarPath = '/api/v1/authorizationServers/{authServerId}/lifecycle/deactivate'
-      .replace('{' + 'authServerId' + '}', encodeURIComponent(String(authServerId)));
+    const path = '/api/v1/authorizationServers/{authServerId}/lifecycle/deactivate';
+    const vars = {
+      ['authServerId']: String(authServerId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.POST);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -425,11 +442,13 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
       throw new baseapi_1.RequiredError('AuthorizationServerApi', 'deactivateAuthorizationServerPolicy', 'policyId');
     }
     // Path Params
-    const localVarPath = '/api/v1/authorizationServers/{authServerId}/policies/{policyId}/lifecycle/deactivate'
-      .replace('{' + 'authServerId' + '}', encodeURIComponent(String(authServerId)))
-      .replace('{' + 'policyId' + '}', encodeURIComponent(String(policyId)));
+    const path = '/api/v1/authorizationServers/{authServerId}/policies/{policyId}/lifecycle/deactivate';
+    const vars = {
+      ['authServerId']: String(authServerId),
+      ['policyId']: String(policyId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.POST);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -470,12 +489,14 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
       throw new baseapi_1.RequiredError('AuthorizationServerApi', 'deactivateAuthorizationServerPolicyRule', 'ruleId');
     }
     // Path Params
-    const localVarPath = '/api/v1/authorizationServers/{authServerId}/policies/{policyId}/rules/{ruleId}/lifecycle/deactivate'
-      .replace('{' + 'authServerId' + '}', encodeURIComponent(String(authServerId)))
-      .replace('{' + 'policyId' + '}', encodeURIComponent(String(policyId)))
-      .replace('{' + 'ruleId' + '}', encodeURIComponent(String(ruleId)));
+    const path = '/api/v1/authorizationServers/{authServerId}/policies/{policyId}/rules/{ruleId}/lifecycle/deactivate';
+    const vars = {
+      ['authServerId']: String(authServerId),
+      ['policyId']: String(policyId),
+      ['ruleId']: String(ruleId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.POST);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -506,10 +527,12 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
       throw new baseapi_1.RequiredError('AuthorizationServerApi', 'deleteAuthorizationServer', 'authServerId');
     }
     // Path Params
-    const localVarPath = '/api/v1/authorizationServers/{authServerId}'
-      .replace('{' + 'authServerId' + '}', encodeURIComponent(String(authServerId)));
+    const path = '/api/v1/authorizationServers/{authServerId}';
+    const vars = {
+      ['authServerId']: String(authServerId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.DELETE);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.DELETE, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -545,11 +568,13 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
       throw new baseapi_1.RequiredError('AuthorizationServerApi', 'deleteAuthorizationServerPolicy', 'policyId');
     }
     // Path Params
-    const localVarPath = '/api/v1/authorizationServers/{authServerId}/policies/{policyId}'
-      .replace('{' + 'authServerId' + '}', encodeURIComponent(String(authServerId)))
-      .replace('{' + 'policyId' + '}', encodeURIComponent(String(policyId)));
+    const path = '/api/v1/authorizationServers/{authServerId}/policies/{policyId}';
+    const vars = {
+      ['authServerId']: String(authServerId),
+      ['policyId']: String(policyId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.DELETE);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.DELETE, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -590,12 +615,14 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
       throw new baseapi_1.RequiredError('AuthorizationServerApi', 'deleteAuthorizationServerPolicyRule', 'ruleId');
     }
     // Path Params
-    const localVarPath = '/api/v1/authorizationServers/{authServerId}/policies/{policyId}/rules/{ruleId}'
-      .replace('{' + 'policyId' + '}', encodeURIComponent(String(policyId)))
-      .replace('{' + 'authServerId' + '}', encodeURIComponent(String(authServerId)))
-      .replace('{' + 'ruleId' + '}', encodeURIComponent(String(ruleId)));
+    const path = '/api/v1/authorizationServers/{authServerId}/policies/{policyId}/rules/{ruleId}';
+    const vars = {
+      ['policyId']: String(policyId),
+      ['authServerId']: String(authServerId),
+      ['ruleId']: String(ruleId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.DELETE);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.DELETE, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -631,11 +658,13 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
       throw new baseapi_1.RequiredError('AuthorizationServerApi', 'deleteOAuth2Claim', 'claimId');
     }
     // Path Params
-    const localVarPath = '/api/v1/authorizationServers/{authServerId}/claims/{claimId}'
-      .replace('{' + 'authServerId' + '}', encodeURIComponent(String(authServerId)))
-      .replace('{' + 'claimId' + '}', encodeURIComponent(String(claimId)));
+    const path = '/api/v1/authorizationServers/{authServerId}/claims/{claimId}';
+    const vars = {
+      ['authServerId']: String(authServerId),
+      ['claimId']: String(claimId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.DELETE);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.DELETE, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -671,11 +700,13 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
       throw new baseapi_1.RequiredError('AuthorizationServerApi', 'deleteOAuth2Scope', 'scopeId');
     }
     // Path Params
-    const localVarPath = '/api/v1/authorizationServers/{authServerId}/scopes/{scopeId}'
-      .replace('{' + 'authServerId' + '}', encodeURIComponent(String(authServerId)))
-      .replace('{' + 'scopeId' + '}', encodeURIComponent(String(scopeId)));
+    const path = '/api/v1/authorizationServers/{authServerId}/scopes/{scopeId}';
+    const vars = {
+      ['authServerId']: String(authServerId),
+      ['scopeId']: String(scopeId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.DELETE);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.DELETE, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -706,10 +737,12 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
       throw new baseapi_1.RequiredError('AuthorizationServerApi', 'getAuthorizationServer', 'authServerId');
     }
     // Path Params
-    const localVarPath = '/api/v1/authorizationServers/{authServerId}'
-      .replace('{' + 'authServerId' + '}', encodeURIComponent(String(authServerId)));
+    const path = '/api/v1/authorizationServers/{authServerId}';
+    const vars = {
+      ['authServerId']: String(authServerId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.GET);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -745,11 +778,13 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
       throw new baseapi_1.RequiredError('AuthorizationServerApi', 'getAuthorizationServerPolicy', 'policyId');
     }
     // Path Params
-    const localVarPath = '/api/v1/authorizationServers/{authServerId}/policies/{policyId}'
-      .replace('{' + 'authServerId' + '}', encodeURIComponent(String(authServerId)))
-      .replace('{' + 'policyId' + '}', encodeURIComponent(String(policyId)));
+    const path = '/api/v1/authorizationServers/{authServerId}/policies/{policyId}';
+    const vars = {
+      ['authServerId']: String(authServerId),
+      ['policyId']: String(policyId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.GET);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -790,12 +825,14 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
       throw new baseapi_1.RequiredError('AuthorizationServerApi', 'getAuthorizationServerPolicyRule', 'ruleId');
     }
     // Path Params
-    const localVarPath = '/api/v1/authorizationServers/{authServerId}/policies/{policyId}/rules/{ruleId}'
-      .replace('{' + 'policyId' + '}', encodeURIComponent(String(policyId)))
-      .replace('{' + 'authServerId' + '}', encodeURIComponent(String(authServerId)))
-      .replace('{' + 'ruleId' + '}', encodeURIComponent(String(ruleId)));
+    const path = '/api/v1/authorizationServers/{authServerId}/policies/{policyId}/rules/{ruleId}';
+    const vars = {
+      ['policyId']: String(policyId),
+      ['authServerId']: String(authServerId),
+      ['ruleId']: String(ruleId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.GET);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -831,11 +868,13 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
       throw new baseapi_1.RequiredError('AuthorizationServerApi', 'getOAuth2Claim', 'claimId');
     }
     // Path Params
-    const localVarPath = '/api/v1/authorizationServers/{authServerId}/claims/{claimId}'
-      .replace('{' + 'authServerId' + '}', encodeURIComponent(String(authServerId)))
-      .replace('{' + 'claimId' + '}', encodeURIComponent(String(claimId)));
+    const path = '/api/v1/authorizationServers/{authServerId}/claims/{claimId}';
+    const vars = {
+      ['authServerId']: String(authServerId),
+      ['claimId']: String(claimId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.GET);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -871,11 +910,13 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
       throw new baseapi_1.RequiredError('AuthorizationServerApi', 'getOAuth2Scope', 'scopeId');
     }
     // Path Params
-    const localVarPath = '/api/v1/authorizationServers/{authServerId}/scopes/{scopeId}'
-      .replace('{' + 'authServerId' + '}', encodeURIComponent(String(authServerId)))
-      .replace('{' + 'scopeId' + '}', encodeURIComponent(String(scopeId)));
+    const path = '/api/v1/authorizationServers/{authServerId}/scopes/{scopeId}';
+    const vars = {
+      ['authServerId']: String(authServerId),
+      ['scopeId']: String(scopeId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.GET);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -917,12 +958,14 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
       throw new baseapi_1.RequiredError('AuthorizationServerApi', 'getRefreshTokenForAuthorizationServerAndClient', 'tokenId');
     }
     // Path Params
-    const localVarPath = '/api/v1/authorizationServers/{authServerId}/clients/{clientId}/tokens/{tokenId}'
-      .replace('{' + 'authServerId' + '}', encodeURIComponent(String(authServerId)))
-      .replace('{' + 'clientId' + '}', encodeURIComponent(String(clientId)))
-      .replace('{' + 'tokenId' + '}', encodeURIComponent(String(tokenId)));
+    const path = '/api/v1/authorizationServers/{authServerId}/clients/{clientId}/tokens/{tokenId}';
+    const vars = {
+      ['authServerId']: String(authServerId),
+      ['clientId']: String(clientId),
+      ['tokenId']: String(tokenId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.GET);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Query Params
     if (expand !== undefined) {
@@ -957,10 +1000,12 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
       throw new baseapi_1.RequiredError('AuthorizationServerApi', 'listAuthorizationServerKeys', 'authServerId');
     }
     // Path Params
-    const localVarPath = '/api/v1/authorizationServers/{authServerId}/credentials/keys'
-      .replace('{' + 'authServerId' + '}', encodeURIComponent(String(authServerId)));
+    const path = '/api/v1/authorizationServers/{authServerId}/credentials/keys';
+    const vars = {
+      ['authServerId']: String(authServerId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.GET);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -991,10 +1036,12 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
       throw new baseapi_1.RequiredError('AuthorizationServerApi', 'listAuthorizationServerPolicies', 'authServerId');
     }
     // Path Params
-    const localVarPath = '/api/v1/authorizationServers/{authServerId}/policies'
-      .replace('{' + 'authServerId' + '}', encodeURIComponent(String(authServerId)));
+    const path = '/api/v1/authorizationServers/{authServerId}/policies';
+    const vars = {
+      ['authServerId']: String(authServerId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.GET);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -1030,11 +1077,13 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
       throw new baseapi_1.RequiredError('AuthorizationServerApi', 'listAuthorizationServerPolicyRules', 'authServerId');
     }
     // Path Params
-    const localVarPath = '/api/v1/authorizationServers/{authServerId}/policies/{policyId}/rules'
-      .replace('{' + 'policyId' + '}', encodeURIComponent(String(policyId)))
-      .replace('{' + 'authServerId' + '}', encodeURIComponent(String(authServerId)));
+    const path = '/api/v1/authorizationServers/{authServerId}/policies/{policyId}/rules';
+    const vars = {
+      ['policyId']: String(policyId),
+      ['authServerId']: String(authServerId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.GET);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -1063,9 +1112,10 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
   async listAuthorizationServers(q, limit, after, _options) {
     let _config = _options || this.configuration;
     // Path Params
-    const localVarPath = '/api/v1/authorizationServers';
+    const path = '/api/v1/authorizationServers';
+    const vars = {};
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.GET);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Query Params
     if (q !== undefined) {
@@ -1108,10 +1158,12 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
       throw new baseapi_1.RequiredError('AuthorizationServerApi', 'listOAuth2Claims', 'authServerId');
     }
     // Path Params
-    const localVarPath = '/api/v1/authorizationServers/{authServerId}/claims'
-      .replace('{' + 'authServerId' + '}', encodeURIComponent(String(authServerId)));
+    const path = '/api/v1/authorizationServers/{authServerId}/claims';
+    const vars = {
+      ['authServerId']: String(authServerId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.GET);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -1142,10 +1194,12 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
       throw new baseapi_1.RequiredError('AuthorizationServerApi', 'listOAuth2ClientsForAuthorizationServer', 'authServerId');
     }
     // Path Params
-    const localVarPath = '/api/v1/authorizationServers/{authServerId}/clients'
-      .replace('{' + 'authServerId' + '}', encodeURIComponent(String(authServerId)));
+    const path = '/api/v1/authorizationServers/{authServerId}/clients';
+    const vars = {
+      ['authServerId']: String(authServerId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.GET);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -1180,10 +1234,12 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
       throw new baseapi_1.RequiredError('AuthorizationServerApi', 'listOAuth2Scopes', 'authServerId');
     }
     // Path Params
-    const localVarPath = '/api/v1/authorizationServers/{authServerId}/scopes'
-      .replace('{' + 'authServerId' + '}', encodeURIComponent(String(authServerId)));
+    const path = '/api/v1/authorizationServers/{authServerId}/scopes';
+    const vars = {
+      ['authServerId']: String(authServerId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.GET);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Query Params
     if (q !== undefined) {
@@ -1238,11 +1294,13 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
       throw new baseapi_1.RequiredError('AuthorizationServerApi', 'listRefreshTokensForAuthorizationServerAndClient', 'clientId');
     }
     // Path Params
-    const localVarPath = '/api/v1/authorizationServers/{authServerId}/clients/{clientId}/tokens'
-      .replace('{' + 'authServerId' + '}', encodeURIComponent(String(authServerId)))
-      .replace('{' + 'clientId' + '}', encodeURIComponent(String(clientId)));
+    const path = '/api/v1/authorizationServers/{authServerId}/clients/{clientId}/tokens';
+    const vars = {
+      ['authServerId']: String(authServerId),
+      ['clientId']: String(clientId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.GET);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Query Params
     if (expand !== undefined) {
@@ -1295,12 +1353,14 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
       throw new baseapi_1.RequiredError('AuthorizationServerApi', 'revokeRefreshTokenForAuthorizationServerAndClient', 'tokenId');
     }
     // Path Params
-    const localVarPath = '/api/v1/authorizationServers/{authServerId}/clients/{clientId}/tokens/{tokenId}'
-      .replace('{' + 'authServerId' + '}', encodeURIComponent(String(authServerId)))
-      .replace('{' + 'clientId' + '}', encodeURIComponent(String(clientId)))
-      .replace('{' + 'tokenId' + '}', encodeURIComponent(String(tokenId)));
+    const path = '/api/v1/authorizationServers/{authServerId}/clients/{clientId}/tokens/{tokenId}';
+    const vars = {
+      ['authServerId']: String(authServerId),
+      ['clientId']: String(clientId),
+      ['tokenId']: String(tokenId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.DELETE);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.DELETE, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -1336,11 +1396,13 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
       throw new baseapi_1.RequiredError('AuthorizationServerApi', 'revokeRefreshTokensForAuthorizationServerAndClient', 'clientId');
     }
     // Path Params
-    const localVarPath = '/api/v1/authorizationServers/{authServerId}/clients/{clientId}/tokens'
-      .replace('{' + 'authServerId' + '}', encodeURIComponent(String(authServerId)))
-      .replace('{' + 'clientId' + '}', encodeURIComponent(String(clientId)));
+    const path = '/api/v1/authorizationServers/{authServerId}/clients/{clientId}/tokens';
+    const vars = {
+      ['authServerId']: String(authServerId),
+      ['clientId']: String(clientId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.DELETE);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.DELETE, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -1376,10 +1438,12 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
       throw new baseapi_1.RequiredError('AuthorizationServerApi', 'rotateAuthorizationServerKeys', 'use');
     }
     // Path Params
-    const localVarPath = '/api/v1/authorizationServers/{authServerId}/credentials/lifecycle/keyRotate'
-      .replace('{' + 'authServerId' + '}', encodeURIComponent(String(authServerId)));
+    const path = '/api/v1/authorizationServers/{authServerId}/credentials/lifecycle/keyRotate';
+    const vars = {
+      ['authServerId']: String(authServerId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.POST);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Body Params
     const contentType = ObjectSerializer_1.ObjectSerializer.getPreferredMediaType([
@@ -1422,10 +1486,12 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
       throw new baseapi_1.RequiredError('AuthorizationServerApi', 'updateAuthorizationServer', 'authorizationServer');
     }
     // Path Params
-    const localVarPath = '/api/v1/authorizationServers/{authServerId}'
-      .replace('{' + 'authServerId' + '}', encodeURIComponent(String(authServerId)));
+    const path = '/api/v1/authorizationServers/{authServerId}';
+    const vars = {
+      ['authServerId']: String(authServerId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.PUT);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.PUT, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Body Params
     const contentType = ObjectSerializer_1.ObjectSerializer.getPreferredMediaType([
@@ -1473,11 +1539,13 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
       throw new baseapi_1.RequiredError('AuthorizationServerApi', 'updateAuthorizationServerPolicy', 'policy');
     }
     // Path Params
-    const localVarPath = '/api/v1/authorizationServers/{authServerId}/policies/{policyId}'
-      .replace('{' + 'authServerId' + '}', encodeURIComponent(String(authServerId)))
-      .replace('{' + 'policyId' + '}', encodeURIComponent(String(policyId)));
+    const path = '/api/v1/authorizationServers/{authServerId}/policies/{policyId}';
+    const vars = {
+      ['authServerId']: String(authServerId),
+      ['policyId']: String(policyId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.PUT);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.PUT, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Body Params
     const contentType = ObjectSerializer_1.ObjectSerializer.getPreferredMediaType([
@@ -1530,12 +1598,14 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
       throw new baseapi_1.RequiredError('AuthorizationServerApi', 'updateAuthorizationServerPolicyRule', 'policyRule');
     }
     // Path Params
-    const localVarPath = '/api/v1/authorizationServers/{authServerId}/policies/{policyId}/rules/{ruleId}'
-      .replace('{' + 'policyId' + '}', encodeURIComponent(String(policyId)))
-      .replace('{' + 'authServerId' + '}', encodeURIComponent(String(authServerId)))
-      .replace('{' + 'ruleId' + '}', encodeURIComponent(String(ruleId)));
+    const path = '/api/v1/authorizationServers/{authServerId}/policies/{policyId}/rules/{ruleId}';
+    const vars = {
+      ['policyId']: String(policyId),
+      ['authServerId']: String(authServerId),
+      ['ruleId']: String(ruleId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.PUT);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.PUT, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Body Params
     const contentType = ObjectSerializer_1.ObjectSerializer.getPreferredMediaType([
@@ -1583,11 +1653,13 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
       throw new baseapi_1.RequiredError('AuthorizationServerApi', 'updateOAuth2Claim', 'oAuth2Claim');
     }
     // Path Params
-    const localVarPath = '/api/v1/authorizationServers/{authServerId}/claims/{claimId}'
-      .replace('{' + 'authServerId' + '}', encodeURIComponent(String(authServerId)))
-      .replace('{' + 'claimId' + '}', encodeURIComponent(String(claimId)));
+    const path = '/api/v1/authorizationServers/{authServerId}/claims/{claimId}';
+    const vars = {
+      ['authServerId']: String(authServerId),
+      ['claimId']: String(claimId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.PUT);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.PUT, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Body Params
     const contentType = ObjectSerializer_1.ObjectSerializer.getPreferredMediaType([
@@ -1635,11 +1707,13 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
       throw new baseapi_1.RequiredError('AuthorizationServerApi', 'updateOAuth2Scope', 'oAuth2Scope');
     }
     // Path Params
-    const localVarPath = '/api/v1/authorizationServers/{authServerId}/scopes/{scopeId}'
-      .replace('{' + 'authServerId' + '}', encodeURIComponent(String(authServerId)))
-      .replace('{' + 'scopeId' + '}', encodeURIComponent(String(scopeId)));
+    const path = '/api/v1/authorizationServers/{authServerId}/scopes/{scopeId}';
+    const vars = {
+      ['authServerId']: String(authServerId),
+      ['scopeId']: String(scopeId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.PUT);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.PUT, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Body Params
     const contentType = ObjectSerializer_1.ObjectSerializer.getPreferredMediaType([
@@ -1677,7 +1751,7 @@ class AuthorizationServerApiResponseProcessor {
      */
   async activateAuthorizationServer(response) {
     const contentType = ObjectSerializer_1.ObjectSerializer.normalizeMediaType(response.headers['content-type']);
-    if ((0, util_1.isCodeInRange)('200', response.httpStatusCode)) {
+    if ((0, util_1.isCodeInRange)('204', response.httpStatusCode)) {
       return;
     }
     if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
@@ -1708,7 +1782,7 @@ class AuthorizationServerApiResponseProcessor {
      */
   async activateAuthorizationServerPolicy(response) {
     const contentType = ObjectSerializer_1.ObjectSerializer.normalizeMediaType(response.headers['content-type']);
-    if ((0, util_1.isCodeInRange)('200', response.httpStatusCode)) {
+    if ((0, util_1.isCodeInRange)('204', response.httpStatusCode)) {
       return;
     }
     if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
@@ -1739,7 +1813,7 @@ class AuthorizationServerApiResponseProcessor {
      */
   async activateAuthorizationServerPolicyRule(response) {
     const contentType = ObjectSerializer_1.ObjectSerializer.normalizeMediaType(response.headers['content-type']);
-    if ((0, util_1.isCodeInRange)('200', response.httpStatusCode)) {
+    if ((0, util_1.isCodeInRange)('204', response.httpStatusCode)) {
       return;
     }
     if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
@@ -1770,12 +1844,9 @@ class AuthorizationServerApiResponseProcessor {
      */
   async createAuthorizationServer(response) {
     const contentType = ObjectSerializer_1.ObjectSerializer.normalizeMediaType(response.headers['content-type']);
-    if ((0, util_1.isCodeInRange)('200', response.httpStatusCode)) {
+    if ((0, util_1.isCodeInRange)('201', response.httpStatusCode)) {
       const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'AuthorizationServer', '');
       return body;
-    }
-    if ((0, util_1.isCodeInRange)('201', response.httpStatusCode)) {
-      return;
     }
     if ((0, util_1.isCodeInRange)('400', response.httpStatusCode)) {
       const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
@@ -1791,7 +1862,7 @@ class AuthorizationServerApiResponseProcessor {
     }
     // Work around for missing responses in specification, e.g. for petstore.yaml
     if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'AuthorizationServer | void', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'AuthorizationServer', '');
       return body;
     }
     throw new exception_1.ApiException(response.httpStatusCode, 'Unknown API Status Code!', await response.getBodyAsAny(), response.headers);
@@ -1805,12 +1876,9 @@ class AuthorizationServerApiResponseProcessor {
      */
   async createAuthorizationServerPolicy(response) {
     const contentType = ObjectSerializer_1.ObjectSerializer.normalizeMediaType(response.headers['content-type']);
-    if ((0, util_1.isCodeInRange)('200', response.httpStatusCode)) {
+    if ((0, util_1.isCodeInRange)('201', response.httpStatusCode)) {
       const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'AuthorizationServerPolicy', '');
       return body;
-    }
-    if ((0, util_1.isCodeInRange)('201', response.httpStatusCode)) {
-      return;
     }
     if ((0, util_1.isCodeInRange)('400', response.httpStatusCode)) {
       const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
@@ -1830,7 +1898,7 @@ class AuthorizationServerApiResponseProcessor {
     }
     // Work around for missing responses in specification, e.g. for petstore.yaml
     if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'void | AuthorizationServerPolicy', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'AuthorizationServerPolicy', '');
       return body;
     }
     throw new exception_1.ApiException(response.httpStatusCode, 'Unknown API Status Code!', await response.getBodyAsAny(), response.headers);
@@ -1844,7 +1912,7 @@ class AuthorizationServerApiResponseProcessor {
      */
   async createAuthorizationServerPolicyRule(response) {
     const contentType = ObjectSerializer_1.ObjectSerializer.normalizeMediaType(response.headers['content-type']);
-    if ((0, util_1.isCodeInRange)('200', response.httpStatusCode)) {
+    if ((0, util_1.isCodeInRange)('201', response.httpStatusCode)) {
       const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'AuthorizationServerPolicyRule', '');
       return body;
     }
@@ -1880,12 +1948,9 @@ class AuthorizationServerApiResponseProcessor {
      */
   async createOAuth2Claim(response) {
     const contentType = ObjectSerializer_1.ObjectSerializer.normalizeMediaType(response.headers['content-type']);
-    if ((0, util_1.isCodeInRange)('200', response.httpStatusCode)) {
+    if ((0, util_1.isCodeInRange)('201', response.httpStatusCode)) {
       const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'OAuth2Claim', '');
       return body;
-    }
-    if ((0, util_1.isCodeInRange)('201', response.httpStatusCode)) {
-      return;
     }
     if ((0, util_1.isCodeInRange)('400', response.httpStatusCode)) {
       const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
@@ -1905,7 +1970,7 @@ class AuthorizationServerApiResponseProcessor {
     }
     // Work around for missing responses in specification, e.g. for petstore.yaml
     if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'void | OAuth2Claim', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'OAuth2Claim', '');
       return body;
     }
     throw new exception_1.ApiException(response.httpStatusCode, 'Unknown API Status Code!', await response.getBodyAsAny(), response.headers);
@@ -1919,12 +1984,9 @@ class AuthorizationServerApiResponseProcessor {
      */
   async createOAuth2Scope(response) {
     const contentType = ObjectSerializer_1.ObjectSerializer.normalizeMediaType(response.headers['content-type']);
-    if ((0, util_1.isCodeInRange)('200', response.httpStatusCode)) {
+    if ((0, util_1.isCodeInRange)('201', response.httpStatusCode)) {
       const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'OAuth2Scope', '');
       return body;
-    }
-    if ((0, util_1.isCodeInRange)('201', response.httpStatusCode)) {
-      return;
     }
     if ((0, util_1.isCodeInRange)('400', response.httpStatusCode)) {
       const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
@@ -1944,7 +2006,7 @@ class AuthorizationServerApiResponseProcessor {
     }
     // Work around for missing responses in specification, e.g. for petstore.yaml
     if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'void | OAuth2Scope', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'OAuth2Scope', '');
       return body;
     }
     throw new exception_1.ApiException(response.httpStatusCode, 'Unknown API Status Code!', await response.getBodyAsAny(), response.headers);
@@ -1958,7 +2020,7 @@ class AuthorizationServerApiResponseProcessor {
      */
   async deactivateAuthorizationServer(response) {
     const contentType = ObjectSerializer_1.ObjectSerializer.normalizeMediaType(response.headers['content-type']);
-    if ((0, util_1.isCodeInRange)('200', response.httpStatusCode)) {
+    if ((0, util_1.isCodeInRange)('204', response.httpStatusCode)) {
       return;
     }
     if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
@@ -1989,7 +2051,7 @@ class AuthorizationServerApiResponseProcessor {
      */
   async deactivateAuthorizationServerPolicy(response) {
     const contentType = ObjectSerializer_1.ObjectSerializer.normalizeMediaType(response.headers['content-type']);
-    if ((0, util_1.isCodeInRange)('200', response.httpStatusCode)) {
+    if ((0, util_1.isCodeInRange)('204', response.httpStatusCode)) {
       return;
     }
     if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
@@ -2020,7 +2082,7 @@ class AuthorizationServerApiResponseProcessor {
      */
   async deactivateAuthorizationServerPolicyRule(response) {
     const contentType = ObjectSerializer_1.ObjectSerializer.normalizeMediaType(response.headers['content-type']);
-    if ((0, util_1.isCodeInRange)('200', response.httpStatusCode)) {
+    if ((0, util_1.isCodeInRange)('204', response.httpStatusCode)) {
       return;
     }
     if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {

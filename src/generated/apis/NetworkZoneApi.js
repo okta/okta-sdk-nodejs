@@ -36,10 +36,12 @@ class NetworkZoneApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('NetworkZoneApi', 'activateNetworkZone', 'zoneId');
     }
     // Path Params
-    const localVarPath = '/api/v1/zones/{zoneId}/lifecycle/activate'
-      .replace('{' + 'zoneId' + '}', encodeURIComponent(String(zoneId)));
+    const path = '/api/v1/zones/{zoneId}/lifecycle/activate';
+    const vars = {
+      ['zoneId']: String(zoneId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.POST);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -70,9 +72,10 @@ class NetworkZoneApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('NetworkZoneApi', 'createNetworkZone', 'zone');
     }
     // Path Params
-    const localVarPath = '/api/v1/zones';
+    const path = '/api/v1/zones';
+    const vars = {};
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.POST);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Body Params
     const contentType = ObjectSerializer_1.ObjectSerializer.getPreferredMediaType([
@@ -110,10 +113,12 @@ class NetworkZoneApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('NetworkZoneApi', 'deactivateNetworkZone', 'zoneId');
     }
     // Path Params
-    const localVarPath = '/api/v1/zones/{zoneId}/lifecycle/deactivate'
-      .replace('{' + 'zoneId' + '}', encodeURIComponent(String(zoneId)));
+    const path = '/api/v1/zones/{zoneId}/lifecycle/deactivate';
+    const vars = {
+      ['zoneId']: String(zoneId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.POST);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -144,10 +149,12 @@ class NetworkZoneApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('NetworkZoneApi', 'deleteNetworkZone', 'zoneId');
     }
     // Path Params
-    const localVarPath = '/api/v1/zones/{zoneId}'
-      .replace('{' + 'zoneId' + '}', encodeURIComponent(String(zoneId)));
+    const path = '/api/v1/zones/{zoneId}';
+    const vars = {
+      ['zoneId']: String(zoneId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.DELETE);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.DELETE, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -178,10 +185,12 @@ class NetworkZoneApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('NetworkZoneApi', 'getNetworkZone', 'zoneId');
     }
     // Path Params
-    const localVarPath = '/api/v1/zones/{zoneId}'
-      .replace('{' + 'zoneId' + '}', encodeURIComponent(String(zoneId)));
+    const path = '/api/v1/zones/{zoneId}';
+    const vars = {
+      ['zoneId']: String(zoneId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.GET);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -210,9 +219,10 @@ class NetworkZoneApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   async listNetworkZones(after, limit, filter, _options) {
     let _config = _options || this.configuration;
     // Path Params
-    const localVarPath = '/api/v1/zones';
+    const path = '/api/v1/zones';
+    const vars = {};
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.GET);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Query Params
     if (after !== undefined) {
@@ -260,10 +270,12 @@ class NetworkZoneApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('NetworkZoneApi', 'updateNetworkZone', 'zone');
     }
     // Path Params
-    const localVarPath = '/api/v1/zones/{zoneId}'
-      .replace('{' + 'zoneId' + '}', encodeURIComponent(String(zoneId)));
+    const path = '/api/v1/zones/{zoneId}';
+    const vars = {
+      ['zoneId']: String(zoneId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.PUT);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.PUT, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Body Params
     const contentType = ObjectSerializer_1.ObjectSerializer.getPreferredMediaType([

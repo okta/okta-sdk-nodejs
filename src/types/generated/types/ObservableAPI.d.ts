@@ -627,14 +627,14 @@ export declare class ObservableAuthorizationServerApi {
       * Create an Authorization Server
       * @param authorizationServer
       */
-  createAuthorizationServer(authorizationServer: AuthorizationServer, _options?: Configuration): Observable<AuthorizationServer | void>;
+  createAuthorizationServer(authorizationServer: AuthorizationServer, _options?: Configuration): Observable<AuthorizationServer>;
   /**
       * Success
       * Create a Policy
       * @param authServerId
       * @param policy
       */
-  createAuthorizationServerPolicy(authServerId: string, policy: AuthorizationServerPolicy, _options?: Configuration): Observable<void | AuthorizationServerPolicy>;
+  createAuthorizationServerPolicy(authServerId: string, policy: AuthorizationServerPolicy, _options?: Configuration): Observable<AuthorizationServerPolicy>;
   /**
       * Creates a policy rule for the specified Custom Authorization Server and Policy.
       * Create a Policy Rule
@@ -649,14 +649,14 @@ export declare class ObservableAuthorizationServerApi {
       * @param authServerId
       * @param oAuth2Claim
       */
-  createOAuth2Claim(authServerId: string, oAuth2Claim: OAuth2Claim, _options?: Configuration): Observable<void | OAuth2Claim>;
+  createOAuth2Claim(authServerId: string, oAuth2Claim: OAuth2Claim, _options?: Configuration): Observable<OAuth2Claim>;
   /**
       * Success
       * Create a Custom Token Scope
       * @param authServerId
       * @param oAuth2Scope
       */
-  createOAuth2Scope(authServerId: string, oAuth2Scope: OAuth2Scope, _options?: Configuration): Observable<void | OAuth2Scope>;
+  createOAuth2Scope(authServerId: string, oAuth2Scope: OAuth2Scope, _options?: Configuration): Observable<OAuth2Scope>;
   /**
       * Success
       * Deactivate an Authorization Server

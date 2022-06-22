@@ -45,16 +45,36 @@ class ServerConfiguration {
     }
     return replacedUrl;
   }
+  getEndpointUrl(endpoint, vars) {
+    const endpointWithVars = endpoint.replace(/{(\w+)}/g, (match, key) => vars[key] || match);
+    return this.getUrl() + endpointWithVars;
+  }
+  getAffectedResources(path, vars) {
+    const resources = [];
+    let pl = path.length;
+    while (pl--) {
+      if (path[pl] === '}') {
+        const resourcePath = path.slice(0, pl + 1).replace(/{(\w+)}/g, (match, key) => vars[key] || match);
+        resources.push(this.getUrl() + resourcePath);
+      }
+    }
+    return resources;
+  }
   /**
-     * Creates a new request context for this server using the url with variables
-     * replaced with their respective values and the endpoint of the request appended.
+     * Creates a new request context for this server using the base url and the endpoint
+     * with variables replaced with their respective values.
+     * Sets affected resources.
      *
      * @param endpoint the endpoint to be queried on the server
      * @param httpMethod httpMethod to be used
+     * @param vars variables in endpoint to be replaced
      *
      */
-  makeRequestContext(endpoint, httpMethod) {
-    return new http_1.RequestContext(this.getUrl() + endpoint, httpMethod);
+  makeRequestContext(endpoint, httpMethod, vars) {
+    const ctx = new http_1.RequestContext(this.getEndpointUrl(endpoint, vars), httpMethod);
+    const affectedResources = this.getAffectedResources(endpoint, vars);
+    ctx.setAffectedResources(affectedResources);
+    return ctx;
   }
 }
 exports.ServerConfiguration = ServerConfiguration;

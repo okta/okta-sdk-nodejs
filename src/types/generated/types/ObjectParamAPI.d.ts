@@ -2088,13 +2088,13 @@ export declare class ObjectAuthorizationServerApi {
       * Create an Authorization Server
       * @param param the request object
       */
-  createAuthorizationServer(param: AuthorizationServerApiCreateAuthorizationServerRequest, options?: Configuration): Promise<AuthorizationServer | void>;
+  createAuthorizationServer(param: AuthorizationServerApiCreateAuthorizationServerRequest, options?: Configuration): Promise<AuthorizationServer>;
   /**
       * Success
       * Create a Policy
       * @param param the request object
       */
-  createAuthorizationServerPolicy(param: AuthorizationServerApiCreateAuthorizationServerPolicyRequest, options?: Configuration): Promise<void | AuthorizationServerPolicy>;
+  createAuthorizationServerPolicy(param: AuthorizationServerApiCreateAuthorizationServerPolicyRequest, options?: Configuration): Promise<AuthorizationServerPolicy>;
   /**
       * Creates a policy rule for the specified Custom Authorization Server and Policy.
       * Create a Policy Rule
@@ -2106,13 +2106,13 @@ export declare class ObjectAuthorizationServerApi {
       * Create a Custom Token Claim
       * @param param the request object
       */
-  createOAuth2Claim(param: AuthorizationServerApiCreateOAuth2ClaimRequest, options?: Configuration): Promise<void | OAuth2Claim>;
+  createOAuth2Claim(param: AuthorizationServerApiCreateOAuth2ClaimRequest, options?: Configuration): Promise<OAuth2Claim>;
   /**
       * Success
       * Create a Custom Token Scope
       * @param param the request object
       */
-  createOAuth2Scope(param: AuthorizationServerApiCreateOAuth2ScopeRequest, options?: Configuration): Promise<void | OAuth2Scope>;
+  createOAuth2Scope(param: AuthorizationServerApiCreateOAuth2ScopeRequest, options?: Configuration): Promise<OAuth2Scope>;
   /**
       * Success
       * Deactivate an Authorization Server

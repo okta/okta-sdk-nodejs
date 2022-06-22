@@ -13,7 +13,9 @@
 
 import { RequestContext, HttpMethodEnum as HttpMethod } from './http/http';
 export interface BaseServerConfiguration {
-    makeRequestContext(endpoint: string, httpMethod: HttpMethod): RequestContext;
+    makeRequestContext(endpoint: string, httpMethod: HttpMethod, vars: Partial<{
+        [key: string]: string;
+    }>): RequestContext;
 }
 /**
  *
@@ -35,15 +37,19 @@ export declare class ServerConfiguration<T extends {
   setVariables(variableConfiguration: Partial<T>): void;
   getConfiguration(): T;
   private getUrl;
+  private getEndpointUrl;
+  private getAffectedResources;
   /**
-     * Creates a new request context for this server using the url with variables
-     * replaced with their respective values and the endpoint of the request appended.
+     * Creates a new request context for this server using the base url and the endpoint
+     * with variables replaced with their respective values.
+     * Sets affected resources.
      *
      * @param endpoint the endpoint to be queried on the server
      * @param httpMethod httpMethod to be used
+     * @param vars variables in endpoint to be replaced
      *
      */
-  makeRequestContext(endpoint: string, httpMethod: HttpMethod): RequestContext;
+  makeRequestContext(endpoint: string, httpMethod: HttpMethod, vars: Partial<T>): RequestContext;
 }
 export declare const server1: ServerConfiguration<{
     subdomain: string;
