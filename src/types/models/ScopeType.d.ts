@@ -16,6 +16,7 @@
 declare enum ScopeType {
   CORS = 'CORS',
   REDIRECT = 'REDIRECT',
+  IFRAME_EMBED = 'IFRAME_EMBED',
 }
 
 export {

@@ -3,7 +3,7 @@ const {
   formatImportStatements,
   formatMethodSignature,
 } = require('./typescript-formatter');
-const { isV3Api } = require('./operation-v3');
+const { isV3Api, getV3ArgumentsOverride } = require('./operation-v3');
 
 
 const MODELS_SHOULD_NOT_PROCESS = ['object', 'string', 'undefined', 'Promise'];
@@ -343,9 +343,11 @@ const getOperationArgumentsAndReturnType = (operation, options = { tagV3Methods:
     if (bodyParamName) {
       const modelPropertiesType = operation.bodyModel === 'string' ?
         operation.bodyModel : isV3Api(operationId) && options.tagV3Methods ? `${operation.bodyModel}` : `${operation.bodyModel}${OPTIONS_TYPE_SUFFIX}`;
-      args.set(_.camelCase(bodyParamName), {
+      const bodyParamNameCamelCase = _.camelCase(bodyParamName);
+      const v3ParamOverride = getV3ArgumentsOverride(bodyParamNameCamelCase);
+      args.set(v3ParamOverride && options.tagV3Methods ? v3ParamOverride[0] : bodyParamNameCamelCase, {
         isRequired: hasRequiredParameterInRequestMedia(parameters, 'body'),
-        type: modelPropertiesType,
+        type: v3ParamOverride && options.tagV3Methods ? v3ParamOverride[1] : modelPropertiesType,
         namespace: isV3Api(operationId) && options.tagV3Methods ? 'v3' : '',
       });
     }

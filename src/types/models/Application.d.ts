@@ -121,6 +121,7 @@ declare class Application extends Resource {
   uploadApplicationLogo(appId: string, file: ReadStream): Promise<Response>;
   getFeatureForApplication(name: string): Promise<ApplicationFeature>;
   updateFeatureForApplication(name: string, capabilitiesObject: CapabilitiesObjectOptions): Promise<ApplicationFeature>;
+  updateApplicationPolicy(policyId: string): Promise<Response>;
 }
 
 export {

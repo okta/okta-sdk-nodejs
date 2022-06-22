@@ -320,6 +320,13 @@ class Application extends Resource {
   updateFeatureForApplication(name, capabilitiesObject) {
     return this.httpClient.updateFeatureForApplication(this.id, name, capabilitiesObject);
   }
+
+  /**
+   * @param {string} policyId
+   */
+  updateApplicationPolicy(policyId) {
+    return this.httpClient.updateApplicationPolicy(this.id, policyId);
+  }
 }
 
 module.exports = Application;

@@ -1133,6 +1133,86 @@ class ObjectCustomizationApi {
         return this.api.listEmailTemplates(param.brandId, param.after, param.limit, param.expand, options).toPromise();
     }
     /**
+      * Previews the error page.
+      * Preview the Error Page
+      * @param param the request object
+      */
+    previewErrorPage(param, options) {
+        return this.api.previewErrorPage(param.brandId, param.CustomizablePage, options).toPromise();
+    }
+    /**
+      * Preview the sign-in page.
+      * Preview the Sign-in Page.
+      * @param param the request object
+      */
+    previewSignInPage(param, options) {
+        return this.api.previewSignInPage(param.brandId, param.SignInPage, options).toPromise();
+    }
+    /**
+      * Replaces the error page.
+      * Replace the Error Page
+      * @param param the request object
+      */
+    replaceErrorPage(param, options) {
+        return this.api.replaceErrorPage(param.brandId, param.CustomizablePage, options).toPromise();
+    }
+    /**
+      * Replaces the sign-in page.
+      * Replace the Sign-in Page
+      * @param param the request object
+      */
+    replaceSignInPage(param, options) {
+        return this.api.replaceSignInPage(param.brandId, param.SignInPage, options).toPromise();
+    }
+    /**
+      * Replaces the sign-out page settings.
+      * Replace the Sign-out Page Settings
+      * @param param the request object
+      */
+    replaceSignOutPageSettings(param, options) {
+        return this.api.replaceSignOutPageSettings(param.brandId, param.HostedPage, options).toPromise();
+    }
+    /**
+      * Resets the error page.
+      * Reset the Error Page
+      * @param param the request object
+      */
+    resetErrorPage(param, options) {
+        return this.api.resetErrorPage(param.brandId, options).toPromise();
+    }
+    /**
+      * Reset the sign-in page.
+      * Reset the Sign-in Page
+      * @param param the request object
+      */
+    resetSignInPage(param, options) {
+        return this.api.resetSignInPage(param.brandId, options).toPromise();
+    }
+    /**
+      * Retrieves the error page.
+      * Retrieve the Error Page
+      * @param param the request object
+      */
+    retrieveErrorPage(param, options) {
+        return this.api.retrieveErrorPage(param.brandId, options).toPromise();
+    }
+    /**
+      * Retrieves the sign-in page.
+      * Retrieve the Sign-in Page
+      * @param param the request object
+      */
+    retrieveSignInPage(param, options) {
+        return this.api.retrieveSignInPage(param.brandId, options).toPromise();
+    }
+    /**
+      * Retrieves the sign-out page settings.
+      * Retrieve the Sign-out Page Settings
+      * @param param the request object
+      */
+    retrieveSignOutPageSettings(param, options) {
+        return this.api.retrieveSignOutPageSettings(param.brandId, options).toPromise();
+    }
+    /**
       * Sends a test email to the current user’s primary and secondary email addresses. The email content is selected based on the following priority: 1. The email customization for the language specified in the `language` query parameter. 2. The email template's default customization. 3. The email template’s default content, translated to the current user's language.
       * Send a Test Email
       * @param param the request object
@@ -1178,7 +1258,7 @@ class ObjectCustomizationApi {
       * @param param the request object
       */
     uploadBrandThemeBackgroundImage(param, options) {
-        return this.api.uploadBrandThemeBackgroundImage(param.brandId, param.themeId, options).toPromise();
+        return this.api.uploadBrandThemeBackgroundImage(param.brandId, param.themeId, param.file, options).toPromise();
     }
     /**
       * Updates the favicon for your theme
@@ -1186,7 +1266,7 @@ class ObjectCustomizationApi {
       * @param param the request object
       */
     uploadBrandThemeFavicon(param, options) {
-        return this.api.uploadBrandThemeFavicon(param.brandId, param.themeId, options).toPromise();
+        return this.api.uploadBrandThemeFavicon(param.brandId, param.themeId, param.file, options).toPromise();
     }
     /**
       * Updates the logo for your Theme
@@ -1194,7 +1274,7 @@ class ObjectCustomizationApi {
       * @param param the request object
       */
     uploadBrandThemeLogo(param, options) {
-        return this.api.uploadBrandThemeLogo(param.brandId, param.themeId, options).toPromise();
+        return this.api.uploadBrandThemeLogo(param.brandId, param.themeId, param.file, options).toPromise();
     }
 }
 exports.ObjectCustomizationApi = ObjectCustomizationApi;

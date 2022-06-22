@@ -24,57 +24,21 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, '__esModule', { value: true });
-exports.Brand = void 0;
-class Brand {
+exports.CustomizablePage = void 0;
+class CustomizablePage {
   constructor() {
   }
   static getAttributeTypeMap() {
-    return Brand.attributeTypeMap;
+    return CustomizablePage.attributeTypeMap;
   }
 }
-exports.Brand = Brand;
-Brand.discriminator = undefined;
-Brand.attributeTypeMap = [
+exports.CustomizablePage = CustomizablePage;
+CustomizablePage.discriminator = undefined;
+CustomizablePage.attributeTypeMap = [
   {
-    'name': 'agreeToCustomPrivacyPolicy',
-    'baseName': 'agreeToCustomPrivacyPolicy',
-    'type': 'boolean',
-    'format': ''
-  },
-  {
-    'name': 'customPrivacyPolicyUrl',
-    'baseName': 'customPrivacyPolicyUrl',
+    'name': 'pageContent',
+    'baseName': 'pageContent',
     'type': 'string',
-    'format': ''
-  },
-  {
-    'name': 'displayLanguage',
-    'baseName': 'displayLanguage',
-    'type': 'string',
-    'format': ''
-  },
-  {
-    'name': 'id',
-    'baseName': 'id',
-    'type': 'string',
-    'format': ''
-  },
-  {
-    'name': 'optOutOfUserCommunications',
-    'baseName': 'optOutOfUserCommunications',
-    'type': 'boolean',
-    'format': ''
-  },
-  {
-    'name': 'removePoweredByOkta',
-    'baseName': 'removePoweredByOkta',
-    'type': 'boolean',
-    'format': ''
-  },
-  {
-    'name': '_links',
-    'baseName': '_links',
-    'type': '{ [key: string]: any; }',
     'format': ''
   }
 ];

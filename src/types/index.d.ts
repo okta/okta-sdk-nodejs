@@ -195,6 +195,7 @@ export * from './models/IdentityProviderPolicy';
 export * from './models/IdentityProviderPolicyRuleCondition';
 export * from './models/IdpPolicyRuleAction';
 export * from './models/IdpPolicyRuleActionProvider';
+export * from './models/IframeEmbedScopeAllowedApps';
 export * from './models/ImageUploadResponse';
 export * from './models/InactivityPolicyRuleCondition';
 export * from './models/InlineHook';

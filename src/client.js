@@ -112,6 +112,7 @@ class Client extends GeneratedApiClient {
     this.orgSettingApi = new OrgSettingApi(configuration);
     this.applicationApi = new ApplicationApi(configuration);
     this.authorizationServerApi = new AuthorizationServerApi(configuration);
+    this.customizationApi = new CustomizationApi(configuration);
   }
 }
 

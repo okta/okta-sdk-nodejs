@@ -24,57 +24,45 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, '__esModule', { value: true });
-exports.Brand = void 0;
-class Brand {
+exports.SignInPageAllOf = void 0;
+class SignInPageAllOf {
   constructor() {
   }
   static getAttributeTypeMap() {
-    return Brand.attributeTypeMap;
+    return SignInPageAllOf.attributeTypeMap;
   }
 }
-exports.Brand = Brand;
-Brand.discriminator = undefined;
-Brand.attributeTypeMap = [
+exports.SignInPageAllOf = SignInPageAllOf;
+SignInPageAllOf.discriminator = undefined;
+SignInPageAllOf.attributeTypeMap = [
   {
-    'name': 'agreeToCustomPrivacyPolicy',
-    'baseName': 'agreeToCustomPrivacyPolicy',
-    'type': 'boolean',
+    'name': 'defaultApp',
+    'baseName': 'defaultApp',
+    'type': 'SignInPageAllOfDefaultApp',
     'format': ''
   },
   {
-    'name': 'customPrivacyPolicyUrl',
-    'baseName': 'customPrivacyPolicyUrl',
+    'name': 'type',
+    'baseName': 'type',
+    'type': 'HostedPageType',
+    'format': ''
+  },
+  {
+    'name': 'url',
+    'baseName': 'url',
     'type': 'string',
     'format': ''
   },
   {
-    'name': 'displayLanguage',
-    'baseName': 'displayLanguage',
+    'name': 'widgetCustomizations',
+    'baseName': 'widgetCustomizations',
+    'type': 'SignInPageAllOfWidgetCustomizations',
+    'format': ''
+  },
+  {
+    'name': 'widgetVersion',
+    'baseName': 'widgetVersion',
     'type': 'string',
-    'format': ''
-  },
-  {
-    'name': 'id',
-    'baseName': 'id',
-    'type': 'string',
-    'format': ''
-  },
-  {
-    'name': 'optOutOfUserCommunications',
-    'baseName': 'optOutOfUserCommunications',
-    'type': 'boolean',
-    'format': ''
-  },
-  {
-    'name': 'removePoweredByOkta',
-    'baseName': 'removePoweredByOkta',
-    'type': 'boolean',
-    'format': ''
-  },
-  {
-    'name': '_links',
-    'baseName': '_links',
-    'type': '{ [key: string]: any; }',
     'format': ''
   }
 ];

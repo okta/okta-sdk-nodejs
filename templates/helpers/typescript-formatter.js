@@ -5,7 +5,7 @@ function formatMethodSignature(methodName, args, returnType, options = { tagV3Me
 }
 
 function formatParameterizedReturnType(methodName, {genericType, genericParameterType}, tagV3Methods) {
-  let returnType = getV3ReturnType(methodName) ? getV3ReturnType(methodName) : genericParameterType;
+  let returnType = getV3ReturnType(methodName) && tagV3Methods ? getV3ReturnType(methodName) : genericParameterType;
   let versionedReturnType = `${genericType}<${returnType}>`;
   if (tagV3Methods && isV3Api(methodName) && returnType !== 'void') {
     versionedReturnType = `${genericType}<v3.${returnType}>`;
@@ -23,7 +23,8 @@ function formatArguments(args, options) {
     if (Array.isArray(type)) {
       argument = `${argument}: ${formatObjectLiteralType(type)}`;
     } else {
-      argument = `${argument}: ${options.tagV3Methods && namespace ? `${namespace}.${type}` : type}`;
+      const hasNamespace = options.tagV3Methods && namespace && !isPrimitiveType(type);
+      argument = `${argument}: ${hasNamespace ? `${namespace}.${type}` : type}`;
     }
     typedArgs.push(argument);
   }
@@ -88,6 +89,10 @@ function convertSwaggerToTSType(swaggerType, collectionElementType) {
     password: 'string',
     object: 'Record<string, unknown>'
   }[swaggerType] || swaggerType;
+}
+
+function isPrimitiveType(type) {
+  return ['boolean', 'string', 'number'].includes(type);
 }
 
 module.exports = {

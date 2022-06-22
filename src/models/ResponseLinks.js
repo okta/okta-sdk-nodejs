@@ -19,6 +19,7 @@ var Resource = require('../resource');
 /**
  * @class ResponseLinks
  * @extends Resource
+ * @property { hash } _links
  */
 class ResponseLinks extends Resource {
   constructor(resourceJson, client) {

@@ -2833,6 +2833,221 @@ class ObservableCustomizationApi {
     }));
   }
   /**
+      * Previews the error page.
+      * Preview the Error Page
+      * @param brandId The ID of the brand.
+      * @param CustomizablePage
+      */
+  previewErrorPage(brandId, CustomizablePage, _options) {
+    const requestContextPromise = this.requestFactory.previewErrorPage(brandId, CustomizablePage, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.previewErrorPage(rsp)));
+      }));
+  }
+  /**
+      * Preview the sign-in page.
+      * Preview the Sign-in Page.
+      * @param brandId The ID of the brand.
+      * @param SignInPage
+      */
+  previewSignInPage(brandId, SignInPage, _options) {
+    const requestContextPromise = this.requestFactory.previewSignInPage(brandId, SignInPage, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.previewSignInPage(rsp)));
+      }));
+  }
+  /**
+      * Replaces the error page.
+      * Replace the Error Page
+      * @param brandId The ID of the brand.
+      * @param CustomizablePage
+      */
+  replaceErrorPage(brandId, CustomizablePage, _options) {
+    const requestContextPromise = this.requestFactory.replaceErrorPage(brandId, CustomizablePage, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.replaceErrorPage(rsp)));
+      }));
+  }
+  /**
+      * Replaces the sign-in page.
+      * Replace the Sign-in Page
+      * @param brandId The ID of the brand.
+      * @param SignInPage
+      */
+  replaceSignInPage(brandId, SignInPage, _options) {
+    const requestContextPromise = this.requestFactory.replaceSignInPage(brandId, SignInPage, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.replaceSignInPage(rsp)));
+      }));
+  }
+  /**
+      * Replaces the sign-out page settings.
+      * Replace the Sign-out Page Settings
+      * @param brandId The ID of the brand.
+      * @param HostedPage
+      */
+  replaceSignOutPageSettings(brandId, HostedPage, _options) {
+    const requestContextPromise = this.requestFactory.replaceSignOutPageSettings(brandId, HostedPage, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.replaceSignOutPageSettings(rsp)));
+      }));
+  }
+  /**
+      * Resets the error page.
+      * Reset the Error Page
+      * @param brandId The ID of the brand.
+      */
+  resetErrorPage(brandId, _options) {
+    const requestContextPromise = this.requestFactory.resetErrorPage(brandId, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.resetErrorPage(rsp)));
+      }));
+  }
+  /**
+      * Reset the sign-in page.
+      * Reset the Sign-in Page
+      * @param brandId The ID of the brand.
+      */
+  resetSignInPage(brandId, _options) {
+    const requestContextPromise = this.requestFactory.resetSignInPage(brandId, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.resetSignInPage(rsp)));
+      }));
+  }
+  /**
+      * Retrieves the error page.
+      * Retrieve the Error Page
+      * @param brandId The ID of the brand.
+      */
+  retrieveErrorPage(brandId, _options) {
+    const requestContextPromise = this.requestFactory.retrieveErrorPage(brandId, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.retrieveErrorPage(rsp)));
+      }));
+  }
+  /**
+      * Retrieves the sign-in page.
+      * Retrieve the Sign-in Page
+      * @param brandId The ID of the brand.
+      */
+  retrieveSignInPage(brandId, _options) {
+    const requestContextPromise = this.requestFactory.retrieveSignInPage(brandId, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.retrieveSignInPage(rsp)));
+      }));
+  }
+  /**
+      * Retrieves the sign-out page settings.
+      * Retrieve the Sign-out Page Settings
+      * @param brandId The ID of the brand.
+      */
+  retrieveSignOutPageSettings(brandId, _options) {
+    const requestContextPromise = this.requestFactory.retrieveSignOutPageSettings(brandId, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.retrieveSignOutPageSettings(rsp)));
+      }));
+  }
+  /**
       * Sends a test email to the current user’s primary and secondary email addresses. The email content is selected based on the following priority: 1. The email customization for the language specified in the `language` query parameter. 2. The email template's default customization. 3. The email template’s default content, translated to the current user's language.
       * Send a Test Email
       * @param brandId The ID of the brand.
@@ -2952,9 +3167,10 @@ class ObservableCustomizationApi {
       * Upload the Background Image
       * @param brandId
       * @param themeId
+      * @param file
       */
-  uploadBrandThemeBackgroundImage(brandId, themeId, _options) {
-    const requestContextPromise = this.requestFactory.uploadBrandThemeBackgroundImage(brandId, themeId, _options);
+  uploadBrandThemeBackgroundImage(brandId, themeId, file, _options) {
+    const requestContextPromise = this.requestFactory.uploadBrandThemeBackgroundImage(brandId, themeId, file, _options);
     // build promise chain
     let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
     for (let middleware of this.configuration.middleware) {
@@ -2974,9 +3190,10 @@ class ObservableCustomizationApi {
       * Upload the Favicon
       * @param brandId
       * @param themeId
+      * @param file
       */
-  uploadBrandThemeFavicon(brandId, themeId, _options) {
-    const requestContextPromise = this.requestFactory.uploadBrandThemeFavicon(brandId, themeId, _options);
+  uploadBrandThemeFavicon(brandId, themeId, file, _options) {
+    const requestContextPromise = this.requestFactory.uploadBrandThemeFavicon(brandId, themeId, file, _options);
     // build promise chain
     let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
     for (let middleware of this.configuration.middleware) {
@@ -2996,9 +3213,10 @@ class ObservableCustomizationApi {
       * Upload the Logo
       * @param brandId
       * @param themeId
+      * @param file
       */
-  uploadBrandThemeLogo(brandId, themeId, _options) {
-    const requestContextPromise = this.requestFactory.uploadBrandThemeLogo(brandId, themeId, _options);
+  uploadBrandThemeLogo(brandId, themeId, file, _options) {
+    const requestContextPromise = this.requestFactory.uploadBrandThemeLogo(brandId, themeId, file, _options);
     // build promise chain
     let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
     for (let middleware of this.configuration.middleware) {
@@ -5252,6 +5470,7 @@ class ObservableOrgSettingApi {
   /**
       * Updates the logo for your organization.
       * Upload the Org Logo
+      * @param file
       */
   updateOrgLogo(_options) {
     const requestContextPromise = this.requestFactory.updateOrgLogo(_options);

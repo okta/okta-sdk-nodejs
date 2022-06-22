@@ -18,17 +18,7 @@ import * as v3 from './generated';
 import { JsonWebKey } from './models/JsonWebKey';
 import { Collection } from './collection';
 import { Response } from 'node-fetch';
-import { Brand } from './models/Brand';
-import { BrandOptions } from './models/Brand';
-import { EmailTemplate } from './models/EmailTemplate';
-import { EmailTemplateCustomization } from './models/EmailTemplateCustomization';
-import { EmailTemplateCustomizationRequestOptions } from './models/EmailTemplateCustomizationRequest';
-import { EmailTemplateContent } from './models/EmailTemplateContent';
-import { EmailTemplateTestRequestOptions } from './models/EmailTemplateTestRequest';
-import { ThemeResponse } from './models/ThemeResponse';
-import { ThemeOptions } from './models/Theme';
-import { ReadStream } from 'fs';
-import { ImageUploadResponse } from './models/ImageUploadResponse';
+import { ReadStream } from 'fs;
 import { IdentityProvider } from './models/IdentityProvider';
 import { IdentityProviderOptions } from './models/IdentityProvider';
 import { JsonWebKeyOptions } from './models/JsonWebKey';
@@ -218,38 +208,38 @@ export declare class GeneratedApiClient {
     filter?: string,
     cursor?: string,
     limit?: number,
-  }): Promise<Collection<v3.OAuth2Scope>>;
-  createOAuth2Scope(authServerId: string, oAuth2Scope: v3.OAuth2Scope): Promise<v3.OAuth2Scope>;
-  deleteOAuth2Scope(authServerId: string, scopeId: string): Promise<void>;
-  getOAuth2Scope(authServerId: string, scopeId: string): Promise<v3.OAuth2Scope>;
-  updateOAuth2Scope(authServerId: string, scopeId: string, oAuth2Scope: v3.OAuth2Scope): Promise<v3.OAuth2Scope>;
-  listBrands(): Collection<Brand>;
-  getBrand(brandId: string): Promise<Brand>;
-  updateBrand(brandId: string, brand: BrandOptions): Promise<Brand>;
+  }): Collection<OAuth2Scope>;
+  createOAuth2Scope(authServerId: string, oAuth2Scope: OAuth2ScopeOptions): Promise<OAuth2Scope>;
+  deleteOAuth2Scope(authServerId: string, scopeId: string): Promise<Response>;
+  getOAuth2Scope(authServerId: string, scopeId: string): Promise<OAuth2Scope>;
+  updateOAuth2Scope(authServerId: string, scopeId: string, oAuth2Scope: OAuth2ScopeOptions): Promise<OAuth2Scope>;
+  listBrands(): Promise<Collection<v3.Brand>>;
+  getBrand(brandId: string): Promise<v3.Brand>;
+  updateBrand(brandId: string, brand: v3.Brand): Promise<v3.Brand>;
   listEmailTemplates(brandId: string, queryParameters?: {
     after?: string,
     limit?: number,
-  }): Collection<EmailTemplate>;
-  getEmailTemplate(brandId: string, templateName: string): Promise<EmailTemplate>;
-  deleteEmailTemplateCustomizations(brandId: string, templateName: string): Promise<Response>;
-  listEmailTemplateCustomizations(brandId: string, templateName: string): Collection<EmailTemplateCustomization>;
-  createEmailTemplateCustomization(brandId: string, templateName: string, emailTemplateCustomizationRequest: EmailTemplateCustomizationRequestOptions): Promise<EmailTemplateCustomization>;
-  deleteEmailTemplateCustomization(brandId: string, templateName: string, customizationId: string): Promise<Response>;
-  getEmailTemplateCustomization(brandId: string, templateName: string, customizationId: string): Promise<EmailTemplateCustomization>;
-  updateEmailTemplateCustomization(brandId: string, templateName: string, customizationId: string, emailTemplateCustomizationRequest: EmailTemplateCustomizationRequestOptions): Promise<EmailTemplateCustomization>;
-  getEmailTemplateCustomizationPreview(brandId: string, templateName: string, customizationId: string): Promise<EmailTemplateContent>;
-  getEmailTemplateDefaultContent(brandId: string, templateName: string): Promise<EmailTemplateContent>;
-  getEmailTemplateDefaultContentPreview(brandId: string, templateName: string): Promise<EmailTemplateContent>;
-  sendTestEmail(brandId: string, templateName: string, emailTemplateTestRequest: EmailTemplateTestRequestOptions): Promise<Response>;
-  listBrandThemes(brandId: string): Collection<ThemeResponse>;
-  getBrandTheme(brandId: string, themeId: string): Promise<ThemeResponse>;
-  updateBrandTheme(brandId: string, themeId: string, theme: ThemeOptions): Promise<ThemeResponse>;
-  deleteBrandThemeBackgroundImage(brandId: string, themeId: string): Promise<Response>;
-  uploadBrandThemeBackgroundImage(brandId: string, themeId: string, file: ReadStream): Promise<ImageUploadResponse>;
-  deleteBrandThemeFavicon(brandId: string, themeId: string): Promise<Response>;
-  uploadBrandThemeFavicon(brandId: string, themeId: string, file: ReadStream): Promise<ImageUploadResponse>;
-  deleteBrandThemeLogo(brandId: string, themeId: string): Promise<Response>;
-  uploadBrandThemeLogo(brandId: string, themeId: string, file: ReadStream): Promise<ImageUploadResponse>;
+  }): Promise<Collection<v3.EmailTemplate>>;
+  getEmailTemplate(brandId: string, templateName: string): Promise<v3.EmailTemplate>;
+  deleteEmailTemplateCustomizations(brandId: string, templateName: string): Promise<void>;
+  listEmailTemplateCustomizations(brandId: string, templateName: string): Promise<Collection<v3.EmailCustomization>>;
+  createEmailTemplateCustomization(brandId: string, templateName: string, instance: v3.EmailCustomization): Promise<v3.EmailCustomization>;
+  deleteEmailTemplateCustomization(brandId: string, templateName: string, customizationId: string): Promise<void>;
+  getEmailTemplateCustomization(brandId: string, templateName: string, customizationId: string): Promise<v3.EmailCustomization>;
+  updateEmailTemplateCustomization(brandId: string, templateName: string, customizationId: string, instance: v3.EmailCustomization): Promise<v3.EmailCustomization>;
+  getEmailTemplateCustomizationPreview(brandId: string, templateName: string, customizationId: string): Promise<v3.EmailPreview>;
+  getEmailTemplateDefaultContent(brandId: string, templateName: string): Promise<v3.EmailDefaultContent>;
+  getEmailTemplateDefaultContentPreview(brandId: string, templateName: string): Promise<v3.EmailPreview>;
+  sendTestEmail(brandId: string, templateName: string, language: string): Promise<void>;
+  listBrandThemes(brandId: string): Promise<Collection<v3.ThemeResponse>>;
+  getBrandTheme(brandId: string, themeId: string): Promise<v3.ThemeResponse>;
+  updateBrandTheme(brandId: string, themeId: string, theme: v3.Theme): Promise<v3.ThemeResponse>;
+  deleteBrandThemeBackgroundImage(brandId: string, themeId: string): Promise<void>;
+  uploadBrandThemeBackgroundImage(brandId: string, themeId: string, file: ReadStream): Promise<v3.ImageUploadResponse>;
+  deleteBrandThemeFavicon(brandId: string, themeId: string): Promise<void>;
+  uploadBrandThemeFavicon(brandId: string, themeId: string, file: ReadStream): Promise<v3.ImageUploadResponse>;
+  deleteBrandThemeLogo(brandId: string, themeId: string): Promise<void>;
+  uploadBrandThemeLogo(brandId: string, themeId: string, file: ReadStream): Promise<v3.ImageUploadResponse>;
   listDomains(): Promise<v3.DomainListResponse>;
   createDomain(domain: v3.Domain): Promise<v3.Domain>;
   deleteDomain(domainId: string): Promise<void>;
@@ -273,10 +263,11 @@ export declare class GeneratedApiClient {
   }): Promise<v3.Feature>;
   listGroups(queryParameters?: {
     q?: string,
-    search?: string,
+    filter?: string,
     after?: string,
     limit?: number,
     expand?: string,
+    search?: string,
   }): Promise<Collection<v3.Group>>;
   createGroup(group: v3.Group): Promise<v3.Group>;
   listGroupRules(queryParameters?: {

@@ -516,7 +516,7 @@ class OrgSettingApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Updates the logo for your organization.
-     * Update org logo
+     * Upload the Org Logo
      * @param file
      */
   async updateOrgLogo(file, _options) {

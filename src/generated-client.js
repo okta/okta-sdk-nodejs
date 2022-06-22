@@ -799,6 +799,39 @@ class GeneratedApiClient {
   /**
    *
    * @param appId {String}
+   * @param policyId {String}
+   * @description
+   * Assign an application to a specific policy. This unassigns the application from its currently assigned policy.
+   */
+  updateApplicationPolicy(appId, policyId) {
+    if (!appId) {
+      return Promise.reject(new Error('OKTA API updateApplicationPolicy parameter appId is required.'));
+    }
+    if (!policyId) {
+      return Promise.reject(new Error('OKTA API updateApplicationPolicy parameter policyId is required.'));
+    }
+    let url = `${this.baseUrl}/api/v1/apps/${appId}/policies/${policyId}`;
+
+    const resources = [
+      `${this.baseUrl}/api/v1/apps/${appId}/policies/${policyId}`,
+      `${this.baseUrl}/api/v1/apps/${appId}`
+    ];
+
+    const request = this.http.put(
+      url,
+      {
+        headers: {
+          'Content-Type': 'application/json', 'Accept': 'application/json',
+        },
+      },
+      { resources }
+    );
+    return request;
+  }
+
+  /**
+   *
+   * @param appId {String}
    * @description
    * Revokes all tokens for the specified application
    */
@@ -1790,13 +1823,7 @@ class GeneratedApiClient {
    * @returns {Collection} A collection that will yield {@link Brand} instances.
    */
   listBrands() {
-    let url = `${this.baseUrl}/api/v1/brands`;
-
-    return new Collection(
-      this.http,
-      url,
-      new ModelFactory(models.Brand, this),
-    );
+    return this.customizationApi.listBrands();
   }
 
   /**
@@ -1810,18 +1837,7 @@ class GeneratedApiClient {
     if (!brandId) {
       return Promise.reject(new Error('OKTA API getBrand parameter brandId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/brands/${brandId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/brands/${brandId}`
-    ];
-
-    const request = this.http.getJson(
-      url,
-      null,
-      { resources }
-    );
-    return request.then(jsonRes => new models.Brand(jsonRes, this));
+    return this.customizationApi.getBrand(brandId);
   }
 
   /**
@@ -1839,20 +1855,7 @@ class GeneratedApiClient {
     if (!brand) {
       return Promise.reject(new Error('OKTA API updateBrand parameter brand is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/brands/${brandId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/brands/${brandId}`
-    ];
-
-    const request = this.http.putJson(
-      url,
-      {
-        body: brand
-      },
-      { resources }
-    );
-    return request.then(jsonRes => new models.Brand(jsonRes, this));
+    return this.customizationApi.updateBrand(brandId, brand);
   }
 
   /**
@@ -1869,16 +1872,13 @@ class GeneratedApiClient {
     if (!brandId) {
       return Promise.reject(new Error('OKTA API listEmailTemplates parameter brandId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/brands/${brandId}/templates/email`;
-    const queryString = qs.stringify(queryParameters || {});
-
-    url += queryString ? ('?' + queryString) : '';
-
-    return new Collection(
-      this.http,
-      url,
-      new ModelFactory(models.EmailTemplate, this),
-    );
+    let after;
+    let limit;
+    if (queryParameters) {
+      after = queryParameters.after;
+      limit = queryParameters.limit;
+    }
+    return this.customizationApi.listEmailTemplates(brandId, after, limit);
   }
 
   /**
@@ -1896,19 +1896,7 @@ class GeneratedApiClient {
     if (!templateName) {
       return Promise.reject(new Error('OKTA API getEmailTemplate parameter templateName is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/brands/${brandId}/templates/email/${templateName}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/brands/${brandId}/templates/email/${templateName}`,
-      `${this.baseUrl}/api/v1/brands/${brandId}`
-    ];
-
-    const request = this.http.getJson(
-      url,
-      null,
-      { resources }
-    );
-    return request.then(jsonRes => new models.EmailTemplate(jsonRes, this));
+    return this.customizationApi.getEmailTemplate(brandId, templateName);
   }
 
   /**
@@ -1925,19 +1913,7 @@ class GeneratedApiClient {
     if (!templateName) {
       return Promise.reject(new Error('OKTA API deleteEmailTemplateCustomizations parameter templateName is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/brands/${brandId}/templates/email/${templateName}/customizations`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/brands/${brandId}/templates/email/${templateName}`,
-      `${this.baseUrl}/api/v1/brands/${brandId}`
-    ];
-
-    const request = this.http.delete(
-      url,
-      null,
-      { resources }
-    );
-    return request;
+    return this.customizationApi.deleteAllCustomizations(brandId, templateName);
   }
 
   /**
@@ -1955,13 +1931,7 @@ class GeneratedApiClient {
     if (!templateName) {
       return Promise.reject(new Error('OKTA API listEmailTemplateCustomizations parameter templateName is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/brands/${brandId}/templates/email/${templateName}/customizations`;
-
-    return new Collection(
-      this.http,
-      url,
-      new ModelFactory(models.EmailTemplateCustomization, this),
-    );
+    return this.customizationApi.listEmailCustomizations(brandId, templateName);
   }
 
   /**
@@ -1983,21 +1953,7 @@ class GeneratedApiClient {
     if (!emailTemplateCustomizationRequest) {
       return Promise.reject(new Error('OKTA API createEmailTemplateCustomization parameter emailTemplateCustomizationRequest is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/brands/${brandId}/templates/email/${templateName}/customizations`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/brands/${brandId}/templates/email/${templateName}`,
-      `${this.baseUrl}/api/v1/brands/${brandId}`
-    ];
-
-    const request = this.http.postJson(
-      url,
-      {
-        body: emailTemplateCustomizationRequest
-      },
-      { resources }
-    );
-    return request.then(jsonRes => new models.EmailTemplateCustomization(jsonRes, this));
+    return this.customizationApi.createEmailCustomization(brandId, templateName, emailTemplateCustomizationRequest);
   }
 
   /**
@@ -2018,20 +1974,7 @@ class GeneratedApiClient {
     if (!customizationId) {
       return Promise.reject(new Error('OKTA API deleteEmailTemplateCustomization parameter customizationId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/brands/${brandId}/templates/email/${templateName}/customizations/${customizationId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/brands/${brandId}/templates/email/${templateName}/customizations/${customizationId}`,
-      `${this.baseUrl}/api/v1/brands/${brandId}/templates/email/${templateName}`,
-      `${this.baseUrl}/api/v1/brands/${brandId}`
-    ];
-
-    const request = this.http.delete(
-      url,
-      null,
-      { resources }
-    );
-    return request;
+    return this.customizationApi.deleteEmailCustomization(brandId, templateName, customizationId);
   }
 
   /**
@@ -2053,20 +1996,7 @@ class GeneratedApiClient {
     if (!customizationId) {
       return Promise.reject(new Error('OKTA API getEmailTemplateCustomization parameter customizationId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/brands/${brandId}/templates/email/${templateName}/customizations/${customizationId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/brands/${brandId}/templates/email/${templateName}/customizations/${customizationId}`,
-      `${this.baseUrl}/api/v1/brands/${brandId}/templates/email/${templateName}`,
-      `${this.baseUrl}/api/v1/brands/${brandId}`
-    ];
-
-    const request = this.http.getJson(
-      url,
-      null,
-      { resources }
-    );
-    return request.then(jsonRes => new models.EmailTemplateCustomization(jsonRes, this));
+    return this.customizationApi.getEmailCustomization(brandId, templateName, customizationId);
   }
 
   /**
@@ -2092,22 +2022,7 @@ class GeneratedApiClient {
     if (!emailTemplateCustomizationRequest) {
       return Promise.reject(new Error('OKTA API updateEmailTemplateCustomization parameter emailTemplateCustomizationRequest is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/brands/${brandId}/templates/email/${templateName}/customizations/${customizationId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/brands/${brandId}/templates/email/${templateName}/customizations/${customizationId}`,
-      `${this.baseUrl}/api/v1/brands/${brandId}/templates/email/${templateName}`,
-      `${this.baseUrl}/api/v1/brands/${brandId}`
-    ];
-
-    const request = this.http.putJson(
-      url,
-      {
-        body: emailTemplateCustomizationRequest
-      },
-      { resources }
-    );
-    return request.then(jsonRes => new models.EmailTemplateCustomization(jsonRes, this));
+    return this.customizationApi.updateEmailCustomization(brandId, templateName, customizationId, emailTemplateCustomizationRequest);
   }
 
   /**
@@ -2129,20 +2044,7 @@ class GeneratedApiClient {
     if (!customizationId) {
       return Promise.reject(new Error('OKTA API getEmailTemplateCustomizationPreview parameter customizationId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/brands/${brandId}/templates/email/${templateName}/customizations/${customizationId}/preview`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/brands/${brandId}/templates/email/${templateName}/customizations/${customizationId}`,
-      `${this.baseUrl}/api/v1/brands/${brandId}/templates/email/${templateName}`,
-      `${this.baseUrl}/api/v1/brands/${brandId}`
-    ];
-
-    const request = this.http.getJson(
-      url,
-      null,
-      { resources }
-    );
-    return request.then(jsonRes => new models.EmailTemplateContent(jsonRes, this));
+    return this.customizationApi.getCustomizationPreview(brandId, templateName, customizationId);
   }
 
   /**
@@ -2160,19 +2062,7 @@ class GeneratedApiClient {
     if (!templateName) {
       return Promise.reject(new Error('OKTA API getEmailTemplateDefaultContent parameter templateName is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/brands/${brandId}/templates/email/${templateName}/default-content`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/brands/${brandId}/templates/email/${templateName}`,
-      `${this.baseUrl}/api/v1/brands/${brandId}`
-    ];
-
-    const request = this.http.getJson(
-      url,
-      null,
-      { resources }
-    );
-    return request.then(jsonRes => new models.EmailTemplateContent(jsonRes, this));
+    return this.customizationApi.getEmailDefaultContent(brandId, templateName);
   }
 
   /**
@@ -2190,19 +2080,7 @@ class GeneratedApiClient {
     if (!templateName) {
       return Promise.reject(new Error('OKTA API getEmailTemplateDefaultContentPreview parameter templateName is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/brands/${brandId}/templates/email/${templateName}/default-content/preview`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/brands/${brandId}/templates/email/${templateName}`,
-      `${this.baseUrl}/api/v1/brands/${brandId}`
-    ];
-
-    const request = this.http.getJson(
-      url,
-      null,
-      { resources }
-    );
-    return request.then(jsonRes => new models.EmailTemplateContent(jsonRes, this));
+    return this.customizationApi.getEmailDefaultPreview(brandId, templateName);
   }
 
   /**
@@ -2223,21 +2101,7 @@ class GeneratedApiClient {
     if (!emailTemplateTestRequest) {
       return Promise.reject(new Error('OKTA API sendTestEmail parameter emailTemplateTestRequest is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/brands/${brandId}/templates/email/${templateName}/test`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/brands/${brandId}/templates/email/${templateName}`,
-      `${this.baseUrl}/api/v1/brands/${brandId}`
-    ];
-
-    const request = this.http.postJsonNoContent(
-      url,
-      {
-        body: emailTemplateTestRequest
-      },
-      { resources }
-    );
-    return request;
+    return this.customizationApi.sendTestEmail(brandId, templateName, emailTemplateTestRequest);
   }
 
   /**
@@ -2251,13 +2115,7 @@ class GeneratedApiClient {
     if (!brandId) {
       return Promise.reject(new Error('OKTA API listBrandThemes parameter brandId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/brands/${brandId}/themes`;
-
-    return new Collection(
-      this.http,
-      url,
-      new ModelFactory(models.ThemeResponse, this),
-    );
+    return this.customizationApi.listBrandThemes(brandId);
   }
 
   /**
@@ -2275,19 +2133,7 @@ class GeneratedApiClient {
     if (!themeId) {
       return Promise.reject(new Error('OKTA API getBrandTheme parameter themeId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/brands/${brandId}/themes/${themeId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/brands/${brandId}/themes/${themeId}`,
-      `${this.baseUrl}/api/v1/brands/${brandId}`
-    ];
-
-    const request = this.http.getJson(
-      url,
-      null,
-      { resources }
-    );
-    return request.then(jsonRes => new models.ThemeResponse(jsonRes, this));
+    return this.customizationApi.getBrandTheme(brandId, themeId);
   }
 
   /**
@@ -2309,22 +2155,7 @@ class GeneratedApiClient {
     if (!theme) {
       return Promise.reject(new Error('OKTA API updateBrandTheme parameter theme is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/brands/${brandId}/themes/${themeId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/brands/${brandId}/themes/${themeId}`,
-      `${this.baseUrl}/api/v1/brands/${brandId}`
-    ];
-    const payload = this._removeRestrictedModelProperties(theme, 'id,backgroundImage,favicon,logo,_links'.split(','));
-
-    const request = this.http.putJson(
-      url,
-      {
-        body: payload
-      },
-      { resources }
-    );
-    return request.then(jsonRes => new models.ThemeResponse(jsonRes, this));
+    return this.customizationApi.updateBrandTheme(brandId, themeId, theme);
   }
 
   /**
@@ -2341,19 +2172,7 @@ class GeneratedApiClient {
     if (!themeId) {
       return Promise.reject(new Error('OKTA API deleteBrandThemeBackgroundImage parameter themeId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/brands/${brandId}/themes/${themeId}/background-image`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/brands/${brandId}/themes/${themeId}`,
-      `${this.baseUrl}/api/v1/brands/${brandId}`
-    ];
-
-    const request = this.http.delete(
-      url,
-      null,
-      { resources }
-    );
-    return request;
+    return this.customizationApi.deleteBrandThemeBackgroundImage(brandId, themeId);
   }
 
   /**
@@ -2372,24 +2191,7 @@ class GeneratedApiClient {
     if (!themeId) {
       return Promise.reject(new Error('OKTA API uploadBrandThemeBackgroundImage parameter themeId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/brands/${brandId}/themes/${themeId}/background-image`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/brands/${brandId}/themes/${themeId}`,
-      `${this.baseUrl}/api/v1/brands/${brandId}`
-    ];
-
-    const request = this.http.postFormDataFile(
-      url,
-      {
-        headers: {
-          'Accept': 'application/json',
-        },
-      },
-      file,
-      { resources }
-    ).then(res => res.json());
-    return request.then(jsonRes => new models.ImageUploadResponse(jsonRes, this));
+    return this.customizationApi.uploadBrandThemeBackgroundImage(brandId, themeId, file);
   }
 
   /**
@@ -2406,19 +2208,7 @@ class GeneratedApiClient {
     if (!themeId) {
       return Promise.reject(new Error('OKTA API deleteBrandThemeFavicon parameter themeId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/brands/${brandId}/themes/${themeId}/favicon`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/brands/${brandId}/themes/${themeId}`,
-      `${this.baseUrl}/api/v1/brands/${brandId}`
-    ];
-
-    const request = this.http.delete(
-      url,
-      null,
-      { resources }
-    );
-    return request;
+    return this.customizationApi.deleteBrandThemeFavicon(brandId, themeId);
   }
 
   /**
@@ -2437,24 +2227,7 @@ class GeneratedApiClient {
     if (!themeId) {
       return Promise.reject(new Error('OKTA API uploadBrandThemeFavicon parameter themeId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/brands/${brandId}/themes/${themeId}/favicon`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/brands/${brandId}/themes/${themeId}`,
-      `${this.baseUrl}/api/v1/brands/${brandId}`
-    ];
-
-    const request = this.http.postFormDataFile(
-      url,
-      {
-        headers: {
-          'Accept': 'application/json',
-        },
-      },
-      file,
-      { resources }
-    ).then(res => res.json());
-    return request.then(jsonRes => new models.ImageUploadResponse(jsonRes, this));
+    return this.customizationApi.uploadBrandThemeFavicon(brandId, themeId, file);
   }
 
   /**
@@ -2471,19 +2244,7 @@ class GeneratedApiClient {
     if (!themeId) {
       return Promise.reject(new Error('OKTA API deleteBrandThemeLogo parameter themeId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/brands/${brandId}/themes/${themeId}/logo`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/brands/${brandId}/themes/${themeId}`,
-      `${this.baseUrl}/api/v1/brands/${brandId}`
-    ];
-
-    const request = this.http.delete(
-      url,
-      null,
-      { resources }
-    );
-    return request;
+    return this.customizationApi.deleteBrandThemeLogo(brandId, themeId);
   }
 
   /**
@@ -2502,24 +2263,7 @@ class GeneratedApiClient {
     if (!themeId) {
       return Promise.reject(new Error('OKTA API uploadBrandThemeLogo parameter themeId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/brands/${brandId}/themes/${themeId}/logo`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/brands/${brandId}/themes/${themeId}`,
-      `${this.baseUrl}/api/v1/brands/${brandId}`
-    ];
-
-    const request = this.http.postFormDataFile(
-      url,
-      {
-        headers: {
-          'Accept': 'application/json',
-        },
-      },
-      file,
-      { resources }
-    ).then(res => res.json());
-    return request.then(jsonRes => new models.ImageUploadResponse(jsonRes, this));
+    return this.customizationApi.uploadBrandThemeLogo(brandId, themeId, file);
   }
 
   /**
@@ -2795,28 +2539,31 @@ class GeneratedApiClient {
    *
    * @param {Object} queryParams Map of query parameters to add to this request
    * @param {String} [queryParams.q]
-   * @param {String} [queryParams.search]
+   * @param {String} [queryParams.filter]
    * @param {String} [queryParams.after]
    * @param {String} [queryParams.limit]
    * @param {String} [queryParams.expand]
+   * @param {String} [queryParams.search]
    * @description
    * Enumerates groups in your organization with pagination. A subset of groups can be returned that match a supported filter expression or query.
    * @returns {Collection} A collection that will yield {@link Group} instances.
    */
   listGroups(queryParameters) {
     let q;
-    let search;
+    let filter;
     let after;
     let limit;
     let expand;
+    let search;
     if (queryParameters) {
       q = queryParameters.q;
-      search = queryParameters.search;
+      filter = queryParameters.filter;
       after = queryParameters.after;
       limit = queryParameters.limit;
       expand = queryParameters.expand;
+      search = queryParameters.search;
     }
-    return this.groupApi.listGroups(q, search, after, limit, expand);
+    return this.groupApi.listGroups(q, filter, after, limit, expand, search);
   }
 
   /**
