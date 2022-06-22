@@ -26,7 +26,7 @@ const util_1 = require('../util');
 class DomainApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   /**
      * Creates the Certificate for the Domain.
-     * Create Certificate
+     * Replace the Certificate
      * @param domainId
      * @param certificate
      */
@@ -72,7 +72,7 @@ class DomainApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Creates your domain.
-     * Create Domain
+     * Create a Domain
      * @param domain
      */
   async createDomain(domain, _options) {
@@ -112,7 +112,7 @@ class DomainApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Deletes a Domain by `id`.
-     * Delete Domain
+     * Delete a Domain
      * @param domainId
      */
   async deleteDomain(domainId, _options) {
@@ -146,7 +146,7 @@ class DomainApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Fetches a Domain by `id`.
-     * Get Domain
+     * Retrieve a Domain
      * @param domainId
      */
   async getDomain(domainId, _options) {
@@ -180,7 +180,7 @@ class DomainApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * List all verified custom Domains for the org.
-     * List Domains
+     * List all Domains
      */
   async listDomains(_options) {
     let _config = _options || this.configuration;
@@ -208,7 +208,7 @@ class DomainApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Verifies the Domain by `id`.
-     * Verify Domain
+     * Verify a Domain
      * @param domainId
      */
   async verifyDomain(domainId, _options) {

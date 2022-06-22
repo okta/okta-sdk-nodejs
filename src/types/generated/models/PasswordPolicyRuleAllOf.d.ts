@@ -27,7 +27,6 @@ import { PasswordPolicyRuleConditions } from './PasswordPolicyRuleConditions';
 export declare class PasswordPolicyRuleAllOf {
   'actions'?: PasswordPolicyRuleActions;
   'conditions'?: PasswordPolicyRuleConditions;
-  'name'?: string;
   static readonly discriminator: string | undefined;
   static readonly attributeTypeMap: Array<{
         name: string;

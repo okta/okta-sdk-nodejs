@@ -26,7 +26,7 @@ const util_1 = require('../util');
 class NetworkZoneApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   /**
      * Activate Network Zone
-     * Activate Network Zone
+     * Activate a Network Zone
      * @param zoneId
      */
   async activateNetworkZone(zoneId, _options) {
@@ -60,7 +60,7 @@ class NetworkZoneApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Adds a new network zone to your Okta organization.
-     * Add Network Zone
+     * Create a Network Zone
      * @param zone
      */
   async createNetworkZone(zone, _options) {
@@ -100,7 +100,7 @@ class NetworkZoneApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Deactivates a network zone.
-     * Deactivate Network Zone
+     * Deactivate a Network Zone
      * @param zoneId
      */
   async deactivateNetworkZone(zoneId, _options) {
@@ -134,7 +134,7 @@ class NetworkZoneApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Removes network zone.
-     * Delete Network Zone
+     * Delete a Network Zone
      * @param zoneId
      */
   async deleteNetworkZone(zoneId, _options) {
@@ -168,7 +168,7 @@ class NetworkZoneApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Fetches a network zone from your Okta organization by `id`.
-     * Get Network Zone
+     * Retrieve a Network Zone
      * @param zoneId
      */
   async getNetworkZone(zoneId, _options) {
@@ -202,7 +202,7 @@ class NetworkZoneApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Enumerates network zones added to your organization with pagination. A subset of zones can be returned that match a supported filter expression or query.
-     * List Network Zones
+     * List all Network Zones
      * @param after Specifies the pagination cursor for the next page of network zones
      * @param limit Specifies the number of results for a page
      * @param filter Filters zones by usage or id expression
@@ -245,7 +245,7 @@ class NetworkZoneApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Updates a network zone in your organization.
-     * Update Network Zone
+     * Replace a Network Zone
      * @param zoneId
      * @param zone
      */

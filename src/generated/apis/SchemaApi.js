@@ -26,7 +26,7 @@ const util_1 = require('../util');
 class SchemaApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   /**
      * Fetches the Schema for an App User
-     * Fetches the Schema for an App User
+     * Retrieve the default Application User Schema for an Application
      * @param appInstanceId
      */
   async getApplicationUserSchema(appInstanceId, _options) {
@@ -60,7 +60,7 @@ class SchemaApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Fetches the group schema
-     * Fetches the group schema
+     * Retrieve the default Group Schema
      */
   async getGroupSchema(_options) {
     let _config = _options || this.configuration;
@@ -88,7 +88,7 @@ class SchemaApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Fetches the schema for a Schema Id.
-     * Fetches the schema for a Schema Id.
+     * Retrieve a User Schema
      * @param schemaId
      */
   async getUserSchema(schemaId, _options) {
@@ -122,7 +122,7 @@ class SchemaApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Partial updates on the User Profile properties of the Application User Schema.
-     * Partial updates on the User Profile properties of the Application User Schema.
+     * Update the default Application User Schema for an Application
      * @param appInstanceId
      * @param body
      */
@@ -163,8 +163,8 @@ class SchemaApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     return requestContext;
   }
   /**
-     * Updates, adds ore removes one or more custom Group Profile properties in the schema
-     * Updates, adds ore removes one or more custom Group Profile properties in the schema
+     * Updates, adds or removes one or more custom Group Profile properties in the schema
+     * Update the default Group Schema
      * @param GroupSchema
      */
   async updateGroupSchema(GroupSchema, _options) {
@@ -200,7 +200,7 @@ class SchemaApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Partial updates on the User Profile properties of the user schema.
-     * Update User Profile
+     * Update a User Schema
      * @param schemaId
      * @param userSchema
      */

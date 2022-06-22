@@ -21,42 +21,42 @@ import { BehaviorRule } from '../models/BehaviorRule';
 export declare class BehaviorApiRequestFactory extends BaseAPIRequestFactory {
   /**
      * Activate Behavior Detection Rule
-     * Activate Behavior Detection Rule
+     * Activate a Behavior Detection Rule
      * @param behaviorId id of the Behavior Detection Rule
      */
   activateBehaviorDetectionRule(behaviorId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Adds a new Behavior Detection Rule to your organization.
-     * Create new Behavior Detection Rule
+     * Create a Behavior Detection Rule
      * @param rule
      */
   createBehaviorDetectionRule(rule: BehaviorRule, _options?: Configuration): Promise<RequestContext>;
   /**
      * Deactivate Behavior Detection Rule
-     * Deactivate Behavior Detection Rule
+     * Deactivate a Behavior Detection Rule
      * @param behaviorId id of the Behavior Detection Rule
      */
   deactivateBehaviorDetectionRule(behaviorId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Delete a Behavior Detection Rule by `behaviorId`.
-     * Delete Behavior Detection Rule
+     * Delete a Behavior Detection Rule
      * @param behaviorId id of the Behavior Detection Rule
      */
   deleteBehaviorDetectionRule(behaviorId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Fetches a Behavior Detection Rule by `behaviorId`.
-     * Get Behavior Detection Rule
+     * Retrieve a Behavior Detection Rule
      * @param behaviorId id of the Behavior Detection Rule
      */
   getBehaviorDetectionRule(behaviorId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Enumerates Behavior Detection Rules in your organization with pagination.
-     * List Behavior Detection Rules
+     * List all Behavior Detection Rules
      */
   listBehaviorDetectionRules(_options?: Configuration): Promise<RequestContext>;
   /**
      * Update a Behavior Detection Rule by `behaviorId`.
-     * Update Behavior Detection Rule
+     * Replace a Behavior Detection Rule
      * @param behaviorId id of the Behavior Detection Rule
      * @param rule
      */

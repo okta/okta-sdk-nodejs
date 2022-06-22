@@ -27,6 +27,7 @@ import { AutoLoginApplicationSettings } from './AutoLoginApplicationSettings';
 import { SchemeApplicationCredentials } from './SchemeApplicationCredentials';
 export declare class AutoLoginApplication extends Application {
   'credentials'?: SchemeApplicationCredentials;
+  'name'?: string;
   'settings'?: AutoLoginApplicationSettings;
   static readonly discriminator: string | undefined;
   static readonly attributeTypeMap: Array<{

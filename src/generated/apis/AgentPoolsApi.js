@@ -26,7 +26,7 @@ const util_1 = require('../util');
 class AgentPoolsApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   /**
      * Activates scheduled Agent pool update
-     * Activate Agent pool update
+     * Activate an Agent Pool update
      * @param poolId Id of the agent pool for which the settings will apply
      * @param updateId Id of the update
      */
@@ -66,7 +66,7 @@ class AgentPoolsApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Creates an Agent pool update \\n For user flow 2 manual update, starts the update immediately. \\n For user flow 3, schedules the update based on the configured update window and delay.
-     * Create an Agent pool update
+     * Create an Agent Pool update
      * @param poolId Id of the agent pool for which the settings will apply
      * @param AgentPoolUpdate
      */
@@ -112,7 +112,7 @@ class AgentPoolsApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Deactivates scheduled Agent pool update
-     * Deactivate Agent pool update
+     * Deactivate an Agent Pool update
      * @param poolId Id of the agent pool for which the settings will apply
      * @param updateId Id of the update
      */
@@ -152,7 +152,7 @@ class AgentPoolsApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Deletes Agent pool update
-     * Delete Agent pool update
+     * Delete an Agent Pool update
      * @param poolId Id of the agent pool for which the settings will apply
      * @param updateId Id of the update
      */
@@ -192,7 +192,7 @@ class AgentPoolsApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Fetches AgentPools based on request parameters for a given org
-     * Fetch AgentPools
+     * List all Agent Pools
      * @param limitPerPoolType Maximum number of AgentPools being returned
      * @param poolType Agent type to search for
      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/reference/core-okta-api/#pagination) for more information.
@@ -235,7 +235,7 @@ class AgentPoolsApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Gets Agent pool update from updateId
-     * Get Agent pool update by id
+     * Retrieve an Agent Pool update by id
      * @param poolId Id of the agent pool for which the settings will apply
      * @param updateId Id of the update
      */
@@ -275,7 +275,7 @@ class AgentPoolsApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Gets the current state of the agent pool update instance settings
-     * Get Agent pool update settings
+     * Retrieve an Agent Pool update's settings
      * @param poolId Id of the agent pool for which the settings will apply
      */
   async getAgentPoolsUpdateSettings(poolId, _options) {
@@ -309,7 +309,7 @@ class AgentPoolsApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Gets List of Agent pool updates
-     * List Agent pool updates
+     * List all Agent Pool updates
      * @param poolId Id of the agent pool for which the settings will apply
      * @param scheduled Scope the list only to scheduled or ad-hoc updates. If the parameter is not provided we will return the whole list of updates.
      */
@@ -348,7 +348,7 @@ class AgentPoolsApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Pauses running or queued Agent pool update
-     * Pause Agent pool update
+     * Pause an Agent Pool update
      * @param poolId Id of the agent pool for which the settings will apply
      * @param updateId Id of the update
      */
@@ -388,7 +388,7 @@ class AgentPoolsApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Resumes running or queued Agent pool update
-     * Resume Agent pool update
+     * Resume an Agent Pool update
      * @param poolId Id of the agent pool for which the settings will apply
      * @param updateId Id of the update
      */
@@ -428,7 +428,7 @@ class AgentPoolsApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Retries Agent pool update
-     * Retry Agent pool update
+     * Retry an Agent Pool update
      * @param poolId Id of the agent pool for which the settings will apply
      * @param updateId Id of the update
      */
@@ -468,7 +468,7 @@ class AgentPoolsApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Updates Agent pool update settings
-     * Update Agent pool update settings
+     * Update an Agent pool update settings
      * @param poolId Id of the agent pool for which the settings will apply
      * @param AgentPoolUpdateSetting
      */
@@ -514,7 +514,7 @@ class AgentPoolsApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Stops Agent pool update
-     * Stop Agent pool update
+     * Stop an Agent Pool update
      * @param poolId Id of the agent pool for which the settings will apply
      * @param updateId Id of the update
      */
@@ -554,7 +554,7 @@ class AgentPoolsApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Updates Agent pool update and return latest agent pool update
-     * Change Agent pool update by id
+     * Update an Agent Pool update by id
      * @param poolId Id of the agent pool for which the settings will apply
      * @param updateId Id of the update
      * @param AgentPoolUpdate

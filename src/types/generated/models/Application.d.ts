@@ -23,26 +23,21 @@
  * Do not edit the class manually.
  */
 import { ApplicationAccessibility } from './ApplicationAccessibility';
-import { ApplicationCredentials } from './ApplicationCredentials';
 import { ApplicationLicensing } from './ApplicationLicensing';
 import { ApplicationLifecycleStatus } from './ApplicationLifecycleStatus';
-import { ApplicationSettings } from './ApplicationSettings';
 import { ApplicationSignOnMode } from './ApplicationSignOnMode';
 import { ApplicationVisibility } from './ApplicationVisibility';
 export declare class Application {
   'accessibility'?: ApplicationAccessibility;
   'created'?: Date;
-  'credentials'?: ApplicationCredentials;
   'features'?: Array<string>;
   'id'?: string;
   'label'?: string;
   'lastUpdated'?: Date;
   'licensing'?: ApplicationLicensing;
-  'name'?: string;
   'profile'?: {
         [key: string]: any;
     };
-  'settings'?: ApplicationSettings;
   'signOnMode'?: ApplicationSignOnMode;
   'status'?: ApplicationLifecycleStatus;
   'visibility'?: ApplicationVisibility;

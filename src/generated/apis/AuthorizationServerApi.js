@@ -26,7 +26,7 @@ const util_1 = require('../util');
 class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   /**
      * Success
-     * Activate Authorization Server
+     * Activate an Authorization Server
      * @param authServerId
      */
   async activateAuthorizationServer(authServerId, _options) {
@@ -60,7 +60,7 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
   }
   /**
      * Activate Authorization Server Policy
-     * Activate Authorization Server Policy
+     * Activate a Policy
      * @param authServerId
      * @param policyId
      */
@@ -100,7 +100,7 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
   }
   /**
      * Activate Authorization Server Policy Rule
-     * Activate Authorization Server Policy Rule
+     * Activate a Policy Rule
      * @param authServerId
      * @param policyId
      * @param ruleId
@@ -146,7 +146,7 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
   }
   /**
      * Success
-     * Create Authorization Server
+     * Create an Authorization Server
      * @param authorizationServer
      */
   async createAuthorizationServer(authorizationServer, _options) {
@@ -186,7 +186,7 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
   }
   /**
      * Success
-     * Create Authorization Server Policy
+     * Create a Policy
      * @param authServerId
      * @param policy
      */
@@ -232,7 +232,7 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
   }
   /**
      * Creates a policy rule for the specified Custom Authorization Server and Policy.
-     * Create Authorization Server Policy Rule
+     * Create a Policy Rule
      * @param policyId
      * @param authServerId
      * @param policyRule
@@ -284,7 +284,7 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
   }
   /**
      * Success
-     * Create Custom OAuth 2.0 Token Claim
+     * Create a Custom Token Claim
      * @param authServerId
      * @param oAuth2Claim
      */
@@ -330,7 +330,7 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
   }
   /**
      * Success
-     * Create Oauth2scope
+     * Create a Custom Token Scope
      * @param authServerId
      * @param oAuth2Scope
      */
@@ -376,7 +376,7 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
   }
   /**
      * Success
-     * Deactivate Authorization Server
+     * Deactivate an Authorization Server
      * @param authServerId
      */
   async deactivateAuthorizationServer(authServerId, _options) {
@@ -410,7 +410,7 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
   }
   /**
      * Deactivate Authorization Server Policy
-     * Deactivate Authorization Server Policy
+     * Deactivate a Policy
      * @param authServerId
      * @param policyId
      */
@@ -450,7 +450,7 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
   }
   /**
      * Deactivate Authorization Server Policy Rule
-     * Deactivate Authorization Server Policy Rule
+     * Deactivate a Policy Rule
      * @param authServerId
      * @param policyId
      * @param ruleId
@@ -496,7 +496,7 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
   }
   /**
      * Success
-     * Delete Authorization Server
+     * Delete an Authorization Server
      * @param authServerId
      */
   async deleteAuthorizationServer(authServerId, _options) {
@@ -530,7 +530,7 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
   }
   /**
      * Success
-     * Delete Authorization Server Policy
+     * Delete a Policy
      * @param authServerId
      * @param policyId
      */
@@ -570,7 +570,7 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
   }
   /**
      * Deletes a Policy Rule defined in the specified Custom Authorization Server and Policy.
-     * Delete Authorization Server Policy Rule
+     * Delete a Policy Rule
      * @param policyId
      * @param authServerId
      * @param ruleId
@@ -616,7 +616,7 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
   }
   /**
      * Success
-     * Delete Custom OAuth 2.0 Token Claim
+     * Delete a Custom Token Claim
      * @param authServerId
      * @param claimId
      */
@@ -656,7 +656,7 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
   }
   /**
      * Success
-     * Delete Oauth2scope
+     * Delete a Custom Token Scope
      * @param authServerId
      * @param scopeId
      */
@@ -696,7 +696,7 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
   }
   /**
      * Success
-     * Get Authorization Server
+     * Retrieve an Authorization Server
      * @param authServerId
      */
   async getAuthorizationServer(authServerId, _options) {
@@ -730,7 +730,7 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
   }
   /**
      * Success
-     * Get Authorization Server Policy
+     * Retrieve a Policy
      * @param authServerId
      * @param policyId
      */
@@ -770,7 +770,7 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
   }
   /**
      * Returns a Policy Rule by ID that is defined in the specified Custom Authorization Server and Policy.
-     * Get Authorization Server Policy Rule
+     * Retrieve a Policy Rule
      * @param policyId
      * @param authServerId
      * @param ruleId
@@ -816,7 +816,7 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
   }
   /**
      * Success
-     * Get Oauth2claim
+     * Retrieve a Custom Token Claim
      * @param authServerId
      * @param claimId
      */
@@ -856,7 +856,7 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
   }
   /**
      * Success
-     * Get Oauth2scope
+     * Retrieve a Custom Token Scope
      * @param authServerId
      * @param scopeId
      */
@@ -896,7 +896,7 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
   }
   /**
      * Success
-     * Get Refresh Token for Authorization Server and Client
+     * Retrieve a Refresh Token for a Client
      * @param authServerId
      * @param clientId
      * @param tokenId
@@ -947,7 +947,7 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
   }
   /**
      * Success
-     * List Authorization Server Keys
+     * List all Credential Keys
      * @param authServerId
      */
   async listAuthorizationServerKeys(authServerId, _options) {
@@ -981,7 +981,7 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
   }
   /**
      * Success
-     * List Authorization Server Policies
+     * List all Policies
      * @param authServerId
      */
   async listAuthorizationServerPolicies(authServerId, _options) {
@@ -1015,7 +1015,7 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
   }
   /**
      * Enumerates all policy rules for the specified Custom Authorization Server and Policy.
-     * List Authorization Server Policy Rules
+     * List all Policy Rules
      * @param policyId
      * @param authServerId
      */
@@ -1055,7 +1055,7 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
   }
   /**
      * Success
-     * List Authorization Servers
+     * List all Authorization Servers
      * @param q
      * @param limit
      * @param after
@@ -1098,7 +1098,7 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
   }
   /**
      * Success
-     * List Custom OAuth 2.0 Token Claims
+     * List all Custom Token Claims
      * @param authServerId
      */
   async listOAuth2Claims(authServerId, _options) {
@@ -1132,7 +1132,7 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
   }
   /**
      * Success
-     * List Oauth2clients for Authorization Server
+     * List all Clients
      * @param authServerId
      */
   async listOAuth2ClientsForAuthorizationServer(authServerId, _options) {
@@ -1166,7 +1166,7 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
   }
   /**
      * Success
-     * List Oauth2scopes
+     * List all Custom Token Scopes
      * @param authServerId
      * @param q
      * @param filter
@@ -1220,7 +1220,7 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
   }
   /**
      * Success
-     * List Refresh Tokens for Authorization Server and Client
+     * List all Refresh Tokens for a Client
      * @param authServerId
      * @param clientId
      * @param expand
@@ -1275,7 +1275,7 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
   }
   /**
      * Success
-     * Revoke Refresh Token for Authorization Server and Client
+     * Revoke a Refresh Token for a Client
      * @param authServerId
      * @param clientId
      * @param tokenId
@@ -1321,7 +1321,7 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
   }
   /**
      * Success
-     * Revoke Refresh Tokens for Authorization Server and Client
+     * Revoke all Refresh Tokens for a Client
      * @param authServerId
      * @param clientId
      */
@@ -1361,7 +1361,7 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
   }
   /**
      * Success
-     * Rotate Authorization Server Keys
+     * Rotate all Credential Keys
      * @param authServerId
      * @param use
      */
@@ -1407,7 +1407,7 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
   }
   /**
      * Success
-     * Update Authorization Server
+     * Replace an Authorization Server
      * @param authServerId
      * @param authorizationServer
      */
@@ -1453,7 +1453,7 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
   }
   /**
      * Success
-     * Update Authorization Server Policy
+     * Replace a Policy
      * @param authServerId
      * @param policyId
      * @param policy
@@ -1505,7 +1505,7 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
   }
   /**
      * Updates the configuration of the Policy Rule defined in the specified Custom Authorization Server and Policy.
-     * Update Authorization Server Policy Rule
+     * Replace a Policy Rule
      * @param policyId
      * @param authServerId
      * @param ruleId
@@ -1563,7 +1563,7 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
   }
   /**
      * Success
-     * Update Custom OAuth 2.0 Token Claim
+     * Replace a Custom Token Claim
      * @param authServerId
      * @param claimId
      * @param oAuth2Claim
@@ -1615,7 +1615,7 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
   }
   /**
      * Success
-     * Update Oauth2scope
+     * Replace a Custom Token Scope
      * @param authServerId
      * @param scopeId
      * @param oAuth2Scope

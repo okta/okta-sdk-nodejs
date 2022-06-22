@@ -21,37 +21,37 @@ import { TrustedOrigin } from '../models/TrustedOrigin';
 export declare class TrustedOriginApiRequestFactory extends BaseAPIRequestFactory {
   /**
      * Success
-     * Activate Trusted Origin
+     * Activate a Trusted Origin
      * @param trustedOriginId
      */
   activateOrigin(trustedOriginId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Success
-     * Create Trusted Origin
+     * Create a Trusted Origin
      * @param trustedOrigin
      */
   createOrigin(trustedOrigin: TrustedOrigin, _options?: Configuration): Promise<RequestContext>;
   /**
      * Success
-     * Deactivate Trusted Origin
+     * Deactivate a Trusted Origin
      * @param trustedOriginId
      */
   deactivateOrigin(trustedOriginId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Success
-     * Delete Trusted Origin
+     * Delete a Trusted Origin
      * @param trustedOriginId
      */
   deleteOrigin(trustedOriginId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Success
-     * Get Trusted Origin
+     * Retrieve a Trusted Origin
      * @param trustedOriginId
      */
   getOrigin(trustedOriginId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Success
-     * List Trusted Origins
+     * List all Trusted Origins
      * @param q
      * @param filter
      * @param after
@@ -60,7 +60,7 @@ export declare class TrustedOriginApiRequestFactory extends BaseAPIRequestFactor
   listOrigins(q?: string, filter?: string, after?: string, limit?: number, _options?: Configuration): Promise<RequestContext>;
   /**
      * Success
-     * Update Trusted Origin
+     * Replace a Trusted Origin
      * @param trustedOriginId
      * @param trustedOrigin
      */

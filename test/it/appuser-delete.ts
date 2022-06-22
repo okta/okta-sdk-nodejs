@@ -37,17 +37,14 @@ describe('AppUser.delete()', () => {
       await utils.cleanup(client, user);
       createdApplication = await client.createApplication(application);
       createdUser = await client.createUser(user);
-      createdAppUser = await createdApplication.assignUserToApplication({
+      createdAppUser = await client.assignUserToApplication(createdApplication.id, {
         id: createdUser.id
       });
-      await createdAppUser.delete(createdApplication.id)
-        .then(response => {
-          expect(response.status).to.equal(204);
-        });
+      await client.deleteApplicationUser(createdApplication.id, createdAppUser.id);
     } finally {
       if (createdApplication) {
-        await createdApplication.deactivate();
-        await createdApplication.delete();
+        await client.deactivateApplication(createdApplication.id);
+        await client.deleteApplication(createdApplication.id);
       }
       if (createdUser) {
         await utils.cleanup(client, createdUser);

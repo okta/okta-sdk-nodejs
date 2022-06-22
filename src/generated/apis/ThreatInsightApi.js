@@ -26,7 +26,7 @@ const util_1 = require('../util');
 class ThreatInsightApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   /**
      * Gets current ThreatInsight configuration
-     * Get Current Configuration
+     * Retrieve the ThreatInsight Configuration
      */
   async getCurrentConfiguration(_options) {
     let _config = _options || this.configuration;
@@ -54,7 +54,7 @@ class ThreatInsightApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Updates ThreatInsight configuration
-     * Update Configuration
+     * Update the ThreatInsight Configuration
      * @param threatInsightConfiguration
      */
   async updateConfiguration(threatInsightConfiguration, _options) {

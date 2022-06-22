@@ -6,7 +6,7 @@ uploadApplicationLogo(appId: string, file: ReadStream): Promise<Response>;
 
 import { expect } from 'chai';
 
-import { ApplicationFeature, Client, EnabledStatus } from '@okta/okta-sdk-nodejs';
+import { v3, Client } from '@okta/okta-sdk-nodejs';
 import utils = require('../utils');
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
@@ -28,15 +28,15 @@ describe('Application API: applicaton features', () => {
 
   afterEach(async () => {
     if (application) {
-      await application.deactivate();
-      await application.delete();
+      await client.deactivateApplication(application.id);
+      await client.deleteApplication(application.id);
     }
   });
 
   // application features tests require provisioning connection to be enabled
   xit('lists application features', async () => {
-    const features: ApplicationFeature[] = [];
-    for await (const feature of client.listFeaturesForApplication(application.id)) {
+    const features: v3.ApplicationFeature[] = [];
+    for await (const feature of (await client.listFeaturesForApplication(application.id))) {
       features.push(feature);
     }
     expect(features.length).to.be.greaterThanOrEqual(1);
@@ -51,24 +51,24 @@ describe('Application API: applicaton features', () => {
     let feature = await client.updateFeatureForApplication(application.id, 'USER_PROVISIONING', {
       update: {
         lifecycleDeactivate: {
-          status: EnabledStatus.DISABLED
+          status: 'DISABLED'
         }
       }
     });
-    expect(feature.capabilities.update.lifecycleDeactivate.status).to.equal(EnabledStatus.DISABLED);
+    expect(feature.capabilities.update.lifecycleDeactivate.status).to.equal('DISABLED');
     feature = await client.updateFeatureForApplication(application.id, 'USER_PROVISIONING', {
       update: {
         lifecycleDeactivate: {
-          status: EnabledStatus.ENABLED
+          status: 'ENABLED'
         }
       }
     });
-    expect(feature.capabilities.update.lifecycleDeactivate.status).to.equal(EnabledStatus.ENABLED);
+    expect(feature.capabilities.update.lifecycleDeactivate.status).to.equal('ENABLED');
   });
 
   it('provides method for uploading application logo', async () => {
     const file = utils.getMockImage('logo.png');
     const response = await client.uploadApplicationLogo(application.id, file);
-    expect(response.status).to.equal(201);
+    expect(response).to.equal(undefined);
   });
 });

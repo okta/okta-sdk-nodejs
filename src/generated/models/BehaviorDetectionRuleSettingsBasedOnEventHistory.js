@@ -36,14 +36,14 @@ exports.BehaviorDetectionRuleSettingsBasedOnEventHistory = BehaviorDetectionRule
 BehaviorDetectionRuleSettingsBasedOnEventHistory.discriminator = undefined;
 BehaviorDetectionRuleSettingsBasedOnEventHistory.attributeTypeMap = [
   {
-    'name': 'minEventsNeededForEvaluation',
-    'baseName': 'minEventsNeededForEvaluation',
+    'name': 'maxEventsUsedForEvaluation',
+    'baseName': 'maxEventsUsedForEvaluation',
     'type': 'number',
     'format': ''
   },
   {
-    'name': 'maxEventsUsedForEvaluation',
-    'baseName': 'maxEventsUsedForEvaluation',
+    'name': 'minEventsNeededForEvaluation',
+    'baseName': 'minEventsNeededForEvaluation',
     'type': 'number',
     'format': ''
   }

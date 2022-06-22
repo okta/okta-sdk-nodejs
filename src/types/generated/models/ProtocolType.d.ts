@@ -22,4 +22,4 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-export declare type ProtocolType = 'MTLS' | 'OAuth 2.0' | 'OIDC' | 'SAML2';
+export declare type ProtocolType = 'MTLS' | 'OAUTH2' | 'OIDC' | 'SAML2';

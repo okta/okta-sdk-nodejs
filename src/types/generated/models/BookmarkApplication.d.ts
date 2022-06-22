@@ -23,8 +23,10 @@
  * Do not edit the class manually.
  */
 import { Application } from './Application';
+import { ApplicationCredentials } from './ApplicationCredentials';
 import { BookmarkApplicationSettings } from './BookmarkApplicationSettings';
 export declare class BookmarkApplication extends Application {
+  'credentials'?: ApplicationCredentials;
   'name'?: string;
   'settings'?: BookmarkApplicationSettings;
   static readonly discriminator: string | undefined;

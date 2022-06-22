@@ -34,79 +34,79 @@ export declare class OrgSettingApiRequestFactory extends BaseAPIRequestFactory {
   bulkRemoveEmailAddressBounces(BouncesRemoveListObj?: BouncesRemoveListObj, _options?: Configuration): Promise<RequestContext>;
   /**
      * Extends the length of time that Okta Support can access your org by 24 hours. This means that 24 hours are added to the remaining access time.
-     * Extend Okta Support
+     * Extend Okta Support Access
      */
   extendOktaSupport(_options?: Configuration): Promise<RequestContext>;
   /**
      * Gets Okta Communication Settings of your organization.
-     * Get Okta Communication Settings
+     * Retreive the Okta Communication Settings
      */
   getOktaCommunicationSettings(_options?: Configuration): Promise<RequestContext>;
   /**
      * Gets Contact Types of your organization.
-     * Get org contact types
+     * Retrieve the Org Contact Types
      */
   getOrgContactTypes(_options?: Configuration): Promise<RequestContext>;
   /**
      * Retrieves the URL of the User associated with the specified Contact Type.
-     * Get org contact user
+     * Retrieve the User of the Contact Type
      * @param contactType
      */
   getOrgContactUser(contactType: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Gets Okta Support Settings of your organization.
-     * Get Okta Support settings
+     * Retrieve the Okta Support Settings
      */
   getOrgOktaSupportSettings(_options?: Configuration): Promise<RequestContext>;
   /**
      * Gets preferences of your organization.
-     * Get org preferences
+     * Retrieve the Org Preferences
      */
   getOrgPreferences(_options?: Configuration): Promise<RequestContext>;
   /**
      * Get settings of your organization.
-     * Get org settings
+     * Retrieve the Org Settings
      */
   getOrgSettings(_options?: Configuration): Promise<RequestContext>;
   /**
      * Enables you to temporarily allow Okta Support to access your org as an administrator for eight hours.
-     * Grant Okta Support
+     * Grant Okta Support Access to your Org
      */
   grantOktaSupport(_options?: Configuration): Promise<RequestContext>;
   /**
      * Hide the Okta UI footer for all end users of your organization.
-     * Show Okta UI Footer
+     * Update the Preference to Hide the Okta Dashboard Footer
      */
   hideOktaUIFooter(_options?: Configuration): Promise<RequestContext>;
   /**
      * Opts in all users of this org to Okta Communication emails.
-     * Opt in all users to Okta Communication emails
+     * Opt in all Users to Okta Communication emails
      */
   optInUsersToOktaCommunicationEmails(_options?: Configuration): Promise<RequestContext>;
   /**
      * Opts out all users of this org from Okta Communication emails.
-     * Opt out all users from Okta Communication emails
+     * Opt out all Users from Okta Communication emails
      */
   optOutUsersFromOktaCommunicationEmails(_options?: Configuration): Promise<RequestContext>;
   /**
      * Partial update settings of your organization.
-     * Partial update Org Setting
+     * Update the Org Settings
      * @param OrgSetting
      */
   partialUpdateOrgSetting(OrgSetting?: OrgSetting, _options?: Configuration): Promise<RequestContext>;
   /**
      * Revokes Okta Support access to your organization.
-     * Extend Okta Support
+     * Revoke Okta Support Access
      */
   revokeOktaSupport(_options?: Configuration): Promise<RequestContext>;
   /**
      * Makes the Okta UI footer visible for all end users of your organization.
-     * Show Okta UI Footer
+     * Update the Preference to Show the Okta Dashboard Footer
      */
   showOktaUIFooter(_options?: Configuration): Promise<RequestContext>;
   /**
      * Updates the User associated with the specified Contact Type.
-     * Update org contact user
+     * Replace the User of the Contact Type
      * @param contactType
      * @param orgContactUser
      */
@@ -119,7 +119,7 @@ export declare class OrgSettingApiRequestFactory extends BaseAPIRequestFactory {
   updateOrgLogo(file: HttpFile, _options?: Configuration): Promise<RequestContext>;
   /**
      * Update settings of your organization.
-     * Update Org setting
+     * Replace the Org Settings
      * @param orgSetting
      */
   updateOrgSetting(orgSetting: OrgSetting, _options?: Configuration): Promise<RequestContext>;

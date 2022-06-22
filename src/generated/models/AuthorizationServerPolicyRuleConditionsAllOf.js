@@ -36,12 +36,6 @@ exports.AuthorizationServerPolicyRuleConditionsAllOf = AuthorizationServerPolicy
 AuthorizationServerPolicyRuleConditionsAllOf.discriminator = undefined;
 AuthorizationServerPolicyRuleConditionsAllOf.attributeTypeMap = [
   {
-    'name': 'people',
-    'baseName': 'people',
-    'type': 'PolicyPeopleCondition',
-    'format': ''
-  },
-  {
     'name': 'clients',
     'baseName': 'clients',
     'type': 'ClientPolicyCondition',
@@ -51,6 +45,12 @@ AuthorizationServerPolicyRuleConditionsAllOf.attributeTypeMap = [
     'name': 'grantTypes',
     'baseName': 'grantTypes',
     'type': 'GrantTypePolicyRuleCondition',
+    'format': ''
+  },
+  {
+    'name': 'people',
+    'baseName': 'people',
+    'type': 'PolicyPeopleCondition',
     'format': ''
   },
   {

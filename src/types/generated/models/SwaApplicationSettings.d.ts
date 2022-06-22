@@ -26,12 +26,12 @@ import { ApplicationSettingsNotes } from './ApplicationSettingsNotes';
 import { ApplicationSettingsNotifications } from './ApplicationSettingsNotifications';
 import { SwaApplicationSettingsApplication } from './SwaApplicationSettingsApplication';
 export declare class SwaApplicationSettings {
-  'app'?: SwaApplicationSettingsApplication;
+  'identityStoreId'?: string;
   'implicitAssignment'?: boolean;
   'inlineHookId'?: string;
-  'identityStoreId'?: string;
   'notes'?: ApplicationSettingsNotes;
   'notifications'?: ApplicationSettingsNotifications;
+  'app'?: SwaApplicationSettingsApplication;
   static readonly discriminator: string | undefined;
   static readonly attributeTypeMap: Array<{
         name: string;

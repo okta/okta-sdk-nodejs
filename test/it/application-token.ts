@@ -23,19 +23,19 @@ describe('Application OAuth2 token API', () => {
     application = await client.createApplication(getMockApplication());
   });
   afterEach(async () => {
-    await application.deactivate();
-    await application.delete();
+    await client.deactivateApplication(application.id);
+    await client.deleteApplication(application.id);
   });
 
   it('should list a collection of tokens', async () => {
-    const grants = await application.listOAuth2Tokens();
+    const grants = await client.listOAuth2TokensForApplication(application.id);
     expect(grants).to.be.instanceOf(Collection);
     const res = await grants.getNextPage();
     expect(res).to.be.an('array').that.is.empty;
   });
 
   it('should return status 204 when revoke tokens for application', async () => {
-    const res = await application.revokeOAuth2Tokens();
-    expect(res.status).to.equal(204);
+    const res = await client.revokeOAuth2TokensForApplication(application.id);
+    expect(res).to.be.undefined;
   });
 });

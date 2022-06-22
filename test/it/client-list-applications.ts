@@ -1,8 +1,7 @@
 import { expect } from 'chai';
 import faker = require('@faker-js/faker');
 import {
-  BasicAuthApplication,
-  BookmarkApplication,
+  v3,
   Client,
   Collection,
   DefaultRequestExecutor } from '@okta/okta-sdk-nodejs';
@@ -22,7 +21,7 @@ const client = new Client({
 });
 
 describe('client.listApplications()', () => {
-  const app1 = {
+  const app1: v3.BookmarkApplication = {
     name: 'bookmark',
     label: `node-sdk: Bookmark App ${faker.random.word()}`.substring(0, 49),
     signOnMode: 'BOOKMARK',
@@ -33,7 +32,7 @@ describe('client.listApplications()', () => {
       }
     }
   };
-  const app2 = {
+  const app2: v3.BasicAuthApplication = {
     name: 'template_basic_auth',
     label: `node-sdk: Sample Basic Auth App ${faker.random.word()}`.substring(0, 49),
     signOnMode: 'BASIC_AUTH',
@@ -55,29 +54,29 @@ describe('client.listApplications()', () => {
   });
 
   after(async () => {
-    await bookmarkApplication.deactivate();
-    await bookmarkApplication.delete();
-    await basicApplication.deactivate();
-    await basicApplication.delete();
+    await client.deactivateApplication(bookmarkApplication.id);
+    await client.deleteApplication(bookmarkApplication.id);
+    await client.deactivateApplication(basicApplication.id);
+    await client.deleteApplication(basicApplication.id);
   });
 
-  it('should return a collection', () => {
-    expect(client.listApplications()).to.be.an.instanceof(Collection);
+  it('should return a collection', async () => {
+    expect(await client.listApplications()).to.be.an.instanceof(Collection);
   });
 
   it('should return the correct application types', async () => {
     let bookmarkApplication;
     let basicApplication;
-    await client.listApplications().each(app => {
-      if (app.label === app1.label && app instanceof BookmarkApplication) {
+    await (await client.listApplications()).each(app => {
+      if (app.label === app1.label && app instanceof v3.BookmarkApplication) {
         bookmarkApplication = app;
       }
-      if (app.label === app2.label && app instanceof BasicAuthApplication) {
+      if (app.label === app2.label && app instanceof v3.BasicAuthApplication) {
         basicApplication = app;
       }
     });
-    expect(bookmarkApplication).to.be.an.instanceof(BookmarkApplication);
-    expect(basicApplication).to.be.an.instanceof(BasicAuthApplication);
+    expect(bookmarkApplication).to.be.an.instanceof(v3.BookmarkApplication);
+    expect(basicApplication).to.be.an.instanceof(v3.BasicAuthApplication);
   });
 
 });

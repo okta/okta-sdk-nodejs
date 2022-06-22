@@ -27,13 +27,13 @@ import { UserIdentityProviderLinkRequest } from '../models/UserIdentityProviderL
 export declare class IdentityProviderApiRequestFactory extends BaseAPIRequestFactory {
   /**
      * Activates an inactive IdP.
-     * Activate Identity Provider
+     * Activate an Identity Provider
      * @param idpId
      */
   activateIdentityProvider(idpId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Clones a X.509 certificate for an IdP signing key credential from a source IdP to target IdP
-     * Clone Signing Key Credential for IdP
+     * Clone a Signing Credential Key
      * @param idpId
      * @param keyId
      * @param targetIdpId
@@ -41,84 +41,84 @@ export declare class IdentityProviderApiRequestFactory extends BaseAPIRequestFac
   cloneIdentityProviderKey(idpId: string, keyId: string, targetIdpId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Adds a new IdP to your organization.
-     * Add Identity Provider
+     * Create an Identity Provider
      * @param identityProvider
      */
   createIdentityProvider(identityProvider: IdentityProvider, _options?: Configuration): Promise<RequestContext>;
   /**
      * Adds a new X.509 certificate credential to the IdP key store.
-     * Add X.509 Certificate Public Key for Identity Providers
+     * Create an X.509 Certificate Public Key
      * @param jsonWebKey
      */
   createIdentityProviderKey(jsonWebKey: JsonWebKey, _options?: Configuration): Promise<RequestContext>;
   /**
      * Deactivates an active IdP.
-     * Deactivate Identity Provider
+     * Deactivate an Identity Provider
      * @param idpId
      */
   deactivateIdentityProvider(idpId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Removes an IdP from your organization.
-     * Delete Identity Provider
+     * Delete an Identity Provider
      * @param idpId
      */
   deleteIdentityProvider(idpId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Deletes a specific IdP Key Credential by `kid` if it is not currently being used by an Active or Inactive IdP.
-     * Delete Key
+     * Delete a Signing Credential Key
      * @param keyId
      */
   deleteIdentityProviderKey(keyId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Generates a new key pair and returns a Certificate Signing Request for it.
-     * Generate Certificate Signing Request for IdP
+     * Generate a Certificate Signing Request
      * @param idpId
      * @param metadata
      */
   generateCsrForIdentityProvider(idpId: string, metadata: CsrMetadata, _options?: Configuration): Promise<RequestContext>;
   /**
      * Generates a new X.509 certificate for an IdP signing key credential to be used for signing assertions sent to the IdP
-     * Generate New IdP Signing Key Credential
+     * Generate a new Signing Credential Key
      * @param idpId
      * @param validityYears expiry of the IdP Key Credential
      */
   generateIdentityProviderSigningKey(idpId: string, validityYears: number, _options?: Configuration): Promise<RequestContext>;
   /**
      * Gets a specific Certificate Signing Request model by id
-     * Get Csr for Identity Provider
+     * Retrieve a Certificate Signing Request
      * @param idpId
      * @param csrId
      */
   getCsrForIdentityProvider(idpId: string, csrId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Fetches an IdP by `id`.
-     * Get Identity Provider
+     * Retrieve an Identity Provider
      * @param idpId
      */
   getIdentityProvider(idpId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Fetches a linked IdP user by ID
-     * Get Identity Provider Application User
+     * Retrieve a User
      * @param idpId
      * @param userId
      */
   getIdentityProviderApplicationUser(idpId: string, userId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Gets a specific IdP Key Credential by `kid`
-     * Get Identity Provider Key
+     * Retrieve an Credential Key
      * @param keyId
      */
   getIdentityProviderKey(keyId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Gets a specific IdP Key Credential by `kid`
-     * Get Signing Key Credential for IdP
+     * Retrieve a Signing Credential Key
      * @param idpId
      * @param keyId
      */
   getIdentityProviderSigningKey(idpId: string, keyId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Links an Okta user to an existing Social Identity Provider. This does not support the SAML2 Identity Provider Type
-     * Link a user to a Social IdP without a transaction
+     * Link a User to a Social IdP
      * @param idpId
      * @param userId
      * @param userIdentityProviderLinkRequest
@@ -126,32 +126,32 @@ export declare class IdentityProviderApiRequestFactory extends BaseAPIRequestFac
   linkUserToIdentityProvider(idpId: string, userId: string, userIdentityProviderLinkRequest: UserIdentityProviderLinkRequest, _options?: Configuration): Promise<RequestContext>;
   /**
      * Enumerates Certificate Signing Requests for an IdP
-     * List Certificate Signing Requests for IdP
+     * List all Certificate Signing Requests
      * @param idpId
      */
   listCsrsForIdentityProvider(idpId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Find all the users linked to an identity provider
-     * Find Users
+     * List all Users
      * @param idpId
      */
   listIdentityProviderApplicationUsers(idpId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Enumerates IdP key credentials.
-     * List Identity Provider Keys
+     * List all Credential Keys
      * @param after Specifies the pagination cursor for the next page of keys
      * @param limit Specifies the number of key results in a page
      */
   listIdentityProviderKeys(after?: string, limit?: number, _options?: Configuration): Promise<RequestContext>;
   /**
      * Enumerates signing key credentials for an IdP
-     * List Signing Key Credentials for IdP
+     * List all Signing Credential Keys
      * @param idpId
      */
   listIdentityProviderSigningKeys(idpId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Enumerates IdPs in your organization with pagination. A subset of IdPs can be returned that match a supported filter expression or query.
-     * List Identity Providers
+     * List all Identity Providers
      * @param q Searches the name property of IdPs for matching value
      * @param after Specifies the pagination cursor for the next page of IdPs
      * @param limit Specifies the number of IdP results in a page
@@ -160,14 +160,14 @@ export declare class IdentityProviderApiRequestFactory extends BaseAPIRequestFac
   listIdentityProviders(q?: string, after?: string, limit?: number, type?: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Fetches the tokens minted by the Social Authentication Provider when the user authenticates with Okta via Social Auth.
-     * Social Authentication Token Operation
+     * List all Tokens from a OIDC Identity Provider
      * @param idpId
      * @param userId
      */
   listSocialAuthTokens(idpId: string, userId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Update the Certificate Signing Request with a signed X.509 certificate and add it into the signing key credentials for the IdP.
-     * Publish Csr for Identity Provider
+     * Publish a Certificate Signing Request
      * @param idpId
      * @param csrId
      * @param body
@@ -175,21 +175,21 @@ export declare class IdentityProviderApiRequestFactory extends BaseAPIRequestFac
   publishCsrForIdentityProvider(idpId: string, csrId: string, body: HttpFile, _options?: Configuration): Promise<RequestContext>;
   /**
      * Revoke a Certificate Signing Request and delete the key pair from the IdP
-     * Revoke Csr for Identity Provider
+     * Revoke a Certificate Signing Request
      * @param idpId
      * @param csrId
      */
   revokeCsrForIdentityProvider(idpId: string, csrId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Removes the link between the Okta user and the IdP user.
-     * Unlink User from IdP
+     * Unlink a User from IdP
      * @param idpId
      * @param userId
      */
   unlinkUserFromIdentityProvider(idpId: string, userId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Updates the configuration for an IdP.
-     * Update Identity Provider
+     * Replace an Identity Provider
      * @param idpId
      * @param identityProvider
      */

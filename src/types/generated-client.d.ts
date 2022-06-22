@@ -15,26 +15,11 @@
 
 import { ApplicationOptions } from './parameterized-operations-client';
 import * as v3 from './generated';
-import { Collection } from './collection';
-import { Application } from './models/Application';
-import { Response } from 'node-fetch';
-import { ProvisioningConnection } from './models/ProvisioningConnection';
-import { ProvisioningConnectionRequestOptions } from './models/ProvisioningConnectionRequest';
-import { Csr } from './models/Csr';
-import { CsrMetadataOptions } from './models/CsrMetadata';
 import { JsonWebKey } from './models/JsonWebKey';
-import { ApplicationFeature } from './models/ApplicationFeature';
-import { CapabilitiesObjectOptions } from './models/CapabilitiesObject';
-import { OAuth2ScopeConsentGrant } from './models/OAuth2ScopeConsentGrant';
-import { OAuth2ScopeConsentGrantOptions } from './models/OAuth2ScopeConsentGrant';
-import { ApplicationGroupAssignment } from './models/ApplicationGroupAssignment';
-import { ApplicationGroupAssignmentOptions } from './models/ApplicationGroupAssignment';
-import { ReadStream } from 'fs';
-import { OAuth2Token } from './models/OAuth2Token';
-import { AppUser } from './models/AppUser';
-import { AppUserOptions } from './models/AppUser';
+import { Collection } from './collection';
 import { AuthorizationServer } from './models/AuthorizationServer';
 import { AuthorizationServerOptions } from './models/AuthorizationServer';
+import { Response } from 'node-fetch';
 import { OAuth2Claim } from './models/OAuth2Claim';
 import { OAuth2ClaimOptions } from './models/OAuth2Claim';
 import { OAuth2Client } from './models/OAuth2Client';
@@ -55,10 +40,13 @@ import { EmailTemplateContent } from './models/EmailTemplateContent';
 import { EmailTemplateTestRequestOptions } from './models/EmailTemplateTestRequest';
 import { ThemeResponse } from './models/ThemeResponse';
 import { ThemeOptions } from './models/Theme';
+import { ReadStream } from 'fs';
 import { ImageUploadResponse } from './models/ImageUploadResponse';
 import { IdentityProvider } from './models/IdentityProvider';
 import { IdentityProviderOptions } from './models/IdentityProvider';
 import { JsonWebKeyOptions } from './models/JsonWebKey';
+import { Csr } from './models/Csr';
+import { CsrMetadataOptions } from './models/CsrMetadata';
 import { IdentityProviderApplicationUser } from './models/IdentityProviderApplicationUser';
 import { UserIdentityProviderLinkRequestOptions } from './models/UserIdentityProviderLinkRequest';
 import { SocialAuthToken } from './models/SocialAuthToken';
@@ -78,6 +66,7 @@ import { User } from './models/User';
 import { CreateUserRequestOptions } from './models/CreateUserRequest';
 import { UserOptions } from './models/User';
 import { AppLink } from './models/AppLink';
+import { OAuth2ScopeConsentGrant } from './models/OAuth2ScopeConsentGrant';
 import { ChangePasswordRequestOptions } from './models/ChangePasswordRequest';
 import { UserCredentials } from './models/UserCredentials';
 import { UserCredentialsOptions } from './models/UserCredentials';
@@ -105,73 +94,73 @@ export declare class GeneratedApiClient {
     filter?: string,
     expand?: string,
     includeNonDeleted?: boolean,
-  }): Collection<Application>;
-  createApplication(application: ApplicationOptions, queryParameters?: {
+  }): Promise<Collection<v3.Application>>;
+  createApplication(application: v3.Application, queryParameters?: {
     activate?: boolean,
-  }): Promise<Application>;
-  deleteApplication(appId: string): Promise<Response>;
+  }): Promise<v3.Application>;
+  deleteApplication(appId: string): Promise<void>;
   getApplication(appId: string, queryParameters?: {
     expand?: string,
-  }): Promise<Application>;
-  updateApplication(appId: string, application: ApplicationOptions): Promise<Application>;
-  getDefaultProvisioningConnectionForApplication(appId: string): Promise<ProvisioningConnection>;
-  setDefaultProvisioningConnectionForApplication(appId: string, provisioningConnectionRequest: ProvisioningConnectionRequestOptions, queryParameters?: {
+  }): Promise<v3.Application>;
+  updateApplication(appId: string, application: v3.Application): Promise<v3.Application>;
+  getDefaultProvisioningConnectionForApplication(appId: string): Promise<v3.ProvisioningConnection>;
+  setDefaultProvisioningConnectionForApplication(appId: string, provisioningConnectionRequest: v3.ProvisioningConnectionRequest, queryParameters?: {
     activate?: boolean,
-  }): Promise<ProvisioningConnection>;
-  activateDefaultProvisioningConnectionForApplication(appId: string): Promise<Response>;
-  deactivateDefaultProvisioningConnectionForApplication(appId: string): Promise<Response>;
-  listCsrsForApplication(appId: string): Collection<Csr>;
-  generateCsrForApplication(appId: string, csrMetadata: CsrMetadataOptions): Promise<Csr>;
-  revokeCsrFromApplication(appId: string, csrId: string): Promise<Response>;
-  getCsrForApplication(appId: string, csrId: string): Promise<Csr>;
+  }): Promise<v3.ProvisioningConnection>;
+  activateDefaultProvisioningConnectionForApplication(appId: string): Promise<void>;
+  deactivateDefaultProvisioningConnectionForApplication(appId: string): Promise<void>;
+  listCsrsForApplication(appId: string): Promise<Collection<v3.Csr>>;
+  generateCsrForApplication(appId: string, csrMetadata: v3.CsrMetadata): Promise<v3.Csr>;
+  revokeCsrFromApplication(appId: string, csrId: string): Promise<void>;
+  getCsrForApplication(appId: string, csrId: string): Promise<v3.Csr>;
   publishCerCert(appId: string, csrId: string, certificate: string): Promise<JsonWebKey>;
   publishBinaryCerCert(appId: string, csrId: string, certificate: string): Promise<JsonWebKey>;
   publishDerCert(appId: string, csrId: string, certificate: string): Promise<JsonWebKey>;
   publishBinaryDerCert(appId: string, csrId: string, certificate: string): Promise<JsonWebKey>;
   publishBinaryPemCert(appId: string, csrId: string, certificate: string): Promise<JsonWebKey>;
-  listApplicationKeys(appId: string): Collection<JsonWebKey>;
+  listApplicationKeys(appId: string): Promise<Collection<v3.JsonWebKey>>;
   generateApplicationKey(appId: string, queryParameters?: {
     validityYears?: number,
-  }): Promise<JsonWebKey>;
-  getApplicationKey(appId: string, keyId: string): Promise<JsonWebKey>;
+  }): Promise<v3.JsonWebKey>;
+  getApplicationKey(appId: string, keyId: string): Promise<v3.JsonWebKey>;
   cloneApplicationKey(appId: string, keyId: string, queryParameters: {
     targetAid: string,
-  }): Promise<JsonWebKey>;
-  listFeaturesForApplication(appId: string): Collection<ApplicationFeature>;
-  getFeatureForApplication(appId: string, name: string): Promise<ApplicationFeature>;
-  updateFeatureForApplication(appId: string, name: string, capabilitiesObject: CapabilitiesObjectOptions): Promise<ApplicationFeature>;
+  }): Promise<v3.JsonWebKey>;
+  listFeaturesForApplication(appId: string): Promise<Collection<v3.ApplicationFeature>>;
+  getFeatureForApplication(appId: string, name: string): Promise<v3.ApplicationFeature>;
+  updateFeatureForApplication(appId: string, name: string, capabilitiesObject: v3.CapabilitiesObject): Promise<v3.ApplicationFeature>;
   listScopeConsentGrants(appId: string, queryParameters?: {
     expand?: string,
-  }): Collection<OAuth2ScopeConsentGrant>;
-  grantConsentToScope(appId: string, oAuth2ScopeConsentGrant: OAuth2ScopeConsentGrantOptions): Promise<OAuth2ScopeConsentGrant>;
-  revokeScopeConsentGrant(appId: string, grantId: string): Promise<Response>;
+  }): Promise<Collection<v3.OAuth2ScopeConsentGrant>>;
+  grantConsentToScope(appId: string, oAuth2ScopeConsentGrant: v3.OAuth2ScopeConsentGrant): Promise<v3.OAuth2ScopeConsentGrant>;
+  revokeScopeConsentGrant(appId: string, grantId: string): Promise<void>;
   getScopeConsentGrant(appId: string, grantId: string, queryParameters?: {
     expand?: string,
-  }): Promise<OAuth2ScopeConsentGrant>;
+  }): Promise<v3.OAuth2ScopeConsentGrant>;
   listApplicationGroupAssignments(appId: string, queryParameters?: {
     q?: string,
     after?: string,
     limit?: number,
     expand?: string,
-  }): Collection<ApplicationGroupAssignment>;
-  deleteApplicationGroupAssignment(appId: string, groupId: string): Promise<Response>;
+  }): Promise<Collection<v3.ApplicationGroupAssignment>>;
+  deleteApplicationGroupAssignment(appId: string, groupId: string): Promise<void>;
   getApplicationGroupAssignment(appId: string, groupId: string, queryParameters?: {
     expand?: string,
-  }): Promise<ApplicationGroupAssignment>;
-  createApplicationGroupAssignment(appId: string, groupId: string, applicationGroupAssignment?: ApplicationGroupAssignmentOptions): Promise<ApplicationGroupAssignment>;
-  activateApplication(appId: string): Promise<Response>;
-  deactivateApplication(appId: string): Promise<Response>;
-  uploadApplicationLogo(appId: string, file: ReadStream): Promise<Response>;
-  revokeOAuth2TokensForApplication(appId: string): Promise<Response>;
+  }): Promise<v3.ApplicationGroupAssignment>;
+  createApplicationGroupAssignment(appId: string, groupId: string, applicationGroupAssignment?: v3.ApplicationGroupAssignment): Promise<v3.ApplicationGroupAssignment>;
+  activateApplication(appId: string): Promise<void>;
+  deactivateApplication(appId: string): Promise<void>;
+  uploadApplicationLogo(appId: string, file: ReadStream): Promise<void>;
+  revokeOAuth2TokensForApplication(appId: string): Promise<void>;
   listOAuth2TokensForApplication(appId: string, queryParameters?: {
     expand?: string,
     after?: string,
     limit?: number,
-  }): Collection<OAuth2Token>;
-  revokeOAuth2TokenForApplication(appId: string, tokenId: string): Promise<Response>;
+  }): Promise<Collection<v3.OAuth2Token>>;
+  revokeOAuth2TokenForApplication(appId: string, tokenId: string): Promise<void>;
   getOAuth2TokenForApplication(appId: string, tokenId: string, queryParameters?: {
     expand?: string,
-  }): Promise<OAuth2Token>;
+  }): Promise<v3.OAuth2Token>;
   listApplicationUsers(appId: string, queryParameters?: {
     q?: string,
     query_scope?: string,
@@ -179,15 +168,15 @@ export declare class GeneratedApiClient {
     limit?: number,
     filter?: string,
     expand?: string,
-  }): Collection<AppUser>;
-  assignUserToApplication(appId: string, appUser: AppUserOptions): Promise<AppUser>;
+  }): Promise<Collection<v3.AppUser>>;
+  assignUserToApplication(appId: string, appUser: v3.AppUser): Promise<v3.AppUser>;
   deleteApplicationUser(appId: string, userId: string, queryParameters?: {
     sendEmail?: boolean,
-  }): Promise<Response>;
+  }): Promise<void>;
   getApplicationUser(appId: string, userId: string, queryParameters?: {
     expand?: string,
-  }): Promise<AppUser>;
-  updateApplicationUser(appId: string, userId: string, appUser: AppUserOptions): Promise<AppUser>;
+  }): Promise<v3.AppUser>;
+  updateApplicationUser(appId: string, userId: string, appUser: v3.AppUser): Promise<v3.AppUser>;
   listAuthenticators(): Promise<Collection<v3.Authenticator>>;
   getAuthenticator(authenticatorId: string): Promise<v3.Authenticator>;
   updateAuthenticator(authenticatorId: string, authenticator: v3.Authenticator): Promise<v3.Authenticator>;

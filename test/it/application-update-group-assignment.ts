@@ -36,12 +36,12 @@ describe('Application.createApplicationGroupAssignment()', () => {
       await utils.cleanup(client, null, group);
       createdApplication = await client.createApplication(application);
       createdGroup = await client.createGroup(group);
-      const assignment = await createdApplication.createApplicationGroupAssignment(createdGroup.id);
+      const assignment = await client.createApplicationGroupAssignment(createdApplication.id, createdGroup.id);
       expect(assignment._links.group.href).to.contain(createdGroup.id);
     } finally {
       if (createdApplication) {
-        await createdApplication.deactivate();
-        await createdApplication.delete();
+        await client.deactivateApplication(createdApplication.id);
+        await client.deleteApplication(createdApplication.id);
       }
       if (createdGroup) {
         await utils.cleanup(client, null, createdGroup);

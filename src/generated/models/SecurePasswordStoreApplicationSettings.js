@@ -36,9 +36,9 @@ exports.SecurePasswordStoreApplicationSettings = SecurePasswordStoreApplicationS
 SecurePasswordStoreApplicationSettings.discriminator = undefined;
 SecurePasswordStoreApplicationSettings.attributeTypeMap = [
   {
-    'name': 'app',
-    'baseName': 'app',
-    'type': 'SecurePasswordStoreApplicationSettingsApplication',
+    'name': 'identityStoreId',
+    'baseName': 'identityStoreId',
+    'type': 'string',
     'format': ''
   },
   {
@@ -54,12 +54,6 @@ SecurePasswordStoreApplicationSettings.attributeTypeMap = [
     'format': ''
   },
   {
-    'name': 'identityStoreId',
-    'baseName': 'identityStoreId',
-    'type': 'string',
-    'format': ''
-  },
-  {
     'name': 'notes',
     'baseName': 'notes',
     'type': 'ApplicationSettingsNotes',
@@ -69,6 +63,12 @@ SecurePasswordStoreApplicationSettings.attributeTypeMap = [
     'name': 'notifications',
     'baseName': 'notifications',
     'type': 'ApplicationSettingsNotifications',
+    'format': ''
+  },
+  {
+    'name': 'app',
+    'baseName': 'app',
+    'type': 'SecurePasswordStoreApplicationSettingsApplication',
     'format': ''
   }
 ];

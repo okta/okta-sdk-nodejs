@@ -36,9 +36,9 @@ exports.OpenIdConnectApplicationSettings = OpenIdConnectApplicationSettings;
 OpenIdConnectApplicationSettings.discriminator = undefined;
 OpenIdConnectApplicationSettings.attributeTypeMap = [
   {
-    'name': 'app',
-    'baseName': 'app',
-    'type': 'any',
+    'name': 'identityStoreId',
+    'baseName': 'identityStoreId',
+    'type': 'string',
     'format': ''
   },
   {
@@ -50,12 +50,6 @@ OpenIdConnectApplicationSettings.attributeTypeMap = [
   {
     'name': 'inlineHookId',
     'baseName': 'inlineHookId',
-    'type': 'string',
-    'format': ''
-  },
-  {
-    'name': 'identityStoreId',
-    'baseName': 'identityStoreId',
     'type': 'string',
     'format': ''
   },

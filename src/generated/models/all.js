@@ -33,8 +33,9 @@ var __exportStar = (this && this.__exportStar) || function (m, exports) {
   }
 };
 Object.defineProperty(exports, '__esModule', { value: true });
-exports.InlineHookPayload = void 0;
+exports.ApplicationSettingsApplication = exports.InlineHookPayload = void 0;
 __exportStar(require('./AccessPolicy'), exports);
+__exportStar(require('./AccessPolicyAllOf'), exports);
 __exportStar(require('./AccessPolicyConstraint'), exports);
 __exportStar(require('./AccessPolicyConstraints'), exports);
 __exportStar(require('./AccessPolicyRule'), exports);
@@ -116,7 +117,6 @@ __exportStar(require('./AutoUpdateSchedule'), exports);
 __exportStar(require('./BasicApplicationSettings'), exports);
 __exportStar(require('./BasicApplicationSettingsAllOf'), exports);
 __exportStar(require('./BasicApplicationSettingsApplication'), exports);
-__exportStar(require('./BasicApplicationSettingsApplicationAllOf'), exports);
 __exportStar(require('./BasicAuthApplication'), exports);
 __exportStar(require('./BasicAuthApplicationAllOf'), exports);
 __exportStar(require('./BeforeScheduledActionPolicyRuleCondition'), exports);
@@ -144,7 +144,6 @@ __exportStar(require('./BookmarkApplicationAllOf'), exports);
 __exportStar(require('./BookmarkApplicationSettings'), exports);
 __exportStar(require('./BookmarkApplicationSettingsAllOf'), exports);
 __exportStar(require('./BookmarkApplicationSettingsApplication'), exports);
-__exportStar(require('./BookmarkApplicationSettingsApplicationAllOf'), exports);
 __exportStar(require('./BouncesRemoveListError'), exports);
 __exportStar(require('./BouncesRemoveListObj'), exports);
 __exportStar(require('./BouncesRemoveListResult'), exports);
@@ -215,7 +214,7 @@ __exportStar(require('./EmailUserFactorAllOf'), exports);
 __exportStar(require('./EmailUserFactorProfile'), exports);
 __exportStar(require('./EnabledStatus'), exports);
 __exportStar(require('./EndUserDashboardTouchPointVariant'), exports);
-__exportStar(require('./ErrorErrorCauses'), exports);
+__exportStar(require('./ErrorErrorCausesInner'), exports);
 __exportStar(require('./ErrorPageTouchPointVariant'), exports);
 __exportStar(require('./EventHook'), exports);
 __exportStar(require('./EventHookChannel'), exports);
@@ -382,12 +381,6 @@ __exportStar(require('./OpenIdConnectApplicationSettingsRefreshToken'), exports)
 __exportStar(require('./OpenIdConnectApplicationType'), exports);
 __exportStar(require('./OpenIdConnectRefreshTokenRotationType'), exports);
 __exportStar(require('./OperationalStatus'), exports);
-__exportStar(require('./Org2OrgApplication'), exports);
-__exportStar(require('./Org2OrgApplicationAllOf'), exports);
-__exportStar(require('./Org2OrgApplicationSettings'), exports);
-__exportStar(require('./Org2OrgApplicationSettingsAllOf'), exports);
-__exportStar(require('./Org2OrgApplicationSettingsApp'), exports);
-__exportStar(require('./Org2OrgApplicationSettingsAppAllOf'), exports);
 __exportStar(require('./OrgContactType'), exports);
 __exportStar(require('./OrgContactTypeObj'), exports);
 __exportStar(require('./OrgContactUser'), exports);
@@ -523,6 +516,7 @@ __exportStar(require('./SamlApplication'), exports);
 __exportStar(require('./SamlApplicationAllOf'), exports);
 __exportStar(require('./SamlApplicationSettings'), exports);
 __exportStar(require('./SamlApplicationSettingsAllOf'), exports);
+__exportStar(require('./SamlApplicationSettingsApplication'), exports);
 __exportStar(require('./SamlApplicationSettingsSignOn'), exports);
 __exportStar(require('./SamlAttributeStatement'), exports);
 __exportStar(require('./ScheduledUserLifecycleAction'), exports);
@@ -533,7 +527,6 @@ __exportStar(require('./SecurePasswordStoreApplicationAllOf'), exports);
 __exportStar(require('./SecurePasswordStoreApplicationSettings'), exports);
 __exportStar(require('./SecurePasswordStoreApplicationSettingsAllOf'), exports);
 __exportStar(require('./SecurePasswordStoreApplicationSettingsApplication'), exports);
-__exportStar(require('./SecurePasswordStoreApplicationSettingsApplicationAllOf'), exports);
 __exportStar(require('./SecurityQuestion'), exports);
 __exportStar(require('./SecurityQuestionUserFactor'), exports);
 __exportStar(require('./SecurityQuestionUserFactorAllOf'), exports);
@@ -556,18 +549,9 @@ __exportStar(require('./SocialAuthToken'), exports);
 __exportStar(require('./SpCertificate'), exports);
 __exportStar(require('./Subscription'), exports);
 __exportStar(require('./SubscriptionStatus'), exports);
-__exportStar(require('./SwaApplication'), exports);
-__exportStar(require('./SwaApplicationAllOf'), exports);
 __exportStar(require('./SwaApplicationSettings'), exports);
 __exportStar(require('./SwaApplicationSettingsAllOf'), exports);
 __exportStar(require('./SwaApplicationSettingsApplication'), exports);
-__exportStar(require('./SwaApplicationSettingsApplicationAllOf'), exports);
-__exportStar(require('./SwaThreeFieldApplication'), exports);
-__exportStar(require('./SwaThreeFieldApplicationAllOf'), exports);
-__exportStar(require('./SwaThreeFieldApplicationSettings'), exports);
-__exportStar(require('./SwaThreeFieldApplicationSettingsAllOf'), exports);
-__exportStar(require('./SwaThreeFieldApplicationSettingsApplication'), exports);
-__exportStar(require('./SwaThreeFieldApplicationSettingsApplicationAllOf'), exports);
 __exportStar(require('./TempPassword'), exports);
 __exportStar(require('./Theme'), exports);
 __exportStar(require('./ThemeResponse'), exports);
@@ -640,8 +624,12 @@ __exportStar(require('./WsFederationApplicationAllOf'), exports);
 __exportStar(require('./WsFederationApplicationSettings'), exports);
 __exportStar(require('./WsFederationApplicationSettingsAllOf'), exports);
 __exportStar(require('./WsFederationApplicationSettingsApplication'), exports);
-__exportStar(require('./WsFederationApplicationSettingsApplicationAllOf'), exports);
-// InlineHookPayload is not generated as it does not have properties set in the spec
+// InlineHookPayload and ApplicationSettingsAppliation are not generated as it does not have properties set in the spec
 class InlineHookPayload {
 }
 exports.InlineHookPayload = InlineHookPayload;
+
+class ApplicationSettingsApplication {
+}
+exports.ApplicationSettingsApplication = ApplicationSettingsApplication;
+

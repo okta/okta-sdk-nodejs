@@ -21,27 +21,27 @@ import { Subscription } from '../models/Subscription';
 export declare class SubscriptionApiRequestFactory extends BaseAPIRequestFactory {
   /**
      * When roleType Get subscriptions of a Role with a specific notification type. Else when roleId Get subscription of a Custom Role with a specific notification type.
-     * Get subscriptions of a Custom Role with a specific notification type
+     * List all Subscriptions of a Custom Role with a specific notification type
      * @param roleTypeOrRoleId
      * @param notificationType
      */
   getRoleSubscriptionByNotificationType(roleTypeOrRoleId: string, notificationType: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Get the subscriptions of a User with a specific notification type. Only gets subscriptions for current user. An AccessDeniedException message is sent if requests are made from other users.
-     * Get the subscription of a User with a specific notification type
+     * List all Subscriptions by type
      * @param userId
      * @param notificationType
      */
   getUserSubscriptionByNotificationType(userId: string, notificationType: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * When roleType List all subscriptions of a Role. Else when roleId List subscriptions of a Custom Role
-     * List all subscriptions of a Custom Role
+     * List all Subscriptions of a Custom Role
      * @param roleTypeOrRoleId
      */
   listRoleSubscriptions(roleTypeOrRoleId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * List subscriptions of a User. Only lists subscriptions for current user. An AccessDeniedException message is sent if requests are made from other users.
-     * List subscriptions of a User
+     * List all Subscriptions
      * @param userId
      */
   listUserSubscriptions(userId: string, _options?: Configuration): Promise<RequestContext>;

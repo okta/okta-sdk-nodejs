@@ -26,7 +26,7 @@ const util_1 = require('../util');
 class CustomizationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   /**
      * Creates a new email customization.
-     * Create Email Customization
+     * Create an Email Customization
      * @param brandId The ID of the brand.
      * @param templateName The name of the email template.
      * @param instance
@@ -74,7 +74,7 @@ class CustomizationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Deletes all customizations for an email template.
-     * Delete All Email Customizations
+     * Delete all Email Customizations
      * @param brandId The ID of the brand.
      * @param templateName The name of the email template.
      */
@@ -113,8 +113,8 @@ class CustomizationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     return requestContext;
   }
   /**
-     * Deletes a Theme background image
-     * Deletes a Theme background image
+     * Deletes a Theme background image.
+     * Delete the Background Image
      * @param brandId
      * @param themeId
      */
@@ -153,8 +153,8 @@ class CustomizationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     return requestContext;
   }
   /**
-     * Deletes a Theme favicon. The org then uses the Okta default favicon.
-     * Deletes a Theme favicon. The org then uses the Okta default favicon.
+     * Deletes a Theme favicon. The theme will use the default Okta favicon.
+     * Delete the Favicon
      * @param brandId
      * @param themeId
      */
@@ -193,8 +193,8 @@ class CustomizationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     return requestContext;
   }
   /**
-     * Deletes a Theme logo. The org then uses the Okta default logo.
-     * Deletes a Theme logo. The org then uses the Okta default logo.
+     * Deletes a Theme logo. The theme will use the default Okta logo.
+     * Delete the Logo
      * @param brandId
      * @param themeId
      */
@@ -234,7 +234,7 @@ class CustomizationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Deletes an email customization by its unique identifier.
-     * Delete Email Customization
+     * Delete an Email Customization
      * @param brandId The ID of the brand.
      * @param templateName The name of the email template.
      * @param customizationId The ID of the email customization.
@@ -280,7 +280,7 @@ class CustomizationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Fetches a brand by `brandId`
-     * Get Brand
+     * Retrieve a Brand
      * @param brandId
      */
   async getBrand(brandId, _options) {
@@ -314,7 +314,7 @@ class CustomizationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Fetches a theme for a brand
-     * Get a theme for a brand
+     * Retrieve a Theme
      * @param brandId
      * @param themeId
      */
@@ -354,7 +354,7 @@ class CustomizationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Generates a preview of an email customization. All variable references (e.g., `${user.profile.firstName}`) are populated using the current user's context.
-     * Preview Email Customization
+     * Preview an Email Customization
      * @param brandId The ID of the brand.
      * @param templateName The name of the email template.
      * @param customizationId The ID of the email customization.
@@ -400,7 +400,7 @@ class CustomizationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Gets an email customization by its unique identifier.
-     * Get Email Customization
+     * Retrieve an Email Customization
      * @param brandId The ID of the brand.
      * @param templateName The name of the email template.
      * @param customizationId The ID of the email customization.
@@ -446,7 +446,7 @@ class CustomizationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Gets an email template's default content.
-     * Get Email Template Default Content
+     * Retrieve an Email Template Default Content
      * @param brandId The ID of the brand.
      * @param templateName The name of the email template.
      * @param language The language to use for the email. Defaults to the current user&#39;s language if unspecified.
@@ -491,7 +491,7 @@ class CustomizationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Generates a preview of an email template's default content. All variable references (e.g., `${user.profile.firstName}`) are populated using the current user's context.
-     * Preview Email Template Default Content
+     * Preview the Email Template Default Content
      * @param brandId The ID of the brand.
      * @param templateName The name of the email template.
      * @param language The language to use for the email. Defaults to the current user&#39;s language if unspecified.
@@ -536,7 +536,7 @@ class CustomizationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Gets an email template's settings.
-     * Get Email Template Settings
+     * Retrieve the Email Template Settings
      * @param brandId The ID of the brand.
      * @param templateName The name of the email template.
      */
@@ -576,7 +576,7 @@ class CustomizationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Gets the details of an email template by name.
-     * Get Email Template
+     * Retrieve an Email Template
      * @param brandId The ID of the brand.
      * @param templateName The name of the email template.
      * @param expand Specifies additional metadata to be included in the response.
@@ -621,7 +621,7 @@ class CustomizationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * List all the themes in your brand
-     * Get Brand Themes
+     * List all Themes
      * @param brandId
      */
   async listBrandThemes(brandId, _options) {
@@ -655,7 +655,7 @@ class CustomizationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * List all the brands in your org.
-     * List Brands
+     * List all Brands
      */
   async listBrands(_options) {
     let _config = _options || this.configuration;
@@ -683,7 +683,7 @@ class CustomizationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Lists all customizations of an email template.
-     * List Email Customizations
+     * List all Email Customizations
      * @param brandId The ID of the brand.
      * @param templateName The name of the email template.
      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/reference/core-okta-api/#pagination) for more information.
@@ -733,7 +733,7 @@ class CustomizationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Lists all email templates.
-     * List Email Templates
+     * List all Email Templates
      * @param brandId The ID of the brand.
      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/reference/core-okta-api/#pagination) for more information.
      * @param limit A limit on the number of objects to return.
@@ -782,7 +782,7 @@ class CustomizationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Sends a test email to the current user’s primary and secondary email addresses. The email content is selected based on the following priority: 1. The email customization for the language specified in the `language` query parameter. 2. The email template's default customization. 3. The email template’s default content, translated to the current user's language.
-     * Send Test Email
+     * Send a Test Email
      * @param brandId The ID of the brand.
      * @param templateName The name of the email template.
      * @param language The language to use for the email. Defaults to the current user&#39;s language if unspecified.
@@ -827,7 +827,7 @@ class CustomizationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Updates a brand by `brandId`
-     * Update Brand
+     * Replace a Brand
      * @param brandId
      * @param brand
      */
@@ -873,7 +873,7 @@ class CustomizationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Updates a theme for a brand
-     * Update a theme for a brand
+     * Replace a Theme
      * @param brandId
      * @param themeId
      * @param theme
@@ -925,7 +925,7 @@ class CustomizationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Updates an existing email customization using the property values provided.
-     * Update Email Customization
+     * Replace an Email Customization
      * @param brandId The ID of the brand.
      * @param templateName The name of the email template.
      * @param customizationId The ID of the email customization.
@@ -979,7 +979,7 @@ class CustomizationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Updates an email template's settings.
-     * Update Email Template Settings
+     * Replace the Email Template Settings
      * @param brandId The ID of the brand.
      * @param templateName The name of the email template.
      * @param EmailSettings
@@ -1027,7 +1027,7 @@ class CustomizationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Updates the background image for your Theme
-     * Updates the background image for your Theme
+     * Upload the Background Image
      * @param brandId
      * @param themeId
      */
@@ -1067,7 +1067,7 @@ class CustomizationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Updates the favicon for your theme
-     * Updates the favicon for your theme
+     * Upload the Favicon
      * @param brandId
      * @param themeId
      */
@@ -1107,7 +1107,7 @@ class CustomizationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Updates the logo for your Theme
-     * Update a themes logo
+     * Upload the Logo
      * @param brandId
      * @param themeId
      */

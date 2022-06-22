@@ -36,6 +36,12 @@ exports.BookmarkApplicationAllOf = BookmarkApplicationAllOf;
 BookmarkApplicationAllOf.discriminator = undefined;
 BookmarkApplicationAllOf.attributeTypeMap = [
   {
+    'name': 'credentials',
+    'baseName': 'credentials',
+    'type': 'ApplicationCredentials',
+    'format': ''
+  },
+  {
     'name': 'name',
     'baseName': 'name',
     'type': 'string',

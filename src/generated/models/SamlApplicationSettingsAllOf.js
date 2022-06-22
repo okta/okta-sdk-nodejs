@@ -36,6 +36,12 @@ exports.SamlApplicationSettingsAllOf = SamlApplicationSettingsAllOf;
 SamlApplicationSettingsAllOf.discriminator = undefined;
 SamlApplicationSettingsAllOf.attributeTypeMap = [
   {
+    'name': 'app',
+    'baseName': 'app',
+    'type': 'SamlApplicationSettingsApplication',
+    'format': ''
+  },
+  {
     'name': 'signOn',
     'baseName': 'signOn',
     'type': 'SamlApplicationSettingsSignOn',

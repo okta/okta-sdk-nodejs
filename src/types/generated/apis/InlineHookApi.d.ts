@@ -22,50 +22,50 @@ import { InlineHookResponse } from '../models/InlineHookResponse';
 export declare class InlineHookApiRequestFactory extends BaseAPIRequestFactory {
   /**
      * Activates the Inline Hook matching the provided id
-     * Activate Inline Hook
+     * Activate an Inline Hook
      * @param inlineHookId
      */
   activateInlineHook(inlineHookId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Success
-     * Create Inline Hook
+     * Create an Inline Hook
      * @param inlineHook
      */
   createInlineHook(inlineHook: InlineHook, _options?: Configuration): Promise<RequestContext>;
   /**
      * Deactivates the Inline Hook matching the provided id
-     * Deactivate Inline Hook
+     * Deactivate an Inline Hook
      * @param inlineHookId
      */
   deactivateInlineHook(inlineHookId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Deletes the Inline Hook matching the provided id. Once deleted, the Inline Hook is unrecoverable. As a safety precaution, only Inline Hooks with a status of INACTIVE are eligible for deletion.
-     * Delete Inline Hook
+     * Delete an Inline Hook
      * @param inlineHookId
      */
   deleteInlineHook(inlineHookId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Executes the Inline Hook matching the provided inlineHookId using the request body as the input. This will send the provided data through the Channel and return a response if it matches the correct data contract. This execution endpoint should only be used for testing purposes.
-     * Execute Inline Hook
+     * Execute an Inline Hook
      * @param inlineHookId
      * @param payloadData
      */
   executeInlineHook(inlineHookId: string, payloadData: any, _options?: Configuration): Promise<RequestContext>;
   /**
      * Gets an inline hook by ID
-     * Get Inline Hook
+     * Retrieve an Inline Hook
      * @param inlineHookId
      */
   getInlineHook(inlineHookId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Success
-     * List Inline Hooks
+     * List all Inline Hooks
      * @param type
      */
   listInlineHooks(type?: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Updates an inline hook by ID
-     * Update Inline Hook
+     * Replace an Inline Hook
      * @param inlineHookId
      * @param inlineHook
      */

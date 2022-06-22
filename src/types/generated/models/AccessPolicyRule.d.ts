@@ -28,7 +28,6 @@ import { PolicyRule } from './PolicyRule';
 export declare class AccessPolicyRule extends PolicyRule {
   'actions'?: AccessPolicyRuleActions;
   'conditions'?: AccessPolicyRuleConditions;
-  'name'?: string;
   static readonly discriminator: string | undefined;
   static readonly attributeTypeMap: Array<{
         name: string;

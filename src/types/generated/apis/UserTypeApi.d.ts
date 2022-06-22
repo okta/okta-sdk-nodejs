@@ -21,37 +21,37 @@ import { UserType } from '../models/UserType';
 export declare class UserTypeApiRequestFactory extends BaseAPIRequestFactory {
   /**
      * Creates a new User Type. A default User Type is automatically created along with your org, and you may add another 9 User Types for a maximum of 10.
-     * Create User Type
+     * Create a User Type
      * @param userType
      */
   createUserType(userType: UserType, _options?: Configuration): Promise<RequestContext>;
   /**
      * Deletes a User Type permanently. This operation is not permitted for the default type, nor for any User Type that has existing users
-     * Delete User Type
+     * Delete a User Type
      * @param typeId
      */
   deleteUserType(typeId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Fetches a User Type by ID. The special identifier `default` may be used to fetch the default User Type.
-     * Get User Type
+     * Retrieve a User Type
      * @param typeId
      */
   getUserType(typeId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Fetches all User Types in your org
-     * List User Types
+     * List all User Types
      */
   listUserTypes(_options?: Configuration): Promise<RequestContext>;
   /**
      * Replace an existing User Type
-     * Replace User Type
+     * Replace a User Type
      * @param typeId
      * @param userType
      */
   replaceUserType(typeId: string, userType: UserType, _options?: Configuration): Promise<RequestContext>;
   /**
      * Updates an existing User Type
-     * Update User Type
+     * Update a User Type
      * @param typeId
      * @param userType
      */

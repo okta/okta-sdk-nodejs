@@ -21,30 +21,30 @@ import { Authenticator } from '../models/Authenticator';
 export declare class AuthenticatorApiRequestFactory extends BaseAPIRequestFactory {
   /**
      * Activates an authenticator by `authenticatorId`.
-     * Activate Authenticator
+     * Activate an Authenticator
      * @param authenticatorId
      */
   activateAuthenticator(authenticatorId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Deactivates an authenticator by `authenticatorId`.
-     * Deactivate Authenticator
+     * Deactivate an Authenticator
      * @param authenticatorId
      */
   deactivateAuthenticator(authenticatorId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Fetches an authenticator from your Okta organization by `authenticatorId`.
-     * Get Authenticator
+     * Retrieve an Authenticator
      * @param authenticatorId
      */
   getAuthenticator(authenticatorId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Enumerates authenticators in your organization.
-     * List Authenticators
+     * List all Authenticators
      */
   listAuthenticators(_options?: Configuration): Promise<RequestContext>;
   /**
      * Updates an authenticator
-     * Update Authenticator
+     * Replace an Authenticator
      * @param authenticatorId
      * @param authenticator
      */

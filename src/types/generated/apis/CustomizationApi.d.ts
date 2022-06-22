@@ -29,7 +29,7 @@ import { ThemeResponse } from '../models/ThemeResponse';
 export declare class CustomizationApiRequestFactory extends BaseAPIRequestFactory {
   /**
      * Creates a new email customization.
-     * Create Email Customization
+     * Create an Email Customization
      * @param brandId The ID of the brand.
      * @param templateName The name of the email template.
      * @param instance
@@ -37,35 +37,35 @@ export declare class CustomizationApiRequestFactory extends BaseAPIRequestFactor
   createEmailCustomization(brandId: string, templateName: string, instance?: EmailCustomization, _options?: Configuration): Promise<RequestContext>;
   /**
      * Deletes all customizations for an email template.
-     * Delete All Email Customizations
+     * Delete all Email Customizations
      * @param brandId The ID of the brand.
      * @param templateName The name of the email template.
      */
   deleteAllCustomizations(brandId: string, templateName: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Deletes a Theme background image
-     * Deletes a Theme background image
+     * Deletes a Theme background image.
+     * Delete the Background Image
      * @param brandId
      * @param themeId
      */
   deleteBrandThemeBackgroundImage(brandId: string, themeId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Deletes a Theme favicon. The org then uses the Okta default favicon.
-     * Deletes a Theme favicon. The org then uses the Okta default favicon.
+     * Deletes a Theme favicon. The theme will use the default Okta favicon.
+     * Delete the Favicon
      * @param brandId
      * @param themeId
      */
   deleteBrandThemeFavicon(brandId: string, themeId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Deletes a Theme logo. The org then uses the Okta default logo.
-     * Deletes a Theme logo. The org then uses the Okta default logo.
+     * Deletes a Theme logo. The theme will use the default Okta logo.
+     * Delete the Logo
      * @param brandId
      * @param themeId
      */
   deleteBrandThemeLogo(brandId: string, themeId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Deletes an email customization by its unique identifier.
-     * Delete Email Customization
+     * Delete an Email Customization
      * @param brandId The ID of the brand.
      * @param templateName The name of the email template.
      * @param customizationId The ID of the email customization.
@@ -73,20 +73,20 @@ export declare class CustomizationApiRequestFactory extends BaseAPIRequestFactor
   deleteEmailCustomization(brandId: string, templateName: string, customizationId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Fetches a brand by `brandId`
-     * Get Brand
+     * Retrieve a Brand
      * @param brandId
      */
   getBrand(brandId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Fetches a theme for a brand
-     * Get a theme for a brand
+     * Retrieve a Theme
      * @param brandId
      * @param themeId
      */
   getBrandTheme(brandId: string, themeId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Generates a preview of an email customization. All variable references (e.g., `${user.profile.firstName}`) are populated using the current user's context.
-     * Preview Email Customization
+     * Preview an Email Customization
      * @param brandId The ID of the brand.
      * @param templateName The name of the email template.
      * @param customizationId The ID of the email customization.
@@ -94,7 +94,7 @@ export declare class CustomizationApiRequestFactory extends BaseAPIRequestFactor
   getCustomizationPreview(brandId: string, templateName: string, customizationId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Gets an email customization by its unique identifier.
-     * Get Email Customization
+     * Retrieve an Email Customization
      * @param brandId The ID of the brand.
      * @param templateName The name of the email template.
      * @param customizationId The ID of the email customization.
@@ -102,7 +102,7 @@ export declare class CustomizationApiRequestFactory extends BaseAPIRequestFactor
   getEmailCustomization(brandId: string, templateName: string, customizationId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Gets an email template's default content.
-     * Get Email Template Default Content
+     * Retrieve an Email Template Default Content
      * @param brandId The ID of the brand.
      * @param templateName The name of the email template.
      * @param language The language to use for the email. Defaults to the current user&#39;s language if unspecified.
@@ -110,7 +110,7 @@ export declare class CustomizationApiRequestFactory extends BaseAPIRequestFactor
   getEmailDefaultContent(brandId: string, templateName: string, language?: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Generates a preview of an email template's default content. All variable references (e.g., `${user.profile.firstName}`) are populated using the current user's context.
-     * Preview Email Template Default Content
+     * Preview the Email Template Default Content
      * @param brandId The ID of the brand.
      * @param templateName The name of the email template.
      * @param language The language to use for the email. Defaults to the current user&#39;s language if unspecified.
@@ -118,14 +118,14 @@ export declare class CustomizationApiRequestFactory extends BaseAPIRequestFactor
   getEmailDefaultPreview(brandId: string, templateName: string, language?: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Gets an email template's settings.
-     * Get Email Template Settings
+     * Retrieve the Email Template Settings
      * @param brandId The ID of the brand.
      * @param templateName The name of the email template.
      */
   getEmailSettings(brandId: string, templateName: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Gets the details of an email template by name.
-     * Get Email Template
+     * Retrieve an Email Template
      * @param brandId The ID of the brand.
      * @param templateName The name of the email template.
      * @param expand Specifies additional metadata to be included in the response.
@@ -133,18 +133,18 @@ export declare class CustomizationApiRequestFactory extends BaseAPIRequestFactor
   getEmailTemplate(brandId: string, templateName: string, expand?: Array<'settings' | 'customizationCount'>, _options?: Configuration): Promise<RequestContext>;
   /**
      * List all the themes in your brand
-     * Get Brand Themes
+     * List all Themes
      * @param brandId
      */
   listBrandThemes(brandId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * List all the brands in your org.
-     * List Brands
+     * List all Brands
      */
   listBrands(_options?: Configuration): Promise<RequestContext>;
   /**
      * Lists all customizations of an email template.
-     * List Email Customizations
+     * List all Email Customizations
      * @param brandId The ID of the brand.
      * @param templateName The name of the email template.
      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/reference/core-okta-api/#pagination) for more information.
@@ -153,7 +153,7 @@ export declare class CustomizationApiRequestFactory extends BaseAPIRequestFactor
   listEmailCustomizations(brandId: string, templateName: string, after?: string, limit?: number, _options?: Configuration): Promise<RequestContext>;
   /**
      * Lists all email templates.
-     * List Email Templates
+     * List all Email Templates
      * @param brandId The ID of the brand.
      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/reference/core-okta-api/#pagination) for more information.
      * @param limit A limit on the number of objects to return.
@@ -162,7 +162,7 @@ export declare class CustomizationApiRequestFactory extends BaseAPIRequestFactor
   listEmailTemplates(brandId: string, after?: string, limit?: number, expand?: Array<'settings' | 'customizationCount'>, _options?: Configuration): Promise<RequestContext>;
   /**
      * Sends a test email to the current user’s primary and secondary email addresses. The email content is selected based on the following priority: 1. The email customization for the language specified in the `language` query parameter. 2. The email template's default customization. 3. The email template’s default content, translated to the current user's language.
-     * Send Test Email
+     * Send a Test Email
      * @param brandId The ID of the brand.
      * @param templateName The name of the email template.
      * @param language The language to use for the email. Defaults to the current user&#39;s language if unspecified.
@@ -170,14 +170,14 @@ export declare class CustomizationApiRequestFactory extends BaseAPIRequestFactor
   sendTestEmail(brandId: string, templateName: string, language?: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Updates a brand by `brandId`
-     * Update Brand
+     * Replace a Brand
      * @param brandId
      * @param brand
      */
   updateBrand(brandId: string, brand: Brand, _options?: Configuration): Promise<RequestContext>;
   /**
      * Updates a theme for a brand
-     * Update a theme for a brand
+     * Replace a Theme
      * @param brandId
      * @param themeId
      * @param theme
@@ -185,7 +185,7 @@ export declare class CustomizationApiRequestFactory extends BaseAPIRequestFactor
   updateBrandTheme(brandId: string, themeId: string, theme: Theme, _options?: Configuration): Promise<RequestContext>;
   /**
      * Updates an existing email customization using the property values provided.
-     * Update Email Customization
+     * Replace an Email Customization
      * @param brandId The ID of the brand.
      * @param templateName The name of the email template.
      * @param customizationId The ID of the email customization.
@@ -194,7 +194,7 @@ export declare class CustomizationApiRequestFactory extends BaseAPIRequestFactor
   updateEmailCustomization(brandId: string, templateName: string, customizationId: string, instance?: EmailCustomization, _options?: Configuration): Promise<RequestContext>;
   /**
      * Updates an email template's settings.
-     * Update Email Template Settings
+     * Replace the Email Template Settings
      * @param brandId The ID of the brand.
      * @param templateName The name of the email template.
      * @param EmailSettings
@@ -202,21 +202,21 @@ export declare class CustomizationApiRequestFactory extends BaseAPIRequestFactor
   updateEmailSettings(brandId: string, templateName: string, EmailSettings?: EmailSettings, _options?: Configuration): Promise<RequestContext>;
   /**
      * Updates the background image for your Theme
-     * Updates the background image for your Theme
+     * Upload the Background Image
      * @param brandId
      * @param themeId
      */
   uploadBrandThemeBackgroundImage(brandId: string, themeId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Updates the favicon for your theme
-     * Updates the favicon for your theme
+     * Upload the Favicon
      * @param brandId
      * @param themeId
      */
   uploadBrandThemeFavicon(brandId: string, themeId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Updates the logo for your Theme
-     * Update a themes logo
+     * Upload the Logo
      * @param brandId
      * @param themeId
      */

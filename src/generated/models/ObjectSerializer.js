@@ -25,6 +25,7 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ObjectSerializer = void 0;
 __exportStar(require("./AccessPolicy"), exports);
+__exportStar(require("./AccessPolicyAllOf"), exports);
 __exportStar(require("./AccessPolicyConstraint"), exports);
 __exportStar(require("./AccessPolicyConstraints"), exports);
 __exportStar(require("./AccessPolicyRule"), exports);
@@ -106,7 +107,6 @@ __exportStar(require("./AutoUpdateSchedule"), exports);
 __exportStar(require("./BasicApplicationSettings"), exports);
 __exportStar(require("./BasicApplicationSettingsAllOf"), exports);
 __exportStar(require("./BasicApplicationSettingsApplication"), exports);
-__exportStar(require("./BasicApplicationSettingsApplicationAllOf"), exports);
 __exportStar(require("./BasicAuthApplication"), exports);
 __exportStar(require("./BasicAuthApplicationAllOf"), exports);
 __exportStar(require("./BeforeScheduledActionPolicyRuleCondition"), exports);
@@ -134,7 +134,6 @@ __exportStar(require("./BookmarkApplicationAllOf"), exports);
 __exportStar(require("./BookmarkApplicationSettings"), exports);
 __exportStar(require("./BookmarkApplicationSettingsAllOf"), exports);
 __exportStar(require("./BookmarkApplicationSettingsApplication"), exports);
-__exportStar(require("./BookmarkApplicationSettingsApplicationAllOf"), exports);
 __exportStar(require("./BouncesRemoveListError"), exports);
 __exportStar(require("./BouncesRemoveListObj"), exports);
 __exportStar(require("./BouncesRemoveListResult"), exports);
@@ -205,7 +204,7 @@ __exportStar(require("./EmailUserFactorAllOf"), exports);
 __exportStar(require("./EmailUserFactorProfile"), exports);
 __exportStar(require("./EnabledStatus"), exports);
 __exportStar(require("./EndUserDashboardTouchPointVariant"), exports);
-__exportStar(require("./ErrorErrorCauses"), exports);
+__exportStar(require("./ErrorErrorCausesInner"), exports);
 __exportStar(require("./ErrorPageTouchPointVariant"), exports);
 __exportStar(require("./EventHook"), exports);
 __exportStar(require("./EventHookChannel"), exports);
@@ -372,12 +371,6 @@ __exportStar(require("./OpenIdConnectApplicationSettingsRefreshToken"), exports)
 __exportStar(require("./OpenIdConnectApplicationType"), exports);
 __exportStar(require("./OpenIdConnectRefreshTokenRotationType"), exports);
 __exportStar(require("./OperationalStatus"), exports);
-__exportStar(require("./Org2OrgApplication"), exports);
-__exportStar(require("./Org2OrgApplicationAllOf"), exports);
-__exportStar(require("./Org2OrgApplicationSettings"), exports);
-__exportStar(require("./Org2OrgApplicationSettingsAllOf"), exports);
-__exportStar(require("./Org2OrgApplicationSettingsApp"), exports);
-__exportStar(require("./Org2OrgApplicationSettingsAppAllOf"), exports);
 __exportStar(require("./OrgContactType"), exports);
 __exportStar(require("./OrgContactTypeObj"), exports);
 __exportStar(require("./OrgContactUser"), exports);
@@ -513,6 +506,7 @@ __exportStar(require("./SamlApplication"), exports);
 __exportStar(require("./SamlApplicationAllOf"), exports);
 __exportStar(require("./SamlApplicationSettings"), exports);
 __exportStar(require("./SamlApplicationSettingsAllOf"), exports);
+__exportStar(require("./SamlApplicationSettingsApplication"), exports);
 __exportStar(require("./SamlApplicationSettingsSignOn"), exports);
 __exportStar(require("./SamlAttributeStatement"), exports);
 __exportStar(require("./ScheduledUserLifecycleAction"), exports);
@@ -523,7 +517,6 @@ __exportStar(require("./SecurePasswordStoreApplicationAllOf"), exports);
 __exportStar(require("./SecurePasswordStoreApplicationSettings"), exports);
 __exportStar(require("./SecurePasswordStoreApplicationSettingsAllOf"), exports);
 __exportStar(require("./SecurePasswordStoreApplicationSettingsApplication"), exports);
-__exportStar(require("./SecurePasswordStoreApplicationSettingsApplicationAllOf"), exports);
 __exportStar(require("./SecurityQuestion"), exports);
 __exportStar(require("./SecurityQuestionUserFactor"), exports);
 __exportStar(require("./SecurityQuestionUserFactorAllOf"), exports);
@@ -546,18 +539,9 @@ __exportStar(require("./SocialAuthToken"), exports);
 __exportStar(require("./SpCertificate"), exports);
 __exportStar(require("./Subscription"), exports);
 __exportStar(require("./SubscriptionStatus"), exports);
-__exportStar(require("./SwaApplication"), exports);
-__exportStar(require("./SwaApplicationAllOf"), exports);
 __exportStar(require("./SwaApplicationSettings"), exports);
 __exportStar(require("./SwaApplicationSettingsAllOf"), exports);
 __exportStar(require("./SwaApplicationSettingsApplication"), exports);
-__exportStar(require("./SwaApplicationSettingsApplicationAllOf"), exports);
-__exportStar(require("./SwaThreeFieldApplication"), exports);
-__exportStar(require("./SwaThreeFieldApplicationAllOf"), exports);
-__exportStar(require("./SwaThreeFieldApplicationSettings"), exports);
-__exportStar(require("./SwaThreeFieldApplicationSettingsAllOf"), exports);
-__exportStar(require("./SwaThreeFieldApplicationSettingsApplication"), exports);
-__exportStar(require("./SwaThreeFieldApplicationSettingsApplicationAllOf"), exports);
 __exportStar(require("./TempPassword"), exports);
 __exportStar(require("./Theme"), exports);
 __exportStar(require("./ThemeResponse"), exports);
@@ -630,8 +614,8 @@ __exportStar(require("./WsFederationApplicationAllOf"), exports);
 __exportStar(require("./WsFederationApplicationSettings"), exports);
 __exportStar(require("./WsFederationApplicationSettingsAllOf"), exports);
 __exportStar(require("./WsFederationApplicationSettingsApplication"), exports);
-__exportStar(require("./WsFederationApplicationSettingsApplicationAllOf"), exports);
 const AccessPolicy_1 = require("./AccessPolicy");
+const AccessPolicyAllOf_1 = require("./AccessPolicyAllOf");
 const AccessPolicyConstraint_1 = require("./AccessPolicyConstraint");
 const AccessPolicyConstraints_1 = require("./AccessPolicyConstraints");
 const AccessPolicyRule_1 = require("./AccessPolicyRule");
@@ -699,7 +683,6 @@ const AutoUpdateSchedule_1 = require("./AutoUpdateSchedule");
 const BasicApplicationSettings_1 = require("./BasicApplicationSettings");
 const BasicApplicationSettingsAllOf_1 = require("./BasicApplicationSettingsAllOf");
 const BasicApplicationSettingsApplication_1 = require("./BasicApplicationSettingsApplication");
-const BasicApplicationSettingsApplicationAllOf_1 = require("./BasicApplicationSettingsApplicationAllOf");
 const BasicAuthApplication_1 = require("./BasicAuthApplication");
 const BasicAuthApplicationAllOf_1 = require("./BasicAuthApplicationAllOf");
 const BeforeScheduledActionPolicyRuleCondition_1 = require("./BeforeScheduledActionPolicyRuleCondition");
@@ -726,7 +709,6 @@ const BookmarkApplicationAllOf_1 = require("./BookmarkApplicationAllOf");
 const BookmarkApplicationSettings_1 = require("./BookmarkApplicationSettings");
 const BookmarkApplicationSettingsAllOf_1 = require("./BookmarkApplicationSettingsAllOf");
 const BookmarkApplicationSettingsApplication_1 = require("./BookmarkApplicationSettingsApplication");
-const BookmarkApplicationSettingsApplicationAllOf_1 = require("./BookmarkApplicationSettingsApplicationAllOf");
 const BouncesRemoveListError_1 = require("./BouncesRemoveListError");
 const BouncesRemoveListObj_1 = require("./BouncesRemoveListObj");
 const BouncesRemoveListResult_1 = require("./BouncesRemoveListResult");
@@ -784,7 +766,7 @@ const EmailTemplateLinks_1 = require("./EmailTemplateLinks");
 const EmailUserFactor_1 = require("./EmailUserFactor");
 const EmailUserFactorAllOf_1 = require("./EmailUserFactorAllOf");
 const EmailUserFactorProfile_1 = require("./EmailUserFactorProfile");
-const ErrorErrorCauses_1 = require("./ErrorErrorCauses");
+const ErrorErrorCausesInner_1 = require("./ErrorErrorCausesInner");
 const EventHook_1 = require("./EventHook");
 const EventHookChannel_1 = require("./EventHookChannel");
 const EventHookChannelConfig_1 = require("./EventHookChannelConfig");
@@ -898,12 +880,6 @@ const OpenIdConnectApplicationSettingsAllOf_1 = require("./OpenIdConnectApplicat
 const OpenIdConnectApplicationSettingsClient_1 = require("./OpenIdConnectApplicationSettingsClient");
 const OpenIdConnectApplicationSettingsClientKeys_1 = require("./OpenIdConnectApplicationSettingsClientKeys");
 const OpenIdConnectApplicationSettingsRefreshToken_1 = require("./OpenIdConnectApplicationSettingsRefreshToken");
-const Org2OrgApplication_1 = require("./Org2OrgApplication");
-const Org2OrgApplicationAllOf_1 = require("./Org2OrgApplicationAllOf");
-const Org2OrgApplicationSettings_1 = require("./Org2OrgApplicationSettings");
-const Org2OrgApplicationSettingsAllOf_1 = require("./Org2OrgApplicationSettingsAllOf");
-const Org2OrgApplicationSettingsApp_1 = require("./Org2OrgApplicationSettingsApp");
-const Org2OrgApplicationSettingsAppAllOf_1 = require("./Org2OrgApplicationSettingsAppAllOf");
 const OrgContactTypeObj_1 = require("./OrgContactTypeObj");
 const OrgContactUser_1 = require("./OrgContactUser");
 const OrgOktaCommunicationSetting_1 = require("./OrgOktaCommunicationSetting");
@@ -1006,6 +982,7 @@ const SamlApplication_1 = require("./SamlApplication");
 const SamlApplicationAllOf_1 = require("./SamlApplicationAllOf");
 const SamlApplicationSettings_1 = require("./SamlApplicationSettings");
 const SamlApplicationSettingsAllOf_1 = require("./SamlApplicationSettingsAllOf");
+const SamlApplicationSettingsApplication_1 = require("./SamlApplicationSettingsApplication");
 const SamlApplicationSettingsSignOn_1 = require("./SamlApplicationSettingsSignOn");
 const SamlAttributeStatement_1 = require("./SamlAttributeStatement");
 const ScheduledUserLifecycleAction_1 = require("./ScheduledUserLifecycleAction");
@@ -1016,7 +993,6 @@ const SecurePasswordStoreApplicationAllOf_1 = require("./SecurePasswordStoreAppl
 const SecurePasswordStoreApplicationSettings_1 = require("./SecurePasswordStoreApplicationSettings");
 const SecurePasswordStoreApplicationSettingsAllOf_1 = require("./SecurePasswordStoreApplicationSettingsAllOf");
 const SecurePasswordStoreApplicationSettingsApplication_1 = require("./SecurePasswordStoreApplicationSettingsApplication");
-const SecurePasswordStoreApplicationSettingsApplicationAllOf_1 = require("./SecurePasswordStoreApplicationSettingsApplicationAllOf");
 const SecurityQuestion_1 = require("./SecurityQuestion");
 const SecurityQuestionUserFactor_1 = require("./SecurityQuestionUserFactor");
 const SecurityQuestionUserFactorAllOf_1 = require("./SecurityQuestionUserFactorAllOf");
@@ -1032,18 +1008,9 @@ const SmsUserFactorProfile_1 = require("./SmsUserFactorProfile");
 const SocialAuthToken_1 = require("./SocialAuthToken");
 const SpCertificate_1 = require("./SpCertificate");
 const Subscription_1 = require("./Subscription");
-const SwaApplication_1 = require("./SwaApplication");
-const SwaApplicationAllOf_1 = require("./SwaApplicationAllOf");
 const SwaApplicationSettings_1 = require("./SwaApplicationSettings");
 const SwaApplicationSettingsAllOf_1 = require("./SwaApplicationSettingsAllOf");
 const SwaApplicationSettingsApplication_1 = require("./SwaApplicationSettingsApplication");
-const SwaApplicationSettingsApplicationAllOf_1 = require("./SwaApplicationSettingsApplicationAllOf");
-const SwaThreeFieldApplication_1 = require("./SwaThreeFieldApplication");
-const SwaThreeFieldApplicationAllOf_1 = require("./SwaThreeFieldApplicationAllOf");
-const SwaThreeFieldApplicationSettings_1 = require("./SwaThreeFieldApplicationSettings");
-const SwaThreeFieldApplicationSettingsAllOf_1 = require("./SwaThreeFieldApplicationSettingsAllOf");
-const SwaThreeFieldApplicationSettingsApplication_1 = require("./SwaThreeFieldApplicationSettingsApplication");
-const SwaThreeFieldApplicationSettingsApplicationAllOf_1 = require("./SwaThreeFieldApplicationSettingsApplicationAllOf");
 const TempPassword_1 = require("./TempPassword");
 const Theme_1 = require("./Theme");
 const ThemeResponse_1 = require("./ThemeResponse");
@@ -1105,7 +1072,6 @@ const WsFederationApplicationAllOf_1 = require("./WsFederationApplicationAllOf")
 const WsFederationApplicationSettings_1 = require("./WsFederationApplicationSettings");
 const WsFederationApplicationSettingsAllOf_1 = require("./WsFederationApplicationSettingsAllOf");
 const WsFederationApplicationSettingsApplication_1 = require("./WsFederationApplicationSettingsApplication");
-const WsFederationApplicationSettingsApplicationAllOf_1 = require("./WsFederationApplicationSettingsApplicationAllOf");
 /* tslint:disable:no-unused-variable */
 let primitives = [
     'string',
@@ -1259,6 +1225,7 @@ let enumsMap = new Set([
 ]);
 let typeMap = {
     'AccessPolicy': AccessPolicy_1.AccessPolicy,
+    'AccessPolicyAllOf': AccessPolicyAllOf_1.AccessPolicyAllOf,
     'AccessPolicyConstraint': AccessPolicyConstraint_1.AccessPolicyConstraint,
     'AccessPolicyConstraints': AccessPolicyConstraints_1.AccessPolicyConstraints,
     'AccessPolicyRule': AccessPolicyRule_1.AccessPolicyRule,
@@ -1326,7 +1293,6 @@ let typeMap = {
     'BasicApplicationSettings': BasicApplicationSettings_1.BasicApplicationSettings,
     'BasicApplicationSettingsAllOf': BasicApplicationSettingsAllOf_1.BasicApplicationSettingsAllOf,
     'BasicApplicationSettingsApplication': BasicApplicationSettingsApplication_1.BasicApplicationSettingsApplication,
-    'BasicApplicationSettingsApplicationAllOf': BasicApplicationSettingsApplicationAllOf_1.BasicApplicationSettingsApplicationAllOf,
     'BasicAuthApplication': BasicAuthApplication_1.BasicAuthApplication,
     'BasicAuthApplicationAllOf': BasicAuthApplicationAllOf_1.BasicAuthApplicationAllOf,
     'BeforeScheduledActionPolicyRuleCondition': BeforeScheduledActionPolicyRuleCondition_1.BeforeScheduledActionPolicyRuleCondition,
@@ -1353,7 +1319,6 @@ let typeMap = {
     'BookmarkApplicationSettings': BookmarkApplicationSettings_1.BookmarkApplicationSettings,
     'BookmarkApplicationSettingsAllOf': BookmarkApplicationSettingsAllOf_1.BookmarkApplicationSettingsAllOf,
     'BookmarkApplicationSettingsApplication': BookmarkApplicationSettingsApplication_1.BookmarkApplicationSettingsApplication,
-    'BookmarkApplicationSettingsApplicationAllOf': BookmarkApplicationSettingsApplicationAllOf_1.BookmarkApplicationSettingsApplicationAllOf,
     'BouncesRemoveListError': BouncesRemoveListError_1.BouncesRemoveListError,
     'BouncesRemoveListObj': BouncesRemoveListObj_1.BouncesRemoveListObj,
     'BouncesRemoveListResult': BouncesRemoveListResult_1.BouncesRemoveListResult,
@@ -1411,7 +1376,7 @@ let typeMap = {
     'EmailUserFactor': EmailUserFactor_1.EmailUserFactor,
     'EmailUserFactorAllOf': EmailUserFactorAllOf_1.EmailUserFactorAllOf,
     'EmailUserFactorProfile': EmailUserFactorProfile_1.EmailUserFactorProfile,
-    'ErrorErrorCauses': ErrorErrorCauses_1.ErrorErrorCauses,
+    'ErrorErrorCausesInner': ErrorErrorCausesInner_1.ErrorErrorCausesInner,
     'EventHook': EventHook_1.EventHook,
     'EventHookChannel': EventHookChannel_1.EventHookChannel,
     'EventHookChannelConfig': EventHookChannelConfig_1.EventHookChannelConfig,
@@ -1525,12 +1490,6 @@ let typeMap = {
     'OpenIdConnectApplicationSettingsClient': OpenIdConnectApplicationSettingsClient_1.OpenIdConnectApplicationSettingsClient,
     'OpenIdConnectApplicationSettingsClientKeys': OpenIdConnectApplicationSettingsClientKeys_1.OpenIdConnectApplicationSettingsClientKeys,
     'OpenIdConnectApplicationSettingsRefreshToken': OpenIdConnectApplicationSettingsRefreshToken_1.OpenIdConnectApplicationSettingsRefreshToken,
-    'Org2OrgApplication': Org2OrgApplication_1.Org2OrgApplication,
-    'Org2OrgApplicationAllOf': Org2OrgApplicationAllOf_1.Org2OrgApplicationAllOf,
-    'Org2OrgApplicationSettings': Org2OrgApplicationSettings_1.Org2OrgApplicationSettings,
-    'Org2OrgApplicationSettingsAllOf': Org2OrgApplicationSettingsAllOf_1.Org2OrgApplicationSettingsAllOf,
-    'Org2OrgApplicationSettingsApp': Org2OrgApplicationSettingsApp_1.Org2OrgApplicationSettingsApp,
-    'Org2OrgApplicationSettingsAppAllOf': Org2OrgApplicationSettingsAppAllOf_1.Org2OrgApplicationSettingsAppAllOf,
     'OrgContactTypeObj': OrgContactTypeObj_1.OrgContactTypeObj,
     'OrgContactUser': OrgContactUser_1.OrgContactUser,
     'OrgOktaCommunicationSetting': OrgOktaCommunicationSetting_1.OrgOktaCommunicationSetting,
@@ -1633,6 +1592,7 @@ let typeMap = {
     'SamlApplicationAllOf': SamlApplicationAllOf_1.SamlApplicationAllOf,
     'SamlApplicationSettings': SamlApplicationSettings_1.SamlApplicationSettings,
     'SamlApplicationSettingsAllOf': SamlApplicationSettingsAllOf_1.SamlApplicationSettingsAllOf,
+    'SamlApplicationSettingsApplication': SamlApplicationSettingsApplication_1.SamlApplicationSettingsApplication,
     'SamlApplicationSettingsSignOn': SamlApplicationSettingsSignOn_1.SamlApplicationSettingsSignOn,
     'SamlAttributeStatement': SamlAttributeStatement_1.SamlAttributeStatement,
     'ScheduledUserLifecycleAction': ScheduledUserLifecycleAction_1.ScheduledUserLifecycleAction,
@@ -1643,7 +1603,6 @@ let typeMap = {
     'SecurePasswordStoreApplicationSettings': SecurePasswordStoreApplicationSettings_1.SecurePasswordStoreApplicationSettings,
     'SecurePasswordStoreApplicationSettingsAllOf': SecurePasswordStoreApplicationSettingsAllOf_1.SecurePasswordStoreApplicationSettingsAllOf,
     'SecurePasswordStoreApplicationSettingsApplication': SecurePasswordStoreApplicationSettingsApplication_1.SecurePasswordStoreApplicationSettingsApplication,
-    'SecurePasswordStoreApplicationSettingsApplicationAllOf': SecurePasswordStoreApplicationSettingsApplicationAllOf_1.SecurePasswordStoreApplicationSettingsApplicationAllOf,
     'SecurityQuestion': SecurityQuestion_1.SecurityQuestion,
     'SecurityQuestionUserFactor': SecurityQuestionUserFactor_1.SecurityQuestionUserFactor,
     'SecurityQuestionUserFactorAllOf': SecurityQuestionUserFactorAllOf_1.SecurityQuestionUserFactorAllOf,
@@ -1659,18 +1618,9 @@ let typeMap = {
     'SocialAuthToken': SocialAuthToken_1.SocialAuthToken,
     'SpCertificate': SpCertificate_1.SpCertificate,
     'Subscription': Subscription_1.Subscription,
-    'SwaApplication': SwaApplication_1.SwaApplication,
-    'SwaApplicationAllOf': SwaApplicationAllOf_1.SwaApplicationAllOf,
     'SwaApplicationSettings': SwaApplicationSettings_1.SwaApplicationSettings,
     'SwaApplicationSettingsAllOf': SwaApplicationSettingsAllOf_1.SwaApplicationSettingsAllOf,
     'SwaApplicationSettingsApplication': SwaApplicationSettingsApplication_1.SwaApplicationSettingsApplication,
-    'SwaApplicationSettingsApplicationAllOf': SwaApplicationSettingsApplicationAllOf_1.SwaApplicationSettingsApplicationAllOf,
-    'SwaThreeFieldApplication': SwaThreeFieldApplication_1.SwaThreeFieldApplication,
-    'SwaThreeFieldApplicationAllOf': SwaThreeFieldApplicationAllOf_1.SwaThreeFieldApplicationAllOf,
-    'SwaThreeFieldApplicationSettings': SwaThreeFieldApplicationSettings_1.SwaThreeFieldApplicationSettings,
-    'SwaThreeFieldApplicationSettingsAllOf': SwaThreeFieldApplicationSettingsAllOf_1.SwaThreeFieldApplicationSettingsAllOf,
-    'SwaThreeFieldApplicationSettingsApplication': SwaThreeFieldApplicationSettingsApplication_1.SwaThreeFieldApplicationSettingsApplication,
-    'SwaThreeFieldApplicationSettingsApplicationAllOf': SwaThreeFieldApplicationSettingsApplicationAllOf_1.SwaThreeFieldApplicationSettingsApplicationAllOf,
     'TempPassword': TempPassword_1.TempPassword,
     'Theme': Theme_1.Theme,
     'ThemeResponse': ThemeResponse_1.ThemeResponse,
@@ -1732,10 +1682,18 @@ let typeMap = {
     'WsFederationApplicationSettings': WsFederationApplicationSettings_1.WsFederationApplicationSettings,
     'WsFederationApplicationSettingsAllOf': WsFederationApplicationSettingsAllOf_1.WsFederationApplicationSettingsAllOf,
     'WsFederationApplicationSettingsApplication': WsFederationApplicationSettingsApplication_1.WsFederationApplicationSettingsApplication,
-    'WsFederationApplicationSettingsApplicationAllOf': WsFederationApplicationSettingsApplicationAllOf_1.WsFederationApplicationSettingsApplicationAllOf,
+    'AUTO_LOGIN': AutoLoginApplication_1.AutoLoginApplication,
+    'BASIC_AUTH': BasicAuthApplication_1.BasicAuthApplication,
+    'BOOKMARK': BookmarkApplication_1.BookmarkApplication,
+    'BROWSER_PLUGIN': BrowserPluginApplication_1.BrowserPluginApplication,
+    'OPENID_CONNECT': OpenIdConnectApplication_1.OpenIdConnectApplication,
+    'SAML_1_1': SamlApplication_1.SamlApplication,
+    'SAML_2_0': SamlApplication_1.SamlApplication,
+    'SECURE_PASSWORD_STORE': SecurePasswordStoreApplication_1.SecurePasswordStoreApplication,
+    'WS_FEDERATION': WsFederationApplication_1.WsFederationApplication,
 };
 class ObjectSerializer {
-    static findCorrectType(data, expectedType) {
+    static findCorrectType(data, expectedType, discriminator) {
         if (data == undefined) {
             return expectedType;
         }
@@ -1753,15 +1711,16 @@ class ObjectSerializer {
                 return expectedType; // w/e we don't know the type
             }
             // Check the discriminator
-            let discriminatorProperty = typeMap[expectedType].discriminator;
+            let discriminatorProperty = discriminator || typeMap[expectedType].discriminator;
             if (discriminatorProperty == null) {
                 return expectedType; // the type does not have a discriminator. use it.
             }
             else {
                 if (data[discriminatorProperty]) {
                     var discriminatorType = data[discriminatorProperty];
-                    if (typeMap[discriminatorType]) {
-                        return discriminatorType; // use the type given in the discriminator
+                    var discriminatedType = typeMap[discriminatorType];
+                    if (discriminatedType) {
+                        return discriminatedType.discriminator ? ObjectSerializer.findCorrectType(data, discriminatorType, discriminatedType.discriminator) : discriminatorType; // use the type given in the discriminator
                     }
                     else {
                         return expectedType; // discriminator did not map to a type

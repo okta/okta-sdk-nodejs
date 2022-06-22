@@ -24,37 +24,37 @@ import { DomainResponse } from '../models/DomainResponse';
 export declare class DomainApiRequestFactory extends BaseAPIRequestFactory {
   /**
      * Creates the Certificate for the Domain.
-     * Create Certificate
+     * Replace the Certificate
      * @param domainId
      * @param certificate
      */
   createCertificate(domainId: string, certificate: DomainCertificate, _options?: Configuration): Promise<RequestContext>;
   /**
      * Creates your domain.
-     * Create Domain
+     * Create a Domain
      * @param domain
      */
   createDomain(domain: Domain, _options?: Configuration): Promise<RequestContext>;
   /**
      * Deletes a Domain by `id`.
-     * Delete Domain
+     * Delete a Domain
      * @param domainId
      */
   deleteDomain(domainId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Fetches a Domain by `id`.
-     * Get Domain
+     * Retrieve a Domain
      * @param domainId
      */
   getDomain(domainId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * List all verified custom Domains for the org.
-     * List Domains
+     * List all Domains
      */
   listDomains(_options?: Configuration): Promise<RequestContext>;
   /**
      * Verifies the Domain by `id`.
-     * Verify Domain
+     * Verify a Domain
      * @param domainId
      */
   verifyDomain(domainId: string, _options?: Configuration): Promise<RequestContext>;

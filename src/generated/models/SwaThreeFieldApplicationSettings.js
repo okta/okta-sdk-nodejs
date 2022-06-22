@@ -42,6 +42,12 @@ SwaThreeFieldApplicationSettings.attributeTypeMap = [
     'format': ''
   },
   {
+    'name': 'identityStoreId',
+    'baseName': 'identityStoreId',
+    'type': 'string',
+    'format': ''
+  },
+  {
     'name': 'implicitAssignment',
     'baseName': 'implicitAssignment',
     'type': 'boolean',
@@ -50,12 +56,6 @@ SwaThreeFieldApplicationSettings.attributeTypeMap = [
   {
     'name': 'inlineHookId',
     'baseName': 'inlineHookId',
-    'type': 'string',
-    'format': ''
-  },
-  {
-    'name': 'identityStoreId',
-    'baseName': 'identityStoreId',
     'type': 'string',
     'format': ''
   },

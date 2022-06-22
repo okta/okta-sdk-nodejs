@@ -28,7 +28,6 @@ import { PolicyRule } from './PolicyRule';
 export declare class PasswordPolicyRule extends PolicyRule {
   'actions'?: PasswordPolicyRuleActions;
   'conditions'?: PasswordPolicyRuleConditions;
-  'name'?: string;
   static readonly discriminator: string | undefined;
   static readonly attributeTypeMap: Array<{
         name: string;

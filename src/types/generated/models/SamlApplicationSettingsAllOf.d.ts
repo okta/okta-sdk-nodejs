@@ -22,8 +22,10 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { SamlApplicationSettingsApplication } from './SamlApplicationSettingsApplication';
 import { SamlApplicationSettingsSignOn } from './SamlApplicationSettingsSignOn';
 export declare class SamlApplicationSettingsAllOf {
+  'app'?: SamlApplicationSettingsApplication;
   'signOn'?: SamlApplicationSettingsSignOn;
   static readonly discriminator: string | undefined;
   static readonly attributeTypeMap: Array<{

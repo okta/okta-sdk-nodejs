@@ -26,7 +26,7 @@ const util_1 = require('../util');
 class ProfileMappingApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   /**
      * Fetches a single Profile Mapping referenced by its ID.
-     * Get Profile Mapping
+     * Retrieve a Profile Mapping
      * @param mappingId
      */
   async getProfileMapping(mappingId, _options) {
@@ -60,7 +60,7 @@ class ProfileMappingApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Enumerates Profile Mappings in your organization with pagination.
-     * List Profile Mappings
+     * List all Profile Mappings
      * @param after
      * @param limit
      * @param sourceId
@@ -108,7 +108,7 @@ class ProfileMappingApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   }
   /**
      * Updates an existing Profile Mapping by adding, updating, or removing one or many Property Mappings.
-     * Update Profile Mapping
+     * Update a Profile Mapping
      * @param mappingId
      * @param profileMapping
      */

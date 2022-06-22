@@ -40,13 +40,13 @@ describe('Application.listUsers()', () => {
       createdAppUser = await client.assignUserToApplication(createdApplication.id, {
         id: createdUser.id
       });
-      await createdApplication.listApplicationUsers().each(async (appUser) => {
+      await(await client.listApplicationUsers(createdApplication.id)).each(async (appUser) => {
         expect(appUser.id).to.equal(createdAppUser.id);
       });
     } finally {
       if (createdApplication) {
-        await createdApplication.deactivate();
-        await createdApplication.delete();
+        await client.deactivateApplication(createdApplication.id);
+        await client.deleteApplication(createdApplication.id);
       }
       if (createdUser) {
         await utils.cleanup(client, createdUser);

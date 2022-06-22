@@ -4,7 +4,7 @@ import faker = require('@faker-js/faker');
 import {
   Client,
   DefaultRequestExecutor,
-  ApplicationGroupAssignment } from '@okta/okta-sdk-nodejs';
+  v3 } from '@okta/okta-sdk-nodejs';
 import utils = require('../utils');
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
@@ -40,9 +40,9 @@ describe('client.listApplicationGroupAssignments()', () => {
       createdApplication = await client.createApplication(application);
       createdGroup = await client.createGroup(group);
       await client.createApplicationGroupAssignment(createdApplication.id, createdGroup.id, {});
-      await client.listApplicationGroupAssignments(createdApplication.id).each(async (assignment) => {
+      await (await client.listApplicationGroupAssignments(createdApplication.id)).each(async (assignment) => {
         // there should be only one assignment
-        expect(assignment).to.be.instanceof(ApplicationGroupAssignment);
+        expect(assignment).to.be.instanceof(v3.ApplicationGroupAssignment);
         const appLink = assignment._links.app as Record<string, string>;
         const groupLink = assignment._links.group as Record<string, string>;
         expect(appLink.href).to.contain(createdApplication.id);
@@ -51,8 +51,8 @@ describe('client.listApplicationGroupAssignments()', () => {
 
     } finally {
       if (createdApplication) {
-        await createdApplication.deactivate();
-        await createdApplication.delete();
+        await client.deactivateApplication(createdApplication.id);
+        await client.deleteApplication(createdApplication.id);
       }
       if (createdGroup) {
         await utils.cleanup(client, null, createdGroup);

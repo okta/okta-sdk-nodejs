@@ -37,17 +37,17 @@ describe('Application.getApplicationUser()', () => {
       await utils.cleanup(client, user);
       createdApplication = await client.createApplication(application);
       createdUser = await client.createUser(user);
-      createdAppUser = await createdApplication.assignUserToApplication({
+      createdAppUser = await client.assignUserToApplication(createdApplication.id, {
         id: createdUser.id
       });
-      await createdApplication.getApplicationUser(createdAppUser.id)
+      await client.getApplicationUser(createdApplication.id, createdAppUser.id)
         .then(appUser => {
           expect(appUser.id).to.equal(createdAppUser.id);
         });
     } finally {
       if (createdApplication) {
-        await createdApplication.deactivate();
-        await createdApplication.delete();
+        await client.deactivateApplication(createdApplication.id);
+        await client.deleteApplication(createdApplication.id);
       }
       if (createdUser) {
         await utils.cleanup(client, createdUser);

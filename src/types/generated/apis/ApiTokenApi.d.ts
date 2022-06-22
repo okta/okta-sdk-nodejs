@@ -21,13 +21,13 @@ import { ApiToken } from '../models/ApiToken';
 export declare class ApiTokenApiRequestFactory extends BaseAPIRequestFactory {
   /**
      * Get the metadata for an active API token by id.
-     * Get the Metadata for an API Token
+     * Retrieve an API Token's Metadata
      * @param apiTokenId id of the API Token
      */
   getApiToken(apiTokenId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Enumerates the metadata of the active API tokens in your organization.
-     * List API Token Metadata
+     * List all API Token Metadata
      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/reference/core-okta-api/#pagination) for more information.
      * @param limit A limit on the number of objects to return.
      * @param q Finds a token that matches the name or clientName.

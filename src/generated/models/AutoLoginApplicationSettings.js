@@ -36,9 +36,9 @@ exports.AutoLoginApplicationSettings = AutoLoginApplicationSettings;
 AutoLoginApplicationSettings.discriminator = undefined;
 AutoLoginApplicationSettings.attributeTypeMap = [
   {
-    'name': 'app',
-    'baseName': 'app',
-    'type': 'any',
+    'name': 'identityStoreId',
+    'baseName': 'identityStoreId',
+    'type': 'string',
     'format': ''
   },
   {
@@ -50,12 +50,6 @@ AutoLoginApplicationSettings.attributeTypeMap = [
   {
     'name': 'inlineHookId',
     'baseName': 'inlineHookId',
-    'type': 'string',
-    'format': ''
-  },
-  {
-    'name': 'identityStoreId',
-    'baseName': 'identityStoreId',
     'type': 'string',
     'format': ''
   },
