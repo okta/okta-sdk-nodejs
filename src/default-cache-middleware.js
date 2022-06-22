@@ -76,7 +76,7 @@ module.exports = function defaultCacheMiddleware(ctx, next) {
       }
       if (ctx.req.method.toLowerCase() === 'get') {
         const headers = {};
-        ctx.res.headers?.forEach((value, name) => {
+        ctx.res.headers?.forEach?.((value, name) => {
           headers[name] = value;
         });
         const headersStr = Object.keys(headers).length ? JSON.stringify(headers) : '';
