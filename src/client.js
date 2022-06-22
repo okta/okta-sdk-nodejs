@@ -96,14 +96,6 @@ class Client extends GeneratedApiClient {
     const configuration = createConfiguration({
       baseServer: new ServerConfiguration(parsedConfig.client.orgUrl),
       httpApi: this.http,
-      middleware: [{
-        pre: function (req) {
-          return new Observable(Promise.resolve(req));
-        },
-        post: function (resp) {
-          return new Observable(Promise.resolve(resp));
-        }
-      }],
     });
     this.userTypeApi = new UserTypeApi(configuration);
     this.authenticatorApi = new AuthenticatorApi(configuration);
