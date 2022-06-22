@@ -23,10 +23,10 @@ async function cleanInlineHooks() {
   });
 }
 
-function cleanAuthorizationServers() {
-  client.listAuthorizationServers().each(
-    authorizationServer => {
-      authorizationServer.delete();
+async function cleanAuthorizationServers() {
+  (await client.listAuthorizationServers()).each(
+    async authorizationServer => {
+      await authorizationServer.delete();
     }
   );
 }
