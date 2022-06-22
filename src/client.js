@@ -20,7 +20,6 @@ const { Http } = require('./http');
 const DEFAULT_USER_AGENT = `${packageJson.name}/${packageJson.version} node/${process.versions.node} ${os.platform()}/${os.release()}`;
 const repoUrl = 'https://github.com/okta/okta-sdk-nodejs';
 const { OAuth } = require('./oauth');
-const { getAffectedResources } = require('./request-middleware');
 const { AuthenticatorApi, SchemaApi, UserTypeApi, InlineHookApi, ProfileMappingApi, DomainApi, LinkedObjectApi, SystemLogApi, FeatureApi, GroupApi, EventHookApi, NetworkZoneApi, ThreatInsightApi, OrgSettingApi, ApplicationApi, AuthorizationServerApi } = require('./generated');
 const { createConfiguration } = require('./generated/configuration');
 const { ServerConfiguration } = require('./generated/servers');
@@ -99,7 +98,6 @@ class Client extends GeneratedApiClient {
       httpApi: this.http,
       middleware: [{
         pre: function (req) {
-          req.setAffectedResources(getAffectedResources(req.url.href));
           return new Observable(Promise.resolve(req));
         },
         post: function (resp) {
