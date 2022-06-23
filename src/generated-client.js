@@ -5373,16 +5373,17 @@ class GeneratedApiClient {
    * @returns {Collection} A collection that will yield {@link TrustedOrigin} instances.
    */
   listOrigins(queryParameters) {
-    let url = `${this.baseUrl}/api/v1/trustedOrigins`;
-    const queryString = qs.stringify(queryParameters || {});
-
-    url += queryString ? ('?' + queryString) : '';
-
-    return new Collection(
-      this.http,
-      url,
-      new ModelFactory(models.TrustedOrigin, this),
-    );
+    let q;
+    let filter;
+    let after;
+    let limit;
+    if (queryParameters) {
+      q = queryParameters.q;
+      filter = queryParameters.filter;
+      after = queryParameters.after;
+      limit = queryParameters.limit;
+    }
+    return this.trustedOriginApi.listOrigins(q, filter, after, limit);
   }
 
   /**
@@ -5396,18 +5397,7 @@ class GeneratedApiClient {
     if (!trustedOrigin) {
       return Promise.reject(new Error('OKTA API createOrigin parameter trustedOrigin is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/trustedOrigins`;
-
-    const resources = [];
-
-    const request = this.http.postJson(
-      url,
-      {
-        body: trustedOrigin
-      },
-      { resources }
-    );
-    return request.then(jsonRes => new models.TrustedOrigin(jsonRes, this));
+    return this.trustedOriginApi.createOrigin(trustedOrigin);
   }
 
   /**
@@ -5420,18 +5410,7 @@ class GeneratedApiClient {
     if (!trustedOriginId) {
       return Promise.reject(new Error('OKTA API deleteOrigin parameter trustedOriginId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/trustedOrigins/${trustedOriginId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/trustedOrigins/${trustedOriginId}`
-    ];
-
-    const request = this.http.delete(
-      url,
-      null,
-      { resources }
-    );
-    return request;
+    return this.trustedOriginApi.deleteOrigin(trustedOriginId);
   }
 
   /**
@@ -5445,18 +5424,7 @@ class GeneratedApiClient {
     if (!trustedOriginId) {
       return Promise.reject(new Error('OKTA API getOrigin parameter trustedOriginId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/trustedOrigins/${trustedOriginId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/trustedOrigins/${trustedOriginId}`
-    ];
-
-    const request = this.http.getJson(
-      url,
-      null,
-      { resources }
-    );
-    return request.then(jsonRes => new models.TrustedOrigin(jsonRes, this));
+    return this.trustedOriginApi.getOrigin(trustedOriginId);
   }
 
   /**
@@ -5474,20 +5442,7 @@ class GeneratedApiClient {
     if (!trustedOrigin) {
       return Promise.reject(new Error('OKTA API updateOrigin parameter trustedOrigin is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/trustedOrigins/${trustedOriginId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/trustedOrigins/${trustedOriginId}`
-    ];
-
-    const request = this.http.putJson(
-      url,
-      {
-        body: trustedOrigin
-      },
-      { resources }
-    );
-    return request.then(jsonRes => new models.TrustedOrigin(jsonRes, this));
+    return this.trustedOriginApi.updateOrigin(trustedOriginId, trustedOrigin);
   }
 
   /**
@@ -5501,18 +5456,7 @@ class GeneratedApiClient {
     if (!trustedOriginId) {
       return Promise.reject(new Error('OKTA API activateOrigin parameter trustedOriginId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/trustedOrigins/${trustedOriginId}/lifecycle/activate`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/trustedOrigins/${trustedOriginId}`
-    ];
-
-    const request = this.http.postJson(
-      url,
-      null,
-      { resources }
-    );
-    return request.then(jsonRes => new models.TrustedOrigin(jsonRes, this));
+    return this.trustedOriginApi.activateOrigin(trustedOriginId);
   }
 
   /**
@@ -5526,18 +5470,7 @@ class GeneratedApiClient {
     if (!trustedOriginId) {
       return Promise.reject(new Error('OKTA API deactivateOrigin parameter trustedOriginId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/trustedOrigins/${trustedOriginId}/lifecycle/deactivate`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/trustedOrigins/${trustedOriginId}`
-    ];
-
-    const request = this.http.postJson(
-      url,
-      null,
-      { resources }
-    );
-    return request.then(jsonRes => new models.TrustedOrigin(jsonRes, this));
+    return this.trustedOriginApi.deactivateOrigin(trustedOriginId);
   }
 
   /**

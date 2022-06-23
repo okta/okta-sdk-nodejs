@@ -36,8 +36,6 @@ import { CreateSessionRequestOptions } from './models/CreateSessionRequest';
 import { Session } from './models/Session';
 import { SmsTemplate } from './models/SmsTemplate';
 import { SmsTemplateOptions } from './models/SmsTemplate';
-import { TrustedOrigin } from './models/TrustedOrigin';
-import { TrustedOriginOptions } from './models/TrustedOrigin';
 import { User } from './models/User';
 import { CreateUserRequestOptions } from './models/CreateUserRequest';
 import { UserOptions } from './models/User';
@@ -468,13 +466,13 @@ export declare class GeneratedApiClient {
     filter?: string,
     after?: string,
     limit?: number,
-  }): Collection<TrustedOrigin>;
-  createOrigin(trustedOrigin: TrustedOriginOptions): Promise<TrustedOrigin>;
-  deleteOrigin(trustedOriginId: string): Promise<Response>;
-  getOrigin(trustedOriginId: string): Promise<TrustedOrigin>;
-  updateOrigin(trustedOriginId: string, trustedOrigin: TrustedOriginOptions): Promise<TrustedOrigin>;
-  activateOrigin(trustedOriginId: string): Promise<TrustedOrigin>;
-  deactivateOrigin(trustedOriginId: string): Promise<TrustedOrigin>;
+  }): Promise<Collection<v3.TrustedOrigin>>;
+  createOrigin(trustedOrigin: v3.TrustedOrigin): Promise<v3.TrustedOrigin>;
+  deleteOrigin(trustedOriginId: string): Promise<void>;
+  getOrigin(trustedOriginId: string): Promise<v3.TrustedOrigin>;
+  updateOrigin(trustedOriginId: string, trustedOrigin: v3.TrustedOrigin): Promise<v3.TrustedOrigin>;
+  activateOrigin(trustedOriginId: string): Promise<v3.TrustedOrigin>;
+  deactivateOrigin(trustedOriginId: string): Promise<v3.TrustedOrigin>;
   listUsers(queryParameters?: {
     q?: string,
     after?: string,
