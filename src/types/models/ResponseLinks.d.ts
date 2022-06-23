@@ -15,15 +15,17 @@
 
 import { Resource } from '../resource';
 import { Client } from '../client';
+import { OptionalKnownProperties } from '../optional-known-properties-type';
 
 
 declare class ResponseLinks extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
 
+  readonly _links: {[name: string]: unknown};
 
 }
 
-type ResponseLinksOptions = Record<string, unknown>;
+type ResponseLinksOptions = OptionalKnownProperties<ResponseLinks>;
 
 export {
   ResponseLinks,

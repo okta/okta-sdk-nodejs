@@ -13,7 +13,7 @@
 
 import { BaseAPIRequestFactory } from './baseapi';
 import { Configuration } from '../configuration';
-import { RequestContext, ResponseContext, HttpFile } from '../http/http';
+import { RequestContext, ResponseContext } from '../http/http';
 import { BouncesRemoveListObj } from '../models/BouncesRemoveListObj';
 import { BouncesRemoveListResult } from '../models/BouncesRemoveListResult';
 import { OrgContactTypeObj } from '../models/OrgContactTypeObj';
@@ -113,10 +113,9 @@ export declare class OrgSettingApiRequestFactory extends BaseAPIRequestFactory {
   updateOrgContactUser(contactType: string, orgContactUser: OrgContactUser, _options?: Configuration): Promise<RequestContext>;
   /**
      * Updates the logo for your organization.
-     * Update org logo
-     * @param file
+     * Upload the Org Logo
      */
-  updateOrgLogo(file: HttpFile, _options?: Configuration): Promise<RequestContext>;
+  updateOrgLogo(_options?: Configuration): Promise<RequestContext>;
   /**
      * Update settings of your organization.
      * Replace the Org Settings

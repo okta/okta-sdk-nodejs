@@ -4863,12 +4863,6 @@ export interface OrgSettingApiUpdateOrgContactUserRequest {
     orgContactUser: OrgContactUser;
 }
 export interface OrgSettingApiUpdateOrgLogoRequest {
-    /**
-      *
-      * @type HttpFile
-      * @memberof OrgSettingApiupdateOrgLogo
-      */
-    file: HttpFile;
 }
 export interface OrgSettingApiUpdateOrgSettingRequest {
     /**
@@ -4982,7 +4976,7 @@ export declare class ObjectOrgSettingApi {
       * Upload the Org Logo
       * @param param the request object
       */
-  updateOrgLogo(param: OrgSettingApiUpdateOrgLogoRequest, options?: Configuration): Promise<void>;
+  updateOrgLogo(param?: OrgSettingApiUpdateOrgLogoRequest, options?: Configuration): Promise<void>;
   /**
       * Update settings of your organization.
       * Replace the Org Settings

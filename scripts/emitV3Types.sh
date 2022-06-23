@@ -53,7 +53,7 @@ _ignoredFiles=(
 tsc --project ./src/generated/tsconfig.json
 
 # remove copied typings used for TS compilation 
-rm `find ./src -name "*.d.ts" -not -path "./src/types/*" -not -path "./src/generated*"`
+rm `find ./src -name "*.d.ts" -not -path "./src/types/*" -not -path "./src/generated/"`
 # undo changes in files from ingorelist
 for i in ${!ignoredFiles[@]}; do
   echo `git checkout ./src/generated/models/${ignoredFiles[$i]}.js`

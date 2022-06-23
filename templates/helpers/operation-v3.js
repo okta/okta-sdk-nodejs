@@ -217,12 +217,69 @@ const V3ApiOperations = {
     'updateOAuth2Claim',
     'updateOAuth2Scope',
   ],
+  CustomizationApi: [
+    'deleteBrandThemeBackgroundImage',
+    'deleteBrandThemeFavicon',
+    'deleteBrandThemeLogo',
+    'deleteEmailTemplateCustomization',
+    'createEmailTemplateCustomization',
+    'deleteEmailTemplateCustomizations',
+    'listEmailTemplateCustomizations',
+    'getEmailTemplateCustomization',
+    'getEmailTemplateCustomizationPreview',
+    'getEmailTemplateDefaultContent',
+    'getEmailTemplateDefaultContentPreview',
+    'updateEmailTemplateCustomization',
+    'listEmailTemplates',
+    'sendTestEmail',
+    'getEmailSettings',
+    'getEmailTemplate',
+    'deleteAllCustomizations',
+    'getBrand',
+    'getBrandTheme',
+    'listBrandThemes',
+    'listBrands',
+    'updateBrand',
+    'updateBrandTheme',
+    'uploadBrandThemeBackgroundImage',
+    'uploadBrandThemeFavicon',
+    'uploadBrandThemeLogo',
+  ]
 };
 
 function getV3ReturnType(operationId) {
   return {
-    assignRoleToGroup: 'Role | void'
+    assignRoleToGroup: 'Role | void',
+    getEmailTemplateDefaultContent: 'EmailDefaultContent',
+    getEmailTemplateDefaultContentPreview: 'EmailPreview',
+    createEmailTemplateCustomization: 'EmailCustomization',
+    getEmailTemplateCustomizationPreview: 'EmailPreview',
+    getEmailTemplateCustomization: 'EmailCustomization',
+    listEmailTemplateCustomizations: 'EmailCustomization',
+    updateEmailTemplateCustomization: 'EmailCustomization',
+
   }[operationId];
+}
+
+function getV3ArgumentsOverride(argumentName) {
+  return {
+    emailTemplateTestRequest: ['language', 'string'],
+    emailTemplateCustomizationRequest: ['instance', 'EmailCustomization'],
+  }[argumentName];
+}
+
+function getV3MethodName(v2OperationId) {
+  return {
+    createEmailTemplateCustomization: 'createEmailCustomization',
+    deleteEmailTemplateCustomizations: 'deleteAllCustomizations',
+    deleteEmailTemplateCustomization: 'deleteEmailCustomization',
+    listEmailTemplateCustomizations: 'listEmailCustomizations',
+    getEmailTemplateCustomization: 'getEmailCustomization',
+    getEmailTemplateCustomizationPreview: 'getCustomizationPreview',
+    getEmailTemplateDefaultContent: 'getEmailDefaultContent',
+    getEmailTemplateDefaultContentPreview: 'getEmailDefaultPreview',
+    updateEmailTemplateCustomization: 'updateEmailCustomization',
+  }[v2OperationId] || v2OperationId;
 }
 
 function isV3Api(operationId) {
@@ -238,4 +295,6 @@ module.exports = {
   isV3Api,
   v3ApiByOperationId,
   getV3ReturnType,
+  getV3ArgumentsOverride,
+  getV3MethodName,
 };

@@ -17,6 +17,7 @@ var ScopeType;
 (function (ScopeType) {
   ScopeType['CORS'] = 'CORS';
   ScopeType['REDIRECT'] = 'REDIRECT';
+  ScopeType['IFRAME_EMBED'] = 'IFRAME_EMBED';
 }(ScopeType || (ScopeType = {})));
 
 module.exports = ScopeType;

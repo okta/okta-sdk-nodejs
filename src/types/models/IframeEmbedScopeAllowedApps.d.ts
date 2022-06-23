@@ -13,22 +13,10 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-var Resource = require('../resource');
-
-
-/**
- * @class Scope
- * @extends Resource
- * @property { array } allowedOktaApps
- * @property { string } stringValue
- * @property { ScopeType } type
- */
-class Scope extends Resource {
-  constructor(resourceJson, client) {
-    super(resourceJson, client);
-
-  }
-
+declare enum IframeEmbedScopeAllowedApps {
+  OKTA_ENDUSER = 'OKTA_ENDUSER',
 }
 
-module.exports = Scope;
+export {
+  IframeEmbedScopeAllowedApps
+};

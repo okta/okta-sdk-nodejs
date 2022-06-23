@@ -16,11 +16,13 @@
 import { Resource } from '../resource';
 import { Client } from '../client';
 import { OptionalKnownProperties } from '../optional-known-properties-type';
+import { IframeEmbedScopeAllowedApps } from './IframeEmbedScopeAllowedApps';
 import { ScopeType } from './ScopeType';
 
 declare class Scope extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
 
+  allowedOktaApps: IframeEmbedScopeAllowedApps[];
   stringValue: string;
   type: ScopeType;
 

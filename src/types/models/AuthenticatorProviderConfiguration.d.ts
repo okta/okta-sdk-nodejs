@@ -22,8 +22,11 @@ declare class AuthenticatorProviderConfiguration extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
 
   authPort: number;
+  host: string;
   hostName: string;
   instanceId: string;
+  integrationKey: string;
+  secretKey: string;
   sharedSecret: string;
   userNameTemplate: AuthenticatorProviderConfigurationUserNamePlate;
 

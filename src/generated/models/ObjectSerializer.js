@@ -166,6 +166,7 @@ __exportStar(require("./CsrMetadataSubjectAltNames"), exports);
 __exportStar(require("./CustomHotpUserFactor"), exports);
 __exportStar(require("./CustomHotpUserFactorAllOf"), exports);
 __exportStar(require("./CustomHotpUserFactorProfile"), exports);
+__exportStar(require("./CustomizablePage"), exports);
 __exportStar(require("./DNSRecord"), exports);
 __exportStar(require("./DNSRecordType"), exports);
 __exportStar(require("./DeviceAccessPolicyRuleCondition"), exports);
@@ -252,6 +253,8 @@ __exportStar(require("./GroupType"), exports);
 __exportStar(require("./HardwareUserFactor"), exports);
 __exportStar(require("./HardwareUserFactorAllOf"), exports);
 __exportStar(require("./HardwareUserFactorProfile"), exports);
+__exportStar(require("./HostedPage"), exports);
+__exportStar(require("./HostedPageType"), exports);
 __exportStar(require("./HrefObject"), exports);
 __exportStar(require("./HrefObjectHints"), exports);
 __exportStar(require("./HttpMethod"), exports);
@@ -527,6 +530,10 @@ __exportStar(require("./SessionAuthenticationMethod"), exports);
 __exportStar(require("./SessionIdentityProvider"), exports);
 __exportStar(require("./SessionIdentityProviderType"), exports);
 __exportStar(require("./SessionStatus"), exports);
+__exportStar(require("./SignInPage"), exports);
+__exportStar(require("./SignInPageAllOf"), exports);
+__exportStar(require("./SignInPageAllOfDefaultApp"), exports);
+__exportStar(require("./SignInPageAllOfWidgetCustomizations"), exports);
 __exportStar(require("./SignInPageTouchPointVariant"), exports);
 __exportStar(require("./SignOnInlineHook"), exports);
 __exportStar(require("./SingleLogout"), exports);
@@ -738,6 +745,7 @@ const CsrMetadataSubjectAltNames_1 = require("./CsrMetadataSubjectAltNames");
 const CustomHotpUserFactor_1 = require("./CustomHotpUserFactor");
 const CustomHotpUserFactorAllOf_1 = require("./CustomHotpUserFactorAllOf");
 const CustomHotpUserFactorProfile_1 = require("./CustomHotpUserFactorProfile");
+const CustomizablePage_1 = require("./CustomizablePage");
 const DNSRecord_1 = require("./DNSRecord");
 const DeviceAccessPolicyRuleCondition_1 = require("./DeviceAccessPolicyRuleCondition");
 const DeviceAccessPolicyRuleConditionAllOf_1 = require("./DeviceAccessPolicyRuleConditionAllOf");
@@ -798,6 +806,7 @@ const GroupSchemaDefinitions_1 = require("./GroupSchemaDefinitions");
 const HardwareUserFactor_1 = require("./HardwareUserFactor");
 const HardwareUserFactorAllOf_1 = require("./HardwareUserFactorAllOf");
 const HardwareUserFactorProfile_1 = require("./HardwareUserFactorProfile");
+const HostedPage_1 = require("./HostedPage");
 const HrefObject_1 = require("./HrefObject");
 const HrefObjectHints_1 = require("./HrefObjectHints");
 const IdentityProvider_1 = require("./IdentityProvider");
@@ -999,6 +1008,10 @@ const SecurityQuestionUserFactorAllOf_1 = require("./SecurityQuestionUserFactorA
 const SecurityQuestionUserFactorProfile_1 = require("./SecurityQuestionUserFactorProfile");
 const Session_1 = require("./Session");
 const SessionIdentityProvider_1 = require("./SessionIdentityProvider");
+const SignInPage_1 = require("./SignInPage");
+const SignInPageAllOf_1 = require("./SignInPageAllOf");
+const SignInPageAllOfDefaultApp_1 = require("./SignInPageAllOfDefaultApp");
+const SignInPageAllOfWidgetCustomizations_1 = require("./SignInPageAllOfWidgetCustomizations");
 const SignOnInlineHook_1 = require("./SignOnInlineHook");
 const SingleLogout_1 = require("./SingleLogout");
 const SmsTemplate_1 = require("./SmsTemplate");
@@ -1134,6 +1147,7 @@ let enumsMap = new Set([
     'GrantOrTokenStatus',
     'GroupRuleStatus',
     'GroupType',
+    'HostedPageType',
     'HttpMethod',
     'IdentityProviderCredentialsTrustRevocation',
     'IdentityProviderPolicyProvider',
@@ -1348,6 +1362,7 @@ let typeMap = {
     'CustomHotpUserFactor': CustomHotpUserFactor_1.CustomHotpUserFactor,
     'CustomHotpUserFactorAllOf': CustomHotpUserFactorAllOf_1.CustomHotpUserFactorAllOf,
     'CustomHotpUserFactorProfile': CustomHotpUserFactorProfile_1.CustomHotpUserFactorProfile,
+    'CustomizablePage': CustomizablePage_1.CustomizablePage,
     'DNSRecord': DNSRecord_1.DNSRecord,
     'DeviceAccessPolicyRuleCondition': DeviceAccessPolicyRuleCondition_1.DeviceAccessPolicyRuleCondition,
     'DeviceAccessPolicyRuleConditionAllOf': DeviceAccessPolicyRuleConditionAllOf_1.DeviceAccessPolicyRuleConditionAllOf,
@@ -1408,6 +1423,7 @@ let typeMap = {
     'HardwareUserFactor': HardwareUserFactor_1.HardwareUserFactor,
     'HardwareUserFactorAllOf': HardwareUserFactorAllOf_1.HardwareUserFactorAllOf,
     'HardwareUserFactorProfile': HardwareUserFactorProfile_1.HardwareUserFactorProfile,
+    'HostedPage': HostedPage_1.HostedPage,
     'HrefObject': HrefObject_1.HrefObject,
     'HrefObjectHints': HrefObjectHints_1.HrefObjectHints,
     'IdentityProvider': IdentityProvider_1.IdentityProvider,
@@ -1609,6 +1625,10 @@ let typeMap = {
     'SecurityQuestionUserFactorProfile': SecurityQuestionUserFactorProfile_1.SecurityQuestionUserFactorProfile,
     'Session': Session_1.Session,
     'SessionIdentityProvider': SessionIdentityProvider_1.SessionIdentityProvider,
+    'SignInPage': SignInPage_1.SignInPage,
+    'SignInPageAllOf': SignInPageAllOf_1.SignInPageAllOf,
+    'SignInPageAllOfDefaultApp': SignInPageAllOfDefaultApp_1.SignInPageAllOfDefaultApp,
+    'SignInPageAllOfWidgetCustomizations': SignInPageAllOfWidgetCustomizations_1.SignInPageAllOfWidgetCustomizations,
     'SignOnInlineHook': SignOnInlineHook_1.SignOnInlineHook,
     'SingleLogout': SingleLogout_1.SingleLogout,
     'SmsTemplate': SmsTemplate_1.SmsTemplate,

@@ -20,8 +20,11 @@ const AuthenticatorProviderConfigurationUserNamePlate = require('./Authenticator
  * @class AuthenticatorProviderConfiguration
  * @extends Resource
  * @property { integer } authPort
+ * @property { string } host
  * @property { string } hostName
  * @property { string } instanceId
+ * @property { string } integrationKey
+ * @property { string } secretKey
  * @property { string } sharedSecret
  * @property { AuthenticatorProviderConfigurationUserNamePlate } userNameTemplate
  */

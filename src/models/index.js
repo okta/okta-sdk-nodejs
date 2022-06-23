@@ -180,6 +180,7 @@ exports.IdentityProviderPolicy = require('./IdentityProviderPolicy');
 exports.IdentityProviderPolicyRuleCondition = require('./IdentityProviderPolicyRuleCondition');
 exports.IdpPolicyRuleAction = require('./IdpPolicyRuleAction');
 exports.IdpPolicyRuleActionProvider = require('./IdpPolicyRuleActionProvider');
+exports.IframeEmbedScopeAllowedApps = require('./IframeEmbedScopeAllowedApps');
 exports.ImageUploadResponse = require('./ImageUploadResponse');
 exports.InactivityPolicyRuleCondition = require('./InactivityPolicyRuleCondition');
 exports.InlineHook = require('./InlineHook');

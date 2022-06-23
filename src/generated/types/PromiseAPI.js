@@ -1414,6 +1414,101 @@ class PromiseCustomizationApi {
     return result.toPromise();
   }
   /**
+      * Previews the error page.
+      * Preview the Error Page
+      * @param brandId The ID of the brand.
+      * @param CustomizablePage
+      */
+  previewErrorPage(brandId, CustomizablePage, _options) {
+    const result = this.api.previewErrorPage(brandId, CustomizablePage, _options);
+    return result.toPromise();
+  }
+  /**
+      * Preview the sign-in page.
+      * Preview the Sign-in Page.
+      * @param brandId The ID of the brand.
+      * @param SignInPage
+      */
+  previewSignInPage(brandId, SignInPage, _options) {
+    const result = this.api.previewSignInPage(brandId, SignInPage, _options);
+    return result.toPromise();
+  }
+  /**
+      * Replaces the error page.
+      * Replace the Error Page
+      * @param brandId The ID of the brand.
+      * @param CustomizablePage
+      */
+  replaceErrorPage(brandId, CustomizablePage, _options) {
+    const result = this.api.replaceErrorPage(brandId, CustomizablePage, _options);
+    return result.toPromise();
+  }
+  /**
+      * Replaces the sign-in page.
+      * Replace the Sign-in Page
+      * @param brandId The ID of the brand.
+      * @param SignInPage
+      */
+  replaceSignInPage(brandId, SignInPage, _options) {
+    const result = this.api.replaceSignInPage(brandId, SignInPage, _options);
+    return result.toPromise();
+  }
+  /**
+      * Replaces the sign-out page settings.
+      * Replace the Sign-out Page Settings
+      * @param brandId The ID of the brand.
+      * @param HostedPage
+      */
+  replaceSignOutPageSettings(brandId, HostedPage, _options) {
+    const result = this.api.replaceSignOutPageSettings(brandId, HostedPage, _options);
+    return result.toPromise();
+  }
+  /**
+      * Resets the error page.
+      * Reset the Error Page
+      * @param brandId The ID of the brand.
+      */
+  resetErrorPage(brandId, _options) {
+    const result = this.api.resetErrorPage(brandId, _options);
+    return result.toPromise();
+  }
+  /**
+      * Reset the sign-in page.
+      * Reset the Sign-in Page
+      * @param brandId The ID of the brand.
+      */
+  resetSignInPage(brandId, _options) {
+    const result = this.api.resetSignInPage(brandId, _options);
+    return result.toPromise();
+  }
+  /**
+      * Retrieves the error page.
+      * Retrieve the Error Page
+      * @param brandId The ID of the brand.
+      */
+  retrieveErrorPage(brandId, _options) {
+    const result = this.api.retrieveErrorPage(brandId, _options);
+    return result.toPromise();
+  }
+  /**
+      * Retrieves the sign-in page.
+      * Retrieve the Sign-in Page
+      * @param brandId The ID of the brand.
+      */
+  retrieveSignInPage(brandId, _options) {
+    const result = this.api.retrieveSignInPage(brandId, _options);
+    return result.toPromise();
+  }
+  /**
+      * Retrieves the sign-out page settings.
+      * Retrieve the Sign-out Page Settings
+      * @param brandId The ID of the brand.
+      */
+  retrieveSignOutPageSettings(brandId, _options) {
+    const result = this.api.retrieveSignOutPageSettings(brandId, _options);
+    return result.toPromise();
+  }
+  /**
       * Sends a test email to the current user’s primary and secondary email addresses. The email content is selected based on the following priority: 1. The email customization for the language specified in the `language` query parameter. 2. The email template's default customization. 3. The email template’s default content, translated to the current user's language.
       * Send a Test Email
       * @param brandId The ID of the brand.
@@ -1473,9 +1568,10 @@ class PromiseCustomizationApi {
       * Upload the Background Image
       * @param brandId
       * @param themeId
+      * @param file
       */
-  uploadBrandThemeBackgroundImage(brandId, themeId, _options) {
-    const result = this.api.uploadBrandThemeBackgroundImage(brandId, themeId, _options);
+  uploadBrandThemeBackgroundImage(brandId, themeId, file, _options) {
+    const result = this.api.uploadBrandThemeBackgroundImage(brandId, themeId, file, _options);
     return result.toPromise();
   }
   /**
@@ -1483,9 +1579,10 @@ class PromiseCustomizationApi {
       * Upload the Favicon
       * @param brandId
       * @param themeId
+      * @param file
       */
-  uploadBrandThemeFavicon(brandId, themeId, _options) {
-    const result = this.api.uploadBrandThemeFavicon(brandId, themeId, _options);
+  uploadBrandThemeFavicon(brandId, themeId, file, _options) {
+    const result = this.api.uploadBrandThemeFavicon(brandId, themeId, file, _options);
     return result.toPromise();
   }
   /**
@@ -1493,9 +1590,10 @@ class PromiseCustomizationApi {
       * Upload the Logo
       * @param brandId
       * @param themeId
+      * @param file
       */
-  uploadBrandThemeLogo(brandId, themeId, _options) {
-    const result = this.api.uploadBrandThemeLogo(brandId, themeId, _options);
+  uploadBrandThemeLogo(brandId, themeId, file, _options) {
+    const result = this.api.uploadBrandThemeLogo(brandId, themeId, file, _options);
     return result.toPromise();
   }
 }
@@ -2581,12 +2679,8 @@ class PromiseOrgSettingApi {
   }
   /**
       * Updates the logo for your organization.
-<<<<<<< HEAD
-      * Update org logo
-      * @param file
-=======
       * Upload the Org Logo
->>>>>>> test updated model hierarchies
+      * @param file
       */
   updateOrgLogo(file, _options) {
     const result = this.api.updateOrgLogo(file, _options);

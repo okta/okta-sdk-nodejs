@@ -3,8 +3,7 @@ import {
   Client,
   Collection,
   DefaultRequestExecutor,
-  EmailTemplate,
-  EmailTemplateContent
+  v3,
 } from '@okta/okta-sdk-nodejs';
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -19,7 +18,7 @@ const client = new Client({
 });
 
 async function getBrandId() {
-  const { value: brand } = await client.listBrands().next();
+  const { value: brand } = await (await client.listBrands()).next();
   return brand.id;
 }
 
@@ -28,7 +27,7 @@ describe('Email Template API', () => {
   let template;
   beforeEach(async () => {
     brandId = await getBrandId();
-    const item = await client.listEmailTemplates(brandId).next();
+    const item = await (await client.listEmailTemplates(brandId)).next();
     template = item.value;
   });
 
@@ -38,7 +37,7 @@ describe('Email Template API', () => {
       expect(templates).to.be.instanceOf(Collection);
       let counter = 0;
       await templates.each(template => {
-        expect(template).to.be.instanceOf(EmailTemplate);
+        expect(template).to.be.instanceOf(v3.EmailTemplate);
         counter++;
       });
       expect(counter).to.be.greaterThan(1);
@@ -46,24 +45,24 @@ describe('Email Template API', () => {
   });
 
   it('can get template', async () => {
-    const { value } = await client.listEmailTemplates(brandId).next();
+    const { value } = await (await client.listEmailTemplates(brandId)).next();
     const template = await client.getEmailTemplate(brandId, value.name);
     expect(template.name).to.equal(value.name);
   });
 
   it('can get email template default content', async () => {
     const res = await client.getEmailTemplateDefaultContent(brandId, template.name);
-    expect(res).to.be.instanceOf(EmailTemplateContent);
+    expect(res).to.be.instanceOf(v3.EmailDefaultContent);
   });
 
   it('can get email template default content preview', async () => {
     const res = await client.getEmailTemplateDefaultContentPreview(brandId, template.name);
-    expect(res).to.be.instanceOf(EmailTemplateContent);
+    expect(res).to.be.instanceOf(v3.EmailPreview);
   });
 
   it('can send test email', async () => {
-    const res = await client.sendTestEmail(brandId, template.name, {});
-    expect(res.status).to.equal(204);
+    const res = await client.sendTestEmail(brandId, template.name, 'eng');
+    expect(res).to.be.undefined;
   });
 
   describe('Template Customizations', () => {
@@ -86,8 +85,8 @@ describe('Email Template API', () => {
 
       // list
       const customizations = [];
-      await client.listEmailTemplateCustomizations(brandId, templateName)
-        .each(customization => customizations.push(customization));
+      const collection = await client.listEmailTemplateCustomizations(brandId, templateName);
+      await collection.each(customization => customizations.push(customization));
       expect(customizations.length).to.be.greaterThanOrEqual(1);
 
       // get
@@ -96,7 +95,7 @@ describe('Email Template API', () => {
 
       // get preview
       const preview = await client.getEmailTemplateCustomizationPreview(brandId, templateName, customization.id);
-      expect(preview).to.be.instanceOf(EmailTemplateContent);
+      expect(preview).to.be.instanceOf(v3.EmailPreview);
 
       // update
       const updatedCustomization = await client.updateEmailTemplateCustomization(brandId, templateName, customization.id, {
@@ -114,7 +113,7 @@ describe('Email Template API', () => {
         body
       });
       const res = await client.deleteEmailTemplateCustomization(brandId, templateName, nonDefaultTemplate.id);
-      expect(res.status).to.equal(204);
+      expect(res).to.be.undefined;
     });
 
   });

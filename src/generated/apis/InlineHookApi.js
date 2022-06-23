@@ -41,6 +41,17 @@ class InlineHookApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     // Make Request Context
     const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.POST);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
+    let authMethod;
+    // Apply auth methods
+    authMethod = _config.authMethods['API_Token'];
+    if (authMethod?.applySecurityAuthentication) {
+      await authMethod?.applySecurityAuthentication(requestContext);
+    }
+    // Apply auth methods
+    authMethod = _config.authMethods['OAuth_2.0'];
+    if (authMethod?.applySecurityAuthentication) {
+      await authMethod?.applySecurityAuthentication(requestContext);
+    }
     const defaultAuth = _options?.authMethods?.default || this.configuration?.authMethods?.default;
     if (defaultAuth?.applySecurityAuthentication) {
       await defaultAuth?.applySecurityAuthentication(requestContext);
@@ -104,6 +115,17 @@ class InlineHookApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     // Make Request Context
     const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.POST);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
+    let authMethod;
+    // Apply auth methods
+    authMethod = _config.authMethods['API_Token'];
+    if (authMethod?.applySecurityAuthentication) {
+      await authMethod?.applySecurityAuthentication(requestContext);
+    }
+    // Apply auth methods
+    authMethod = _config.authMethods['OAuth_2.0'];
+    if (authMethod?.applySecurityAuthentication) {
+      await authMethod?.applySecurityAuthentication(requestContext);
+    }
     const defaultAuth = _options?.authMethods?.default || this.configuration?.authMethods?.default;
     if (defaultAuth?.applySecurityAuthentication) {
       await defaultAuth?.applySecurityAuthentication(requestContext);

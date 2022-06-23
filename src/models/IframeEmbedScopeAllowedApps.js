@@ -13,22 +13,9 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-var Resource = require('../resource');
+var IframeEmbedScopeAllowedApps;
+(function (IframeEmbedScopeAllowedApps) {
+  IframeEmbedScopeAllowedApps['OKTA_ENDUSER'] = 'OKTA_ENDUSER';
+}(IframeEmbedScopeAllowedApps || (IframeEmbedScopeAllowedApps = {})));
 
-
-/**
- * @class Scope
- * @extends Resource
- * @property { array } allowedOktaApps
- * @property { string } stringValue
- * @property { ScopeType } type
- */
-class Scope extends Resource {
-  constructor(resourceJson, client) {
-    super(resourceJson, client);
-
-  }
-
-}
-
-module.exports = Scope;
+module.exports = IframeEmbedScopeAllowedApps;
