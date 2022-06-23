@@ -13,12 +13,12 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
+import { ReadStream } from 'fs';
 import { ApplicationOptions } from './parameterized-operations-client';
 import * as v3 from './generated';
 import { JsonWebKey } from './models/JsonWebKey';
-import { Collection } from './collection';
 import { Response } from 'node-fetch';
-import { ReadStream } from 'fs';
+import { Collection } from './collection';
 import { IdentityProvider } from './models/IdentityProvider';
 import { IdentityProviderOptions } from './models/IdentityProvider';
 import { JsonWebKeyOptions } from './models/JsonWebKey';
@@ -42,8 +42,8 @@ import { User } from './models/User';
 import { CreateUserRequestOptions } from './models/CreateUserRequest';
 import { UserOptions } from './models/User';
 import { AppLink } from './models/AppLink';
-import { OAuth2ScopeConsentGrant } from './models/OAuth2ScopeConsentGrant';
 import { OAuth2Client } from './models/OAuth2Client';
+import { OAuth2ScopeConsentGrant } from './models/OAuth2ScopeConsentGrant';
 import { OAuth2RefreshToken } from './models/OAuth2RefreshToken';
 import { ChangePasswordRequestOptions } from './models/ChangePasswordRequest';
 import { UserCredentials } from './models/UserCredentials';
@@ -129,6 +129,7 @@ export declare class GeneratedApiClient {
   activateApplication(appId: string): Promise<void>;
   deactivateApplication(appId: string): Promise<void>;
   uploadApplicationLogo(appId: string, file: ReadStream): Promise<void>;
+  updateApplicationPolicy(appId: string, policyId: string): Promise<Response>;
   revokeOAuth2TokensForApplication(appId: string): Promise<void>;
   listOAuth2TokensForApplication(appId: string, queryParameters?: {
     expand?: string,
@@ -208,7 +209,7 @@ export declare class GeneratedApiClient {
     filter?: string,
     cursor?: string,
     limit?: number,
-  }): Collection<v3.OAuth2Scope>;
+  }): Promise<Collection<v3.OAuth2Scope>>;
   createOAuth2Scope(authServerId: string, oAuth2Scope: v3.OAuth2Scope): Promise<v3.OAuth2Scope>;
   deleteOAuth2Scope(authServerId: string, scopeId: string): Promise<void>;
   getOAuth2Scope(authServerId: string, scopeId: string): Promise<v3.OAuth2Scope>;

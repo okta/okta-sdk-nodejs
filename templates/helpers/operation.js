@@ -343,12 +343,22 @@ const getOperationArgumentsAndReturnType = (operation, options = { tagV3Methods:
     if (bodyParamName) {
       const modelPropertiesType = operation.bodyModel === 'string' ?
         operation.bodyModel : isV3Api(operationId) && options.tagV3Methods ? `${operation.bodyModel}` : `${operation.bodyModel}${OPTIONS_TYPE_SUFFIX}`;
-      const bodyParamNameCamelCase = _.camelCase(bodyParamName);
+      let bodyParamNameCamelCase = _.camelCase(bodyParamName);
       const v3ParamOverride = getV3ArgumentsOverride(bodyParamNameCamelCase);
-      args.set(v3ParamOverride && options.tagV3Methods ? v3ParamOverride[0] : bodyParamNameCamelCase, {
+
+      let type = modelPropertiesType;
+      let namespace = '';
+      if (isV3Api(operationId) && options.tagV3Methods) {
+        namespace = 'v3';
+        if (v3ParamOverride) {
+          bodyParamNameCamelCase = v3ParamOverride[0];
+          type = v3ParamOverride[1];
+        }
+      }
+      args.set(bodyParamNameCamelCase, {
         isRequired: hasRequiredParameterInRequestMedia(parameters, 'body'),
-        type: v3ParamOverride && options.tagV3Methods ? v3ParamOverride[1] : modelPropertiesType,
-        namespace: isV3Api(operationId) && options.tagV3Methods ? 'v3' : '',
+        type: type,
+        namespace,
       });
     }
   }

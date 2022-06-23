@@ -283,7 +283,7 @@ function getV3MethodName(v2OperationId) {
 }
 
 function isV3Api(operationId) {
-  return Object.values(V3ApiOperations).find((operations) => operations.includes((operationId)));
+  return Object.values(V3ApiOperations).find((operations) => operations.includes(operationId));
 }
 
 function v3ApiByOperationId(operationId) {
