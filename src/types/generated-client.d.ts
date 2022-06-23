@@ -18,7 +18,7 @@ import * as v3 from './generated';
 import { JsonWebKey } from './models/JsonWebKey';
 import { Collection } from './collection';
 import { Response } from 'node-fetch';
-import { ReadStream } from 'fs;
+import { ReadStream } from 'fs';
 import { IdentityProvider } from './models/IdentityProvider';
 import { IdentityProviderOptions } from './models/IdentityProvider';
 import { JsonWebKeyOptions } from './models/JsonWebKey';
@@ -63,7 +63,6 @@ import { ResponseLinks } from './models/ResponseLinks';
 import { Role } from './models/Role';
 import { AssignRoleRequestOptions } from './models/AssignRoleRequest';
 import { CatalogApplication } from './models/CatalogApplication';
-import { ReadStream } from 'fs';
 
 export declare class GeneratedApiClient {
   listApplications(queryParameters?: {
@@ -209,11 +208,11 @@ export declare class GeneratedApiClient {
     filter?: string,
     cursor?: string,
     limit?: number,
-  }): Collection<OAuth2Scope>;
-  createOAuth2Scope(authServerId: string, oAuth2Scope: OAuth2ScopeOptions): Promise<OAuth2Scope>;
-  deleteOAuth2Scope(authServerId: string, scopeId: string): Promise<Response>;
-  getOAuth2Scope(authServerId: string, scopeId: string): Promise<OAuth2Scope>;
-  updateOAuth2Scope(authServerId: string, scopeId: string, oAuth2Scope: OAuth2ScopeOptions): Promise<OAuth2Scope>;
+  }): Collection<v3.OAuth2Scope>;
+  createOAuth2Scope(authServerId: string, oAuth2Scope: v3.OAuth2Scope): Promise<v3.OAuth2Scope>;
+  deleteOAuth2Scope(authServerId: string, scopeId: string): Promise<void>;
+  getOAuth2Scope(authServerId: string, scopeId: string): Promise<v3.OAuth2Scope>;
+  updateOAuth2Scope(authServerId: string, scopeId: string, oAuth2Scope: v3.OAuth2Scope): Promise<v3.OAuth2Scope>;
   listBrands(): Promise<Collection<v3.Brand>>;
   getBrand(brandId: string): Promise<v3.Brand>;
   updateBrand(brandId: string, brand: v3.Brand): Promise<v3.Brand>;
