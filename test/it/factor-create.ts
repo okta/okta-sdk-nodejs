@@ -2,12 +2,8 @@ import utils = require('../utils');
 import {
   Client,
   DefaultRequestExecutor,
-  CallUserFactor,
-  PushUserFactor,
-  SecurityQuestionUserFactor,
-  SmsUserFactor,
-  UserFactor,
-  Policy
+  Policy,
+  v3
 } from '@okta/okta-sdk-nodejs';
 import { expect } from 'chai';
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
@@ -72,7 +68,7 @@ describe('Factors API', () => {
   });
 
   it('should allow me to create a Call factor', async () => {
-    const factor = {
+    const factor: v3.CallUserFactor = {
       factorType: 'call',
       provider: 'OKTA',
       profile: {
@@ -81,23 +77,23 @@ describe('Factors API', () => {
     };
     const createdFactor = await client.enrollFactor(createdUser.id, factor);
     expect(createdFactor.factorType).to.equal('call');
-    expect(createdFactor).to.be.instanceof(UserFactor);
-    expect(createdFactor).to.be.instanceof(CallUserFactor);
+    expect(createdFactor).to.be.instanceof(v3.UserFactor);
+    expect(createdFactor).to.be.instanceof(v3.CallUserFactor);
   });
 
   it('should allow me to create a Push factor', async () => {
-    const factor = {
+    const factor: v3.PushUserFactor = {
       factorType: 'push',
       provider: 'OKTA'
     };
     const createdFactor = await client.enrollFactor(createdUser.id, factor);
     expect(createdFactor.factorType).to.equal('push');
-    expect(createdFactor).to.be.instanceof(UserFactor);
-    expect(createdFactor).to.be.instanceof(PushUserFactor);
+    expect(createdFactor).to.be.instanceof(v3.UserFactor);
+    expect(createdFactor).to.be.instanceof(v3.PushUserFactor);
   });
 
   it('should allow me to create a Security Question factor', async () => {
-    const factor = {
+    const factor: v3.SecurityQuestionUserFactor = {
       factorType: 'question',
       provider: 'OKTA',
       profile: {
@@ -107,12 +103,12 @@ describe('Factors API', () => {
     };
     const createdFactor = await client.enrollFactor(createdUser.id, factor);
     expect(createdFactor.factorType).to.equal('question');
-    expect(createdFactor).to.be.instanceof(UserFactor);
-    expect(createdFactor).to.be.instanceof(SecurityQuestionUserFactor);
+    expect(createdFactor).to.be.instanceof(v3.UserFactor);
+    expect(createdFactor).to.be.instanceof(v3.SecurityQuestionUserFactor);
   });
 
   it('should allow me to create a SMS factor', async () => {
-    const factor = {
+    const factor: v3.SmsUserFactor = {
       factorType: 'sms',
       provider: 'OKTA',
       profile: {
@@ -121,7 +117,7 @@ describe('Factors API', () => {
     };
     const createdFactor = await client.enrollFactor(createdUser.id, factor);
     expect(createdFactor.factorType).to.equal('sms');
-    expect(createdFactor).to.be.instanceof(UserFactor);
-    expect(createdFactor).to.be.instanceof(SmsUserFactor);
+    expect(createdFactor).to.be.instanceof(v3.UserFactor);
+    expect(createdFactor).to.be.instanceof(v3.SmsUserFactor);
   });
 });

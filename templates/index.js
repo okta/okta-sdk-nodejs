@@ -50,6 +50,7 @@ js.process = ({spec, operations, models, handlebars}) => {
   const modelResolver = new ModelResolver(models);
 
   // Add a property to the operation that lets the client template know if the response needs resolution
+  // Group header parameters into a property
   operations.forEach(operation => {
     const responseModelName = operation.responseModel;
     if (responseModelName) {
@@ -58,6 +59,7 @@ js.process = ({spec, operations, models, handlebars}) => {
         operation.responseModelRequiresResolution = true;
       }
     }
+    operation.headerParams = operation.parameters.filter(param => param.in === 'header').map(param => ({...param, name: param.name.replace(/-/g, '_')}));
   });
 
   templates.push({

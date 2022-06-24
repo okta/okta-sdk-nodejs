@@ -36,6 +36,16 @@ class GeneratedApiClient {
     {{/each}}
     }
     {{/if}}
+    {{#if headerParams.length}}
+    {{#each headerParams}}
+    let {{name}};
+    {{/each}}
+    if (headerParameters) {
+    {{#each headerParams}}
+      {{name}} = headerParameters.{{name}};
+    {{/each}}
+    }
+    {{/if}}
     return this.{{toCamelCase (v3ApiByOperationId operationId)}}.{{getV3MethodName operationId}}({{operationArgumentBuilder this 'v3'}});
   {{else}}
     let url = `${this.baseUrl}{{replacePathParams path}}`;

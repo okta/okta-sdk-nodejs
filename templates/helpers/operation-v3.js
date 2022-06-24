@@ -254,6 +254,18 @@ const V3ApiOperations = {
     'listOrigins',
     'updateOrigin',
   ],
+  ],
+  UserFactorApi: [
+    'activateFactor',
+    'deleteFactor',
+    'enrollFactor',
+    'getFactor',
+    'getFactorTransactionStatus',
+    'listFactors',
+    'listSupportedFactors',
+    'listSupportedSecurityQuestions',
+    'verifyFactor',
+  ],
 };
 
 function getV3ReturnType(operationId) {

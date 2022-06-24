@@ -63,6 +63,19 @@ let typeMap: {[index: string]: any} = {
   'SAML_2_0': SamlApplication,
   'SECURE_PASSWORD_STORE': SecurePasswordStoreApplication,
   'WS_FEDERATION': WsFederationApplication,
+  'call': CallUserFactor,
+  'email': EmailUserFactor,
+  'hotp': CustomHotpUserFactor,
+  'push': PushUserFactor,
+  'question': SecurityQuestionUserFactor,
+  'sms': SmsUserFactor,
+  'token': TokenUserFactor,
+  'token:hardware': HardwareUserFactor,
+  'token:hotp': CustomHotpUserFactor,
+  'token:software:totp': TotpUserFactor,
+  'u2f': U2fUserFactor,
+  'web': WebUserFactor,
+  'webauthn': WebAuthnUserFactor,
 }
 
 export class ObjectSerializer {

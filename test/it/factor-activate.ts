@@ -59,7 +59,7 @@ describe('Factors API', () => {
   });
 
   it('should allow me to activate a TOTP factor', async () => {
-    const factor = {
+    const factor: okta.v3.UserFactor = {
       factorType: 'token:software:totp',
       provider: 'OKTA'
     };
@@ -71,7 +71,7 @@ describe('Factors API', () => {
       secret: activation.sharedSecret,
       encoding: 'base32'
     });
-    const updatedFactor = await createdFactor.activate(createdUser.id, { passCode });
+    const updatedFactor = await client.activateFactor(createdUser.id, createdFactor.id, { passCode });
     expect(updatedFactor.status).to.equal('ACTIVE');
   });
 });

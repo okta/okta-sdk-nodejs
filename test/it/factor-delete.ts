@@ -57,13 +57,13 @@ describe('Factors API', () => {
   });
 
   it('should allow me to delete a factor', async () => {
-    const newFactor = {
+    const newFactor: okta.v3.UserFactor = {
       factorType: 'token:software:totp',
       provider: 'OKTA'
     };
     const createdFactor = await client.enrollFactor(createdUser.id, newFactor);
-    const response = await createdFactor.delete(createdUser.id);
-    expect(response.status).to.equal(204);
+    const response = await client.deleteFactor(createdUser.id, createdFactor.id);
+    expect(response).to.be.undefined;
     let factor;
     try {
       factor = await client.getFactor(createdUser.id, createdFactor.id);

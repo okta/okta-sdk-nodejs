@@ -4,7 +4,8 @@ import {
   DefaultRequestExecutor,
   SecurityQuestionUserFactor,
   SmsUserFactor,
-  Policy
+  Policy,
+  v3
 } from '@okta/okta-sdk-nodejs';
 import { expect } from 'chai';
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
@@ -66,14 +67,14 @@ describe('User API tests', () => {
   });
 
   it('should allow me to list a user\'s enrolled factors', async () => {
-    const smsFactor = {
+    const smsFactor: v3.SmsUserFactor = {
       factorType: 'sms',
       provider: 'OKTA',
       profile: {
         phoneNumber: '162 840 01133‬'
       }
     };
-    const securityQuestionFactor = {
+    const securityQuestionFactor: v3.SecurityQuestionUserFactor = {
       factorType: 'question',
       provider: 'OKTA',
       profile: {

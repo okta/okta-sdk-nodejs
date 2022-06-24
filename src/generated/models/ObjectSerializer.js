@@ -1711,6 +1711,19 @@ let typeMap = {
     'SAML_2_0': SamlApplication_1.SamlApplication,
     'SECURE_PASSWORD_STORE': SecurePasswordStoreApplication_1.SecurePasswordStoreApplication,
     'WS_FEDERATION': WsFederationApplication_1.WsFederationApplication,
+    'call': CallUserFactor_1.CallUserFactor,
+    'email': EmailUserFactor_1.EmailUserFactor,
+    'hotp': CustomHotpUserFactor_1.CustomHotpUserFactor,
+    'push': PushUserFactor_1.PushUserFactor,
+    'question': SecurityQuestionUserFactor_1.SecurityQuestionUserFactor,
+    'sms': SmsUserFactor_1.SmsUserFactor,
+    'token': TokenUserFactor_1.TokenUserFactor,
+    'token:hardware': HardwareUserFactor_1.HardwareUserFactor,
+    'token:hotp': CustomHotpUserFactor_1.CustomHotpUserFactor,
+    'token:software:totp': TotpUserFactor_1.TotpUserFactor,
+    'u2f': U2fUserFactor_1.U2fUserFactor,
+    'web': WebUserFactor_1.WebUserFactor,
+    'webauthn': WebAuthnUserFactor_1.WebAuthnUserFactor,
 };
 class ObjectSerializer {
     static findCorrectType(data, expectedType, discriminator) {
