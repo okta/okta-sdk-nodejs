@@ -16,72 +16,68 @@ const client = new okta.Client({
 
 async function cleanInlineHooks() {
   const collection = await client.listInlineHooks();
-  collection.each(async (inlineHook) => {
-
-    await inlineHook.deactivate();
-    await inlineHook.delete();
+  await collection.each(async (inlineHook) => {
+    await client.deactivateInlineHook(inlineHook.id);
+    await client.deleteInlineHook(inlineHook.id);
   });
 }
 
 async function cleanAuthorizationServers() {
-  (await client.listAuthorizationServers()).each(
+  await (await client.listAuthorizationServers()).each(
     async authorizationServer => {
-      await authorizationServer.delete();
+      await client.deleteAuthorizationServer(authorizationServer.id);
     }
   );
 }
 
-function cleanApplications() {
-  client.listApplications().each(application =>{
-    (application.label === 'Node SDK Service App' || application.label === 'Bacon Service Client') ?
-      console.log(`Skipped application to remove ${application.label}`) :
-      utils.removeAppByLabel(client, application.label);
-  });
-}
-
-function cleanTestUsers() {
-  client.listUsers().each(user => {
-    (user.profile.email.endsWith('okta.com')) ?
-      console.log(`Skipped user to remove ${user.profile.email}`) :
-      utils.deleteUser(user);
-  });
-}
-
-function cleanTestGroups() {
-  const url = `${client.baseUrl}/api/v1/groups`;
-  const request = {
-    method: 'get',
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-    }
-  };
-
-  return client.http.http(url, request)
-    .then(responce => responce.text())
-    .then(bodyResponce => JSON.parse(bodyResponce))
-    .then(user => {
-      user.forEach(element =>{
-        (element.profile.name === 'Everyone') ?
-          console.log(`Skipped group to remove ${element.profile.name}`) :
-          utils.cleanupGroup(client, element);
-      });
-    })
-    .catch(err => {
+async function cleanApplications() {
+  await (await client.listApplications()).each(async application => {
+    try {
+      [
+        'Okta Admin Console',
+        'Okta Dashboard',
+        'Okta Browser Plugin',
+        'Node SDK Service App',
+        'Bacon Service Client'
+      ].includes(application.label) ?
+        console.log(`Skipped application to remove ${application.label}`) :
+        await utils.removeAppByLabel(client, application.label);
+    } catch (err) {
       console.error(err);
-    });
+    }
+  });
 }
 
-describe('Clean all test resources', () => {
+async function cleanTestUsers() {
+  await (await client.listUsers()).each(async user => {
+    try {
+      (user.profile.email.endsWith('okta.com')) ?
+        console.log(`Skipped user to remove ${user.profile.email}`) :
+        await utils.deleteUser(user);
+    } catch (err) {
+      console.error(err);
+    }
+  });
+}
 
-  cleanAuthorizationServers();
+async function cleanTestGroups() {
+  await (await client.listGroups()).each(async (group) => {
+    try {
+      (group.profile.name === 'Everyone') ?
+        console.log(`Skipped group to remove ${group.profile.name}`) :
+        await utils.cleanupGroup(client, group);
+    } catch (err) {
+      console.error(err);
+    }
+  });
+}
 
-  cleanTestUsers();
-
-  cleanTestGroups();
-
-  cleanApplications();
-
-  cleanInlineHooks();
-
+describe('Clean', () => {
+  it('all test resources', async () => {
+    await cleanAuthorizationServers();
+    await cleanTestUsers();
+    await cleanTestGroups();
+    await cleanApplications();
+    await cleanInlineHooks();
+  });
 });
