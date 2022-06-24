@@ -36,9 +36,10 @@ class SessionApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('SessionApi', 'createSession', 'createSessionRequest');
     }
     // Path Params
-    const localVarPath = '/api/v1/sessions';
+    const path = '/api/v1/sessions';
+    const vars = {};
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.POST);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Body Params
     const contentType = ObjectSerializer_1.ObjectSerializer.getPreferredMediaType([
@@ -71,10 +72,12 @@ class SessionApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('SessionApi', 'endSession', 'sessionId');
     }
     // Path Params
-    const localVarPath = '/api/v1/sessions/{sessionId}'
-      .replace('{' + 'sessionId' + '}', encodeURIComponent(String(sessionId)));
+    const path = '/api/v1/sessions/{sessionId}';
+    const vars = {
+      ['sessionId']: String(sessionId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.DELETE);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.DELETE, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -105,10 +108,12 @@ class SessionApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('SessionApi', 'getSession', 'sessionId');
     }
     // Path Params
-    const localVarPath = '/api/v1/sessions/{sessionId}'
-      .replace('{' + 'sessionId' + '}', encodeURIComponent(String(sessionId)));
+    const path = '/api/v1/sessions/{sessionId}';
+    const vars = {
+      ['sessionId']: String(sessionId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.GET);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -139,10 +144,12 @@ class SessionApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('SessionApi', 'refreshSession', 'sessionId');
     }
     // Path Params
-    const localVarPath = '/api/v1/sessions/{sessionId}/lifecycle/refresh'
-      .replace('{' + 'sessionId' + '}', encodeURIComponent(String(sessionId)));
+    const path = '/api/v1/sessions/{sessionId}/lifecycle/refresh';
+    const vars = {
+      ['sessionId']: String(sessionId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.POST);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods

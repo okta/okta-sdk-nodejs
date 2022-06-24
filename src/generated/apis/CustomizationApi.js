@@ -44,11 +44,13 @@ class CustomizationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('CustomizationApi', 'createEmailCustomization', 'templateName');
     }
     // Path Params
-    const localVarPath = '/api/v1/brands/{brandId}/templates/email/{templateName}/customizations'
-      .replace('{' + 'brandId' + '}', encodeURIComponent(String(brandId)))
-      .replace('{' + 'templateName' + '}', encodeURIComponent(String(templateName)));
+    const path = '/api/v1/brands/{brandId}/templates/email/{templateName}/customizations';
+    const vars = {
+      ['brandId']: String(brandId),
+      ['templateName']: String(templateName),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.POST);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Body Params
     const contentType = ObjectSerializer_1.ObjectSerializer.getPreferredMediaType([
@@ -91,11 +93,13 @@ class CustomizationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('CustomizationApi', 'deleteAllCustomizations', 'templateName');
     }
     // Path Params
-    const localVarPath = '/api/v1/brands/{brandId}/templates/email/{templateName}/customizations'
-      .replace('{' + 'brandId' + '}', encodeURIComponent(String(brandId)))
-      .replace('{' + 'templateName' + '}', encodeURIComponent(String(templateName)));
+    const path = '/api/v1/brands/{brandId}/templates/email/{templateName}/customizations';
+    const vars = {
+      ['brandId']: String(brandId),
+      ['templateName']: String(templateName),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.DELETE);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.DELETE, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -131,11 +135,13 @@ class CustomizationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('CustomizationApi', 'deleteBrandThemeBackgroundImage', 'themeId');
     }
     // Path Params
-    const localVarPath = '/api/v1/brands/{brandId}/themes/{themeId}/background-image'
-      .replace('{' + 'brandId' + '}', encodeURIComponent(String(brandId)))
-      .replace('{' + 'themeId' + '}', encodeURIComponent(String(themeId)));
+    const path = '/api/v1/brands/{brandId}/themes/{themeId}/background-image';
+    const vars = {
+      ['brandId']: String(brandId),
+      ['themeId']: String(themeId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.DELETE);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.DELETE, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -171,11 +177,13 @@ class CustomizationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('CustomizationApi', 'deleteBrandThemeFavicon', 'themeId');
     }
     // Path Params
-    const localVarPath = '/api/v1/brands/{brandId}/themes/{themeId}/favicon'
-      .replace('{' + 'brandId' + '}', encodeURIComponent(String(brandId)))
-      .replace('{' + 'themeId' + '}', encodeURIComponent(String(themeId)));
+    const path = '/api/v1/brands/{brandId}/themes/{themeId}/favicon';
+    const vars = {
+      ['brandId']: String(brandId),
+      ['themeId']: String(themeId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.DELETE);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.DELETE, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -211,11 +219,13 @@ class CustomizationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('CustomizationApi', 'deleteBrandThemeLogo', 'themeId');
     }
     // Path Params
-    const localVarPath = '/api/v1/brands/{brandId}/themes/{themeId}/logo'
-      .replace('{' + 'brandId' + '}', encodeURIComponent(String(brandId)))
-      .replace('{' + 'themeId' + '}', encodeURIComponent(String(themeId)));
+    const path = '/api/v1/brands/{brandId}/themes/{themeId}/logo';
+    const vars = {
+      ['brandId']: String(brandId),
+      ['themeId']: String(themeId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.DELETE);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.DELETE, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -256,12 +266,14 @@ class CustomizationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('CustomizationApi', 'deleteEmailCustomization', 'customizationId');
     }
     // Path Params
-    const localVarPath = '/api/v1/brands/{brandId}/templates/email/{templateName}/customizations/{customizationId}'
-      .replace('{' + 'brandId' + '}', encodeURIComponent(String(brandId)))
-      .replace('{' + 'templateName' + '}', encodeURIComponent(String(templateName)))
-      .replace('{' + 'customizationId' + '}', encodeURIComponent(String(customizationId)));
+    const path = '/api/v1/brands/{brandId}/templates/email/{templateName}/customizations/{customizationId}';
+    const vars = {
+      ['brandId']: String(brandId),
+      ['templateName']: String(templateName),
+      ['customizationId']: String(customizationId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.DELETE);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.DELETE, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -292,10 +304,12 @@ class CustomizationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('CustomizationApi', 'getBrand', 'brandId');
     }
     // Path Params
-    const localVarPath = '/api/v1/brands/{brandId}'
-      .replace('{' + 'brandId' + '}', encodeURIComponent(String(brandId)));
+    const path = '/api/v1/brands/{brandId}';
+    const vars = {
+      ['brandId']: String(brandId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.GET);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -331,11 +345,13 @@ class CustomizationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('CustomizationApi', 'getBrandTheme', 'themeId');
     }
     // Path Params
-    const localVarPath = '/api/v1/brands/{brandId}/themes/{themeId}'
-      .replace('{' + 'brandId' + '}', encodeURIComponent(String(brandId)))
-      .replace('{' + 'themeId' + '}', encodeURIComponent(String(themeId)));
+    const path = '/api/v1/brands/{brandId}/themes/{themeId}';
+    const vars = {
+      ['brandId']: String(brandId),
+      ['themeId']: String(themeId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.GET);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -376,12 +392,14 @@ class CustomizationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('CustomizationApi', 'getCustomizationPreview', 'customizationId');
     }
     // Path Params
-    const localVarPath = '/api/v1/brands/{brandId}/templates/email/{templateName}/customizations/{customizationId}/preview'
-      .replace('{' + 'brandId' + '}', encodeURIComponent(String(brandId)))
-      .replace('{' + 'templateName' + '}', encodeURIComponent(String(templateName)))
-      .replace('{' + 'customizationId' + '}', encodeURIComponent(String(customizationId)));
+    const path = '/api/v1/brands/{brandId}/templates/email/{templateName}/customizations/{customizationId}/preview';
+    const vars = {
+      ['brandId']: String(brandId),
+      ['templateName']: String(templateName),
+      ['customizationId']: String(customizationId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.GET);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -422,12 +440,14 @@ class CustomizationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('CustomizationApi', 'getEmailCustomization', 'customizationId');
     }
     // Path Params
-    const localVarPath = '/api/v1/brands/{brandId}/templates/email/{templateName}/customizations/{customizationId}'
-      .replace('{' + 'brandId' + '}', encodeURIComponent(String(brandId)))
-      .replace('{' + 'templateName' + '}', encodeURIComponent(String(templateName)))
-      .replace('{' + 'customizationId' + '}', encodeURIComponent(String(customizationId)));
+    const path = '/api/v1/brands/{brandId}/templates/email/{templateName}/customizations/{customizationId}';
+    const vars = {
+      ['brandId']: String(brandId),
+      ['templateName']: String(templateName),
+      ['customizationId']: String(customizationId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.GET);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -464,11 +484,13 @@ class CustomizationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('CustomizationApi', 'getEmailDefaultContent', 'templateName');
     }
     // Path Params
-    const localVarPath = '/api/v1/brands/{brandId}/templates/email/{templateName}/default-content'
-      .replace('{' + 'brandId' + '}', encodeURIComponent(String(brandId)))
-      .replace('{' + 'templateName' + '}', encodeURIComponent(String(templateName)));
+    const path = '/api/v1/brands/{brandId}/templates/email/{templateName}/default-content';
+    const vars = {
+      ['brandId']: String(brandId),
+      ['templateName']: String(templateName),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.GET);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Query Params
     if (language !== undefined) {
@@ -509,11 +531,13 @@ class CustomizationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('CustomizationApi', 'getEmailDefaultPreview', 'templateName');
     }
     // Path Params
-    const localVarPath = '/api/v1/brands/{brandId}/templates/email/{templateName}/default-content/preview'
-      .replace('{' + 'brandId' + '}', encodeURIComponent(String(brandId)))
-      .replace('{' + 'templateName' + '}', encodeURIComponent(String(templateName)));
+    const path = '/api/v1/brands/{brandId}/templates/email/{templateName}/default-content/preview';
+    const vars = {
+      ['brandId']: String(brandId),
+      ['templateName']: String(templateName),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.GET);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Query Params
     if (language !== undefined) {
@@ -553,11 +577,13 @@ class CustomizationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('CustomizationApi', 'getEmailSettings', 'templateName');
     }
     // Path Params
-    const localVarPath = '/api/v1/brands/{brandId}/templates/email/{templateName}/settings'
-      .replace('{' + 'brandId' + '}', encodeURIComponent(String(brandId)))
-      .replace('{' + 'templateName' + '}', encodeURIComponent(String(templateName)));
+    const path = '/api/v1/brands/{brandId}/templates/email/{templateName}/settings';
+    const vars = {
+      ['brandId']: String(brandId),
+      ['templateName']: String(templateName),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.GET);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -594,11 +620,13 @@ class CustomizationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('CustomizationApi', 'getEmailTemplate', 'templateName');
     }
     // Path Params
-    const localVarPath = '/api/v1/brands/{brandId}/templates/email/{templateName}'
-      .replace('{' + 'brandId' + '}', encodeURIComponent(String(brandId)))
-      .replace('{' + 'templateName' + '}', encodeURIComponent(String(templateName)));
+    const path = '/api/v1/brands/{brandId}/templates/email/{templateName}';
+    const vars = {
+      ['brandId']: String(brandId),
+      ['templateName']: String(templateName),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.GET);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Query Params
     if (expand !== undefined) {
@@ -633,10 +661,12 @@ class CustomizationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('CustomizationApi', 'listBrandThemes', 'brandId');
     }
     // Path Params
-    const localVarPath = '/api/v1/brands/{brandId}/themes'
-      .replace('{' + 'brandId' + '}', encodeURIComponent(String(brandId)));
+    const path = '/api/v1/brands/{brandId}/themes';
+    const vars = {
+      ['brandId']: String(brandId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.GET);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -662,9 +692,10 @@ class CustomizationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   async listBrands(_options) {
     let _config = _options || this.configuration;
     // Path Params
-    const localVarPath = '/api/v1/brands';
+    const path = '/api/v1/brands';
+    const vars = {};
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.GET);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -702,11 +733,13 @@ class CustomizationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('CustomizationApi', 'listEmailCustomizations', 'templateName');
     }
     // Path Params
-    const localVarPath = '/api/v1/brands/{brandId}/templates/email/{templateName}/customizations'
-      .replace('{' + 'brandId' + '}', encodeURIComponent(String(brandId)))
-      .replace('{' + 'templateName' + '}', encodeURIComponent(String(templateName)));
+    const path = '/api/v1/brands/{brandId}/templates/email/{templateName}/customizations';
+    const vars = {
+      ['brandId']: String(brandId),
+      ['templateName']: String(templateName),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.GET);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Query Params
     if (after !== undefined) {
@@ -748,10 +781,12 @@ class CustomizationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('CustomizationApi', 'listEmailTemplates', 'brandId');
     }
     // Path Params
-    const localVarPath = '/api/v1/brands/{brandId}/templates/email'
-      .replace('{' + 'brandId' + '}', encodeURIComponent(String(brandId)));
+    const path = '/api/v1/brands/{brandId}/templates/email';
+    const vars = {
+      ['brandId']: String(brandId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.GET);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Query Params
     if (after !== undefined) {
@@ -799,10 +834,12 @@ class CustomizationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('CustomizationApi', 'previewErrorPage', 'CustomizablePage');
     }
     // Path Params
-    const localVarPath = '/api/v1/brands/{brandId}/pages/error/preview'
-      .replace('{' + 'brandId' + '}', encodeURIComponent(String(brandId)));
+    const path = '/api/v1/brands/{brandId}/pages/error/preview';
+    const vars = {
+      ['brandId']: String(brandId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.POST);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Body Params
     const contentType = ObjectSerializer_1.ObjectSerializer.getPreferredMediaType([
@@ -845,10 +882,12 @@ class CustomizationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('CustomizationApi', 'previewSignInPage', 'SignInPage');
     }
     // Path Params
-    const localVarPath = '/api/v1/brands/{brandId}/pages/sign-in/preview'
-      .replace('{' + 'brandId' + '}', encodeURIComponent(String(brandId)));
+    const path = '/api/v1/brands/{brandId}/pages/sign-in/preview';
+    const vars = {
+      ['brandId']: String(brandId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.POST);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Body Params
     const contentType = ObjectSerializer_1.ObjectSerializer.getPreferredMediaType([
@@ -891,10 +930,12 @@ class CustomizationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('CustomizationApi', 'replaceErrorPage', 'CustomizablePage');
     }
     // Path Params
-    const localVarPath = '/api/v1/brands/{brandId}/pages/error'
-      .replace('{' + 'brandId' + '}', encodeURIComponent(String(brandId)));
+    const path = '/api/v1/brands/{brandId}/pages/error';
+    const vars = {
+      ['brandId']: String(brandId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.PUT);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.PUT, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Body Params
     const contentType = ObjectSerializer_1.ObjectSerializer.getPreferredMediaType([
@@ -937,10 +978,12 @@ class CustomizationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('CustomizationApi', 'replaceSignInPage', 'SignInPage');
     }
     // Path Params
-    const localVarPath = '/api/v1/brands/{brandId}/pages/sign-in'
-      .replace('{' + 'brandId' + '}', encodeURIComponent(String(brandId)));
+    const path = '/api/v1/brands/{brandId}/pages/sign-in';
+    const vars = {
+      ['brandId']: String(brandId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.PUT);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.PUT, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Body Params
     const contentType = ObjectSerializer_1.ObjectSerializer.getPreferredMediaType([
@@ -983,10 +1026,12 @@ class CustomizationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('CustomizationApi', 'replaceSignOutPageSettings', 'HostedPage');
     }
     // Path Params
-    const localVarPath = '/api/v1/brands/{brandId}/pages/sign-out'
-      .replace('{' + 'brandId' + '}', encodeURIComponent(String(brandId)));
+    const path = '/api/v1/brands/{brandId}/pages/sign-out';
+    const vars = {
+      ['brandId']: String(brandId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.PUT);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.PUT, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Body Params
     const contentType = ObjectSerializer_1.ObjectSerializer.getPreferredMediaType([
@@ -1024,10 +1069,12 @@ class CustomizationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('CustomizationApi', 'resetErrorPage', 'brandId');
     }
     // Path Params
-    const localVarPath = '/api/v1/brands/{brandId}/pages/error'
-      .replace('{' + 'brandId' + '}', encodeURIComponent(String(brandId)));
+    const path = '/api/v1/brands/{brandId}/pages/error';
+    const vars = {
+      ['brandId']: String(brandId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.DELETE);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.DELETE, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -1058,10 +1105,12 @@ class CustomizationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('CustomizationApi', 'resetSignInPage', 'brandId');
     }
     // Path Params
-    const localVarPath = '/api/v1/brands/{brandId}/pages/sign-in'
-      .replace('{' + 'brandId' + '}', encodeURIComponent(String(brandId)));
+    const path = '/api/v1/brands/{brandId}/pages/sign-in';
+    const vars = {
+      ['brandId']: String(brandId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.DELETE);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.DELETE, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -1092,10 +1141,12 @@ class CustomizationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('CustomizationApi', 'retrieveErrorPage', 'brandId');
     }
     // Path Params
-    const localVarPath = '/api/v1/brands/{brandId}/pages/error'
-      .replace('{' + 'brandId' + '}', encodeURIComponent(String(brandId)));
+    const path = '/api/v1/brands/{brandId}/pages/error';
+    const vars = {
+      ['brandId']: String(brandId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.GET);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -1126,10 +1177,12 @@ class CustomizationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('CustomizationApi', 'retrieveSignInPage', 'brandId');
     }
     // Path Params
-    const localVarPath = '/api/v1/brands/{brandId}/pages/sign-in'
-      .replace('{' + 'brandId' + '}', encodeURIComponent(String(brandId)));
+    const path = '/api/v1/brands/{brandId}/pages/sign-in';
+    const vars = {
+      ['brandId']: String(brandId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.GET);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -1160,10 +1213,12 @@ class CustomizationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('CustomizationApi', 'retrieveSignOutPageSettings', 'brandId');
     }
     // Path Params
-    const localVarPath = '/api/v1/brands/{brandId}/pages/sign-out'
-      .replace('{' + 'brandId' + '}', encodeURIComponent(String(brandId)));
+    const path = '/api/v1/brands/{brandId}/pages/sign-out';
+    const vars = {
+      ['brandId']: String(brandId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.GET);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -1200,11 +1255,13 @@ class CustomizationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('CustomizationApi', 'sendTestEmail', 'templateName');
     }
     // Path Params
-    const localVarPath = '/api/v1/brands/{brandId}/templates/email/{templateName}/test'
-      .replace('{' + 'brandId' + '}', encodeURIComponent(String(brandId)))
-      .replace('{' + 'templateName' + '}', encodeURIComponent(String(templateName)));
+    const path = '/api/v1/brands/{brandId}/templates/email/{templateName}/test';
+    const vars = {
+      ['brandId']: String(brandId),
+      ['templateName']: String(templateName),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.POST);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Query Params
     if (language !== undefined) {
@@ -1244,10 +1301,12 @@ class CustomizationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('CustomizationApi', 'updateBrand', 'brand');
     }
     // Path Params
-    const localVarPath = '/api/v1/brands/{brandId}'
-      .replace('{' + 'brandId' + '}', encodeURIComponent(String(brandId)));
+    const path = '/api/v1/brands/{brandId}';
+    const vars = {
+      ['brandId']: String(brandId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.PUT);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.PUT, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Body Params
     const contentType = ObjectSerializer_1.ObjectSerializer.getPreferredMediaType([
@@ -1295,11 +1354,13 @@ class CustomizationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('CustomizationApi', 'updateBrandTheme', 'theme');
     }
     // Path Params
-    const localVarPath = '/api/v1/brands/{brandId}/themes/{themeId}'
-      .replace('{' + 'brandId' + '}', encodeURIComponent(String(brandId)))
-      .replace('{' + 'themeId' + '}', encodeURIComponent(String(themeId)));
+    const path = '/api/v1/brands/{brandId}/themes/{themeId}';
+    const vars = {
+      ['brandId']: String(brandId),
+      ['themeId']: String(themeId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.PUT);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.PUT, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Body Params
     const contentType = ObjectSerializer_1.ObjectSerializer.getPreferredMediaType([
@@ -1348,12 +1409,14 @@ class CustomizationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('CustomizationApi', 'updateEmailCustomization', 'customizationId');
     }
     // Path Params
-    const localVarPath = '/api/v1/brands/{brandId}/templates/email/{templateName}/customizations/{customizationId}'
-      .replace('{' + 'brandId' + '}', encodeURIComponent(String(brandId)))
-      .replace('{' + 'templateName' + '}', encodeURIComponent(String(templateName)))
-      .replace('{' + 'customizationId' + '}', encodeURIComponent(String(customizationId)));
+    const path = '/api/v1/brands/{brandId}/templates/email/{templateName}/customizations/{customizationId}';
+    const vars = {
+      ['brandId']: String(brandId),
+      ['templateName']: String(templateName),
+      ['customizationId']: String(customizationId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.PUT);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.PUT, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Body Params
     const contentType = ObjectSerializer_1.ObjectSerializer.getPreferredMediaType([
@@ -1397,11 +1460,13 @@ class CustomizationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('CustomizationApi', 'updateEmailSettings', 'templateName');
     }
     // Path Params
-    const localVarPath = '/api/v1/brands/{brandId}/templates/email/{templateName}/settings'
-      .replace('{' + 'brandId' + '}', encodeURIComponent(String(brandId)))
-      .replace('{' + 'templateName' + '}', encodeURIComponent(String(templateName)));
+    const path = '/api/v1/brands/{brandId}/templates/email/{templateName}/settings';
+    const vars = {
+      ['brandId']: String(brandId),
+      ['templateName']: String(templateName),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.PUT);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.PUT, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Body Params
     const contentType = ObjectSerializer_1.ObjectSerializer.getPreferredMediaType([
@@ -1449,11 +1514,13 @@ class CustomizationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('CustomizationApi', 'uploadBrandThemeBackgroundImage', 'file');
     }
     // Path Params
-    const localVarPath = '/api/v1/brands/{brandId}/themes/{themeId}/background-image'
-      .replace('{' + 'brandId' + '}', encodeURIComponent(String(brandId)))
-      .replace('{' + 'themeId' + '}', encodeURIComponent(String(themeId)));
+    const path = '/api/v1/brands/{brandId}/themes/{themeId}/background-image';
+    const vars = {
+      ['brandId']: String(brandId),
+      ['themeId']: String(themeId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.POST);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Form Params
     const useForm = (0, util_1.canConsumeForm)([
@@ -1517,11 +1584,13 @@ class CustomizationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('CustomizationApi', 'uploadBrandThemeFavicon', 'file');
     }
     // Path Params
-    const localVarPath = '/api/v1/brands/{brandId}/themes/{themeId}/favicon'
-      .replace('{' + 'brandId' + '}', encodeURIComponent(String(brandId)))
-      .replace('{' + 'themeId' + '}', encodeURIComponent(String(themeId)));
+    const path = '/api/v1/brands/{brandId}/themes/{themeId}/favicon';
+    const vars = {
+      ['brandId']: String(brandId),
+      ['themeId']: String(themeId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.POST);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Form Params
     const useForm = (0, util_1.canConsumeForm)([
@@ -1585,11 +1654,13 @@ class CustomizationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('CustomizationApi', 'uploadBrandThemeLogo', 'file');
     }
     // Path Params
-    const localVarPath = '/api/v1/brands/{brandId}/themes/{themeId}/logo'
-      .replace('{' + 'brandId' + '}', encodeURIComponent(String(brandId)))
-      .replace('{' + 'themeId' + '}', encodeURIComponent(String(themeId)));
+    const path = '/api/v1/brands/{brandId}/themes/{themeId}/logo';
+    const vars = {
+      ['brandId']: String(brandId),
+      ['themeId']: String(themeId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.POST);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Form Params
     const useForm = (0, util_1.canConsumeForm)([

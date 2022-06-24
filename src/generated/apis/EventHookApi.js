@@ -36,10 +36,12 @@ class EventHookApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('EventHookApi', 'activateEventHook', 'eventHookId');
     }
     // Path Params
-    const localVarPath = '/api/v1/eventHooks/{eventHookId}/lifecycle/activate'
-      .replace('{' + 'eventHookId' + '}', encodeURIComponent(String(eventHookId)));
+    const path = '/api/v1/eventHooks/{eventHookId}/lifecycle/activate';
+    const vars = {
+      ['eventHookId']: String(eventHookId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.POST);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -70,9 +72,10 @@ class EventHookApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('EventHookApi', 'createEventHook', 'eventHook');
     }
     // Path Params
-    const localVarPath = '/api/v1/eventHooks';
+    const path = '/api/v1/eventHooks';
+    const vars = {};
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.POST);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Body Params
     const contentType = ObjectSerializer_1.ObjectSerializer.getPreferredMediaType([
@@ -110,10 +113,12 @@ class EventHookApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('EventHookApi', 'deactivateEventHook', 'eventHookId');
     }
     // Path Params
-    const localVarPath = '/api/v1/eventHooks/{eventHookId}/lifecycle/deactivate'
-      .replace('{' + 'eventHookId' + '}', encodeURIComponent(String(eventHookId)));
+    const path = '/api/v1/eventHooks/{eventHookId}/lifecycle/deactivate';
+    const vars = {
+      ['eventHookId']: String(eventHookId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.POST);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -144,10 +149,12 @@ class EventHookApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('EventHookApi', 'deleteEventHook', 'eventHookId');
     }
     // Path Params
-    const localVarPath = '/api/v1/eventHooks/{eventHookId}'
-      .replace('{' + 'eventHookId' + '}', encodeURIComponent(String(eventHookId)));
+    const path = '/api/v1/eventHooks/{eventHookId}';
+    const vars = {
+      ['eventHookId']: String(eventHookId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.DELETE);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.DELETE, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -178,10 +185,12 @@ class EventHookApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('EventHookApi', 'getEventHook', 'eventHookId');
     }
     // Path Params
-    const localVarPath = '/api/v1/eventHooks/{eventHookId}'
-      .replace('{' + 'eventHookId' + '}', encodeURIComponent(String(eventHookId)));
+    const path = '/api/v1/eventHooks/{eventHookId}';
+    const vars = {
+      ['eventHookId']: String(eventHookId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.GET);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -207,9 +216,10 @@ class EventHookApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   async listEventHooks(_options) {
     let _config = _options || this.configuration;
     // Path Params
-    const localVarPath = '/api/v1/eventHooks';
+    const path = '/api/v1/eventHooks';
+    const vars = {};
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.GET);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -245,10 +255,12 @@ class EventHookApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('EventHookApi', 'updateEventHook', 'eventHook');
     }
     // Path Params
-    const localVarPath = '/api/v1/eventHooks/{eventHookId}'
-      .replace('{' + 'eventHookId' + '}', encodeURIComponent(String(eventHookId)));
+    const path = '/api/v1/eventHooks/{eventHookId}';
+    const vars = {
+      ['eventHookId']: String(eventHookId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.PUT);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.PUT, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Body Params
     const contentType = ObjectSerializer_1.ObjectSerializer.getPreferredMediaType([
@@ -286,10 +298,12 @@ class EventHookApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('EventHookApi', 'verifyEventHook', 'eventHookId');
     }
     // Path Params
-    const localVarPath = '/api/v1/eventHooks/{eventHookId}/lifecycle/verify'
-      .replace('{' + 'eventHookId' + '}', encodeURIComponent(String(eventHookId)));
+    const path = '/api/v1/eventHooks/{eventHookId}/lifecycle/verify';
+    const vars = {
+      ['eventHookId']: String(eventHookId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.POST);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods

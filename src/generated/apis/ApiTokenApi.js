@@ -36,10 +36,12 @@ class ApiTokenApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('ApiTokenApi', 'getApiToken', 'apiTokenId');
     }
     // Path Params
-    const localVarPath = '/api/v1/api-tokens/{apiTokenId}'
-      .replace('{' + 'apiTokenId' + '}', encodeURIComponent(String(apiTokenId)));
+    const path = '/api/v1/api-tokens/{apiTokenId}';
+    const vars = {
+      ['apiTokenId']: String(apiTokenId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.GET);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -68,9 +70,10 @@ class ApiTokenApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   async listApiTokens(after, limit, q, _options) {
     let _config = _options || this.configuration;
     // Path Params
-    const localVarPath = '/api/v1/api-tokens';
+    const path = '/api/v1/api-tokens';
+    const vars = {};
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.GET);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Query Params
     if (after !== undefined) {
@@ -113,10 +116,12 @@ class ApiTokenApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('ApiTokenApi', 'revokeApiToken', 'apiTokenId');
     }
     // Path Params
-    const localVarPath = '/api/v1/api-tokens/{apiTokenId}'
-      .replace('{' + 'apiTokenId' + '}', encodeURIComponent(String(apiTokenId)));
+    const path = '/api/v1/api-tokens/{apiTokenId}';
+    const vars = {
+      ['apiTokenId']: String(apiTokenId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.DELETE);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.DELETE, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -142,9 +147,10 @@ class ApiTokenApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   async revokeCurrentApiToken(_options) {
     let _config = _options || this.configuration;
     // Path Params
-    const localVarPath = '/api/v1/api-tokens/current';
+    const path = '/api/v1/api-tokens/current';
+    const vars = {};
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.DELETE);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.DELETE, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods

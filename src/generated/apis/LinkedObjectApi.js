@@ -36,9 +36,10 @@ class LinkedObjectApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('LinkedObjectApi', 'addLinkedObjectDefinition', 'linkedObject');
     }
     // Path Params
-    const localVarPath = '/api/v1/meta/schemas/user/linkedObjects';
+    const path = '/api/v1/meta/schemas/user/linkedObjects';
+    const vars = {};
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.POST);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Body Params
     const contentType = ObjectSerializer_1.ObjectSerializer.getPreferredMediaType([
@@ -76,10 +77,12 @@ class LinkedObjectApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('LinkedObjectApi', 'deleteLinkedObjectDefinition', 'linkedObjectName');
     }
     // Path Params
-    const localVarPath = '/api/v1/meta/schemas/user/linkedObjects/{linkedObjectName}'
-      .replace('{' + 'linkedObjectName' + '}', encodeURIComponent(String(linkedObjectName)));
+    const path = '/api/v1/meta/schemas/user/linkedObjects/{linkedObjectName}';
+    const vars = {
+      ['linkedObjectName']: String(linkedObjectName),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.DELETE);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.DELETE, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -110,10 +113,12 @@ class LinkedObjectApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('LinkedObjectApi', 'getLinkedObjectDefinition', 'linkedObjectName');
     }
     // Path Params
-    const localVarPath = '/api/v1/meta/schemas/user/linkedObjects/{linkedObjectName}'
-      .replace('{' + 'linkedObjectName' + '}', encodeURIComponent(String(linkedObjectName)));
+    const path = '/api/v1/meta/schemas/user/linkedObjects/{linkedObjectName}';
+    const vars = {
+      ['linkedObjectName']: String(linkedObjectName),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.GET);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -139,9 +144,10 @@ class LinkedObjectApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   async listLinkedObjectDefinitions(_options) {
     let _config = _options || this.configuration;
     // Path Params
-    const localVarPath = '/api/v1/meta/schemas/user/linkedObjects';
+    const path = '/api/v1/meta/schemas/user/linkedObjects';
+    const vars = {};
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.GET);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods

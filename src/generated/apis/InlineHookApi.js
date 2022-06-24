@@ -36,10 +36,12 @@ class InlineHookApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('InlineHookApi', 'activateInlineHook', 'inlineHookId');
     }
     // Path Params
-    const localVarPath = '/api/v1/inlineHooks/{inlineHookId}/lifecycle/activate'
-      .replace('{' + 'inlineHookId' + '}', encodeURIComponent(String(inlineHookId)));
+    const path = '/api/v1/inlineHooks/{inlineHookId}/lifecycle/activate';
+    const vars = {
+      ['inlineHookId']: String(inlineHookId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.POST);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -70,9 +72,10 @@ class InlineHookApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('InlineHookApi', 'createInlineHook', 'inlineHook');
     }
     // Path Params
-    const localVarPath = '/api/v1/inlineHooks';
+    const path = '/api/v1/inlineHooks';
+    const vars = {};
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.POST);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Body Params
     const contentType = ObjectSerializer_1.ObjectSerializer.getPreferredMediaType([
@@ -110,10 +113,12 @@ class InlineHookApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('InlineHookApi', 'deactivateInlineHook', 'inlineHookId');
     }
     // Path Params
-    const localVarPath = '/api/v1/inlineHooks/{inlineHookId}/lifecycle/deactivate'
-      .replace('{' + 'inlineHookId' + '}', encodeURIComponent(String(inlineHookId)));
+    const path = '/api/v1/inlineHooks/{inlineHookId}/lifecycle/deactivate';
+    const vars = {
+      ['inlineHookId']: String(inlineHookId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.POST);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -144,10 +149,12 @@ class InlineHookApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('InlineHookApi', 'deleteInlineHook', 'inlineHookId');
     }
     // Path Params
-    const localVarPath = '/api/v1/inlineHooks/{inlineHookId}'
-      .replace('{' + 'inlineHookId' + '}', encodeURIComponent(String(inlineHookId)));
+    const path = '/api/v1/inlineHooks/{inlineHookId}';
+    const vars = {
+      ['inlineHookId']: String(inlineHookId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.DELETE);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.DELETE, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -183,10 +190,12 @@ class InlineHookApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('InlineHookApi', 'executeInlineHook', 'payloadData');
     }
     // Path Params
-    const localVarPath = '/api/v1/inlineHooks/{inlineHookId}/execute'
-      .replace('{' + 'inlineHookId' + '}', encodeURIComponent(String(inlineHookId)));
+    const path = '/api/v1/inlineHooks/{inlineHookId}/execute';
+    const vars = {
+      ['inlineHookId']: String(inlineHookId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.POST);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Body Params
     const contentType = ObjectSerializer_1.ObjectSerializer.getPreferredMediaType([
@@ -224,10 +233,12 @@ class InlineHookApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('InlineHookApi', 'getInlineHook', 'inlineHookId');
     }
     // Path Params
-    const localVarPath = '/api/v1/inlineHooks/{inlineHookId}'
-      .replace('{' + 'inlineHookId' + '}', encodeURIComponent(String(inlineHookId)));
+    const path = '/api/v1/inlineHooks/{inlineHookId}';
+    const vars = {
+      ['inlineHookId']: String(inlineHookId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.GET);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -254,9 +265,10 @@ class InlineHookApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   async listInlineHooks(type, _options) {
     let _config = _options || this.configuration;
     // Path Params
-    const localVarPath = '/api/v1/inlineHooks';
+    const path = '/api/v1/inlineHooks';
+    const vars = {};
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.GET);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Query Params
     if (type !== undefined) {
@@ -296,10 +308,12 @@ class InlineHookApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('InlineHookApi', 'updateInlineHook', 'inlineHook');
     }
     // Path Params
-    const localVarPath = '/api/v1/inlineHooks/{inlineHookId}'
-      .replace('{' + 'inlineHookId' + '}', encodeURIComponent(String(inlineHookId)));
+    const path = '/api/v1/inlineHooks/{inlineHookId}';
+    const vars = {
+      ['inlineHookId']: String(inlineHookId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.PUT);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.PUT, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Body Params
     const contentType = ObjectSerializer_1.ObjectSerializer.getPreferredMediaType([

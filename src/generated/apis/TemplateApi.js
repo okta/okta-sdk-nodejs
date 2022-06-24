@@ -36,9 +36,10 @@ class TemplateApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('TemplateApi', 'createSmsTemplate', 'smsTemplate');
     }
     // Path Params
-    const localVarPath = '/api/v1/templates/sms';
+    const path = '/api/v1/templates/sms';
+    const vars = {};
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.POST);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Body Params
     const contentType = ObjectSerializer_1.ObjectSerializer.getPreferredMediaType([
@@ -76,10 +77,12 @@ class TemplateApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('TemplateApi', 'deleteSmsTemplate', 'templateId');
     }
     // Path Params
-    const localVarPath = '/api/v1/templates/sms/{templateId}'
-      .replace('{' + 'templateId' + '}', encodeURIComponent(String(templateId)));
+    const path = '/api/v1/templates/sms/{templateId}';
+    const vars = {
+      ['templateId']: String(templateId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.DELETE);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.DELETE, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -110,10 +113,12 @@ class TemplateApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('TemplateApi', 'getSmsTemplate', 'templateId');
     }
     // Path Params
-    const localVarPath = '/api/v1/templates/sms/{templateId}'
-      .replace('{' + 'templateId' + '}', encodeURIComponent(String(templateId)));
+    const path = '/api/v1/templates/sms/{templateId}';
+    const vars = {
+      ['templateId']: String(templateId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.GET);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -140,9 +145,10 @@ class TemplateApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   async listSmsTemplates(templateType, _options) {
     let _config = _options || this.configuration;
     // Path Params
-    const localVarPath = '/api/v1/templates/sms';
+    const path = '/api/v1/templates/sms';
+    const vars = {};
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.GET);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Query Params
     if (templateType !== undefined) {
@@ -182,10 +188,12 @@ class TemplateApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('TemplateApi', 'partialUpdateSmsTemplate', 'smsTemplate');
     }
     // Path Params
-    const localVarPath = '/api/v1/templates/sms/{templateId}'
-      .replace('{' + 'templateId' + '}', encodeURIComponent(String(templateId)));
+    const path = '/api/v1/templates/sms/{templateId}';
+    const vars = {
+      ['templateId']: String(templateId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.POST);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Body Params
     const contentType = ObjectSerializer_1.ObjectSerializer.getPreferredMediaType([
@@ -228,10 +236,12 @@ class TemplateApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('TemplateApi', 'updateSmsTemplate', 'smsTemplate');
     }
     // Path Params
-    const localVarPath = '/api/v1/templates/sms/{templateId}'
-      .replace('{' + 'templateId' + '}', encodeURIComponent(String(templateId)));
+    const path = '/api/v1/templates/sms/{templateId}';
+    const vars = {
+      ['templateId']: String(templateId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.PUT);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.PUT, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Body Params
     const contentType = ObjectSerializer_1.ObjectSerializer.getPreferredMediaType([

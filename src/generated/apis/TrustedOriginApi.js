@@ -36,10 +36,12 @@ class TrustedOriginApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('TrustedOriginApi', 'activateOrigin', 'trustedOriginId');
     }
     // Path Params
-    const localVarPath = '/api/v1/trustedOrigins/{trustedOriginId}/lifecycle/activate'
-      .replace('{' + 'trustedOriginId' + '}', encodeURIComponent(String(trustedOriginId)));
+    const path = '/api/v1/trustedOrigins/{trustedOriginId}/lifecycle/activate';
+    const vars = {
+      ['trustedOriginId']: String(trustedOriginId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.POST);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -70,9 +72,10 @@ class TrustedOriginApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('TrustedOriginApi', 'createOrigin', 'trustedOrigin');
     }
     // Path Params
-    const localVarPath = '/api/v1/trustedOrigins';
+    const path = '/api/v1/trustedOrigins';
+    const vars = {};
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.POST);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Body Params
     const contentType = ObjectSerializer_1.ObjectSerializer.getPreferredMediaType([
@@ -110,10 +113,12 @@ class TrustedOriginApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('TrustedOriginApi', 'deactivateOrigin', 'trustedOriginId');
     }
     // Path Params
-    const localVarPath = '/api/v1/trustedOrigins/{trustedOriginId}/lifecycle/deactivate'
-      .replace('{' + 'trustedOriginId' + '}', encodeURIComponent(String(trustedOriginId)));
+    const path = '/api/v1/trustedOrigins/{trustedOriginId}/lifecycle/deactivate';
+    const vars = {
+      ['trustedOriginId']: String(trustedOriginId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.POST);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -144,10 +149,12 @@ class TrustedOriginApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('TrustedOriginApi', 'deleteOrigin', 'trustedOriginId');
     }
     // Path Params
-    const localVarPath = '/api/v1/trustedOrigins/{trustedOriginId}'
-      .replace('{' + 'trustedOriginId' + '}', encodeURIComponent(String(trustedOriginId)));
+    const path = '/api/v1/trustedOrigins/{trustedOriginId}';
+    const vars = {
+      ['trustedOriginId']: String(trustedOriginId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.DELETE);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.DELETE, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -178,10 +185,12 @@ class TrustedOriginApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('TrustedOriginApi', 'getOrigin', 'trustedOriginId');
     }
     // Path Params
-    const localVarPath = '/api/v1/trustedOrigins/{trustedOriginId}'
-      .replace('{' + 'trustedOriginId' + '}', encodeURIComponent(String(trustedOriginId)));
+    const path = '/api/v1/trustedOrigins/{trustedOriginId}';
+    const vars = {
+      ['trustedOriginId']: String(trustedOriginId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.GET);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -211,9 +220,10 @@ class TrustedOriginApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   async listOrigins(q, filter, after, limit, _options) {
     let _config = _options || this.configuration;
     // Path Params
-    const localVarPath = '/api/v1/trustedOrigins';
+    const path = '/api/v1/trustedOrigins';
+    const vars = {};
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.GET);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Query Params
     if (q !== undefined) {
@@ -265,10 +275,12 @@ class TrustedOriginApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('TrustedOriginApi', 'updateOrigin', 'trustedOrigin');
     }
     // Path Params
-    const localVarPath = '/api/v1/trustedOrigins/{trustedOriginId}'
-      .replace('{' + 'trustedOriginId' + '}', encodeURIComponent(String(trustedOriginId)));
+    const path = '/api/v1/trustedOrigins/{trustedOriginId}';
+    const vars = {
+      ['trustedOriginId']: String(trustedOriginId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.PUT);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.PUT, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Body Params
     const contentType = ObjectSerializer_1.ObjectSerializer.getPreferredMediaType([

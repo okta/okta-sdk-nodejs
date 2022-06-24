@@ -41,10 +41,12 @@ class UserApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('UserApi', 'activateUser', 'sendEmail');
     }
     // Path Params
-    const localVarPath = '/api/v1/users/{userId}/lifecycle/activate'
-      .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)));
+    const path = '/api/v1/users/{userId}/lifecycle/activate';
+    const vars = {
+      ['userId']: String(userId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.POST);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Query Params
     if (sendEmail !== undefined) {
@@ -84,11 +86,13 @@ class UserApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('UserApi', 'addAllAppsAsTargetToRole', 'roleId');
     }
     // Path Params
-    const localVarPath = '/api/v1/users/{userId}/roles/{roleId}/targets/catalog/apps'
-      .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)))
-      .replace('{' + 'roleId' + '}', encodeURIComponent(String(roleId)));
+    const path = '/api/v1/users/{userId}/roles/{roleId}/targets/catalog/apps';
+    const vars = {
+      ['userId']: String(userId),
+      ['roleId']: String(roleId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.PUT);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.PUT, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -129,12 +133,14 @@ class UserApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('UserApi', 'addApplicationTargetToAdminRoleForUser', 'appName');
     }
     // Path Params
-    const localVarPath = '/api/v1/users/{userId}/roles/{roleId}/targets/catalog/apps/{appName}'
-      .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)))
-      .replace('{' + 'roleId' + '}', encodeURIComponent(String(roleId)))
-      .replace('{' + 'appName' + '}', encodeURIComponent(String(appName)));
+    const path = '/api/v1/users/{userId}/roles/{roleId}/targets/catalog/apps/{appName}';
+    const vars = {
+      ['userId']: String(userId),
+      ['roleId']: String(roleId),
+      ['appName']: String(appName),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.PUT);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.PUT, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -180,13 +186,15 @@ class UserApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('UserApi', 'addApplicationTargetToAppAdminRoleForUser', 'applicationId');
     }
     // Path Params
-    const localVarPath = '/api/v1/users/{userId}/roles/{roleId}/targets/catalog/apps/{appName}/{applicationId}'
-      .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)))
-      .replace('{' + 'roleId' + '}', encodeURIComponent(String(roleId)))
-      .replace('{' + 'appName' + '}', encodeURIComponent(String(appName)))
-      .replace('{' + 'applicationId' + '}', encodeURIComponent(String(applicationId)));
+    const path = '/api/v1/users/{userId}/roles/{roleId}/targets/catalog/apps/{appName}/{applicationId}';
+    const vars = {
+      ['userId']: String(userId),
+      ['roleId']: String(roleId),
+      ['appName']: String(appName),
+      ['applicationId']: String(applicationId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.PUT);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.PUT, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -227,12 +235,14 @@ class UserApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('UserApi', 'addGroupTargetToRole', 'groupId');
     }
     // Path Params
-    const localVarPath = '/api/v1/users/{userId}/roles/{roleId}/targets/groups/{groupId}'
-      .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)))
-      .replace('{' + 'roleId' + '}', encodeURIComponent(String(roleId)))
-      .replace('{' + 'groupId' + '}', encodeURIComponent(String(groupId)));
+    const path = '/api/v1/users/{userId}/roles/{roleId}/targets/groups/{groupId}';
+    const vars = {
+      ['userId']: String(userId),
+      ['roleId']: String(roleId),
+      ['groupId']: String(groupId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.PUT);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.PUT, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -269,10 +279,12 @@ class UserApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('UserApi', 'assignRoleToUser', 'assignRoleRequest');
     }
     // Path Params
-    const localVarPath = '/api/v1/users/{userId}/roles'
-      .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)));
+    const path = '/api/v1/users/{userId}/roles';
+    const vars = {
+      ['userId']: String(userId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.POST);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Query Params
     if (disableNotifications !== undefined) {
@@ -320,10 +332,12 @@ class UserApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('UserApi', 'changePassword', 'changePasswordRequest');
     }
     // Path Params
-    const localVarPath = '/api/v1/users/{userId}/credentials/change_password'
-      .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)));
+    const path = '/api/v1/users/{userId}/credentials/change_password';
+    const vars = {
+      ['userId']: String(userId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.POST);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Query Params
     if (strict !== undefined) {
@@ -370,10 +384,12 @@ class UserApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('UserApi', 'changeRecoveryQuestion', 'userCredentials');
     }
     // Path Params
-    const localVarPath = '/api/v1/users/{userId}/credentials/change_recovery_question'
-      .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)));
+    const path = '/api/v1/users/{userId}/credentials/change_recovery_question';
+    const vars = {
+      ['userId']: String(userId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.POST);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Body Params
     const contentType = ObjectSerializer_1.ObjectSerializer.getPreferredMediaType([
@@ -412,10 +428,12 @@ class UserApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('UserApi', 'clearUserSessions', 'userId');
     }
     // Path Params
-    const localVarPath = '/api/v1/users/{userId}/sessions'
-      .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)));
+    const path = '/api/v1/users/{userId}/sessions';
+    const vars = {
+      ['userId']: String(userId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.DELETE);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.DELETE, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Query Params
     if (oauthTokens !== undefined) {
@@ -453,9 +471,10 @@ class UserApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('UserApi', 'createUser', 'body');
     }
     // Path Params
-    const localVarPath = '/api/v1/users';
+    const path = '/api/v1/users';
+    const vars = {};
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.POST);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Query Params
     if (activate !== undefined) {
@@ -506,10 +525,12 @@ class UserApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('UserApi', 'deactivateOrDeleteUser', 'userId');
     }
     // Path Params
-    const localVarPath = '/api/v1/users/{userId}'
-      .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)));
+    const path = '/api/v1/users/{userId}';
+    const vars = {
+      ['userId']: String(userId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.DELETE);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.DELETE, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Query Params
     if (sendEmail !== undefined) {
@@ -545,10 +566,12 @@ class UserApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('UserApi', 'deactivateUser', 'userId');
     }
     // Path Params
-    const localVarPath = '/api/v1/users/{userId}/lifecycle/deactivate'
-      .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)));
+    const path = '/api/v1/users/{userId}/lifecycle/deactivate';
+    const vars = {
+      ['userId']: String(userId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.POST);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Query Params
     if (sendEmail !== undefined) {
@@ -583,10 +606,12 @@ class UserApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('UserApi', 'expirePassword', 'userId');
     }
     // Path Params
-    const localVarPath = '/api/v1/users/{userId}/lifecycle/expire_password'
-      .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)));
+    const path = '/api/v1/users/{userId}/lifecycle/expire_password';
+    const vars = {
+      ['userId']: String(userId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.POST);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -617,10 +642,12 @@ class UserApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('UserApi', 'expirePasswordAndGetTemporaryPassword', 'userId');
     }
     // Path Params
-    const localVarPath = '/api/v1/users/{userId}/lifecycle/expire_password_with_temp_password'
-      .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)));
+    const path = '/api/v1/users/{userId}/lifecycle/expire_password_with_temp_password';
+    const vars = {
+      ['userId']: String(userId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.POST);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -652,10 +679,12 @@ class UserApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('UserApi', 'forgotPassword', 'userId');
     }
     // Path Params
-    const localVarPath = '/api/v1/users/{userId}/credentials/forgot_password'
-      .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)));
+    const path = '/api/v1/users/{userId}/credentials/forgot_password';
+    const vars = {
+      ['userId']: String(userId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.POST);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Query Params
     if (sendEmail !== undefined) {
@@ -696,10 +725,12 @@ class UserApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('UserApi', 'forgotPasswordSetNewPassword', 'userCredentials');
     }
     // Path Params
-    const localVarPath = '/api/v1/users/{userId}/credentials/forgot_password_recovery_question'
-      .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)));
+    const path = '/api/v1/users/{userId}/credentials/forgot_password_recovery_question';
+    const vars = {
+      ['userId']: String(userId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.POST);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Query Params
     if (sendEmail !== undefined) {
@@ -748,11 +779,13 @@ class UserApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('UserApi', 'getLinkedObjectsForUser', 'relationshipName');
     }
     // Path Params
-    const localVarPath = '/api/v1/users/{userId}/linkedObjects/{relationshipName}'
-      .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)))
-      .replace('{' + 'relationshipName' + '}', encodeURIComponent(String(relationshipName)));
+    const path = '/api/v1/users/{userId}/linkedObjects/{relationshipName}';
+    const vars = {
+      ['userId']: String(userId),
+      ['relationshipName']: String(relationshipName),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.GET);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Query Params
     if (after !== undefined) {
@@ -804,12 +837,14 @@ class UserApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('UserApi', 'getRefreshTokenForUserAndClient', 'tokenId');
     }
     // Path Params
-    const localVarPath = '/api/v1/users/{userId}/clients/{clientId}/tokens/{tokenId}'
-      .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)))
-      .replace('{' + 'clientId' + '}', encodeURIComponent(String(clientId)))
-      .replace('{' + 'tokenId' + '}', encodeURIComponent(String(tokenId)));
+    const path = '/api/v1/users/{userId}/clients/{clientId}/tokens/{tokenId}';
+    const vars = {
+      ['userId']: String(userId),
+      ['clientId']: String(clientId),
+      ['tokenId']: String(tokenId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.GET);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Query Params
     if (expand !== undefined) {
@@ -852,10 +887,12 @@ class UserApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('UserApi', 'getUser', 'userId');
     }
     // Path Params
-    const localVarPath = '/api/v1/users/{userId}'
-      .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)));
+    const path = '/api/v1/users/{userId}';
+    const vars = {
+      ['userId']: String(userId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.GET);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -892,11 +929,13 @@ class UserApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('UserApi', 'getUserGrant', 'grantId');
     }
     // Path Params
-    const localVarPath = '/api/v1/users/{userId}/grants/{grantId}'
-      .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)))
-      .replace('{' + 'grantId' + '}', encodeURIComponent(String(grantId)));
+    const path = '/api/v1/users/{userId}/grants/{grantId}';
+    const vars = {
+      ['userId']: String(userId),
+      ['grantId']: String(grantId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.GET);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Query Params
     if (expand !== undefined) {
@@ -936,11 +975,13 @@ class UserApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('UserApi', 'getUserRole', 'roleId');
     }
     // Path Params
-    const localVarPath = '/api/v1/users/{userId}/roles/{roleId}'
-      .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)))
-      .replace('{' + 'roleId' + '}', encodeURIComponent(String(roleId)));
+    const path = '/api/v1/users/{userId}/roles/{roleId}';
+    const vars = {
+      ['userId']: String(userId),
+      ['roleId']: String(roleId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.GET);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -971,10 +1012,12 @@ class UserApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('UserApi', 'listAppLinks', 'userId');
     }
     // Path Params
-    const localVarPath = '/api/v1/users/{userId}/appLinks'
-      .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)));
+    const path = '/api/v1/users/{userId}/appLinks';
+    const vars = {
+      ['userId']: String(userId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.GET);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -1012,11 +1055,13 @@ class UserApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('UserApi', 'listApplicationTargetsForApplicationAdministratorRoleForUser', 'roleId');
     }
     // Path Params
-    const localVarPath = '/api/v1/users/{userId}/roles/{roleId}/targets/catalog/apps'
-      .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)))
-      .replace('{' + 'roleId' + '}', encodeURIComponent(String(roleId)));
+    const path = '/api/v1/users/{userId}/roles/{roleId}/targets/catalog/apps';
+    const vars = {
+      ['userId']: String(userId),
+      ['roleId']: String(roleId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.GET);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Query Params
     if (after !== undefined) {
@@ -1056,10 +1101,12 @@ class UserApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('UserApi', 'listAssignedRolesForUser', 'userId');
     }
     // Path Params
-    const localVarPath = '/api/v1/users/{userId}/roles'
-      .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)));
+    const path = '/api/v1/users/{userId}/roles';
+    const vars = {
+      ['userId']: String(userId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.GET);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Query Params
     if (expand !== undefined) {
@@ -1102,11 +1149,13 @@ class UserApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('UserApi', 'listGrantsForUserAndClient', 'clientId');
     }
     // Path Params
-    const localVarPath = '/api/v1/users/{userId}/clients/{clientId}/grants'
-      .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)))
-      .replace('{' + 'clientId' + '}', encodeURIComponent(String(clientId)));
+    const path = '/api/v1/users/{userId}/clients/{clientId}/grants';
+    const vars = {
+      ['userId']: String(userId),
+      ['clientId']: String(clientId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.GET);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Query Params
     if (expand !== undefined) {
@@ -1156,11 +1205,13 @@ class UserApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('UserApi', 'listGroupTargetsForRole', 'roleId');
     }
     // Path Params
-    const localVarPath = '/api/v1/users/{userId}/roles/{roleId}/targets/groups'
-      .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)))
-      .replace('{' + 'roleId' + '}', encodeURIComponent(String(roleId)));
+    const path = '/api/v1/users/{userId}/roles/{roleId}/targets/groups';
+    const vars = {
+      ['userId']: String(userId),
+      ['roleId']: String(roleId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.GET);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Query Params
     if (after !== undefined) {
@@ -1207,11 +1258,13 @@ class UserApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('UserApi', 'listRefreshTokensForUserAndClient', 'clientId');
     }
     // Path Params
-    const localVarPath = '/api/v1/users/{userId}/clients/{clientId}/tokens'
-      .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)))
-      .replace('{' + 'clientId' + '}', encodeURIComponent(String(clientId)));
+    const path = '/api/v1/users/{userId}/clients/{clientId}/tokens';
+    const vars = {
+      ['userId']: String(userId),
+      ['clientId']: String(clientId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.GET);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Query Params
     if (expand !== undefined) {
@@ -1254,10 +1307,12 @@ class UserApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('UserApi', 'listUserClients', 'userId');
     }
     // Path Params
-    const localVarPath = '/api/v1/users/{userId}/clients'
-      .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)));
+    const path = '/api/v1/users/{userId}/clients';
+    const vars = {
+      ['userId']: String(userId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.GET);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -1292,10 +1347,12 @@ class UserApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('UserApi', 'listUserGrants', 'userId');
     }
     // Path Params
-    const localVarPath = '/api/v1/users/{userId}/grants'
-      .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)));
+    const path = '/api/v1/users/{userId}/grants';
+    const vars = {
+      ['userId']: String(userId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.GET);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Query Params
     if (scopeId !== undefined) {
@@ -1342,10 +1399,12 @@ class UserApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('UserApi', 'listUserGroups', 'userId');
     }
     // Path Params
-    const localVarPath = '/api/v1/users/{userId}/groups'
-      .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)));
+    const path = '/api/v1/users/{userId}/groups';
+    const vars = {
+      ['userId']: String(userId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.GET);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -1376,10 +1435,12 @@ class UserApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('UserApi', 'listUserIdentityProviders', 'userId');
     }
     // Path Params
-    const localVarPath = '/api/v1/users/{userId}/idps'
-      .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)));
+    const path = '/api/v1/users/{userId}/idps';
+    const vars = {
+      ['userId']: String(userId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.GET);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -1412,9 +1473,10 @@ class UserApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   async listUsers(after, q, limit, filter, search, sortBy, sortOrder, _options) {
     let _config = _options || this.configuration;
     // Path Params
-    const localVarPath = '/api/v1/users';
+    const path = '/api/v1/users';
+    const vars = {};
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.GET);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Query Params
     if (after !== undefined) {
@@ -1479,10 +1541,12 @@ class UserApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('UserApi', 'partialUpdateUser', 'user');
     }
     // Path Params
-    const localVarPath = '/api/v1/users/{userId}'
-      .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)));
+    const path = '/api/v1/users/{userId}';
+    const vars = {
+      ['userId']: String(userId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.POST);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Query Params
     if (strict !== undefined) {
@@ -1525,10 +1589,12 @@ class UserApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('UserApi', 'reactivateUser', 'userId');
     }
     // Path Params
-    const localVarPath = '/api/v1/users/{userId}/lifecycle/reactivate'
-      .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)));
+    const path = '/api/v1/users/{userId}/lifecycle/reactivate';
+    const vars = {
+      ['userId']: String(userId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.POST);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Query Params
     if (sendEmail !== undefined) {
@@ -1578,13 +1644,15 @@ class UserApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('UserApi', 'removeApplicationTargetFromAdministratorRoleForUser', 'applicationId');
     }
     // Path Params
-    const localVarPath = '/api/v1/users/{userId}/roles/{roleId}/targets/catalog/apps/{appName}/{applicationId}'
-      .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)))
-      .replace('{' + 'roleId' + '}', encodeURIComponent(String(roleId)))
-      .replace('{' + 'appName' + '}', encodeURIComponent(String(appName)))
-      .replace('{' + 'applicationId' + '}', encodeURIComponent(String(applicationId)));
+    const path = '/api/v1/users/{userId}/roles/{roleId}/targets/catalog/apps/{appName}/{applicationId}';
+    const vars = {
+      ['userId']: String(userId),
+      ['roleId']: String(roleId),
+      ['appName']: String(appName),
+      ['applicationId']: String(applicationId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.DELETE);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.DELETE, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -1625,12 +1693,14 @@ class UserApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('UserApi', 'removeApplicationTargetFromApplicationAdministratorRoleForUser', 'appName');
     }
     // Path Params
-    const localVarPath = '/api/v1/users/{userId}/roles/{roleId}/targets/catalog/apps/{appName}'
-      .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)))
-      .replace('{' + 'roleId' + '}', encodeURIComponent(String(roleId)))
-      .replace('{' + 'appName' + '}', encodeURIComponent(String(appName)));
+    const path = '/api/v1/users/{userId}/roles/{roleId}/targets/catalog/apps/{appName}';
+    const vars = {
+      ['userId']: String(userId),
+      ['roleId']: String(roleId),
+      ['appName']: String(appName),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.DELETE);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.DELETE, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -1671,12 +1741,14 @@ class UserApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('UserApi', 'removeGroupTargetFromRole', 'groupId');
     }
     // Path Params
-    const localVarPath = '/api/v1/users/{userId}/roles/{roleId}/targets/groups/{groupId}'
-      .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)))
-      .replace('{' + 'roleId' + '}', encodeURIComponent(String(roleId)))
-      .replace('{' + 'groupId' + '}', encodeURIComponent(String(groupId)));
+    const path = '/api/v1/users/{userId}/roles/{roleId}/targets/groups/{groupId}';
+    const vars = {
+      ['userId']: String(userId),
+      ['roleId']: String(roleId),
+      ['groupId']: String(groupId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.DELETE);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.DELETE, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -1712,11 +1784,13 @@ class UserApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('UserApi', 'removeLinkedObjectForUser', 'relationshipName');
     }
     // Path Params
-    const localVarPath = '/api/v1/users/{userId}/linkedObjects/{relationshipName}'
-      .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)))
-      .replace('{' + 'relationshipName' + '}', encodeURIComponent(String(relationshipName)));
+    const path = '/api/v1/users/{userId}/linkedObjects/{relationshipName}';
+    const vars = {
+      ['userId']: String(userId),
+      ['relationshipName']: String(relationshipName),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.DELETE);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.DELETE, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -1752,11 +1826,13 @@ class UserApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('UserApi', 'removeRoleFromUser', 'roleId');
     }
     // Path Params
-    const localVarPath = '/api/v1/users/{userId}/roles/{roleId}'
-      .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)))
-      .replace('{' + 'roleId' + '}', encodeURIComponent(String(roleId)));
+    const path = '/api/v1/users/{userId}/roles/{roleId}';
+    const vars = {
+      ['userId']: String(userId),
+      ['roleId']: String(roleId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.DELETE);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.DELETE, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -1787,10 +1863,12 @@ class UserApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('UserApi', 'resetFactors', 'userId');
     }
     // Path Params
-    const localVarPath = '/api/v1/users/{userId}/lifecycle/reset_factors'
-      .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)));
+    const path = '/api/v1/users/{userId}/lifecycle/reset_factors';
+    const vars = {
+      ['userId']: String(userId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.POST);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -1826,10 +1904,12 @@ class UserApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('UserApi', 'resetPassword', 'sendEmail');
     }
     // Path Params
-    const localVarPath = '/api/v1/users/{userId}/lifecycle/reset_password'
-      .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)));
+    const path = '/api/v1/users/{userId}/lifecycle/reset_password';
+    const vars = {
+      ['userId']: String(userId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.POST);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Query Params
     if (sendEmail !== undefined) {
@@ -1869,11 +1949,13 @@ class UserApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('UserApi', 'revokeGrantsForUserAndClient', 'clientId');
     }
     // Path Params
-    const localVarPath = '/api/v1/users/{userId}/clients/{clientId}/grants'
-      .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)))
-      .replace('{' + 'clientId' + '}', encodeURIComponent(String(clientId)));
+    const path = '/api/v1/users/{userId}/clients/{clientId}/grants';
+    const vars = {
+      ['userId']: String(userId),
+      ['clientId']: String(clientId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.DELETE);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.DELETE, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -1914,12 +1996,14 @@ class UserApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('UserApi', 'revokeTokenForUserAndClient', 'tokenId');
     }
     // Path Params
-    const localVarPath = '/api/v1/users/{userId}/clients/{clientId}/tokens/{tokenId}'
-      .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)))
-      .replace('{' + 'clientId' + '}', encodeURIComponent(String(clientId)))
-      .replace('{' + 'tokenId' + '}', encodeURIComponent(String(tokenId)));
+    const path = '/api/v1/users/{userId}/clients/{clientId}/tokens/{tokenId}';
+    const vars = {
+      ['userId']: String(userId),
+      ['clientId']: String(clientId),
+      ['tokenId']: String(tokenId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.DELETE);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.DELETE, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -1955,11 +2039,13 @@ class UserApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('UserApi', 'revokeTokensForUserAndClient', 'clientId');
     }
     // Path Params
-    const localVarPath = '/api/v1/users/{userId}/clients/{clientId}/tokens'
-      .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)))
-      .replace('{' + 'clientId' + '}', encodeURIComponent(String(clientId)));
+    const path = '/api/v1/users/{userId}/clients/{clientId}/tokens';
+    const vars = {
+      ['userId']: String(userId),
+      ['clientId']: String(clientId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.DELETE);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.DELETE, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -1995,11 +2081,13 @@ class UserApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('UserApi', 'revokeUserGrant', 'grantId');
     }
     // Path Params
-    const localVarPath = '/api/v1/users/{userId}/grants/{grantId}'
-      .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)))
-      .replace('{' + 'grantId' + '}', encodeURIComponent(String(grantId)));
+    const path = '/api/v1/users/{userId}/grants/{grantId}';
+    const vars = {
+      ['userId']: String(userId),
+      ['grantId']: String(grantId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.DELETE);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.DELETE, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -2030,10 +2118,12 @@ class UserApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('UserApi', 'revokeUserGrants', 'userId');
     }
     // Path Params
-    const localVarPath = '/api/v1/users/{userId}/grants'
-      .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)));
+    const path = '/api/v1/users/{userId}/grants';
+    const vars = {
+      ['userId']: String(userId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.DELETE);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.DELETE, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -2074,12 +2164,14 @@ class UserApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('UserApi', 'setLinkedObjectForUser', 'primaryUserId');
     }
     // Path Params
-    const localVarPath = '/api/v1/users/{associatedUserId}/linkedObjects/{primaryRelationshipName}/{primaryUserId}'
-      .replace('{' + 'associatedUserId' + '}', encodeURIComponent(String(associatedUserId)))
-      .replace('{' + 'primaryRelationshipName' + '}', encodeURIComponent(String(primaryRelationshipName)))
-      .replace('{' + 'primaryUserId' + '}', encodeURIComponent(String(primaryUserId)));
+    const path = '/api/v1/users/{associatedUserId}/linkedObjects/{primaryRelationshipName}/{primaryUserId}';
+    const vars = {
+      ['associatedUserId']: String(associatedUserId),
+      ['primaryRelationshipName']: String(primaryRelationshipName),
+      ['primaryUserId']: String(primaryUserId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.PUT);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.PUT, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -2105,10 +2197,12 @@ class UserApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('UserApi', 'suspendUser', 'userId');
     }
     // Path Params
-    const localVarPath = '/api/v1/users/{userId}/lifecycle/suspend'
-      .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)));
+    const path = '/api/v1/users/{userId}/lifecycle/suspend';
+    const vars = {
+      ['userId']: String(userId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.POST);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -2139,10 +2233,12 @@ class UserApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('UserApi', 'unlockUser', 'userId');
     }
     // Path Params
-    const localVarPath = '/api/v1/users/{userId}/lifecycle/unlock'
-      .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)));
+    const path = '/api/v1/users/{userId}/lifecycle/unlock';
+    const vars = {
+      ['userId']: String(userId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.POST);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -2173,10 +2269,12 @@ class UserApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('UserApi', 'unsuspendUser', 'userId');
     }
     // Path Params
-    const localVarPath = '/api/v1/users/{userId}/lifecycle/unsuspend'
-      .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)));
+    const path = '/api/v1/users/{userId}/lifecycle/unsuspend';
+    const vars = {
+      ['userId']: String(userId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.POST);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -2213,10 +2311,12 @@ class UserApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('UserApi', 'updateUser', 'user');
     }
     // Path Params
-    const localVarPath = '/api/v1/users/{userId}'
-      .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)));
+    const path = '/api/v1/users/{userId}';
+    const vars = {
+      ['userId']: String(userId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.PUT);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.PUT, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Query Params
     if (strict !== undefined) {

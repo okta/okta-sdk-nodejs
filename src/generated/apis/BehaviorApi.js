@@ -36,10 +36,12 @@ class BehaviorApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('BehaviorApi', 'activateBehaviorDetectionRule', 'behaviorId');
     }
     // Path Params
-    const localVarPath = '/api/v1/behaviors/{behaviorId}/lifecycle/activate'
-      .replace('{' + 'behaviorId' + '}', encodeURIComponent(String(behaviorId)));
+    const path = '/api/v1/behaviors/{behaviorId}/lifecycle/activate';
+    const vars = {
+      ['behaviorId']: String(behaviorId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.POST);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -70,9 +72,10 @@ class BehaviorApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('BehaviorApi', 'createBehaviorDetectionRule', 'rule');
     }
     // Path Params
-    const localVarPath = '/api/v1/behaviors';
+    const path = '/api/v1/behaviors';
+    const vars = {};
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.POST);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Body Params
     const contentType = ObjectSerializer_1.ObjectSerializer.getPreferredMediaType([
@@ -110,10 +113,12 @@ class BehaviorApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('BehaviorApi', 'deactivateBehaviorDetectionRule', 'behaviorId');
     }
     // Path Params
-    const localVarPath = '/api/v1/behaviors/{behaviorId}/lifecycle/deactivate'
-      .replace('{' + 'behaviorId' + '}', encodeURIComponent(String(behaviorId)));
+    const path = '/api/v1/behaviors/{behaviorId}/lifecycle/deactivate';
+    const vars = {
+      ['behaviorId']: String(behaviorId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.POST);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -144,10 +149,12 @@ class BehaviorApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('BehaviorApi', 'deleteBehaviorDetectionRule', 'behaviorId');
     }
     // Path Params
-    const localVarPath = '/api/v1/behaviors/{behaviorId}'
-      .replace('{' + 'behaviorId' + '}', encodeURIComponent(String(behaviorId)));
+    const path = '/api/v1/behaviors/{behaviorId}';
+    const vars = {
+      ['behaviorId']: String(behaviorId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.DELETE);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.DELETE, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -178,10 +185,12 @@ class BehaviorApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('BehaviorApi', 'getBehaviorDetectionRule', 'behaviorId');
     }
     // Path Params
-    const localVarPath = '/api/v1/behaviors/{behaviorId}'
-      .replace('{' + 'behaviorId' + '}', encodeURIComponent(String(behaviorId)));
+    const path = '/api/v1/behaviors/{behaviorId}';
+    const vars = {
+      ['behaviorId']: String(behaviorId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.GET);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -207,9 +216,10 @@ class BehaviorApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   async listBehaviorDetectionRules(_options) {
     let _config = _options || this.configuration;
     // Path Params
-    const localVarPath = '/api/v1/behaviors';
+    const path = '/api/v1/behaviors';
+    const vars = {};
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.GET);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -245,10 +255,12 @@ class BehaviorApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('BehaviorApi', 'updateBehaviorDetectionRule', 'rule');
     }
     // Path Params
-    const localVarPath = '/api/v1/behaviors/{behaviorId}'
-      .replace('{' + 'behaviorId' + '}', encodeURIComponent(String(behaviorId)));
+    const path = '/api/v1/behaviors/{behaviorId}';
+    const vars = {
+      ['behaviorId']: String(behaviorId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.PUT);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.PUT, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Body Params
     const contentType = ObjectSerializer_1.ObjectSerializer.getPreferredMediaType([

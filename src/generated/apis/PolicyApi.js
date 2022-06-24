@@ -36,10 +36,12 @@ class PolicyApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('PolicyApi', 'activatePolicy', 'policyId');
     }
     // Path Params
-    const localVarPath = '/api/v1/policies/{policyId}/lifecycle/activate'
-      .replace('{' + 'policyId' + '}', encodeURIComponent(String(policyId)));
+    const path = '/api/v1/policies/{policyId}/lifecycle/activate';
+    const vars = {
+      ['policyId']: String(policyId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.POST);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -75,11 +77,13 @@ class PolicyApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('PolicyApi', 'activatePolicyRule', 'ruleId');
     }
     // Path Params
-    const localVarPath = '/api/v1/policies/{policyId}/rules/{ruleId}/lifecycle/activate'
-      .replace('{' + 'policyId' + '}', encodeURIComponent(String(policyId)))
-      .replace('{' + 'ruleId' + '}', encodeURIComponent(String(ruleId)));
+    const path = '/api/v1/policies/{policyId}/rules/{ruleId}/lifecycle/activate';
+    const vars = {
+      ['policyId']: String(policyId),
+      ['ruleId']: String(ruleId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.POST);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -111,9 +115,10 @@ class PolicyApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('PolicyApi', 'createPolicy', 'policy');
     }
     // Path Params
-    const localVarPath = '/api/v1/policies';
+    const path = '/api/v1/policies';
+    const vars = {};
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.POST);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Query Params
     if (activate !== undefined) {
@@ -160,10 +165,12 @@ class PolicyApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('PolicyApi', 'createPolicyRule', 'policyRule');
     }
     // Path Params
-    const localVarPath = '/api/v1/policies/{policyId}/rules'
-      .replace('{' + 'policyId' + '}', encodeURIComponent(String(policyId)));
+    const path = '/api/v1/policies/{policyId}/rules';
+    const vars = {
+      ['policyId']: String(policyId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.POST);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Body Params
     const contentType = ObjectSerializer_1.ObjectSerializer.getPreferredMediaType([
@@ -201,10 +208,12 @@ class PolicyApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('PolicyApi', 'deactivatePolicy', 'policyId');
     }
     // Path Params
-    const localVarPath = '/api/v1/policies/{policyId}/lifecycle/deactivate'
-      .replace('{' + 'policyId' + '}', encodeURIComponent(String(policyId)));
+    const path = '/api/v1/policies/{policyId}/lifecycle/deactivate';
+    const vars = {
+      ['policyId']: String(policyId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.POST);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -240,11 +249,13 @@ class PolicyApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('PolicyApi', 'deactivatePolicyRule', 'ruleId');
     }
     // Path Params
-    const localVarPath = '/api/v1/policies/{policyId}/rules/{ruleId}/lifecycle/deactivate'
-      .replace('{' + 'policyId' + '}', encodeURIComponent(String(policyId)))
-      .replace('{' + 'ruleId' + '}', encodeURIComponent(String(ruleId)));
+    const path = '/api/v1/policies/{policyId}/rules/{ruleId}/lifecycle/deactivate';
+    const vars = {
+      ['policyId']: String(policyId),
+      ['ruleId']: String(ruleId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.POST);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -275,10 +286,12 @@ class PolicyApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('PolicyApi', 'deletePolicy', 'policyId');
     }
     // Path Params
-    const localVarPath = '/api/v1/policies/{policyId}'
-      .replace('{' + 'policyId' + '}', encodeURIComponent(String(policyId)));
+    const path = '/api/v1/policies/{policyId}';
+    const vars = {
+      ['policyId']: String(policyId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.DELETE);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.DELETE, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -314,11 +327,13 @@ class PolicyApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('PolicyApi', 'deletePolicyRule', 'ruleId');
     }
     // Path Params
-    const localVarPath = '/api/v1/policies/{policyId}/rules/{ruleId}'
-      .replace('{' + 'policyId' + '}', encodeURIComponent(String(policyId)))
-      .replace('{' + 'ruleId' + '}', encodeURIComponent(String(ruleId)));
+    const path = '/api/v1/policies/{policyId}/rules/{ruleId}';
+    const vars = {
+      ['policyId']: String(policyId),
+      ['ruleId']: String(ruleId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.DELETE);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.DELETE, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -350,10 +365,12 @@ class PolicyApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('PolicyApi', 'getPolicy', 'policyId');
     }
     // Path Params
-    const localVarPath = '/api/v1/policies/{policyId}'
-      .replace('{' + 'policyId' + '}', encodeURIComponent(String(policyId)));
+    const path = '/api/v1/policies/{policyId}';
+    const vars = {
+      ['policyId']: String(policyId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.GET);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Query Params
     if (expand !== undefined) {
@@ -393,11 +410,13 @@ class PolicyApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('PolicyApi', 'getPolicyRule', 'ruleId');
     }
     // Path Params
-    const localVarPath = '/api/v1/policies/{policyId}/rules/{ruleId}'
-      .replace('{' + 'policyId' + '}', encodeURIComponent(String(policyId)))
-      .replace('{' + 'ruleId' + '}', encodeURIComponent(String(ruleId)));
+    const path = '/api/v1/policies/{policyId}/rules/{ruleId}';
+    const vars = {
+      ['policyId']: String(policyId),
+      ['ruleId']: String(ruleId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.GET);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -430,9 +449,10 @@ class PolicyApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('PolicyApi', 'listPolicies', 'type');
     }
     // Path Params
-    const localVarPath = '/api/v1/policies';
+    const path = '/api/v1/policies';
+    const vars = {};
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.GET);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Query Params
     if (type !== undefined) {
@@ -475,10 +495,12 @@ class PolicyApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('PolicyApi', 'listPolicyRules', 'policyId');
     }
     // Path Params
-    const localVarPath = '/api/v1/policies/{policyId}/rules'
-      .replace('{' + 'policyId' + '}', encodeURIComponent(String(policyId)));
+    const path = '/api/v1/policies/{policyId}/rules';
+    const vars = {
+      ['policyId']: String(policyId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.GET);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -514,10 +536,12 @@ class PolicyApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('PolicyApi', 'updatePolicy', 'policy');
     }
     // Path Params
-    const localVarPath = '/api/v1/policies/{policyId}'
-      .replace('{' + 'policyId' + '}', encodeURIComponent(String(policyId)));
+    const path = '/api/v1/policies/{policyId}';
+    const vars = {
+      ['policyId']: String(policyId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.PUT);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.PUT, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Body Params
     const contentType = ObjectSerializer_1.ObjectSerializer.getPreferredMediaType([
@@ -565,11 +589,13 @@ class PolicyApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('PolicyApi', 'updatePolicyRule', 'policyRule');
     }
     // Path Params
-    const localVarPath = '/api/v1/policies/{policyId}/rules/{ruleId}'
-      .replace('{' + 'policyId' + '}', encodeURIComponent(String(policyId)))
-      .replace('{' + 'ruleId' + '}', encodeURIComponent(String(ruleId)));
+    const path = '/api/v1/policies/{policyId}/rules/{ruleId}';
+    const vars = {
+      ['policyId']: String(policyId),
+      ['ruleId']: String(ruleId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.PUT);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.PUT, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Body Params
     const contentType = ObjectSerializer_1.ObjectSerializer.getPreferredMediaType([
