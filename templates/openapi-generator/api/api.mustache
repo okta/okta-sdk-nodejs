@@ -57,13 +57,15 @@ export class {{classname}}RequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const path = '{{{path}}}';
+        {{#pathParams.0}}
         const vars = {
-        {{#pathParams}}
+            {{#pathParams}}
             ['{{baseName}}']: String({{paramName}}),
-        {{/pathParams}}
+            {{/pathParams}}
         };
+        {{/pathParams.0}}
         // Make Request Context
-        const requestContext = _config.baseServer.makeRequestContext(path, HttpMethod.{{httpMethod}}, vars);
+        const requestContext = _config.baseServer.makeRequestContext(path, HttpMethod.{{httpMethod}}{{#pathParams.0}}, vars{{/pathParams.0}});
         requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8')
         {{#queryParams}}
 

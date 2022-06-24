@@ -35,9 +35,8 @@ class OrgSettingApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     let _config = _options || this.configuration;
     // Path Params
     const path = '/api/v1/org/email/bounces/remove-list';
-    const vars = {};
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Body Params
     const contentType = ObjectSerializer_1.ObjectSerializer.getPreferredMediaType([
@@ -71,9 +70,8 @@ class OrgSettingApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     let _config = _options || this.configuration;
     // Path Params
     const path = '/api/v1/org/privacy/oktaSupport/extend';
-    const vars = {};
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -100,9 +98,8 @@ class OrgSettingApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     let _config = _options || this.configuration;
     // Path Params
     const path = '/api/v1/org/privacy/oktaCommunication';
-    const vars = {};
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -129,9 +126,8 @@ class OrgSettingApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     let _config = _options || this.configuration;
     // Path Params
     const path = '/api/v1/org/contacts';
-    const vars = {};
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -194,9 +190,8 @@ class OrgSettingApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     let _config = _options || this.configuration;
     // Path Params
     const path = '/api/v1/org/privacy/oktaSupport';
-    const vars = {};
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -223,9 +218,8 @@ class OrgSettingApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     let _config = _options || this.configuration;
     // Path Params
     const path = '/api/v1/org/preferences';
-    const vars = {};
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -252,9 +246,8 @@ class OrgSettingApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     let _config = _options || this.configuration;
     // Path Params
     const path = '/api/v1/org';
-    const vars = {};
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -281,9 +274,8 @@ class OrgSettingApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     let _config = _options || this.configuration;
     // Path Params
     const path = '/api/v1/org/privacy/oktaSupport/grant';
-    const vars = {};
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -310,9 +302,8 @@ class OrgSettingApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     let _config = _options || this.configuration;
     // Path Params
     const path = '/api/v1/org/preferences/hideEndUserFooter';
-    const vars = {};
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -339,9 +330,8 @@ class OrgSettingApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     let _config = _options || this.configuration;
     // Path Params
     const path = '/api/v1/org/privacy/oktaCommunication/optIn';
-    const vars = {};
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -368,9 +358,8 @@ class OrgSettingApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     let _config = _options || this.configuration;
     // Path Params
     const path = '/api/v1/org/privacy/oktaCommunication/optOut';
-    const vars = {};
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -398,9 +387,8 @@ class OrgSettingApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     let _config = _options || this.configuration;
     // Path Params
     const path = '/api/v1/org';
-    const vars = {};
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Body Params
     const contentType = ObjectSerializer_1.ObjectSerializer.getPreferredMediaType([
@@ -434,9 +422,8 @@ class OrgSettingApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     let _config = _options || this.configuration;
     // Path Params
     const path = '/api/v1/org/privacy/oktaSupport/revoke';
-    const vars = {};
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -463,9 +450,8 @@ class OrgSettingApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     let _config = _options || this.configuration;
     // Path Params
     const path = '/api/v1/org/preferences/showEndUserFooter';
-    const vars = {};
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -545,9 +531,8 @@ class OrgSettingApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     }
     // Path Params
     const path = '/api/v1/org/logo';
-    const vars = {};
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Form Params
     const useForm = (0, util_1.canConsumeForm)([
@@ -602,9 +587,8 @@ class OrgSettingApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     }
     // Path Params
     const path = '/api/v1/org';
-    const vars = {};
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.PUT, vars);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.PUT);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Body Params
     const contentType = ObjectSerializer_1.ObjectSerializer.getPreferredMediaType([

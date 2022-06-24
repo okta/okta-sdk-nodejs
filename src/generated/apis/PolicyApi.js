@@ -116,9 +116,8 @@ class PolicyApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     }
     // Path Params
     const path = '/api/v1/policies';
-    const vars = {};
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Query Params
     if (activate !== undefined) {
@@ -450,9 +449,8 @@ class PolicyApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     }
     // Path Params
     const path = '/api/v1/policies';
-    const vars = {};
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Query Params
     if (type !== undefined) {

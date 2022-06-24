@@ -13,7 +13,7 @@
 
 import { RequestContext, HttpMethodEnum as HttpMethod } from './http/http';
 export interface BaseServerConfiguration {
-    makeRequestContext(endpoint: string, httpMethod: HttpMethod, vars: Partial<{
+    makeRequestContext(endpoint: string, httpMethod: HttpMethod, vars?: Partial<{
         [key: string]: string;
     }>): RequestContext;
 }
@@ -49,7 +49,7 @@ export declare class ServerConfiguration<T extends {
      * @param vars variables in endpoint to be replaced
      *
      */
-  makeRequestContext(endpoint: string, httpMethod: HttpMethod, vars: Partial<T>): RequestContext;
+  makeRequestContext(endpoint: string, httpMethod: HttpMethod, vars?: Partial<T>): RequestContext;
 }
 export declare const server1: ServerConfiguration<{
     subdomain: string;

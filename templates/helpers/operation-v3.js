@@ -244,7 +244,16 @@ const V3ApiOperations = {
     'uploadBrandThemeBackgroundImage',
     'uploadBrandThemeFavicon',
     'uploadBrandThemeLogo',
-  ]
+  ],
+  TrustedOriginApi: [
+    'activateOrigin',
+    'createOrigin',
+    'deactivateOrigin',
+    'deleteOrigin',
+    'getOrigin',
+    'listOrigins',
+    'updateOrigin',
+  ],
 };
 
 function getV3ReturnType(operationId) {

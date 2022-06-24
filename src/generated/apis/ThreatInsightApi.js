@@ -32,9 +32,8 @@ class ThreatInsightApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     let _config = _options || this.configuration;
     // Path Params
     const path = '/api/v1/threats/configuration';
-    const vars = {};
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -66,9 +65,8 @@ class ThreatInsightApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     }
     // Path Params
     const path = '/api/v1/threats/configuration';
-    const vars = {};
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Body Params
     const contentType = ObjectSerializer_1.ObjectSerializer.getPreferredMediaType([

@@ -15,5 +15,5 @@ export abstract class AbstractMiddleware implements {{^useRxJS}}Promise{{/useRxJ
 }
 
 export abstract class AbstractServerConfiguration implements BaseServerConfiguration {
-  public abstract makeRequestContext(endpoint: string, httpMethod: HttpMethod, vars: Partial<{ [key: string]: string }>): RequestContext;
+  public abstract makeRequestContext(endpoint: string, httpMethod: HttpMethod, vars?: Partial<{ [key: string]: string }>): RequestContext;
 };
