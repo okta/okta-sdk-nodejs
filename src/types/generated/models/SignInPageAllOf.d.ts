@@ -22,19 +22,18 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-export declare class Brand {
-  'agreeToCustomPrivacyPolicy'?: boolean;
-  'customPrivacyPolicyUrl'?: string;
+import { HostedPageType } from './HostedPageType';
+import { SignInPageAllOfDefaultApp } from './SignInPageAllOfDefaultApp';
+import { SignInPageAllOfWidgetCustomizations } from './SignInPageAllOfWidgetCustomizations';
+export declare class SignInPageAllOf {
+  'defaultApp'?: SignInPageAllOfDefaultApp;
+  'type': HostedPageType;
+  'url'?: string;
+  'widgetCustomizations'?: SignInPageAllOfWidgetCustomizations;
   /**
-    * The language specified as an [IETF BCP 47 language tag](https://datatracker.ietf.org/doc/html/rfc5646).
+    * The version specified as a [Semantic Version](https://semver.org/).
     */
-  'displayLanguage'?: string;
-  'id'?: string;
-  'optOutOfUserCommunications'?: boolean;
-  'removePoweredByOkta'?: boolean;
-  '_links'?: {
-        [key: string]: any;
-    };
+  'widgetVersion'?: string;
   static readonly discriminator: string | undefined;
   static readonly attributeTypeMap: Array<{
         name: string;

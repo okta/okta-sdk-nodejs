@@ -22,31 +22,4 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-export declare class Brand {
-  'agreeToCustomPrivacyPolicy'?: boolean;
-  'customPrivacyPolicyUrl'?: string;
-  /**
-    * The language specified as an [IETF BCP 47 language tag](https://datatracker.ietf.org/doc/html/rfc5646).
-    */
-  'displayLanguage'?: string;
-  'id'?: string;
-  'optOutOfUserCommunications'?: boolean;
-  'removePoweredByOkta'?: boolean;
-  '_links'?: {
-        [key: string]: any;
-    };
-  static readonly discriminator: string | undefined;
-  static readonly attributeTypeMap: Array<{
-        name: string;
-        baseName: string;
-        type: string;
-        format: string;
-    }>;
-  static getAttributeTypeMap(): {
-        name: string;
-        baseName: string;
-        type: string;
-        format: string;
-    }[];
-  constructor();
-}
+export declare type HostedPageType = 'EXTERNALLY_HOSTED' | 'OKTA_DEFAULT';
