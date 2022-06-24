@@ -36,10 +36,12 @@ class IdentityProviderApiRequestFactory extends baseapi_1.BaseAPIRequestFactory 
       throw new baseapi_1.RequiredError('IdentityProviderApi', 'activateIdentityProvider', 'idpId');
     }
     // Path Params
-    const localVarPath = '/api/v1/idps/{idpId}/lifecycle/activate'
-      .replace('{' + 'idpId' + '}', encodeURIComponent(String(idpId)));
+    const path = '/api/v1/idps/{idpId}/lifecycle/activate';
+    const vars = {
+      ['idpId']: String(idpId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.POST);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -80,11 +82,13 @@ class IdentityProviderApiRequestFactory extends baseapi_1.BaseAPIRequestFactory 
       throw new baseapi_1.RequiredError('IdentityProviderApi', 'cloneIdentityProviderKey', 'targetIdpId');
     }
     // Path Params
-    const localVarPath = '/api/v1/idps/{idpId}/credentials/keys/{keyId}/clone'
-      .replace('{' + 'idpId' + '}', encodeURIComponent(String(idpId)))
-      .replace('{' + 'keyId' + '}', encodeURIComponent(String(keyId)));
+    const path = '/api/v1/idps/{idpId}/credentials/keys/{keyId}/clone';
+    const vars = {
+      ['idpId']: String(idpId),
+      ['keyId']: String(keyId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.POST);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Query Params
     if (targetIdpId !== undefined) {
@@ -119,9 +123,10 @@ class IdentityProviderApiRequestFactory extends baseapi_1.BaseAPIRequestFactory 
       throw new baseapi_1.RequiredError('IdentityProviderApi', 'createIdentityProvider', 'identityProvider');
     }
     // Path Params
-    const localVarPath = '/api/v1/idps';
+    const path = '/api/v1/idps';
+    const vars = {};
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.POST);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Body Params
     const contentType = ObjectSerializer_1.ObjectSerializer.getPreferredMediaType([
@@ -159,9 +164,10 @@ class IdentityProviderApiRequestFactory extends baseapi_1.BaseAPIRequestFactory 
       throw new baseapi_1.RequiredError('IdentityProviderApi', 'createIdentityProviderKey', 'jsonWebKey');
     }
     // Path Params
-    const localVarPath = '/api/v1/idps/credentials/keys';
+    const path = '/api/v1/idps/credentials/keys';
+    const vars = {};
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.POST);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Body Params
     const contentType = ObjectSerializer_1.ObjectSerializer.getPreferredMediaType([
@@ -199,10 +205,12 @@ class IdentityProviderApiRequestFactory extends baseapi_1.BaseAPIRequestFactory 
       throw new baseapi_1.RequiredError('IdentityProviderApi', 'deactivateIdentityProvider', 'idpId');
     }
     // Path Params
-    const localVarPath = '/api/v1/idps/{idpId}/lifecycle/deactivate'
-      .replace('{' + 'idpId' + '}', encodeURIComponent(String(idpId)));
+    const path = '/api/v1/idps/{idpId}/lifecycle/deactivate';
+    const vars = {
+      ['idpId']: String(idpId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.POST);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -233,10 +241,12 @@ class IdentityProviderApiRequestFactory extends baseapi_1.BaseAPIRequestFactory 
       throw new baseapi_1.RequiredError('IdentityProviderApi', 'deleteIdentityProvider', 'idpId');
     }
     // Path Params
-    const localVarPath = '/api/v1/idps/{idpId}'
-      .replace('{' + 'idpId' + '}', encodeURIComponent(String(idpId)));
+    const path = '/api/v1/idps/{idpId}';
+    const vars = {
+      ['idpId']: String(idpId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.DELETE);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.DELETE, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -267,10 +277,12 @@ class IdentityProviderApiRequestFactory extends baseapi_1.BaseAPIRequestFactory 
       throw new baseapi_1.RequiredError('IdentityProviderApi', 'deleteIdentityProviderKey', 'keyId');
     }
     // Path Params
-    const localVarPath = '/api/v1/idps/credentials/keys/{keyId}'
-      .replace('{' + 'keyId' + '}', encodeURIComponent(String(keyId)));
+    const path = '/api/v1/idps/credentials/keys/{keyId}';
+    const vars = {
+      ['keyId']: String(keyId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.DELETE);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.DELETE, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -306,10 +318,12 @@ class IdentityProviderApiRequestFactory extends baseapi_1.BaseAPIRequestFactory 
       throw new baseapi_1.RequiredError('IdentityProviderApi', 'generateCsrForIdentityProvider', 'metadata');
     }
     // Path Params
-    const localVarPath = '/api/v1/idps/{idpId}/credentials/csrs'
-      .replace('{' + 'idpId' + '}', encodeURIComponent(String(idpId)));
+    const path = '/api/v1/idps/{idpId}/credentials/csrs';
+    const vars = {
+      ['idpId']: String(idpId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.POST);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Body Params
     const contentType = ObjectSerializer_1.ObjectSerializer.getPreferredMediaType([
@@ -352,10 +366,12 @@ class IdentityProviderApiRequestFactory extends baseapi_1.BaseAPIRequestFactory 
       throw new baseapi_1.RequiredError('IdentityProviderApi', 'generateIdentityProviderSigningKey', 'validityYears');
     }
     // Path Params
-    const localVarPath = '/api/v1/idps/{idpId}/credentials/keys/generate'
-      .replace('{' + 'idpId' + '}', encodeURIComponent(String(idpId)));
+    const path = '/api/v1/idps/{idpId}/credentials/keys/generate';
+    const vars = {
+      ['idpId']: String(idpId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.POST);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Query Params
     if (validityYears !== undefined) {
@@ -395,11 +411,13 @@ class IdentityProviderApiRequestFactory extends baseapi_1.BaseAPIRequestFactory 
       throw new baseapi_1.RequiredError('IdentityProviderApi', 'getCsrForIdentityProvider', 'csrId');
     }
     // Path Params
-    const localVarPath = '/api/v1/idps/{idpId}/credentials/csrs/{csrId}'
-      .replace('{' + 'idpId' + '}', encodeURIComponent(String(idpId)))
-      .replace('{' + 'csrId' + '}', encodeURIComponent(String(csrId)));
+    const path = '/api/v1/idps/{idpId}/credentials/csrs/{csrId}';
+    const vars = {
+      ['idpId']: String(idpId),
+      ['csrId']: String(csrId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.GET);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -430,10 +448,12 @@ class IdentityProviderApiRequestFactory extends baseapi_1.BaseAPIRequestFactory 
       throw new baseapi_1.RequiredError('IdentityProviderApi', 'getIdentityProvider', 'idpId');
     }
     // Path Params
-    const localVarPath = '/api/v1/idps/{idpId}'
-      .replace('{' + 'idpId' + '}', encodeURIComponent(String(idpId)));
+    const path = '/api/v1/idps/{idpId}';
+    const vars = {
+      ['idpId']: String(idpId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.GET);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -469,11 +489,13 @@ class IdentityProviderApiRequestFactory extends baseapi_1.BaseAPIRequestFactory 
       throw new baseapi_1.RequiredError('IdentityProviderApi', 'getIdentityProviderApplicationUser', 'userId');
     }
     // Path Params
-    const localVarPath = '/api/v1/idps/{idpId}/users/{userId}'
-      .replace('{' + 'idpId' + '}', encodeURIComponent(String(idpId)))
-      .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)));
+    const path = '/api/v1/idps/{idpId}/users/{userId}';
+    const vars = {
+      ['idpId']: String(idpId),
+      ['userId']: String(userId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.GET);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -504,10 +526,12 @@ class IdentityProviderApiRequestFactory extends baseapi_1.BaseAPIRequestFactory 
       throw new baseapi_1.RequiredError('IdentityProviderApi', 'getIdentityProviderKey', 'keyId');
     }
     // Path Params
-    const localVarPath = '/api/v1/idps/credentials/keys/{keyId}'
-      .replace('{' + 'keyId' + '}', encodeURIComponent(String(keyId)));
+    const path = '/api/v1/idps/credentials/keys/{keyId}';
+    const vars = {
+      ['keyId']: String(keyId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.GET);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -543,11 +567,13 @@ class IdentityProviderApiRequestFactory extends baseapi_1.BaseAPIRequestFactory 
       throw new baseapi_1.RequiredError('IdentityProviderApi', 'getIdentityProviderSigningKey', 'keyId');
     }
     // Path Params
-    const localVarPath = '/api/v1/idps/{idpId}/credentials/keys/{keyId}'
-      .replace('{' + 'idpId' + '}', encodeURIComponent(String(idpId)))
-      .replace('{' + 'keyId' + '}', encodeURIComponent(String(keyId)));
+    const path = '/api/v1/idps/{idpId}/credentials/keys/{keyId}';
+    const vars = {
+      ['idpId']: String(idpId),
+      ['keyId']: String(keyId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.GET);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -588,11 +614,13 @@ class IdentityProviderApiRequestFactory extends baseapi_1.BaseAPIRequestFactory 
       throw new baseapi_1.RequiredError('IdentityProviderApi', 'linkUserToIdentityProvider', 'userIdentityProviderLinkRequest');
     }
     // Path Params
-    const localVarPath = '/api/v1/idps/{idpId}/users/{userId}'
-      .replace('{' + 'idpId' + '}', encodeURIComponent(String(idpId)))
-      .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)));
+    const path = '/api/v1/idps/{idpId}/users/{userId}';
+    const vars = {
+      ['idpId']: String(idpId),
+      ['userId']: String(userId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.POST);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Body Params
     const contentType = ObjectSerializer_1.ObjectSerializer.getPreferredMediaType([
@@ -630,10 +658,12 @@ class IdentityProviderApiRequestFactory extends baseapi_1.BaseAPIRequestFactory 
       throw new baseapi_1.RequiredError('IdentityProviderApi', 'listCsrsForIdentityProvider', 'idpId');
     }
     // Path Params
-    const localVarPath = '/api/v1/idps/{idpId}/credentials/csrs'
-      .replace('{' + 'idpId' + '}', encodeURIComponent(String(idpId)));
+    const path = '/api/v1/idps/{idpId}/credentials/csrs';
+    const vars = {
+      ['idpId']: String(idpId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.GET);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -664,10 +694,12 @@ class IdentityProviderApiRequestFactory extends baseapi_1.BaseAPIRequestFactory 
       throw new baseapi_1.RequiredError('IdentityProviderApi', 'listIdentityProviderApplicationUsers', 'idpId');
     }
     // Path Params
-    const localVarPath = '/api/v1/idps/{idpId}/users'
-      .replace('{' + 'idpId' + '}', encodeURIComponent(String(idpId)));
+    const path = '/api/v1/idps/{idpId}/users';
+    const vars = {
+      ['idpId']: String(idpId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.GET);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -695,9 +727,10 @@ class IdentityProviderApiRequestFactory extends baseapi_1.BaseAPIRequestFactory 
   async listIdentityProviderKeys(after, limit, _options) {
     let _config = _options || this.configuration;
     // Path Params
-    const localVarPath = '/api/v1/idps/credentials/keys';
+    const path = '/api/v1/idps/credentials/keys';
+    const vars = {};
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.GET);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Query Params
     if (after !== undefined) {
@@ -736,10 +769,12 @@ class IdentityProviderApiRequestFactory extends baseapi_1.BaseAPIRequestFactory 
       throw new baseapi_1.RequiredError('IdentityProviderApi', 'listIdentityProviderSigningKeys', 'idpId');
     }
     // Path Params
-    const localVarPath = '/api/v1/idps/{idpId}/credentials/keys'
-      .replace('{' + 'idpId' + '}', encodeURIComponent(String(idpId)));
+    const path = '/api/v1/idps/{idpId}/credentials/keys';
+    const vars = {
+      ['idpId']: String(idpId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.GET);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -769,9 +804,10 @@ class IdentityProviderApiRequestFactory extends baseapi_1.BaseAPIRequestFactory 
   async listIdentityProviders(q, after, limit, type, _options) {
     let _config = _options || this.configuration;
     // Path Params
-    const localVarPath = '/api/v1/idps';
+    const path = '/api/v1/idps';
+    const vars = {};
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.GET);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Query Params
     if (q !== undefined) {
@@ -823,11 +859,13 @@ class IdentityProviderApiRequestFactory extends baseapi_1.BaseAPIRequestFactory 
       throw new baseapi_1.RequiredError('IdentityProviderApi', 'listSocialAuthTokens', 'userId');
     }
     // Path Params
-    const localVarPath = '/api/v1/idps/{idpId}/users/{userId}/credentials/tokens'
-      .replace('{' + 'idpId' + '}', encodeURIComponent(String(idpId)))
-      .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)));
+    const path = '/api/v1/idps/{idpId}/users/{userId}/credentials/tokens';
+    const vars = {
+      ['idpId']: String(idpId),
+      ['userId']: String(userId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.GET);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -868,11 +906,13 @@ class IdentityProviderApiRequestFactory extends baseapi_1.BaseAPIRequestFactory 
       throw new baseapi_1.RequiredError('IdentityProviderApi', 'publishCsrForIdentityProvider', 'body');
     }
     // Path Params
-    const localVarPath = '/api/v1/idps/{idpId}/credentials/csrs/{csrId}/lifecycle/publish'
-      .replace('{' + 'idpId' + '}', encodeURIComponent(String(idpId)))
-      .replace('{' + 'csrId' + '}', encodeURIComponent(String(csrId)));
+    const path = '/api/v1/idps/{idpId}/credentials/csrs/{csrId}/lifecycle/publish';
+    const vars = {
+      ['idpId']: String(idpId),
+      ['csrId']: String(csrId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.POST);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Body Params
     const contentType = ObjectSerializer_1.ObjectSerializer.getPreferredMediaType([
@@ -917,11 +957,13 @@ class IdentityProviderApiRequestFactory extends baseapi_1.BaseAPIRequestFactory 
       throw new baseapi_1.RequiredError('IdentityProviderApi', 'revokeCsrForIdentityProvider', 'csrId');
     }
     // Path Params
-    const localVarPath = '/api/v1/idps/{idpId}/credentials/csrs/{csrId}'
-      .replace('{' + 'idpId' + '}', encodeURIComponent(String(idpId)))
-      .replace('{' + 'csrId' + '}', encodeURIComponent(String(csrId)));
+    const path = '/api/v1/idps/{idpId}/credentials/csrs/{csrId}';
+    const vars = {
+      ['idpId']: String(idpId),
+      ['csrId']: String(csrId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.DELETE);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.DELETE, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -957,11 +999,13 @@ class IdentityProviderApiRequestFactory extends baseapi_1.BaseAPIRequestFactory 
       throw new baseapi_1.RequiredError('IdentityProviderApi', 'unlinkUserFromIdentityProvider', 'userId');
     }
     // Path Params
-    const localVarPath = '/api/v1/idps/{idpId}/users/{userId}'
-      .replace('{' + 'idpId' + '}', encodeURIComponent(String(idpId)))
-      .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)));
+    const path = '/api/v1/idps/{idpId}/users/{userId}';
+    const vars = {
+      ['idpId']: String(idpId),
+      ['userId']: String(userId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.DELETE);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.DELETE, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -997,10 +1041,12 @@ class IdentityProviderApiRequestFactory extends baseapi_1.BaseAPIRequestFactory 
       throw new baseapi_1.RequiredError('IdentityProviderApi', 'updateIdentityProvider', 'identityProvider');
     }
     // Path Params
-    const localVarPath = '/api/v1/idps/{idpId}'
-      .replace('{' + 'idpId' + '}', encodeURIComponent(String(idpId)));
+    const path = '/api/v1/idps/{idpId}';
+    const vars = {
+      ['idpId']: String(idpId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.PUT);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.PUT, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Body Params
     const contentType = ObjectSerializer_1.ObjectSerializer.getPreferredMediaType([

@@ -42,6 +42,7 @@ import { CreateSessionRequest } from '../models/CreateSessionRequest';
 import { CreateUserRequest } from '../models/CreateUserRequest';
 import { Csr } from '../models/Csr';
 import { CsrMetadata } from '../models/CsrMetadata';
+import { CustomizablePage } from '../models/CustomizablePage';
 import { Domain } from '../models/Domain';
 import { DomainCertificate } from '../models/DomainCertificate';
 import { DomainListResponse } from '../models/DomainListResponse';
@@ -57,6 +58,7 @@ import { ForgotPasswordResponse } from '../models/ForgotPasswordResponse';
 import { Group } from '../models/Group';
 import { GroupRule } from '../models/GroupRule';
 import { GroupSchema } from '../models/GroupSchema';
+import { HostedPage } from '../models/HostedPage';
 import { IdentityProvider } from '../models/IdentityProvider';
 import { IdentityProviderApplicationUser } from '../models/IdentityProviderApplicationUser';
 import { ImageUploadResponse } from '../models/ImageUploadResponse';
@@ -89,6 +91,7 @@ import { ResetPasswordToken } from '../models/ResetPasswordToken';
 import { Role } from '../models/Role';
 import { SecurityQuestion } from '../models/SecurityQuestion';
 import { Session } from '../models/Session';
+import { SignInPage } from '../models/SignInPage';
 import { SmsTemplate } from '../models/SmsTemplate';
 import { SmsTemplateType } from '../models/SmsTemplateType';
 import { SocialAuthToken } from '../models/SocialAuthToken';
@@ -2787,6 +2790,116 @@ export interface CustomizationApiListEmailTemplatesRequest {
       */
     expand?: Array<'settings' | 'customizationCount'>;
 }
+export interface CustomizationApiPreviewErrorPageRequest {
+    /**
+      * The ID of the brand.
+      * @type string
+      * @memberof CustomizationApipreviewErrorPage
+      */
+    brandId: string;
+    /**
+      *
+      * @type CustomizablePage
+      * @memberof CustomizationApipreviewErrorPage
+      */
+    CustomizablePage: CustomizablePage;
+}
+export interface CustomizationApiPreviewSignInPageRequest {
+    /**
+      * The ID of the brand.
+      * @type string
+      * @memberof CustomizationApipreviewSignInPage
+      */
+    brandId: string;
+    /**
+      *
+      * @type SignInPage
+      * @memberof CustomizationApipreviewSignInPage
+      */
+    SignInPage: SignInPage;
+}
+export interface CustomizationApiReplaceErrorPageRequest {
+    /**
+      * The ID of the brand.
+      * @type string
+      * @memberof CustomizationApireplaceErrorPage
+      */
+    brandId: string;
+    /**
+      *
+      * @type CustomizablePage
+      * @memberof CustomizationApireplaceErrorPage
+      */
+    CustomizablePage: CustomizablePage;
+}
+export interface CustomizationApiReplaceSignInPageRequest {
+    /**
+      * The ID of the brand.
+      * @type string
+      * @memberof CustomizationApireplaceSignInPage
+      */
+    brandId: string;
+    /**
+      *
+      * @type SignInPage
+      * @memberof CustomizationApireplaceSignInPage
+      */
+    SignInPage: SignInPage;
+}
+export interface CustomizationApiReplaceSignOutPageSettingsRequest {
+    /**
+      * The ID of the brand.
+      * @type string
+      * @memberof CustomizationApireplaceSignOutPageSettings
+      */
+    brandId: string;
+    /**
+      *
+      * @type HostedPage
+      * @memberof CustomizationApireplaceSignOutPageSettings
+      */
+    HostedPage: HostedPage;
+}
+export interface CustomizationApiResetErrorPageRequest {
+    /**
+      * The ID of the brand.
+      * @type string
+      * @memberof CustomizationApiresetErrorPage
+      */
+    brandId: string;
+}
+export interface CustomizationApiResetSignInPageRequest {
+    /**
+      * The ID of the brand.
+      * @type string
+      * @memberof CustomizationApiresetSignInPage
+      */
+    brandId: string;
+}
+export interface CustomizationApiRetrieveErrorPageRequest {
+    /**
+      * The ID of the brand.
+      * @type string
+      * @memberof CustomizationApiretrieveErrorPage
+      */
+    brandId: string;
+}
+export interface CustomizationApiRetrieveSignInPageRequest {
+    /**
+      * The ID of the brand.
+      * @type string
+      * @memberof CustomizationApiretrieveSignInPage
+      */
+    brandId: string;
+}
+export interface CustomizationApiRetrieveSignOutPageSettingsRequest {
+    /**
+      * The ID of the brand.
+      * @type string
+      * @memberof CustomizationApiretrieveSignOutPageSettings
+      */
+    brandId: string;
+}
 export interface CustomizationApiSendTestEmailRequest {
     /**
       * The ID of the brand.
@@ -2900,6 +3013,12 @@ export interface CustomizationApiUploadBrandThemeBackgroundImageRequest {
       * @memberof CustomizationApiuploadBrandThemeBackgroundImage
       */
     themeId: string;
+    /**
+      *
+      * @type HttpFile
+      * @memberof CustomizationApiuploadBrandThemeBackgroundImage
+      */
+    file: HttpFile;
 }
 export interface CustomizationApiUploadBrandThemeFaviconRequest {
     /**
@@ -2914,6 +3033,12 @@ export interface CustomizationApiUploadBrandThemeFaviconRequest {
       * @memberof CustomizationApiuploadBrandThemeFavicon
       */
     themeId: string;
+    /**
+      *
+      * @type HttpFile
+      * @memberof CustomizationApiuploadBrandThemeFavicon
+      */
+    file: HttpFile;
 }
 export interface CustomizationApiUploadBrandThemeLogoRequest {
     /**
@@ -2928,6 +3053,12 @@ export interface CustomizationApiUploadBrandThemeLogoRequest {
       * @memberof CustomizationApiuploadBrandThemeLogo
       */
     themeId: string;
+    /**
+      *
+      * @type HttpFile
+      * @memberof CustomizationApiuploadBrandThemeLogo
+      */
+    file: HttpFile;
 }
 export declare class ObjectCustomizationApi {
   private api;
@@ -3040,6 +3171,66 @@ export declare class ObjectCustomizationApi {
       * @param param the request object
       */
   listEmailTemplates(param: CustomizationApiListEmailTemplatesRequest, options?: Configuration): Promise<Collection<EmailTemplate>>;
+  /**
+      * Previews the error page.
+      * Preview the Error Page
+      * @param param the request object
+      */
+  previewErrorPage(param: CustomizationApiPreviewErrorPageRequest, options?: Configuration): Promise<string>;
+  /**
+      * Preview the sign-in page.
+      * Preview the Sign-in Page.
+      * @param param the request object
+      */
+  previewSignInPage(param: CustomizationApiPreviewSignInPageRequest, options?: Configuration): Promise<string>;
+  /**
+      * Replaces the error page.
+      * Replace the Error Page
+      * @param param the request object
+      */
+  replaceErrorPage(param: CustomizationApiReplaceErrorPageRequest, options?: Configuration): Promise<CustomizablePage>;
+  /**
+      * Replaces the sign-in page.
+      * Replace the Sign-in Page
+      * @param param the request object
+      */
+  replaceSignInPage(param: CustomizationApiReplaceSignInPageRequest, options?: Configuration): Promise<SignInPage>;
+  /**
+      * Replaces the sign-out page settings.
+      * Replace the Sign-out Page Settings
+      * @param param the request object
+      */
+  replaceSignOutPageSettings(param: CustomizationApiReplaceSignOutPageSettingsRequest, options?: Configuration): Promise<HostedPage>;
+  /**
+      * Resets the error page.
+      * Reset the Error Page
+      * @param param the request object
+      */
+  resetErrorPage(param: CustomizationApiResetErrorPageRequest, options?: Configuration): Promise<void>;
+  /**
+      * Reset the sign-in page.
+      * Reset the Sign-in Page
+      * @param param the request object
+      */
+  resetSignInPage(param: CustomizationApiResetSignInPageRequest, options?: Configuration): Promise<void>;
+  /**
+      * Retrieves the error page.
+      * Retrieve the Error Page
+      * @param param the request object
+      */
+  retrieveErrorPage(param: CustomizationApiRetrieveErrorPageRequest, options?: Configuration): Promise<CustomizablePage>;
+  /**
+      * Retrieves the sign-in page.
+      * Retrieve the Sign-in Page
+      * @param param the request object
+      */
+  retrieveSignInPage(param: CustomizationApiRetrieveSignInPageRequest, options?: Configuration): Promise<SignInPage>;
+  /**
+      * Retrieves the sign-out page settings.
+      * Retrieve the Sign-out Page Settings
+      * @param param the request object
+      */
+  retrieveSignOutPageSettings(param: CustomizationApiRetrieveSignOutPageSettingsRequest, options?: Configuration): Promise<HostedPage>;
   /**
       * Sends a test email to the current user’s primary and secondary email addresses. The email content is selected based on the following priority: 1. The email customization for the language specified in the `language` query parameter. 2. The email template's default customization. 3. The email template’s default content, translated to the current user's language.
       * Send a Test Email
@@ -4863,6 +5054,12 @@ export interface OrgSettingApiUpdateOrgContactUserRequest {
     orgContactUser: OrgContactUser;
 }
 export interface OrgSettingApiUpdateOrgLogoRequest {
+    /**
+      *
+      * @type HttpFile
+      * @memberof OrgSettingApiupdateOrgLogo
+      */
+    file: HttpFile;
 }
 export interface OrgSettingApiUpdateOrgSettingRequest {
     /**
@@ -4976,7 +5173,7 @@ export declare class ObjectOrgSettingApi {
       * Upload the Org Logo
       * @param param the request object
       */
-  updateOrgLogo(param?: OrgSettingApiUpdateOrgLogoRequest, options?: Configuration): Promise<void>;
+  updateOrgLogo(param: OrgSettingApiUpdateOrgLogoRequest, options?: Configuration): Promise<void>;
   /**
       * Update settings of your organization.
       * Replace the Org Settings

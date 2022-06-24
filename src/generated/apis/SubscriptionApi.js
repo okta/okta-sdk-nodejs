@@ -41,11 +41,13 @@ class SubscriptionApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('SubscriptionApi', 'getRoleSubscriptionByNotificationType', 'notificationType');
     }
     // Path Params
-    const localVarPath = '/api/v1/roles/{roleTypeOrRoleId}/subscriptions/{notificationType}'
-      .replace('{' + 'roleTypeOrRoleId' + '}', encodeURIComponent(String(roleTypeOrRoleId)))
-      .replace('{' + 'notificationType' + '}', encodeURIComponent(String(notificationType)));
+    const path = '/api/v1/roles/{roleTypeOrRoleId}/subscriptions/{notificationType}';
+    const vars = {
+      ['roleTypeOrRoleId']: String(roleTypeOrRoleId),
+      ['notificationType']: String(notificationType),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.GET);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -81,11 +83,13 @@ class SubscriptionApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('SubscriptionApi', 'getUserSubscriptionByNotificationType', 'notificationType');
     }
     // Path Params
-    const localVarPath = '/api/v1/users/{userId}/subscriptions/{notificationType}'
-      .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)))
-      .replace('{' + 'notificationType' + '}', encodeURIComponent(String(notificationType)));
+    const path = '/api/v1/users/{userId}/subscriptions/{notificationType}';
+    const vars = {
+      ['userId']: String(userId),
+      ['notificationType']: String(notificationType),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.GET);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -116,10 +120,12 @@ class SubscriptionApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('SubscriptionApi', 'listRoleSubscriptions', 'roleTypeOrRoleId');
     }
     // Path Params
-    const localVarPath = '/api/v1/roles/{roleTypeOrRoleId}/subscriptions'
-      .replace('{' + 'roleTypeOrRoleId' + '}', encodeURIComponent(String(roleTypeOrRoleId)));
+    const path = '/api/v1/roles/{roleTypeOrRoleId}/subscriptions';
+    const vars = {
+      ['roleTypeOrRoleId']: String(roleTypeOrRoleId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.GET);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -150,10 +156,12 @@ class SubscriptionApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('SubscriptionApi', 'listUserSubscriptions', 'userId');
     }
     // Path Params
-    const localVarPath = '/api/v1/users/{userId}/subscriptions'
-      .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)));
+    const path = '/api/v1/users/{userId}/subscriptions';
+    const vars = {
+      ['userId']: String(userId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.GET);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -189,11 +197,13 @@ class SubscriptionApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('SubscriptionApi', 'subscribeRoleSubscriptionByNotificationType', 'notificationType');
     }
     // Path Params
-    const localVarPath = '/api/v1/roles/{roleTypeOrRoleId}/subscriptions/{notificationType}/subscribe'
-      .replace('{' + 'roleTypeOrRoleId' + '}', encodeURIComponent(String(roleTypeOrRoleId)))
-      .replace('{' + 'notificationType' + '}', encodeURIComponent(String(notificationType)));
+    const path = '/api/v1/roles/{roleTypeOrRoleId}/subscriptions/{notificationType}/subscribe';
+    const vars = {
+      ['roleTypeOrRoleId']: String(roleTypeOrRoleId),
+      ['notificationType']: String(notificationType),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.POST);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -229,11 +239,13 @@ class SubscriptionApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('SubscriptionApi', 'subscribeUserSubscriptionByNotificationType', 'notificationType');
     }
     // Path Params
-    const localVarPath = '/api/v1/users/{userId}/subscriptions/{notificationType}/subscribe'
-      .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)))
-      .replace('{' + 'notificationType' + '}', encodeURIComponent(String(notificationType)));
+    const path = '/api/v1/users/{userId}/subscriptions/{notificationType}/subscribe';
+    const vars = {
+      ['userId']: String(userId),
+      ['notificationType']: String(notificationType),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.POST);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -269,11 +281,13 @@ class SubscriptionApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('SubscriptionApi', 'unsubscribeRoleSubscriptionByNotificationType', 'notificationType');
     }
     // Path Params
-    const localVarPath = '/api/v1/roles/{roleTypeOrRoleId}/subscriptions/{notificationType}/unsubscribe'
-      .replace('{' + 'roleTypeOrRoleId' + '}', encodeURIComponent(String(roleTypeOrRoleId)))
-      .replace('{' + 'notificationType' + '}', encodeURIComponent(String(notificationType)));
+    const path = '/api/v1/roles/{roleTypeOrRoleId}/subscriptions/{notificationType}/unsubscribe';
+    const vars = {
+      ['roleTypeOrRoleId']: String(roleTypeOrRoleId),
+      ['notificationType']: String(notificationType),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.POST);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -309,11 +323,13 @@ class SubscriptionApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('SubscriptionApi', 'unsubscribeUserSubscriptionByNotificationType', 'notificationType');
     }
     // Path Params
-    const localVarPath = '/api/v1/users/{userId}/subscriptions/{notificationType}/unsubscribe'
-      .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)))
-      .replace('{' + 'notificationType' + '}', encodeURIComponent(String(notificationType)));
+    const path = '/api/v1/users/{userId}/subscriptions/{notificationType}/unsubscribe';
+    const vars = {
+      ['userId']: String(userId),
+      ['notificationType']: String(notificationType),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.POST);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods

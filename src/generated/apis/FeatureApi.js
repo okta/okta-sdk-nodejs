@@ -36,10 +36,12 @@ class FeatureApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('FeatureApi', 'getFeature', 'featureId');
     }
     // Path Params
-    const localVarPath = '/api/v1/features/{featureId}'
-      .replace('{' + 'featureId' + '}', encodeURIComponent(String(featureId)));
+    const path = '/api/v1/features/{featureId}';
+    const vars = {
+      ['featureId']: String(featureId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.GET);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -70,10 +72,12 @@ class FeatureApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('FeatureApi', 'listFeatureDependencies', 'featureId');
     }
     // Path Params
-    const localVarPath = '/api/v1/features/{featureId}/dependencies'
-      .replace('{' + 'featureId' + '}', encodeURIComponent(String(featureId)));
+    const path = '/api/v1/features/{featureId}/dependencies';
+    const vars = {
+      ['featureId']: String(featureId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.GET);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -104,10 +108,12 @@ class FeatureApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('FeatureApi', 'listFeatureDependents', 'featureId');
     }
     // Path Params
-    const localVarPath = '/api/v1/features/{featureId}/dependents'
-      .replace('{' + 'featureId' + '}', encodeURIComponent(String(featureId)));
+    const path = '/api/v1/features/{featureId}/dependents';
+    const vars = {
+      ['featureId']: String(featureId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.GET);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -133,9 +139,10 @@ class FeatureApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   async listFeatures(_options) {
     let _config = _options || this.configuration;
     // Path Params
-    const localVarPath = '/api/v1/features';
+    const path = '/api/v1/features';
+    const vars = {};
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.GET);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -172,11 +179,13 @@ class FeatureApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('FeatureApi', 'updateFeatureLifecycle', 'lifecycle');
     }
     // Path Params
-    const localVarPath = '/api/v1/features/{featureId}/{lifecycle}'
-      .replace('{' + 'featureId' + '}', encodeURIComponent(String(featureId)))
-      .replace('{' + 'lifecycle' + '}', encodeURIComponent(String(lifecycle)));
+    const path = '/api/v1/features/{featureId}/{lifecycle}';
+    const vars = {
+      ['featureId']: String(featureId),
+      ['lifecycle']: String(lifecycle),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.POST);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Query Params
     if (mode !== undefined) {

@@ -36,10 +36,12 @@ class SchemaApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('SchemaApi', 'getApplicationUserSchema', 'appInstanceId');
     }
     // Path Params
-    const localVarPath = '/api/v1/meta/schemas/apps/{appInstanceId}/default'
-      .replace('{' + 'appInstanceId' + '}', encodeURIComponent(String(appInstanceId)));
+    const path = '/api/v1/meta/schemas/apps/{appInstanceId}/default';
+    const vars = {
+      ['appInstanceId']: String(appInstanceId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.GET);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -65,9 +67,10 @@ class SchemaApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   async getGroupSchema(_options) {
     let _config = _options || this.configuration;
     // Path Params
-    const localVarPath = '/api/v1/meta/schemas/group/default';
+    const path = '/api/v1/meta/schemas/group/default';
+    const vars = {};
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.GET);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -98,10 +101,12 @@ class SchemaApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('SchemaApi', 'getUserSchema', 'schemaId');
     }
     // Path Params
-    const localVarPath = '/api/v1/meta/schemas/user/{schemaId}'
-      .replace('{' + 'schemaId' + '}', encodeURIComponent(String(schemaId)));
+    const path = '/api/v1/meta/schemas/user/{schemaId}';
+    const vars = {
+      ['schemaId']: String(schemaId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.GET);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -133,10 +138,12 @@ class SchemaApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('SchemaApi', 'updateApplicationUserProfile', 'appInstanceId');
     }
     // Path Params
-    const localVarPath = '/api/v1/meta/schemas/apps/{appInstanceId}/default'
-      .replace('{' + 'appInstanceId' + '}', encodeURIComponent(String(appInstanceId)));
+    const path = '/api/v1/meta/schemas/apps/{appInstanceId}/default';
+    const vars = {
+      ['appInstanceId']: String(appInstanceId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.POST);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Body Params
     const contentType = ObjectSerializer_1.ObjectSerializer.getPreferredMediaType([
@@ -170,9 +177,10 @@ class SchemaApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   async updateGroupSchema(GroupSchema, _options) {
     let _config = _options || this.configuration;
     // Path Params
-    const localVarPath = '/api/v1/meta/schemas/group/default';
+    const path = '/api/v1/meta/schemas/group/default';
+    const vars = {};
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.POST);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Body Params
     const contentType = ObjectSerializer_1.ObjectSerializer.getPreferredMediaType([
@@ -215,10 +223,12 @@ class SchemaApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('SchemaApi', 'updateUserProfile', 'userSchema');
     }
     // Path Params
-    const localVarPath = '/api/v1/meta/schemas/user/{schemaId}'
-      .replace('{' + 'schemaId' + '}', encodeURIComponent(String(schemaId)));
+    const path = '/api/v1/meta/schemas/user/{schemaId}';
+    const vars = {
+      ['schemaId']: String(schemaId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.POST);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Body Params
     const contentType = ObjectSerializer_1.ObjectSerializer.getPreferredMediaType([

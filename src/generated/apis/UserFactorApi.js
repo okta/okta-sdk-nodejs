@@ -42,11 +42,13 @@ class UserFactorApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('UserFactorApi', 'activateFactor', 'factorId');
     }
     // Path Params
-    const localVarPath = '/api/v1/users/{userId}/factors/{factorId}/lifecycle/activate'
-      .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)))
-      .replace('{' + 'factorId' + '}', encodeURIComponent(String(factorId)));
+    const path = '/api/v1/users/{userId}/factors/{factorId}/lifecycle/activate';
+    const vars = {
+      ['userId']: String(userId),
+      ['factorId']: String(factorId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.POST);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Body Params
     const contentType = ObjectSerializer_1.ObjectSerializer.getPreferredMediaType([
@@ -90,11 +92,13 @@ class UserFactorApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('UserFactorApi', 'deleteFactor', 'factorId');
     }
     // Path Params
-    const localVarPath = '/api/v1/users/{userId}/factors/{factorId}'
-      .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)))
-      .replace('{' + 'factorId' + '}', encodeURIComponent(String(factorId)));
+    const path = '/api/v1/users/{userId}/factors/{factorId}';
+    const vars = {
+      ['userId']: String(userId),
+      ['factorId']: String(factorId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.DELETE);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.DELETE, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Query Params
     if (removeEnrollmentRecovery !== undefined) {
@@ -138,10 +142,12 @@ class UserFactorApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('UserFactorApi', 'enrollFactor', 'body');
     }
     // Path Params
-    const localVarPath = '/api/v1/users/{userId}/factors'
-      .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)));
+    const path = '/api/v1/users/{userId}/factors';
+    const vars = {
+      ['userId']: String(userId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.POST);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Query Params
     if (updatePhone !== undefined) {
@@ -200,11 +206,13 @@ class UserFactorApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('UserFactorApi', 'getFactor', 'factorId');
     }
     // Path Params
-    const localVarPath = '/api/v1/users/{userId}/factors/{factorId}'
-      .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)))
-      .replace('{' + 'factorId' + '}', encodeURIComponent(String(factorId)));
+    const path = '/api/v1/users/{userId}/factors/{factorId}';
+    const vars = {
+      ['userId']: String(userId),
+      ['factorId']: String(factorId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.GET);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -245,12 +253,14 @@ class UserFactorApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('UserFactorApi', 'getFactorTransactionStatus', 'transactionId');
     }
     // Path Params
-    const localVarPath = '/api/v1/users/{userId}/factors/{factorId}/transactions/{transactionId}'
-      .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)))
-      .replace('{' + 'factorId' + '}', encodeURIComponent(String(factorId)))
-      .replace('{' + 'transactionId' + '}', encodeURIComponent(String(transactionId)));
+    const path = '/api/v1/users/{userId}/factors/{factorId}/transactions/{transactionId}';
+    const vars = {
+      ['userId']: String(userId),
+      ['factorId']: String(factorId),
+      ['transactionId']: String(transactionId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.GET);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -281,10 +291,12 @@ class UserFactorApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('UserFactorApi', 'listFactors', 'userId');
     }
     // Path Params
-    const localVarPath = '/api/v1/users/{userId}/factors'
-      .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)));
+    const path = '/api/v1/users/{userId}/factors';
+    const vars = {
+      ['userId']: String(userId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.GET);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -315,10 +327,12 @@ class UserFactorApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('UserFactorApi', 'listSupportedFactors', 'userId');
     }
     // Path Params
-    const localVarPath = '/api/v1/users/{userId}/factors/catalog'
-      .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)));
+    const path = '/api/v1/users/{userId}/factors/catalog';
+    const vars = {
+      ['userId']: String(userId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.GET);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -349,10 +363,12 @@ class UserFactorApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('UserFactorApi', 'listSupportedSecurityQuestions', 'userId');
     }
     // Path Params
-    const localVarPath = '/api/v1/users/{userId}/factors/questions'
-      .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)));
+    const path = '/api/v1/users/{userId}/factors/questions';
+    const vars = {
+      ['userId']: String(userId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.GET);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -389,11 +405,13 @@ class UserFactorApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('UserFactorApi', 'verifyFactor', 'factorId');
     }
     // Path Params
-    const localVarPath = '/api/v1/users/{userId}/factors/{factorId}/verify'
-      .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)))
-      .replace('{' + 'factorId' + '}', encodeURIComponent(String(factorId)));
+    const path = '/api/v1/users/{userId}/factors/{factorId}/verify';
+    const vars = {
+      ['userId']: String(userId),
+      ['factorId']: String(factorId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.POST);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Query Params
     if (templateId !== undefined) {

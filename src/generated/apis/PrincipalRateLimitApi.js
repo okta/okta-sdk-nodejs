@@ -36,9 +36,10 @@ class PrincipalRateLimitApiRequestFactory extends baseapi_1.BaseAPIRequestFactor
       throw new baseapi_1.RequiredError('PrincipalRateLimitApi', 'createPrincipalRateLimitEntity', 'entity');
     }
     // Path Params
-    const localVarPath = '/api/v1/principal-rate-limits';
+    const path = '/api/v1/principal-rate-limits';
+    const vars = {};
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.POST);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Body Params
     const contentType = ObjectSerializer_1.ObjectSerializer.getPreferredMediaType([
@@ -76,10 +77,12 @@ class PrincipalRateLimitApiRequestFactory extends baseapi_1.BaseAPIRequestFactor
       throw new baseapi_1.RequiredError('PrincipalRateLimitApi', 'getPrincipalRateLimitEntity', 'principalRateLimitId');
     }
     // Path Params
-    const localVarPath = '/api/v1/principal-rate-limits/{principalRateLimitId}'
-      .replace('{' + 'principalRateLimitId' + '}', encodeURIComponent(String(principalRateLimitId)));
+    const path = '/api/v1/principal-rate-limits/{principalRateLimitId}';
+    const vars = {
+      ['principalRateLimitId']: String(principalRateLimitId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.GET);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -108,9 +111,10 @@ class PrincipalRateLimitApiRequestFactory extends baseapi_1.BaseAPIRequestFactor
   async listPrincipalRateLimitEntities(filter, after, limit, _options) {
     let _config = _options || this.configuration;
     // Path Params
-    const localVarPath = '/api/v1/principal-rate-limits';
+    const path = '/api/v1/principal-rate-limits';
+    const vars = {};
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.GET);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Query Params
     if (filter !== undefined) {
@@ -158,10 +162,12 @@ class PrincipalRateLimitApiRequestFactory extends baseapi_1.BaseAPIRequestFactor
       throw new baseapi_1.RequiredError('PrincipalRateLimitApi', 'updatePrincipalRateLimitEntity', 'entity');
     }
     // Path Params
-    const localVarPath = '/api/v1/principal-rate-limits/{principalRateLimitId}'
-      .replace('{' + 'principalRateLimitId' + '}', encodeURIComponent(String(principalRateLimitId)));
+    const path = '/api/v1/principal-rate-limits/{principalRateLimitId}';
+    const vars = {
+      ['principalRateLimitId']: String(principalRateLimitId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.PUT);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.PUT, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Body Params
     const contentType = ObjectSerializer_1.ObjectSerializer.getPreferredMediaType([

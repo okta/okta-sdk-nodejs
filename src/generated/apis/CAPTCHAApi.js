@@ -36,9 +36,10 @@ class CAPTCHAApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('CAPTCHAApi', 'createCaptchaInstance', 'instance');
     }
     // Path Params
-    const localVarPath = '/api/v1/captchas';
+    const path = '/api/v1/captchas';
+    const vars = {};
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.POST);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Body Params
     const contentType = ObjectSerializer_1.ObjectSerializer.getPreferredMediaType([
@@ -76,10 +77,12 @@ class CAPTCHAApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('CAPTCHAApi', 'deleteCaptchaInstance', 'captchaId');
     }
     // Path Params
-    const localVarPath = '/api/v1/captchas/{captchaId}'
-      .replace('{' + 'captchaId' + '}', encodeURIComponent(String(captchaId)));
+    const path = '/api/v1/captchas/{captchaId}';
+    const vars = {
+      ['captchaId']: String(captchaId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.DELETE);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.DELETE, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -110,10 +113,12 @@ class CAPTCHAApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('CAPTCHAApi', 'getCaptchaInstance', 'captchaId');
     }
     // Path Params
-    const localVarPath = '/api/v1/captchas/{captchaId}'
-      .replace('{' + 'captchaId' + '}', encodeURIComponent(String(captchaId)));
+    const path = '/api/v1/captchas/{captchaId}';
+    const vars = {
+      ['captchaId']: String(captchaId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.GET);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -139,9 +144,10 @@ class CAPTCHAApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   async listCaptchaInstances(_options) {
     let _config = _options || this.configuration;
     // Path Params
-    const localVarPath = '/api/v1/captchas';
+    const path = '/api/v1/captchas';
+    const vars = {};
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.GET);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -177,10 +183,12 @@ class CAPTCHAApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('CAPTCHAApi', 'partialUpdateCaptchaInstance', 'instance');
     }
     // Path Params
-    const localVarPath = '/api/v1/captchas/{captchaId}'
-      .replace('{' + 'captchaId' + '}', encodeURIComponent(String(captchaId)));
+    const path = '/api/v1/captchas/{captchaId}';
+    const vars = {
+      ['captchaId']: String(captchaId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.POST);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Body Params
     const contentType = ObjectSerializer_1.ObjectSerializer.getPreferredMediaType([
@@ -223,10 +231,12 @@ class CAPTCHAApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('CAPTCHAApi', 'updateCaptchaInstance', 'instance');
     }
     // Path Params
-    const localVarPath = '/api/v1/captchas/{captchaId}'
-      .replace('{' + 'captchaId' + '}', encodeURIComponent(String(captchaId)));
+    const path = '/api/v1/captchas/{captchaId}';
+    const vars = {
+      ['captchaId']: String(captchaId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.PUT);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.PUT, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Body Params
     const contentType = ObjectSerializer_1.ObjectSerializer.getPreferredMediaType([

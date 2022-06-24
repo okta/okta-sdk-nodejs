@@ -36,10 +36,12 @@ class ProfileMappingApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('ProfileMappingApi', 'getProfileMapping', 'mappingId');
     }
     // Path Params
-    const localVarPath = '/api/v1/mappings/{mappingId}'
-      .replace('{' + 'mappingId' + '}', encodeURIComponent(String(mappingId)));
+    const path = '/api/v1/mappings/{mappingId}';
+    const vars = {
+      ['mappingId']: String(mappingId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.GET);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -69,9 +71,10 @@ class ProfileMappingApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   async listProfileMappings(after, limit, sourceId, targetId, _options) {
     let _config = _options || this.configuration;
     // Path Params
-    const localVarPath = '/api/v1/mappings';
+    const path = '/api/v1/mappings';
+    const vars = {};
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.GET);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Query Params
     if (after !== undefined) {
@@ -123,10 +126,12 @@ class ProfileMappingApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('ProfileMappingApi', 'updateProfileMapping', 'profileMapping');
     }
     // Path Params
-    const localVarPath = '/api/v1/mappings/{mappingId}'
-      .replace('{' + 'mappingId' + '}', encodeURIComponent(String(mappingId)));
+    const path = '/api/v1/mappings/{mappingId}';
+    const vars = {
+      ['mappingId']: String(mappingId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.POST);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Body Params
     const contentType = ObjectSerializer_1.ObjectSerializer.getPreferredMediaType([

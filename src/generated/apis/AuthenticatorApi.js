@@ -36,10 +36,12 @@ class AuthenticatorApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('AuthenticatorApi', 'activateAuthenticator', 'authenticatorId');
     }
     // Path Params
-    const localVarPath = '/api/v1/authenticators/{authenticatorId}/lifecycle/activate'
-      .replace('{' + 'authenticatorId' + '}', encodeURIComponent(String(authenticatorId)));
+    const path = '/api/v1/authenticators/{authenticatorId}/lifecycle/activate';
+    const vars = {
+      ['authenticatorId']: String(authenticatorId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.POST);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -70,10 +72,12 @@ class AuthenticatorApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('AuthenticatorApi', 'deactivateAuthenticator', 'authenticatorId');
     }
     // Path Params
-    const localVarPath = '/api/v1/authenticators/{authenticatorId}/lifecycle/deactivate'
-      .replace('{' + 'authenticatorId' + '}', encodeURIComponent(String(authenticatorId)));
+    const path = '/api/v1/authenticators/{authenticatorId}/lifecycle/deactivate';
+    const vars = {
+      ['authenticatorId']: String(authenticatorId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.POST);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -104,10 +108,12 @@ class AuthenticatorApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('AuthenticatorApi', 'getAuthenticator', 'authenticatorId');
     }
     // Path Params
-    const localVarPath = '/api/v1/authenticators/{authenticatorId}'
-      .replace('{' + 'authenticatorId' + '}', encodeURIComponent(String(authenticatorId)));
+    const path = '/api/v1/authenticators/{authenticatorId}';
+    const vars = {
+      ['authenticatorId']: String(authenticatorId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.GET);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -133,9 +139,10 @@ class AuthenticatorApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   async listAuthenticators(_options) {
     let _config = _options || this.configuration;
     // Path Params
-    const localVarPath = '/api/v1/authenticators';
+    const path = '/api/v1/authenticators';
+    const vars = {};
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.GET);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -171,10 +178,12 @@ class AuthenticatorApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('AuthenticatorApi', 'updateAuthenticator', 'authenticator');
     }
     // Path Params
-    const localVarPath = '/api/v1/authenticators/{authenticatorId}'
-      .replace('{' + 'authenticatorId' + '}', encodeURIComponent(String(authenticatorId)));
+    const path = '/api/v1/authenticators/{authenticatorId}';
+    const vars = {
+      ['authenticatorId']: String(authenticatorId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.PUT);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.PUT, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Body Params
     const contentType = ObjectSerializer_1.ObjectSerializer.getPreferredMediaType([

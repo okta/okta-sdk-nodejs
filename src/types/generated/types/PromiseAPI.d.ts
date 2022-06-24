@@ -42,6 +42,7 @@ import { CreateSessionRequest } from '../models/CreateSessionRequest';
 import { CreateUserRequest } from '../models/CreateUserRequest';
 import { Csr } from '../models/Csr';
 import { CsrMetadata } from '../models/CsrMetadata';
+import { CustomizablePage } from '../models/CustomizablePage';
 import { Domain } from '../models/Domain';
 import { DomainCertificate } from '../models/DomainCertificate';
 import { DomainListResponse } from '../models/DomainListResponse';
@@ -57,6 +58,7 @@ import { ForgotPasswordResponse } from '../models/ForgotPasswordResponse';
 import { Group } from '../models/Group';
 import { GroupRule } from '../models/GroupRule';
 import { GroupSchema } from '../models/GroupSchema';
+import { HostedPage } from '../models/HostedPage';
 import { IdentityProvider } from '../models/IdentityProvider';
 import { IdentityProviderApplicationUser } from '../models/IdentityProviderApplicationUser';
 import { ImageUploadResponse } from '../models/ImageUploadResponse';
@@ -89,6 +91,7 @@ import { ResetPasswordToken } from '../models/ResetPasswordToken';
 import { Role } from '../models/Role';
 import { SecurityQuestion } from '../models/SecurityQuestion';
 import { Session } from '../models/Session';
+import { SignInPage } from '../models/SignInPage';
 import { SmsTemplate } from '../models/SmsTemplate';
 import { SmsTemplateType } from '../models/SmsTemplateType';
 import { SocialAuthToken } from '../models/SocialAuthToken';
@@ -1095,6 +1098,71 @@ export declare class PromiseCustomizationApi {
       */
   listEmailTemplates(brandId: string, after?: string, limit?: number, expand?: Array<'settings' | 'customizationCount'>, _options?: Configuration): Promise<Collection<EmailTemplate>>;
   /**
+      * Previews the error page.
+      * Preview the Error Page
+      * @param brandId The ID of the brand.
+      * @param CustomizablePage
+      */
+  previewErrorPage(brandId: string, CustomizablePage: CustomizablePage, _options?: Configuration): Promise<string>;
+  /**
+      * Preview the sign-in page.
+      * Preview the Sign-in Page.
+      * @param brandId The ID of the brand.
+      * @param SignInPage
+      */
+  previewSignInPage(brandId: string, SignInPage: SignInPage, _options?: Configuration): Promise<string>;
+  /**
+      * Replaces the error page.
+      * Replace the Error Page
+      * @param brandId The ID of the brand.
+      * @param CustomizablePage
+      */
+  replaceErrorPage(brandId: string, CustomizablePage: CustomizablePage, _options?: Configuration): Promise<CustomizablePage>;
+  /**
+      * Replaces the sign-in page.
+      * Replace the Sign-in Page
+      * @param brandId The ID of the brand.
+      * @param SignInPage
+      */
+  replaceSignInPage(brandId: string, SignInPage: SignInPage, _options?: Configuration): Promise<SignInPage>;
+  /**
+      * Replaces the sign-out page settings.
+      * Replace the Sign-out Page Settings
+      * @param brandId The ID of the brand.
+      * @param HostedPage
+      */
+  replaceSignOutPageSettings(brandId: string, HostedPage: HostedPage, _options?: Configuration): Promise<HostedPage>;
+  /**
+      * Resets the error page.
+      * Reset the Error Page
+      * @param brandId The ID of the brand.
+      */
+  resetErrorPage(brandId: string, _options?: Configuration): Promise<void>;
+  /**
+      * Reset the sign-in page.
+      * Reset the Sign-in Page
+      * @param brandId The ID of the brand.
+      */
+  resetSignInPage(brandId: string, _options?: Configuration): Promise<void>;
+  /**
+      * Retrieves the error page.
+      * Retrieve the Error Page
+      * @param brandId The ID of the brand.
+      */
+  retrieveErrorPage(brandId: string, _options?: Configuration): Promise<CustomizablePage>;
+  /**
+      * Retrieves the sign-in page.
+      * Retrieve the Sign-in Page
+      * @param brandId The ID of the brand.
+      */
+  retrieveSignInPage(brandId: string, _options?: Configuration): Promise<SignInPage>;
+  /**
+      * Retrieves the sign-out page settings.
+      * Retrieve the Sign-out Page Settings
+      * @param brandId The ID of the brand.
+      */
+  retrieveSignOutPageSettings(brandId: string, _options?: Configuration): Promise<HostedPage>;
+  /**
       * Sends a test email to the current user’s primary and secondary email addresses. The email content is selected based on the following priority: 1. The email customization for the language specified in the `language` query parameter. 2. The email template's default customization. 3. The email template’s default content, translated to the current user's language.
       * Send a Test Email
       * @param brandId The ID of the brand.
@@ -1139,22 +1207,25 @@ export declare class PromiseCustomizationApi {
       * Upload the Background Image
       * @param brandId
       * @param themeId
+      * @param file
       */
-  uploadBrandThemeBackgroundImage(brandId: string, themeId: string, _options?: Configuration): Promise<ImageUploadResponse>;
+  uploadBrandThemeBackgroundImage(brandId: string, themeId: string, file: HttpFile, _options?: Configuration): Promise<ImageUploadResponse>;
   /**
       * Updates the favicon for your theme
       * Upload the Favicon
       * @param brandId
       * @param themeId
+      * @param file
       */
-  uploadBrandThemeFavicon(brandId: string, themeId: string, _options?: Configuration): Promise<ImageUploadResponse>;
+  uploadBrandThemeFavicon(brandId: string, themeId: string, file: HttpFile, _options?: Configuration): Promise<ImageUploadResponse>;
   /**
       * Updates the logo for your Theme
       * Upload the Logo
       * @param brandId
       * @param themeId
+      * @param file
       */
-  uploadBrandThemeLogo(brandId: string, themeId: string, _options?: Configuration): Promise<ImageUploadResponse>;
+  uploadBrandThemeLogo(brandId: string, themeId: string, file: HttpFile, _options?: Configuration): Promise<ImageUploadResponse>;
 }
 import { DomainApiRequestFactory, DomainApiResponseProcessor } from '../apis/DomainApi';
 export declare class PromiseDomainApi {
@@ -1900,8 +1971,9 @@ export declare class PromiseOrgSettingApi {
   /**
       * Updates the logo for your organization.
       * Upload the Org Logo
+      * @param file
       */
-  updateOrgLogo(_options?: Configuration): Promise<void>;
+  updateOrgLogo(file: HttpFile, _options?: Configuration): Promise<void>;
   /**
       * Update settings of your organization.
       * Replace the Org Settings

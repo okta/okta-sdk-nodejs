@@ -36,10 +36,12 @@ class GroupApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('GroupApi', 'activateGroupRule', 'ruleId');
     }
     // Path Params
-    const localVarPath = '/api/v1/groups/rules/{ruleId}/lifecycle/activate'
-      .replace('{' + 'ruleId' + '}', encodeURIComponent(String(ruleId)));
+    const path = '/api/v1/groups/rules/{ruleId}/lifecycle/activate';
+    const vars = {
+      ['ruleId']: String(ruleId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.POST);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -85,13 +87,15 @@ class GroupApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('GroupApi', 'addApplicationInstanceTargetToAppAdminRoleGivenToGroup', 'applicationId');
     }
     // Path Params
-    const localVarPath = '/api/v1/groups/{groupId}/roles/{roleId}/targets/catalog/apps/{appName}/{applicationId}'
-      .replace('{' + 'groupId' + '}', encodeURIComponent(String(groupId)))
-      .replace('{' + 'roleId' + '}', encodeURIComponent(String(roleId)))
-      .replace('{' + 'appName' + '}', encodeURIComponent(String(appName)))
-      .replace('{' + 'applicationId' + '}', encodeURIComponent(String(applicationId)));
+    const path = '/api/v1/groups/{groupId}/roles/{roleId}/targets/catalog/apps/{appName}/{applicationId}';
+    const vars = {
+      ['groupId']: String(groupId),
+      ['roleId']: String(roleId),
+      ['appName']: String(appName),
+      ['applicationId']: String(applicationId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.PUT);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.PUT, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -132,12 +136,14 @@ class GroupApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('GroupApi', 'addApplicationTargetToAdminRoleGivenToGroup', 'appName');
     }
     // Path Params
-    const localVarPath = '/api/v1/groups/{groupId}/roles/{roleId}/targets/catalog/apps/{appName}'
-      .replace('{' + 'groupId' + '}', encodeURIComponent(String(groupId)))
-      .replace('{' + 'roleId' + '}', encodeURIComponent(String(roleId)))
-      .replace('{' + 'appName' + '}', encodeURIComponent(String(appName)));
+    const path = '/api/v1/groups/{groupId}/roles/{roleId}/targets/catalog/apps/{appName}';
+    const vars = {
+      ['groupId']: String(groupId),
+      ['roleId']: String(roleId),
+      ['appName']: String(appName),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.PUT);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.PUT, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -178,12 +184,14 @@ class GroupApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('GroupApi', 'addGroupTargetToGroupAdministratorRoleForGroup', 'targetGroupId');
     }
     // Path Params
-    const localVarPath = '/api/v1/groups/{groupId}/roles/{roleId}/targets/groups/{targetGroupId}'
-      .replace('{' + 'groupId' + '}', encodeURIComponent(String(groupId)))
-      .replace('{' + 'roleId' + '}', encodeURIComponent(String(roleId)))
-      .replace('{' + 'targetGroupId' + '}', encodeURIComponent(String(targetGroupId)));
+    const path = '/api/v1/groups/{groupId}/roles/{roleId}/targets/groups/{targetGroupId}';
+    const vars = {
+      ['groupId']: String(groupId),
+      ['roleId']: String(roleId),
+      ['targetGroupId']: String(targetGroupId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.PUT);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.PUT, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -214,11 +222,13 @@ class GroupApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('GroupApi', 'addUserToGroup', 'userId');
     }
     // Path Params
-    const localVarPath = '/api/v1/groups/{groupId}/users/{userId}'
-      .replace('{' + 'groupId' + '}', encodeURIComponent(String(groupId)))
-      .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)));
+    const path = '/api/v1/groups/{groupId}/users/{userId}';
+    const vars = {
+      ['groupId']: String(groupId),
+      ['userId']: String(userId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.PUT);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.PUT, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -255,10 +265,12 @@ class GroupApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('GroupApi', 'assignRoleToGroup', 'assignRoleRequest');
     }
     // Path Params
-    const localVarPath = '/api/v1/groups/{groupId}/roles'
-      .replace('{' + 'groupId' + '}', encodeURIComponent(String(groupId)));
+    const path = '/api/v1/groups/{groupId}/roles';
+    const vars = {
+      ['groupId']: String(groupId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.POST);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Query Params
     if (disableNotifications !== undefined) {
@@ -300,9 +312,10 @@ class GroupApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('GroupApi', 'createGroup', 'group');
     }
     // Path Params
-    const localVarPath = '/api/v1/groups';
+    const path = '/api/v1/groups';
+    const vars = {};
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.POST);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Body Params
     const contentType = ObjectSerializer_1.ObjectSerializer.getPreferredMediaType([
@@ -340,9 +353,10 @@ class GroupApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('GroupApi', 'createGroupRule', 'groupRule');
     }
     // Path Params
-    const localVarPath = '/api/v1/groups/rules';
+    const path = '/api/v1/groups/rules';
+    const vars = {};
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.POST);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Body Params
     const contentType = ObjectSerializer_1.ObjectSerializer.getPreferredMediaType([
@@ -380,10 +394,12 @@ class GroupApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('GroupApi', 'deactivateGroupRule', 'ruleId');
     }
     // Path Params
-    const localVarPath = '/api/v1/groups/rules/{ruleId}/lifecycle/deactivate'
-      .replace('{' + 'ruleId' + '}', encodeURIComponent(String(ruleId)));
+    const path = '/api/v1/groups/rules/{ruleId}/lifecycle/deactivate';
+    const vars = {
+      ['ruleId']: String(ruleId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.POST);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -414,10 +430,12 @@ class GroupApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('GroupApi', 'deleteGroup', 'groupId');
     }
     // Path Params
-    const localVarPath = '/api/v1/groups/{groupId}'
-      .replace('{' + 'groupId' + '}', encodeURIComponent(String(groupId)));
+    const path = '/api/v1/groups/{groupId}';
+    const vars = {
+      ['groupId']: String(groupId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.DELETE);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.DELETE, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -449,10 +467,12 @@ class GroupApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('GroupApi', 'deleteGroupRule', 'ruleId');
     }
     // Path Params
-    const localVarPath = '/api/v1/groups/rules/{ruleId}'
-      .replace('{' + 'ruleId' + '}', encodeURIComponent(String(ruleId)));
+    const path = '/api/v1/groups/rules/{ruleId}';
+    const vars = {
+      ['ruleId']: String(ruleId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.DELETE);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.DELETE, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Query Params
     if (removeUsers !== undefined) {
@@ -487,10 +507,12 @@ class GroupApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('GroupApi', 'getGroup', 'groupId');
     }
     // Path Params
-    const localVarPath = '/api/v1/groups/{groupId}'
-      .replace('{' + 'groupId' + '}', encodeURIComponent(String(groupId)));
+    const path = '/api/v1/groups/{groupId}';
+    const vars = {
+      ['groupId']: String(groupId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.GET);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -522,10 +544,12 @@ class GroupApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('GroupApi', 'getGroupRule', 'ruleId');
     }
     // Path Params
-    const localVarPath = '/api/v1/groups/rules/{ruleId}'
-      .replace('{' + 'ruleId' + '}', encodeURIComponent(String(ruleId)));
+    const path = '/api/v1/groups/rules/{ruleId}';
+    const vars = {
+      ['ruleId']: String(ruleId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.GET);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Query Params
     if (expand !== undefined) {
@@ -565,11 +589,13 @@ class GroupApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('GroupApi', 'getRole', 'roleId');
     }
     // Path Params
-    const localVarPath = '/api/v1/groups/{groupId}/roles/{roleId}'
-      .replace('{' + 'groupId' + '}', encodeURIComponent(String(groupId)))
-      .replace('{' + 'roleId' + '}', encodeURIComponent(String(roleId)));
+    const path = '/api/v1/groups/{groupId}/roles/{roleId}';
+    const vars = {
+      ['groupId']: String(groupId),
+      ['roleId']: String(roleId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.GET);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -607,11 +633,13 @@ class GroupApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('GroupApi', 'listApplicationTargetsForApplicationAdministratorRoleForGroup', 'roleId');
     }
     // Path Params
-    const localVarPath = '/api/v1/groups/{groupId}/roles/{roleId}/targets/catalog/apps'
-      .replace('{' + 'groupId' + '}', encodeURIComponent(String(groupId)))
-      .replace('{' + 'roleId' + '}', encodeURIComponent(String(roleId)));
+    const path = '/api/v1/groups/{groupId}/roles/{roleId}/targets/catalog/apps';
+    const vars = {
+      ['groupId']: String(groupId),
+      ['roleId']: String(roleId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.GET);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Query Params
     if (after !== undefined) {
@@ -652,10 +680,12 @@ class GroupApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('GroupApi', 'listAssignedApplicationsForGroup', 'groupId');
     }
     // Path Params
-    const localVarPath = '/api/v1/groups/{groupId}/apps'
-      .replace('{' + 'groupId' + '}', encodeURIComponent(String(groupId)));
+    const path = '/api/v1/groups/{groupId}/apps';
+    const vars = {
+      ['groupId']: String(groupId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.GET);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Query Params
     if (after !== undefined) {
@@ -695,10 +725,12 @@ class GroupApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('GroupApi', 'listGroupAssignedRoles', 'groupId');
     }
     // Path Params
-    const localVarPath = '/api/v1/groups/{groupId}/roles'
-      .replace('{' + 'groupId' + '}', encodeURIComponent(String(groupId)));
+    const path = '/api/v1/groups/{groupId}/roles';
+    const vars = {
+      ['groupId']: String(groupId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.GET);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Query Params
     if (expand !== undefined) {
@@ -732,9 +764,10 @@ class GroupApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   async listGroupRules(limit, after, search, expand, _options) {
     let _config = _options || this.configuration;
     // Path Params
-    const localVarPath = '/api/v1/groups/rules';
+    const path = '/api/v1/groups/rules';
+    const vars = {};
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.GET);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Query Params
     if (limit !== undefined) {
@@ -788,11 +821,13 @@ class GroupApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('GroupApi', 'listGroupTargetsForGroupRole', 'roleId');
     }
     // Path Params
-    const localVarPath = '/api/v1/groups/{groupId}/roles/{roleId}/targets/groups'
-      .replace('{' + 'groupId' + '}', encodeURIComponent(String(groupId)))
-      .replace('{' + 'roleId' + '}', encodeURIComponent(String(roleId)));
+    const path = '/api/v1/groups/{groupId}/roles/{roleId}/targets/groups';
+    const vars = {
+      ['groupId']: String(groupId),
+      ['roleId']: String(roleId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.GET);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Query Params
     if (after !== undefined) {
@@ -833,10 +868,12 @@ class GroupApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('GroupApi', 'listGroupUsers', 'groupId');
     }
     // Path Params
-    const localVarPath = '/api/v1/groups/{groupId}/users'
-      .replace('{' + 'groupId' + '}', encodeURIComponent(String(groupId)));
+    const path = '/api/v1/groups/{groupId}/users';
+    const vars = {
+      ['groupId']: String(groupId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.GET);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Query Params
     if (after !== undefined) {
@@ -875,9 +912,10 @@ class GroupApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   async listGroups(q, search, after, limit, expand, _options) {
     let _config = _options || this.configuration;
     // Path Params
-    const localVarPath = '/api/v1/groups';
+    const path = '/api/v1/groups';
+    const vars = {};
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.GET);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Query Params
     if (q !== undefined) {
@@ -943,13 +981,15 @@ class GroupApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('GroupApi', 'removeApplicationTargetFromAdministratorRoleGivenToGroup', 'applicationId');
     }
     // Path Params
-    const localVarPath = '/api/v1/groups/{groupId}/roles/{roleId}/targets/catalog/apps/{appName}/{applicationId}'
-      .replace('{' + 'groupId' + '}', encodeURIComponent(String(groupId)))
-      .replace('{' + 'roleId' + '}', encodeURIComponent(String(roleId)))
-      .replace('{' + 'appName' + '}', encodeURIComponent(String(appName)))
-      .replace('{' + 'applicationId' + '}', encodeURIComponent(String(applicationId)));
+    const path = '/api/v1/groups/{groupId}/roles/{roleId}/targets/catalog/apps/{appName}/{applicationId}';
+    const vars = {
+      ['groupId']: String(groupId),
+      ['roleId']: String(roleId),
+      ['appName']: String(appName),
+      ['applicationId']: String(applicationId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.DELETE);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.DELETE, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -990,12 +1030,14 @@ class GroupApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('GroupApi', 'removeApplicationTargetFromApplicationAdministratorRoleGivenToGroup', 'appName');
     }
     // Path Params
-    const localVarPath = '/api/v1/groups/{groupId}/roles/{roleId}/targets/catalog/apps/{appName}'
-      .replace('{' + 'groupId' + '}', encodeURIComponent(String(groupId)))
-      .replace('{' + 'roleId' + '}', encodeURIComponent(String(roleId)))
-      .replace('{' + 'appName' + '}', encodeURIComponent(String(appName)));
+    const path = '/api/v1/groups/{groupId}/roles/{roleId}/targets/catalog/apps/{appName}';
+    const vars = {
+      ['groupId']: String(groupId),
+      ['roleId']: String(roleId),
+      ['appName']: String(appName),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.DELETE);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.DELETE, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -1036,12 +1078,14 @@ class GroupApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('GroupApi', 'removeGroupTargetFromGroupAdministratorRoleGivenToGroup', 'targetGroupId');
     }
     // Path Params
-    const localVarPath = '/api/v1/groups/{groupId}/roles/{roleId}/targets/groups/{targetGroupId}'
-      .replace('{' + 'groupId' + '}', encodeURIComponent(String(groupId)))
-      .replace('{' + 'roleId' + '}', encodeURIComponent(String(roleId)))
-      .replace('{' + 'targetGroupId' + '}', encodeURIComponent(String(targetGroupId)));
+    const path = '/api/v1/groups/{groupId}/roles/{roleId}/targets/groups/{targetGroupId}';
+    const vars = {
+      ['groupId']: String(groupId),
+      ['roleId']: String(roleId),
+      ['targetGroupId']: String(targetGroupId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.DELETE);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.DELETE, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -1072,11 +1116,13 @@ class GroupApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('GroupApi', 'removeRoleFromGroup', 'roleId');
     }
     // Path Params
-    const localVarPath = '/api/v1/groups/{groupId}/roles/{roleId}'
-      .replace('{' + 'groupId' + '}', encodeURIComponent(String(groupId)))
-      .replace('{' + 'roleId' + '}', encodeURIComponent(String(roleId)));
+    const path = '/api/v1/groups/{groupId}/roles/{roleId}';
+    const vars = {
+      ['groupId']: String(groupId),
+      ['roleId']: String(roleId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.DELETE);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.DELETE, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -1112,11 +1158,13 @@ class GroupApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('GroupApi', 'removeUserFromGroup', 'userId');
     }
     // Path Params
-    const localVarPath = '/api/v1/groups/{groupId}/users/{userId}'
-      .replace('{' + 'groupId' + '}', encodeURIComponent(String(groupId)))
-      .replace('{' + 'userId' + '}', encodeURIComponent(String(userId)));
+    const path = '/api/v1/groups/{groupId}/users/{userId}';
+    const vars = {
+      ['groupId']: String(groupId),
+      ['userId']: String(userId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.DELETE);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.DELETE, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -1152,10 +1200,12 @@ class GroupApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('GroupApi', 'updateGroup', 'group');
     }
     // Path Params
-    const localVarPath = '/api/v1/groups/{groupId}'
-      .replace('{' + 'groupId' + '}', encodeURIComponent(String(groupId)));
+    const path = '/api/v1/groups/{groupId}';
+    const vars = {
+      ['groupId']: String(groupId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.PUT);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.PUT, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Body Params
     const contentType = ObjectSerializer_1.ObjectSerializer.getPreferredMediaType([
@@ -1198,10 +1248,12 @@ class GroupApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('GroupApi', 'updateGroupRule', 'groupRule');
     }
     // Path Params
-    const localVarPath = '/api/v1/groups/rules/{ruleId}'
-      .replace('{' + 'ruleId' + '}', encodeURIComponent(String(ruleId)));
+    const path = '/api/v1/groups/rules/{ruleId}';
+    const vars = {
+      ['ruleId']: String(ruleId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.PUT);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.PUT, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Body Params
     const contentType = ObjectSerializer_1.ObjectSerializer.getPreferredMediaType([

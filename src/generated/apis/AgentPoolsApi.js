@@ -41,11 +41,13 @@ class AgentPoolsApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('AgentPoolsApi', 'activateAgentPoolsUpdate', 'updateId');
     }
     // Path Params
-    const localVarPath = '/api/v1/agentPools/{poolId}/updates/{updateId}/activate'
-      .replace('{' + 'poolId' + '}', encodeURIComponent(String(poolId)))
-      .replace('{' + 'updateId' + '}', encodeURIComponent(String(updateId)));
+    const path = '/api/v1/agentPools/{poolId}/updates/{updateId}/activate';
+    const vars = {
+      ['poolId']: String(poolId),
+      ['updateId']: String(updateId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.POST);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -81,10 +83,12 @@ class AgentPoolsApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('AgentPoolsApi', 'createAgentPoolsUpdate', 'AgentPoolUpdate');
     }
     // Path Params
-    const localVarPath = '/api/v1/agentPools/{poolId}/updates'
-      .replace('{' + 'poolId' + '}', encodeURIComponent(String(poolId)));
+    const path = '/api/v1/agentPools/{poolId}/updates';
+    const vars = {
+      ['poolId']: String(poolId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.POST);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Body Params
     const contentType = ObjectSerializer_1.ObjectSerializer.getPreferredMediaType([
@@ -127,11 +131,13 @@ class AgentPoolsApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('AgentPoolsApi', 'deactivateAgentPoolsUpdate', 'updateId');
     }
     // Path Params
-    const localVarPath = '/api/v1/agentPools/{poolId}/updates/{updateId}/deactivate'
-      .replace('{' + 'poolId' + '}', encodeURIComponent(String(poolId)))
-      .replace('{' + 'updateId' + '}', encodeURIComponent(String(updateId)));
+    const path = '/api/v1/agentPools/{poolId}/updates/{updateId}/deactivate';
+    const vars = {
+      ['poolId']: String(poolId),
+      ['updateId']: String(updateId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.POST);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -167,11 +173,13 @@ class AgentPoolsApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('AgentPoolsApi', 'deleteAgentPoolsUpdate', 'updateId');
     }
     // Path Params
-    const localVarPath = '/api/v1/agentPools/{poolId}/updates/{updateId}'
-      .replace('{' + 'poolId' + '}', encodeURIComponent(String(poolId)))
-      .replace('{' + 'updateId' + '}', encodeURIComponent(String(updateId)));
+    const path = '/api/v1/agentPools/{poolId}/updates/{updateId}';
+    const vars = {
+      ['poolId']: String(poolId),
+      ['updateId']: String(updateId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.DELETE);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.DELETE, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -200,9 +208,10 @@ class AgentPoolsApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   async getAgentPools(limitPerPoolType, poolType, after, _options) {
     let _config = _options || this.configuration;
     // Path Params
-    const localVarPath = '/api/v1/agentPools';
+    const path = '/api/v1/agentPools';
+    const vars = {};
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.GET);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Query Params
     if (limitPerPoolType !== undefined) {
@@ -250,11 +259,13 @@ class AgentPoolsApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('AgentPoolsApi', 'getAgentPoolsUpdateInstance', 'updateId');
     }
     // Path Params
-    const localVarPath = '/api/v1/agentPools/{poolId}/updates/{updateId}'
-      .replace('{' + 'poolId' + '}', encodeURIComponent(String(poolId)))
-      .replace('{' + 'updateId' + '}', encodeURIComponent(String(updateId)));
+    const path = '/api/v1/agentPools/{poolId}/updates/{updateId}';
+    const vars = {
+      ['poolId']: String(poolId),
+      ['updateId']: String(updateId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.GET);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -285,10 +296,12 @@ class AgentPoolsApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('AgentPoolsApi', 'getAgentPoolsUpdateSettings', 'poolId');
     }
     // Path Params
-    const localVarPath = '/api/v1/agentPools/{poolId}/updates/settings'
-      .replace('{' + 'poolId' + '}', encodeURIComponent(String(poolId)));
+    const path = '/api/v1/agentPools/{poolId}/updates/settings';
+    const vars = {
+      ['poolId']: String(poolId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.GET);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -320,10 +333,12 @@ class AgentPoolsApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('AgentPoolsApi', 'getAgentPoolsUpdates', 'poolId');
     }
     // Path Params
-    const localVarPath = '/api/v1/agentPools/{poolId}/updates'
-      .replace('{' + 'poolId' + '}', encodeURIComponent(String(poolId)));
+    const path = '/api/v1/agentPools/{poolId}/updates';
+    const vars = {
+      ['poolId']: String(poolId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.GET);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Query Params
     if (scheduled !== undefined) {
@@ -363,11 +378,13 @@ class AgentPoolsApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('AgentPoolsApi', 'pauseAgentPoolsUpdate', 'updateId');
     }
     // Path Params
-    const localVarPath = '/api/v1/agentPools/{poolId}/updates/{updateId}/pause'
-      .replace('{' + 'poolId' + '}', encodeURIComponent(String(poolId)))
-      .replace('{' + 'updateId' + '}', encodeURIComponent(String(updateId)));
+    const path = '/api/v1/agentPools/{poolId}/updates/{updateId}/pause';
+    const vars = {
+      ['poolId']: String(poolId),
+      ['updateId']: String(updateId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.POST);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -403,11 +420,13 @@ class AgentPoolsApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('AgentPoolsApi', 'resumeAgentPoolsUpdate', 'updateId');
     }
     // Path Params
-    const localVarPath = '/api/v1/agentPools/{poolId}/updates/{updateId}/resume'
-      .replace('{' + 'poolId' + '}', encodeURIComponent(String(poolId)))
-      .replace('{' + 'updateId' + '}', encodeURIComponent(String(updateId)));
+    const path = '/api/v1/agentPools/{poolId}/updates/{updateId}/resume';
+    const vars = {
+      ['poolId']: String(poolId),
+      ['updateId']: String(updateId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.POST);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -443,11 +462,13 @@ class AgentPoolsApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('AgentPoolsApi', 'retryAgentPoolsUpdate', 'updateId');
     }
     // Path Params
-    const localVarPath = '/api/v1/agentPools/{poolId}/updates/{updateId}/retry'
-      .replace('{' + 'poolId' + '}', encodeURIComponent(String(poolId)))
-      .replace('{' + 'updateId' + '}', encodeURIComponent(String(updateId)));
+    const path = '/api/v1/agentPools/{poolId}/updates/{updateId}/retry';
+    const vars = {
+      ['poolId']: String(poolId),
+      ['updateId']: String(updateId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.POST);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -483,10 +504,12 @@ class AgentPoolsApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('AgentPoolsApi', 'setAgentPoolsUpdateSettings', 'AgentPoolUpdateSetting');
     }
     // Path Params
-    const localVarPath = '/api/v1/agentPools/{poolId}/updates/settings'
-      .replace('{' + 'poolId' + '}', encodeURIComponent(String(poolId)));
+    const path = '/api/v1/agentPools/{poolId}/updates/settings';
+    const vars = {
+      ['poolId']: String(poolId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.POST);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Body Params
     const contentType = ObjectSerializer_1.ObjectSerializer.getPreferredMediaType([
@@ -529,11 +552,13 @@ class AgentPoolsApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('AgentPoolsApi', 'stopAgentPoolsUpdate', 'updateId');
     }
     // Path Params
-    const localVarPath = '/api/v1/agentPools/{poolId}/updates/{updateId}/stop'
-      .replace('{' + 'poolId' + '}', encodeURIComponent(String(poolId)))
-      .replace('{' + 'updateId' + '}', encodeURIComponent(String(updateId)));
+    const path = '/api/v1/agentPools/{poolId}/updates/{updateId}/stop';
+    const vars = {
+      ['poolId']: String(poolId),
+      ['updateId']: String(updateId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.POST);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
@@ -574,11 +599,13 @@ class AgentPoolsApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       throw new baseapi_1.RequiredError('AgentPoolsApi', 'updateAgentPoolsUpdate', 'AgentPoolUpdate');
     }
     // Path Params
-    const localVarPath = '/api/v1/agentPools/{poolId}/updates/{updateId}'
-      .replace('{' + 'poolId' + '}', encodeURIComponent(String(poolId)))
-      .replace('{' + 'updateId' + '}', encodeURIComponent(String(updateId)));
+    const path = '/api/v1/agentPools/{poolId}/updates/{updateId}';
+    const vars = {
+      ['poolId']: String(poolId),
+      ['updateId']: String(updateId),
+    };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.POST);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Body Params
     const contentType = ObjectSerializer_1.ObjectSerializer.getPreferredMediaType([

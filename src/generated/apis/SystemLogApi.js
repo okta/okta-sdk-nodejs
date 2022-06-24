@@ -38,9 +38,10 @@ class SystemLogApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   async getLogs(since, until, filter, q, limit, sortOrder, after, _options) {
     let _config = _options || this.configuration;
     // Path Params
-    const localVarPath = '/api/v1/logs';
+    const path = '/api/v1/logs';
+    const vars = {};
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(localVarPath, http_1.HttpMethodEnum.GET);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Query Params
     if (since !== undefined) {
