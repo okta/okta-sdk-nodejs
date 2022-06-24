@@ -43,6 +43,10 @@ declare class UserFactor extends Resource {
   verify(userId: string, verifyFactorRequest?: VerifyFactorRequestOptions, queryParameters?: {
     templateId?: string,
     tokenLifetimeSeconds?: number,
+  }, headerParameters?: {
+    X_Forwarded_For?: string,
+    User_Agent?: string,
+    Accept_Language?: string,
   }): Promise<VerifyUserFactorResponse>;
 }
 

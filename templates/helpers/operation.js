@@ -343,7 +343,7 @@ const typeScriptModelImportBuilder = model => {
 };
 
 const getOperationArgumentsAndReturnType = (operation, options = { tagV3Methods: false }) => {
-  const { operationId, bodyModel, method, pathParams, queryParams, formData, parameters } = operation;
+  const { operationId, bodyModel, method, pathParams, queryParams, headerParams, formData, parameters } = operation;
   const args = new Map();
 
   pathParams.forEach(pathParam => {
@@ -382,6 +382,13 @@ const getOperationArgumentsAndReturnType = (operation, options = { tagV3Methods:
     args.set('queryParameters', {
       isRequired: hasRequiredParameterInRequestMedia(parameters, 'query'),
       type: queryParams,
+    });
+  }
+
+  if (headerParams.length) {
+    args.set('headerParameters', {
+      isRequired: hasRequiredParameterInRequestMedia(parameters, 'query'),
+      type: headerParams,
     });
   }
 

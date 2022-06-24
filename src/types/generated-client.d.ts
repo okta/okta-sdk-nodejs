@@ -67,6 +67,8 @@ export declare class GeneratedApiClient {
   }): Promise<Collection<v3.Application>>;
   createApplication(application: v3.Application, queryParameters?: {
     activate?: boolean,
+  }, headerParameters?: {
+    OktaAccessGateway_Agent?: string,
   }): Promise<v3.Application>;
   deleteApplication(appId: string): Promise<void>;
   getApplication(appId: string, queryParameters?: {
@@ -538,6 +540,10 @@ export declare class GeneratedApiClient {
   verifyFactor(userId: string, factorId: string, verifyFactorRequest?: v3.VerifyFactorRequest, queryParameters?: {
     templateId?: string,
     tokenLifetimeSeconds?: number,
+  }, headerParameters?: {
+    X_Forwarded_For?: string,
+    User_Agent?: string,
+    Accept_Language?: string,
   }): Promise<v3.VerifyUserFactorResponse>;
   revokeUserGrants(userId: string): Promise<Response>;
   listUserGrants(userId: string, queryParameters?: {
