@@ -317,7 +317,34 @@ const V3ApiOperations = {
     'unlockUser',
     'unsuspendUser',
     'updateUser',
-  ]
+  ],
+  IdentityProviderApi: [
+    'activateIdentityProvider',
+    'cloneIdentityProviderKey',
+    'createIdentityProvider',
+    'createIdentityProviderKey',
+    'deactivateIdentityProvider',
+    'deleteIdentityProvider',
+    'deleteIdentityProviderKey',
+    'generateCsrForIdentityProvider',
+    'generateIdentityProviderSigningKey',
+    'getCsrForIdentityProvider',
+    'getIdentityProvider',
+    'getIdentityProviderApplicationUser',
+    'getIdentityProviderKey',
+    'getIdentityProviderSigningKey',
+    'linkUserToIdentityProvider',
+    'listCsrsForIdentityProvider',
+    'listIdentityProviderApplicationUsers',
+    'listIdentityProviderKeys',
+    'listIdentityProviderSigningKeys',
+    'listIdentityProviders',
+    'listSocialAuthTokens',
+    'publishCsrForIdentityProvider',
+    'revokeCsrForIdentityProvider',
+    'unlinkUserFromIdentityProvider',
+    'updateIdentityProvider'
+  ],
 };
 
 function getV3ReturnType(operationId) {

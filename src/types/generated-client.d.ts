@@ -17,18 +17,10 @@ import { ReadStream } from 'fs';
 import { ApplicationOptions } from './parameterized-operations-client';
 import * as v3 from './generated';
 import { JsonWebKey } from './models/JsonWebKey';
-import { Response } from 'node-fetch';
 import { Collection } from './collection';
-import { IdentityProvider } from './models/IdentityProvider';
-import { IdentityProviderOptions } from './models/IdentityProvider';
-import { JsonWebKeyOptions } from './models/JsonWebKey';
-import { Csr } from './models/Csr';
-import { CsrMetadataOptions } from './models/CsrMetadata';
-import { IdentityProviderApplicationUser } from './models/IdentityProviderApplicationUser';
-import { UserIdentityProviderLinkRequestOptions } from './models/UserIdentityProviderLinkRequest';
-import { SocialAuthToken } from './models/SocialAuthToken';
 import { Policy } from './models/Policy';
 import { PolicyOptions } from './models/Policy';
+import { Response } from 'node-fetch';
 import { PolicyRule } from './models/PolicyRule';
 import { PolicyRuleOptions } from './models/PolicyRule';
 import { Subscription } from './models/Subscription';
@@ -303,42 +295,42 @@ export declare class GeneratedApiClient {
     after?: string,
     limit?: number,
     type?: string,
-  }): Collection<IdentityProvider>;
-  createIdentityProvider(identityProvider: IdentityProviderOptions): Promise<IdentityProvider>;
+  }): Promise<Collection<v3.IdentityProvider>>;
+  createIdentityProvider(identityProvider: v3.IdentityProvider): Promise<v3.IdentityProvider>;
   listIdentityProviderKeys(queryParameters?: {
     after?: string,
     limit?: number,
-  }): Collection<JsonWebKey>;
-  createIdentityProviderKey(jsonWebKey: JsonWebKeyOptions): Promise<JsonWebKey>;
-  deleteIdentityProviderKey(keyId: string): Promise<Response>;
-  getIdentityProviderKey(keyId: string): Promise<JsonWebKey>;
-  deleteIdentityProvider(idpId: string): Promise<Response>;
-  getIdentityProvider(idpId: string): Promise<IdentityProvider>;
-  updateIdentityProvider(idpId: string, identityProvider: IdentityProviderOptions): Promise<IdentityProvider>;
-  listCsrsForIdentityProvider(idpId: string): Collection<Csr>;
-  generateCsrForIdentityProvider(idpId: string, csrMetadata: CsrMetadataOptions): Promise<Csr>;
-  revokeCsrForIdentityProvider(idpId: string, csrId: string): Promise<Response>;
-  getCsrForIdentityProvider(idpId: string, csrId: string): Promise<Csr>;
+  }): Promise<Collection<v3.JsonWebKey>>;
+  createIdentityProviderKey(jsonWebKey: v3.JsonWebKey): Promise<v3.JsonWebKey>;
+  deleteIdentityProviderKey(keyId: string): Promise<void>;
+  getIdentityProviderKey(keyId: string): Promise<v3.JsonWebKey>;
+  deleteIdentityProvider(idpId: string): Promise<void>;
+  getIdentityProvider(idpId: string): Promise<v3.IdentityProvider>;
+  updateIdentityProvider(idpId: string, identityProvider: v3.IdentityProvider): Promise<v3.IdentityProvider>;
+  listCsrsForIdentityProvider(idpId: string): Promise<Collection<v3.Csr>>;
+  generateCsrForIdentityProvider(idpId: string, csrMetadata: v3.CsrMetadata): Promise<v3.Csr>;
+  revokeCsrForIdentityProvider(idpId: string, csrId: string): Promise<void>;
+  getCsrForIdentityProvider(idpId: string, csrId: string): Promise<v3.Csr>;
   publishCerCertForIdentityProvider(idpId: string, csrId: string, certificate: string): Promise<JsonWebKey>;
   publishBinaryCerCertForIdentityProvider(idpId: string, csrId: string, certificate: string): Promise<JsonWebKey>;
   publishDerCertForIdentityProvider(idpId: string, csrId: string, certificate: string): Promise<JsonWebKey>;
   publishBinaryDerCertForIdentityProvider(idpId: string, csrId: string, certificate: string): Promise<JsonWebKey>;
   publishBinaryPemCertForIdentityProvider(idpId: string, csrId: string, certificate: string): Promise<JsonWebKey>;
-  listIdentityProviderSigningKeys(idpId: string): Collection<JsonWebKey>;
+  listIdentityProviderSigningKeys(idpId: string): Promise<Collection<v3.JsonWebKey>>;
   generateIdentityProviderSigningKey(idpId: string, queryParameters: {
     validityYears: number,
-  }): Promise<JsonWebKey>;
-  getIdentityProviderSigningKey(idpId: string, keyId: string): Promise<JsonWebKey>;
+  }): Promise<v3.JsonWebKey>;
+  getIdentityProviderSigningKey(idpId: string, keyId: string): Promise<v3.JsonWebKey>;
   cloneIdentityProviderKey(idpId: string, keyId: string, queryParameters: {
     targetIdpId: string,
-  }): Promise<JsonWebKey>;
-  activateIdentityProvider(idpId: string): Promise<IdentityProvider>;
-  deactivateIdentityProvider(idpId: string): Promise<IdentityProvider>;
-  listIdentityProviderApplicationUsers(idpId: string): Collection<IdentityProviderApplicationUser>;
-  unlinkUserFromIdentityProvider(idpId: string, userId: string): Promise<Response>;
-  getIdentityProviderApplicationUser(idpId: string, userId: string): Promise<IdentityProviderApplicationUser>;
-  linkUserToIdentityProvider(idpId: string, userId: string, userIdentityProviderLinkRequest: UserIdentityProviderLinkRequestOptions): Promise<IdentityProviderApplicationUser>;
-  listSocialAuthTokens(idpId: string, userId: string): Collection<SocialAuthToken>;
+  }): Promise<v3.JsonWebKey>;
+  activateIdentityProvider(idpId: string): Promise<v3.IdentityProvider>;
+  deactivateIdentityProvider(idpId: string): Promise<v3.IdentityProvider>;
+  listIdentityProviderApplicationUsers(idpId: string): Promise<Collection<v3.IdentityProviderApplicationUser>>;
+  unlinkUserFromIdentityProvider(idpId: string, userId: string): Promise<void>;
+  getIdentityProviderApplicationUser(idpId: string, userId: string): Promise<v3.IdentityProviderApplicationUser>;
+  linkUserToIdentityProvider(idpId: string, userId: string, userIdentityProviderLinkRequest: v3.UserIdentityProviderLinkRequest): Promise<v3.IdentityProviderApplicationUser>;
+  listSocialAuthTokens(idpId: string, userId: string): Promise<Collection<v3.SocialAuthToken>>;
   listInlineHooks(queryParameters?: {
     type?: string,
   }): Promise<Collection<v3.InlineHook>>;
