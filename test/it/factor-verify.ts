@@ -63,7 +63,7 @@ describe('Factors API', () => {
     }
 
     const answer = 'pizza';
-    const factor = {
+    const factor: okta.v3.SecurityQuestionUserFactor = {
       factorType: 'question',
       provider: 'OKTA',
       profile: {
@@ -72,7 +72,7 @@ describe('Factors API', () => {
       }
     };
     const createdFactor = await client.enrollFactor(createdUser.id, factor);
-    const response = await createdFactor.verify(createdUser.id, { answer });
+    const response = await client.verifyFactor(createdUser.id, createdFactor.id, { answer });
     expect(response.factorResult).to.be.equal('SUCCESS');
   });
 });

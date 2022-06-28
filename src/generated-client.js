@@ -67,7 +67,7 @@ class GeneratedApiClient {
    * Adds a new application to your Okta organization.
    * @returns {Promise<Application>}
    */
-  createApplication(application, queryParameters) {
+  createApplication(application, queryParameters, headerParameters) {
     if (!application) {
       return Promise.reject(new Error('OKTA API createApplication parameter application is required.'));
     }
@@ -75,7 +75,11 @@ class GeneratedApiClient {
     if (queryParameters) {
       activate = queryParameters.activate;
     }
-    return this.applicationApi.createApplication(application, activate);
+    let OktaAccessGateway_Agent;
+    if (headerParameters) {
+      OktaAccessGateway_Agent = headerParameters.OktaAccessGateway_Agent;
+    }
+    return this.applicationApi.createApplication(application, activate, OktaAccessGateway_Agent);
   }
 
   /**
@@ -6076,13 +6080,7 @@ class GeneratedApiClient {
     if (!userId) {
       return Promise.reject(new Error('OKTA API listFactors parameter userId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/users/${userId}/factors`;
-
-    return new Collection(
-      this.http,
-      url,
-      new factories.UserFactor(this),
-    );
+    return this.userFactorApi.listFactors(userId);
   }
 
   /**
@@ -6105,23 +6103,17 @@ class GeneratedApiClient {
     if (!userFactor) {
       return Promise.reject(new Error('OKTA API enrollFactor parameter userFactor is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/users/${userId}/factors`;
-    const queryString = qs.stringify(queryParameters || {});
-
-    url += queryString ? ('?' + queryString) : '';
-
-    const resources = [
-      `${this.baseUrl}/api/v1/users/${userId}`
-    ];
-
-    const request = this.http.postJson(
-      url,
-      {
-        body: userFactor
-      },
-      { resources }
-    );
-    return request.then(jsonRes => new factories.UserFactor(this).createInstance(jsonRes));
+    let updatePhone;
+    let templateId;
+    let tokenLifetimeSeconds;
+    let activate;
+    if (queryParameters) {
+      updatePhone = queryParameters.updatePhone;
+      templateId = queryParameters.templateId;
+      tokenLifetimeSeconds = queryParameters.tokenLifetimeSeconds;
+      activate = queryParameters.activate;
+    }
+    return this.userFactorApi.enrollFactor(userId, userFactor, updatePhone, templateId, tokenLifetimeSeconds, activate);
   }
 
   /**
@@ -6135,13 +6127,7 @@ class GeneratedApiClient {
     if (!userId) {
       return Promise.reject(new Error('OKTA API listSupportedFactors parameter userId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/users/${userId}/factors/catalog`;
-
-    return new Collection(
-      this.http,
-      url,
-      new factories.UserFactor(this),
-    );
+    return this.userFactorApi.listSupportedFactors(userId);
   }
 
   /**
@@ -6155,13 +6141,7 @@ class GeneratedApiClient {
     if (!userId) {
       return Promise.reject(new Error('OKTA API listSupportedSecurityQuestions parameter userId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/users/${userId}/factors/questions`;
-
-    return new Collection(
-      this.http,
-      url,
-      new ModelFactory(models.SecurityQuestion, this),
-    );
+    return this.userFactorApi.listSupportedSecurityQuestions(userId);
   }
 
   /**
@@ -6178,19 +6158,7 @@ class GeneratedApiClient {
     if (!factorId) {
       return Promise.reject(new Error('OKTA API deleteFactor parameter factorId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/users/${userId}/factors/${factorId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/users/${userId}/factors/${factorId}`,
-      `${this.baseUrl}/api/v1/users/${userId}`
-    ];
-
-    const request = this.http.delete(
-      url,
-      null,
-      { resources }
-    );
-    return request;
+    return this.userFactorApi.deleteFactor(userId, factorId);
   }
 
   /**
@@ -6208,19 +6176,7 @@ class GeneratedApiClient {
     if (!factorId) {
       return Promise.reject(new Error('OKTA API getFactor parameter factorId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/users/${userId}/factors/${factorId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/users/${userId}/factors/${factorId}`,
-      `${this.baseUrl}/api/v1/users/${userId}`
-    ];
-
-    const request = this.http.getJson(
-      url,
-      null,
-      { resources }
-    );
-    return request.then(jsonRes => new factories.UserFactor(this).createInstance(jsonRes));
+    return this.userFactorApi.getFactor(userId, factorId);
   }
 
   /**
@@ -6239,21 +6195,7 @@ class GeneratedApiClient {
     if (!factorId) {
       return Promise.reject(new Error('OKTA API activateFactor parameter factorId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/users/${userId}/factors/${factorId}/lifecycle/activate`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/users/${userId}/factors/${factorId}`,
-      `${this.baseUrl}/api/v1/users/${userId}`
-    ];
-
-    const request = this.http.postJson(
-      url,
-      {
-        body: activateFactorRequest
-      },
-      { resources }
-    );
-    return request.then(jsonRes => new factories.UserFactor(this).createInstance(jsonRes));
+    return this.userFactorApi.activateFactor(userId, factorId, activateFactorRequest);
   }
 
   /**
@@ -6275,20 +6217,7 @@ class GeneratedApiClient {
     if (!transactionId) {
       return Promise.reject(new Error('OKTA API getFactorTransactionStatus parameter transactionId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/users/${userId}/factors/${factorId}/transactions/${transactionId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/users/${userId}/factors/${factorId}/transactions/${transactionId}`,
-      `${this.baseUrl}/api/v1/users/${userId}/factors/${factorId}`,
-      `${this.baseUrl}/api/v1/users/${userId}`
-    ];
-
-    const request = this.http.getJson(
-      url,
-      null,
-      { resources }
-    );
-    return request.then(jsonRes => new models.VerifyUserFactorResponse(jsonRes, this));
+    return this.userFactorApi.getFactorTransactionStatus(userId, factorId, transactionId);
   }
 
   /**
@@ -6303,31 +6232,28 @@ class GeneratedApiClient {
    * Verifies an OTP for a `token` or `token:hardware` factor
    * @returns {Promise<VerifyUserFactorResponse>}
    */
-  verifyFactor(userId, factorId, verifyFactorRequest, queryParameters) {
+  verifyFactor(userId, factorId, verifyFactorRequest, queryParameters, headerParameters) {
     if (!userId) {
       return Promise.reject(new Error('OKTA API verifyFactor parameter userId is required.'));
     }
     if (!factorId) {
       return Promise.reject(new Error('OKTA API verifyFactor parameter factorId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/users/${userId}/factors/${factorId}/verify`;
-    const queryString = qs.stringify(queryParameters || {});
-
-    url += queryString ? ('?' + queryString) : '';
-
-    const resources = [
-      `${this.baseUrl}/api/v1/users/${userId}/factors/${factorId}`,
-      `${this.baseUrl}/api/v1/users/${userId}`
-    ];
-
-    const request = this.http.postJson(
-      url,
-      {
-        body: verifyFactorRequest
-      },
-      { resources }
-    );
-    return request.then(jsonRes => new models.VerifyUserFactorResponse(jsonRes, this));
+    let templateId;
+    let tokenLifetimeSeconds;
+    if (queryParameters) {
+      templateId = queryParameters.templateId;
+      tokenLifetimeSeconds = queryParameters.tokenLifetimeSeconds;
+    }
+    let X_Forwarded_For;
+    let User_Agent;
+    let Accept_Language;
+    if (headerParameters) {
+      X_Forwarded_For = headerParameters.X_Forwarded_For;
+      User_Agent = headerParameters.User_Agent;
+      Accept_Language = headerParameters.Accept_Language;
+    }
+    return this.userFactorApi.verifyFactor(userId, factorId, templateId, tokenLifetimeSeconds, X_Forwarded_For, User_Agent, Accept_Language, verifyFactorRequest);
   }
 
   /**

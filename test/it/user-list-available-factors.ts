@@ -49,7 +49,7 @@ describe('User API Tests', () => {
     const createdUser = await client.createUser(newUser);
 
     const factors = [];
-    await createdUser.listSupportedFactors().each(factor => factors.push(factor));
+    await (await createdUser.listSupportedFactors()).each(factor => factors.push(factor));
     expect(factors.length).to.be.greaterThan(1);
     factors.forEach(factor =>
       expect(factor).to.be.instanceof(models.UserFactor)

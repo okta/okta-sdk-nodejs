@@ -47,12 +47,6 @@ import { ChangePasswordRequestOptions } from './models/ChangePasswordRequest';
 import { UserCredentials } from './models/UserCredentials';
 import { UserCredentialsOptions } from './models/UserCredentials';
 import { ForgotPasswordResponse } from './models/ForgotPasswordResponse';
-import { UserFactor } from './models/UserFactor';
-import { UserFactorOptions } from './models/UserFactor';
-import { SecurityQuestion } from './models/SecurityQuestion';
-import { ActivateFactorRequestOptions } from './models/ActivateFactorRequest';
-import { VerifyUserFactorResponse } from './models/VerifyUserFactorResponse';
-import { VerifyFactorRequestOptions } from './models/VerifyFactorRequest';
 import { Group } from './models/Group';
 import { UserActivationToken } from './models/UserActivationToken';
 import { TempPassword } from './models/TempPassword';
@@ -73,6 +67,8 @@ export declare class GeneratedApiClient {
   }): Promise<Collection<v3.Application>>;
   createApplication(application: v3.Application, queryParameters?: {
     activate?: boolean,
+  }, headerParameters?: {
+    OktaAccessGateway_Agent?: string,
   }): Promise<v3.Application>;
   deleteApplication(appId: string): Promise<void>;
   getApplication(appId: string, queryParameters?: {
@@ -528,23 +524,27 @@ export declare class GeneratedApiClient {
   forgotPasswordSetNewPassword(userId: string, userCredentials: UserCredentialsOptions, queryParameters?: {
     sendEmail?: boolean,
   }): Promise<ForgotPasswordResponse>;
-  listFactors(userId: string): Collection<UserFactor>;
-  enrollFactor(userId: string, userFactor: UserFactorOptions, queryParameters?: {
+  listFactors(userId: string): Promise<Collection<v3.UserFactor>>;
+  enrollFactor(userId: string, userFactor: v3.UserFactor, queryParameters?: {
     updatePhone?: boolean,
     templateId?: string,
     tokenLifetimeSeconds?: number,
     activate?: boolean,
-  }): Promise<UserFactor>;
-  listSupportedFactors(userId: string): Collection<UserFactor>;
-  listSupportedSecurityQuestions(userId: string): Collection<SecurityQuestion>;
-  deleteFactor(userId: string, factorId: string): Promise<Response>;
-  getFactor(userId: string, factorId: string): Promise<UserFactor>;
-  activateFactor(userId: string, factorId: string, activateFactorRequest?: ActivateFactorRequestOptions): Promise<UserFactor>;
-  getFactorTransactionStatus(userId: string, factorId: string, transactionId: string): Promise<VerifyUserFactorResponse>;
-  verifyFactor(userId: string, factorId: string, verifyFactorRequest?: VerifyFactorRequestOptions, queryParameters?: {
+  }): Promise<v3.UserFactor>;
+  listSupportedFactors(userId: string): Promise<Collection<v3.UserFactor>>;
+  listSupportedSecurityQuestions(userId: string): Promise<Collection<v3.SecurityQuestion>>;
+  deleteFactor(userId: string, factorId: string): Promise<void>;
+  getFactor(userId: string, factorId: string): Promise<v3.UserFactor>;
+  activateFactor(userId: string, factorId: string, activateFactorRequest?: v3.ActivateFactorRequest): Promise<v3.UserFactor>;
+  getFactorTransactionStatus(userId: string, factorId: string, transactionId: string): Promise<v3.VerifyUserFactorResponse>;
+  verifyFactor(userId: string, factorId: string, verifyFactorRequest?: v3.VerifyFactorRequest, queryParameters?: {
     templateId?: string,
     tokenLifetimeSeconds?: number,
-  }): Promise<VerifyUserFactorResponse>;
+  }, headerParameters?: {
+    X_Forwarded_For?: string,
+    User_Agent?: string,
+    Accept_Language?: string,
+  }): Promise<v3.VerifyUserFactorResponse>;
   revokeUserGrants(userId: string): Promise<Response>;
   listUserGrants(userId: string, queryParameters?: {
     scopeId?: string,

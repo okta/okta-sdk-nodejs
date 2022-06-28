@@ -76,7 +76,7 @@ const getBodyModelName = operation => {
 const getBodyModelNameInCamelCase = operation => _.camelCase(getBodyModelName(operation));
 
 const getOperationArgument = (operation, apiVersion) => {
-  const { bodyModel, method, pathParams, queryParams, formData, parameters } = operation;
+  const { bodyModel, method, pathParams, queryParams, headerParams, formData, parameters } = operation;
   const optionalArgs = [];
   const requiredArgs = [];
 
@@ -101,7 +101,10 @@ const getOperationArgument = (operation, apiVersion) => {
 
   requiredArgs.push(...pathParamArgs);
   requiredArgs.push(...requiredBodyArgs);
-  optionalArgs.push(...optionalBodyArgs);
+  if (apiVersion !== 'v3') {
+    // v3 optional body param goes after query and header parameters
+    optionalArgs.push(...optionalBodyArgs);
+  }
 
   if (queryParams.length) {
     let qp = ['queryParameters'];
@@ -113,6 +116,18 @@ const getOperationArgument = (operation, apiVersion) => {
     } else {
       optionalArgs.push(...qp);
     }
+  }
+
+  if (headerParams.length) {
+    let hp = ['headerParameters'];
+    if (apiVersion === 'v3') {
+      hp = headerParams.map(({name}) => name);
+    }
+    optionalArgs.push(...hp);
+  }
+
+  if (apiVersion === 'v3') {
+    optionalArgs.push(...optionalBodyArgs);
   }
 
   if (formData.length) {
@@ -328,7 +343,7 @@ const typeScriptModelImportBuilder = model => {
 };
 
 const getOperationArgumentsAndReturnType = (operation, options = { tagV3Methods: false }) => {
-  const { operationId, bodyModel, method, pathParams, queryParams, formData, parameters } = operation;
+  const { operationId, bodyModel, method, pathParams, queryParams, headerParams, formData, parameters } = operation;
   const args = new Map();
 
   pathParams.forEach(pathParam => {
@@ -367,6 +382,13 @@ const getOperationArgumentsAndReturnType = (operation, options = { tagV3Methods:
     args.set('queryParameters', {
       isRequired: hasRequiredParameterInRequestMedia(parameters, 'query'),
       type: queryParams,
+    });
+  }
+
+  if (headerParams.length) {
+    args.set('headerParameters', {
+      isRequired: hasRequiredParameterInRequestMedia(parameters, 'query'),
+      type: headerParams,
     });
   }
 
