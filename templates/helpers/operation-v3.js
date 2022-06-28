@@ -254,7 +254,6 @@ const V3ApiOperations = {
     'listOrigins',
     'updateOrigin',
   ],
-  ],
   UserFactorApi: [
     'activateFactor',
     'deleteFactor',
