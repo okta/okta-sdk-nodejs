@@ -3,7 +3,8 @@ import {
   Client,
   Collection,
   DefaultRequestExecutor,
-  Csr, JsonWebKey } from '@okta/okta-sdk-nodejs';
+  v3
+} from '@okta/okta-sdk-nodejs';
 import getMockGenericOidcIdp = require('./mocks/generic-oidc-idp');
 import mockJwk = require('./mocks/jwk.json');
 import mockCsr = require('./mocks/csr.json');
@@ -26,7 +27,7 @@ describe('Idp credential API', () => {
   });
 
   after(async () => {
-    await idp.delete();
+    await client.deleteIdentityProvider(idp.id);
   });
 
   describe('Key', () => {
@@ -40,13 +41,13 @@ describe('Idp credential API', () => {
       });
 
       it('should return a Collection', async () => {
-        const keys = client.listIdentityProviderKeys();
+        const keys = await client.listIdentityProviderKeys();
         expect(keys).to.be.instanceOf(Collection);
       });
 
       it('should resolve JsonWebKey in collection', async () => {
-        await client.listIdentityProviderKeys().each(key => {
-          expect(key).to.be.instanceOf(JsonWebKey);
+        await (await client.listIdentityProviderKeys()).each(key => {
+          expect(key).to.be.instanceOf(v3.JsonWebKey);
         });
       });
     });
@@ -59,7 +60,7 @@ describe('Idp credential API', () => {
       it('should create key', async () => {
         key = await client.createIdentityProviderKey(mockJwk);
         expect(key).to.be.exist;
-        expect(key).to.be.instanceOf(JsonWebKey);
+        expect(key).to.be.instanceOf(v3.JsonWebKey);
       });
     });
 
@@ -74,7 +75,7 @@ describe('Idp credential API', () => {
       it('should get key', async () => {
         key = await client.getIdentityProviderKey(key.kid);
         expect(key).to.be.exist;
-        expect(key).to.be.instanceOf(JsonWebKey);
+        expect(key).to.be.instanceOf(v3.JsonWebKey);
       });
     });
 
@@ -98,44 +99,44 @@ describe('Idp credential API', () => {
     let csr;
     describe('List signing csrs', () => {
       beforeEach(async () => {
-        csr = await idp.generateCsr(mockCsr);
+        csr = await client.generateCsrForIdentityProvider(idp.id, mockCsr);
       });
       afterEach(async () => {
-        await idp.deleteSigningCsr(csr.id);
+        await client.revokeCsrForIdentityProvider(idp.id, csr.id);
       });
 
       it('should return a Collection', async () => {
-        const csrs = idp.listSigningCsrs();
+        const csrs = await client.listCsrsForIdentityProvider(idp.id);
         expect(csrs).to.be.instanceOf(Collection);
       });
 
       it('should resolve CSR in collection', async () => {
-        await idp.listSigningCsrs().each(csr => {
-          expect(csr).to.be.instanceOf(Csr);
+        await (await client.listCsrsForIdentityProvider(idp.id)).each(csr => {
+          expect(csr).to.be.instanceOf(v3.Csr);
         });
       });
     });
 
     describe('Generate signing csr', () => {
       afterEach(async () => {
-        await idp.deleteSigningCsr(csr.id);
+        await client.revokeCsrForIdentityProvider(idp.id, csr.id);
       });
 
       it('should generate csr', async () => {
-        csr = await idp.generateCsr(mockCsr);
+        csr = await client.generateCsrForIdentityProvider(idp.id, mockCsr);
         expect(csr).to.be.exist;
       });
     });
 
     describe('Delete signing csr', () => {
       beforeEach(async () => {
-        csr = await idp.generateCsr(mockCsr);
+        csr = await client.generateCsrForIdentityProvider(idp.id, mockCsr);
       });
 
       it('should delete csr', async () => {
-        await idp.deleteSigningCsr(csr.id);
+        await client.revokeCsrForIdentityProvider(idp.id, csr.id);
         try {
-          csr = await idp.getSigningCsr(csr.id);
+          csr = await client.getCsrForIdentityProvider(idp.id, csr.id);
         } catch (e) {
           expect(e.status).to.equal(404);
         }
@@ -144,14 +145,14 @@ describe('Idp credential API', () => {
 
     describe('Get csr', () => {
       beforeEach(async () => {
-        csr = await idp.generateCsr(mockCsr);
+        csr = await client.generateCsrForIdentityProvider(idp.id, mockCsr);
       });
       afterEach(async () => {
-        await idp.deleteSigningCsr(csr.id);
+        await client.revokeCsrForIdentityProvider(idp.id, csr.id);
       });
 
       it('should get csr', async () => {
-        csr = await idp.getSigningCsr(csr.id);
+        csr = await client.getCsrForIdentityProvider(idp.id, csr.id);
         expect(csr).to.be.exist;
       });
     });
@@ -161,17 +162,17 @@ describe('Idp credential API', () => {
     let key;
     describe('List signing keys', () => {
       beforeEach(async () => {
-        key = await idp.generateSigningKey({ validityYears: 2 });
+        key = await client.generateIdentityProviderSigningKey(idp.id, { validityYears: 2 });
       });
 
       it('should return a Collection', async () => {
-        const keys = await idp.listSigningKeys();
+        const keys = await client.listIdentityProviderSigningKeys(idp.id);
         expect(keys).to.be.instanceOf(Collection);
       });
 
       it('should resolve JsonWebKey in collection', async () => {
-        await idp.listSigningKeys().each(key => {
-          expect(key).to.be.instanceOf(JsonWebKey);
+        await (await client.listIdentityProviderSigningKeys(idp.id)).each(key => {
+          expect(key).to.be.instanceOf(v3.JsonWebKey);
         });
       });
 
@@ -179,18 +180,18 @@ describe('Idp credential API', () => {
 
     describe('Generate signing keys', () => {
       it('should generate csr', async () => {
-        key = await idp.generateCsr(mockCsr);
+        key = await client.generateCsrForIdentityProvider(idp.id, mockCsr);
         expect(key).to.be.exist;
       });
     });
 
     describe('Get signing keys', () => {
       beforeEach(async () => {
-        key = await idp.generateSigningKey({ validityYears: 2 });
+        key = await client.generateIdentityProviderSigningKey(idp.id, { validityYears: 2 });
       });
 
       it('should return a Collection', async () => {
-        key = await idp.getSigningKey(key.kid);
+        key = await client.getIdentityProviderSigningKey(idp.id, key.kid);
         expect(key).to.be.exist;
       });
     });
@@ -200,17 +201,17 @@ describe('Idp credential API', () => {
       beforeEach(async () => {
         const anotherMockGenericOidcIdp = getMockGenericOidcIdp();
         anotherIdp = await client.createIdentityProvider(anotherMockGenericOidcIdp);
-        key = await idp.generateSigningKey({ validityYears: 2 });
+        key = await client.generateIdentityProviderSigningKey(idp.id, { validityYears: 2 });
       });
 
       afterEach(async () => {
-        await anotherIdp.delete();
+        await client.deleteIdentityProvider(anotherIdp.id);
       });
 
       it('should clone key to another idp', async () => {
-        const clonedKey = await idp.cloneKey(key.kid, { targetIdpId: anotherIdp.id });
+        const clonedKey = await client.cloneIdentityProviderKey(idp.id, key.kid, { targetIdpId: anotherIdp.id });
         expect(clonedKey).to.be.exist;
-        expect(clonedKey).to.be.instanceOf(JsonWebKey);
+        expect(clonedKey).to.be.instanceOf(v3.JsonWebKey);
       });
     });
   });
