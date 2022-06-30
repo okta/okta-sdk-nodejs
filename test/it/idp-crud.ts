@@ -5,6 +5,8 @@ import {
   DefaultRequestExecutor,
   IdentityProvider } from '@okta/okta-sdk-nodejs';
 import getMockGenericOidcIdp = require('./mocks/generic-oidc-idp');
+import getMockFacebookIdp = require('./mocks/facebook-idp.js');
+import getMockGoogleIdp = require('./mocks/google-idp.js');
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
 if (process.env.OKTA_USE_MOCK) {
@@ -19,13 +21,22 @@ const client = new Client({
 
 describe('Idp Crud API', () => {
   describe('List idps', () => {
-    let idp;
-    beforeEach(async () => {
-      idp = await client.createIdentityProvider(getMockGenericOidcIdp());
+    let idps = [];
+    before(async () => {
+      idps = await Promise.all([
+        getMockGenericOidcIdp,
+        getMockGenericOidcIdp,
+        getMockFacebookIdp,
+        getMockGoogleIdp
+      ].map(async mockIdpFn => 
+        await client.createIdentityProvider(mockIdpFn())
+      ));
     });
 
-    afterEach(async () => {
-      await idp.delete();
+    after(async () => {
+      await Promise.all(idps.map(async idp =>
+        await client.deleteIdentityProvider(idp.id)
+      ));
     });
 
     it('should return a Collection of IdentityProvider', async () => {
@@ -37,13 +48,25 @@ describe('Idp Crud API', () => {
     });
 
     it('should return a collection of idp by type', async () => {
-      await client.listIdentityProviders({ type: 'OIDC' }).each(idp => {
+      await (await client.listIdentityProviders({ type: 'FACEBOOK' })).each(idp => {
+        expect(idp.type).to.equal('FACEBOOK');
+      });
+      await (await client.listIdentityProviders({ type: 'GOOGLE' })).each(idp => {
+        expect(idp.type).to.equal('GOOGLE');
+      });
+      await (await client.listIdentityProviders({ type: 'OIDC', limit: 1 })).each(idp => {
         expect(idp.type).to.equal('OIDC');
       });
     });
 
     it('should return a collection of idp by q', async () => {
-      await client.listIdentityProviders({ q: 'OIDC' }).each(idp => {
+      await (await client.listIdentityProviders({ q: 'Facebook' })).each(idp => {
+        expect(idp.type).to.equal('FACEBOOK');
+      });
+      await (await client.listIdentityProviders({ q: 'Google' })).each(idp => {
+        expect(idp.type).to.equal('GOOGLE');
+      });
+      await (await client.listIdentityProviders({ q: 'OIDC', limit: 1 })).each(idp => {
         expect(idp.type).to.equal('OIDC');
       });
     });
