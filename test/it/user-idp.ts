@@ -3,7 +3,8 @@ import {
   Client,
   Collection,
   DefaultRequestExecutor,
-  v3 } from '@okta/okta-sdk-nodejs';
+  v3
+} from '@okta/okta-sdk-nodejs';
 import getMockGenericOidcIdp = require('./mocks/generic-oidc-idp');
 import getMockUser = require('./mocks/user-without-credentials');
 import utils = require('../utils');
@@ -28,17 +29,17 @@ describe('User idp API', () => {
   });
 
   after(async () => {
-    await idp.delete();
+    await client.deleteIdentityProvider(idp.id);
     await utils.cleanupUser(client, user);
   });
 
   describe('List Linked IdPs for User', () => {
     beforeEach(async () => {
-      await idp.linkUser(user.id, { externalId: 'externalId' });
+      await client.linkUserToIdentityProvider(idp.id, user.id, { externalId: 'externalId' });
     });
 
     afterEach(async () => {
-      await idp.unlinkUser(user.id);
+      await client.unlinkUserFromIdentityProvider(idp.id, user.id);
     });
 
     it('should return a Collection and resolve IdentityProvider in collection', async () => {
