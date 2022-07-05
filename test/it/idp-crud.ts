@@ -21,16 +21,18 @@ const client = new Client({
 
 describe('Idp Crud API', () => {
   describe('List idps', () => {
-    let idps = [];
+    const idps = [];
     before(async () => {
-      idps = await Promise.all([
-        getMockGenericOidcIdp,
-        getMockGenericOidcIdp,
-        getMockFacebookIdp,
-        getMockGoogleIdp
-      ].map(async mockIdpFn => 
-        await client.createIdentityProvider(mockIdpFn())
-      ));
+      const mockIdps = [
+        getMockGenericOidcIdp(),
+        getMockGenericOidcIdp(),
+        getMockFacebookIdp(),
+        getMockGoogleIdp()
+      ];
+      for (const mockIdp of mockIdps) {
+        const idp = await client.createIdentityProvider(mockIdp);
+        idps.push(idp);
+      }
     });
 
     after(async () => {

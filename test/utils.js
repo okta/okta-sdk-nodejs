@@ -4,6 +4,7 @@ const expect = require('chai').expect;
 const faker = require('@faker-js/faker');
 const path = require('path');
 const { createReadStream } = require('fs');
+const forge = require('node-forge');
 
 function delay(t) {
   return new Promise(function (resolve) {
@@ -275,6 +276,58 @@ async function runWithRetry(clientMethod) {
   }
 }
 
+function base64ToUrlBase64(str) {
+  return str.replace(/\+/g, '-').replace(/\//g, '_').replace(/=/g, '');
+}
+
+function bigintToBase64(bi) {
+  return base64ToUrlBase64(
+    Buffer.from(
+      new Int8Array(bi.toByteArray().slice(1))
+    ).toString('base64')
+  );
+}
+
+function parseCsr(csr) {
+  const csrDer = forge.util.decode64(csr.csr);
+  const csrAsn1 = forge.asn1.fromDer(csrDer);
+  return forge.pki.certificationRequestFromAsn1(csrAsn1);
+}
+
+function createCertFromCsr(csr, keys) {
+  const csrF = parseCsr(csr);
+  const certF = forge.pki.createCertificate();
+  certF.publicKey = csrF.publicKey;
+  certF.serialNumber = '01';
+  certF.validity.notBefore = new Date();
+  certF.validity.notAfter = new Date();
+  certF.validity.notAfter.setFullYear(certF.validity.notBefore.getFullYear() + 1);
+  certF.setSubject(csrF.subject.attributes);
+  certF.setIssuer(csrF.subject.attributes);
+  const extensions = csrF.getAttribute({name: 'extensionRequest'}).extensions;
+  certF.setExtensions(extensions);
+  certF.sign(keys.privateKey, forge.md.sha256.create());
+  return certF;
+}
+
+function certToDer(certF) {
+  const certAsn1 = forge.pki.certificateToAsn1(certF);
+  const certDer = forge.asn1.toDer(certAsn1);
+  return certDer.data;
+}
+
+function certToBase64(certF) {
+  return forge.util.encode64(certToDer(certF));
+}
+
+function csrToN(csr) {
+  return bigintToBase64(parseCsr(csr).publicKey.n);
+}
+
+function certToPem(certF) {
+  return forge.pki.certificateToPem(certF);
+}
+
 module.exports = {
   delay: delay,
   validateUser: validateUser,
@@ -297,5 +350,10 @@ module.exports = {
   getOIDCApplication: getOIDCApplication,
   verifyOrgIsOIE,
   getMockImage: getMockImage,
-  runWithRetry
+  runWithRetry,
+  createCertFromCsr,
+  certToDer,
+  certToBase64,
+  certToPem,
+  csrToN,
 };

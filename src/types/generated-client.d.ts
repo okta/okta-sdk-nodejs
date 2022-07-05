@@ -311,7 +311,7 @@ export declare class GeneratedApiClient {
   generateCsrForIdentityProvider(idpId: string, csrMetadata: v3.CsrMetadata): Promise<v3.Csr>;
   revokeCsrForIdentityProvider(idpId: string, csrId: string): Promise<void>;
   getCsrForIdentityProvider(idpId: string, csrId: string): Promise<v3.Csr>;
-  publishCerCertForIdentityProvider(idpId: string, csrId: string, certificate: string): Promise<JsonWebKey>;
+  publishCerCertForIdentityProvider(idpId: string, csrId: string, certificate: string): Promise<v3.JsonWebKey>;
   publishBinaryCerCertForIdentityProvider(idpId: string, csrId: string, certificate: string): Promise<JsonWebKey>;
   publishDerCertForIdentityProvider(idpId: string, csrId: string, certificate: string): Promise<JsonWebKey>;
   publishBinaryDerCertForIdentityProvider(idpId: string, csrId: string, certificate: string): Promise<JsonWebKey>;

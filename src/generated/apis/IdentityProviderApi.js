@@ -128,10 +128,11 @@ class IdentityProviderApiRequestFactory extends baseapi_1.BaseAPIRequestFactory 
     const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Body Params
-    const contentType = ObjectSerializer_1.ObjectSerializer.getPreferredMediaType([
+    const [contentType, contentEncoding] = ObjectSerializer_1.ObjectSerializer.getPreferredMediaTypeAndEncoding([
       'application/json'
-    ]);
+    ], identityProvider);
     requestContext.setHeaderParam('Content-Type', contentType);
+    requestContext.setHeaderParam('Content-Transfer-Encoding', contentEncoding);
     const serializedBody = ObjectSerializer_1.ObjectSerializer.stringify(ObjectSerializer_1.ObjectSerializer.serialize(identityProvider, 'IdentityProvider', ''), contentType);
     requestContext.setBody(serializedBody);
     let authMethod;
@@ -168,10 +169,11 @@ class IdentityProviderApiRequestFactory extends baseapi_1.BaseAPIRequestFactory 
     const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Body Params
-    const contentType = ObjectSerializer_1.ObjectSerializer.getPreferredMediaType([
+    const [contentType, contentEncoding] = ObjectSerializer_1.ObjectSerializer.getPreferredMediaTypeAndEncoding([
       'application/json'
-    ]);
+    ], jsonWebKey);
     requestContext.setHeaderParam('Content-Type', contentType);
+    requestContext.setHeaderParam('Content-Transfer-Encoding', contentEncoding);
     const serializedBody = ObjectSerializer_1.ObjectSerializer.stringify(ObjectSerializer_1.ObjectSerializer.serialize(jsonWebKey, 'JsonWebKey', ''), contentType);
     requestContext.setBody(serializedBody);
     let authMethod;
@@ -324,10 +326,11 @@ class IdentityProviderApiRequestFactory extends baseapi_1.BaseAPIRequestFactory 
     const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Body Params
-    const contentType = ObjectSerializer_1.ObjectSerializer.getPreferredMediaType([
+    const [contentType, contentEncoding] = ObjectSerializer_1.ObjectSerializer.getPreferredMediaTypeAndEncoding([
       'application/json'
-    ]);
+    ], metadata);
     requestContext.setHeaderParam('Content-Type', contentType);
+    requestContext.setHeaderParam('Content-Transfer-Encoding', contentEncoding);
     const serializedBody = ObjectSerializer_1.ObjectSerializer.stringify(ObjectSerializer_1.ObjectSerializer.serialize(metadata, 'CsrMetadata', ''), contentType);
     requestContext.setBody(serializedBody);
     let authMethod;
@@ -621,10 +624,11 @@ class IdentityProviderApiRequestFactory extends baseapi_1.BaseAPIRequestFactory 
     const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Body Params
-    const contentType = ObjectSerializer_1.ObjectSerializer.getPreferredMediaType([
+    const [contentType, contentEncoding] = ObjectSerializer_1.ObjectSerializer.getPreferredMediaTypeAndEncoding([
       'application/json'
-    ]);
+    ], userIdentityProviderLinkRequest);
     requestContext.setHeaderParam('Content-Type', contentType);
+    requestContext.setHeaderParam('Content-Transfer-Encoding', contentEncoding);
     const serializedBody = ObjectSerializer_1.ObjectSerializer.stringify(ObjectSerializer_1.ObjectSerializer.serialize(userIdentityProviderLinkRequest, 'UserIdentityProviderLinkRequest', ''), contentType);
     requestContext.setBody(serializedBody);
     let authMethod;
@@ -911,12 +915,13 @@ class IdentityProviderApiRequestFactory extends baseapi_1.BaseAPIRequestFactory 
     const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Body Params
-    const contentType = ObjectSerializer_1.ObjectSerializer.getPreferredMediaType([
+    const [contentType, contentEncoding] = ObjectSerializer_1.ObjectSerializer.getPreferredMediaTypeAndEncoding([
       'application/x-x509-ca-cert',
       'application/pkix-cert',
       'application/x-pem-file'
-    ]);
+    ], body);
     requestContext.setHeaderParam('Content-Type', contentType);
+    requestContext.setHeaderParam('Content-Transfer-Encoding', contentEncoding);
     const serializedBody = ObjectSerializer_1.ObjectSerializer.stringify(ObjectSerializer_1.ObjectSerializer.serialize(body, 'HttpFile', ''), contentType);
     requestContext.setBody(serializedBody);
     let authMethod;
@@ -1045,10 +1050,11 @@ class IdentityProviderApiRequestFactory extends baseapi_1.BaseAPIRequestFactory 
     const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.PUT, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Body Params
-    const contentType = ObjectSerializer_1.ObjectSerializer.getPreferredMediaType([
+    const [contentType, contentEncoding] = ObjectSerializer_1.ObjectSerializer.getPreferredMediaTypeAndEncoding([
       'application/json'
-    ]);
+    ], identityProvider);
     requestContext.setHeaderParam('Content-Type', contentType);
+    requestContext.setHeaderParam('Content-Transfer-Encoding', contentEncoding);
     const serializedBody = ObjectSerializer_1.ObjectSerializer.stringify(ObjectSerializer_1.ObjectSerializer.serialize(identityProvider, 'IdentityProvider', ''), contentType);
     requestContext.setBody(serializedBody);
     let authMethod;

@@ -340,7 +340,7 @@ const V3ApiOperations = {
     'listIdentityProviderSigningKeys',
     'listIdentityProviders',
     'listSocialAuthTokens',
-    'publishCsrForIdentityProvider',
+    'publishCerCertForIdentityProvider',
     'revokeCsrForIdentityProvider',
     'unlinkUserFromIdentityProvider',
     'updateIdentityProvider'
@@ -380,6 +380,7 @@ function getV3MethodName(v2OperationId) {
     getEmailTemplateDefaultContent: 'getEmailDefaultContent',
     getEmailTemplateDefaultContentPreview: 'getEmailDefaultPreview',
     updateEmailTemplateCustomization: 'updateEmailCustomization',
+    publishCerCertForIdentityProvider: 'publishCsrForIdentityProvider',
   }[v2OperationId] || v2OperationId;
 }
 

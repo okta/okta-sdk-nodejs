@@ -619,13 +619,23 @@ export declare class ObjectSerializer {
       * after a semicolon. All content is assumed to be UTF-8 compatible.
       */
   static normalizeMediaType(mediaType: string | undefined): string | undefined;
+  static isCertMediaType(mediaType: string): boolean;
+  static getPreferredMediaTypeForCert(body?: string): string | undefined;
   /**
       * From a list of possible media types, choose the one we can handle best.
+      * TODO: remove this method in favour of getPreferredMediaTypeAndEncoding
       *
       * The order of the given media types does not have any impact on the choice
       * made.
       */
   static getPreferredMediaType(mediaTypes: Array<string>): string;
+  /**
+      * From a list of possible media types and body, choose the one we can handle it best.
+      *
+      * The order of the given media types does not have any impact on the choice
+      * made.
+      */
+  static getPreferredMediaTypeAndEncoding(mediaTypes: Array<string>, body?: string): [string, string | undefined];
   /**
       * Convert data to a string according the given media type
       */
