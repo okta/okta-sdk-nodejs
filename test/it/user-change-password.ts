@@ -33,8 +33,8 @@ describe('User API Tests', () => {
 
     // 2. Change the user's password
     const changePasswordCredentials = {
-      oldpassword: { value: 'Abcd1234#@' },
-      newPassword: { value: '1234Abcd' }
+      oldPassword: { value: 'Abcd1234#@' },
+      newPassword: { value: '1234Abcd@#' }
     };
 
     // Need to wait 1 second here as that is the minimum time resolution of the 'passwordChanged' field
