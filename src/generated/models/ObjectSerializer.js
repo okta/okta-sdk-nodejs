@@ -1890,32 +1890,6 @@ class ObjectSerializer {
         return undefined;
     }
     /**
-      * From a list of possible media types, choose the one we can handle best.
-      * TODO: remove this method in favour of getPreferredMediaTypeAndEncoding
-      *
-      * The order of the given media types does not have any impact on the choice
-      * made.
-      */
-    static getPreferredMediaType(mediaTypes) {
-        /** According to OAS 3 we should default to json */
-        if (!mediaTypes) {
-            return 'application/json';
-        }
-        const normalMediaTypes = mediaTypes.map(this.normalizeMediaType);
-        let selectedMediaType = undefined;
-        let selectedRank = -Infinity;
-        for (const mediaType of normalMediaTypes) {
-            if (supportedMediaTypes[mediaType] > selectedRank) {
-                selectedMediaType = mediaType;
-                selectedRank = supportedMediaTypes[mediaType];
-            }
-        }
-        if (selectedMediaType === undefined) {
-            throw new Error('None of the given media types are supported: ' + mediaTypes.join(', '));
-        }
-        return selectedMediaType;
-    }
-    /**
       * From a list of possible media types and body, choose the one we can handle it best.
       *
       * The order of the given media types does not have any impact on the choice
@@ -1949,6 +1923,32 @@ class ObjectSerializer {
             throw new Error('None of the given media types are supported: ' + mediaTypes.join(', '));
         }
         return [selectedMediaType, selectedEncoding];
+    }
+    /**
+      * From a list of possible media types, choose the one we can handle best.
+      * TODO: remove this method in favour of getPreferredMediaTypeAndEncoding
+      *
+      * The order of the given media types does not have any impact on the choice
+      * made.
+      */
+    static getPreferredMediaType(mediaTypes) {
+        /** According to OAS 3 we should default to json */
+        if (!mediaTypes) {
+            return 'application/json';
+        }
+        const normalMediaTypes = mediaTypes.map(this.normalizeMediaType);
+        let selectedMediaType = undefined;
+        let selectedRank = -Infinity;
+        for (const mediaType of normalMediaTypes) {
+            if (supportedMediaTypes[mediaType] > selectedRank) {
+                selectedMediaType = mediaType;
+                selectedRank = supportedMediaTypes[mediaType];
+            }
+        }
+        if (selectedMediaType === undefined) {
+            throw new Error('None of the given media types are supported: ' + mediaTypes.join(', '));
+        }
+        return selectedMediaType;
     }
     /**
       * Convert data to a string according the given media type
