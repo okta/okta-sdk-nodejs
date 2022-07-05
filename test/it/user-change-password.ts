@@ -20,7 +20,7 @@ describe('User API Tests', () => {
     const newUser = {
       profile: utils.getMockProfile('user-change-password'),
       credentials: {
-        password: { value: 'Abcd1234' }
+        password: { value: 'Abcd1234#@' }
       }
     };
 
@@ -33,7 +33,7 @@ describe('User API Tests', () => {
 
     // 2. Change the user's password
     const changePasswordCredentials = {
-      oldPassword: { value: 'Abcd1234' },
+      oldpassword: { value: 'Abcd1234#@' },
       newPassword: { value: '1234Abcd' }
     };
 
