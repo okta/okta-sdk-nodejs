@@ -17,7 +17,7 @@ if ! yarn test:types; then
   exit $PUBLISH_TYPE_AND_RESULT_DIR_BUT_ALWAYS_FAIL
 fi
 
-if ! yarn test:unit; then
+if ! yarn test:ci:unit; then
   echo "Unit tests failed! Exiting..."
   exit $PUBLISH_TYPE_AND_RESULT_DIR_BUT_ALWAYS_FAIL
 fi
