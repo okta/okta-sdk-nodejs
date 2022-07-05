@@ -54,6 +54,6 @@ describe('User API Tests', () => {
     factors.forEach(factor =>
       expect(factor).to.be.instanceof(models.UserFactor)
     );
-    return await utils.deleteUser(createdUser);
+    return await utils.deleteUser(createdUser, client);
   });
 });

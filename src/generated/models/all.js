@@ -33,7 +33,7 @@ var __exportStar = (this && this.__exportStar) || function (m, exports) {
   }
 };
 Object.defineProperty(exports, '__esModule', { value: true });
-exports.ApplicationSettingsApplication = exports.InlineHookPayload = void 0;
+exports.ResponseLinks = exports.ApplicationSettingsApplication = exports.InlineHookPayload = void 0;
 __exportStar(require('./AccessPolicy'), exports);
 __exportStar(require('./AccessPolicyAllOf'), exports);
 __exportStar(require('./AccessPolicyConstraint'), exports);
@@ -639,4 +639,8 @@ exports.InlineHookPayload = InlineHookPayload;
 class ApplicationSettingsApplication {
 }
 exports.ApplicationSettingsApplication = ApplicationSettingsApplication;
+
+class ResponseLinks {
+}
+exports.ResponseLinks = ResponseLinks;
 

@@ -412,7 +412,7 @@ class TrustedOriginApiResponseProcessor {
      */
   async deleteOrigin(response) {
     const contentType = ObjectSerializer_1.ObjectSerializer.normalizeMediaType(response.headers['content-type']);
-    if ((0, util_1.isCodeInRange)('204', response.httpStatusCode)) {
+    if ((0, util_1.isCodeInRange)('200', response.httpStatusCode)) {
       return;
     }
     if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {

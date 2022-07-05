@@ -38,7 +38,7 @@ describe('User lifecycle API', () => {
 
     it('should activate a user', async () => {
       const sendEmail = { sendEmail : false };
-      await createdUser.activate(sendEmail);
+      await client.activateUser(createdUser.id, sendEmail);
       const queryParameters = { filter: 'status eq "ACTIVE"' };
       const userPresent = await utils.isUserPresent(client, createdUser, queryParameters);
       expect(userPresent).to.equal(true);

@@ -612,3 +612,5 @@ export declare class InlineHookPayload {
 }
 export declare class ApplicationSettingsApplication {
 }
+export declare class ResponseLinks {
+}

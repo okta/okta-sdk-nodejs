@@ -40,7 +40,7 @@ describe('User API Tests', () => {
     utils.validateUser(userByLogin, createdUser);
 
     // 4. Delete the user
-    await utils.deleteUser(createdUser);
+    await utils.deleteUser(createdUser, client);
 
     // 5. Verify user was deleted
     let err;

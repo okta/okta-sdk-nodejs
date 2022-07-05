@@ -31,6 +31,6 @@ describe('User API Tests', () => {
     await createdUser.listSupportedSecurityQuestions().each(factor => questions.push(factor));
     expect(questions.length).to.be.greaterThan(1);
     questions.forEach(factor => expect(factor).to.be.instanceof(models.SecurityQuestion));
-    return await utils.deleteUser(createdUser);
+    return await utils.deleteUser(createdUser, client);
   });
 });

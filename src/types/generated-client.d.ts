@@ -36,25 +36,7 @@ import { CreateSessionRequestOptions } from './models/CreateSessionRequest';
 import { Session } from './models/Session';
 import { SmsTemplate } from './models/SmsTemplate';
 import { SmsTemplateOptions } from './models/SmsTemplate';
-import { User } from './models/User';
-import { CreateUserRequestOptions } from './models/CreateUserRequest';
-import { UserOptions } from './models/User';
-import { AppLink } from './models/AppLink';
-import { OAuth2Client } from './models/OAuth2Client';
-import { OAuth2ScopeConsentGrant } from './models/OAuth2ScopeConsentGrant';
-import { OAuth2RefreshToken } from './models/OAuth2RefreshToken';
-import { ChangePasswordRequestOptions } from './models/ChangePasswordRequest';
-import { UserCredentials } from './models/UserCredentials';
-import { UserCredentialsOptions } from './models/UserCredentials';
 import { ForgotPasswordResponse } from './models/ForgotPasswordResponse';
-import { Group } from './models/Group';
-import { UserActivationToken } from './models/UserActivationToken';
-import { TempPassword } from './models/TempPassword';
-import { ResetPasswordToken } from './models/ResetPasswordToken';
-import { ResponseLinks } from './models/ResponseLinks';
-import { Role } from './models/Role';
-import { AssignRoleRequestOptions } from './models/AssignRoleRequest';
-import { CatalogApplication } from './models/CatalogApplication';
 
 export declare class GeneratedApiClient {
   listApplications(queryParameters?: {
@@ -477,53 +459,53 @@ export declare class GeneratedApiClient {
     search?: string,
     sortBy?: string,
     sortOrder?: string,
-  }): Collection<User>;
-  createUser(createUserRequest: CreateUserRequestOptions, queryParameters?: {
+  }): Promise<Collection<v3.User>>;
+  createUser(createUserRequest: v3.CreateUserRequest, queryParameters?: {
     activate?: boolean,
     provider?: boolean,
     nextLogin?: string,
-  }): Promise<User>;
-  setLinkedObjectForUser(associatedUserId: string, primaryRelationshipName: string, primaryUserId: string): Promise<Response>;
+  }): Promise<v3.User>;
+  setLinkedObjectForUser(associatedUserId: string, primaryRelationshipName: string, primaryUserId: string): Promise<void>;
   deactivateOrDeleteUser(userId: string, queryParameters?: {
     sendEmail?: boolean,
-  }): Promise<Response>;
-  getUser(userId: string): Promise<User>;
-  partialUpdateUser(userId: string, user: UserOptions, queryParameters?: {
+  }): Promise<void>;
+  getUser(userId: string): Promise<v3.User>;
+  partialUpdateUser(userId: string, user: v3.User, queryParameters?: {
     strict?: boolean,
-  }): Promise<User>;
-  updateUser(userId: string, user: UserOptions, queryParameters?: {
+  }): Promise<v3.User>;
+  updateUser(userId: string, user: v3.User, queryParameters?: {
     strict?: boolean,
-  }): Promise<User>;
-  listAppLinks(userId: string): Collection<AppLink>;
-  listUserClients(userId: string): Collection<OAuth2Client>;
-  revokeGrantsForUserAndClient(userId: string, clientId: string): Promise<Response>;
+  }): Promise<v3.User>;
+  listAppLinks(userId: string): Promise<Collection<v3.AppLink>>;
+  listUserClients(userId: string): Promise<Collection<v3.OAuth2Client>>;
+  revokeGrantsForUserAndClient(userId: string, clientId: string): Promise<void>;
   listGrantsForUserAndClient(userId: string, clientId: string, queryParameters?: {
     expand?: string,
     after?: string,
     limit?: number,
-  }): Collection<OAuth2ScopeConsentGrant>;
-  revokeTokensForUserAndClient(userId: string, clientId: string): Promise<Response>;
+  }): Promise<Collection<v3.OAuth2ScopeConsentGrant>>;
+  revokeTokensForUserAndClient(userId: string, clientId: string): Promise<void>;
   listRefreshTokensForUserAndClient(userId: string, clientId: string, queryParameters?: {
     expand?: string,
     after?: string,
     limit?: number,
-  }): Collection<OAuth2RefreshToken>;
-  revokeTokenForUserAndClient(userId: string, clientId: string, tokenId: string): Promise<Response>;
+  }): Promise<Collection<v3.OAuth2RefreshToken>>;
+  revokeTokenForUserAndClient(userId: string, clientId: string, tokenId: string): Promise<void>;
   getRefreshTokenForUserAndClient(userId: string, clientId: string, tokenId: string, queryParameters?: {
     expand?: string,
     limit?: number,
     after?: string,
-  }): Promise<OAuth2RefreshToken>;
-  changePassword(userId: string, changePasswordRequest: ChangePasswordRequestOptions, queryParameters?: {
+  }): Promise<v3.OAuth2RefreshToken>;
+  changePassword(userId: string, changePasswordRequest: v3.ChangePasswordRequest, queryParameters?: {
     strict?: boolean,
-  }): Promise<UserCredentials>;
-  changeRecoveryQuestion(userId: string, userCredentials: UserCredentialsOptions): Promise<UserCredentials>;
+  }): Promise<v3.UserCredentials>;
+  changeRecoveryQuestion(userId: string, userCredentials: v3.UserCredentials): Promise<v3.UserCredentials>;
   forgotPasswordGenerateOneTimeToken(userId: string, queryParameters?: {
     sendEmail?: boolean,
   }): Promise<ForgotPasswordResponse>;
-  forgotPasswordSetNewPassword(userId: string, userCredentials: UserCredentialsOptions, queryParameters?: {
+  forgotPasswordSetNewPassword(userId: string, userCredentials: v3.UserCredentials, queryParameters?: {
     sendEmail?: boolean,
-  }): Promise<ForgotPasswordResponse>;
+  }): Promise<v3.ForgotPasswordResponse>;
   listFactors(userId: string): Promise<Collection<v3.UserFactor>>;
   enrollFactor(userId: string, userFactor: v3.UserFactor, queryParameters?: {
     updatePhone?: boolean,
@@ -545,68 +527,68 @@ export declare class GeneratedApiClient {
     User_Agent?: string,
     Accept_Language?: string,
   }): Promise<v3.VerifyUserFactorResponse>;
-  revokeUserGrants(userId: string): Promise<Response>;
+  revokeUserGrants(userId: string): Promise<void>;
   listUserGrants(userId: string, queryParameters?: {
     scopeId?: string,
     expand?: string,
     after?: string,
     limit?: number,
-  }): Collection<OAuth2ScopeConsentGrant>;
-  revokeUserGrant(userId: string, grantId: string): Promise<Response>;
+  }): Promise<Collection<v3.OAuth2ScopeConsentGrant>>;
+  revokeUserGrant(userId: string, grantId: string): Promise<void>;
   getUserGrant(userId: string, grantId: string, queryParameters?: {
     expand?: string,
-  }): Promise<OAuth2ScopeConsentGrant>;
-  listUserGroups(userId: string): Collection<Group>;
-  listUserIdentityProviders(userId: string): Collection<IdentityProvider>;
+  }): Promise<v3.OAuth2ScopeConsentGrant>;
+  listUserGroups(userId: string): Promise<Collection<v3.Group>>;
+  listUserIdentityProviders(userId: string): Promise<Collection<v3.IdentityProvider>>;
   activateUser(userId: string, queryParameters: {
     sendEmail: boolean,
-  }): Promise<UserActivationToken>;
+  }): Promise<v3.UserActivationToken>;
   deactivateUser(userId: string, queryParameters?: {
     sendEmail?: boolean,
-  }): Promise<Response>;
-  expirePassword(userId: string): Promise<User>;
-  expirePasswordAndGetTemporaryPassword(userId: string): Promise<TempPassword>;
+  }): Promise<void>;
+  expirePassword(userId: string): Promise<v3.User>;
+  expirePasswordAndGetTemporaryPassword(userId: string): Promise<v3.TempPassword>;
   reactivateUser(userId: string, queryParameters?: {
     sendEmail?: boolean,
-  }): Promise<UserActivationToken>;
-  resetFactors(userId: string): Promise<Response>;
+  }): Promise<v3.UserActivationToken>;
+  resetFactors(userId: string): Promise<void>;
   resetPassword(userId: string, queryParameters: {
     sendEmail: boolean,
-  }): Promise<ResetPasswordToken>;
-  suspendUser(userId: string): Promise<Response>;
-  unlockUser(userId: string): Promise<Response>;
-  unsuspendUser(userId: string): Promise<Response>;
-  removeLinkedObjectForUser(userId: string, relationshipName: string): Promise<Response>;
+  }): Promise<v3.ResetPasswordToken>;
+  suspendUser(userId: string): Promise<void>;
+  unlockUser(userId: string): Promise<void>;
+  unsuspendUser(userId: string): Promise<void>;
+  removeLinkedObjectForUser(userId: string, relationshipName: string): Promise<void>;
   getLinkedObjectsForUser(userId: string, relationshipName: string, queryParameters?: {
     after?: string,
     limit?: number,
-  }): Collection<ResponseLinks>;
+  }): Promise<Collection<v3.ResponseLinks>>;
   listAssignedRolesForUser(userId: string, queryParameters?: {
     expand?: string,
-  }): Collection<Role>;
-  assignRoleToUser(userId: string, assignRoleRequest: AssignRoleRequestOptions, queryParameters?: {
+  }): Promise<Collection<v3.Role>>;
+  assignRoleToUser(userId: string, assignRoleRequest: v3.AssignRoleRequest, queryParameters?: {
     disableNotifications?: boolean,
-  }): Promise<Role>;
-  removeRoleFromUser(userId: string, roleId: string): Promise<Response>;
-  getUserRole(userId: string, roleId: string): Promise<Role>;
+  }): Promise<v3.Role>;
+  removeRoleFromUser(userId: string, roleId: string): Promise<void>;
+  getUserRole(userId: string, roleId: string): Promise<v3.Role>;
   listApplicationTargetsForApplicationAdministratorRoleForUser(userId: string, roleId: string, queryParameters?: {
     after?: string,
     limit?: number,
-  }): Collection<CatalogApplication>;
-  addAllAppsAsTargetToRole(userId: string, roleId: string): Promise<Response>;
-  removeApplicationTargetFromApplicationAdministratorRoleForUser(userId: string, roleId: string, appName: string): Promise<Response>;
-  addApplicationTargetToAdminRoleForUser(userId: string, roleId: string, appName: string): Promise<Response>;
-  removeApplicationTargetFromAdministratorRoleForUser(userId: string, roleId: string, appName: string, applicationId: string): Promise<Response>;
-  addApplicationTargetToAppAdminRoleForUser(userId: string, roleId: string, appName: string, applicationId: string): Promise<Response>;
+  }): Promise<Collection<v3.CatalogApplication>>;
+  addAllAppsAsTargetToRole(userId: string, roleId: string): Promise<void>;
+  removeApplicationTargetFromApplicationAdministratorRoleForUser(userId: string, roleId: string, appName: string): Promise<void>;
+  addApplicationTargetToAdminRoleForUser(userId: string, roleId: string, appName: string): Promise<void>;
+  removeApplicationTargetFromAdministratorRoleForUser(userId: string, roleId: string, appName: string, applicationId: string): Promise<void>;
+  addApplicationTargetToAppAdminRoleForUser(userId: string, roleId: string, appName: string, applicationId: string): Promise<void>;
   listGroupTargetsForRole(userId: string, roleId: string, queryParameters?: {
     after?: string,
     limit?: number,
-  }): Collection<Group>;
-  removeGroupTargetFromRole(userId: string, roleId: string, groupId: string): Promise<Response>;
-  addGroupTargetToRole(userId: string, roleId: string, groupId: string): Promise<Response>;
+  }): Promise<Collection<v3.Group>>;
+  removeGroupTargetFromRole(userId: string, roleId: string, groupId: string): Promise<void>;
+  addGroupTargetToRole(userId: string, roleId: string, groupId: string): Promise<void>;
   clearUserSessions(userId: string, queryParameters?: {
     oauthTokens?: boolean,
-  }): Promise<Response>;
+  }): Promise<void>;
   listUserSubscriptions(userId: string): Collection<Subscription>;
   getUserSubscriptionByNotificationType(userId: string, notificationType: string): Promise<Subscription>;
   subscribeUserSubscriptionByNotificationType(userId: string, notificationType: string): Promise<Response>;
