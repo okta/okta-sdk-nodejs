@@ -80,7 +80,7 @@ const getBodyModelName = (operation, useOverride) => {
 };
 
 const getBodyModelType = (operation, useOverride) => {
-  const { bodyModel, parameters } = operation;
+  const { bodyModel } = operation;
   let bodyModelName = bodyModel, bodyModelType = bodyModel;
   if (useOverride) {
     const v3ParamOverride = getV3ArgumentsOverride(_.camelCase(bodyModelName));
