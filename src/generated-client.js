@@ -268,7 +268,7 @@ class GeneratedApiClient {
    *
    * @param appId {String}
    * @param csrId {String}
-   * @param {string} string
+   * @param {string} certificate
    * @description
    * Convenience method for /api/v1/apps/{appId}/credentials/csrs/{csrId}/lifecycle/publish
    * @returns {Promise<JsonWebKey>}
@@ -307,7 +307,7 @@ class GeneratedApiClient {
    *
    * @param appId {String}
    * @param csrId {String}
-   * @param {string} string
+   * @param {string} certificate
    * @description
    * Convenience method for /api/v1/apps/{appId}/credentials/csrs/{csrId}/lifecycle/publish
    * @returns {Promise<JsonWebKey>}
@@ -346,7 +346,7 @@ class GeneratedApiClient {
    *
    * @param appId {String}
    * @param csrId {String}
-   * @param {string} string
+   * @param {string} certificate
    * @description
    * Convenience method for /api/v1/apps/{appId}/credentials/csrs/{csrId}/lifecycle/publish
    * @returns {Promise<JsonWebKey>}
@@ -385,7 +385,7 @@ class GeneratedApiClient {
    *
    * @param appId {String}
    * @param csrId {String}
-   * @param {string} string
+   * @param {string} certificate
    * @description
    * Convenience method for /api/v1/apps/{appId}/credentials/csrs/{csrId}/lifecycle/publish
    * @returns {Promise<JsonWebKey>}
@@ -424,7 +424,7 @@ class GeneratedApiClient {
    *
    * @param appId {String}
    * @param csrId {String}
-   * @param {string} string
+   * @param {string} certificate
    * @description
    * Convenience method for /api/v1/apps/{appId}/credentials/csrs/{csrId}/lifecycle/publish
    * @returns {Promise<JsonWebKey>}
@@ -1942,22 +1942,22 @@ class GeneratedApiClient {
    *
    * @param brandId {String}
    * @param templateName {String}
-   * @param {EmailTemplateCustomizationRequest} emailTemplateCustomizationRequest
+   * @param {EmailCustomization} instance
    * @description
    * Create an email customization
    * @returns {Promise<EmailTemplateCustomization>}
    */
-  createEmailTemplateCustomization(brandId, templateName, emailTemplateCustomizationRequest) {
+  createEmailTemplateCustomization(brandId, templateName, instance) {
     if (!brandId) {
       return Promise.reject(new Error('OKTA API createEmailTemplateCustomization parameter brandId is required.'));
     }
     if (!templateName) {
       return Promise.reject(new Error('OKTA API createEmailTemplateCustomization parameter templateName is required.'));
     }
-    if (!emailTemplateCustomizationRequest) {
-      return Promise.reject(new Error('OKTA API createEmailTemplateCustomization parameter emailTemplateCustomizationRequest is required.'));
+    if (!instance) {
+      return Promise.reject(new Error('OKTA API createEmailTemplateCustomization parameter instance is required.'));
     }
-    return this.customizationApi.createEmailCustomization(brandId, templateName, emailTemplateCustomizationRequest);
+    return this.customizationApi.createEmailCustomization(brandId, templateName, instance);
   }
 
   /**
@@ -2008,12 +2008,12 @@ class GeneratedApiClient {
    * @param brandId {String}
    * @param templateName {String}
    * @param customizationId {String}
-   * @param {EmailTemplateCustomizationRequest} emailTemplateCustomizationRequest
+   * @param {EmailCustomization} instance
    * @description
    * Update an email customization
    * @returns {Promise<EmailTemplateCustomization>}
    */
-  updateEmailTemplateCustomization(brandId, templateName, customizationId, emailTemplateCustomizationRequest) {
+  updateEmailTemplateCustomization(brandId, templateName, customizationId, instance) {
     if (!brandId) {
       return Promise.reject(new Error('OKTA API updateEmailTemplateCustomization parameter brandId is required.'));
     }
@@ -2023,10 +2023,10 @@ class GeneratedApiClient {
     if (!customizationId) {
       return Promise.reject(new Error('OKTA API updateEmailTemplateCustomization parameter customizationId is required.'));
     }
-    if (!emailTemplateCustomizationRequest) {
-      return Promise.reject(new Error('OKTA API updateEmailTemplateCustomization parameter emailTemplateCustomizationRequest is required.'));
+    if (!instance) {
+      return Promise.reject(new Error('OKTA API updateEmailTemplateCustomization parameter instance is required.'));
     }
-    return this.customizationApi.updateEmailCustomization(brandId, templateName, customizationId, emailTemplateCustomizationRequest);
+    return this.customizationApi.updateEmailCustomization(brandId, templateName, customizationId, instance);
   }
 
   /**
@@ -2091,21 +2091,21 @@ class GeneratedApiClient {
    *
    * @param brandId {String}
    * @param templateName {String}
-   * @param {EmailTemplateTestRequest} emailTemplateTestRequest
+   * @param {string} language
    * @description
    * Send a test email to the current users primary and secondary email addresses. The email content is selected based on the following priority: An email customization specifically for the users locale. The default language of email customizations. The email templates default content.
    */
-  sendTestEmail(brandId, templateName, emailTemplateTestRequest) {
+  sendTestEmail(brandId, templateName, language) {
     if (!brandId) {
       return Promise.reject(new Error('OKTA API sendTestEmail parameter brandId is required.'));
     }
     if (!templateName) {
       return Promise.reject(new Error('OKTA API sendTestEmail parameter templateName is required.'));
     }
-    if (!emailTemplateTestRequest) {
-      return Promise.reject(new Error('OKTA API sendTestEmail parameter emailTemplateTestRequest is required.'));
+    if (!language) {
+      return Promise.reject(new Error('OKTA API sendTestEmail parameter language is required.'));
     }
-    return this.customizationApi.sendTestEmail(brandId, templateName, emailTemplateTestRequest);
+    return this.customizationApi.sendTestEmail(brandId, templateName, language);
   }
 
   /**
@@ -3313,7 +3313,7 @@ class GeneratedApiClient {
    *
    * @param idpId {String}
    * @param csrId {String}
-   * @param {string} string
+   * @param {string} certificate
    * @description
    * Update the Certificate Signing Request with a signed X.509 certificate and add it into the signing key credentials for the IdP.
    * @returns {Promise<JsonWebKey>}
@@ -3335,7 +3335,7 @@ class GeneratedApiClient {
    *
    * @param idpId {String}
    * @param csrId {String}
-   * @param {string} string
+   * @param {string} certificate
    * @description
    * Update the Certificate Signing Request with a signed X.509 certificate and add it into the signing key credentials for the IdP.
    * @returns {Promise<JsonWebKey>}
@@ -3374,7 +3374,7 @@ class GeneratedApiClient {
    *
    * @param idpId {String}
    * @param csrId {String}
-   * @param {string} string
+   * @param {string} certificate
    * @description
    * Update the Certificate Signing Request with a signed X.509 certificate and add it into the signing key credentials for the IdP.
    * @returns {Promise<JsonWebKey>}
@@ -3413,7 +3413,7 @@ class GeneratedApiClient {
    *
    * @param idpId {String}
    * @param csrId {String}
-   * @param {string} string
+   * @param {string} certificate
    * @description
    * Update the Certificate Signing Request with a signed X.509 certificate and add it into the signing key credentials for the IdP.
    * @returns {Promise<JsonWebKey>}
@@ -3452,7 +3452,7 @@ class GeneratedApiClient {
    *
    * @param idpId {String}
    * @param csrId {String}
-   * @param {string} string
+   * @param {string} certificate
    * @description
    * Update the Certificate Signing Request with a signed X.509 certificate and add it into the signing key credentials for the IdP.
    * @returns {Promise<JsonWebKey>}
@@ -4183,19 +4183,19 @@ class GeneratedApiClient {
   /**
    *
    * @param contactType {String}
-   * @param {UserIdString} userIdString
+   * @param {OrgContactUser} orgContactUser
    * @description
    * Updates the User associated with the specified Contact Type.
    * @returns {Promise<OrgContactUser>}
    */
-  updateOrgContactUser(contactType, userIdString) {
+  updateOrgContactUser(contactType, orgContactUser) {
     if (!contactType) {
       return Promise.reject(new Error('OKTA API updateOrgContactUser parameter contactType is required.'));
     }
-    if (!userIdString) {
-      return Promise.reject(new Error('OKTA API updateOrgContactUser parameter userIdString is required.'));
+    if (!orgContactUser) {
+      return Promise.reject(new Error('OKTA API updateOrgContactUser parameter orgContactUser is required.'));
     }
-    return this.orgSettingApi.updateOrgContactUser(contactType, userIdString);
+    return this.orgSettingApi.updateOrgContactUser(contactType, orgContactUser);
   }
 
   /**
