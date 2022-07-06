@@ -1,5 +1,4 @@
 import { expect } from 'chai';
-import models = require('../../src/models');
 import utils = require('../utils');
 import * as okta from '@okta/okta-sdk-nodejs';
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
@@ -49,10 +48,10 @@ describe('User API Tests', () => {
     const createdUser = await client.createUser(newUser);
 
     const factors = [];
-    await (await createdUser.listSupportedFactors()).each(factor => factors.push(factor));
+    await (await client.listSupportedFactors(createdUser.id)).each(factor => factors.push(factor));
     expect(factors.length).to.be.greaterThan(1);
     factors.forEach(factor =>
-      expect(factor).to.be.instanceof(models.UserFactor)
+      expect(factor).to.be.instanceof(okta.v3.UserFactor)
     );
     return await utils.deleteUser(createdUser, client);
   });

@@ -75,9 +75,9 @@ async function deleteUser(user, client) {
 
 async function isUserPresent(client, expectedUser, queryParameters) {
   let userPresent = false;
-  const collection = client.listUsers(queryParameters);
+  const collection = await client.listUsers(queryParameters);
   await collection.each(user => {
-    expect(user).to.be.an.instanceof(models.User);
+    expect(user).to.be.an.instanceof(v3.User);
     if (user.profile.login === expectedUser.profile.login) {
       userPresent = true;
       return false;
@@ -99,10 +99,10 @@ async function isGroupPresent(client, expectedGroup, queryParameters) {
   return groupPresent;
 }
 
-async function doesUserHaveRole(user, roleType) {
+async function doesUserHaveRole(user, roleType, client) {
   let hasRole = false;
-  await user.listAssignedRoles().each(role => {
-    expect(role).to.be.an.instanceof(models.Role);
+  await (await client.listAssignedRolesForUser(user.id)).each(role => {
+    expect(role).to.be.an.instanceof(v3.Role);
     if (role.type === roleType) {
       hasRole = true;
       return false;
@@ -111,9 +111,9 @@ async function doesUserHaveRole(user, roleType) {
   return hasRole;
 }
 
-async function isGroupTargetPresent(user, userGroup, role) {
+async function isGroupTargetPresent(user, userGroup, role, client) {
   let groupTargetPresent = false;
-  const groupTargets = user.listGroupTargets(role.id);
+  const groupTargets = await client.listGroupTargetsForRole(user.id, role.id);
   await groupTargets.each(group => {
     if (group.profile.name === userGroup.profile.name) {
       groupTargetPresent = true;

@@ -28,9 +28,9 @@ describe('User API Tests', () => {
     const createdUser = await client.createUser(newUser);
 
     const questions = [];
-    await createdUser.listSupportedSecurityQuestions().each(factor => questions.push(factor));
+    await (await client.listSupportedSecurityQuestions(createdUser.id)).each(factor => questions.push(factor));
     expect(questions.length).to.be.greaterThan(1);
-    questions.forEach(factor => expect(factor).to.be.instanceof(models.SecurityQuestion));
+    questions.forEach(factor => expect(factor).to.be.instanceof(okta.v3.SecurityQuestion));
     return await utils.deleteUser(createdUser, client);
   });
 });

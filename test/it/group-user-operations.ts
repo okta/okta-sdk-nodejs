@@ -41,7 +41,7 @@ describe('Group-Member API Tests', () => {
     const createdGroup = await client.createGroup(newGroup);
 
     // 2. Add user to the group and validate user present in group
-    await createdUser.addToGroup(createdGroup.id);
+    await client.addUserToGroup(createdGroup.id, createdUser.id);
     let userInGroup = await utils.isUserInGroup(client, createdUser, createdGroup);
     expect(userInGroup).to.equal(true);
 

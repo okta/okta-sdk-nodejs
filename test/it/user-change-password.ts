@@ -39,7 +39,7 @@ describe('User API Tests', () => {
 
     // Need to wait 1 second here as that is the minimum time resolution of the 'passwordChanged' field
     await utils.delay(1000);
-    await createdUser.changePassword(changePasswordCredentials);
+    await client.changePassword(createdUser.id, changePasswordCredentials);
 
     // 3. Verify that password was updated
     const updatedUser = await client.getUser(createdUser.id);
