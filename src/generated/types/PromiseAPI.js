@@ -2722,6 +2722,15 @@ class PromisePolicyApi {
     return result.toPromise();
   }
   /**
+      * Clones an existing policy.
+      * Clone an existing policy
+      * @param policyId
+      */
+  clonePolicy(policyId, _options) {
+    const result = this.api.clonePolicy(policyId, _options);
+    return result.toPromise();
+  }
+  /**
       * Creates a policy.
       * Create a Policy
       * @param policy

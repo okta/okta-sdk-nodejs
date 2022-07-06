@@ -2036,6 +2036,12 @@ export declare class ObservablePolicyApi {
       */
   activatePolicyRule(policyId: string, ruleId: string, _options?: Configuration): Observable<void>;
   /**
+      * Clones an existing policy.
+      * Clone an existing policy
+      * @param policyId
+      */
+  clonePolicy(policyId: string, _options?: Configuration): Observable<Policy>;
+  /**
       * Creates a policy.
       * Create a Policy
       * @param policy

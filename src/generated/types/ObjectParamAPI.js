@@ -2235,6 +2235,14 @@ class ObjectPolicyApi {
         return this.api.activatePolicyRule(param.policyId, param.ruleId, options).toPromise();
     }
     /**
+      * Clones an existing policy.
+      * Clone an existing policy
+      * @param param the request object
+      */
+    clonePolicy(param, options) {
+        return this.api.clonePolicy(param.policyId, options).toPromise();
+    }
+    /**
       * Creates a policy.
       * Create a Policy
       * @param param the request object

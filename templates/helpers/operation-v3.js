@@ -338,6 +338,7 @@ function getV3ArgumentsOverride(argumentName) {
   return {
     emailTemplateTestRequest: ['language', 'string'],
     emailTemplateCustomizationRequest: ['instance', 'EmailCustomization'],
+    userIdString: ['orgContactUser', 'OrgContactUser'],
   }[argumentName];
 }
 

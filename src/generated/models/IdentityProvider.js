@@ -86,7 +86,7 @@ IdentityProvider.attributeTypeMap = [
   {
     'name': 'type',
     'baseName': 'type',
-    'type': 'string',
+    'type': 'IdentityProviderType',
     'format': ''
   },
   {

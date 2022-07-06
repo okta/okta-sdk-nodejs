@@ -1999,6 +1999,12 @@ export declare class PromisePolicyApi {
       */
   activatePolicyRule(policyId: string, ruleId: string, _options?: Configuration): Promise<void>;
   /**
+      * Clones an existing policy.
+      * Clone an existing policy
+      * @param policyId
+      */
+  clonePolicy(policyId: string, _options?: Configuration): Promise<Policy>;
+  /**
       * Creates a policy.
       * Create a Policy
       * @param policy

@@ -103,7 +103,7 @@ describe('User role API', () => {
         const apps = await client.listApplicationTargetsForApplicationAdministratorRoleForUser(user.id, role.id);
         expect(apps).to.be.instanceOf(Collection);
         await apps.each(app => {
-          expect(app).to.be.instanceOf(CatalogApplication);
+          expect(app).to.be.instanceOf(v3.CatalogApplication);
           expect(app.name).to.be.equal(application.name);
         });
       });

@@ -387,7 +387,7 @@ export declare class GeneratedApiClient {
   updateOrgSetting(orgSetting: v3.OrgSetting): Promise<v3.OrgSetting>;
   getOrgContactTypes(): Promise<Collection<v3.OrgContactTypeObj>>;
   getOrgContactUser(contactType: string): Promise<v3.OrgContactUser>;
-  updateOrgContactUser(contactType: string, userIdString: v3.UserIdString): Promise<v3.OrgContactUser>;
+  updateOrgContactUser(contactType: string, orgContactUser: v3.OrgContactUser): Promise<v3.OrgContactUser>;
   updateOrgLogo(file: ReadStream): Promise<void>;
   getOrgPreferences(): Promise<v3.OrgPreferences>;
   hideOktaUIFooter(): Promise<v3.OrgPreferences>;

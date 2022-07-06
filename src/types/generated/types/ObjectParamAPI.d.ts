@@ -5204,6 +5204,14 @@ export interface PolicyApiActivatePolicyRuleRequest {
       */
     ruleId: string;
 }
+export interface PolicyApiClonePolicyRequest {
+    /**
+      *
+      * @type string
+      * @memberof PolicyApiclonePolicy
+      */
+    policyId: string;
+}
 export interface PolicyApiCreatePolicyRequest {
     /**
       *
@@ -5381,6 +5389,12 @@ export declare class ObjectPolicyApi {
       * @param param the request object
       */
   activatePolicyRule(param: PolicyApiActivatePolicyRuleRequest, options?: Configuration): Promise<void>;
+  /**
+      * Clones an existing policy.
+      * Clone an existing policy
+      * @param param the request object
+      */
+  clonePolicy(param: PolicyApiClonePolicyRequest, options?: Configuration): Promise<Policy>;
   /**
       * Creates a policy.
       * Create a Policy
