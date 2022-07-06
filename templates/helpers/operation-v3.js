@@ -317,7 +317,34 @@ const V3ApiOperations = {
     'unlockUser',
     'unsuspendUser',
     'updateUser',
-  ]
+  ],
+  IdentityProviderApi: [
+    'activateIdentityProvider',
+    'cloneIdentityProviderKey',
+    'createIdentityProvider',
+    'createIdentityProviderKey',
+    'deactivateIdentityProvider',
+    'deleteIdentityProvider',
+    'deleteIdentityProviderKey',
+    'generateCsrForIdentityProvider',
+    'generateIdentityProviderSigningKey',
+    'getCsrForIdentityProvider',
+    'getIdentityProvider',
+    'getIdentityProviderApplicationUser',
+    'getIdentityProviderKey',
+    'getIdentityProviderSigningKey',
+    'linkUserToIdentityProvider',
+    'listCsrsForIdentityProvider',
+    'listIdentityProviderApplicationUsers',
+    'listIdentityProviderKeys',
+    'listIdentityProviderSigningKeys',
+    'listIdentityProviders',
+    'listSocialAuthTokens',
+    'publishCerCertForIdentityProvider',
+    'revokeCsrForIdentityProvider',
+    'unlinkUserFromIdentityProvider',
+    'updateIdentityProvider'
+  ],
 };
 
 function getV3ReturnType(operationId) {
@@ -353,6 +380,7 @@ function getV3MethodName(v2OperationId) {
     getEmailTemplateDefaultContent: 'getEmailDefaultContent',
     getEmailTemplateDefaultContentPreview: 'getEmailDefaultPreview',
     updateEmailTemplateCustomization: 'updateEmailCustomization',
+    publishCerCertForIdentityProvider: 'publishCsrForIdentityProvider',
   }[v2OperationId] || v2OperationId;
 }
 

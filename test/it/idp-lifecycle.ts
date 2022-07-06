@@ -20,16 +20,16 @@ describe('Idp Lifecycle API', () => {
   });
 
   afterEach(async () => {
-    await idp.delete();
+    await client.deleteIdentityProvider(idp.id);
   });
 
   it('should activate idp', async () => {
-    idp = await idp.activate();
+    idp = await client.activateIdentityProvider(idp.id);
     expect(idp.status).to.equal('ACTIVE');
   });
 
   it('should deactive idp', async () => {
-    idp = await idp.deactivate();
+    idp = await client.deactivateIdentityProvider(idp.id);
     expect(idp.status).to.equal('INACTIVE');
   });
 });

@@ -24,7 +24,7 @@ describe('client.deleteApplicationUser()', () => {
     const user = {
       profile: utils.getMockProfile('client-delete-application-user'),
       credentials: {
-        password: { value: 'Abcd1234' }
+        password: { value: 'Abcd1234#@' }
       }
     };
 

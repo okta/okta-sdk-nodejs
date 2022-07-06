@@ -122,7 +122,12 @@ class RequestContext {
         this.headers['Cookie'] += name + '=' + value + '; ';
     }
     setHeaderParam(key, value) {
-        this.headers[key] = value;
+        if (value) {
+            this.headers[key] = value;
+        }
+        else {
+            delete this.headers[key];
+        }
     }
     setAffectedResources(affectedResources) {
         this.affectedResources = affectedResources;

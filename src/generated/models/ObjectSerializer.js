@@ -1098,7 +1098,10 @@ let primitives = [
 const supportedMediaTypes = {
     'application/json': Infinity,
     'application/octet-stream': 0,
-    'application/x-www-form-urlencoded': 0
+    'application/x-www-form-urlencoded': 0,
+    'application/x-x509-ca-cert': 0,
+    'application/pkix-cert': 0,
+    'application/x-pem-file': 0
 };
 let enumsMap = new Set([
     'AgentType',
@@ -1865,8 +1868,65 @@ class ObjectSerializer {
         }
         return mediaType.split(';')[0].trim().toLowerCase();
     }
+    static isCertMediaType(mediaType) {
+        const certMediaTypes = [
+            'application/x-x509-ca-cert',
+            'application/pkix-cert',
+            'application/x-pem-file'
+        ];
+        return certMediaTypes.includes(mediaType);
+    }
+    static getPreferredMediaTypeForCert(body) {
+        const isPem = typeof body === 'string' && body.indexOf('-----BEGIN') === 0;
+        const isDer = typeof body === 'string' && body.charCodeAt(0) === 0x30;
+        const isBase64 = typeof body === 'string' && !isPem && !isDer && /^[A-Za-z0-9+\/=\-_]+$/.test(body);
+        if (isPem) {
+            return 'application/x-pem-file';
+        }
+        else if (isDer || isBase64) {
+            // Prefer base64-encoded over binary for DER
+            return 'application/pkix-cert';
+        }
+        return undefined;
+    }
+    /**
+      * From a list of possible media types and body, choose the one we can handle it best.
+      *
+      * The order of the given media types does not have any impact on the choice
+      * made.
+      */
+    static getPreferredMediaTypeAndEncoding(mediaTypes, body) {
+        /** According to OAS 3 we should default to json */
+        if (!mediaTypes) {
+            return ['application/json', undefined];
+        }
+        const normalMediaTypes = mediaTypes.map(this.normalizeMediaType);
+        let selectedMediaType = undefined;
+        let selectedRank = -Infinity;
+        for (const mediaType of normalMediaTypes) {
+            if (this.isCertMediaType(mediaType)) {
+                selectedMediaType = this.getPreferredMediaTypeForCert(body);
+                if (selectedMediaType) {
+                    break;
+                }
+            }
+            if (supportedMediaTypes[mediaType] > selectedRank) {
+                selectedMediaType = mediaType;
+                selectedRank = supportedMediaTypes[mediaType];
+            }
+        }
+        let selectedEncoding = undefined;
+        if (selectedMediaType === 'application/pkix-cert') {
+            selectedEncoding = 'base64';
+        }
+        if (selectedMediaType === undefined) {
+            throw new Error('None of the given media types are supported: ' + mediaTypes.join(', '));
+        }
+        return [selectedMediaType, selectedEncoding];
+    }
     /**
       * From a list of possible media types, choose the one we can handle best.
+      * TODO: remove this method in favour of getPreferredMediaTypeAndEncoding
       *
       * The order of the given media types does not have any impact on the choice
       * made.
@@ -1894,10 +1954,22 @@ class ObjectSerializer {
       * Convert data to a string according the given media type
       */
     static stringify(data, mediaType) {
-        if (mediaType === 'application/json') {
-            return JSON.stringify(data);
+        switch (mediaType) {
+            case 'application/json':
+                return JSON.stringify(data);
+            case 'application/x-x509-ca-cert': // DER binary
+            case 'application/x-pem-file': // PEM
+                return data;
+            case 'application/pkix-cert': { // DER base64-encoded
+                const isBinary = typeof data === 'string' && data.charCodeAt(0) === 0x30;
+                if (isBinary) {
+                    data = Buffer.from(data, 'binary').toString('base64');
+                }
+                return data;
+            }
+            default:
+                throw new Error('The mediaType ' + mediaType + ' is not supported by ObjectSerializer.stringify.');
         }
-        throw new Error('The mediaType ' + mediaType + ' is not supported by ObjectSerializer.stringify.');
     }
     /**
       * Parse data from a string according to the given media type

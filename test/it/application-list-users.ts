@@ -24,7 +24,7 @@ describe('Application.listUsers()', () => {
     const user = {
       profile: utils.getMockProfile('application-list-users'),
       credentials: {
-        password: { value: 'Abcd1234' }
+        password: { value: 'Abcd1234#@' }
       }
     };
 

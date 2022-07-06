@@ -36,6 +36,7 @@ import {
   TrustedOriginApi,
   UserFactorApi,
   UserApi,
+  IdentityProviderApi,
 } from './generated';
 export declare class Client extends ParameterizedOperationsClient {
   constructor(config?: V2Configuration);
@@ -70,4 +71,5 @@ export declare class Client extends ParameterizedOperationsClient {
   trustedOriginApi: TrustedOriginApi;
   userFactorApi: UserFactorApi;
   userApi: UserApi;
+  identityProviderApi: IdentityProviderApi;
 }

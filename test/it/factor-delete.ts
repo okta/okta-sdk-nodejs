@@ -27,7 +27,7 @@ describe('Factors API', () => {
     const newUser = {
       profile: utils.getMockProfile('factor-delete'),
       credentials: {
-        password: { value: 'Abcd1234' }
+        password: { value: 'Abcd1234#@' }
       }
     };
     // Cleanup the user if user exists

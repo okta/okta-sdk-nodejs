@@ -136,7 +136,7 @@ export class {{classname}}RequestFactory extends BaseAPIRequestFactory {
         requestContext.setBody(localVarFormParams);
 
         if(!useForm) {
-            const contentType = ObjectSerializer.getPreferredMediaType([{{#consumes}}
+            const [contentType] = ObjectSerializer.getPreferredMediaTypeAndEncoding([{{#consumes}}
                 '{{{mediaType}}}'{{^-last}},{{/-last}}
             {{/consumes}}]);
             requestContext.setHeaderParam('Content-Type', contentType);
@@ -145,10 +145,11 @@ export class {{classname}}RequestFactory extends BaseAPIRequestFactory {
         {{#bodyParam}}
 
         // Body Params
-        const contentType = ObjectSerializer.getPreferredMediaType([{{#consumes}}
+        const [contentType, contentEncoding] = ObjectSerializer.getPreferredMediaTypeAndEncoding([{{#consumes}}
             '{{{mediaType}}}'{{^-last}},{{/-last}}
-        {{/consumes}}]);
+        {{/consumes}}], {{paramName}} as any);
         requestContext.setHeaderParam('Content-Type', contentType);
+        requestContext.setHeaderParam('Content-Transfer-Encoding', contentEncoding);
         const serializedBody = ObjectSerializer.stringify(
             ObjectSerializer.serialize({{paramName}}, '{{{dataType}}}', '{{dataFormat}}'),
             contentType

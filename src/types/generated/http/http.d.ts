@@ -90,7 +90,7 @@ export declare class RequestContext {
       *
       */
   addCookie(name: string, value: string): void;
-  setHeaderParam(key: string, value: string): void;
+  setHeaderParam(key: string, value?: string): void;
   setAffectedResources(affectedResources: string[]): void;
   setIsCollection(isCollection: boolean): void;
   setStartTime(startTime: Date): void;

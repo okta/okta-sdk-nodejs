@@ -20,7 +20,7 @@ describe('User API Tests', () => {
     const newUser = {
       profile: utils.getMockProfile('user-list-available-security-questions'),
       credentials: {
-        password: { value: 'Abcd1234' }
+        password: { value: 'Abcd1234#@' }
       }
     };
     // Cleanup the user if user exists

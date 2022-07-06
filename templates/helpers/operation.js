@@ -61,7 +61,7 @@ const NO_OPTIONS_TYPE_MODELS = [
   'OpenIdConnectApplication'
 ];
 
-const getBodyModelName = operation => {
+const getBodyModelName = (operation, useOverride) => {
   const { bodyModel, parameters } = operation;
   let bodyModelName = bodyModel;
   if (bodyModel === 'string') {
@@ -70,12 +70,30 @@ const getBodyModelName = operation => {
       bodyModelName = bodyParam.name;
     }
   }
+  if (useOverride) {
+    const v3ParamOverride = getV3ArgumentsOverride(_.camelCase(bodyModelName));
+    if (v3ParamOverride) {
+      bodyModelName = v3ParamOverride[0];
+    }
+  }
   return bodyModelName;
 };
 
-const getBodyModelNameInCamelCase = operation => _.camelCase(getBodyModelName(operation));
+const getBodyModelType = (operation, useOverride) => {
+  const { bodyModel } = operation;
+  let bodyModelName = bodyModel, bodyModelType = bodyModel;
+  if (useOverride) {
+    const v3ParamOverride = getV3ArgumentsOverride(_.camelCase(bodyModelName));
+    if (v3ParamOverride) {
+      bodyModelType = v3ParamOverride[1];
+    }
+  }
+  return bodyModelType;
+};
 
-const getOperationArgument = (operation, apiVersion) => {
+const getBodyModelNameInCamelCase = (operation, useOverride) => _.camelCase(getBodyModelName(operation, useOverride));
+
+const getOperationArgument = (operation, apiVersion, useOverride) => {
   const { bodyModel, method, pathParams, queryParams, headerParams, formData, parameters } = operation;
   const optionalArgs = [];
   const requiredArgs = [];
@@ -89,7 +107,7 @@ const getOperationArgument = (operation, apiVersion) => {
   }, []);
 
   if ((method === 'post' || method === 'put') && bodyModel) {
-    const bodyModelName = getBodyModelNameInCamelCase(operation);
+    const bodyModelName = getBodyModelNameInCamelCase(operation, useOverride);
     if (bodyModelName) {
       if (hasRequiredParameterInRequestMedia(parameters, 'body')) {
         requiredBodyArgs.push(bodyModelName);
@@ -146,12 +164,12 @@ const hasRequiredParameterInRequestMedia = (parameters, requestMedia) =>
   parameters.find(({in: paramMedia, required}) => paramMedia === requestMedia && required);
 
 const operationArgumentBuilder = (operation, apiVersion) => {
-  const [requiredArgs, optionalArgs] = getOperationArgument(operation, apiVersion);
+  const [requiredArgs, optionalArgs] = getOperationArgument(operation, apiVersion, isV3Api(operation.operationId));
   return requiredArgs.concat(optionalArgs).join(', ');
 };
 
-const getRequiredOperationParams = operation => {
-  return getOperationArgument(operation).shift();
+const getRequiredOperationParams = (operation) => {
+  return getOperationArgument(operation, null, isV3Api(operation.operationId)).shift();
 };
 
 const getHttpMethod = ({
@@ -220,6 +238,7 @@ const shouldResolveJson = (operation) => {
 };
 
 const jsdocBuilder = (operation) => {
+  const useOverride = isV3Api(operation.operationId);
   const lines = ['*'];
 
   if (operation.pathParams.length) {
@@ -229,7 +248,7 @@ const jsdocBuilder = (operation) => {
   }
 
   if (!operation.isArray && operation.bodyModel) {
-    lines.push(`   * @param {${operation.bodyModel}} ${_.camelCase(operation.bodyModel)}`);
+    lines.push(`   * @param {${getBodyModelType(operation, useOverride)}} ${getBodyModelNameInCamelCase(operation, useOverride)}`);
   }
 
   if (operation.queryParams.length) {

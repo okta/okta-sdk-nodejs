@@ -268,7 +268,7 @@ class GeneratedApiClient {
    *
    * @param appId {String}
    * @param csrId {String}
-   * @param {string} string
+   * @param {string} certificate
    * @description
    * Convenience method for /api/v1/apps/{appId}/credentials/csrs/{csrId}/lifecycle/publish
    * @returns {Promise<JsonWebKey>}
@@ -307,7 +307,7 @@ class GeneratedApiClient {
    *
    * @param appId {String}
    * @param csrId {String}
-   * @param {string} string
+   * @param {string} certificate
    * @description
    * Convenience method for /api/v1/apps/{appId}/credentials/csrs/{csrId}/lifecycle/publish
    * @returns {Promise<JsonWebKey>}
@@ -346,7 +346,7 @@ class GeneratedApiClient {
    *
    * @param appId {String}
    * @param csrId {String}
-   * @param {string} string
+   * @param {string} certificate
    * @description
    * Convenience method for /api/v1/apps/{appId}/credentials/csrs/{csrId}/lifecycle/publish
    * @returns {Promise<JsonWebKey>}
@@ -385,7 +385,7 @@ class GeneratedApiClient {
    *
    * @param appId {String}
    * @param csrId {String}
-   * @param {string} string
+   * @param {string} certificate
    * @description
    * Convenience method for /api/v1/apps/{appId}/credentials/csrs/{csrId}/lifecycle/publish
    * @returns {Promise<JsonWebKey>}
@@ -424,7 +424,7 @@ class GeneratedApiClient {
    *
    * @param appId {String}
    * @param csrId {String}
-   * @param {string} string
+   * @param {string} certificate
    * @description
    * Convenience method for /api/v1/apps/{appId}/credentials/csrs/{csrId}/lifecycle/publish
    * @returns {Promise<JsonWebKey>}
@@ -1942,22 +1942,22 @@ class GeneratedApiClient {
    *
    * @param brandId {String}
    * @param templateName {String}
-   * @param {EmailTemplateCustomizationRequest} emailTemplateCustomizationRequest
+   * @param {EmailCustomization} instance
    * @description
    * Create an email customization
    * @returns {Promise<EmailTemplateCustomization>}
    */
-  createEmailTemplateCustomization(brandId, templateName, emailTemplateCustomizationRequest) {
+  createEmailTemplateCustomization(brandId, templateName, instance) {
     if (!brandId) {
       return Promise.reject(new Error('OKTA API createEmailTemplateCustomization parameter brandId is required.'));
     }
     if (!templateName) {
       return Promise.reject(new Error('OKTA API createEmailTemplateCustomization parameter templateName is required.'));
     }
-    if (!emailTemplateCustomizationRequest) {
-      return Promise.reject(new Error('OKTA API createEmailTemplateCustomization parameter emailTemplateCustomizationRequest is required.'));
+    if (!instance) {
+      return Promise.reject(new Error('OKTA API createEmailTemplateCustomization parameter instance is required.'));
     }
-    return this.customizationApi.createEmailCustomization(brandId, templateName, emailTemplateCustomizationRequest);
+    return this.customizationApi.createEmailCustomization(brandId, templateName, instance);
   }
 
   /**
@@ -2008,12 +2008,12 @@ class GeneratedApiClient {
    * @param brandId {String}
    * @param templateName {String}
    * @param customizationId {String}
-   * @param {EmailTemplateCustomizationRequest} emailTemplateCustomizationRequest
+   * @param {EmailCustomization} instance
    * @description
    * Update an email customization
    * @returns {Promise<EmailTemplateCustomization>}
    */
-  updateEmailTemplateCustomization(brandId, templateName, customizationId, emailTemplateCustomizationRequest) {
+  updateEmailTemplateCustomization(brandId, templateName, customizationId, instance) {
     if (!brandId) {
       return Promise.reject(new Error('OKTA API updateEmailTemplateCustomization parameter brandId is required.'));
     }
@@ -2023,10 +2023,10 @@ class GeneratedApiClient {
     if (!customizationId) {
       return Promise.reject(new Error('OKTA API updateEmailTemplateCustomization parameter customizationId is required.'));
     }
-    if (!emailTemplateCustomizationRequest) {
-      return Promise.reject(new Error('OKTA API updateEmailTemplateCustomization parameter emailTemplateCustomizationRequest is required.'));
+    if (!instance) {
+      return Promise.reject(new Error('OKTA API updateEmailTemplateCustomization parameter instance is required.'));
     }
-    return this.customizationApi.updateEmailCustomization(brandId, templateName, customizationId, emailTemplateCustomizationRequest);
+    return this.customizationApi.updateEmailCustomization(brandId, templateName, customizationId, instance);
   }
 
   /**
@@ -2091,21 +2091,21 @@ class GeneratedApiClient {
    *
    * @param brandId {String}
    * @param templateName {String}
-   * @param {EmailTemplateTestRequest} emailTemplateTestRequest
+   * @param {string} language
    * @description
    * Send a test email to the current users primary and secondary email addresses. The email content is selected based on the following priority: An email customization specifically for the users locale. The default language of email customizations. The email templates default content.
    */
-  sendTestEmail(brandId, templateName, emailTemplateTestRequest) {
+  sendTestEmail(brandId, templateName, language) {
     if (!brandId) {
       return Promise.reject(new Error('OKTA API sendTestEmail parameter brandId is required.'));
     }
     if (!templateName) {
       return Promise.reject(new Error('OKTA API sendTestEmail parameter templateName is required.'));
     }
-    if (!emailTemplateTestRequest) {
-      return Promise.reject(new Error('OKTA API sendTestEmail parameter emailTemplateTestRequest is required.'));
+    if (!language) {
+      return Promise.reject(new Error('OKTA API sendTestEmail parameter language is required.'));
     }
-    return this.customizationApi.sendTestEmail(brandId, templateName, emailTemplateTestRequest);
+    return this.customizationApi.sendTestEmail(brandId, templateName, language);
   }
 
   /**
@@ -3110,16 +3110,17 @@ class GeneratedApiClient {
    * @returns {Collection} A collection that will yield {@link IdentityProvider} instances.
    */
   listIdentityProviders(queryParameters) {
-    let url = `${this.baseUrl}/api/v1/idps`;
-    const queryString = qs.stringify(queryParameters || {});
-
-    url += queryString ? ('?' + queryString) : '';
-
-    return new Collection(
-      this.http,
-      url,
-      new ModelFactory(models.IdentityProvider, this),
-    );
+    let q;
+    let after;
+    let limit;
+    let type;
+    if (queryParameters) {
+      q = queryParameters.q;
+      after = queryParameters.after;
+      limit = queryParameters.limit;
+      type = queryParameters.type;
+    }
+    return this.identityProviderApi.listIdentityProviders(q, after, limit, type);
   }
 
   /**
@@ -3133,18 +3134,7 @@ class GeneratedApiClient {
     if (!identityProvider) {
       return Promise.reject(new Error('OKTA API createIdentityProvider parameter identityProvider is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/idps`;
-
-    const resources = [];
-
-    const request = this.http.postJson(
-      url,
-      {
-        body: identityProvider
-      },
-      { resources }
-    );
-    return request.then(jsonRes => new models.IdentityProvider(jsonRes, this));
+    return this.identityProviderApi.createIdentityProvider(identityProvider);
   }
 
   /**
@@ -3157,16 +3147,13 @@ class GeneratedApiClient {
    * @returns {Collection} A collection that will yield {@link JsonWebKey} instances.
    */
   listIdentityProviderKeys(queryParameters) {
-    let url = `${this.baseUrl}/api/v1/idps/credentials/keys`;
-    const queryString = qs.stringify(queryParameters || {});
-
-    url += queryString ? ('?' + queryString) : '';
-
-    return new Collection(
-      this.http,
-      url,
-      new ModelFactory(models.JsonWebKey, this),
-    );
+    let after;
+    let limit;
+    if (queryParameters) {
+      after = queryParameters.after;
+      limit = queryParameters.limit;
+    }
+    return this.identityProviderApi.listIdentityProviderKeys(after, limit);
   }
 
   /**
@@ -3180,18 +3167,7 @@ class GeneratedApiClient {
     if (!jsonWebKey) {
       return Promise.reject(new Error('OKTA API createIdentityProviderKey parameter jsonWebKey is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/idps/credentials/keys`;
-
-    const resources = [];
-
-    const request = this.http.postJson(
-      url,
-      {
-        body: jsonWebKey
-      },
-      { resources }
-    );
-    return request.then(jsonRes => new models.JsonWebKey(jsonRes, this));
+    return this.identityProviderApi.createIdentityProviderKey(jsonWebKey);
   }
 
   /**
@@ -3204,18 +3180,7 @@ class GeneratedApiClient {
     if (!keyId) {
       return Promise.reject(new Error('OKTA API deleteIdentityProviderKey parameter keyId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/idps/credentials/keys/${keyId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/idps/credentials/keys/${keyId}`
-    ];
-
-    const request = this.http.delete(
-      url,
-      null,
-      { resources }
-    );
-    return request;
+    return this.identityProviderApi.deleteIdentityProviderKey(keyId);
   }
 
   /**
@@ -3229,18 +3194,7 @@ class GeneratedApiClient {
     if (!keyId) {
       return Promise.reject(new Error('OKTA API getIdentityProviderKey parameter keyId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/idps/credentials/keys/${keyId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/idps/credentials/keys/${keyId}`
-    ];
-
-    const request = this.http.getJson(
-      url,
-      null,
-      { resources }
-    );
-    return request.then(jsonRes => new models.JsonWebKey(jsonRes, this));
+    return this.identityProviderApi.getIdentityProviderKey(keyId);
   }
 
   /**
@@ -3253,18 +3207,7 @@ class GeneratedApiClient {
     if (!idpId) {
       return Promise.reject(new Error('OKTA API deleteIdentityProvider parameter idpId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/idps/${idpId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/idps/${idpId}`
-    ];
-
-    const request = this.http.delete(
-      url,
-      null,
-      { resources }
-    );
-    return request;
+    return this.identityProviderApi.deleteIdentityProvider(idpId);
   }
 
   /**
@@ -3278,18 +3221,7 @@ class GeneratedApiClient {
     if (!idpId) {
       return Promise.reject(new Error('OKTA API getIdentityProvider parameter idpId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/idps/${idpId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/idps/${idpId}`
-    ];
-
-    const request = this.http.getJson(
-      url,
-      null,
-      { resources }
-    );
-    return request.then(jsonRes => new models.IdentityProvider(jsonRes, this));
+    return this.identityProviderApi.getIdentityProvider(idpId);
   }
 
   /**
@@ -3307,20 +3239,7 @@ class GeneratedApiClient {
     if (!identityProvider) {
       return Promise.reject(new Error('OKTA API updateIdentityProvider parameter identityProvider is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/idps/${idpId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/idps/${idpId}`
-    ];
-
-    const request = this.http.putJson(
-      url,
-      {
-        body: identityProvider
-      },
-      { resources }
-    );
-    return request.then(jsonRes => new models.IdentityProvider(jsonRes, this));
+    return this.identityProviderApi.updateIdentityProvider(idpId, identityProvider);
   }
 
   /**
@@ -3334,13 +3253,7 @@ class GeneratedApiClient {
     if (!idpId) {
       return Promise.reject(new Error('OKTA API listCsrsForIdentityProvider parameter idpId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/idps/${idpId}/credentials/csrs`;
-
-    return new Collection(
-      this.http,
-      url,
-      new ModelFactory(models.Csr, this),
-    );
+    return this.identityProviderApi.listCsrsForIdentityProvider(idpId);
   }
 
   /**
@@ -3358,20 +3271,7 @@ class GeneratedApiClient {
     if (!csrMetadata) {
       return Promise.reject(new Error('OKTA API generateCsrForIdentityProvider parameter csrMetadata is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/idps/${idpId}/credentials/csrs`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/idps/${idpId}`
-    ];
-
-    const request = this.http.postJson(
-      url,
-      {
-        body: csrMetadata
-      },
-      { resources }
-    );
-    return request.then(jsonRes => new models.Csr(jsonRes, this));
+    return this.identityProviderApi.generateCsrForIdentityProvider(idpId, csrMetadata);
   }
 
   /**
@@ -3388,19 +3288,7 @@ class GeneratedApiClient {
     if (!csrId) {
       return Promise.reject(new Error('OKTA API revokeCsrForIdentityProvider parameter csrId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/idps/${idpId}/credentials/csrs/${csrId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/idps/${idpId}/credentials/csrs/${csrId}`,
-      `${this.baseUrl}/api/v1/idps/${idpId}`
-    ];
-
-    const request = this.http.delete(
-      url,
-      null,
-      { resources }
-    );
-    return request;
+    return this.identityProviderApi.revokeCsrForIdentityProvider(idpId, csrId);
   }
 
   /**
@@ -3418,26 +3306,14 @@ class GeneratedApiClient {
     if (!csrId) {
       return Promise.reject(new Error('OKTA API getCsrForIdentityProvider parameter csrId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/idps/${idpId}/credentials/csrs/${csrId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/idps/${idpId}/credentials/csrs/${csrId}`,
-      `${this.baseUrl}/api/v1/idps/${idpId}`
-    ];
-
-    const request = this.http.getJson(
-      url,
-      null,
-      { resources }
-    );
-    return request.then(jsonRes => new models.Csr(jsonRes, this));
+    return this.identityProviderApi.getCsrForIdentityProvider(idpId, csrId);
   }
 
   /**
    *
    * @param idpId {String}
    * @param csrId {String}
-   * @param {string} string
+   * @param {string} certificate
    * @description
    * Update the Certificate Signing Request with a signed X.509 certificate and add it into the signing key credentials for the IdP.
    * @returns {Promise<JsonWebKey>}
@@ -3452,31 +3328,14 @@ class GeneratedApiClient {
     if (!certificate) {
       return Promise.reject(new Error('OKTA API publishCerCertForIdentityProvider parameter certificate is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/idps/${idpId}/credentials/csrs/${csrId}/lifecycle/publish`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/idps/${idpId}/credentials/csrs/${csrId}`,
-      `${this.baseUrl}/api/v1/idps/${idpId}`
-    ];
-
-    const request = this.http.post(
-      url,
-      {
-        headers: {
-          'Content-Type': 'application/x-x509-ca-cert', 'Accept': 'application/json', 'Content-Transfer-Encoding': 'base64',
-        },
-        body: certificate
-      },
-      { resources }
-    ).then(res => res.json());
-    return request.then(jsonRes => new models.JsonWebKey(jsonRes, this));
+    return this.identityProviderApi.publishCsrForIdentityProvider(idpId, csrId, certificate);
   }
 
   /**
    *
    * @param idpId {String}
    * @param csrId {String}
-   * @param {string} string
+   * @param {string} certificate
    * @description
    * Update the Certificate Signing Request with a signed X.509 certificate and add it into the signing key credentials for the IdP.
    * @returns {Promise<JsonWebKey>}
@@ -3515,7 +3374,7 @@ class GeneratedApiClient {
    *
    * @param idpId {String}
    * @param csrId {String}
-   * @param {string} string
+   * @param {string} certificate
    * @description
    * Update the Certificate Signing Request with a signed X.509 certificate and add it into the signing key credentials for the IdP.
    * @returns {Promise<JsonWebKey>}
@@ -3554,7 +3413,7 @@ class GeneratedApiClient {
    *
    * @param idpId {String}
    * @param csrId {String}
-   * @param {string} string
+   * @param {string} certificate
    * @description
    * Update the Certificate Signing Request with a signed X.509 certificate and add it into the signing key credentials for the IdP.
    * @returns {Promise<JsonWebKey>}
@@ -3593,7 +3452,7 @@ class GeneratedApiClient {
    *
    * @param idpId {String}
    * @param csrId {String}
-   * @param {string} string
+   * @param {string} certificate
    * @description
    * Update the Certificate Signing Request with a signed X.509 certificate and add it into the signing key credentials for the IdP.
    * @returns {Promise<JsonWebKey>}
@@ -3639,13 +3498,7 @@ class GeneratedApiClient {
     if (!idpId) {
       return Promise.reject(new Error('OKTA API listIdentityProviderSigningKeys parameter idpId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/idps/${idpId}/credentials/keys`;
-
-    return new Collection(
-      this.http,
-      url,
-      new ModelFactory(models.JsonWebKey, this),
-    );
+    return this.identityProviderApi.listIdentityProviderSigningKeys(idpId);
   }
 
   /**
@@ -3664,21 +3517,11 @@ class GeneratedApiClient {
     if (!queryParameters) {
       return Promise.reject(new Error('OKTA API generateIdentityProviderSigningKey parameter queryParameters is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/idps/${idpId}/credentials/keys/generate`;
-    const queryString = qs.stringify(queryParameters || {});
-
-    url += queryString ? ('?' + queryString) : '';
-
-    const resources = [
-      `${this.baseUrl}/api/v1/idps/${idpId}`
-    ];
-
-    const request = this.http.postJson(
-      url,
-      null,
-      { resources }
-    );
-    return request.then(jsonRes => new models.JsonWebKey(jsonRes, this));
+    let validityYears;
+    if (queryParameters) {
+      validityYears = queryParameters.validityYears;
+    }
+    return this.identityProviderApi.generateIdentityProviderSigningKey(idpId, validityYears);
   }
 
   /**
@@ -3696,19 +3539,7 @@ class GeneratedApiClient {
     if (!keyId) {
       return Promise.reject(new Error('OKTA API getIdentityProviderSigningKey parameter keyId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/idps/${idpId}/credentials/keys/${keyId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/idps/${idpId}/credentials/keys/${keyId}`,
-      `${this.baseUrl}/api/v1/idps/${idpId}`
-    ];
-
-    const request = this.http.getJson(
-      url,
-      null,
-      { resources }
-    );
-    return request.then(jsonRes => new models.JsonWebKey(jsonRes, this));
+    return this.identityProviderApi.getIdentityProviderSigningKey(idpId, keyId);
   }
 
   /**
@@ -3731,22 +3562,11 @@ class GeneratedApiClient {
     if (!queryParameters) {
       return Promise.reject(new Error('OKTA API cloneIdentityProviderKey parameter queryParameters is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/idps/${idpId}/credentials/keys/${keyId}/clone`;
-    const queryString = qs.stringify(queryParameters || {});
-
-    url += queryString ? ('?' + queryString) : '';
-
-    const resources = [
-      `${this.baseUrl}/api/v1/idps/${idpId}/credentials/keys/${keyId}`,
-      `${this.baseUrl}/api/v1/idps/${idpId}`
-    ];
-
-    const request = this.http.postJson(
-      url,
-      null,
-      { resources }
-    );
-    return request.then(jsonRes => new models.JsonWebKey(jsonRes, this));
+    let targetIdpId;
+    if (queryParameters) {
+      targetIdpId = queryParameters.targetIdpId;
+    }
+    return this.identityProviderApi.cloneIdentityProviderKey(idpId, keyId, targetIdpId);
   }
 
   /**
@@ -3760,18 +3580,7 @@ class GeneratedApiClient {
     if (!idpId) {
       return Promise.reject(new Error('OKTA API activateIdentityProvider parameter idpId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/idps/${idpId}/lifecycle/activate`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/idps/${idpId}`
-    ];
-
-    const request = this.http.postJson(
-      url,
-      null,
-      { resources }
-    );
-    return request.then(jsonRes => new models.IdentityProvider(jsonRes, this));
+    return this.identityProviderApi.activateIdentityProvider(idpId);
   }
 
   /**
@@ -3785,18 +3594,7 @@ class GeneratedApiClient {
     if (!idpId) {
       return Promise.reject(new Error('OKTA API deactivateIdentityProvider parameter idpId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/idps/${idpId}/lifecycle/deactivate`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/idps/${idpId}`
-    ];
-
-    const request = this.http.postJson(
-      url,
-      null,
-      { resources }
-    );
-    return request.then(jsonRes => new models.IdentityProvider(jsonRes, this));
+    return this.identityProviderApi.deactivateIdentityProvider(idpId);
   }
 
   /**
@@ -3810,13 +3608,7 @@ class GeneratedApiClient {
     if (!idpId) {
       return Promise.reject(new Error('OKTA API listIdentityProviderApplicationUsers parameter idpId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/idps/${idpId}/users`;
-
-    return new Collection(
-      this.http,
-      url,
-      new ModelFactory(models.IdentityProviderApplicationUser, this),
-    );
+    return this.identityProviderApi.listIdentityProviderApplicationUsers(idpId);
   }
 
   /**
@@ -3833,19 +3625,7 @@ class GeneratedApiClient {
     if (!userId) {
       return Promise.reject(new Error('OKTA API unlinkUserFromIdentityProvider parameter userId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/idps/${idpId}/users/${userId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/idps/${idpId}/users/${userId}`,
-      `${this.baseUrl}/api/v1/idps/${idpId}`
-    ];
-
-    const request = this.http.delete(
-      url,
-      null,
-      { resources }
-    );
-    return request;
+    return this.identityProviderApi.unlinkUserFromIdentityProvider(idpId, userId);
   }
 
   /**
@@ -3863,19 +3643,7 @@ class GeneratedApiClient {
     if (!userId) {
       return Promise.reject(new Error('OKTA API getIdentityProviderApplicationUser parameter userId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/idps/${idpId}/users/${userId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/idps/${idpId}/users/${userId}`,
-      `${this.baseUrl}/api/v1/idps/${idpId}`
-    ];
-
-    const request = this.http.getJson(
-      url,
-      null,
-      { resources }
-    );
-    return request.then(jsonRes => new models.IdentityProviderApplicationUser(jsonRes, this));
+    return this.identityProviderApi.getIdentityProviderApplicationUser(idpId, userId);
   }
 
   /**
@@ -3897,21 +3665,7 @@ class GeneratedApiClient {
     if (!userIdentityProviderLinkRequest) {
       return Promise.reject(new Error('OKTA API linkUserToIdentityProvider parameter userIdentityProviderLinkRequest is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/idps/${idpId}/users/${userId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/idps/${idpId}/users/${userId}`,
-      `${this.baseUrl}/api/v1/idps/${idpId}`
-    ];
-
-    const request = this.http.postJson(
-      url,
-      {
-        body: userIdentityProviderLinkRequest
-      },
-      { resources }
-    );
-    return request.then(jsonRes => new models.IdentityProviderApplicationUser(jsonRes, this));
+    return this.identityProviderApi.linkUserToIdentityProvider(idpId, userId, userIdentityProviderLinkRequest);
   }
 
   /**
@@ -3929,13 +3683,7 @@ class GeneratedApiClient {
     if (!userId) {
       return Promise.reject(new Error('OKTA API listSocialAuthTokens parameter userId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/idps/${idpId}/users/${userId}/credentials/tokens`;
-
-    return new Collection(
-      this.http,
-      url,
-      new ModelFactory(models.SocialAuthToken, this),
-    );
+    return this.identityProviderApi.listSocialAuthTokens(idpId, userId);
   }
 
   /**
@@ -4435,19 +4183,19 @@ class GeneratedApiClient {
   /**
    *
    * @param contactType {String}
-   * @param {UserIdString} userIdString
+   * @param {OrgContactUser} orgContactUser
    * @description
    * Updates the User associated with the specified Contact Type.
    * @returns {Promise<OrgContactUser>}
    */
-  updateOrgContactUser(contactType, userIdString) {
+  updateOrgContactUser(contactType, orgContactUser) {
     if (!contactType) {
       return Promise.reject(new Error('OKTA API updateOrgContactUser parameter contactType is required.'));
     }
-    if (!userIdString) {
-      return Promise.reject(new Error('OKTA API updateOrgContactUser parameter userIdString is required.'));
+    if (!orgContactUser) {
+      return Promise.reject(new Error('OKTA API updateOrgContactUser parameter orgContactUser is required.'));
     }
-    return this.orgSettingApi.updateOrgContactUser(contactType, userIdString);
+    return this.orgSettingApi.updateOrgContactUser(contactType, orgContactUser);
   }
 
   /**

@@ -190,8 +190,12 @@ export class RequestContext {
     this.headers['Cookie'] += name + '=' + value + '; ';
   }
 
-  public setHeaderParam(key: string, value: string): void  {
-    this.headers[key] = value;
+  public setHeaderParam(key: string, value?: string): void  {
+    if (value) {
+      this.headers[key] = value;
+    } else {
+      delete this.headers[key];
+    }
   }
 
   public setAffectedResources(affectedResources: string[]): void {
