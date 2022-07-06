@@ -33,7 +33,7 @@ var __exportStar = (this && this.__exportStar) || function (m, exports) {
   }
 };
 Object.defineProperty(exports, '__esModule', { value: true });
-exports.ApplicationSettingsApplication = exports.InlineHookPayload = void 0;
+exports.ResponseLinks = exports.ApplicationSettingsApplication = exports.InlineHookPayload = void 0;
 __exportStar(require('./AccessPolicy'), exports);
 __exportStar(require('./AccessPolicyAllOf'), exports);
 __exportStar(require('./AccessPolicyConstraint'), exports);
@@ -279,6 +279,7 @@ __exportStar(require('./IdentityProviderPolicy'), exports);
 __exportStar(require('./IdentityProviderPolicyAllOf'), exports);
 __exportStar(require('./IdentityProviderPolicyProvider'), exports);
 __exportStar(require('./IdentityProviderPolicyRuleCondition'), exports);
+__exportStar(require('./IdentityProviderType'), exports);
 __exportStar(require('./IdpPolicyRuleAction'), exports);
 __exportStar(require('./IdpPolicyRuleActionProvider'), exports);
 __exportStar(require('./IframeEmbedScopeAllowedApps'), exports);
@@ -583,7 +584,6 @@ __exportStar(require('./UserActivationToken'), exports);
 __exportStar(require('./UserCondition'), exports);
 __exportStar(require('./UserCredentials'), exports);
 __exportStar(require('./UserFactor'), exports);
-__exportStar(require('./UserIdString'), exports);
 __exportStar(require('./UserIdentifierConditionEvaluatorPattern'), exports);
 __exportStar(require('./UserIdentifierMatchType'), exports);
 __exportStar(require('./UserIdentifierPolicyRuleCondition'), exports);
@@ -639,4 +639,8 @@ exports.InlineHookPayload = InlineHookPayload;
 class ApplicationSettingsApplication {
 }
 exports.ApplicationSettingsApplication = ApplicationSettingsApplication;
+
+class ResponseLinks {
+}
+exports.ResponseLinks = ResponseLinks;
 

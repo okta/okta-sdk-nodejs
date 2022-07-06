@@ -52,7 +52,7 @@ describe('Sessions API', () => {
     });
 
     // 3 - end all user sessions
-    await createdUser.clearSessions();
+    await client.clearUserSessions(createdUser.id);
 
     // 4 - attempt to retrieve session1
     let sess1;

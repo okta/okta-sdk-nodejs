@@ -32,7 +32,7 @@ describe('User API Tests', () => {
     utils.validateUser(createdUser, newUser);
 
     // 2. Expire the user's password
-    await createdUser.expirePassword();
+    await client.expirePassword(createdUser.id);
 
     // 3. Verify that password was expired
     const expiredUser = await client.getUser(createdUser.id);
@@ -59,7 +59,7 @@ describe('User API Tests', () => {
     utils.validateUser(createdUser, newUser);
 
     // 2. Expire the user's password
-    const jsonResponse = await createdUser.expirePasswordAndGetTemporaryPassword();
+    const jsonResponse = await client.expirePasswordAndGetTemporaryPassword(createdUser.id);
 
     // 3. Verify that password was expired
     const expiredUser = await client.getUser(createdUser.id);

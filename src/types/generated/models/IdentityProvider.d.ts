@@ -23,6 +23,7 @@
  * Do not edit the class manually.
  */
 import { IdentityProviderPolicy } from './IdentityProviderPolicy';
+import { IdentityProviderType } from './IdentityProviderType';
 import { IssuerMode } from './IssuerMode';
 import { LifecycleStatus } from './LifecycleStatus';
 import { Protocol } from './Protocol';
@@ -35,7 +36,7 @@ export declare class IdentityProvider {
   'policy'?: IdentityProviderPolicy;
   'protocol'?: Protocol;
   'status'?: LifecycleStatus;
-  'type'?: string;
+  'type'?: IdentityProviderType;
   '_links'?: {
         [key: string]: any;
     };

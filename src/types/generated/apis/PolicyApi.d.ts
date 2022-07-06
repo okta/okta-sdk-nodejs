@@ -34,6 +34,12 @@ export declare class PolicyApiRequestFactory extends BaseAPIRequestFactory {
      */
   activatePolicyRule(policyId: string, ruleId: string, _options?: Configuration): Promise<RequestContext>;
   /**
+     * Clones an existing policy.
+     * Clone an existing policy
+     * @param policyId
+     */
+  clonePolicy(policyId: string, _options?: Configuration): Promise<RequestContext>;
+  /**
      * Creates a policy.
      * Create a Policy
      * @param policy
@@ -134,6 +140,14 @@ export declare class PolicyApiResponseProcessor {
      * @throws ApiException if the response code was not in [200, 299]
      */
   activatePolicyRule(response: ResponseContext): Promise<void>;
+  /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
+     * @params response Response returned by the server for a request to clonePolicy
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+  clonePolicy(response: ResponseContext): Promise<Policy>;
   /**
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects

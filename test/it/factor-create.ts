@@ -115,9 +115,14 @@ describe('Factors API', () => {
         phoneNumber: '162 840 01133‬'
       }
     };
-    const createdFactor = await client.enrollFactor(createdUser.id, factor);
-    expect(createdFactor.factorType).to.equal('sms');
-    expect(createdFactor).to.be.instanceof(v3.UserFactor);
-    expect(createdFactor).to.be.instanceof(v3.SmsUserFactor);
+    try {
+      const createdFactor = await client.enrollFactor(createdUser.id, factor);
+      expect(createdFactor.factorType).to.equal('sms');
+      expect(createdFactor).to.be.instanceof(v3.UserFactor);
+      expect(createdFactor).to.be.instanceof(v3.SmsUserFactor);
+    } catch (e) {
+      expect(e.status).to.equal(429);
+      expect(e.message).to.contain('Your free tier organization has reached the limit of sms requests');
+    }
   });
 });

@@ -26,7 +26,7 @@ describe('User grants API', () => {
 
     // Only test on if Collection is returned, since no api has been provided to assign grant to user
     it('should return a Collection', async () => {
-      const grants = await user.listGrants();
+      const grants = await client.listUserGrants(user.id);
       expect(grants).to.be.instanceOf(Collection);
     });
   });

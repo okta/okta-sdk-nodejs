@@ -40,6 +40,7 @@ const {
   CustomizationApi,
   TrustedOriginApi,
   UserFactorApi,
+  UserApi,
 } = require('./generated');
 const { createConfiguration } = require('./generated/configuration');
 const { ServerConfiguration } = require('./generated/servers');
@@ -135,6 +136,7 @@ class Client extends GeneratedApiClient {
     this.customizationApi = new CustomizationApi(configuration);
     this.trustedOriginApi = new TrustedOriginApi(configuration);
     this.userFactorApi = new UserFactorApi(configuration);
+    this.userApi = new UserApi(configuration);
   }
 }
 

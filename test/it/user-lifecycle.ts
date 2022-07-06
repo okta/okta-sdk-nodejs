@@ -38,7 +38,7 @@ describe('User lifecycle API', () => {
 
     it('should activate a user', async () => {
       const sendEmail = { sendEmail : false };
-      await createdUser.activate(sendEmail);
+      await client.activateUser(createdUser.id, sendEmail);
       const queryParameters = { filter: 'status eq "ACTIVE"' };
       const userPresent = await utils.isUserPresent(client, createdUser, queryParameters);
       expect(userPresent).to.equal(true);
@@ -52,10 +52,9 @@ describe('User lifecycle API', () => {
     });
 
     it('should expire a users password', async () => {
-      const queryParameters = { tempPassword : true };
       // TODO: receiving 403: Invalid Session
-      const response = await createdUser.expirePassword(queryParameters);
-      expect(response.tempPassword).to.not.be.null;
+      const user = await client.expirePassword(createdUser.id);
+      expect(user.status).to.equal('PASSWORD_EXPIRED');
     });
   });
 
@@ -66,13 +65,13 @@ describe('User lifecycle API', () => {
     });
 
     it('should suspend/unsuspend a user', async () => {
-      await createdUser.suspend();
+      await client.suspendUser(createdUser.id);
 
       let queryParameters = { filter: 'status eq "SUSPENDED"' };
       let userPresent = await utils.isUserPresent(client, createdUser, queryParameters);
       expect(userPresent).to.equal(true);
 
-      await createdUser.unsuspend();
+      await client.unsuspendUser(createdUser.id);
       queryParameters = { filter: 'status eq "ACTIVE"' };
       userPresent = await utils.isUserPresent(client, createdUser, queryParameters);
       expect(userPresent).to.equal(true);
@@ -88,7 +87,7 @@ describe('User lifecycle API', () => {
     // As it's not easy to mock lock user, we test on error response to make sure correct endpoint is called.
     it('should return errorCode E0000032 for unlocked user', async () => {
       try {
-        await createdUser.unlock();
+        await client.unlockUser(createdUser.id);
       } catch (e) {
         expect(e.status).to.be.equal(403);
         expect(e.errorCode).to.be.equal('E0000032');
@@ -103,8 +102,8 @@ describe('User lifecycle API', () => {
     });
 
     it('should get response with status 200', async () => {
-      const response = await createdUser.resetFactors();
-      expect(response.status).to.be.equal(200);
+      const response = await client.resetFactors(createdUser.id);
+      expect(response).to.be.undefined;
     });
   });
 
@@ -115,8 +114,8 @@ describe('User lifecycle API', () => {
     });
 
     it('should get response with status 204', async () => {
-      const response = await createdUser.clearSessions();
-      expect(response.status).to.be.equal(204);
+      const response = await client.clearUserSessions(createdUser.id);
+      expect(response).to.be.undefined;
     });
   });
 });

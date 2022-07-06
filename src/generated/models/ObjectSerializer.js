@@ -269,6 +269,7 @@ __exportStar(require("./IdentityProviderPolicy"), exports);
 __exportStar(require("./IdentityProviderPolicyAllOf"), exports);
 __exportStar(require("./IdentityProviderPolicyProvider"), exports);
 __exportStar(require("./IdentityProviderPolicyRuleCondition"), exports);
+__exportStar(require("./IdentityProviderType"), exports);
 __exportStar(require("./IdpPolicyRuleAction"), exports);
 __exportStar(require("./IdpPolicyRuleActionProvider"), exports);
 __exportStar(require("./IframeEmbedScopeAllowedApps"), exports);
@@ -573,7 +574,6 @@ __exportStar(require("./UserActivationToken"), exports);
 __exportStar(require("./UserCondition"), exports);
 __exportStar(require("./UserCredentials"), exports);
 __exportStar(require("./UserFactor"), exports);
-__exportStar(require("./UserIdString"), exports);
 __exportStar(require("./UserIdentifierConditionEvaluatorPattern"), exports);
 __exportStar(require("./UserIdentifierMatchType"), exports);
 __exportStar(require("./UserIdentifierPolicyRuleCondition"), exports);
@@ -1047,7 +1047,6 @@ const UserActivationToken_1 = require("./UserActivationToken");
 const UserCondition_1 = require("./UserCondition");
 const UserCredentials_1 = require("./UserCredentials");
 const UserFactor_1 = require("./UserFactor");
-const UserIdString_1 = require("./UserIdString");
 const UserIdentifierConditionEvaluatorPattern_1 = require("./UserIdentifierConditionEvaluatorPattern");
 const UserIdentifierPolicyRuleCondition_1 = require("./UserIdentifierPolicyRuleCondition");
 const UserIdentityProviderLinkRequest_1 = require("./UserIdentityProviderLinkRequest");
@@ -1151,6 +1150,7 @@ let enumsMap = new Set([
     'HttpMethod',
     'IdentityProviderCredentialsTrustRevocation',
     'IdentityProviderPolicyProvider',
+    'IdentityProviderType',
     'IframeEmbedScopeAllowedApps',
     'InlineHookChannelType',
     'InlineHookStatus',
@@ -1664,7 +1664,6 @@ let typeMap = {
     'UserCondition': UserCondition_1.UserCondition,
     'UserCredentials': UserCredentials_1.UserCredentials,
     'UserFactor': UserFactor_1.UserFactor,
-    'UserIdString': UserIdString_1.UserIdString,
     'UserIdentifierConditionEvaluatorPattern': UserIdentifierConditionEvaluatorPattern_1.UserIdentifierConditionEvaluatorPattern,
     'UserIdentifierPolicyRuleCondition': UserIdentifierPolicyRuleCondition_1.UserIdentifierPolicyRuleCondition,
     'UserIdentityProviderLinkRequest': UserIdentityProviderLinkRequest_1.UserIdentityProviderLinkRequest,

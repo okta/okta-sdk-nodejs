@@ -2419,7 +2419,7 @@ class UserApiResponseProcessor {
      */
   async addApplicationTargetToAdminRoleForUser(response) {
     const contentType = ObjectSerializer_1.ObjectSerializer.normalizeMediaType(response.headers['content-type']);
-    if ((0, util_1.isCodeInRange)('200', response.httpStatusCode)) {
+    if ((0, util_1.isCodeInRange)('204', response.httpStatusCode)) {
       return;
     }
     if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
@@ -2481,7 +2481,7 @@ class UserApiResponseProcessor {
      */
   async addGroupTargetToRole(response) {
     const contentType = ObjectSerializer_1.ObjectSerializer.normalizeMediaType(response.headers['content-type']);
-    if ((0, util_1.isCodeInRange)('200', response.httpStatusCode)) {
+    if ((0, util_1.isCodeInRange)('204', response.httpStatusCode)) {
       return;
     }
     if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
@@ -2683,7 +2683,7 @@ class UserApiResponseProcessor {
      */
   async deactivateOrDeleteUser(response) {
     const contentType = ObjectSerializer_1.ObjectSerializer.normalizeMediaType(response.headers['content-type']);
-    if ((0, util_1.isCodeInRange)('202', response.httpStatusCode)) {
+    if ((0, util_1.isCodeInRange)('204', response.httpStatusCode)) {
       return;
     }
     if ((0, util_1.isCodeInRange)('400', response.httpStatusCode)) {

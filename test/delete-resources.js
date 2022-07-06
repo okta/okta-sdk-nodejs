@@ -53,7 +53,7 @@ async function cleanTestUsers() {
     try {
       (user.profile.email.endsWith('okta.com')) ?
         console.log(`Skipped user to remove ${user.profile.email}`) :
-        await utils.deleteUser(user);
+        await utils.deleteUser(user, client);
     } catch (err) {
       console.error(err);
     }

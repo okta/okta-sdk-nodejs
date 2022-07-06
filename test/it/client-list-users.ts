@@ -4,7 +4,7 @@ import {
   Client,
   Collection,
   DefaultRequestExecutor,
-  User} from '@okta/okta-sdk-nodejs';
+  v3 } from '@okta/okta-sdk-nodejs';
 
 import utils = require('../utils');
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
@@ -44,8 +44,8 @@ describe('client.list-users()', () => {
     await utils.cleanup(client, _user);
   });
 
-  it('should return a collection', () => {
-    expect(client.listUsers()).to.be.an.instanceof(Collection);
+  it('should return a collection', async () => {
+    expect(await client.listUsers()).to.be.an.instanceof(Collection);
   });
 
   it('should allow me to perform search queries', async () => {
@@ -55,7 +55,7 @@ describe('client.list-users()', () => {
 
     await utils.delay(2000);
     const queryParameters = { search: `profile.nickName eq "${_user.profile.nickName}"` };
-    await client.listUsers(queryParameters).each(user => {
+    await (await client.listUsers(queryParameters)).each(user => {
       // If tests run in parallel (for different node versions on travis), it might match a different user without this check
       if (user.id === _user.id) {
         foundUser = user;
@@ -72,23 +72,23 @@ describe('client.list-users()', () => {
 
 describe('client.listUsers().each()', () => {
   it('should allow me to iterate the entire collection and return User models', async () => {
-    await client.listUsers().each(user => {
-      expect(user).to.be.an.instanceof(User);
+    await (await client.listUsers()).each(user => {
+      expect(user).to.be.an.instanceof(v3.User);
     });
   });
 
   it('should allow me to abort iteration synchronously', async () => {
     let localCount = 0;
-    await client.listUsers().each(() => {
+    await (await client.listUsers()).each(() => {
       localCount++;
       return false;
     });
     expect(localCount).to.equal(1);
   });
 
-  it('should allow me to abort iteration asynchronously, using a promise', () => {
+  it('should allow me to abort iteration asynchronously, using a promise', async () => {
     let localCount = 0;
-    return client.listUsers().each(() => {
+    return (await client.listUsers()).each(() => {
       localCount++;
       return new Promise((resolve) => {
         setTimeout(resolve.bind(null, false), 1000);
@@ -99,9 +99,9 @@ describe('client.listUsers().each()', () => {
       });
   });
 
-  it('should stop iteration if the iterator rejects a promise', () => {
+  it('should stop iteration if the iterator rejects a promise', async () => {
     let localCount = 0;
-    return client.listUsers().each(() => {
+    return (await client.listUsers()).each(() => {
       localCount++;
       return new Promise((resolve, reject) => {
         setTimeout(reject.bind(null, 'foo error'), 1000);
@@ -137,15 +137,16 @@ describe('client.listUsers().next()', () => {
     await utils.cleanup(client, _user);
   });
 
-  it('should return User models', () => {
-    return client.listUsers().next()
+  it('should return User models', async () => {
+    const collection = await client.listUsers();
+    return collection.next()
       .then(result => {
-        expect(result.value).to.be.an.instanceof(User);
+        expect(result.value).to.be.an.instanceof(v3.User);
       });
   });
 
-  it('should allow me to visit every user', () => {
-    const collection = client.listUsers();
+  it('should allow me to visit every user', async () => {
+    const collection = await client.listUsers();
     let localCount = 0;
     function iter(result) {
       localCount++;

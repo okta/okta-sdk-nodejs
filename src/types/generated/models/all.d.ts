@@ -256,6 +256,7 @@ export * from './IdentityProviderPolicy';
 export * from './IdentityProviderPolicyAllOf';
 export * from './IdentityProviderPolicyProvider';
 export * from './IdentityProviderPolicyRuleCondition';
+export * from './IdentityProviderType';
 export * from './IdpPolicyRuleAction';
 export * from './IdpPolicyRuleActionProvider';
 export * from './IframeEmbedScopeAllowedApps';
@@ -560,7 +561,6 @@ export * from './UserActivationToken';
 export * from './UserCondition';
 export * from './UserCredentials';
 export * from './UserFactor';
-export * from './UserIdString';
 export * from './UserIdentifierConditionEvaluatorPattern';
 export * from './UserIdentifierMatchType';
 export * from './UserIdentifierPolicyRuleCondition';
@@ -611,4 +611,6 @@ export * from './WsFederationApplicationSettingsApplication';
 export declare class InlineHookPayload {
 }
 export declare class ApplicationSettingsApplication {
+}
+export declare class ResponseLinks {
 }

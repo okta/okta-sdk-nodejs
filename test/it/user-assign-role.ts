@@ -32,18 +32,20 @@ describe('User Role API Tests', () => {
     utils.validateUser(createdUser, newUser);
 
     // 2. Assign USER_ADMIN role to the user
-    const roleType = { type: 'USER_ADMIN'  };
-    const role = await createdUser.assignRole(roleType);
+    const roleType: okta.v3.AssignRoleRequest = { type: 'USER_ADMIN'  };
+    const role = await client.assignRoleToUser(createdUser.id, roleType);
 
     // 3. List roles for the user and verify added role
-    let hasRole = await utils.doesUserHaveRole(createdUser, 'USER_ADMIN');
+    let hasRole = await utils.doesUserHaveRole(createdUser, 'USER_ADMIN', client);
     expect(hasRole).to.equal(true);
 
     // 4. Remove role for the user
-    await createdUser.removeRole(role.id);
+    if (role) {
+      await client.removeRoleFromUser(createdUser.id, role.id);
+    }
 
     // 5. List roles for user and verify role was removed
-    hasRole = await utils.doesUserHaveRole(createdUser, 'USER_ADMIN');
+    hasRole = await utils.doesUserHaveRole(createdUser, 'USER_ADMIN', client);
     expect(hasRole).to.equal(false);
 
     // 6. Delete the user

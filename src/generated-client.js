@@ -5492,16 +5492,23 @@ class GeneratedApiClient {
    * @returns {Collection} A collection that will yield {@link User} instances.
    */
   listUsers(queryParameters) {
-    let url = `${this.baseUrl}/api/v1/users`;
-    const queryString = qs.stringify(queryParameters || {});
-
-    url += queryString ? ('?' + queryString) : '';
-
-    return new Collection(
-      this.http,
-      url,
-      new ModelFactory(models.User, this),
-    );
+    let q;
+    let after;
+    let limit;
+    let filter;
+    let search;
+    let sortBy;
+    let sortOrder;
+    if (queryParameters) {
+      q = queryParameters.q;
+      after = queryParameters.after;
+      limit = queryParameters.limit;
+      filter = queryParameters.filter;
+      search = queryParameters.search;
+      sortBy = queryParameters.sortBy;
+      sortOrder = queryParameters.sortOrder;
+    }
+    return this.userApi.listUsers(q, after, limit, filter, search, sortBy, sortOrder);
   }
 
   /**
@@ -5519,21 +5526,15 @@ class GeneratedApiClient {
     if (!createUserRequest) {
       return Promise.reject(new Error('OKTA API createUser parameter createUserRequest is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/users`;
-    const queryString = qs.stringify(queryParameters || {});
-
-    url += queryString ? ('?' + queryString) : '';
-
-    const resources = [];
-
-    const request = this.http.postJson(
-      url,
-      {
-        body: createUserRequest
-      },
-      { resources }
-    );
-    return request.then(jsonRes => new models.User(jsonRes, this));
+    let activate;
+    let provider;
+    let nextLogin;
+    if (queryParameters) {
+      activate = queryParameters.activate;
+      provider = queryParameters.provider;
+      nextLogin = queryParameters.nextLogin;
+    }
+    return this.userApi.createUser(createUserRequest, activate, provider, nextLogin);
   }
 
   /**
@@ -5554,24 +5555,7 @@ class GeneratedApiClient {
     if (!primaryUserId) {
       return Promise.reject(new Error('OKTA API setLinkedObjectForUser parameter primaryUserId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/users/${associatedUserId}/linkedObjects/${primaryRelationshipName}/${primaryUserId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/users/${associatedUserId}/linkedObjects/${primaryRelationshipName}/${primaryUserId}`,
-      `${this.baseUrl}/api/v1/users/${associatedUserId}/linkedObjects/${primaryRelationshipName}`,
-      `${this.baseUrl}/api/v1/users/${associatedUserId}`
-    ];
-
-    const request = this.http.put(
-      url,
-      {
-        headers: {
-          'Content-Type': 'application/json', 'Accept': 'application/json',
-        },
-      },
-      { resources }
-    );
-    return request;
+    return this.userApi.setLinkedObjectForUser(associatedUserId, primaryRelationshipName, primaryUserId);
   }
 
   /**
@@ -5586,21 +5570,11 @@ class GeneratedApiClient {
     if (!userId) {
       return Promise.reject(new Error('OKTA API deactivateOrDeleteUser parameter userId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/users/${userId}`;
-    const queryString = qs.stringify(queryParameters || {});
-
-    url += queryString ? ('?' + queryString) : '';
-
-    const resources = [
-      `${this.baseUrl}/api/v1/users/${userId}`
-    ];
-
-    const request = this.http.delete(
-      url,
-      null,
-      { resources }
-    );
-    return request;
+    let sendEmail;
+    if (queryParameters) {
+      sendEmail = queryParameters.sendEmail;
+    }
+    return this.userApi.deactivateOrDeleteUser(userId, sendEmail);
   }
 
   /**
@@ -5614,18 +5588,7 @@ class GeneratedApiClient {
     if (!userId) {
       return Promise.reject(new Error('OKTA API getUser parameter userId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/users/${userId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/users/${userId}`
-    ];
-
-    const request = this.http.getJson(
-      url,
-      null,
-      { resources }
-    );
-    return request.then(jsonRes => new models.User(jsonRes, this));
+    return this.userApi.getUser(userId);
   }
 
   /**
@@ -5645,23 +5608,11 @@ class GeneratedApiClient {
     if (!user) {
       return Promise.reject(new Error('OKTA API partialUpdateUser parameter user is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/users/${userId}`;
-    const queryString = qs.stringify(queryParameters || {});
-
-    url += queryString ? ('?' + queryString) : '';
-
-    const resources = [
-      `${this.baseUrl}/api/v1/users/${userId}`
-    ];
-
-    const request = this.http.postJson(
-      url,
-      {
-        body: user
-      },
-      { resources }
-    );
-    return request.then(jsonRes => new models.User(jsonRes, this));
+    let strict;
+    if (queryParameters) {
+      strict = queryParameters.strict;
+    }
+    return this.userApi.partialUpdateUser(userId, user, strict);
   }
 
   /**
@@ -5681,23 +5632,11 @@ class GeneratedApiClient {
     if (!user) {
       return Promise.reject(new Error('OKTA API updateUser parameter user is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/users/${userId}`;
-    const queryString = qs.stringify(queryParameters || {});
-
-    url += queryString ? ('?' + queryString) : '';
-
-    const resources = [
-      `${this.baseUrl}/api/v1/users/${userId}`
-    ];
-
-    const request = this.http.putJson(
-      url,
-      {
-        body: user
-      },
-      { resources }
-    );
-    return request.then(jsonRes => new models.User(jsonRes, this));
+    let strict;
+    if (queryParameters) {
+      strict = queryParameters.strict;
+    }
+    return this.userApi.updateUser(userId, user, strict);
   }
 
   /**
@@ -5711,13 +5650,7 @@ class GeneratedApiClient {
     if (!userId) {
       return Promise.reject(new Error('OKTA API listAppLinks parameter userId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/users/${userId}/appLinks`;
-
-    return new Collection(
-      this.http,
-      url,
-      new ModelFactory(models.AppLink, this),
-    );
+    return this.userApi.listAppLinks(userId);
   }
 
   /**
@@ -5731,13 +5664,7 @@ class GeneratedApiClient {
     if (!userId) {
       return Promise.reject(new Error('OKTA API listUserClients parameter userId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/users/${userId}/clients`;
-
-    return new Collection(
-      this.http,
-      url,
-      new ModelFactory(models.OAuth2Client, this),
-    );
+    return this.userApi.listUserClients(userId);
   }
 
   /**
@@ -5754,19 +5681,7 @@ class GeneratedApiClient {
     if (!clientId) {
       return Promise.reject(new Error('OKTA API revokeGrantsForUserAndClient parameter clientId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/users/${userId}/clients/${clientId}/grants`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/users/${userId}/clients/${clientId}`,
-      `${this.baseUrl}/api/v1/users/${userId}`
-    ];
-
-    const request = this.http.delete(
-      url,
-      null,
-      { resources }
-    );
-    return request;
+    return this.userApi.revokeGrantsForUserAndClient(userId, clientId);
   }
 
   /**
@@ -5788,16 +5703,15 @@ class GeneratedApiClient {
     if (!clientId) {
       return Promise.reject(new Error('OKTA API listGrantsForUserAndClient parameter clientId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/users/${userId}/clients/${clientId}/grants`;
-    const queryString = qs.stringify(queryParameters || {});
-
-    url += queryString ? ('?' + queryString) : '';
-
-    return new Collection(
-      this.http,
-      url,
-      new ModelFactory(models.OAuth2ScopeConsentGrant, this),
-    );
+    let expand;
+    let after;
+    let limit;
+    if (queryParameters) {
+      expand = queryParameters.expand;
+      after = queryParameters.after;
+      limit = queryParameters.limit;
+    }
+    return this.userApi.listGrantsForUserAndClient(userId, clientId, expand, after, limit);
   }
 
   /**
@@ -5814,19 +5728,7 @@ class GeneratedApiClient {
     if (!clientId) {
       return Promise.reject(new Error('OKTA API revokeTokensForUserAndClient parameter clientId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/users/${userId}/clients/${clientId}/tokens`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/users/${userId}/clients/${clientId}`,
-      `${this.baseUrl}/api/v1/users/${userId}`
-    ];
-
-    const request = this.http.delete(
-      url,
-      null,
-      { resources }
-    );
-    return request;
+    return this.userApi.revokeTokensForUserAndClient(userId, clientId);
   }
 
   /**
@@ -5848,16 +5750,15 @@ class GeneratedApiClient {
     if (!clientId) {
       return Promise.reject(new Error('OKTA API listRefreshTokensForUserAndClient parameter clientId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/users/${userId}/clients/${clientId}/tokens`;
-    const queryString = qs.stringify(queryParameters || {});
-
-    url += queryString ? ('?' + queryString) : '';
-
-    return new Collection(
-      this.http,
-      url,
-      new ModelFactory(models.OAuth2RefreshToken, this),
-    );
+    let expand;
+    let after;
+    let limit;
+    if (queryParameters) {
+      expand = queryParameters.expand;
+      after = queryParameters.after;
+      limit = queryParameters.limit;
+    }
+    return this.userApi.listRefreshTokensForUserAndClient(userId, clientId, expand, after, limit);
   }
 
   /**
@@ -5878,20 +5779,7 @@ class GeneratedApiClient {
     if (!tokenId) {
       return Promise.reject(new Error('OKTA API revokeTokenForUserAndClient parameter tokenId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/users/${userId}/clients/${clientId}/tokens/${tokenId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/users/${userId}/clients/${clientId}/tokens/${tokenId}`,
-      `${this.baseUrl}/api/v1/users/${userId}/clients/${clientId}`,
-      `${this.baseUrl}/api/v1/users/${userId}`
-    ];
-
-    const request = this.http.delete(
-      url,
-      null,
-      { resources }
-    );
-    return request;
+    return this.userApi.revokeTokenForUserAndClient(userId, clientId, tokenId);
   }
 
   /**
@@ -5917,23 +5805,15 @@ class GeneratedApiClient {
     if (!tokenId) {
       return Promise.reject(new Error('OKTA API getRefreshTokenForUserAndClient parameter tokenId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/users/${userId}/clients/${clientId}/tokens/${tokenId}`;
-    const queryString = qs.stringify(queryParameters || {});
-
-    url += queryString ? ('?' + queryString) : '';
-
-    const resources = [
-      `${this.baseUrl}/api/v1/users/${userId}/clients/${clientId}/tokens/${tokenId}`,
-      `${this.baseUrl}/api/v1/users/${userId}/clients/${clientId}`,
-      `${this.baseUrl}/api/v1/users/${userId}`
-    ];
-
-    const request = this.http.getJson(
-      url,
-      null,
-      { resources }
-    );
-    return request.then(jsonRes => new models.OAuth2RefreshToken(jsonRes, this));
+    let expand;
+    let limit;
+    let after;
+    if (queryParameters) {
+      expand = queryParameters.expand;
+      limit = queryParameters.limit;
+      after = queryParameters.after;
+    }
+    return this.userApi.getRefreshTokenForUserAndClient(userId, clientId, tokenId, expand, limit, after);
   }
 
   /**
@@ -5953,23 +5833,11 @@ class GeneratedApiClient {
     if (!changePasswordRequest) {
       return Promise.reject(new Error('OKTA API changePassword parameter changePasswordRequest is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/users/${userId}/credentials/change_password`;
-    const queryString = qs.stringify(queryParameters || {});
-
-    url += queryString ? ('?' + queryString) : '';
-
-    const resources = [
-      `${this.baseUrl}/api/v1/users/${userId}`
-    ];
-
-    const request = this.http.postJson(
-      url,
-      {
-        body: changePasswordRequest
-      },
-      { resources }
-    );
-    return request.then(jsonRes => new models.UserCredentials(jsonRes, this));
+    let strict;
+    if (queryParameters) {
+      strict = queryParameters.strict;
+    }
+    return this.userApi.changePassword(userId, changePasswordRequest, strict);
   }
 
   /**
@@ -5987,20 +5855,7 @@ class GeneratedApiClient {
     if (!userCredentials) {
       return Promise.reject(new Error('OKTA API changeRecoveryQuestion parameter userCredentials is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/users/${userId}/credentials/change_recovery_question`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/users/${userId}`
-    ];
-
-    const request = this.http.postJson(
-      url,
-      {
-        body: userCredentials
-      },
-      { resources }
-    );
-    return request.then(jsonRes => new models.UserCredentials(jsonRes, this));
+    return this.userApi.changeRecoveryQuestion(userId, userCredentials);
   }
 
   /**
@@ -6050,23 +5905,11 @@ class GeneratedApiClient {
     if (!userCredentials) {
       return Promise.reject(new Error('OKTA API forgotPasswordSetNewPassword parameter userCredentials is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/users/${userId}/credentials/forgot_password`;
-    const queryString = qs.stringify(queryParameters || {});
-
-    url += queryString ? ('?' + queryString) : '';
-
-    const resources = [
-      `${this.baseUrl}/api/v1/users/${userId}`
-    ];
-
-    const request = this.http.postJson(
-      url,
-      {
-        body: userCredentials
-      },
-      { resources }
-    );
-    return request.then(jsonRes => new models.ForgotPasswordResponse(jsonRes, this));
+    let sendEmail;
+    if (queryParameters) {
+      sendEmail = queryParameters.sendEmail;
+    }
+    return this.userApi.forgotPasswordSetNewPassword(userId, userCredentials, sendEmail);
   }
 
   /**
@@ -6266,18 +6109,7 @@ class GeneratedApiClient {
     if (!userId) {
       return Promise.reject(new Error('OKTA API revokeUserGrants parameter userId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/users/${userId}/grants`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/users/${userId}`
-    ];
-
-    const request = this.http.delete(
-      url,
-      null,
-      { resources }
-    );
-    return request;
+    return this.userApi.revokeUserGrants(userId);
   }
 
   /**
@@ -6296,16 +6128,17 @@ class GeneratedApiClient {
     if (!userId) {
       return Promise.reject(new Error('OKTA API listUserGrants parameter userId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/users/${userId}/grants`;
-    const queryString = qs.stringify(queryParameters || {});
-
-    url += queryString ? ('?' + queryString) : '';
-
-    return new Collection(
-      this.http,
-      url,
-      new ModelFactory(models.OAuth2ScopeConsentGrant, this),
-    );
+    let scopeId;
+    let expand;
+    let after;
+    let limit;
+    if (queryParameters) {
+      scopeId = queryParameters.scopeId;
+      expand = queryParameters.expand;
+      after = queryParameters.after;
+      limit = queryParameters.limit;
+    }
+    return this.userApi.listUserGrants(userId, scopeId, expand, after, limit);
   }
 
   /**
@@ -6322,19 +6155,7 @@ class GeneratedApiClient {
     if (!grantId) {
       return Promise.reject(new Error('OKTA API revokeUserGrant parameter grantId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/users/${userId}/grants/${grantId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/users/${userId}/grants/${grantId}`,
-      `${this.baseUrl}/api/v1/users/${userId}`
-    ];
-
-    const request = this.http.delete(
-      url,
-      null,
-      { resources }
-    );
-    return request;
+    return this.userApi.revokeUserGrant(userId, grantId);
   }
 
   /**
@@ -6354,22 +6175,11 @@ class GeneratedApiClient {
     if (!grantId) {
       return Promise.reject(new Error('OKTA API getUserGrant parameter grantId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/users/${userId}/grants/${grantId}`;
-    const queryString = qs.stringify(queryParameters || {});
-
-    url += queryString ? ('?' + queryString) : '';
-
-    const resources = [
-      `${this.baseUrl}/api/v1/users/${userId}/grants/${grantId}`,
-      `${this.baseUrl}/api/v1/users/${userId}`
-    ];
-
-    const request = this.http.getJson(
-      url,
-      null,
-      { resources }
-    );
-    return request.then(jsonRes => new models.OAuth2ScopeConsentGrant(jsonRes, this));
+    let expand;
+    if (queryParameters) {
+      expand = queryParameters.expand;
+    }
+    return this.userApi.getUserGrant(userId, grantId, expand);
   }
 
   /**
@@ -6383,13 +6193,7 @@ class GeneratedApiClient {
     if (!userId) {
       return Promise.reject(new Error('OKTA API listUserGroups parameter userId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/users/${userId}/groups`;
-
-    return new Collection(
-      this.http,
-      url,
-      new ModelFactory(models.Group, this),
-    );
+    return this.userApi.listUserGroups(userId);
   }
 
   /**
@@ -6403,13 +6207,7 @@ class GeneratedApiClient {
     if (!userId) {
       return Promise.reject(new Error('OKTA API listUserIdentityProviders parameter userId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/users/${userId}/idps`;
-
-    return new Collection(
-      this.http,
-      url,
-      new ModelFactory(models.IdentityProvider, this),
-    );
+    return this.userApi.listUserIdentityProviders(userId);
   }
 
   /**
@@ -6428,21 +6226,11 @@ class GeneratedApiClient {
     if (!queryParameters) {
       return Promise.reject(new Error('OKTA API activateUser parameter queryParameters is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/users/${userId}/lifecycle/activate`;
-    const queryString = qs.stringify(queryParameters || {});
-
-    url += queryString ? ('?' + queryString) : '';
-
-    const resources = [
-      `${this.baseUrl}/api/v1/users/${userId}`
-    ];
-
-    const request = this.http.postJson(
-      url,
-      null,
-      { resources }
-    );
-    return request.then(jsonRes => new models.UserActivationToken(jsonRes, this));
+    let sendEmail;
+    if (queryParameters) {
+      sendEmail = queryParameters.sendEmail;
+    }
+    return this.userApi.activateUser(userId, sendEmail);
   }
 
   /**
@@ -6457,25 +6245,11 @@ class GeneratedApiClient {
     if (!userId) {
       return Promise.reject(new Error('OKTA API deactivateUser parameter userId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/users/${userId}/lifecycle/deactivate`;
-    const queryString = qs.stringify(queryParameters || {});
-
-    url += queryString ? ('?' + queryString) : '';
-
-    const resources = [
-      `${this.baseUrl}/api/v1/users/${userId}`
-    ];
-
-    const request = this.http.post(
-      url,
-      {
-        headers: {
-          'Content-Type': 'application/json', 'Accept': 'application/json',
-        },
-      },
-      { resources }
-    );
-    return request;
+    let sendEmail;
+    if (queryParameters) {
+      sendEmail = queryParameters.sendEmail;
+    }
+    return this.userApi.deactivateUser(userId, sendEmail);
   }
 
   /**
@@ -6489,18 +6263,7 @@ class GeneratedApiClient {
     if (!userId) {
       return Promise.reject(new Error('OKTA API expirePassword parameter userId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/users/${userId}/lifecycle/expire_password?tempPassword=false`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/users/${userId}`
-    ];
-
-    const request = this.http.postJson(
-      url,
-      null,
-      { resources }
-    );
-    return request.then(jsonRes => new models.User(jsonRes, this));
+    return this.userApi.expirePassword(userId);
   }
 
   /**
@@ -6514,18 +6277,7 @@ class GeneratedApiClient {
     if (!userId) {
       return Promise.reject(new Error('OKTA API expirePasswordAndGetTemporaryPassword parameter userId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/users/${userId}/lifecycle/expire_password?tempPassword=true`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/users/${userId}`
-    ];
-
-    const request = this.http.postJson(
-      url,
-      null,
-      { resources }
-    );
-    return request.then(jsonRes => new models.TempPassword(jsonRes, this));
+    return this.userApi.expirePasswordAndGetTemporaryPassword(userId);
   }
 
   /**
@@ -6541,21 +6293,11 @@ class GeneratedApiClient {
     if (!userId) {
       return Promise.reject(new Error('OKTA API reactivateUser parameter userId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/users/${userId}/lifecycle/reactivate`;
-    const queryString = qs.stringify(queryParameters || {});
-
-    url += queryString ? ('?' + queryString) : '';
-
-    const resources = [
-      `${this.baseUrl}/api/v1/users/${userId}`
-    ];
-
-    const request = this.http.postJson(
-      url,
-      null,
-      { resources }
-    );
-    return request.then(jsonRes => new models.UserActivationToken(jsonRes, this));
+    let sendEmail;
+    if (queryParameters) {
+      sendEmail = queryParameters.sendEmail;
+    }
+    return this.userApi.reactivateUser(userId, sendEmail);
   }
 
   /**
@@ -6568,22 +6310,7 @@ class GeneratedApiClient {
     if (!userId) {
       return Promise.reject(new Error('OKTA API resetFactors parameter userId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/users/${userId}/lifecycle/reset_factors`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/users/${userId}`
-    ];
-
-    const request = this.http.post(
-      url,
-      {
-        headers: {
-          'Content-Type': 'application/json', 'Accept': 'application/json',
-        },
-      },
-      { resources }
-    );
-    return request;
+    return this.userApi.resetFactors(userId);
   }
 
   /**
@@ -6602,21 +6329,11 @@ class GeneratedApiClient {
     if (!queryParameters) {
       return Promise.reject(new Error('OKTA API resetPassword parameter queryParameters is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/users/${userId}/lifecycle/reset_password`;
-    const queryString = qs.stringify(queryParameters || {});
-
-    url += queryString ? ('?' + queryString) : '';
-
-    const resources = [
-      `${this.baseUrl}/api/v1/users/${userId}`
-    ];
-
-    const request = this.http.postJson(
-      url,
-      null,
-      { resources }
-    );
-    return request.then(jsonRes => new models.ResetPasswordToken(jsonRes, this));
+    let sendEmail;
+    if (queryParameters) {
+      sendEmail = queryParameters.sendEmail;
+    }
+    return this.userApi.resetPassword(userId, sendEmail);
   }
 
   /**
@@ -6629,22 +6346,7 @@ class GeneratedApiClient {
     if (!userId) {
       return Promise.reject(new Error('OKTA API suspendUser parameter userId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/users/${userId}/lifecycle/suspend`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/users/${userId}`
-    ];
-
-    const request = this.http.post(
-      url,
-      {
-        headers: {
-          'Content-Type': 'application/json', 'Accept': 'application/json',
-        },
-      },
-      { resources }
-    );
-    return request;
+    return this.userApi.suspendUser(userId);
   }
 
   /**
@@ -6657,22 +6359,7 @@ class GeneratedApiClient {
     if (!userId) {
       return Promise.reject(new Error('OKTA API unlockUser parameter userId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/users/${userId}/lifecycle/unlock`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/users/${userId}`
-    ];
-
-    const request = this.http.post(
-      url,
-      {
-        headers: {
-          'Content-Type': 'application/json', 'Accept': 'application/json',
-        },
-      },
-      { resources }
-    );
-    return request;
+    return this.userApi.unlockUser(userId);
   }
 
   /**
@@ -6685,22 +6372,7 @@ class GeneratedApiClient {
     if (!userId) {
       return Promise.reject(new Error('OKTA API unsuspendUser parameter userId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/users/${userId}/lifecycle/unsuspend`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/users/${userId}`
-    ];
-
-    const request = this.http.post(
-      url,
-      {
-        headers: {
-          'Content-Type': 'application/json', 'Accept': 'application/json',
-        },
-      },
-      { resources }
-    );
-    return request;
+    return this.userApi.unsuspendUser(userId);
   }
 
   /**
@@ -6717,19 +6389,7 @@ class GeneratedApiClient {
     if (!relationshipName) {
       return Promise.reject(new Error('OKTA API removeLinkedObjectForUser parameter relationshipName is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/users/${userId}/linkedObjects/${relationshipName}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/users/${userId}/linkedObjects/${relationshipName}`,
-      `${this.baseUrl}/api/v1/users/${userId}`
-    ];
-
-    const request = this.http.delete(
-      url,
-      null,
-      { resources }
-    );
-    return request;
+    return this.userApi.removeLinkedObjectForUser(userId, relationshipName);
   }
 
   /**
@@ -6750,16 +6410,13 @@ class GeneratedApiClient {
     if (!relationshipName) {
       return Promise.reject(new Error('OKTA API getLinkedObjectsForUser parameter relationshipName is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/users/${userId}/linkedObjects/${relationshipName}`;
-    const queryString = qs.stringify(queryParameters || {});
-
-    url += queryString ? ('?' + queryString) : '';
-
-    return new Collection(
-      this.http,
-      url,
-      new ModelFactory(models.ResponseLinks, this),
-    );
+    let after;
+    let limit;
+    if (queryParameters) {
+      after = queryParameters.after;
+      limit = queryParameters.limit;
+    }
+    return this.userApi.getLinkedObjectsForUser(userId, relationshipName, after, limit);
   }
 
   /**
@@ -6775,16 +6432,11 @@ class GeneratedApiClient {
     if (!userId) {
       return Promise.reject(new Error('OKTA API listAssignedRolesForUser parameter userId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/users/${userId}/roles`;
-    const queryString = qs.stringify(queryParameters || {});
-
-    url += queryString ? ('?' + queryString) : '';
-
-    return new Collection(
-      this.http,
-      url,
-      new ModelFactory(models.Role, this),
-    );
+    let expand;
+    if (queryParameters) {
+      expand = queryParameters.expand;
+    }
+    return this.userApi.listAssignedRolesForUser(userId, expand);
   }
 
   /**
@@ -6804,23 +6456,11 @@ class GeneratedApiClient {
     if (!assignRoleRequest) {
       return Promise.reject(new Error('OKTA API assignRoleToUser parameter assignRoleRequest is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/users/${userId}/roles`;
-    const queryString = qs.stringify(queryParameters || {});
-
-    url += queryString ? ('?' + queryString) : '';
-
-    const resources = [
-      `${this.baseUrl}/api/v1/users/${userId}`
-    ];
-
-    const request = this.http.postJson(
-      url,
-      {
-        body: assignRoleRequest
-      },
-      { resources }
-    );
-    return request.then(jsonRes => new models.Role(jsonRes, this));
+    let disableNotifications;
+    if (queryParameters) {
+      disableNotifications = queryParameters.disableNotifications;
+    }
+    return this.userApi.assignRoleToUser(userId, assignRoleRequest, disableNotifications);
   }
 
   /**
@@ -6837,19 +6477,7 @@ class GeneratedApiClient {
     if (!roleId) {
       return Promise.reject(new Error('OKTA API removeRoleFromUser parameter roleId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/users/${userId}/roles/${roleId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/users/${userId}/roles/${roleId}`,
-      `${this.baseUrl}/api/v1/users/${userId}`
-    ];
-
-    const request = this.http.delete(
-      url,
-      null,
-      { resources }
-    );
-    return request;
+    return this.userApi.removeRoleFromUser(userId, roleId);
   }
 
   /**
@@ -6867,19 +6495,7 @@ class GeneratedApiClient {
     if (!roleId) {
       return Promise.reject(new Error('OKTA API getUserRole parameter roleId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/users/${userId}/roles/${roleId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/users/${userId}/roles/${roleId}`,
-      `${this.baseUrl}/api/v1/users/${userId}`
-    ];
-
-    const request = this.http.getJson(
-      url,
-      null,
-      { resources }
-    );
-    return request.then(jsonRes => new models.Role(jsonRes, this));
+    return this.userApi.getUserRole(userId, roleId);
   }
 
   /**
@@ -6900,16 +6516,13 @@ class GeneratedApiClient {
     if (!roleId) {
       return Promise.reject(new Error('OKTA API listApplicationTargetsForApplicationAdministratorRoleForUser parameter roleId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/users/${userId}/roles/${roleId}/targets/catalog/apps`;
-    const queryString = qs.stringify(queryParameters || {});
-
-    url += queryString ? ('?' + queryString) : '';
-
-    return new Collection(
-      this.http,
-      url,
-      new ModelFactory(models.CatalogApplication, this),
-    );
+    let after;
+    let limit;
+    if (queryParameters) {
+      after = queryParameters.after;
+      limit = queryParameters.limit;
+    }
+    return this.userApi.listApplicationTargetsForApplicationAdministratorRoleForUser(userId, roleId, after, limit);
   }
 
   /**
@@ -6926,23 +6539,7 @@ class GeneratedApiClient {
     if (!roleId) {
       return Promise.reject(new Error('OKTA API addAllAppsAsTargetToRole parameter roleId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/users/${userId}/roles/${roleId}/targets/catalog/apps`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/users/${userId}/roles/${roleId}`,
-      `${this.baseUrl}/api/v1/users/${userId}`
-    ];
-
-    const request = this.http.put(
-      url,
-      {
-        headers: {
-          'Content-Type': 'application/json', 'Accept': 'application/json',
-        },
-      },
-      { resources }
-    );
-    return request;
+    return this.userApi.addAllAppsAsTargetToRole(userId, roleId);
   }
 
   /**
@@ -6963,20 +6560,7 @@ class GeneratedApiClient {
     if (!appName) {
       return Promise.reject(new Error('OKTA API removeApplicationTargetFromApplicationAdministratorRoleForUser parameter appName is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/users/${userId}/roles/${roleId}/targets/catalog/apps/${appName}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/users/${userId}/roles/${roleId}/targets/catalog/apps/${appName}`,
-      `${this.baseUrl}/api/v1/users/${userId}/roles/${roleId}`,
-      `${this.baseUrl}/api/v1/users/${userId}`
-    ];
-
-    const request = this.http.delete(
-      url,
-      null,
-      { resources }
-    );
-    return request;
+    return this.userApi.removeApplicationTargetFromApplicationAdministratorRoleForUser(userId, roleId, appName);
   }
 
   /**
@@ -6997,24 +6581,7 @@ class GeneratedApiClient {
     if (!appName) {
       return Promise.reject(new Error('OKTA API addApplicationTargetToAdminRoleForUser parameter appName is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/users/${userId}/roles/${roleId}/targets/catalog/apps/${appName}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/users/${userId}/roles/${roleId}/targets/catalog/apps/${appName}`,
-      `${this.baseUrl}/api/v1/users/${userId}/roles/${roleId}`,
-      `${this.baseUrl}/api/v1/users/${userId}`
-    ];
-
-    const request = this.http.put(
-      url,
-      {
-        headers: {
-          'Content-Type': 'application/json', 'Accept': 'application/json',
-        },
-      },
-      { resources }
-    );
-    return request;
+    return this.userApi.addApplicationTargetToAdminRoleForUser(userId, roleId, appName);
   }
 
   /**
@@ -7039,21 +6606,7 @@ class GeneratedApiClient {
     if (!applicationId) {
       return Promise.reject(new Error('OKTA API removeApplicationTargetFromAdministratorRoleForUser parameter applicationId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/users/${userId}/roles/${roleId}/targets/catalog/apps/${appName}/${applicationId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/users/${userId}/roles/${roleId}/targets/catalog/apps/${appName}/${applicationId}`,
-      `${this.baseUrl}/api/v1/users/${userId}/roles/${roleId}/targets/catalog/apps/${appName}`,
-      `${this.baseUrl}/api/v1/users/${userId}/roles/${roleId}`,
-      `${this.baseUrl}/api/v1/users/${userId}`
-    ];
-
-    const request = this.http.delete(
-      url,
-      null,
-      { resources }
-    );
-    return request;
+    return this.userApi.removeApplicationTargetFromAdministratorRoleForUser(userId, roleId, appName, applicationId);
   }
 
   /**
@@ -7078,25 +6631,7 @@ class GeneratedApiClient {
     if (!applicationId) {
       return Promise.reject(new Error('OKTA API addApplicationTargetToAppAdminRoleForUser parameter applicationId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/users/${userId}/roles/${roleId}/targets/catalog/apps/${appName}/${applicationId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/users/${userId}/roles/${roleId}/targets/catalog/apps/${appName}/${applicationId}`,
-      `${this.baseUrl}/api/v1/users/${userId}/roles/${roleId}/targets/catalog/apps/${appName}`,
-      `${this.baseUrl}/api/v1/users/${userId}/roles/${roleId}`,
-      `${this.baseUrl}/api/v1/users/${userId}`
-    ];
-
-    const request = this.http.put(
-      url,
-      {
-        headers: {
-          'Content-Type': 'application/json', 'Accept': 'application/json',
-        },
-      },
-      { resources }
-    );
-    return request;
+    return this.userApi.addApplicationTargetToAppAdminRoleForUser(userId, roleId, appName, applicationId);
   }
 
   /**
@@ -7117,16 +6652,13 @@ class GeneratedApiClient {
     if (!roleId) {
       return Promise.reject(new Error('OKTA API listGroupTargetsForRole parameter roleId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/users/${userId}/roles/${roleId}/targets/groups`;
-    const queryString = qs.stringify(queryParameters || {});
-
-    url += queryString ? ('?' + queryString) : '';
-
-    return new Collection(
-      this.http,
-      url,
-      new ModelFactory(models.Group, this),
-    );
+    let after;
+    let limit;
+    if (queryParameters) {
+      after = queryParameters.after;
+      limit = queryParameters.limit;
+    }
+    return this.userApi.listGroupTargetsForRole(userId, roleId, after, limit);
   }
 
   /**
@@ -7147,20 +6679,7 @@ class GeneratedApiClient {
     if (!groupId) {
       return Promise.reject(new Error('OKTA API removeGroupTargetFromRole parameter groupId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/users/${userId}/roles/${roleId}/targets/groups/${groupId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/users/${userId}/roles/${roleId}/targets/groups/${groupId}`,
-      `${this.baseUrl}/api/v1/users/${userId}/roles/${roleId}`,
-      `${this.baseUrl}/api/v1/users/${userId}`
-    ];
-
-    const request = this.http.delete(
-      url,
-      null,
-      { resources }
-    );
-    return request;
+    return this.userApi.removeGroupTargetFromRole(userId, roleId, groupId);
   }
 
   /**
@@ -7181,24 +6700,7 @@ class GeneratedApiClient {
     if (!groupId) {
       return Promise.reject(new Error('OKTA API addGroupTargetToRole parameter groupId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/users/${userId}/roles/${roleId}/targets/groups/${groupId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/users/${userId}/roles/${roleId}/targets/groups/${groupId}`,
-      `${this.baseUrl}/api/v1/users/${userId}/roles/${roleId}`,
-      `${this.baseUrl}/api/v1/users/${userId}`
-    ];
-
-    const request = this.http.put(
-      url,
-      {
-        headers: {
-          'Content-Type': 'application/json', 'Accept': 'application/json',
-        },
-      },
-      { resources }
-    );
-    return request;
+    return this.userApi.addGroupTargetToRole(userId, roleId, groupId);
   }
 
   /**
@@ -7213,21 +6715,11 @@ class GeneratedApiClient {
     if (!userId) {
       return Promise.reject(new Error('OKTA API clearUserSessions parameter userId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/users/${userId}/sessions`;
-    const queryString = qs.stringify(queryParameters || {});
-
-    url += queryString ? ('?' + queryString) : '';
-
-    const resources = [
-      `${this.baseUrl}/api/v1/users/${userId}`
-    ];
-
-    const request = this.http.delete(
-      url,
-      null,
-      { resources }
-    );
-    return request;
+    let oauthTokens;
+    if (queryParameters) {
+      oauthTokens = queryParameters.oauthTokens;
+    }
+    return this.userApi.clearUserSessions(userId, oauthTokens);
   }
 
   /**
