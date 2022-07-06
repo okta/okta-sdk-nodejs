@@ -50,7 +50,8 @@ describe('Idp Crud API', () => {
       });
     });
 
-    it('should return a collection of idp by type', async () => {
+    // TODO: OKTA-512396 - Filter and pagination does not work correctly
+    xit('should return a collection of idp by type', async () => {
       await (await client.listIdentityProviders({ type: 'FACEBOOK' })).each(idp => {
         expect(idp.type).to.equal('FACEBOOK');
       });
@@ -62,7 +63,8 @@ describe('Idp Crud API', () => {
       });
     });
 
-    it('should return a collection of idp by q', async () => {
+    // TODO: OKTA-512396 - Filter and pagination does not work correctly
+    xit('should return a collection of idp by q', async () => {
       await (await client.listIdentityProviders({ q: 'Facebook' })).each(idp => {
         expect(idp.type).to.equal('FACEBOOK');
       });
