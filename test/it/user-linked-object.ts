@@ -52,6 +52,7 @@ describe('User linked object API', () => {
       links = await client.getLinkedObjectsForUser(associateUser.id, linkedObject.primary.name);
       expect(links).to.be.instanceOf(Collection);
       await links.each(link => {
+        // OKTA-512349: ResponseLinks is not specified in getLinkedObjectsForUser signature
         // expect(link).to.be.instanceOf(v3.ResponseLinks);
         expect(link._links.self.href).contains(primaryUser.id);
       });
