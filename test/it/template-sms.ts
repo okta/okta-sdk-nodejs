@@ -3,7 +3,7 @@ import {
   Client,
   Collection,
   DefaultRequestExecutor,
-  SmsTemplate } from '@okta/okta-sdk-nodejs';
+  v3 } from '@okta/okta-sdk-nodejs';
 import getGeneralFakeTemplateObj = require('./mocks/template-sms');
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -27,7 +27,7 @@ describe('SmsTemplate API', () => {
     });
 
     afterEach(async () => {
-      await template.delete();
+      await client.deleteSmsTemplate(template.id);
     });
 
     it('should return a Collection', async () => {
@@ -36,31 +36,32 @@ describe('SmsTemplate API', () => {
     });
 
     it('should resolve SmsTemplate in collection', async () => {
-      await client.listSmsTemplates().each(template => {
-        expect(template).to.be.instanceOf(SmsTemplate);
+      await (await client.listSmsTemplates()).each(template => {
+        expect(template).to.be.instanceOf(v3.SmsTemplate);
       });
     });
 
     it('should return a collection of templates by templateType', async () => {
       fakeTemplateObj.type = 'fake_type';
       const fakeTemplateInstance = await client.createSmsTemplate(fakeTemplateObj);
-      await client.listSmsTemplates({ templateType: 'fake_type' }).each(template => {
+      const collection = await client.listSmsTemplates({ templateType: 'fake_type' });
+      await collection.each(template => {
         expect(template.type).to.equal('fake_type');
       });
-      await fakeTemplateInstance.delete();
+      await client.deleteSmsTemplate(fakeTemplateInstance.id);
     });
   });
 
   describe('Create template', () => {
     let template;
     afterEach(async () => {
-      await template.delete();
+      await client.deleteSmsTemplate(template.id);
     });
 
     it('should return correct model', async () => {
       const mockTemplate = getGeneralFakeTemplateObj();
       template = await client.createSmsTemplate(mockTemplate);
-      expect(template).to.be.instanceOf(SmsTemplate);
+      expect(template).to.be.instanceOf(v3.SmsTemplate);
       expect(template).to.have.property('id');
       expect(template.name).to.equal(mockTemplate.name);
     });
@@ -73,7 +74,7 @@ describe('SmsTemplate API', () => {
     });
 
     afterEach(async () => {
-      await template.delete();
+      await client.deleteSmsTemplate(template.id);
     });
 
     it('should not get template after deletion', async () => {
@@ -93,12 +94,12 @@ describe('SmsTemplate API', () => {
     });
 
     afterEach(async () => {
-      await template.delete();
+      await client.deleteSmsTemplate(template.id);
     });
 
     it('should get SmsTemplate by id', async () => {
       const templateFromGet = await client.getSmsTemplate(template.id);
-      expect(templateFromGet).to.be.instanceOf(SmsTemplate);
+      expect(templateFromGet).to.be.instanceOf(v3.SmsTemplate);
       expect(templateFromGet.name).to.equal(template.name);
     });
   });
@@ -110,12 +111,12 @@ describe('SmsTemplate API', () => {
     });
 
     afterEach(async () => {
-      await template.delete();
+      await client.deleteSmsTemplate(template.id);
     });
 
     it('should update template name property', async () => {
       const updatedTemplate = await client.partialUpdateSmsTemplate(template.id, { name: 'fake updated name' });
-      expect(updatedTemplate).to.be.instanceOf(SmsTemplate);
+      expect(updatedTemplate).to.be.instanceOf(v3.SmsTemplate);
       expect(updatedTemplate.id).to.equal(template.id);
       expect(updatedTemplate.name).to.equal('fake updated name');
       expect(updatedTemplate.template).to.equal(template.template);
@@ -130,16 +131,16 @@ describe('SmsTemplate API', () => {
     });
 
     afterEach(async () => {
-      await template.delete();
+      await client.deleteSmsTemplate(template.id);
       // Clean up updated resource here
       // Since new resource might be created if template type is changed during update.
-      await updatedTemplate.delete();
+      await client.deleteSmsTemplate(updatedTemplate.id);
     });
 
     it('should update all properties in template', async () => {
-      updatedTemplate = await client.updateSmsTemplate(template.id, {
+      updatedTemplate = await client.updateSmsTemplate(template.id,  {
         name: 'fake updated name',
-        type: 'fake updated type',
+        type: 'SMS_VERIFY_CODE',
         template: 'Your fake updated verification code is ${code}.'
       });
       expect(updatedTemplate.name).to.equal('fake updated name');

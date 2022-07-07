@@ -24,8 +24,6 @@ import { PolicyOptions } from './models/Policy';
 import { PolicyRule } from './models/PolicyRule';
 import { PolicyRuleOptions } from './models/PolicyRule';
 import { Subscription } from './models/Subscription';
-import { SmsTemplate } from './models/SmsTemplate';
-import { SmsTemplateOptions } from './models/SmsTemplate';
 import { ForgotPasswordResponse } from './models/ForgotPasswordResponse';
 
 export declare class GeneratedApiClient {
@@ -421,12 +419,12 @@ export declare class GeneratedApiClient {
   refreshSession(sessionId: string): Promise<v3.Session>;
   listSmsTemplates(queryParameters?: {
     templateType?: string,
-  }): Collection<SmsTemplate>;
-  createSmsTemplate(smsTemplate: SmsTemplateOptions): Promise<SmsTemplate>;
-  deleteSmsTemplate(templateId: string): Promise<Response>;
-  getSmsTemplate(templateId: string): Promise<SmsTemplate>;
-  partialUpdateSmsTemplate(templateId: string, smsTemplate: SmsTemplateOptions): Promise<SmsTemplate>;
-  updateSmsTemplate(templateId: string, smsTemplate: SmsTemplateOptions): Promise<SmsTemplate>;
+  }): Promise<Collection<v3.SmsTemplate>>;
+  createSmsTemplate(smsTemplate: v3.SmsTemplate): Promise<v3.SmsTemplate>;
+  deleteSmsTemplate(templateId: string): Promise<void>;
+  getSmsTemplate(templateId: string): Promise<v3.SmsTemplate>;
+  partialUpdateSmsTemplate(templateId: string, smsTemplate: v3.SmsTemplate): Promise<v3.SmsTemplate>;
+  updateSmsTemplate(templateId: string, smsTemplate: v3.SmsTemplate): Promise<v3.SmsTemplate>;
   getCurrentConfiguration(): Promise<v3.ThreatInsightConfiguration>;
   updateConfiguration(threatInsightConfiguration: v3.ThreatInsightConfiguration): Promise<v3.ThreatInsightConfiguration>;
   listOrigins(queryParameters?: {

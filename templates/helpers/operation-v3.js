@@ -351,6 +351,14 @@ const V3ApiOperations = {
     'getSession',
     'refreshSession',
   ],
+  TemplateApi: [
+    'createSmsTemplate',
+    'deleteSmsTemplate',
+    'getSmsTemplate',
+    'listSmsTemplates',
+    'partialUpdateSmsTemplate',
+    'updateSmsTemplate'
+  ]
 };
 
 function getV3ReturnType(operationId) {
