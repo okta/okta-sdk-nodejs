@@ -4844,18 +4844,7 @@ class GeneratedApiClient {
     if (!createSessionRequest) {
       return Promise.reject(new Error('OKTA API createSession parameter createSessionRequest is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/sessions`;
-
-    const resources = [];
-
-    const request = this.http.postJson(
-      url,
-      {
-        body: createSessionRequest
-      },
-      { resources }
-    );
-    return request.then(jsonRes => new models.Session(jsonRes, this));
+    return this.sessionApi.createSession(createSessionRequest);
   }
 
   /**
@@ -4868,18 +4857,7 @@ class GeneratedApiClient {
     if (!sessionId) {
       return Promise.reject(new Error('OKTA API endSession parameter sessionId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/sessions/${sessionId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/sessions/${sessionId}`
-    ];
-
-    const request = this.http.delete(
-      url,
-      null,
-      { resources }
-    );
-    return request;
+    return this.sessionApi.endSession(sessionId);
   }
 
   /**
@@ -4893,18 +4871,7 @@ class GeneratedApiClient {
     if (!sessionId) {
       return Promise.reject(new Error('OKTA API getSession parameter sessionId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/sessions/${sessionId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/sessions/${sessionId}`
-    ];
-
-    const request = this.http.getJson(
-      url,
-      null,
-      { resources }
-    );
-    return request.then(jsonRes => new models.Session(jsonRes, this));
+    return this.sessionApi.getSession(sessionId);
   }
 
   /**
@@ -4918,18 +4885,7 @@ class GeneratedApiClient {
     if (!sessionId) {
       return Promise.reject(new Error('OKTA API refreshSession parameter sessionId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/sessions/${sessionId}/lifecycle/refresh`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/sessions/${sessionId}`
-    ];
-
-    const request = this.http.postJson(
-      url,
-      null,
-      { resources }
-    );
-    return request.then(jsonRes => new models.Session(jsonRes, this));
+    return this.sessionApi.refreshSession(sessionId);
   }
 
   /**

@@ -46,7 +46,7 @@ describe('Sessions API', () => {
     });
 
     // 2 - end session
-    await session.delete();
+    await client.endSession(session.id);
 
     // 3 - attempt to retrieve session
     let sess;
