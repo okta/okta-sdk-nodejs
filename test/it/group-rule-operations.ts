@@ -42,7 +42,7 @@ describe('Group-Rule API tests', () => {
     // 2. Create a group rule and verify rule executes
     const rule = {
       type: 'group_rule',
-      name: faker.random.word().substring(0, 49),
+      name: `node-sdk: ${faker.random.word().substring(0, 49)}`,
       conditions: {
         people: {
           users: {

@@ -1,7 +1,7 @@
 const faker = require('@faker-js/faker');
 
 module.exports = () => ({
-  name: faker.random.word().substring(0, 49),
+  name: `node-sdk: ${faker.random.word().substring(0, 49)}`,
   priority: 1,
   conditions: {
     people: {

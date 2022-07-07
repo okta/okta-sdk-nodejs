@@ -3,7 +3,8 @@ import {
   Client,
   Collection,
   DefaultRequestExecutor,
-  v3, CatalogApplication } from '@okta/okta-sdk-nodejs';
+  v3
+} from '@okta/okta-sdk-nodejs';
 import getMockGroup = require('./mocks/group');
 import getMockUser = require('./mocks/user-without-credentials');
 import utils = require('../utils');
