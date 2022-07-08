@@ -291,10 +291,11 @@ class UserApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       requestContext.setQueryParam('disableNotifications', ObjectSerializer_1.ObjectSerializer.serialize(disableNotifications, 'boolean', ''));
     }
     // Body Params
-    const contentType = ObjectSerializer_1.ObjectSerializer.getPreferredMediaType([
+    const [contentType, contentEncoding] = ObjectSerializer_1.ObjectSerializer.getPreferredMediaTypeAndEncoding([
       'application/json'
-    ]);
+    ], assignRoleRequest);
     requestContext.setHeaderParam('Content-Type', contentType);
+    requestContext.setHeaderParam('Content-Transfer-Encoding', contentEncoding);
     const serializedBody = ObjectSerializer_1.ObjectSerializer.stringify(ObjectSerializer_1.ObjectSerializer.serialize(assignRoleRequest, 'AssignRoleRequest', ''), contentType);
     requestContext.setBody(serializedBody);
     let authMethod;
@@ -344,10 +345,11 @@ class UserApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       requestContext.setQueryParam('strict', ObjectSerializer_1.ObjectSerializer.serialize(strict, 'boolean', ''));
     }
     // Body Params
-    const contentType = ObjectSerializer_1.ObjectSerializer.getPreferredMediaType([
+    const [contentType, contentEncoding] = ObjectSerializer_1.ObjectSerializer.getPreferredMediaTypeAndEncoding([
       'application/json'
-    ]);
+    ], changePasswordRequest);
     requestContext.setHeaderParam('Content-Type', contentType);
+    requestContext.setHeaderParam('Content-Transfer-Encoding', contentEncoding);
     const serializedBody = ObjectSerializer_1.ObjectSerializer.stringify(ObjectSerializer_1.ObjectSerializer.serialize(changePasswordRequest, 'ChangePasswordRequest', ''), contentType);
     requestContext.setBody(serializedBody);
     let authMethod;
@@ -392,10 +394,11 @@ class UserApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Body Params
-    const contentType = ObjectSerializer_1.ObjectSerializer.getPreferredMediaType([
+    const [contentType, contentEncoding] = ObjectSerializer_1.ObjectSerializer.getPreferredMediaTypeAndEncoding([
       'application/json'
-    ]);
+    ], userCredentials);
     requestContext.setHeaderParam('Content-Type', contentType);
+    requestContext.setHeaderParam('Content-Transfer-Encoding', contentEncoding);
     const serializedBody = ObjectSerializer_1.ObjectSerializer.stringify(ObjectSerializer_1.ObjectSerializer.serialize(userCredentials, 'UserCredentials', ''), contentType);
     requestContext.setBody(serializedBody);
     let authMethod;
@@ -488,10 +491,11 @@ class UserApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       requestContext.setQueryParam('nextLogin', ObjectSerializer_1.ObjectSerializer.serialize(nextLogin, 'UserNextLogin', ''));
     }
     // Body Params
-    const contentType = ObjectSerializer_1.ObjectSerializer.getPreferredMediaType([
+    const [contentType, contentEncoding] = ObjectSerializer_1.ObjectSerializer.getPreferredMediaTypeAndEncoding([
       'application/json'
-    ]);
+    ], body);
     requestContext.setHeaderParam('Content-Type', contentType);
+    requestContext.setHeaderParam('Content-Transfer-Encoding', contentEncoding);
     const serializedBody = ObjectSerializer_1.ObjectSerializer.stringify(ObjectSerializer_1.ObjectSerializer.serialize(body, 'CreateUserRequest', ''), contentType);
     requestContext.setBody(serializedBody);
     let authMethod;
@@ -736,10 +740,11 @@ class UserApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       requestContext.setQueryParam('sendEmail', ObjectSerializer_1.ObjectSerializer.serialize(sendEmail, 'boolean', ''));
     }
     // Body Params
-    const contentType = ObjectSerializer_1.ObjectSerializer.getPreferredMediaType([
+    const [contentType, contentEncoding] = ObjectSerializer_1.ObjectSerializer.getPreferredMediaTypeAndEncoding([
       'application/json'
-    ]);
+    ], userCredentials);
     requestContext.setHeaderParam('Content-Type', contentType);
+    requestContext.setHeaderParam('Content-Transfer-Encoding', contentEncoding);
     const serializedBody = ObjectSerializer_1.ObjectSerializer.stringify(ObjectSerializer_1.ObjectSerializer.serialize(userCredentials, 'UserCredentials', ''), contentType);
     requestContext.setBody(serializedBody);
     let authMethod;
@@ -1551,10 +1556,11 @@ class UserApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       requestContext.setQueryParam('strict', ObjectSerializer_1.ObjectSerializer.serialize(strict, 'boolean', ''));
     }
     // Body Params
-    const contentType = ObjectSerializer_1.ObjectSerializer.getPreferredMediaType([
+    const [contentType, contentEncoding] = ObjectSerializer_1.ObjectSerializer.getPreferredMediaTypeAndEncoding([
       'application/json'
-    ]);
+    ], user);
     requestContext.setHeaderParam('Content-Type', contentType);
+    requestContext.setHeaderParam('Content-Transfer-Encoding', contentEncoding);
     const serializedBody = ObjectSerializer_1.ObjectSerializer.stringify(ObjectSerializer_1.ObjectSerializer.serialize(user, 'UpdateUserRequest', ''), contentType);
     requestContext.setBody(serializedBody);
     let authMethod;
@@ -2321,10 +2327,11 @@ class UserApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       requestContext.setQueryParam('strict', ObjectSerializer_1.ObjectSerializer.serialize(strict, 'boolean', ''));
     }
     // Body Params
-    const contentType = ObjectSerializer_1.ObjectSerializer.getPreferredMediaType([
+    const [contentType, contentEncoding] = ObjectSerializer_1.ObjectSerializer.getPreferredMediaTypeAndEncoding([
       'application/json'
-    ]);
+    ], user);
     requestContext.setHeaderParam('Content-Type', contentType);
+    requestContext.setHeaderParam('Content-Transfer-Encoding', contentEncoding);
     const serializedBody = ObjectSerializer_1.ObjectSerializer.stringify(ObjectSerializer_1.ObjectSerializer.serialize(user, 'UpdateUserRequest', ''), contentType);
     requestContext.setBody(serializedBody);
     let authMethod;
