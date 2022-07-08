@@ -237,7 +237,7 @@ describe('client.createApplication()', () => {
     }
 
     const application: v3.AutoLoginApplication = {
-      label: `Example Custom SWA App - ${faker.random.word()}`,
+      label: `node-sdk: Example Custom SWA App - ${faker.random.word()}`,
       visibility: {
         autoSubmitToolbar: false,
         hide: {
@@ -284,7 +284,7 @@ describe('client.createApplication()', () => {
     }
 
     const application: v3.SamlApplication = {
-      label: `Example Custom SAML 2.0 App - ${faker.random.word()}`,
+      label: `node-sdk: Example Custom SAML 2.0 App - ${faker.random.word()}`,
       visibility: {
         autoSubmitToolbar: false,
         hide: {

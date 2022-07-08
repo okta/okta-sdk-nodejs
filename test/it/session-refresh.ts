@@ -48,7 +48,7 @@ describe('Sessions API', () => {
     await utils.delay(1000);
 
     // 2 - refresh the session
-    const refreshedSession = await currentSession.refresh();
+    const refreshedSession = await client.refreshSession(currentSession.id);
 
     expect(new Date(refreshedSession.expiresAt).getTime())
       .to.be.above(new Date(currentSession.expiresAt).getTime());

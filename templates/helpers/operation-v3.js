@@ -345,6 +345,12 @@ const V3ApiOperations = {
     'unlinkUserFromIdentityProvider',
     'updateIdentityProvider'
   ],
+  SessionApi: [
+    'createSession',
+    'endSession',
+    'getSession',
+    'refreshSession',
+  ],
 };
 
 function getV3ReturnType(operationId) {

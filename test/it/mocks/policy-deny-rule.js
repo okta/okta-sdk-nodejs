@@ -2,7 +2,7 @@ const faker = require('@faker-js/faker');
 
 module.exports = () => ({
   type: 'SIGN_ON',
-  name: faker.random.word().substring(0, 49),
+  name: `node-sdk: ${faker.random.word().substring(0, 49)}`,
   conditions: {
     network: {
       connection: 'ANYWHERE'

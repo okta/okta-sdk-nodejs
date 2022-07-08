@@ -24,8 +24,6 @@ import { PolicyOptions } from './models/Policy';
 import { PolicyRule } from './models/PolicyRule';
 import { PolicyRuleOptions } from './models/PolicyRule';
 import { Subscription } from './models/Subscription';
-import { CreateSessionRequestOptions } from './models/CreateSessionRequest';
-import { Session } from './models/Session';
 import { SmsTemplate } from './models/SmsTemplate';
 import { SmsTemplateOptions } from './models/SmsTemplate';
 import { ForgotPasswordResponse } from './models/ForgotPasswordResponse';
@@ -417,10 +415,10 @@ export declare class GeneratedApiClient {
   getRoleSubscriptionByNotificationType(roleTypeOrRoleId: string, notificationType: string): Promise<Subscription>;
   subscribeRoleSubscriptionByNotificationType(roleTypeOrRoleId: string, notificationType: string): Promise<Response>;
   unsubscribeRoleSubscriptionByNotificationType(roleTypeOrRoleId: string, notificationType: string): Promise<Response>;
-  createSession(createSessionRequest: CreateSessionRequestOptions): Promise<Session>;
-  endSession(sessionId: string): Promise<Response>;
-  getSession(sessionId: string): Promise<Session>;
-  refreshSession(sessionId: string): Promise<Session>;
+  createSession(createSessionRequest: v3.CreateSessionRequest): Promise<v3.Session>;
+  endSession(sessionId: string): Promise<void>;
+  getSession(sessionId: string): Promise<v3.Session>;
+  refreshSession(sessionId: string): Promise<v3.Session>;
   listSmsTemplates(queryParameters?: {
     templateType?: string,
   }): Collection<SmsTemplate>;

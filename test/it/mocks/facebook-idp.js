@@ -2,7 +2,7 @@ const faker = require('@faker-js/faker');
 
 module.exports = () => ({
   type: 'FACEBOOK',
-  name: 'Facebook ' + faker.random.word().substring(0, 40),
+  name: `node-sdk: Facebook ${faker.random.word().substring(0, 49)}`,
   issuerMode: 'ORG_URL',
   protocol: {
     endpoints: {

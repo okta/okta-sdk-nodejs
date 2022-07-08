@@ -2,7 +2,7 @@ const faker = require('@faker-js/faker');
 
 module.exports = () => ({
   type: 'GOOGLE',
-  name: 'Google ' + faker.random.word().substring(0, 42),
+  name: `node-sdk: Google ${faker.random.word().substring(0, 49)}`,
   issuerMode: 'ORG_URL',
   protocol: {
     endpoints: {

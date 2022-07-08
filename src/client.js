@@ -42,6 +42,7 @@ const {
   UserFactorApi,
   UserApi,
   IdentityProviderApi,
+  SessionApi,
 } = require('./generated');
 const { createConfiguration } = require('./generated/configuration');
 const { ServerConfiguration } = require('./generated/servers');
@@ -139,6 +140,7 @@ class Client extends GeneratedApiClient {
     this.userFactorApi = new UserFactorApi(configuration);
     this.userApi = new UserApi(configuration);
     this.identityProviderApi = new IdentityProviderApi(configuration);
+    this.sessionApi = new SessionApi(configuration);
   }
 }
 

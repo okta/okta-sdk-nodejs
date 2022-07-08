@@ -1,5 +1,4 @@
 const v3 = require('../src/generated');
-const models = require('../src/models');
 const expect = require('chai').expect;
 const faker = require('@faker-js/faker');
 const path = require('path');
@@ -140,13 +139,13 @@ async function cleanupUser(client, user) {
 
 async function cleanupGroup(client, expectedGroup) {
   let queryParameters = { q : `${expectedGroup.profile.name}` };
-  (await client.listGroups(queryParameters)).each(async (group) => {
-    expect(group).to.be.an.instanceof(models.Group);
+  await (await client.listGroups(queryParameters)).each(async (group) => {
+    expect(group).to.be.an.instanceof(v3.Group);
     // If search doesn't return any results, listGroups() returns empty collection
     // eslint-disable-next-line no-prototype-builtins
     if (group.hasOwnProperty('profile')) {
       if (group.profile.name === expectedGroup.profile.name) {
-        await group.delete();
+        await client.deleteGroup(group.id);
       }
     }
   });
@@ -238,7 +237,7 @@ function getBookmarkApplication() {
 function getOrg2OrgApplicationOptions() {
   return {
     name: 'okta_org2org',
-    label: 'Sample Okta Org2Org App',
+    label: 'node-sdk: Sample Okta Org2Org App',
     signOnMode: 'SAML_2_0',
     settings: {
       app: {

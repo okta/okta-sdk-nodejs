@@ -27,7 +27,7 @@ describe.skip('client.cloneApplicationKey()', () => {
 
     const application2 = {
       name: 'bookmark',
-      label: 'my bookmark app 2',
+      label: 'node-sdk: my bookmark app 2',
       signOnMode: 'BOOKMARK' as v3.ApplicationSignOnMode,
       settings: {
         app: {
