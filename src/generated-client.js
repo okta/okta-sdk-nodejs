@@ -4897,16 +4897,11 @@ class GeneratedApiClient {
    * @returns {Collection} A collection that will yield {@link SmsTemplate} instances.
    */
   listSmsTemplates(queryParameters) {
-    let url = `${this.baseUrl}/api/v1/templates/sms`;
-    const queryString = qs.stringify(queryParameters || {});
-
-    url += queryString ? ('?' + queryString) : '';
-
-    return new Collection(
-      this.http,
-      url,
-      new ModelFactory(models.SmsTemplate, this),
-    );
+    let templateType;
+    if (queryParameters) {
+      templateType = queryParameters.templateType;
+    }
+    return this.templateApi.listSmsTemplates(templateType);
   }
 
   /**
@@ -4920,18 +4915,7 @@ class GeneratedApiClient {
     if (!smsTemplate) {
       return Promise.reject(new Error('OKTA API createSmsTemplate parameter smsTemplate is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/templates/sms`;
-
-    const resources = [];
-
-    const request = this.http.postJson(
-      url,
-      {
-        body: smsTemplate
-      },
-      { resources }
-    );
-    return request.then(jsonRes => new models.SmsTemplate(jsonRes, this));
+    return this.templateApi.createSmsTemplate(smsTemplate);
   }
 
   /**
@@ -4944,18 +4928,7 @@ class GeneratedApiClient {
     if (!templateId) {
       return Promise.reject(new Error('OKTA API deleteSmsTemplate parameter templateId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/templates/sms/${templateId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/templates/sms/${templateId}`
-    ];
-
-    const request = this.http.delete(
-      url,
-      null,
-      { resources }
-    );
-    return request;
+    return this.templateApi.deleteSmsTemplate(templateId);
   }
 
   /**
@@ -4969,18 +4942,7 @@ class GeneratedApiClient {
     if (!templateId) {
       return Promise.reject(new Error('OKTA API getSmsTemplate parameter templateId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/templates/sms/${templateId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/templates/sms/${templateId}`
-    ];
-
-    const request = this.http.getJson(
-      url,
-      null,
-      { resources }
-    );
-    return request.then(jsonRes => new models.SmsTemplate(jsonRes, this));
+    return this.templateApi.getSmsTemplate(templateId);
   }
 
   /**
@@ -4998,20 +4960,7 @@ class GeneratedApiClient {
     if (!smsTemplate) {
       return Promise.reject(new Error('OKTA API partialUpdateSmsTemplate parameter smsTemplate is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/templates/sms/${templateId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/templates/sms/${templateId}`
-    ];
-
-    const request = this.http.postJson(
-      url,
-      {
-        body: smsTemplate
-      },
-      { resources }
-    );
-    return request.then(jsonRes => new models.SmsTemplate(jsonRes, this));
+    return this.templateApi.partialUpdateSmsTemplate(templateId, smsTemplate);
   }
 
   /**
@@ -5029,20 +4978,7 @@ class GeneratedApiClient {
     if (!smsTemplate) {
       return Promise.reject(new Error('OKTA API updateSmsTemplate parameter smsTemplate is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/templates/sms/${templateId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/templates/sms/${templateId}`
-    ];
-
-    const request = this.http.putJson(
-      url,
-      {
-        body: smsTemplate
-      },
-      { resources }
-    );
-    return request.then(jsonRes => new models.SmsTemplate(jsonRes, this));
+    return this.templateApi.updateSmsTemplate(templateId, smsTemplate);
   }
 
   /**

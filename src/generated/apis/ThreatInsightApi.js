@@ -69,10 +69,11 @@ class ThreatInsightApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Body Params
-    const contentType = ObjectSerializer_1.ObjectSerializer.getPreferredMediaType([
+    const [contentType, contentEncoding] = ObjectSerializer_1.ObjectSerializer.getPreferredMediaTypeAndEncoding([
       'application/json'
-    ]);
+    ], threatInsightConfiguration);
     requestContext.setHeaderParam('Content-Type', contentType);
+    requestContext.setHeaderParam('Content-Transfer-Encoding', contentEncoding);
     const serializedBody = ObjectSerializer_1.ObjectSerializer.stringify(ObjectSerializer_1.ObjectSerializer.serialize(threatInsightConfiguration, 'ThreatInsightConfiguration', ''), contentType);
     requestContext.setBody(serializedBody);
     let authMethod;
