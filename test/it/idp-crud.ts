@@ -50,7 +50,16 @@ describe('Idp Crud API', () => {
       });
     });
 
-    // TODO: OKTA-512396 - Filter and pagination does not work correctly
+    it('should return a collection with pagination', async () => {
+      let listIds = new Set();
+      await (await client.listIdentityProviders({ limit: 1 })).each(idp => {
+        expect(listIds.has(idp.id)).to.be.false;
+        listIds.add(idp.id);
+      });
+      expect(listIds.size).to.be.greaterThanOrEqual(4);
+    });
+
+    // TODO: OKTA-512396 - Filter does not work correctly
     xit('should return a collection of idp by type', async () => {
       await (await client.listIdentityProviders({ type: 'FACEBOOK' })).each(idp => {
         expect(idp.type).to.equal('FACEBOOK');
@@ -58,12 +67,11 @@ describe('Idp Crud API', () => {
       await (await client.listIdentityProviders({ type: 'GOOGLE' })).each(idp => {
         expect(idp.type).to.equal('GOOGLE');
       });
-      await (await client.listIdentityProviders({ type: 'OIDC', limit: 1 })).each(idp => {
+      await (await client.listIdentityProviders({ type: 'OIDC' })).each(idp => {
         expect(idp.type).to.equal('OIDC');
       });
     });
 
-    // TODO: OKTA-512396 - Filter and pagination does not work correctly
     xit('should return a collection of idp by q', async () => {
       await (await client.listIdentityProviders({ q: 'Facebook' })).each(idp => {
         expect(idp.type).to.equal('FACEBOOK');
@@ -71,7 +79,7 @@ describe('Idp Crud API', () => {
       await (await client.listIdentityProviders({ q: 'Google' })).each(idp => {
         expect(idp.type).to.equal('GOOGLE');
       });
-      await (await client.listIdentityProviders({ q: 'OIDC', limit: 1 })).each(idp => {
+      await (await client.listIdentityProviders({ q: 'OIDC' })).each(idp => {
         expect(idp.type).to.equal('OIDC');
       });
     });
