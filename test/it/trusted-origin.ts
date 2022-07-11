@@ -103,13 +103,13 @@ describe('Trusted Origin API', () => {
       const mockScopes = [
         {
           type: 'REDIRECT',
-          allowedOktaApps: []
         }
       ] as Array<v3.TrustedOriginScope>;
       trustedOrigin.scopes = mockScopes;
       const updatedTrustedOrigin = await client.updateOrigin(trustedOrigin.id, trustedOrigin);
       expect(updatedTrustedOrigin.id).to.equal(trustedOrigin.id);
-      expect(updatedTrustedOrigin.scopes).to.eql(mockScopes);
+      expect(updatedTrustedOrigin.scopes.length).to.eq(1);
+      expect(updatedTrustedOrigin.scopes[0].type).to.eq(mockScopes[0].type);
     });
   });
 
