@@ -113,7 +113,7 @@ describe('client.listApplications({ })', () => {
     }
   });
 
-  it('should filter apps with filrer and paginate results', async () => {
+  it('should filter apps with filter and paginate results', async () => {
     const queryParameters = {
       filter: `name eq "bookmark"`,
       limit: 2
@@ -128,8 +128,11 @@ describe('client.listApplications({ })', () => {
     expect(filtered.size).to.equal(3);
   });
 
-  it('should search apps with q by name and label', async () => {
-    const queryParameters = { q: 'node-sdk: Filter Sample Basic Auth App' };
+  it('should search apps with q by name and label and paginate results', async () => {
+    const queryParameters = {
+      q: 'node-sdk: Filter Sample Basic Auth App',
+      limit: 1
+    };
     let filtered = new Set();
     await (await client.listApplications(queryParameters)).each(app => {
       expect(app).to.be.an.instanceof(v3.BasicAuthApplication);

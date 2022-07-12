@@ -77,7 +77,7 @@ describe('client.listUsers({ })', () => {
     const newUser = {
       profile: {
         ...utils.getMockProfile(name),
-        lastName: 'okta-sdk-nodejs-filter',
+        lastName: 'okta-sdk-nodejs-users-filter',
       },
       credentials: {
         password: {value: 'Abcd1234#@'}
@@ -105,13 +105,13 @@ describe('client.listUsers({ })', () => {
 
   it('should filter users with filter and paginate results', async () => {
     const queryParameters = {
-      filter: `status eq "ACTIVE" AND profile.lastName eq "okta-sdk-nodejs-filter"`,
+      filter: `status eq "ACTIVE" AND profile.lastName eq "okta-sdk-nodejs-users-filter"`,
       limit: 2
     };
     let filtered = new Set();
     await (await client.listUsers(queryParameters)).each(user => {
       expect(user).to.be.an.instanceof(v3.User);
-      expect(user.profile.lastName).to.eq('okta-sdk-nodejs-filter');
+      expect(user.profile.lastName).to.eq('okta-sdk-nodejs-users-filter');
       expect(filtered.has(user.profile.firstName)).to.be.false;
       filtered.add(user.profile.firstName);
     });
@@ -120,20 +120,20 @@ describe('client.listUsers({ })', () => {
 
   it('should filter users with search and paginate results', async () => {
     const queryParameters = {
-      search: `status eq "ACTIVE" AND profile.lastName eq "okta-sdk-nodejs-filter"`,
+      search: `status eq "ACTIVE" AND profile.lastName eq "okta-sdk-nodejs-users-filter"`,
       limit: 2
     };
     let filtered = new Set();
     await (await client.listUsers(queryParameters)).each(user => {
       expect(user).to.be.an.instanceof(v3.User);
-      expect(user.profile.lastName).to.eq('okta-sdk-nodejs-filter');
+      expect(user.profile.lastName).to.eq('okta-sdk-nodejs-users-filter');
       expect(filtered.has(user.profile.firstName)).to.be.false;
       filtered.add(user.profile.firstName);
     });
     expect(filtered.size).to.equal(3);
   });
 
-  // TODO: q and limit are messed up
+  // TODO: q and limit are messed up !!!
   it('should search users with q', async () => {
     const queryParameters = {
       q: 'client-list-users-filtered'

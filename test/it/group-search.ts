@@ -58,6 +58,7 @@ describe('Group API tests', () => {
     await utils.cleanup(client, null, createdGroups);
   });
 
+  // Pagination does not work with q
   it('should search by name with q', async () => {
     // 1. Create new groups
     const createdGroups = await createTestGroups();

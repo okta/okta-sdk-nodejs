@@ -63,3 +63,79 @@ describe('client.listApplicationUsers()', () => {
   });
 
 });
+
+describe('client.listApplicationUsers({ })', () => {
+  let app;
+  const users = [];
+  const appUsers = [];
+
+  const createUser = async (name) => {
+    const newUser = {
+      profile: {
+        ...utils.getMockProfile(name),
+        lastName: 'okta-sdk-nodejs-app-users-filter',
+      },
+      credentials: {
+        password: {value: 'Abcd1234#@'}
+      }
+    };
+    await utils.cleanup(client, newUser);
+    const createdUser = await client.createUser(newUser);
+    return createdUser;
+  };
+  
+  before(async () => {
+    const application = utils.getBookmarkApplication();
+    await utils.removeAppByLabel(client, application.label);
+    app = await client.createApplication(application);
+
+    users.push(await createUser(`client-list-app-users-unassigned`));
+    users.push(await createUser(`client-list-app-users`));
+    users.push(await createUser(`client-list-app-users-filtered-1`));
+    users.push(await createUser(`client-list-app-users-filtered-2`));
+
+    for (let user of users.slice(1)) {
+      const appUser = await client.assignUserToApplication(app.id, {
+        id: user.id
+      });
+      appUsers.push(appUser);
+    }
+
+    // The search indexing is not instant, so give it some time to settle
+    await utils.delay(5000);
+  });
+
+  after(async () => {
+    for (let appUser of appUsers) {
+      await client.deleteApplicationUser(app.id, appUser.id);
+    }
+
+    await client.deactivateApplication(app.id);
+    await client.deleteApplication(app.id);
+
+    await utils.cleanup(client, users);
+  });
+
+  it('should paginate results', async () => {
+    let listIds = new Set();
+    const collection = await client.listApplicationUsers(app.id, { limit: 2 });
+    await collection.each(async appUser => {
+      expect(listIds.has(appUser.id)).to.be.false;
+      listIds.add(appUser.id);
+    });
+    expect(listIds.size).to.equal(3);
+  });
+
+  it('should search users with q and paginate results', async () => {
+    const queryParameters = {
+      q: 'client-list-app-users-filtered',
+      limit: 1
+    };
+    let filteredIds = new Set();
+    await (await client.listApplicationUsers(app.id, queryParameters)).each(appUser => {
+      expect(appUser).to.be.an.instanceof(v3.AppUser);
+      filteredIds.add(appUser.id);
+    });
+    expect(filteredIds.size).to.equal(2);
+  });
+});
