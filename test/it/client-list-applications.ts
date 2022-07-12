@@ -113,7 +113,7 @@ describe('client.listApplications({ })', () => {
     }
   });
 
-  it('should filter apps with pagination', async () => {
+  it('should filter apps with filrer and paginate results', async () => {
     const queryParameters = {
       filter: `name eq "bookmark"`,
       limit: 2

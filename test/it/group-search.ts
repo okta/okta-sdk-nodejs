@@ -40,7 +40,7 @@ const createTestGroups = async () => {
 };
 
 describe('Group API tests', () => {
-  xit('should paginate results', async () => {
+  it('should paginate results', async () => {
     // 1. Create new groups
     const createdGroups = await createTestGroups();
 
@@ -58,7 +58,7 @@ describe('Group API tests', () => {
     await utils.cleanup(client, null, createdGroups);
   });
 
-  xit('should search by name with q', async () => {
+  it('should search by name with q', async () => {
     // 1. Create new groups
     const createdGroups = await createTestGroups();
 
@@ -99,7 +99,7 @@ describe('Group API tests', () => {
     await utils.cleanup(client, null, createdGroups);
   });
 
-  xit('should search for the given group', async () => {
+  it('should search for the given group', async () => {
     // 1. Create a new group
     const groupName = `node-sdk: Search test Group ${faker.random.word()}`.substring(0, 49);
     const newGroup = {
