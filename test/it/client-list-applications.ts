@@ -20,10 +20,10 @@ const client = new Client({
   requestExecutor: new DefaultRequestExecutor()
 });
 
-describe('client.listApplications()', () => {
-  const app1: v3.BookmarkApplication = {
+const createBookmarkApp = async (name?: string) => {
+  const app: v3.BookmarkApplication = {
     name: 'bookmark',
-    label: `node-sdk: Bookmark App ${faker.random.word()}`.substring(0, 49),
+    label: `node-sdk: Filter Bookmark App ${faker.random.word()}`.substring(0, 49),
     signOnMode: 'BOOKMARK',
     settings: {
       app: {
@@ -32,9 +32,14 @@ describe('client.listApplications()', () => {
       }
     }
   };
-  const app2: v3.BasicAuthApplication = {
+  await utils.removeAppByLabel(client, app.label);
+  return await client.createApplication(app);
+};
+
+const createBasicAuthApp = async (name?: string) => {
+  const app: v3.BasicAuthApplication = {
     name: 'template_basic_auth',
-    label: `node-sdk: Sample Basic Auth App ${faker.random.word()}`.substring(0, 49),
+    label: `node-sdk: Filter Sample Basic Auth App ${faker.random.word()}`.substring(0, 49),
     signOnMode: 'BASIC_AUTH',
     settings: {
       app: {
@@ -43,14 +48,17 @@ describe('client.listApplications()', () => {
       }
     }
   };
+  await utils.removeAppByLabel(client, app.label);
+  return await client.createApplication(app);
+};
+
+describe('client.listApplications()', () => {
   let basicApplication;
   let bookmarkApplication;
 
   before(async () => {
-    await utils.removeAppByLabel(client, app1.label);
-    await utils.removeAppByLabel(client, app2.label);
-    basicApplication = await client.createApplication(app2);
-    bookmarkApplication = await client.createApplication(app1);
+    basicApplication = await createBasicAuthApp();
+    bookmarkApplication = await createBookmarkApp();
   });
 
   after(async () => {
@@ -65,18 +73,72 @@ describe('client.listApplications()', () => {
   });
 
   it('should return the correct application types', async () => {
-    let bookmarkApplication;
-    let basicApplication;
+    let bookmarkApp;
+    let basicApp;
     await (await client.listApplications()).each(app => {
-      if (app.label === app1.label && app instanceof v3.BookmarkApplication) {
-        bookmarkApplication = app;
+      if (app.label === bookmarkApplication.label && app instanceof v3.BookmarkApplication) {
+        bookmarkApp = app;
       }
-      if (app.label === app2.label && app instanceof v3.BasicAuthApplication) {
-        basicApplication = app;
+      if (app.label === basicApplication.label && app instanceof v3.BasicAuthApplication) {
+        basicApp = app;
       }
     });
-    expect(bookmarkApplication).to.be.an.instanceof(v3.BookmarkApplication);
-    expect(basicApplication).to.be.an.instanceof(v3.BasicAuthApplication);
+    expect(bookmarkApp).to.be.an.instanceof(v3.BookmarkApplication);
+    expect(basicApp).to.be.an.instanceof(v3.BasicAuthApplication);
   });
 
 });
+
+describe('client.listApplications({ })', () => {
+  const apps = [];
+
+  before(async () => {
+    const stagedApp = await createBookmarkApp('STAGED');
+    await client.deactivateApplication(stagedApp.id);
+    apps.push(stagedApp);
+    for (let i = 0 ; i < 2 ; i++) {
+      const app = await createBasicAuthApp();
+      apps.push(app);
+    }
+    for (let i = 0 ; i < 2 ; i++) {
+      const app = await createBookmarkApp();
+      apps.push(app);
+    }
+  });
+
+  after(async () => {
+    for (let app of apps) {
+      await client.deactivateApplication(app.id);
+      await client.deleteApplication(app.id);
+    }
+  });
+
+  it('should filter apps with pagination', async () => {
+    const queryParameters = {
+      filter: `name eq "bookmark"`,
+      limit: 2
+    };
+    let filtered = new Set();
+    await (await client.listApplications(queryParameters)).each(app => {
+      expect(app).to.be.an.instanceof(v3.BookmarkApplication);
+      expect((app as v3.BookmarkApplication).name).to.eq('bookmark');
+      expect(filtered.has(app.label)).to.be.false;
+      filtered.add(app.label);
+    });
+    expect(filtered.size).to.equal(3);
+  });
+
+  it('should search apps with q by name and label', async () => {
+    const queryParameters = { q: 'node-sdk: Filter Sample Basic Auth App' };
+    let filtered = new Set();
+    await (await client.listApplications(queryParameters)).each(app => {
+      expect(app).to.be.an.instanceof(v3.BasicAuthApplication);
+      expect(app.label).to.match(new RegExp('node-sdk: Filter Sample Basic Auth App'));
+      expect(filtered.has(app.label)).to.be.false;
+      filtered.add(app.label);
+    });
+    expect(filtered.size).to.equal(2);
+  });
+
+});
+

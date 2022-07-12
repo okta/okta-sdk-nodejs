@@ -21,56 +21,6 @@ const client = new Client({
 });
 
 describe('client.listUsers()', () => {
-  const users = [];
-
-  const createUser = async (name) => {
-    const newUser = {
-      profile: {
-        ...utils.getMockProfile(name),
-        lastName: 'okta-sdk-nodejs-filter',
-      },
-      credentials: {
-        password: {value: 'Abcd1234#@'}
-      }
-    };
-    await utils.cleanup(client, newUser);
-    const createdUser = await client.createUser(newUser);
-    return createdUser;
-  };
-  
-  before(async () => {
-    const stagedUser = await createUser('client-filter-users-staged');
-    await client.deactivateUser(stagedUser.id);
-    users.push(stagedUser);
-    for (let i = 0 ; i < 3 ; i++) {
-      const user = await createUser(`client-filter-users-${i}`);
-      users.push(user);
-    }
-    // The search indexing is not instant, so give it some time to settle
-    await utils.delay(5000);
-  });
-
-  after(async () => {
-    await utils.cleanup(client, users);
-  });
-
-  it('should filter users with pagination', async () => {
-    const queryParameters = {
-      search: `status eq "ACTIVE" AND profile.lastName eq "okta-sdk-nodejs-filter"`,
-      limit: 2
-    };
-    let filtered = new Set();
-    await (await client.listUsers(queryParameters)).each(user => {
-      expect(user).to.be.an.instanceof(v3.User);
-      expect(user.profile.firstName).to.match(new RegExp('client-filter-users-'));
-      expect(filtered.has(user.profile.firstName)).to.be.false;
-      filtered.add(user.profile.firstName);
-    });
-    expect(filtered.size).to.equal(3);
-  });
-});
-
-describe('client.list-users()', () => {
   let _user;
 
   before(async () => {
@@ -117,6 +67,85 @@ describe('client.list-users()', () => {
     expect(foundUser, 'The user should be found').to.exist;
     expect(foundUser.id, 'The user should be the right one').to.equal(_user.id);
     expect(foundUserCount, 'Other users should not have been matched').to.equal(1);
+  });
+});
+
+describe('client.listUsers({ })', () => {
+  const users = [];
+
+  const createUser = async (name) => {
+    const newUser = {
+      profile: {
+        ...utils.getMockProfile(name),
+        lastName: 'okta-sdk-nodejs-filter',
+      },
+      credentials: {
+        password: {value: 'Abcd1234#@'}
+      }
+    };
+    await utils.cleanup(client, newUser);
+    const createdUser = await client.createUser(newUser);
+    return createdUser;
+  };
+  
+  before(async () => {
+    const stagedUser = await createUser('client-list-users-staged');
+    await client.deactivateUser(stagedUser.id);
+    users.push(stagedUser);
+    users.push(await createUser(`client-list-users`));
+    users.push(await createUser(`client-list-users-filtered-1`));
+    users.push(await createUser(`client-list-users-filtered-2`));
+    // The search indexing is not instant, so give it some time to settle
+    await utils.delay(5000);
+  });
+
+  after(async () => {
+    await utils.cleanup(client, users);
+  });
+
+  it('should filter users with filter and paginate results', async () => {
+    const queryParameters = {
+      filter: `status eq "ACTIVE" AND profile.lastName eq "okta-sdk-nodejs-filter"`,
+      limit: 2
+    };
+    let filtered = new Set();
+    await (await client.listUsers(queryParameters)).each(user => {
+      expect(user).to.be.an.instanceof(v3.User);
+      expect(user.profile.lastName).to.eq('okta-sdk-nodejs-filter');
+      expect(filtered.has(user.profile.firstName)).to.be.false;
+      filtered.add(user.profile.firstName);
+    });
+    expect(filtered.size).to.equal(3);
+  });
+
+  it('should filter users with search and paginate results', async () => {
+    const queryParameters = {
+      search: `status eq "ACTIVE" AND profile.lastName eq "okta-sdk-nodejs-filter"`,
+      limit: 2
+    };
+    let filtered = new Set();
+    await (await client.listUsers(queryParameters)).each(user => {
+      expect(user).to.be.an.instanceof(v3.User);
+      expect(user.profile.lastName).to.eq('okta-sdk-nodejs-filter');
+      expect(filtered.has(user.profile.firstName)).to.be.false;
+      filtered.add(user.profile.firstName);
+    });
+    expect(filtered.size).to.equal(3);
+  });
+
+  // TODO: q and limit are messed up
+  it('should search users with q', async () => {
+    const queryParameters = {
+      q: 'client-list-users-filtered'
+    };
+    let filtered = new Set();
+    await (await client.listUsers(queryParameters)).each(user => {
+      expect(user).to.be.an.instanceof(v3.User);
+      expect(user.profile.firstName).to.match(new RegExp('client-list-users-filtered'));
+      expect(filtered.has(user.profile.firstName)).to.be.false;
+      filtered.add(user.profile.firstName);
+    });
+    expect(filtered.size).to.equal(2);
   });
 });
 

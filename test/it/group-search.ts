@@ -16,12 +16,11 @@ const client = new okta.Client({
   requestExecutor: new okta.DefaultRequestExecutor()
 });
 
-const namePrefixes = [
-  'GROUP_AB',
-  'GROUP_XY'
-];
-
 const createTestGroups = async () => {
+  const namePrefixes = [
+    'GROUP_AB',
+    'GROUP_XY'
+  ];
   const createdGroups = [];
   for (const prefix of namePrefixes) {
     for (let i = 0 ; i < 2 ; i++) {
@@ -41,29 +40,7 @@ const createTestGroups = async () => {
 };
 
 describe('Group API tests', () => {
-  // TODO: OKTA-512396 - Filter works only as "starts with". Pagination does not work with filter
-  it('should search for groups by name', async () => {
-    // 1. Create new groups
-    const createdGroups = await createTestGroups();
-
-    // 2. Search groups by name
-    for (const prefix of namePrefixes) {
-      const q = `node-sdk: Search test Group ${prefix}`;
-      const collection = await client.listGroups({ q });
-      let filtered = new Set();
-      await collection.each(async group => {
-        expect(group).to.be.an.instanceof(okta.v3.Group);
-        expect(group.profile.name).to.match(new RegExp(q));
-        filtered.add(group.profile.name);
-      });
-      expect(filtered.size).to.equal(2);
-    }
-
-    // 3. Delete groups
-    await utils.cleanup(client, null, createdGroups);
-  });
-
-  it('should paginate results', async () => {
+  xit('should paginate results', async () => {
     // 1. Create new groups
     const createdGroups = await createTestGroups();
 
@@ -81,7 +58,48 @@ describe('Group API tests', () => {
     await utils.cleanup(client, null, createdGroups);
   });
 
-  it('should search for the given group', async () => {
+  xit('should search by name with q', async () => {
+    // 1. Create new groups
+    const createdGroups = await createTestGroups();
+
+    // 2. Search groups by name
+    const q = `node-sdk: Search test Group GROUP_AB`;
+    const collection = await client.listGroups({ q });
+    let filtered = new Set();
+    await collection.each(async group => {
+      expect(group).to.be.an.instanceof(okta.v3.Group);
+      expect(group.profile.name).to.match(new RegExp(q));
+      filtered.add(group.profile.name);
+    });
+    expect(filtered.size).to.equal(2);
+
+    // 3. Delete groups
+    await utils.cleanup(client, null, createdGroups);
+  });
+
+  // TODO: bug with excess `queryParams.filter` !!!
+  it('should filter with search and paginate results', async () => {
+    // 1. Create new groups
+    const createdGroups = await createTestGroups();
+
+    // 2. Filter groups with `search` and paginate results
+    let filtered = new Set();
+    const q = 'node-sdk: Search test Group GROUP_XY';
+    const collection = await client.listGroups({
+      search: `type eq "OKTA_GROUP" AND profile.name sw "${q}"`,
+      limit: 1
+    });
+    await collection.each(async group => {
+      expect(group).to.be.an.instanceof(okta.v3.Group);
+      filtered.add(group.profile.name);
+    });
+    expect(filtered.size).to.equal(2);
+
+    // 3. Delete groups
+    await utils.cleanup(client, null, createdGroups);
+  });
+
+  xit('should search for the given group', async () => {
     // 1. Create a new group
     const groupName = `node-sdk: Search test Group ${faker.random.word()}`.substring(0, 49);
     const newGroup = {
