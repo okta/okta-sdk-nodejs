@@ -93,7 +93,7 @@ describe('client.listApplications({ })', () => {
   const apps = [];
 
   before(async () => {
-    const stagedApp = await createBookmarkApp('STAGED');
+    const stagedApp = await createBookmarkApp();
     await client.deactivateApplication(stagedApp.id);
     apps.push(stagedApp);
     for (let i = 0 ; i < 2 ; i++) {
