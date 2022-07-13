@@ -3,7 +3,6 @@ import { expect } from 'chai';
 import utils = require('../utils');
 import {
   Client,
-  BookmarkApplication,
   DefaultRequestExecutor,
   v3,
 } from '@okta/okta-sdk-nodejs';

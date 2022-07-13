@@ -1,7 +1,7 @@
 import { ServerConfiguration } from './../../src/generated/servers';
 import  { createConfiguration } from './../../src/generated/configuration';
 import { expect } from 'chai';
-import { Client, UserType, v3} from '@okta/okta-sdk-nodejs';
+import { Client, v3} from '@okta/okta-sdk-nodejs';
 
 
 describe('User Type API', () => {

@@ -2,7 +2,6 @@ import { expect } from 'chai';
 import {
   Client,
   DefaultRequestExecutor,
-  UserType,
   v3,
 } from '@okta/okta-sdk-nodejs';
 

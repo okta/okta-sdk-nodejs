@@ -2,11 +2,8 @@ import utils = require('../utils');
 import {
   Client,
   DefaultRequestExecutor,
-  SecurityQuestionUserFactor,
-  SmsUserFactor,
   Policy,
-  v3,
-  CallUserFactor
+  v3
 } from '@okta/okta-sdk-nodejs';
 import { expect } from 'chai';
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;

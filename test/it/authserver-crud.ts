@@ -2,10 +2,10 @@ import { expect } from 'chai';
 import {
   v3,
   Client,
-  Collection,
   DefaultRequestExecutor
 } from '@okta/okta-sdk-nodejs';
 import getMockAuthorizationServer = require('./mocks/authorization-server');
+import faker = require('@faker-js/faker');
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
 if (process.env.OKTA_USE_MOCK) {
@@ -35,23 +35,47 @@ describe('Authorization Server Crud API', () => {
     });
   });
 
-  describe('List Authorization Server', () => {
-    let authServer: v3.AuthorizationServer;
-    beforeEach(async () => {
-      authServer = await client.createAuthorizationServer(getMockAuthorizationServer());
+  describe('List Authorization Servers', () => {
+    let createdServers = [];
+    before(async () => {
+      createdServers = [];
+      const namePrefixes = [
+        'AUTH_SRV_AB',
+        'AUTH_SRV_XY',
+      ];
+      for (const prefix of namePrefixes) {
+        for (let i = 0 ; i < 2 ; i++) {
+          const newServer = {
+            ...getMockAuthorizationServer(),
+            name: `node-sdk: ${prefix} ${i} ${faker.random.word()}`.substring(0, 49)
+          };
+          const createdServer = await client.createAuthorizationServer(newServer);
+          createdServers.push(createdServer);
+        }
+      }
+      return createdServers;
     });
-    afterEach(async () => {
-      await client.deactivateAuthorizationServer(authServer.id);
-      await client.deleteAuthorizationServer(authServer.id);
+    after(async () => {
+      for (const authServer of createdServers) {
+        await client.deactivateAuthorizationServer(authServer.id);
+        await client.deleteAuthorizationServer(authServer.id);
+      }
     });
 
-    it('should return a collection of AuthorizationServer', async () => {
-      const collection = await client.listAuthorizationServers();
-      expect(collection).to.be.instanceOf(Collection);
-      const authServers = await collection.getNextPage();
-      expect(authServers).to.be.an('array').that.is.not.empty;
-      const authServerFromCollection = authServers.find(as => as.name === authServer.name);
-      expect(authServerFromCollection).to.be.exist;
+    it('should search with q and paginate results', async () => {
+      const queryParameters = {
+        q: 'node-sdk: AUTH_SRV_AB',
+        // TODO: OKTA-512396 - limit should be number
+        limit: '1'
+      };
+      const filtered = new Set();
+      await (await client.listAuthorizationServers(queryParameters)).each(as => {
+        expect(as).to.be.an.instanceof(v3.AuthorizationServer);
+        expect(as.name).to.match(new RegExp(queryParameters.q));
+        expect(filtered.has(as.name)).to.be.false;
+        filtered.add(as.name);
+      });
+      expect(filtered.size).to.equal(2);
     });
   });
 
