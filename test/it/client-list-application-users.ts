@@ -83,18 +83,18 @@ describe('client.listApplicationUsers({ })', () => {
     const createdUser = await client.createUser(newUser);
     return createdUser;
   };
-  
+
   before(async () => {
     const application = utils.getBookmarkApplication();
     await utils.removeAppByLabel(client, application.label);
     app = await client.createApplication(application);
 
-    users.push(await createUser(`client-list-app-users-unassigned`));
-    users.push(await createUser(`client-list-app-users`));
-    users.push(await createUser(`client-list-app-users-filtered-1`));
-    users.push(await createUser(`client-list-app-users-filtered-2`));
+    users.push(await createUser('client-list-app-users-unassigned'));
+    users.push(await createUser('client-list-app-users'));
+    users.push(await createUser('client-list-app-users-filtered-1'));
+    users.push(await createUser('client-list-app-users-filtered-2'));
 
-    for (let user of users.slice(1)) {
+    for (const user of users.slice(1)) {
       const appUser = await client.assignUserToApplication(app.id, {
         id: user.id
       });
@@ -106,7 +106,7 @@ describe('client.listApplicationUsers({ })', () => {
   });
 
   after(async () => {
-    for (let appUser of appUsers) {
+    for (const appUser of appUsers) {
       await client.deleteApplicationUser(app.id, appUser.id);
     }
 
@@ -117,7 +117,7 @@ describe('client.listApplicationUsers({ })', () => {
   });
 
   it('should paginate results', async () => {
-    let listIds = new Set();
+    const listIds = new Set();
     const collection = await client.listApplicationUsers(app.id, { limit: 2 });
     await collection.each(async appUser => {
       expect(listIds.has(appUser.id)).to.be.false;
@@ -131,7 +131,7 @@ describe('client.listApplicationUsers({ })', () => {
       q: 'client-list-app-users-filtered',
       limit: 1
     };
-    let filteredIds = new Set();
+    const filteredIds = new Set();
     await (await client.listApplicationUsers(app.id, queryParameters)).each(appUser => {
       expect(appUser).to.be.an.instanceof(v3.AppUser);
       filteredIds.add(appUser.id);

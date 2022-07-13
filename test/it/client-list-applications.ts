@@ -20,7 +20,7 @@ const client = new Client({
   requestExecutor: new DefaultRequestExecutor()
 });
 
-const createBookmarkApp = async (name?: string) => {
+const createBookmarkApp = async () => {
   const app: v3.BookmarkApplication = {
     name: 'bookmark',
     label: `node-sdk: Filter Bookmark App ${faker.random.word()}`.substring(0, 49),
@@ -36,7 +36,7 @@ const createBookmarkApp = async (name?: string) => {
   return await client.createApplication(app);
 };
 
-const createBasicAuthApp = async (name?: string) => {
+const createBasicAuthApp = async () => {
   const app: v3.BasicAuthApplication = {
     name: 'template_basic_auth',
     label: `node-sdk: Filter Sample Basic Auth App ${faker.random.word()}`.substring(0, 49),
@@ -107,7 +107,7 @@ describe('client.listApplications({ })', () => {
   });
 
   after(async () => {
-    for (let app of apps) {
+    for (const app of apps) {
       await client.deactivateApplication(app.id);
       await client.deleteApplication(app.id);
     }
@@ -115,10 +115,10 @@ describe('client.listApplications({ })', () => {
 
   it('should filter apps with filter and paginate results', async () => {
     const queryParameters = {
-      filter: `name eq "bookmark"`,
+      filter: 'name eq "bookmark"',
       limit: 2
     };
-    let filtered = new Set();
+    const filtered = new Set();
     await (await client.listApplications(queryParameters)).each(app => {
       expect(app).to.be.an.instanceof(v3.BookmarkApplication);
       expect((app as v3.BookmarkApplication).name).to.eq('bookmark');
@@ -133,7 +133,7 @@ describe('client.listApplications({ })', () => {
       q: 'node-sdk: Filter Sample Basic Auth App',
       limit: 1
     };
-    let filtered = new Set();
+    const filtered = new Set();
     await (await client.listApplications(queryParameters)).each(app => {
       expect(app).to.be.an.instanceof(v3.BasicAuthApplication);
       expect(app.label).to.match(new RegExp('node-sdk: Filter Sample Basic Auth App'));

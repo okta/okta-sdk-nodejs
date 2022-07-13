@@ -45,7 +45,7 @@ describe('Group API tests', () => {
     const createdGroups = await createTestGroups();
 
     // 2. List with pagination
-    let listIds = new Set();
+    const listIds = new Set();
     const collection = await client.listGroups({ limit: 2 });
     await collection.each(async group => {
       expect(group).to.be.an.instanceof(okta.v3.Group);
@@ -64,9 +64,9 @@ describe('Group API tests', () => {
     const createdGroups = await createTestGroups();
 
     // 2. Search groups by name
-    const q = `node-sdk: Search test Group GROUP_AB`;
+    const q = 'node-sdk: Search test Group GROUP_AB';
     const collection = await client.listGroups({ q });
-    let filtered = new Set();
+    const filtered = new Set();
     await collection.each(async group => {
       expect(group).to.be.an.instanceof(okta.v3.Group);
       expect(group.profile.name).to.match(new RegExp(q));
@@ -84,7 +84,7 @@ describe('Group API tests', () => {
     const createdGroups = await createTestGroups();
 
     // 2. Filter groups with `search` and paginate results
-    let filtered = new Set();
+    const filtered = new Set();
     const q = 'node-sdk: Search test Group GROUP_XY';
     const collection = await client.listGroups({
       search: `type eq "OKTA_GROUP" AND profile.name sw "${q}"`,

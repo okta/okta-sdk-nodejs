@@ -87,14 +87,14 @@ describe('client.listUsers({ })', () => {
     const createdUser = await client.createUser(newUser);
     return createdUser;
   };
-  
+
   before(async () => {
     const stagedUser = await createUser('client-list-users-staged');
     await client.deactivateUser(stagedUser.id);
     users.push(stagedUser);
-    users.push(await createUser(`client-list-users`));
-    users.push(await createUser(`client-list-users-filtered-1`));
-    users.push(await createUser(`client-list-users-filtered-2`));
+    users.push(await createUser('client-list-users'));
+    users.push(await createUser('client-list-users-filtered-1'));
+    users.push(await createUser('client-list-users-filtered-2'));
     // The search indexing is not instant, so give it some time to settle
     await utils.delay(5000);
   });
@@ -105,10 +105,10 @@ describe('client.listUsers({ })', () => {
 
   it('should filter users with filter and paginate results', async () => {
     const queryParameters = {
-      filter: `status eq "ACTIVE" AND profile.lastName eq "okta-sdk-nodejs-users-filter"`,
+      filter: 'status eq "ACTIVE" AND profile.lastName eq "okta-sdk-nodejs-users-filter"',
       limit: 2
     };
-    let filtered = new Set();
+    const filtered = new Set();
     await (await client.listUsers(queryParameters)).each(user => {
       expect(user).to.be.an.instanceof(v3.User);
       expect(user.profile.lastName).to.eq('okta-sdk-nodejs-users-filter');
@@ -120,10 +120,10 @@ describe('client.listUsers({ })', () => {
 
   it('should filter users with search and paginate results', async () => {
     const queryParameters = {
-      search: `status eq "ACTIVE" AND profile.lastName eq "okta-sdk-nodejs-users-filter"`,
+      search: 'status eq "ACTIVE" AND profile.lastName eq "okta-sdk-nodejs-users-filter"',
       limit: 2
     };
-    let filtered = new Set();
+    const filtered = new Set();
     await (await client.listUsers(queryParameters)).each(user => {
       expect(user).to.be.an.instanceof(v3.User);
       expect(user.profile.lastName).to.eq('okta-sdk-nodejs-users-filter');
@@ -138,7 +138,7 @@ describe('client.listUsers({ })', () => {
     const queryParameters = {
       q: 'client-list-users-filtered'
     };
-    let filtered = new Set();
+    const filtered = new Set();
     await (await client.listUsers(queryParameters)).each(user => {
       expect(user).to.be.an.instanceof(v3.User);
       expect(user.profile.firstName).to.match(new RegExp('client-list-users-filtered'));

@@ -51,7 +51,7 @@ describe('Idp Crud API', () => {
     });
 
     it('should return a collection with pagination', async () => {
-      let listIds = new Set();
+      const listIds = new Set();
       await (await client.listIdentityProviders({ limit: 1 })).each(idp => {
         expect(listIds.has(idp.id)).to.be.false;
         listIds.add(idp.id);
