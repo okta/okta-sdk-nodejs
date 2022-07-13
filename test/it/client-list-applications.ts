@@ -100,7 +100,7 @@ describe('client.listApplications({ })', () => {
       const app = await createBasicAuthApp();
       apps.push(app);
     }
-    for (let i = 0 ; i < 2 ; i++) {
+    for (let i = 0 ; i < 1 ; i++) {
       const app = await createBookmarkApp();
       apps.push(app);
     }
@@ -116,7 +116,7 @@ describe('client.listApplications({ })', () => {
   it('should filter apps with filter and paginate results', async () => {
     const queryParameters = {
       filter: 'name eq "bookmark"',
-      limit: 2
+      limit: 1
     };
     const filtered = new Set();
     await (await client.listApplications(queryParameters)).each(app => {
@@ -125,7 +125,7 @@ describe('client.listApplications({ })', () => {
       expect(filtered.has(app.label)).to.be.false;
       filtered.add(app.label);
     });
-    expect(filtered.size).to.equal(3);
+    expect(filtered.size).to.equal(2);
   });
 
   it('should search apps with q by name and label and paginate results', async () => {
