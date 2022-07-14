@@ -1,4 +1,5 @@
 import { expect } from 'chai';
+import { spy } from 'sinon';
 import {
   v3,
   Client,
@@ -95,11 +96,14 @@ describe('Trusted Origin API', () => {
 
     it('should paginate results', async () => {
       const filtered = new Set();
-      await (await client.listOrigins({ limit: 3 })).each(origin => {
+      const collection = await client.listOrigins({ limit: 3 });
+      const pageSpy = spy(collection, 'getNextPage');
+      await collection.each(origin => {
         expect(origin).to.be.an.instanceof(v3.TrustedOrigin);
         expect(filtered.has(origin.name)).to.be.false;
         filtered.add(origin.name);
       });
+      expect(pageSpy.getCalls().length).to.be.greaterThanOrEqual(2);
       expect(filtered.size).to.be.greaterThanOrEqual(4);
     });
 

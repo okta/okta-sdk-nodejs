@@ -1,4 +1,5 @@
 import { expect } from 'chai';
+import { spy } from 'sinon';
 import faker = require('@faker-js/faker');
 import {
   v3,
@@ -118,14 +119,17 @@ describe('client.listApplications({ })', () => {
       filter: 'name eq "bookmark"',
       limit: 1
     };
+    const collection = await client.listApplications(queryParameters);
+    const pageSpy = spy(collection, 'getNextPage');
     const filtered = new Set();
-    await (await client.listApplications(queryParameters)).each(app => {
+    await collection.each(app => {
       expect(app).to.be.an.instanceof(v3.BookmarkApplication);
       expect((app as v3.BookmarkApplication).name).to.eq('bookmark');
       expect(filtered.has(app.label)).to.be.false;
       filtered.add(app.label);
     });
     expect(filtered.size).to.equal(2);
+    expect(pageSpy.getCalls().length).to.equal(2);
   });
 
   it('should search apps with q by name and label and paginate results', async () => {
@@ -133,14 +137,17 @@ describe('client.listApplications({ })', () => {
       q: 'node-sdk: Filter Sample Basic Auth App',
       limit: 1
     };
+    const collection = await client.listApplications(queryParameters);
+    const pageSpy = spy(collection, 'getNextPage');
     const filtered = new Set();
-    await (await client.listApplications(queryParameters)).each(app => {
+    await collection.each(app => {
       expect(app).to.be.an.instanceof(v3.BasicAuthApplication);
       expect(app.label).to.match(new RegExp('node-sdk: Filter Sample Basic Auth App'));
       expect(filtered.has(app.label)).to.be.false;
       filtered.add(app.label);
     });
     expect(filtered.size).to.equal(2);
+    expect(pageSpy.getCalls().length).to.equal(2);
   });
 
 });

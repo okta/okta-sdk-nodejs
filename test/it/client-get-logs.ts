@@ -1,9 +1,10 @@
 import { expect } from 'chai';
-
+import { spy } from 'sinon';
 import {
   Client,
   DefaultRequestExecutor,
-  v3 } from '@okta/okta-sdk-nodejs';
+  v3
+} from '@okta/okta-sdk-nodejs';
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -29,6 +30,7 @@ describe('client.getLogs()', () => {
       sortOrder: 'DESCENDING',
       limit
     });
+    const pageSpy = spy(collection, 'getNextPage');
     let cnt = 0;
     await collection.each(log => {
       expect(log).to.be.instanceof(v3.LogEvent);
@@ -38,6 +40,7 @@ describe('client.getLogs()', () => {
       }
     });
     expect(cnt).to.be.lessThanOrEqual(max);
+    expect(pageSpy.getCalls().length).to.be.greaterThanOrEqual(Math.ceil(cnt / limit));
   });
 
   it('should filter with filter and paginate results', async () => {
@@ -49,6 +52,7 @@ describe('client.getLogs()', () => {
       sortOrder: 'DESCENDING',
       limit
     });
+    const pageSpy = spy(collection, 'getNextPage');
     let cnt = 0;
     await collection.each(log => {
       expect(log).to.be.instanceof(v3.LogEvent);
@@ -58,6 +62,7 @@ describe('client.getLogs()', () => {
       }
     });
     expect(cnt).to.be.lessThanOrEqual(max);
+    expect(pageSpy.getCalls().length).to.be.greaterThanOrEqual(Math.ceil(cnt / limit));
   });
 
   it('should allow me to poll the collection but stop when needed', async () => {

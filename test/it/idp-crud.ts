@@ -1,4 +1,5 @@
 import { expect } from 'chai';
+import { spy } from 'sinon';
 import {
   Client,
   Collection,
@@ -52,11 +53,16 @@ describe('Idp Crud API', () => {
 
     it('should return a collection with pagination', async () => {
       const listIds = new Set();
-      await (await client.listIdentityProviders({ limit: 1 })).each(idp => {
+      const collection = await client.listIdentityProviders({
+        limit: 2
+      });
+      const pageSpy = spy(collection, 'getNextPage');
+      await collection.each(idp => {
         expect(listIds.has(idp.id)).to.be.false;
         listIds.add(idp.id);
       });
       expect(listIds.size).to.be.greaterThanOrEqual(4);
+      expect(pageSpy.getCalls().length).to.be.greaterThanOrEqual(2);
     });
 
     // TODO: OKTA-515269 - Filter by type does not work correctly

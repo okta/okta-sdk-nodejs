@@ -1,4 +1,5 @@
 import { expect } from 'chai';
+import { spy } from 'sinon';
 import {
   v3,
   Client,
@@ -69,12 +70,15 @@ describe('Authorization Server Crud API', () => {
         limit: '1'
       };
       const filtered = new Set();
-      await (await client.listAuthorizationServers(queryParameters)).each(as => {
+      const collection = await client.listAuthorizationServers(queryParameters);
+      const pageSpy = spy(collection, 'getNextPage');
+      await collection.each(as => {
         expect(as).to.be.an.instanceof(v3.AuthorizationServer);
         expect(as.name).to.match(new RegExp(queryParameters.q));
         expect(filtered.has(as.name)).to.be.false;
         filtered.add(as.name);
       });
+      expect(pageSpy.getCalls().length).to.be.greaterThanOrEqual(2);
       expect(filtered.size).to.equal(2);
     });
   });

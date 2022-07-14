@@ -1,4 +1,5 @@
 import { expect } from 'chai';
+import { spy } from 'sinon';
 import faker = require('@faker-js/faker');
 
 import utils = require('../utils');
@@ -93,15 +94,18 @@ describe('Group-Rule API tests', () => {
 
     // 3b. Search group rules with pagination
     const filtered = new Set();
-    await (await client.listGroupRules({
+    const collection = await client.listGroupRules({
       search: 'RULE_AB',
       limit: 1
-    })).each(rule => {
+    });
+    const pageSpy = spy(collection, 'getNextPage');
+    await collection.each(rule => {
       expect(filtered.has(rule.name)).to.be.false;
       filtered.add(rule.name);
       expect(rule.name.indexOf('RULE_AB')).to.not.equal(-1);
     });
     expect(filtered.size).to.equal(2);
+    expect(pageSpy.getCalls().length).to.equal(2);
 
     // 4. Verify first rule executes
     // We wait for 30 seconds for the rule to activate i.e. userInGroup = true

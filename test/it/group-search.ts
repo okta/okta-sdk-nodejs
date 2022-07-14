@@ -1,6 +1,6 @@
 import faker = require('@faker-js/faker');
-
 import { expect } from 'chai';
+import { spy } from 'sinon';
 import utils = require('../utils');
 import * as okta from '@okta/okta-sdk-nodejs';
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
@@ -40,32 +40,35 @@ const createTestGroups = async () => {
 };
 
 describe('Group API tests', () => {
-  it('should paginate results', async () => {
-    // 1. Create new groups
-    const createdGroups = await createTestGroups();
+  let createdGroups;
+  before(async () => {
+    createdGroups = await createTestGroups();
+  });
+  after(async () => {
+    await utils.cleanup(client, null, createdGroups);
+  });
 
-    // 2. List with pagination
+  it('should paginate results', async () => {
     const listIds = new Set();
-    const collection = await client.listGroups({ limit: 2 });
+    const collection = await client.listGroups({
+      limit: 2
+    });
+    const pageSpy = spy(collection, 'getNextPage');
     await collection.each(async group => {
       expect(group).to.be.an.instanceof(okta.v3.Group);
       expect(listIds.has(group.id)).to.be.false;
       listIds.add(group.id);
     });
     expect(listIds.size).to.be.greaterThanOrEqual(4);
-
-    // 3. Delete groups
-    await utils.cleanup(client, null, createdGroups);
+    expect(pageSpy.getCalls().length).to.be.greaterThanOrEqual(2);
   });
 
   // Pagination does not work with q
   it('should search by name with q', async () => {
-    // 1. Create new groups
-    const createdGroups = await createTestGroups();
-
-    // 2. Search groups by name
     const q = 'node-sdk: Search test Group GROUP_AB';
-    const collection = await client.listGroups({ q });
+    const collection = await client.listGroups({
+      q
+    });
     const filtered = new Set();
     await collection.each(async group => {
       expect(group).to.be.an.instanceof(okta.v3.Group);
@@ -73,54 +76,22 @@ describe('Group API tests', () => {
       filtered.add(group.profile.name);
     });
     expect(filtered.size).to.equal(2);
-
-    // 3. Delete groups
-    await utils.cleanup(client, null, createdGroups);
   });
 
   // TODO: OKTA-515269 - incompatibility in v2 and v3 specs
   xit('should filter with search and paginate results', async () => {
-    // 1. Create new groups
-    const createdGroups = await createTestGroups();
-
-    // 2. Filter groups with `search` and paginate results
     const filtered = new Set();
     const q = 'node-sdk: Search test Group GROUP_XY';
     const collection = await client.listGroups({
       search: `type eq "OKTA_GROUP" AND profile.name sw "${q}"`,
       limit: 1
     });
+    const pageSpy = spy(collection, 'getNextPage');
     await collection.each(async group => {
       expect(group).to.be.an.instanceof(okta.v3.Group);
       filtered.add(group.profile.name);
     });
     expect(filtered.size).to.equal(2);
-
-    // 3. Delete groups
-    await utils.cleanup(client, null, createdGroups);
-  });
-
-  it('should search for the given group', async () => {
-    // 1. Create a new group
-    const groupName = `node-sdk: Search test Group ${faker.random.word()}`.substring(0, 49);
-    const newGroup = {
-      profile: {
-        name: groupName
-      }
-    };
-
-    // Cleanup the group if it exists
-    await utils.cleanup(client, null, newGroup);
-
-    const createdGroup = await client.createGroup(newGroup);
-    utils.validateGroup(createdGroup, newGroup);
-
-    // 2. Search the group by name
-    const queryParameters = { q : groupName };
-    const groupPresent = await utils.isGroupPresent(client, createdGroup, queryParameters);
-    expect(groupPresent).to.equal(true);
-
-    // 3. Delete the group
-    await utils.cleanup(client, null, createdGroup);
+    expect(pageSpy.getCalls().length).to.equal(2);
   });
 });

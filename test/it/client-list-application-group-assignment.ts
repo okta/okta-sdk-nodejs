@@ -1,4 +1,5 @@
 import { expect } from 'chai';
+import { spy } from 'sinon';
 import faker = require('@faker-js/faker');
 
 import {
@@ -100,12 +101,16 @@ describe('client.listApplicationGroupAssignments({ })', () => {
 
   it('should paginate results', async () => {
     const listIds = new Set();
-    const collection = await client.listApplicationGroupAssignments(app.id, { limit: 2 });
+    const collection = await client.listApplicationGroupAssignments(app.id, {
+      limit: 2
+    });
+    const pageSpy = spy(collection, 'getNextPage');
     await collection.each(async assignment => {
       expect(listIds.has(assignment.id)).to.be.false;
       listIds.add(assignment.id);
     });
     expect(listIds.size).to.equal(3);
+    expect(pageSpy.getCalls().length).to.equal(2);
   });
 
   it('should search groups with q and paginate results', async () => {
@@ -113,10 +118,13 @@ describe('client.listApplicationGroupAssignments({ })', () => {
       q: 'client-list-app-groups-filtered',
       limit: 1
     };
+    const collection = await client.listApplicationGroupAssignments(app.id, queryParameters);
+    const pageSpy = spy(collection, 'getNextPage');
     const filteredIds = new Set();
-    await (await client.listApplicationGroupAssignments(app.id, queryParameters)).each(assignment => {
+    await collection.each(assignment => {
       filteredIds.add(assignment.id);
     });
     expect(filteredIds.size).to.equal(2);
+    expect(pageSpy.getCalls().length).to.equal(2);
   });
 });

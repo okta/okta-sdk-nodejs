@@ -1,10 +1,12 @@
 import { expect } from 'chai';
+import { spy } from 'sinon';
 
 import {
   Client,
   Collection,
   DefaultRequestExecutor,
-  v3 } from '@okta/okta-sdk-nodejs';
+  v3
+} from '@okta/okta-sdk-nodejs';
 
 import utils = require('../utils');
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
@@ -108,14 +110,17 @@ describe('client.listUsers({ })', () => {
       filter: 'status eq "ACTIVE" AND profile.lastName eq "okta-sdk-nodejs-users-filter"',
       limit: 2
     };
+    const collection = await client.listUsers(queryParameters);
+    const pageSpy = spy(collection, 'getNextPage');
     const filtered = new Set();
-    await (await client.listUsers(queryParameters)).each(user => {
+    await collection.each(user => {
       expect(user).to.be.an.instanceof(v3.User);
       expect(user.profile.lastName).to.eq('okta-sdk-nodejs-users-filter');
       expect(filtered.has(user.profile.firstName)).to.be.false;
       filtered.add(user.profile.firstName);
     });
     expect(filtered.size).to.equal(3);
+    expect(pageSpy.getCalls().length).to.equal(2);
   });
 
   it('should filter users with search and paginate results', async () => {
@@ -123,14 +128,17 @@ describe('client.listUsers({ })', () => {
       search: 'status eq "ACTIVE" AND profile.lastName eq "okta-sdk-nodejs-users-filter"',
       limit: 2
     };
+    const collection = await client.listUsers(queryParameters);
+    const pageSpy = spy(collection, 'getNextPage');
     const filtered = new Set();
-    await (await client.listUsers(queryParameters)).each(user => {
+    await collection.each(user => {
       expect(user).to.be.an.instanceof(v3.User);
       expect(user.profile.lastName).to.eq('okta-sdk-nodejs-users-filter');
       expect(filtered.has(user.profile.firstName)).to.be.false;
       filtered.add(user.profile.firstName);
     });
     expect(filtered.size).to.equal(3);
+    expect(pageSpy.getCalls().length).to.equal(2);
   });
 
   // TODO: OKTA-515269 - incompatibility in v2 and v3 specs

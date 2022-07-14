@@ -1,4 +1,5 @@
 import { expect } from 'chai';
+import { spy } from 'sinon';
 
 import {
   Client,
@@ -118,12 +119,16 @@ describe('client.listApplicationUsers({ })', () => {
 
   it('should paginate results', async () => {
     const listIds = new Set();
-    const collection = await client.listApplicationUsers(app.id, { limit: 2 });
+    const collection = await client.listApplicationUsers(app.id, {
+      limit: 2
+    });
+    const pageSpy = spy(collection, 'getNextPage');
     await collection.each(async appUser => {
       expect(listIds.has(appUser.id)).to.be.false;
       listIds.add(appUser.id);
     });
     expect(listIds.size).to.equal(3);
+    expect(pageSpy.getCalls().length).to.equal(2);
   });
 
   it('should search users with q and paginate results', async () => {
@@ -131,11 +136,14 @@ describe('client.listApplicationUsers({ })', () => {
       q: 'client-list-app-users-filtered',
       limit: 1
     };
+    const collection = await client.listApplicationUsers(app.id, queryParameters);
+    const pageSpy = spy(collection, 'getNextPage');
     const filteredIds = new Set();
-    await (await client.listApplicationUsers(app.id, queryParameters)).each(appUser => {
+    await collection.each(appUser => {
       expect(appUser).to.be.an.instanceof(v3.AppUser);
       filteredIds.add(appUser.id);
     });
     expect(filteredIds.size).to.equal(2);
+    expect(pageSpy.getCalls().length).to.equal(2);
   });
 });

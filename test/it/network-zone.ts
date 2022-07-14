@@ -1,4 +1,5 @@
 import { expect } from 'chai';
+import { spy } from 'sinon';
 import {
   Client,
   DefaultRequestExecutor,
@@ -132,11 +133,14 @@ describe('List Network Zones', () => {
 
   it('should paginate results', async () => {
     const filtered = new Set();
-    await (await client.listNetworkZones({ limit: 3 })).each(nz => {
+    const collection = await client.listNetworkZones({ limit: 3 });
+    const pageSpy = spy(collection, 'getNextPage');
+    await collection.each(nz => {
       expect(nz).to.be.an.instanceof(v3.NetworkZone);
       expect(filtered.has(nz.name)).to.be.false;
       filtered.add(nz.name);
     });
+    expect(pageSpy.getCalls().length).to.be.greaterThanOrEqual(2);
     expect(filtered.size).to.be.greaterThanOrEqual(4);
   });
 
