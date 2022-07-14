@@ -133,7 +133,7 @@ describe('client.listUsers({ })', () => {
     expect(filtered.size).to.equal(3);
   });
 
-  // TODO: OKTA-512396 - incompatibility in v2 and v3 specs
+  // TODO: OKTA-515269 - incompatibility in v2 and v3 specs
   xit('should search users with q', async () => {
     const queryParameters = {
       q: 'client-list-users-filtered'

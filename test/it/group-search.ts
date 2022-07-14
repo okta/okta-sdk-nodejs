@@ -78,7 +78,7 @@ describe('Group API tests', () => {
     await utils.cleanup(client, null, createdGroups);
   });
 
-  // TODO: OKTA-512396 - incompatibility in v2 and v3 specs
+  // TODO: OKTA-515269 - incompatibility in v2 and v3 specs
   xit('should filter with search and paginate results', async () => {
     // 1. Create new groups
     const createdGroups = await createTestGroups();

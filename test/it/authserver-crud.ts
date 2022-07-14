@@ -65,7 +65,7 @@ describe('Authorization Server Crud API', () => {
     it('should search with q and paginate results', async () => {
       const queryParameters = {
         q: 'node-sdk: AUTH_SRV_AB',
-        // TODO: OKTA-512396 - limit should be number
+        // TODO: OKTA-515269 - limit should be number
         limit: '1'
       };
       const filtered = new Set();

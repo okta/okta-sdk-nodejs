@@ -59,7 +59,7 @@ describe('Idp Crud API', () => {
       expect(listIds.size).to.be.greaterThanOrEqual(4);
     });
 
-    // TODO: OKTA-512396 - Filter by type does not work correctly
+    // TODO: OKTA-515269 - Filter by type does not work correctly
     xit('should filter idps by type', async () => {
       await (await client.listIdentityProviders({ type: 'FACEBOOK' })).each(idp => {
         expect(idp.type).to.equal('FACEBOOK');
@@ -72,7 +72,7 @@ describe('Idp Crud API', () => {
       });
     });
 
-    // TODO: OKTA-512396 - Filter with q does not work correctly
+    // TODO: OKTA-515269 - Filter with q does not work correctly
     xit('should search idps with q', async () => {
       await (await client.listIdentityProviders({ q: 'node-sdk: Facebook' })).each(idp => {
         expect(idp.type).to.equal('FACEBOOK');
