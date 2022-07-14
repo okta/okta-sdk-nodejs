@@ -119,7 +119,7 @@ describe('Trusted Origin API', () => {
 
     it('should filter with filter', async () => {
       const queryParameters = {
-        filter: `type eq "REDIRECT"`,
+        filter: 'type eq "REDIRECT"',
         limit: 2
       };
       const filtered = new Set();
