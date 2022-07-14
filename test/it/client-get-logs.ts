@@ -20,6 +20,46 @@ const client = new Client({
 
 describe('client.getLogs()', () => {
 
+  it('should search with q and paginate results', async () => {
+    const max = 10, limit = 5;
+    const collection = await client.getLogs({
+      since: '2018-01-26T00:00:00Z',
+      until: '2038-01-26T00:00:00Z',
+      q: 'user',
+      sortOrder: 'DESCENDING',
+      limit
+    });
+    let cnt = 0;
+    await collection.each(log => {
+      expect(log).to.be.instanceof(v3.LogEvent);
+      cnt++;
+      if (cnt >= max) {
+        return false;
+      }
+    });
+    expect(cnt).to.be.lessThanOrEqual(max);
+  });
+
+  it('should filter with filter and paginate results', async () => {
+    const max = 10, limit = 5;
+    const collection = await client.getLogs({
+      since: '2018-01-26T00:00:00Z',
+      until: '2038-01-26T00:00:00Z',
+      filter: 'severity eq "INFO"',
+      sortOrder: 'DESCENDING',
+      limit
+    });
+    let cnt = 0;
+    await collection.each(log => {
+      expect(log).to.be.instanceof(v3.LogEvent);
+      cnt++;
+      if (cnt >= max) {
+        return false;
+      }
+    });
+    expect(cnt).to.be.lessThanOrEqual(max);
+  });
+
   it('should allow me to poll the collection but stop when needed', async () => {
     const collection = await client.getLogs({ since: '2018-01-26T00:00:00Z'});
     let iteratorCalledTimes = 0;
