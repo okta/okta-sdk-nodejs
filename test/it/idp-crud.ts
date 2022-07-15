@@ -1,4 +1,5 @@
 import { expect } from 'chai';
+import { spy } from 'sinon';
 import {
   Client,
   Collection,
@@ -50,28 +51,42 @@ describe('Idp Crud API', () => {
       });
     });
 
-    // TODO: OKTA-512396 - Filter and pagination does not work correctly
-    xit('should return a collection of idp by type', async () => {
+    it('should return a collection with pagination', async () => {
+      const listIds = new Set();
+      const collection = await client.listIdentityProviders({
+        limit: 2
+      });
+      const pageSpy = spy(collection, 'getNextPage');
+      await collection.each(idp => {
+        expect(listIds.has(idp.id)).to.be.false;
+        listIds.add(idp.id);
+      });
+      expect(listIds.size).to.be.greaterThanOrEqual(4);
+      expect(pageSpy.getCalls().length).to.be.greaterThanOrEqual(2);
+    });
+
+    // TODO: OKTA-515269 - Filter by type does not work correctly
+    xit('should filter idps by type', async () => {
       await (await client.listIdentityProviders({ type: 'FACEBOOK' })).each(idp => {
         expect(idp.type).to.equal('FACEBOOK');
       });
       await (await client.listIdentityProviders({ type: 'GOOGLE' })).each(idp => {
         expect(idp.type).to.equal('GOOGLE');
       });
-      await (await client.listIdentityProviders({ type: 'OIDC', limit: 1 })).each(idp => {
+      await (await client.listIdentityProviders({ type: 'OIDC' })).each(idp => {
         expect(idp.type).to.equal('OIDC');
       });
     });
 
-    // TODO: OKTA-512396 - Filter and pagination does not work correctly
-    xit('should return a collection of idp by q', async () => {
-      await (await client.listIdentityProviders({ q: 'Facebook' })).each(idp => {
+    // TODO: OKTA-515269 - Filter with q does not work correctly
+    xit('should search idps with q', async () => {
+      await (await client.listIdentityProviders({ q: 'node-sdk: Facebook' })).each(idp => {
         expect(idp.type).to.equal('FACEBOOK');
       });
-      await (await client.listIdentityProviders({ q: 'Google' })).each(idp => {
+      await (await client.listIdentityProviders({ q: 'node-sdk: Google' })).each(idp => {
         expect(idp.type).to.equal('GOOGLE');
       });
-      await (await client.listIdentityProviders({ q: 'OIDC', limit: 1 })).each(idp => {
+      await (await client.listIdentityProviders({ q: 'node-sdk: OIDC' })).each(idp => {
         expect(idp.type).to.equal('OIDC');
       });
     });

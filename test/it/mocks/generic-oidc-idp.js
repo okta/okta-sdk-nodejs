@@ -2,7 +2,7 @@ const faker = require('@faker-js/faker');
 
 module.exports = () => ({
   type: 'OIDC',
-  name: `node-sdk: ${faker.random.word().substring(0, 49)}`,
+  name: `node-sdk: OIDC ${faker.random.word().substring(0, 49)}`,
   issuerMode: 'ORG_URL',
   protocol: {
     algorithms: {

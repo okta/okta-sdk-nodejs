@@ -1,4 +1,5 @@
 import { expect } from 'chai';
+import { spy } from 'sinon';
 import {
   v3,
   Client,
@@ -6,6 +7,7 @@ import {
   DefaultRequestExecutor
 } from '@okta/okta-sdk-nodejs';
 import getMockTrustedOrigin = require('./mocks/trusted-origin');
+import faker = require('@faker-js/faker');
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
 if (process.env.OKTA_USE_MOCK) {
@@ -53,6 +55,85 @@ describe('Trusted Origin API', () => {
       expect(trustedOrigins).to.be.an('array').that.is.not.empty;
       const trustedOriginFromCollection = trustedOrigins.find(as => as.name === trustedOrigin.name);
       expect(trustedOriginFromCollection).to.be.exist;
+    });
+  });
+
+  describe('Filter Trusted Origins', () => {
+    let origins: Array<v3.TrustedOrigin>;
+    before(async () => {
+      origins = [];
+      const namePrefixes = [
+        'TO_ALL',
+        'TO_CORS',
+        'TO_REDIRECT'
+      ];
+      for (const prefix of namePrefixes) {
+        for (let i = 0 ; i < 2 ; i++) {
+          const mockOrigin = {
+            ...getMockTrustedOrigin(),
+            name: `node-sdk: ${prefix} ${i} ${faker.random.word()}`.substring(0, 49)
+          };
+          if (prefix === 'TO_CORS') {
+            mockOrigin.scopes = [
+              { type: 'CORS' }
+            ];
+          } else if (prefix === 'TO_REDIRECT') {
+            mockOrigin.scopes = [
+              { type: 'REDIRECT' }
+            ];
+          }
+          const origin = await client.createOrigin(mockOrigin);
+          origins.push(origin);
+        }
+      }
+    });
+    after(async () => {
+      for (const origin of origins) {
+        await client.deactivateOrigin(origin.id);
+        await client.deleteOrigin(origin.id);
+      }
+    });
+
+    it('should paginate results', async () => {
+      const filtered = new Set();
+      const collection = await client.listOrigins({ limit: 3 });
+      const pageSpy = spy(collection, 'getNextPage');
+      await collection.each(origin => {
+        expect(origin).to.be.an.instanceof(v3.TrustedOrigin);
+        expect(filtered.has(origin.name)).to.be.false;
+        filtered.add(origin.name);
+      });
+      expect(pageSpy.getCalls().length).to.be.greaterThanOrEqual(2);
+      expect(filtered.size).to.be.greaterThanOrEqual(4);
+    });
+
+    // Pagination works incorrectly with q (next link contains filter instead of q)
+    it('should search with q', async () => {
+      const queryParameters = {
+        q: 'node-sdk: TO_ALL'
+      };
+      const filtered = new Set();
+      await (await client.listOrigins(queryParameters)).each(origin => {
+        expect(origin).to.be.an.instanceof(v3.TrustedOrigin);
+        expect(filtered.has(origin.name)).to.be.false;
+        filtered.add(origin.name);
+      });
+      expect(filtered.size).to.equal(2);
+    });
+
+    it('should filter with filter', async () => {
+      const queryParameters = {
+        filter: 'type eq "REDIRECT"',
+        limit: 2
+      };
+      const filtered = new Set();
+      await (await client.listOrigins(queryParameters)).each(origin => {
+        expect(origin).to.be.an.instanceof(v3.TrustedOrigin);
+        expect(filtered.has(origin.name)).to.be.false;
+        filtered.add(origin.name);
+        expect(origin.name.indexOf('node-sdk: TO_CORS')).to.equal(-1);
+      });
+      expect(filtered.size).to.be.greaterThanOrEqual(4);
     });
   });
 

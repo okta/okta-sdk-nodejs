@@ -1,10 +1,12 @@
 import { expect } from 'chai';
+import { spy } from 'sinon';
 
 import {
   Client,
   Collection,
   DefaultRequestExecutor,
-  v3 } from '@okta/okta-sdk-nodejs';
+  v3
+} from '@okta/okta-sdk-nodejs';
 
 import utils = require('../utils');
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
@@ -20,7 +22,7 @@ const client = new Client({
   requestExecutor: new DefaultRequestExecutor()
 });
 
-describe('client.list-users()', () => {
+describe('client.listUsers()', () => {
   let _user;
 
   before(async () => {
@@ -67,6 +69,91 @@ describe('client.list-users()', () => {
     expect(foundUser, 'The user should be found').to.exist;
     expect(foundUser.id, 'The user should be the right one').to.equal(_user.id);
     expect(foundUserCount, 'Other users should not have been matched').to.equal(1);
+  });
+});
+
+describe('client.listUsers({ })', () => {
+  const users = [];
+
+  const createUser = async (name) => {
+    const newUser = {
+      profile: {
+        ...utils.getMockProfile(name),
+        lastName: 'okta-sdk-nodejs-users-filter',
+      },
+      credentials: {
+        password: {value: 'Abcd1234#@'}
+      }
+    };
+    await utils.cleanup(client, newUser);
+    const createdUser = await client.createUser(newUser);
+    return createdUser;
+  };
+
+  before(async () => {
+    const stagedUser = await createUser('client-list-users-staged');
+    await client.deactivateUser(stagedUser.id);
+    users.push(stagedUser);
+    users.push(await createUser('client-list-users'));
+    users.push(await createUser('client-list-users-filtered-1'));
+    users.push(await createUser('client-list-users-filtered-2'));
+    // The search indexing is not instant, so give it some time to settle
+    await utils.delay(5000);
+  });
+
+  after(async () => {
+    await utils.cleanup(client, users);
+  });
+
+  it('should filter users with filter and paginate results', async () => {
+    const queryParameters = {
+      filter: 'status eq "ACTIVE" AND profile.lastName eq "okta-sdk-nodejs-users-filter"',
+      limit: 2
+    };
+    const collection = await client.listUsers(queryParameters);
+    const pageSpy = spy(collection, 'getNextPage');
+    const filtered = new Set();
+    await collection.each(user => {
+      expect(user).to.be.an.instanceof(v3.User);
+      expect(user.profile.lastName).to.eq('okta-sdk-nodejs-users-filter');
+      expect(filtered.has(user.profile.firstName)).to.be.false;
+      filtered.add(user.profile.firstName);
+    });
+    expect(filtered.size).to.equal(3);
+    expect(pageSpy.getCalls().length).to.equal(2);
+  });
+
+  it('should filter users with search and paginate results', async () => {
+    const queryParameters = {
+      search: 'status eq "ACTIVE" AND profile.lastName eq "okta-sdk-nodejs-users-filter"',
+      limit: 2
+    };
+    const collection = await client.listUsers(queryParameters);
+    const pageSpy = spy(collection, 'getNextPage');
+    const filtered = new Set();
+    await collection.each(user => {
+      expect(user).to.be.an.instanceof(v3.User);
+      expect(user.profile.lastName).to.eq('okta-sdk-nodejs-users-filter');
+      expect(filtered.has(user.profile.firstName)).to.be.false;
+      filtered.add(user.profile.firstName);
+    });
+    expect(filtered.size).to.equal(3);
+    expect(pageSpy.getCalls().length).to.equal(2);
+  });
+
+  // TODO: OKTA-515269 - incompatibility in v2 and v3 specs
+  xit('should search users with q', async () => {
+    const queryParameters = {
+      q: 'client-list-users-filtered'
+    };
+    const filtered = new Set();
+    await (await client.listUsers(queryParameters)).each(user => {
+      expect(user).to.be.an.instanceof(v3.User);
+      expect(user.profile.firstName).to.match(new RegExp('client-list-users-filtered'));
+      expect(filtered.has(user.profile.firstName)).to.be.false;
+      filtered.add(user.profile.firstName);
+    });
+    expect(filtered.size).to.equal(2);
   });
 });
 

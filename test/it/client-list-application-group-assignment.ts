@@ -1,4 +1,5 @@
 import { expect } from 'chai';
+import { spy } from 'sinon';
 import faker = require('@faker-js/faker');
 
 import {
@@ -60,4 +61,70 @@ describe('client.listApplicationGroupAssignments()', () => {
     }
   });
 
+});
+
+describe('client.listApplicationGroupAssignments({ })', () => {
+  let app;
+  const groups = [];
+
+  const createGroup = async (name) => {
+    const newGroup = {
+      profile: {
+        name
+      }
+    };
+    const createdGroup = await client.createGroup(newGroup);
+    return createdGroup;
+  };
+
+  before(async () => {
+    const application = utils.getBookmarkApplication();
+    await utils.removeAppByLabel(client, application.label);
+    app = await client.createApplication(application);
+
+    groups.push(await createGroup('client-list-app-groups-unassigned'));
+    groups.push(await createGroup('client-list-app-groups'));
+    groups.push(await createGroup('client-list-app-groups-filtered-1'));
+    groups.push(await createGroup('client-list-app-groups-filtered-2'));
+
+    for (const group of groups.slice(1)) {
+      await client.createApplicationGroupAssignment(app.id, group.id, {});
+    }
+  });
+
+  after(async () => {
+    await client.deactivateApplication(app.id);
+    await client.deleteApplication(app.id);
+
+    await utils.cleanup(client, null, groups);
+  });
+
+  it('should paginate results', async () => {
+    const listIds = new Set();
+    const collection = await client.listApplicationGroupAssignments(app.id, {
+      limit: 2
+    });
+    const pageSpy = spy(collection, 'getNextPage');
+    await collection.each(async assignment => {
+      expect(listIds.has(assignment.id)).to.be.false;
+      listIds.add(assignment.id);
+    });
+    expect(listIds.size).to.equal(3);
+    expect(pageSpy.getCalls().length).to.equal(2);
+  });
+
+  it('should search groups with q and paginate results', async () => {
+    const queryParameters = {
+      q: 'client-list-app-groups-filtered',
+      limit: 1
+    };
+    const collection = await client.listApplicationGroupAssignments(app.id, queryParameters);
+    const pageSpy = spy(collection, 'getNextPage');
+    const filteredIds = new Set();
+    await collection.each(assignment => {
+      filteredIds.add(assignment.id);
+    });
+    expect(filteredIds.size).to.equal(2);
+    expect(pageSpy.getCalls().length).to.equal(2);
+  });
 });

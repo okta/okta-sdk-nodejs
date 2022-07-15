@@ -30,7 +30,8 @@
     "test:ci:unit": "MOCHA_FILE=./test-reports/junit-results.xml nyc --reporter=text --reporter=html mocha --reporter=mocha-junit-reporter test/unit/*.js --no-timeouts",
     "test:types": "tsd && tsc --noEmit --isolatedModules --importsNotUsedAsValues error src/types/**/*.ts",
     "test": "yarn eslint && yarn test:types && yarn test:unit && yarn test:integration && yarn jest",
-    "aftertest": "mocha test/delete-resources.js --no-timeouts"
+    "aftertest": "mocha test/delete-resources.js --no-timeouts",
+    "validate:v2-v3": "node scripts/validate.js ./spec/management.yaml"
   },
   "keywords": [],
   "license": "Apache-2.0",
@@ -79,7 +80,8 @@
     "ts-node": "^10.4.0",
     "tsconfig-paths": "^3.11.0",
     "tsd": "^0.18.0",
-    "typescript": "^4.4.4"
+    "typescript": "^4.4.4",
+    "@apidevtools/swagger-parser": "^10.1.0"
   },
   "resolutions": {
     "node-fetch": "^2.6.7",

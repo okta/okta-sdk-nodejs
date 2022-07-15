@@ -1,4 +1,5 @@
 import { expect } from 'chai';
+import { spy } from 'sinon';
 import faker = require('@faker-js/faker');
 
 import utils = require('../utils');
@@ -39,65 +40,95 @@ describe('Group-Rule API tests', () => {
     const createdUser = await client.createUser(newUser, queryParameters);
     const createdGroup = await client.createGroup(newGroup);
 
-    // 2. Create a group rule and verify rule executes
-    const rule = {
-      type: 'group_rule',
-      name: `node-sdk: ${faker.random.word().substring(0, 49)}`,
-      conditions: {
-        people: {
-          users: {
-            exclude: []
+    // 2. Create group rules
+    const rules = [];
+    const namePrefixes = [
+      'RULE_AB',
+      'RULE_XY'
+    ];
+    for (const prefix of namePrefixes) {
+      for (let i = 0 ; i < 2 ; i++) {
+        const rule = {
+          type: 'group_rule',
+          name: `node-sdk: ${prefix} ${i} ${faker.random.word().substring(0, 49)}`,
+          conditions: {
+            people: {
+              users: {
+                exclude: []
+              },
+              groups: {
+                exclude: []
+              }
+            },
+            expression: {
+              value: `user.lastName=="${createdUser.profile.lastName}"`,
+              type: 'urn:okta:expression:1.0'
+            }
           },
-          groups: {
-            exclude: []
+          actions: {
+            assignUserToGroups: {
+              groupIds: [
+                createdGroup.id
+              ]
+            }
           }
-        },
-        expression: {
-          value: `user.lastName=="${createdUser.profile.lastName}"`,
-          type: 'urn:okta:expression:1.0'
-        }
-      },
-      actions: {
-        assignUserToGroups: {
-          groupIds: [
-            createdGroup.id
-          ]
-        }
+        };
+        const createdRule = await client.createGroupRule(rule);
+        rules.push(createdRule);
       }
-    };
+    }
+    const firstRule = rules[0];
 
-    const createdRule = await client.createGroupRule(rule);
-    await client.activateGroupRule(createdRule.id);
+    // Activate first rule
+    await client.activateGroupRule(firstRule.id);
 
-    // We wait for 30 seconds for the rule to activate i.e. userInGroup = true
-    let userInGroup = await utils.waitTillUserInGroup(client, createdUser, createdGroup, true);
-    expect(userInGroup).to.equal(true);
-
-    // 3. List group rules
+    // 3a. List group rules
     let foundRule = false;
     await (await client.listGroupRules()).each(rule => {
-      if (rule.id === createdRule.id) {
+      if (rule.id === firstRule.id) {
         foundRule = true;
         return false;
       }
     });
     expect(foundRule).to.equal(true);
 
-    // 4. Deactivate the rule and update it
-    await client.deactivateGroupRule(createdRule.id);
+    // 3b. Search group rules with pagination
+    const filtered = new Set();
+    const collection = await client.listGroupRules({
+      search: 'RULE_AB',
+      limit: 1
+    });
+    const pageSpy = spy(collection, 'getNextPage');
+    await collection.each(rule => {
+      expect(filtered.has(rule.name)).to.be.false;
+      filtered.add(rule.name);
+      expect(rule.name.indexOf('RULE_AB')).to.not.equal(-1);
+    });
+    expect(filtered.size).to.equal(2);
+    expect(pageSpy.getCalls().length).to.equal(2);
 
-    createdRule.name = faker.random.word();
-    createdRule.conditions.expression.value = 'user.lastName=="incorrect"';
-    const updatedRule = await client.updateGroupRule(createdRule.id, createdRule);
+    // 4. Verify first rule executes
+    // We wait for 30 seconds for the rule to activate i.e. userInGroup = true
+    let userInGroup = await utils.waitTillUserInGroup(client, createdUser, createdGroup, true);
+    expect(userInGroup).to.equal(true);
+
+    // 4. Deactivate the rule and update it
+    await client.deactivateGroupRule(firstRule.id);
+
+    firstRule.name = faker.random.word();
+    firstRule.conditions.expression.value = 'user.lastName=="incorrect"';
+    const updatedRule = await client.updateGroupRule(firstRule.id, firstRule);
     await client.activateGroupRule(updatedRule.id);
 
     // Triggering the updated rule will remove the user from group i.e. userInGroup = false
     userInGroup = await utils.waitTillUserInGroup(client, createdUser, createdGroup, false);
     expect(userInGroup).to.equal(false);
 
-    // 5. Delete the group, user and group rule
+    // 5. Delete the group, user and group rules
     await client.deactivateGroupRule(updatedRule.id);
-    await client.deleteGroupRule(updatedRule.id);
+    for (const rule of rules) {
+      await client.deleteGroupRule(rule.id);
+    }
     await utils.cleanup(client, createdUser, createdGroup);
   });
 });

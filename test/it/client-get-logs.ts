@@ -1,9 +1,10 @@
 import { expect } from 'chai';
-
+import { spy } from 'sinon';
 import {
   Client,
   DefaultRequestExecutor,
-  v3 } from '@okta/okta-sdk-nodejs';
+  v3
+} from '@okta/okta-sdk-nodejs';
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -19,6 +20,50 @@ const client = new Client({
 });
 
 describe('client.getLogs()', () => {
+
+  it('should search with q and paginate results', async () => {
+    const max = 10, limit = 5;
+    const collection = await client.getLogs({
+      since: '2018-01-26T00:00:00Z',
+      until: '2038-01-26T00:00:00Z',
+      q: 'user',
+      sortOrder: 'DESCENDING',
+      limit
+    });
+    const pageSpy = spy(collection, 'getNextPage');
+    let cnt = 0;
+    await collection.each(log => {
+      expect(log).to.be.instanceof(v3.LogEvent);
+      cnt++;
+      if (cnt >= max) {
+        return false;
+      }
+    });
+    expect(cnt).to.be.lessThanOrEqual(max);
+    expect(pageSpy.getCalls().length).to.be.greaterThanOrEqual(Math.ceil(cnt / limit));
+  });
+
+  it('should filter with filter and paginate results', async () => {
+    const max = 10, limit = 5;
+    const collection = await client.getLogs({
+      since: '2018-01-26T00:00:00Z',
+      until: '2038-01-26T00:00:00Z',
+      filter: 'severity eq "INFO"',
+      sortOrder: 'DESCENDING',
+      limit
+    });
+    const pageSpy = spy(collection, 'getNextPage');
+    let cnt = 0;
+    await collection.each(log => {
+      expect(log).to.be.instanceof(v3.LogEvent);
+      cnt++;
+      if (cnt >= max) {
+        return false;
+      }
+    });
+    expect(cnt).to.be.lessThanOrEqual(max);
+    expect(pageSpy.getCalls().length).to.be.greaterThanOrEqual(Math.ceil(cnt / limit));
+  });
 
   it('should allow me to poll the collection but stop when needed', async () => {
     const collection = await client.getLogs({ since: '2018-01-26T00:00:00Z'});

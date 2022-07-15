@@ -1,4 +1,5 @@
 import { expect } from 'chai';
+import { spy } from 'sinon';
 import {
   Client,
   Collection,
@@ -7,6 +8,7 @@ import {
 } from '@okta/okta-sdk-nodejs';
 import getMockAuthorizationServer = require('./mocks/authorization-server');
 import mockScope = require('./mocks/scope.json');
+import faker = require('@faker-js/faker');
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
 if (process.env.OKTA_USE_MOCK) {
@@ -47,6 +49,65 @@ describe('Authorization Server Scope API', () => {
       const scopeFindByName = scopes.find(s => s.name === mockScope.name);
       expect(scopeFindByName).to.be.exist;
       expect(scopeFindByName).to.be.instanceOf(v3.OAuth2Scope);
+    });
+  });
+
+  describe('Filter scopes', () => {
+    let scopes: Array<v3.OAuth2Scope>;
+    before(async () => {
+      scopes = [];
+      const namePrefixes = [
+        'nodesdk1',
+        'nodesdk2',
+      ];
+      for (const prefix of namePrefixes) {
+        for (let i = 0 ; i < 2 ; i++) {
+          const suf = faker.random.word();
+          const mockScope = {
+            name: `${prefix}:${suf}`,
+            description: suf,
+            consent: 'REQUIRED'
+          };
+          const scope = await client.createOAuth2Scope(authServer.id, mockScope as v3.OAuth2Scope);
+          scopes.push(scope);
+        }
+      }
+    });
+    after(async () => {
+      for (const scope of scopes) {
+        await client.deleteOAuth2Scope(authServer.id, scope.id);
+      }
+    });
+
+    // Pagination does not work
+    xit('should paginate results', async () => {
+      const filtered = new Set();
+      const collection = await client.listOAuth2Scopes(authServer.id, {
+        limit: 2
+      });
+      const pageSpy = spy(collection, 'getNextPage');
+      await collection.each(scope => {
+        expect(scope).to.be.an.instanceof(v3.OAuth2Scope);
+        expect(filtered.has(scope.name)).to.be.false;
+        filtered.add(scope.name);
+      });
+      expect(filtered.size).to.be.greaterThanOrEqual(4);
+      expect(pageSpy.getCalls().length).to.equal(2);
+    });
+
+    // `filter` does not work? Not documented.
+    it('should search with q', async () => {
+      const queryParameters = {
+        q: 'nodesdk1'
+      };
+      const filtered = new Set();
+      await (await client.listOAuth2Scopes(authServer.id, queryParameters)).each(scope => {
+        expect(scope).to.be.an.instanceof(v3.OAuth2Scope);
+        expect(scope.name).to.match(new RegExp(queryParameters.q));
+        expect(filtered.has(scope.name)).to.be.false;
+        filtered.add(scope.name);
+      });
+      expect(filtered.size).to.equal(2);
     });
   });
 
