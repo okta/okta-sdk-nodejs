@@ -15,7 +15,7 @@ const client = new Client();
   expectError(client.deleteApplicationUser('appId', 'userId', {sendEmail: 0}));
 
   // Client methods return either Promise or Collection
-  expectType<Promise<Response>>(client.deletePolicy('policyId'));
+  expectType<Promise<void>>(client.deletePolicy('policyId'));
   expectType<Collection<Application>>(await client.listApplications());
 
   // methods expecting body request parameters
