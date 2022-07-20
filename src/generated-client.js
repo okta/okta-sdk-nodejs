@@ -17,7 +17,6 @@ const qs = require('querystring');
 
 const { Collection } = require('./collection');
 const models = require('./models');
-const factories = require('./factories');
 const { ModelFactory } = require('./model-factory');
 
 /**
@@ -4322,16 +4321,15 @@ class GeneratedApiClient {
     if (!queryParameters) {
       return Promise.reject(new Error('OKTA API listPolicies parameter queryParameters is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/policies`;
-    const queryString = qs.stringify(queryParameters || {});
-
-    url += queryString ? ('?' + queryString) : '';
-
-    return new Collection(
-      this.http,
-      url,
-      new factories.Policy(this),
-    );
+    let type;
+    let status;
+    let expand;
+    if (queryParameters) {
+      type = queryParameters.type;
+      status = queryParameters.status;
+      expand = queryParameters.expand;
+    }
+    return this.policyApi.listPolicies(type, status, expand);
   }
 
   /**
@@ -4347,21 +4345,11 @@ class GeneratedApiClient {
     if (!policy) {
       return Promise.reject(new Error('OKTA API createPolicy parameter policy is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/policies`;
-    const queryString = qs.stringify(queryParameters || {});
-
-    url += queryString ? ('?' + queryString) : '';
-
-    const resources = [];
-
-    const request = this.http.postJson(
-      url,
-      {
-        body: policy
-      },
-      { resources }
-    );
-    return request.then(jsonRes => new factories.Policy(this).createInstance(jsonRes));
+    let activate;
+    if (queryParameters) {
+      activate = queryParameters.activate;
+    }
+    return this.policyApi.createPolicy(policy, activate);
   }
 
   /**
@@ -4374,18 +4362,7 @@ class GeneratedApiClient {
     if (!policyId) {
       return Promise.reject(new Error('OKTA API deletePolicy parameter policyId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/policies/${policyId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/policies/${policyId}`
-    ];
-
-    const request = this.http.delete(
-      url,
-      null,
-      { resources }
-    );
-    return request;
+    return this.policyApi.deletePolicy(policyId);
   }
 
   /**
@@ -4401,21 +4378,11 @@ class GeneratedApiClient {
     if (!policyId) {
       return Promise.reject(new Error('OKTA API getPolicy parameter policyId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/policies/${policyId}`;
-    const queryString = qs.stringify(queryParameters || {});
-
-    url += queryString ? ('?' + queryString) : '';
-
-    const resources = [
-      `${this.baseUrl}/api/v1/policies/${policyId}`
-    ];
-
-    const request = this.http.getJson(
-      url,
-      null,
-      { resources }
-    );
-    return request.then(jsonRes => new factories.Policy(this).createInstance(jsonRes));
+    let expand;
+    if (queryParameters) {
+      expand = queryParameters.expand;
+    }
+    return this.policyApi.getPolicy(policyId, expand);
   }
 
   /**
@@ -4433,20 +4400,7 @@ class GeneratedApiClient {
     if (!policy) {
       return Promise.reject(new Error('OKTA API updatePolicy parameter policy is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/policies/${policyId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/policies/${policyId}`
-    ];
-
-    const request = this.http.putJson(
-      url,
-      {
-        body: policy
-      },
-      { resources }
-    );
-    return request.then(jsonRes => new factories.Policy(this).createInstance(jsonRes));
+    return this.policyApi.updatePolicy(policyId, policy);
   }
 
   /**
@@ -4459,22 +4413,7 @@ class GeneratedApiClient {
     if (!policyId) {
       return Promise.reject(new Error('OKTA API activatePolicy parameter policyId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/policies/${policyId}/lifecycle/activate`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/policies/${policyId}`
-    ];
-
-    const request = this.http.post(
-      url,
-      {
-        headers: {
-          'Content-Type': 'application/json', 'Accept': 'application/json',
-        },
-      },
-      { resources }
-    );
-    return request;
+    return this.policyApi.activatePolicy(policyId);
   }
 
   /**
@@ -4487,22 +4426,7 @@ class GeneratedApiClient {
     if (!policyId) {
       return Promise.reject(new Error('OKTA API deactivatePolicy parameter policyId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/policies/${policyId}/lifecycle/deactivate`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/policies/${policyId}`
-    ];
-
-    const request = this.http.post(
-      url,
-      {
-        headers: {
-          'Content-Type': 'application/json', 'Accept': 'application/json',
-        },
-      },
-      { resources }
-    );
-    return request;
+    return this.policyApi.deactivatePolicy(policyId);
   }
 
   /**
@@ -4516,13 +4440,7 @@ class GeneratedApiClient {
     if (!policyId) {
       return Promise.reject(new Error('OKTA API listPolicyRules parameter policyId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/policies/${policyId}/rules`;
-
-    return new Collection(
-      this.http,
-      url,
-      new factories.PolicyRule(this),
-    );
+    return this.policyApi.listPolicyRules(policyId);
   }
 
   /**
@@ -4540,20 +4458,7 @@ class GeneratedApiClient {
     if (!policyRule) {
       return Promise.reject(new Error('OKTA API createPolicyRule parameter policyRule is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/policies/${policyId}/rules`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/policies/${policyId}`
-    ];
-
-    const request = this.http.postJson(
-      url,
-      {
-        body: policyRule
-      },
-      { resources }
-    );
-    return request.then(jsonRes => new factories.PolicyRule(this).createInstance(jsonRes));
+    return this.policyApi.createPolicyRule(policyId, policyRule);
   }
 
   /**
@@ -4570,19 +4475,7 @@ class GeneratedApiClient {
     if (!ruleId) {
       return Promise.reject(new Error('OKTA API deletePolicyRule parameter ruleId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/policies/${policyId}/rules/${ruleId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/policies/${policyId}/rules/${ruleId}`,
-      `${this.baseUrl}/api/v1/policies/${policyId}`
-    ];
-
-    const request = this.http.delete(
-      url,
-      null,
-      { resources }
-    );
-    return request;
+    return this.policyApi.deletePolicyRule(policyId, ruleId);
   }
 
   /**
@@ -4600,19 +4493,7 @@ class GeneratedApiClient {
     if (!ruleId) {
       return Promise.reject(new Error('OKTA API getPolicyRule parameter ruleId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/policies/${policyId}/rules/${ruleId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/policies/${policyId}/rules/${ruleId}`,
-      `${this.baseUrl}/api/v1/policies/${policyId}`
-    ];
-
-    const request = this.http.getJson(
-      url,
-      null,
-      { resources }
-    );
-    return request.then(jsonRes => new factories.PolicyRule(this).createInstance(jsonRes));
+    return this.policyApi.getPolicyRule(policyId, ruleId);
   }
 
   /**
@@ -4634,21 +4515,7 @@ class GeneratedApiClient {
     if (!policyRule) {
       return Promise.reject(new Error('OKTA API updatePolicyRule parameter policyRule is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/policies/${policyId}/rules/${ruleId}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/policies/${policyId}/rules/${ruleId}`,
-      `${this.baseUrl}/api/v1/policies/${policyId}`
-    ];
-
-    const request = this.http.putJson(
-      url,
-      {
-        body: policyRule
-      },
-      { resources }
-    );
-    return request.then(jsonRes => new factories.PolicyRule(this).createInstance(jsonRes));
+    return this.policyApi.updatePolicyRule(policyId, ruleId, policyRule);
   }
 
   /**
@@ -4665,23 +4532,7 @@ class GeneratedApiClient {
     if (!ruleId) {
       return Promise.reject(new Error('OKTA API activatePolicyRule parameter ruleId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/policies/${policyId}/rules/${ruleId}/lifecycle/activate`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/policies/${policyId}/rules/${ruleId}`,
-      `${this.baseUrl}/api/v1/policies/${policyId}`
-    ];
-
-    const request = this.http.post(
-      url,
-      {
-        headers: {
-          'Content-Type': 'application/json', 'Accept': 'application/json',
-        },
-      },
-      { resources }
-    );
-    return request;
+    return this.policyApi.activatePolicyRule(policyId, ruleId);
   }
 
   /**
@@ -4698,23 +4549,7 @@ class GeneratedApiClient {
     if (!ruleId) {
       return Promise.reject(new Error('OKTA API deactivatePolicyRule parameter ruleId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/policies/${policyId}/rules/${ruleId}/lifecycle/deactivate`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/policies/${policyId}/rules/${ruleId}`,
-      `${this.baseUrl}/api/v1/policies/${policyId}`
-    ];
-
-    const request = this.http.post(
-      url,
-      {
-        headers: {
-          'Content-Type': 'application/json', 'Accept': 'application/json',
-        },
-      },
-      { resources }
-    );
-    return request;
+    return this.policyApi.deactivatePolicyRule(policyId, ruleId);
   }
 
   /**

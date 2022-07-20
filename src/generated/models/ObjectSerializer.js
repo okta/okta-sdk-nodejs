@@ -1726,6 +1726,16 @@ let typeMap = {
     'u2f': U2fUserFactor_1.U2fUserFactor,
     'web': WebUserFactor_1.WebUserFactor,
     'webauthn': WebAuthnUserFactor_1.WebAuthnUserFactor,
+    'ACCESS_POLICY': AccessPolicy_1.AccessPolicy,
+    'IDP_DISCOVERY': IdentityProviderPolicy_1.IdentityProviderPolicy,
+    'OAUTH_AUTHORIZATION_POLICY': AuthorizationServerPolicy_1.AuthorizationServerPolicy,
+    'OKTA_SIGN_ON': OktaSignOnPolicy_1.OktaSignOnPolicy,
+    'PASSWORD': PasswordPolicy_1.PasswordPolicy,
+    'PROFILE_ENROLLMENT': ProfileEnrollmentPolicy_1.ProfileEnrollmentPolicy,
+    'ACCESS_POLICY': AccessPolicyRule_1.AccessPolicyRule,
+    'PASSWORD': PasswordPolicyRule_1.PasswordPolicyRule,
+    'PROFILE_ENROLLMENT': ProfileEnrollmentPolicyRule_1.ProfileEnrollmentPolicyRule,
+    'SIGN_ON': OktaSignOnPolicyRule_1.OktaSignOnPolicyRule,
 };
 class ObjectSerializer {
     static findCorrectType(data, expectedType, discriminator) {

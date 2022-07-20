@@ -79,6 +79,16 @@ let typeMap: {[index: string]: any} = {
   'u2f': U2fUserFactor,
   'web': WebUserFactor,
   'webauthn': WebAuthnUserFactor,
+  'ACCESS_POLICY': AccessPolicy,
+  'IDP_DISCOVERY': IdentityProviderPolicy,
+  'OAUTH_AUTHORIZATION_POLICY': AuthorizationServerPolicy,
+  'OKTA_SIGN_ON': OktaSignOnPolicy,
+  'PASSWORD': PasswordPolicy,
+  'PROFILE_ENROLLMENT': ProfileEnrollmentPolicy,
+  'ACCESS_POLICY': AccessPolicyRule,
+  'PASSWORD': PasswordPolicyRule,
+  'PROFILE_ENROLLMENT': ProfileEnrollmentPolicyRule,
+  'SIGN_ON': OktaSignOnPolicyRule,
 }
 
 export class ObjectSerializer {

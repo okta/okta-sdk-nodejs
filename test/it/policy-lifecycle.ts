@@ -25,17 +25,17 @@ describe('Policy Lifecycle API', () => {
     policy = await client.createPolicy(mockPolicy);
   });
   afterEach(async () => {
-    await policy.delete();
+    await client.deletePolicy(policy.id);
     await client.groupApi.deleteGroup(group.id);
   });
 
   it('should activate policy', async () => {
-    const response = await policy.activate();
-    expect(response.status).to.equal(204);
+    const response = await client.activatePolicy(policy.id);
+    expect(response).to.be.undefined;
   });
 
   it('should deactive policy', async () => {
-    const response = await policy.deactivate();
-    expect(response.status).to.equal(204);
+    const response = await client.deactivatePolicy(policy.id);
+    expect(response).to.be.undefined;
   });
 });

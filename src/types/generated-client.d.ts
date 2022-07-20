@@ -19,10 +19,6 @@ import * as v3 from './generated';
 import { JsonWebKey } from './models/JsonWebKey';
 import { Response } from 'node-fetch';
 import { Collection } from './collection';
-import { Policy } from './models/Policy';
-import { PolicyOptions } from './models/Policy';
-import { PolicyRule } from './models/PolicyRule';
-import { PolicyRuleOptions } from './models/PolicyRule';
 import { Subscription } from './models/Subscription';
 import { ForgotPasswordResponse } from './models/ForgotPasswordResponse';
 
@@ -391,24 +387,24 @@ export declare class GeneratedApiClient {
     type: string,
     status?: string,
     expand?: string,
-  }): Collection<Policy>;
-  createPolicy(policy: PolicyOptions, queryParameters?: {
+  }): Promise<Collection<v3.Policy>>;
+  createPolicy(policy: v3.Policy, queryParameters?: {
     activate?: boolean,
-  }): Promise<Policy>;
-  deletePolicy(policyId: string): Promise<Response>;
+  }): Promise<v3.Policy>;
+  deletePolicy(policyId: string): Promise<void>;
   getPolicy(policyId: string, queryParameters?: {
     expand?: string,
-  }): Promise<Policy>;
-  updatePolicy(policyId: string, policy: PolicyOptions): Promise<Policy>;
-  activatePolicy(policyId: string): Promise<Response>;
-  deactivatePolicy(policyId: string): Promise<Response>;
-  listPolicyRules(policyId: string): Collection<PolicyRule>;
-  createPolicyRule(policyId: string, policyRule: PolicyRuleOptions): Promise<PolicyRule>;
-  deletePolicyRule(policyId: string, ruleId: string): Promise<Response>;
-  getPolicyRule(policyId: string, ruleId: string): Promise<PolicyRule>;
-  updatePolicyRule(policyId: string, ruleId: string, policyRule: PolicyRuleOptions): Promise<PolicyRule>;
-  activatePolicyRule(policyId: string, ruleId: string): Promise<Response>;
-  deactivatePolicyRule(policyId: string, ruleId: string): Promise<Response>;
+  }): Promise<v3.Policy>;
+  updatePolicy(policyId: string, policy: v3.Policy): Promise<v3.Policy>;
+  activatePolicy(policyId: string): Promise<void>;
+  deactivatePolicy(policyId: string): Promise<void>;
+  listPolicyRules(policyId: string): Promise<Collection<v3.PolicyRule>>;
+  createPolicyRule(policyId: string, policyRule: v3.PolicyRule): Promise<v3.PolicyRule>;
+  deletePolicyRule(policyId: string, ruleId: string): Promise<void>;
+  getPolicyRule(policyId: string, ruleId: string): Promise<v3.PolicyRule>;
+  updatePolicyRule(policyId: string, ruleId: string, policyRule: v3.PolicyRule): Promise<v3.PolicyRule>;
+  activatePolicyRule(policyId: string, ruleId: string): Promise<void>;
+  deactivatePolicyRule(policyId: string, ruleId: string): Promise<void>;
   listRoleSubscriptions(roleTypeOrRoleId: string): Collection<Subscription>;
   getRoleSubscriptionByNotificationType(roleTypeOrRoleId: string, notificationType: string): Promise<Subscription>;
   subscribeRoleSubscriptionByNotificationType(roleTypeOrRoleId: string, notificationType: string): Promise<Response>;
