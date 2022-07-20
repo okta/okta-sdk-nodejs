@@ -2,7 +2,6 @@ import utils = require('../utils');
 import {
   Client,
   DefaultRequestExecutor,
-  Policy,
   v3
 } from '@okta/okta-sdk-nodejs';
 import { expect } from 'chai';
@@ -39,8 +38,8 @@ describe('Factors API', () => {
     await utils.cleanup(client, newUser);
     createdUser = await client.createUser(newUser);
 
-    const authenticatorPolicies: Policy[] = [];
-    for await (const policy of client.listPolicies({type: 'MFA_ENROLL'})) {
+    const authenticatorPolicies: v3.Policy[] = [];
+    for await (const policy of (await client.listPolicies({type: 'MFA_ENROLL'}))) {
       authenticatorPolicies.push(policy);
     }
     const defaultPolicy = authenticatorPolicies.find(policy => policy.name === 'Default Policy');

@@ -1,4 +1,4 @@
-import { Client, DefaultRequestExecutor, Policy, AuthenticatorStatus } from '@okta/okta-sdk-nodejs';
+import { Client, DefaultRequestExecutor, v3 } from '@okta/okta-sdk-nodejs';
 import { expect } from 'chai';
 import utils = require('../utils');
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
@@ -21,7 +21,7 @@ describe('Authenticators API tests', () => {
     if (!isOIEOrg) {
       this.skip();
     }
-    const authenticatorPolicies: Policy[] = [];
+    const authenticatorPolicies: v3.Policy[] = [];
     for await (const policy of await client.listPolicies({type: 'MFA_ENROLL'})) {
       authenticatorPolicies.push(policy);
     }
