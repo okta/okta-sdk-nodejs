@@ -85,10 +85,12 @@ let typeMap: {[index: string]: any} = {
   'OKTA_SIGN_ON': OktaSignOnPolicy,
   'PASSWORD': PasswordPolicy,
   'PROFILE_ENROLLMENT': ProfileEnrollmentPolicy,
-  'ACCESS_POLICY': AccessPolicyRule,
-  'PASSWORD': PasswordPolicyRule,
-  'PROFILE_ENROLLMENT': ProfileEnrollmentPolicyRule,
-  'SIGN_ON': OktaSignOnPolicyRule,
+  'MFA_ENROLL': MultifactorEnrollmentPolicy,
+
+  'PolicyRule_ACCESS_POLICY': AccessPolicyRule,
+  'PolicyRule_PASSWORD': PasswordPolicyRule,
+  'PolicyRule_PROFILE_ENROLLMENT': ProfileEnrollmentPolicyRule,
+  'PolicyRule_SIGN_ON': OktaSignOnPolicyRule,
 }
 
 export class ObjectSerializer {

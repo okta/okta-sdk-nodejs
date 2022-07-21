@@ -321,6 +321,14 @@ __exportStar(require("./LogUserAgent"), exports);
 __exportStar(require("./MDMEnrollmentPolicyEnrollment"), exports);
 __exportStar(require("./MDMEnrollmentPolicyRuleCondition"), exports);
 __exportStar(require("./ModelError"), exports);
+__exportStar(require("./MultifactorEnrollmentPolicy"), exports);
+__exportStar(require("./MultifactorEnrollmentPolicyAllOf"), exports);
+__exportStar(require("./MultifactorEnrollmentPolicyAuthenticatorSettings"), exports);
+__exportStar(require("./MultifactorEnrollmentPolicyAuthenticatorSettingsEnroll"), exports);
+__exportStar(require("./MultifactorEnrollmentPolicyAuthenticatorStatus"), exports);
+__exportStar(require("./MultifactorEnrollmentPolicyAuthenticatorType"), exports);
+__exportStar(require("./MultifactorEnrollmentPolicySettings"), exports);
+__exportStar(require("./MultifactorEnrollmentPolicySettingsType"), exports);
 __exportStar(require("./NetworkZone"), exports);
 __exportStar(require("./NetworkZoneAddress"), exports);
 __exportStar(require("./NetworkZoneAddressType"), exports);
@@ -855,6 +863,11 @@ const LogTransaction_1 = require("./LogTransaction");
 const LogUserAgent_1 = require("./LogUserAgent");
 const MDMEnrollmentPolicyRuleCondition_1 = require("./MDMEnrollmentPolicyRuleCondition");
 const ModelError_1 = require("./ModelError");
+const MultifactorEnrollmentPolicy_1 = require("./MultifactorEnrollmentPolicy");
+const MultifactorEnrollmentPolicyAllOf_1 = require("./MultifactorEnrollmentPolicyAllOf");
+const MultifactorEnrollmentPolicyAuthenticatorSettings_1 = require("./MultifactorEnrollmentPolicyAuthenticatorSettings");
+const MultifactorEnrollmentPolicyAuthenticatorSettingsEnroll_1 = require("./MultifactorEnrollmentPolicyAuthenticatorSettingsEnroll");
+const MultifactorEnrollmentPolicySettings_1 = require("./MultifactorEnrollmentPolicySettings");
 const NetworkZone_1 = require("./NetworkZone");
 const NetworkZoneAddress_1 = require("./NetworkZoneAddress");
 const NetworkZoneLocation_1 = require("./NetworkZoneLocation");
@@ -1168,6 +1181,9 @@ let enumsMap = new Set([
     'LogCredentialType',
     'LogSeverity',
     'MDMEnrollmentPolicyEnrollment',
+    'MultifactorEnrollmentPolicyAuthenticatorStatus',
+    'MultifactorEnrollmentPolicyAuthenticatorType',
+    'MultifactorEnrollmentPolicySettingsType',
     'NetworkZoneAddressType',
     'NetworkZoneStatus',
     'NetworkZoneType',
@@ -1475,6 +1491,11 @@ let typeMap = {
     'LogUserAgent': LogUserAgent_1.LogUserAgent,
     'MDMEnrollmentPolicyRuleCondition': MDMEnrollmentPolicyRuleCondition_1.MDMEnrollmentPolicyRuleCondition,
     'ModelError': ModelError_1.ModelError,
+    'MultifactorEnrollmentPolicy': MultifactorEnrollmentPolicy_1.MultifactorEnrollmentPolicy,
+    'MultifactorEnrollmentPolicyAllOf': MultifactorEnrollmentPolicyAllOf_1.MultifactorEnrollmentPolicyAllOf,
+    'MultifactorEnrollmentPolicyAuthenticatorSettings': MultifactorEnrollmentPolicyAuthenticatorSettings_1.MultifactorEnrollmentPolicyAuthenticatorSettings,
+    'MultifactorEnrollmentPolicyAuthenticatorSettingsEnroll': MultifactorEnrollmentPolicyAuthenticatorSettingsEnroll_1.MultifactorEnrollmentPolicyAuthenticatorSettingsEnroll,
+    'MultifactorEnrollmentPolicySettings': MultifactorEnrollmentPolicySettings_1.MultifactorEnrollmentPolicySettings,
     'NetworkZone': NetworkZone_1.NetworkZone,
     'NetworkZoneAddress': NetworkZoneAddress_1.NetworkZoneAddress,
     'NetworkZoneLocation': NetworkZoneLocation_1.NetworkZoneLocation,
@@ -1732,10 +1753,11 @@ let typeMap = {
     'OKTA_SIGN_ON': OktaSignOnPolicy_1.OktaSignOnPolicy,
     'PASSWORD': PasswordPolicy_1.PasswordPolicy,
     'PROFILE_ENROLLMENT': ProfileEnrollmentPolicy_1.ProfileEnrollmentPolicy,
-    'ACCESS_POLICY': AccessPolicyRule_1.AccessPolicyRule,
-    'PASSWORD': PasswordPolicyRule_1.PasswordPolicyRule,
-    'PROFILE_ENROLLMENT': ProfileEnrollmentPolicyRule_1.ProfileEnrollmentPolicyRule,
-    'SIGN_ON': OktaSignOnPolicyRule_1.OktaSignOnPolicyRule,
+    'MFA_ENROLL': MultifactorEnrollmentPolicy_1.MultifactorEnrollmentPolicy,
+    'PolicyRule_ACCESS_POLICY': AccessPolicyRule_1.AccessPolicyRule,
+    'PolicyRule_PASSWORD': PasswordPolicyRule_1.PasswordPolicyRule,
+    'PolicyRule_PROFILE_ENROLLMENT': ProfileEnrollmentPolicyRule_1.ProfileEnrollmentPolicyRule,
+    'PolicyRule_SIGN_ON': OktaSignOnPolicyRule_1.OktaSignOnPolicyRule,
 };
 class ObjectSerializer {
     static findCorrectType(data, expectedType, discriminator) {
