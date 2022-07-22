@@ -99,7 +99,7 @@ describe('Policy Rule API', () => {
       it('should update name for policy rule', async () => {
         const mockName = 'Mock update policy rule';
         rule.name = mockName;
-        const updatedPolicyRule = await rule.update(policy.id);
+        const updatedPolicyRule = await client.updatePolicyRule(policy.id, rule.id, rule);
         expect(updatedPolicyRule.id).to.equal(rule.id);
         expect(updatedPolicyRule.name).to.equal(mockName);
       });
@@ -114,7 +114,7 @@ describe('Policy Rule API', () => {
       it('should not get rule after deletion', async () => {
         await client.deletePolicyRule(policy.id, rule.id);
         try {
-          await policy.getPolicyRule(rule.id);
+          await client.getPolicyRule(policy.id, rule.id);
         } catch (e) {
           expect(e.status).to.equal(404);
         }
