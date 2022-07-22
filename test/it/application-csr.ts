@@ -76,70 +76,70 @@ describe('Application CSR API', () => {
       await client.revokeCsrFromApplication(app.id, csr.id);
       try {
         csr = await client.getCsrForApplication(app.id, csr.id);
-        } catch (e) {
-          expect(e.status).to.equal(404);
-        }
-      });
+      } catch (e) {
+        expect(e.status).to.equal(404);
+      }
+    });
+  });
+
+  describe('Publish signing csr', () => {
+    beforeEach(async () => {
+      keys = forge.pki.rsa.generateKeyPair(2048);
+      csr = await client.generateCsrForApplication(app.id, mockCsr);
     });
 
-    describe('Publish signing csr', () => {
-      beforeEach(async () => {
-        keys = forge.pki.rsa.generateKeyPair(2048);
-        csr = await client.generateCsrForApplication(app.id, mockCsr);
-      });
+    it('should publish cert and remove csr (DER base64)', async () => {
+      const certF = utils.createCertFromCsr(csr, keys);
+      const b64 = utils.certToBase64(certF);
+      const n = utils.csrToN(csr);
 
-      it('should publish cert and remove csr (DER base64)', async () => {
-        const certF = utils.createCertFromCsr(csr, keys);
-        const b64 = utils.certToBase64(certF);
-        const n = utils.csrToN(csr);
+      const key = await client.publishCerCert(app.id, csr.id, b64);
+      expect(key).to.be.instanceOf(v3.JsonWebKey);
+      expect(key.n).to.equal(n);
+      expect(key.x5c[0]).to.equal(b64);
 
-        const key = await client.publishCerCert(app.id, csr.id, b64);
-        expect(key).to.be.instanceOf(v3.JsonWebKey);
-        expect(key.n).to.equal(n);
-        expect(key.x5c[0]).to.equal(b64);
-
-        try {
-          csr = await client.getCsrForApplication(app.id, csr.id);
-        } catch (e) {
-          expect(e.status).to.equal(404);
-        }
-      });
-
-      it('should publish cert and remove csr (PEM)', async () => {
-        const certF = utils.createCertFromCsr(csr, keys);
-        const b64 = utils.certToBase64(certF);
-        const pem = utils.certToPem(certF);
-        const n = utils.csrToN(csr);
-
-        const key = await client.publishCerCert(app.id, csr.id, pem);
-        expect(key).to.be.instanceOf(v3.JsonWebKey);
-        expect(key.n).to.equal(n);
-        expect(key.x5c[0]).to.equal(b64);
-
-        try {
-          csr = await client.getCsrForApplication(app.id, csr.id);
-        } catch (e) {
-          expect(e.status).to.equal(404);
-        }
-      });
-
-      it('should publish cert and remove csr (DER)', async () => {
-        const certF = utils.createCertFromCsr(csr, keys);
-        const der = utils.certToDer(certF);
-        const b64 = utils.certToBase64(certF);
-        const n = utils.csrToN(csr);
-
-        const key = await client.publishCerCert(app.id, csr.id, der);
-        expect(key).to.be.instanceOf(v3.JsonWebKey);
-        expect(key.n).to.equal(n);
-        expect(key.x5c[0]).to.equal(b64);
-
-        try {
-          csr = await client.getCsrForApplication(app.id, csr.id);
-        } catch (e) {
-          expect(e.status).to.equal(404);
-        }
-      });
+      try {
+        csr = await client.getCsrForApplication(app.id, csr.id);
+      } catch (e) {
+        expect(e.status).to.equal(404);
+      }
     });
+
+    it('should publish cert and remove csr (PEM)', async () => {
+      const certF = utils.createCertFromCsr(csr, keys);
+      const b64 = utils.certToBase64(certF);
+      const pem = utils.certToPem(certF);
+      const n = utils.csrToN(csr);
+
+      const key = await client.publishCerCert(app.id, csr.id, pem);
+      expect(key).to.be.instanceOf(v3.JsonWebKey);
+      expect(key.n).to.equal(n);
+      expect(key.x5c[0]).to.equal(b64);
+
+      try {
+        csr = await client.getCsrForApplication(app.id, csr.id);
+      } catch (e) {
+        expect(e.status).to.equal(404);
+      }
+    });
+
+    it('should publish cert and remove csr (DER)', async () => {
+      const certF = utils.createCertFromCsr(csr, keys);
+      const der = utils.certToDer(certF);
+      const b64 = utils.certToBase64(certF);
+      const n = utils.csrToN(csr);
+
+      const key = await client.publishCerCert(app.id, csr.id, der);
+      expect(key).to.be.instanceOf(v3.JsonWebKey);
+      expect(key.n).to.equal(n);
+      expect(key.x5c[0]).to.equal(b64);
+
+      try {
+        csr = await client.getCsrForApplication(app.id, csr.id);
+      } catch (e) {
+        expect(e.status).to.equal(404);
+      }
+    });
+  });
 
 });
