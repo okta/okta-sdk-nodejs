@@ -20,7 +20,7 @@ const client = new Client({
 describe('Linked Object API', () => {
   describe('Link Definition Operations', () => {
     let linkedObject;
-    xdescribe('Add linked object definition', () => {
+    describe('Add linked object definition', () => {
       afterEach(async () => {
         await client.deleteLinkedObjectDefinition(linkedObject.primary.name);
       });
@@ -34,7 +34,7 @@ describe('Linked Object API', () => {
       });
     });
 
-    xdescribe('Get a linked object definition by name', () => {
+    describe('Get a linked object definition by name', () => {
       let linkedObjectFromGet;
       beforeEach(async () => {
         linkedObject = await client.addLinkedObjectDefinition(getMockLinkedObject());
@@ -64,7 +64,7 @@ describe('Linked Object API', () => {
         await client.deleteLinkedObjectDefinition(linkedObject.primary.name);
       });
 
-      xit('should return a Collection', async () => {
+      it('should return a Collection', async () => {
         const linkedObjects = await client.listLinkedObjectDefinitions();
         expect(linkedObjects).to.be.instanceOf(Collection);
       });
@@ -76,7 +76,7 @@ describe('Linked Object API', () => {
       });
     });
 
-    xdescribe('Delete linked object definition', () => {
+    describe('Delete linked object definition', () => {
       beforeEach(async () => {
         linkedObject = await client.addLinkedObjectDefinition(getMockLinkedObject());
       });

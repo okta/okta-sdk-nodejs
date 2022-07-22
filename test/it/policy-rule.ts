@@ -38,17 +38,7 @@ describe('Policy Rule API', () => {
     describe('List rules', () => {
       let rule;
       beforeEach(async () => {
-        try {
-          const collection = await client.listPolicyRules(policy.id);
-          await collection.each(async rule => {
-            if (rule.name.startsWith('node-sdk')) {
-              await client.deletePolicyRule(policy.id, rule.id);
-            }
-          });
-          rule = await client.createPolicyRule(policy.id, getMockRule());
-        } catch (err) {
-          console.log(err);
-        }
+        rule = await client.createPolicyRule(policy.id, getMockRule());
       });
       afterEach(async () => {
         await client.deletePolicyRule(policy.id, rule.id);
@@ -100,12 +90,6 @@ describe('Policy Rule API', () => {
     describe('Update rule', () => {
       let rule;
       beforeEach(async () => {
-        const collection = await client.listPolicyRules(policy.id);
-        await collection.each(async rule => {
-          if (rule.name.startsWith('node-sdk')) {
-            await client.deletePolicyRule(policy.id, rule.id);
-          }
-        });
         rule = await client.createPolicyRule(policy.id, getMockRule());
       });
       afterEach(async () => {
@@ -128,7 +112,7 @@ describe('Policy Rule API', () => {
       });
 
       it('should not get rule after deletion', async () => {
-        await rule.delete(policy.id);
+        await client.deletePolicyRule(policy.id, rule.id);
         try {
           await policy.getPolicyRule(rule.id);
         } catch (e) {
@@ -148,13 +132,13 @@ describe('Policy Rule API', () => {
     });
 
     it('should activate rule', async () => {
-      const response = await rule.activate(policy.id);
-      expect(response.status).to.equal(204);
+      const response = await client.activatePolicyRule(policy.id, rule.id);
+      expect(response).to.be.undefined;
     });
 
     it('should deactive rule', async () => {
-      const response = await rule.deactivate(policy.id);
-      expect(response.status).to.equal(204);
+      const response = await client.deactivatePolicyRule(policy.id, rule.id);
+      expect(response).to.be.undefined;
     });
   });
 });
