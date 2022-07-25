@@ -358,6 +358,23 @@ const V3ApiOperations = {
     'listSmsTemplates',
     'partialUpdateSmsTemplate',
     'updateSmsTemplate'
+  ],
+  PolicyApi: [
+    'activatePolicy',
+    'activatePolicyRule',
+    'clonePolicy',
+    'createPolicy',
+    'createPolicyRule',
+    'deactivatePolicy',
+    'deactivatePolicyRule',
+    'deletePolicy',
+    'deletePolicyRule',
+    'getPolicy',
+    'getPolicyRule',
+    'listPolicies',
+    'listPolicyRules',
+    'updatePolicy',
+    'updatePolicyRule'
   ]
 };
 
