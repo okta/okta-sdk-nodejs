@@ -55,7 +55,7 @@ export declare class GeneratedApiClient {
   generateCsrForApplication(appId: string, csrMetadata: v3.CsrMetadata): Promise<v3.Csr>;
   revokeCsrFromApplication(appId: string, csrId: string): Promise<void>;
   getCsrForApplication(appId: string, csrId: string): Promise<v3.Csr>;
-  publishCerCert(appId: string, csrId: string, certificate: string): Promise<JsonWebKey>;
+  publishCerCert(appId: string, csrId: string, certificate: string): Promise<v3.JsonWebKey>;
   publishBinaryCerCert(appId: string, csrId: string, certificate: string): Promise<JsonWebKey>;
   publishDerCert(appId: string, csrId: string, certificate: string): Promise<JsonWebKey>;
   publishBinaryDerCert(appId: string, csrId: string, certificate: string): Promise<JsonWebKey>;

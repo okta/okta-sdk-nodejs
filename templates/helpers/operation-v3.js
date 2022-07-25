@@ -166,7 +166,7 @@ const V3ApiOperations = {
     'listFeaturesForApplication',
     'listOAuth2TokensForApplication',
     'listScopeConsentGrants',
-    'publishCsrFromApplication',
+    'publishCerCert',
     'revokeCsrFromApplication',
     'revokeOAuth2TokenForApplication',
     'revokeOAuth2TokensForApplication',
@@ -395,6 +395,7 @@ function getV3MethodName(v2OperationId) {
     getEmailTemplateDefaultContentPreview: 'getEmailDefaultPreview',
     updateEmailTemplateCustomization: 'updateEmailCustomization',
     publishCerCertForIdentityProvider: 'publishCsrForIdentityProvider',
+    publishCerCert: 'publishCsrFromApplication',
   }[v2OperationId] || v2OperationId;
 }
 

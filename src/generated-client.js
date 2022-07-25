@@ -283,24 +283,7 @@ class GeneratedApiClient {
     if (!certificate) {
       return Promise.reject(new Error('OKTA API publishCerCert parameter certificate is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/apps/${appId}/credentials/csrs/${csrId}/lifecycle/publish`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/apps/${appId}/credentials/csrs/${csrId}`,
-      `${this.baseUrl}/api/v1/apps/${appId}`
-    ];
-
-    const request = this.http.post(
-      url,
-      {
-        headers: {
-          'Content-Type': 'application/x-x509-ca-cert', 'Accept': 'application/json', 'Content-Transfer-Encoding': 'base64',
-        },
-        body: certificate
-      },
-      { resources }
-    ).then(res => res.json());
-    return request.then(jsonRes => new models.JsonWebKey(jsonRes, this));
+    return this.applicationApi.publishCsrFromApplication(appId, csrId, certificate);
   }
 
   /**
