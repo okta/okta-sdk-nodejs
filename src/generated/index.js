@@ -43,94 +43,94 @@ Object.defineProperty(exports, 'createConfiguration', { enumerable: true, get: f
 } });
 __exportStar(require('./apis/exception'), exports);
 __exportStar(require('./servers'), exports);
-var PromiseAPI_1 = require('./types/PromiseAPI');
+var ObjectParamAPI_1 = require('./types/ObjectParamAPI');
 Object.defineProperty(exports, 'AgentPoolsApi', { enumerable: true, get: function () {
-  return PromiseAPI_1.PromiseAgentPoolsApi;
+  return ObjectParamAPI_1.ObjectAgentPoolsApi;
 } });
 Object.defineProperty(exports, 'ApiTokenApi', { enumerable: true, get: function () {
-  return PromiseAPI_1.PromiseApiTokenApi;
+  return ObjectParamAPI_1.ObjectApiTokenApi;
 } });
 Object.defineProperty(exports, 'ApplicationApi', { enumerable: true, get: function () {
-  return PromiseAPI_1.PromiseApplicationApi;
+  return ObjectParamAPI_1.ObjectApplicationApi;
 } });
 Object.defineProperty(exports, 'AuthenticatorApi', { enumerable: true, get: function () {
-  return PromiseAPI_1.PromiseAuthenticatorApi;
+  return ObjectParamAPI_1.ObjectAuthenticatorApi;
 } });
 Object.defineProperty(exports, 'AuthorizationServerApi', { enumerable: true, get: function () {
-  return PromiseAPI_1.PromiseAuthorizationServerApi;
+  return ObjectParamAPI_1.ObjectAuthorizationServerApi;
 } });
 Object.defineProperty(exports, 'BehaviorApi', { enumerable: true, get: function () {
-  return PromiseAPI_1.PromiseBehaviorApi;
+  return ObjectParamAPI_1.ObjectBehaviorApi;
 } });
 Object.defineProperty(exports, 'CAPTCHAApi', { enumerable: true, get: function () {
-  return PromiseAPI_1.PromiseCAPTCHAApi;
+  return ObjectParamAPI_1.ObjectCAPTCHAApi;
 } });
 Object.defineProperty(exports, 'CustomizationApi', { enumerable: true, get: function () {
-  return PromiseAPI_1.PromiseCustomizationApi;
+  return ObjectParamAPI_1.ObjectCustomizationApi;
 } });
 Object.defineProperty(exports, 'DomainApi', { enumerable: true, get: function () {
-  return PromiseAPI_1.PromiseDomainApi;
+  return ObjectParamAPI_1.ObjectDomainApi;
 } });
 Object.defineProperty(exports, 'EventHookApi', { enumerable: true, get: function () {
-  return PromiseAPI_1.PromiseEventHookApi;
+  return ObjectParamAPI_1.ObjectEventHookApi;
 } });
 Object.defineProperty(exports, 'FeatureApi', { enumerable: true, get: function () {
-  return PromiseAPI_1.PromiseFeatureApi;
+  return ObjectParamAPI_1.ObjectFeatureApi;
 } });
 Object.defineProperty(exports, 'GroupApi', { enumerable: true, get: function () {
-  return PromiseAPI_1.PromiseGroupApi;
+  return ObjectParamAPI_1.ObjectGroupApi;
 } });
 Object.defineProperty(exports, 'IdentityProviderApi', { enumerable: true, get: function () {
-  return PromiseAPI_1.PromiseIdentityProviderApi;
+  return ObjectParamAPI_1.ObjectIdentityProviderApi;
 } });
 Object.defineProperty(exports, 'InlineHookApi', { enumerable: true, get: function () {
-  return PromiseAPI_1.PromiseInlineHookApi;
+  return ObjectParamAPI_1.ObjectInlineHookApi;
 } });
 Object.defineProperty(exports, 'LinkedObjectApi', { enumerable: true, get: function () {
-  return PromiseAPI_1.PromiseLinkedObjectApi;
+  return ObjectParamAPI_1.ObjectLinkedObjectApi;
 } });
 Object.defineProperty(exports, 'NetworkZoneApi', { enumerable: true, get: function () {
-  return PromiseAPI_1.PromiseNetworkZoneApi;
+  return ObjectParamAPI_1.ObjectNetworkZoneApi;
 } });
 Object.defineProperty(exports, 'OrgSettingApi', { enumerable: true, get: function () {
-  return PromiseAPI_1.PromiseOrgSettingApi;
+  return ObjectParamAPI_1.ObjectOrgSettingApi;
 } });
 Object.defineProperty(exports, 'PolicyApi', { enumerable: true, get: function () {
-  return PromiseAPI_1.PromisePolicyApi;
+  return ObjectParamAPI_1.ObjectPolicyApi;
 } });
 Object.defineProperty(exports, 'PrincipalRateLimitApi', { enumerable: true, get: function () {
-  return PromiseAPI_1.PromisePrincipalRateLimitApi;
+  return ObjectParamAPI_1.ObjectPrincipalRateLimitApi;
 } });
 Object.defineProperty(exports, 'ProfileMappingApi', { enumerable: true, get: function () {
-  return PromiseAPI_1.PromiseProfileMappingApi;
+  return ObjectParamAPI_1.ObjectProfileMappingApi;
 } });
 Object.defineProperty(exports, 'SchemaApi', { enumerable: true, get: function () {
-  return PromiseAPI_1.PromiseSchemaApi;
+  return ObjectParamAPI_1.ObjectSchemaApi;
 } });
 Object.defineProperty(exports, 'SessionApi', { enumerable: true, get: function () {
-  return PromiseAPI_1.PromiseSessionApi;
+  return ObjectParamAPI_1.ObjectSessionApi;
 } });
 Object.defineProperty(exports, 'SubscriptionApi', { enumerable: true, get: function () {
-  return PromiseAPI_1.PromiseSubscriptionApi;
+  return ObjectParamAPI_1.ObjectSubscriptionApi;
 } });
 Object.defineProperty(exports, 'SystemLogApi', { enumerable: true, get: function () {
-  return PromiseAPI_1.PromiseSystemLogApi;
+  return ObjectParamAPI_1.ObjectSystemLogApi;
 } });
 Object.defineProperty(exports, 'TemplateApi', { enumerable: true, get: function () {
-  return PromiseAPI_1.PromiseTemplateApi;
+  return ObjectParamAPI_1.ObjectTemplateApi;
 } });
 Object.defineProperty(exports, 'ThreatInsightApi', { enumerable: true, get: function () {
-  return PromiseAPI_1.PromiseThreatInsightApi;
+  return ObjectParamAPI_1.ObjectThreatInsightApi;
 } });
 Object.defineProperty(exports, 'TrustedOriginApi', { enumerable: true, get: function () {
-  return PromiseAPI_1.PromiseTrustedOriginApi;
+  return ObjectParamAPI_1.ObjectTrustedOriginApi;
 } });
 Object.defineProperty(exports, 'UserApi', { enumerable: true, get: function () {
-  return PromiseAPI_1.PromiseUserApi;
+  return ObjectParamAPI_1.ObjectUserApi;
 } });
 Object.defineProperty(exports, 'UserFactorApi', { enumerable: true, get: function () {
-  return PromiseAPI_1.PromiseUserFactorApi;
+  return ObjectParamAPI_1.ObjectUserFactorApi;
 } });
 Object.defineProperty(exports, 'UserTypeApi', { enumerable: true, get: function () {
-  return PromiseAPI_1.PromiseUserTypeApi;
+  return ObjectParamAPI_1.ObjectUserTypeApi;
 } });

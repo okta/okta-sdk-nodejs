@@ -40,21 +40,16 @@ class GeneratedApiClient {
    * @returns {Collection} A collection that will yield {@link Application} instances.
    */
   listApplications(queryParameters) {
-    let q;
-    let after;
-    let limit;
-    let filter;
-    let expand;
-    let includeNonDeleted;
+    const params = {};
     if (queryParameters) {
-      q = queryParameters.q;
-      after = queryParameters.after;
-      limit = queryParameters.limit;
-      filter = queryParameters.filter;
-      expand = queryParameters.expand;
-      includeNonDeleted = queryParameters.includeNonDeleted;
+      params.q = queryParameters.q;
+      params.after = queryParameters.after;
+      params.limit = queryParameters.limit;
+      params.filter = queryParameters.filter;
+      params.expand = queryParameters.expand;
+      params.includeNonDeleted = queryParameters.includeNonDeleted;
     }
-    return this.applicationApi.listApplications(q, after, limit, filter, expand, includeNonDeleted);
+    return this.applicationApi.listApplications(params);
   }
 
   /**
@@ -70,15 +65,16 @@ class GeneratedApiClient {
     if (!application) {
       return Promise.reject(new Error('OKTA API createApplication parameter application is required.'));
     }
-    let activate;
+    const params = {};
+    params.application = application;
     if (queryParameters) {
-      activate = queryParameters.activate;
+      params.activate = queryParameters.activate;
     }
-    let OktaAccessGateway_Agent;
     if (headerParameters) {
-      OktaAccessGateway_Agent = headerParameters.OktaAccessGateway_Agent;
+      params.OktaAccessGateway_Agent = headerParameters.OktaAccessGateway_Agent;
     }
-    return this.applicationApi.createApplication(application, activate, OktaAccessGateway_Agent);
+    params.body = application;
+    return this.applicationApi.createApplication(params);
   }
 
   /**
@@ -91,7 +87,9 @@ class GeneratedApiClient {
     if (!appId) {
       return Promise.reject(new Error('OKTA API deleteApplication parameter appId is required.'));
     }
-    return this.applicationApi.deleteApplication(appId);
+    const params = {};
+    params.appId = appId;
+    return this.applicationApi.deleteApplication(params);
   }
 
   /**
@@ -107,11 +105,12 @@ class GeneratedApiClient {
     if (!appId) {
       return Promise.reject(new Error('OKTA API getApplication parameter appId is required.'));
     }
-    let expand;
+    const params = {};
+    params.appId = appId;
     if (queryParameters) {
-      expand = queryParameters.expand;
+      params.expand = queryParameters.expand;
     }
-    return this.applicationApi.getApplication(appId, expand);
+    return this.applicationApi.getApplication(params);
   }
 
   /**
@@ -129,7 +128,10 @@ class GeneratedApiClient {
     if (!application) {
       return Promise.reject(new Error('OKTA API updateApplication parameter application is required.'));
     }
-    return this.applicationApi.updateApplication(appId, application);
+    const params = {};
+    params.appId = appId;
+    params.application = application;
+    return this.applicationApi.updateApplication(params);
   }
 
   /**
@@ -143,7 +145,9 @@ class GeneratedApiClient {
     if (!appId) {
       return Promise.reject(new Error('OKTA API getDefaultProvisioningConnectionForApplication parameter appId is required.'));
     }
-    return this.applicationApi.getDefaultProvisioningConnectionForApplication(appId);
+    const params = {};
+    params.appId = appId;
+    return this.applicationApi.getDefaultProvisioningConnectionForApplication(params);
   }
 
   /**
@@ -163,11 +167,13 @@ class GeneratedApiClient {
     if (!provisioningConnectionRequest) {
       return Promise.reject(new Error('OKTA API setDefaultProvisioningConnectionForApplication parameter provisioningConnectionRequest is required.'));
     }
-    let activate;
+    const params = {};
+    params.appId = appId;
+    params.provisioningConnectionRequest = provisioningConnectionRequest;
     if (queryParameters) {
-      activate = queryParameters.activate;
+      params.activate = queryParameters.activate;
     }
-    return this.applicationApi.setDefaultProvisioningConnectionForApplication(appId, provisioningConnectionRequest, activate);
+    return this.applicationApi.setDefaultProvisioningConnectionForApplication(params);
   }
 
   /**
@@ -180,7 +186,9 @@ class GeneratedApiClient {
     if (!appId) {
       return Promise.reject(new Error('OKTA API activateDefaultProvisioningConnectionForApplication parameter appId is required.'));
     }
-    return this.applicationApi.activateDefaultProvisioningConnectionForApplication(appId);
+    const params = {};
+    params.appId = appId;
+    return this.applicationApi.activateDefaultProvisioningConnectionForApplication(params);
   }
 
   /**
@@ -193,7 +201,9 @@ class GeneratedApiClient {
     if (!appId) {
       return Promise.reject(new Error('OKTA API deactivateDefaultProvisioningConnectionForApplication parameter appId is required.'));
     }
-    return this.applicationApi.deactivateDefaultProvisioningConnectionForApplication(appId);
+    const params = {};
+    params.appId = appId;
+    return this.applicationApi.deactivateDefaultProvisioningConnectionForApplication(params);
   }
 
   /**
@@ -207,7 +217,9 @@ class GeneratedApiClient {
     if (!appId) {
       return Promise.reject(new Error('OKTA API listCsrsForApplication parameter appId is required.'));
     }
-    return this.applicationApi.listCsrsForApplication(appId);
+    const params = {};
+    params.appId = appId;
+    return this.applicationApi.listCsrsForApplication(params);
   }
 
   /**
@@ -225,7 +237,10 @@ class GeneratedApiClient {
     if (!csrMetadata) {
       return Promise.reject(new Error('OKTA API generateCsrForApplication parameter csrMetadata is required.'));
     }
-    return this.applicationApi.generateCsrForApplication(appId, csrMetadata);
+    const params = {};
+    params.appId = appId;
+    params.csrMetadata = csrMetadata;
+    return this.applicationApi.generateCsrForApplication(params);
   }
 
   /**
@@ -242,7 +257,10 @@ class GeneratedApiClient {
     if (!csrId) {
       return Promise.reject(new Error('OKTA API revokeCsrFromApplication parameter csrId is required.'));
     }
-    return this.applicationApi.revokeCsrFromApplication(appId, csrId);
+    const params = {};
+    params.appId = appId;
+    params.csrId = csrId;
+    return this.applicationApi.revokeCsrFromApplication(params);
   }
 
   /**
@@ -260,7 +278,10 @@ class GeneratedApiClient {
     if (!csrId) {
       return Promise.reject(new Error('OKTA API getCsrForApplication parameter csrId is required.'));
     }
-    return this.applicationApi.getCsrForApplication(appId, csrId);
+    const params = {};
+    params.appId = appId;
+    params.csrId = csrId;
+    return this.applicationApi.getCsrForApplication(params);
   }
 
   /**
@@ -452,7 +473,9 @@ class GeneratedApiClient {
     if (!appId) {
       return Promise.reject(new Error('OKTA API listApplicationKeys parameter appId is required.'));
     }
-    return this.applicationApi.listApplicationKeys(appId);
+    const params = {};
+    params.appId = appId;
+    return this.applicationApi.listApplicationKeys(params);
   }
 
   /**
@@ -468,11 +491,12 @@ class GeneratedApiClient {
     if (!appId) {
       return Promise.reject(new Error('OKTA API generateApplicationKey parameter appId is required.'));
     }
-    let validityYears;
+    const params = {};
+    params.appId = appId;
     if (queryParameters) {
-      validityYears = queryParameters.validityYears;
+      params.validityYears = queryParameters.validityYears;
     }
-    return this.applicationApi.generateApplicationKey(appId, validityYears);
+    return this.applicationApi.generateApplicationKey(params);
   }
 
   /**
@@ -490,7 +514,10 @@ class GeneratedApiClient {
     if (!keyId) {
       return Promise.reject(new Error('OKTA API getApplicationKey parameter keyId is required.'));
     }
-    return this.applicationApi.getApplicationKey(appId, keyId);
+    const params = {};
+    params.appId = appId;
+    params.keyId = keyId;
+    return this.applicationApi.getApplicationKey(params);
   }
 
   /**
@@ -513,11 +540,14 @@ class GeneratedApiClient {
     if (!queryParameters) {
       return Promise.reject(new Error('OKTA API cloneApplicationKey parameter queryParameters is required.'));
     }
-    let targetAid;
+    const params = {};
+    params.appId = appId;
+    params.keyId = keyId;
+    params.queryParameters = queryParameters;
     if (queryParameters) {
-      targetAid = queryParameters.targetAid;
+      params.targetAid = queryParameters.targetAid;
     }
-    return this.applicationApi.cloneApplicationKey(appId, keyId, targetAid);
+    return this.applicationApi.cloneApplicationKey(params);
   }
 
   /**
@@ -531,7 +561,9 @@ class GeneratedApiClient {
     if (!appId) {
       return Promise.reject(new Error('OKTA API listFeaturesForApplication parameter appId is required.'));
     }
-    return this.applicationApi.listFeaturesForApplication(appId);
+    const params = {};
+    params.appId = appId;
+    return this.applicationApi.listFeaturesForApplication(params);
   }
 
   /**
@@ -549,7 +581,10 @@ class GeneratedApiClient {
     if (!name) {
       return Promise.reject(new Error('OKTA API getFeatureForApplication parameter name is required.'));
     }
-    return this.applicationApi.getFeatureForApplication(appId, name);
+    const params = {};
+    params.appId = appId;
+    params.name = name;
+    return this.applicationApi.getFeatureForApplication(params);
   }
 
   /**
@@ -571,7 +606,11 @@ class GeneratedApiClient {
     if (!capabilitiesObject) {
       return Promise.reject(new Error('OKTA API updateFeatureForApplication parameter capabilitiesObject is required.'));
     }
-    return this.applicationApi.updateFeatureForApplication(appId, name, capabilitiesObject);
+    const params = {};
+    params.appId = appId;
+    params.name = name;
+    params.capabilitiesObject = capabilitiesObject;
+    return this.applicationApi.updateFeatureForApplication(params);
   }
 
   /**
@@ -587,11 +626,12 @@ class GeneratedApiClient {
     if (!appId) {
       return Promise.reject(new Error('OKTA API listScopeConsentGrants parameter appId is required.'));
     }
-    let expand;
+    const params = {};
+    params.appId = appId;
     if (queryParameters) {
-      expand = queryParameters.expand;
+      params.expand = queryParameters.expand;
     }
-    return this.applicationApi.listScopeConsentGrants(appId, expand);
+    return this.applicationApi.listScopeConsentGrants(params);
   }
 
   /**
@@ -609,7 +649,10 @@ class GeneratedApiClient {
     if (!oAuth2ScopeConsentGrant) {
       return Promise.reject(new Error('OKTA API grantConsentToScope parameter oAuth2ScopeConsentGrant is required.'));
     }
-    return this.applicationApi.grantConsentToScope(appId, oAuth2ScopeConsentGrant);
+    const params = {};
+    params.appId = appId;
+    params.oAuth2ScopeConsentGrant = oAuth2ScopeConsentGrant;
+    return this.applicationApi.grantConsentToScope(params);
   }
 
   /**
@@ -626,7 +669,10 @@ class GeneratedApiClient {
     if (!grantId) {
       return Promise.reject(new Error('OKTA API revokeScopeConsentGrant parameter grantId is required.'));
     }
-    return this.applicationApi.revokeScopeConsentGrant(appId, grantId);
+    const params = {};
+    params.appId = appId;
+    params.grantId = grantId;
+    return this.applicationApi.revokeScopeConsentGrant(params);
   }
 
   /**
@@ -646,11 +692,13 @@ class GeneratedApiClient {
     if (!grantId) {
       return Promise.reject(new Error('OKTA API getScopeConsentGrant parameter grantId is required.'));
     }
-    let expand;
+    const params = {};
+    params.appId = appId;
+    params.grantId = grantId;
     if (queryParameters) {
-      expand = queryParameters.expand;
+      params.expand = queryParameters.expand;
     }
-    return this.applicationApi.getScopeConsentGrant(appId, grantId, expand);
+    return this.applicationApi.getScopeConsentGrant(params);
   }
 
   /**
@@ -669,17 +717,15 @@ class GeneratedApiClient {
     if (!appId) {
       return Promise.reject(new Error('OKTA API listApplicationGroupAssignments parameter appId is required.'));
     }
-    let q;
-    let after;
-    let limit;
-    let expand;
+    const params = {};
+    params.appId = appId;
     if (queryParameters) {
-      q = queryParameters.q;
-      after = queryParameters.after;
-      limit = queryParameters.limit;
-      expand = queryParameters.expand;
+      params.q = queryParameters.q;
+      params.after = queryParameters.after;
+      params.limit = queryParameters.limit;
+      params.expand = queryParameters.expand;
     }
-    return this.applicationApi.listApplicationGroupAssignments(appId, q, after, limit, expand);
+    return this.applicationApi.listApplicationGroupAssignments(params);
   }
 
   /**
@@ -696,7 +742,10 @@ class GeneratedApiClient {
     if (!groupId) {
       return Promise.reject(new Error('OKTA API deleteApplicationGroupAssignment parameter groupId is required.'));
     }
-    return this.applicationApi.deleteApplicationGroupAssignment(appId, groupId);
+    const params = {};
+    params.appId = appId;
+    params.groupId = groupId;
+    return this.applicationApi.deleteApplicationGroupAssignment(params);
   }
 
   /**
@@ -716,11 +765,13 @@ class GeneratedApiClient {
     if (!groupId) {
       return Promise.reject(new Error('OKTA API getApplicationGroupAssignment parameter groupId is required.'));
     }
-    let expand;
+    const params = {};
+    params.appId = appId;
+    params.groupId = groupId;
     if (queryParameters) {
-      expand = queryParameters.expand;
+      params.expand = queryParameters.expand;
     }
-    return this.applicationApi.getApplicationGroupAssignment(appId, groupId, expand);
+    return this.applicationApi.getApplicationGroupAssignment(params);
   }
 
   /**
@@ -739,7 +790,10 @@ class GeneratedApiClient {
     if (!groupId) {
       return Promise.reject(new Error('OKTA API createApplicationGroupAssignment parameter groupId is required.'));
     }
-    return this.applicationApi.createApplicationGroupAssignment(appId, groupId, applicationGroupAssignment);
+    const params = {};
+    params.appId = appId;
+    params.groupId = groupId;
+    return this.applicationApi.createApplicationGroupAssignment(params);
   }
 
   /**
@@ -752,7 +806,9 @@ class GeneratedApiClient {
     if (!appId) {
       return Promise.reject(new Error('OKTA API activateApplication parameter appId is required.'));
     }
-    return this.applicationApi.activateApplication(appId);
+    const params = {};
+    params.appId = appId;
+    return this.applicationApi.activateApplication(params);
   }
 
   /**
@@ -765,7 +821,9 @@ class GeneratedApiClient {
     if (!appId) {
       return Promise.reject(new Error('OKTA API deactivateApplication parameter appId is required.'));
     }
-    return this.applicationApi.deactivateApplication(appId);
+    const params = {};
+    params.appId = appId;
+    return this.applicationApi.deactivateApplication(params);
   }
 
   /**
@@ -779,7 +837,9 @@ class GeneratedApiClient {
     if (!appId) {
       return Promise.reject(new Error('OKTA API uploadApplicationLogo parameter appId is required.'));
     }
-    return this.applicationApi.uploadApplicationLogo(appId, file);
+    const params = {};
+    params.appId = appId;
+    return this.applicationApi.uploadApplicationLogo(params);
   }
 
   /**
@@ -825,7 +885,9 @@ class GeneratedApiClient {
     if (!appId) {
       return Promise.reject(new Error('OKTA API revokeOAuth2TokensForApplication parameter appId is required.'));
     }
-    return this.applicationApi.revokeOAuth2TokensForApplication(appId);
+    const params = {};
+    params.appId = appId;
+    return this.applicationApi.revokeOAuth2TokensForApplication(params);
   }
 
   /**
@@ -843,15 +905,14 @@ class GeneratedApiClient {
     if (!appId) {
       return Promise.reject(new Error('OKTA API listOAuth2TokensForApplication parameter appId is required.'));
     }
-    let expand;
-    let after;
-    let limit;
+    const params = {};
+    params.appId = appId;
     if (queryParameters) {
-      expand = queryParameters.expand;
-      after = queryParameters.after;
-      limit = queryParameters.limit;
+      params.expand = queryParameters.expand;
+      params.after = queryParameters.after;
+      params.limit = queryParameters.limit;
     }
-    return this.applicationApi.listOAuth2TokensForApplication(appId, expand, after, limit);
+    return this.applicationApi.listOAuth2TokensForApplication(params);
   }
 
   /**
@@ -868,7 +929,10 @@ class GeneratedApiClient {
     if (!tokenId) {
       return Promise.reject(new Error('OKTA API revokeOAuth2TokenForApplication parameter tokenId is required.'));
     }
-    return this.applicationApi.revokeOAuth2TokenForApplication(appId, tokenId);
+    const params = {};
+    params.appId = appId;
+    params.tokenId = tokenId;
+    return this.applicationApi.revokeOAuth2TokenForApplication(params);
   }
 
   /**
@@ -888,11 +952,13 @@ class GeneratedApiClient {
     if (!tokenId) {
       return Promise.reject(new Error('OKTA API getOAuth2TokenForApplication parameter tokenId is required.'));
     }
-    let expand;
+    const params = {};
+    params.appId = appId;
+    params.tokenId = tokenId;
     if (queryParameters) {
-      expand = queryParameters.expand;
+      params.expand = queryParameters.expand;
     }
-    return this.applicationApi.getOAuth2TokenForApplication(appId, tokenId, expand);
+    return this.applicationApi.getOAuth2TokenForApplication(params);
   }
 
   /**
@@ -913,21 +979,17 @@ class GeneratedApiClient {
     if (!appId) {
       return Promise.reject(new Error('OKTA API listApplicationUsers parameter appId is required.'));
     }
-    let q;
-    let query_scope;
-    let after;
-    let limit;
-    let filter;
-    let expand;
+    const params = {};
+    params.appId = appId;
     if (queryParameters) {
-      q = queryParameters.q;
-      query_scope = queryParameters.query_scope;
-      after = queryParameters.after;
-      limit = queryParameters.limit;
-      filter = queryParameters.filter;
-      expand = queryParameters.expand;
+      params.q = queryParameters.q;
+      params.query_scope = queryParameters.query_scope;
+      params.after = queryParameters.after;
+      params.limit = queryParameters.limit;
+      params.filter = queryParameters.filter;
+      params.expand = queryParameters.expand;
     }
-    return this.applicationApi.listApplicationUsers(appId, q, query_scope, after, limit, filter, expand);
+    return this.applicationApi.listApplicationUsers(params);
   }
 
   /**
@@ -945,7 +1007,10 @@ class GeneratedApiClient {
     if (!appUser) {
       return Promise.reject(new Error('OKTA API assignUserToApplication parameter appUser is required.'));
     }
-    return this.applicationApi.assignUserToApplication(appId, appUser);
+    const params = {};
+    params.appId = appId;
+    params.appUser = appUser;
+    return this.applicationApi.assignUserToApplication(params);
   }
 
   /**
@@ -964,11 +1029,13 @@ class GeneratedApiClient {
     if (!userId) {
       return Promise.reject(new Error('OKTA API deleteApplicationUser parameter userId is required.'));
     }
-    let sendEmail;
+    const params = {};
+    params.appId = appId;
+    params.userId = userId;
     if (queryParameters) {
-      sendEmail = queryParameters.sendEmail;
+      params.sendEmail = queryParameters.sendEmail;
     }
-    return this.applicationApi.deleteApplicationUser(appId, userId, sendEmail);
+    return this.applicationApi.deleteApplicationUser(params);
   }
 
   /**
@@ -988,11 +1055,13 @@ class GeneratedApiClient {
     if (!userId) {
       return Promise.reject(new Error('OKTA API getApplicationUser parameter userId is required.'));
     }
-    let expand;
+    const params = {};
+    params.appId = appId;
+    params.userId = userId;
     if (queryParameters) {
-      expand = queryParameters.expand;
+      params.expand = queryParameters.expand;
     }
-    return this.applicationApi.getApplicationUser(appId, userId, expand);
+    return this.applicationApi.getApplicationUser(params);
   }
 
   /**
@@ -1014,7 +1083,11 @@ class GeneratedApiClient {
     if (!appUser) {
       return Promise.reject(new Error('OKTA API updateApplicationUser parameter appUser is required.'));
     }
-    return this.applicationApi.updateApplicationUser(appId, userId, appUser);
+    const params = {};
+    params.appId = appId;
+    params.userId = userId;
+    params.appUser = appUser;
+    return this.applicationApi.updateApplicationUser(params);
   }
 
   /**
@@ -1024,7 +1097,8 @@ class GeneratedApiClient {
    * @returns {Collection} A collection that will yield {@link Authenticator} instances.
    */
   listAuthenticators() {
-    return this.authenticatorApi.listAuthenticators();
+    const params = {};
+    return this.authenticatorApi.listAuthenticators(params);
   }
 
   /**
@@ -1038,7 +1112,9 @@ class GeneratedApiClient {
     if (!authenticatorId) {
       return Promise.reject(new Error('OKTA API getAuthenticator parameter authenticatorId is required.'));
     }
-    return this.authenticatorApi.getAuthenticator(authenticatorId);
+    const params = {};
+    params.authenticatorId = authenticatorId;
+    return this.authenticatorApi.getAuthenticator(params);
   }
 
   /**
@@ -1056,7 +1132,10 @@ class GeneratedApiClient {
     if (!authenticator) {
       return Promise.reject(new Error('OKTA API updateAuthenticator parameter authenticator is required.'));
     }
-    return this.authenticatorApi.updateAuthenticator(authenticatorId, authenticator);
+    const params = {};
+    params.authenticatorId = authenticatorId;
+    params.authenticator = authenticator;
+    return this.authenticatorApi.updateAuthenticator(params);
   }
 
   /**
@@ -1070,7 +1149,9 @@ class GeneratedApiClient {
     if (!authenticatorId) {
       return Promise.reject(new Error('OKTA API activateAuthenticator parameter authenticatorId is required.'));
     }
-    return this.authenticatorApi.activateAuthenticator(authenticatorId);
+    const params = {};
+    params.authenticatorId = authenticatorId;
+    return this.authenticatorApi.activateAuthenticator(params);
   }
 
   /**
@@ -1084,7 +1165,9 @@ class GeneratedApiClient {
     if (!authenticatorId) {
       return Promise.reject(new Error('OKTA API deactivateAuthenticator parameter authenticatorId is required.'));
     }
-    return this.authenticatorApi.deactivateAuthenticator(authenticatorId);
+    const params = {};
+    params.authenticatorId = authenticatorId;
+    return this.authenticatorApi.deactivateAuthenticator(params);
   }
 
   /**
@@ -1098,15 +1181,13 @@ class GeneratedApiClient {
    * @returns {Collection} A collection that will yield {@link AuthorizationServer} instances.
    */
   listAuthorizationServers(queryParameters) {
-    let q;
-    let limit;
-    let after;
+    const params = {};
     if (queryParameters) {
-      q = queryParameters.q;
-      limit = queryParameters.limit;
-      after = queryParameters.after;
+      params.q = queryParameters.q;
+      params.limit = queryParameters.limit;
+      params.after = queryParameters.after;
     }
-    return this.authorizationServerApi.listAuthorizationServers(q, limit, after);
+    return this.authorizationServerApi.listAuthorizationServers(params);
   }
 
   /**
@@ -1120,7 +1201,9 @@ class GeneratedApiClient {
     if (!authorizationServer) {
       return Promise.reject(new Error('OKTA API createAuthorizationServer parameter authorizationServer is required.'));
     }
-    return this.authorizationServerApi.createAuthorizationServer(authorizationServer);
+    const params = {};
+    params.authorizationServer = authorizationServer;
+    return this.authorizationServerApi.createAuthorizationServer(params);
   }
 
   /**
@@ -1133,7 +1216,9 @@ class GeneratedApiClient {
     if (!authServerId) {
       return Promise.reject(new Error('OKTA API deleteAuthorizationServer parameter authServerId is required.'));
     }
-    return this.authorizationServerApi.deleteAuthorizationServer(authServerId);
+    const params = {};
+    params.authServerId = authServerId;
+    return this.authorizationServerApi.deleteAuthorizationServer(params);
   }
 
   /**
@@ -1147,7 +1232,9 @@ class GeneratedApiClient {
     if (!authServerId) {
       return Promise.reject(new Error('OKTA API getAuthorizationServer parameter authServerId is required.'));
     }
-    return this.authorizationServerApi.getAuthorizationServer(authServerId);
+    const params = {};
+    params.authServerId = authServerId;
+    return this.authorizationServerApi.getAuthorizationServer(params);
   }
 
   /**
@@ -1165,7 +1252,10 @@ class GeneratedApiClient {
     if (!authorizationServer) {
       return Promise.reject(new Error('OKTA API updateAuthorizationServer parameter authorizationServer is required.'));
     }
-    return this.authorizationServerApi.updateAuthorizationServer(authServerId, authorizationServer);
+    const params = {};
+    params.authServerId = authServerId;
+    params.authorizationServer = authorizationServer;
+    return this.authorizationServerApi.updateAuthorizationServer(params);
   }
 
   /**
@@ -1179,7 +1269,9 @@ class GeneratedApiClient {
     if (!authServerId) {
       return Promise.reject(new Error('OKTA API listOAuth2Claims parameter authServerId is required.'));
     }
-    return this.authorizationServerApi.listOAuth2Claims(authServerId);
+    const params = {};
+    params.authServerId = authServerId;
+    return this.authorizationServerApi.listOAuth2Claims(params);
   }
 
   /**
@@ -1197,7 +1289,10 @@ class GeneratedApiClient {
     if (!oAuth2Claim) {
       return Promise.reject(new Error('OKTA API createOAuth2Claim parameter oAuth2Claim is required.'));
     }
-    return this.authorizationServerApi.createOAuth2Claim(authServerId, oAuth2Claim);
+    const params = {};
+    params.authServerId = authServerId;
+    params.oAuth2Claim = oAuth2Claim;
+    return this.authorizationServerApi.createOAuth2Claim(params);
   }
 
   /**
@@ -1214,7 +1309,10 @@ class GeneratedApiClient {
     if (!claimId) {
       return Promise.reject(new Error('OKTA API deleteOAuth2Claim parameter claimId is required.'));
     }
-    return this.authorizationServerApi.deleteOAuth2Claim(authServerId, claimId);
+    const params = {};
+    params.authServerId = authServerId;
+    params.claimId = claimId;
+    return this.authorizationServerApi.deleteOAuth2Claim(params);
   }
 
   /**
@@ -1232,7 +1330,10 @@ class GeneratedApiClient {
     if (!claimId) {
       return Promise.reject(new Error('OKTA API getOAuth2Claim parameter claimId is required.'));
     }
-    return this.authorizationServerApi.getOAuth2Claim(authServerId, claimId);
+    const params = {};
+    params.authServerId = authServerId;
+    params.claimId = claimId;
+    return this.authorizationServerApi.getOAuth2Claim(params);
   }
 
   /**
@@ -1254,7 +1355,11 @@ class GeneratedApiClient {
     if (!oAuth2Claim) {
       return Promise.reject(new Error('OKTA API updateOAuth2Claim parameter oAuth2Claim is required.'));
     }
-    return this.authorizationServerApi.updateOAuth2Claim(authServerId, claimId, oAuth2Claim);
+    const params = {};
+    params.authServerId = authServerId;
+    params.claimId = claimId;
+    params.oAuth2Claim = oAuth2Claim;
+    return this.authorizationServerApi.updateOAuth2Claim(params);
   }
 
   /**
@@ -1268,7 +1373,9 @@ class GeneratedApiClient {
     if (!authServerId) {
       return Promise.reject(new Error('OKTA API listOAuth2ClientsForAuthorizationServer parameter authServerId is required.'));
     }
-    return this.authorizationServerApi.listOAuth2ClientsForAuthorizationServer(authServerId);
+    const params = {};
+    params.authServerId = authServerId;
+    return this.authorizationServerApi.listOAuth2ClientsForAuthorizationServer(params);
   }
 
   /**
@@ -1285,7 +1392,10 @@ class GeneratedApiClient {
     if (!clientId) {
       return Promise.reject(new Error('OKTA API revokeRefreshTokensForAuthorizationServerAndClient parameter clientId is required.'));
     }
-    return this.authorizationServerApi.revokeRefreshTokensForAuthorizationServerAndClient(authServerId, clientId);
+    const params = {};
+    params.authServerId = authServerId;
+    params.clientId = clientId;
+    return this.authorizationServerApi.revokeRefreshTokensForAuthorizationServerAndClient(params);
   }
 
   /**
@@ -1307,15 +1417,15 @@ class GeneratedApiClient {
     if (!clientId) {
       return Promise.reject(new Error('OKTA API listRefreshTokensForAuthorizationServerAndClient parameter clientId is required.'));
     }
-    let expand;
-    let after;
-    let limit;
+    const params = {};
+    params.authServerId = authServerId;
+    params.clientId = clientId;
     if (queryParameters) {
-      expand = queryParameters.expand;
-      after = queryParameters.after;
-      limit = queryParameters.limit;
+      params.expand = queryParameters.expand;
+      params.after = queryParameters.after;
+      params.limit = queryParameters.limit;
     }
-    return this.authorizationServerApi.listRefreshTokensForAuthorizationServerAndClient(authServerId, clientId, expand, after, limit);
+    return this.authorizationServerApi.listRefreshTokensForAuthorizationServerAndClient(params);
   }
 
   /**
@@ -1336,7 +1446,11 @@ class GeneratedApiClient {
     if (!tokenId) {
       return Promise.reject(new Error('OKTA API revokeRefreshTokenForAuthorizationServerAndClient parameter tokenId is required.'));
     }
-    return this.authorizationServerApi.revokeRefreshTokenForAuthorizationServerAndClient(authServerId, clientId, tokenId);
+    const params = {};
+    params.authServerId = authServerId;
+    params.clientId = clientId;
+    params.tokenId = tokenId;
+    return this.authorizationServerApi.revokeRefreshTokenForAuthorizationServerAndClient(params);
   }
 
   /**
@@ -1360,11 +1474,14 @@ class GeneratedApiClient {
     if (!tokenId) {
       return Promise.reject(new Error('OKTA API getRefreshTokenForAuthorizationServerAndClient parameter tokenId is required.'));
     }
-    let expand;
+    const params = {};
+    params.authServerId = authServerId;
+    params.clientId = clientId;
+    params.tokenId = tokenId;
     if (queryParameters) {
-      expand = queryParameters.expand;
+      params.expand = queryParameters.expand;
     }
-    return this.authorizationServerApi.getRefreshTokenForAuthorizationServerAndClient(authServerId, clientId, tokenId, expand);
+    return this.authorizationServerApi.getRefreshTokenForAuthorizationServerAndClient(params);
   }
 
   /**
@@ -1378,7 +1495,9 @@ class GeneratedApiClient {
     if (!authServerId) {
       return Promise.reject(new Error('OKTA API listAuthorizationServerKeys parameter authServerId is required.'));
     }
-    return this.authorizationServerApi.listAuthorizationServerKeys(authServerId);
+    const params = {};
+    params.authServerId = authServerId;
+    return this.authorizationServerApi.listAuthorizationServerKeys(params);
   }
 
   /**
@@ -1395,7 +1514,10 @@ class GeneratedApiClient {
     if (!jwkUse) {
       return Promise.reject(new Error('OKTA API rotateAuthorizationServerKeys parameter jwkUse is required.'));
     }
-    return this.authorizationServerApi.rotateAuthorizationServerKeys(authServerId, jwkUse);
+    const params = {};
+    params.authServerId = authServerId;
+    params.jwkUse = jwkUse;
+    return this.authorizationServerApi.rotateAuthorizationServerKeys(params);
   }
 
   /**
@@ -1408,7 +1530,9 @@ class GeneratedApiClient {
     if (!authServerId) {
       return Promise.reject(new Error('OKTA API activateAuthorizationServer parameter authServerId is required.'));
     }
-    return this.authorizationServerApi.activateAuthorizationServer(authServerId);
+    const params = {};
+    params.authServerId = authServerId;
+    return this.authorizationServerApi.activateAuthorizationServer(params);
   }
 
   /**
@@ -1421,7 +1545,9 @@ class GeneratedApiClient {
     if (!authServerId) {
       return Promise.reject(new Error('OKTA API deactivateAuthorizationServer parameter authServerId is required.'));
     }
-    return this.authorizationServerApi.deactivateAuthorizationServer(authServerId);
+    const params = {};
+    params.authServerId = authServerId;
+    return this.authorizationServerApi.deactivateAuthorizationServer(params);
   }
 
   /**
@@ -1435,7 +1561,9 @@ class GeneratedApiClient {
     if (!authServerId) {
       return Promise.reject(new Error('OKTA API listAuthorizationServerPolicies parameter authServerId is required.'));
     }
-    return this.authorizationServerApi.listAuthorizationServerPolicies(authServerId);
+    const params = {};
+    params.authServerId = authServerId;
+    return this.authorizationServerApi.listAuthorizationServerPolicies(params);
   }
 
   /**
@@ -1453,7 +1581,10 @@ class GeneratedApiClient {
     if (!authorizationServerPolicy) {
       return Promise.reject(new Error('OKTA API createAuthorizationServerPolicy parameter authorizationServerPolicy is required.'));
     }
-    return this.authorizationServerApi.createAuthorizationServerPolicy(authServerId, authorizationServerPolicy);
+    const params = {};
+    params.authServerId = authServerId;
+    params.authorizationServerPolicy = authorizationServerPolicy;
+    return this.authorizationServerApi.createAuthorizationServerPolicy(params);
   }
 
   /**
@@ -1470,7 +1601,10 @@ class GeneratedApiClient {
     if (!policyId) {
       return Promise.reject(new Error('OKTA API deleteAuthorizationServerPolicy parameter policyId is required.'));
     }
-    return this.authorizationServerApi.deleteAuthorizationServerPolicy(authServerId, policyId);
+    const params = {};
+    params.authServerId = authServerId;
+    params.policyId = policyId;
+    return this.authorizationServerApi.deleteAuthorizationServerPolicy(params);
   }
 
   /**
@@ -1488,7 +1622,10 @@ class GeneratedApiClient {
     if (!policyId) {
       return Promise.reject(new Error('OKTA API getAuthorizationServerPolicy parameter policyId is required.'));
     }
-    return this.authorizationServerApi.getAuthorizationServerPolicy(authServerId, policyId);
+    const params = {};
+    params.authServerId = authServerId;
+    params.policyId = policyId;
+    return this.authorizationServerApi.getAuthorizationServerPolicy(params);
   }
 
   /**
@@ -1510,7 +1647,11 @@ class GeneratedApiClient {
     if (!authorizationServerPolicy) {
       return Promise.reject(new Error('OKTA API updateAuthorizationServerPolicy parameter authorizationServerPolicy is required.'));
     }
-    return this.authorizationServerApi.updateAuthorizationServerPolicy(authServerId, policyId, authorizationServerPolicy);
+    const params = {};
+    params.authServerId = authServerId;
+    params.policyId = policyId;
+    params.authorizationServerPolicy = authorizationServerPolicy;
+    return this.authorizationServerApi.updateAuthorizationServerPolicy(params);
   }
 
   /**
@@ -1527,7 +1668,10 @@ class GeneratedApiClient {
     if (!policyId) {
       return Promise.reject(new Error('OKTA API activateAuthorizationServerPolicy parameter policyId is required.'));
     }
-    return this.authorizationServerApi.activateAuthorizationServerPolicy(authServerId, policyId);
+    const params = {};
+    params.authServerId = authServerId;
+    params.policyId = policyId;
+    return this.authorizationServerApi.activateAuthorizationServerPolicy(params);
   }
 
   /**
@@ -1544,7 +1688,10 @@ class GeneratedApiClient {
     if (!policyId) {
       return Promise.reject(new Error('OKTA API deactivateAuthorizationServerPolicy parameter policyId is required.'));
     }
-    return this.authorizationServerApi.deactivateAuthorizationServerPolicy(authServerId, policyId);
+    const params = {};
+    params.authServerId = authServerId;
+    params.policyId = policyId;
+    return this.authorizationServerApi.deactivateAuthorizationServerPolicy(params);
   }
 
   /**
@@ -1562,7 +1709,10 @@ class GeneratedApiClient {
     if (!authServerId) {
       return Promise.reject(new Error('OKTA API listAuthorizationServerPolicyRules parameter authServerId is required.'));
     }
-    return this.authorizationServerApi.listAuthorizationServerPolicyRules(policyId, authServerId);
+    const params = {};
+    params.policyId = policyId;
+    params.authServerId = authServerId;
+    return this.authorizationServerApi.listAuthorizationServerPolicyRules(params);
   }
 
   /**
@@ -1584,7 +1734,11 @@ class GeneratedApiClient {
     if (!authorizationServerPolicyRule) {
       return Promise.reject(new Error('OKTA API createAuthorizationServerPolicyRule parameter authorizationServerPolicyRule is required.'));
     }
-    return this.authorizationServerApi.createAuthorizationServerPolicyRule(policyId, authServerId, authorizationServerPolicyRule);
+    const params = {};
+    params.policyId = policyId;
+    params.authServerId = authServerId;
+    params.authorizationServerPolicyRule = authorizationServerPolicyRule;
+    return this.authorizationServerApi.createAuthorizationServerPolicyRule(params);
   }
 
   /**
@@ -1605,7 +1759,11 @@ class GeneratedApiClient {
     if (!ruleId) {
       return Promise.reject(new Error('OKTA API deleteAuthorizationServerPolicyRule parameter ruleId is required.'));
     }
-    return this.authorizationServerApi.deleteAuthorizationServerPolicyRule(policyId, authServerId, ruleId);
+    const params = {};
+    params.policyId = policyId;
+    params.authServerId = authServerId;
+    params.ruleId = ruleId;
+    return this.authorizationServerApi.deleteAuthorizationServerPolicyRule(params);
   }
 
   /**
@@ -1627,7 +1785,11 @@ class GeneratedApiClient {
     if (!ruleId) {
       return Promise.reject(new Error('OKTA API getAuthorizationServerPolicyRule parameter ruleId is required.'));
     }
-    return this.authorizationServerApi.getAuthorizationServerPolicyRule(policyId, authServerId, ruleId);
+    const params = {};
+    params.policyId = policyId;
+    params.authServerId = authServerId;
+    params.ruleId = ruleId;
+    return this.authorizationServerApi.getAuthorizationServerPolicyRule(params);
   }
 
   /**
@@ -1653,7 +1815,12 @@ class GeneratedApiClient {
     if (!authorizationServerPolicyRule) {
       return Promise.reject(new Error('OKTA API updateAuthorizationServerPolicyRule parameter authorizationServerPolicyRule is required.'));
     }
-    return this.authorizationServerApi.updateAuthorizationServerPolicyRule(policyId, authServerId, ruleId, authorizationServerPolicyRule);
+    const params = {};
+    params.policyId = policyId;
+    params.authServerId = authServerId;
+    params.ruleId = ruleId;
+    params.authorizationServerPolicyRule = authorizationServerPolicyRule;
+    return this.authorizationServerApi.updateAuthorizationServerPolicyRule(params);
   }
 
   /**
@@ -1674,7 +1841,11 @@ class GeneratedApiClient {
     if (!ruleId) {
       return Promise.reject(new Error('OKTA API activateAuthorizationServerPolicyRule parameter ruleId is required.'));
     }
-    return this.authorizationServerApi.activateAuthorizationServerPolicyRule(authServerId, policyId, ruleId);
+    const params = {};
+    params.authServerId = authServerId;
+    params.policyId = policyId;
+    params.ruleId = ruleId;
+    return this.authorizationServerApi.activateAuthorizationServerPolicyRule(params);
   }
 
   /**
@@ -1695,7 +1866,11 @@ class GeneratedApiClient {
     if (!ruleId) {
       return Promise.reject(new Error('OKTA API deactivateAuthorizationServerPolicyRule parameter ruleId is required.'));
     }
-    return this.authorizationServerApi.deactivateAuthorizationServerPolicyRule(authServerId, policyId, ruleId);
+    const params = {};
+    params.authServerId = authServerId;
+    params.policyId = policyId;
+    params.ruleId = ruleId;
+    return this.authorizationServerApi.deactivateAuthorizationServerPolicyRule(params);
   }
 
   /**
@@ -1714,17 +1889,15 @@ class GeneratedApiClient {
     if (!authServerId) {
       return Promise.reject(new Error('OKTA API listOAuth2Scopes parameter authServerId is required.'));
     }
-    let q;
-    let filter;
-    let cursor;
-    let limit;
+    const params = {};
+    params.authServerId = authServerId;
     if (queryParameters) {
-      q = queryParameters.q;
-      filter = queryParameters.filter;
-      cursor = queryParameters.cursor;
-      limit = queryParameters.limit;
+      params.q = queryParameters.q;
+      params.filter = queryParameters.filter;
+      params.cursor = queryParameters.cursor;
+      params.limit = queryParameters.limit;
     }
-    return this.authorizationServerApi.listOAuth2Scopes(authServerId, q, filter, cursor, limit);
+    return this.authorizationServerApi.listOAuth2Scopes(params);
   }
 
   /**
@@ -1742,7 +1915,10 @@ class GeneratedApiClient {
     if (!oAuth2Scope) {
       return Promise.reject(new Error('OKTA API createOAuth2Scope parameter oAuth2Scope is required.'));
     }
-    return this.authorizationServerApi.createOAuth2Scope(authServerId, oAuth2Scope);
+    const params = {};
+    params.authServerId = authServerId;
+    params.oAuth2Scope = oAuth2Scope;
+    return this.authorizationServerApi.createOAuth2Scope(params);
   }
 
   /**
@@ -1759,7 +1935,10 @@ class GeneratedApiClient {
     if (!scopeId) {
       return Promise.reject(new Error('OKTA API deleteOAuth2Scope parameter scopeId is required.'));
     }
-    return this.authorizationServerApi.deleteOAuth2Scope(authServerId, scopeId);
+    const params = {};
+    params.authServerId = authServerId;
+    params.scopeId = scopeId;
+    return this.authorizationServerApi.deleteOAuth2Scope(params);
   }
 
   /**
@@ -1777,7 +1956,10 @@ class GeneratedApiClient {
     if (!scopeId) {
       return Promise.reject(new Error('OKTA API getOAuth2Scope parameter scopeId is required.'));
     }
-    return this.authorizationServerApi.getOAuth2Scope(authServerId, scopeId);
+    const params = {};
+    params.authServerId = authServerId;
+    params.scopeId = scopeId;
+    return this.authorizationServerApi.getOAuth2Scope(params);
   }
 
   /**
@@ -1799,7 +1981,11 @@ class GeneratedApiClient {
     if (!oAuth2Scope) {
       return Promise.reject(new Error('OKTA API updateOAuth2Scope parameter oAuth2Scope is required.'));
     }
-    return this.authorizationServerApi.updateOAuth2Scope(authServerId, scopeId, oAuth2Scope);
+    const params = {};
+    params.authServerId = authServerId;
+    params.scopeId = scopeId;
+    params.oAuth2Scope = oAuth2Scope;
+    return this.authorizationServerApi.updateOAuth2Scope(params);
   }
 
   /**
@@ -1809,7 +1995,8 @@ class GeneratedApiClient {
    * @returns {Collection} A collection that will yield {@link Brand} instances.
    */
   listBrands() {
-    return this.customizationApi.listBrands();
+    const params = {};
+    return this.customizationApi.listBrands(params);
   }
 
   /**
@@ -1823,7 +2010,9 @@ class GeneratedApiClient {
     if (!brandId) {
       return Promise.reject(new Error('OKTA API getBrand parameter brandId is required.'));
     }
-    return this.customizationApi.getBrand(brandId);
+    const params = {};
+    params.brandId = brandId;
+    return this.customizationApi.getBrand(params);
   }
 
   /**
@@ -1841,7 +2030,10 @@ class GeneratedApiClient {
     if (!brand) {
       return Promise.reject(new Error('OKTA API updateBrand parameter brand is required.'));
     }
-    return this.customizationApi.updateBrand(brandId, brand);
+    const params = {};
+    params.brandId = brandId;
+    params.brand = brand;
+    return this.customizationApi.updateBrand(params);
   }
 
   /**
@@ -1858,13 +2050,13 @@ class GeneratedApiClient {
     if (!brandId) {
       return Promise.reject(new Error('OKTA API listEmailTemplates parameter brandId is required.'));
     }
-    let after;
-    let limit;
+    const params = {};
+    params.brandId = brandId;
     if (queryParameters) {
-      after = queryParameters.after;
-      limit = queryParameters.limit;
+      params.after = queryParameters.after;
+      params.limit = queryParameters.limit;
     }
-    return this.customizationApi.listEmailTemplates(brandId, after, limit);
+    return this.customizationApi.listEmailTemplates(params);
   }
 
   /**
@@ -1882,7 +2074,10 @@ class GeneratedApiClient {
     if (!templateName) {
       return Promise.reject(new Error('OKTA API getEmailTemplate parameter templateName is required.'));
     }
-    return this.customizationApi.getEmailTemplate(brandId, templateName);
+    const params = {};
+    params.brandId = brandId;
+    params.templateName = templateName;
+    return this.customizationApi.getEmailTemplate(params);
   }
 
   /**
@@ -1899,7 +2094,10 @@ class GeneratedApiClient {
     if (!templateName) {
       return Promise.reject(new Error('OKTA API deleteEmailTemplateCustomizations parameter templateName is required.'));
     }
-    return this.customizationApi.deleteAllCustomizations(brandId, templateName);
+    const params = {};
+    params.brandId = brandId;
+    params.templateName = templateName;
+    return this.customizationApi.deleteAllCustomizations(params);
   }
 
   /**
@@ -1917,7 +2115,10 @@ class GeneratedApiClient {
     if (!templateName) {
       return Promise.reject(new Error('OKTA API listEmailTemplateCustomizations parameter templateName is required.'));
     }
-    return this.customizationApi.listEmailCustomizations(brandId, templateName);
+    const params = {};
+    params.brandId = brandId;
+    params.templateName = templateName;
+    return this.customizationApi.listEmailCustomizations(params);
   }
 
   /**
@@ -1939,7 +2140,11 @@ class GeneratedApiClient {
     if (!instance) {
       return Promise.reject(new Error('OKTA API createEmailTemplateCustomization parameter instance is required.'));
     }
-    return this.customizationApi.createEmailCustomization(brandId, templateName, instance);
+    const params = {};
+    params.brandId = brandId;
+    params.templateName = templateName;
+    params.instance = instance;
+    return this.customizationApi.createEmailCustomization(params);
   }
 
   /**
@@ -1960,7 +2165,11 @@ class GeneratedApiClient {
     if (!customizationId) {
       return Promise.reject(new Error('OKTA API deleteEmailTemplateCustomization parameter customizationId is required.'));
     }
-    return this.customizationApi.deleteEmailCustomization(brandId, templateName, customizationId);
+    const params = {};
+    params.brandId = brandId;
+    params.templateName = templateName;
+    params.customizationId = customizationId;
+    return this.customizationApi.deleteEmailCustomization(params);
   }
 
   /**
@@ -1982,7 +2191,11 @@ class GeneratedApiClient {
     if (!customizationId) {
       return Promise.reject(new Error('OKTA API getEmailTemplateCustomization parameter customizationId is required.'));
     }
-    return this.customizationApi.getEmailCustomization(brandId, templateName, customizationId);
+    const params = {};
+    params.brandId = brandId;
+    params.templateName = templateName;
+    params.customizationId = customizationId;
+    return this.customizationApi.getEmailCustomization(params);
   }
 
   /**
@@ -2008,7 +2221,12 @@ class GeneratedApiClient {
     if (!instance) {
       return Promise.reject(new Error('OKTA API updateEmailTemplateCustomization parameter instance is required.'));
     }
-    return this.customizationApi.updateEmailCustomization(brandId, templateName, customizationId, instance);
+    const params = {};
+    params.brandId = brandId;
+    params.templateName = templateName;
+    params.customizationId = customizationId;
+    params.instance = instance;
+    return this.customizationApi.updateEmailCustomization(params);
   }
 
   /**
@@ -2030,7 +2248,11 @@ class GeneratedApiClient {
     if (!customizationId) {
       return Promise.reject(new Error('OKTA API getEmailTemplateCustomizationPreview parameter customizationId is required.'));
     }
-    return this.customizationApi.getCustomizationPreview(brandId, templateName, customizationId);
+    const params = {};
+    params.brandId = brandId;
+    params.templateName = templateName;
+    params.customizationId = customizationId;
+    return this.customizationApi.getCustomizationPreview(params);
   }
 
   /**
@@ -2048,7 +2270,10 @@ class GeneratedApiClient {
     if (!templateName) {
       return Promise.reject(new Error('OKTA API getEmailTemplateDefaultContent parameter templateName is required.'));
     }
-    return this.customizationApi.getEmailDefaultContent(brandId, templateName);
+    const params = {};
+    params.brandId = brandId;
+    params.templateName = templateName;
+    return this.customizationApi.getEmailDefaultContent(params);
   }
 
   /**
@@ -2066,7 +2291,10 @@ class GeneratedApiClient {
     if (!templateName) {
       return Promise.reject(new Error('OKTA API getEmailTemplateDefaultContentPreview parameter templateName is required.'));
     }
-    return this.customizationApi.getEmailDefaultPreview(brandId, templateName);
+    const params = {};
+    params.brandId = brandId;
+    params.templateName = templateName;
+    return this.customizationApi.getEmailDefaultPreview(params);
   }
 
   /**
@@ -2087,7 +2315,11 @@ class GeneratedApiClient {
     if (!language) {
       return Promise.reject(new Error('OKTA API sendTestEmail parameter language is required.'));
     }
-    return this.customizationApi.sendTestEmail(brandId, templateName, language);
+    const params = {};
+    params.brandId = brandId;
+    params.templateName = templateName;
+    params.language = language;
+    return this.customizationApi.sendTestEmail(params);
   }
 
   /**
@@ -2101,7 +2333,9 @@ class GeneratedApiClient {
     if (!brandId) {
       return Promise.reject(new Error('OKTA API listBrandThemes parameter brandId is required.'));
     }
-    return this.customizationApi.listBrandThemes(brandId);
+    const params = {};
+    params.brandId = brandId;
+    return this.customizationApi.listBrandThemes(params);
   }
 
   /**
@@ -2119,7 +2353,10 @@ class GeneratedApiClient {
     if (!themeId) {
       return Promise.reject(new Error('OKTA API getBrandTheme parameter themeId is required.'));
     }
-    return this.customizationApi.getBrandTheme(brandId, themeId);
+    const params = {};
+    params.brandId = brandId;
+    params.themeId = themeId;
+    return this.customizationApi.getBrandTheme(params);
   }
 
   /**
@@ -2141,7 +2378,11 @@ class GeneratedApiClient {
     if (!theme) {
       return Promise.reject(new Error('OKTA API updateBrandTheme parameter theme is required.'));
     }
-    return this.customizationApi.updateBrandTheme(brandId, themeId, theme);
+    const params = {};
+    params.brandId = brandId;
+    params.themeId = themeId;
+    params.theme = theme;
+    return this.customizationApi.updateBrandTheme(params);
   }
 
   /**
@@ -2158,7 +2399,10 @@ class GeneratedApiClient {
     if (!themeId) {
       return Promise.reject(new Error('OKTA API deleteBrandThemeBackgroundImage parameter themeId is required.'));
     }
-    return this.customizationApi.deleteBrandThemeBackgroundImage(brandId, themeId);
+    const params = {};
+    params.brandId = brandId;
+    params.themeId = themeId;
+    return this.customizationApi.deleteBrandThemeBackgroundImage(params);
   }
 
   /**
@@ -2177,7 +2421,10 @@ class GeneratedApiClient {
     if (!themeId) {
       return Promise.reject(new Error('OKTA API uploadBrandThemeBackgroundImage parameter themeId is required.'));
     }
-    return this.customizationApi.uploadBrandThemeBackgroundImage(brandId, themeId, file);
+    const params = {};
+    params.brandId = brandId;
+    params.themeId = themeId;
+    return this.customizationApi.uploadBrandThemeBackgroundImage(params);
   }
 
   /**
@@ -2194,7 +2441,10 @@ class GeneratedApiClient {
     if (!themeId) {
       return Promise.reject(new Error('OKTA API deleteBrandThemeFavicon parameter themeId is required.'));
     }
-    return this.customizationApi.deleteBrandThemeFavicon(brandId, themeId);
+    const params = {};
+    params.brandId = brandId;
+    params.themeId = themeId;
+    return this.customizationApi.deleteBrandThemeFavicon(params);
   }
 
   /**
@@ -2213,7 +2463,10 @@ class GeneratedApiClient {
     if (!themeId) {
       return Promise.reject(new Error('OKTA API uploadBrandThemeFavicon parameter themeId is required.'));
     }
-    return this.customizationApi.uploadBrandThemeFavicon(brandId, themeId, file);
+    const params = {};
+    params.brandId = brandId;
+    params.themeId = themeId;
+    return this.customizationApi.uploadBrandThemeFavicon(params);
   }
 
   /**
@@ -2230,7 +2483,10 @@ class GeneratedApiClient {
     if (!themeId) {
       return Promise.reject(new Error('OKTA API deleteBrandThemeLogo parameter themeId is required.'));
     }
-    return this.customizationApi.deleteBrandThemeLogo(brandId, themeId);
+    const params = {};
+    params.brandId = brandId;
+    params.themeId = themeId;
+    return this.customizationApi.deleteBrandThemeLogo(params);
   }
 
   /**
@@ -2249,7 +2505,10 @@ class GeneratedApiClient {
     if (!themeId) {
       return Promise.reject(new Error('OKTA API uploadBrandThemeLogo parameter themeId is required.'));
     }
-    return this.customizationApi.uploadBrandThemeLogo(brandId, themeId, file);
+    const params = {};
+    params.brandId = brandId;
+    params.themeId = themeId;
+    return this.customizationApi.uploadBrandThemeLogo(params);
   }
 
   /**
@@ -2259,7 +2518,8 @@ class GeneratedApiClient {
    * @returns {Promise<DomainListResponse>}
    */
   listDomains() {
-    return this.domainApi.listDomains();
+    const params = {};
+    return this.domainApi.listDomains(params);
   }
 
   /**
@@ -2273,7 +2533,9 @@ class GeneratedApiClient {
     if (!domain) {
       return Promise.reject(new Error('OKTA API createDomain parameter domain is required.'));
     }
-    return this.domainApi.createDomain(domain);
+    const params = {};
+    params.domain = domain;
+    return this.domainApi.createDomain(params);
   }
 
   /**
@@ -2286,7 +2548,9 @@ class GeneratedApiClient {
     if (!domainId) {
       return Promise.reject(new Error('OKTA API deleteDomain parameter domainId is required.'));
     }
-    return this.domainApi.deleteDomain(domainId);
+    const params = {};
+    params.domainId = domainId;
+    return this.domainApi.deleteDomain(params);
   }
 
   /**
@@ -2300,7 +2564,9 @@ class GeneratedApiClient {
     if (!domainId) {
       return Promise.reject(new Error('OKTA API getDomain parameter domainId is required.'));
     }
-    return this.domainApi.getDomain(domainId);
+    const params = {};
+    params.domainId = domainId;
+    return this.domainApi.getDomain(params);
   }
 
   /**
@@ -2317,7 +2583,10 @@ class GeneratedApiClient {
     if (!domainCertificate) {
       return Promise.reject(new Error('OKTA API createCertificate parameter domainCertificate is required.'));
     }
-    return this.domainApi.createCertificate(domainId, domainCertificate);
+    const params = {};
+    params.domainId = domainId;
+    params.domainCertificate = domainCertificate;
+    return this.domainApi.createCertificate(params);
   }
 
   /**
@@ -2331,7 +2600,9 @@ class GeneratedApiClient {
     if (!domainId) {
       return Promise.reject(new Error('OKTA API verifyDomain parameter domainId is required.'));
     }
-    return this.domainApi.verifyDomain(domainId);
+    const params = {};
+    params.domainId = domainId;
+    return this.domainApi.verifyDomain(params);
   }
 
   /**
@@ -2341,7 +2612,8 @@ class GeneratedApiClient {
    * @returns {Collection} A collection that will yield {@link EventHook} instances.
    */
   listEventHooks() {
-    return this.eventHookApi.listEventHooks();
+    const params = {};
+    return this.eventHookApi.listEventHooks(params);
   }
 
   /**
@@ -2355,7 +2627,9 @@ class GeneratedApiClient {
     if (!eventHook) {
       return Promise.reject(new Error('OKTA API createEventHook parameter eventHook is required.'));
     }
-    return this.eventHookApi.createEventHook(eventHook);
+    const params = {};
+    params.eventHook = eventHook;
+    return this.eventHookApi.createEventHook(params);
   }
 
   /**
@@ -2368,7 +2642,9 @@ class GeneratedApiClient {
     if (!eventHookId) {
       return Promise.reject(new Error('OKTA API deleteEventHook parameter eventHookId is required.'));
     }
-    return this.eventHookApi.deleteEventHook(eventHookId);
+    const params = {};
+    params.eventHookId = eventHookId;
+    return this.eventHookApi.deleteEventHook(params);
   }
 
   /**
@@ -2382,7 +2658,9 @@ class GeneratedApiClient {
     if (!eventHookId) {
       return Promise.reject(new Error('OKTA API getEventHook parameter eventHookId is required.'));
     }
-    return this.eventHookApi.getEventHook(eventHookId);
+    const params = {};
+    params.eventHookId = eventHookId;
+    return this.eventHookApi.getEventHook(params);
   }
 
   /**
@@ -2400,7 +2678,10 @@ class GeneratedApiClient {
     if (!eventHook) {
       return Promise.reject(new Error('OKTA API updateEventHook parameter eventHook is required.'));
     }
-    return this.eventHookApi.updateEventHook(eventHookId, eventHook);
+    const params = {};
+    params.eventHookId = eventHookId;
+    params.eventHook = eventHook;
+    return this.eventHookApi.updateEventHook(params);
   }
 
   /**
@@ -2414,7 +2695,9 @@ class GeneratedApiClient {
     if (!eventHookId) {
       return Promise.reject(new Error('OKTA API activateEventHook parameter eventHookId is required.'));
     }
-    return this.eventHookApi.activateEventHook(eventHookId);
+    const params = {};
+    params.eventHookId = eventHookId;
+    return this.eventHookApi.activateEventHook(params);
   }
 
   /**
@@ -2428,7 +2711,9 @@ class GeneratedApiClient {
     if (!eventHookId) {
       return Promise.reject(new Error('OKTA API deactivateEventHook parameter eventHookId is required.'));
     }
-    return this.eventHookApi.deactivateEventHook(eventHookId);
+    const params = {};
+    params.eventHookId = eventHookId;
+    return this.eventHookApi.deactivateEventHook(params);
   }
 
   /**
@@ -2442,7 +2727,9 @@ class GeneratedApiClient {
     if (!eventHookId) {
       return Promise.reject(new Error('OKTA API verifyEventHook parameter eventHookId is required.'));
     }
-    return this.eventHookApi.verifyEventHook(eventHookId);
+    const params = {};
+    params.eventHookId = eventHookId;
+    return this.eventHookApi.verifyEventHook(params);
   }
 
   /**
@@ -2452,7 +2739,8 @@ class GeneratedApiClient {
    * @returns {Collection} A collection that will yield {@link Feature} instances.
    */
   listFeatures() {
-    return this.featureApi.listFeatures();
+    const params = {};
+    return this.featureApi.listFeatures(params);
   }
 
   /**
@@ -2466,7 +2754,9 @@ class GeneratedApiClient {
     if (!featureId) {
       return Promise.reject(new Error('OKTA API getFeature parameter featureId is required.'));
     }
-    return this.featureApi.getFeature(featureId);
+    const params = {};
+    params.featureId = featureId;
+    return this.featureApi.getFeature(params);
   }
 
   /**
@@ -2480,7 +2770,9 @@ class GeneratedApiClient {
     if (!featureId) {
       return Promise.reject(new Error('OKTA API listFeatureDependencies parameter featureId is required.'));
     }
-    return this.featureApi.listFeatureDependencies(featureId);
+    const params = {};
+    params.featureId = featureId;
+    return this.featureApi.listFeatureDependencies(params);
   }
 
   /**
@@ -2494,7 +2786,9 @@ class GeneratedApiClient {
     if (!featureId) {
       return Promise.reject(new Error('OKTA API listFeatureDependents parameter featureId is required.'));
     }
-    return this.featureApi.listFeatureDependents(featureId);
+    const params = {};
+    params.featureId = featureId;
+    return this.featureApi.listFeatureDependents(params);
   }
 
   /**
@@ -2514,11 +2808,13 @@ class GeneratedApiClient {
     if (!lifecycle) {
       return Promise.reject(new Error('OKTA API updateFeatureLifecycle parameter lifecycle is required.'));
     }
-    let mode;
+    const params = {};
+    params.featureId = featureId;
+    params.lifecycle = lifecycle;
     if (queryParameters) {
-      mode = queryParameters.mode;
+      params.mode = queryParameters.mode;
     }
-    return this.featureApi.updateFeatureLifecycle(featureId, lifecycle, mode);
+    return this.featureApi.updateFeatureLifecycle(params);
   }
 
   /**
@@ -2535,21 +2831,16 @@ class GeneratedApiClient {
    * @returns {Collection} A collection that will yield {@link Group} instances.
    */
   listGroups(queryParameters) {
-    let q;
-    let filter;
-    let after;
-    let limit;
-    let expand;
-    let search;
+    const params = {};
     if (queryParameters) {
-      q = queryParameters.q;
-      filter = queryParameters.filter;
-      after = queryParameters.after;
-      limit = queryParameters.limit;
-      expand = queryParameters.expand;
-      search = queryParameters.search;
+      params.q = queryParameters.q;
+      params.filter = queryParameters.filter;
+      params.after = queryParameters.after;
+      params.limit = queryParameters.limit;
+      params.expand = queryParameters.expand;
+      params.search = queryParameters.search;
     }
-    return this.groupApi.listGroups(q, filter, after, limit, expand, search);
+    return this.groupApi.listGroups(params);
   }
 
   /**
@@ -2563,7 +2854,9 @@ class GeneratedApiClient {
     if (!group) {
       return Promise.reject(new Error('OKTA API createGroup parameter group is required.'));
     }
-    return this.groupApi.createGroup(group);
+    const params = {};
+    params.group = group;
+    return this.groupApi.createGroup(params);
   }
 
   /**
@@ -2578,17 +2871,14 @@ class GeneratedApiClient {
    * @returns {Collection} A collection that will yield {@link GroupRule} instances.
    */
   listGroupRules(queryParameters) {
-    let limit;
-    let after;
-    let search;
-    let expand;
+    const params = {};
     if (queryParameters) {
-      limit = queryParameters.limit;
-      after = queryParameters.after;
-      search = queryParameters.search;
-      expand = queryParameters.expand;
+      params.limit = queryParameters.limit;
+      params.after = queryParameters.after;
+      params.search = queryParameters.search;
+      params.expand = queryParameters.expand;
     }
-    return this.groupApi.listGroupRules(limit, after, search, expand);
+    return this.groupApi.listGroupRules(params);
   }
 
   /**
@@ -2602,7 +2892,9 @@ class GeneratedApiClient {
     if (!groupRule) {
       return Promise.reject(new Error('OKTA API createGroupRule parameter groupRule is required.'));
     }
-    return this.groupApi.createGroupRule(groupRule);
+    const params = {};
+    params.groupRule = groupRule;
+    return this.groupApi.createGroupRule(params);
   }
 
   /**
@@ -2617,11 +2909,12 @@ class GeneratedApiClient {
     if (!ruleId) {
       return Promise.reject(new Error('OKTA API deleteGroupRule parameter ruleId is required.'));
     }
-    let removeUsers;
+    const params = {};
+    params.ruleId = ruleId;
     if (queryParameters) {
-      removeUsers = queryParameters.removeUsers;
+      params.removeUsers = queryParameters.removeUsers;
     }
-    return this.groupApi.deleteGroupRule(ruleId, removeUsers);
+    return this.groupApi.deleteGroupRule(params);
   }
 
   /**
@@ -2637,11 +2930,12 @@ class GeneratedApiClient {
     if (!ruleId) {
       return Promise.reject(new Error('OKTA API getGroupRule parameter ruleId is required.'));
     }
-    let expand;
+    const params = {};
+    params.ruleId = ruleId;
     if (queryParameters) {
-      expand = queryParameters.expand;
+      params.expand = queryParameters.expand;
     }
-    return this.groupApi.getGroupRule(ruleId, expand);
+    return this.groupApi.getGroupRule(params);
   }
 
   /**
@@ -2659,7 +2953,10 @@ class GeneratedApiClient {
     if (!groupRule) {
       return Promise.reject(new Error('OKTA API updateGroupRule parameter groupRule is required.'));
     }
-    return this.groupApi.updateGroupRule(ruleId, groupRule);
+    const params = {};
+    params.ruleId = ruleId;
+    params.groupRule = groupRule;
+    return this.groupApi.updateGroupRule(params);
   }
 
   /**
@@ -2672,7 +2969,9 @@ class GeneratedApiClient {
     if (!ruleId) {
       return Promise.reject(new Error('OKTA API activateGroupRule parameter ruleId is required.'));
     }
-    return this.groupApi.activateGroupRule(ruleId);
+    const params = {};
+    params.ruleId = ruleId;
+    return this.groupApi.activateGroupRule(params);
   }
 
   /**
@@ -2685,7 +2984,9 @@ class GeneratedApiClient {
     if (!ruleId) {
       return Promise.reject(new Error('OKTA API deactivateGroupRule parameter ruleId is required.'));
     }
-    return this.groupApi.deactivateGroupRule(ruleId);
+    const params = {};
+    params.ruleId = ruleId;
+    return this.groupApi.deactivateGroupRule(params);
   }
 
   /**
@@ -2698,7 +2999,9 @@ class GeneratedApiClient {
     if (!groupId) {
       return Promise.reject(new Error('OKTA API deleteGroup parameter groupId is required.'));
     }
-    return this.groupApi.deleteGroup(groupId);
+    const params = {};
+    params.groupId = groupId;
+    return this.groupApi.deleteGroup(params);
   }
 
   /**
@@ -2712,7 +3015,9 @@ class GeneratedApiClient {
     if (!groupId) {
       return Promise.reject(new Error('OKTA API getGroup parameter groupId is required.'));
     }
-    return this.groupApi.getGroup(groupId);
+    const params = {};
+    params.groupId = groupId;
+    return this.groupApi.getGroup(params);
   }
 
   /**
@@ -2730,7 +3035,10 @@ class GeneratedApiClient {
     if (!group) {
       return Promise.reject(new Error('OKTA API updateGroup parameter group is required.'));
     }
-    return this.groupApi.updateGroup(groupId, group);
+    const params = {};
+    params.groupId = groupId;
+    params.group = group;
+    return this.groupApi.updateGroup(params);
   }
 
   /**
@@ -2747,13 +3055,13 @@ class GeneratedApiClient {
     if (!groupId) {
       return Promise.reject(new Error('OKTA API listAssignedApplicationsForGroup parameter groupId is required.'));
     }
-    let after;
-    let limit;
+    const params = {};
+    params.groupId = groupId;
     if (queryParameters) {
-      after = queryParameters.after;
-      limit = queryParameters.limit;
+      params.after = queryParameters.after;
+      params.limit = queryParameters.limit;
     }
-    return this.groupApi.listAssignedApplicationsForGroup(groupId, after, limit);
+    return this.groupApi.listAssignedApplicationsForGroup(params);
   }
 
   /**
@@ -2769,11 +3077,12 @@ class GeneratedApiClient {
     if (!groupId) {
       return Promise.reject(new Error('OKTA API listGroupAssignedRoles parameter groupId is required.'));
     }
-    let expand;
+    const params = {};
+    params.groupId = groupId;
     if (queryParameters) {
-      expand = queryParameters.expand;
+      params.expand = queryParameters.expand;
     }
-    return this.groupApi.listGroupAssignedRoles(groupId, expand);
+    return this.groupApi.listGroupAssignedRoles(params);
   }
 
   /**
@@ -2793,11 +3102,13 @@ class GeneratedApiClient {
     if (!assignRoleRequest) {
       return Promise.reject(new Error('OKTA API assignRoleToGroup parameter assignRoleRequest is required.'));
     }
-    let disableNotifications;
+    const params = {};
+    params.groupId = groupId;
+    params.assignRoleRequest = assignRoleRequest;
     if (queryParameters) {
-      disableNotifications = queryParameters.disableNotifications;
+      params.disableNotifications = queryParameters.disableNotifications;
     }
-    return this.groupApi.assignRoleToGroup(groupId, assignRoleRequest, disableNotifications);
+    return this.groupApi.assignRoleToGroup(params);
   }
 
   /**
@@ -2814,7 +3125,10 @@ class GeneratedApiClient {
     if (!roleId) {
       return Promise.reject(new Error('OKTA API removeRoleFromGroup parameter roleId is required.'));
     }
-    return this.groupApi.removeRoleFromGroup(groupId, roleId);
+    const params = {};
+    params.groupId = groupId;
+    params.roleId = roleId;
+    return this.groupApi.removeRoleFromGroup(params);
   }
 
   /**
@@ -2832,7 +3146,10 @@ class GeneratedApiClient {
     if (!roleId) {
       return Promise.reject(new Error('OKTA API getRole parameter roleId is required.'));
     }
-    return this.groupApi.getRole(groupId, roleId);
+    const params = {};
+    params.groupId = groupId;
+    params.roleId = roleId;
+    return this.groupApi.getRole(params);
   }
 
   /**
@@ -2853,13 +3170,14 @@ class GeneratedApiClient {
     if (!roleId) {
       return Promise.reject(new Error('OKTA API listApplicationTargetsForApplicationAdministratorRoleForGroup parameter roleId is required.'));
     }
-    let after;
-    let limit;
+    const params = {};
+    params.groupId = groupId;
+    params.roleId = roleId;
     if (queryParameters) {
-      after = queryParameters.after;
-      limit = queryParameters.limit;
+      params.after = queryParameters.after;
+      params.limit = queryParameters.limit;
     }
-    return this.groupApi.listApplicationTargetsForApplicationAdministratorRoleForGroup(groupId, roleId, after, limit);
+    return this.groupApi.listApplicationTargetsForApplicationAdministratorRoleForGroup(params);
   }
 
   /**
@@ -2880,7 +3198,11 @@ class GeneratedApiClient {
     if (!appName) {
       return Promise.reject(new Error('OKTA API removeApplicationTargetFromApplicationAdministratorRoleGivenToGroup parameter appName is required.'));
     }
-    return this.groupApi.removeApplicationTargetFromApplicationAdministratorRoleGivenToGroup(groupId, roleId, appName);
+    const params = {};
+    params.groupId = groupId;
+    params.roleId = roleId;
+    params.appName = appName;
+    return this.groupApi.removeApplicationTargetFromApplicationAdministratorRoleGivenToGroup(params);
   }
 
   /**
@@ -2901,7 +3223,11 @@ class GeneratedApiClient {
     if (!appName) {
       return Promise.reject(new Error('OKTA API addApplicationTargetToAdminRoleGivenToGroup parameter appName is required.'));
     }
-    return this.groupApi.addApplicationTargetToAdminRoleGivenToGroup(groupId, roleId, appName);
+    const params = {};
+    params.groupId = groupId;
+    params.roleId = roleId;
+    params.appName = appName;
+    return this.groupApi.addApplicationTargetToAdminRoleGivenToGroup(params);
   }
 
   /**
@@ -2926,7 +3252,12 @@ class GeneratedApiClient {
     if (!applicationId) {
       return Promise.reject(new Error('OKTA API removeApplicationTargetFromAdministratorRoleGivenToGroup parameter applicationId is required.'));
     }
-    return this.groupApi.removeApplicationTargetFromAdministratorRoleGivenToGroup(groupId, roleId, appName, applicationId);
+    const params = {};
+    params.groupId = groupId;
+    params.roleId = roleId;
+    params.appName = appName;
+    params.applicationId = applicationId;
+    return this.groupApi.removeApplicationTargetFromAdministratorRoleGivenToGroup(params);
   }
 
   /**
@@ -2951,7 +3282,12 @@ class GeneratedApiClient {
     if (!applicationId) {
       return Promise.reject(new Error('OKTA API addApplicationInstanceTargetToAppAdminRoleGivenToGroup parameter applicationId is required.'));
     }
-    return this.groupApi.addApplicationInstanceTargetToAppAdminRoleGivenToGroup(groupId, roleId, appName, applicationId);
+    const params = {};
+    params.groupId = groupId;
+    params.roleId = roleId;
+    params.appName = appName;
+    params.applicationId = applicationId;
+    return this.groupApi.addApplicationInstanceTargetToAppAdminRoleGivenToGroup(params);
   }
 
   /**
@@ -2972,13 +3308,14 @@ class GeneratedApiClient {
     if (!roleId) {
       return Promise.reject(new Error('OKTA API listGroupTargetsForGroupRole parameter roleId is required.'));
     }
-    let after;
-    let limit;
+    const params = {};
+    params.groupId = groupId;
+    params.roleId = roleId;
     if (queryParameters) {
-      after = queryParameters.after;
-      limit = queryParameters.limit;
+      params.after = queryParameters.after;
+      params.limit = queryParameters.limit;
     }
-    return this.groupApi.listGroupTargetsForGroupRole(groupId, roleId, after, limit);
+    return this.groupApi.listGroupTargetsForGroupRole(params);
   }
 
   /**
@@ -2999,7 +3336,11 @@ class GeneratedApiClient {
     if (!targetGroupId) {
       return Promise.reject(new Error('OKTA API removeGroupTargetFromGroupAdministratorRoleGivenToGroup parameter targetGroupId is required.'));
     }
-    return this.groupApi.removeGroupTargetFromGroupAdministratorRoleGivenToGroup(groupId, roleId, targetGroupId);
+    const params = {};
+    params.groupId = groupId;
+    params.roleId = roleId;
+    params.targetGroupId = targetGroupId;
+    return this.groupApi.removeGroupTargetFromGroupAdministratorRoleGivenToGroup(params);
   }
 
   /**
@@ -3020,7 +3361,11 @@ class GeneratedApiClient {
     if (!targetGroupId) {
       return Promise.reject(new Error('OKTA API addGroupTargetToGroupAdministratorRoleForGroup parameter targetGroupId is required.'));
     }
-    return this.groupApi.addGroupTargetToGroupAdministratorRoleForGroup(groupId, roleId, targetGroupId);
+    const params = {};
+    params.groupId = groupId;
+    params.roleId = roleId;
+    params.targetGroupId = targetGroupId;
+    return this.groupApi.addGroupTargetToGroupAdministratorRoleForGroup(params);
   }
 
   /**
@@ -3037,13 +3382,13 @@ class GeneratedApiClient {
     if (!groupId) {
       return Promise.reject(new Error('OKTA API listGroupUsers parameter groupId is required.'));
     }
-    let after;
-    let limit;
+    const params = {};
+    params.groupId = groupId;
     if (queryParameters) {
-      after = queryParameters.after;
-      limit = queryParameters.limit;
+      params.after = queryParameters.after;
+      params.limit = queryParameters.limit;
     }
-    return this.groupApi.listGroupUsers(groupId, after, limit);
+    return this.groupApi.listGroupUsers(params);
   }
 
   /**
@@ -3060,7 +3405,10 @@ class GeneratedApiClient {
     if (!userId) {
       return Promise.reject(new Error('OKTA API removeUserFromGroup parameter userId is required.'));
     }
-    return this.groupApi.removeUserFromGroup(groupId, userId);
+    const params = {};
+    params.groupId = groupId;
+    params.userId = userId;
+    return this.groupApi.removeUserFromGroup(params);
   }
 
   /**
@@ -3077,7 +3425,10 @@ class GeneratedApiClient {
     if (!userId) {
       return Promise.reject(new Error('OKTA API addUserToGroup parameter userId is required.'));
     }
-    return this.groupApi.addUserToGroup(groupId, userId);
+    const params = {};
+    params.groupId = groupId;
+    params.userId = userId;
+    return this.groupApi.addUserToGroup(params);
   }
 
   /**
@@ -3092,17 +3443,14 @@ class GeneratedApiClient {
    * @returns {Collection} A collection that will yield {@link IdentityProvider} instances.
    */
   listIdentityProviders(queryParameters) {
-    let q;
-    let after;
-    let limit;
-    let type;
+    const params = {};
     if (queryParameters) {
-      q = queryParameters.q;
-      after = queryParameters.after;
-      limit = queryParameters.limit;
-      type = queryParameters.type;
+      params.q = queryParameters.q;
+      params.after = queryParameters.after;
+      params.limit = queryParameters.limit;
+      params.type = queryParameters.type;
     }
-    return this.identityProviderApi.listIdentityProviders(q, after, limit, type);
+    return this.identityProviderApi.listIdentityProviders(params);
   }
 
   /**
@@ -3116,7 +3464,9 @@ class GeneratedApiClient {
     if (!identityProvider) {
       return Promise.reject(new Error('OKTA API createIdentityProvider parameter identityProvider is required.'));
     }
-    return this.identityProviderApi.createIdentityProvider(identityProvider);
+    const params = {};
+    params.identityProvider = identityProvider;
+    return this.identityProviderApi.createIdentityProvider(params);
   }
 
   /**
@@ -3129,13 +3479,12 @@ class GeneratedApiClient {
    * @returns {Collection} A collection that will yield {@link JsonWebKey} instances.
    */
   listIdentityProviderKeys(queryParameters) {
-    let after;
-    let limit;
+    const params = {};
     if (queryParameters) {
-      after = queryParameters.after;
-      limit = queryParameters.limit;
+      params.after = queryParameters.after;
+      params.limit = queryParameters.limit;
     }
-    return this.identityProviderApi.listIdentityProviderKeys(after, limit);
+    return this.identityProviderApi.listIdentityProviderKeys(params);
   }
 
   /**
@@ -3149,7 +3498,9 @@ class GeneratedApiClient {
     if (!jsonWebKey) {
       return Promise.reject(new Error('OKTA API createIdentityProviderKey parameter jsonWebKey is required.'));
     }
-    return this.identityProviderApi.createIdentityProviderKey(jsonWebKey);
+    const params = {};
+    params.jsonWebKey = jsonWebKey;
+    return this.identityProviderApi.createIdentityProviderKey(params);
   }
 
   /**
@@ -3162,7 +3513,9 @@ class GeneratedApiClient {
     if (!keyId) {
       return Promise.reject(new Error('OKTA API deleteIdentityProviderKey parameter keyId is required.'));
     }
-    return this.identityProviderApi.deleteIdentityProviderKey(keyId);
+    const params = {};
+    params.keyId = keyId;
+    return this.identityProviderApi.deleteIdentityProviderKey(params);
   }
 
   /**
@@ -3176,7 +3529,9 @@ class GeneratedApiClient {
     if (!keyId) {
       return Promise.reject(new Error('OKTA API getIdentityProviderKey parameter keyId is required.'));
     }
-    return this.identityProviderApi.getIdentityProviderKey(keyId);
+    const params = {};
+    params.keyId = keyId;
+    return this.identityProviderApi.getIdentityProviderKey(params);
   }
 
   /**
@@ -3189,7 +3544,9 @@ class GeneratedApiClient {
     if (!idpId) {
       return Promise.reject(new Error('OKTA API deleteIdentityProvider parameter idpId is required.'));
     }
-    return this.identityProviderApi.deleteIdentityProvider(idpId);
+    const params = {};
+    params.idpId = idpId;
+    return this.identityProviderApi.deleteIdentityProvider(params);
   }
 
   /**
@@ -3203,7 +3560,9 @@ class GeneratedApiClient {
     if (!idpId) {
       return Promise.reject(new Error('OKTA API getIdentityProvider parameter idpId is required.'));
     }
-    return this.identityProviderApi.getIdentityProvider(idpId);
+    const params = {};
+    params.idpId = idpId;
+    return this.identityProviderApi.getIdentityProvider(params);
   }
 
   /**
@@ -3221,7 +3580,10 @@ class GeneratedApiClient {
     if (!identityProvider) {
       return Promise.reject(new Error('OKTA API updateIdentityProvider parameter identityProvider is required.'));
     }
-    return this.identityProviderApi.updateIdentityProvider(idpId, identityProvider);
+    const params = {};
+    params.idpId = idpId;
+    params.identityProvider = identityProvider;
+    return this.identityProviderApi.updateIdentityProvider(params);
   }
 
   /**
@@ -3235,7 +3597,9 @@ class GeneratedApiClient {
     if (!idpId) {
       return Promise.reject(new Error('OKTA API listCsrsForIdentityProvider parameter idpId is required.'));
     }
-    return this.identityProviderApi.listCsrsForIdentityProvider(idpId);
+    const params = {};
+    params.idpId = idpId;
+    return this.identityProviderApi.listCsrsForIdentityProvider(params);
   }
 
   /**
@@ -3253,7 +3617,10 @@ class GeneratedApiClient {
     if (!csrMetadata) {
       return Promise.reject(new Error('OKTA API generateCsrForIdentityProvider parameter csrMetadata is required.'));
     }
-    return this.identityProviderApi.generateCsrForIdentityProvider(idpId, csrMetadata);
+    const params = {};
+    params.idpId = idpId;
+    params.csrMetadata = csrMetadata;
+    return this.identityProviderApi.generateCsrForIdentityProvider(params);
   }
 
   /**
@@ -3270,7 +3637,10 @@ class GeneratedApiClient {
     if (!csrId) {
       return Promise.reject(new Error('OKTA API revokeCsrForIdentityProvider parameter csrId is required.'));
     }
-    return this.identityProviderApi.revokeCsrForIdentityProvider(idpId, csrId);
+    const params = {};
+    params.idpId = idpId;
+    params.csrId = csrId;
+    return this.identityProviderApi.revokeCsrForIdentityProvider(params);
   }
 
   /**
@@ -3288,7 +3658,10 @@ class GeneratedApiClient {
     if (!csrId) {
       return Promise.reject(new Error('OKTA API getCsrForIdentityProvider parameter csrId is required.'));
     }
-    return this.identityProviderApi.getCsrForIdentityProvider(idpId, csrId);
+    const params = {};
+    params.idpId = idpId;
+    params.csrId = csrId;
+    return this.identityProviderApi.getCsrForIdentityProvider(params);
   }
 
   /**
@@ -3310,7 +3683,11 @@ class GeneratedApiClient {
     if (!certificate) {
       return Promise.reject(new Error('OKTA API publishCerCertForIdentityProvider parameter certificate is required.'));
     }
-    return this.identityProviderApi.publishCsrForIdentityProvider(idpId, csrId, certificate);
+    const params = {};
+    params.idpId = idpId;
+    params.csrId = csrId;
+    params.certificate = certificate;
+    return this.identityProviderApi.publishCsrForIdentityProvider(params);
   }
 
   /**
@@ -3480,7 +3857,9 @@ class GeneratedApiClient {
     if (!idpId) {
       return Promise.reject(new Error('OKTA API listIdentityProviderSigningKeys parameter idpId is required.'));
     }
-    return this.identityProviderApi.listIdentityProviderSigningKeys(idpId);
+    const params = {};
+    params.idpId = idpId;
+    return this.identityProviderApi.listIdentityProviderSigningKeys(params);
   }
 
   /**
@@ -3499,11 +3878,13 @@ class GeneratedApiClient {
     if (!queryParameters) {
       return Promise.reject(new Error('OKTA API generateIdentityProviderSigningKey parameter queryParameters is required.'));
     }
-    let validityYears;
+    const params = {};
+    params.idpId = idpId;
+    params.queryParameters = queryParameters;
     if (queryParameters) {
-      validityYears = queryParameters.validityYears;
+      params.validityYears = queryParameters.validityYears;
     }
-    return this.identityProviderApi.generateIdentityProviderSigningKey(idpId, validityYears);
+    return this.identityProviderApi.generateIdentityProviderSigningKey(params);
   }
 
   /**
@@ -3521,7 +3902,10 @@ class GeneratedApiClient {
     if (!keyId) {
       return Promise.reject(new Error('OKTA API getIdentityProviderSigningKey parameter keyId is required.'));
     }
-    return this.identityProviderApi.getIdentityProviderSigningKey(idpId, keyId);
+    const params = {};
+    params.idpId = idpId;
+    params.keyId = keyId;
+    return this.identityProviderApi.getIdentityProviderSigningKey(params);
   }
 
   /**
@@ -3544,11 +3928,14 @@ class GeneratedApiClient {
     if (!queryParameters) {
       return Promise.reject(new Error('OKTA API cloneIdentityProviderKey parameter queryParameters is required.'));
     }
-    let targetIdpId;
+    const params = {};
+    params.idpId = idpId;
+    params.keyId = keyId;
+    params.queryParameters = queryParameters;
     if (queryParameters) {
-      targetIdpId = queryParameters.targetIdpId;
+      params.targetIdpId = queryParameters.targetIdpId;
     }
-    return this.identityProviderApi.cloneIdentityProviderKey(idpId, keyId, targetIdpId);
+    return this.identityProviderApi.cloneIdentityProviderKey(params);
   }
 
   /**
@@ -3562,7 +3949,9 @@ class GeneratedApiClient {
     if (!idpId) {
       return Promise.reject(new Error('OKTA API activateIdentityProvider parameter idpId is required.'));
     }
-    return this.identityProviderApi.activateIdentityProvider(idpId);
+    const params = {};
+    params.idpId = idpId;
+    return this.identityProviderApi.activateIdentityProvider(params);
   }
 
   /**
@@ -3576,7 +3965,9 @@ class GeneratedApiClient {
     if (!idpId) {
       return Promise.reject(new Error('OKTA API deactivateIdentityProvider parameter idpId is required.'));
     }
-    return this.identityProviderApi.deactivateIdentityProvider(idpId);
+    const params = {};
+    params.idpId = idpId;
+    return this.identityProviderApi.deactivateIdentityProvider(params);
   }
 
   /**
@@ -3590,7 +3981,9 @@ class GeneratedApiClient {
     if (!idpId) {
       return Promise.reject(new Error('OKTA API listIdentityProviderApplicationUsers parameter idpId is required.'));
     }
-    return this.identityProviderApi.listIdentityProviderApplicationUsers(idpId);
+    const params = {};
+    params.idpId = idpId;
+    return this.identityProviderApi.listIdentityProviderApplicationUsers(params);
   }
 
   /**
@@ -3607,7 +4000,10 @@ class GeneratedApiClient {
     if (!userId) {
       return Promise.reject(new Error('OKTA API unlinkUserFromIdentityProvider parameter userId is required.'));
     }
-    return this.identityProviderApi.unlinkUserFromIdentityProvider(idpId, userId);
+    const params = {};
+    params.idpId = idpId;
+    params.userId = userId;
+    return this.identityProviderApi.unlinkUserFromIdentityProvider(params);
   }
 
   /**
@@ -3625,7 +4021,10 @@ class GeneratedApiClient {
     if (!userId) {
       return Promise.reject(new Error('OKTA API getIdentityProviderApplicationUser parameter userId is required.'));
     }
-    return this.identityProviderApi.getIdentityProviderApplicationUser(idpId, userId);
+    const params = {};
+    params.idpId = idpId;
+    params.userId = userId;
+    return this.identityProviderApi.getIdentityProviderApplicationUser(params);
   }
 
   /**
@@ -3647,7 +4046,11 @@ class GeneratedApiClient {
     if (!userIdentityProviderLinkRequest) {
       return Promise.reject(new Error('OKTA API linkUserToIdentityProvider parameter userIdentityProviderLinkRequest is required.'));
     }
-    return this.identityProviderApi.linkUserToIdentityProvider(idpId, userId, userIdentityProviderLinkRequest);
+    const params = {};
+    params.idpId = idpId;
+    params.userId = userId;
+    params.userIdentityProviderLinkRequest = userIdentityProviderLinkRequest;
+    return this.identityProviderApi.linkUserToIdentityProvider(params);
   }
 
   /**
@@ -3665,7 +4068,10 @@ class GeneratedApiClient {
     if (!userId) {
       return Promise.reject(new Error('OKTA API listSocialAuthTokens parameter userId is required.'));
     }
-    return this.identityProviderApi.listSocialAuthTokens(idpId, userId);
+    const params = {};
+    params.idpId = idpId;
+    params.userId = userId;
+    return this.identityProviderApi.listSocialAuthTokens(params);
   }
 
   /**
@@ -3677,11 +4083,11 @@ class GeneratedApiClient {
    * @returns {Collection} A collection that will yield {@link InlineHook} instances.
    */
   listInlineHooks(queryParameters) {
-    let type;
+    const params = {};
     if (queryParameters) {
-      type = queryParameters.type;
+      params.type = queryParameters.type;
     }
-    return this.inlineHookApi.listInlineHooks(type);
+    return this.inlineHookApi.listInlineHooks(params);
   }
 
   /**
@@ -3695,7 +4101,9 @@ class GeneratedApiClient {
     if (!inlineHook) {
       return Promise.reject(new Error('OKTA API createInlineHook parameter inlineHook is required.'));
     }
-    return this.inlineHookApi.createInlineHook(inlineHook);
+    const params = {};
+    params.inlineHook = inlineHook;
+    return this.inlineHookApi.createInlineHook(params);
   }
 
   /**
@@ -3708,7 +4116,9 @@ class GeneratedApiClient {
     if (!inlineHookId) {
       return Promise.reject(new Error('OKTA API deleteInlineHook parameter inlineHookId is required.'));
     }
-    return this.inlineHookApi.deleteInlineHook(inlineHookId);
+    const params = {};
+    params.inlineHookId = inlineHookId;
+    return this.inlineHookApi.deleteInlineHook(params);
   }
 
   /**
@@ -3722,7 +4132,9 @@ class GeneratedApiClient {
     if (!inlineHookId) {
       return Promise.reject(new Error('OKTA API getInlineHook parameter inlineHookId is required.'));
     }
-    return this.inlineHookApi.getInlineHook(inlineHookId);
+    const params = {};
+    params.inlineHookId = inlineHookId;
+    return this.inlineHookApi.getInlineHook(params);
   }
 
   /**
@@ -3740,7 +4152,10 @@ class GeneratedApiClient {
     if (!inlineHook) {
       return Promise.reject(new Error('OKTA API updateInlineHook parameter inlineHook is required.'));
     }
-    return this.inlineHookApi.updateInlineHook(inlineHookId, inlineHook);
+    const params = {};
+    params.inlineHookId = inlineHookId;
+    params.inlineHook = inlineHook;
+    return this.inlineHookApi.updateInlineHook(params);
   }
 
   /**
@@ -3758,7 +4173,10 @@ class GeneratedApiClient {
     if (!inlineHookPayload) {
       return Promise.reject(new Error('OKTA API executeInlineHook parameter inlineHookPayload is required.'));
     }
-    return this.inlineHookApi.executeInlineHook(inlineHookId, inlineHookPayload);
+    const params = {};
+    params.inlineHookId = inlineHookId;
+    params.inlineHookPayload = inlineHookPayload;
+    return this.inlineHookApi.executeInlineHook(params);
   }
 
   /**
@@ -3772,7 +4190,9 @@ class GeneratedApiClient {
     if (!inlineHookId) {
       return Promise.reject(new Error('OKTA API activateInlineHook parameter inlineHookId is required.'));
     }
-    return this.inlineHookApi.activateInlineHook(inlineHookId);
+    const params = {};
+    params.inlineHookId = inlineHookId;
+    return this.inlineHookApi.activateInlineHook(params);
   }
 
   /**
@@ -3786,7 +4206,9 @@ class GeneratedApiClient {
     if (!inlineHookId) {
       return Promise.reject(new Error('OKTA API deactivateInlineHook parameter inlineHookId is required.'));
     }
-    return this.inlineHookApi.deactivateInlineHook(inlineHookId);
+    const params = {};
+    params.inlineHookId = inlineHookId;
+    return this.inlineHookApi.deactivateInlineHook(params);
   }
 
   /**
@@ -3804,23 +4226,17 @@ class GeneratedApiClient {
    * @returns {Collection} A collection that will yield {@link LogEvent} instances.
    */
   getLogs(queryParameters) {
-    let since;
-    let until;
-    let filter;
-    let q;
-    let limit;
-    let sortOrder;
-    let after;
+    const params = {};
     if (queryParameters) {
-      since = queryParameters.since;
-      until = queryParameters.until;
-      filter = queryParameters.filter;
-      q = queryParameters.q;
-      limit = queryParameters.limit;
-      sortOrder = queryParameters.sortOrder;
-      after = queryParameters.after;
+      params.since = queryParameters.since;
+      params.until = queryParameters.until;
+      params.filter = queryParameters.filter;
+      params.q = queryParameters.q;
+      params.limit = queryParameters.limit;
+      params.sortOrder = queryParameters.sortOrder;
+      params.after = queryParameters.after;
     }
-    return this.systemLogApi.getLogs(since, until, filter, q, limit, sortOrder, after);
+    return this.systemLogApi.getLogs(params);
   }
 
   /**
@@ -3835,17 +4251,14 @@ class GeneratedApiClient {
    * @returns {Collection} A collection that will yield {@link ProfileMapping} instances.
    */
   listProfileMappings(queryParameters) {
-    let after;
-    let limit;
-    let sourceId;
-    let targetId;
+    const params = {};
     if (queryParameters) {
-      after = queryParameters.after;
-      limit = queryParameters.limit;
-      sourceId = queryParameters.sourceId;
-      targetId = queryParameters.targetId;
+      params.after = queryParameters.after;
+      params.limit = queryParameters.limit;
+      params.sourceId = queryParameters.sourceId;
+      params.targetId = queryParameters.targetId;
     }
-    return this.profileMappingApi.listProfileMappings(after, limit, sourceId, targetId);
+    return this.profileMappingApi.listProfileMappings(params);
   }
 
   /**
@@ -3859,7 +4272,9 @@ class GeneratedApiClient {
     if (!mappingId) {
       return Promise.reject(new Error('OKTA API getProfileMapping parameter mappingId is required.'));
     }
-    return this.profileMappingApi.getProfileMapping(mappingId);
+    const params = {};
+    params.mappingId = mappingId;
+    return this.profileMappingApi.getProfileMapping(params);
   }
 
   /**
@@ -3877,7 +4292,10 @@ class GeneratedApiClient {
     if (!profileMapping) {
       return Promise.reject(new Error('OKTA API updateProfileMapping parameter profileMapping is required.'));
     }
-    return this.profileMappingApi.updateProfileMapping(mappingId, profileMapping);
+    const params = {};
+    params.mappingId = mappingId;
+    params.profileMapping = profileMapping;
+    return this.profileMappingApi.updateProfileMapping(params);
   }
 
   /**
@@ -3891,7 +4309,9 @@ class GeneratedApiClient {
     if (!appInstanceId) {
       return Promise.reject(new Error('OKTA API getApplicationUserSchema parameter appInstanceId is required.'));
     }
-    return this.schemaApi.getApplicationUserSchema(appInstanceId);
+    const params = {};
+    params.appInstanceId = appInstanceId;
+    return this.schemaApi.getApplicationUserSchema(params);
   }
 
   /**
@@ -3906,7 +4326,9 @@ class GeneratedApiClient {
     if (!appInstanceId) {
       return Promise.reject(new Error('OKTA API updateApplicationUserProfile parameter appInstanceId is required.'));
     }
-    return this.schemaApi.updateApplicationUserProfile(appInstanceId, userSchema);
+    const params = {};
+    params.appInstanceId = appInstanceId;
+    return this.schemaApi.updateApplicationUserProfile(params);
   }
 
   /**
@@ -3916,7 +4338,8 @@ class GeneratedApiClient {
    * @returns {Promise<GroupSchema>}
    */
   getGroupSchema() {
-    return this.schemaApi.getGroupSchema();
+    const params = {};
+    return this.schemaApi.getGroupSchema(params);
   }
 
   /**
@@ -3927,7 +4350,8 @@ class GeneratedApiClient {
    * @returns {Promise<GroupSchema>}
    */
   updateGroupSchema(groupSchema) {
-    return this.schemaApi.updateGroupSchema(groupSchema);
+    const params = {};
+    return this.schemaApi.updateGroupSchema(params);
   }
 
   /**
@@ -3937,7 +4361,8 @@ class GeneratedApiClient {
    * @returns {Collection} A collection that will yield {@link LinkedObject} instances.
    */
   listLinkedObjectDefinitions() {
-    return this.linkedObjectApi.listLinkedObjectDefinitions();
+    const params = {};
+    return this.linkedObjectApi.listLinkedObjectDefinitions(params);
   }
 
   /**
@@ -3951,7 +4376,9 @@ class GeneratedApiClient {
     if (!linkedObject) {
       return Promise.reject(new Error('OKTA API addLinkedObjectDefinition parameter linkedObject is required.'));
     }
-    return this.linkedObjectApi.addLinkedObjectDefinition(linkedObject);
+    const params = {};
+    params.linkedObject = linkedObject;
+    return this.linkedObjectApi.addLinkedObjectDefinition(params);
   }
 
   /**
@@ -3964,7 +4391,9 @@ class GeneratedApiClient {
     if (!linkedObjectName) {
       return Promise.reject(new Error('OKTA API deleteLinkedObjectDefinition parameter linkedObjectName is required.'));
     }
-    return this.linkedObjectApi.deleteLinkedObjectDefinition(linkedObjectName);
+    const params = {};
+    params.linkedObjectName = linkedObjectName;
+    return this.linkedObjectApi.deleteLinkedObjectDefinition(params);
   }
 
   /**
@@ -3978,7 +4407,9 @@ class GeneratedApiClient {
     if (!linkedObjectName) {
       return Promise.reject(new Error('OKTA API getLinkedObjectDefinition parameter linkedObjectName is required.'));
     }
-    return this.linkedObjectApi.getLinkedObjectDefinition(linkedObjectName);
+    const params = {};
+    params.linkedObjectName = linkedObjectName;
+    return this.linkedObjectApi.getLinkedObjectDefinition(params);
   }
 
   /**
@@ -3992,7 +4423,9 @@ class GeneratedApiClient {
     if (!schemaId) {
       return Promise.reject(new Error('OKTA API getUserSchema parameter schemaId is required.'));
     }
-    return this.schemaApi.getUserSchema(schemaId);
+    const params = {};
+    params.schemaId = schemaId;
+    return this.schemaApi.getUserSchema(params);
   }
 
   /**
@@ -4010,7 +4443,10 @@ class GeneratedApiClient {
     if (!userSchema) {
       return Promise.reject(new Error('OKTA API updateUserProfile parameter userSchema is required.'));
     }
-    return this.schemaApi.updateUserProfile(schemaId, userSchema);
+    const params = {};
+    params.schemaId = schemaId;
+    params.userSchema = userSchema;
+    return this.schemaApi.updateUserProfile(params);
   }
 
   /**
@@ -4020,7 +4456,8 @@ class GeneratedApiClient {
    * @returns {Collection} A collection that will yield {@link UserType} instances.
    */
   listUserTypes() {
-    return this.userTypeApi.listUserTypes();
+    const params = {};
+    return this.userTypeApi.listUserTypes(params);
   }
 
   /**
@@ -4034,7 +4471,9 @@ class GeneratedApiClient {
     if (!userType) {
       return Promise.reject(new Error('OKTA API createUserType parameter userType is required.'));
     }
-    return this.userTypeApi.createUserType(userType);
+    const params = {};
+    params.userType = userType;
+    return this.userTypeApi.createUserType(params);
   }
 
   /**
@@ -4047,7 +4486,9 @@ class GeneratedApiClient {
     if (!typeId) {
       return Promise.reject(new Error('OKTA API deleteUserType parameter typeId is required.'));
     }
-    return this.userTypeApi.deleteUserType(typeId);
+    const params = {};
+    params.typeId = typeId;
+    return this.userTypeApi.deleteUserType(params);
   }
 
   /**
@@ -4061,7 +4502,9 @@ class GeneratedApiClient {
     if (!typeId) {
       return Promise.reject(new Error('OKTA API getUserType parameter typeId is required.'));
     }
-    return this.userTypeApi.getUserType(typeId);
+    const params = {};
+    params.typeId = typeId;
+    return this.userTypeApi.getUserType(params);
   }
 
   /**
@@ -4079,7 +4522,10 @@ class GeneratedApiClient {
     if (!userType) {
       return Promise.reject(new Error('OKTA API updateUserType parameter userType is required.'));
     }
-    return this.userTypeApi.updateUserType(typeId, userType);
+    const params = {};
+    params.typeId = typeId;
+    params.userType = userType;
+    return this.userTypeApi.updateUserType(params);
   }
 
   /**
@@ -4097,7 +4543,10 @@ class GeneratedApiClient {
     if (!userType) {
       return Promise.reject(new Error('OKTA API replaceUserType parameter userType is required.'));
     }
-    return this.userTypeApi.replaceUserType(typeId, userType);
+    const params = {};
+    params.typeId = typeId;
+    params.userType = userType;
+    return this.userTypeApi.replaceUserType(params);
   }
 
   /**
@@ -4107,7 +4556,8 @@ class GeneratedApiClient {
    * @returns {Promise<OrgSetting>}
    */
   getOrgSettings() {
-    return this.orgSettingApi.getOrgSettings();
+    const params = {};
+    return this.orgSettingApi.getOrgSettings(params);
   }
 
   /**
@@ -4121,7 +4571,9 @@ class GeneratedApiClient {
     if (!orgSetting) {
       return Promise.reject(new Error('OKTA API partialUpdateOrgSetting parameter orgSetting is required.'));
     }
-    return this.orgSettingApi.partialUpdateOrgSetting(orgSetting);
+    const params = {};
+    params.orgSetting = orgSetting;
+    return this.orgSettingApi.partialUpdateOrgSetting(params);
   }
 
   /**
@@ -4135,7 +4587,9 @@ class GeneratedApiClient {
     if (!orgSetting) {
       return Promise.reject(new Error('OKTA API updateOrgSetting parameter orgSetting is required.'));
     }
-    return this.orgSettingApi.updateOrgSetting(orgSetting);
+    const params = {};
+    params.orgSetting = orgSetting;
+    return this.orgSettingApi.updateOrgSetting(params);
   }
 
   /**
@@ -4145,7 +4599,8 @@ class GeneratedApiClient {
    * @returns {Collection} A collection that will yield {@link OrgContactTypeObj} instances.
    */
   getOrgContactTypes() {
-    return this.orgSettingApi.getOrgContactTypes();
+    const params = {};
+    return this.orgSettingApi.getOrgContactTypes(params);
   }
 
   /**
@@ -4159,7 +4614,9 @@ class GeneratedApiClient {
     if (!contactType) {
       return Promise.reject(new Error('OKTA API getOrgContactUser parameter contactType is required.'));
     }
-    return this.orgSettingApi.getOrgContactUser(contactType);
+    const params = {};
+    params.contactType = contactType;
+    return this.orgSettingApi.getOrgContactUser(params);
   }
 
   /**
@@ -4177,7 +4634,10 @@ class GeneratedApiClient {
     if (!orgContactUser) {
       return Promise.reject(new Error('OKTA API updateOrgContactUser parameter orgContactUser is required.'));
     }
-    return this.orgSettingApi.updateOrgContactUser(contactType, orgContactUser);
+    const params = {};
+    params.contactType = contactType;
+    params.orgContactUser = orgContactUser;
+    return this.orgSettingApi.updateOrgContactUser(params);
   }
 
   /**
@@ -4187,7 +4647,8 @@ class GeneratedApiClient {
    * Updates the logo for your organization.
    */
   updateOrgLogo(file) {
-    return this.orgSettingApi.updateOrgLogo(file);
+    const params = {};
+    return this.orgSettingApi.updateOrgLogo(params);
   }
 
   /**
@@ -4197,7 +4658,8 @@ class GeneratedApiClient {
    * @returns {Promise<OrgPreferences>}
    */
   getOrgPreferences() {
-    return this.orgSettingApi.getOrgPreferences();
+    const params = {};
+    return this.orgSettingApi.getOrgPreferences(params);
   }
 
   /**
@@ -4207,7 +4669,8 @@ class GeneratedApiClient {
    * @returns {Promise<OrgPreferences>}
    */
   hideOktaUIFooter() {
-    return this.orgSettingApi.hideOktaUIFooter();
+    const params = {};
+    return this.orgSettingApi.hideOktaUIFooter(params);
   }
 
   /**
@@ -4217,7 +4680,8 @@ class GeneratedApiClient {
    * @returns {Promise<OrgPreferences>}
    */
   showOktaUIFooter() {
-    return this.orgSettingApi.showOktaUIFooter();
+    const params = {};
+    return this.orgSettingApi.showOktaUIFooter(params);
   }
 
   /**
@@ -4227,7 +4691,8 @@ class GeneratedApiClient {
    * @returns {Promise<OrgOktaCommunicationSetting>}
    */
   getOktaCommunicationSettings() {
-    return this.orgSettingApi.getOktaCommunicationSettings();
+    const params = {};
+    return this.orgSettingApi.getOktaCommunicationSettings(params);
   }
 
   /**
@@ -4237,7 +4702,8 @@ class GeneratedApiClient {
    * @returns {Promise<OrgOktaCommunicationSetting>}
    */
   optInUsersToOktaCommunicationEmails() {
-    return this.orgSettingApi.optInUsersToOktaCommunicationEmails();
+    const params = {};
+    return this.orgSettingApi.optInUsersToOktaCommunicationEmails(params);
   }
 
   /**
@@ -4247,7 +4713,8 @@ class GeneratedApiClient {
    * @returns {Promise<OrgOktaCommunicationSetting>}
    */
   optOutUsersFromOktaCommunicationEmails() {
-    return this.orgSettingApi.optOutUsersFromOktaCommunicationEmails();
+    const params = {};
+    return this.orgSettingApi.optOutUsersFromOktaCommunicationEmails(params);
   }
 
   /**
@@ -4257,7 +4724,8 @@ class GeneratedApiClient {
    * @returns {Promise<OrgOktaSupportSettingsObj>}
    */
   getOrgOktaSupportSettings() {
-    return this.orgSettingApi.getOrgOktaSupportSettings();
+    const params = {};
+    return this.orgSettingApi.getOrgOktaSupportSettings(params);
   }
 
   /**
@@ -4267,7 +4735,8 @@ class GeneratedApiClient {
    * @returns {Promise<OrgOktaSupportSettingsObj>}
    */
   extendOktaSupport() {
-    return this.orgSettingApi.extendOktaSupport();
+    const params = {};
+    return this.orgSettingApi.extendOktaSupport(params);
   }
 
   /**
@@ -4277,7 +4746,8 @@ class GeneratedApiClient {
    * @returns {Promise<OrgOktaSupportSettingsObj>}
    */
   grantOktaSupport() {
-    return this.orgSettingApi.grantOktaSupport();
+    const params = {};
+    return this.orgSettingApi.grantOktaSupport(params);
   }
 
   /**
@@ -4287,7 +4757,8 @@ class GeneratedApiClient {
    * @returns {Promise<OrgOktaSupportSettingsObj>}
    */
   revokeOktaSupport() {
-    return this.orgSettingApi.revokeOktaSupport();
+    const params = {};
+    return this.orgSettingApi.revokeOktaSupport(params);
   }
 
   /**
@@ -4662,7 +5133,9 @@ class GeneratedApiClient {
     if (!createSessionRequest) {
       return Promise.reject(new Error('OKTA API createSession parameter createSessionRequest is required.'));
     }
-    return this.sessionApi.createSession(createSessionRequest);
+    const params = {};
+    params.createSessionRequest = createSessionRequest;
+    return this.sessionApi.createSession(params);
   }
 
   /**
@@ -4675,7 +5148,9 @@ class GeneratedApiClient {
     if (!sessionId) {
       return Promise.reject(new Error('OKTA API endSession parameter sessionId is required.'));
     }
-    return this.sessionApi.endSession(sessionId);
+    const params = {};
+    params.sessionId = sessionId;
+    return this.sessionApi.endSession(params);
   }
 
   /**
@@ -4689,7 +5164,9 @@ class GeneratedApiClient {
     if (!sessionId) {
       return Promise.reject(new Error('OKTA API getSession parameter sessionId is required.'));
     }
-    return this.sessionApi.getSession(sessionId);
+    const params = {};
+    params.sessionId = sessionId;
+    return this.sessionApi.getSession(params);
   }
 
   /**
@@ -4703,7 +5180,9 @@ class GeneratedApiClient {
     if (!sessionId) {
       return Promise.reject(new Error('OKTA API refreshSession parameter sessionId is required.'));
     }
-    return this.sessionApi.refreshSession(sessionId);
+    const params = {};
+    params.sessionId = sessionId;
+    return this.sessionApi.refreshSession(params);
   }
 
   /**
@@ -4715,11 +5194,11 @@ class GeneratedApiClient {
    * @returns {Collection} A collection that will yield {@link SmsTemplate} instances.
    */
   listSmsTemplates(queryParameters) {
-    let templateType;
+    const params = {};
     if (queryParameters) {
-      templateType = queryParameters.templateType;
+      params.templateType = queryParameters.templateType;
     }
-    return this.templateApi.listSmsTemplates(templateType);
+    return this.templateApi.listSmsTemplates(params);
   }
 
   /**
@@ -4733,7 +5212,9 @@ class GeneratedApiClient {
     if (!smsTemplate) {
       return Promise.reject(new Error('OKTA API createSmsTemplate parameter smsTemplate is required.'));
     }
-    return this.templateApi.createSmsTemplate(smsTemplate);
+    const params = {};
+    params.smsTemplate = smsTemplate;
+    return this.templateApi.createSmsTemplate(params);
   }
 
   /**
@@ -4746,7 +5227,9 @@ class GeneratedApiClient {
     if (!templateId) {
       return Promise.reject(new Error('OKTA API deleteSmsTemplate parameter templateId is required.'));
     }
-    return this.templateApi.deleteSmsTemplate(templateId);
+    const params = {};
+    params.templateId = templateId;
+    return this.templateApi.deleteSmsTemplate(params);
   }
 
   /**
@@ -4760,7 +5243,9 @@ class GeneratedApiClient {
     if (!templateId) {
       return Promise.reject(new Error('OKTA API getSmsTemplate parameter templateId is required.'));
     }
-    return this.templateApi.getSmsTemplate(templateId);
+    const params = {};
+    params.templateId = templateId;
+    return this.templateApi.getSmsTemplate(params);
   }
 
   /**
@@ -4778,7 +5263,10 @@ class GeneratedApiClient {
     if (!smsTemplate) {
       return Promise.reject(new Error('OKTA API partialUpdateSmsTemplate parameter smsTemplate is required.'));
     }
-    return this.templateApi.partialUpdateSmsTemplate(templateId, smsTemplate);
+    const params = {};
+    params.templateId = templateId;
+    params.smsTemplate = smsTemplate;
+    return this.templateApi.partialUpdateSmsTemplate(params);
   }
 
   /**
@@ -4796,7 +5284,10 @@ class GeneratedApiClient {
     if (!smsTemplate) {
       return Promise.reject(new Error('OKTA API updateSmsTemplate parameter smsTemplate is required.'));
     }
-    return this.templateApi.updateSmsTemplate(templateId, smsTemplate);
+    const params = {};
+    params.templateId = templateId;
+    params.smsTemplate = smsTemplate;
+    return this.templateApi.updateSmsTemplate(params);
   }
 
   /**
@@ -4806,7 +5297,8 @@ class GeneratedApiClient {
    * @returns {Promise<ThreatInsightConfiguration>}
    */
   getCurrentConfiguration() {
-    return this.threatInsightApi.getCurrentConfiguration();
+    const params = {};
+    return this.threatInsightApi.getCurrentConfiguration(params);
   }
 
   /**
@@ -4820,7 +5312,9 @@ class GeneratedApiClient {
     if (!threatInsightConfiguration) {
       return Promise.reject(new Error('OKTA API updateConfiguration parameter threatInsightConfiguration is required.'));
     }
-    return this.threatInsightApi.updateConfiguration(threatInsightConfiguration);
+    const params = {};
+    params.threatInsightConfiguration = threatInsightConfiguration;
+    return this.threatInsightApi.updateConfiguration(params);
   }
 
   /**
@@ -4835,17 +5329,14 @@ class GeneratedApiClient {
    * @returns {Collection} A collection that will yield {@link TrustedOrigin} instances.
    */
   listOrigins(queryParameters) {
-    let q;
-    let filter;
-    let after;
-    let limit;
+    const params = {};
     if (queryParameters) {
-      q = queryParameters.q;
-      filter = queryParameters.filter;
-      after = queryParameters.after;
-      limit = queryParameters.limit;
+      params.q = queryParameters.q;
+      params.filter = queryParameters.filter;
+      params.after = queryParameters.after;
+      params.limit = queryParameters.limit;
     }
-    return this.trustedOriginApi.listOrigins(q, filter, after, limit);
+    return this.trustedOriginApi.listOrigins(params);
   }
 
   /**
@@ -4859,7 +5350,9 @@ class GeneratedApiClient {
     if (!trustedOrigin) {
       return Promise.reject(new Error('OKTA API createOrigin parameter trustedOrigin is required.'));
     }
-    return this.trustedOriginApi.createOrigin(trustedOrigin);
+    const params = {};
+    params.trustedOrigin = trustedOrigin;
+    return this.trustedOriginApi.createOrigin(params);
   }
 
   /**
@@ -4872,7 +5365,9 @@ class GeneratedApiClient {
     if (!trustedOriginId) {
       return Promise.reject(new Error('OKTA API deleteOrigin parameter trustedOriginId is required.'));
     }
-    return this.trustedOriginApi.deleteOrigin(trustedOriginId);
+    const params = {};
+    params.trustedOriginId = trustedOriginId;
+    return this.trustedOriginApi.deleteOrigin(params);
   }
 
   /**
@@ -4886,7 +5381,9 @@ class GeneratedApiClient {
     if (!trustedOriginId) {
       return Promise.reject(new Error('OKTA API getOrigin parameter trustedOriginId is required.'));
     }
-    return this.trustedOriginApi.getOrigin(trustedOriginId);
+    const params = {};
+    params.trustedOriginId = trustedOriginId;
+    return this.trustedOriginApi.getOrigin(params);
   }
 
   /**
@@ -4904,7 +5401,10 @@ class GeneratedApiClient {
     if (!trustedOrigin) {
       return Promise.reject(new Error('OKTA API updateOrigin parameter trustedOrigin is required.'));
     }
-    return this.trustedOriginApi.updateOrigin(trustedOriginId, trustedOrigin);
+    const params = {};
+    params.trustedOriginId = trustedOriginId;
+    params.trustedOrigin = trustedOrigin;
+    return this.trustedOriginApi.updateOrigin(params);
   }
 
   /**
@@ -4918,7 +5418,9 @@ class GeneratedApiClient {
     if (!trustedOriginId) {
       return Promise.reject(new Error('OKTA API activateOrigin parameter trustedOriginId is required.'));
     }
-    return this.trustedOriginApi.activateOrigin(trustedOriginId);
+    const params = {};
+    params.trustedOriginId = trustedOriginId;
+    return this.trustedOriginApi.activateOrigin(params);
   }
 
   /**
@@ -4932,7 +5434,9 @@ class GeneratedApiClient {
     if (!trustedOriginId) {
       return Promise.reject(new Error('OKTA API deactivateOrigin parameter trustedOriginId is required.'));
     }
-    return this.trustedOriginApi.deactivateOrigin(trustedOriginId);
+    const params = {};
+    params.trustedOriginId = trustedOriginId;
+    return this.trustedOriginApi.deactivateOrigin(params);
   }
 
   /**
@@ -4950,23 +5454,17 @@ class GeneratedApiClient {
    * @returns {Collection} A collection that will yield {@link User} instances.
    */
   listUsers(queryParameters) {
-    let q;
-    let after;
-    let limit;
-    let filter;
-    let search;
-    let sortBy;
-    let sortOrder;
+    const params = {};
     if (queryParameters) {
-      q = queryParameters.q;
-      after = queryParameters.after;
-      limit = queryParameters.limit;
-      filter = queryParameters.filter;
-      search = queryParameters.search;
-      sortBy = queryParameters.sortBy;
-      sortOrder = queryParameters.sortOrder;
+      params.q = queryParameters.q;
+      params.after = queryParameters.after;
+      params.limit = queryParameters.limit;
+      params.filter = queryParameters.filter;
+      params.search = queryParameters.search;
+      params.sortBy = queryParameters.sortBy;
+      params.sortOrder = queryParameters.sortOrder;
     }
-    return this.userApi.listUsers(q, after, limit, filter, search, sortBy, sortOrder);
+    return this.userApi.listUsers(params);
   }
 
   /**
@@ -4984,15 +5482,14 @@ class GeneratedApiClient {
     if (!createUserRequest) {
       return Promise.reject(new Error('OKTA API createUser parameter createUserRequest is required.'));
     }
-    let activate;
-    let provider;
-    let nextLogin;
+    const params = {};
+    params.createUserRequest = createUserRequest;
     if (queryParameters) {
-      activate = queryParameters.activate;
-      provider = queryParameters.provider;
-      nextLogin = queryParameters.nextLogin;
+      params.activate = queryParameters.activate;
+      params.provider = queryParameters.provider;
+      params.nextLogin = queryParameters.nextLogin;
     }
-    return this.userApi.createUser(createUserRequest, activate, provider, nextLogin);
+    return this.userApi.createUser(params);
   }
 
   /**
@@ -5013,7 +5510,11 @@ class GeneratedApiClient {
     if (!primaryUserId) {
       return Promise.reject(new Error('OKTA API setLinkedObjectForUser parameter primaryUserId is required.'));
     }
-    return this.userApi.setLinkedObjectForUser(associatedUserId, primaryRelationshipName, primaryUserId);
+    const params = {};
+    params.associatedUserId = associatedUserId;
+    params.primaryRelationshipName = primaryRelationshipName;
+    params.primaryUserId = primaryUserId;
+    return this.userApi.setLinkedObjectForUser(params);
   }
 
   /**
@@ -5028,11 +5529,12 @@ class GeneratedApiClient {
     if (!userId) {
       return Promise.reject(new Error('OKTA API deactivateOrDeleteUser parameter userId is required.'));
     }
-    let sendEmail;
+    const params = {};
+    params.userId = userId;
     if (queryParameters) {
-      sendEmail = queryParameters.sendEmail;
+      params.sendEmail = queryParameters.sendEmail;
     }
-    return this.userApi.deactivateOrDeleteUser(userId, sendEmail);
+    return this.userApi.deactivateOrDeleteUser(params);
   }
 
   /**
@@ -5046,7 +5548,9 @@ class GeneratedApiClient {
     if (!userId) {
       return Promise.reject(new Error('OKTA API getUser parameter userId is required.'));
     }
-    return this.userApi.getUser(userId);
+    const params = {};
+    params.userId = userId;
+    return this.userApi.getUser(params);
   }
 
   /**
@@ -5066,11 +5570,13 @@ class GeneratedApiClient {
     if (!user) {
       return Promise.reject(new Error('OKTA API partialUpdateUser parameter user is required.'));
     }
-    let strict;
+    const params = {};
+    params.userId = userId;
+    params.user = user;
     if (queryParameters) {
-      strict = queryParameters.strict;
+      params.strict = queryParameters.strict;
     }
-    return this.userApi.partialUpdateUser(userId, user, strict);
+    return this.userApi.partialUpdateUser(params);
   }
 
   /**
@@ -5090,11 +5596,13 @@ class GeneratedApiClient {
     if (!user) {
       return Promise.reject(new Error('OKTA API updateUser parameter user is required.'));
     }
-    let strict;
+    const params = {};
+    params.userId = userId;
+    params.user = user;
     if (queryParameters) {
-      strict = queryParameters.strict;
+      params.strict = queryParameters.strict;
     }
-    return this.userApi.updateUser(userId, user, strict);
+    return this.userApi.updateUser(params);
   }
 
   /**
@@ -5108,7 +5616,9 @@ class GeneratedApiClient {
     if (!userId) {
       return Promise.reject(new Error('OKTA API listAppLinks parameter userId is required.'));
     }
-    return this.userApi.listAppLinks(userId);
+    const params = {};
+    params.userId = userId;
+    return this.userApi.listAppLinks(params);
   }
 
   /**
@@ -5122,7 +5632,9 @@ class GeneratedApiClient {
     if (!userId) {
       return Promise.reject(new Error('OKTA API listUserClients parameter userId is required.'));
     }
-    return this.userApi.listUserClients(userId);
+    const params = {};
+    params.userId = userId;
+    return this.userApi.listUserClients(params);
   }
 
   /**
@@ -5139,7 +5651,10 @@ class GeneratedApiClient {
     if (!clientId) {
       return Promise.reject(new Error('OKTA API revokeGrantsForUserAndClient parameter clientId is required.'));
     }
-    return this.userApi.revokeGrantsForUserAndClient(userId, clientId);
+    const params = {};
+    params.userId = userId;
+    params.clientId = clientId;
+    return this.userApi.revokeGrantsForUserAndClient(params);
   }
 
   /**
@@ -5161,15 +5676,15 @@ class GeneratedApiClient {
     if (!clientId) {
       return Promise.reject(new Error('OKTA API listGrantsForUserAndClient parameter clientId is required.'));
     }
-    let expand;
-    let after;
-    let limit;
+    const params = {};
+    params.userId = userId;
+    params.clientId = clientId;
     if (queryParameters) {
-      expand = queryParameters.expand;
-      after = queryParameters.after;
-      limit = queryParameters.limit;
+      params.expand = queryParameters.expand;
+      params.after = queryParameters.after;
+      params.limit = queryParameters.limit;
     }
-    return this.userApi.listGrantsForUserAndClient(userId, clientId, expand, after, limit);
+    return this.userApi.listGrantsForUserAndClient(params);
   }
 
   /**
@@ -5186,7 +5701,10 @@ class GeneratedApiClient {
     if (!clientId) {
       return Promise.reject(new Error('OKTA API revokeTokensForUserAndClient parameter clientId is required.'));
     }
-    return this.userApi.revokeTokensForUserAndClient(userId, clientId);
+    const params = {};
+    params.userId = userId;
+    params.clientId = clientId;
+    return this.userApi.revokeTokensForUserAndClient(params);
   }
 
   /**
@@ -5208,15 +5726,15 @@ class GeneratedApiClient {
     if (!clientId) {
       return Promise.reject(new Error('OKTA API listRefreshTokensForUserAndClient parameter clientId is required.'));
     }
-    let expand;
-    let after;
-    let limit;
+    const params = {};
+    params.userId = userId;
+    params.clientId = clientId;
     if (queryParameters) {
-      expand = queryParameters.expand;
-      after = queryParameters.after;
-      limit = queryParameters.limit;
+      params.expand = queryParameters.expand;
+      params.after = queryParameters.after;
+      params.limit = queryParameters.limit;
     }
-    return this.userApi.listRefreshTokensForUserAndClient(userId, clientId, expand, after, limit);
+    return this.userApi.listRefreshTokensForUserAndClient(params);
   }
 
   /**
@@ -5237,7 +5755,11 @@ class GeneratedApiClient {
     if (!tokenId) {
       return Promise.reject(new Error('OKTA API revokeTokenForUserAndClient parameter tokenId is required.'));
     }
-    return this.userApi.revokeTokenForUserAndClient(userId, clientId, tokenId);
+    const params = {};
+    params.userId = userId;
+    params.clientId = clientId;
+    params.tokenId = tokenId;
+    return this.userApi.revokeTokenForUserAndClient(params);
   }
 
   /**
@@ -5263,15 +5785,16 @@ class GeneratedApiClient {
     if (!tokenId) {
       return Promise.reject(new Error('OKTA API getRefreshTokenForUserAndClient parameter tokenId is required.'));
     }
-    let expand;
-    let limit;
-    let after;
+    const params = {};
+    params.userId = userId;
+    params.clientId = clientId;
+    params.tokenId = tokenId;
     if (queryParameters) {
-      expand = queryParameters.expand;
-      limit = queryParameters.limit;
-      after = queryParameters.after;
+      params.expand = queryParameters.expand;
+      params.limit = queryParameters.limit;
+      params.after = queryParameters.after;
     }
-    return this.userApi.getRefreshTokenForUserAndClient(userId, clientId, tokenId, expand, limit, after);
+    return this.userApi.getRefreshTokenForUserAndClient(params);
   }
 
   /**
@@ -5291,11 +5814,13 @@ class GeneratedApiClient {
     if (!changePasswordRequest) {
       return Promise.reject(new Error('OKTA API changePassword parameter changePasswordRequest is required.'));
     }
-    let strict;
+    const params = {};
+    params.userId = userId;
+    params.changePasswordRequest = changePasswordRequest;
     if (queryParameters) {
-      strict = queryParameters.strict;
+      params.strict = queryParameters.strict;
     }
-    return this.userApi.changePassword(userId, changePasswordRequest, strict);
+    return this.userApi.changePassword(params);
   }
 
   /**
@@ -5313,7 +5838,10 @@ class GeneratedApiClient {
     if (!userCredentials) {
       return Promise.reject(new Error('OKTA API changeRecoveryQuestion parameter userCredentials is required.'));
     }
-    return this.userApi.changeRecoveryQuestion(userId, userCredentials);
+    const params = {};
+    params.userId = userId;
+    params.userCredentials = userCredentials;
+    return this.userApi.changeRecoveryQuestion(params);
   }
 
   /**
@@ -5363,11 +5891,13 @@ class GeneratedApiClient {
     if (!userCredentials) {
       return Promise.reject(new Error('OKTA API forgotPasswordSetNewPassword parameter userCredentials is required.'));
     }
-    let sendEmail;
+    const params = {};
+    params.userId = userId;
+    params.userCredentials = userCredentials;
     if (queryParameters) {
-      sendEmail = queryParameters.sendEmail;
+      params.sendEmail = queryParameters.sendEmail;
     }
-    return this.userApi.forgotPasswordSetNewPassword(userId, userCredentials, sendEmail);
+    return this.userApi.forgotPasswordSetNewPassword(params);
   }
 
   /**
@@ -5381,7 +5911,9 @@ class GeneratedApiClient {
     if (!userId) {
       return Promise.reject(new Error('OKTA API listFactors parameter userId is required.'));
     }
-    return this.userFactorApi.listFactors(userId);
+    const params = {};
+    params.userId = userId;
+    return this.userFactorApi.listFactors(params);
   }
 
   /**
@@ -5404,17 +5936,16 @@ class GeneratedApiClient {
     if (!userFactor) {
       return Promise.reject(new Error('OKTA API enrollFactor parameter userFactor is required.'));
     }
-    let updatePhone;
-    let templateId;
-    let tokenLifetimeSeconds;
-    let activate;
+    const params = {};
+    params.userId = userId;
+    params.userFactor = userFactor;
     if (queryParameters) {
-      updatePhone = queryParameters.updatePhone;
-      templateId = queryParameters.templateId;
-      tokenLifetimeSeconds = queryParameters.tokenLifetimeSeconds;
-      activate = queryParameters.activate;
+      params.updatePhone = queryParameters.updatePhone;
+      params.templateId = queryParameters.templateId;
+      params.tokenLifetimeSeconds = queryParameters.tokenLifetimeSeconds;
+      params.activate = queryParameters.activate;
     }
-    return this.userFactorApi.enrollFactor(userId, userFactor, updatePhone, templateId, tokenLifetimeSeconds, activate);
+    return this.userFactorApi.enrollFactor(params);
   }
 
   /**
@@ -5428,7 +5959,9 @@ class GeneratedApiClient {
     if (!userId) {
       return Promise.reject(new Error('OKTA API listSupportedFactors parameter userId is required.'));
     }
-    return this.userFactorApi.listSupportedFactors(userId);
+    const params = {};
+    params.userId = userId;
+    return this.userFactorApi.listSupportedFactors(params);
   }
 
   /**
@@ -5442,7 +5975,9 @@ class GeneratedApiClient {
     if (!userId) {
       return Promise.reject(new Error('OKTA API listSupportedSecurityQuestions parameter userId is required.'));
     }
-    return this.userFactorApi.listSupportedSecurityQuestions(userId);
+    const params = {};
+    params.userId = userId;
+    return this.userFactorApi.listSupportedSecurityQuestions(params);
   }
 
   /**
@@ -5459,7 +5994,10 @@ class GeneratedApiClient {
     if (!factorId) {
       return Promise.reject(new Error('OKTA API deleteFactor parameter factorId is required.'));
     }
-    return this.userFactorApi.deleteFactor(userId, factorId);
+    const params = {};
+    params.userId = userId;
+    params.factorId = factorId;
+    return this.userFactorApi.deleteFactor(params);
   }
 
   /**
@@ -5477,7 +6015,10 @@ class GeneratedApiClient {
     if (!factorId) {
       return Promise.reject(new Error('OKTA API getFactor parameter factorId is required.'));
     }
-    return this.userFactorApi.getFactor(userId, factorId);
+    const params = {};
+    params.userId = userId;
+    params.factorId = factorId;
+    return this.userFactorApi.getFactor(params);
   }
 
   /**
@@ -5496,7 +6037,10 @@ class GeneratedApiClient {
     if (!factorId) {
       return Promise.reject(new Error('OKTA API activateFactor parameter factorId is required.'));
     }
-    return this.userFactorApi.activateFactor(userId, factorId, activateFactorRequest);
+    const params = {};
+    params.userId = userId;
+    params.factorId = factorId;
+    return this.userFactorApi.activateFactor(params);
   }
 
   /**
@@ -5518,7 +6062,11 @@ class GeneratedApiClient {
     if (!transactionId) {
       return Promise.reject(new Error('OKTA API getFactorTransactionStatus parameter transactionId is required.'));
     }
-    return this.userFactorApi.getFactorTransactionStatus(userId, factorId, transactionId);
+    const params = {};
+    params.userId = userId;
+    params.factorId = factorId;
+    params.transactionId = transactionId;
+    return this.userFactorApi.getFactorTransactionStatus(params);
   }
 
   /**
@@ -5540,21 +6088,20 @@ class GeneratedApiClient {
     if (!factorId) {
       return Promise.reject(new Error('OKTA API verifyFactor parameter factorId is required.'));
     }
-    let templateId;
-    let tokenLifetimeSeconds;
+    const params = {};
+    params.userId = userId;
+    params.factorId = factorId;
     if (queryParameters) {
-      templateId = queryParameters.templateId;
-      tokenLifetimeSeconds = queryParameters.tokenLifetimeSeconds;
+      params.templateId = queryParameters.templateId;
+      params.tokenLifetimeSeconds = queryParameters.tokenLifetimeSeconds;
     }
-    let X_Forwarded_For;
-    let User_Agent;
-    let Accept_Language;
     if (headerParameters) {
-      X_Forwarded_For = headerParameters.X_Forwarded_For;
-      User_Agent = headerParameters.User_Agent;
-      Accept_Language = headerParameters.Accept_Language;
+      params.X_Forwarded_For = headerParameters.X_Forwarded_For;
+      params.User_Agent = headerParameters.User_Agent;
+      params.Accept_Language = headerParameters.Accept_Language;
     }
-    return this.userFactorApi.verifyFactor(userId, factorId, templateId, tokenLifetimeSeconds, X_Forwarded_For, User_Agent, Accept_Language, verifyFactorRequest);
+    params.body = verifyFactorRequest;
+    return this.userFactorApi.verifyFactor(params);
   }
 
   /**
@@ -5567,7 +6114,9 @@ class GeneratedApiClient {
     if (!userId) {
       return Promise.reject(new Error('OKTA API revokeUserGrants parameter userId is required.'));
     }
-    return this.userApi.revokeUserGrants(userId);
+    const params = {};
+    params.userId = userId;
+    return this.userApi.revokeUserGrants(params);
   }
 
   /**
@@ -5586,17 +6135,15 @@ class GeneratedApiClient {
     if (!userId) {
       return Promise.reject(new Error('OKTA API listUserGrants parameter userId is required.'));
     }
-    let scopeId;
-    let expand;
-    let after;
-    let limit;
+    const params = {};
+    params.userId = userId;
     if (queryParameters) {
-      scopeId = queryParameters.scopeId;
-      expand = queryParameters.expand;
-      after = queryParameters.after;
-      limit = queryParameters.limit;
+      params.scopeId = queryParameters.scopeId;
+      params.expand = queryParameters.expand;
+      params.after = queryParameters.after;
+      params.limit = queryParameters.limit;
     }
-    return this.userApi.listUserGrants(userId, scopeId, expand, after, limit);
+    return this.userApi.listUserGrants(params);
   }
 
   /**
@@ -5613,7 +6160,10 @@ class GeneratedApiClient {
     if (!grantId) {
       return Promise.reject(new Error('OKTA API revokeUserGrant parameter grantId is required.'));
     }
-    return this.userApi.revokeUserGrant(userId, grantId);
+    const params = {};
+    params.userId = userId;
+    params.grantId = grantId;
+    return this.userApi.revokeUserGrant(params);
   }
 
   /**
@@ -5633,11 +6183,13 @@ class GeneratedApiClient {
     if (!grantId) {
       return Promise.reject(new Error('OKTA API getUserGrant parameter grantId is required.'));
     }
-    let expand;
+    const params = {};
+    params.userId = userId;
+    params.grantId = grantId;
     if (queryParameters) {
-      expand = queryParameters.expand;
+      params.expand = queryParameters.expand;
     }
-    return this.userApi.getUserGrant(userId, grantId, expand);
+    return this.userApi.getUserGrant(params);
   }
 
   /**
@@ -5651,7 +6203,9 @@ class GeneratedApiClient {
     if (!userId) {
       return Promise.reject(new Error('OKTA API listUserGroups parameter userId is required.'));
     }
-    return this.userApi.listUserGroups(userId);
+    const params = {};
+    params.userId = userId;
+    return this.userApi.listUserGroups(params);
   }
 
   /**
@@ -5665,7 +6219,9 @@ class GeneratedApiClient {
     if (!userId) {
       return Promise.reject(new Error('OKTA API listUserIdentityProviders parameter userId is required.'));
     }
-    return this.userApi.listUserIdentityProviders(userId);
+    const params = {};
+    params.userId = userId;
+    return this.userApi.listUserIdentityProviders(params);
   }
 
   /**
@@ -5684,11 +6240,13 @@ class GeneratedApiClient {
     if (!queryParameters) {
       return Promise.reject(new Error('OKTA API activateUser parameter queryParameters is required.'));
     }
-    let sendEmail;
+    const params = {};
+    params.userId = userId;
+    params.queryParameters = queryParameters;
     if (queryParameters) {
-      sendEmail = queryParameters.sendEmail;
+      params.sendEmail = queryParameters.sendEmail;
     }
-    return this.userApi.activateUser(userId, sendEmail);
+    return this.userApi.activateUser(params);
   }
 
   /**
@@ -5703,11 +6261,12 @@ class GeneratedApiClient {
     if (!userId) {
       return Promise.reject(new Error('OKTA API deactivateUser parameter userId is required.'));
     }
-    let sendEmail;
+    const params = {};
+    params.userId = userId;
     if (queryParameters) {
-      sendEmail = queryParameters.sendEmail;
+      params.sendEmail = queryParameters.sendEmail;
     }
-    return this.userApi.deactivateUser(userId, sendEmail);
+    return this.userApi.deactivateUser(params);
   }
 
   /**
@@ -5721,7 +6280,9 @@ class GeneratedApiClient {
     if (!userId) {
       return Promise.reject(new Error('OKTA API expirePassword parameter userId is required.'));
     }
-    return this.userApi.expirePassword(userId);
+    const params = {};
+    params.userId = userId;
+    return this.userApi.expirePassword(params);
   }
 
   /**
@@ -5735,7 +6296,9 @@ class GeneratedApiClient {
     if (!userId) {
       return Promise.reject(new Error('OKTA API expirePasswordAndGetTemporaryPassword parameter userId is required.'));
     }
-    return this.userApi.expirePasswordAndGetTemporaryPassword(userId);
+    const params = {};
+    params.userId = userId;
+    return this.userApi.expirePasswordAndGetTemporaryPassword(params);
   }
 
   /**
@@ -5751,11 +6314,12 @@ class GeneratedApiClient {
     if (!userId) {
       return Promise.reject(new Error('OKTA API reactivateUser parameter userId is required.'));
     }
-    let sendEmail;
+    const params = {};
+    params.userId = userId;
     if (queryParameters) {
-      sendEmail = queryParameters.sendEmail;
+      params.sendEmail = queryParameters.sendEmail;
     }
-    return this.userApi.reactivateUser(userId, sendEmail);
+    return this.userApi.reactivateUser(params);
   }
 
   /**
@@ -5768,7 +6332,9 @@ class GeneratedApiClient {
     if (!userId) {
       return Promise.reject(new Error('OKTA API resetFactors parameter userId is required.'));
     }
-    return this.userApi.resetFactors(userId);
+    const params = {};
+    params.userId = userId;
+    return this.userApi.resetFactors(params);
   }
 
   /**
@@ -5787,11 +6353,13 @@ class GeneratedApiClient {
     if (!queryParameters) {
       return Promise.reject(new Error('OKTA API resetPassword parameter queryParameters is required.'));
     }
-    let sendEmail;
+    const params = {};
+    params.userId = userId;
+    params.queryParameters = queryParameters;
     if (queryParameters) {
-      sendEmail = queryParameters.sendEmail;
+      params.sendEmail = queryParameters.sendEmail;
     }
-    return this.userApi.resetPassword(userId, sendEmail);
+    return this.userApi.resetPassword(params);
   }
 
   /**
@@ -5804,7 +6372,9 @@ class GeneratedApiClient {
     if (!userId) {
       return Promise.reject(new Error('OKTA API suspendUser parameter userId is required.'));
     }
-    return this.userApi.suspendUser(userId);
+    const params = {};
+    params.userId = userId;
+    return this.userApi.suspendUser(params);
   }
 
   /**
@@ -5817,7 +6387,9 @@ class GeneratedApiClient {
     if (!userId) {
       return Promise.reject(new Error('OKTA API unlockUser parameter userId is required.'));
     }
-    return this.userApi.unlockUser(userId);
+    const params = {};
+    params.userId = userId;
+    return this.userApi.unlockUser(params);
   }
 
   /**
@@ -5830,7 +6402,9 @@ class GeneratedApiClient {
     if (!userId) {
       return Promise.reject(new Error('OKTA API unsuspendUser parameter userId is required.'));
     }
-    return this.userApi.unsuspendUser(userId);
+    const params = {};
+    params.userId = userId;
+    return this.userApi.unsuspendUser(params);
   }
 
   /**
@@ -5847,7 +6421,10 @@ class GeneratedApiClient {
     if (!relationshipName) {
       return Promise.reject(new Error('OKTA API removeLinkedObjectForUser parameter relationshipName is required.'));
     }
-    return this.userApi.removeLinkedObjectForUser(userId, relationshipName);
+    const params = {};
+    params.userId = userId;
+    params.relationshipName = relationshipName;
+    return this.userApi.removeLinkedObjectForUser(params);
   }
 
   /**
@@ -5868,13 +6445,14 @@ class GeneratedApiClient {
     if (!relationshipName) {
       return Promise.reject(new Error('OKTA API getLinkedObjectsForUser parameter relationshipName is required.'));
     }
-    let after;
-    let limit;
+    const params = {};
+    params.userId = userId;
+    params.relationshipName = relationshipName;
     if (queryParameters) {
-      after = queryParameters.after;
-      limit = queryParameters.limit;
+      params.after = queryParameters.after;
+      params.limit = queryParameters.limit;
     }
-    return this.userApi.getLinkedObjectsForUser(userId, relationshipName, after, limit);
+    return this.userApi.getLinkedObjectsForUser(params);
   }
 
   /**
@@ -5890,11 +6468,12 @@ class GeneratedApiClient {
     if (!userId) {
       return Promise.reject(new Error('OKTA API listAssignedRolesForUser parameter userId is required.'));
     }
-    let expand;
+    const params = {};
+    params.userId = userId;
     if (queryParameters) {
-      expand = queryParameters.expand;
+      params.expand = queryParameters.expand;
     }
-    return this.userApi.listAssignedRolesForUser(userId, expand);
+    return this.userApi.listAssignedRolesForUser(params);
   }
 
   /**
@@ -5914,11 +6493,13 @@ class GeneratedApiClient {
     if (!assignRoleRequest) {
       return Promise.reject(new Error('OKTA API assignRoleToUser parameter assignRoleRequest is required.'));
     }
-    let disableNotifications;
+    const params = {};
+    params.userId = userId;
+    params.assignRoleRequest = assignRoleRequest;
     if (queryParameters) {
-      disableNotifications = queryParameters.disableNotifications;
+      params.disableNotifications = queryParameters.disableNotifications;
     }
-    return this.userApi.assignRoleToUser(userId, assignRoleRequest, disableNotifications);
+    return this.userApi.assignRoleToUser(params);
   }
 
   /**
@@ -5935,7 +6516,10 @@ class GeneratedApiClient {
     if (!roleId) {
       return Promise.reject(new Error('OKTA API removeRoleFromUser parameter roleId is required.'));
     }
-    return this.userApi.removeRoleFromUser(userId, roleId);
+    const params = {};
+    params.userId = userId;
+    params.roleId = roleId;
+    return this.userApi.removeRoleFromUser(params);
   }
 
   /**
@@ -5953,7 +6537,10 @@ class GeneratedApiClient {
     if (!roleId) {
       return Promise.reject(new Error('OKTA API getUserRole parameter roleId is required.'));
     }
-    return this.userApi.getUserRole(userId, roleId);
+    const params = {};
+    params.userId = userId;
+    params.roleId = roleId;
+    return this.userApi.getUserRole(params);
   }
 
   /**
@@ -5974,13 +6561,14 @@ class GeneratedApiClient {
     if (!roleId) {
       return Promise.reject(new Error('OKTA API listApplicationTargetsForApplicationAdministratorRoleForUser parameter roleId is required.'));
     }
-    let after;
-    let limit;
+    const params = {};
+    params.userId = userId;
+    params.roleId = roleId;
     if (queryParameters) {
-      after = queryParameters.after;
-      limit = queryParameters.limit;
+      params.after = queryParameters.after;
+      params.limit = queryParameters.limit;
     }
-    return this.userApi.listApplicationTargetsForApplicationAdministratorRoleForUser(userId, roleId, after, limit);
+    return this.userApi.listApplicationTargetsForApplicationAdministratorRoleForUser(params);
   }
 
   /**
@@ -5997,7 +6585,10 @@ class GeneratedApiClient {
     if (!roleId) {
       return Promise.reject(new Error('OKTA API addAllAppsAsTargetToRole parameter roleId is required.'));
     }
-    return this.userApi.addAllAppsAsTargetToRole(userId, roleId);
+    const params = {};
+    params.userId = userId;
+    params.roleId = roleId;
+    return this.userApi.addAllAppsAsTargetToRole(params);
   }
 
   /**
@@ -6018,7 +6609,11 @@ class GeneratedApiClient {
     if (!appName) {
       return Promise.reject(new Error('OKTA API removeApplicationTargetFromApplicationAdministratorRoleForUser parameter appName is required.'));
     }
-    return this.userApi.removeApplicationTargetFromApplicationAdministratorRoleForUser(userId, roleId, appName);
+    const params = {};
+    params.userId = userId;
+    params.roleId = roleId;
+    params.appName = appName;
+    return this.userApi.removeApplicationTargetFromApplicationAdministratorRoleForUser(params);
   }
 
   /**
@@ -6039,7 +6634,11 @@ class GeneratedApiClient {
     if (!appName) {
       return Promise.reject(new Error('OKTA API addApplicationTargetToAdminRoleForUser parameter appName is required.'));
     }
-    return this.userApi.addApplicationTargetToAdminRoleForUser(userId, roleId, appName);
+    const params = {};
+    params.userId = userId;
+    params.roleId = roleId;
+    params.appName = appName;
+    return this.userApi.addApplicationTargetToAdminRoleForUser(params);
   }
 
   /**
@@ -6064,7 +6663,12 @@ class GeneratedApiClient {
     if (!applicationId) {
       return Promise.reject(new Error('OKTA API removeApplicationTargetFromAdministratorRoleForUser parameter applicationId is required.'));
     }
-    return this.userApi.removeApplicationTargetFromAdministratorRoleForUser(userId, roleId, appName, applicationId);
+    const params = {};
+    params.userId = userId;
+    params.roleId = roleId;
+    params.appName = appName;
+    params.applicationId = applicationId;
+    return this.userApi.removeApplicationTargetFromAdministratorRoleForUser(params);
   }
 
   /**
@@ -6089,7 +6693,12 @@ class GeneratedApiClient {
     if (!applicationId) {
       return Promise.reject(new Error('OKTA API addApplicationTargetToAppAdminRoleForUser parameter applicationId is required.'));
     }
-    return this.userApi.addApplicationTargetToAppAdminRoleForUser(userId, roleId, appName, applicationId);
+    const params = {};
+    params.userId = userId;
+    params.roleId = roleId;
+    params.appName = appName;
+    params.applicationId = applicationId;
+    return this.userApi.addApplicationTargetToAppAdminRoleForUser(params);
   }
 
   /**
@@ -6110,13 +6719,14 @@ class GeneratedApiClient {
     if (!roleId) {
       return Promise.reject(new Error('OKTA API listGroupTargetsForRole parameter roleId is required.'));
     }
-    let after;
-    let limit;
+    const params = {};
+    params.userId = userId;
+    params.roleId = roleId;
     if (queryParameters) {
-      after = queryParameters.after;
-      limit = queryParameters.limit;
+      params.after = queryParameters.after;
+      params.limit = queryParameters.limit;
     }
-    return this.userApi.listGroupTargetsForRole(userId, roleId, after, limit);
+    return this.userApi.listGroupTargetsForRole(params);
   }
 
   /**
@@ -6137,7 +6747,11 @@ class GeneratedApiClient {
     if (!groupId) {
       return Promise.reject(new Error('OKTA API removeGroupTargetFromRole parameter groupId is required.'));
     }
-    return this.userApi.removeGroupTargetFromRole(userId, roleId, groupId);
+    const params = {};
+    params.userId = userId;
+    params.roleId = roleId;
+    params.groupId = groupId;
+    return this.userApi.removeGroupTargetFromRole(params);
   }
 
   /**
@@ -6158,7 +6772,11 @@ class GeneratedApiClient {
     if (!groupId) {
       return Promise.reject(new Error('OKTA API addGroupTargetToRole parameter groupId is required.'));
     }
-    return this.userApi.addGroupTargetToRole(userId, roleId, groupId);
+    const params = {};
+    params.userId = userId;
+    params.roleId = roleId;
+    params.groupId = groupId;
+    return this.userApi.addGroupTargetToRole(params);
   }
 
   /**
@@ -6173,11 +6791,12 @@ class GeneratedApiClient {
     if (!userId) {
       return Promise.reject(new Error('OKTA API clearUserSessions parameter userId is required.'));
     }
-    let oauthTokens;
+    const params = {};
+    params.userId = userId;
     if (queryParameters) {
-      oauthTokens = queryParameters.oauthTokens;
+      params.oauthTokens = queryParameters.oauthTokens;
     }
-    return this.userApi.clearUserSessions(userId, oauthTokens);
+    return this.userApi.clearUserSessions(params);
   }
 
   /**
@@ -6307,15 +6926,13 @@ class GeneratedApiClient {
    * @returns {Collection} A collection that will yield {@link NetworkZone} instances.
    */
   listNetworkZones(queryParameters) {
-    let after;
-    let limit;
-    let filter;
+    const params = {};
     if (queryParameters) {
-      after = queryParameters.after;
-      limit = queryParameters.limit;
-      filter = queryParameters.filter;
+      params.after = queryParameters.after;
+      params.limit = queryParameters.limit;
+      params.filter = queryParameters.filter;
     }
-    return this.networkZoneApi.listNetworkZones(after, limit, filter);
+    return this.networkZoneApi.listNetworkZones(params);
   }
 
   /**
@@ -6329,7 +6946,9 @@ class GeneratedApiClient {
     if (!networkZone) {
       return Promise.reject(new Error('OKTA API createNetworkZone parameter networkZone is required.'));
     }
-    return this.networkZoneApi.createNetworkZone(networkZone);
+    const params = {};
+    params.networkZone = networkZone;
+    return this.networkZoneApi.createNetworkZone(params);
   }
 
   /**
@@ -6342,7 +6961,9 @@ class GeneratedApiClient {
     if (!zoneId) {
       return Promise.reject(new Error('OKTA API deleteNetworkZone parameter zoneId is required.'));
     }
-    return this.networkZoneApi.deleteNetworkZone(zoneId);
+    const params = {};
+    params.zoneId = zoneId;
+    return this.networkZoneApi.deleteNetworkZone(params);
   }
 
   /**
@@ -6356,7 +6977,9 @@ class GeneratedApiClient {
     if (!zoneId) {
       return Promise.reject(new Error('OKTA API getNetworkZone parameter zoneId is required.'));
     }
-    return this.networkZoneApi.getNetworkZone(zoneId);
+    const params = {};
+    params.zoneId = zoneId;
+    return this.networkZoneApi.getNetworkZone(params);
   }
 
   /**
@@ -6374,7 +6997,10 @@ class GeneratedApiClient {
     if (!networkZone) {
       return Promise.reject(new Error('OKTA API updateNetworkZone parameter networkZone is required.'));
     }
-    return this.networkZoneApi.updateNetworkZone(zoneId, networkZone);
+    const params = {};
+    params.zoneId = zoneId;
+    params.networkZone = networkZone;
+    return this.networkZoneApi.updateNetworkZone(params);
   }
 
   /**
@@ -6388,7 +7014,9 @@ class GeneratedApiClient {
     if (!zoneId) {
       return Promise.reject(new Error('OKTA API activateNetworkZone parameter zoneId is required.'));
     }
-    return this.networkZoneApi.activateNetworkZone(zoneId);
+    const params = {};
+    params.zoneId = zoneId;
+    return this.networkZoneApi.activateNetworkZone(params);
   }
 
   /**
@@ -6402,7 +7030,9 @@ class GeneratedApiClient {
     if (!zoneId) {
       return Promise.reject(new Error('OKTA API deactivateNetworkZone parameter zoneId is required.'));
     }
-    return this.networkZoneApi.deactivateNetworkZone(zoneId);
+    const params = {};
+    params.zoneId = zoneId;
+    return this.networkZoneApi.deactivateNetworkZone(params);
   }
 
   _removeRestrictedModelProperties(instance, restrictedProperties) {

@@ -26,27 +26,28 @@ class GeneratedApiClient {
     }
     {{/each}}
   {{#if (isV3Api operationId)}}
-    {{#if queryParams.length}}
-    {{#each queryParams}}
-    let {{name}};
+    const params = {};
+    {{#each (getRequiredOperationParams this)}}
+    params.{{this}} = {{this}};
     {{/each}}
+    {{#if queryParams.length}}
     if (queryParameters) {
     {{#each queryParams}}
-      {{name}} = queryParameters.{{name}};
+      params.{{name}} = queryParameters.{{name}};
     {{/each}}
     }
     {{/if}}
     {{#if headerParams.length}}
-    {{#each headerParams}}
-    let {{name}};
-    {{/each}}
     if (headerParameters) {
     {{#each headerParams}}
-      {{name}} = headerParameters.{{name}};
+      params.{{name}} = headerParameters.{{name}};
     {{/each}}
     }
+    {{#if bodyModel}}
+    params.body = {{getBodyModelNameInCamelCase this}};
     {{/if}}
-    return this.{{toCamelCase (v3ApiByOperationId operationId)}}.{{getV3MethodName operationId}}({{operationArgumentBuilder this 'v3'}});
+    {{/if}}
+    return this.{{toCamelCase (v3ApiByOperationId operationId)}}.{{getV3MethodName operationId}}(params);
   {{else}}
     let url = `${this.baseUrl}{{replacePathParams path}}`;
     {{#if queryParams.length}}
