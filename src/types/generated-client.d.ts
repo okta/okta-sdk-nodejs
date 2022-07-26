@@ -14,7 +14,7 @@
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
 import { ReadStream } from 'fs';
-import { ApplicationOptions } from './parameterized-operations-client';
+import { Collection } from './collection';
 import * as v3 from './generated';
 import { JsonWebKey } from './models/JsonWebKey';
 import { Response } from 'node-fetch';
