@@ -35,7 +35,7 @@ xdescribe('Subscription API', () => {
 
   it('provides method for listing user\'s notification subscriptions', async () => {
     const subscriptions: Subscription[] = [];
-    for await (const subscription of client.listUserSubscriptions('jd.kuckan+test127@gmail.com')) {
+    for await (const subscription of (await client.listUserSubscriptions('jd.kuckan+test127@gmail.com'))) {
       subscriptions.push(subscription);
     }
     expect(subscriptions).to.be.an('array').which.is.not.empty;
@@ -48,11 +48,11 @@ xdescribe('Subscription API', () => {
 
   it('provides methods for subscribing/unsubscribing to/from notification subscribtion for given user role and notfication type', async () => {
     let response = await client.unsubscribeUserSubscriptionByNotificationType(user.id, NotificationType.OKTA_ISSUE);
-    expect(response.status).to.equal(200);
+    expect(response).to.be.undefined;
     let subscription = await client.getUserSubscriptionByNotificationType(user.id, NotificationType.OKTA_ISSUE);
     expect(subscription.status).to.equal(SubscriptionStatus.UNSUBSCRIBED);
     response = await client.subscribeUserSubscriptionByNotificationType(user.id, NotificationType.OKTA_ISSUE);
-    expect(response.status).to.equal(200);
+    expect(response).to.be.undefined;
     subscription = await client.getUserSubscriptionByNotificationType(user.id, NotificationType.OKTA_ISSUE);
     expect(subscription.status).to.equal(SubscriptionStatus.SUBSCRIBED);
   });

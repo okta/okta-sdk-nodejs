@@ -375,6 +375,16 @@ const V3ApiOperations = {
     'listPolicyRules',
     'updatePolicy',
     'updatePolicyRule'
+  ],
+  SubscriptionApi: [
+    'getRoleSubscriptionByNotificationType',
+    'getUserSubscriptionByNotificationType',
+    'listRoleSubscriptions',
+    'listUserSubscriptions',
+    'subscribeRoleSubscriptionByNotificationType',
+    'subscribeUserSubscriptionByNotificationType',
+    'unsubscribeRoleSubscriptionByNotificationType',
+    'unsubscribeUserSubscriptionByNotificationType',
   ]
 };
 
