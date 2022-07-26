@@ -27,8 +27,11 @@ class GeneratedApiClient {
     {{/each}}
   {{#if (isV3Api operationId)}}
     const params = {};
-    {{#each (getRequiredOperationParams this)}}
-    params.{{this}} = {{this}};
+    {{#each pathParams}}
+    params.{{name}} = {{name}};
+    {{/each}}
+    {{#each (getOperationParams this)}}
+    params.{{name}} = {{name}};
     {{/each}}
     {{#if queryParams.length}}
     if (queryParameters) {
@@ -43,9 +46,6 @@ class GeneratedApiClient {
       params.{{name}} = headerParameters.{{name}};
     {{/each}}
     }
-    {{#if bodyModel}}
-    params.body = {{getBodyModelNameInCamelCase this}};
-    {{/if}}
     {{/if}}
     return this.{{toCamelCase (v3ApiByOperationId operationId)}}.{{getV3MethodName operationId}}(params);
   {{else}}

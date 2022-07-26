@@ -17,6 +17,7 @@ const qs = require('querystring');
 
 const { Collection } = require('./collection');
 const models = require('./models');
+const factories = require('./factories');
 const { ModelFactory } = require('./model-factory');
 
 /**
@@ -73,7 +74,6 @@ class GeneratedApiClient {
     if (headerParameters) {
       params.OktaAccessGateway_Agent = headerParameters.OktaAccessGateway_Agent;
     }
-    params.body = application;
     return this.applicationApi.createApplication(params);
   }
 
@@ -153,23 +153,23 @@ class GeneratedApiClient {
   /**
    *
    * @param appId {String}
-   * @param {ProvisioningConnectionRequest} provisioningConnectionRequest
+   * @param {ProvisioningConnectionRequest} ProvisioningConnectionRequest
    * @param {Object} queryParams Map of query parameters to add to this request
    * @param {String} [queryParams.activate]
    * @description
    * Set default Provisioning Connection for application
    * @returns {Promise<ProvisioningConnection>}
    */
-  setDefaultProvisioningConnectionForApplication(appId, provisioningConnectionRequest, queryParameters) {
+  setDefaultProvisioningConnectionForApplication(appId, ProvisioningConnectionRequest, queryParameters) {
     if (!appId) {
       return Promise.reject(new Error('OKTA API setDefaultProvisioningConnectionForApplication parameter appId is required.'));
     }
-    if (!provisioningConnectionRequest) {
-      return Promise.reject(new Error('OKTA API setDefaultProvisioningConnectionForApplication parameter provisioningConnectionRequest is required.'));
+    if (!ProvisioningConnectionRequest) {
+      return Promise.reject(new Error('OKTA API setDefaultProvisioningConnectionForApplication parameter ProvisioningConnectionRequest is required.'));
     }
     const params = {};
     params.appId = appId;
-    params.provisioningConnectionRequest = provisioningConnectionRequest;
+    params.ProvisioningConnectionRequest = ProvisioningConnectionRequest;
     if (queryParameters) {
       params.activate = queryParameters.activate;
     }
@@ -225,21 +225,21 @@ class GeneratedApiClient {
   /**
    *
    * @param appId {String}
-   * @param {CsrMetadata} csrMetadata
+   * @param {CsrMetadata} metadata
    * @description
    * Generates a new key pair and returns the Certificate Signing Request for it.
    * @returns {Promise<Csr>}
    */
-  generateCsrForApplication(appId, csrMetadata) {
+  generateCsrForApplication(appId, metadata) {
     if (!appId) {
       return Promise.reject(new Error('OKTA API generateCsrForApplication parameter appId is required.'));
     }
-    if (!csrMetadata) {
-      return Promise.reject(new Error('OKTA API generateCsrForApplication parameter csrMetadata is required.'));
+    if (!metadata) {
+      return Promise.reject(new Error('OKTA API generateCsrForApplication parameter metadata is required.'));
     }
     const params = {};
     params.appId = appId;
-    params.csrMetadata = csrMetadata;
+    params.metadata = metadata;
     return this.applicationApi.generateCsrForApplication(params);
   }
 
@@ -303,7 +303,11 @@ class GeneratedApiClient {
     if (!certificate) {
       return Promise.reject(new Error('OKTA API publishCerCert parameter certificate is required.'));
     }
-    return this.applicationApi.publishCsrFromApplication(appId, csrId, certificate);
+    const params = {};
+    params.appId = appId;
+    params.csrId = csrId;
+    params.certificate = certificate;
+    return this.applicationApi.publishCsrFromApplication(params);
   }
 
   /**
@@ -543,7 +547,6 @@ class GeneratedApiClient {
     const params = {};
     params.appId = appId;
     params.keyId = keyId;
-    params.queryParameters = queryParameters;
     if (queryParameters) {
       params.targetAid = queryParameters.targetAid;
     }
@@ -591,25 +594,25 @@ class GeneratedApiClient {
    *
    * @param appId {String}
    * @param name {String}
-   * @param {CapabilitiesObject} capabilitiesObject
+   * @param {CapabilitiesObject} CapabilitiesObject
    * @description
    * Updates a Feature object for an application.
    * @returns {Promise<ApplicationFeature>}
    */
-  updateFeatureForApplication(appId, name, capabilitiesObject) {
+  updateFeatureForApplication(appId, name, CapabilitiesObject) {
     if (!appId) {
       return Promise.reject(new Error('OKTA API updateFeatureForApplication parameter appId is required.'));
     }
     if (!name) {
       return Promise.reject(new Error('OKTA API updateFeatureForApplication parameter name is required.'));
     }
-    if (!capabilitiesObject) {
-      return Promise.reject(new Error('OKTA API updateFeatureForApplication parameter capabilitiesObject is required.'));
+    if (!CapabilitiesObject) {
+      return Promise.reject(new Error('OKTA API updateFeatureForApplication parameter CapabilitiesObject is required.'));
     }
     const params = {};
     params.appId = appId;
     params.name = name;
-    params.capabilitiesObject = capabilitiesObject;
+    params.CapabilitiesObject = CapabilitiesObject;
     return this.applicationApi.updateFeatureForApplication(params);
   }
 
@@ -793,6 +796,7 @@ class GeneratedApiClient {
     const params = {};
     params.appId = appId;
     params.groupId = groupId;
+    params.applicationGroupAssignment = applicationGroupAssignment;
     return this.applicationApi.createApplicationGroupAssignment(params);
   }
 
@@ -1507,16 +1511,16 @@ class GeneratedApiClient {
    * Success
    * @returns {Collection} A collection that will yield {@link JsonWebKey} instances.
    */
-  rotateAuthorizationServerKeys(authServerId, jwkUse) {
+  rotateAuthorizationServerKeys(authServerId, use) {
     if (!authServerId) {
       return Promise.reject(new Error('OKTA API rotateAuthorizationServerKeys parameter authServerId is required.'));
     }
-    if (!jwkUse) {
-      return Promise.reject(new Error('OKTA API rotateAuthorizationServerKeys parameter jwkUse is required.'));
+    if (!use) {
+      return Promise.reject(new Error('OKTA API rotateAuthorizationServerKeys parameter use is required.'));
     }
     const params = {};
     params.authServerId = authServerId;
-    params.jwkUse = jwkUse;
+    params.use = use;
     return this.authorizationServerApi.rotateAuthorizationServerKeys(params);
   }
 
@@ -1569,21 +1573,21 @@ class GeneratedApiClient {
   /**
    *
    * @param authServerId {String}
-   * @param {AuthorizationServerPolicy} authorizationServerPolicy
+   * @param {AuthorizationServerPolicy} policy
    * @description
    * Success
    * @returns {Promise<AuthorizationServerPolicy>}
    */
-  createAuthorizationServerPolicy(authServerId, authorizationServerPolicy) {
+  createAuthorizationServerPolicy(authServerId, policy) {
     if (!authServerId) {
       return Promise.reject(new Error('OKTA API createAuthorizationServerPolicy parameter authServerId is required.'));
     }
-    if (!authorizationServerPolicy) {
-      return Promise.reject(new Error('OKTA API createAuthorizationServerPolicy parameter authorizationServerPolicy is required.'));
+    if (!policy) {
+      return Promise.reject(new Error('OKTA API createAuthorizationServerPolicy parameter policy is required.'));
     }
     const params = {};
     params.authServerId = authServerId;
-    params.authorizationServerPolicy = authorizationServerPolicy;
+    params.policy = policy;
     return this.authorizationServerApi.createAuthorizationServerPolicy(params);
   }
 
@@ -1632,25 +1636,25 @@ class GeneratedApiClient {
    *
    * @param authServerId {String}
    * @param policyId {String}
-   * @param {AuthorizationServerPolicy} authorizationServerPolicy
+   * @param {AuthorizationServerPolicy} policy
    * @description
    * Success
    * @returns {Promise<AuthorizationServerPolicy>}
    */
-  updateAuthorizationServerPolicy(authServerId, policyId, authorizationServerPolicy) {
+  updateAuthorizationServerPolicy(authServerId, policyId, policy) {
     if (!authServerId) {
       return Promise.reject(new Error('OKTA API updateAuthorizationServerPolicy parameter authServerId is required.'));
     }
     if (!policyId) {
       return Promise.reject(new Error('OKTA API updateAuthorizationServerPolicy parameter policyId is required.'));
     }
-    if (!authorizationServerPolicy) {
-      return Promise.reject(new Error('OKTA API updateAuthorizationServerPolicy parameter authorizationServerPolicy is required.'));
+    if (!policy) {
+      return Promise.reject(new Error('OKTA API updateAuthorizationServerPolicy parameter policy is required.'));
     }
     const params = {};
     params.authServerId = authServerId;
     params.policyId = policyId;
-    params.authorizationServerPolicy = authorizationServerPolicy;
+    params.policy = policy;
     return this.authorizationServerApi.updateAuthorizationServerPolicy(params);
   }
 
@@ -1719,25 +1723,25 @@ class GeneratedApiClient {
    *
    * @param policyId {String}
    * @param authServerId {String}
-   * @param {AuthorizationServerPolicyRule} authorizationServerPolicyRule
+   * @param {AuthorizationServerPolicyRule} policyRule
    * @description
    * Creates a policy rule for the specified Custom Authorization Server and Policy.
    * @returns {Promise<AuthorizationServerPolicyRule>}
    */
-  createAuthorizationServerPolicyRule(policyId, authServerId, authorizationServerPolicyRule) {
+  createAuthorizationServerPolicyRule(policyId, authServerId, policyRule) {
     if (!policyId) {
       return Promise.reject(new Error('OKTA API createAuthorizationServerPolicyRule parameter policyId is required.'));
     }
     if (!authServerId) {
       return Promise.reject(new Error('OKTA API createAuthorizationServerPolicyRule parameter authServerId is required.'));
     }
-    if (!authorizationServerPolicyRule) {
-      return Promise.reject(new Error('OKTA API createAuthorizationServerPolicyRule parameter authorizationServerPolicyRule is required.'));
+    if (!policyRule) {
+      return Promise.reject(new Error('OKTA API createAuthorizationServerPolicyRule parameter policyRule is required.'));
     }
     const params = {};
     params.policyId = policyId;
     params.authServerId = authServerId;
-    params.authorizationServerPolicyRule = authorizationServerPolicyRule;
+    params.policyRule = policyRule;
     return this.authorizationServerApi.createAuthorizationServerPolicyRule(params);
   }
 
@@ -1797,12 +1801,12 @@ class GeneratedApiClient {
    * @param policyId {String}
    * @param authServerId {String}
    * @param ruleId {String}
-   * @param {AuthorizationServerPolicyRule} authorizationServerPolicyRule
+   * @param {AuthorizationServerPolicyRule} policyRule
    * @description
    * Updates the configuration of the Policy Rule defined in the specified Custom Authorization Server and Policy.
    * @returns {Promise<AuthorizationServerPolicyRule>}
    */
-  updateAuthorizationServerPolicyRule(policyId, authServerId, ruleId, authorizationServerPolicyRule) {
+  updateAuthorizationServerPolicyRule(policyId, authServerId, ruleId, policyRule) {
     if (!policyId) {
       return Promise.reject(new Error('OKTA API updateAuthorizationServerPolicyRule parameter policyId is required.'));
     }
@@ -1812,14 +1816,14 @@ class GeneratedApiClient {
     if (!ruleId) {
       return Promise.reject(new Error('OKTA API updateAuthorizationServerPolicyRule parameter ruleId is required.'));
     }
-    if (!authorizationServerPolicyRule) {
-      return Promise.reject(new Error('OKTA API updateAuthorizationServerPolicyRule parameter authorizationServerPolicyRule is required.'));
+    if (!policyRule) {
+      return Promise.reject(new Error('OKTA API updateAuthorizationServerPolicyRule parameter policyRule is required.'));
     }
     const params = {};
     params.policyId = policyId;
     params.authServerId = authServerId;
     params.ruleId = ruleId;
-    params.authorizationServerPolicyRule = authorizationServerPolicyRule;
+    params.policyRule = policyRule;
     return this.authorizationServerApi.updateAuthorizationServerPolicyRule(params);
   }
 
@@ -3605,21 +3609,21 @@ class GeneratedApiClient {
   /**
    *
    * @param idpId {String}
-   * @param {CsrMetadata} csrMetadata
+   * @param {CsrMetadata} metadata
    * @description
    * Generates a new key pair and returns a Certificate Signing Request for it.
    * @returns {Promise<Csr>}
    */
-  generateCsrForIdentityProvider(idpId, csrMetadata) {
+  generateCsrForIdentityProvider(idpId, metadata) {
     if (!idpId) {
       return Promise.reject(new Error('OKTA API generateCsrForIdentityProvider parameter idpId is required.'));
     }
-    if (!csrMetadata) {
-      return Promise.reject(new Error('OKTA API generateCsrForIdentityProvider parameter csrMetadata is required.'));
+    if (!metadata) {
+      return Promise.reject(new Error('OKTA API generateCsrForIdentityProvider parameter metadata is required.'));
     }
     const params = {};
     params.idpId = idpId;
-    params.csrMetadata = csrMetadata;
+    params.metadata = metadata;
     return this.identityProviderApi.generateCsrForIdentityProvider(params);
   }
 
@@ -3880,7 +3884,6 @@ class GeneratedApiClient {
     }
     const params = {};
     params.idpId = idpId;
-    params.queryParameters = queryParameters;
     if (queryParameters) {
       params.validityYears = queryParameters.validityYears;
     }
@@ -3931,7 +3934,6 @@ class GeneratedApiClient {
     const params = {};
     params.idpId = idpId;
     params.keyId = keyId;
-    params.queryParameters = queryParameters;
     if (queryParameters) {
       params.targetIdpId = queryParameters.targetIdpId;
     }
@@ -4161,21 +4163,21 @@ class GeneratedApiClient {
   /**
    *
    * @param inlineHookId {String}
-   * @param {InlineHookPayload} inlineHookPayload
+   * @param {InlineHookPayload} payloadData
    * @description
    * Executes the Inline Hook matching the provided inlineHookId using the request body as the input. This will send the provided data through the Channel and return a response if it matches the correct data contract. This execution endpoint should only be used for testing purposes.
    * @returns {Promise<InlineHookResponse>}
    */
-  executeInlineHook(inlineHookId, inlineHookPayload) {
+  executeInlineHook(inlineHookId, payloadData) {
     if (!inlineHookId) {
       return Promise.reject(new Error('OKTA API executeInlineHook parameter inlineHookId is required.'));
     }
-    if (!inlineHookPayload) {
-      return Promise.reject(new Error('OKTA API executeInlineHook parameter inlineHookPayload is required.'));
+    if (!payloadData) {
+      return Promise.reject(new Error('OKTA API executeInlineHook parameter payloadData is required.'));
     }
     const params = {};
     params.inlineHookId = inlineHookId;
-    params.inlineHookPayload = inlineHookPayload;
+    params.payloadData = payloadData;
     return this.inlineHookApi.executeInlineHook(params);
   }
 
@@ -4328,6 +4330,7 @@ class GeneratedApiClient {
     }
     const params = {};
     params.appInstanceId = appInstanceId;
+    params.userSchema = userSchema;
     return this.schemaApi.updateApplicationUserProfile(params);
   }
 
@@ -4351,6 +4354,7 @@ class GeneratedApiClient {
    */
   updateGroupSchema(groupSchema) {
     const params = {};
+    params.groupSchema = groupSchema;
     return this.schemaApi.updateGroupSchema(params);
   }
 
@@ -4775,15 +4779,13 @@ class GeneratedApiClient {
     if (!queryParameters) {
       return Promise.reject(new Error('OKTA API listPolicies parameter queryParameters is required.'));
     }
-    let type;
-    let status;
-    let expand;
+    const params = {};
     if (queryParameters) {
-      type = queryParameters.type;
-      status = queryParameters.status;
-      expand = queryParameters.expand;
+      params.type = queryParameters.type;
+      params.status = queryParameters.status;
+      params.expand = queryParameters.expand;
     }
-    return this.policyApi.listPolicies(type, status, expand);
+    return this.policyApi.listPolicies(params);
   }
 
   /**
@@ -4799,11 +4801,12 @@ class GeneratedApiClient {
     if (!policy) {
       return Promise.reject(new Error('OKTA API createPolicy parameter policy is required.'));
     }
-    let activate;
+    const params = {};
+    params.policy = policy;
     if (queryParameters) {
-      activate = queryParameters.activate;
+      params.activate = queryParameters.activate;
     }
-    return this.policyApi.createPolicy(policy, activate);
+    return this.policyApi.createPolicy(params);
   }
 
   /**
@@ -4816,7 +4819,9 @@ class GeneratedApiClient {
     if (!policyId) {
       return Promise.reject(new Error('OKTA API deletePolicy parameter policyId is required.'));
     }
-    return this.policyApi.deletePolicy(policyId);
+    const params = {};
+    params.policyId = policyId;
+    return this.policyApi.deletePolicy(params);
   }
 
   /**
@@ -4832,11 +4837,12 @@ class GeneratedApiClient {
     if (!policyId) {
       return Promise.reject(new Error('OKTA API getPolicy parameter policyId is required.'));
     }
-    let expand;
+    const params = {};
+    params.policyId = policyId;
     if (queryParameters) {
-      expand = queryParameters.expand;
+      params.expand = queryParameters.expand;
     }
-    return this.policyApi.getPolicy(policyId, expand);
+    return this.policyApi.getPolicy(params);
   }
 
   /**
@@ -4854,7 +4860,10 @@ class GeneratedApiClient {
     if (!policy) {
       return Promise.reject(new Error('OKTA API updatePolicy parameter policy is required.'));
     }
-    return this.policyApi.updatePolicy(policyId, policy);
+    const params = {};
+    params.policyId = policyId;
+    params.policy = policy;
+    return this.policyApi.updatePolicy(params);
   }
 
   /**
@@ -4867,7 +4876,9 @@ class GeneratedApiClient {
     if (!policyId) {
       return Promise.reject(new Error('OKTA API activatePolicy parameter policyId is required.'));
     }
-    return this.policyApi.activatePolicy(policyId);
+    const params = {};
+    params.policyId = policyId;
+    return this.policyApi.activatePolicy(params);
   }
 
   /**
@@ -4880,7 +4891,9 @@ class GeneratedApiClient {
     if (!policyId) {
       return Promise.reject(new Error('OKTA API deactivatePolicy parameter policyId is required.'));
     }
-    return this.policyApi.deactivatePolicy(policyId);
+    const params = {};
+    params.policyId = policyId;
+    return this.policyApi.deactivatePolicy(params);
   }
 
   /**
@@ -4894,7 +4907,9 @@ class GeneratedApiClient {
     if (!policyId) {
       return Promise.reject(new Error('OKTA API listPolicyRules parameter policyId is required.'));
     }
-    return this.policyApi.listPolicyRules(policyId);
+    const params = {};
+    params.policyId = policyId;
+    return this.policyApi.listPolicyRules(params);
   }
 
   /**
@@ -4912,7 +4927,10 @@ class GeneratedApiClient {
     if (!policyRule) {
       return Promise.reject(new Error('OKTA API createPolicyRule parameter policyRule is required.'));
     }
-    return this.policyApi.createPolicyRule(policyId, policyRule);
+    const params = {};
+    params.policyId = policyId;
+    params.policyRule = policyRule;
+    return this.policyApi.createPolicyRule(params);
   }
 
   /**
@@ -4929,7 +4947,10 @@ class GeneratedApiClient {
     if (!ruleId) {
       return Promise.reject(new Error('OKTA API deletePolicyRule parameter ruleId is required.'));
     }
-    return this.policyApi.deletePolicyRule(policyId, ruleId);
+    const params = {};
+    params.policyId = policyId;
+    params.ruleId = ruleId;
+    return this.policyApi.deletePolicyRule(params);
   }
 
   /**
@@ -4947,7 +4968,10 @@ class GeneratedApiClient {
     if (!ruleId) {
       return Promise.reject(new Error('OKTA API getPolicyRule parameter ruleId is required.'));
     }
-    return this.policyApi.getPolicyRule(policyId, ruleId);
+    const params = {};
+    params.policyId = policyId;
+    params.ruleId = ruleId;
+    return this.policyApi.getPolicyRule(params);
   }
 
   /**
@@ -4969,7 +4993,11 @@ class GeneratedApiClient {
     if (!policyRule) {
       return Promise.reject(new Error('OKTA API updatePolicyRule parameter policyRule is required.'));
     }
-    return this.policyApi.updatePolicyRule(policyId, ruleId, policyRule);
+    const params = {};
+    params.policyId = policyId;
+    params.ruleId = ruleId;
+    params.policyRule = policyRule;
+    return this.policyApi.updatePolicyRule(params);
   }
 
   /**
@@ -4986,7 +5014,10 @@ class GeneratedApiClient {
     if (!ruleId) {
       return Promise.reject(new Error('OKTA API activatePolicyRule parameter ruleId is required.'));
     }
-    return this.policyApi.activatePolicyRule(policyId, ruleId);
+    const params = {};
+    params.policyId = policyId;
+    params.ruleId = ruleId;
+    return this.policyApi.activatePolicyRule(params);
   }
 
   /**
@@ -5003,7 +5034,10 @@ class GeneratedApiClient {
     if (!ruleId) {
       return Promise.reject(new Error('OKTA API deactivatePolicyRule parameter ruleId is required.'));
     }
-    return this.policyApi.deactivatePolicyRule(policyId, ruleId);
+    const params = {};
+    params.policyId = policyId;
+    params.ruleId = ruleId;
+    return this.policyApi.deactivatePolicyRule(params);
   }
 
   /**
@@ -5919,7 +5953,7 @@ class GeneratedApiClient {
   /**
    *
    * @param userId {String}
-   * @param {UserFactor} userFactor
+   * @param {UserFactor} body
    * @param {Object} queryParams Map of query parameters to add to this request
    * @param {String} [queryParams.updatePhone]
    * @param {String} [queryParams.templateId]
@@ -5929,16 +5963,16 @@ class GeneratedApiClient {
    * Enrolls a user with a supported factor.
    * @returns {Promise<UserFactor>}
    */
-  enrollFactor(userId, userFactor, queryParameters) {
+  enrollFactor(userId, body, queryParameters) {
     if (!userId) {
       return Promise.reject(new Error('OKTA API enrollFactor parameter userId is required.'));
     }
-    if (!userFactor) {
-      return Promise.reject(new Error('OKTA API enrollFactor parameter userFactor is required.'));
+    if (!body) {
+      return Promise.reject(new Error('OKTA API enrollFactor parameter body is required.'));
     }
     const params = {};
     params.userId = userId;
-    params.userFactor = userFactor;
+    params.body = body;
     if (queryParameters) {
       params.updatePhone = queryParameters.updatePhone;
       params.templateId = queryParameters.templateId;
@@ -6025,12 +6059,12 @@ class GeneratedApiClient {
    *
    * @param userId {String}
    * @param factorId {String}
-   * @param {ActivateFactorRequest} activateFactorRequest
+   * @param {ActivateFactorRequest} body
    * @description
    * The `sms` and `token:software:totp` factor types require activation to complete the enrollment process.
    * @returns {Promise<UserFactor>}
    */
-  activateFactor(userId, factorId, activateFactorRequest) {
+  activateFactor(userId, factorId, body) {
     if (!userId) {
       return Promise.reject(new Error('OKTA API activateFactor parameter userId is required.'));
     }
@@ -6040,6 +6074,7 @@ class GeneratedApiClient {
     const params = {};
     params.userId = userId;
     params.factorId = factorId;
+    params.body = body;
     return this.userFactorApi.activateFactor(params);
   }
 
@@ -6073,7 +6108,7 @@ class GeneratedApiClient {
    *
    * @param userId {String}
    * @param factorId {String}
-   * @param {VerifyFactorRequest} verifyFactorRequest
+   * @param {VerifyFactorRequest} body
    * @param {Object} queryParams Map of query parameters to add to this request
    * @param {String} [queryParams.templateId]
    * @param {String} [queryParams.tokenLifetimeSeconds]
@@ -6081,7 +6116,7 @@ class GeneratedApiClient {
    * Verifies an OTP for a `token` or `token:hardware` factor
    * @returns {Promise<VerifyUserFactorResponse>}
    */
-  verifyFactor(userId, factorId, verifyFactorRequest, queryParameters, headerParameters) {
+  verifyFactor(userId, factorId, body, queryParameters, headerParameters) {
     if (!userId) {
       return Promise.reject(new Error('OKTA API verifyFactor parameter userId is required.'));
     }
@@ -6091,6 +6126,7 @@ class GeneratedApiClient {
     const params = {};
     params.userId = userId;
     params.factorId = factorId;
+    params.body = body;
     if (queryParameters) {
       params.templateId = queryParameters.templateId;
       params.tokenLifetimeSeconds = queryParameters.tokenLifetimeSeconds;
@@ -6100,7 +6136,6 @@ class GeneratedApiClient {
       params.User_Agent = headerParameters.User_Agent;
       params.Accept_Language = headerParameters.Accept_Language;
     }
-    params.body = verifyFactorRequest;
     return this.userFactorApi.verifyFactor(params);
   }
 
@@ -6242,7 +6277,6 @@ class GeneratedApiClient {
     }
     const params = {};
     params.userId = userId;
-    params.queryParameters = queryParameters;
     if (queryParameters) {
       params.sendEmail = queryParameters.sendEmail;
     }
@@ -6355,7 +6389,6 @@ class GeneratedApiClient {
     }
     const params = {};
     params.userId = userId;
-    params.queryParameters = queryParameters;
     if (queryParameters) {
       params.sendEmail = queryParameters.sendEmail;
     }
@@ -6937,17 +6970,17 @@ class GeneratedApiClient {
 
   /**
    *
-   * @param {NetworkZone} networkZone
+   * @param {NetworkZone} zone
    * @description
    * Adds a new network zone to your Okta organization.
    * @returns {Promise<NetworkZone>}
    */
-  createNetworkZone(networkZone) {
-    if (!networkZone) {
-      return Promise.reject(new Error('OKTA API createNetworkZone parameter networkZone is required.'));
+  createNetworkZone(zone) {
+    if (!zone) {
+      return Promise.reject(new Error('OKTA API createNetworkZone parameter zone is required.'));
     }
     const params = {};
-    params.networkZone = networkZone;
+    params.zone = zone;
     return this.networkZoneApi.createNetworkZone(params);
   }
 
@@ -6985,21 +7018,21 @@ class GeneratedApiClient {
   /**
    *
    * @param zoneId {String}
-   * @param {NetworkZone} networkZone
+   * @param {NetworkZone} zone
    * @description
    * Updates a network zone in your organization.
    * @returns {Promise<NetworkZone>}
    */
-  updateNetworkZone(zoneId, networkZone) {
+  updateNetworkZone(zoneId, zone) {
     if (!zoneId) {
       return Promise.reject(new Error('OKTA API updateNetworkZone parameter zoneId is required.'));
     }
-    if (!networkZone) {
-      return Promise.reject(new Error('OKTA API updateNetworkZone parameter networkZone is required.'));
+    if (!zone) {
+      return Promise.reject(new Error('OKTA API updateNetworkZone parameter zone is required.'));
     }
     const params = {};
     params.zoneId = zoneId;
-    params.networkZone = networkZone;
+    params.zone = zone;
     return this.networkZoneApi.updateNetworkZone(params);
   }
 

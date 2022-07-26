@@ -397,6 +397,17 @@ function getV3ArgumentsOverride(argumentName) {
     emailTemplateTestRequest: ['language', 'string'],
     emailTemplateCustomizationRequest: ['instance', 'EmailCustomization'],
     userIdString: ['orgContactUser', 'OrgContactUser'],
+    networkZone: ['zone', 'NetworkZone'],
+    csrMetadata: ['metadata', 'CsrMetadata'],
+    userFactor: ['body', 'UserFactor'],
+    activateFactorRequest: ['body', 'ActivateFactorRequest'],
+    verifyFactorRequest: ['body', 'VerifyFactorRequest'],
+    authorizationServerPolicyRule: ['policyRule', 'AuthorizationServerPolicyRule'],
+    authorizationServerPolicy: ['policy', 'AuthorizationServerPolicy'],
+    inlineHookPayload: ['payloadData', 'InlineHookPayload'],
+    capabilitiesObject: ['CapabilitiesObject', 'CapabilitiesObject'],
+    provisioningConnectionRequest: ['ProvisioningConnectionRequest', 'ProvisioningConnectionRequest'],
+    jwkUse: ['use', 'JwkUse'],
   }[argumentName];
 }
 

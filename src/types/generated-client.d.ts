@@ -42,13 +42,13 @@ export declare class GeneratedApiClient {
   }): Promise<v3.Application>;
   updateApplication(appId: string, application: v3.Application): Promise<v3.Application>;
   getDefaultProvisioningConnectionForApplication(appId: string): Promise<v3.ProvisioningConnection>;
-  setDefaultProvisioningConnectionForApplication(appId: string, provisioningConnectionRequest: v3.ProvisioningConnectionRequest, queryParameters?: {
+  setDefaultProvisioningConnectionForApplication(appId: string, ProvisioningConnectionRequest: v3.ProvisioningConnectionRequest, queryParameters?: {
     activate?: boolean,
   }): Promise<v3.ProvisioningConnection>;
   activateDefaultProvisioningConnectionForApplication(appId: string): Promise<void>;
   deactivateDefaultProvisioningConnectionForApplication(appId: string): Promise<void>;
   listCsrsForApplication(appId: string): Promise<Collection<v3.Csr>>;
-  generateCsrForApplication(appId: string, csrMetadata: v3.CsrMetadata): Promise<v3.Csr>;
+  generateCsrForApplication(appId: string, metadata: v3.CsrMetadata): Promise<v3.Csr>;
   revokeCsrFromApplication(appId: string, csrId: string): Promise<void>;
   getCsrForApplication(appId: string, csrId: string): Promise<v3.Csr>;
   publishCerCert(appId: string, csrId: string, certificate: string): Promise<v3.JsonWebKey>;
@@ -66,7 +66,7 @@ export declare class GeneratedApiClient {
   }): Promise<v3.JsonWebKey>;
   listFeaturesForApplication(appId: string): Promise<Collection<v3.ApplicationFeature>>;
   getFeatureForApplication(appId: string, name: string): Promise<v3.ApplicationFeature>;
-  updateFeatureForApplication(appId: string, name: string, capabilitiesObject: v3.CapabilitiesObject): Promise<v3.ApplicationFeature>;
+  updateFeatureForApplication(appId: string, name: string, CapabilitiesObject: v3.CapabilitiesObject): Promise<v3.ApplicationFeature>;
   listScopeConsentGrants(appId: string, queryParameters?: {
     expand?: string,
   }): Promise<Collection<v3.OAuth2ScopeConsentGrant>>;
@@ -147,21 +147,21 @@ export declare class GeneratedApiClient {
     expand?: string,
   }): Promise<v3.OAuth2RefreshToken>;
   listAuthorizationServerKeys(authServerId: string): Promise<Collection<v3.JsonWebKey>>;
-  rotateAuthorizationServerKeys(authServerId: string, jwkUse: v3.JwkUse): Promise<Collection<v3.JsonWebKey>>;
+  rotateAuthorizationServerKeys(authServerId: string, use: v3.JwkUse): Promise<Collection<v3.JsonWebKey>>;
   activateAuthorizationServer(authServerId: string): Promise<void>;
   deactivateAuthorizationServer(authServerId: string): Promise<void>;
   listAuthorizationServerPolicies(authServerId: string): Promise<Collection<v3.AuthorizationServerPolicy>>;
-  createAuthorizationServerPolicy(authServerId: string, authorizationServerPolicy: v3.AuthorizationServerPolicy): Promise<v3.AuthorizationServerPolicy>;
+  createAuthorizationServerPolicy(authServerId: string, policy: v3.AuthorizationServerPolicy): Promise<v3.AuthorizationServerPolicy>;
   deleteAuthorizationServerPolicy(authServerId: string, policyId: string): Promise<void>;
   getAuthorizationServerPolicy(authServerId: string, policyId: string): Promise<v3.AuthorizationServerPolicy>;
-  updateAuthorizationServerPolicy(authServerId: string, policyId: string, authorizationServerPolicy: v3.AuthorizationServerPolicy): Promise<v3.AuthorizationServerPolicy>;
+  updateAuthorizationServerPolicy(authServerId: string, policyId: string, policy: v3.AuthorizationServerPolicy): Promise<v3.AuthorizationServerPolicy>;
   activateAuthorizationServerPolicy(authServerId: string, policyId: string): Promise<void>;
   deactivateAuthorizationServerPolicy(authServerId: string, policyId: string): Promise<void>;
   listAuthorizationServerPolicyRules(policyId: string, authServerId: string): Promise<Collection<v3.AuthorizationServerPolicyRule>>;
-  createAuthorizationServerPolicyRule(policyId: string, authServerId: string, authorizationServerPolicyRule: v3.AuthorizationServerPolicyRule): Promise<v3.AuthorizationServerPolicyRule>;
+  createAuthorizationServerPolicyRule(policyId: string, authServerId: string, policyRule: v3.AuthorizationServerPolicyRule): Promise<v3.AuthorizationServerPolicyRule>;
   deleteAuthorizationServerPolicyRule(policyId: string, authServerId: string, ruleId: string): Promise<void>;
   getAuthorizationServerPolicyRule(policyId: string, authServerId: string, ruleId: string): Promise<v3.AuthorizationServerPolicyRule>;
-  updateAuthorizationServerPolicyRule(policyId: string, authServerId: string, ruleId: string, authorizationServerPolicyRule: v3.AuthorizationServerPolicyRule): Promise<v3.AuthorizationServerPolicyRule>;
+  updateAuthorizationServerPolicyRule(policyId: string, authServerId: string, ruleId: string, policyRule: v3.AuthorizationServerPolicyRule): Promise<v3.AuthorizationServerPolicyRule>;
   activateAuthorizationServerPolicyRule(authServerId: string, policyId: string, ruleId: string): Promise<void>;
   deactivateAuthorizationServerPolicyRule(authServerId: string, policyId: string, ruleId: string): Promise<void>;
   listOAuth2Scopes(authServerId: string, queryParameters?: {
@@ -300,7 +300,7 @@ export declare class GeneratedApiClient {
   getIdentityProvider(idpId: string): Promise<v3.IdentityProvider>;
   updateIdentityProvider(idpId: string, identityProvider: v3.IdentityProvider): Promise<v3.IdentityProvider>;
   listCsrsForIdentityProvider(idpId: string): Promise<Collection<v3.Csr>>;
-  generateCsrForIdentityProvider(idpId: string, csrMetadata: v3.CsrMetadata): Promise<v3.Csr>;
+  generateCsrForIdentityProvider(idpId: string, metadata: v3.CsrMetadata): Promise<v3.Csr>;
   revokeCsrForIdentityProvider(idpId: string, csrId: string): Promise<void>;
   getCsrForIdentityProvider(idpId: string, csrId: string): Promise<v3.Csr>;
   publishCerCertForIdentityProvider(idpId: string, csrId: string, certificate: string): Promise<v3.JsonWebKey>;
@@ -330,7 +330,7 @@ export declare class GeneratedApiClient {
   deleteInlineHook(inlineHookId: string): Promise<void>;
   getInlineHook(inlineHookId: string): Promise<v3.InlineHook>;
   updateInlineHook(inlineHookId: string, inlineHook: v3.InlineHook): Promise<v3.InlineHook>;
-  executeInlineHook(inlineHookId: string, inlineHookPayload: v3.InlineHookPayload): Promise<v3.InlineHookResponse>;
+  executeInlineHook(inlineHookId: string, payloadData: v3.InlineHookPayload): Promise<v3.InlineHookResponse>;
   activateInlineHook(inlineHookId: string): Promise<v3.InlineHook>;
   deactivateInlineHook(inlineHookId: string): Promise<v3.InlineHook>;
   getLogs(queryParameters?: {
@@ -491,7 +491,7 @@ export declare class GeneratedApiClient {
     sendEmail?: boolean,
   }): Promise<v3.ForgotPasswordResponse>;
   listFactors(userId: string): Promise<Collection<v3.UserFactor>>;
-  enrollFactor(userId: string, userFactor: v3.UserFactor, queryParameters?: {
+  enrollFactor(userId: string, body: v3.UserFactor, queryParameters?: {
     updatePhone?: boolean,
     templateId?: string,
     tokenLifetimeSeconds?: number,
@@ -501,9 +501,9 @@ export declare class GeneratedApiClient {
   listSupportedSecurityQuestions(userId: string): Promise<Collection<v3.SecurityQuestion>>;
   deleteFactor(userId: string, factorId: string): Promise<void>;
   getFactor(userId: string, factorId: string): Promise<v3.UserFactor>;
-  activateFactor(userId: string, factorId: string, activateFactorRequest?: v3.ActivateFactorRequest): Promise<v3.UserFactor>;
+  activateFactor(userId: string, factorId: string, body?: v3.ActivateFactorRequest): Promise<v3.UserFactor>;
   getFactorTransactionStatus(userId: string, factorId: string, transactionId: string): Promise<v3.VerifyUserFactorResponse>;
-  verifyFactor(userId: string, factorId: string, verifyFactorRequest?: v3.VerifyFactorRequest, queryParameters?: {
+  verifyFactor(userId: string, factorId: string, body?: v3.VerifyFactorRequest, queryParameters?: {
     templateId?: string,
     tokenLifetimeSeconds?: number,
   }, headerParameters?: {
@@ -582,10 +582,10 @@ export declare class GeneratedApiClient {
     limit?: number,
     filter?: string,
   }): Promise<Collection<v3.NetworkZone>>;
-  createNetworkZone(networkZone: v3.NetworkZone): Promise<v3.NetworkZone>;
+  createNetworkZone(zone: v3.NetworkZone): Promise<v3.NetworkZone>;
   deleteNetworkZone(zoneId: string): Promise<void>;
   getNetworkZone(zoneId: string): Promise<v3.NetworkZone>;
-  updateNetworkZone(zoneId: string, networkZone: v3.NetworkZone): Promise<v3.NetworkZone>;
+  updateNetworkZone(zoneId: string, zone: v3.NetworkZone): Promise<v3.NetworkZone>;
   activateNetworkZone(zoneId: string): Promise<v3.NetworkZone>;
   deactivateNetworkZone(zoneId: string): Promise<v3.NetworkZone>;
 }
