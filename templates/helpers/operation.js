@@ -62,7 +62,7 @@ const NO_OPTIONS_TYPE_MODELS = [
 ];
 
 const getBodyModelName = (operation, useOverride, toCamelCase = false) => {
-  const { bodyModel, parameters } = operation;
+  const { bodyModel, parameters, operationId } = operation;
   let bodyModelName = bodyModel;
   if (bodyModel === 'string') {
     const bodyParam = parameters.find(param => param.in === 'body');
@@ -74,7 +74,7 @@ const getBodyModelName = (operation, useOverride, toCamelCase = false) => {
     bodyModelName = _.camelCase(bodyModelName);
   }
   if (useOverride) {
-    const v3ParamOverride = getV3ArgumentsOverride(bodyModelName);
+    const v3ParamOverride = getV3ArgumentsOverride(bodyModelName, operationId);
     if (v3ParamOverride) {
       bodyModelName = v3ParamOverride[0];
     }
@@ -83,10 +83,10 @@ const getBodyModelName = (operation, useOverride, toCamelCase = false) => {
 };
 
 const getBodyModelType = (operation, useOverride) => {
-  const { bodyModel } = operation;
+  const { bodyModel, operationId } = operation;
   let bodyModelName = bodyModel, bodyModelType = bodyModel;
   if (useOverride) {
-    const v3ParamOverride = getV3ArgumentsOverride(_.camelCase(bodyModelName));
+    const v3ParamOverride = getV3ArgumentsOverride(_.camelCase(bodyModelName), operationId);
     if (v3ParamOverride) {
       bodyModelType = v3ParamOverride[1];
     }
@@ -163,20 +163,24 @@ const getOperationArgument = (operation, apiVersion, useOverride) => {
   return [requiredArgs, optionalArgs];
 };
 
-const getOperationParams = (operation) => {
+const getBodyParams = (operation) => {
   const { bodyModel, method, pathParams, queryParams, headerParams, formData, parameters, operationId } = operation;
   const allArgs = [];
 
   if ((method === 'post' || method === 'put') && bodyModel) {
     const bodyModelName = getBodyModelNameInCamelCase(operation, true);
-    const bodyModelNameOrig = getBodyModelNameInCamelCase(operation, false);
     if (bodyModelName) {
-      if (bodyModelName != bodyModelNameOrig) {
-        console.log(44444, bodyModelName, bodyModelNameOrig);
-      }
       allArgs.push({
-        name2: bodyModelNameOrig,
         name: bodyModelName
+      });
+    }
+  }
+
+  if (formData.length) {
+    const formDataParameter = formData[0].name;
+    if (formDataParameter) {
+      allArgs.push({
+        name: formDataParameter
       });
     }
   }
@@ -402,7 +406,7 @@ const getOperationArgumentsAndReturnType = (operation, options = { tagV3Methods:
       const modelPropertiesType = operation.bodyModel === 'string' ?
         operation.bodyModel : isV3Api(operationId) && options.tagV3Methods ? `${operation.bodyModel}` : `${operation.bodyModel}${OPTIONS_TYPE_SUFFIX}`;
       let bodyParamNameCamelCase = _.camelCase(bodyParamName);
-      const v3ParamOverride = getV3ArgumentsOverride(bodyParamNameCamelCase);
+      const v3ParamOverride = getV3ArgumentsOverride(bodyParamNameCamelCase, operationId);
 
       let type = modelPropertiesType;
       let namespace = '';
@@ -546,5 +550,5 @@ module.exports = {
   getRestrictedProperties,
   containsRestrictedProperties,
   hasRequiredParameterInRequestMedia,
-  getOperationParams,
+  getBodyParams,
 };

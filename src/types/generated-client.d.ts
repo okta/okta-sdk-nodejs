@@ -51,7 +51,7 @@ export declare class GeneratedApiClient {
   generateCsrForApplication(appId: string, metadata: v3.CsrMetadata): Promise<v3.Csr>;
   revokeCsrFromApplication(appId: string, csrId: string): Promise<void>;
   getCsrForApplication(appId: string, csrId: string): Promise<v3.Csr>;
-  publishCerCert(appId: string, csrId: string, certificate: string): Promise<v3.JsonWebKey>;
+  publishCerCert(appId: string, csrId: string, body: string): Promise<v3.JsonWebKey>;
   publishBinaryCerCert(appId: string, csrId: string, certificate: string): Promise<JsonWebKey>;
   publishDerCert(appId: string, csrId: string, certificate: string): Promise<JsonWebKey>;
   publishBinaryDerCert(appId: string, csrId: string, certificate: string): Promise<JsonWebKey>;
@@ -303,7 +303,7 @@ export declare class GeneratedApiClient {
   generateCsrForIdentityProvider(idpId: string, metadata: v3.CsrMetadata): Promise<v3.Csr>;
   revokeCsrForIdentityProvider(idpId: string, csrId: string): Promise<void>;
   getCsrForIdentityProvider(idpId: string, csrId: string): Promise<v3.Csr>;
-  publishCerCertForIdentityProvider(idpId: string, csrId: string, certificate: string): Promise<v3.JsonWebKey>;
+  publishCerCertForIdentityProvider(idpId: string, csrId: string, body: string): Promise<v3.JsonWebKey>;
   publishBinaryCerCertForIdentityProvider(idpId: string, csrId: string, certificate: string): Promise<JsonWebKey>;
   publishDerCertForIdentityProvider(idpId: string, csrId: string, certificate: string): Promise<JsonWebKey>;
   publishBinaryDerCertForIdentityProvider(idpId: string, csrId: string, certificate: string): Promise<JsonWebKey>;
@@ -351,7 +351,7 @@ export declare class GeneratedApiClient {
   getProfileMapping(mappingId: string): Promise<v3.ProfileMapping>;
   updateProfileMapping(mappingId: string, profileMapping: v3.ProfileMapping): Promise<v3.ProfileMapping>;
   getApplicationUserSchema(appInstanceId: string): Promise<v3.UserSchema>;
-  updateApplicationUserProfile(appInstanceId: string, userSchema?: v3.UserSchema): Promise<v3.UserSchema>;
+  updateApplicationUserProfile(appInstanceId: string, body?: v3.UserSchema): Promise<v3.UserSchema>;
   getGroupSchema(): Promise<v3.GroupSchema>;
   updateGroupSchema(GroupSchema?: v3.GroupSchema): Promise<v3.GroupSchema>;
   listLinkedObjectDefinitions(): Promise<Collection<v3.LinkedObject>>;
@@ -444,7 +444,7 @@ export declare class GeneratedApiClient {
     sortBy?: string,
     sortOrder?: string,
   }): Promise<Collection<v3.User>>;
-  createUser(createUserRequest: v3.CreateUserRequest, queryParameters?: {
+  createUser(body: v3.CreateUserRequest, queryParameters?: {
     activate?: boolean,
     provider?: boolean,
     nextLogin?: string,

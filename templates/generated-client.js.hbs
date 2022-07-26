@@ -30,7 +30,7 @@ class GeneratedApiClient {
     {{#each pathParams}}
     params.{{name}} = {{name}};
     {{/each}}
-    {{#each (getOperationParams this)}}
+    {{#each (getBodyParams this)}}
     params.{{name}} = {{name}};
     {{/each}}
     {{#if queryParams.length}}

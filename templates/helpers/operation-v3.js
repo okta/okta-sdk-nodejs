@@ -392,8 +392,8 @@ function getV3ReturnType(operationId) {
   }[operationId];
 }
 
-function getV3ArgumentsOverride(argumentName) {
-  return {
+function getV3ArgumentsOverride(argumentName, operationId) {
+  const mapping = {
     emailTemplateTestRequest: ['language', 'string'],
     emailTemplateCustomizationRequest: ['instance', 'EmailCustomization'],
     userIdString: ['orgContactUser', 'OrgContactUser'],
@@ -410,7 +410,15 @@ function getV3ArgumentsOverride(argumentName) {
     jwkUse: ['use', 'JwkUse'],
     groupSchema: ['GroupSchema', 'GroupSchema'],
     domainCertificate: ['certificate', 'DomainCertificate'],
-  }[argumentName];
+    createUserRequest: ['body', 'CreateUserRequest'],
+    userSchema: ['body', 'UserSchema', ['updateApplicationUserProfile']],
+    certificate: ['body', 'string', ['publishCerCert', 'publishCerCertForIdentityProvider']],
+  };
+  let ovr = mapping[argumentName];
+  if (ovr && ovr[2] && operationId && !ovr[2].includes(operationId)) {
+    ovr = undefined;
+  }
+  return ovr;
 }
 
 function getV3MethodName(v2OperationId) {

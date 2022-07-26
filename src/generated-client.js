@@ -288,25 +288,25 @@ class GeneratedApiClient {
    *
    * @param appId {String}
    * @param csrId {String}
-   * @param {string} certificate
+   * @param {string} body
    * @description
    * Convenience method for /api/v1/apps/{appId}/credentials/csrs/{csrId}/lifecycle/publish
    * @returns {Promise<JsonWebKey>}
    */
-  publishCerCert(appId, csrId, certificate) {
+  publishCerCert(appId, csrId, body) {
     if (!appId) {
       return Promise.reject(new Error('OKTA API publishCerCert parameter appId is required.'));
     }
     if (!csrId) {
       return Promise.reject(new Error('OKTA API publishCerCert parameter csrId is required.'));
     }
-    if (!certificate) {
-      return Promise.reject(new Error('OKTA API publishCerCert parameter certificate is required.'));
+    if (!body) {
+      return Promise.reject(new Error('OKTA API publishCerCert parameter body is required.'));
     }
     const params = {};
     params.appId = appId;
     params.csrId = csrId;
-    params.certificate = certificate;
+    params.body = body;
     return this.applicationApi.publishCsrFromApplication(params);
   }
 
@@ -843,6 +843,7 @@ class GeneratedApiClient {
     }
     const params = {};
     params.appId = appId;
+    params.file = file;
     return this.applicationApi.uploadApplicationLogo(params);
   }
 
@@ -2428,6 +2429,7 @@ class GeneratedApiClient {
     const params = {};
     params.brandId = brandId;
     params.themeId = themeId;
+    params.file = file;
     return this.customizationApi.uploadBrandThemeBackgroundImage(params);
   }
 
@@ -2470,6 +2472,7 @@ class GeneratedApiClient {
     const params = {};
     params.brandId = brandId;
     params.themeId = themeId;
+    params.file = file;
     return this.customizationApi.uploadBrandThemeFavicon(params);
   }
 
@@ -2512,6 +2515,7 @@ class GeneratedApiClient {
     const params = {};
     params.brandId = brandId;
     params.themeId = themeId;
+    params.file = file;
     return this.customizationApi.uploadBrandThemeLogo(params);
   }
 
@@ -3672,25 +3676,25 @@ class GeneratedApiClient {
    *
    * @param idpId {String}
    * @param csrId {String}
-   * @param {string} certificate
+   * @param {string} body
    * @description
    * Update the Certificate Signing Request with a signed X.509 certificate and add it into the signing key credentials for the IdP.
    * @returns {Promise<JsonWebKey>}
    */
-  publishCerCertForIdentityProvider(idpId, csrId, certificate) {
+  publishCerCertForIdentityProvider(idpId, csrId, body) {
     if (!idpId) {
       return Promise.reject(new Error('OKTA API publishCerCertForIdentityProvider parameter idpId is required.'));
     }
     if (!csrId) {
       return Promise.reject(new Error('OKTA API publishCerCertForIdentityProvider parameter csrId is required.'));
     }
-    if (!certificate) {
-      return Promise.reject(new Error('OKTA API publishCerCertForIdentityProvider parameter certificate is required.'));
+    if (!body) {
+      return Promise.reject(new Error('OKTA API publishCerCertForIdentityProvider parameter body is required.'));
     }
     const params = {};
     params.idpId = idpId;
     params.csrId = csrId;
-    params.certificate = certificate;
+    params.body = body;
     return this.identityProviderApi.publishCsrForIdentityProvider(params);
   }
 
@@ -4319,18 +4323,18 @@ class GeneratedApiClient {
   /**
    *
    * @param appInstanceId {String}
-   * @param {UserSchema} userSchema
+   * @param {UserSchema} body
    * @description
    * Partial updates on the User Profile properties of the Application User Schema.
    * @returns {Promise<UserSchema>}
    */
-  updateApplicationUserProfile(appInstanceId, userSchema) {
+  updateApplicationUserProfile(appInstanceId, body) {
     if (!appInstanceId) {
       return Promise.reject(new Error('OKTA API updateApplicationUserProfile parameter appInstanceId is required.'));
     }
     const params = {};
     params.appInstanceId = appInstanceId;
-    params.userSchema = userSchema;
+    params.body = body;
     return this.schemaApi.updateApplicationUserProfile(params);
   }
 
@@ -4652,6 +4656,7 @@ class GeneratedApiClient {
    */
   updateOrgLogo(file) {
     const params = {};
+    params.file = file;
     return this.orgSettingApi.updateOrgLogo(params);
   }
 
@@ -5503,7 +5508,7 @@ class GeneratedApiClient {
 
   /**
    *
-   * @param {CreateUserRequest} createUserRequest
+   * @param {CreateUserRequest} body
    * @param {Object} queryParams Map of query parameters to add to this request
    * @param {String} [queryParams.activate]
    * @param {String} [queryParams.provider]
@@ -5512,12 +5517,12 @@ class GeneratedApiClient {
    * Creates a new user in your Okta organization with or without credentials.
    * @returns {Promise<User>}
    */
-  createUser(createUserRequest, queryParameters) {
-    if (!createUserRequest) {
-      return Promise.reject(new Error('OKTA API createUser parameter createUserRequest is required.'));
+  createUser(body, queryParameters) {
+    if (!body) {
+      return Promise.reject(new Error('OKTA API createUser parameter body is required.'));
     }
     const params = {};
-    params.createUserRequest = createUserRequest;
+    params.body = body;
     if (queryParameters) {
       params.activate = queryParameters.activate;
       params.provider = queryParameters.provider;
