@@ -2576,20 +2576,20 @@ class GeneratedApiClient {
   /**
    *
    * @param domainId {String}
-   * @param {DomainCertificate} domainCertificate
+   * @param {DomainCertificate} certificate
    * @description
    * Creates the Certificate for the Domain.
    */
-  createCertificate(domainId, domainCertificate) {
+  createCertificate(domainId, certificate) {
     if (!domainId) {
       return Promise.reject(new Error('OKTA API createCertificate parameter domainId is required.'));
     }
-    if (!domainCertificate) {
-      return Promise.reject(new Error('OKTA API createCertificate parameter domainCertificate is required.'));
+    if (!certificate) {
+      return Promise.reject(new Error('OKTA API createCertificate parameter certificate is required.'));
     }
     const params = {};
     params.domainId = domainId;
-    params.domainCertificate = domainCertificate;
+    params.certificate = certificate;
     return this.domainApi.createCertificate(params);
   }
 
@@ -4347,14 +4347,14 @@ class GeneratedApiClient {
 
   /**
    *
-   * @param {GroupSchema} groupSchema
+   * @param {GroupSchema} GroupSchema
    * @description
    * Updates, adds ore removes one or more custom Group Profile properties in the schema
    * @returns {Promise<GroupSchema>}
    */
-  updateGroupSchema(groupSchema) {
+  updateGroupSchema(GroupSchema) {
     const params = {};
-    params.groupSchema = groupSchema;
+    params.GroupSchema = GroupSchema;
     return this.schemaApi.updateGroupSchema(params);
   }
 

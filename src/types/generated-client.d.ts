@@ -205,7 +205,7 @@ export declare class GeneratedApiClient {
   createDomain(domain: v3.Domain): Promise<v3.Domain>;
   deleteDomain(domainId: string): Promise<void>;
   getDomain(domainId: string): Promise<v3.Domain>;
-  createCertificate(domainId: string, domainCertificate: v3.DomainCertificate): Promise<void>;
+  createCertificate(domainId: string, certificate: v3.DomainCertificate): Promise<void>;
   verifyDomain(domainId: string): Promise<v3.Domain>;
   listEventHooks(): Promise<Collection<v3.EventHook>>;
   createEventHook(eventHook: v3.EventHook): Promise<v3.EventHook>;
@@ -353,7 +353,7 @@ export declare class GeneratedApiClient {
   getApplicationUserSchema(appInstanceId: string): Promise<v3.UserSchema>;
   updateApplicationUserProfile(appInstanceId: string, userSchema?: v3.UserSchema): Promise<v3.UserSchema>;
   getGroupSchema(): Promise<v3.GroupSchema>;
-  updateGroupSchema(groupSchema?: v3.GroupSchema): Promise<v3.GroupSchema>;
+  updateGroupSchema(GroupSchema?: v3.GroupSchema): Promise<v3.GroupSchema>;
   listLinkedObjectDefinitions(): Promise<Collection<v3.LinkedObject>>;
   addLinkedObjectDefinition(linkedObject: v3.LinkedObject): Promise<v3.LinkedObject>;
   deleteLinkedObjectDefinition(linkedObjectName: string): Promise<void>;

@@ -42,13 +42,14 @@ function parseSpec3(spec3, spec3Raw) {
         const commonParameters = spec3.paths[path].parameters || [];
         const op = spec3.paths[path][method];
         let bodyName = op['x-codegen-request-body-name'];
+        let formDataName;
         if (!bodyName && op.requestBody) {
           const rawOp = spec3Raw.paths[path][method];
           const firstContentType = Object.keys(rawOp.requestBody.content)[0];
           if (firstContentType === 'application/json') {
             bodyName = _.last(Object.values(rawOp.requestBody.content)[0].schema['$ref']?.split('/'));
           } else if (firstContentType === 'multipart/form-data') {
-            bodyName = 'file';
+            formDataName = 'file';
           } else {
             bodyName = 'body';
           }
@@ -56,6 +57,7 @@ function parseSpec3(spec3, spec3Raw) {
         ops[op.operationId] = {
           ...op,
           bodyName,
+          formDataName,
           parameters: [
             ...commonParameters,
             ...(op.parameters || [])
@@ -72,7 +74,7 @@ function parseClient2() {
   const program = ts.createProgram([file], { allowJs: true });
   const sourceFile = program.getSourceFile(file);
   const printer = ts.createPrinter({ newLine: ts.NewLineKind.LineFeed });
-  
+
   const res = {};
 
   ts.forEachChild(sourceFile, rootNode => {
@@ -171,22 +173,36 @@ function checkClients(c2, c3) {
     const className = apiName ? (apiName[0].toUpperCase() + apiName.slice(1)) : null;
     const expectedParams = c3?.[className]?.[methodName];
     if (!expectedParams) {
-      // console.log(`no v3 bridge for ${funcName}`);
+      console.warn(
+        funcName.padEnd(50, ' '),
+        'no v3 bridge'
+      );
     } else {
       const missingParams = expectedParams.filter(p => !params[p]);
       const excessParams = Object.keys(params).filter(p => expectedParams.indexOf(p) === -1);
+      const parts = [];
       if (missingParams.length) {
-        console.log(`${funcName} - missing params ${missingParams}`)
+        parts.push(`missing params ${missingParams}`);
       }
       if (excessParams.length) {
-        console.log(`${funcName} - excess params ${excessParams}`)
+        parts.push(`excess params ${excessParams}`);
+      }
+      const unusedArgs = args.filter(arg => !params[arg] && !Object.values(params).find(p => p[1] === arg));
+      if (unusedArgs.length) {
+        parts.push(`unused args ${unusedArgs}`);
       }
       for (const p in params) {
         const [src, srcObj] = params[p];
         const srcArg = srcObj || src;
         if (args.indexOf(srcArg) === -1) {
-          console.log(`${funcName} - unknown source of param ${p} - ${srcObj} ${src}`);
+          parts.push(`unknown source of param ${p} <- ${src}`);
         }
+      }
+      if (parts.length) {
+        console.error(
+          funcName.padEnd(50, ' '),
+          parts.join(', ')
+        );
       }
     }
   }
@@ -198,19 +214,19 @@ function checkSpecs(ops2, ops3) {
     const op3 = ops3[opId];
     if (op2 && !op3) {
       console.warn(
-        '!!!'.padEnd(10, ' '),
         opId.padEnd(50, ' '),
+        ''.padEnd(10, ' '),
         ''.padEnd(50, ' '),
         'missing in v3'
       );
     } else if (op2 && op3) {
-      for (const paramType of ['query', 'path', 'header', 'formData']) {
+      for (const paramType of ['query', 'path', 'header']) {
         const params2 = op2.parameters.filter(p => p.in === paramType).map(p => p.name);
         const params3 = op3.parameters.filter(p => p.in === paramType).map(p => p.name);
         if (!_.isEqual(params2, params3)) {
           console.error(
-            paramType.padEnd(10, ' '),
             opId.padEnd(50, ' '),
+            paramType.padEnd(10, ' '),
             `v2 - ${params2}`.padEnd(50, ' '),
             `v3 - ${params3}`.padEnd(50, ' '),
           );
@@ -221,10 +237,21 @@ function checkSpecs(ops2, ops3) {
       const body3 = op3.bodyName;
       if (body2 != body3) {
         console.error(
-          'body'.padEnd(10, ' '),
           opId.padEnd(50, ' '),
+          'body'.padEnd(10, ' '),
           `v2 - ${body2 || ''}`.padEnd(50, ' '),
           `v3 - ${body3 || ''}`.padEnd(50, ' '),
+        );
+      }
+
+      const form2 = op2.parameters.filter(p => p.in === 'formData').map(p => p.name).shift();
+      const form3 = op3.formDataName;
+      if (form2 != form3) {
+        console.error(
+          opId.padEnd(50, ' '),
+          'formData'.padEnd(10, ' '),
+          `v2 - ${form2 || ''}`.padEnd(50, ' '),
+          `v3 - ${form3 || ''}`.padEnd(50, ' '),
         );
       }
     }
@@ -242,8 +269,11 @@ async function main() {
   const c2 = parseClient2();
   const c3 = parseClient3();
 
+  console.log('\nDifferences in specs:\n');
+  checkSpecs(ops2, ops3);
+
+  console.log('\nDifferences in clients:\n');
   checkClients(c2, c3);
-  //checkSpecs(ops2, ops3);
 }
 
 main();

@@ -408,6 +408,8 @@ function getV3ArgumentsOverride(argumentName) {
     capabilitiesObject: ['CapabilitiesObject', 'CapabilitiesObject'],
     provisioningConnectionRequest: ['ProvisioningConnectionRequest', 'ProvisioningConnectionRequest'],
     jwkUse: ['use', 'JwkUse'],
+    groupSchema: ['GroupSchema', 'GroupSchema'],
+    domainCertificate: ['certificate', 'DomainCertificate'],
   }[argumentName];
 }
 
