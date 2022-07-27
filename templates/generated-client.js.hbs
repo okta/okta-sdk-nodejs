@@ -26,6 +26,7 @@ class GeneratedApiClient {
     }
     {{/each}}
   {{#if (isV3Api operationId)}}
+  {{#if (useObjectParameters)}}
     const params = {};
     {{#each pathParams}}
     params.{{name}} = {{name}};
@@ -48,6 +49,29 @@ class GeneratedApiClient {
     }
     {{/if}}
     return this.{{toCamelCase (v3ApiByOperationId operationId)}}.{{getV3MethodName operationId}}(params);
+  {{else}}
+    {{#if queryParams.length}}
+    {{#each queryParams}}
+    let {{name}};
+    {{/each}}
+    if (queryParameters) {
+    {{#each queryParams}}
+      {{name}} = queryParameters.{{name}};
+    {{/each}}
+    }
+    {{/if}}
+    {{#if headerParams.length}}
+    {{#each headerParams}}
+    let {{name}};
+    {{/each}}
+    if (headerParameters) {
+    {{#each headerParams}}
+      {{name}} = headerParameters.{{name}};
+    {{/each}}
+    }
+    {{/if}}
+    return this.{{toCamelCase (v3ApiByOperationId operationId)}}.{{getV3MethodName operationId}}({{operationArgumentBuilder this 'v3'}});
+  {{/if}}
   {{else}}
     let url = `${this.baseUrl}{{replacePathParams path}}`;
     {{#if queryParams.length}}

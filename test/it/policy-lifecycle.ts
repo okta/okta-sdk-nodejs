@@ -26,7 +26,9 @@ describe('Policy Lifecycle API', () => {
   });
   afterEach(async () => {
     await client.deletePolicy(policy.id);
-    await client.groupApi.deleteGroup(group.id);
+    await client.groupApi.deleteGroup({
+      groupId: group.id
+    });
   });
 
   it('should activate policy', async () => {

@@ -2,8 +2,10 @@ const _ = require('lodash');
 const SwaggerParser = require('@apidevtools/swagger-parser');
 const spec2 = require('../node_modules/@okta/openapi/dist/spec.json');
 const { getV3MethodName } = require('../templates/helpers/operation-v3');
+const codegenConfig = require('../templates/swagger-codegen-config.json');
 const ts = require('typescript');
 
+const { useObjectParameters } = codegenConfig.additionalProperties;
 const fileGeneratedClient = './src/generated-client.js';
 const fileObjectParamAPI = './src/generated/types/ObjectParamAPI.js';
 
@@ -69,6 +71,7 @@ function parseSpec3(spec3, spec3Raw) {
   return ops;
 }
 
+// Parse `generated-client.js` to build info about all funcs (how they build params and pass to v3)
 function parseClient2() {
   const file = fileGeneratedClient;
   const program = ts.createProgram([file], { allowJs: true });
@@ -85,25 +88,42 @@ function parseClient2() {
           const funcArgs = funcNode?.parameters?.map(n => n.name.text);
           const funcBody = funcNode?.body?.statements?.map(st => {
             const text = printer.printNode(ts.EmitHint.Unspecified, st, sourceFile);
-            const paramsRegex = /params\.(\w+) = (?:(\w+)\.)?(\w+)/g;
-            let paramsMatch, paramsResults = [];
-            do {
-              paramsMatch = paramsRegex.exec(text);
-              if (paramsMatch) {
-                paramsResults.push(paramsMatch.slice(1, 4));
+            if (useObjectParameters) {
+              const regexReturn = /return this\.(\w+)\.(\w+)\(params\)/;
+              const returnMatch = text.match(regexReturn)?.slice(1, 3);
+
+              const paramsRegex = /params\.(\w+) = (?:(\w+)\.)?(\w+)/g;
+              let paramsMatch, params = [];
+              do {
+                paramsMatch = paramsRegex.exec(text);
+                if (paramsMatch) {
+                  params.push(paramsMatch.slice(1, 4));
+                }
+              } while (paramsMatch);
+
+              if (returnMatch) {
+                const [apiName, methodName] = returnMatch;
+                return {
+                  apiName,
+                  methodName,
+                };
+              } else if (params) {
+                return {
+                  params
+                };
               }
-            } while (paramsMatch);
-            const regexReturn = /return this\.(\w+)\.(\w+)\(params\)/;
-            const returnMatch = text.match(regexReturn)?.slice(1, 3);
-            if (returnMatch) {
-              return {
-                apiName: returnMatch[0],
-                methodName: returnMatch[1],
-              };
-            } else if (paramsResults) {
-              return {
-                params: paramsResults
-              };
+            } else {
+              const regexReturn = /return this\.(\w+)\.(\w+)\((.*?)\)/;
+              const returnMatch = text.match(regexReturn)?.slice(1, 4);
+              if (returnMatch) {
+                const [apiName, methodName, paramsStr] = returnMatch;
+                const params = paramsStr ? paramsStr.split(', ').map(p => [p]) : [];
+                return {
+                  apiName,
+                  methodName,
+                  params
+                };
+              }
             }
             return undefined;
           }).filter(st => !!st).reduce((info, st) => {
@@ -112,7 +132,7 @@ function parseClient2() {
               st.params.map(([dst, srcObj, src]) => {
                 params[dst] = [src, srcObj];
               });
-              info = { ...info, params };
+              info = { ...info, ...st, params };
             } else {
               info = { ...info, ...st };
             }
@@ -131,6 +151,7 @@ function parseClient2() {
   return res;
 }
 
+// Parse `ObjectParamAPI.js` to build list of params for each method in each api
 function parseClient3() {
   const file = fileObjectParamAPI;
   const program = ts.createProgram([file], { allowJs: true });
@@ -165,6 +186,7 @@ function parseClient3() {
   return res;
 }
 
+// Check matching of params in v2 and v3 clients
 function checkClients(c2, c3) {
   for (const funcName in c2) {
     const {
@@ -184,21 +206,31 @@ function checkClients(c2, c3) {
       const missingParams = expectedParams.filter(p => !params[p]);
       const excessParams = Object.keys(params).filter(p => expectedParams.indexOf(p) === -1);
       const parts = [];
-      if (missingParams.length) {
-        parts.push(`missing params ${missingParams}`);
-      }
-      if (excessParams.length) {
-        parts.push(`excess params ${excessParams}`);
-      }
-      const unusedArgs = args.filter(arg => !params[arg] && !Object.values(params).find(p => p[1] === arg));
-      if (unusedArgs.length) {
-        parts.push(`unused args ${unusedArgs}`);
-      }
-      for (const p in params) {
-        const [src, srcObj] = params[p];
-        const srcArg = srcObj || src;
-        if (args.indexOf(srcArg) === -1) {
-          parts.push(`unknown source of param ${p} <- ${src}`);
+      if (useObjectParameters) {
+        // find params that are present only in v3
+        if (missingParams.length) {
+          parts.push(`missing params ${missingParams}`);
+        }
+        // find params that are present only in v2
+        if (excessParams.length) {
+          parts.push(`excess params ${excessParams}`);
+        }
+        // check that all function arguments were passed to `params` in generated-client
+        const unusedArgs = args.filter(arg => !params[arg] && !Object.values(params).find(p => p[1] === arg));
+        if (unusedArgs.length) {
+          parts.push(`unused args ${unusedArgs}`);
+        }
+        for (const p in params) {
+          const [src, srcObj] = params[p];
+          const srcArg = srcObj || src;
+          if (srcArg && args.indexOf(srcArg) === -1) {
+            parts.push(`unknown source of param ${p} <- ${src}`);
+          }
+        }
+      } else {
+        // check order of params
+        if (!_.isEqual(Object.keys(params), expectedParams)) {
+          parts.push(`v2 - ${Object.keys(params)}, v3 - ${expectedParams}`);
         }
       }
       if (parts.length) {
@@ -211,6 +243,7 @@ function checkClients(c2, c3) {
   }
 }
 
+// Check matching of params in v2 and v3 specs
 function checkSpecs(ops2, ops3) {
   for (const opId in ops2) {
     const op2 = ops2[opId];
@@ -223,6 +256,7 @@ function checkSpecs(ops2, ops3) {
         'missing in v3'
       );
     } else if (op2 && op3) {
+      // check equality of path, query, header params
       for (const paramType of ['query', 'path', 'header']) {
         const params2 = op2.parameters.filter(p => p.in === paramType).map(p => p.name);
         const params3 = op3.parameters.filter(p => p.in === paramType).map(p => p.name);
@@ -236,6 +270,7 @@ function checkSpecs(ops2, ops3) {
         }
       }
 
+      // check equality of body param
       const body2 = op2.parameters.filter(p => p.in === 'body').map(p => p.name).shift();
       const body3 = op3.bodyName;
       if (body2 !== body3) {
@@ -247,6 +282,7 @@ function checkSpecs(ops2, ops3) {
         );
       }
 
+      // check equality of form param
       const form2 = op2.parameters.filter(p => p.in === 'formData').map(p => p.name).shift();
       const form3 = op3.formDataName;
       if (form2 !== form3) {
