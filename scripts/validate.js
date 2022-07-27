@@ -227,7 +227,8 @@ function checkClients(c2, c3) {
             parts.push(`unknown source of param ${p} <- ${src}`);
           }
         }
-      } else {
+      }
+      if (!useObjectParameters) {
         // check order of params
         if (!_.isEqual(Object.keys(params), expectedParams)) {
           parts.push(`v2 - ${Object.keys(params)}, v3 - ${expectedParams}`);
