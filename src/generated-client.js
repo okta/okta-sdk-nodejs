@@ -13,11 +13,10 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-const qs = require('querystring');
-
+// const qs = require('querystring');
 const { Collection } = require('./collection');
 const models = require('./models');
-//const factories = require('./factories');
+// const factories = require('./factories');
 const { ModelFactory } = require('./model-factory');
 
 /**

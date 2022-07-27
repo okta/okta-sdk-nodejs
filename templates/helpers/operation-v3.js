@@ -425,8 +425,8 @@ function getV3ArgumentsOverride(argumentName, operationId) {
       'updateApplicationUserProfile'
     ]],
     certificate: ['body', 'string', [
-      'publishCerCert', 
-      'publishCerCertForIdentityProvider', 
+      'publishCerCert',
+      'publishCerCertForIdentityProvider',
       // obsolete
       'publishBinaryCerCert',
       'publishDerCert',
