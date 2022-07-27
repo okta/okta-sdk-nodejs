@@ -16,11 +16,9 @@
 import { ReadStream } from 'fs';
 //import { ApplicationOptions } from './parameterized-operations-client';
 import * as v3 from './generated';
-import { JsonWebKey } from './models/JsonWebKey';
 import { Response } from 'node-fetch';
 import { Collection } from './collection';
 import { Subscription } from './models/Subscription';
-import { ForgotPasswordResponse } from './models/ForgotPasswordResponse';
 
 export declare class GeneratedApiClient {
   listApplications(queryParameters?: {
@@ -52,10 +50,10 @@ export declare class GeneratedApiClient {
   revokeCsrFromApplication(appId: string, csrId: string): Promise<void>;
   getCsrForApplication(appId: string, csrId: string): Promise<v3.Csr>;
   publishCerCert(appId: string, csrId: string, body: string): Promise<v3.JsonWebKey>;
-  publishBinaryCerCert(appId: string, csrId: string, certificate: string): Promise<JsonWebKey>;
-  publishDerCert(appId: string, csrId: string, certificate: string): Promise<JsonWebKey>;
-  publishBinaryDerCert(appId: string, csrId: string, certificate: string): Promise<JsonWebKey>;
-  publishBinaryPemCert(appId: string, csrId: string, certificate: string): Promise<JsonWebKey>;
+  publishBinaryCerCert(appId: string, csrId: string, body: string): Promise<v3.JsonWebKey>;
+  publishDerCert(appId: string, csrId: string, body: string): Promise<v3.JsonWebKey>;
+  publishBinaryDerCert(appId: string, csrId: string, body: string): Promise<v3.JsonWebKey>;
+  publishBinaryPemCert(appId: string, csrId: string, body: string): Promise<v3.JsonWebKey>;
   listApplicationKeys(appId: string): Promise<Collection<v3.JsonWebKey>>;
   generateApplicationKey(appId: string, queryParameters?: {
     validityYears?: number,
@@ -304,10 +302,10 @@ export declare class GeneratedApiClient {
   revokeCsrForIdentityProvider(idpId: string, csrId: string): Promise<void>;
   getCsrForIdentityProvider(idpId: string, csrId: string): Promise<v3.Csr>;
   publishCerCertForIdentityProvider(idpId: string, csrId: string, body: string): Promise<v3.JsonWebKey>;
-  publishBinaryCerCertForIdentityProvider(idpId: string, csrId: string, certificate: string): Promise<JsonWebKey>;
-  publishDerCertForIdentityProvider(idpId: string, csrId: string, certificate: string): Promise<JsonWebKey>;
-  publishBinaryDerCertForIdentityProvider(idpId: string, csrId: string, certificate: string): Promise<JsonWebKey>;
-  publishBinaryPemCertForIdentityProvider(idpId: string, csrId: string, certificate: string): Promise<JsonWebKey>;
+  publishBinaryCerCertForIdentityProvider(idpId: string, csrId: string, body: string): Promise<v3.JsonWebKey>;
+  publishDerCertForIdentityProvider(idpId: string, csrId: string, body: string): Promise<v3.JsonWebKey>;
+  publishBinaryDerCertForIdentityProvider(idpId: string, csrId: string, body: string): Promise<v3.JsonWebKey>;
+  publishBinaryPemCertForIdentityProvider(idpId: string, csrId: string, body: string): Promise<v3.JsonWebKey>;
   listIdentityProviderSigningKeys(idpId: string): Promise<Collection<v3.JsonWebKey>>;
   generateIdentityProviderSigningKey(idpId: string, queryParameters: {
     validityYears: number,
@@ -486,7 +484,7 @@ export declare class GeneratedApiClient {
   changeRecoveryQuestion(userId: string, userCredentials: v3.UserCredentials): Promise<v3.UserCredentials>;
   forgotPasswordGenerateOneTimeToken(userId: string, queryParameters?: {
     sendEmail?: boolean,
-  }): Promise<ForgotPasswordResponse>;
+  }): Promise<v3.ForgotPasswordResponse>;
   forgotPasswordSetNewPassword(userId: string, userCredentials: v3.UserCredentials, queryParameters?: {
     sendEmail?: boolean,
   }): Promise<v3.ForgotPasswordResponse>;

@@ -175,7 +175,12 @@ const V3ApiOperations = {
     'updateApplication',
     'updateApplicationUser',
     'updateFeatureForApplication',
-    'uploadApplicationLogo'
+    'uploadApplicationLogo',
+    // obsolete
+    'publishBinaryCerCert',
+    'publishDerCert',
+    'publishBinaryDerCert',
+    'publishBinaryPemCert'
   ],
   AuthorizationServerApi: [
     'activateAuthorizationServer',
@@ -280,7 +285,7 @@ const V3ApiOperations = {
     'deactivateUser',
     'expirePassword',
     'expirePasswordAndGetTemporaryPassword',
-    'forgotPassword',
+    'forgotPasswordGenerateOneTimeToken',
     'forgotPasswordSetNewPassword',
     'getLinkedObjectsForUser',
     'getRefreshTokenForUserAndClient',
@@ -343,7 +348,12 @@ const V3ApiOperations = {
     'publishCerCertForIdentityProvider',
     'revokeCsrForIdentityProvider',
     'unlinkUserFromIdentityProvider',
-    'updateIdentityProvider'
+    'updateIdentityProvider',
+    // obsolete
+    'publishBinaryCerCertForIdentityProvider',
+    'publishDerCertForIdentityProvider',
+    'publishBinaryDerCertForIdentityProvider',
+    'publishBinaryPemCertForIdentityProvider',
   ],
   SessionApi: [
     'createSession',
@@ -411,9 +421,25 @@ function getV3ArgumentsOverride(argumentName, operationId) {
     groupSchema: ['GroupSchema', 'GroupSchema'],
     domainCertificate: ['certificate', 'DomainCertificate'],
     createUserRequest: ['body', 'CreateUserRequest'],
-    userSchema: ['body', 'UserSchema', ['updateApplicationUserProfile']],
-    certificate: ['body', 'string', ['publishCerCert', 'publishCerCertForIdentityProvider']],
-    orgSetting: ['OrgSetting', 'OrgSetting', ['partialUpdateOrgSetting']],
+    userSchema: ['body', 'UserSchema', [
+      'updateApplicationUserProfile'
+    ]],
+    certificate: ['body', 'string', [
+      'publishCerCert', 
+      'publishCerCertForIdentityProvider', 
+      // obsolete
+      'publishBinaryCerCert',
+      'publishDerCert',
+      'publishBinaryDerCert',
+      'publishBinaryPemCert',
+      'publishBinaryCerCertForIdentityProvider',
+      'publishDerCertForIdentityProvider',
+      'publishBinaryDerCertForIdentityProvider',
+      'publishBinaryPemCertForIdentityProvider',
+    ]],
+    orgSetting: ['OrgSetting', 'OrgSetting', [
+      'partialUpdateOrgSetting'
+    ]],
   };
   let ovr = mapping[argumentName];
   if (ovr && ovr[2] && operationId && !ovr[2].includes(operationId)) {
@@ -435,6 +461,16 @@ function getV3MethodName(v2OperationId) {
     updateEmailTemplateCustomization: 'updateEmailCustomization',
     publishCerCertForIdentityProvider: 'publishCsrForIdentityProvider',
     publishCerCert: 'publishCsrFromApplication',
+    forgotPasswordGenerateOneTimeToken: 'forgotPassword',
+    // obsolete
+    publishBinaryCerCert: 'publishCsrFromApplication',
+    publishDerCert: 'publishCsrFromApplication',
+    publishBinaryDerCert: 'publishCsrFromApplication',
+    publishBinaryPemCert: 'publishCsrFromApplication',
+    publishBinaryCerCertForIdentityProvider: 'publishCsrForIdentityProvider',
+    publishDerCertForIdentityProvider: 'publishCsrForIdentityProvider',
+    publishBinaryDerCertForIdentityProvider: 'publishCsrForIdentityProvider',
+    publishBinaryPemCertForIdentityProvider: 'publishCsrForIdentityProvider',
   }[v2OperationId] || v2OperationId;
 }
 

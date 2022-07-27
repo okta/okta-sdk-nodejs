@@ -314,156 +314,104 @@ class GeneratedApiClient {
    *
    * @param appId {String}
    * @param csrId {String}
-   * @param {string} certificate
+   * @param {string} body
    * @description
    * Convenience method for /api/v1/apps/{appId}/credentials/csrs/{csrId}/lifecycle/publish
    * @returns {Promise<JsonWebKey>}
    */
-  publishBinaryCerCert(appId, csrId, certificate) {
+  publishBinaryCerCert(appId, csrId, body) {
     if (!appId) {
       return Promise.reject(new Error('OKTA API publishBinaryCerCert parameter appId is required.'));
     }
     if (!csrId) {
       return Promise.reject(new Error('OKTA API publishBinaryCerCert parameter csrId is required.'));
     }
-    if (!certificate) {
-      return Promise.reject(new Error('OKTA API publishBinaryCerCert parameter certificate is required.'));
+    if (!body) {
+      return Promise.reject(new Error('OKTA API publishBinaryCerCert parameter body is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/apps/${appId}/credentials/csrs/${csrId}/lifecycle/publish`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/apps/${appId}/credentials/csrs/${csrId}`,
-      `${this.baseUrl}/api/v1/apps/${appId}`
-    ];
-
-    const request = this.http.post(
-      url,
-      {
-        headers: {
-          'Content-Type': 'application/x-x509-ca-cert', 'Accept': 'application/json',
-        },
-        body: certificate
-      },
-      { resources }
-    ).then(res => res.json());
-    return request.then(jsonRes => new models.JsonWebKey(jsonRes, this));
+    const params = {};
+    params.appId = appId;
+    params.csrId = csrId;
+    params.body = body;
+    return this.applicationApi.publishCsrFromApplication(params);
   }
 
   /**
    *
    * @param appId {String}
    * @param csrId {String}
-   * @param {string} certificate
+   * @param {string} body
    * @description
    * Convenience method for /api/v1/apps/{appId}/credentials/csrs/{csrId}/lifecycle/publish
    * @returns {Promise<JsonWebKey>}
    */
-  publishDerCert(appId, csrId, certificate) {
+  publishDerCert(appId, csrId, body) {
     if (!appId) {
       return Promise.reject(new Error('OKTA API publishDerCert parameter appId is required.'));
     }
     if (!csrId) {
       return Promise.reject(new Error('OKTA API publishDerCert parameter csrId is required.'));
     }
-    if (!certificate) {
-      return Promise.reject(new Error('OKTA API publishDerCert parameter certificate is required.'));
+    if (!body) {
+      return Promise.reject(new Error('OKTA API publishDerCert parameter body is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/apps/${appId}/credentials/csrs/${csrId}/lifecycle/publish`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/apps/${appId}/credentials/csrs/${csrId}`,
-      `${this.baseUrl}/api/v1/apps/${appId}`
-    ];
-
-    const request = this.http.post(
-      url,
-      {
-        headers: {
-          'Content-Type': 'application/pkix-cert', 'Accept': 'application/json', 'Content-Transfer-Encoding': 'base64',
-        },
-        body: certificate
-      },
-      { resources }
-    ).then(res => res.json());
-    return request.then(jsonRes => new models.JsonWebKey(jsonRes, this));
+    const params = {};
+    params.appId = appId;
+    params.csrId = csrId;
+    params.body = body;
+    return this.applicationApi.publishCsrFromApplication(params);
   }
 
   /**
    *
    * @param appId {String}
    * @param csrId {String}
-   * @param {string} certificate
+   * @param {string} body
    * @description
    * Convenience method for /api/v1/apps/{appId}/credentials/csrs/{csrId}/lifecycle/publish
    * @returns {Promise<JsonWebKey>}
    */
-  publishBinaryDerCert(appId, csrId, certificate) {
+  publishBinaryDerCert(appId, csrId, body) {
     if (!appId) {
       return Promise.reject(new Error('OKTA API publishBinaryDerCert parameter appId is required.'));
     }
     if (!csrId) {
       return Promise.reject(new Error('OKTA API publishBinaryDerCert parameter csrId is required.'));
     }
-    if (!certificate) {
-      return Promise.reject(new Error('OKTA API publishBinaryDerCert parameter certificate is required.'));
+    if (!body) {
+      return Promise.reject(new Error('OKTA API publishBinaryDerCert parameter body is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/apps/${appId}/credentials/csrs/${csrId}/lifecycle/publish`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/apps/${appId}/credentials/csrs/${csrId}`,
-      `${this.baseUrl}/api/v1/apps/${appId}`
-    ];
-
-    const request = this.http.post(
-      url,
-      {
-        headers: {
-          'Content-Type': 'application/pkix-cert', 'Accept': 'application/json',
-        },
-        body: certificate
-      },
-      { resources }
-    ).then(res => res.json());
-    return request.then(jsonRes => new models.JsonWebKey(jsonRes, this));
+    const params = {};
+    params.appId = appId;
+    params.csrId = csrId;
+    params.body = body;
+    return this.applicationApi.publishCsrFromApplication(params);
   }
 
   /**
    *
    * @param appId {String}
    * @param csrId {String}
-   * @param {string} certificate
+   * @param {string} body
    * @description
    * Convenience method for /api/v1/apps/{appId}/credentials/csrs/{csrId}/lifecycle/publish
    * @returns {Promise<JsonWebKey>}
    */
-  publishBinaryPemCert(appId, csrId, certificate) {
+  publishBinaryPemCert(appId, csrId, body) {
     if (!appId) {
       return Promise.reject(new Error('OKTA API publishBinaryPemCert parameter appId is required.'));
     }
     if (!csrId) {
       return Promise.reject(new Error('OKTA API publishBinaryPemCert parameter csrId is required.'));
     }
-    if (!certificate) {
-      return Promise.reject(new Error('OKTA API publishBinaryPemCert parameter certificate is required.'));
+    if (!body) {
+      return Promise.reject(new Error('OKTA API publishBinaryPemCert parameter body is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/apps/${appId}/credentials/csrs/${csrId}/lifecycle/publish`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/apps/${appId}/credentials/csrs/${csrId}`,
-      `${this.baseUrl}/api/v1/apps/${appId}`
-    ];
-
-    const request = this.http.post(
-      url,
-      {
-        headers: {
-          'Content-Type': 'application/x-pem-file', 'Accept': 'application/json',
-        },
-        body: certificate
-      },
-      { resources }
-    ).then(res => res.json());
-    return request.then(jsonRes => new models.JsonWebKey(jsonRes, this));
+    const params = {};
+    params.appId = appId;
+    params.csrId = csrId;
+    params.body = body;
+    return this.applicationApi.publishCsrFromApplication(params);
   }
 
   /**
@@ -3702,156 +3650,104 @@ class GeneratedApiClient {
    *
    * @param idpId {String}
    * @param csrId {String}
-   * @param {string} certificate
+   * @param {string} body
    * @description
    * Update the Certificate Signing Request with a signed X.509 certificate and add it into the signing key credentials for the IdP.
    * @returns {Promise<JsonWebKey>}
    */
-  publishBinaryCerCertForIdentityProvider(idpId, csrId, certificate) {
+  publishBinaryCerCertForIdentityProvider(idpId, csrId, body) {
     if (!idpId) {
       return Promise.reject(new Error('OKTA API publishBinaryCerCertForIdentityProvider parameter idpId is required.'));
     }
     if (!csrId) {
       return Promise.reject(new Error('OKTA API publishBinaryCerCertForIdentityProvider parameter csrId is required.'));
     }
-    if (!certificate) {
-      return Promise.reject(new Error('OKTA API publishBinaryCerCertForIdentityProvider parameter certificate is required.'));
+    if (!body) {
+      return Promise.reject(new Error('OKTA API publishBinaryCerCertForIdentityProvider parameter body is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/idps/${idpId}/credentials/csrs/${csrId}/lifecycle/publish`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/idps/${idpId}/credentials/csrs/${csrId}`,
-      `${this.baseUrl}/api/v1/idps/${idpId}`
-    ];
-
-    const request = this.http.post(
-      url,
-      {
-        headers: {
-          'Content-Type': 'application/x-x509-ca-cert', 'Accept': 'application/json',
-        },
-        body: certificate
-      },
-      { resources }
-    ).then(res => res.json());
-    return request.then(jsonRes => new models.JsonWebKey(jsonRes, this));
+    const params = {};
+    params.idpId = idpId;
+    params.csrId = csrId;
+    params.body = body;
+    return this.identityProviderApi.publishCsrForIdentityProvider(params);
   }
 
   /**
    *
    * @param idpId {String}
    * @param csrId {String}
-   * @param {string} certificate
+   * @param {string} body
    * @description
    * Update the Certificate Signing Request with a signed X.509 certificate and add it into the signing key credentials for the IdP.
    * @returns {Promise<JsonWebKey>}
    */
-  publishDerCertForIdentityProvider(idpId, csrId, certificate) {
+  publishDerCertForIdentityProvider(idpId, csrId, body) {
     if (!idpId) {
       return Promise.reject(new Error('OKTA API publishDerCertForIdentityProvider parameter idpId is required.'));
     }
     if (!csrId) {
       return Promise.reject(new Error('OKTA API publishDerCertForIdentityProvider parameter csrId is required.'));
     }
-    if (!certificate) {
-      return Promise.reject(new Error('OKTA API publishDerCertForIdentityProvider parameter certificate is required.'));
+    if (!body) {
+      return Promise.reject(new Error('OKTA API publishDerCertForIdentityProvider parameter body is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/idps/${idpId}/credentials/csrs/${csrId}/lifecycle/publish`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/idps/${idpId}/credentials/csrs/${csrId}`,
-      `${this.baseUrl}/api/v1/idps/${idpId}`
-    ];
-
-    const request = this.http.post(
-      url,
-      {
-        headers: {
-          'Content-Type': 'application/pkix-cert', 'Accept': 'application/json', 'Content-Transfer-Encoding': 'base64',
-        },
-        body: certificate
-      },
-      { resources }
-    ).then(res => res.json());
-    return request.then(jsonRes => new models.JsonWebKey(jsonRes, this));
+    const params = {};
+    params.idpId = idpId;
+    params.csrId = csrId;
+    params.body = body;
+    return this.identityProviderApi.publishCsrForIdentityProvider(params);
   }
 
   /**
    *
    * @param idpId {String}
    * @param csrId {String}
-   * @param {string} certificate
+   * @param {string} body
    * @description
    * Update the Certificate Signing Request with a signed X.509 certificate and add it into the signing key credentials for the IdP.
    * @returns {Promise<JsonWebKey>}
    */
-  publishBinaryDerCertForIdentityProvider(idpId, csrId, certificate) {
+  publishBinaryDerCertForIdentityProvider(idpId, csrId, body) {
     if (!idpId) {
       return Promise.reject(new Error('OKTA API publishBinaryDerCertForIdentityProvider parameter idpId is required.'));
     }
     if (!csrId) {
       return Promise.reject(new Error('OKTA API publishBinaryDerCertForIdentityProvider parameter csrId is required.'));
     }
-    if (!certificate) {
-      return Promise.reject(new Error('OKTA API publishBinaryDerCertForIdentityProvider parameter certificate is required.'));
+    if (!body) {
+      return Promise.reject(new Error('OKTA API publishBinaryDerCertForIdentityProvider parameter body is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/idps/${idpId}/credentials/csrs/${csrId}/lifecycle/publish`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/idps/${idpId}/credentials/csrs/${csrId}`,
-      `${this.baseUrl}/api/v1/idps/${idpId}`
-    ];
-
-    const request = this.http.post(
-      url,
-      {
-        headers: {
-          'Content-Type': 'application/pkix-cert', 'Accept': 'application/json',
-        },
-        body: certificate
-      },
-      { resources }
-    ).then(res => res.json());
-    return request.then(jsonRes => new models.JsonWebKey(jsonRes, this));
+    const params = {};
+    params.idpId = idpId;
+    params.csrId = csrId;
+    params.body = body;
+    return this.identityProviderApi.publishCsrForIdentityProvider(params);
   }
 
   /**
    *
    * @param idpId {String}
    * @param csrId {String}
-   * @param {string} certificate
+   * @param {string} body
    * @description
    * Update the Certificate Signing Request with a signed X.509 certificate and add it into the signing key credentials for the IdP.
    * @returns {Promise<JsonWebKey>}
    */
-  publishBinaryPemCertForIdentityProvider(idpId, csrId, certificate) {
+  publishBinaryPemCertForIdentityProvider(idpId, csrId, body) {
     if (!idpId) {
       return Promise.reject(new Error('OKTA API publishBinaryPemCertForIdentityProvider parameter idpId is required.'));
     }
     if (!csrId) {
       return Promise.reject(new Error('OKTA API publishBinaryPemCertForIdentityProvider parameter csrId is required.'));
     }
-    if (!certificate) {
-      return Promise.reject(new Error('OKTA API publishBinaryPemCertForIdentityProvider parameter certificate is required.'));
+    if (!body) {
+      return Promise.reject(new Error('OKTA API publishBinaryPemCertForIdentityProvider parameter body is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/idps/${idpId}/credentials/csrs/${csrId}/lifecycle/publish`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/idps/${idpId}/credentials/csrs/${csrId}`,
-      `${this.baseUrl}/api/v1/idps/${idpId}`
-    ];
-
-    const request = this.http.post(
-      url,
-      {
-        headers: {
-          'Content-Type': 'application/x-pem-file', 'Accept': 'application/json',
-        },
-        body: certificate
-      },
-      { resources }
-    ).then(res => res.json());
-    return request.then(jsonRes => new models.JsonWebKey(jsonRes, this));
+    const params = {};
+    params.idpId = idpId;
+    params.csrId = csrId;
+    params.body = body;
+    return this.identityProviderApi.publishCsrForIdentityProvider(params);
   }
 
   /**
@@ -5896,21 +5792,12 @@ class GeneratedApiClient {
     if (!userId) {
       return Promise.reject(new Error('OKTA API forgotPasswordGenerateOneTimeToken parameter userId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/users/${userId}/credentials/forgot_password`;
-    const queryString = qs.stringify(queryParameters || {});
-
-    url += queryString ? ('?' + queryString) : '';
-
-    const resources = [
-      `${this.baseUrl}/api/v1/users/${userId}`
-    ];
-
-    const request = this.http.postJson(
-      url,
-      null,
-      { resources }
-    );
-    return request.then(jsonRes => new models.ForgotPasswordResponse(jsonRes, this));
+    const params = {};
+    params.userId = userId;
+    if (queryParameters) {
+      params.sendEmail = queryParameters.sendEmail;
+    }
+    return this.userApi.forgotPassword(params);
   }
 
   /**

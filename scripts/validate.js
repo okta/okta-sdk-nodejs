@@ -84,7 +84,7 @@ function parseClient2() {
     if (rootNode?.name?.text === 'GeneratedApiClient') {
       ts.forEachChild(rootNode, funcNode => {
         const funcName = funcNode?.name?.text;
-        if (funcName) {
+        if (funcName && funcName !== '_removeRestrictedModelProperties') {
           const funcArgs = funcNode?.parameters?.map(n => n.name.text);
           const funcBody = funcNode?.body?.statements?.map(st => {
             const text = printer.printNode(ts.EmitHint.Unspecified, st, sourceFile);
