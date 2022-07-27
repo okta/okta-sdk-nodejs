@@ -1,14 +1,12 @@
 import { expectType } from 'tsd';
-import { Response } from 'node-fetch';
 import { Client } from '../../src/types/client';
-import { NotificationType } from '../../src/types/models/NotificationType';
-import { Subscription } from '../../src/types/models/Subscription';
+import { Subscription } from '../../src/types/generated/models/Subscription';
 
 const client = new Client();
 (async function () {
   const { value: subscription } = await (await client.listUserSubscriptions('testAppId')).next();
   expectType<Subscription>(subscription!);
-  expectType<Subscription>(await client.getUserSubscriptionByNotificationType('userId', NotificationType.OKTA_ISSUE));
-  expectType<Response>(await client.unsubscribeUserSubscriptionByNotificationType('userId', NotificationType.OKTA_ISSUE));
-  expectType<Response>(await client.subscribeUserSubscriptionByNotificationType('userId', NotificationType.OKTA_ISSUE));
+  expectType<Subscription>(await client.getUserSubscriptionByNotificationType('userId', 'OKTA_ISSUE'));
+  expectType<void>(await client.unsubscribeUserSubscriptionByNotificationType('userId', 'OKTA_ISSUE'));
+  expectType<void>(await client.subscribeUserSubscriptionByNotificationType('userId', 'OKTA_ISSUE'));
 }());
