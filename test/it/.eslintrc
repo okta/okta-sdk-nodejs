@@ -10,7 +10,8 @@
         "capIsNew": false,
         "properties": false
       }
-    ]
+    ],
+    "@typescript-eslint/no-unused-vars": ["warn", { "argsIgnorePattern": "^_" }]
   },
   "plugins": [
     "@typescript-eslint"

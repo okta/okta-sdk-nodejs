@@ -1,5 +1,4 @@
 import { expectType } from 'tsd';
-import { Response } from 'node-fetch';
 import { Client } from '../../src/types/client';
 import { Collection } from '../../src/types/collection';
 import { EmailTemplate } from '../../src/types/generated/models/EmailTemplate';

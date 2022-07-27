@@ -38,7 +38,7 @@ function parseSpec3(spec3, spec3Raw) {
   const ops = {};
   for (const path in spec3.paths) {
     for (const method in spec3.paths[path]) {
-      if (method != 'parameters') {
+      if (method !== 'parameters') {
         const commonParameters = spec3.paths[path].parameters || [];
         const op = spec3.paths[path][method];
         let bodyName = op['x-codegen-request-body-name'];
@@ -78,7 +78,7 @@ function parseClient2() {
   const res = {};
 
   ts.forEachChild(sourceFile, rootNode => {
-    if (rootNode?.name?.text == 'GeneratedApiClient') {
+    if (rootNode?.name?.text === 'GeneratedApiClient') {
       ts.forEachChild(rootNode, funcNode => {
         const funcName = funcNode?.name?.text;
         if (funcName) {
@@ -87,9 +87,12 @@ function parseClient2() {
             const text = printer.printNode(ts.EmitHint.Unspecified, st, sourceFile);
             const paramsRegex = /params\.(\w+) = (?:(\w+)\.)?(\w+)/g;
             let paramsMatch, paramsResults = [];
-            while (paramsMatch = paramsRegex.exec(text)) {
-              paramsResults.push(paramsMatch.slice(1, 4));
-            }
+            do {
+              paramsMatch = paramsRegex.exec(text);
+              if (paramsMatch) {
+                paramsResults.push(paramsMatch.slice(1, 4));
+              }
+            } while (paramsMatch);
             const regexReturn = /return this\.(\w+)\.(\w+)\(params\)/;
             const returnMatch = text.match(regexReturn)?.slice(1, 3);
             if (returnMatch) {
@@ -138,7 +141,7 @@ function parseClient3() {
 
   ts.forEachChild(sourceFile, rootNode => {
     const objClassName = rootNode?.name?.text;
-    if (rootNode.kind === ts.SyntaxKind.ClassDeclaration && objClassName?.indexOf('Api') != -1 && objClassName?.indexOf('Object') === 0) {
+    if (rootNode.kind === ts.SyntaxKind.ClassDeclaration && objClassName?.indexOf('Api') !== -1 && objClassName?.indexOf('Object') === 0) {
       const className = objClassName.slice('Object'.length);
       ts.forEachChild(rootNode, funcNode => {
         const methodName = funcNode?.name?.text;
@@ -235,7 +238,7 @@ function checkSpecs(ops2, ops3) {
 
       const body2 = op2.parameters.filter(p => p.in === 'body').map(p => p.name).shift();
       const body3 = op3.bodyName;
-      if (body2 != body3) {
+      if (body2 !== body3) {
         console.error(
           opId.padEnd(50, ' '),
           'body'.padEnd(10, ' '),
@@ -246,7 +249,7 @@ function checkSpecs(ops2, ops3) {
 
       const form2 = op2.parameters.filter(p => p.in === 'formData').map(p => p.name).shift();
       const form3 = op3.formDataName;
-      if (form2 != form3) {
+      if (form2 !== form3) {
         console.error(
           opId.padEnd(50, ' '),
           'formData'.padEnd(10, ' '),

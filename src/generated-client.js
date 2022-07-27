@@ -17,7 +17,7 @@ const qs = require('querystring');
 
 const { Collection } = require('./collection');
 const models = require('./models');
-const factories = require('./factories');
+//const factories = require('./factories');
 const { ModelFactory } = require('./model-factory');
 
 /**

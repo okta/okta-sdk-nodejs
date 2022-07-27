@@ -164,7 +164,7 @@ const getOperationArgument = (operation, apiVersion, useOverride) => {
 };
 
 const getBodyParams = (operation) => {
-  const { bodyModel, method, pathParams, queryParams, headerParams, formData, parameters, operationId } = operation;
+  const { bodyModel, method, formData } = operation;
   const allArgs = [];
 
   if ((method === 'post' || method === 'put') && bodyModel) {

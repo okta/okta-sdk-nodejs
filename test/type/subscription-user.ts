@@ -7,7 +7,7 @@ import { Subscription } from '../../src/types/models/Subscription';
 const client = new Client();
 (async function () {
   const { value: subscription } = await (await client.listUserSubscriptions('testAppId')).next();
-  expectType<Subscription>(subscription!);
+  expectType<Subscription | null>(subscription);
   expectType<Subscription>(await client.getUserSubscriptionByNotificationType('userId', NotificationType.OKTA_ISSUE));
   expectType<Response>(await client.unsubscribeUserSubscriptionByNotificationType('userId', NotificationType.OKTA_ISSUE));
   expectType<Response>(await client.subscribeUserSubscriptionByNotificationType('userId', NotificationType.OKTA_ISSUE));
