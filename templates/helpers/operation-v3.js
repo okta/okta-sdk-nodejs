@@ -413,6 +413,7 @@ function getV3ArgumentsOverride(argumentName, operationId) {
     createUserRequest: ['body', 'CreateUserRequest'],
     userSchema: ['body', 'UserSchema', ['updateApplicationUserProfile']],
     certificate: ['body', 'string', ['publishCerCert', 'publishCerCertForIdentityProvider']],
+    orgSetting: ['OrgSetting', 'OrgSetting', ['partialUpdateOrgSetting']],
   };
   let ovr = mapping[argumentName];
   if (ovr && ovr[2] && operationId && !ovr[2].includes(operationId)) {

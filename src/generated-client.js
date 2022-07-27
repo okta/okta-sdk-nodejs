@@ -4570,17 +4570,17 @@ class GeneratedApiClient {
 
   /**
    *
-   * @param {OrgSetting} orgSetting
+   * @param {OrgSetting} OrgSetting
    * @description
    * Partial update settings of your organization.
    * @returns {Promise<OrgSetting>}
    */
-  partialUpdateOrgSetting(orgSetting) {
-    if (!orgSetting) {
-      return Promise.reject(new Error('OKTA API partialUpdateOrgSetting parameter orgSetting is required.'));
+  partialUpdateOrgSetting(OrgSetting) {
+    if (!OrgSetting) {
+      return Promise.reject(new Error('OKTA API partialUpdateOrgSetting parameter OrgSetting is required.'));
     }
     const params = {};
-    params.orgSetting = orgSetting;
+    params.OrgSetting = OrgSetting;
     return this.orgSettingApi.partialUpdateOrgSetting(params);
   }
 

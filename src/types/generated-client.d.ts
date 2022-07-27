@@ -367,7 +367,7 @@ export declare class GeneratedApiClient {
   updateUserType(typeId: string, userType: v3.UserType): Promise<v3.UserType>;
   replaceUserType(typeId: string, userType: v3.UserType): Promise<v3.UserType>;
   getOrgSettings(): Promise<v3.OrgSetting>;
-  partialUpdateOrgSetting(orgSetting: v3.OrgSetting): Promise<v3.OrgSetting>;
+  partialUpdateOrgSetting(OrgSetting: v3.OrgSetting): Promise<v3.OrgSetting>;
   updateOrgSetting(orgSetting: v3.OrgSetting): Promise<v3.OrgSetting>;
   getOrgContactTypes(): Promise<Collection<v3.OrgContactTypeObj>>;
   getOrgContactUser(contactType: string): Promise<v3.OrgContactUser>;
