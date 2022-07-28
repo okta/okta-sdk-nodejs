@@ -141,8 +141,7 @@ describe('client.listUsers({ })', () => {
     expect(pageSpy.getCalls().length).to.equal(2);
   });
 
-  // TODO: OKTA-515269 - incompatibility in v2 and v3 specs
-  xit('should search users with q', async () => {
+  it('should search users with q', async () => {
     const queryParameters = {
       q: 'client-list-users-filtered'
     };

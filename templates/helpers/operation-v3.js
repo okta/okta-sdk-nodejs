@@ -175,7 +175,12 @@ const V3ApiOperations = {
     'updateApplication',
     'updateApplicationUser',
     'updateFeatureForApplication',
-    'uploadApplicationLogo'
+    'uploadApplicationLogo',
+    // obsolete
+    'publishBinaryCerCert',
+    'publishDerCert',
+    'publishBinaryDerCert',
+    'publishBinaryPemCert'
   ],
   AuthorizationServerApi: [
     'activateAuthorizationServer',
@@ -280,7 +285,7 @@ const V3ApiOperations = {
     'deactivateUser',
     'expirePassword',
     'expirePasswordAndGetTemporaryPassword',
-    'forgotPassword',
+    'forgotPasswordGenerateOneTimeToken',
     'forgotPasswordSetNewPassword',
     'getLinkedObjectsForUser',
     'getRefreshTokenForUserAndClient',
@@ -343,7 +348,12 @@ const V3ApiOperations = {
     'publishCerCertForIdentityProvider',
     'revokeCsrForIdentityProvider',
     'unlinkUserFromIdentityProvider',
-    'updateIdentityProvider'
+    'updateIdentityProvider',
+    // obsolete
+    'publishBinaryCerCertForIdentityProvider',
+    'publishDerCertForIdentityProvider',
+    'publishBinaryDerCertForIdentityProvider',
+    'publishBinaryPemCertForIdentityProvider',
   ],
   SessionApi: [
     'createSession',
@@ -402,12 +412,50 @@ function getV3ReturnType(operationId) {
   }[operationId];
 }
 
-function getV3ArgumentsOverride(argumentName) {
-  return {
+function getV3ArgumentsOverride(argumentName, operationId) {
+  const mapping = {
     emailTemplateTestRequest: ['language', 'string'],
     emailTemplateCustomizationRequest: ['instance', 'EmailCustomization'],
     userIdString: ['orgContactUser', 'OrgContactUser'],
-  }[argumentName];
+    networkZone: ['zone', 'NetworkZone'],
+    csrMetadata: ['metadata', 'CsrMetadata'],
+    userFactor: ['body', 'UserFactor'],
+    activateFactorRequest: ['body', 'ActivateFactorRequest'],
+    verifyFactorRequest: ['body', 'VerifyFactorRequest'],
+    authorizationServerPolicyRule: ['policyRule', 'AuthorizationServerPolicyRule'],
+    authorizationServerPolicy: ['policy', 'AuthorizationServerPolicy'],
+    inlineHookPayload: ['payloadData', 'InlineHookPayload'],
+    capabilitiesObject: ['CapabilitiesObject', 'CapabilitiesObject'],
+    provisioningConnectionRequest: ['ProvisioningConnectionRequest', 'ProvisioningConnectionRequest'],
+    jwkUse: ['use', 'JwkUse'],
+    groupSchema: ['GroupSchema', 'GroupSchema'],
+    domainCertificate: ['certificate', 'DomainCertificate'],
+    createUserRequest: ['body', 'CreateUserRequest'],
+    userSchema: ['body', 'UserSchema', [
+      'updateApplicationUserProfile'
+    ]],
+    certificate: ['body', 'string', [
+      'publishCerCert',
+      'publishCerCertForIdentityProvider',
+      // obsolete
+      'publishBinaryCerCert',
+      'publishDerCert',
+      'publishBinaryDerCert',
+      'publishBinaryPemCert',
+      'publishBinaryCerCertForIdentityProvider',
+      'publishDerCertForIdentityProvider',
+      'publishBinaryDerCertForIdentityProvider',
+      'publishBinaryPemCertForIdentityProvider',
+    ]],
+    orgSetting: ['OrgSetting', 'OrgSetting', [
+      'partialUpdateOrgSetting'
+    ]],
+  };
+  let ovr = mapping[argumentName];
+  if (ovr && ovr[2] && operationId && !ovr[2].includes(operationId)) {
+    ovr = undefined;
+  }
+  return ovr;
 }
 
 function getV3MethodName(v2OperationId) {
@@ -423,6 +471,16 @@ function getV3MethodName(v2OperationId) {
     updateEmailTemplateCustomization: 'updateEmailCustomization',
     publishCerCertForIdentityProvider: 'publishCsrForIdentityProvider',
     publishCerCert: 'publishCsrFromApplication',
+    forgotPasswordGenerateOneTimeToken: 'forgotPassword',
+    // obsolete
+    publishBinaryCerCert: 'publishCsrFromApplication',
+    publishDerCert: 'publishCsrFromApplication',
+    publishBinaryDerCert: 'publishCsrFromApplication',
+    publishBinaryPemCert: 'publishCsrFromApplication',
+    publishBinaryCerCertForIdentityProvider: 'publishCsrForIdentityProvider',
+    publishDerCertForIdentityProvider: 'publishCsrForIdentityProvider',
+    publishBinaryDerCertForIdentityProvider: 'publishCsrForIdentityProvider',
+    publishBinaryPemCertForIdentityProvider: 'publishCsrForIdentityProvider',
   }[v2OperationId] || v2OperationId;
 }
 

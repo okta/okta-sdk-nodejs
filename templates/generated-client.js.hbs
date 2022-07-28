@@ -1,9 +1,6 @@
 {{!-- The template file is not auto-generated - this banner is to be included into destination files --}}
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-const qs = require('querystring');
-
-const models = require('./models');
 
 /**
  * Auto-Generated API client, implements the operations as defined in the OpenaAPI JSON spec
@@ -23,6 +20,30 @@ class GeneratedApiClient {
     }
     {{/each}}
   {{#if (isV3Api operationId)}}
+  {{#if (useObjectParameters)}}
+    const params = {};
+    {{#each pathParams}}
+    params.{{name}} = {{name}};
+    {{/each}}
+    {{#each (getBodyParams this)}}
+    params.{{name}} = {{name}};
+    {{/each}}
+    {{#if queryParams.length}}
+    if (queryParameters) {
+    {{#each queryParams}}
+      params.{{name}} = queryParameters.{{name}};
+    {{/each}}
+    }
+    {{/if}}
+    {{#if headerParams.length}}
+    if (headerParameters) {
+    {{#each headerParams}}
+      params.{{name}} = headerParameters.{{name}};
+    {{/each}}
+    }
+    {{/if}}
+    return this.{{toCamelCase (v3ApiByOperationId operationId)}}.{{getV3MethodName operationId}}(params);
+  {{else}}
     {{#if queryParams.length}}
     {{#each queryParams}}
     let {{name}};
@@ -44,6 +65,7 @@ class GeneratedApiClient {
     }
     {{/if}}
     return this.{{toCamelCase (v3ApiByOperationId operationId)}}.{{getV3MethodName operationId}}({{operationArgumentBuilder this 'v3'}});
+  {{/if}}
   {{else}}
     let url = `${this.baseUrl}{{replacePathParams path}}`;
     {{#if queryParams.length}}

@@ -27,7 +27,9 @@ describe('Policy Crud API', () => {
     mockPolicy.conditions.people.groups.include.push(group.id);
   });
   afterEach(async () => {
-    await client.groupApi.deleteGroup(group.id);
+    await client.groupApi.deleteGroup({
+      groupId: group.id
+    });
   });
 
   describe('List policies', () => {

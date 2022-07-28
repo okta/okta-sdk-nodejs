@@ -40,7 +40,8 @@ describe('AppUser.delete()', () => {
       createdAppUser = await client.assignUserToApplication(createdApplication.id, {
         id: createdUser.id
       });
-      await client.deleteApplicationUser(createdApplication.id, createdAppUser.id);
+      const response = await client.deleteApplicationUser(createdApplication.id, createdAppUser.id);
+      expect(response).to.be.undefined;
     } finally {
       if (createdApplication) {
         await client.deactivateApplication(createdApplication.id);

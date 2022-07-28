@@ -10,7 +10,7 @@ export class Observable<T> {
   }
 }
 
-export function from<T>(promise: Promise<any>) {
+export function from<_>(promise: Promise<any>): Observable<any> {
   return new Observable(promise);
 }
 

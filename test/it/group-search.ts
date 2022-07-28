@@ -78,8 +78,7 @@ describe('Group API tests', () => {
     expect(filtered.size).to.equal(2);
   });
 
-  // TODO: OKTA-515269 - incompatibility in v2 and v3 specs
-  xit('should filter with search and paginate results', async () => {
+  it('should filter with search and paginate results', async () => {
     const filtered = new Set();
     const q = 'node-sdk: Search test Group GROUP_XY';
     const collection = await client.listGroups({

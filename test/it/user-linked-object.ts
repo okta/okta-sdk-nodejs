@@ -2,8 +2,8 @@ import { expect } from 'chai';
 import {
   Client,
   Collection,
-  DefaultRequestExecutor,
-  v3 } from '@okta/okta-sdk-nodejs';
+  DefaultRequestExecutor
+} from '@okta/okta-sdk-nodejs';
 import utils = require('../utils');
 import getMockLinkedObject = require('./mocks/linked-object');
 import getMockUser = require('./mocks/user-without-credentials');

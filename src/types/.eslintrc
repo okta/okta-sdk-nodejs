@@ -12,11 +12,15 @@
       }
     ],
     "@typescript-eslint/no-empty-interface": [
-      1
+      0
     ],
     "no-use-before-define": [
       0
-    ]
+    ],
+    "@typescript-eslint/no-explicit-any": [
+      0
+    ],
+    "@typescript-eslint/no-unused-vars": ["warn", { "argsIgnorePattern": "^_", "varsIgnorePattern": "^_" }]
   },
   "plugins": [
     "@typescript-eslint"

@@ -6,7 +6,7 @@ import { ApplicationFeature } from '../../src/types/generated/models/Application
 const client = new Client();
 (async function () {
   const { value: feature } = await (await client.listFeaturesForApplication('testAppId')).next();
-  expectType<ApplicationFeature>(feature!);
+  expectType<ApplicationFeature | null>(feature);
 
   expectType<ApplicationFeature>(await client.getFeatureForApplication('appId', 'FEATURE_NAME'));
 

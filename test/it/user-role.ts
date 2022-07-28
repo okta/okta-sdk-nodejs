@@ -120,7 +120,9 @@ describe('User role API', () => {
     });
     afterEach(async () => {
       await client.removeRoleFromUser(user.id, role.id);
-      await client.groupApi.deleteGroup(group.id);
+      await client.groupApi.deleteGroup({
+        groupId: group.id
+      });
     });
 
     describe('Add group target', () => {

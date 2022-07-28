@@ -4,6 +4,7 @@
     "withSeparateModelsAndApi": true,
     "modelPropertyNaming": "original",
     "platform": "node",
-    "enumPropertyNaming": "original"
+    "enumPropertyNaming": "original",
+    "useObjectParameters": true
   }
 }
