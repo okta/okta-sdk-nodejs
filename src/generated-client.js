@@ -13,11 +13,9 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-// const qs = require('querystring');
-const { Collection } = require('./collection');
+const qs = require('querystring');
+
 const models = require('./models');
-// const factories = require('./factories');
-const { ModelFactory } = require('./model-factory');
 
 /**
  * Auto-Generated API client, implements the operations as defined in the OpenaAPI JSON spec
@@ -4951,13 +4949,7 @@ class GeneratedApiClient {
     if (!roleTypeOrRoleId) {
       return Promise.reject(new Error('OKTA API listRoleSubscriptions parameter roleTypeOrRoleId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/roles/${roleTypeOrRoleId}/subscriptions`;
-
-    return new Collection(
-      this.http,
-      url,
-      new ModelFactory(models.Subscription, this),
-    );
+    return this.subscriptionApi.listRoleSubscriptions(roleTypeOrRoleId);
   }
 
   /**
@@ -4975,19 +4967,7 @@ class GeneratedApiClient {
     if (!notificationType) {
       return Promise.reject(new Error('OKTA API getRoleSubscriptionByNotificationType parameter notificationType is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/roles/${roleTypeOrRoleId}/subscriptions/${notificationType}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/roles/${roleTypeOrRoleId}/subscriptions/${notificationType}`,
-      `${this.baseUrl}/api/v1/roles/${roleTypeOrRoleId}`
-    ];
-
-    const request = this.http.getJson(
-      url,
-      null,
-      { resources }
-    );
-    return request.then(jsonRes => new models.Subscription(jsonRes, this));
+    return this.subscriptionApi.getRoleSubscriptionByNotificationType(roleTypeOrRoleId, notificationType);
   }
 
   /**
@@ -5004,23 +4984,7 @@ class GeneratedApiClient {
     if (!notificationType) {
       return Promise.reject(new Error('OKTA API subscribeRoleSubscriptionByNotificationType parameter notificationType is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/roles/${roleTypeOrRoleId}/subscriptions/${notificationType}/subscribe`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/roles/${roleTypeOrRoleId}/subscriptions/${notificationType}`,
-      `${this.baseUrl}/api/v1/roles/${roleTypeOrRoleId}`
-    ];
-
-    const request = this.http.post(
-      url,
-      {
-        headers: {
-          'Content-Type': 'application/json', 'Accept': 'application/json',
-        },
-      },
-      { resources }
-    );
-    return request;
+    return this.subscriptionApi.subscribeRoleSubscriptionByNotificationType(roleTypeOrRoleId, notificationType);
   }
 
   /**
@@ -5037,23 +5001,7 @@ class GeneratedApiClient {
     if (!notificationType) {
       return Promise.reject(new Error('OKTA API unsubscribeRoleSubscriptionByNotificationType parameter notificationType is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/roles/${roleTypeOrRoleId}/subscriptions/${notificationType}/unsubscribe`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/roles/${roleTypeOrRoleId}/subscriptions/${notificationType}`,
-      `${this.baseUrl}/api/v1/roles/${roleTypeOrRoleId}`
-    ];
-
-    const request = this.http.post(
-      url,
-      {
-        headers: {
-          'Content-Type': 'application/json', 'Accept': 'application/json',
-        },
-      },
-      { resources }
-    );
-    return request;
+    return this.subscriptionApi.unsubscribeRoleSubscriptionByNotificationType(roleTypeOrRoleId, notificationType);
   }
 
   /**
@@ -6734,13 +6682,7 @@ class GeneratedApiClient {
     if (!userId) {
       return Promise.reject(new Error('OKTA API listUserSubscriptions parameter userId is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/users/${userId}/subscriptions`;
-
-    return new Collection(
-      this.http,
-      url,
-      new ModelFactory(models.Subscription, this),
-    );
+    return this.subscriptionApi.listUserSubscriptions(userId);
   }
 
   /**
@@ -6758,19 +6700,7 @@ class GeneratedApiClient {
     if (!notificationType) {
       return Promise.reject(new Error('OKTA API getUserSubscriptionByNotificationType parameter notificationType is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/users/${userId}/subscriptions/${notificationType}`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/users/${userId}/subscriptions/${notificationType}`,
-      `${this.baseUrl}/api/v1/users/${userId}`
-    ];
-
-    const request = this.http.getJson(
-      url,
-      null,
-      { resources }
-    );
-    return request.then(jsonRes => new models.Subscription(jsonRes, this));
+    return this.subscriptionApi.getUserSubscriptionByNotificationType(userId, notificationType);
   }
 
   /**
@@ -6787,23 +6717,7 @@ class GeneratedApiClient {
     if (!notificationType) {
       return Promise.reject(new Error('OKTA API subscribeUserSubscriptionByNotificationType parameter notificationType is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/users/${userId}/subscriptions/${notificationType}/subscribe`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/users/${userId}/subscriptions/${notificationType}`,
-      `${this.baseUrl}/api/v1/users/${userId}`
-    ];
-
-    const request = this.http.post(
-      url,
-      {
-        headers: {
-          'Content-Type': 'application/json', 'Accept': 'application/json',
-        },
-      },
-      { resources }
-    );
-    return request;
+    return this.subscriptionApi.subscribeUserSubscriptionByNotificationType(userId, notificationType);
   }
 
   /**
@@ -6820,23 +6734,7 @@ class GeneratedApiClient {
     if (!notificationType) {
       return Promise.reject(new Error('OKTA API unsubscribeUserSubscriptionByNotificationType parameter notificationType is required.'));
     }
-    let url = `${this.baseUrl}/api/v1/users/${userId}/subscriptions/${notificationType}/unsubscribe`;
-
-    const resources = [
-      `${this.baseUrl}/api/v1/users/${userId}/subscriptions/${notificationType}`,
-      `${this.baseUrl}/api/v1/users/${userId}`
-    ];
-
-    const request = this.http.post(
-      url,
-      {
-        headers: {
-          'Content-Type': 'application/json', 'Accept': 'application/json',
-        },
-      },
-      { resources }
-    );
-    return request;
+    return this.subscriptionApi.unsubscribeUserSubscriptionByNotificationType(userId, notificationType);
   }
 
   /**

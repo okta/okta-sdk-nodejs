@@ -45,6 +45,7 @@ const {
   SessionApi,
   TemplateApi,
   PolicyApi,
+  SubscriptionApi,
 } = require('./generated');
 const { createConfiguration } = require('./generated/configuration');
 const { ServerConfiguration } = require('./generated/servers');
@@ -145,6 +146,7 @@ class Client extends GeneratedApiClient {
     this.sessionApi = new SessionApi(configuration);
     this.templateApi = new TemplateApi(configuration);
     this.policyApi = new PolicyApi(configuration);
+    this.subscriptionApi = new SubscriptionApi(configuration);
   }
 }
 
