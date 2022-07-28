@@ -14,12 +14,10 @@
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
 import { ReadStream } from 'fs';
-import { ApplicationOptions } from './parameterized-operations-client';
+import { Collection } from './collection';
 import * as v3 from './generated';
 import { JsonWebKey } from './models/JsonWebKey';
 import { Response } from 'node-fetch';
-import { Collection } from './collection';
-import { Subscription } from './models/Subscription';
 import { ForgotPasswordResponse } from './models/ForgotPasswordResponse';
 
 export declare class GeneratedApiClient {
@@ -405,10 +403,10 @@ export declare class GeneratedApiClient {
   updatePolicyRule(policyId: string, ruleId: string, policyRule: v3.PolicyRule): Promise<v3.PolicyRule>;
   activatePolicyRule(policyId: string, ruleId: string): Promise<void>;
   deactivatePolicyRule(policyId: string, ruleId: string): Promise<void>;
-  listRoleSubscriptions(roleTypeOrRoleId: string): Collection<Subscription>;
-  getRoleSubscriptionByNotificationType(roleTypeOrRoleId: string, notificationType: string): Promise<Subscription>;
-  subscribeRoleSubscriptionByNotificationType(roleTypeOrRoleId: string, notificationType: string): Promise<Response>;
-  unsubscribeRoleSubscriptionByNotificationType(roleTypeOrRoleId: string, notificationType: string): Promise<Response>;
+  listRoleSubscriptions(roleTypeOrRoleId: string): Promise<Collection<v3.Subscription>>;
+  getRoleSubscriptionByNotificationType(roleTypeOrRoleId: string, notificationType: string): Promise<v3.Subscription>;
+  subscribeRoleSubscriptionByNotificationType(roleTypeOrRoleId: string, notificationType: string): Promise<void>;
+  unsubscribeRoleSubscriptionByNotificationType(roleTypeOrRoleId: string, notificationType: string): Promise<void>;
   createSession(createSessionRequest: v3.CreateSessionRequest): Promise<v3.Session>;
   endSession(sessionId: string): Promise<void>;
   getSession(sessionId: string): Promise<v3.Session>;
@@ -573,10 +571,10 @@ export declare class GeneratedApiClient {
   clearUserSessions(userId: string, queryParameters?: {
     oauthTokens?: boolean,
   }): Promise<void>;
-  listUserSubscriptions(userId: string): Collection<Subscription>;
-  getUserSubscriptionByNotificationType(userId: string, notificationType: string): Promise<Subscription>;
-  subscribeUserSubscriptionByNotificationType(userId: string, notificationType: string): Promise<Response>;
-  unsubscribeUserSubscriptionByNotificationType(userId: string, notificationType: string): Promise<Response>;
+  listUserSubscriptions(userId: string): Promise<Collection<v3.Subscription>>;
+  getUserSubscriptionByNotificationType(userId: string, notificationType: string): Promise<v3.Subscription>;
+  subscribeUserSubscriptionByNotificationType(userId: string, notificationType: string): Promise<void>;
+  unsubscribeUserSubscriptionByNotificationType(userId: string, notificationType: string): Promise<void>;
   listNetworkZones(queryParameters?: {
     after?: string,
     limit?: number,
