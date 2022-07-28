@@ -13,9 +13,6 @@
 
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
-const qs = require('querystring');
-
-const models = require('./models');
 
 /**
  * Auto-Generated API client, implements the operations as defined in the OpenaAPI JSON spec
@@ -4949,7 +4946,9 @@ class GeneratedApiClient {
     if (!roleTypeOrRoleId) {
       return Promise.reject(new Error('OKTA API listRoleSubscriptions parameter roleTypeOrRoleId is required.'));
     }
-    return this.subscriptionApi.listRoleSubscriptions(roleTypeOrRoleId);
+    const params = {};
+    params.roleTypeOrRoleId = roleTypeOrRoleId;
+    return this.subscriptionApi.listRoleSubscriptions(params);
   }
 
   /**
@@ -4967,7 +4966,10 @@ class GeneratedApiClient {
     if (!notificationType) {
       return Promise.reject(new Error('OKTA API getRoleSubscriptionByNotificationType parameter notificationType is required.'));
     }
-    return this.subscriptionApi.getRoleSubscriptionByNotificationType(roleTypeOrRoleId, notificationType);
+    const params = {};
+    params.roleTypeOrRoleId = roleTypeOrRoleId;
+    params.notificationType = notificationType;
+    return this.subscriptionApi.getRoleSubscriptionByNotificationType(params);
   }
 
   /**
@@ -4984,7 +4986,10 @@ class GeneratedApiClient {
     if (!notificationType) {
       return Promise.reject(new Error('OKTA API subscribeRoleSubscriptionByNotificationType parameter notificationType is required.'));
     }
-    return this.subscriptionApi.subscribeRoleSubscriptionByNotificationType(roleTypeOrRoleId, notificationType);
+    const params = {};
+    params.roleTypeOrRoleId = roleTypeOrRoleId;
+    params.notificationType = notificationType;
+    return this.subscriptionApi.subscribeRoleSubscriptionByNotificationType(params);
   }
 
   /**
@@ -5001,7 +5006,10 @@ class GeneratedApiClient {
     if (!notificationType) {
       return Promise.reject(new Error('OKTA API unsubscribeRoleSubscriptionByNotificationType parameter notificationType is required.'));
     }
-    return this.subscriptionApi.unsubscribeRoleSubscriptionByNotificationType(roleTypeOrRoleId, notificationType);
+    const params = {};
+    params.roleTypeOrRoleId = roleTypeOrRoleId;
+    params.notificationType = notificationType;
+    return this.subscriptionApi.unsubscribeRoleSubscriptionByNotificationType(params);
   }
 
   /**
@@ -6682,7 +6690,9 @@ class GeneratedApiClient {
     if (!userId) {
       return Promise.reject(new Error('OKTA API listUserSubscriptions parameter userId is required.'));
     }
-    return this.subscriptionApi.listUserSubscriptions(userId);
+    const params = {};
+    params.userId = userId;
+    return this.subscriptionApi.listUserSubscriptions(params);
   }
 
   /**
@@ -6700,7 +6710,10 @@ class GeneratedApiClient {
     if (!notificationType) {
       return Promise.reject(new Error('OKTA API getUserSubscriptionByNotificationType parameter notificationType is required.'));
     }
-    return this.subscriptionApi.getUserSubscriptionByNotificationType(userId, notificationType);
+    const params = {};
+    params.userId = userId;
+    params.notificationType = notificationType;
+    return this.subscriptionApi.getUserSubscriptionByNotificationType(params);
   }
 
   /**
@@ -6717,7 +6730,10 @@ class GeneratedApiClient {
     if (!notificationType) {
       return Promise.reject(new Error('OKTA API subscribeUserSubscriptionByNotificationType parameter notificationType is required.'));
     }
-    return this.subscriptionApi.subscribeUserSubscriptionByNotificationType(userId, notificationType);
+    const params = {};
+    params.userId = userId;
+    params.notificationType = notificationType;
+    return this.subscriptionApi.subscribeUserSubscriptionByNotificationType(params);
   }
 
   /**
@@ -6734,7 +6750,10 @@ class GeneratedApiClient {
     if (!notificationType) {
       return Promise.reject(new Error('OKTA API unsubscribeUserSubscriptionByNotificationType parameter notificationType is required.'));
     }
-    return this.subscriptionApi.unsubscribeUserSubscriptionByNotificationType(userId, notificationType);
+    const params = {};
+    params.userId = userId;
+    params.notificationType = notificationType;
+    return this.subscriptionApi.unsubscribeUserSubscriptionByNotificationType(params);
   }
 
   /**

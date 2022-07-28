@@ -17,7 +17,6 @@ import { ReadStream } from 'fs';
 import { Collection } from './collection';
 import * as v3 from './generated';
 import { Response } from 'node-fetch';
-import { ForgotPasswordResponse } from './models/ForgotPasswordResponse';
 
 export declare class GeneratedApiClient {
   listApplications(queryParameters?: {
