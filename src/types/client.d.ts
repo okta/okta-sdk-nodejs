@@ -41,6 +41,9 @@ import {
   TemplateApi,
   PolicyApi,
   SubscriptionApi,
+  AgentPoolsApi,
+  ApiTokenApi,
+  BehaviorApi,
 } from './generated';
 export declare class Client extends ParameterizedOperationsClient {
   constructor(config?: V2Configuration);
@@ -80,4 +83,7 @@ export declare class Client extends ParameterizedOperationsClient {
   templateApi: TemplateApi;
   policyApi: PolicyApi;
   subscription: SubscriptionApi;
+  agentPoolsApi: AgentPoolsApi;
+  apiTokenApi: ApiTokenApi;
+  behaviorApi: BehaviorApi;
 }
