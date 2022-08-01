@@ -209,7 +209,7 @@ export declare class AuthorizationServerApiRequestFactory extends BaseAPIRequest
      * @param limit
      * @param after
      */
-  listAuthorizationServers(q?: string, limit?: string, after?: string, _options?: Configuration): Promise<RequestContext>;
+  listAuthorizationServers(q?: string, limit?: number, after?: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Success
      * List all Custom Token Claims

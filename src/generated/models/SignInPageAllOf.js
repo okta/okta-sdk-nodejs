@@ -36,12 +36,6 @@ exports.SignInPageAllOf = SignInPageAllOf;
 SignInPageAllOf.discriminator = undefined;
 SignInPageAllOf.attributeTypeMap = [
   {
-    'name': 'defaultApp',
-    'baseName': 'defaultApp',
-    'type': 'SignInPageAllOfDefaultApp',
-    'format': ''
-  },
-  {
     'name': 'type',
     'baseName': 'type',
     'type': 'HostedPageType',

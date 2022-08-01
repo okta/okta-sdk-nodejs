@@ -14,12 +14,19 @@
 import { BaseAPIRequestFactory } from './baseapi';
 import { Configuration } from '../configuration';
 import { RequestContext, ResponseContext } from '../http/http';
+import { ApplicationLayout } from '../models/ApplicationLayout';
 import { GroupSchema } from '../models/GroupSchema';
 import { UserSchema } from '../models/UserSchema';
 /**
  * no description
  */
 export declare class SchemaApiRequestFactory extends BaseAPIRequestFactory {
+  /**
+     * Takes an Application name as an input parameter and retrieves the App Instance page Layout for that Application.
+     * Retrieve the UI Layout for an Application
+     * @param appName
+     */
+  getApplicationLayout(appName: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Fetches the Schema for an App User
      * Retrieve the default Application User Schema for an Application
@@ -59,6 +66,14 @@ export declare class SchemaApiRequestFactory extends BaseAPIRequestFactory {
   updateUserProfile(schemaId: string, userSchema: UserSchema, _options?: Configuration): Promise<RequestContext>;
 }
 export declare class SchemaApiResponseProcessor {
+  /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
+     * @params response Response returned by the server for a request to getApplicationLayout
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+  getApplicationLayout(response: ResponseContext): Promise<ApplicationLayout>;
   /**
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects

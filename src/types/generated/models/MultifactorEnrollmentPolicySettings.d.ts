@@ -25,8 +25,8 @@
 import { MultifactorEnrollmentPolicyAuthenticatorSettings } from './MultifactorEnrollmentPolicyAuthenticatorSettings';
 import { MultifactorEnrollmentPolicySettingsType } from './MultifactorEnrollmentPolicySettingsType';
 export declare class MultifactorEnrollmentPolicySettings {
-  'type'?: MultifactorEnrollmentPolicySettingsType;
   'authenticators'?: Array<MultifactorEnrollmentPolicyAuthenticatorSettings>;
+  'type'?: MultifactorEnrollmentPolicySettingsType;
   static readonly discriminator: string | undefined;
   static readonly attributeTypeMap: Array<{
         name: string;

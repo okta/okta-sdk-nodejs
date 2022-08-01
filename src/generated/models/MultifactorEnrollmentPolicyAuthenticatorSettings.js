@@ -36,15 +36,15 @@ exports.MultifactorEnrollmentPolicyAuthenticatorSettings = MultifactorEnrollment
 MultifactorEnrollmentPolicyAuthenticatorSettings.discriminator = undefined;
 MultifactorEnrollmentPolicyAuthenticatorSettings.attributeTypeMap = [
   {
-    'name': 'key',
-    'baseName': 'key',
-    'type': 'MultifactorEnrollmentPolicyAuthenticatorType',
-    'format': ''
-  },
-  {
     'name': 'enroll',
     'baseName': 'enroll',
     'type': 'MultifactorEnrollmentPolicyAuthenticatorSettingsEnroll',
+    'format': ''
+  },
+  {
+    'name': 'key',
+    'baseName': 'key',
+    'type': 'MultifactorEnrollmentPolicyAuthenticatorType',
     'format': ''
   }
 ];

@@ -48,6 +48,12 @@ Brand.attributeTypeMap = [
     'format': ''
   },
   {
+    'name': 'defaultApp',
+    'baseName': 'defaultApp',
+    'type': 'BrandDefaultApp',
+    'format': ''
+  },
+  {
     'name': 'displayLanguage',
     'baseName': 'displayLanguage',
     'type': 'string',

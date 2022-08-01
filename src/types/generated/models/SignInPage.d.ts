@@ -23,11 +23,9 @@
  * Do not edit the class manually.
  */
 import { HostedPageType } from './HostedPageType';
-import { SignInPageAllOfDefaultApp } from './SignInPageAllOfDefaultApp';
 import { SignInPageAllOfWidgetCustomizations } from './SignInPageAllOfWidgetCustomizations';
 export declare class SignInPage {
   'pageContent': string;
-  'defaultApp'?: SignInPageAllOfDefaultApp;
   'type': HostedPageType;
   'url'?: string;
   'widgetCustomizations'?: SignInPageAllOfWidgetCustomizations;

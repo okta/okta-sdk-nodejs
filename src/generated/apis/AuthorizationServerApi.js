@@ -1126,7 +1126,7 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
     }
     // Query Params
     if (limit !== undefined) {
-      requestContext.setQueryParam('limit', ObjectSerializer_1.ObjectSerializer.serialize(limit, 'string', ''));
+      requestContext.setQueryParam('limit', ObjectSerializer_1.ObjectSerializer.serialize(limit, 'number', 'int32'));
     }
     // Query Params
     if (after !== undefined) {

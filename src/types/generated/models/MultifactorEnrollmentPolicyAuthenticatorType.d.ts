@@ -22,4 +22,4 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-export declare type MultifactorEnrollmentPolicyAuthenticatorType = 'okta_email' | 'okta_verify' | 'okta_password' | 'phone_number' | 'security_question';
+export declare type MultifactorEnrollmentPolicyAuthenticatorType = 'custom_app' | 'custom_otp' | 'duo' | 'external_idp' | 'google_otp' | 'okta_email' | 'okta_password' | 'okta_verify' | 'onprem_mfa' | 'phone_number' | 'rsa_token' | 'security_question' | 'symantec_vip' | 'webauthn' | 'yubikey_token';

@@ -176,12 +176,13 @@ export declare class GroupApiRequestFactory extends BaseAPIRequestFactory {
      * Enumerates groups in your organization with pagination. A subset of groups can be returned that match a supported filter expression or query.
      * List all Groups
      * @param q Searches the name property of groups for matching value
-     * @param search Filter expression for groups
+     * @param filter Filter expression for groups
      * @param after Specifies the pagination cursor for the next page of groups
      * @param limit Specifies the number of group results in a page
      * @param expand If specified, it causes additional metadata to be included in the response.
+     * @param search Searches for groups with a supported filtering expression for all attributes except for _embedded, _links, and objectClass
      */
-  listGroups(q?: string, search?: string, after?: string, limit?: number, expand?: string, _options?: Configuration): Promise<RequestContext>;
+  listGroups(q?: string, filter?: string, after?: string, limit?: number, expand?: string, search?: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Remove App Instance Target to App Administrator Role given to a Group
      * Delete an Application Instance Target to Application Administrator Role

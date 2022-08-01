@@ -36,15 +36,15 @@ exports.MultifactorEnrollmentPolicyAllOf = MultifactorEnrollmentPolicyAllOf;
 MultifactorEnrollmentPolicyAllOf.discriminator = undefined;
 MultifactorEnrollmentPolicyAllOf.attributeTypeMap = [
   {
-    'name': 'settings',
-    'baseName': 'settings',
-    'type': 'MultifactorEnrollmentPolicySettings',
-    'format': ''
-  },
-  {
     'name': 'conditions',
     'baseName': 'conditions',
     'type': 'PolicyRuleConditions',
+    'format': ''
+  },
+  {
+    'name': 'settings',
+    'baseName': 'settings',
+    'type': 'MultifactorEnrollmentPolicySettings',
     'format': ''
   }
 ];

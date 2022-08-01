@@ -26,6 +26,7 @@ import { AppUser } from '../models/AppUser';
 import { Application } from '../models/Application';
 import { ApplicationFeature } from '../models/ApplicationFeature';
 import { ApplicationGroupAssignment } from '../models/ApplicationGroupAssignment';
+import { ApplicationLayout } from '../models/ApplicationLayout';
 import { AssignRoleRequest } from '../models/AssignRoleRequest';
 import { Authenticator } from '../models/Authenticator';
 import { AuthorizationServer } from '../models/AuthorizationServer';
@@ -44,12 +45,16 @@ import { CreateUserRequest } from '../models/CreateUserRequest';
 import { Csr } from '../models/Csr';
 import { CsrMetadata } from '../models/CsrMetadata';
 import { CustomizablePage } from '../models/CustomizablePage';
+import { DeviceAssurance } from '../models/DeviceAssurance';
 import { Domain } from '../models/Domain';
 import { DomainCertificate } from '../models/DomainCertificate';
 import { DomainListResponse } from '../models/DomainListResponse';
 import { DomainResponse } from '../models/DomainResponse';
 import { EmailCustomization } from '../models/EmailCustomization';
 import { EmailDefaultContent } from '../models/EmailDefaultContent';
+import { EmailDomain } from '../models/EmailDomain';
+import { EmailDomainListResponse } from '../models/EmailDomainListResponse';
+import { EmailDomainResponse } from '../models/EmailDomainResponse';
 import { EmailPreview } from '../models/EmailPreview';
 import { EmailSettings } from '../models/EmailSettings';
 import { EmailTemplate } from '../models/EmailTemplate';
@@ -86,8 +91,10 @@ import { Policy } from '../models/Policy';
 import { PolicyRule } from '../models/PolicyRule';
 import { PrincipalRateLimitEntity } from '../models/PrincipalRateLimitEntity';
 import { ProfileMapping } from '../models/ProfileMapping';
+import { ProviderType } from '../models/ProviderType';
 import { ProvisioningConnection } from '../models/ProvisioningConnection';
 import { ProvisioningConnectionRequest } from '../models/ProvisioningConnectionRequest';
+import { PushProvider } from '../models/PushProvider';
 import { ResetPasswordToken } from '../models/ResetPasswordToken';
 import { Role } from '../models/Role';
 import { SecurityQuestion } from '../models/SecurityQuestion';
@@ -102,6 +109,7 @@ import { Theme } from '../models/Theme';
 import { ThemeResponse } from '../models/ThemeResponse';
 import { ThreatInsightConfiguration } from '../models/ThreatInsightConfiguration';
 import { TrustedOrigin } from '../models/TrustedOrigin';
+import { UpdateEmailDomain } from '../models/UpdateEmailDomain';
 import { UpdateUserRequest } from '../models/UpdateUserRequest';
 import { User } from '../models/User';
 import { UserActivationToken } from '../models/UserActivationToken';
@@ -786,7 +794,7 @@ export declare class ObservableAuthorizationServerApi {
       * @param limit
       * @param after
       */
-  listAuthorizationServers(q?: string, limit?: string, after?: string, _options?: Configuration): Observable<Collection<AuthorizationServer>>;
+  listAuthorizationServers(q?: string, limit?: number, after?: string, _options?: Configuration): Observable<Collection<AuthorizationServer>>;
   /**
       * Success
       * List all Custom Token Claims
@@ -1086,6 +1094,12 @@ export declare class ObservableCustomizationApi {
       */
   getEmailTemplate(brandId: string, templateName: string, expand?: Array<'settings' | 'customizationCount'>, _options?: Configuration): Observable<EmailTemplate>;
   /**
+      * List all sign-in widget versions.
+      * List all Sign-in Widget Versions
+      * @param brandId The ID of the brand.
+      */
+  listAllSignInWidgetVersions(brandId: string, _options?: Configuration): Observable<Collection<string>>;
+  /**
       * List all the themes in your brand
       * List all Themes
       * @param brandId
@@ -1122,13 +1136,6 @@ export declare class ObservableCustomizationApi {
       */
   previewErrorPage(brandId: string, CustomizablePage: CustomizablePage, _options?: Configuration): Observable<string>;
   /**
-      * Preview the sign-in page.
-      * Preview the Sign-in Page.
-      * @param brandId The ID of the brand.
-      * @param SignInPage
-      */
-  previewSignInPage(brandId: string, SignInPage: SignInPage, _options?: Configuration): Observable<string>;
-  /**
       * Replaces the error page.
       * Replace the Error Page
       * @param brandId The ID of the brand.
@@ -1142,6 +1149,13 @@ export declare class ObservableCustomizationApi {
       * @param SignInPage
       */
   replaceSignInPage(brandId: string, SignInPage: SignInPage, _options?: Configuration): Observable<SignInPage>;
+  /**
+      * Replace the sign-in page preview.
+      * Replace the Sign-in Page Preview
+      * @param brandId The ID of the brand.
+      * @param SignInPage
+      */
+  replaceSignInPagePreview(brandId: string, SignInPage: SignInPage, _options?: Configuration): Observable<void>;
   /**
       * Replaces the sign-out page settings.
       * Replace the Sign-out Page Settings
@@ -1244,6 +1258,43 @@ export declare class ObservableCustomizationApi {
       */
   uploadBrandThemeLogo(brandId: string, themeId: string, file: HttpFile, _options?: Configuration): Observable<ImageUploadResponse>;
 }
+import { DeviceAssuranceApiRequestFactory, DeviceAssuranceApiResponseProcessor } from '../apis/DeviceAssuranceApi';
+export declare class ObservableDeviceAssuranceApi {
+  private requestFactory;
+  private responseProcessor;
+  private configuration;
+  constructor(configuration: Configuration, requestFactory?: DeviceAssuranceApiRequestFactory, responseProcessor?: DeviceAssuranceApiResponseProcessor);
+  /**
+      * Adds a new Device Assurance Policy.
+      * Create a Device Assurance Policy
+      * @param deviceAssurance
+      */
+  createDeviceAssurancePolicy(deviceAssurance: DeviceAssurance, _options?: Configuration): Observable<DeviceAssurance>;
+  /**
+      * Delete a Device Assurance Policy by `deviceAssuranceId`. If the Device Assurance Policy is currently being used in the org Authentication Policies, the delete will not be allowed.
+      * Delete a Device Assurance Policy
+      * @param deviceAssuranceId Id of the Device Assurance Policy
+      */
+  deleteDeviceAssurancePolicy(deviceAssuranceId: string, _options?: Configuration): Observable<void>;
+  /**
+      * Fetches a Device Assurance Policy by `deviceAssuranceId`.
+      * Retrieve a Device Assurance Policy
+      * @param deviceAssuranceId Id of the Device Assurance Policy
+      */
+  getDeviceAssurancePolicy(deviceAssuranceId: string, _options?: Configuration): Observable<DeviceAssurance>;
+  /**
+      * Enumerates Device Assurance Policies in your organization.
+      * List all Device Assurance Policies
+      */
+  listDeviceAssurancePolicies(_options?: Configuration): Observable<Collection<DeviceAssurance>>;
+  /**
+      * Updates a Device Assurance Policy by `deviceAssuranceId`.
+      * Replace a Device Assurance Policy
+      * @param deviceAssuranceId Id of the Device Assurance Policy
+      * @param deviceAssurance
+      */
+  updateDeviceAssurancePolicy(deviceAssuranceId: string, deviceAssurance: DeviceAssurance, _options?: Configuration): Observable<DeviceAssurance>;
+}
 import { DomainApiRequestFactory, DomainApiResponseProcessor } from '../apis/DomainApi';
 export declare class ObservableDomainApi {
   private requestFactory;
@@ -1286,6 +1337,55 @@ export declare class ObservableDomainApi {
       * @param domainId
       */
   verifyDomain(domainId: string, _options?: Configuration): Observable<DomainResponse>;
+}
+import { EmailDomainApiRequestFactory, EmailDomainApiResponseProcessor } from '../apis/EmailDomainApi';
+export declare class ObservableEmailDomainApi {
+  private requestFactory;
+  private responseProcessor;
+  private configuration;
+  constructor(configuration: Configuration, requestFactory?: EmailDomainApiRequestFactory, responseProcessor?: EmailDomainApiResponseProcessor);
+  /**
+      * Creates a custom email domain.
+      * Create an Email Domain
+      * @param emailDomain
+      */
+  createEmailDomain(emailDomain: EmailDomain, _options?: Configuration): Observable<EmailDomainResponse>;
+  /**
+      * Deletes an Email Domain by `emailDomainId`.
+      * Delete an Email Domain
+      * @param emailDomainId
+      */
+  deleteEmailDomain(emailDomainId: string, _options?: Configuration): Observable<void>;
+  /**
+      * Fetches an Email Domain by `emailDomainId`.
+      * Retrieve a Email Domain
+      * @param emailDomainId
+      */
+  getEmailDomain(emailDomainId: string, _options?: Configuration): Observable<EmailDomainResponse>;
+  /**
+      * List all brands linked to an email domain.
+      * List all brands linked to an email domain
+      * @param emailDomainId
+      */
+  listEmailDomainBrands(emailDomainId: string, _options?: Configuration): Observable<Collection<Brand>>;
+  /**
+      * List all the email domains in your org.
+      * List all email domains
+      */
+  listEmailDomains(_options?: Configuration): Observable<EmailDomainListResponse>;
+  /**
+      * Updates an email domain by `emailDomainId`
+      * Update an Email Domain
+      * @param emailDomainId
+      * @param updateEmailDomain
+      */
+  updateEmailDomain(emailDomainId: string, updateEmailDomain: UpdateEmailDomain, _options?: Configuration): Observable<EmailDomainResponse>;
+  /**
+      * Verifies the Email Domain by `id`.
+      * Verify Email Domain
+      * @param emailDomainId
+      */
+  verifyEmailDomain(emailDomainId: string, _options?: Configuration): Observable<EmailDomainResponse>;
 }
 import { EventHookApiRequestFactory, EventHookApiResponseProcessor } from '../apis/EventHookApi';
 export declare class ObservableEventHookApi {
@@ -1537,12 +1637,13 @@ export declare class ObservableGroupApi {
       * Enumerates groups in your organization with pagination. A subset of groups can be returned that match a supported filter expression or query.
       * List all Groups
       * @param q Searches the name property of groups for matching value
-      * @param search Filter expression for groups
+      * @param filter Filter expression for groups
       * @param after Specifies the pagination cursor for the next page of groups
       * @param limit Specifies the number of group results in a page
       * @param expand If specified, it causes additional metadata to be included in the response.
+      * @param search Searches for groups with a supported filtering expression for all attributes except for _embedded, _links, and objectClass
       */
-  listGroups(q?: string, search?: string, after?: string, limit?: number, expand?: string, _options?: Configuration): Observable<Collection<Group>>;
+  listGroups(q?: string, filter?: string, after?: string, limit?: number, expand?: string, search?: string, _options?: Configuration): Observable<Collection<Group>>;
   /**
       * Remove App Instance Target to App Administrator Role given to a Group
       * Delete an Application Instance Target to Application Administrator Role
@@ -2188,12 +2289,56 @@ export declare class ObservableProfileMappingApi {
       */
   updateProfileMapping(mappingId: string, profileMapping: ProfileMapping, _options?: Configuration): Observable<ProfileMapping>;
 }
+import { PushProviderApiRequestFactory, PushProviderApiResponseProcessor } from '../apis/PushProviderApi';
+export declare class ObservablePushProviderApi {
+  private requestFactory;
+  private responseProcessor;
+  private configuration;
+  constructor(configuration: Configuration, requestFactory?: PushProviderApiRequestFactory, responseProcessor?: PushProviderApiResponseProcessor);
+  /**
+      * Adds a new push provider to your organization.
+      * Create a Push Provider
+      * @param pushProvider
+      */
+  createPushProvider(pushProvider: PushProvider, _options?: Configuration): Observable<PushProvider>;
+  /**
+      * Delete a push provider by `pushProviderId`. If the push provider is currently being used in the org by a custom authenticator, the delete will not be allowed.
+      * Delete a Push Provider
+      * @param pushProviderId Id of the push provider
+      */
+  deletePushProvider(pushProviderId: string, _options?: Configuration): Observable<void>;
+  /**
+      * Fetches a push provider by `pushProviderId`.
+      * Retrieve a Push Provider
+      * @param pushProviderId Id of the push provider
+      */
+  getPushProvider(pushProviderId: string, _options?: Configuration): Observable<PushProvider>;
+  /**
+      * Enumerates push providers in your organization.
+      * List all Push Providers
+      * @param type Filters push providers by &#x60;providerType&#x60;
+      */
+  listPushProviders(type?: ProviderType, _options?: Configuration): Observable<Collection<PushProvider>>;
+  /**
+      * Updates a push provider by `pushProviderId`.
+      * Replace a Push Provider
+      * @param pushProviderId Id of the push provider
+      * @param pushProvider
+      */
+  updatePushProvider(pushProviderId: string, pushProvider: PushProvider, _options?: Configuration): Observable<PushProvider>;
+}
 import { SchemaApiRequestFactory, SchemaApiResponseProcessor } from '../apis/SchemaApi';
 export declare class ObservableSchemaApi {
   private requestFactory;
   private responseProcessor;
   private configuration;
   constructor(configuration: Configuration, requestFactory?: SchemaApiRequestFactory, responseProcessor?: SchemaApiResponseProcessor);
+  /**
+      * Takes an Application name as an input parameter and retrieves the App Instance page Layout for that Application.
+      * Retrieve the UI Layout for an Application
+      * @param appName
+      */
+  getApplicationLayout(appName: string, _options?: Configuration): Observable<ApplicationLayout>;
   /**
       * Fetches the Schema for an App User
       * Retrieve the default Application User Schema for an Application
@@ -2707,15 +2852,15 @@ export declare class ObservableUserApi {
   /**
       * Lists users in your organization with pagination in most cases.  A subset of users can be returned that match a supported filter expression or search criteria.
       * List all Users
-      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/reference/core-okta-api/#pagination) for more information.
       * @param q Finds a user that matches firstName, lastName, and email properties
+      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/reference/core-okta-api/#pagination) for more information.
       * @param limit Specifies the number of results returned. Defaults to 10 if &#x60;q&#x60; is provided.
       * @param filter Filters users with a supported expression for a subset of properties
       * @param search Searches for users with a supported filtering  expression for most properties
       * @param sortBy
       * @param sortOrder
       */
-  listUsers(after?: string, q?: string, limit?: number, filter?: string, search?: string, sortBy?: string, sortOrder?: string, _options?: Configuration): Observable<Collection<User>>;
+  listUsers(q?: string, after?: string, limit?: number, filter?: string, search?: string, sortBy?: string, sortOrder?: string, _options?: Configuration): Observable<Collection<User>>;
   /**
       * Fetch a user by `id`, `login`, or `login shortname` if the short name is unambiguous.
       * Update a User

@@ -26,8 +26,8 @@ import { MultifactorEnrollmentPolicySettings } from './MultifactorEnrollmentPoli
 import { Policy } from './Policy';
 import { PolicyRuleConditions } from './PolicyRuleConditions';
 export declare class MultifactorEnrollmentPolicy extends Policy {
-  'settings'?: MultifactorEnrollmentPolicySettings;
   'conditions'?: PolicyRuleConditions;
+  'settings'?: MultifactorEnrollmentPolicySettings;
   static readonly discriminator: string | undefined;
   static readonly attributeTypeMap: Array<{
         name: string;

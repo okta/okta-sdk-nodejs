@@ -25,6 +25,42 @@ const util_1 = require('../util');
  */
 class SchemaApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   /**
+     * Takes an Application name as an input parameter and retrieves the App Instance page Layout for that Application.
+     * Retrieve the UI Layout for an Application
+     * @param appName
+     */
+  async getApplicationLayout(appName, _options) {
+    let _config = _options || this.configuration;
+    // verify required parameter 'appName' is not null or undefined
+    if (appName === null || appName === undefined) {
+      throw new baseapi_1.RequiredError('SchemaApi', 'getApplicationLayout', 'appName');
+    }
+    // Path Params
+    const path = '/api/v1/meta/layouts/apps/{appName}';
+    const vars = {
+      ['appName']: String(appName),
+    };
+    // Make Request Context
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
+    requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
+    let authMethod;
+    // Apply auth methods
+    authMethod = _config.authMethods['API_Token'];
+    if (authMethod?.applySecurityAuthentication) {
+      await authMethod?.applySecurityAuthentication(requestContext);
+    }
+    // Apply auth methods
+    authMethod = _config.authMethods['OAuth_2.0'];
+    if (authMethod?.applySecurityAuthentication) {
+      await authMethod?.applySecurityAuthentication(requestContext);
+    }
+    const defaultAuth = _options?.authMethods?.default || this.configuration?.authMethods?.default;
+    if (defaultAuth?.applySecurityAuthentication) {
+      await defaultAuth?.applySecurityAuthentication(requestContext);
+    }
+    return requestContext;
+  }
+  /**
      * Fetches the Schema for an App User
      * Retrieve the default Application User Schema for an Application
      * @param appInstanceId
@@ -258,6 +294,30 @@ class SchemaApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
 }
 exports.SchemaApiRequestFactory = SchemaApiRequestFactory;
 class SchemaApiResponseProcessor {
+  /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
+     * @params response Response returned by the server for a request to getApplicationLayout
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+  async getApplicationLayout(response) {
+    const contentType = ObjectSerializer_1.ObjectSerializer.normalizeMediaType(response.headers['content-type']);
+    if ((0, util_1.isCodeInRange)('200', response.httpStatusCode)) {
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ApplicationLayout', '');
+      return body;
+    }
+    if ((0, util_1.isCodeInRange)('404', response.httpStatusCode)) {
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      throw new exception_1.ApiException(404, 'Not Found', body, response.headers);
+    }
+    // Work around for missing responses in specification, e.g. for petstore.yaml
+    if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ApplicationLayout', '');
+      return body;
+    }
+    throw new exception_1.ApiException(response.httpStatusCode, 'Unknown API Status Code!', await response.getBodyAsAny(), response.headers);
+  }
   /**
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects

@@ -24,6 +24,9 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ObjectSerializer = void 0;
+__exportStar(require("./APNSConfiguration"), exports);
+__exportStar(require("./APNSPushProvider"), exports);
+__exportStar(require("./APNSPushProviderAllOf"), exports);
 __exportStar(require("./AccessPolicy"), exports);
 __exportStar(require("./AccessPolicyAllOf"), exports);
 __exportStar(require("./AccessPolicyConstraint"), exports);
@@ -66,6 +69,9 @@ __exportStar(require("./ApplicationCredentialsSigningUse"), exports);
 __exportStar(require("./ApplicationCredentialsUsernameTemplate"), exports);
 __exportStar(require("./ApplicationFeature"), exports);
 __exportStar(require("./ApplicationGroupAssignment"), exports);
+__exportStar(require("./ApplicationLayout"), exports);
+__exportStar(require("./ApplicationLayoutRule"), exports);
+__exportStar(require("./ApplicationLayoutRuleCondition"), exports);
 __exportStar(require("./ApplicationLicensing"), exports);
 __exportStar(require("./ApplicationLifecycleStatus"), exports);
 __exportStar(require("./ApplicationSettings"), exports);
@@ -104,6 +110,7 @@ __exportStar(require("./AutoLoginApplicationSettings"), exports);
 __exportStar(require("./AutoLoginApplicationSettingsAllOf"), exports);
 __exportStar(require("./AutoLoginApplicationSettingsSignOn"), exports);
 __exportStar(require("./AutoUpdateSchedule"), exports);
+__exportStar(require("./BaseEmailDomain"), exports);
 __exportStar(require("./BasicApplicationSettings"), exports);
 __exportStar(require("./BasicApplicationSettingsAllOf"), exports);
 __exportStar(require("./BasicApplicationSettingsApplication"), exports);
@@ -138,6 +145,7 @@ __exportStar(require("./BouncesRemoveListError"), exports);
 __exportStar(require("./BouncesRemoveListObj"), exports);
 __exportStar(require("./BouncesRemoveListResult"), exports);
 __exportStar(require("./Brand"), exports);
+__exportStar(require("./BrandDefaultApp"), exports);
 __exportStar(require("./BrowserPluginApplication"), exports);
 __exportStar(require("./BrowserPluginApplicationAllOf"), exports);
 __exportStar(require("./CAPTCHAInstance"), exports);
@@ -171,11 +179,15 @@ __exportStar(require("./DNSRecord"), exports);
 __exportStar(require("./DNSRecordType"), exports);
 __exportStar(require("./DeviceAccessPolicyRuleCondition"), exports);
 __exportStar(require("./DeviceAccessPolicyRuleConditionAllOf"), exports);
+__exportStar(require("./DeviceAssurance"), exports);
+__exportStar(require("./DeviceAssuranceDiskEncryptionType"), exports);
+__exportStar(require("./DeviceAssuranceScreenLockType"), exports);
 __exportStar(require("./DevicePolicyMDMFramework"), exports);
 __exportStar(require("./DevicePolicyPlatformType"), exports);
 __exportStar(require("./DevicePolicyRuleCondition"), exports);
 __exportStar(require("./DevicePolicyRuleConditionPlatform"), exports);
 __exportStar(require("./DevicePolicyTrustLevel"), exports);
+__exportStar(require("./DiskEncryptionType"), exports);
 __exportStar(require("./Domain"), exports);
 __exportStar(require("./DomainCertificate"), exports);
 __exportStar(require("./DomainCertificateMetadata"), exports);
@@ -193,6 +205,10 @@ __exportStar(require("./EmailCustomizationAllOfLinks"), exports);
 __exportStar(require("./EmailDefaultContent"), exports);
 __exportStar(require("./EmailDefaultContentAllOf"), exports);
 __exportStar(require("./EmailDefaultContentAllOfLinks"), exports);
+__exportStar(require("./EmailDomain"), exports);
+__exportStar(require("./EmailDomainListResponse"), exports);
+__exportStar(require("./EmailDomainResponse"), exports);
+__exportStar(require("./EmailDomainStatus"), exports);
 __exportStar(require("./EmailPreview"), exports);
 __exportStar(require("./EmailPreviewLinks"), exports);
 __exportStar(require("./EmailSettings"), exports);
@@ -217,6 +233,9 @@ __exportStar(require("./EventHookChannelType"), exports);
 __exportStar(require("./EventHookVerificationStatus"), exports);
 __exportStar(require("./EventSubscriptionType"), exports);
 __exportStar(require("./EventSubscriptions"), exports);
+__exportStar(require("./FCMConfiguration"), exports);
+__exportStar(require("./FCMPushProvider"), exports);
+__exportStar(require("./FCMPushProviderAllOf"), exports);
 __exportStar(require("./FactorProvider"), exports);
 __exportStar(require("./FactorResultType"), exports);
 __exportStar(require("./FactorStatus"), exports);
@@ -428,6 +447,7 @@ __exportStar(require("./PasswordPolicyRuleConditions"), exports);
 __exportStar(require("./PasswordPolicyRuleConditionsAllOf"), exports);
 __exportStar(require("./PasswordPolicySettings"), exports);
 __exportStar(require("./PasswordSettingObject"), exports);
+__exportStar(require("./Platform"), exports);
 __exportStar(require("./PlatformConditionEvaluatorPlatform"), exports);
 __exportStar(require("./PlatformConditionEvaluatorPlatformOperatingSystem"), exports);
 __exportStar(require("./PlatformConditionEvaluatorPlatformOperatingSystemVersion"), exports);
@@ -488,6 +508,7 @@ __exportStar(require("./ProtocolRelayState"), exports);
 __exportStar(require("./ProtocolRelayStateFormat"), exports);
 __exportStar(require("./ProtocolSettings"), exports);
 __exportStar(require("./ProtocolType"), exports);
+__exportStar(require("./ProviderType"), exports);
 __exportStar(require("./Provisioning"), exports);
 __exportStar(require("./ProvisioningAction"), exports);
 __exportStar(require("./ProvisioningConditions"), exports);
@@ -502,6 +523,7 @@ __exportStar(require("./ProvisioningGroups"), exports);
 __exportStar(require("./ProvisioningGroupsAction"), exports);
 __exportStar(require("./ProvisioningSuspendedAction"), exports);
 __exportStar(require("./ProvisioningSuspendedCondition"), exports);
+__exportStar(require("./PushProvider"), exports);
 __exportStar(require("./PushUserFactor"), exports);
 __exportStar(require("./PushUserFactorAllOf"), exports);
 __exportStar(require("./PushUserFactorProfile"), exports);
@@ -524,6 +546,7 @@ __exportStar(require("./SamlAttributeStatement"), exports);
 __exportStar(require("./ScheduledUserLifecycleAction"), exports);
 __exportStar(require("./SchemeApplicationCredentials"), exports);
 __exportStar(require("./SchemeApplicationCredentialsAllOf"), exports);
+__exportStar(require("./ScreenLockType"), exports);
 __exportStar(require("./SecurePasswordStoreApplication"), exports);
 __exportStar(require("./SecurePasswordStoreApplicationAllOf"), exports);
 __exportStar(require("./SecurePasswordStoreApplicationSettings"), exports);
@@ -541,7 +564,6 @@ __exportStar(require("./SessionIdentityProviderType"), exports);
 __exportStar(require("./SessionStatus"), exports);
 __exportStar(require("./SignInPage"), exports);
 __exportStar(require("./SignInPageAllOf"), exports);
-__exportStar(require("./SignInPageAllOfDefaultApp"), exports);
 __exportStar(require("./SignInPageAllOfWidgetCustomizations"), exports);
 __exportStar(require("./SignInPageTouchPointVariant"), exports);
 __exportStar(require("./SignOnInlineHook"), exports);
@@ -576,6 +598,7 @@ __exportStar(require("./TrustedOriginScopeType"), exports);
 __exportStar(require("./U2fUserFactor"), exports);
 __exportStar(require("./U2fUserFactorAllOf"), exports);
 __exportStar(require("./U2fUserFactorProfile"), exports);
+__exportStar(require("./UpdateEmailDomain"), exports);
 __exportStar(require("./UpdateUserRequest"), exports);
 __exportStar(require("./User"), exports);
 __exportStar(require("./UserActivationToken"), exports);
@@ -618,6 +641,7 @@ __exportStar(require("./VerificationMethod"), exports);
 __exportStar(require("./VerifyFactorRequest"), exports);
 __exportStar(require("./VerifyUserFactorResponse"), exports);
 __exportStar(require("./VerifyUserFactorResult"), exports);
+__exportStar(require("./VersionObject"), exports);
 __exportStar(require("./WebAuthnUserFactor"), exports);
 __exportStar(require("./WebAuthnUserFactorAllOf"), exports);
 __exportStar(require("./WebAuthnUserFactorProfile"), exports);
@@ -629,6 +653,9 @@ __exportStar(require("./WsFederationApplicationAllOf"), exports);
 __exportStar(require("./WsFederationApplicationSettings"), exports);
 __exportStar(require("./WsFederationApplicationSettingsAllOf"), exports);
 __exportStar(require("./WsFederationApplicationSettingsApplication"), exports);
+const APNSConfiguration_1 = require("./APNSConfiguration");
+const APNSPushProvider_1 = require("./APNSPushProvider");
+const APNSPushProviderAllOf_1 = require("./APNSPushProviderAllOf");
 const AccessPolicy_1 = require("./AccessPolicy");
 const AccessPolicyAllOf_1 = require("./AccessPolicyAllOf");
 const AccessPolicyConstraint_1 = require("./AccessPolicyConstraint");
@@ -664,6 +691,9 @@ const ApplicationCredentialsSigning_1 = require("./ApplicationCredentialsSigning
 const ApplicationCredentialsUsernameTemplate_1 = require("./ApplicationCredentialsUsernameTemplate");
 const ApplicationFeature_1 = require("./ApplicationFeature");
 const ApplicationGroupAssignment_1 = require("./ApplicationGroupAssignment");
+const ApplicationLayout_1 = require("./ApplicationLayout");
+const ApplicationLayoutRule_1 = require("./ApplicationLayoutRule");
+const ApplicationLayoutRuleCondition_1 = require("./ApplicationLayoutRuleCondition");
 const ApplicationLicensing_1 = require("./ApplicationLicensing");
 const ApplicationSettings_1 = require("./ApplicationSettings");
 const ApplicationSettingsNotes_1 = require("./ApplicationSettingsNotes");
@@ -695,6 +725,7 @@ const AutoLoginApplicationSettings_1 = require("./AutoLoginApplicationSettings")
 const AutoLoginApplicationSettingsAllOf_1 = require("./AutoLoginApplicationSettingsAllOf");
 const AutoLoginApplicationSettingsSignOn_1 = require("./AutoLoginApplicationSettingsSignOn");
 const AutoUpdateSchedule_1 = require("./AutoUpdateSchedule");
+const BaseEmailDomain_1 = require("./BaseEmailDomain");
 const BasicApplicationSettings_1 = require("./BasicApplicationSettings");
 const BasicApplicationSettingsAllOf_1 = require("./BasicApplicationSettingsAllOf");
 const BasicApplicationSettingsApplication_1 = require("./BasicApplicationSettingsApplication");
@@ -728,6 +759,7 @@ const BouncesRemoveListError_1 = require("./BouncesRemoveListError");
 const BouncesRemoveListObj_1 = require("./BouncesRemoveListObj");
 const BouncesRemoveListResult_1 = require("./BouncesRemoveListResult");
 const Brand_1 = require("./Brand");
+const BrandDefaultApp_1 = require("./BrandDefaultApp");
 const BrowserPluginApplication_1 = require("./BrowserPluginApplication");
 const BrowserPluginApplicationAllOf_1 = require("./BrowserPluginApplicationAllOf");
 const CAPTCHAInstance_1 = require("./CAPTCHAInstance");
@@ -757,6 +789,9 @@ const CustomizablePage_1 = require("./CustomizablePage");
 const DNSRecord_1 = require("./DNSRecord");
 const DeviceAccessPolicyRuleCondition_1 = require("./DeviceAccessPolicyRuleCondition");
 const DeviceAccessPolicyRuleConditionAllOf_1 = require("./DeviceAccessPolicyRuleConditionAllOf");
+const DeviceAssurance_1 = require("./DeviceAssurance");
+const DeviceAssuranceDiskEncryptionType_1 = require("./DeviceAssuranceDiskEncryptionType");
+const DeviceAssuranceScreenLockType_1 = require("./DeviceAssuranceScreenLockType");
 const DevicePolicyRuleCondition_1 = require("./DevicePolicyRuleCondition");
 const DevicePolicyRuleConditionPlatform_1 = require("./DevicePolicyRuleConditionPlatform");
 const Domain_1 = require("./Domain");
@@ -773,6 +808,9 @@ const EmailCustomizationAllOfLinks_1 = require("./EmailCustomizationAllOfLinks")
 const EmailDefaultContent_1 = require("./EmailDefaultContent");
 const EmailDefaultContentAllOf_1 = require("./EmailDefaultContentAllOf");
 const EmailDefaultContentAllOfLinks_1 = require("./EmailDefaultContentAllOfLinks");
+const EmailDomain_1 = require("./EmailDomain");
+const EmailDomainListResponse_1 = require("./EmailDomainListResponse");
+const EmailDomainResponse_1 = require("./EmailDomainResponse");
 const EmailPreview_1 = require("./EmailPreview");
 const EmailPreviewLinks_1 = require("./EmailPreviewLinks");
 const EmailSettings_1 = require("./EmailSettings");
@@ -789,6 +827,9 @@ const EventHookChannelConfig_1 = require("./EventHookChannelConfig");
 const EventHookChannelConfigAuthScheme_1 = require("./EventHookChannelConfigAuthScheme");
 const EventHookChannelConfigHeader_1 = require("./EventHookChannelConfigHeader");
 const EventSubscriptions_1 = require("./EventSubscriptions");
+const FCMConfiguration_1 = require("./FCMConfiguration");
+const FCMPushProvider_1 = require("./FCMPushProvider");
+const FCMPushProviderAllOf_1 = require("./FCMPushProviderAllOf");
 const Feature_1 = require("./Feature");
 const FeatureStage_1 = require("./FeatureStage");
 const ForgotPasswordResponse_1 = require("./ForgotPasswordResponse");
@@ -992,6 +1033,7 @@ const ProvisioningConnectionRequest_1 = require("./ProvisioningConnectionRequest
 const ProvisioningDeprovisionedCondition_1 = require("./ProvisioningDeprovisionedCondition");
 const ProvisioningGroups_1 = require("./ProvisioningGroups");
 const ProvisioningSuspendedCondition_1 = require("./ProvisioningSuspendedCondition");
+const PushProvider_1 = require("./PushProvider");
 const PushUserFactor_1 = require("./PushUserFactor");
 const PushUserFactorAllOf_1 = require("./PushUserFactorAllOf");
 const PushUserFactorProfile_1 = require("./PushUserFactorProfile");
@@ -1023,7 +1065,6 @@ const Session_1 = require("./Session");
 const SessionIdentityProvider_1 = require("./SessionIdentityProvider");
 const SignInPage_1 = require("./SignInPage");
 const SignInPageAllOf_1 = require("./SignInPageAllOf");
-const SignInPageAllOfDefaultApp_1 = require("./SignInPageAllOfDefaultApp");
 const SignInPageAllOfWidgetCustomizations_1 = require("./SignInPageAllOfWidgetCustomizations");
 const SignOnInlineHook_1 = require("./SignOnInlineHook");
 const SingleLogout_1 = require("./SingleLogout");
@@ -1054,6 +1095,7 @@ const TrustedOriginScope_1 = require("./TrustedOriginScope");
 const U2fUserFactor_1 = require("./U2fUserFactor");
 const U2fUserFactorAllOf_1 = require("./U2fUserFactorAllOf");
 const U2fUserFactorProfile_1 = require("./U2fUserFactorProfile");
+const UpdateEmailDomain_1 = require("./UpdateEmailDomain");
 const UpdateUserRequest_1 = require("./UpdateUserRequest");
 const User_1 = require("./User");
 const UserActivationToken_1 = require("./UserActivationToken");
@@ -1086,6 +1128,7 @@ const UserTypeCondition_1 = require("./UserTypeCondition");
 const VerificationMethod_1 = require("./VerificationMethod");
 const VerifyFactorRequest_1 = require("./VerifyFactorRequest");
 const VerifyUserFactorResponse_1 = require("./VerifyUserFactorResponse");
+const VersionObject_1 = require("./VersionObject");
 const WebAuthnUserFactor_1 = require("./WebAuthnUserFactor");
 const WebAuthnUserFactorAllOf_1 = require("./WebAuthnUserFactorAllOf");
 const WebAuthnUserFactorProfile_1 = require("./WebAuthnUserFactorProfile");
@@ -1139,9 +1182,11 @@ let enumsMap = new Set([
     'DevicePolicyMDMFramework',
     'DevicePolicyPlatformType',
     'DevicePolicyTrustLevel',
+    'DiskEncryptionType',
     'DomainCertificateSourceType',
     'DomainCertificateType',
     'DomainValidationStatus',
+    'EmailDomainStatus',
     'EmailSettingsRecipientsEnum',
     'EmailTemplateTouchPointVariant',
     'EnabledStatus',
@@ -1208,6 +1253,7 @@ let enumsMap = new Set([
     'OrgOktaSupportSetting',
     'PasswordCredentialHashAlgorithm',
     'PasswordPolicyAuthenticationProviderType',
+    'Platform',
     'PlatformConditionOperatingSystemVersionMatchType',
     'PolicyAccess',
     'PolicyAccountLinkAction',
@@ -1227,6 +1273,7 @@ let enumsMap = new Set([
     'ProtocolEndpointType',
     'ProtocolRelayStateFormat',
     'ProtocolType',
+    'ProviderType',
     'ProvisioningAction',
     'ProvisioningConnectionAuthScheme',
     'ProvisioningConnectionStatus',
@@ -1237,6 +1284,7 @@ let enumsMap = new Set([
     'RequiredEnum',
     'RoleAssignmentType',
     'RoleType',
+    'ScreenLockType',
     'SeedEnum',
     'SessionAuthenticationMethod',
     'SessionIdentityProviderType',
@@ -1257,6 +1305,9 @@ let enumsMap = new Set([
     'VerifyUserFactorResult',
 ]);
 let typeMap = {
+    'APNSConfiguration': APNSConfiguration_1.APNSConfiguration,
+    'APNSPushProvider': APNSPushProvider_1.APNSPushProvider,
+    'APNSPushProviderAllOf': APNSPushProviderAllOf_1.APNSPushProviderAllOf,
     'AccessPolicy': AccessPolicy_1.AccessPolicy,
     'AccessPolicyAllOf': AccessPolicyAllOf_1.AccessPolicyAllOf,
     'AccessPolicyConstraint': AccessPolicyConstraint_1.AccessPolicyConstraint,
@@ -1292,6 +1343,9 @@ let typeMap = {
     'ApplicationCredentialsUsernameTemplate': ApplicationCredentialsUsernameTemplate_1.ApplicationCredentialsUsernameTemplate,
     'ApplicationFeature': ApplicationFeature_1.ApplicationFeature,
     'ApplicationGroupAssignment': ApplicationGroupAssignment_1.ApplicationGroupAssignment,
+    'ApplicationLayout': ApplicationLayout_1.ApplicationLayout,
+    'ApplicationLayoutRule': ApplicationLayoutRule_1.ApplicationLayoutRule,
+    'ApplicationLayoutRuleCondition': ApplicationLayoutRuleCondition_1.ApplicationLayoutRuleCondition,
     'ApplicationLicensing': ApplicationLicensing_1.ApplicationLicensing,
     'ApplicationSettings': ApplicationSettings_1.ApplicationSettings,
     'ApplicationSettingsNotes': ApplicationSettingsNotes_1.ApplicationSettingsNotes,
@@ -1323,6 +1377,7 @@ let typeMap = {
     'AutoLoginApplicationSettingsAllOf': AutoLoginApplicationSettingsAllOf_1.AutoLoginApplicationSettingsAllOf,
     'AutoLoginApplicationSettingsSignOn': AutoLoginApplicationSettingsSignOn_1.AutoLoginApplicationSettingsSignOn,
     'AutoUpdateSchedule': AutoUpdateSchedule_1.AutoUpdateSchedule,
+    'BaseEmailDomain': BaseEmailDomain_1.BaseEmailDomain,
     'BasicApplicationSettings': BasicApplicationSettings_1.BasicApplicationSettings,
     'BasicApplicationSettingsAllOf': BasicApplicationSettingsAllOf_1.BasicApplicationSettingsAllOf,
     'BasicApplicationSettingsApplication': BasicApplicationSettingsApplication_1.BasicApplicationSettingsApplication,
@@ -1356,6 +1411,7 @@ let typeMap = {
     'BouncesRemoveListObj': BouncesRemoveListObj_1.BouncesRemoveListObj,
     'BouncesRemoveListResult': BouncesRemoveListResult_1.BouncesRemoveListResult,
     'Brand': Brand_1.Brand,
+    'BrandDefaultApp': BrandDefaultApp_1.BrandDefaultApp,
     'BrowserPluginApplication': BrowserPluginApplication_1.BrowserPluginApplication,
     'BrowserPluginApplicationAllOf': BrowserPluginApplicationAllOf_1.BrowserPluginApplicationAllOf,
     'CAPTCHAInstance': CAPTCHAInstance_1.CAPTCHAInstance,
@@ -1385,6 +1441,9 @@ let typeMap = {
     'DNSRecord': DNSRecord_1.DNSRecord,
     'DeviceAccessPolicyRuleCondition': DeviceAccessPolicyRuleCondition_1.DeviceAccessPolicyRuleCondition,
     'DeviceAccessPolicyRuleConditionAllOf': DeviceAccessPolicyRuleConditionAllOf_1.DeviceAccessPolicyRuleConditionAllOf,
+    'DeviceAssurance': DeviceAssurance_1.DeviceAssurance,
+    'DeviceAssuranceDiskEncryptionType': DeviceAssuranceDiskEncryptionType_1.DeviceAssuranceDiskEncryptionType,
+    'DeviceAssuranceScreenLockType': DeviceAssuranceScreenLockType_1.DeviceAssuranceScreenLockType,
     'DevicePolicyRuleCondition': DevicePolicyRuleCondition_1.DevicePolicyRuleCondition,
     'DevicePolicyRuleConditionPlatform': DevicePolicyRuleConditionPlatform_1.DevicePolicyRuleConditionPlatform,
     'Domain': Domain_1.Domain,
@@ -1401,6 +1460,9 @@ let typeMap = {
     'EmailDefaultContent': EmailDefaultContent_1.EmailDefaultContent,
     'EmailDefaultContentAllOf': EmailDefaultContentAllOf_1.EmailDefaultContentAllOf,
     'EmailDefaultContentAllOfLinks': EmailDefaultContentAllOfLinks_1.EmailDefaultContentAllOfLinks,
+    'EmailDomain': EmailDomain_1.EmailDomain,
+    'EmailDomainListResponse': EmailDomainListResponse_1.EmailDomainListResponse,
+    'EmailDomainResponse': EmailDomainResponse_1.EmailDomainResponse,
     'EmailPreview': EmailPreview_1.EmailPreview,
     'EmailPreviewLinks': EmailPreviewLinks_1.EmailPreviewLinks,
     'EmailSettings': EmailSettings_1.EmailSettings,
@@ -1417,6 +1479,9 @@ let typeMap = {
     'EventHookChannelConfigAuthScheme': EventHookChannelConfigAuthScheme_1.EventHookChannelConfigAuthScheme,
     'EventHookChannelConfigHeader': EventHookChannelConfigHeader_1.EventHookChannelConfigHeader,
     'EventSubscriptions': EventSubscriptions_1.EventSubscriptions,
+    'FCMConfiguration': FCMConfiguration_1.FCMConfiguration,
+    'FCMPushProvider': FCMPushProvider_1.FCMPushProvider,
+    'FCMPushProviderAllOf': FCMPushProviderAllOf_1.FCMPushProviderAllOf,
     'Feature': Feature_1.Feature,
     'FeatureStage': FeatureStage_1.FeatureStage,
     'ForgotPasswordResponse': ForgotPasswordResponse_1.ForgotPasswordResponse,
@@ -1620,6 +1685,7 @@ let typeMap = {
     'ProvisioningDeprovisionedCondition': ProvisioningDeprovisionedCondition_1.ProvisioningDeprovisionedCondition,
     'ProvisioningGroups': ProvisioningGroups_1.ProvisioningGroups,
     'ProvisioningSuspendedCondition': ProvisioningSuspendedCondition_1.ProvisioningSuspendedCondition,
+    'PushProvider': PushProvider_1.PushProvider,
     'PushUserFactor': PushUserFactor_1.PushUserFactor,
     'PushUserFactorAllOf': PushUserFactorAllOf_1.PushUserFactorAllOf,
     'PushUserFactorProfile': PushUserFactorProfile_1.PushUserFactorProfile,
@@ -1651,7 +1717,6 @@ let typeMap = {
     'SessionIdentityProvider': SessionIdentityProvider_1.SessionIdentityProvider,
     'SignInPage': SignInPage_1.SignInPage,
     'SignInPageAllOf': SignInPageAllOf_1.SignInPageAllOf,
-    'SignInPageAllOfDefaultApp': SignInPageAllOfDefaultApp_1.SignInPageAllOfDefaultApp,
     'SignInPageAllOfWidgetCustomizations': SignInPageAllOfWidgetCustomizations_1.SignInPageAllOfWidgetCustomizations,
     'SignOnInlineHook': SignOnInlineHook_1.SignOnInlineHook,
     'SingleLogout': SingleLogout_1.SingleLogout,
@@ -1682,6 +1747,7 @@ let typeMap = {
     'U2fUserFactor': U2fUserFactor_1.U2fUserFactor,
     'U2fUserFactorAllOf': U2fUserFactorAllOf_1.U2fUserFactorAllOf,
     'U2fUserFactorProfile': U2fUserFactorProfile_1.U2fUserFactorProfile,
+    'UpdateEmailDomain': UpdateEmailDomain_1.UpdateEmailDomain,
     'UpdateUserRequest': UpdateUserRequest_1.UpdateUserRequest,
     'User': User_1.User,
     'UserActivationToken': UserActivationToken_1.UserActivationToken,
@@ -1714,6 +1780,7 @@ let typeMap = {
     'VerificationMethod': VerificationMethod_1.VerificationMethod,
     'VerifyFactorRequest': VerifyFactorRequest_1.VerifyFactorRequest,
     'VerifyUserFactorResponse': VerifyUserFactorResponse_1.VerifyUserFactorResponse,
+    'VersionObject': VersionObject_1.VersionObject,
     'WebAuthnUserFactor': WebAuthnUserFactor_1.WebAuthnUserFactor,
     'WebAuthnUserFactorAllOf': WebAuthnUserFactorAllOf_1.WebAuthnUserFactorAllOf,
     'WebAuthnUserFactorProfile': WebAuthnUserFactorProfile_1.WebAuthnUserFactorProfile,
