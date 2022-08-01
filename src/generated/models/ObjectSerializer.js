@@ -1758,6 +1758,10 @@ let typeMap = {
     'PolicyRule_PASSWORD': PasswordPolicyRule_1.PasswordPolicyRule,
     'PolicyRule_PROFILE_ENROLLMENT': ProfileEnrollmentPolicyRule_1.ProfileEnrollmentPolicyRule,
     'PolicyRule_SIGN_ON': OktaSignOnPolicyRule_1.OktaSignOnPolicyRule,
+    'BehaviorRule_ANOMALOUS_DEVICE': BehaviorRuleAnomalousDevice_1.BehaviorRuleAnomalousDevice,
+    'BehaviorRule_ANOMALOUS_LOCATION': BehaviorRuleAnomalousLocation_1.BehaviorRuleAnomalousLocation,
+    'BehaviorRule_ANOMALOUS_IP': BehaviorRuleAnomalousIP_1.BehaviorRuleAnomalousIP,
+    'BehaviorRule_VELOCITY': BehaviorRuleVelocity_1.BehaviorRuleVelocity,
 };
 class ObjectSerializer {
     static findCorrectType(data, expectedType, discriminator) {

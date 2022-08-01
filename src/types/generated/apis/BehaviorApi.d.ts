@@ -102,7 +102,7 @@ export declare class BehaviorApiResponseProcessor {
      * @params response Response returned by the server for a request to getBehaviorDetectionRule
      * @throws ApiException if the response code was not in [200, 299]
      */
-  getBehaviorDetectionRule(response: ResponseContext): Promise<Array<BehaviorRule>>;
+  getBehaviorDetectionRule(response: ResponseContext): Promise<BehaviorRule>;
   /**
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects

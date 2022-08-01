@@ -2386,7 +2386,7 @@ export declare class ObjectBehaviorApi {
       * Retrieve a Behavior Detection Rule
       * @param param the request object
       */
-  getBehaviorDetectionRule(param: BehaviorApiGetBehaviorDetectionRuleRequest, options?: Configuration): Promise<Collection<BehaviorRule>>;
+  getBehaviorDetectionRule(param: BehaviorApiGetBehaviorDetectionRuleRequest, options?: Configuration): Promise<BehaviorRule>;
   /**
       * Enumerates Behavior Detection Rules in your organization with pagination.
       * List all Behavior Detection Rules
