@@ -1,4 +1,5 @@
 import { expect } from 'chai';
+import { spy } from 'sinon';
 import {
   Client,
   Collection,
@@ -7,9 +8,10 @@ import {
 } from '@okta/okta-sdk-nodejs';
 import getMockBehaviorRule = require('./mocks/behavior-rule.js');
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
+import faker = require('@faker-js/faker');
 
 if (process.env.OKTA_USE_MOCK) {
-  orgUrl = `${orgUrl}/idp-crud`;
+  orgUrl = `${orgUrl}/behaviors`;
 }
 
 const client = new Client({
@@ -90,13 +92,6 @@ describe('Behavior API', () => {
       });
     });
 
-    it('should get rule by id', async () => {
-      const rule2: v3.BehaviorRuleVelocity = await client.behaviorApi.getBehaviorDetectionRule({
-        behaviorId: rule.id,
-      });
-      console.log(rule2);
-    });
-
     it('should update rule of type VELOCITY', async () => {
       rule.name += ' (updated)';
       rule.settings.velocityKph = 900;
@@ -120,6 +115,104 @@ describe('Behavior API', () => {
         behaviorId: rule.id,
       });
       expect(updatedRule.status).to.equal('ACTIVE');
+    });
+  });
+
+  describe('Get', () => {
+    const mockRule = getMockBehaviorRule('VELOCITY');
+    let rule: v3.BehaviorRuleVelocity;
+    beforeEach(async () => {
+      rule = await client.behaviorApi.createBehaviorDetectionRule({
+        rule: mockRule,
+      });
+    });
+    afterEach(async () => {
+      await client.behaviorApi.deleteBehaviorDetectionRule({
+        behaviorId: rule.id,
+      });
+    });
+
+    it('should get rule by id', async () => {
+      const rule2: v3.BehaviorRuleVelocity = await client.behaviorApi.getBehaviorDetectionRule({
+        behaviorId: rule.id,
+      });
+      expect(rule2).to.be.instanceOf(v3.BehaviorRule);
+      expect(rule2.name).to.equal(rule.name);
+      expect(rule2.settings.velocityKph).to.equal(rule.settings.velocityKph);
+    });
+  });
+
+  describe('Delete', () => {
+    const mockRule = getMockBehaviorRule('VELOCITY');
+    let rule: v3.BehaviorRuleVelocity;
+    beforeEach(async () => {
+      rule = await client.behaviorApi.createBehaviorDetectionRule({
+        rule: mockRule,
+      });
+    });
+
+    it('should delete rule by id', async () => {
+      await client.behaviorApi.deleteBehaviorDetectionRule({
+        behaviorId: rule.id,
+      });
+      try {
+        await client.behaviorApi.getBehaviorDetectionRule({
+          behaviorId: rule.id,
+        });
+      } catch (e) {
+        expect(e.status).to.equal(404);
+      }
+    });
+  });
+
+  describe('List', () => {
+    const rules: Array<v3.BehaviorRule> = [];
+    before(async () => {
+      const types = [
+        'ANOMALOUS_DEVICE',
+        'VELOCITY'
+      ];
+      for (const type of types) {
+        for (let i = 0 ; i < 2 ; i++) {
+          const rule = await client.behaviorApi.createBehaviorDetectionRule({
+            rule: {
+              ...getMockBehaviorRule(type),
+              name: `node-sdk: ${type} ${i} ${faker.random.word()}`.substring(0, 49),
+            },
+          });
+          rules.push(rule);
+        }
+      }
+    });
+
+    after(async () => {
+      for (const rule of rules) {
+        await client.behaviorApi.deleteBehaviorDetectionRule({
+          behaviorId: rule.id,
+        });
+      }
+    });
+
+    it('should return a collection of BehaviorRule', async () => {
+      const rules = await client.behaviorApi.listBehaviorDetectionRules();
+      expect(rules).to.be.instanceOf(Collection);
+      await rules.each(rule => {
+        expect(rule).to.be.instanceOf(v3.BehaviorRule);
+      });
+    });
+
+    it('should return a collection with pagination', async () => {
+      const listIds = new Set();
+      const collection = await client.behaviorApi.listBehaviorDetectionRules({
+        limit: 2
+      });
+      const pageSpy = spy(collection, 'getNextPage');
+      await collection.each(rule => {
+        expect(listIds.has(rule.id)).to.be.false;
+        listIds.add(rule.id);
+      });
+      expect(listIds.size).to.be.greaterThanOrEqual(4);
+      expect(pageSpy.getCalls().length).to.be.greaterThanOrEqual(2);
     });
   });
 });

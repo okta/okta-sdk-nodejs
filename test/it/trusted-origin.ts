@@ -11,7 +11,7 @@ import faker = require('@faker-js/faker');
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
 if (process.env.OKTA_USE_MOCK) {
-  orgUrl = `${orgUrl}/authserver-crud`;
+  orgUrl = `${orgUrl}/trusted-origin`;
 }
 
 const client = new Client({

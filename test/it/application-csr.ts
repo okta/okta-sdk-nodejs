@@ -14,7 +14,7 @@ import mockCsr = require('./mocks/csr.json');
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
 if (process.env.OKTA_USE_MOCK) {
-  orgUrl = `${orgUrl}/application-clone-key`;
+  orgUrl = `${orgUrl}/application-csr`;
 }
 
 const client = new Client({
