@@ -123,15 +123,4 @@ const client = new Client();
     AgentPoolUpdateSetting: agentPoolUpdateSetting,
   }));
 
-
-
-//   expectType<ApplicationFeature>(await client.getFeatureForApplication('appId', 'FEATURE_NAME'));
-
-//   expectType<ApplicationFeature>(await client.updateFeatureForApplication('appId', 'FEATURE_NAME', {
-//     update: {
-//       lifecycleDeactivate: {
-//         status: EnabledStatus.ENABLED
-//       }
-//     }
-//   }));
 }());
