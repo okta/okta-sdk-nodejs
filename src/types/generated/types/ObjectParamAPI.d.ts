@@ -5477,6 +5477,14 @@ export interface PrincipalRateLimitApiCreatePrincipalRateLimitEntityRequest {
       */
     entity: PrincipalRateLimitEntity;
 }
+export interface PrincipalRateLimitApiDeletePrincipalRateLimitEntityRequest {
+    /**
+      * id of the Principal Rate Limit
+      * @type string
+      * @memberof PrincipalRateLimitApideletePrincipalRateLimitEntity
+      */
+    principalRateLimitId: string;
+}
 export interface PrincipalRateLimitApiGetPrincipalRateLimitEntityRequest {
     /**
       * id of the Principal Rate Limit
@@ -5528,6 +5536,12 @@ export declare class ObjectPrincipalRateLimitApi {
       * @param param the request object
       */
   createPrincipalRateLimitEntity(param: PrincipalRateLimitApiCreatePrincipalRateLimitEntityRequest, options?: Configuration): Promise<PrincipalRateLimitEntity>;
+  /**
+      * Delete a Principal Rate Limit.
+      * Delete a Principal Rate Limit
+      * @param param the request object
+      */
+  deletePrincipalRateLimitEntity(param: PrincipalRateLimitApiDeletePrincipalRateLimitEntityRequest, options?: Configuration): Promise<void>;
   /**
       * Fetches a Principal Rate Limit entity by `principalRateLimitId`.
       * Retrieve a Principal Rate Limit

@@ -2354,6 +2354,14 @@ class ObjectPrincipalRateLimitApi {
         return this.api.createPrincipalRateLimitEntity(param.entity, options).toPromise();
     }
     /**
+      * Delete a Principal Rate Limit.
+      * Delete a Principal Rate Limit
+      * @param param the request object
+      */
+    deletePrincipalRateLimitEntity(param, options) {
+        return this.api.deletePrincipalRateLimitEntity(param.principalRateLimitId, options).toPromise();
+    }
+    /**
       * Fetches a Principal Rate Limit entity by `principalRateLimitId`.
       * Retrieve a Principal Rate Limit
       * @param param the request object

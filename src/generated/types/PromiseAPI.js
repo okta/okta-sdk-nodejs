@@ -2866,6 +2866,15 @@ class PromisePrincipalRateLimitApi {
     return result.toPromise();
   }
   /**
+      * Delete a Principal Rate Limit.
+      * Delete a Principal Rate Limit
+      * @param principalRateLimitId id of the Principal Rate Limit
+      */
+  deletePrincipalRateLimitEntity(principalRateLimitId, _options) {
+    const result = this.api.deletePrincipalRateLimitEntity(principalRateLimitId, _options);
+    return result.toPromise();
+  }
+  /**
       * Fetches a Principal Rate Limit entity by `principalRateLimitId`.
       * Retrieve a Principal Rate Limit
       * @param principalRateLimitId id of the Principal Rate Limit
