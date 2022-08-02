@@ -53,7 +53,7 @@ describe('Principal Rate Limit API', () => {
 
       // Get entity by principalId
       const prls = await client.principalRateLimitApi.listPrincipalRateLimitEntities({
-        filter: `principalId eq "${token.id}"`
+        filter: `principalType eq "SSWS_TOKEN" and principalId eq "${token.id}"`
       });
       expect(prls).to.be.instanceOf(Collection);
       const { value } = await prls.next(); // get first item
@@ -81,7 +81,7 @@ describe('Principal Rate Limit API', () => {
     expect(updatedPrl.defaultConcurrencyPercentage).to.equal(prl2.defaultConcurrencyPercentage);
 
     // List
-    // TIP: Filter is required
+    // TIP: Filter by principalType is required
     const prls = await client.principalRateLimitApi.listPrincipalRateLimitEntities({
       filter: 'principalType eq "SSWS_TOKEN"'
     });
