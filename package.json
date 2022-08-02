@@ -23,7 +23,7 @@
     "test:integration": "yarn test:integration:oauth && yarn test:integration:ssws",
     "test:ci:integration": "yarn test:ci:integration:oauth && yarn test:ci:integration:ssws",
     "test:ci:integration:ssws": "TS_NODE_PROJECT=./test/it/tsconfig.json MOCHA_FILE=./test-reports/it-results.xml OKTA_CLIENT_AUTHORIZATIONMODE=SSWS nyc --reporter=text --reporter=html mocha -r ts-node/register -r tsconfig-paths/register --reporter=mocha-junit-reporter --reporter-options toConsole=true --retries 2 test/it/*.ts --no-timeouts",
-    "test:integration:ssws": "TS_NODE_PROJECT=./test/it/tsconfig.json MOCHA_FILE=./test-reports/it-results.xml OKTA_CLIENT_AUTHORIZATIONMODE=SSWS  mocha -r ts-node/register -r tsconfig-paths/register --retries 2 test/it/behavior.ts --no-timeouts",
+    "test:integration:ssws": "TS_NODE_PROJECT=./test/it/tsconfig.json MOCHA_FILE=./test-reports/it-results.xml OKTA_CLIENT_AUTHORIZATIONMODE=SSWS  mocha -r ts-node/register -r tsconfig-paths/register --retries 2 test/it/principal-rate-limit.ts --no-timeouts",
     "test:ci:integration:oauth": "TS_NODE_PROJECT=./test/it/tsconfig.json OKTA_CLIENT_AUTHORIZATIONMODE=PrivateKey nyc --reporter=text --reporter=html mocha -r ts-node/register -r tsconfig-paths/register test/it/user-get.ts --no-timeouts",
     "test:integration:oauth": "TS_NODE_PROJECT=./test/it/tsconfig.json OKTA_CLIENT_AUTHORIZATIONMODE=PrivateKey  mocha -r ts-node/register -r tsconfig-paths/register test/it/user-get.ts --no-timeouts",
     "test:unit": "MOCHA_FILE=./test-reports/junit-results.xml  mocha  test/unit/*.js --no-timeouts",
