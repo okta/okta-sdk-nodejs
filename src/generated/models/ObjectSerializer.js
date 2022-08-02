@@ -1829,6 +1829,8 @@ let typeMap = {
     'BehaviorRule_ANOMALOUS_LOCATION': BehaviorRuleAnomalousLocation_1.BehaviorRuleAnomalousLocation,
     'BehaviorRule_ANOMALOUS_IP': BehaviorRuleAnomalousIP_1.BehaviorRuleAnomalousIP,
     'BehaviorRule_VELOCITY': BehaviorRuleVelocity_1.BehaviorRuleVelocity,
+    'APNS': APNSPushProvider_1.APNSPushProvider,
+    'FCM': FCMPushProvider_1.FCMPushProvider
 };
 class ObjectSerializer {
     static findCorrectType(data, expectedType, discriminator) {
