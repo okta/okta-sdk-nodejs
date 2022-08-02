@@ -93,6 +93,5 @@ export declare class Client extends ParameterizedOperationsClient {
   principalRateLimitApi: PrincipalRateLimitApi;
   subscriptionApi: SubscriptionApi;
   pushProviderApi: PushProviderApi;
-  emailDomainApi: EmailDomainApi;
   deviceAssuranceApi: DeviceAssuranceApi;
 }
