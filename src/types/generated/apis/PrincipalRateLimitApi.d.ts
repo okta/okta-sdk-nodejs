@@ -26,12 +26,6 @@ export declare class PrincipalRateLimitApiRequestFactory extends BaseAPIRequestF
      */
   createPrincipalRateLimitEntity(entity: PrincipalRateLimitEntity, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Delete a Principal Rate Limit.
-     * Delete a Principal Rate Limit
-     * @param principalRateLimitId id of the Principal Rate Limit
-     */
-  deletePrincipalRateLimitEntity(principalRateLimitId: string, _options?: Configuration): Promise<RequestContext>;
-  /**
      * Fetches a Principal Rate Limit entity by `principalRateLimitId`.
      * Retrieve a Principal Rate Limit
      * @param principalRateLimitId id of the Principal Rate Limit
@@ -62,14 +56,6 @@ export declare class PrincipalRateLimitApiResponseProcessor {
      * @throws ApiException if the response code was not in [200, 299]
      */
   createPrincipalRateLimitEntity(response: ResponseContext): Promise<PrincipalRateLimitEntity>;
-  /**
-     * Unwraps the actual response sent by the server from the response context and deserializes the response content
-     * to the expected objects
-     *
-     * @params response Response returned by the server for a request to deletePrincipalRateLimitEntity
-     * @throws ApiException if the response code was not in [200, 299]
-     */
-  deletePrincipalRateLimitEntity(response: ResponseContext): Promise<void>;
   /**
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects

@@ -2099,12 +2099,6 @@ export declare class PromisePrincipalRateLimitApi {
       */
   createPrincipalRateLimitEntity(entity: PrincipalRateLimitEntity, _options?: Configuration): Promise<PrincipalRateLimitEntity>;
   /**
-      * Delete a Principal Rate Limit.
-      * Delete a Principal Rate Limit
-      * @param principalRateLimitId id of the Principal Rate Limit
-      */
-  deletePrincipalRateLimitEntity(principalRateLimitId: string, _options?: Configuration): Promise<void>;
-  /**
       * Fetches a Principal Rate Limit entity by `principalRateLimitId`.
       * Retrieve a Principal Rate Limit
       * @param principalRateLimitId id of the Principal Rate Limit
