@@ -1,5 +1,4 @@
 import { expect } from 'chai';
-import { spy } from 'sinon';
 import {
   Client,
   Collection,
@@ -33,7 +32,7 @@ describe('Principal Rate Limit API', () => {
       principalId: token.id,
       principalType: 'SSWS_TOKEN' as v3.PrincipalType,
       defaultPercentage: 50,
-      defaultConcurrencyPercentage: 75,   
+      defaultConcurrencyPercentage: 75,
     };
 
     // Create
@@ -46,7 +45,7 @@ describe('Principal Rate Limit API', () => {
       expect(prl).to.have.property('id');
       expect(prl.principalId).to.equal(mockPrl.principalId);
       expect(prl.defaultConcurrencyPercentage).to.equal(mockPrl.defaultConcurrencyPercentage);
-    } catch(e) {
+    } catch (e) {
       // Principal Rate Limit entity already exists for this token
       expect(e.status).to.equal(400);
       expect(e.errorSummary).to.contain('Api validation failed: principalRateLimitMediated');
@@ -59,7 +58,7 @@ describe('Principal Rate Limit API', () => {
       const { value } = await prls.next(); // get first item
       prl = value;
     }
-    
+
     // Get
     const prl2 = await client.principalRateLimitApi.getPrincipalRateLimitEntity({
       principalRateLimitId: prl.id,
@@ -68,9 +67,9 @@ describe('Principal Rate Limit API', () => {
     expect(prl2.id).to.equal(prl.id);
     expect(prl2.principalId).to.equal(prl.principalId);
     expect(prl2.defaultConcurrencyPercentage).to.equal(prl.defaultConcurrencyPercentage);
-    
+
     // Update
-    prl2.defaultConcurrencyPercentage = prl2.defaultConcurrencyPercentage == 75 ? 80 : 75;
+    prl2.defaultConcurrencyPercentage = prl2.defaultConcurrencyPercentage === 75 ? 80 : 75;
     const updatedPrl = await client.principalRateLimitApi.updatePrincipalRateLimitEntity({
       principalRateLimitId: prl2.id,
       entity: prl2,
