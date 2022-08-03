@@ -16,8 +16,15 @@ test_suites:
     - name: e2e
       script_path: /root/okta/okta-sdk-nodejs/scripts
       sort_order: '1'
-      timeout: '60'
+      timeout: '120'
       script_name: e2e
+      criteria: MERGE
+      queue_name: small
+    - name: e2e-slow
+      script_path: /root/okta/okta-sdk-nodejs/scripts
+      sort_order: '1'
+      timeout: '120'
+      script_name: e2e-slow
       criteria: MERGE
       queue_name: small
     - name: publish
@@ -26,4 +33,11 @@ test_suites:
       timeout: '60'
       script_name: publish
       criteria: MERGE
+      queue_name: small
+    - name: clean-resources
+      script_path: /root/okta/okta-sdk-nodejs/scripts
+      sort_order: '2'
+      timeout: '60'
+      script_name: clean-resources
+      criteria: OPTIONAL
       queue_name: small

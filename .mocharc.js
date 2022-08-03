@@ -20,6 +20,15 @@ if (process.env.TEST_TYPE === 'it') {
     ],
     retries: 2,
   };
+} else if (process.env.TEST_TYPE === 'it2') {
+  config = {
+    ...config,
+    reporter: 'mocha-multi-reporters',
+    reporterOptions: [
+      'configFile=.mocha-multi-it2.json',
+    ],
+    retries: 2,
+  };
 } else if (process.env.TEST_TYPE === 'unit') {
   config = {
     ...config,
