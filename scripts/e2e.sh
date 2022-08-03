@@ -12,7 +12,7 @@ get_vault_secret_key devex/okta-sdk-nodejs-vars username ORG_USER
 export TEST_SUITE_TYPE="junit"
 export TEST_RESULT_FILE_DIR="${REPO}/test-reports"
 
-if ! yarn test:ci:integration; then
+if ! yarn test:integration; then
   echo "Integration tests failed! Exiting..."
   yarn aftertest
   exit ${PUBLISH_TYPE_AND_RESULT_DIR_BUT_ALWAYS_FAIL}
