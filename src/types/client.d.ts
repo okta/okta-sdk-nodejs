@@ -46,7 +46,6 @@ import {
   BehaviorApi,
   PrincipalRateLimitApi,
   PushProviderApi,
-  EmailDomainApi,
   DeviceAssuranceApi,
 } from './generated';
 export declare class Client extends ParameterizedOperationsClient {
