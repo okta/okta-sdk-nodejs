@@ -15,6 +15,6 @@ describe('Push Provider  API', () => {
       expect(provider).to.be.instanceOf(v3.PushProvider);
       notificationServices.push(provider);
     }
-    expect(notificationServices.length).to.be.empty;
+    expect(notificationServices).to.be.empty;
   });
 });
