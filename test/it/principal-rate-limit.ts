@@ -31,8 +31,8 @@ describe('Principal Rate Limit API', () => {
     const mockPrl = {
       principalId: token.id,
       principalType: 'SSWS_TOKEN' as v3.PrincipalType,
-      defaultPercentage: 50,
-      defaultConcurrencyPercentage: 75,
+      defaultPercentage: 90,
+      defaultConcurrencyPercentage: 90,
     };
 
     // Create
@@ -69,7 +69,7 @@ describe('Principal Rate Limit API', () => {
     expect(prl2.defaultConcurrencyPercentage).to.equal(prl.defaultConcurrencyPercentage);
 
     // Update
-    prl2.defaultConcurrencyPercentage = prl2.defaultConcurrencyPercentage === 75 ? 80 : 75;
+    prl2.defaultConcurrencyPercentage = prl2.defaultConcurrencyPercentage === 90 ? 95 : 90;
     const updatedPrl = await client.principalRateLimitApi.updatePrincipalRateLimitEntity({
       principalRateLimitId: prl2.id,
       entity: prl2,
