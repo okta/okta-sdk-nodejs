@@ -12,6 +12,7 @@ const client = new Client({
   token: process.env.OKTA_CLIENT_TOKEN,
 });
 
+// Fails with HTTP 429
 xdescribe('Domains API', () => {
   afterEach(async () => {
     (await client.listDomains()).domains.forEach(async (domain) => {
