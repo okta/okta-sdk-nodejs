@@ -365,7 +365,7 @@ describe('DefaultRequestExecutor', () => {
       expect(result).toBe(true);
     });
 
-    it('should return false if maxRetries is zero', () => {
+    it('should return true if maxRetries is zero', () => {
       const requestExecutor = new DefaultRequestExecutor({
         maxRetries: 0
       });
@@ -374,7 +374,7 @@ describe('DefaultRequestExecutor', () => {
       };
       mockRequest.headers[requestExecutor.retryCountHeader] = '2';
       const result = requestExecutor.maxRetriesReached(mockRequest);
-      expect(result).toBe(false);
+      expect(result).toBe(true);
     });
   });
 

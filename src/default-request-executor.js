@@ -103,7 +103,7 @@ class DefaultRequestExecutor extends RequestExecutor {
 
   maxRetriesReached(request) {
     if (this.maxRetries === 0) {
-      return false;
+      return true;
     }
     const retryCount = request.headers && request.headers[this.retryCountHeader];
     return retryCount && parseInt(retryCount, 10) >= this.maxRetries;
