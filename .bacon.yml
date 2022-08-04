@@ -20,13 +20,6 @@ test_suites:
       script_name: e2e
       criteria: MERGE
       queue_name: small
-    - name: e2e-slow
-      script_path: /root/okta/okta-sdk-nodejs/scripts
-      sort_order: '1'
-      timeout: '120'
-      script_name: e2e-slow
-      criteria: MERGE
-      queue_name: small
     - name: publish
       script_path: /root/okta/okta-sdk-nodejs/scripts
       sort_order: '2'

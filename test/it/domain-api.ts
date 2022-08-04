@@ -12,7 +12,7 @@ const client = new Client({
   token: process.env.OKTA_CLIENT_TOKEN,
 });
 
-describe('Domains API', () => {
+xdescribe('Domains API', () => {
   afterEach(async () => {
     (await client.listDomains()).domains.forEach(async (domain) => {
       await client.deleteDomain(domain.id);
