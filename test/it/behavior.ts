@@ -24,9 +24,11 @@ describe('Behavior API', () => {
   describe('Create', () => {
     let rule;
     afterEach(async () => {
-      await client.behaviorApi.deleteBehaviorDetectionRule({
-        behaviorId: rule.id,
-      });
+      if (rule) {
+        await client.behaviorApi.deleteBehaviorDetectionRule({
+          behaviorId: rule.id,
+        });
+      }
     });
 
     it('should create rule of type ANOMALOUS_DEVICE', async () => {
@@ -87,9 +89,11 @@ describe('Behavior API', () => {
       expect(rule.settings.velocityKph).to.equal(mockRule.settings.velocityKph);
     });
     afterEach(async () => {
-      await client.behaviorApi.deleteBehaviorDetectionRule({
-        behaviorId: rule.id,
-      });
+      if (rule) {
+        await client.behaviorApi.deleteBehaviorDetectionRule({
+          behaviorId: rule.id,
+        });
+      }
     });
 
     it('should update rule of type VELOCITY', async () => {
@@ -127,9 +131,11 @@ describe('Behavior API', () => {
       });
     });
     afterEach(async () => {
-      await client.behaviorApi.deleteBehaviorDetectionRule({
-        behaviorId: rule.id,
-      });
+      if (rule) {
+        await client.behaviorApi.deleteBehaviorDetectionRule({
+          behaviorId: rule.id,
+        });
+      }
     });
 
     it('should get rule by id', async () => {

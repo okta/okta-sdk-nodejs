@@ -12,16 +12,14 @@ get_vault_secret_key devex/okta-sdk-nodejs-vars username ORG_USER
 export TEST_SUITE_TYPE="junit"
 export TEST_RESULT_FILE_DIR="${REPO}/test-reports"
 
-if ! yarn test:integration:slow; then
-  echo "Integration tests #2 failed! Exiting..."
-  yarn aftertest
-  exit ${PUBLISH_TYPE_AND_RESULT_DIR_BUT_ALWAYS_FAIL}
-fi
+exit_code=${PUBLISH_TYPE_AND_RESULT_DIR}
 
-yarn aftertest
+if ! yarn test:integration:slow; then
+  exit_code=${PUBLISH_TYPE_AND_RESULT_DIR_BUT_ALWAYS_FAIL}
+fi
 
 ls -al ${OKTA_HOME}/${REPO}/test-reports
 
 echo ${TEST_SUITE_TYPE} > ${TEST_SUITE_TYPE_FILE}
 echo ${TEST_RESULT_FILE_DIR} > ${TEST_RESULT_FILE_DIR_FILE}
-exit ${PUBLISH_TYPE_AND_RESULT_DIR}
+exit ${exit_code}
