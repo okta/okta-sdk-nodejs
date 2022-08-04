@@ -27,7 +27,7 @@ describe('Domains API', () => {
     await utils.delay(3000);
   });
 
-  it('can create, list and get domains by id', async function() {
+  it('can create, list and get domains by id', async function () {
     try {
       const createdDomain = await client.createDomain({
         domain: 'login.example.com',
@@ -47,7 +47,7 @@ describe('Domains API', () => {
     }
   });
 
-  it('fails to create certificate for unverified domain', async function() {
+  it('fails to create certificate for unverified domain', async function () {
     try {
       const createdDomain = await client.createDomain({
         domain: 'login2.example.com',
@@ -68,7 +68,7 @@ describe('Domains API', () => {
     }
   });
 
-  it('can initiate domain verification', async function() {
+  it('can initiate domain verification', async function () {
     try {
       const createdDomain = await client.createDomain({
         domain: 'login3.example.com',
