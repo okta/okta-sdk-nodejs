@@ -2,11 +2,16 @@
 rsync -r --include='*.d.ts' --exclude="generated" --exclude=".eslintrc" src/types/ src
 
 # remove lines that are breaking TS compilation (incorrectly generated discriminator properties)
-echo "\033[33mWarning: Application, Factor, Policy model hierarchies updates are ignored as they are not generated correctly\033[0m"
+echo "\033[33mWarning: Application, Factor, Policy, PushProvider model hierarchies discriminator setting is ignored as it is not generated correctly\033[0m"
 sed -i '' '/this.factorType =/d' ./src/generated/models/*.ts
 sed -i '' '/this.signOnMode =/d' ./src/generated/models/*.ts
 sed -i '' '/this.type =/d' ./src/generated/models/*.ts
+sed -i '' '/this.providerType =/d' ./src/generated/models/*.ts
+
+# remove erroneous imports
 sed -i '' '/^import { Set }/d' ./src/generated/models/*.ts
+sed -i '' '/^import { URI }/d' ./src/generated/models/*.ts
+
 ignoredFiles=()
 
 tsc --project ./src/generated/tsconfig.json

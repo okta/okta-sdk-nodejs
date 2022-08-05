@@ -50,6 +50,8 @@ const {
   ApiTokenApi,
   BehaviorApi,
   PrincipalRateLimitApi,
+  PushProviderApi,
+  DeviceAssuranceApi,
 } = require('./generated');
 const { createConfiguration } = require('./generated/configuration');
 const { ServerConfiguration } = require('./generated/servers');
@@ -155,6 +157,8 @@ class Client extends GeneratedApiClient {
     this.apiTokenApi = new ApiTokenApi(configuration);
     this.behaviorApi = new BehaviorApi(configuration);
     this.principalRateLimitApi = new PrincipalRateLimitApi(configuration);
+    this.pushProviderApi = new PushProviderApi(configuration);
+    this.deviceAssuranceApi = new DeviceAssuranceApi(configuration);
   }
 }
 

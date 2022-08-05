@@ -25,6 +25,7 @@ import { AppUser } from '../models/AppUser';
 import { Application } from '../models/Application';
 import { ApplicationFeature } from '../models/ApplicationFeature';
 import { ApplicationGroupAssignment } from '../models/ApplicationGroupAssignment';
+import { ApplicationLayout } from '../models/ApplicationLayout';
 import { AssignRoleRequest } from '../models/AssignRoleRequest';
 import { Authenticator } from '../models/Authenticator';
 import { AuthorizationServer } from '../models/AuthorizationServer';
@@ -43,12 +44,16 @@ import { CreateUserRequest } from '../models/CreateUserRequest';
 import { Csr } from '../models/Csr';
 import { CsrMetadata } from '../models/CsrMetadata';
 import { CustomizablePage } from '../models/CustomizablePage';
+import { DeviceAssurance } from '../models/DeviceAssurance';
 import { Domain } from '../models/Domain';
 import { DomainCertificate } from '../models/DomainCertificate';
 import { DomainListResponse } from '../models/DomainListResponse';
 import { DomainResponse } from '../models/DomainResponse';
 import { EmailCustomization } from '../models/EmailCustomization';
 import { EmailDefaultContent } from '../models/EmailDefaultContent';
+import { EmailDomain } from '../models/EmailDomain';
+import { EmailDomainListResponse } from '../models/EmailDomainListResponse';
+import { EmailDomainResponse } from '../models/EmailDomainResponse';
 import { EmailPreview } from '../models/EmailPreview';
 import { EmailSettings } from '../models/EmailSettings';
 import { EmailTemplate } from '../models/EmailTemplate';
@@ -85,8 +90,10 @@ import { Policy } from '../models/Policy';
 import { PolicyRule } from '../models/PolicyRule';
 import { PrincipalRateLimitEntity } from '../models/PrincipalRateLimitEntity';
 import { ProfileMapping } from '../models/ProfileMapping';
+import { ProviderType } from '../models/ProviderType';
 import { ProvisioningConnection } from '../models/ProvisioningConnection';
 import { ProvisioningConnectionRequest } from '../models/ProvisioningConnectionRequest';
+import { PushProvider } from '../models/PushProvider';
 import { ResetPasswordToken } from '../models/ResetPasswordToken';
 import { Role } from '../models/Role';
 import { SecurityQuestion } from '../models/SecurityQuestion';
@@ -101,6 +108,7 @@ import { Theme } from '../models/Theme';
 import { ThemeResponse } from '../models/ThemeResponse';
 import { ThreatInsightConfiguration } from '../models/ThreatInsightConfiguration';
 import { TrustedOrigin } from '../models/TrustedOrigin';
+import { UpdateEmailDomain } from '../models/UpdateEmailDomain';
 import { UpdateUserRequest } from '../models/UpdateUserRequest';
 import { User } from '../models/User';
 import { UserActivationToken } from '../models/UserActivationToken';
@@ -1826,10 +1834,10 @@ export interface AuthorizationServerApiListAuthorizationServersRequest {
     q?: string;
     /**
       *
-      * @type string
+      * @type number
       * @memberof AuthorizationServerApilistAuthorizationServers
       */
-    limit?: string;
+    limit?: number;
     /**
       *
       * @type string
@@ -2728,6 +2736,14 @@ export interface CustomizationApiGetEmailTemplateRequest {
       */
     expand?: Array<'settings' | 'customizationCount'>;
 }
+export interface CustomizationApiListAllSignInWidgetVersionsRequest {
+    /**
+      * The ID of the brand.
+      * @type string
+      * @memberof CustomizationApilistAllSignInWidgetVersions
+      */
+    brandId: string;
+}
 export interface CustomizationApiListBrandThemesRequest {
     /**
       *
@@ -2804,20 +2820,6 @@ export interface CustomizationApiPreviewErrorPageRequest {
       */
     CustomizablePage: CustomizablePage;
 }
-export interface CustomizationApiPreviewSignInPageRequest {
-    /**
-      * The ID of the brand.
-      * @type string
-      * @memberof CustomizationApipreviewSignInPage
-      */
-    brandId: string;
-    /**
-      *
-      * @type SignInPage
-      * @memberof CustomizationApipreviewSignInPage
-      */
-    SignInPage: SignInPage;
-}
 export interface CustomizationApiReplaceErrorPageRequest {
     /**
       * The ID of the brand.
@@ -2843,6 +2845,20 @@ export interface CustomizationApiReplaceSignInPageRequest {
       *
       * @type SignInPage
       * @memberof CustomizationApireplaceSignInPage
+      */
+    SignInPage: SignInPage;
+}
+export interface CustomizationApiReplaceSignInPagePreviewRequest {
+    /**
+      * The ID of the brand.
+      * @type string
+      * @memberof CustomizationApireplaceSignInPagePreview
+      */
+    brandId: string;
+    /**
+      *
+      * @type SignInPage
+      * @memberof CustomizationApireplaceSignInPagePreview
       */
     SignInPage: SignInPage;
 }
@@ -3148,6 +3164,12 @@ export declare class ObjectCustomizationApi {
       */
   getEmailTemplate(param: CustomizationApiGetEmailTemplateRequest, options?: Configuration): Promise<EmailTemplate>;
   /**
+      * List all sign-in widget versions.
+      * List all Sign-in Widget Versions
+      * @param param the request object
+      */
+  listAllSignInWidgetVersions(param: CustomizationApiListAllSignInWidgetVersionsRequest, options?: Configuration): Promise<Collection<string>>;
+  /**
       * List all the themes in your brand
       * List all Themes
       * @param param the request object
@@ -3178,12 +3200,6 @@ export declare class ObjectCustomizationApi {
       */
   previewErrorPage(param: CustomizationApiPreviewErrorPageRequest, options?: Configuration): Promise<string>;
   /**
-      * Preview the sign-in page.
-      * Preview the Sign-in Page.
-      * @param param the request object
-      */
-  previewSignInPage(param: CustomizationApiPreviewSignInPageRequest, options?: Configuration): Promise<string>;
-  /**
       * Replaces the error page.
       * Replace the Error Page
       * @param param the request object
@@ -3195,6 +3211,12 @@ export declare class ObjectCustomizationApi {
       * @param param the request object
       */
   replaceSignInPage(param: CustomizationApiReplaceSignInPageRequest, options?: Configuration): Promise<SignInPage>;
+  /**
+      * Replace the sign-in page preview.
+      * Replace the Sign-in Page Preview
+      * @param param the request object
+      */
+  replaceSignInPagePreview(param: CustomizationApiReplaceSignInPagePreviewRequest, options?: Configuration): Promise<void>;
   /**
       * Replaces the sign-out page settings.
       * Replace the Sign-out Page Settings
@@ -3279,6 +3301,81 @@ export declare class ObjectCustomizationApi {
       * @param param the request object
       */
   uploadBrandThemeLogo(param: CustomizationApiUploadBrandThemeLogoRequest, options?: Configuration): Promise<ImageUploadResponse>;
+}
+import { DeviceAssuranceApiRequestFactory, DeviceAssuranceApiResponseProcessor } from '../apis/DeviceAssuranceApi';
+export interface DeviceAssuranceApiCreateDeviceAssurancePolicyRequest {
+    /**
+      *
+      * @type DeviceAssurance
+      * @memberof DeviceAssuranceApicreateDeviceAssurancePolicy
+      */
+    deviceAssurance: DeviceAssurance;
+}
+export interface DeviceAssuranceApiDeleteDeviceAssurancePolicyRequest {
+    /**
+      * Id of the Device Assurance Policy
+      * @type string
+      * @memberof DeviceAssuranceApideleteDeviceAssurancePolicy
+      */
+    deviceAssuranceId: string;
+}
+export interface DeviceAssuranceApiGetDeviceAssurancePolicyRequest {
+    /**
+      * Id of the Device Assurance Policy
+      * @type string
+      * @memberof DeviceAssuranceApigetDeviceAssurancePolicy
+      */
+    deviceAssuranceId: string;
+}
+export interface DeviceAssuranceApiListDeviceAssurancePoliciesRequest {
+}
+export interface DeviceAssuranceApiUpdateDeviceAssurancePolicyRequest {
+    /**
+      * Id of the Device Assurance Policy
+      * @type string
+      * @memberof DeviceAssuranceApiupdateDeviceAssurancePolicy
+      */
+    deviceAssuranceId: string;
+    /**
+      *
+      * @type DeviceAssurance
+      * @memberof DeviceAssuranceApiupdateDeviceAssurancePolicy
+      */
+    deviceAssurance: DeviceAssurance;
+}
+export declare class ObjectDeviceAssuranceApi {
+  private api;
+  constructor(configuration: Configuration, requestFactory?: DeviceAssuranceApiRequestFactory, responseProcessor?: DeviceAssuranceApiResponseProcessor);
+  /**
+      * Adds a new Device Assurance Policy.
+      * Create a Device Assurance Policy
+      * @param param the request object
+      */
+  createDeviceAssurancePolicy(param: DeviceAssuranceApiCreateDeviceAssurancePolicyRequest, options?: Configuration): Promise<DeviceAssurance>;
+  /**
+      * Delete a Device Assurance Policy by `deviceAssuranceId`. If the Device Assurance Policy is currently being used in the org Authentication Policies, the delete will not be allowed.
+      * Delete a Device Assurance Policy
+      * @param param the request object
+      */
+  deleteDeviceAssurancePolicy(param: DeviceAssuranceApiDeleteDeviceAssurancePolicyRequest, options?: Configuration): Promise<void>;
+  /**
+      * Fetches a Device Assurance Policy by `deviceAssuranceId`.
+      * Retrieve a Device Assurance Policy
+      * @param param the request object
+      */
+  getDeviceAssurancePolicy(param: DeviceAssuranceApiGetDeviceAssurancePolicyRequest, options?: Configuration): Promise<DeviceAssurance>;
+  /**
+      * Enumerates Device Assurance Policies in your organization.
+      * List all Device Assurance Policies
+      * @param param the request object
+      */
+  listDeviceAssurancePolicies(param?: DeviceAssuranceApiListDeviceAssurancePoliciesRequest, options?: Configuration): Promise<Collection<DeviceAssurance>>;
+  /**
+      * Updates a Device Assurance Policy by `deviceAssuranceId`.
+      * Replace a Device Assurance Policy
+      * @param param the request object
+      */
+  updateDeviceAssurancePolicy(param: DeviceAssuranceApiUpdateDeviceAssurancePolicyRequest, options?: Configuration): Promise<DeviceAssurance>;
 }
 import { DomainApiRequestFactory, DomainApiResponseProcessor } from '../apis/DomainApi';
 export interface DomainApiCreateCertificateRequest {
@@ -3368,6 +3465,109 @@ export declare class ObjectDomainApi {
       * @param param the request object
       */
   verifyDomain(param: DomainApiVerifyDomainRequest, options?: Configuration): Promise<DomainResponse>;
+}
+import { EmailDomainApiRequestFactory, EmailDomainApiResponseProcessor } from '../apis/EmailDomainApi';
+export interface EmailDomainApiCreateEmailDomainRequest {
+    /**
+      *
+      * @type EmailDomain
+      * @memberof EmailDomainApicreateEmailDomain
+      */
+    emailDomain: EmailDomain;
+}
+export interface EmailDomainApiDeleteEmailDomainRequest {
+    /**
+      *
+      * @type string
+      * @memberof EmailDomainApideleteEmailDomain
+      */
+    emailDomainId: string;
+}
+export interface EmailDomainApiGetEmailDomainRequest {
+    /**
+      *
+      * @type string
+      * @memberof EmailDomainApigetEmailDomain
+      */
+    emailDomainId: string;
+}
+export interface EmailDomainApiListEmailDomainBrandsRequest {
+    /**
+      *
+      * @type string
+      * @memberof EmailDomainApilistEmailDomainBrands
+      */
+    emailDomainId: string;
+}
+export interface EmailDomainApiListEmailDomainsRequest {
+}
+export interface EmailDomainApiUpdateEmailDomainRequest {
+    /**
+      *
+      * @type string
+      * @memberof EmailDomainApiupdateEmailDomain
+      */
+    emailDomainId: string;
+    /**
+      *
+      * @type UpdateEmailDomain
+      * @memberof EmailDomainApiupdateEmailDomain
+      */
+    updateEmailDomain: UpdateEmailDomain;
+}
+export interface EmailDomainApiVerifyEmailDomainRequest {
+    /**
+      *
+      * @type string
+      * @memberof EmailDomainApiverifyEmailDomain
+      */
+    emailDomainId: string;
+}
+export declare class ObjectEmailDomainApi {
+  private api;
+  constructor(configuration: Configuration, requestFactory?: EmailDomainApiRequestFactory, responseProcessor?: EmailDomainApiResponseProcessor);
+  /**
+      * Creates a custom email domain.
+      * Create an Email Domain
+      * @param param the request object
+      */
+  createEmailDomain(param: EmailDomainApiCreateEmailDomainRequest, options?: Configuration): Promise<EmailDomainResponse>;
+  /**
+      * Deletes an Email Domain by `emailDomainId`.
+      * Delete an Email Domain
+      * @param param the request object
+      */
+  deleteEmailDomain(param: EmailDomainApiDeleteEmailDomainRequest, options?: Configuration): Promise<void>;
+  /**
+      * Fetches an Email Domain by `emailDomainId`.
+      * Retrieve a Email Domain
+      * @param param the request object
+      */
+  getEmailDomain(param: EmailDomainApiGetEmailDomainRequest, options?: Configuration): Promise<EmailDomainResponse>;
+  /**
+      * List all brands linked to an email domain.
+      * List all brands linked to an email domain
+      * @param param the request object
+      */
+  listEmailDomainBrands(param: EmailDomainApiListEmailDomainBrandsRequest, options?: Configuration): Promise<Collection<Brand>>;
+  /**
+      * List all the email domains in your org.
+      * List all email domains
+      * @param param the request object
+      */
+  listEmailDomains(param?: EmailDomainApiListEmailDomainsRequest, options?: Configuration): Promise<EmailDomainListResponse>;
+  /**
+      * Updates an email domain by `emailDomainId`
+      * Update an Email Domain
+      * @param param the request object
+      */
+  updateEmailDomain(param: EmailDomainApiUpdateEmailDomainRequest, options?: Configuration): Promise<EmailDomainResponse>;
+  /**
+      * Verifies the Email Domain by `id`.
+      * Verify Email Domain
+      * @param param the request object
+      */
+  verifyEmailDomain(param: EmailDomainApiVerifyEmailDomainRequest, options?: Configuration): Promise<EmailDomainResponse>;
 }
 import { EventHookApiRequestFactory, EventHookApiResponseProcessor } from '../apis/EventHookApi';
 export interface EventHookApiActivateEventHookRequest {
@@ -3902,7 +4102,7 @@ export interface GroupApiListGroupsRequest {
       * @type string
       * @memberof GroupApilistGroups
       */
-    search?: string;
+    filter?: string;
     /**
       * Specifies the pagination cursor for the next page of groups
       * @type string
@@ -3921,6 +4121,12 @@ export interface GroupApiListGroupsRequest {
       * @memberof GroupApilistGroups
       */
     expand?: string;
+    /**
+      * Searches for groups with a supported filtering expression for all attributes except for _embedded, _links, and objectClass
+      * @type string
+      * @memberof GroupApilistGroups
+      */
+    search?: string;
 }
 export interface GroupApiRemoveApplicationTargetFromAdministratorRoleGivenToGroupRequest {
     /**
@@ -5618,7 +5824,96 @@ export declare class ObjectProfileMappingApi {
       */
   updateProfileMapping(param: ProfileMappingApiUpdateProfileMappingRequest, options?: Configuration): Promise<ProfileMapping>;
 }
+import { PushProviderApiRequestFactory, PushProviderApiResponseProcessor } from '../apis/PushProviderApi';
+export interface PushProviderApiCreatePushProviderRequest {
+    /**
+      *
+      * @type PushProvider
+      * @memberof PushProviderApicreatePushProvider
+      */
+    pushProvider: PushProvider;
+}
+export interface PushProviderApiDeletePushProviderRequest {
+    /**
+      * Id of the push provider
+      * @type string
+      * @memberof PushProviderApideletePushProvider
+      */
+    pushProviderId: string;
+}
+export interface PushProviderApiGetPushProviderRequest {
+    /**
+      * Id of the push provider
+      * @type string
+      * @memberof PushProviderApigetPushProvider
+      */
+    pushProviderId: string;
+}
+export interface PushProviderApiListPushProvidersRequest {
+    /**
+      * Filters push providers by &#x60;providerType&#x60;
+      * @type ProviderType
+      * @memberof PushProviderApilistPushProviders
+      */
+    type?: ProviderType;
+}
+export interface PushProviderApiUpdatePushProviderRequest {
+    /**
+      * Id of the push provider
+      * @type string
+      * @memberof PushProviderApiupdatePushProvider
+      */
+    pushProviderId: string;
+    /**
+      *
+      * @type PushProvider
+      * @memberof PushProviderApiupdatePushProvider
+      */
+    pushProvider: PushProvider;
+}
+export declare class ObjectPushProviderApi {
+  private api;
+  constructor(configuration: Configuration, requestFactory?: PushProviderApiRequestFactory, responseProcessor?: PushProviderApiResponseProcessor);
+  /**
+      * Adds a new push provider to your organization.
+      * Create a Push Provider
+      * @param param the request object
+      */
+  createPushProvider(param: PushProviderApiCreatePushProviderRequest, options?: Configuration): Promise<PushProvider>;
+  /**
+      * Delete a push provider by `pushProviderId`. If the push provider is currently being used in the org by a custom authenticator, the delete will not be allowed.
+      * Delete a Push Provider
+      * @param param the request object
+      */
+  deletePushProvider(param: PushProviderApiDeletePushProviderRequest, options?: Configuration): Promise<void>;
+  /**
+      * Fetches a push provider by `pushProviderId`.
+      * Retrieve a Push Provider
+      * @param param the request object
+      */
+  getPushProvider(param: PushProviderApiGetPushProviderRequest, options?: Configuration): Promise<PushProvider>;
+  /**
+      * Enumerates push providers in your organization.
+      * List all Push Providers
+      * @param param the request object
+      */
+  listPushProviders(param?: PushProviderApiListPushProvidersRequest, options?: Configuration): Promise<Collection<PushProvider>>;
+  /**
+      * Updates a push provider by `pushProviderId`.
+      * Replace a Push Provider
+      * @param param the request object
+      */
+  updatePushProvider(param: PushProviderApiUpdatePushProviderRequest, options?: Configuration): Promise<PushProvider>;
+}
 import { SchemaApiRequestFactory, SchemaApiResponseProcessor } from '../apis/SchemaApi';
+export interface SchemaApiGetApplicationLayoutRequest {
+    /**
+      *
+      * @type string
+      * @memberof SchemaApigetApplicationLayout
+      */
+    appName: string;
+}
 export interface SchemaApiGetApplicationUserSchemaRequest {
     /**
       *
@@ -5676,6 +5971,12 @@ export interface SchemaApiUpdateUserProfileRequest {
 export declare class ObjectSchemaApi {
   private api;
   constructor(configuration: Configuration, requestFactory?: SchemaApiRequestFactory, responseProcessor?: SchemaApiResponseProcessor);
+  /**
+      * Takes an Application name as an input parameter and retrieves the App Instance page Layout for that Application.
+      * Retrieve the UI Layout for an Application
+      * @param param the request object
+      */
+  getApplicationLayout(param: SchemaApiGetApplicationLayoutRequest, options?: Configuration): Promise<ApplicationLayout>;
   /**
       * Fetches the Schema for an App User
       * Retrieve the default Application User Schema for an Application
@@ -6806,17 +7107,17 @@ export interface UserApiListUserIdentityProvidersRequest {
 }
 export interface UserApiListUsersRequest {
     /**
-      * The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/reference/core-okta-api/#pagination) for more information.
-      * @type string
-      * @memberof UserApilistUsers
-      */
-    after?: string;
-    /**
       * Finds a user that matches firstName, lastName, and email properties
       * @type string
       * @memberof UserApilistUsers
       */
     q?: string;
+    /**
+      * The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/reference/core-okta-api/#pagination) for more information.
+      * @type string
+      * @memberof UserApilistUsers
+      */
+    after?: string;
     /**
       * Specifies the number of results returned. Defaults to 10 if &#x60;q&#x60; is provided.
       * @type number

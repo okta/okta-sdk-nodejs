@@ -22,9 +22,11 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { BrandDefaultApp } from './BrandDefaultApp';
 export declare class Brand {
   'agreeToCustomPrivacyPolicy'?: boolean;
   'customPrivacyPolicyUrl'?: string;
+  'defaultApp'?: BrandDefaultApp;
   /**
     * The language specified as an [IETF BCP 47 language tag](https://datatracker.ietf.org/doc/html/rfc5646).
     */

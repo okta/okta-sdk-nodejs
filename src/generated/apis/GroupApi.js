@@ -904,12 +904,13 @@ class GroupApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
      * Enumerates groups in your organization with pagination. A subset of groups can be returned that match a supported filter expression or query.
      * List all Groups
      * @param q Searches the name property of groups for matching value
-     * @param search Filter expression for groups
+     * @param filter Filter expression for groups
      * @param after Specifies the pagination cursor for the next page of groups
      * @param limit Specifies the number of group results in a page
      * @param expand If specified, it causes additional metadata to be included in the response.
+     * @param search Searches for groups with a supported filtering expression for all attributes except for _embedded, _links, and objectClass
      */
-  async listGroups(q, search, after, limit, expand, _options) {
+  async listGroups(q, filter, after, limit, expand, search, _options) {
     let _config = _options || this.configuration;
     // Path Params
     const path = '/api/v1/groups';
@@ -921,8 +922,8 @@ class GroupApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
       requestContext.setQueryParam('q', ObjectSerializer_1.ObjectSerializer.serialize(q, 'string', ''));
     }
     // Query Params
-    if (search !== undefined) {
-      requestContext.setQueryParam('search', ObjectSerializer_1.ObjectSerializer.serialize(search, 'string', ''));
+    if (filter !== undefined) {
+      requestContext.setQueryParam('filter', ObjectSerializer_1.ObjectSerializer.serialize(filter, 'string', ''));
     }
     // Query Params
     if (after !== undefined) {
@@ -935,6 +936,10 @@ class GroupApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     // Query Params
     if (expand !== undefined) {
       requestContext.setQueryParam('expand', ObjectSerializer_1.ObjectSerializer.serialize(expand, 'string', ''));
+    }
+    // Query Params
+    if (search !== undefined) {
+      requestContext.setQueryParam('search', ObjectSerializer_1.ObjectSerializer.serialize(search, 'string', ''));
     }
     let authMethod;
     // Apply auth methods

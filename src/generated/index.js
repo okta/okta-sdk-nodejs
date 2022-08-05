@@ -33,7 +33,7 @@ var __exportStar = (this && this.__exportStar) || function (m, exports) {
   }
 };
 Object.defineProperty(exports, '__esModule', { value: true });
-exports.UserTypeApi = exports.UserFactorApi = exports.UserApi = exports.TrustedOriginApi = exports.ThreatInsightApi = exports.TemplateApi = exports.SystemLogApi = exports.SubscriptionApi = exports.SessionApi = exports.SchemaApi = exports.ProfileMappingApi = exports.PrincipalRateLimitApi = exports.PolicyApi = exports.OrgSettingApi = exports.NetworkZoneApi = exports.LinkedObjectApi = exports.InlineHookApi = exports.IdentityProviderApi = exports.GroupApi = exports.FeatureApi = exports.EventHookApi = exports.DomainApi = exports.CustomizationApi = exports.CAPTCHAApi = exports.BehaviorApi = exports.AuthorizationServerApi = exports.AuthenticatorApi = exports.ApplicationApi = exports.ApiTokenApi = exports.AgentPoolsApi = exports.createConfiguration = void 0;
+exports.UserTypeApi = exports.UserFactorApi = exports.UserApi = exports.TrustedOriginApi = exports.ThreatInsightApi = exports.TemplateApi = exports.SystemLogApi = exports.SubscriptionApi = exports.SessionApi = exports.SchemaApi = exports.PushProviderApi = exports.ProfileMappingApi = exports.PrincipalRateLimitApi = exports.PolicyApi = exports.OrgSettingApi = exports.NetworkZoneApi = exports.LinkedObjectApi = exports.InlineHookApi = exports.IdentityProviderApi = exports.GroupApi = exports.FeatureApi = exports.EventHookApi = exports.EmailDomainApi = exports.DomainApi = exports.DeviceAssuranceApi = exports.CustomizationApi = exports.CAPTCHAApi = exports.BehaviorApi = exports.AuthorizationServerApi = exports.AuthenticatorApi = exports.ApplicationApi = exports.ApiTokenApi = exports.AgentPoolsApi = exports.createConfiguration = void 0;
 __exportStar(require('./http/http'), exports);
 __exportStar(require('./auth/auth'), exports);
 __exportStar(require('./models/all'), exports);
@@ -68,8 +68,14 @@ Object.defineProperty(exports, 'CAPTCHAApi', { enumerable: true, get: function (
 Object.defineProperty(exports, 'CustomizationApi', { enumerable: true, get: function () {
   return ObjectParamAPI_1.ObjectCustomizationApi;
 } });
+Object.defineProperty(exports, 'DeviceAssuranceApi', { enumerable: true, get: function () {
+  return ObjectParamAPI_1.ObjectDeviceAssuranceApi;
+} });
 Object.defineProperty(exports, 'DomainApi', { enumerable: true, get: function () {
   return ObjectParamAPI_1.ObjectDomainApi;
+} });
+Object.defineProperty(exports, 'EmailDomainApi', { enumerable: true, get: function () {
+  return ObjectParamAPI_1.ObjectEmailDomainApi;
 } });
 Object.defineProperty(exports, 'EventHookApi', { enumerable: true, get: function () {
   return ObjectParamAPI_1.ObjectEventHookApi;
@@ -103,6 +109,9 @@ Object.defineProperty(exports, 'PrincipalRateLimitApi', { enumerable: true, get:
 } });
 Object.defineProperty(exports, 'ProfileMappingApi', { enumerable: true, get: function () {
   return ObjectParamAPI_1.ObjectProfileMappingApi;
+} });
+Object.defineProperty(exports, 'PushProviderApi', { enumerable: true, get: function () {
+  return ObjectParamAPI_1.ObjectPushProviderApi;
 } });
 Object.defineProperty(exports, 'SchemaApi', { enumerable: true, get: function () {
   return ObjectParamAPI_1.ObjectSchemaApi;

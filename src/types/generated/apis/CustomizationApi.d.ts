@@ -135,6 +135,12 @@ export declare class CustomizationApiRequestFactory extends BaseAPIRequestFactor
      */
   getEmailTemplate(brandId: string, templateName: string, expand?: Array<'settings' | 'customizationCount'>, _options?: Configuration): Promise<RequestContext>;
   /**
+     * List all sign-in widget versions.
+     * List all Sign-in Widget Versions
+     * @param brandId The ID of the brand.
+     */
+  listAllSignInWidgetVersions(brandId: string, _options?: Configuration): Promise<RequestContext>;
+  /**
      * List all the themes in your brand
      * List all Themes
      * @param brandId
@@ -171,13 +177,6 @@ export declare class CustomizationApiRequestFactory extends BaseAPIRequestFactor
      */
   previewErrorPage(brandId: string, CustomizablePage: CustomizablePage, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Preview the sign-in page.
-     * Preview the Sign-in Page.
-     * @param brandId The ID of the brand.
-     * @param SignInPage
-     */
-  previewSignInPage(brandId: string, SignInPage: SignInPage, _options?: Configuration): Promise<RequestContext>;
-  /**
      * Replaces the error page.
      * Replace the Error Page
      * @param brandId The ID of the brand.
@@ -191,6 +190,13 @@ export declare class CustomizationApiRequestFactory extends BaseAPIRequestFactor
      * @param SignInPage
      */
   replaceSignInPage(brandId: string, SignInPage: SignInPage, _options?: Configuration): Promise<RequestContext>;
+  /**
+     * Replace the sign-in page preview.
+     * Replace the Sign-in Page Preview
+     * @param brandId The ID of the brand.
+     * @param SignInPage
+     */
+  replaceSignInPagePreview(brandId: string, SignInPage: SignInPage, _options?: Configuration): Promise<RequestContext>;
   /**
      * Replaces the sign-out page settings.
      * Replace the Sign-out Page Settings
@@ -410,6 +416,14 @@ export declare class CustomizationApiResponseProcessor {
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
+     * @params response Response returned by the server for a request to listAllSignInWidgetVersions
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+  listAllSignInWidgetVersions(response: ResponseContext): Promise<Array<string>>;
+  /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
      * @params response Response returned by the server for a request to listBrandThemes
      * @throws ApiException if the response code was not in [200, 299]
      */
@@ -450,14 +464,6 @@ export declare class CustomizationApiResponseProcessor {
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
-     * @params response Response returned by the server for a request to previewSignInPage
-     * @throws ApiException if the response code was not in [200, 299]
-     */
-  previewSignInPage(response: ResponseContext): Promise<string>;
-  /**
-     * Unwraps the actual response sent by the server from the response context and deserializes the response content
-     * to the expected objects
-     *
      * @params response Response returned by the server for a request to replaceErrorPage
      * @throws ApiException if the response code was not in [200, 299]
      */
@@ -470,6 +476,14 @@ export declare class CustomizationApiResponseProcessor {
      * @throws ApiException if the response code was not in [200, 299]
      */
   replaceSignInPage(response: ResponseContext): Promise<SignInPage>;
+  /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
+     * @params response Response returned by the server for a request to replaceSignInPagePreview
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+  replaceSignInPagePreview(response: ResponseContext): Promise<void>;
   /**
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects

@@ -22,4 +22,4 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-export declare type SessionAuthenticationMethod = 'fpt' | 'geo' | 'hwk' | 'kba' | 'mfa' | 'otp' | 'pwd' | 'sms' | 'swk' | 'tel';
+export declare type SessionAuthenticationMethod = 'fpt' | 'geo' | 'hwk' | 'kba' | 'mca' | 'mfa' | 'otp' | 'pwd' | 'sc' | 'sms' | 'swk' | 'tel';

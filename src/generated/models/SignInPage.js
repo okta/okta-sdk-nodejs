@@ -42,12 +42,6 @@ SignInPage.attributeTypeMap = [
     'format': ''
   },
   {
-    'name': 'defaultApp',
-    'baseName': 'defaultApp',
-    'type': 'SignInPageAllOfDefaultApp',
-    'format': ''
-  },
-  {
     'name': 'type',
     'baseName': 'type',
     'type': 'HostedPageType',

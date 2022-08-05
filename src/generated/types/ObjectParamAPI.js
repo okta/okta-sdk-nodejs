@@ -13,7 +13,7 @@
 
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ObjectUserTypeApi = exports.ObjectUserFactorApi = exports.ObjectUserApi = exports.ObjectTrustedOriginApi = exports.ObjectThreatInsightApi = exports.ObjectTemplateApi = exports.ObjectSystemLogApi = exports.ObjectSubscriptionApi = exports.ObjectSessionApi = exports.ObjectSchemaApi = exports.ObjectProfileMappingApi = exports.ObjectPrincipalRateLimitApi = exports.ObjectPolicyApi = exports.ObjectOrgSettingApi = exports.ObjectNetworkZoneApi = exports.ObjectLinkedObjectApi = exports.ObjectInlineHookApi = exports.ObjectIdentityProviderApi = exports.ObjectGroupApi = exports.ObjectFeatureApi = exports.ObjectEventHookApi = exports.ObjectDomainApi = exports.ObjectCustomizationApi = exports.ObjectCAPTCHAApi = exports.ObjectBehaviorApi = exports.ObjectAuthorizationServerApi = exports.ObjectAuthenticatorApi = exports.ObjectApplicationApi = exports.ObjectApiTokenApi = exports.ObjectAgentPoolsApi = void 0;
+exports.ObjectUserTypeApi = exports.ObjectUserFactorApi = exports.ObjectUserApi = exports.ObjectTrustedOriginApi = exports.ObjectThreatInsightApi = exports.ObjectTemplateApi = exports.ObjectSystemLogApi = exports.ObjectSubscriptionApi = exports.ObjectSessionApi = exports.ObjectSchemaApi = exports.ObjectPushProviderApi = exports.ObjectProfileMappingApi = exports.ObjectPrincipalRateLimitApi = exports.ObjectPolicyApi = exports.ObjectOrgSettingApi = exports.ObjectNetworkZoneApi = exports.ObjectLinkedObjectApi = exports.ObjectInlineHookApi = exports.ObjectIdentityProviderApi = exports.ObjectGroupApi = exports.ObjectFeatureApi = exports.ObjectEventHookApi = exports.ObjectEmailDomainApi = exports.ObjectDomainApi = exports.ObjectDeviceAssuranceApi = exports.ObjectCustomizationApi = exports.ObjectCAPTCHAApi = exports.ObjectBehaviorApi = exports.ObjectAuthorizationServerApi = exports.ObjectAuthenticatorApi = exports.ObjectApplicationApi = exports.ObjectApiTokenApi = exports.ObjectAgentPoolsApi = void 0;
 const ObservableAPI_1 = require("./ObservableAPI");
 class ObjectAgentPoolsApi {
     constructor(configuration, requestFactory, responseProcessor) {
@@ -1101,6 +1101,14 @@ class ObjectCustomizationApi {
         return this.api.getEmailTemplate(param.brandId, param.templateName, param.expand, options).toPromise();
     }
     /**
+      * List all sign-in widget versions.
+      * List all Sign-in Widget Versions
+      * @param param the request object
+      */
+    listAllSignInWidgetVersions(param, options) {
+        return this.api.listAllSignInWidgetVersions(param.brandId, options).toPromise();
+    }
+    /**
       * List all the themes in your brand
       * List all Themes
       * @param param the request object
@@ -1141,14 +1149,6 @@ class ObjectCustomizationApi {
         return this.api.previewErrorPage(param.brandId, param.CustomizablePage, options).toPromise();
     }
     /**
-      * Preview the sign-in page.
-      * Preview the Sign-in Page.
-      * @param param the request object
-      */
-    previewSignInPage(param, options) {
-        return this.api.previewSignInPage(param.brandId, param.SignInPage, options).toPromise();
-    }
-    /**
       * Replaces the error page.
       * Replace the Error Page
       * @param param the request object
@@ -1163,6 +1163,14 @@ class ObjectCustomizationApi {
       */
     replaceSignInPage(param, options) {
         return this.api.replaceSignInPage(param.brandId, param.SignInPage, options).toPromise();
+    }
+    /**
+      * Replace the sign-in page preview.
+      * Replace the Sign-in Page Preview
+      * @param param the request object
+      */
+    replaceSignInPagePreview(param, options) {
+        return this.api.replaceSignInPagePreview(param.brandId, param.SignInPage, options).toPromise();
     }
     /**
       * Replaces the sign-out page settings.
@@ -1279,9 +1287,56 @@ class ObjectCustomizationApi {
 }
 exports.ObjectCustomizationApi = ObjectCustomizationApi;
 const ObservableAPI_9 = require("./ObservableAPI");
+class ObjectDeviceAssuranceApi {
+    constructor(configuration, requestFactory, responseProcessor) {
+        this.api = new ObservableAPI_9.ObservableDeviceAssuranceApi(configuration, requestFactory, responseProcessor);
+    }
+    /**
+      * Adds a new Device Assurance Policy.
+      * Create a Device Assurance Policy
+      * @param param the request object
+      */
+    createDeviceAssurancePolicy(param, options) {
+        return this.api.createDeviceAssurancePolicy(param.deviceAssurance, options).toPromise();
+    }
+    /**
+      * Delete a Device Assurance Policy by `deviceAssuranceId`. If the Device Assurance Policy is currently being used in the org Authentication Policies, the delete will not be allowed.
+      * Delete a Device Assurance Policy
+      * @param param the request object
+      */
+    deleteDeviceAssurancePolicy(param, options) {
+        return this.api.deleteDeviceAssurancePolicy(param.deviceAssuranceId, options).toPromise();
+    }
+    /**
+      * Fetches a Device Assurance Policy by `deviceAssuranceId`.
+      * Retrieve a Device Assurance Policy
+      * @param param the request object
+      */
+    getDeviceAssurancePolicy(param, options) {
+        return this.api.getDeviceAssurancePolicy(param.deviceAssuranceId, options).toPromise();
+    }
+    /**
+      * Enumerates Device Assurance Policies in your organization.
+      * List all Device Assurance Policies
+      * @param param the request object
+      */
+    listDeviceAssurancePolicies(param = {}, options) {
+        return this.api.listDeviceAssurancePolicies(options).toPromise();
+    }
+    /**
+      * Updates a Device Assurance Policy by `deviceAssuranceId`.
+      * Replace a Device Assurance Policy
+      * @param param the request object
+      */
+    updateDeviceAssurancePolicy(param, options) {
+        return this.api.updateDeviceAssurancePolicy(param.deviceAssuranceId, param.deviceAssurance, options).toPromise();
+    }
+}
+exports.ObjectDeviceAssuranceApi = ObjectDeviceAssuranceApi;
+const ObservableAPI_10 = require("./ObservableAPI");
 class ObjectDomainApi {
     constructor(configuration, requestFactory, responseProcessor) {
-        this.api = new ObservableAPI_9.ObservableDomainApi(configuration, requestFactory, responseProcessor);
+        this.api = new ObservableAPI_10.ObservableDomainApi(configuration, requestFactory, responseProcessor);
     }
     /**
       * Creates the Certificate for the Domain.
@@ -1333,10 +1388,73 @@ class ObjectDomainApi {
     }
 }
 exports.ObjectDomainApi = ObjectDomainApi;
-const ObservableAPI_10 = require("./ObservableAPI");
+const ObservableAPI_11 = require("./ObservableAPI");
+class ObjectEmailDomainApi {
+    constructor(configuration, requestFactory, responseProcessor) {
+        this.api = new ObservableAPI_11.ObservableEmailDomainApi(configuration, requestFactory, responseProcessor);
+    }
+    /**
+      * Creates a custom email domain.
+      * Create an Email Domain
+      * @param param the request object
+      */
+    createEmailDomain(param, options) {
+        return this.api.createEmailDomain(param.emailDomain, options).toPromise();
+    }
+    /**
+      * Deletes an Email Domain by `emailDomainId`.
+      * Delete an Email Domain
+      * @param param the request object
+      */
+    deleteEmailDomain(param, options) {
+        return this.api.deleteEmailDomain(param.emailDomainId, options).toPromise();
+    }
+    /**
+      * Fetches an Email Domain by `emailDomainId`.
+      * Retrieve a Email Domain
+      * @param param the request object
+      */
+    getEmailDomain(param, options) {
+        return this.api.getEmailDomain(param.emailDomainId, options).toPromise();
+    }
+    /**
+      * List all brands linked to an email domain.
+      * List all brands linked to an email domain
+      * @param param the request object
+      */
+    listEmailDomainBrands(param, options) {
+        return this.api.listEmailDomainBrands(param.emailDomainId, options).toPromise();
+    }
+    /**
+      * List all the email domains in your org.
+      * List all email domains
+      * @param param the request object
+      */
+    listEmailDomains(param = {}, options) {
+        return this.api.listEmailDomains(options).toPromise();
+    }
+    /**
+      * Updates an email domain by `emailDomainId`
+      * Update an Email Domain
+      * @param param the request object
+      */
+    updateEmailDomain(param, options) {
+        return this.api.updateEmailDomain(param.emailDomainId, param.updateEmailDomain, options).toPromise();
+    }
+    /**
+      * Verifies the Email Domain by `id`.
+      * Verify Email Domain
+      * @param param the request object
+      */
+    verifyEmailDomain(param, options) {
+        return this.api.verifyEmailDomain(param.emailDomainId, options).toPromise();
+    }
+}
+exports.ObjectEmailDomainApi = ObjectEmailDomainApi;
+const ObservableAPI_12 = require("./ObservableAPI");
 class ObjectEventHookApi {
     constructor(configuration, requestFactory, responseProcessor) {
-        this.api = new ObservableAPI_10.ObservableEventHookApi(configuration, requestFactory, responseProcessor);
+        this.api = new ObservableAPI_12.ObservableEventHookApi(configuration, requestFactory, responseProcessor);
     }
     /**
       * Success
@@ -1404,10 +1522,10 @@ class ObjectEventHookApi {
     }
 }
 exports.ObjectEventHookApi = ObjectEventHookApi;
-const ObservableAPI_11 = require("./ObservableAPI");
+const ObservableAPI_13 = require("./ObservableAPI");
 class ObjectFeatureApi {
     constructor(configuration, requestFactory, responseProcessor) {
-        this.api = new ObservableAPI_11.ObservableFeatureApi(configuration, requestFactory, responseProcessor);
+        this.api = new ObservableAPI_13.ObservableFeatureApi(configuration, requestFactory, responseProcessor);
     }
     /**
       * Success
@@ -1451,10 +1569,10 @@ class ObjectFeatureApi {
     }
 }
 exports.ObjectFeatureApi = ObjectFeatureApi;
-const ObservableAPI_12 = require("./ObservableAPI");
+const ObservableAPI_14 = require("./ObservableAPI");
 class ObjectGroupApi {
     constructor(configuration, requestFactory, responseProcessor) {
-        this.api = new ObservableAPI_12.ObservableGroupApi(configuration, requestFactory, responseProcessor);
+        this.api = new ObservableAPI_14.ObservableGroupApi(configuration, requestFactory, responseProcessor);
     }
     /**
       * Activates a specific group rule by id from your organization
@@ -1622,7 +1740,7 @@ class ObjectGroupApi {
       * @param param the request object
       */
     listGroups(param = {}, options) {
-        return this.api.listGroups(param.q, param.search, param.after, param.limit, param.expand, options).toPromise();
+        return this.api.listGroups(param.q, param.filter, param.after, param.limit, param.expand, param.search, options).toPromise();
     }
     /**
       * Remove App Instance Target to App Administrator Role given to a Group
@@ -1682,10 +1800,10 @@ class ObjectGroupApi {
     }
 }
 exports.ObjectGroupApi = ObjectGroupApi;
-const ObservableAPI_13 = require("./ObservableAPI");
+const ObservableAPI_15 = require("./ObservableAPI");
 class ObjectIdentityProviderApi {
     constructor(configuration, requestFactory, responseProcessor) {
-        this.api = new ObservableAPI_13.ObservableIdentityProviderApi(configuration, requestFactory, responseProcessor);
+        this.api = new ObservableAPI_15.ObservableIdentityProviderApi(configuration, requestFactory, responseProcessor);
     }
     /**
       * Activates an inactive IdP.
@@ -1889,10 +2007,10 @@ class ObjectIdentityProviderApi {
     }
 }
 exports.ObjectIdentityProviderApi = ObjectIdentityProviderApi;
-const ObservableAPI_14 = require("./ObservableAPI");
+const ObservableAPI_16 = require("./ObservableAPI");
 class ObjectInlineHookApi {
     constructor(configuration, requestFactory, responseProcessor) {
-        this.api = new ObservableAPI_14.ObservableInlineHookApi(configuration, requestFactory, responseProcessor);
+        this.api = new ObservableAPI_16.ObservableInlineHookApi(configuration, requestFactory, responseProcessor);
     }
     /**
       * Activates the Inline Hook matching the provided id
@@ -1960,10 +2078,10 @@ class ObjectInlineHookApi {
     }
 }
 exports.ObjectInlineHookApi = ObjectInlineHookApi;
-const ObservableAPI_15 = require("./ObservableAPI");
+const ObservableAPI_17 = require("./ObservableAPI");
 class ObjectLinkedObjectApi {
     constructor(configuration, requestFactory, responseProcessor) {
-        this.api = new ObservableAPI_15.ObservableLinkedObjectApi(configuration, requestFactory, responseProcessor);
+        this.api = new ObservableAPI_17.ObservableLinkedObjectApi(configuration, requestFactory, responseProcessor);
     }
     /**
       * Success
@@ -1999,10 +2117,10 @@ class ObjectLinkedObjectApi {
     }
 }
 exports.ObjectLinkedObjectApi = ObjectLinkedObjectApi;
-const ObservableAPI_16 = require("./ObservableAPI");
+const ObservableAPI_18 = require("./ObservableAPI");
 class ObjectNetworkZoneApi {
     constructor(configuration, requestFactory, responseProcessor) {
-        this.api = new ObservableAPI_16.ObservableNetworkZoneApi(configuration, requestFactory, responseProcessor);
+        this.api = new ObservableAPI_18.ObservableNetworkZoneApi(configuration, requestFactory, responseProcessor);
     }
     /**
       * Activate Network Zone
@@ -2062,10 +2180,10 @@ class ObjectNetworkZoneApi {
     }
 }
 exports.ObjectNetworkZoneApi = ObjectNetworkZoneApi;
-const ObservableAPI_17 = require("./ObservableAPI");
+const ObservableAPI_19 = require("./ObservableAPI");
 class ObjectOrgSettingApi {
     constructor(configuration, requestFactory, responseProcessor) {
-        this.api = new ObservableAPI_17.ObservableOrgSettingApi(configuration, requestFactory, responseProcessor);
+        this.api = new ObservableAPI_19.ObservableOrgSettingApi(configuration, requestFactory, responseProcessor);
     }
     /**
       * A list of email addresses to be removed from the set of email addresses that are bounced.
@@ -2213,10 +2331,10 @@ class ObjectOrgSettingApi {
     }
 }
 exports.ObjectOrgSettingApi = ObjectOrgSettingApi;
-const ObservableAPI_18 = require("./ObservableAPI");
+const ObservableAPI_20 = require("./ObservableAPI");
 class ObjectPolicyApi {
     constructor(configuration, requestFactory, responseProcessor) {
-        this.api = new ObservableAPI_18.ObservablePolicyApi(configuration, requestFactory, responseProcessor);
+        this.api = new ObservableAPI_20.ObservablePolicyApi(configuration, requestFactory, responseProcessor);
     }
     /**
       * Activates a policy.
@@ -2340,10 +2458,10 @@ class ObjectPolicyApi {
     }
 }
 exports.ObjectPolicyApi = ObjectPolicyApi;
-const ObservableAPI_19 = require("./ObservableAPI");
+const ObservableAPI_21 = require("./ObservableAPI");
 class ObjectPrincipalRateLimitApi {
     constructor(configuration, requestFactory, responseProcessor) {
-        this.api = new ObservableAPI_19.ObservablePrincipalRateLimitApi(configuration, requestFactory, responseProcessor);
+        this.api = new ObservableAPI_21.ObservablePrincipalRateLimitApi(configuration, requestFactory, responseProcessor);
     }
     /**
       * Adds a new Principal Rate Limit entity to your organization. In the current release, we only allow one Principal Rate Limit entity per org and principal.
@@ -2379,10 +2497,10 @@ class ObjectPrincipalRateLimitApi {
     }
 }
 exports.ObjectPrincipalRateLimitApi = ObjectPrincipalRateLimitApi;
-const ObservableAPI_20 = require("./ObservableAPI");
+const ObservableAPI_22 = require("./ObservableAPI");
 class ObjectProfileMappingApi {
     constructor(configuration, requestFactory, responseProcessor) {
-        this.api = new ObservableAPI_20.ObservableProfileMappingApi(configuration, requestFactory, responseProcessor);
+        this.api = new ObservableAPI_22.ObservableProfileMappingApi(configuration, requestFactory, responseProcessor);
     }
     /**
       * Fetches a single Profile Mapping referenced by its ID.
@@ -2410,10 +2528,65 @@ class ObjectProfileMappingApi {
     }
 }
 exports.ObjectProfileMappingApi = ObjectProfileMappingApi;
-const ObservableAPI_21 = require("./ObservableAPI");
+const ObservableAPI_23 = require("./ObservableAPI");
+class ObjectPushProviderApi {
+    constructor(configuration, requestFactory, responseProcessor) {
+        this.api = new ObservableAPI_23.ObservablePushProviderApi(configuration, requestFactory, responseProcessor);
+    }
+    /**
+      * Adds a new push provider to your organization.
+      * Create a Push Provider
+      * @param param the request object
+      */
+    createPushProvider(param, options) {
+        return this.api.createPushProvider(param.pushProvider, options).toPromise();
+    }
+    /**
+      * Delete a push provider by `pushProviderId`. If the push provider is currently being used in the org by a custom authenticator, the delete will not be allowed.
+      * Delete a Push Provider
+      * @param param the request object
+      */
+    deletePushProvider(param, options) {
+        return this.api.deletePushProvider(param.pushProviderId, options).toPromise();
+    }
+    /**
+      * Fetches a push provider by `pushProviderId`.
+      * Retrieve a Push Provider
+      * @param param the request object
+      */
+    getPushProvider(param, options) {
+        return this.api.getPushProvider(param.pushProviderId, options).toPromise();
+    }
+    /**
+      * Enumerates push providers in your organization.
+      * List all Push Providers
+      * @param param the request object
+      */
+    listPushProviders(param = {}, options) {
+        return this.api.listPushProviders(param.type, options).toPromise();
+    }
+    /**
+      * Updates a push provider by `pushProviderId`.
+      * Replace a Push Provider
+      * @param param the request object
+      */
+    updatePushProvider(param, options) {
+        return this.api.updatePushProvider(param.pushProviderId, param.pushProvider, options).toPromise();
+    }
+}
+exports.ObjectPushProviderApi = ObjectPushProviderApi;
+const ObservableAPI_24 = require("./ObservableAPI");
 class ObjectSchemaApi {
     constructor(configuration, requestFactory, responseProcessor) {
-        this.api = new ObservableAPI_21.ObservableSchemaApi(configuration, requestFactory, responseProcessor);
+        this.api = new ObservableAPI_24.ObservableSchemaApi(configuration, requestFactory, responseProcessor);
+    }
+    /**
+      * Takes an Application name as an input parameter and retrieves the App Instance page Layout for that Application.
+      * Retrieve the UI Layout for an Application
+      * @param param the request object
+      */
+    getApplicationLayout(param, options) {
+        return this.api.getApplicationLayout(param.appName, options).toPromise();
     }
     /**
       * Fetches the Schema for an App User
@@ -2465,10 +2638,10 @@ class ObjectSchemaApi {
     }
 }
 exports.ObjectSchemaApi = ObjectSchemaApi;
-const ObservableAPI_22 = require("./ObservableAPI");
+const ObservableAPI_25 = require("./ObservableAPI");
 class ObjectSessionApi {
     constructor(configuration, requestFactory, responseProcessor) {
-        this.api = new ObservableAPI_22.ObservableSessionApi(configuration, requestFactory, responseProcessor);
+        this.api = new ObservableAPI_25.ObservableSessionApi(configuration, requestFactory, responseProcessor);
     }
     /**
       * Creates a new session for a user with a valid session token. Use this API if, for example, you want to set the session cookie yourself instead of allowing Okta to set it, or want to hold the session ID in order to delete a session via the API instead of visiting the logout URL.
@@ -2504,10 +2677,10 @@ class ObjectSessionApi {
     }
 }
 exports.ObjectSessionApi = ObjectSessionApi;
-const ObservableAPI_23 = require("./ObservableAPI");
+const ObservableAPI_26 = require("./ObservableAPI");
 class ObjectSubscriptionApi {
     constructor(configuration, requestFactory, responseProcessor) {
-        this.api = new ObservableAPI_23.ObservableSubscriptionApi(configuration, requestFactory, responseProcessor);
+        this.api = new ObservableAPI_26.ObservableSubscriptionApi(configuration, requestFactory, responseProcessor);
     }
     /**
       * When roleType Get subscriptions of a Role with a specific notification type. Else when roleId Get subscription of a Custom Role with a specific notification type.
@@ -2575,10 +2748,10 @@ class ObjectSubscriptionApi {
     }
 }
 exports.ObjectSubscriptionApi = ObjectSubscriptionApi;
-const ObservableAPI_24 = require("./ObservableAPI");
+const ObservableAPI_27 = require("./ObservableAPI");
 class ObjectSystemLogApi {
     constructor(configuration, requestFactory, responseProcessor) {
-        this.api = new ObservableAPI_24.ObservableSystemLogApi(configuration, requestFactory, responseProcessor);
+        this.api = new ObservableAPI_27.ObservableSystemLogApi(configuration, requestFactory, responseProcessor);
     }
     /**
       * The Okta System Log API provides read access to your organization’s system log. This API provides more functionality than the Events API
@@ -2590,10 +2763,10 @@ class ObjectSystemLogApi {
     }
 }
 exports.ObjectSystemLogApi = ObjectSystemLogApi;
-const ObservableAPI_25 = require("./ObservableAPI");
+const ObservableAPI_28 = require("./ObservableAPI");
 class ObjectTemplateApi {
     constructor(configuration, requestFactory, responseProcessor) {
-        this.api = new ObservableAPI_25.ObservableTemplateApi(configuration, requestFactory, responseProcessor);
+        this.api = new ObservableAPI_28.ObservableTemplateApi(configuration, requestFactory, responseProcessor);
     }
     /**
       * Adds a new custom SMS template to your organization.
@@ -2645,10 +2818,10 @@ class ObjectTemplateApi {
     }
 }
 exports.ObjectTemplateApi = ObjectTemplateApi;
-const ObservableAPI_26 = require("./ObservableAPI");
+const ObservableAPI_29 = require("./ObservableAPI");
 class ObjectThreatInsightApi {
     constructor(configuration, requestFactory, responseProcessor) {
-        this.api = new ObservableAPI_26.ObservableThreatInsightApi(configuration, requestFactory, responseProcessor);
+        this.api = new ObservableAPI_29.ObservableThreatInsightApi(configuration, requestFactory, responseProcessor);
     }
     /**
       * Gets current ThreatInsight configuration
@@ -2668,10 +2841,10 @@ class ObjectThreatInsightApi {
     }
 }
 exports.ObjectThreatInsightApi = ObjectThreatInsightApi;
-const ObservableAPI_27 = require("./ObservableAPI");
+const ObservableAPI_30 = require("./ObservableAPI");
 class ObjectTrustedOriginApi {
     constructor(configuration, requestFactory, responseProcessor) {
-        this.api = new ObservableAPI_27.ObservableTrustedOriginApi(configuration, requestFactory, responseProcessor);
+        this.api = new ObservableAPI_30.ObservableTrustedOriginApi(configuration, requestFactory, responseProcessor);
     }
     /**
       * Success
@@ -2731,10 +2904,10 @@ class ObjectTrustedOriginApi {
     }
 }
 exports.ObjectTrustedOriginApi = ObjectTrustedOriginApi;
-const ObservableAPI_28 = require("./ObservableAPI");
+const ObservableAPI_31 = require("./ObservableAPI");
 class ObjectUserApi {
     constructor(configuration, requestFactory, responseProcessor) {
-        this.api = new ObservableAPI_28.ObservableUserApi(configuration, requestFactory, responseProcessor);
+        this.api = new ObservableAPI_31.ObservableUserApi(configuration, requestFactory, responseProcessor);
     }
     /**
       * Activates a user.  This operation can only be performed on users with a `STAGED` status.  Activation of a user is an asynchronous operation. The user will have the `transitioningToStatus` property with a value of `ACTIVE` during activation to indicate that the user hasn't completed the asynchronous operation.  The user will have a status of `ACTIVE` when the activation process is complete.
@@ -2990,7 +3163,7 @@ class ObjectUserApi {
       * @param param the request object
       */
     listUsers(param = {}, options) {
-        return this.api.listUsers(param.after, param.q, param.limit, param.filter, param.search, param.sortBy, param.sortOrder, options).toPromise();
+        return this.api.listUsers(param.q, param.after, param.limit, param.filter, param.search, param.sortBy, param.sortOrder, options).toPromise();
     }
     /**
       * Fetch a user by `id`, `login`, or `login shortname` if the short name is unambiguous.
@@ -3146,10 +3319,10 @@ class ObjectUserApi {
     }
 }
 exports.ObjectUserApi = ObjectUserApi;
-const ObservableAPI_29 = require("./ObservableAPI");
+const ObservableAPI_32 = require("./ObservableAPI");
 class ObjectUserFactorApi {
     constructor(configuration, requestFactory, responseProcessor) {
-        this.api = new ObservableAPI_29.ObservableUserFactorApi(configuration, requestFactory, responseProcessor);
+        this.api = new ObservableAPI_32.ObservableUserFactorApi(configuration, requestFactory, responseProcessor);
     }
     /**
       * The `sms` and `token:software:totp` factor types require activation to complete the enrollment process.
@@ -3225,10 +3398,10 @@ class ObjectUserFactorApi {
     }
 }
 exports.ObjectUserFactorApi = ObjectUserFactorApi;
-const ObservableAPI_30 = require("./ObservableAPI");
+const ObservableAPI_33 = require("./ObservableAPI");
 class ObjectUserTypeApi {
     constructor(configuration, requestFactory, responseProcessor) {
-        this.api = new ObservableAPI_30.ObservableUserTypeApi(configuration, requestFactory, responseProcessor);
+        this.api = new ObservableAPI_33.ObservableUserTypeApi(configuration, requestFactory, responseProcessor);
     }
     /**
       * Creates a new User Type. A default User Type is automatically created along with your org, and you may add another 9 User Types for a maximum of 10.

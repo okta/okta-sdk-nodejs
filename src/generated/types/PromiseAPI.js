@@ -13,7 +13,7 @@
 
 'use strict';
 Object.defineProperty(exports, '__esModule', { value: true });
-exports.PromiseUserTypeApi = exports.PromiseUserFactorApi = exports.PromiseUserApi = exports.PromiseTrustedOriginApi = exports.PromiseThreatInsightApi = exports.PromiseTemplateApi = exports.PromiseSystemLogApi = exports.PromiseSubscriptionApi = exports.PromiseSessionApi = exports.PromiseSchemaApi = exports.PromiseProfileMappingApi = exports.PromisePrincipalRateLimitApi = exports.PromisePolicyApi = exports.PromiseOrgSettingApi = exports.PromiseNetworkZoneApi = exports.PromiseLinkedObjectApi = exports.PromiseInlineHookApi = exports.PromiseIdentityProviderApi = exports.PromiseGroupApi = exports.PromiseFeatureApi = exports.PromiseEventHookApi = exports.PromiseDomainApi = exports.PromiseCustomizationApi = exports.PromiseCAPTCHAApi = exports.PromiseBehaviorApi = exports.PromiseAuthorizationServerApi = exports.PromiseAuthenticatorApi = exports.PromiseApplicationApi = exports.PromiseApiTokenApi = exports.PromiseAgentPoolsApi = void 0;
+exports.PromiseUserTypeApi = exports.PromiseUserFactorApi = exports.PromiseUserApi = exports.PromiseTrustedOriginApi = exports.PromiseThreatInsightApi = exports.PromiseTemplateApi = exports.PromiseSystemLogApi = exports.PromiseSubscriptionApi = exports.PromiseSessionApi = exports.PromiseSchemaApi = exports.PromisePushProviderApi = exports.PromiseProfileMappingApi = exports.PromisePrincipalRateLimitApi = exports.PromisePolicyApi = exports.PromiseOrgSettingApi = exports.PromiseNetworkZoneApi = exports.PromiseLinkedObjectApi = exports.PromiseInlineHookApi = exports.PromiseIdentityProviderApi = exports.PromiseGroupApi = exports.PromiseFeatureApi = exports.PromiseEventHookApi = exports.PromiseEmailDomainApi = exports.PromiseDomainApi = exports.PromiseDeviceAssuranceApi = exports.PromiseCustomizationApi = exports.PromiseCAPTCHAApi = exports.PromiseBehaviorApi = exports.PromiseAuthorizationServerApi = exports.PromiseAuthenticatorApi = exports.PromiseApplicationApi = exports.PromiseApiTokenApi = exports.PromiseAgentPoolsApi = void 0;
 const ObservableAPI_1 = require('./ObservableAPI');
 class PromiseAgentPoolsApi {
   constructor(configuration, requestFactory, responseProcessor) {
@@ -1373,6 +1373,15 @@ class PromiseCustomizationApi {
     return result.toPromise();
   }
   /**
+      * List all sign-in widget versions.
+      * List all Sign-in Widget Versions
+      * @param brandId The ID of the brand.
+      */
+  listAllSignInWidgetVersions(brandId, _options) {
+    const result = this.api.listAllSignInWidgetVersions(brandId, _options);
+    return result.toPromise();
+  }
+  /**
       * List all the themes in your brand
       * List all Themes
       * @param brandId
@@ -1424,16 +1433,6 @@ class PromiseCustomizationApi {
     return result.toPromise();
   }
   /**
-      * Preview the sign-in page.
-      * Preview the Sign-in Page.
-      * @param brandId The ID of the brand.
-      * @param SignInPage
-      */
-  previewSignInPage(brandId, SignInPage, _options) {
-    const result = this.api.previewSignInPage(brandId, SignInPage, _options);
-    return result.toPromise();
-  }
-  /**
       * Replaces the error page.
       * Replace the Error Page
       * @param brandId The ID of the brand.
@@ -1451,6 +1450,16 @@ class PromiseCustomizationApi {
       */
   replaceSignInPage(brandId, SignInPage, _options) {
     const result = this.api.replaceSignInPage(brandId, SignInPage, _options);
+    return result.toPromise();
+  }
+  /**
+      * Replace the sign-in page preview.
+      * Replace the Sign-in Page Preview
+      * @param brandId The ID of the brand.
+      * @param SignInPage
+      */
+  replaceSignInPagePreview(brandId, SignInPage, _options) {
+    const result = this.api.replaceSignInPagePreview(brandId, SignInPage, _options);
     return result.toPromise();
   }
   /**
@@ -1599,9 +1608,61 @@ class PromiseCustomizationApi {
 }
 exports.PromiseCustomizationApi = PromiseCustomizationApi;
 const ObservableAPI_9 = require('./ObservableAPI');
+class PromiseDeviceAssuranceApi {
+  constructor(configuration, requestFactory, responseProcessor) {
+    this.api = new ObservableAPI_9.ObservableDeviceAssuranceApi(configuration, requestFactory, responseProcessor);
+  }
+  /**
+      * Adds a new Device Assurance Policy.
+      * Create a Device Assurance Policy
+      * @param deviceAssurance
+      */
+  createDeviceAssurancePolicy(deviceAssurance, _options) {
+    const result = this.api.createDeviceAssurancePolicy(deviceAssurance, _options);
+    return result.toPromise();
+  }
+  /**
+      * Delete a Device Assurance Policy by `deviceAssuranceId`. If the Device Assurance Policy is currently being used in the org Authentication Policies, the delete will not be allowed.
+      * Delete a Device Assurance Policy
+      * @param deviceAssuranceId Id of the Device Assurance Policy
+      */
+  deleteDeviceAssurancePolicy(deviceAssuranceId, _options) {
+    const result = this.api.deleteDeviceAssurancePolicy(deviceAssuranceId, _options);
+    return result.toPromise();
+  }
+  /**
+      * Fetches a Device Assurance Policy by `deviceAssuranceId`.
+      * Retrieve a Device Assurance Policy
+      * @param deviceAssuranceId Id of the Device Assurance Policy
+      */
+  getDeviceAssurancePolicy(deviceAssuranceId, _options) {
+    const result = this.api.getDeviceAssurancePolicy(deviceAssuranceId, _options);
+    return result.toPromise();
+  }
+  /**
+      * Enumerates Device Assurance Policies in your organization.
+      * List all Device Assurance Policies
+      */
+  listDeviceAssurancePolicies(_options) {
+    const result = this.api.listDeviceAssurancePolicies(_options);
+    return result.toPromise();
+  }
+  /**
+      * Updates a Device Assurance Policy by `deviceAssuranceId`.
+      * Replace a Device Assurance Policy
+      * @param deviceAssuranceId Id of the Device Assurance Policy
+      * @param deviceAssurance
+      */
+  updateDeviceAssurancePolicy(deviceAssuranceId, deviceAssurance, _options) {
+    const result = this.api.updateDeviceAssurancePolicy(deviceAssuranceId, deviceAssurance, _options);
+    return result.toPromise();
+  }
+}
+exports.PromiseDeviceAssuranceApi = PromiseDeviceAssuranceApi;
+const ObservableAPI_10 = require('./ObservableAPI');
 class PromiseDomainApi {
   constructor(configuration, requestFactory, responseProcessor) {
-    this.api = new ObservableAPI_9.ObservableDomainApi(configuration, requestFactory, responseProcessor);
+    this.api = new ObservableAPI_10.ObservableDomainApi(configuration, requestFactory, responseProcessor);
   }
   /**
       * Creates the Certificate for the Domain.
@@ -1659,10 +1720,80 @@ class PromiseDomainApi {
   }
 }
 exports.PromiseDomainApi = PromiseDomainApi;
-const ObservableAPI_10 = require('./ObservableAPI');
+const ObservableAPI_11 = require('./ObservableAPI');
+class PromiseEmailDomainApi {
+  constructor(configuration, requestFactory, responseProcessor) {
+    this.api = new ObservableAPI_11.ObservableEmailDomainApi(configuration, requestFactory, responseProcessor);
+  }
+  /**
+      * Creates a custom email domain.
+      * Create an Email Domain
+      * @param emailDomain
+      */
+  createEmailDomain(emailDomain, _options) {
+    const result = this.api.createEmailDomain(emailDomain, _options);
+    return result.toPromise();
+  }
+  /**
+      * Deletes an Email Domain by `emailDomainId`.
+      * Delete an Email Domain
+      * @param emailDomainId
+      */
+  deleteEmailDomain(emailDomainId, _options) {
+    const result = this.api.deleteEmailDomain(emailDomainId, _options);
+    return result.toPromise();
+  }
+  /**
+      * Fetches an Email Domain by `emailDomainId`.
+      * Retrieve a Email Domain
+      * @param emailDomainId
+      */
+  getEmailDomain(emailDomainId, _options) {
+    const result = this.api.getEmailDomain(emailDomainId, _options);
+    return result.toPromise();
+  }
+  /**
+      * List all brands linked to an email domain.
+      * List all brands linked to an email domain
+      * @param emailDomainId
+      */
+  listEmailDomainBrands(emailDomainId, _options) {
+    const result = this.api.listEmailDomainBrands(emailDomainId, _options);
+    return result.toPromise();
+  }
+  /**
+      * List all the email domains in your org.
+      * List all email domains
+      */
+  listEmailDomains(_options) {
+    const result = this.api.listEmailDomains(_options);
+    return result.toPromise();
+  }
+  /**
+      * Updates an email domain by `emailDomainId`
+      * Update an Email Domain
+      * @param emailDomainId
+      * @param updateEmailDomain
+      */
+  updateEmailDomain(emailDomainId, updateEmailDomain, _options) {
+    const result = this.api.updateEmailDomain(emailDomainId, updateEmailDomain, _options);
+    return result.toPromise();
+  }
+  /**
+      * Verifies the Email Domain by `id`.
+      * Verify Email Domain
+      * @param emailDomainId
+      */
+  verifyEmailDomain(emailDomainId, _options) {
+    const result = this.api.verifyEmailDomain(emailDomainId, _options);
+    return result.toPromise();
+  }
+}
+exports.PromiseEmailDomainApi = PromiseEmailDomainApi;
+const ObservableAPI_12 = require('./ObservableAPI');
 class PromiseEventHookApi {
   constructor(configuration, requestFactory, responseProcessor) {
-    this.api = new ObservableAPI_10.ObservableEventHookApi(configuration, requestFactory, responseProcessor);
+    this.api = new ObservableAPI_12.ObservableEventHookApi(configuration, requestFactory, responseProcessor);
   }
   /**
       * Success
@@ -1738,10 +1869,10 @@ class PromiseEventHookApi {
   }
 }
 exports.PromiseEventHookApi = PromiseEventHookApi;
-const ObservableAPI_11 = require('./ObservableAPI');
+const ObservableAPI_13 = require('./ObservableAPI');
 class PromiseFeatureApi {
   constructor(configuration, requestFactory, responseProcessor) {
-    this.api = new ObservableAPI_11.ObservableFeatureApi(configuration, requestFactory, responseProcessor);
+    this.api = new ObservableAPI_13.ObservableFeatureApi(configuration, requestFactory, responseProcessor);
   }
   /**
       * Success
@@ -1791,10 +1922,10 @@ class PromiseFeatureApi {
   }
 }
 exports.PromiseFeatureApi = PromiseFeatureApi;
-const ObservableAPI_12 = require('./ObservableAPI');
+const ObservableAPI_14 = require('./ObservableAPI');
 class PromiseGroupApi {
   constructor(configuration, requestFactory, responseProcessor) {
-    this.api = new ObservableAPI_12.ObservableGroupApi(configuration, requestFactory, responseProcessor);
+    this.api = new ObservableAPI_14.ObservableGroupApi(configuration, requestFactory, responseProcessor);
   }
   /**
       * Activates a specific group rule by id from your organization
@@ -2007,13 +2138,14 @@ class PromiseGroupApi {
       * Enumerates groups in your organization with pagination. A subset of groups can be returned that match a supported filter expression or query.
       * List all Groups
       * @param q Searches the name property of groups for matching value
-      * @param search Filter expression for groups
+      * @param filter Filter expression for groups
       * @param after Specifies the pagination cursor for the next page of groups
       * @param limit Specifies the number of group results in a page
       * @param expand If specified, it causes additional metadata to be included in the response.
+      * @param search Searches for groups with a supported filtering expression for all attributes except for _embedded, _links, and objectClass
       */
-  listGroups(q, search, after, limit, expand, _options) {
-    const result = this.api.listGroups(q, search, after, limit, expand, _options);
+  listGroups(q, filter, after, limit, expand, search, _options) {
+    const result = this.api.listGroups(q, filter, after, limit, expand, search, _options);
     return result.toPromise();
   }
   /**
@@ -2092,10 +2224,10 @@ class PromiseGroupApi {
   }
 }
 exports.PromiseGroupApi = PromiseGroupApi;
-const ObservableAPI_13 = require('./ObservableAPI');
+const ObservableAPI_15 = require('./ObservableAPI');
 class PromiseIdentityProviderApi {
   constructor(configuration, requestFactory, responseProcessor) {
-    this.api = new ObservableAPI_13.ObservableIdentityProviderApi(configuration, requestFactory, responseProcessor);
+    this.api = new ObservableAPI_15.ObservableIdentityProviderApi(configuration, requestFactory, responseProcessor);
   }
   /**
       * Activates an inactive IdP.
@@ -2343,10 +2475,10 @@ class PromiseIdentityProviderApi {
   }
 }
 exports.PromiseIdentityProviderApi = PromiseIdentityProviderApi;
-const ObservableAPI_14 = require('./ObservableAPI');
+const ObservableAPI_16 = require('./ObservableAPI');
 class PromiseInlineHookApi {
   constructor(configuration, requestFactory, responseProcessor) {
-    this.api = new ObservableAPI_14.ObservableInlineHookApi(configuration, requestFactory, responseProcessor);
+    this.api = new ObservableAPI_16.ObservableInlineHookApi(configuration, requestFactory, responseProcessor);
   }
   /**
       * Activates the Inline Hook matching the provided id
@@ -2424,10 +2556,10 @@ class PromiseInlineHookApi {
   }
 }
 exports.PromiseInlineHookApi = PromiseInlineHookApi;
-const ObservableAPI_15 = require('./ObservableAPI');
+const ObservableAPI_17 = require('./ObservableAPI');
 class PromiseLinkedObjectApi {
   constructor(configuration, requestFactory, responseProcessor) {
-    this.api = new ObservableAPI_15.ObservableLinkedObjectApi(configuration, requestFactory, responseProcessor);
+    this.api = new ObservableAPI_17.ObservableLinkedObjectApi(configuration, requestFactory, responseProcessor);
   }
   /**
       * Success
@@ -2466,10 +2598,10 @@ class PromiseLinkedObjectApi {
   }
 }
 exports.PromiseLinkedObjectApi = PromiseLinkedObjectApi;
-const ObservableAPI_16 = require('./ObservableAPI');
+const ObservableAPI_18 = require('./ObservableAPI');
 class PromiseNetworkZoneApi {
   constructor(configuration, requestFactory, responseProcessor) {
-    this.api = new ObservableAPI_16.ObservableNetworkZoneApi(configuration, requestFactory, responseProcessor);
+    this.api = new ObservableAPI_18.ObservableNetworkZoneApi(configuration, requestFactory, responseProcessor);
   }
   /**
       * Activate Network Zone
@@ -2539,10 +2671,10 @@ class PromiseNetworkZoneApi {
   }
 }
 exports.PromiseNetworkZoneApi = PromiseNetworkZoneApi;
-const ObservableAPI_17 = require('./ObservableAPI');
+const ObservableAPI_19 = require('./ObservableAPI');
 class PromiseOrgSettingApi {
   constructor(configuration, requestFactory, responseProcessor) {
-    this.api = new ObservableAPI_17.ObservableOrgSettingApi(configuration, requestFactory, responseProcessor);
+    this.api = new ObservableAPI_19.ObservableOrgSettingApi(configuration, requestFactory, responseProcessor);
   }
   /**
       * A list of email addresses to be removed from the set of email addresses that are bounced.
@@ -2697,10 +2829,10 @@ class PromiseOrgSettingApi {
   }
 }
 exports.PromiseOrgSettingApi = PromiseOrgSettingApi;
-const ObservableAPI_18 = require('./ObservableAPI');
+const ObservableAPI_20 = require('./ObservableAPI');
 class PromisePolicyApi {
   constructor(configuration, requestFactory, responseProcessor) {
-    this.api = new ObservableAPI_18.ObservablePolicyApi(configuration, requestFactory, responseProcessor);
+    this.api = new ObservableAPI_20.ObservablePolicyApi(configuration, requestFactory, responseProcessor);
   }
   /**
       * Activates a policy.
@@ -2851,10 +2983,10 @@ class PromisePolicyApi {
   }
 }
 exports.PromisePolicyApi = PromisePolicyApi;
-const ObservableAPI_19 = require('./ObservableAPI');
+const ObservableAPI_21 = require('./ObservableAPI');
 class PromisePrincipalRateLimitApi {
   constructor(configuration, requestFactory, responseProcessor) {
-    this.api = new ObservableAPI_19.ObservablePrincipalRateLimitApi(configuration, requestFactory, responseProcessor);
+    this.api = new ObservableAPI_21.ObservablePrincipalRateLimitApi(configuration, requestFactory, responseProcessor);
   }
   /**
       * Adds a new Principal Rate Limit entity to your organization. In the current release, we only allow one Principal Rate Limit entity per org and principal.
@@ -2897,10 +3029,10 @@ class PromisePrincipalRateLimitApi {
   }
 }
 exports.PromisePrincipalRateLimitApi = PromisePrincipalRateLimitApi;
-const ObservableAPI_20 = require('./ObservableAPI');
+const ObservableAPI_22 = require('./ObservableAPI');
 class PromiseProfileMappingApi {
   constructor(configuration, requestFactory, responseProcessor) {
-    this.api = new ObservableAPI_20.ObservableProfileMappingApi(configuration, requestFactory, responseProcessor);
+    this.api = new ObservableAPI_22.ObservableProfileMappingApi(configuration, requestFactory, responseProcessor);
   }
   /**
       * Fetches a single Profile Mapping referenced by its ID.
@@ -2935,10 +3067,72 @@ class PromiseProfileMappingApi {
   }
 }
 exports.PromiseProfileMappingApi = PromiseProfileMappingApi;
-const ObservableAPI_21 = require('./ObservableAPI');
+const ObservableAPI_23 = require('./ObservableAPI');
+class PromisePushProviderApi {
+  constructor(configuration, requestFactory, responseProcessor) {
+    this.api = new ObservableAPI_23.ObservablePushProviderApi(configuration, requestFactory, responseProcessor);
+  }
+  /**
+      * Adds a new push provider to your organization.
+      * Create a Push Provider
+      * @param pushProvider
+      */
+  createPushProvider(pushProvider, _options) {
+    const result = this.api.createPushProvider(pushProvider, _options);
+    return result.toPromise();
+  }
+  /**
+      * Delete a push provider by `pushProviderId`. If the push provider is currently being used in the org by a custom authenticator, the delete will not be allowed.
+      * Delete a Push Provider
+      * @param pushProviderId Id of the push provider
+      */
+  deletePushProvider(pushProviderId, _options) {
+    const result = this.api.deletePushProvider(pushProviderId, _options);
+    return result.toPromise();
+  }
+  /**
+      * Fetches a push provider by `pushProviderId`.
+      * Retrieve a Push Provider
+      * @param pushProviderId Id of the push provider
+      */
+  getPushProvider(pushProviderId, _options) {
+    const result = this.api.getPushProvider(pushProviderId, _options);
+    return result.toPromise();
+  }
+  /**
+      * Enumerates push providers in your organization.
+      * List all Push Providers
+      * @param type Filters push providers by &#x60;providerType&#x60;
+      */
+  listPushProviders(type, _options) {
+    const result = this.api.listPushProviders(type, _options);
+    return result.toPromise();
+  }
+  /**
+      * Updates a push provider by `pushProviderId`.
+      * Replace a Push Provider
+      * @param pushProviderId Id of the push provider
+      * @param pushProvider
+      */
+  updatePushProvider(pushProviderId, pushProvider, _options) {
+    const result = this.api.updatePushProvider(pushProviderId, pushProvider, _options);
+    return result.toPromise();
+  }
+}
+exports.PromisePushProviderApi = PromisePushProviderApi;
+const ObservableAPI_24 = require('./ObservableAPI');
 class PromiseSchemaApi {
   constructor(configuration, requestFactory, responseProcessor) {
-    this.api = new ObservableAPI_21.ObservableSchemaApi(configuration, requestFactory, responseProcessor);
+    this.api = new ObservableAPI_24.ObservableSchemaApi(configuration, requestFactory, responseProcessor);
+  }
+  /**
+      * Takes an Application name as an input parameter and retrieves the App Instance page Layout for that Application.
+      * Retrieve the UI Layout for an Application
+      * @param appName
+      */
+  getApplicationLayout(appName, _options) {
+    const result = this.api.getApplicationLayout(appName, _options);
+    return result.toPromise();
   }
   /**
       * Fetches the Schema for an App User
@@ -2997,10 +3191,10 @@ class PromiseSchemaApi {
   }
 }
 exports.PromiseSchemaApi = PromiseSchemaApi;
-const ObservableAPI_22 = require('./ObservableAPI');
+const ObservableAPI_25 = require('./ObservableAPI');
 class PromiseSessionApi {
   constructor(configuration, requestFactory, responseProcessor) {
-    this.api = new ObservableAPI_22.ObservableSessionApi(configuration, requestFactory, responseProcessor);
+    this.api = new ObservableAPI_25.ObservableSessionApi(configuration, requestFactory, responseProcessor);
   }
   /**
       * Creates a new session for a user with a valid session token. Use this API if, for example, you want to set the session cookie yourself instead of allowing Okta to set it, or want to hold the session ID in order to delete a session via the API instead of visiting the logout URL.
@@ -3040,10 +3234,10 @@ class PromiseSessionApi {
   }
 }
 exports.PromiseSessionApi = PromiseSessionApi;
-const ObservableAPI_23 = require('./ObservableAPI');
+const ObservableAPI_26 = require('./ObservableAPI');
 class PromiseSubscriptionApi {
   constructor(configuration, requestFactory, responseProcessor) {
-    this.api = new ObservableAPI_23.ObservableSubscriptionApi(configuration, requestFactory, responseProcessor);
+    this.api = new ObservableAPI_26.ObservableSubscriptionApi(configuration, requestFactory, responseProcessor);
   }
   /**
       * When roleType Get subscriptions of a Role with a specific notification type. Else when roleId Get subscription of a Custom Role with a specific notification type.
@@ -3125,10 +3319,10 @@ class PromiseSubscriptionApi {
   }
 }
 exports.PromiseSubscriptionApi = PromiseSubscriptionApi;
-const ObservableAPI_24 = require('./ObservableAPI');
+const ObservableAPI_27 = require('./ObservableAPI');
 class PromiseSystemLogApi {
   constructor(configuration, requestFactory, responseProcessor) {
-    this.api = new ObservableAPI_24.ObservableSystemLogApi(configuration, requestFactory, responseProcessor);
+    this.api = new ObservableAPI_27.ObservableSystemLogApi(configuration, requestFactory, responseProcessor);
   }
   /**
       * The Okta System Log API provides read access to your organization’s system log. This API provides more functionality than the Events API
@@ -3147,10 +3341,10 @@ class PromiseSystemLogApi {
   }
 }
 exports.PromiseSystemLogApi = PromiseSystemLogApi;
-const ObservableAPI_25 = require('./ObservableAPI');
+const ObservableAPI_28 = require('./ObservableAPI');
 class PromiseTemplateApi {
   constructor(configuration, requestFactory, responseProcessor) {
-    this.api = new ObservableAPI_25.ObservableTemplateApi(configuration, requestFactory, responseProcessor);
+    this.api = new ObservableAPI_28.ObservableTemplateApi(configuration, requestFactory, responseProcessor);
   }
   /**
       * Adds a new custom SMS template to your organization.
@@ -3210,10 +3404,10 @@ class PromiseTemplateApi {
   }
 }
 exports.PromiseTemplateApi = PromiseTemplateApi;
-const ObservableAPI_26 = require('./ObservableAPI');
+const ObservableAPI_29 = require('./ObservableAPI');
 class PromiseThreatInsightApi {
   constructor(configuration, requestFactory, responseProcessor) {
-    this.api = new ObservableAPI_26.ObservableThreatInsightApi(configuration, requestFactory, responseProcessor);
+    this.api = new ObservableAPI_29.ObservableThreatInsightApi(configuration, requestFactory, responseProcessor);
   }
   /**
       * Gets current ThreatInsight configuration
@@ -3234,10 +3428,10 @@ class PromiseThreatInsightApi {
   }
 }
 exports.PromiseThreatInsightApi = PromiseThreatInsightApi;
-const ObservableAPI_27 = require('./ObservableAPI');
+const ObservableAPI_30 = require('./ObservableAPI');
 class PromiseTrustedOriginApi {
   constructor(configuration, requestFactory, responseProcessor) {
-    this.api = new ObservableAPI_27.ObservableTrustedOriginApi(configuration, requestFactory, responseProcessor);
+    this.api = new ObservableAPI_30.ObservableTrustedOriginApi(configuration, requestFactory, responseProcessor);
   }
   /**
       * Success
@@ -3308,10 +3502,10 @@ class PromiseTrustedOriginApi {
   }
 }
 exports.PromiseTrustedOriginApi = PromiseTrustedOriginApi;
-const ObservableAPI_28 = require('./ObservableAPI');
+const ObservableAPI_31 = require('./ObservableAPI');
 class PromiseUserApi {
   constructor(configuration, requestFactory, responseProcessor) {
-    this.api = new ObservableAPI_28.ObservableUserApi(configuration, requestFactory, responseProcessor);
+    this.api = new ObservableAPI_31.ObservableUserApi(configuration, requestFactory, responseProcessor);
   }
   /**
       * Activates a user.  This operation can only be performed on users with a `STAGED` status.  Activation of a user is an asynchronous operation. The user will have the `transitioningToStatus` property with a value of `ACTIVE` during activation to indicate that the user hasn't completed the asynchronous operation.  The user will have a status of `ACTIVE` when the activation process is complete.
@@ -3648,16 +3842,16 @@ class PromiseUserApi {
   /**
       * Lists users in your organization with pagination in most cases.  A subset of users can be returned that match a supported filter expression or search criteria.
       * List all Users
-      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/reference/core-okta-api/#pagination) for more information.
       * @param q Finds a user that matches firstName, lastName, and email properties
+      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/reference/core-okta-api/#pagination) for more information.
       * @param limit Specifies the number of results returned. Defaults to 10 if &#x60;q&#x60; is provided.
       * @param filter Filters users with a supported expression for a subset of properties
       * @param search Searches for users with a supported filtering  expression for most properties
       * @param sortBy
       * @param sortOrder
       */
-  listUsers(after, q, limit, filter, search, sortBy, sortOrder, _options) {
-    const result = this.api.listUsers(after, q, limit, filter, search, sortBy, sortOrder, _options);
+  listUsers(q, after, limit, filter, search, sortBy, sortOrder, _options) {
+    const result = this.api.listUsers(q, after, limit, filter, search, sortBy, sortOrder, _options);
     return result.toPromise();
   }
   /**
@@ -3855,10 +4049,10 @@ class PromiseUserApi {
   }
 }
 exports.PromiseUserApi = PromiseUserApi;
-const ObservableAPI_29 = require('./ObservableAPI');
+const ObservableAPI_32 = require('./ObservableAPI');
 class PromiseUserFactorApi {
   constructor(configuration, requestFactory, responseProcessor) {
-    this.api = new ObservableAPI_29.ObservableUserFactorApi(configuration, requestFactory, responseProcessor);
+    this.api = new ObservableAPI_32.ObservableUserFactorApi(configuration, requestFactory, responseProcessor);
   }
   /**
       * The `sms` and `token:software:totp` factor types require activation to complete the enrollment process.
@@ -3962,10 +4156,10 @@ class PromiseUserFactorApi {
   }
 }
 exports.PromiseUserFactorApi = PromiseUserFactorApi;
-const ObservableAPI_30 = require('./ObservableAPI');
+const ObservableAPI_33 = require('./ObservableAPI');
 class PromiseUserTypeApi {
   constructor(configuration, requestFactory, responseProcessor) {
-    this.api = new ObservableAPI_30.ObservableUserTypeApi(configuration, requestFactory, responseProcessor);
+    this.api = new ObservableAPI_33.ObservableUserTypeApi(configuration, requestFactory, responseProcessor);
   }
   /**
       * Creates a new User Type. A default User Type is automatically created along with your org, and you may add another 9 User Types for a maximum of 10.

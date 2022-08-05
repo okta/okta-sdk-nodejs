@@ -1466,15 +1466,15 @@ class UserApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   /**
      * Lists users in your organization with pagination in most cases.  A subset of users can be returned that match a supported filter expression or search criteria.
      * List all Users
-     * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/reference/core-okta-api/#pagination) for more information.
      * @param q Finds a user that matches firstName, lastName, and email properties
+     * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/reference/core-okta-api/#pagination) for more information.
      * @param limit Specifies the number of results returned. Defaults to 10 if &#x60;q&#x60; is provided.
      * @param filter Filters users with a supported expression for a subset of properties
      * @param search Searches for users with a supported filtering  expression for most properties
      * @param sortBy
      * @param sortOrder
      */
-  async listUsers(after, q, limit, filter, search, sortBy, sortOrder, _options) {
+  async listUsers(q, after, limit, filter, search, sortBy, sortOrder, _options) {
     let _config = _options || this.configuration;
     // Path Params
     const path = '/api/v1/users';
@@ -1482,12 +1482,12 @@ class UserApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Query Params
-    if (after !== undefined) {
-      requestContext.setQueryParam('after', ObjectSerializer_1.ObjectSerializer.serialize(after, 'string', ''));
-    }
-    // Query Params
     if (q !== undefined) {
       requestContext.setQueryParam('q', ObjectSerializer_1.ObjectSerializer.serialize(q, 'string', ''));
+    }
+    // Query Params
+    if (after !== undefined) {
+      requestContext.setQueryParam('after', ObjectSerializer_1.ObjectSerializer.serialize(after, 'string', ''));
     }
     // Query Params
     if (limit !== undefined) {

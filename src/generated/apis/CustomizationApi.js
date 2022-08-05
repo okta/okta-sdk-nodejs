@@ -651,6 +651,42 @@ class CustomizationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     return requestContext;
   }
   /**
+     * List all sign-in widget versions.
+     * List all Sign-in Widget Versions
+     * @param brandId The ID of the brand.
+     */
+  async listAllSignInWidgetVersions(brandId, _options) {
+    let _config = _options || this.configuration;
+    // verify required parameter 'brandId' is not null or undefined
+    if (brandId === null || brandId === undefined) {
+      throw new baseapi_1.RequiredError('CustomizationApi', 'listAllSignInWidgetVersions', 'brandId');
+    }
+    // Path Params
+    const path = '/api/v1/brands/{brandId}/pages/sign-in/widget-versions';
+    const vars = {
+      ['brandId']: String(brandId),
+    };
+    // Make Request Context
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
+    requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
+    let authMethod;
+    // Apply auth methods
+    authMethod = _config.authMethods['API_Token'];
+    if (authMethod?.applySecurityAuthentication) {
+      await authMethod?.applySecurityAuthentication(requestContext);
+    }
+    // Apply auth methods
+    authMethod = _config.authMethods['OAuth_2.0'];
+    if (authMethod?.applySecurityAuthentication) {
+      await authMethod?.applySecurityAuthentication(requestContext);
+    }
+    const defaultAuth = _options?.authMethods?.default || this.configuration?.authMethods?.default;
+    if (defaultAuth?.applySecurityAuthentication) {
+      await defaultAuth?.applySecurityAuthentication(requestContext);
+    }
+    return requestContext;
+  }
+  /**
      * List all the themes in your brand
      * List all Themes
      * @param brandId
@@ -867,55 +903,6 @@ class CustomizationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     return requestContext;
   }
   /**
-     * Preview the sign-in page.
-     * Preview the Sign-in Page.
-     * @param brandId The ID of the brand.
-     * @param SignInPage
-     */
-  async previewSignInPage(brandId, SignInPage, _options) {
-    let _config = _options || this.configuration;
-    // verify required parameter 'brandId' is not null or undefined
-    if (brandId === null || brandId === undefined) {
-      throw new baseapi_1.RequiredError('CustomizationApi', 'previewSignInPage', 'brandId');
-    }
-    // verify required parameter 'SignInPage' is not null or undefined
-    if (SignInPage === null || SignInPage === undefined) {
-      throw new baseapi_1.RequiredError('CustomizationApi', 'previewSignInPage', 'SignInPage');
-    }
-    // Path Params
-    const path = '/api/v1/brands/{brandId}/pages/sign-in/preview';
-    const vars = {
-      ['brandId']: String(brandId),
-    };
-    // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
-    requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
-    // Body Params
-    const [contentType, contentEncoding] = ObjectSerializer_1.ObjectSerializer.getPreferredMediaTypeAndEncoding([
-      'application/json'
-    ], SignInPage);
-    requestContext.setHeaderParam('Content-Type', contentType);
-    requestContext.setHeaderParam('Content-Transfer-Encoding', contentEncoding);
-    const serializedBody = ObjectSerializer_1.ObjectSerializer.stringify(ObjectSerializer_1.ObjectSerializer.serialize(SignInPage, 'SignInPage', ''), contentType);
-    requestContext.setBody(serializedBody);
-    let authMethod;
-    // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
-    if (authMethod?.applySecurityAuthentication) {
-      await authMethod?.applySecurityAuthentication(requestContext);
-    }
-    // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
-    if (authMethod?.applySecurityAuthentication) {
-      await authMethod?.applySecurityAuthentication(requestContext);
-    }
-    const defaultAuth = _options?.authMethods?.default || this.configuration?.authMethods?.default;
-    if (defaultAuth?.applySecurityAuthentication) {
-      await defaultAuth?.applySecurityAuthentication(requestContext);
-    }
-    return requestContext;
-  }
-  /**
      * Replaces the error page.
      * Replace the Error Page
      * @param brandId The ID of the brand.
@@ -982,6 +969,55 @@ class CustomizationApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     }
     // Path Params
     const path = '/api/v1/brands/{brandId}/pages/sign-in';
+    const vars = {
+      ['brandId']: String(brandId),
+    };
+    // Make Request Context
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.PUT, vars);
+    requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
+    // Body Params
+    const [contentType, contentEncoding] = ObjectSerializer_1.ObjectSerializer.getPreferredMediaTypeAndEncoding([
+      'application/json'
+    ], SignInPage);
+    requestContext.setHeaderParam('Content-Type', contentType);
+    requestContext.setHeaderParam('Content-Transfer-Encoding', contentEncoding);
+    const serializedBody = ObjectSerializer_1.ObjectSerializer.stringify(ObjectSerializer_1.ObjectSerializer.serialize(SignInPage, 'SignInPage', ''), contentType);
+    requestContext.setBody(serializedBody);
+    let authMethod;
+    // Apply auth methods
+    authMethod = _config.authMethods['API_Token'];
+    if (authMethod?.applySecurityAuthentication) {
+      await authMethod?.applySecurityAuthentication(requestContext);
+    }
+    // Apply auth methods
+    authMethod = _config.authMethods['OAuth_2.0'];
+    if (authMethod?.applySecurityAuthentication) {
+      await authMethod?.applySecurityAuthentication(requestContext);
+    }
+    const defaultAuth = _options?.authMethods?.default || this.configuration?.authMethods?.default;
+    if (defaultAuth?.applySecurityAuthentication) {
+      await defaultAuth?.applySecurityAuthentication(requestContext);
+    }
+    return requestContext;
+  }
+  /**
+     * Replace the sign-in page preview.
+     * Replace the Sign-in Page Preview
+     * @param brandId The ID of the brand.
+     * @param SignInPage
+     */
+  async replaceSignInPagePreview(brandId, SignInPage, _options) {
+    let _config = _options || this.configuration;
+    // verify required parameter 'brandId' is not null or undefined
+    if (brandId === null || brandId === undefined) {
+      throw new baseapi_1.RequiredError('CustomizationApi', 'replaceSignInPagePreview', 'brandId');
+    }
+    // verify required parameter 'SignInPage' is not null or undefined
+    if (SignInPage === null || SignInPage === undefined) {
+      throw new baseapi_1.RequiredError('CustomizationApi', 'replaceSignInPagePreview', 'SignInPage');
+    }
+    // Path Params
+    const path = '/api/v1/brands/{brandId}/pages/sign-in/preview';
     const vars = {
       ['brandId']: String(brandId),
     };
@@ -2173,6 +2209,34 @@ class CustomizationApiResponseProcessor {
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
+     * @params response Response returned by the server for a request to listAllSignInWidgetVersions
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+  async listAllSignInWidgetVersions(response) {
+    const contentType = ObjectSerializer_1.ObjectSerializer.normalizeMediaType(response.headers['content-type']);
+    if ((0, util_1.isCodeInRange)('200', response.httpStatusCode)) {
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Array<string>', '');
+      return body;
+    }
+    if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      throw new exception_1.ApiException(403, 'Forbidden', body, response.headers);
+    }
+    if ((0, util_1.isCodeInRange)('429', response.httpStatusCode)) {
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      throw new exception_1.ApiException(429, 'Too Many Requests', body, response.headers);
+    }
+    // Work around for missing responses in specification, e.g. for petstore.yaml
+    if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Array<string>', '');
+      return body;
+    }
+    throw new exception_1.ApiException(response.httpStatusCode, 'Unknown API Status Code!', await response.getBodyAsAny(), response.headers);
+  }
+  /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
      * @params response Response returned by the server for a request to listBrandThemes
      * @throws ApiException if the response code was not in [200, 299]
      */
@@ -2329,38 +2393,6 @@ class CustomizationApiResponseProcessor {
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
-     * @params response Response returned by the server for a request to previewSignInPage
-     * @throws ApiException if the response code was not in [200, 299]
-     */
-  async previewSignInPage(response) {
-    const contentType = ObjectSerializer_1.ObjectSerializer.normalizeMediaType(response.headers['content-type']);
-    if ((0, util_1.isCodeInRange)('200', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'string', '');
-      return body;
-    }
-    if ((0, util_1.isCodeInRange)('400', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
-      throw new exception_1.ApiException(400, 'Bad Request', body, response.headers);
-    }
-    if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
-      throw new exception_1.ApiException(403, 'Forbidden', body, response.headers);
-    }
-    if ((0, util_1.isCodeInRange)('429', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
-      throw new exception_1.ApiException(429, 'Too Many Requests', body, response.headers);
-    }
-    // Work around for missing responses in specification, e.g. for petstore.yaml
-    if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'string', '');
-      return body;
-    }
-    throw new exception_1.ApiException(response.httpStatusCode, 'Unknown API Status Code!', await response.getBodyAsAny(), response.headers);
-  }
-  /**
-     * Unwraps the actual response sent by the server from the response context and deserializes the response content
-     * to the expected objects
-     *
      * @params response Response returned by the server for a request to replaceErrorPage
      * @throws ApiException if the response code was not in [200, 299]
      */
@@ -2418,6 +2450,37 @@ class CustomizationApiResponseProcessor {
     if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
       const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'SignInPage', '');
       return body;
+    }
+    throw new exception_1.ApiException(response.httpStatusCode, 'Unknown API Status Code!', await response.getBodyAsAny(), response.headers);
+  }
+  /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
+     * @params response Response returned by the server for a request to replaceSignInPagePreview
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+  async replaceSignInPagePreview(response) {
+    const contentType = ObjectSerializer_1.ObjectSerializer.normalizeMediaType(response.headers['content-type']);
+    if ((0, util_1.isCodeInRange)('303', response.httpStatusCode)) {
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'SignInPage', '');
+      throw new exception_1.ApiException(303, 'Successfully replaced the sign-in page preview.', body, response.headers);
+    }
+    if ((0, util_1.isCodeInRange)('400', response.httpStatusCode)) {
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      throw new exception_1.ApiException(400, 'Bad Request', body, response.headers);
+    }
+    if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      throw new exception_1.ApiException(403, 'Forbidden', body, response.headers);
+    }
+    if ((0, util_1.isCodeInRange)('429', response.httpStatusCode)) {
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      throw new exception_1.ApiException(429, 'Too Many Requests', body, response.headers);
+    }
+    // Work around for missing responses in specification, e.g. for petstore.yaml
+    if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
+      return;
     }
     throw new exception_1.ApiException(response.httpStatusCode, 'Unknown API Status Code!', await response.getBodyAsAny(), response.headers);
   }

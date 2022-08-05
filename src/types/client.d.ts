@@ -45,6 +45,8 @@ import {
   ApiTokenApi,
   BehaviorApi,
   PrincipalRateLimitApi,
+  PushProviderApi,
+  DeviceAssuranceApi,
 } from './generated';
 export declare class Client extends ParameterizedOperationsClient {
   constructor(config?: V2Configuration);
@@ -88,4 +90,7 @@ export declare class Client extends ParameterizedOperationsClient {
   apiTokenApi: ApiTokenApi;
   behaviorApi: BehaviorApi;
   principalRateLimitApi: PrincipalRateLimitApi;
+  subscriptionApi: SubscriptionApi;
+  pushProviderApi: PushProviderApi;
+  deviceAssuranceApi: DeviceAssuranceApi;
 }
