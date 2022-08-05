@@ -37,7 +37,6 @@ describe('Device Assurance API', () => {
       deviceAssuranceId: deviceAssurancePolicy.id
     });
     expect(retrievedPolicy.id).to.equal(deviceAssurancePolicy.id);
-    expect(retrievedPolicy.diskEncryptionType).to.be.instanceOf(v3.DeviceAssuranceDiskEncryptionType);
     expect(retrievedPolicy.screenLockType).to.be.instanceOf(v3.DeviceAssuranceScreenLockType);
   });
 
