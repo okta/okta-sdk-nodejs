@@ -3,7 +3,7 @@ import {
   Client,
   Collection,
   DefaultRequestExecutor,
-  v3
+  IdentityProviderApplicationUser,
 } from '@okta/okta-sdk-nodejs';
 import getMockGenericOidcIdp = require('./mocks/generic-oidc-idp');
 import getMockUser = require('./mocks/user-without-credentials');
@@ -49,7 +49,7 @@ describe('Idp User API', () => {
 
     it('should resolve IdentityProviderApplicationUser in collection', async () => {
       await (await client.listIdentityProviderApplicationUsers(idp.id)).each(user => {
-        expect(user).to.be.instanceOf(v3.IdentityProviderApplicationUser);
+        expect(user).to.be.instanceOf(IdentityProviderApplicationUser);
       });
     });
   });
@@ -65,7 +65,7 @@ describe('Idp User API', () => {
 
     it('should return linked user as instanceof IdentityProviderApplicationUser', async () => {
       const idpUser = await client.getIdentityProviderApplicationUser(idp.id, user.id);
-      expect(idpUser).to.be.instanceOf(v3.IdentityProviderApplicationUser);
+      expect(idpUser).to.be.instanceOf(IdentityProviderApplicationUser);
     });
 
     it('should link to idp', async () => {

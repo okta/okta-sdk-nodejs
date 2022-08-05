@@ -3,7 +3,7 @@ import { spy } from 'sinon';
 import {
   Client,
   DefaultRequestExecutor,
-  v3
+  NetworkZone,
 } from '@okta/okta-sdk-nodejs';
 import faker = require('@faker-js/faker');
 
@@ -19,7 +19,7 @@ const client = new Client({
   requestExecutor: new DefaultRequestExecutor()
 });
 
-const buildBlockedNetworkZone = (): v3.NetworkZone => {
+const buildBlockedNetworkZone = (): NetworkZone => {
   return {
     type: 'IP',
     id: null,
@@ -37,7 +37,7 @@ const buildBlockedNetworkZone = (): v3.NetworkZone => {
   };
 };
 
-const buildNetworkZone = (): v3.NetworkZone => {
+const buildNetworkZone = (): NetworkZone => {
   return {
     type: 'IP',
     id: null,
@@ -69,7 +69,7 @@ const buildNetworkZone = (): v3.NetworkZone => {
 };
 
 describe('Network Zone CRUD', () => {
-  let networkZone: v3.NetworkZone;
+  let networkZone: NetworkZone;
   beforeEach(async () => {
     networkZone = await client.createNetworkZone(buildNetworkZone());
   });
@@ -80,7 +80,7 @@ describe('Network Zone CRUD', () => {
 
   it('lists network zones', async () => {
     const collection = await client.listNetworkZones();
-    const networkZones: v3.NetworkZone[] = [];
+    const networkZones: NetworkZone[] = [];
     await collection.each(async networkZone => networkZones.push(networkZone));
     expect(networkZones).to.be.an('array').that.is.not.empty;
   });
@@ -106,7 +106,7 @@ describe('Network Zone CRUD', () => {
 });
 
 describe('List Network Zones', () => {
-  let networkZones: Array<v3.NetworkZone>;
+  let networkZones: Array<NetworkZone>;
   before(async () => {
     networkZones = [];
     const namePrefixes = [
@@ -136,7 +136,7 @@ describe('List Network Zones', () => {
     const collection = await client.listNetworkZones({ limit: 3 });
     const pageSpy = spy(collection, 'getNextPage');
     await collection.each(nz => {
-      expect(nz).to.be.an.instanceof(v3.NetworkZone);
+      expect(nz).to.be.an.instanceof(NetworkZone);
       expect(filtered.has(nz.name)).to.be.false;
       filtered.add(nz.name);
     });
@@ -151,7 +151,7 @@ describe('List Network Zones', () => {
     };
     const filtered = new Set();
     await (await client.listNetworkZones(queryParameters)).each(nz => {
-      expect(nz).to.be.an.instanceof(v3.NetworkZone);
+      expect(nz).to.be.an.instanceof(NetworkZone);
       expect(filtered.has(nz.name)).to.be.false;
       filtered.add(nz.name);
       expect(nz.name.indexOf('node-sdk: NZ_BLOCKLIST')).to.equal(-1);

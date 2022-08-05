@@ -5,7 +5,7 @@ import {
   Client,
   Collection,
   DefaultRequestExecutor,
-  v3
+  User,
 } from '@okta/okta-sdk-nodejs';
 
 import utils = require('../utils');
@@ -114,7 +114,7 @@ describe('client.listUsers({ })', () => {
     const pageSpy = spy(collection, 'getNextPage');
     const filtered = new Set();
     await collection.each(user => {
-      expect(user).to.be.an.instanceof(v3.User);
+      expect(user).to.be.an.instanceof(User);
       expect(user.profile.lastName).to.eq('okta-sdk-nodejs-users-filter');
       expect(filtered.has(user.profile.firstName)).to.be.false;
       filtered.add(user.profile.firstName);
@@ -132,7 +132,7 @@ describe('client.listUsers({ })', () => {
     const pageSpy = spy(collection, 'getNextPage');
     const filtered = new Set();
     await collection.each(user => {
-      expect(user).to.be.an.instanceof(v3.User);
+      expect(user).to.be.an.instanceof(User);
       expect(user.profile.lastName).to.eq('okta-sdk-nodejs-users-filter');
       expect(filtered.has(user.profile.firstName)).to.be.false;
       filtered.add(user.profile.firstName);
@@ -147,7 +147,7 @@ describe('client.listUsers({ })', () => {
     };
     const filtered = new Set();
     await (await client.listUsers(queryParameters)).each(user => {
-      expect(user).to.be.an.instanceof(v3.User);
+      expect(user).to.be.an.instanceof(User);
       expect(user.profile.firstName).to.match(new RegExp('client-list-users-filtered'));
       expect(filtered.has(user.profile.firstName)).to.be.false;
       filtered.add(user.profile.firstName);
@@ -159,7 +159,7 @@ describe('client.listUsers({ })', () => {
 describe('client.listUsers().each()', () => {
   it('should allow me to iterate the entire collection and return User models', async () => {
     await (await client.listUsers()).each(user => {
-      expect(user).to.be.an.instanceof(v3.User);
+      expect(user).to.be.an.instanceof(User);
     });
   });
 
@@ -227,7 +227,7 @@ describe('client.listUsers().next()', () => {
     const collection = await client.listUsers();
     return collection.next()
       .then(result => {
-        expect(result.value).to.be.an.instanceof(v3.User);
+        expect(result.value).to.be.an.instanceof(User);
       });
   });
 

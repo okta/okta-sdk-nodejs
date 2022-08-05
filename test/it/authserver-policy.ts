@@ -1,9 +1,14 @@
 import { expect } from 'chai';
 import {
-  v3,
+  AuthorizationServer,
+  AuthorizationServerPolicy,
+  AuthorizationServerPolicyRule,
+  AuthorizationServerPolicyRuleActions,
+  AuthorizationServerPolicyRuleConditions,
   Client,
   Collection,
-  DefaultRequestExecutor
+  DefaultRequestExecutor,
+  TokenAuthorizationServerPolicyRuleAction
 } from '@okta/okta-sdk-nodejs';
 import getMockAuthorizationServer = require('./mocks/authorization-server');
 import getMockPolicy = require('./mocks/policy-oauth-authorization');
@@ -22,7 +27,7 @@ const client = new Client({
 });
 
 describe('Authorization Server Policies API', () => {
-  let authServer: v3.AuthorizationServer;
+  let authServer: AuthorizationServer;
   before(async () => {
     authServer = await client.createAuthorizationServer(getMockAuthorizationServer());
     expect(authServer?.id).to.not.be.undefined;
@@ -33,8 +38,8 @@ describe('Authorization Server Policies API', () => {
   });
 
   describe('Authorization Server Policy Rules API', () => {
-    let policy: v3.AuthorizationServerPolicy;
-    let policyRule: v3.AuthorizationServerPolicyRule;
+    let policy: AuthorizationServerPolicy;
+    let policyRule: AuthorizationServerPolicyRule;
     beforeEach(async () => {
       policy = await client.createAuthorizationServerPolicy(authServer.id, getMockPolicy());
       expect(policy?.id).to.not.be.undefined;
@@ -47,7 +52,7 @@ describe('Authorization Server Policies API', () => {
 
     it('should return a collection of policies rules', async () => {
       const policyFromGet = await client.getAuthorizationServerPolicy(authServer.id, policy.id);
-      const policyRules: v3.AuthorizationServerPolicyRule[] = [];
+      const policyRules: AuthorizationServerPolicyRule[] = [];
       const collection = await client.listAuthorizationServerPolicyRules(policyFromGet.id, authServer.id);
       await collection.each(policyRule => policyRules.push(policyRule));
       expect(policyRules).is.not.empty;
@@ -57,9 +62,9 @@ describe('Authorization Server Policies API', () => {
       const policyFromGet = await client.getAuthorizationServerPolicy(authServer.id, policy.id);
       const policyRuleFromGet = await client.getAuthorizationServerPolicyRule(policyFromGet.id, authServer.id, policyRule.id);
 
-      expect(policyRuleFromGet.actions).to.be.instanceof(v3.AuthorizationServerPolicyRuleActions);
-      expect(policyRuleFromGet.actions.token).to.be.instanceof(v3.TokenAuthorizationServerPolicyRuleAction);
-      expect(policyRuleFromGet.conditions).to.be.instanceof(v3.AuthorizationServerPolicyRuleConditions);
+      expect(policyRuleFromGet.actions).to.be.instanceof(AuthorizationServerPolicyRuleActions);
+      expect(policyRuleFromGet.actions.token).to.be.instanceof(TokenAuthorizationServerPolicyRuleAction);
+      expect(policyRuleFromGet.conditions).to.be.instanceof(AuthorizationServerPolicyRuleConditions);
     });
 
     it('should delete policy rule', async () => {
@@ -113,12 +118,12 @@ describe('Authorization Server Policies API', () => {
     it('should return a collection of policies', async () => {
       const collection = await client.listAuthorizationServerPolicies(authServer.id);
       expect(collection).to.be.instanceOf(Collection);
-      const policies: v3.AuthorizationServerPolicy[] = [];
-      await collection.each((p: v3.AuthorizationServerPolicy) => policies.push(p));
+      const policies: AuthorizationServerPolicy[] = [];
+      await collection.each((p: AuthorizationServerPolicy) => policies.push(p));
       expect(policies).is.not.empty;
       const policyFindByName = policies.find(p => p.name === policy.name);
       expect(policyFindByName).to.be.exist;
-      expect(policyFindByName).to.be.instanceOf(v3.AuthorizationServerPolicy);
+      expect(policyFindByName).to.be.instanceOf(AuthorizationServerPolicy);
     });
   });
 
@@ -148,7 +153,7 @@ describe('Authorization Server Policies API', () => {
 
     it('should get policy from auth server by id', async () => {
       const policyFromGet = await client.getAuthorizationServerPolicy(authServer.id, policy.id);
-      expect(policyFromGet).to.be.instanceOf(v3.AuthorizationServerPolicy);
+      expect(policyFromGet).to.be.instanceOf(AuthorizationServerPolicy);
       expect(policyFromGet.id).to.equal(policy.id);
     });
   });

@@ -1,6 +1,5 @@
 import {
-  Client,
-  v3
+  Client, Theme,
 } from '@okta/okta-sdk-nodejs';
 
 import { expect } from 'chai';
@@ -38,7 +37,7 @@ describe('Brand API', () => {
       const theme = await client.getBrandTheme(brand.id, themes[0].id);
       const originalColorValue = theme.primaryColorHex;
       const newColorValue = '#badbed';
-      const themeOptions: v3.Theme = {
+      const themeOptions: Theme = {
         primaryColorHex: '#ecaffe',
         secondaryColorHex: '#ebebed',
         signInPageTouchPointVariant: 'OKTA_DEFAULT',

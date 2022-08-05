@@ -2,7 +2,8 @@ import { expect } from 'chai';
 import {
   Client,
   DefaultRequestExecutor,
-  v3 } from '@okta/okta-sdk-nodejs';
+  Role,
+} from '@okta/okta-sdk-nodejs';
 import getMockGroup = require('./mocks/group');
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -28,12 +29,12 @@ describe('Group role API', () => {
 
     it('should assign and unassign role to/from group', async () => {
       const role = await client.assignRoleToGroup(group.id, { type: 'APP_ADMIN' });
-      if (role instanceof v3.Role) {
+      if (role instanceof Role) {
         const res = await client.removeRoleFromGroup(group.id, role.id);
         expect(res).to.be.undefined;
       } else {
         const collection = await client.listGroupAssignedRoles(group.id);
-        const roles: v3.Role[] = [];
+        const roles: Role[] = [];
         for await (const role of collection) {
           roles.push(role);
         }

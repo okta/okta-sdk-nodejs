@@ -2,7 +2,7 @@ import { expect } from 'chai';
 import {
   Client,
   DefaultRequestExecutor,
-  v3,
+  UserType,
 } from '@okta/okta-sdk-nodejs';
 
 import getMockUserType = require('./mocks/user-type');
@@ -21,7 +21,7 @@ const client = new Client({
 });
 
 describe('User Schema API', () => {
-  let userType: v3.UserType;
+  let userType: UserType;
   let schemaId: string;
 
   beforeEach(async () => {

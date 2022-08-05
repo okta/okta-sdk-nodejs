@@ -1,9 +1,9 @@
 import { expect } from 'chai';
 import {
+  ApiToken,
   Client,
   Collection,
   DefaultRequestExecutor,
-  v3
 } from '@okta/okta-sdk-nodejs';
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -23,7 +23,7 @@ describe('API Tokens API', () => {
       const tokens = await client.apiTokenApi.listApiTokens();
       expect(tokens).to.be.instanceOf(Collection);
       await tokens.each(token => {
-        expect(token).to.be.instanceOf(v3.ApiToken);
+        expect(token).to.be.instanceOf(ApiToken);
       });
     });
   });
@@ -36,7 +36,7 @@ describe('API Tokens API', () => {
       const token = await client.apiTokenApi.getApiToken({
         apiTokenId: id
       });
-      expect(token).to.be.instanceOf(v3.ApiToken);
+      expect(token).to.be.instanceOf(ApiToken);
       expect(token.name).to.equal(name);
     });
   });

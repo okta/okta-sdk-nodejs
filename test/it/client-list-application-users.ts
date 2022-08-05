@@ -2,9 +2,10 @@ import { expect } from 'chai';
 import { spy } from 'sinon';
 
 import {
+  AppUser,
   Client,
   DefaultRequestExecutor,
-  v3 } from '@okta/okta-sdk-nodejs';
+} from '@okta/okta-sdk-nodejs';
 import utils = require('../utils');
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
@@ -45,7 +46,7 @@ describe('client.listApplicationUsers()', () => {
         id: createdUser.id
       });
       await (await client.listApplicationUsers(createdApplication.id)).each(async (appUser) => {
-        expect(appUser).to.be.instanceof(v3.AppUser);
+        expect(appUser).to.be.instanceof(AppUser);
         const userLink = appUser._links.user as Record<string, string>;
         expect(userLink.href).to.contain(createdUser.id);
       });
@@ -140,7 +141,7 @@ describe('client.listApplicationUsers({ })', () => {
     const pageSpy = spy(collection, 'getNextPage');
     const filteredIds = new Set();
     await collection.each(appUser => {
-      expect(appUser).to.be.an.instanceof(v3.AppUser);
+      expect(appUser).to.be.an.instanceof(AppUser);
       filteredIds.add(appUser.id);
     });
     expect(filteredIds.size).to.equal(2);

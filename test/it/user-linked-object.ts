@@ -53,7 +53,7 @@ describe('User linked object API', () => {
       expect(links).to.be.instanceOf(Collection);
       await links.each(link => {
         // OKTA-512349: ResponseLinks is not specified in getLinkedObjectsForUser signature
-        // expect(link).to.be.instanceOf(v3.ResponseLinks);
+        // expect(link).to.be.instanceOf(ResponseLinks);
         expect(link._links.self.href).contains(primaryUser.id);
       });
     });
@@ -62,7 +62,7 @@ describe('User linked object API', () => {
       links = await client.getLinkedObjectsForUser(primaryUser.id, linkedObject.associated.name);
       expect(links).to.be.instanceOf(Collection);
       await links.each(link => {
-        // expect(link).to.be.instanceOf(v3.ResponseLinks);
+        // expect(link).to.be.instanceOf(ResponseLinks);
         expect(link._links.self.href).contains(associateUser.id);
       });
     });

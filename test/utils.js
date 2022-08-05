@@ -1,4 +1,5 @@
-const v3 = require('../src/generated');
+const { Group, Role, User } = require('../src/generated');
+
 const expect = require('chai').expect;
 const faker = require('@faker-js/faker');
 const path = require('path');
@@ -12,7 +13,7 @@ function delay(t) {
 }
 
 function validateUser(user, expectedUser) {
-  expect(user).to.be.an.instanceof(v3.User);
+  expect(user).to.be.an.instanceof(User);
   expect(user.profile.firstName).to.equal(expectedUser.profile.firstName);
   expect(user.profile.lastName).to.equal(expectedUser.profile.lastName);
   expect(user.profile.email).to.equal(expectedUser.profile.email);
@@ -33,7 +34,7 @@ function authenticateUser(client, userName, password) {
 }
 
 function validateGroup(group, expectedGroup) {
-  expect(group).to.be.an.instanceof(v3.Group);
+  expect(group).to.be.an.instanceof(Group);
   expect(group.profile.name).to.equal(expectedGroup.profile.name);
   expect(group.type).to.equal('OKTA_GROUP');
 }
@@ -77,7 +78,7 @@ async function isUserPresent(client, expectedUser, queryParameters) {
   let userPresent = false;
   const collection = await client.listUsers(queryParameters);
   await collection.each(user => {
-    expect(user).to.be.an.instanceof(v3.User);
+    expect(user).to.be.an.instanceof(User);
     if (user.profile.login === expectedUser.profile.login) {
       userPresent = true;
       return false;
@@ -90,7 +91,7 @@ async function isGroupPresent(client, expectedGroup, queryParameters) {
   let groupPresent = false;
   const collection = await client.listGroups(queryParameters);
   await collection.each(async group => {
-    expect(group).to.be.an.instanceof(v3.Group);
+    expect(group).to.be.an.instanceof(Group);
     if (group.profile.name === expectedGroup.profile.name) {
       groupPresent = true;
       return false;
@@ -102,7 +103,7 @@ async function isGroupPresent(client, expectedGroup, queryParameters) {
 async function doesUserHaveRole(user, roleType, client) {
   let hasRole = false;
   await (await client.listAssignedRolesForUser(user.id)).each(role => {
-    expect(role).to.be.an.instanceof(v3.Role);
+    expect(role).to.be.an.instanceof(Role);
     if (role.type === roleType) {
       hasRole = true;
       return false;
@@ -140,7 +141,7 @@ async function cleanupUser(client, user) {
 async function cleanupGroup(client, expectedGroup) {
   let queryParameters = { q : `${expectedGroup.profile.name}` };
   await (await client.listGroups(queryParameters)).each(async (group) => {
-    expect(group).to.be.an.instanceof(v3.Group);
+    expect(group).to.be.an.instanceof(Group);
     // If search doesn't return any results, listGroups() returns empty collection
     // eslint-disable-next-line no-prototype-builtins
     if (group.hasOwnProperty('profile')) {

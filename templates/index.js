@@ -1,5 +1,4 @@
 const _ = require('lodash');
-const { isConflictingPropertyName, containsRestrictedChars, isRestrictedPropertyOverride } = require('./helpers/operation');
 const { isV3Api, v3ApiByOperationId, getV3MethodName } = require('./helpers/operation-v3');
 const codegenConfig = require('./swagger-codegen-config.json');
 const { useObjectParameters } = codegenConfig.additionalProperties;
@@ -82,56 +81,6 @@ js.process = ({spec, operations, models, handlebars}) => {
     context: {operations, spec}
   });
 
-  // add all the models and any related factories
-  for (let model of models) {
-    let jsTemplateName = 'model.js.hbs';
-    let dtsTemplateName = 'model.d.ts.hbs';
-    if (model.enum) {
-      jsTemplateName = 'enum.js.hbs';
-      dtsTemplateName = 'enum.d.ts.hbs';
-    }
-
-    templates.push({
-      src: jsTemplateName,
-      dest: `src/models/${model.modelName}.js`,
-      context: model
-    });
-
-    templates.push({
-      src: dtsTemplateName,
-      dest: `src/types/models/${model.modelName}.d.ts`,
-      context: model
-    });
-
-    if (model.resolutionStrategy) {
-      const mapping = Object.entries(model.resolutionStrategy.valueToModelMapping).map(([propertyValue, className]) => {
-        const classModel = models.filter(model => model.modelName === className)[0];
-        return { propertyValue, modelName: classModel.resolutionStrategy ? `new factories.${className}(this.client)` : `models.${className}` };
-      });
-      templates.push({
-        src: 'factory.js.hbs',
-        dest: `src/factories/${model.modelName}Factory.js`,
-        context: {
-          parentModelName: model.modelName,
-          mapping,
-          propertyName: model.resolutionStrategy.propertyName
-        }
-      });
-    }
-  }
-
-  templates.push({
-    src: 'model.index.js.hbs',
-    dest: 'src/models/index.js',
-    context: { models }
-  });
-
-  templates.push({
-    src: 'factories.index.js.hbs',
-    dest: 'src/factories/index.js',
-    context: { models: models.filter(model => model.requiresResolution) }
-  });
-
   // Add helpers
 
   // Register Operation helpers
@@ -149,165 +98,6 @@ js.process = ({spec, operations, models, handlebars}) => {
       }
     }
     return new handlebars.SafeString(path);
-  });
-
-  handlebars.registerHelper('modelImportBuilder', function (modelResolver, model) {
-    if (!model.properties) {
-      return;
-    }
-    const importStatements = new Set();
-    model.properties.forEach(property => {
-      const shouldProcess = operationUtils.isImportablePropertyType(property, model.modelName);
-      const isEnum = property.isEnum || modelResolver.isEnum(property.model);
-      if (shouldProcess && !isEnum) {
-        importStatements.add(`const ${property.model} = require('./${property.model}');`);
-      }
-    });
-    return Array.from(importStatements).join('\n');
-  }.bind(null, modelResolver));
-
-  handlebars.registerHelper('propertyCastBuilder', function (modelResolver, model) {
-    if (!model.properties) {
-      return;
-    }
-    const constructorStatements = [];
-
-    model.properties.forEach(property => {
-      if (isRestrictedPropertyOverride(model.modelName, property.propertyName)) {
-        return;
-      }
-      let propertyName = property.propertyName;
-      let dedupedPropertyName = propertyName;
-
-      const propertyAccessor = propName => containsRestrictedChars(propName) ? `['${propName}']` : `.${propName}`;
-      let propertyExistsOrHasTruthyValue = propName => `resourceJson${propertyAccessor(propName)}`;
-      let isConflicting = isConflictingPropertyName(model.modelName, propertyName);
-      if (isConflicting) {
-        dedupedPropertyName = `_${propertyName}`;
-        // for confilicting properties with primitive types, property value `false` can be misinterpreted as a non-existing property
-        propertyExistsOrHasTruthyValue = propName => `Object.prototype.hasOwnProperty.call(resourceJson, '${propName}')`;
-        // remove property set by parent Resource class
-        constructorStatements.push(`    delete this['${property.propertyName}'];`);
-      }
-
-      const isEnum = property.isEnum || modelResolver.isEnum(property.model);
-      let requiresInstantiation = !property.isHash && !isEnum && property.model && !['boolean', 'string', 'object'].includes(property.model);
-
-      if (requiresInstantiation || isConflicting) {
-        constructorStatements.push(`    if (resourceJson && ${propertyExistsOrHasTruthyValue(propertyName)}) {`);
-        if (property.isArray) {
-          constructorStatements.push(`      this${propertyAccessor(dedupedPropertyName)} = resourceJson${propertyAccessor(propertyName)}.map(resourceItem => new ${property.model}(resourceItem));`);
-        } else if (property.model) {
-          constructorStatements.push(`      this${propertyAccessor(dedupedPropertyName)} = new ${property.model}(resourceJson${propertyAccessor(propertyName)});`);
-        } else {
-          // explicitly assign non-instantiatable property only if it conflicts with method name
-          constructorStatements.push(`      this${propertyAccessor(dedupedPropertyName)} = resourceJson${propertyAccessor(propertyName)};`);
-        }
-        constructorStatements.push('    }');
-      }
-    });
-    return constructorStatements.join('\n');
-  }.bind(null, modelResolver));
-
-  handlebars.registerHelper('modelMethodPublicArgumentBuilder', (method, modelName) => {
-    const args = [];
-
-    const operation = method.operation;
-
-    operation.pathParams.forEach(param => {
-      const methodArguments = method.arguments || [];
-      const matchingArgument = methodArguments.filter(argument => argument.dest === param.name)[0];
-      if (!matchingArgument || !matchingArgument.src) {
-        args.push(param.name);
-      }
-    });
-
-    if ((operation.method === 'post' || operation.method === 'put') && operation.bodyModel && (operation.bodyModel !== modelName)) {
-      args.push(_.camelCase(operation.bodyModel));
-    }
-
-    if (operation.queryParams.length) {
-      args.push('queryParameters');
-    }
-
-    if (operation.formData.length) {
-      args.push(operation.formData[0].name);
-    }
-
-    return args.join(', ');
-  });
-
-  handlebars.registerHelper('modelMethodProxyArgumentBuilder', (method, modelName) => {
-
-    const args = [];
-
-    const operation = method.operation;
-
-    operation.pathParams.forEach(param => {
-      const methodArguments = method.arguments || [];
-      const matchingArgument = methodArguments.filter(argument => argument.dest === param.name)[0];
-      if (matchingArgument && matchingArgument.src) {
-        args.push(`this.${matchingArgument.src}`);
-      } else {
-        args.push(param.name);
-      }
-    });
-
-    if ((operation.method === 'post' || operation.method === 'put') && operation.bodyModel) {
-      args.push(operation.bodyModel === modelName ? 'this' : _.camelCase(operation.bodyModel));
-    }
-
-    if (operation.queryParams.length) {
-      args.push('queryParameters');
-    }
-
-    if (operation.formData.length) {
-      args.push(operation.formData[0].name);
-    }
-
-    return args.join(', ');
-  });
-
-  handlebars.registerHelper('modelMethodPublicArgumentJsDocBuilder', (method, modelName) => {
-
-    const args = [];
-
-    const operation = method.operation;
-
-    operation.pathParams.forEach(param => {
-      const methodArguments = method.arguments || [];
-      const matchingArgument = methodArguments.filter(argument => argument.dest === param.name)[0];
-      if (!matchingArgument || !matchingArgument.src) {
-        args.push(`@param {${param.type}} ${param.name}`);
-      }
-    });
-
-    if ((operation.method === 'post' || operation.method === 'put') && operation.bodyModel && (operation.bodyModel !== modelName)) {
-      args.push(`@param {${operation.bodyModel}} ${_.camelCase(operation.bodyModel)}`);
-    }
-
-    if (operation.queryParams.length) {
-      args.push('@param {object} queryParameters');
-    }
-
-    if (operation.formData.length) {
-      args.push(`@param {${operation.formData[0].name}} fs.ReadStream`);
-    }
-
-    if (operation.responseModel) {
-      if (operation.isArray) {
-        args.push(`@returns {Collection} A collection that will yield {@link ${operation.responseModel}} instances.`);
-      } else {
-        args.push(`@returns {Promise<${operation.responseModel}>}`);
-      }
-    }
-
-    if (!args.length) {
-      return;
-    }
-
-    const output = '/**\n   * ' + args.join('\n   * ') + '\n   */\n  ';
-    return output;
   });
 
   handlebars.registerHelper('getAffectedResources', (path) => {
@@ -328,13 +118,6 @@ js.process = ({spec, operations, models, handlebars}) => {
   });
 
   handlebars.registerHelper('convertSwaggerToTSType', convertSwaggerToTSType);
-
-  handlebars.registerHelper('toEnumKey', (str) => {
-    if (str && typeof str === 'string') {
-      return str.toUpperCase().replace(/[:\-._]/g, '_');
-    }
-    return '';
-  });
 
   handlebars.registerHelper('isV3Api', isV3Api);
   handlebars.registerHelper('v3ApiByOperationId', v3ApiByOperationId);

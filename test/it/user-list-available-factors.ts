@@ -16,7 +16,7 @@ const client = new okta.Client({
 
 describe('User API Tests', () => {
   beforeEach(async () => {
-    const authenticatorPolicies: okta.v3.Policy[] = [];
+    const authenticatorPolicies: okta.Policy[] = [];
     for await (const policy of (await client.listPolicies({type: 'MFA_ENROLL'}))) {
       authenticatorPolicies.push(policy);
     }
@@ -51,7 +51,7 @@ describe('User API Tests', () => {
     await (await client.listSupportedFactors(createdUser.id)).each(factor => factors.push(factor));
     expect(factors.length).to.be.greaterThan(1);
     factors.forEach(factor =>
-      expect(factor).to.be.instanceof(okta.v3.UserFactor)
+      expect(factor).to.be.instanceof(okta.UserFactor)
     );
     return await utils.deleteUser(createdUser, client);
   });

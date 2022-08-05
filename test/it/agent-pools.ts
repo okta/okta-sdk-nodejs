@@ -1,9 +1,9 @@
 import { expect } from 'chai';
 import {
+  AgentPool,
   Client,
   Collection,
   DefaultRequestExecutor,
-  v3
 } from '@okta/okta-sdk-nodejs';
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -23,7 +23,7 @@ describe('Agent Pools API', () => {
       const agentPools = await client.agentPoolsApi.getAgentPools();
       expect(agentPools).to.be.instanceOf(Collection);
       await agentPools.each(ap => {
-        expect(ap).to.be.instanceOf(v3.AgentPool);
+        expect(ap).to.be.instanceOf(AgentPool);
       });
     });
   });

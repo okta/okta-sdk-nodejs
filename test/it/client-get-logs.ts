@@ -3,7 +3,7 @@ import { spy } from 'sinon';
 import {
   Client,
   DefaultRequestExecutor,
-  v3
+  LogEvent,
 } from '@okta/okta-sdk-nodejs';
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
@@ -33,7 +33,7 @@ describe('client.getLogs()', () => {
     const pageSpy = spy(collection, 'getNextPage');
     let cnt = 0;
     await collection.each(log => {
-      expect(log).to.be.instanceof(v3.LogEvent);
+      expect(log).to.be.instanceof(LogEvent);
       cnt++;
       if (cnt >= max) {
         return false;
@@ -55,7 +55,7 @@ describe('client.getLogs()', () => {
     const pageSpy = spy(collection, 'getNextPage');
     let cnt = 0;
     await collection.each(log => {
-      expect(log).to.be.instanceof(v3.LogEvent);
+      expect(log).to.be.instanceof(LogEvent);
       cnt++;
       if (cnt >= max) {
         return false;
@@ -72,7 +72,7 @@ describe('client.getLogs()', () => {
       const subscription = collection.subscribe({
         next(logEvent) {
           iteratorCalledTimes++;
-          expect(logEvent).to.be.instanceof(v3.LogEvent);
+          expect(logEvent).to.be.instanceof(LogEvent);
           subscription.unsubscribe();
         },
         error(e) {
@@ -94,7 +94,7 @@ describe('client.getLogs()', () => {
         interval: 1000,
         next(logEvent) {
           iteratorCalledTimes++;
-          expect(logEvent).to.be.instanceof(v3.LogEvent);
+          expect(logEvent).to.be.instanceof(LogEvent);
           return new Promise<void>(resolve => setTimeout(() => {
             subscription.unsubscribe();
             resolve();

@@ -1,7 +1,7 @@
 import { ServerConfiguration } from './../../src/generated/servers';
 import  { createConfiguration } from './../../src/generated/configuration';
 import { expect } from 'chai';
-import { Client, v3} from '@okta/okta-sdk-nodejs';
+import { Client, UserType, UserTypeApi } from '@okta/okta-sdk-nodejs';
 
 
 describe('User Type API', () => {
@@ -12,10 +12,10 @@ describe('User Type API', () => {
         API_Token: `SSWS ${process.env.OKTA_CLIENT_TOKEN}`
       }
     });
-    const userTypeApi = new v3.UserTypeApi(configuration);
+    const userTypeApi = new UserTypeApi(configuration);
 
     const collection = await userTypeApi.listUserTypes();
-    const userTypes: v3.UserType[] = [];
+    const userTypes: UserType[] = [];
     for await (const userType of collection) {
       userTypes.push(userType);
     }

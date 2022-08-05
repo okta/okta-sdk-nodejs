@@ -3,7 +3,7 @@ import {
   Client,
   Collection,
   DefaultRequestExecutor,
-  v3
+  IdentityProvider,
 } from '@okta/okta-sdk-nodejs';
 import getMockGenericOidcIdp = require('./mocks/generic-oidc-idp');
 import getMockUser = require('./mocks/user-without-credentials');
@@ -46,7 +46,7 @@ describe('User idp API', () => {
       const idps = await client.listUserIdentityProviders(user.id);
       expect(idps).to.be.instanceOf(Collection);
       await idps.each(idpFromCollection => {
-        expect(idpFromCollection).to.be.instanceOf(v3.IdentityProvider);
+        expect(idpFromCollection).to.be.instanceOf(IdentityProvider);
         expect(idpFromCollection.id).to.be.equal(idp.id);
       });
     });

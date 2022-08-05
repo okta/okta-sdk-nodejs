@@ -3,7 +3,7 @@ import {
   Client,
   Collection,
   DefaultRequestExecutor,
-  v3,
+  InlineHook,
 } from '@okta/okta-sdk-nodejs';
 import faker = require('@faker-js/faker');
 import getMockInlineHook = require('./mocks/inlinehook');
@@ -21,7 +21,7 @@ const client = new Client({
 
 describe('Inline Hook Crud API', () => {
   describe('Create inline hook', () => {
-    let inlineHook: v3.InlineHook;
+    let inlineHook: InlineHook;
     afterEach(async () => {
       await client.deactivateInlineHook(inlineHook.id);
       await client.deleteInlineHook(inlineHook.id);

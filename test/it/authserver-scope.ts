@@ -1,10 +1,11 @@
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import {
+  AuthorizationServer,
   Client,
   Collection,
   DefaultRequestExecutor,
-  v3
+  OAuth2Scope,
 } from '@okta/okta-sdk-nodejs';
 import getMockAuthorizationServer = require('./mocks/authorization-server');
 import mockScope = require('./mocks/scope.json');
@@ -22,7 +23,7 @@ const client = new Client({
 });
 
 describe('Authorization Server Scope API', () => {
-  let authServer: v3.AuthorizationServer;
+  let authServer: AuthorizationServer;
   before(async () => {
     authServer = await client.createAuthorizationServer(getMockAuthorizationServer());
   });
@@ -32,9 +33,9 @@ describe('Authorization Server Scope API', () => {
   });
 
   describe('List all scopes', () => {
-    let scope: v3.OAuth2Scope;
+    let scope: OAuth2Scope;
     beforeEach(async () => {
-      scope = await client.createOAuth2Scope(authServer.id, mockScope as v3.OAuth2Scope);
+      scope = await client.createOAuth2Scope(authServer.id, mockScope as OAuth2Scope);
     });
     afterEach(async () => {
       await client.deleteOAuth2Scope(authServer.id, scope.id);
@@ -48,12 +49,12 @@ describe('Authorization Server Scope API', () => {
       expect(scopes).is.not.empty;
       const scopeFindByName = scopes.find(s => s.name === mockScope.name);
       expect(scopeFindByName).to.be.exist;
-      expect(scopeFindByName).to.be.instanceOf(v3.OAuth2Scope);
+      expect(scopeFindByName).to.be.instanceOf(OAuth2Scope);
     });
   });
 
   describe('Filter scopes', () => {
-    let scopes: Array<v3.OAuth2Scope>;
+    let scopes: Array<OAuth2Scope>;
     before(async () => {
       scopes = [];
       const namePrefixes = [
@@ -68,7 +69,7 @@ describe('Authorization Server Scope API', () => {
             description: suf,
             consent: 'REQUIRED'
           };
-          const scope = await client.createOAuth2Scope(authServer.id, mockScope as v3.OAuth2Scope);
+          const scope = await client.createOAuth2Scope(authServer.id, mockScope as OAuth2Scope);
           scopes.push(scope);
         }
       }
@@ -87,7 +88,7 @@ describe('Authorization Server Scope API', () => {
       });
       const pageSpy = spy(collection, 'getNextPage');
       await collection.each(scope => {
-        expect(scope).to.be.an.instanceof(v3.OAuth2Scope);
+        expect(scope).to.be.an.instanceof(OAuth2Scope);
         expect(filtered.has(scope.name)).to.be.false;
         filtered.add(scope.name);
       });
@@ -102,7 +103,7 @@ describe('Authorization Server Scope API', () => {
       };
       const filtered = new Set();
       await (await client.listOAuth2Scopes(authServer.id, queryParameters)).each(scope => {
-        expect(scope).to.be.an.instanceof(v3.OAuth2Scope);
+        expect(scope).to.be.an.instanceof(OAuth2Scope);
         expect(scope.name).to.match(new RegExp(queryParameters.q));
         expect(filtered.has(scope.name)).to.be.false;
         filtered.add(scope.name);
@@ -112,22 +113,22 @@ describe('Authorization Server Scope API', () => {
   });
 
   describe('Create a scope', () => {
-    let scope: v3.OAuth2Scope;
+    let scope: OAuth2Scope;
     afterEach(async () => {
       await client.deleteOAuth2Scope(authServer.id, scope.id);
     });
 
     it('should get scope from auth server with created scope id', async () => {
-      scope = await client.createOAuth2Scope(authServer.id, mockScope as v3.OAuth2Scope);
+      scope = await client.createOAuth2Scope(authServer.id, mockScope as OAuth2Scope);
       expect(scope).to.be.exist;
       expect(scope.name).to.equal(mockScope.name);
     });
   });
 
   describe('Get a scope', () => {
-    let scope: v3.OAuth2Scope;
+    let scope: OAuth2Scope;
     beforeEach(async () => {
-      scope = await client.createOAuth2Scope(authServer.id, mockScope as v3.OAuth2Scope);
+      scope = await client.createOAuth2Scope(authServer.id, mockScope as OAuth2Scope);
     });
     afterEach(async () => {
       await client.deleteOAuth2Scope(authServer.id, scope.id);
@@ -135,15 +136,15 @@ describe('Authorization Server Scope API', () => {
 
     it('should get scope from auth server by id', async () => {
       const scopeFromGet = await client.getOAuth2Scope(authServer.id, scope.id);
-      expect(scopeFromGet).to.be.instanceOf(v3.OAuth2Scope);
+      expect(scopeFromGet).to.be.instanceOf(OAuth2Scope);
       expect(scopeFromGet.id).to.equal(scope.id);
     });
   });
 
   describe('Update scope', () => {
-    let scope: v3.OAuth2Scope;
+    let scope: OAuth2Scope;
     beforeEach(async () => {
-      scope = await client.createOAuth2Scope(authServer.id, mockScope as v3.OAuth2Scope);
+      scope = await client.createOAuth2Scope(authServer.id, mockScope as OAuth2Scope);
     });
     afterEach(async () => {
       await client.deleteOAuth2Scope(authServer.id, scope.id);
@@ -159,9 +160,9 @@ describe('Authorization Server Scope API', () => {
   });
 
   describe('Delete scope', () => {
-    let scope: v3.OAuth2Scope;
+    let scope: OAuth2Scope;
     beforeEach(async () => {
-      scope = await client.createOAuth2Scope(authServer.id, mockScope as v3.OAuth2Scope);
+      scope = await client.createOAuth2Scope(authServer.id, mockScope as OAuth2Scope);
     });
 
     it('should not get scope after deletion', async () => {

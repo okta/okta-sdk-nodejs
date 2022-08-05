@@ -4,7 +4,7 @@ import {
   Client,
   Collection,
   DefaultRequestExecutor,
-  v3
+  IdentityProvider,
 } from '@okta/okta-sdk-nodejs';
 import getMockGenericOidcIdp = require('./mocks/generic-oidc-idp');
 import getMockFacebookIdp = require('./mocks/facebook-idp.js');
@@ -47,7 +47,7 @@ describe('Idp Crud API', () => {
       const idps = await client.listIdentityProviders();
       expect(idps).to.be.instanceOf(Collection);
       await idps.each(idp => {
-        expect(idp).to.be.instanceOf(v3.IdentityProvider);
+        expect(idp).to.be.instanceOf(IdentityProvider);
       });
     });
 
@@ -101,7 +101,7 @@ describe('Idp Crud API', () => {
     it('should create instance of IdentityProvider', async () => {
       const mockGenericOidcIdp = getMockGenericOidcIdp();
       idp = await client.createIdentityProvider(mockGenericOidcIdp);
-      expect(idp).to.be.instanceOf(v3.IdentityProvider);
+      expect(idp).to.be.instanceOf(IdentityProvider);
       expect(idp).to.have.property('id');
       expect(idp.name).to.equal(mockGenericOidcIdp.name);
       expect(typeof idp.type).to.equal('string');
@@ -121,7 +121,7 @@ describe('Idp Crud API', () => {
 
     it('should get IdentityProvider by id', async () => {
       const idpFromGet = await client.getIdentityProvider(idp.id);
-      expect(idpFromGet).to.be.instanceOf(v3.IdentityProvider);
+      expect(idpFromGet).to.be.instanceOf(IdentityProvider);
       expect(idpFromGet.name).to.equal(idp.name);
     });
   });

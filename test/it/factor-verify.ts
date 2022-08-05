@@ -34,7 +34,7 @@ describe('Factors API', () => {
     await utils.cleanup(client, newUser);
     createdUser = await client.createUser(newUser);
 
-    const authenticatorPolicies: okta.v3.Policy[] = [];
+    const authenticatorPolicies: okta.Policy[] = [];
     for await (const policy of (await client.listPolicies({type: 'MFA_ENROLL'}))) {
       authenticatorPolicies.push(policy);
     }
@@ -63,7 +63,7 @@ describe('Factors API', () => {
     }
 
     const answer = 'pizza';
-    const factor: okta.v3.SecurityQuestionUserFactor = {
+    const factor: okta.SecurityQuestionUserFactor = {
       factorType: 'question',
       provider: 'OKTA',
       profile: {

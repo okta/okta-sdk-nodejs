@@ -3,7 +3,8 @@ import { expect } from 'chai';
 import {
   Client,
   DefaultRequestExecutor,
-  v3 } from '@okta/okta-sdk-nodejs';
+  JsonWebKey,
+} from '@okta/okta-sdk-nodejs';
 import utils = require('../utils');
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
@@ -36,7 +37,7 @@ describe('client.listApplicationKeys()', () => {
       createdApplication = await client.createApplication(application);
       const applicationKeys = await client.listApplicationKeys(createdApplication.id);
       await applicationKeys.each(key => {
-        expect(key).to.be.instanceof(v3.JsonWebKey);
+        expect(key).to.be.instanceof(JsonWebKey);
       });
     } finally {
       if (createdApplication) {

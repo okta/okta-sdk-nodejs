@@ -1,10 +1,11 @@
 import { expect } from 'chai';
 
 import {
+  ApplicationSignOnMode,
   Client,
   DefaultRequestExecutor,
   JsonWebKey,
-  v3 } from '@okta/okta-sdk-nodejs';
+} from '@okta/okta-sdk-nodejs';
 import utils = require('../utils');
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
@@ -28,7 +29,7 @@ describe.skip('client.cloneApplicationKey()', () => {
     const application2 = {
       name: 'bookmark',
       label: 'node-sdk: my bookmark app 2',
-      signOnMode: 'BOOKMARK' as v3.ApplicationSignOnMode,
+      signOnMode: 'BOOKMARK' as ApplicationSignOnMode,
       settings: {
         app: {
           requestIntegration: false,
