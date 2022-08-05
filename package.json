@@ -25,7 +25,7 @@
     "test:unit": "MOCHA_FILE=./test-reports/junit-results.xml nyc --reporter=text --reporter=html mocha --reporter=mocha-junit-reporter test/unit/*.js --no-timeouts",
     "test:types": "tsd && tsc --noEmit --isolatedModules --importsNotUsedAsValues error src/types/**/*.*",
     "test": "yarn eslint && yarn test:types && yarn test:unit && yarn test:integration && yarn jest",
-    "aftertest": "mocha test/delete-resources.js --no-timeouts"
+    "aftertest": "TEST_TYPE=clean mocha test/delete-resources.js"
   },
   "keywords": [],
   "license": "Apache-2.0",
@@ -64,6 +64,7 @@
     "jsdoc": "^3.6.6",
     "mocha": "^9.1.3",
     "mocha-junit-reporter": "^2.0.2",
+    "mocha-multi-reporters": "^1.5.1",
     "nyc": "^15.1.0",
     "rimraf": "^3.0.2",
     "sinon": "^12.0.1",
