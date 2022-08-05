@@ -917,7 +917,7 @@ export declare class ObservableBehaviorApi {
       * Retrieve a Behavior Detection Rule
       * @param behaviorId id of the Behavior Detection Rule
       */
-  getBehaviorDetectionRule(behaviorId: string, _options?: Configuration): Observable<Collection<BehaviorRule>>;
+  getBehaviorDetectionRule(behaviorId: string, _options?: Configuration): Observable<BehaviorRule>;
   /**
       * Enumerates Behavior Detection Rules in your organization with pagination.
       * List all Behavior Detection Rules

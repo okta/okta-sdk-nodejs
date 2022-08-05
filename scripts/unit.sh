@@ -17,13 +17,17 @@ if ! yarn test:types; then
   exit $PUBLISH_TYPE_AND_RESULT_DIR_BUT_ALWAYS_FAIL
 fi
 
-if ! yarn test:ci:unit; then
+if ! yarn test:unit; then
   echo "Unit tests failed! Exiting..."
+  echo ${TEST_SUITE_TYPE} > ${TEST_SUITE_TYPE_FILE}
+  echo ${TEST_RESULT_FILE_DIR} > ${TEST_RESULT_FILE_DIR_FILE}
   exit $PUBLISH_TYPE_AND_RESULT_DIR_BUT_ALWAYS_FAIL
 fi
 
 if ! yarn jest; then
   echo "jest tests failed! Exiting..."
+  echo ${TEST_SUITE_TYPE} > ${TEST_SUITE_TYPE_FILE}
+  echo ${TEST_RESULT_FILE_DIR} > ${TEST_RESULT_FILE_DIR_FILE}
   exit $PUBLISH_TYPE_AND_RESULT_DIR_BUT_ALWAYS_FAIL
 fi
 

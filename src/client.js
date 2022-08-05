@@ -46,6 +46,10 @@ const {
   TemplateApi,
   PolicyApi,
   SubscriptionApi,
+  AgentPoolsApi,
+  ApiTokenApi,
+  BehaviorApi,
+  PrincipalRateLimitApi,
 } = require('./generated');
 const { createConfiguration } = require('./generated/configuration');
 const { ServerConfiguration } = require('./generated/servers');
@@ -147,6 +151,10 @@ class Client extends GeneratedApiClient {
     this.templateApi = new TemplateApi(configuration);
     this.policyApi = new PolicyApi(configuration);
     this.subscriptionApi = new SubscriptionApi(configuration);
+    this.agentPoolsApi = new AgentPoolsApi(configuration);
+    this.apiTokenApi = new ApiTokenApi(configuration);
+    this.behaviorApi = new BehaviorApi(configuration);
+    this.principalRateLimitApi = new PrincipalRateLimitApi(configuration);
   }
 }
 

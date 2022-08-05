@@ -904,7 +904,7 @@ export declare class PromiseBehaviorApi {
       * Retrieve a Behavior Detection Rule
       * @param behaviorId id of the Behavior Detection Rule
       */
-  getBehaviorDetectionRule(behaviorId: string, _options?: Configuration): Promise<Collection<BehaviorRule>>;
+  getBehaviorDetectionRule(behaviorId: string, _options?: Configuration): Promise<BehaviorRule>;
   /**
       * Enumerates Behavior Detection Rules in your organization with pagination.
       * List all Behavior Detection Rules
