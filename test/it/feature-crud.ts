@@ -3,7 +3,8 @@ import {
   Client,
   Collection,
   DefaultRequestExecutor,
-  v3 } from '@okta/okta-sdk-nodejs';
+  Feature,
+} from '@okta/okta-sdk-nodejs';
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
 if (process.env.OKTA_USE_MOCK) {
@@ -35,7 +36,7 @@ describe('Feature Crud API', () => {
       const collection = await client.listFeatures();
       expect(collection).to.be.instanceOf(Collection);
       await collection.each(feature => {
-        expect(feature).to.be.instanceOf(v3.Feature);
+        expect(feature).to.be.instanceOf(Feature);
       });
     });
   });
@@ -49,7 +50,7 @@ describe('Feature Crud API', () => {
     it('should get Feature by id', async () => {
       if (firstFeatureInList) {
         const feature = await client.getFeature(firstFeatureInList.id);
-        expect(feature).to.be.instanceOf(v3.Feature);
+        expect(feature).to.be.instanceOf(Feature);
         expect(feature.id).to.equal(firstFeatureInList.id);
       }
     });
@@ -109,7 +110,7 @@ describe('Feature Crud API', () => {
         const collection = await client.listFeatureDependencies(firstFeatureInList.id);
         expect(collection).to.be.instanceOf(Collection);
         await collection.each(dependency => {
-          expect(dependency).to.be.instanceOf(v3.Feature);
+          expect(dependency).to.be.instanceOf(Feature);
         });
       }
     });
@@ -126,7 +127,7 @@ describe('Feature Crud API', () => {
         const collection = await client.listFeatureDependents(firstFeatureInList.id);
         expect(collection).to.be.instanceOf(Collection);
         await collection.each(dependent => {
-          expect(dependent).to.be.instanceOf(v3.Feature);
+          expect(dependent).to.be.instanceOf(Feature);
         });
       }
     });

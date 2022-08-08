@@ -1,9 +1,10 @@
 import { expect } from 'chai';
 import {
+  AuthorizationServer,
   Client,
   Collection,
   DefaultRequestExecutor,
-  v3
+  JsonWebKey,
 } from '@okta/okta-sdk-nodejs';
 import getMockAuthorizationServer = require('./mocks/authorization-server');
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
@@ -19,7 +20,7 @@ const client = new Client({
 });
 
 describe('Authorization Server Credential API', () => {
-  let authServer: v3.AuthorizationServer;
+  let authServer: AuthorizationServer;
   before(async () => {
     authServer = await client.createAuthorizationServer(getMockAuthorizationServer());
   });
@@ -32,7 +33,7 @@ describe('Authorization Server Credential API', () => {
       const collection = await client.listAuthorizationServerKeys(authServer.id);
       expect(collection).to.be.instanceOf(Collection);
       await collection.each(key => {
-        expect(key).to.be.instanceOf(v3.JsonWebKey);
+        expect(key).to.be.instanceOf(JsonWebKey);
       });
     });
   });
@@ -42,7 +43,7 @@ describe('Authorization Server Credential API', () => {
       const collection = await client.rotateAuthorizationServerKeys(authServer.id, { use: 'sig' });
       expect(collection).to.be.instanceOf(Collection);
       await collection.each(key => {
-        expect(key).to.be.instanceOf(v3.JsonWebKey);
+        expect(key).to.be.instanceOf(JsonWebKey);
       });
     });
   });

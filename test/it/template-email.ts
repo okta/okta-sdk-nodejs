@@ -3,7 +3,9 @@ import {
   Client,
   Collection,
   DefaultRequestExecutor,
-  v3,
+  EmailDefaultContent,
+  EmailPreview,
+  EmailTemplate,
 } from '@okta/okta-sdk-nodejs';
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -37,7 +39,7 @@ describe('Email Template API', () => {
       expect(templates).to.be.instanceOf(Collection);
       let counter = 0;
       await templates.each(template => {
-        expect(template).to.be.instanceOf(v3.EmailTemplate);
+        expect(template).to.be.instanceOf(EmailTemplate);
         counter++;
       });
       expect(counter).to.be.greaterThan(1);
@@ -52,12 +54,12 @@ describe('Email Template API', () => {
 
   it('can get email template default content', async () => {
     const res = await client.getEmailTemplateDefaultContent(brandId, template.name);
-    expect(res).to.be.instanceOf(v3.EmailDefaultContent);
+    expect(res).to.be.instanceOf(EmailDefaultContent);
   });
 
   it('can get email template default content preview', async () => {
     const res = await client.getEmailTemplateDefaultContentPreview(brandId, template.name);
-    expect(res).to.be.instanceOf(v3.EmailPreview);
+    expect(res).to.be.instanceOf(EmailPreview);
   });
 
   it('can send test email', async () => {
@@ -95,7 +97,7 @@ describe('Email Template API', () => {
 
       // get preview
       const preview = await client.getEmailTemplateCustomizationPreview(brandId, templateName, customization.id);
-      expect(preview).to.be.instanceOf(v3.EmailPreview);
+      expect(preview).to.be.instanceOf(EmailPreview);
 
       // update
       const updatedCustomization = await client.updateEmailTemplateCustomization(brandId, templateName, customization.id, {

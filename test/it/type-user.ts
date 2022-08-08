@@ -4,7 +4,7 @@ import {
   Client,
   Collection,
   DefaultRequestExecutor,
-  v3
+  UserType,
 } from '@okta/okta-sdk-nodejs';
 
 import getMockUserType = require('./mocks/user-type');
@@ -34,7 +34,7 @@ async function createUserTypeWithRetry() {
 }
 
 describe('User Type API', async () => {
-  let userType: v3.UserType;
+  let userType: UserType;
 
   describe('List userTypes', () => {
     beforeEach(async () => {

@@ -3,7 +3,8 @@ import {
   Client,
   Collection,
   DefaultRequestExecutor,
-  v3 } from '@okta/okta-sdk-nodejs';
+  LinkedObject,
+} from '@okta/okta-sdk-nodejs';
 import getMockLinkedObject = require('./mocks/linked-object');
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -28,7 +29,7 @@ describe('Linked Object API', () => {
       it('should return instance of LinkedObject model', async () => {
         const mockLinkedObject = getMockLinkedObject();
         linkedObject = await client.addLinkedObjectDefinition(mockLinkedObject);
-        expect(linkedObject).to.be.instanceOf(v3.LinkedObject);
+        expect(linkedObject).to.be.instanceOf(LinkedObject);
         expect(linkedObject.primary.name).to.equal(mockLinkedObject.primary.name);
         expect(linkedObject.associated.name).to.equal(mockLinkedObject.associated.name);
       });
@@ -45,13 +46,13 @@ describe('Linked Object API', () => {
 
       it('should return LinkedObject by primary name', async () => {
         linkedObjectFromGet = await client.getLinkedObjectDefinition(linkedObject.primary.name);
-        expect(linkedObjectFromGet).to.be.instanceOf(v3.LinkedObject);
+        expect(linkedObjectFromGet).to.be.instanceOf(LinkedObject);
         expect(linkedObjectFromGet.primary.name).to.equal(linkedObject.primary.name);
       });
 
       it('should return LinkedObject by associated name', async () => {
         linkedObjectFromGet = await client.getLinkedObjectDefinition(linkedObject.associated.name);
-        expect(linkedObjectFromGet).to.be.instanceOf(v3.LinkedObject);
+        expect(linkedObjectFromGet).to.be.instanceOf(LinkedObject);
         expect(linkedObjectFromGet.associated.name).to.equal(linkedObject.associated.name);
       });
     });
@@ -71,7 +72,7 @@ describe('Linked Object API', () => {
 
       it('should resolve LinkedObject in collection', async () => {
         await (await client.listLinkedObjectDefinitions()).each(linkedObject => {
-          expect(linkedObject).to.be.instanceOf(v3.LinkedObject);
+          expect(linkedObject).to.be.instanceOf(LinkedObject);
         });
       });
     });

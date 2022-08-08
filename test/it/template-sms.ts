@@ -3,7 +3,8 @@ import {
   Client,
   Collection,
   DefaultRequestExecutor,
-  v3 } from '@okta/okta-sdk-nodejs';
+  SmsTemplate,
+} from '@okta/okta-sdk-nodejs';
 import getGeneralFakeTemplateObj = require('./mocks/template-sms');
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -37,7 +38,7 @@ describe('SmsTemplate API', () => {
 
     it('should resolve SmsTemplate in collection', async () => {
       await (await client.listSmsTemplates()).each(template => {
-        expect(template).to.be.instanceOf(v3.SmsTemplate);
+        expect(template).to.be.instanceOf(SmsTemplate);
       });
     });
 
@@ -61,7 +62,7 @@ describe('SmsTemplate API', () => {
     it('should return correct model', async () => {
       const mockTemplate = getGeneralFakeTemplateObj();
       template = await client.createSmsTemplate(mockTemplate);
-      expect(template).to.be.instanceOf(v3.SmsTemplate);
+      expect(template).to.be.instanceOf(SmsTemplate);
       expect(template).to.have.property('id');
       expect(template.name).to.equal(mockTemplate.name);
     });
@@ -99,7 +100,7 @@ describe('SmsTemplate API', () => {
 
     it('should get SmsTemplate by id', async () => {
       const templateFromGet = await client.getSmsTemplate(template.id);
-      expect(templateFromGet).to.be.instanceOf(v3.SmsTemplate);
+      expect(templateFromGet).to.be.instanceOf(SmsTemplate);
       expect(templateFromGet.name).to.equal(template.name);
     });
   });
@@ -116,7 +117,7 @@ describe('SmsTemplate API', () => {
 
     it('should update template name property', async () => {
       const updatedTemplate = await client.partialUpdateSmsTemplate(template.id, { name: 'fake updated name' });
-      expect(updatedTemplate).to.be.instanceOf(v3.SmsTemplate);
+      expect(updatedTemplate).to.be.instanceOf(SmsTemplate);
       expect(updatedTemplate.id).to.equal(template.id);
       expect(updatedTemplate.name).to.equal('fake updated name');
       expect(updatedTemplate.template).to.equal(template.template);

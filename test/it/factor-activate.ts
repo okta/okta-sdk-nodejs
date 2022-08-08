@@ -36,7 +36,7 @@ describe('Factors API', () => {
     await utils.cleanup(client, newUser);
     createdUser = await client.createUser(newUser);
 
-    const authenticatorPolicies: okta.v3.Policy[] = [];
+    const authenticatorPolicies: okta.Policy[] = [];
     for await (const policy of (await client.listPolicies({type: 'MFA_ENROLL'}))) {
       authenticatorPolicies.push(policy);
     }
@@ -59,7 +59,7 @@ describe('Factors API', () => {
   });
 
   it('should allow me to activate a TOTP factor', async () => {
-    const factor: okta.v3.UserFactor = {
+    const factor: okta.UserFactor = {
       factorType: 'token:software:totp',
       provider: 'OKTA'
     };

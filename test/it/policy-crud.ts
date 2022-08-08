@@ -3,7 +3,8 @@ import {
   Client,
   Collection,
   DefaultRequestExecutor,
-  v3 } from '@okta/okta-sdk-nodejs';
+  Policy,
+} from '@okta/okta-sdk-nodejs';
 import getMockGroup = require('./mocks/group');
 import getMockOktaSignOnPolicy = require('./mocks/okta-sign-on-policy');
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
@@ -48,7 +49,7 @@ describe('Policy Crud API', () => {
 
     it('should resolve Policy in collection', async () => {
       await (await client.listPolicies({ type: 'OKTA_SIGN_ON' })).each(policy => {
-        expect(policy).to.be.instanceOf(v3.Policy);
+        expect(policy).to.be.instanceOf(Policy);
       });
     });
 
@@ -67,7 +68,7 @@ describe('Policy Crud API', () => {
 
     it('should return correct model', async () => {
       policy = await client.createPolicy(mockPolicy);
-      expect(policy).to.be.instanceOf(v3.Policy);
+      expect(policy).to.be.instanceOf(Policy);
     });
 
     it('should return correct data with id assigned', async () => {
@@ -88,13 +89,13 @@ describe('Policy Crud API', () => {
 
     it('should get Policy by id', async () => {
       const policyFromGet = await client.getPolicy(policy.id);
-      expect(policyFromGet).to.be.instanceOf(v3.Policy);
+      expect(policyFromGet).to.be.instanceOf(Policy);
       expect(policyFromGet.name).to.equal(mockPolicy.name);
     });
   });
 
   describe('Update policy', () => {
-    let policy: v3.Policy;
+    let policy: Policy;
     beforeEach(async () => {
       policy = await client.createPolicy(mockPolicy);
     });
@@ -112,7 +113,7 @@ describe('Policy Crud API', () => {
   });
 
   describe('Delete policy', () => {
-    let policy: v3.Policy;
+    let policy: Policy;
     beforeEach(async () => {
       policy = await client.createPolicy(mockPolicy);
     });

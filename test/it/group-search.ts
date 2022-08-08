@@ -31,7 +31,7 @@ const createTestGroups = async () => {
         },
       };
       await utils.cleanup(client, null, newGroup);
-      const createdGroup = await client.createGroup(newGroup as okta.v3.Group);
+      const createdGroup = await client.createGroup(newGroup as okta.Group);
       utils.validateGroup(createdGroup, newGroup);
       createdGroups.push(createdGroup);
     }
@@ -55,7 +55,7 @@ describe('Group API tests', () => {
     });
     const pageSpy = spy(collection, 'getNextPage');
     await collection.each(async group => {
-      expect(group).to.be.an.instanceof(okta.v3.Group);
+      expect(group).to.be.an.instanceof(okta.Group);
       expect(listIds.has(group.id)).to.be.false;
       listIds.add(group.id);
     });
@@ -71,7 +71,7 @@ describe('Group API tests', () => {
     });
     const filtered = new Set();
     await collection.each(async group => {
-      expect(group).to.be.an.instanceof(okta.v3.Group);
+      expect(group).to.be.an.instanceof(okta.Group);
       expect(group.profile.name).to.match(new RegExp(q));
       filtered.add(group.profile.name);
     });
@@ -87,7 +87,7 @@ describe('Group API tests', () => {
     });
     const pageSpy = spy(collection, 'getNextPage');
     await collection.each(async group => {
-      expect(group).to.be.an.instanceof(okta.v3.Group);
+      expect(group).to.be.an.instanceof(okta.Group);
       filtered.add(group.profile.name);
     });
     expect(filtered.size).to.equal(2);

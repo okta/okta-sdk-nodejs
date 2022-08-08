@@ -3,9 +3,10 @@ import { spy } from 'sinon';
 import faker = require('@faker-js/faker');
 
 import {
+  ApplicationGroupAssignment,
   Client,
   DefaultRequestExecutor,
-  v3 } from '@okta/okta-sdk-nodejs';
+} from '@okta/okta-sdk-nodejs';
 import utils = require('../utils');
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
@@ -43,7 +44,7 @@ describe('client.listApplicationGroupAssignments()', () => {
       await client.createApplicationGroupAssignment(createdApplication.id, createdGroup.id, {});
       await (await client.listApplicationGroupAssignments(createdApplication.id)).each(async (assignment) => {
         // there should be only one assignment
-        expect(assignment).to.be.instanceof(v3.ApplicationGroupAssignment);
+        expect(assignment).to.be.instanceof(ApplicationGroupAssignment);
         const appLink = assignment._links.app as Record<string, string>;
         const groupLink = assignment._links.group as Record<string, string>;
         expect(appLink.href).to.contain(createdApplication.id);

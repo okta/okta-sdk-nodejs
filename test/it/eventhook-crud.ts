@@ -3,7 +3,8 @@ import {
   Client,
   Collection,
   DefaultRequestExecutor,
-  v3 } from '@okta/okta-sdk-nodejs';
+  EventHook,
+} from '@okta/okta-sdk-nodejs';
 import getMockEventHook = require('./mocks/eventhook');
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -28,7 +29,7 @@ describe('Event Hook Crud API', () => {
     it('should return correct model', async () => {
       const mockEventHook = getMockEventHook();
       eventHook = await client.createEventHook(mockEventHook);
-      expect(eventHook).to.be.instanceOf(v3.EventHook);
+      expect(eventHook).to.be.instanceOf(EventHook);
       expect(eventHook.id).to.be.exist;
       expect(eventHook.name).to.be.equal(mockEventHook.name);
     });
@@ -49,7 +50,7 @@ describe('Event Hook Crud API', () => {
       expect(collection).to.be.instanceOf(Collection);
       let ehFound = false;
       await collection.each(eh => {
-        expect(eh).to.be.instanceOf(v3.EventHook);
+        expect(eh).to.be.instanceOf(EventHook);
         if (eh.name === eventHook.name) {
           ehFound = true;
           return false;
@@ -71,7 +72,7 @@ describe('Event Hook Crud API', () => {
 
     it('should get EventHook by id', async () => {
       const eventHookFromGet = await client.getEventHook(eventHook.id);
-      expect(eventHookFromGet).to.be.instanceOf(v3.EventHook);
+      expect(eventHookFromGet).to.be.instanceOf(EventHook);
       expect(eventHookFromGet.name).to.equal(eventHook.name);
     });
   });

@@ -3,7 +3,8 @@ import {
   Client,
   Collection,
   DefaultRequestExecutor,
-  v3
+  PrincipalRateLimitEntity,
+  PrincipalType,
 } from '@okta/okta-sdk-nodejs';
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -30,18 +31,18 @@ describe('Principal Rate Limit API', () => {
 
     const mockPrl = {
       principalId: token.id,
-      principalType: 'SSWS_TOKEN' as v3.PrincipalType,
+      principalType: 'SSWS_TOKEN' as PrincipalType,
       defaultPercentage: 90,
       defaultConcurrencyPercentage: 90,
     };
 
     // Create
-    let prl: v3.PrincipalRateLimitEntity;
+    let prl: PrincipalRateLimitEntity;
     try {
       prl = await client.principalRateLimitApi.createPrincipalRateLimitEntity({
         entity: mockPrl,
       });
-      expect(prl).to.be.instanceOf(v3.PrincipalRateLimitEntity);
+      expect(prl).to.be.instanceOf(PrincipalRateLimitEntity);
       expect(prl).to.have.property('id');
       expect(prl.principalId).to.equal(mockPrl.principalId);
       expect(prl.defaultConcurrencyPercentage).to.equal(mockPrl.defaultConcurrencyPercentage);
@@ -63,7 +64,7 @@ describe('Principal Rate Limit API', () => {
     const prl2 = await client.principalRateLimitApi.getPrincipalRateLimitEntity({
       principalRateLimitId: prl.id,
     });
-    expect(prl2).to.be.instanceOf(v3.PrincipalRateLimitEntity);
+    expect(prl2).to.be.instanceOf(PrincipalRateLimitEntity);
     expect(prl2.id).to.equal(prl.id);
     expect(prl2.principalId).to.equal(prl.principalId);
     expect(prl2.defaultConcurrencyPercentage).to.equal(prl.defaultConcurrencyPercentage);
@@ -74,7 +75,7 @@ describe('Principal Rate Limit API', () => {
       principalRateLimitId: prl2.id,
       entity: prl2,
     });
-    expect(updatedPrl).to.be.instanceOf(v3.PrincipalRateLimitEntity);
+    expect(updatedPrl).to.be.instanceOf(PrincipalRateLimitEntity);
     expect(updatedPrl.id).to.equal(prl2.id);
     expect(updatedPrl.principalId).to.equal(prl2.principalId);
     expect(updatedPrl.defaultConcurrencyPercentage).to.equal(prl2.defaultConcurrencyPercentage);
@@ -86,7 +87,7 @@ describe('Principal Rate Limit API', () => {
     });
     expect(prls).to.be.instanceOf(Collection);
     await prls.each(prl => {
-      expect(prl).to.be.instanceOf(v3.PrincipalRateLimitEntity);
+      expect(prl).to.be.instanceOf(PrincipalRateLimitEntity);
     });
 
   });

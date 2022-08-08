@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 
 import utils = require('../utils');
-import { Client, v3, ProvisioningConnectionAuthScheme, ProvisioningConnectionStatus } from '@okta/okta-sdk-nodejs';
+import { Client, SamlApplication } from '@okta/okta-sdk-nodejs';
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -15,7 +15,7 @@ const client = new Client({
 });
 
 describe('Application API: provisioning connection for application', () => {
-  let application: v3.SamlApplication;
+  let application: SamlApplication;
 
   beforeEach(async () => {
     application = await client.createApplication(utils.getOrg2OrgApplicationOptions());
@@ -30,8 +30,8 @@ describe('Application API: provisioning connection for application', () => {
 
   it('provides method for getting default provisioning connection', async () => {
     const provisioningConnection = await client.getDefaultProvisioningConnectionForApplication(application.id);
-    expect(provisioningConnection.status).to.equal(ProvisioningConnectionStatus.DISABLED);
-    expect(provisioningConnection.authScheme).to.equal(ProvisioningConnectionAuthScheme.TOKEN);
+    expect(provisioningConnection.status).to.equal('DISABLED');
+    expect(provisioningConnection.authScheme).to.equal('TOKEN');
   });
 
   it('provides methods for activating and deactivating default provisioning connection', async () => {
@@ -46,14 +46,14 @@ describe('Application API: provisioning connection for application', () => {
     const response = await client.deactivateDefaultProvisioningConnectionForApplication(application.id);
     expect(response).to.be.undefined;
     const provisioningConnection = await client.getDefaultProvisioningConnectionForApplication(application.id);
-    expect(provisioningConnection.status).to.equal(ProvisioningConnectionStatus.DISABLED);
+    expect(provisioningConnection.status).to.equal('DISABLED');
   });
 
   it('provides method for creating provisioning connection for application', async () => {
     try {
       await client.setDefaultProvisioningConnectionForApplication(application.id, {
         profile: {
-          authScheme: ProvisioningConnectionAuthScheme.TOKEN,
+          authScheme: 'TOKEN',
           token: 'testToken'
         }
       });

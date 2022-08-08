@@ -6,7 +6,7 @@ uploadApplicationLogo(appId: string, file: ReadStream): Promise<Response>;
 
 import { expect } from 'chai';
 
-import { v3, Client } from '@okta/okta-sdk-nodejs';
+import { ApplicationFeature, Client } from '@okta/okta-sdk-nodejs';
 import utils = require('../utils');
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
@@ -35,7 +35,7 @@ describe('Application API: applicaton features', () => {
 
   // application features tests require provisioning connection to be enabled
   xit('lists application features', async () => {
-    const features: v3.ApplicationFeature[] = [];
+    const features: ApplicationFeature[] = [];
     for await (const feature of (await client.listFeaturesForApplication(application.id))) {
       features.push(feature);
     }

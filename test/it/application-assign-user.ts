@@ -1,8 +1,8 @@
 import { expect } from 'chai';
 import * as okta from '@okta/okta-sdk-nodejs';
-import { v3 } from '@okta/okta-sdk-nodejs';
 
 import utils = require('../utils');
+import { BookmarkApplication } from '@okta/okta-sdk-nodejs';
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -29,7 +29,7 @@ describe('Application.assignUserToApplication()', () => {
       }
     };
 
-    let createdApplication: v3.BookmarkApplication;
+    let createdApplication: BookmarkApplication;
     let createdUser;
     let createdAppUser;
 
@@ -37,7 +37,7 @@ describe('Application.assignUserToApplication()', () => {
       await utils.removeAppByLabel(client, application.label);
       await utils.cleanup(client, user);
       createdApplication = await client.createApplication(application);
-      expect(createdApplication).to.be.instanceOf(v3.BookmarkApplication);
+      expect(createdApplication).to.be.instanceOf(BookmarkApplication);
       createdUser = await client.createUser(user);
       createdAppUser = await client.assignUserToApplication(createdApplication.id, {
         id: createdUser.id

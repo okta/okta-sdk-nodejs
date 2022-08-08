@@ -29,7 +29,7 @@ describe('User API Tests', () => {
     const questions = [];
     await (await client.listSupportedSecurityQuestions(createdUser.id)).each(factor => questions.push(factor));
     expect(questions.length).to.be.greaterThan(1);
-    questions.forEach(factor => expect(factor).to.be.instanceof(okta.v3.SecurityQuestion));
+    questions.forEach(factor => expect(factor).to.be.instanceof(okta.SecurityQuestion));
     return await utils.deleteUser(createdUser, client);
   });
 });

@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import {
-  v3,
+  AuthorizationServer,
   Client,
   DefaultRequestExecutor
 } from '@okta/okta-sdk-nodejs';
@@ -18,7 +18,7 @@ const client = new Client({
 });
 
 describe('Authorization Server Lifecycle API', () => {
-  let authServer: v3.AuthorizationServer;
+  let authServer: AuthorizationServer;
   beforeEach(async () => {
     authServer = await client.createAuthorizationServer(getMockAuthorizationServer());
     expect(authServer?.id).to.not.be.undefined;

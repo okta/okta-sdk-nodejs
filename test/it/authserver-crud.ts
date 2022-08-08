@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import {
-  v3,
+  AuthorizationServer,
   Client,
   DefaultRequestExecutor
 } from '@okta/okta-sdk-nodejs';
@@ -21,7 +21,7 @@ const client = new Client({
 
 describe('Authorization Server Crud API', () => {
   describe('Create Auth Server', () => {
-    let authServer: v3.AuthorizationServer;
+    let authServer: AuthorizationServer;
     afterEach(async () => {
       await client.deactivateAuthorizationServer(authServer.id);
       await client.deleteAuthorizationServer(authServer.id);
@@ -30,7 +30,7 @@ describe('Authorization Server Crud API', () => {
     it('should return correct model', async () => {
       const mockAuthorizationServer = getMockAuthorizationServer();
       authServer = await client.createAuthorizationServer(mockAuthorizationServer);
-      expect(authServer).to.be.instanceOf(v3.AuthorizationServer);
+      expect(authServer).to.be.instanceOf(AuthorizationServer);
       expect(authServer.id).to.be.exist;
       expect(authServer.name).to.be.equal(mockAuthorizationServer.name);
     });
@@ -73,7 +73,7 @@ describe('Authorization Server Crud API', () => {
       const collection = await client.listAuthorizationServers(queryParameters);
       const pageSpy = spy(collection, 'getNextPage');
       await collection.each(as => {
-        expect(as).to.be.an.instanceof(v3.AuthorizationServer);
+        expect(as).to.be.an.instanceof(AuthorizationServer);
         expect(as.name).to.match(new RegExp(queryParameters.q));
         expect(filtered.has(as.name)).to.be.false;
         filtered.add(as.name);
@@ -84,7 +84,7 @@ describe('Authorization Server Crud API', () => {
   });
 
   describe('Get Authorization Server', () => {
-    let authServer: v3.AuthorizationServer;
+    let authServer: AuthorizationServer;
     beforeEach(async () => {
       authServer = await client.createAuthorizationServer(getMockAuthorizationServer());
     });
@@ -96,13 +96,13 @@ describe('Authorization Server Crud API', () => {
 
     it('should get Authorization Server by id', async () => {
       const authServerFromGet = await client.getAuthorizationServer(authServer.id);
-      expect(authServerFromGet).to.be.instanceOf(v3.AuthorizationServer);
+      expect(authServerFromGet).to.be.instanceOf(AuthorizationServer);
       expect(authServerFromGet.name).to.equal(authServer.name);
     });
   });
 
   describe('Update Authorization Server', () => {
-    let authServer: v3.AuthorizationServer;
+    let authServer: AuthorizationServer;
     beforeEach(async () => {
       authServer = await client.createAuthorizationServer(getMockAuthorizationServer());
     });
@@ -121,7 +121,7 @@ describe('Authorization Server Crud API', () => {
   });
 
   describe('Delete Authorization Server', () => {
-    let authServer: v3.AuthorizationServer;
+    let authServer: AuthorizationServer;
     beforeEach(async () => {
       authServer = await client.createAuthorizationServer(getMockAuthorizationServer());
     });

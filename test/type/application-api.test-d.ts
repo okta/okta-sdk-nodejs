@@ -1,5 +1,4 @@
 import { expectType } from 'tsd';
-import { EnabledStatus } from '../../src/types/models/EnabledStatus';
 import { Client } from '../../src/types/client';
 import { ApplicationFeature } from '../../src/types/generated/models/ApplicationFeature';
 
@@ -13,7 +12,7 @@ const client = new Client();
   expectType<ApplicationFeature>(await client.updateFeatureForApplication('appId', 'FEATURE_NAME', {
     update: {
       lifecycleDeactivate: {
-        status: EnabledStatus.ENABLED
+        status: 'ENABLED'
       }
     }
   }));

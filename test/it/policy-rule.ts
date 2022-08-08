@@ -3,7 +3,9 @@ import {
   Client,
   Collection,
   DefaultRequestExecutor,
-  v3 } from '@okta/okta-sdk-nodejs';
+  OktaSignOnPolicyRule,
+  PolicyRule,
+} from '@okta/okta-sdk-nodejs';
 import getMockGroup = require('./mocks/group');
 import getMockOktaSignOnPolicy = require('./mocks/okta-sign-on-policy');
 import getMockRule = require('./mocks/policy-deny-rule');
@@ -53,7 +55,7 @@ describe('Policy Rule API', () => {
 
       it('should resolve PolicyRule in collection', async () => {
         await (await client.listPolicyRules(policy.id)).each(rule => {
-          expect(rule).to.be.instanceOf(v3.PolicyRule);
+          expect(rule).to.be.instanceOf(PolicyRule);
         });
       });
     });
@@ -67,7 +69,7 @@ describe('Policy Rule API', () => {
       it('should return instance of PolicyRule', async () => {
         const mockRule = getMockRule();
         rule = await client.createPolicyRule(policy.id, mockRule);
-        expect(rule).to.be.instanceOf(v3.PolicyRule);
+        expect(rule).to.be.instanceOf(PolicyRule);
         expect(rule).to.have.property('id');
         expect(rule.name).to.equal(mockRule.name);
       });
@@ -83,8 +85,8 @@ describe('Policy Rule API', () => {
       });
 
       it('should get PolicyRule by id', async () => {
-        const ruleFromGet = await client.getPolicyRule(policy.id, rule.id) as v3.OktaSignOnPolicyRule;
-        expect(ruleFromGet).to.be.instanceOf(v3.PolicyRule);
+        const ruleFromGet = await client.getPolicyRule(policy.id, rule.id) as OktaSignOnPolicyRule;
+        expect(ruleFromGet).to.be.instanceOf(PolicyRule);
         expect(ruleFromGet.name).to.equal(rule.name);
       });
     });

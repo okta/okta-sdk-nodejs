@@ -1,8 +1,10 @@
 import utils = require('../utils');
 import {
+  CallUserFactor,
   Client,
   DefaultRequestExecutor,
-  v3
+  Policy,
+  SecurityQuestionUserFactor,
 } from '@okta/okta-sdk-nodejs';
 import { expect } from 'chai';
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
@@ -38,7 +40,7 @@ describe('User API tests', () => {
     await utils.cleanup(client, newUser);
     createdUser = await client.createUser(newUser);
 
-    const authenticatorPolicies: v3.Policy[] = [];
+    const authenticatorPolicies: Policy[] = [];
     for await (const policy of (await client.listPolicies({type: 'MFA_ENROLL'}))) {
       authenticatorPolicies.push(policy);
     }
@@ -65,14 +67,14 @@ describe('User API tests', () => {
 
   it('should allow me to list a user\'s enrolled factors', async () => {
     // using Call factor as there appears to be an org limit for SMS factor enrollments
-    const callFactor: v3.CallUserFactor = {
+    const callFactor: CallUserFactor = {
       factorType: 'call',
       provider: 'OKTA',
       profile: {
         phoneNumber: '162 840 01133‬'
       }
     };
-    const securityQuestionFactor: v3.SecurityQuestionUserFactor = {
+    const securityQuestionFactor: SecurityQuestionUserFactor = {
       factorType: 'question',
       provider: 'OKTA',
       profile: {
@@ -85,7 +87,7 @@ describe('User API tests', () => {
     const collection = await client.listFactors(createdUser.id);
     const factors = [];
     await collection.each(factor => factors.push(factor));
-    expect(factors[1]).to.be.instanceof(v3.CallUserFactor);
-    expect(factors[0]).to.be.instanceof(v3.SecurityQuestionUserFactor);
+    expect(factors[1]).to.be.instanceof(CallUserFactor);
+    expect(factors[0]).to.be.instanceof(SecurityQuestionUserFactor);
   });
 });

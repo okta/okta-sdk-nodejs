@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 
-import { Client, v3 } from '@okta/okta-sdk-nodejs';
+import { Client, Subscription } from '@okta/okta-sdk-nodejs';
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 const orgUser = process.env.ORG_USER;
@@ -27,7 +27,7 @@ describe('Subscription API', () => {
   });
 
   it('provides method for listing user\'s notification subscriptions', async () => {
-    const subscriptions: v3.Subscription[] = [];
+    const subscriptions: Subscription[] = [];
     for await (const subscription of (await client.listUserSubscriptions(user.id))) {
       subscriptions.push(subscription);
     }

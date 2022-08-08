@@ -2,8 +2,9 @@ import { expect } from 'chai';
 import {
   Client,
   Collection,
+  Csr,
   DefaultRequestExecutor,
-  v3
+  JsonWebKey,
 } from '@okta/okta-sdk-nodejs';
 import utils = require('../utils');
 import forge = require('node-forge');
@@ -49,7 +50,7 @@ describe('Idp credential API', () => {
 
       it('should resolve JsonWebKey in collection', async () => {
         await (await client.listIdentityProviderKeys()).each(key => {
-          expect(key).to.be.instanceOf(v3.JsonWebKey);
+          expect(key).to.be.instanceOf(JsonWebKey);
         });
       });
     });
@@ -62,7 +63,7 @@ describe('Idp credential API', () => {
       it('should create key', async () => {
         key = await client.createIdentityProviderKey(mockJwk);
         expect(key).to.be.exist;
-        expect(key).to.be.instanceOf(v3.JsonWebKey);
+        expect(key).to.be.instanceOf(JsonWebKey);
       });
     });
 
@@ -77,7 +78,7 @@ describe('Idp credential API', () => {
       it('should get key', async () => {
         key = await client.getIdentityProviderKey(key.kid);
         expect(key).to.be.exist;
-        expect(key).to.be.instanceOf(v3.JsonWebKey);
+        expect(key).to.be.instanceOf(JsonWebKey);
       });
     });
 
@@ -114,7 +115,7 @@ describe('Idp credential API', () => {
 
       it('should resolve CSR in collection', async () => {
         await (await client.listCsrsForIdentityProvider(idp.id)).each(csr => {
-          expect(csr).to.be.instanceOf(v3.Csr);
+          expect(csr).to.be.instanceOf(Csr);
         });
       });
     });
@@ -157,7 +158,7 @@ describe('Idp credential API', () => {
         const n = utils.csrToN(csr);
 
         const key = await client.publishCerCertForIdentityProvider(idp.id, csr.id, b64);
-        expect(key).to.be.instanceOf(v3.JsonWebKey);
+        expect(key).to.be.instanceOf(JsonWebKey);
         expect(key.n).to.equal(n);
         expect(key.x5c[0]).to.equal(b64);
 
@@ -175,7 +176,7 @@ describe('Idp credential API', () => {
         const n = utils.csrToN(csr);
 
         const key = await client.publishCerCertForIdentityProvider(idp.id, csr.id, pem);
-        expect(key).to.be.instanceOf(v3.JsonWebKey);
+        expect(key).to.be.instanceOf(JsonWebKey);
         expect(key.n).to.equal(n);
         expect(key.x5c[0]).to.equal(b64);
 
@@ -193,7 +194,7 @@ describe('Idp credential API', () => {
         const n = utils.csrToN(csr);
 
         const key = await client.publishCerCertForIdentityProvider(idp.id, csr.id, der);
-        expect(key).to.be.instanceOf(v3.JsonWebKey);
+        expect(key).to.be.instanceOf(JsonWebKey);
         expect(key.n).to.equal(n);
         expect(key.x5c[0]).to.equal(b64);
 
@@ -234,7 +235,7 @@ describe('Idp credential API', () => {
 
       it('should resolve JsonWebKey in collection', async () => {
         await (await client.listIdentityProviderSigningKeys(idp.id)).each(key => {
-          expect(key).to.be.instanceOf(v3.JsonWebKey);
+          expect(key).to.be.instanceOf(JsonWebKey);
         });
       });
 
@@ -273,7 +274,7 @@ describe('Idp credential API', () => {
       it('should clone key to another idp', async () => {
         const clonedKey = await client.cloneIdentityProviderKey(idp.id, key.kid, { targetIdpId: anotherIdp.id });
         expect(clonedKey).to.be.exist;
-        expect(clonedKey).to.be.instanceOf(v3.JsonWebKey);
+        expect(clonedKey).to.be.instanceOf(JsonWebKey);
       });
     });
   });

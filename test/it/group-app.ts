@@ -1,9 +1,10 @@
 import { expect } from 'chai';
 import {
+  Application,
   Client,
   Collection,
   DefaultRequestExecutor,
-  v3 } from '@okta/okta-sdk-nodejs';
+} from '@okta/okta-sdk-nodejs';
 import utils = require('../utils');
 import getMockGroup = require('./mocks/group');
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
@@ -42,7 +43,7 @@ describe('Group App API', () => {
 
     it('should resolve Application in collection', async () => {
       await (await client.listAssignedApplicationsForGroup(group.id)).each(application => {
-        expect(application).to.be.instanceOf(v3.Application);
+        expect(application).to.be.instanceOf(Application);
       });
     });
   });

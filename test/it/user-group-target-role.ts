@@ -39,7 +39,7 @@ describe('User Role API Tests', () => {
     const createdGroup = await client.createGroup(newGroup);
 
     // 2. Assign USER_ADMIN role to the user
-    const roleType: okta.v3.AssignRoleRequest = { type: 'USER_ADMIN'  };
+    const roleType: okta.AssignRoleRequest = { type: 'USER_ADMIN'  };
     const role = await client.assignRoleToUser(createdUser.id, roleType);
 
     // 3. Add Group Target to User Admin Role

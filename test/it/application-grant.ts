@@ -3,7 +3,8 @@ import {
   Client,
   Collection,
   DefaultRequestExecutor,
-  v3 } from '@okta/okta-sdk-nodejs';
+  OAuth2ScopeConsentGrant,
+} from '@okta/okta-sdk-nodejs';
 import getMockApplication = require('./mocks/application-oidc');
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
@@ -35,7 +36,7 @@ describe('Application OAuth2 grant API', () => {
         issuer: client.baseUrl,
         scopeId: 'okta.users.manage'
       });
-      expect(grant).to.be.instanceOf(v3.OAuth2ScopeConsentGrant);
+      expect(grant).to.be.instanceOf(OAuth2ScopeConsentGrant);
       expect(grant.issuer).to.equal(client.baseUrl);
       expect(grant.scopeId).to.equal('okta.users.manage');
     });
@@ -56,7 +57,7 @@ describe('Application OAuth2 grant API', () => {
       const grants = await client.listScopeConsentGrants(application.id);
       expect(grants).to.be.instanceOf(Collection);
       await grants.each(grantFromCollection => {
-        expect(grantFromCollection).to.be.instanceOf(v3.OAuth2ScopeConsentGrant);
+        expect(grantFromCollection).to.be.instanceOf(OAuth2ScopeConsentGrant);
         expect(grantFromCollection.id).to.equal(grant.id);
       });
     });
@@ -76,7 +77,7 @@ describe('Application OAuth2 grant API', () => {
     it('should get grant by id', async () => {
       const grantFromGet = await client.getScopeConsentGrant(application.id, grant.id);
       expect(grantFromGet).to.be.exist;
-      expect(grantFromGet).to.be.instanceOf(v3.OAuth2ScopeConsentGrant);
+      expect(grantFromGet).to.be.instanceOf(OAuth2ScopeConsentGrant);
     });
   });
 

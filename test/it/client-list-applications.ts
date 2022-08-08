@@ -2,7 +2,8 @@ import { expect } from 'chai';
 import { spy } from 'sinon';
 import faker = require('@faker-js/faker');
 import {
-  v3,
+  BasicAuthApplication,
+  BookmarkApplication,
   Client,
   Collection,
   DefaultRequestExecutor } from '@okta/okta-sdk-nodejs';
@@ -22,7 +23,7 @@ const client = new Client({
 });
 
 const createBookmarkApp = async () => {
-  const app: v3.BookmarkApplication = {
+  const app: BookmarkApplication = {
     name: 'bookmark',
     label: `node-sdk: Filter Bookmark App ${faker.random.word()}`.substring(0, 49),
     signOnMode: 'BOOKMARK',
@@ -38,7 +39,7 @@ const createBookmarkApp = async () => {
 };
 
 const createBasicAuthApp = async () => {
-  const app: v3.BasicAuthApplication = {
+  const app: BasicAuthApplication = {
     name: 'template_basic_auth',
     label: `node-sdk: Filter Sample Basic Auth App ${faker.random.word()}`.substring(0, 49),
     signOnMode: 'BASIC_AUTH',
@@ -77,15 +78,15 @@ describe('client.listApplications()', () => {
     let bookmarkApp;
     let basicApp;
     await (await client.listApplications()).each(app => {
-      if (app.label === bookmarkApplication.label && app instanceof v3.BookmarkApplication) {
+      if (app.label === bookmarkApplication.label && app instanceof BookmarkApplication) {
         bookmarkApp = app;
       }
-      if (app.label === basicApplication.label && app instanceof v3.BasicAuthApplication) {
+      if (app.label === basicApplication.label && app instanceof BasicAuthApplication) {
         basicApp = app;
       }
     });
-    expect(bookmarkApp).to.be.an.instanceof(v3.BookmarkApplication);
-    expect(basicApp).to.be.an.instanceof(v3.BasicAuthApplication);
+    expect(bookmarkApp).to.be.an.instanceof(BookmarkApplication);
+    expect(basicApp).to.be.an.instanceof(BasicAuthApplication);
   });
 
 });
@@ -123,8 +124,8 @@ describe('client.listApplications({ })', () => {
     const pageSpy = spy(collection, 'getNextPage');
     const filtered = new Set();
     await collection.each(app => {
-      expect(app).to.be.an.instanceof(v3.BookmarkApplication);
-      expect((app as v3.BookmarkApplication).name).to.eq('bookmark');
+      expect(app).to.be.an.instanceof(BookmarkApplication);
+      expect((app as BookmarkApplication).name).to.eq('bookmark');
       expect(filtered.has(app.label)).to.be.false;
       filtered.add(app.label);
     });
@@ -141,7 +142,7 @@ describe('client.listApplications({ })', () => {
     const pageSpy = spy(collection, 'getNextPage');
     const filtered = new Set();
     await collection.each(app => {
-      expect(app).to.be.an.instanceof(v3.BasicAuthApplication);
+      expect(app).to.be.an.instanceof(BasicAuthApplication);
       expect(app.label).to.match(new RegExp('node-sdk: Filter Sample Basic Auth App'));
       expect(filtered.has(app.label)).to.be.false;
       filtered.add(app.label);

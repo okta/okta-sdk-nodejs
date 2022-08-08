@@ -1,10 +1,11 @@
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import {
-  v3,
   Client,
   Collection,
-  DefaultRequestExecutor
+  DefaultRequestExecutor,
+  TrustedOrigin,
+  TrustedOriginScope
 } from '@okta/okta-sdk-nodejs';
 import getMockTrustedOrigin = require('./mocks/trusted-origin');
 import faker = require('@faker-js/faker');
@@ -22,7 +23,7 @@ const client = new Client({
 
 describe('Trusted Origin API', () => {
   describe('Create Trusted Origin', () => {
-    let trustedOrigin: v3.TrustedOrigin;
+    let trustedOrigin: TrustedOrigin;
     afterEach(async () => {
       await client.deactivateOrigin(trustedOrigin.id);
       await client.deleteOrigin(trustedOrigin.id);
@@ -31,7 +32,7 @@ describe('Trusted Origin API', () => {
     it('should return correct model', async () => {
       const mockTrustedOrigin = getMockTrustedOrigin();
       trustedOrigin = await client.createOrigin(mockTrustedOrigin);
-      expect(trustedOrigin).to.be.instanceOf(v3.TrustedOrigin);
+      expect(trustedOrigin).to.be.instanceOf(TrustedOrigin);
       expect(trustedOrigin.id).to.be.exist;
       expect(trustedOrigin.name).to.be.equal(mockTrustedOrigin.name);
       expect(trustedOrigin.origin).to.be.equal(mockTrustedOrigin.origin);
@@ -39,7 +40,7 @@ describe('Trusted Origin API', () => {
   });
 
   describe('List Trusted Origins', () => {
-    let trustedOrigin: v3.TrustedOrigin;
+    let trustedOrigin: TrustedOrigin;
     beforeEach(async () => {
       trustedOrigin = await client.createOrigin(getMockTrustedOrigin());
     });
@@ -59,7 +60,7 @@ describe('Trusted Origin API', () => {
   });
 
   describe('Filter Trusted Origins', () => {
-    let origins: Array<v3.TrustedOrigin>;
+    let origins: Array<TrustedOrigin>;
     before(async () => {
       origins = [];
       const namePrefixes = [
@@ -99,7 +100,7 @@ describe('Trusted Origin API', () => {
       const collection = await client.listOrigins({ limit: 3 });
       const pageSpy = spy(collection, 'getNextPage');
       await collection.each(origin => {
-        expect(origin).to.be.an.instanceof(v3.TrustedOrigin);
+        expect(origin).to.be.an.instanceof(TrustedOrigin);
         expect(filtered.has(origin.name)).to.be.false;
         filtered.add(origin.name);
       });
@@ -114,7 +115,7 @@ describe('Trusted Origin API', () => {
       };
       const filtered = new Set();
       await (await client.listOrigins(queryParameters)).each(origin => {
-        expect(origin).to.be.an.instanceof(v3.TrustedOrigin);
+        expect(origin).to.be.an.instanceof(TrustedOrigin);
         expect(filtered.has(origin.name)).to.be.false;
         filtered.add(origin.name);
       });
@@ -128,7 +129,7 @@ describe('Trusted Origin API', () => {
       };
       const filtered = new Set();
       await (await client.listOrigins(queryParameters)).each(origin => {
-        expect(origin).to.be.an.instanceof(v3.TrustedOrigin);
+        expect(origin).to.be.an.instanceof(TrustedOrigin);
         expect(filtered.has(origin.name)).to.be.false;
         filtered.add(origin.name);
         expect(origin.name.indexOf('node-sdk: TO_CORS')).to.equal(-1);
@@ -138,7 +139,7 @@ describe('Trusted Origin API', () => {
   });
 
   describe('Get Trusted Origin', () => {
-    let trustedOrigin: v3.TrustedOrigin;
+    let trustedOrigin: TrustedOrigin;
     beforeEach(async () => {
       trustedOrigin = await client.createOrigin(getMockTrustedOrigin());
     });
@@ -149,13 +150,13 @@ describe('Trusted Origin API', () => {
 
     it('should get trusted origin by id', async () => {
       const trustedOriginFromGet = await client.getOrigin(trustedOrigin.id);
-      expect(trustedOriginFromGet).to.be.instanceOf(v3.TrustedOrigin);
+      expect(trustedOriginFromGet).to.be.instanceOf(TrustedOrigin);
       expect(trustedOriginFromGet.name).to.equal(trustedOrigin.name);
     });
   });
 
   describe('Update Trusted Origin', () => {
-    let trustedOrigin: v3.TrustedOrigin;
+    let trustedOrigin: TrustedOrigin;
     beforeEach(async () => {
       trustedOrigin = await client.createOrigin(getMockTrustedOrigin());
     });
@@ -185,7 +186,7 @@ describe('Trusted Origin API', () => {
         {
           type: 'REDIRECT',
         }
-      ] as Array<v3.TrustedOriginScope>;
+      ] as Array<TrustedOriginScope>;
       trustedOrigin.scopes = mockScopes;
       const updatedTrustedOrigin = await client.updateOrigin(trustedOrigin.id, trustedOrigin);
       expect(updatedTrustedOrigin.id).to.equal(trustedOrigin.id);
@@ -195,7 +196,7 @@ describe('Trusted Origin API', () => {
   });
 
   describe('Activate and deactivate Trusted Origin', () => {
-    let trustedOrigin: v3.TrustedOrigin;
+    let trustedOrigin: TrustedOrigin;
     beforeEach(async () => {
       trustedOrigin = await client.createOrigin(getMockTrustedOrigin());
     });
@@ -222,7 +223,7 @@ describe('Trusted Origin API', () => {
   });
 
   describe('Delete Trusted Origin', () => {
-    let trustedOrigin: v3.TrustedOrigin;
+    let trustedOrigin: TrustedOrigin;
     beforeEach(async () => {
       trustedOrigin = await client.createOrigin(getMockTrustedOrigin());
     });

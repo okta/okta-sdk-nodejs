@@ -2,7 +2,7 @@ import utils = require('../utils');
 import {
   Client,
   DefaultRequestExecutor,
-  v3
+  Session,
 } from '@okta/okta-sdk-nodejs';
 import { expect } from 'chai';
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
@@ -52,6 +52,6 @@ describe('Sessions API', () => {
     // 2 - retrieve session
     const sess = await client.getSession(session.id);
 
-    expect(sess).to.be.instanceOf(v3.Session);
+    expect(sess).to.be.instanceOf(Session);
   });
 });

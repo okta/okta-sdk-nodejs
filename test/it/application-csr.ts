@@ -6,8 +6,9 @@ import getMockApplication = require('./mocks/application-oidc');
 import {
   Client,
   Collection,
+  Csr,
   DefaultRequestExecutor,
-  v3
+  JsonWebKey,
 } from '@okta/okta-sdk-nodejs';
 import mockCsr = require('./mocks/csr.json');
 
@@ -62,7 +63,7 @@ describe('Application CSR API', () => {
 
     it('should resolve CSR in collection', async () => {
       await (await client.listCsrsForApplication(app.id)).each(csr => {
-        expect(csr).to.be.instanceOf(v3.Csr);
+        expect(csr).to.be.instanceOf(Csr);
       });
     });
   });
@@ -94,7 +95,7 @@ describe('Application CSR API', () => {
       const n = utils.csrToN(csr);
 
       const key = await client.publishCerCert(app.id, csr.id, b64);
-      expect(key).to.be.instanceOf(v3.JsonWebKey);
+      expect(key).to.be.instanceOf(JsonWebKey);
       expect(key.n).to.equal(n);
       expect(key.x5c[0]).to.equal(b64);
 
@@ -112,7 +113,7 @@ describe('Application CSR API', () => {
       const n = utils.csrToN(csr);
 
       const key = await client.publishCerCert(app.id, csr.id, pem);
-      expect(key).to.be.instanceOf(v3.JsonWebKey);
+      expect(key).to.be.instanceOf(JsonWebKey);
       expect(key.n).to.equal(n);
       expect(key.x5c[0]).to.equal(b64);
 
@@ -130,7 +131,7 @@ describe('Application CSR API', () => {
       const n = utils.csrToN(csr);
 
       const key = await client.publishCerCert(app.id, csr.id, der);
-      expect(key).to.be.instanceOf(v3.JsonWebKey);
+      expect(key).to.be.instanceOf(JsonWebKey);
       expect(key.n).to.equal(n);
       expect(key.x5c[0]).to.equal(b64);
 

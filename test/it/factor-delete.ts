@@ -34,7 +34,7 @@ describe('Factors API', () => {
     await utils.cleanup(client, newUser);
     createdUser = await client.createUser(newUser);
 
-    const authenticatorPolicies: okta.v3.Policy[] = [];
+    const authenticatorPolicies: okta.Policy[] = [];
     for await (const policy of (await client.listPolicies({type: 'MFA_ENROLL'}))) {
       authenticatorPolicies.push(policy);
     }
@@ -57,7 +57,7 @@ describe('Factors API', () => {
   });
 
   it('should allow me to delete a factor', async () => {
-    const newFactor: okta.v3.UserFactor = {
+    const newFactor: okta.UserFactor = {
       factorType: 'token:software:totp',
       provider: 'OKTA'
     };
