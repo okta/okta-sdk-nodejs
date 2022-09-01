@@ -6,8 +6,9 @@ uploadApplicationLogo(appId: string, file: ReadStream): Promise<Response>;
 
 import { expect } from 'chai';
 
-import { ApplicationFeature, Client } from '@okta/okta-sdk-nodejs';
+import { ApplicationFeature } from '@okta/okta-sdk-nodejs';
 import utils = require('../utils');
+import type { GeneratedApiClient as V2Client } from '../../src/types/generated-client';
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -15,7 +16,7 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/application-features`;
 }
 
-const client = new Client({
+const client: V2Client = utils.getV2Client({
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
 });

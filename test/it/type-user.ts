@@ -1,20 +1,21 @@
 import { expect } from 'chai';
 import faker = require('@faker-js/faker');
 import {
-  Client,
   Collection,
   DefaultRequestExecutor,
   UserType,
 } from '@okta/okta-sdk-nodejs';
-
+import type { GeneratedApiClient as V2Client } from '../../src/types/generated-client';
 import getMockUserType = require('./mocks/user-type');
+import utils = require('../utils');
+
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
 if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/type-user`;
 }
 
-const client = new Client({
+const client: V2Client = utils.getV2Client({
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
   requestExecutor: new DefaultRequestExecutor()

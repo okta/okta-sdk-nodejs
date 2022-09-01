@@ -1,10 +1,10 @@
 import { expect } from 'chai';
 
 import {
-  Client,
   DefaultRequestExecutor,
   JsonWebKey,
 } from '@okta/okta-sdk-nodejs';
+import type { GeneratedApiClient as V2Client } from '../../src/types/generated-client';
 import utils = require('../utils');
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
@@ -13,7 +13,7 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/client-get-application-key`;
 }
 
-const client = new Client({
+const client: V2Client = utils.getV2Client({
   scopes: ['okta.clients.manage', 'okta.apps.manage'],
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,

@@ -1,13 +1,15 @@
-import { Client, DefaultRequestExecutor, Policy } from '@okta/okta-sdk-nodejs';
+import { DefaultRequestExecutor, Policy } from '@okta/okta-sdk-nodejs';
 import { expect } from 'chai';
 import utils = require('../utils');
+import type { GeneratedApiClient as V2Client } from '../../src/types/generated-client';
+
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
 if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/authenticators-active`;
 }
 
-const client = new Client({
+const client: V2Client = utils.getV2Client({
   scopes: ['okta.authenticators.read', 'okta.authenticators.manage'],
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,

@@ -3,13 +3,15 @@ import speakeasy = require('speakeasy');
 import utils = require('../utils');
 import * as okta from '@okta/okta-sdk-nodejs';
 import { expect } from 'chai';
+import type { GeneratedApiClient as V2Client } from '../../src/types/generated-client';
+
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
 if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/factor-activate`;
 }
 
-const client = new okta.Client({
+const client: V2Client = utils.getV2Client({
   scopes: ['okta.factors.manage', 'okta.users.manage'],
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,

@@ -1,6 +1,5 @@
 import { expect } from 'chai';
 import {
-  Client,
   Collection,
   Csr,
   DefaultRequestExecutor,
@@ -11,13 +10,15 @@ import forge = require('node-forge');
 import getMockGenericOidcIdp = require('./mocks/generic-oidc-idp');
 import mockJwk = require('./mocks/jwk.json');
 import mockCsr = require('./mocks/csr.json');
+import type { GeneratedApiClient as V2Client } from '../../src/types/generated-client';
+
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
 if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/idp-credential`;
 }
 
-const client = new Client({
+const client: V2Client = utils.getV2Client({
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
   requestExecutor: new DefaultRequestExecutor()

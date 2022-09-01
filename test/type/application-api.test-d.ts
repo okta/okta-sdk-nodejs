@@ -4,16 +4,16 @@ import { ApplicationFeature } from '../../src/types/generated/models/Application
 
 const client = new Client();
 (async function () {
-  const { value: feature } = await (await client.listFeaturesForApplication('testAppId')).next();
+  const { value: feature } = await (await client.applicationApi.listFeaturesForApplication({appId: 'testAppId'})).next();
   expectType<ApplicationFeature | null>(feature);
 
-  expectType<ApplicationFeature>(await client.getFeatureForApplication('appId', 'FEATURE_NAME'));
+  expectType<ApplicationFeature>(await client.applicationApi.getFeatureForApplication({appId: 'appId', name: 'FEATURE_NAME'}));
 
-  expectType<ApplicationFeature>(await client.updateFeatureForApplication('appId', 'FEATURE_NAME', {
+  expectType<ApplicationFeature>(await client.applicationApi.updateFeatureForApplication({appId: 'appId', name: 'FEATURE_NAME', CapabilitiesObject: {
     update: {
       lifecycleDeactivate: {
         status: 'ENABLED'
       }
     }
-  }));
+  }}));
 }());

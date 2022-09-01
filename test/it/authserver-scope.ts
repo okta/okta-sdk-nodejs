@@ -2,7 +2,6 @@ import { expect } from 'chai';
 import { spy } from 'sinon';
 import {
   AuthorizationServer,
-  Client,
   Collection,
   DefaultRequestExecutor,
   OAuth2Scope,
@@ -10,13 +9,16 @@ import {
 import getMockAuthorizationServer = require('./mocks/authorization-server');
 import mockScope = require('./mocks/scope.json');
 import faker = require('@faker-js/faker');
+import type { GeneratedApiClient as V2Client } from '../../src/types/generated-client';
+import utils = require('../utils');
+
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
 if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/authserver-scope`;
 }
 
-const client = new Client({
+const client: V2Client = utils.getV2Client({
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
   requestExecutor: new DefaultRequestExecutor()

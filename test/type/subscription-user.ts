@@ -4,9 +4,9 @@ import { Subscription } from '../../src/types/generated/models/Subscription';
 
 const client = new Client();
 (async function () {
-  const { value: subscription } = await (await client.listUserSubscriptions('testAppId')).next();
+  const { value: subscription } = await (await client.subscriptionApi.listUserSubscriptions({userId: 'testAppId'})).next();
   expectType<Subscription | null>(subscription);
-  expectType<Subscription>(await client.getUserSubscriptionByNotificationType('userId', 'OKTA_ISSUE'));
-  expectType<void>(await client.unsubscribeUserSubscriptionByNotificationType('userId', 'OKTA_ISSUE'));
-  expectType<void>(await client.subscribeUserSubscriptionByNotificationType('userId', 'OKTA_ISSUE'));
+  expectType<Subscription>(await client.subscriptionApi.getUserSubscriptionByNotificationType({userId: 'userId', notificationType: 'OKTA_ISSUE'}));
+  expectType<void>(await client.subscriptionApi.unsubscribeUserSubscriptionByNotificationType({userId: 'userId', notificationType: 'OKTA_ISSUE'}));
+  expectType<void>(await client.subscriptionApi.subscribeUserSubscriptionByNotificationType({userId: 'userId', notificationType: 'OKTA_ISSUE'}));
 }());

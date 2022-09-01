@@ -4,18 +4,14 @@ import { Collection } from '../../src/types/collection';
 import { Application } from '../../src/types/generated/models/Application';
 import { BookmarkApplication } from '../../src/types/generated/models/BookmarkApplication';
 
-
 const client = new Client();
 (async function () {
   // mandatory query parameters
-  expectError(client.listPolicies());
-
-  // non-string query parameters
-  expectError(client.deleteApplicationUser('appId', 'userId', {sendEmail: 0}));
+  expectError(await client.policyApi.listPolicies());
 
   // Client methods return either Promise or Collection
-  expectType<Promise<void>>(client.deletePolicy('policyId'));
-  expectType<Collection<Application>>(await client.listApplications());
+  expectType<Promise<void>>(client.policyApi.deletePolicy({policyId: 'policyId'}));
+  expectType<Collection<Application>>(await client.applicationApi.listApplications());
 
   // methods expecting body request parameters
   const appOptions: BookmarkApplication = {
@@ -30,6 +26,6 @@ const client = new Client();
     }
   };
 
-  expectType<Promise<Application>>(client.createApplication(appOptions));
+  expectType<Promise<Application>>(client.applicationApi.createApplication({application: appOptions}));
 }());
 

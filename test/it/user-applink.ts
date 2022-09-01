@@ -1,14 +1,16 @@
 import { expect } from 'chai';
-import { Client, Collection, DefaultRequestExecutor } from '@okta/okta-sdk-nodejs';
+import { Collection, DefaultRequestExecutor } from '@okta/okta-sdk-nodejs';
 import utils = require('../utils');
 import getMockUser = require('./mocks/user-without-credentials');
+import type { GeneratedApiClient as V2Client } from '../../src/types/generated-client';
+
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
 if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/user-applink`;
 }
 
-const client = new Client({
+const client: V2Client = utils.getV2Client({
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
   requestExecutor: new DefaultRequestExecutor()

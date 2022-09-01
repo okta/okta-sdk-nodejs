@@ -1,19 +1,20 @@
 import utils = require('../utils');
 import {
   CallUserFactor,
-  Client,
   DefaultRequestExecutor,
   Policy,
   SecurityQuestionUserFactor,
 } from '@okta/okta-sdk-nodejs';
 import { expect } from 'chai';
+import type { GeneratedApiClient as V2Client } from '../../src/types/generated-client';
+
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
 if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/user-list-enrolled-factors`;
 }
 
-const client = new Client({
+const client: V2Client = utils.getV2Client({
   scopes: ['okta.users.manage'],
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,

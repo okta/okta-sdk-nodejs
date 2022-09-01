@@ -1,5 +1,6 @@
 import { expect } from 'chai';
 import * as okta from '@okta/okta-sdk-nodejs';
+import type { GeneratedApiClient as V2Client } from '../../src/types/generated-client';
 
 import utils = require('../utils');
 
@@ -9,7 +10,7 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/client-deactivate-application`;
 }
 
-const client = new okta.Client({
+const client: V2Client = utils.getV2Client({
   scopes: ['okta.clients.manage', 'okta.apps.manage'],
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,

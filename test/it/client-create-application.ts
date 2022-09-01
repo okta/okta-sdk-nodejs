@@ -12,7 +12,6 @@ import {
   BookmarkApplicationSettings,
   BookmarkApplicationSettingsApplication,
   BrowserPluginApplication,
-  Client,
   DefaultRequestExecutor,
   OAuthApplicationCredentials,
   OpenIdConnectApplication,
@@ -30,6 +29,8 @@ import {
   WsFederationApplicationSettings,
   WsFederationApplicationSettingsApplication,
 } from '@okta/okta-sdk-nodejs';
+import type { GeneratedApiClient as V2Client } from '../../src/types/generated-client';
+
 import utils = require('../utils');
 import faker = require('@faker-js/faker');
 
@@ -39,7 +40,7 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/application-create`;
 }
 
-const client = new Client({
+const client: V2Client = utils.getV2Client({
   scopes: ['okta.clients.manage', 'okta.apps.manage'],
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,

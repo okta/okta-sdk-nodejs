@@ -1,13 +1,16 @@
 import { expect } from 'chai';
 import * as okta from '@okta/okta-sdk-nodejs';
 import getMockInlineHook = require('./mocks/inlinehook');
+import type { GeneratedApiClient as V2Client } from '../../src/types/generated-client';
+import utils = require('../utils');
+
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
 if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/inlinehook-lifecycle`;
 }
 
-const client = new okta.Client({
+const client: V2Client = utils.getV2Client({
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
   requestExecutor: new okta.DefaultRequestExecutor()

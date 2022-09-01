@@ -17,16 +17,5 @@ export * from './client';
 export * from './request-executor';
 export * from './default-request-executor';
 export * from './collection';
-export * from './parameterized-operations-client';
-export * from './request-options/AutoLoginApplicationOptions';
-export * from './request-options/BasicAuthApplicationOptions';
-export * from './request-options/BookmarkApplicationOptions';
-export * from './request-options/BrowserPluginApplicationOptions';
-export * from './request-options/OpenIdConnectApplicationOptions';
-export * from './request-options/SamlCustomApplicationOptions';
-export * from './request-options/SecurePasswordStoreApplicationOptions';
-export * from './request-options/SwaApplicationOptions';
-export * from './request-options/SwaThreeFieldApplicationOptions';
-export * from './request-options/WsFederationApplicationOptions';
 export * from './generated';
 

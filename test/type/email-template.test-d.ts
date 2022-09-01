@@ -6,14 +6,14 @@ import { EmailTemplate } from '../../src/types/generated/models/EmailTemplate';
 const client = new Client();
 (async function () {
   // listEmailTemplates
-  expectType<Collection<EmailTemplate>>(await client.listEmailTemplates('brand-id'));
+  expectType<Collection<EmailTemplate>>(await client.customizationApi.listEmailTemplates({brandId: 'brand-id'}));
 
   // getEmailTemplate
-  expectType<EmailTemplate>(await client.getEmailTemplate('brand-id', 'name'));
+  expectType<EmailTemplate>(await client.customizationApi.getEmailTemplate({brandId: 'brand-id', templateName: 'name'}));
 
   // deleteEmailTemplateCustomization
-  expectType<void>(await client.deleteEmailTemplateCustomization('brand-id', 'name', 'customization-id'));
+  expectType<void>(await client.customizationApi.deleteEmailCustomization({brandId: 'brand-id', templateName: 'name', customizationId: 'customization-id'}));
 
   // sendTestEmail
-  expectType<void>(await client.sendTestEmail('fake-id', 'name', 'eng'));
+  expectType<void>(await client.customizationApi.sendTestEmail({brandId: 'fake-id', templateName: 'name', language: 'eng'}));
 }());

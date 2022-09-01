@@ -1,18 +1,20 @@
 import { expect } from 'chai';
 import {
-  Client,
   Collection,
   DefaultRequestExecutor,
   EventHook,
 } from '@okta/okta-sdk-nodejs';
+import type { GeneratedApiClient as V2Client } from '../../src/types/generated-client';
 import getMockEventHook = require('./mocks/eventhook');
+import utils = require('../utils');
+
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
 if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/eventhook-crud`;
 }
 
-const client = new Client({
+const client: V2Client = utils.getV2Client({
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
   requestExecutor: new DefaultRequestExecutor()

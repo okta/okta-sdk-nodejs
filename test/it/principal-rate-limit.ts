@@ -6,6 +6,7 @@ import {
   PrincipalRateLimitEntity,
   PrincipalType,
 } from '@okta/okta-sdk-nodejs';
+
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
 if (process.env.OKTA_USE_MOCK) {
