@@ -25,6 +25,13 @@ const client: V2Client = utils.getV2Client({
   requestExecutor: new DefaultRequestExecutor()
 });
 
+// const client = new Client({
+//   scopes: ['okta.apps.manage'],
+//   orgUrl: orgUrl,
+//   token: process.env.OKTA_CLIENT_TOKEN,
+//   requestExecutor: new DefaultRequestExecutor()
+// });
+
 describe('Application CSR API', () => {
   let app;
   let csr, keys;
