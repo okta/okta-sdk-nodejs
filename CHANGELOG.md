@@ -4,7 +4,7 @@
 
 ### Other
 
-- [#]() SDK methods are invoked through scoped API clients. Uses openapi-generator for creating SDK.
+- [#]() Uses openapi-generator for creating SDK.
 
 # 6.5.0
 

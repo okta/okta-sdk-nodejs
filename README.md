@@ -982,8 +982,11 @@ const client: Client = new Client({
 
 #### Breaking changes
 
+ - Methods are invoked on scoped clients
+ - Method params are passed as a single object
  - Models no longer have CRUD methods
  - Methods which return `Collection` become async
+ - Enums are replaced with union types
 
 ### From 5.x to 6.0
 
