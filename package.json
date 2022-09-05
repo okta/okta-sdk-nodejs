@@ -75,9 +75,9 @@
   },
   "resolutions": {
     "node-fetch": "^2.6.7",
-    "sanitize-html": "^2.7.0",
+    "sanitize-html": "^2.7.1",
     "tmpl": "^1.0.5",
-    "moment": "^2.29.2",
+    "moment": "^2.29.4",
     "nanoid": "^3.1.31",
     "klaw": "^3.0.0"
   },
