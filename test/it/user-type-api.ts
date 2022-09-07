@@ -2,7 +2,8 @@ import { ServerConfiguration } from './../../src/generated/servers';
 import  { createConfiguration } from './../../src/generated/configuration';
 import { expect } from 'chai';
 import { Client, UserType, UserTypeApi } from '@okta/okta-sdk-nodejs';
-
+import type { GeneratedApiClient as V2Client } from '../../src/types/generated-client';
+import utils = require('../utils');
 
 describe('User Type API', () => {
   it('lists existing user types', async () => {
@@ -27,7 +28,7 @@ describe('User Type API', () => {
     const token = process.env.OKTA_CLIENT_TOKEN;
 
     it('is invoked on v2 client ', async () => {
-      const client = new Client({
+      const client: V2Client = utils.getV2Client({
         orgUrl,
         token
       });

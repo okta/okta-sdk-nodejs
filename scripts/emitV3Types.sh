@@ -10,7 +10,8 @@ sed -i '' '/this.providerType =/d' ./src/generated/models/*.ts
 
 # remove erroneous imports
 sed -i '' '/^import { Set }/d' ./src/generated/models/*.ts
-sed -i '' '/^import { URI }/d' ./src/generated/models/*.ts
+sed -i '' '/^import { URI }/d' ./src/generated/**/*.ts
+
 
 ignoredFiles=()
 

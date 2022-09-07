@@ -1,7 +1,6 @@
 import { expect } from 'chai';
 import {
   CatalogApplication,
-  Client,
   Collection,
   DefaultRequestExecutor,
   Group,
@@ -10,13 +9,15 @@ import {
 import getMockGroup = require('./mocks/group');
 import getMockUser = require('./mocks/user-without-credentials');
 import utils = require('../utils');
+import type { GeneratedApiClient as V2Client } from '../../src/types/generated-client';
+
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
 if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/user-role`;
 }
 
-const client = new Client({
+const client: V2Client = utils.getV2Client({
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
   requestExecutor: new DefaultRequestExecutor()
@@ -122,9 +123,7 @@ describe('User role API', () => {
     });
     afterEach(async () => {
       await client.removeRoleFromUser(user.id, role.id);
-      await client.groupApi.deleteGroup({
-        groupId: group.id
-      });
+      await client.deleteGroup(group.id);
     });
 
     describe('Add group target', () => {

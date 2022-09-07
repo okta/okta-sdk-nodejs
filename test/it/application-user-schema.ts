@@ -3,12 +3,11 @@ import { expect } from 'chai';
 import utils = require('../utils');
 import {
   BookmarkApplication,
-  Client,
   DefaultRequestExecutor,
   UserSchema,
 } from '@okta/okta-sdk-nodejs';
+import type { GeneratedApiClient as V2Client } from '../../src/types/generated-client';
 import getMockSchemaProperty = require('./mocks/user-schema-property');
-
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -16,7 +15,7 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/application-user-schema`;
 }
 
-const client = new Client({
+const client: V2Client = utils.getV2Client({
   scopes: ['okta.schemas.read', 'okta.schemas.manage'],
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
@@ -28,7 +27,7 @@ describe('App User Schema', () => {
   let createdApplication: BookmarkApplication;
 
   beforeEach(async () => {
-    createdApplication = await client.createApplication<BookmarkApplication>(applicationOptions);
+    createdApplication = await client.createApplication(applicationOptions);
   });
   afterEach(async () => {
     await client.deactivateApplication(createdApplication.id);

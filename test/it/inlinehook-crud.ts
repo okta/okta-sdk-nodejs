@@ -1,19 +1,21 @@
 import { expect } from 'chai';
 import {
-  Client,
   Collection,
   DefaultRequestExecutor,
   InlineHook,
 } from '@okta/okta-sdk-nodejs';
 import faker = require('@faker-js/faker');
 import getMockInlineHook = require('./mocks/inlinehook');
+import type { GeneratedApiClient as V2Client } from '../../src/types/generated-client';
+import utils = require('../utils');
+
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
 if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/inlinehook-crud`;
 }
 
-const client = new Client({
+const client: V2Client = utils.getV2Client({
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
   requestExecutor: new DefaultRequestExecutor()

@@ -1,12 +1,13 @@
 import {
-  Client, Theme,
+  Theme,
 } from '@okta/okta-sdk-nodejs';
+import type { GeneratedApiClient as V2Client } from '../../src/types/generated-client';
 
 import { expect } from 'chai';
 
 import utils = require('../utils');
 
-const client = new Client({
+const client: V2Client = utils.getV2Client({
   orgUrl: process.env.OKTA_CLIENT_ORGURL,
   token: process.env.OKTA_CLIENT_TOKEN,
 });

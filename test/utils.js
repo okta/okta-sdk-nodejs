@@ -5,6 +5,8 @@ const faker = require('@faker-js/faker');
 const path = require('path');
 const { createReadStream } = require('fs');
 const forge = require('node-forge');
+const { Client } = require('@okta/okta-sdk-nodejs');
+const GeneratedApiClient = require('../src/generated-client');
 
 function delay(t) {
   return new Promise(function (resolve) {
@@ -328,6 +330,15 @@ function certToPem(certF) {
   return forge.pki.certificateToPem(certF);
 }
 
+function getV2Client(params) {
+  const client = new Client(params);
+  const [_, ...v2Methods] = Object.getOwnPropertyNames(GeneratedApiClient.prototype);
+  for (const method of v2Methods) {
+    client[method] = GeneratedApiClient.prototype[method];
+  }
+  return client;
+}
+
 module.exports = {
   delay: delay,
   validateUser: validateUser,
@@ -356,4 +367,5 @@ module.exports = {
   certToBase64,
   certToPem,
   csrToN,
+  getV2Client,
 };

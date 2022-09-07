@@ -1,6 +1,8 @@
 import { expect } from 'chai';
 
-import { Client, Subscription } from '@okta/okta-sdk-nodejs';
+import { Subscription } from '@okta/okta-sdk-nodejs';
+import type { GeneratedApiClient as V2Client } from '../../src/types/generated-client';
+import utils = require('../utils');
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 const orgUser = process.env.ORG_USER;
@@ -9,7 +11,7 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/subsctiption-user`;
 }
 
-const client = new Client({
+const client: V2Client = utils.getV2Client({
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
 });

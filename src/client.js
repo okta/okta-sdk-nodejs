@@ -15,7 +15,6 @@ const packageJson = require('../package.json');
 
 const { ConfigLoader } = require('./config-loader');
 const { DefaultRequestExecutor } = require('./default-request-executor');
-const GeneratedApiClient = require('./generated-client');
 const { Http } = require('./http');
 const DEFAULT_USER_AGENT = `${packageJson.name}/${packageJson.version} node/${process.versions.node} ${os.platform()}/${os.release()}`;
 const repoUrl = 'https://github.com/okta/okta-sdk-nodejs';
@@ -63,9 +62,8 @@ const { ServerConfiguration } = require('./generated/servers');
  * @class Client
  * @extends {GeneratedApiClient}
  */
-class Client extends GeneratedApiClient {
+class Client {
   constructor(config) {
-    super();
     const configLoader = new ConfigLoader();
     const clientConfig = Object.assign({}, config);
     configLoader.applyDefaults();

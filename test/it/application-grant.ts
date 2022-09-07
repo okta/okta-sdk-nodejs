@@ -1,19 +1,21 @@
 import { expect } from 'chai';
 import {
-  Client,
   Collection,
   DefaultRequestExecutor,
   OAuth2ScopeConsentGrant,
 } from '@okta/okta-sdk-nodejs';
+import type { GeneratedApiClient as V2Client } from '../../src/types/generated-client';
 import getMockApplication = require('./mocks/application-oidc');
+import utils = require('../utils');
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
+const issuer = orgUrl.replace(/\/$/, '');
 
 if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/application-grant`;
 }
 
-const client = new Client({
+const client: V2Client = utils.getV2Client({
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
   requestExecutor: new DefaultRequestExecutor()
@@ -33,11 +35,11 @@ describe('Application OAuth2 grant API', () => {
   describe('Grant consent', () => {
     it('should grant consent to scope', async () => {
       grant = await client.grantConsentToScope(application.id, {
-        issuer: client.baseUrl,
+        issuer,
         scopeId: 'okta.users.manage'
       });
       expect(grant).to.be.instanceOf(OAuth2ScopeConsentGrant);
-      expect(grant.issuer).to.equal(client.baseUrl);
+      expect(grant.issuer).to.equal(issuer);
       expect(grant.scopeId).to.equal('okta.users.manage');
     });
   });
@@ -45,7 +47,7 @@ describe('Application OAuth2 grant API', () => {
   describe('List scope consent grants', () => {
     beforeEach(async () => {
       grant = await client.grantConsentToScope(application.id, {
-        issuer: client.baseUrl,
+        issuer,
         scopeId: 'okta.users.manage'
       });
     });
@@ -66,7 +68,7 @@ describe('Application OAuth2 grant API', () => {
   describe('Get scope consent grant', () => {
     beforeEach(async () => {
       grant = await client.grantConsentToScope(application.id, {
-        issuer: client.baseUrl,
+        issuer,
         scopeId: 'okta.users.manage'
       });
     });
@@ -84,7 +86,7 @@ describe('Application OAuth2 grant API', () => {
   describe('Revoke grant', () => {
     beforeEach(async () => {
       grant = await client.grantConsentToScope(application.id, {
-        issuer: client.baseUrl,
+        issuer,
         scopeId: 'okta.users.manage'
       });
     });

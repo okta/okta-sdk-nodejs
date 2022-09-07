@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import {
-  Client,
-  v3 } from '@okta/okta-sdk-nodejs';
+  Client, DeviceAssurance, DeviceAssuranceScreenLockType,
+} from '@okta/okta-sdk-nodejs';
 
 import getMockAssurancePolicy = require('./mocks/device-assurance-policy');
 
@@ -28,7 +28,7 @@ describe('Device Assurance API', () => {
   it('lists existing device assurance policies', async () => {
     const collection = await client.deviceAssuranceApi.listDeviceAssurancePolicies();
     for await (const policy of collection) {
-      expect(policy).to.be.instanceOf(v3.DeviceAssurance);
+      expect(policy).to.be.instanceOf(DeviceAssurance);
     }
   });
 
@@ -37,7 +37,7 @@ describe('Device Assurance API', () => {
       deviceAssuranceId: deviceAssurancePolicy.id
     });
     expect(retrievedPolicy.id).to.equal(deviceAssurancePolicy.id);
-    expect(retrievedPolicy.screenLockType).to.be.instanceOf(v3.DeviceAssuranceScreenLockType);
+    expect(retrievedPolicy.screenLockType).to.be.instanceOf(DeviceAssuranceScreenLockType);
   });
 
   it('updates device assurance policy', async () => {

@@ -1,19 +1,21 @@
 import { expect } from 'chai';
 import {
-  Client,
   Collection,
   DefaultRequestExecutor,
   Policy,
 } from '@okta/okta-sdk-nodejs';
+import utils = require('../utils');
 import getMockGroup = require('./mocks/group');
 import getMockOktaSignOnPolicy = require('./mocks/okta-sign-on-policy');
+import type { GeneratedApiClient as V2Client } from '../../src/types/generated-client';
+
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
 if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/policy-crud`;
 }
 
-const client = new Client({
+const client: V2Client = utils.getV2Client({
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
   requestExecutor: new DefaultRequestExecutor()
@@ -28,9 +30,7 @@ describe('Policy Crud API', () => {
     mockPolicy.conditions.people.groups.include.push(group.id);
   });
   afterEach(async () => {
-    await client.groupApi.deleteGroup({
-      groupId: group.id
-    });
+    await client.deleteGroup(group.id);
   });
 
   describe('List policies', () => {

@@ -5,14 +5,15 @@ import {
   AuthorizationServerPolicyRule,
   AuthorizationServerPolicyRuleActions,
   AuthorizationServerPolicyRuleConditions,
-  Client,
   Collection,
   DefaultRequestExecutor,
   TokenAuthorizationServerPolicyRuleAction
 } from '@okta/okta-sdk-nodejs';
+import type { GeneratedApiClient as V2Client } from '../../src/types/generated-client';
 import getMockAuthorizationServer = require('./mocks/authorization-server');
 import getMockPolicy = require('./mocks/policy-oauth-authorization');
 import getMockPolicyRule = require('./mocks/authz-server-policy-rule');
+import utils = require('../utils');
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -20,7 +21,7 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/authserver-policy`;
 }
 
-const client = new Client({
+const client: V2Client = utils.getV2Client({
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
   requestExecutor: new DefaultRequestExecutor()

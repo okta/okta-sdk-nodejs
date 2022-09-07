@@ -1,6 +1,5 @@
 import utils = require('../utils');
 import {
-  Client,
   DefaultRequestExecutor,
   OktaSignOnPolicy,
   OktaSignOnPolicyRule,
@@ -10,13 +9,15 @@ import {
 } from '@okta/okta-sdk-nodejs';
 import faker = require('@faker-js/faker');
 import { expect } from 'chai';
+import type { GeneratedApiClient as V2Client } from '../../src/types/generated-client';
+
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
 if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/policies`;
 }
 
-const client = new Client({
+const client: V2Client = utils.getV2Client({
   scopes: ['okta.policies.manage', 'okta.groups.manage'],
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,

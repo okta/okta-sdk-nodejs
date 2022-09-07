@@ -10,7 +10,6 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
-import { ParameterizedOperationsClient } from './parameterized-operations-client';
 import { OAuth } from './oauth';
 import { Http } from './http';
 import { RequestExecutor } from './request-executor';
@@ -48,7 +47,7 @@ import {
   PushProviderApi,
   DeviceAssuranceApi,
 } from './generated';
-export declare class Client extends ParameterizedOperationsClient {
+export declare class Client {
   constructor(config?: V2Configuration);
 
   requestExecutor: RequestExecutor;
