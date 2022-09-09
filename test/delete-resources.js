@@ -7,7 +7,7 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/application-get-user`;
 }
 
-const client = new okta.Client({
+const client = utils.getV2Client({
   scopes: ['okta.apps.manage', 'okta.users.manage'],
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
