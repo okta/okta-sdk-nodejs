@@ -45,10 +45,10 @@ describe('Subscription API', () => {
     let response = await client.unsubscribeUserSubscriptionByNotificationType(user.id, 'OKTA_ISSUE');
     expect(response).to.be.undefined;
     let subscription = await client.getUserSubscriptionByNotificationType(user.id, 'OKTA_ISSUE');
-    expect(subscription.status).to.equal('unsubscribed');
+    expect(subscription.status).to.equal('UNSUBSCRIBED');
     response = await client.subscribeUserSubscriptionByNotificationType(user.id, 'OKTA_ISSUE');
     expect(response).to.be.undefined;
     subscription = await client.getUserSubscriptionByNotificationType(user.id, 'OKTA_ISSUE');
-    expect(subscription.status).to.equal('subscribed');
+    expect(subscription.status).to.equal('UNSUBSCRIBED');
   });
 });
