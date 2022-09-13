@@ -32,10 +32,10 @@ describe('Subscription API', () => {
     let response = await client.unsubscribeRoleSubscriptionByNotificationType('ORG_ADMIN', 'OKTA_UPDATE');
     expect(response).to.be.undefined;
     let subscription = await client.getRoleSubscriptionByNotificationType('ORG_ADMIN', 'OKTA_UPDATE');
-    expect(subscription.status).to.equal('UNSUBSCRIBED');
+    expect(subscription.status).to.equal('unsubscribed');
     response = await client.subscribeRoleSubscriptionByNotificationType('ORG_ADMIN', 'OKTA_UPDATE');
     expect(response).to.be.undefined;
     subscription = await client.getRoleSubscriptionByNotificationType('ORG_ADMIN', 'OKTA_UPDATE');
-    expect(subscription.status).to.equal('SUBSCRIBED');
+    expect(subscription.status).to.equal('subscribed');
   });
 });
