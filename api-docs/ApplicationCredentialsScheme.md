@@ -1,4 +1,0 @@
-# okta.ApplicationCredentialsScheme
-
-type ApplicationCredentialsScheme = 'ADMIN_SETS_CREDENTIALS' | 'EDIT_PASSWORD_ONLY' | 'EDIT_USERNAME_AND_PASSWORD' | 'EXTERNAL_PASSWORD_SYNC' | 'SHARED_USERNAME_AND_PASSWORD';
-

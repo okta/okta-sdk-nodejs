@@ -1,4 +1,0 @@
-# okta.PolicyRuleType
-
-type PolicyRuleType = 'ACCESS_POLICY' | 'IDP_DISCOVERY' | 'MFA_ENROLL' | 'PASSWORD' | 'PROFILE_ENROLLMENT' | 'RESOURCE_ACCESS' | 'SIGN_ON';
-
