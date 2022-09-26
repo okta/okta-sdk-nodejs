@@ -26,7 +26,8 @@ done
 rsync -r --include='*.d.ts' --exclude="*.js" --exclude="*.ts" --exclude="*.md" --exclude="*.json" --exclude ".openapi-generator*" -- src/generated/ src/types/generated
 
 # move generated .md files into docs directory
-mv src/generated/*.md api-docs
+mkdir -p api-docs
+mv ./src/generated/*.md api-docs
 
 # remove non-js files from src
 find src/generated/ -type f ! -name "*.js" ! -name ".openapi-generator-ignore" ! -name "tsconfig.json" -delete
