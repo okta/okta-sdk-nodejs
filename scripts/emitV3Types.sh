@@ -12,7 +12,9 @@ sed -i '' '/this.providerType =/d' ./src/generated/models/*.ts
 sed -i '' '/^import { Set }/d' ./src/generated/models/*.ts
 sed -i '' '/^import { URI }/d' ./src/generated/**/*.ts
 
-
+# remove *AllOf imports
+sed -i '' "/AllOf'/d" ./src/generated/**/*.ts
+sed -i '' '/AllOf,/d' ./src/generated/**/*.ts
 ignoredFiles=()
 
 tsc --project ./src/generated/tsconfig.json
