@@ -1,0 +1,4 @@
+# okta.UserStatus
+
+type UserStatus = 'ACTIVE' | 'DEPROVISIONED' | 'LOCKED_OUT' | 'PASSWORD_EXPIRED' | 'PROVISIONED' | 'RECOVERY' | 'STAGED' | 'SUSPENDED';
+
