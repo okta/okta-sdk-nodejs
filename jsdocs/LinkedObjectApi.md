@@ -4,10 +4,10 @@ All URIs are relative to *https://subdomain.okta.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**addLinkedObjectDefinition**](LinkedObjectApi.md#addLinkedObjectDefinition) | **POST** /api/v1/meta/schemas/user/linkedObjects | Create a Linked Object Definition
-[**deleteLinkedObjectDefinition**](LinkedObjectApi.md#deleteLinkedObjectDefinition) | **DELETE** /api/v1/meta/schemas/user/linkedObjects/{linkedObjectName} | Delete a Linked Object Definition
-[**getLinkedObjectDefinition**](LinkedObjectApi.md#getLinkedObjectDefinition) | **GET** /api/v1/meta/schemas/user/linkedObjects/{linkedObjectName} | Retrieve a Linked Object Definition
-[**listLinkedObjectDefinitions**](LinkedObjectApi.md#listLinkedObjectDefinitions) | **GET** /api/v1/meta/schemas/user/linkedObjects | List all Linked Object Definitions
+[**addLinkedObjectDefinition**](LinkedObjectApi.md#addlinkedobjectdefinition) | **POST** /api/v1/meta/schemas/user/linkedObjects | Create a Linked Object Definition
+[**deleteLinkedObjectDefinition**](LinkedObjectApi.md#deletelinkedobjectdefinition) | **DELETE** /api/v1/meta/schemas/user/linkedObjects/{linkedObjectName} | Delete a Linked Object Definition
+[**getLinkedObjectDefinition**](LinkedObjectApi.md#getlinkedobjectdefinition) | **GET** /api/v1/meta/schemas/user/linkedObjects/{linkedObjectName} | Retrieve a Linked Object Definition
+[**listLinkedObjectDefinitions**](LinkedObjectApi.md#listlinkedobjectdefinitions) | **GET** /api/v1/meta/schemas/user/linkedObjects | List all Linked Object Definitions
 
 
 # **addLinkedObjectDefinition**
@@ -53,12 +53,12 @@ apiInstance.addLinkedObjectDefinition(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **linkedObject** | **LinkedObject**|  |
+ **linkedObject** | **[LinkedObject](LinkedObject.md)** |  | 
 
 
 ### Return type
 
-**LinkedObject**
+**[LinkedObject](LinkedObject.md)**
 
 ### Authorization
 
@@ -110,7 +110,7 @@ apiInstance.deleteLinkedObjectDefinition(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **linkedObjectName** | [**string**] |  | defaults to undefined
+**linkedObjectName** | **string** |  | defaults to undefined
 
 
 ### Return type
@@ -167,12 +167,12 @@ apiInstance.getLinkedObjectDefinition(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **linkedObjectName** | [**string**] |  | defaults to undefined
+**linkedObjectName** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**LinkedObject**
+**[LinkedObject](LinkedObject.md)**
 
 ### Authorization
 
@@ -223,7 +223,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-**Array<LinkedObject>**
+**[Array&lt;LinkedObject&gt;](LinkedObject.md)**
 
 ### Authorization
 

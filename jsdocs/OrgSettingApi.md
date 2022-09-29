@@ -4,25 +4,25 @@ All URIs are relative to *https://subdomain.okta.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**bulkRemoveEmailAddressBounces**](OrgSettingApi.md#bulkRemoveEmailAddressBounces) | **POST** /api/v1/org/email/bounces/remove-list | Remove Emails from Email Provider Bounce List
-[**extendOktaSupport**](OrgSettingApi.md#extendOktaSupport) | **POST** /api/v1/org/privacy/oktaSupport/extend | Extend Okta Support Access
-[**getOktaCommunicationSettings**](OrgSettingApi.md#getOktaCommunicationSettings) | **GET** /api/v1/org/privacy/oktaCommunication | Retreive the Okta Communication Settings
-[**getOrgContactTypes**](OrgSettingApi.md#getOrgContactTypes) | **GET** /api/v1/org/contacts | Retrieve the Org Contact Types
-[**getOrgContactUser**](OrgSettingApi.md#getOrgContactUser) | **GET** /api/v1/org/contacts/{contactType} | Retrieve the User of the Contact Type
-[**getOrgOktaSupportSettings**](OrgSettingApi.md#getOrgOktaSupportSettings) | **GET** /api/v1/org/privacy/oktaSupport | Retrieve the Okta Support Settings
-[**getOrgPreferences**](OrgSettingApi.md#getOrgPreferences) | **GET** /api/v1/org/preferences | Retrieve the Org Preferences
-[**getOrgSettings**](OrgSettingApi.md#getOrgSettings) | **GET** /api/v1/org | Retrieve the Org Settings
-[**grantOktaSupport**](OrgSettingApi.md#grantOktaSupport) | **POST** /api/v1/org/privacy/oktaSupport/grant | Grant Okta Support Access to your Org
-[**hideOktaUIFooter**](OrgSettingApi.md#hideOktaUIFooter) | **POST** /api/v1/org/preferences/hideEndUserFooter | Update the Preference to Hide the Okta Dashboard Footer
-[**optInUsersToOktaCommunicationEmails**](OrgSettingApi.md#optInUsersToOktaCommunicationEmails) | **POST** /api/v1/org/privacy/oktaCommunication/optIn | Opt in all Users to Okta Communication emails
-[**optOutUsersFromOktaCommunicationEmails**](OrgSettingApi.md#optOutUsersFromOktaCommunicationEmails) | **POST** /api/v1/org/privacy/oktaCommunication/optOut | Opt out all Users from Okta Communication emails
-[**partialUpdateOrgSetting**](OrgSettingApi.md#partialUpdateOrgSetting) | **POST** /api/v1/org | Update the Org Settings
-[**revokeOktaSupport**](OrgSettingApi.md#revokeOktaSupport) | **POST** /api/v1/org/privacy/oktaSupport/revoke | Revoke Okta Support Access
-[**showOktaUIFooter**](OrgSettingApi.md#showOktaUIFooter) | **POST** /api/v1/org/preferences/showEndUserFooter | Update the Preference to Show the Okta Dashboard Footer
-[**updateOrgContactUser**](OrgSettingApi.md#updateOrgContactUser) | **PUT** /api/v1/org/contacts/{contactType} | Replace the User of the Contact Type
-[**updateOrgLogo**](OrgSettingApi.md#updateOrgLogo) | **POST** /api/v1/org/logo | Upload the Org Logo
-[**updateOrgSetting**](OrgSettingApi.md#updateOrgSetting) | **PUT** /api/v1/org | Replace the Org Settings
-[**wellknownOrgMetadata**](OrgSettingApi.md#wellknownOrgMetadata) | **GET** /.well-known/okta-organization | Retrieve the Well-Known Org Metadata
+[**bulkRemoveEmailAddressBounces**](OrgSettingApi.md#bulkremoveemailaddressbounces) | **POST** /api/v1/org/email/bounces/remove-list | Remove Emails from Email Provider Bounce List
+[**extendOktaSupport**](OrgSettingApi.md#extendoktasupport) | **POST** /api/v1/org/privacy/oktaSupport/extend | Extend Okta Support Access
+[**getOktaCommunicationSettings**](OrgSettingApi.md#getoktacommunicationsettings) | **GET** /api/v1/org/privacy/oktaCommunication | Retreive the Okta Communication Settings
+[**getOrgContactTypes**](OrgSettingApi.md#getorgcontacttypes) | **GET** /api/v1/org/contacts | Retrieve the Org Contact Types
+[**getOrgContactUser**](OrgSettingApi.md#getorgcontactuser) | **GET** /api/v1/org/contacts/{contactType} | Retrieve the User of the Contact Type
+[**getOrgOktaSupportSettings**](OrgSettingApi.md#getorgoktasupportsettings) | **GET** /api/v1/org/privacy/oktaSupport | Retrieve the Okta Support Settings
+[**getOrgPreferences**](OrgSettingApi.md#getorgpreferences) | **GET** /api/v1/org/preferences | Retrieve the Org Preferences
+[**getOrgSettings**](OrgSettingApi.md#getorgsettings) | **GET** /api/v1/org | Retrieve the Org Settings
+[**grantOktaSupport**](OrgSettingApi.md#grantoktasupport) | **POST** /api/v1/org/privacy/oktaSupport/grant | Grant Okta Support Access to your Org
+[**hideOktaUIFooter**](OrgSettingApi.md#hideoktauifooter) | **POST** /api/v1/org/preferences/hideEndUserFooter | Update the Preference to Hide the Okta Dashboard Footer
+[**optInUsersToOktaCommunicationEmails**](OrgSettingApi.md#optinuserstooktacommunicationemails) | **POST** /api/v1/org/privacy/oktaCommunication/optIn | Opt in all Users to Okta Communication emails
+[**optOutUsersFromOktaCommunicationEmails**](OrgSettingApi.md#optoutusersfromoktacommunicationemails) | **POST** /api/v1/org/privacy/oktaCommunication/optOut | Opt out all Users from Okta Communication emails
+[**partialUpdateOrgSetting**](OrgSettingApi.md#partialupdateorgsetting) | **POST** /api/v1/org | Update the Org Settings
+[**revokeOktaSupport**](OrgSettingApi.md#revokeoktasupport) | **POST** /api/v1/org/privacy/oktaSupport/revoke | Revoke Okta Support Access
+[**showOktaUIFooter**](OrgSettingApi.md#showoktauifooter) | **POST** /api/v1/org/preferences/showEndUserFooter | Update the Preference to Show the Okta Dashboard Footer
+[**updateOrgContactUser**](OrgSettingApi.md#updateorgcontactuser) | **PUT** /api/v1/org/contacts/{contactType} | Replace the User of the Contact Type
+[**updateOrgLogo**](OrgSettingApi.md#updateorglogo) | **POST** /api/v1/org/logo | Upload the Org Logo
+[**updateOrgSetting**](OrgSettingApi.md#updateorgsetting) | **PUT** /api/v1/org | Replace the Org Settings
+[**wellknownOrgMetadata**](OrgSettingApi.md#wellknownorgmetadata) | **GET** /.well-known/okta-organization | Retrieve the Well-Known Org Metadata
 
 
 # **bulkRemoveEmailAddressBounces**
@@ -59,12 +59,12 @@ apiInstance.bulkRemoveEmailAddressBounces(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **BouncesRemoveListObj** | **BouncesRemoveListObj**|  |
+ **BouncesRemoveListObj** | **[BouncesRemoveListObj](BouncesRemoveListObj.md)** |  | 
 
 
 ### Return type
 
-**BouncesRemoveListResult**
+**[BouncesRemoveListResult](BouncesRemoveListResult.md)**
 
 ### Authorization
 
@@ -115,7 +115,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-**OrgOktaSupportSettingsObj**
+**[OrgOktaSupportSettingsObj](OrgOktaSupportSettingsObj.md)**
 
 ### Authorization
 
@@ -165,7 +165,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-**OrgOktaCommunicationSetting**
+**[OrgOktaCommunicationSetting](OrgOktaCommunicationSetting.md)**
 
 ### Authorization
 
@@ -215,7 +215,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-**Array<OrgContactTypeObj>**
+**[Array&lt;OrgContactTypeObj&gt;](OrgContactTypeObj.md)**
 
 ### Authorization
 
@@ -266,12 +266,12 @@ apiInstance.getOrgContactUser(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contactType** | [**string**] |  | defaults to undefined
+**contactType** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**OrgContactUser**
+**[OrgContactUser](OrgContactUser.md)**
 
 ### Authorization
 
@@ -322,7 +322,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-**OrgOktaSupportSettingsObj**
+**[OrgOktaSupportSettingsObj](OrgOktaSupportSettingsObj.md)**
 
 ### Authorization
 
@@ -372,7 +372,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-**OrgPreferences**
+**[OrgPreferences](OrgPreferences.md)**
 
 ### Authorization
 
@@ -422,7 +422,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-**OrgSetting**
+**[OrgSetting](OrgSetting.md)**
 
 ### Authorization
 
@@ -472,7 +472,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-**OrgOktaSupportSettingsObj**
+**[OrgOktaSupportSettingsObj](OrgOktaSupportSettingsObj.md)**
 
 ### Authorization
 
@@ -522,7 +522,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-**OrgPreferences**
+**[OrgPreferences](OrgPreferences.md)**
 
 ### Authorization
 
@@ -572,7 +572,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-**OrgOktaCommunicationSetting**
+**[OrgOktaCommunicationSetting](OrgOktaCommunicationSetting.md)**
 
 ### Authorization
 
@@ -622,7 +622,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-**OrgOktaCommunicationSetting**
+**[OrgOktaCommunicationSetting](OrgOktaCommunicationSetting.md)**
 
 ### Authorization
 
@@ -688,12 +688,12 @@ apiInstance.partialUpdateOrgSetting(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **OrgSetting** | **OrgSetting**|  |
+ **OrgSetting** | **[OrgSetting](OrgSetting.md)** |  | 
 
 
 ### Return type
 
-**OrgSetting**
+**[OrgSetting](OrgSetting.md)**
 
 ### Authorization
 
@@ -744,7 +744,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-**OrgOktaSupportSettingsObj**
+**[OrgOktaSupportSettingsObj](OrgOktaSupportSettingsObj.md)**
 
 ### Authorization
 
@@ -794,7 +794,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-**OrgPreferences**
+**[OrgPreferences](OrgPreferences.md)**
 
 ### Authorization
 
@@ -849,13 +849,13 @@ apiInstance.updateOrgContactUser(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **orgContactUser** | **OrgContactUser**|  |
- **contactType** | [**string**] |  | defaults to undefined
+ **orgContactUser** | **[OrgContactUser](OrgContactUser.md)** |  | 
+**contactType** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**OrgContactUser**
+**[OrgContactUser](OrgContactUser.md)**
 
 ### Authorization
 
@@ -908,7 +908,7 @@ apiInstance.updateOrgLogo(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **file** | [**HttpFile**] |  | defaults to undefined
+**file** | **HttpFile** |  | defaults to undefined
 
 
 ### Return type
@@ -980,12 +980,12 @@ apiInstance.updateOrgSetting(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **orgSetting** | **OrgSetting**|  |
+ **orgSetting** | **[OrgSetting](OrgSetting.md)** |  | 
 
 
 ### Return type
 
-**OrgSetting**
+**[OrgSetting](OrgSetting.md)**
 
 ### Authorization
 
@@ -1036,7 +1036,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-**WellKnownOrgMetadata**
+**[WellKnownOrgMetadata](WellKnownOrgMetadata.md)**
 
 ### Authorization
 

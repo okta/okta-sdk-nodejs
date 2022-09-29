@@ -4,12 +4,12 @@ All URIs are relative to *https://subdomain.okta.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**createSmsTemplate**](TemplateApi.md#createSmsTemplate) | **POST** /api/v1/templates/sms | Create an SMS Template
-[**deleteSmsTemplate**](TemplateApi.md#deleteSmsTemplate) | **DELETE** /api/v1/templates/sms/{templateId} | Delete an SMS Template
-[**getSmsTemplate**](TemplateApi.md#getSmsTemplate) | **GET** /api/v1/templates/sms/{templateId} | Retrieve an SMS Template
-[**listSmsTemplates**](TemplateApi.md#listSmsTemplates) | **GET** /api/v1/templates/sms | List all SMS Templates
-[**partialUpdateSmsTemplate**](TemplateApi.md#partialUpdateSmsTemplate) | **POST** /api/v1/templates/sms/{templateId} | Update an SMS Template
-[**updateSmsTemplate**](TemplateApi.md#updateSmsTemplate) | **PUT** /api/v1/templates/sms/{templateId} | Replace an SMS Template
+[**createSmsTemplate**](TemplateApi.md#createsmstemplate) | **POST** /api/v1/templates/sms | Create an SMS Template
+[**deleteSmsTemplate**](TemplateApi.md#deletesmstemplate) | **DELETE** /api/v1/templates/sms/{templateId} | Delete an SMS Template
+[**getSmsTemplate**](TemplateApi.md#getsmstemplate) | **GET** /api/v1/templates/sms/{templateId} | Retrieve an SMS Template
+[**listSmsTemplates**](TemplateApi.md#listsmstemplates) | **GET** /api/v1/templates/sms | List all SMS Templates
+[**partialUpdateSmsTemplate**](TemplateApi.md#partialupdatesmstemplate) | **POST** /api/v1/templates/sms/{templateId} | Update an SMS Template
+[**updateSmsTemplate**](TemplateApi.md#updatesmstemplate) | **PUT** /api/v1/templates/sms/{templateId} | Replace an SMS Template
 
 
 # **createSmsTemplate**
@@ -47,12 +47,12 @@ apiInstance.createSmsTemplate(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **smsTemplate** | **SmsTemplate**|  |
+ **smsTemplate** | **[SmsTemplate](SmsTemplate.md)** |  | 
 
 
 ### Return type
 
-**SmsTemplate**
+**[SmsTemplate](SmsTemplate.md)**
 
 ### Authorization
 
@@ -104,7 +104,7 @@ apiInstance.deleteSmsTemplate(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **templateId** | [**string**] |  | defaults to undefined
+**templateId** | **string** |  | defaults to undefined
 
 
 ### Return type
@@ -161,12 +161,12 @@ apiInstance.getSmsTemplate(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **templateId** | [**string**] |  | defaults to undefined
+**templateId** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**SmsTemplate**
+**[SmsTemplate](SmsTemplate.md)**
 
 ### Authorization
 
@@ -218,12 +218,12 @@ apiInstance.listSmsTemplates(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **templateType** | **SmsTemplateType** |  | (optional) defaults to undefined
+**templateType** | **[SmsTemplateType](SmsTemplateType.md)** |  | (optional) defaults to undefined
 
 
 ### Return type
 
-**Array<SmsTemplate>**
+**[Array&lt;SmsTemplate&gt;](SmsTemplate.md)**
 
 ### Authorization
 
@@ -281,13 +281,13 @@ apiInstance.partialUpdateSmsTemplate(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **smsTemplate** | **SmsTemplate**|  |
- **templateId** | [**string**] |  | defaults to undefined
+ **smsTemplate** | **[SmsTemplate](SmsTemplate.md)** |  | 
+**templateId** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**SmsTemplate**
+**[SmsTemplate](SmsTemplate.md)**
 
 ### Authorization
 
@@ -347,13 +347,13 @@ apiInstance.updateSmsTemplate(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **smsTemplate** | **SmsTemplate**|  |
- **templateId** | [**string**] |  | defaults to undefined
+ **smsTemplate** | **[SmsTemplate](SmsTemplate.md)** |  | 
+**templateId** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**SmsTemplate**
+**[SmsTemplate](SmsTemplate.md)**
 
 ### Authorization
 

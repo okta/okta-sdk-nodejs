@@ -4,47 +4,47 @@ All URIs are relative to *https://subdomain.okta.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**activateApplication**](ApplicationApi.md#activateApplication) | **POST** /api/v1/apps/{appId}/lifecycle/activate | Activate an Application
-[**activateDefaultProvisioningConnectionForApplication**](ApplicationApi.md#activateDefaultProvisioningConnectionForApplication) | **POST** /api/v1/apps/{appId}/connections/default/lifecycle/activate | Activate the default Provisioning Connection
-[**assignUserToApplication**](ApplicationApi.md#assignUserToApplication) | **POST** /api/v1/apps/{appId}/users | Assign a User
-[**cloneApplicationKey**](ApplicationApi.md#cloneApplicationKey) | **POST** /api/v1/apps/{appId}/credentials/keys/{keyId}/clone | Clone a Key Credential
-[**createApplication**](ApplicationApi.md#createApplication) | **POST** /api/v1/apps | Create an Application
-[**createApplicationGroupAssignment**](ApplicationApi.md#createApplicationGroupAssignment) | **PUT** /api/v1/apps/{appId}/groups/{groupId} | Assign a Group
-[**deactivateApplication**](ApplicationApi.md#deactivateApplication) | **POST** /api/v1/apps/{appId}/lifecycle/deactivate | Deactivate an Application
-[**deactivateDefaultProvisioningConnectionForApplication**](ApplicationApi.md#deactivateDefaultProvisioningConnectionForApplication) | **POST** /api/v1/apps/{appId}/connections/default/lifecycle/deactivate | Deactivate the default Provisioning Connection for an Application
-[**deleteApplication**](ApplicationApi.md#deleteApplication) | **DELETE** /api/v1/apps/{appId} | Delete an Application
-[**deleteApplicationGroupAssignment**](ApplicationApi.md#deleteApplicationGroupAssignment) | **DELETE** /api/v1/apps/{appId}/groups/{groupId} | Unassign a Group
-[**deleteApplicationUser**](ApplicationApi.md#deleteApplicationUser) | **DELETE** /api/v1/apps/{appId}/users/{userId} | Unassign a User
-[**generateApplicationKey**](ApplicationApi.md#generateApplicationKey) | **POST** /api/v1/apps/{appId}/credentials/keys/generate | Generate a Key Credential
-[**generateCsrForApplication**](ApplicationApi.md#generateCsrForApplication) | **POST** /api/v1/apps/{appId}/credentials/csrs | Generate a Certificate Signing Request
-[**getApplication**](ApplicationApi.md#getApplication) | **GET** /api/v1/apps/{appId} | Retrieve an Application
-[**getApplicationGroupAssignment**](ApplicationApi.md#getApplicationGroupAssignment) | **GET** /api/v1/apps/{appId}/groups/{groupId} | Retrieve an Assigned Group
-[**getApplicationKey**](ApplicationApi.md#getApplicationKey) | **GET** /api/v1/apps/{appId}/credentials/keys/{keyId} | Retrieve a Key Credential
-[**getApplicationUser**](ApplicationApi.md#getApplicationUser) | **GET** /api/v1/apps/{appId}/users/{userId} | Retrieve an Assigned User
-[**getCsrForApplication**](ApplicationApi.md#getCsrForApplication) | **GET** /api/v1/apps/{appId}/credentials/csrs/{csrId} | Retrieve a Certificate Signing Request
-[**getDefaultProvisioningConnectionForApplication**](ApplicationApi.md#getDefaultProvisioningConnectionForApplication) | **GET** /api/v1/apps/{appId}/connections/default | Retrieve the default Provisioning Connection
-[**getFeatureForApplication**](ApplicationApi.md#getFeatureForApplication) | **GET** /api/v1/apps/{appId}/features/{name} | Retrieve a Feature
-[**getOAuth2TokenForApplication**](ApplicationApi.md#getOAuth2TokenForApplication) | **GET** /api/v1/apps/{appId}/tokens/{tokenId} | Retrieve an OAuth 2.0 Token
-[**getScopeConsentGrant**](ApplicationApi.md#getScopeConsentGrant) | **GET** /api/v1/apps/{appId}/grants/{grantId} | Retrieve a Scope Consent Grant
-[**grantConsentToScope**](ApplicationApi.md#grantConsentToScope) | **POST** /api/v1/apps/{appId}/grants | Grant Consent to Scope
-[**listApplicationGroupAssignments**](ApplicationApi.md#listApplicationGroupAssignments) | **GET** /api/v1/apps/{appId}/groups | List all Assigned Groups
-[**listApplicationKeys**](ApplicationApi.md#listApplicationKeys) | **GET** /api/v1/apps/{appId}/credentials/keys | List all Key Credentials
-[**listApplicationUsers**](ApplicationApi.md#listApplicationUsers) | **GET** /api/v1/apps/{appId}/users | List all Assigned Users
-[**listApplications**](ApplicationApi.md#listApplications) | **GET** /api/v1/apps | List all Applications
-[**listCsrsForApplication**](ApplicationApi.md#listCsrsForApplication) | **GET** /api/v1/apps/{appId}/credentials/csrs | List all Certificate Signing Requests
-[**listFeaturesForApplication**](ApplicationApi.md#listFeaturesForApplication) | **GET** /api/v1/apps/{appId}/features | List all Features
-[**listOAuth2TokensForApplication**](ApplicationApi.md#listOAuth2TokensForApplication) | **GET** /api/v1/apps/{appId}/tokens | List all OAuth 2.0 Tokens
-[**listScopeConsentGrants**](ApplicationApi.md#listScopeConsentGrants) | **GET** /api/v1/apps/{appId}/grants | List all Scope Consent Grants
-[**publishCsrFromApplication**](ApplicationApi.md#publishCsrFromApplication) | **POST** /api/v1/apps/{appId}/credentials/csrs/{csrId}/lifecycle/publish | Publish a Certificate Signing Request
-[**revokeCsrFromApplication**](ApplicationApi.md#revokeCsrFromApplication) | **DELETE** /api/v1/apps/{appId}/credentials/csrs/{csrId} | Revoke a Certificate Signing Request
-[**revokeOAuth2TokenForApplication**](ApplicationApi.md#revokeOAuth2TokenForApplication) | **DELETE** /api/v1/apps/{appId}/tokens/{tokenId} | Revoke an OAuth 2.0 Token
-[**revokeOAuth2TokensForApplication**](ApplicationApi.md#revokeOAuth2TokensForApplication) | **DELETE** /api/v1/apps/{appId}/tokens | Revoke all OAuth 2.0 Tokens
-[**revokeScopeConsentGrant**](ApplicationApi.md#revokeScopeConsentGrant) | **DELETE** /api/v1/apps/{appId}/grants/{grantId} | Revoke a Scope Consent Grant
-[**setDefaultProvisioningConnectionForApplication**](ApplicationApi.md#setDefaultProvisioningConnectionForApplication) | **POST** /api/v1/apps/{appId}/connections/default | Update the default Provisioning Connection
-[**updateApplication**](ApplicationApi.md#updateApplication) | **PUT** /api/v1/apps/{appId} | Replace an Application
-[**updateApplicationUser**](ApplicationApi.md#updateApplicationUser) | **POST** /api/v1/apps/{appId}/users/{userId} | Update an Application Profile for Assigned User
-[**updateFeatureForApplication**](ApplicationApi.md#updateFeatureForApplication) | **PUT** /api/v1/apps/{appId}/features/{name} | Update a Feature
-[**uploadApplicationLogo**](ApplicationApi.md#uploadApplicationLogo) | **POST** /api/v1/apps/{appId}/logo | Upload a Logo
+[**activateApplication**](ApplicationApi.md#activateapplication) | **POST** /api/v1/apps/{appId}/lifecycle/activate | Activate an Application
+[**activateDefaultProvisioningConnectionForApplication**](ApplicationApi.md#activatedefaultprovisioningconnectionforapplication) | **POST** /api/v1/apps/{appId}/connections/default/lifecycle/activate | Activate the default Provisioning Connection
+[**assignUserToApplication**](ApplicationApi.md#assignusertoapplication) | **POST** /api/v1/apps/{appId}/users | Assign a User
+[**cloneApplicationKey**](ApplicationApi.md#cloneapplicationkey) | **POST** /api/v1/apps/{appId}/credentials/keys/{keyId}/clone | Clone a Key Credential
+[**createApplication**](ApplicationApi.md#createapplication) | **POST** /api/v1/apps | Create an Application
+[**createApplicationGroupAssignment**](ApplicationApi.md#createapplicationgroupassignment) | **PUT** /api/v1/apps/{appId}/groups/{groupId} | Assign a Group
+[**deactivateApplication**](ApplicationApi.md#deactivateapplication) | **POST** /api/v1/apps/{appId}/lifecycle/deactivate | Deactivate an Application
+[**deactivateDefaultProvisioningConnectionForApplication**](ApplicationApi.md#deactivatedefaultprovisioningconnectionforapplication) | **POST** /api/v1/apps/{appId}/connections/default/lifecycle/deactivate | Deactivate the default Provisioning Connection for an Application
+[**deleteApplication**](ApplicationApi.md#deleteapplication) | **DELETE** /api/v1/apps/{appId} | Delete an Application
+[**deleteApplicationGroupAssignment**](ApplicationApi.md#deleteapplicationgroupassignment) | **DELETE** /api/v1/apps/{appId}/groups/{groupId} | Unassign a Group
+[**deleteApplicationUser**](ApplicationApi.md#deleteapplicationuser) | **DELETE** /api/v1/apps/{appId}/users/{userId} | Unassign a User
+[**generateApplicationKey**](ApplicationApi.md#generateapplicationkey) | **POST** /api/v1/apps/{appId}/credentials/keys/generate | Generate a Key Credential
+[**generateCsrForApplication**](ApplicationApi.md#generatecsrforapplication) | **POST** /api/v1/apps/{appId}/credentials/csrs | Generate a Certificate Signing Request
+[**getApplication**](ApplicationApi.md#getapplication) | **GET** /api/v1/apps/{appId} | Retrieve an Application
+[**getApplicationGroupAssignment**](ApplicationApi.md#getapplicationgroupassignment) | **GET** /api/v1/apps/{appId}/groups/{groupId} | Retrieve an Assigned Group
+[**getApplicationKey**](ApplicationApi.md#getapplicationkey) | **GET** /api/v1/apps/{appId}/credentials/keys/{keyId} | Retrieve a Key Credential
+[**getApplicationUser**](ApplicationApi.md#getapplicationuser) | **GET** /api/v1/apps/{appId}/users/{userId} | Retrieve an Assigned User
+[**getCsrForApplication**](ApplicationApi.md#getcsrforapplication) | **GET** /api/v1/apps/{appId}/credentials/csrs/{csrId} | Retrieve a Certificate Signing Request
+[**getDefaultProvisioningConnectionForApplication**](ApplicationApi.md#getdefaultprovisioningconnectionforapplication) | **GET** /api/v1/apps/{appId}/connections/default | Retrieve the default Provisioning Connection
+[**getFeatureForApplication**](ApplicationApi.md#getfeatureforapplication) | **GET** /api/v1/apps/{appId}/features/{name} | Retrieve a Feature
+[**getOAuth2TokenForApplication**](ApplicationApi.md#getoauth2tokenforapplication) | **GET** /api/v1/apps/{appId}/tokens/{tokenId} | Retrieve an OAuth 2.0 Token
+[**getScopeConsentGrant**](ApplicationApi.md#getscopeconsentgrant) | **GET** /api/v1/apps/{appId}/grants/{grantId} | Retrieve a Scope Consent Grant
+[**grantConsentToScope**](ApplicationApi.md#grantconsenttoscope) | **POST** /api/v1/apps/{appId}/grants | Grant Consent to Scope
+[**listApplicationGroupAssignments**](ApplicationApi.md#listapplicationgroupassignments) | **GET** /api/v1/apps/{appId}/groups | List all Assigned Groups
+[**listApplicationKeys**](ApplicationApi.md#listapplicationkeys) | **GET** /api/v1/apps/{appId}/credentials/keys | List all Key Credentials
+[**listApplicationUsers**](ApplicationApi.md#listapplicationusers) | **GET** /api/v1/apps/{appId}/users | List all Assigned Users
+[**listApplications**](ApplicationApi.md#listapplications) | **GET** /api/v1/apps | List all Applications
+[**listCsrsForApplication**](ApplicationApi.md#listcsrsforapplication) | **GET** /api/v1/apps/{appId}/credentials/csrs | List all Certificate Signing Requests
+[**listFeaturesForApplication**](ApplicationApi.md#listfeaturesforapplication) | **GET** /api/v1/apps/{appId}/features | List all Features
+[**listOAuth2TokensForApplication**](ApplicationApi.md#listoauth2tokensforapplication) | **GET** /api/v1/apps/{appId}/tokens | List all OAuth 2.0 Tokens
+[**listScopeConsentGrants**](ApplicationApi.md#listscopeconsentgrants) | **GET** /api/v1/apps/{appId}/grants | List all Scope Consent Grants
+[**publishCsrFromApplication**](ApplicationApi.md#publishcsrfromapplication) | **POST** /api/v1/apps/{appId}/credentials/csrs/{csrId}/lifecycle/publish | Publish a Certificate Signing Request
+[**revokeCsrFromApplication**](ApplicationApi.md#revokecsrfromapplication) | **DELETE** /api/v1/apps/{appId}/credentials/csrs/{csrId} | Revoke a Certificate Signing Request
+[**revokeOAuth2TokenForApplication**](ApplicationApi.md#revokeoauth2tokenforapplication) | **DELETE** /api/v1/apps/{appId}/tokens/{tokenId} | Revoke an OAuth 2.0 Token
+[**revokeOAuth2TokensForApplication**](ApplicationApi.md#revokeoauth2tokensforapplication) | **DELETE** /api/v1/apps/{appId}/tokens | Revoke all OAuth 2.0 Tokens
+[**revokeScopeConsentGrant**](ApplicationApi.md#revokescopeconsentgrant) | **DELETE** /api/v1/apps/{appId}/grants/{grantId} | Revoke a Scope Consent Grant
+[**setDefaultProvisioningConnectionForApplication**](ApplicationApi.md#setdefaultprovisioningconnectionforapplication) | **POST** /api/v1/apps/{appId}/connections/default | Update the default Provisioning Connection
+[**updateApplication**](ApplicationApi.md#updateapplication) | **PUT** /api/v1/apps/{appId} | Replace an Application
+[**updateApplicationUser**](ApplicationApi.md#updateapplicationuser) | **POST** /api/v1/apps/{appId}/users/{userId} | Update an Application Profile for Assigned User
+[**updateFeatureForApplication**](ApplicationApi.md#updatefeatureforapplication) | **PUT** /api/v1/apps/{appId}/features/{name} | Update a Feature
+[**uploadApplicationLogo**](ApplicationApi.md#uploadapplicationlogo) | **POST** /api/v1/apps/{appId}/logo | Upload a Logo
 
 
 # **activateApplication**
@@ -77,7 +77,7 @@ apiInstance.activateApplication(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **appId** | [**string**] |  | defaults to undefined
+**appId** | **string** |  | defaults to undefined
 
 
 ### Return type
@@ -134,7 +134,7 @@ apiInstance.activateDefaultProvisioningConnectionForApplication(body).then((data
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **appId** | [**string**] |  | defaults to undefined
+**appId** | **string** |  | defaults to undefined
 
 
 ### Return type
@@ -205,13 +205,13 @@ apiInstance.assignUserToApplication(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **appUser** | **AppUser**|  |
- **appId** | [**string**] |  | defaults to undefined
+ **appUser** | **[AppUser](AppUser.md)** |  | 
+**appId** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**AppUser**
+**[AppUser](AppUser.md)**
 
 ### Authorization
 
@@ -268,14 +268,14 @@ apiInstance.cloneApplicationKey(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **appId** | [**string**] |  | defaults to undefined
- **keyId** | [**string**] |  | defaults to undefined
- **targetAid** | [**string**] | Unique key of the target Application | defaults to undefined
+**appId** | **string** |  | defaults to undefined
+**keyId** | **string** |  | defaults to undefined
+**targetAid** | **string** | Unique key of the target Application | defaults to undefined
 
 
 ### Return type
 
-**JsonWebKey**
+**[JsonWebKey](JsonWebKey.md)**
 
 ### Authorization
 
@@ -331,14 +331,14 @@ apiInstance.createApplication(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **application** | **Application**|  |
- **activate** | [**boolean**] | Executes activation lifecycle operation when creating the app | (optional) defaults to undefined
- **OktaAccessGateway_Agent** | [**string**] |  | (optional) defaults to undefined
+ **application** | **[Application](Application.md)** |  | 
+**activate** | **boolean** | Executes activation lifecycle operation when creating the app | (optional) defaults to undefined
+**OktaAccessGateway_Agent** | **string** |  | (optional) defaults to undefined
 
 
 ### Return type
 
-**Application**
+**[Application](Application.md)**
 
 ### Authorization
 
@@ -399,14 +399,14 @@ apiInstance.createApplicationGroupAssignment(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **applicationGroupAssignment** | **ApplicationGroupAssignment**|  |
- **appId** | [**string**] |  | defaults to undefined
- **groupId** | [**string**] |  | defaults to undefined
+ **applicationGroupAssignment** | **[ApplicationGroupAssignment](ApplicationGroupAssignment.md)** |  | 
+**appId** | **string** |  | defaults to undefined
+**groupId** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**ApplicationGroupAssignment**
+**[ApplicationGroupAssignment](ApplicationGroupAssignment.md)**
 
 ### Authorization
 
@@ -459,7 +459,7 @@ apiInstance.deactivateApplication(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **appId** | [**string**] |  | defaults to undefined
+**appId** | **string** |  | defaults to undefined
 
 
 ### Return type
@@ -516,7 +516,7 @@ apiInstance.deactivateDefaultProvisioningConnectionForApplication(body).then((da
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **appId** | [**string**] |  | defaults to undefined
+**appId** | **string** |  | defaults to undefined
 
 
 ### Return type
@@ -573,7 +573,7 @@ apiInstance.deleteApplication(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **appId** | [**string**] |  | defaults to undefined
+**appId** | **string** |  | defaults to undefined
 
 
 ### Return type
@@ -632,8 +632,8 @@ apiInstance.deleteApplicationGroupAssignment(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **appId** | [**string**] |  | defaults to undefined
- **groupId** | [**string**] |  | defaults to undefined
+**appId** | **string** |  | defaults to undefined
+**groupId** | **string** |  | defaults to undefined
 
 
 ### Return type
@@ -694,9 +694,9 @@ apiInstance.deleteApplicationUser(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **appId** | [**string**] |  | defaults to undefined
- **userId** | [**string**] |  | defaults to undefined
- **sendEmail** | [**boolean**] |  | (optional) defaults to undefined
+**appId** | **string** |  | defaults to undefined
+**userId** | **string** |  | defaults to undefined
+**sendEmail** | **boolean** |  | (optional) defaults to undefined
 
 
 ### Return type
@@ -755,13 +755,13 @@ apiInstance.generateApplicationKey(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **appId** | [**string**] |  | defaults to undefined
- **validityYears** | [**number**] |  | (optional) defaults to undefined
+**appId** | **string** |  | defaults to undefined
+**validityYears** | **number** |  | (optional) defaults to undefined
 
 
 ### Return type
 
-**JsonWebKey**
+**[JsonWebKey](JsonWebKey.md)**
 
 ### Authorization
 
@@ -829,13 +829,13 @@ apiInstance.generateCsrForApplication(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **metadata** | **CsrMetadata**|  |
- **appId** | [**string**] |  | defaults to undefined
+ **metadata** | **[CsrMetadata](CsrMetadata.md)** |  | 
+**appId** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**Csr**
+**[Csr](Csr.md)**
 
 ### Authorization
 
@@ -890,13 +890,13 @@ apiInstance.getApplication(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **appId** | [**string**] |  | defaults to undefined
- **expand** | [**string**] |  | (optional) defaults to undefined
+**appId** | **string** |  | defaults to undefined
+**expand** | **string** |  | (optional) defaults to undefined
 
 
 ### Return type
 
-**Application**
+**[Application](Application.md)**
 
 ### Authorization
 
@@ -952,14 +952,14 @@ apiInstance.getApplicationGroupAssignment(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **appId** | [**string**] |  | defaults to undefined
- **groupId** | [**string**] |  | defaults to undefined
- **expand** | [**string**] |  | (optional) defaults to undefined
+**appId** | **string** |  | defaults to undefined
+**groupId** | **string** |  | defaults to undefined
+**expand** | **string** |  | (optional) defaults to undefined
 
 
 ### Return type
 
-**ApplicationGroupAssignment**
+**[ApplicationGroupAssignment](ApplicationGroupAssignment.md)**
 
 ### Authorization
 
@@ -1013,13 +1013,13 @@ apiInstance.getApplicationKey(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **appId** | [**string**] |  | defaults to undefined
- **keyId** | [**string**] |  | defaults to undefined
+**appId** | **string** |  | defaults to undefined
+**keyId** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**JsonWebKey**
+**[JsonWebKey](JsonWebKey.md)**
 
 ### Authorization
 
@@ -1075,14 +1075,14 @@ apiInstance.getApplicationUser(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **appId** | [**string**] |  | defaults to undefined
- **userId** | [**string**] |  | defaults to undefined
- **expand** | [**string**] |  | (optional) defaults to undefined
+**appId** | **string** |  | defaults to undefined
+**userId** | **string** |  | defaults to undefined
+**expand** | **string** |  | (optional) defaults to undefined
 
 
 ### Return type
 
-**AppUser**
+**[AppUser](AppUser.md)**
 
 ### Authorization
 
@@ -1136,13 +1136,13 @@ apiInstance.getCsrForApplication(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **appId** | [**string**] |  | defaults to undefined
- **csrId** | [**string**] |  | defaults to undefined
+**appId** | **string** |  | defaults to undefined
+**csrId** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**Csr**
+**[Csr](Csr.md)**
 
 ### Authorization
 
@@ -1194,12 +1194,12 @@ apiInstance.getDefaultProvisioningConnectionForApplication(body).then((data:any)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **appId** | [**string**] |  | defaults to undefined
+**appId** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**ProvisioningConnection**
+**[ProvisioningConnection](ProvisioningConnection.md)**
 
 ### Authorization
 
@@ -1253,13 +1253,13 @@ apiInstance.getFeatureForApplication(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **appId** | [**string**] |  | defaults to undefined
- **name** | [**string**] |  | defaults to undefined
+**appId** | **string** |  | defaults to undefined
+**name** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**ApplicationFeature**
+**[ApplicationFeature](ApplicationFeature.md)**
 
 ### Authorization
 
@@ -1315,14 +1315,14 @@ apiInstance.getOAuth2TokenForApplication(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **appId** | [**string**] |  | defaults to undefined
- **tokenId** | [**string**] |  | defaults to undefined
- **expand** | [**string**] |  | (optional) defaults to undefined
+**appId** | **string** |  | defaults to undefined
+**tokenId** | **string** |  | defaults to undefined
+**expand** | **string** |  | (optional) defaults to undefined
 
 
 ### Return type
 
-**OAuth2Token**
+**[OAuth2Token](OAuth2Token.md)**
 
 ### Authorization
 
@@ -1378,14 +1378,14 @@ apiInstance.getScopeConsentGrant(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **appId** | [**string**] |  | defaults to undefined
- **grantId** | [**string**] |  | defaults to undefined
- **expand** | [**string**] |  | (optional) defaults to undefined
+**appId** | **string** |  | defaults to undefined
+**grantId** | **string** |  | defaults to undefined
+**expand** | **string** |  | (optional) defaults to undefined
 
 
 ### Return type
 
-**OAuth2ScopeConsentGrant**
+**[OAuth2ScopeConsentGrant](OAuth2ScopeConsentGrant.md)**
 
 ### Authorization
 
@@ -1449,13 +1449,13 @@ apiInstance.grantConsentToScope(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **oAuth2ScopeConsentGrant** | **OAuth2ScopeConsentGrant**|  |
- **appId** | [**string**] |  | defaults to undefined
+ **oAuth2ScopeConsentGrant** | **[OAuth2ScopeConsentGrant](OAuth2ScopeConsentGrant.md)** |  | 
+**appId** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**OAuth2ScopeConsentGrant**
+**[OAuth2ScopeConsentGrant](OAuth2ScopeConsentGrant.md)**
 
 ### Authorization
 
@@ -1516,16 +1516,16 @@ apiInstance.listApplicationGroupAssignments(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **appId** | [**string**] |  | defaults to undefined
- **q** | [**string**] |  | (optional) defaults to undefined
- **after** | [**string**] | Specifies the pagination cursor for the next page of assignments | (optional) defaults to undefined
- **limit** | [**number**] | Specifies the number of results for a page | (optional) defaults to -1
- **expand** | [**string**] |  | (optional) defaults to undefined
+**appId** | **string** |  | defaults to undefined
+**q** | **string** |  | (optional) defaults to undefined
+**after** | **string** | Specifies the pagination cursor for the next page of assignments | (optional) defaults to undefined
+**limit** | **number** | Specifies the number of results for a page | (optional) defaults to -1
+**expand** | **string** |  | (optional) defaults to undefined
 
 
 ### Return type
 
-**Array<ApplicationGroupAssignment>**
+**[Array&lt;ApplicationGroupAssignment&gt;](ApplicationGroupAssignment.md)**
 
 ### Authorization
 
@@ -1577,12 +1577,12 @@ apiInstance.listApplicationKeys(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **appId** | [**string**] |  | defaults to undefined
+**appId** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**Array<JsonWebKey>**
+**[Array&lt;JsonWebKey&gt;](JsonWebKey.md)**
 
 ### Authorization
 
@@ -1646,18 +1646,18 @@ apiInstance.listApplicationUsers(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **appId** | [**string**] |  | defaults to undefined
- **q** | [**string**] |  | (optional) defaults to undefined
- **query_scope** | [**string**] |  | (optional) defaults to undefined
- **after** | [**string**] | specifies the pagination cursor for the next page of assignments | (optional) defaults to undefined
- **limit** | [**number**] | specifies the number of results for a page | (optional) defaults to -1
- **filter** | [**string**] |  | (optional) defaults to undefined
- **expand** | [**string**] |  | (optional) defaults to undefined
+**appId** | **string** |  | defaults to undefined
+**q** | **string** |  | (optional) defaults to undefined
+**query_scope** | **string** |  | (optional) defaults to undefined
+**after** | **string** | specifies the pagination cursor for the next page of assignments | (optional) defaults to undefined
+**limit** | **number** | specifies the number of results for a page | (optional) defaults to -1
+**filter** | **string** |  | (optional) defaults to undefined
+**expand** | **string** |  | (optional) defaults to undefined
 
 
 ### Return type
 
-**Array<AppUser>**
+**[Array&lt;AppUser&gt;](AppUser.md)**
 
 ### Authorization
 
@@ -1719,17 +1719,17 @@ apiInstance.listApplications(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **q** | [**string**] |  | (optional) defaults to undefined
- **after** | [**string**] | Specifies the pagination cursor for the next page of apps | (optional) defaults to undefined
- **limit** | [**number**] | Specifies the number of results for a page | (optional) defaults to -1
- **filter** | [**string**] | Filters apps by status, user.id, group.id or credentials.signing.kid expression | (optional) defaults to undefined
- **expand** | [**string**] | Traverses users link relationship and optionally embeds Application User resource | (optional) defaults to undefined
- **includeNonDeleted** | [**boolean**] |  | (optional) defaults to undefined
+**q** | **string** |  | (optional) defaults to undefined
+**after** | **string** | Specifies the pagination cursor for the next page of apps | (optional) defaults to undefined
+**limit** | **number** | Specifies the number of results for a page | (optional) defaults to -1
+**filter** | **string** | Filters apps by status, user.id, group.id or credentials.signing.kid expression | (optional) defaults to undefined
+**expand** | **string** | Traverses users link relationship and optionally embeds Application User resource | (optional) defaults to undefined
+**includeNonDeleted** | **boolean** |  | (optional) defaults to undefined
 
 
 ### Return type
 
-**Array<Application>**
+**[Array&lt;Application&gt;](Application.md)**
 
 ### Authorization
 
@@ -1780,12 +1780,12 @@ apiInstance.listCsrsForApplication(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **appId** | [**string**] |  | defaults to undefined
+**appId** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**Array<Csr>**
+**[Array&lt;Csr&gt;](Csr.md)**
 
 ### Authorization
 
@@ -1837,12 +1837,12 @@ apiInstance.listFeaturesForApplication(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **appId** | [**string**] |  | defaults to undefined
+**appId** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**Array<ApplicationFeature>**
+**[Array&lt;ApplicationFeature&gt;](ApplicationFeature.md)**
 
 ### Authorization
 
@@ -1900,15 +1900,15 @@ apiInstance.listOAuth2TokensForApplication(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **appId** | [**string**] |  | defaults to undefined
- **expand** | [**string**] |  | (optional) defaults to undefined
- **after** | [**string**] |  | (optional) defaults to undefined
- **limit** | [**number**] |  | (optional) defaults to 20
+**appId** | **string** |  | defaults to undefined
+**expand** | **string** |  | (optional) defaults to undefined
+**after** | **string** |  | (optional) defaults to undefined
+**limit** | **number** |  | (optional) defaults to 20
 
 
 ### Return type
 
-**Array<OAuth2Token>**
+**[Array&lt;OAuth2Token&gt;](OAuth2Token.md)**
 
 ### Authorization
 
@@ -1962,13 +1962,13 @@ apiInstance.listScopeConsentGrants(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **appId** | [**string**] |  | defaults to undefined
- **expand** | [**string**] |  | (optional) defaults to undefined
+**appId** | **string** |  | defaults to undefined
+**expand** | **string** |  | (optional) defaults to undefined
 
 
 ### Return type
 
-**Array<OAuth2ScopeConsentGrant>**
+**[Array&lt;OAuth2ScopeConsentGrant&gt;](OAuth2ScopeConsentGrant.md)**
 
 ### Authorization
 
@@ -2024,14 +2024,14 @@ apiInstance.publishCsrFromApplication(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | **HttpFile**|  |
- **appId** | [**string**] |  | defaults to undefined
- **csrId** | [**string**] |  | defaults to undefined
+ **body** | **HttpFile** |  | 
+**appId** | **string** |  | defaults to undefined
+**csrId** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**JsonWebKey**
+**[JsonWebKey](JsonWebKey.md)**
 
 ### Authorization
 
@@ -2086,8 +2086,8 @@ apiInstance.revokeCsrFromApplication(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **appId** | [**string**] |  | defaults to undefined
- **csrId** | [**string**] |  | defaults to undefined
+**appId** | **string** |  | defaults to undefined
+**csrId** | **string** |  | defaults to undefined
 
 
 ### Return type
@@ -2146,8 +2146,8 @@ apiInstance.revokeOAuth2TokenForApplication(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **appId** | [**string**] |  | defaults to undefined
- **tokenId** | [**string**] |  | defaults to undefined
+**appId** | **string** |  | defaults to undefined
+**tokenId** | **string** |  | defaults to undefined
 
 
 ### Return type
@@ -2204,7 +2204,7 @@ apiInstance.revokeOAuth2TokensForApplication(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **appId** | [**string**] |  | defaults to undefined
+**appId** | **string** |  | defaults to undefined
 
 
 ### Return type
@@ -2263,8 +2263,8 @@ apiInstance.revokeScopeConsentGrant(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **appId** | [**string**] |  | defaults to undefined
- **grantId** | [**string**] |  | defaults to undefined
+**appId** | **string** |  | defaults to undefined
+**grantId** | **string** |  | defaults to undefined
 
 
 ### Return type
@@ -2330,14 +2330,14 @@ apiInstance.setDefaultProvisioningConnectionForApplication(body).then((data:any)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ProvisioningConnectionRequest** | **ProvisioningConnectionRequest**|  |
- **appId** | [**string**] |  | defaults to undefined
- **activate** | [**boolean**] |  | (optional) defaults to undefined
+ **ProvisioningConnectionRequest** | **[ProvisioningConnectionRequest](ProvisioningConnectionRequest.md)** |  | 
+**appId** | **string** |  | defaults to undefined
+**activate** | **boolean** |  | (optional) defaults to undefined
 
 
 ### Return type
 
-**ProvisioningConnection**
+**[ProvisioningConnection](ProvisioningConnection.md)**
 
 ### Authorization
 
@@ -2392,13 +2392,13 @@ apiInstance.updateApplication(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **application** | **Application**|  |
- **appId** | [**string**] |  | defaults to undefined
+ **application** | **[Application](Application.md)** |  | 
+**appId** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**Application**
+**[Application](Application.md)**
 
 ### Authorization
 
@@ -2467,14 +2467,14 @@ apiInstance.updateApplicationUser(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **appUser** | **AppUser**|  |
- **appId** | [**string**] |  | defaults to undefined
- **userId** | [**string**] |  | defaults to undefined
+ **appUser** | **[AppUser](AppUser.md)** |  | 
+**appId** | **string** |  | defaults to undefined
+**userId** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**AppUser**
+**[AppUser](AppUser.md)**
 
 ### Authorization
 
@@ -2550,14 +2550,14 @@ apiInstance.updateFeatureForApplication(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **CapabilitiesObject** | **CapabilitiesObject**|  |
- **appId** | [**string**] |  | defaults to undefined
- **name** | [**string**] |  | defaults to undefined
+ **CapabilitiesObject** | **[CapabilitiesObject](CapabilitiesObject.md)** |  | 
+**appId** | **string** |  | defaults to undefined
+**name** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**ApplicationFeature**
+**[ApplicationFeature](ApplicationFeature.md)**
 
 ### Authorization
 
@@ -2612,8 +2612,8 @@ apiInstance.uploadApplicationLogo(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **appId** | [**string**] |  | defaults to undefined
- **file** | [**HttpFile**] |  | defaults to undefined
+**appId** | **string** |  | defaults to undefined
+**file** | **HttpFile** |  | defaults to undefined
 
 
 ### Return type

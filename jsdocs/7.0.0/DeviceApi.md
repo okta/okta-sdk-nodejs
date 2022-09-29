@@ -4,13 +4,13 @@ All URIs are relative to *https://subdomain.okta.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**activateDevice**](DeviceApi.md#activateDevice) | **POST** /api/v1/devices/{deviceId}/lifecycle/activate | Activate a Device
-[**deactivateDevice**](DeviceApi.md#deactivateDevice) | **POST** /api/v1/devices/{deviceId}/lifecycle/deactivate | Deactivate a Device
-[**deleteDevice**](DeviceApi.md#deleteDevice) | **DELETE** /api/v1/devices/{deviceId} | Delete a Device
-[**getDevice**](DeviceApi.md#getDevice) | **GET** /api/v1/devices/{deviceId} | Retrieve a Device
-[**listDevices**](DeviceApi.md#listDevices) | **GET** /api/v1/devices | List all Devices
-[**suspendDevice**](DeviceApi.md#suspendDevice) | **POST** /api/v1/devices/{deviceId}/lifecycle/suspend | Suspend a Device
-[**unsuspendDevice**](DeviceApi.md#unsuspendDevice) | **POST** /api/v1/devices/{deviceId}/lifecycle/unsuspend | Unsuspend a Device
+[**activateDevice**](DeviceApi.md#activatedevice) | **POST** /api/v1/devices/{deviceId}/lifecycle/activate | Activate a Device
+[**deactivateDevice**](DeviceApi.md#deactivatedevice) | **POST** /api/v1/devices/{deviceId}/lifecycle/deactivate | Deactivate a Device
+[**deleteDevice**](DeviceApi.md#deletedevice) | **DELETE** /api/v1/devices/{deviceId} | Delete a Device
+[**getDevice**](DeviceApi.md#getdevice) | **GET** /api/v1/devices/{deviceId} | Retrieve a Device
+[**listDevices**](DeviceApi.md#listdevices) | **GET** /api/v1/devices | List all Devices
+[**suspendDevice**](DeviceApi.md#suspenddevice) | **POST** /api/v1/devices/{deviceId}/lifecycle/suspend | Suspend a Device
+[**unsuspendDevice**](DeviceApi.md#unsuspenddevice) | **POST** /api/v1/devices/{deviceId}/lifecycle/unsuspend | Unsuspend a Device
 
 
 # **activateDevice**
@@ -43,7 +43,7 @@ apiInstance.activateDevice(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **deviceId** | [**string**] | &#x60;id&#x60; of the device | defaults to undefined
+**deviceId** | **string** | &#x60;id&#x60; of the device | defaults to undefined
 
 
 ### Return type
@@ -100,7 +100,7 @@ apiInstance.deactivateDevice(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **deviceId** | [**string**] | &#x60;id&#x60; of the device | defaults to undefined
+**deviceId** | **string** | &#x60;id&#x60; of the device | defaults to undefined
 
 
 ### Return type
@@ -157,7 +157,7 @@ apiInstance.deleteDevice(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **deviceId** | [**string**] | &#x60;id&#x60; of the device | defaults to undefined
+**deviceId** | **string** | &#x60;id&#x60; of the device | defaults to undefined
 
 
 ### Return type
@@ -214,12 +214,12 @@ apiInstance.getDevice(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **deviceId** | [**string**] | &#x60;id&#x60; of the device | defaults to undefined
+**deviceId** | **string** | &#x60;id&#x60; of the device | defaults to undefined
 
 
 ### Return type
 
-**Device**
+**[Device](Device.md)**
 
 ### Authorization
 
@@ -275,14 +275,14 @@ apiInstance.listDevices(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **after** | [**string**] | The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](/#pagination) for more information. | (optional) defaults to undefined
- **limit** | [**number**] | A limit on the number of objects to return. | (optional) defaults to 20
- **search** | [**string**] | SCIM filter expression that filters the results. Searches include all Device &#x60;profile&#x60; properties, as well as the Device &#x60;id&#x60;, &#x60;status&#x60; and &#x60;lastUpdated&#x60; properties. | (optional) defaults to undefined
+**after** | **string** | The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](/#pagination) for more information. | (optional) defaults to undefined
+**limit** | **number** | A limit on the number of objects to return. | (optional) defaults to 20
+**search** | **string** | SCIM filter expression that filters the results. Searches include all Device &#x60;profile&#x60; properties, as well as the Device &#x60;id&#x60;, &#x60;status&#x60; and &#x60;lastUpdated&#x60; properties. | (optional) defaults to undefined
 
 
 ### Return type
 
-**Array<Device>**
+**[Array&lt;Device&gt;](Device.md)**
 
 ### Authorization
 
@@ -333,7 +333,7 @@ apiInstance.suspendDevice(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **deviceId** | [**string**] | &#x60;id&#x60; of the device | defaults to undefined
+**deviceId** | **string** | &#x60;id&#x60; of the device | defaults to undefined
 
 
 ### Return type
@@ -390,7 +390,7 @@ apiInstance.unsuspendDevice(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **deviceId** | [**string**] | &#x60;id&#x60; of the device | defaults to undefined
+**deviceId** | **string** | &#x60;id&#x60; of the device | defaults to undefined
 
 
 ### Return type

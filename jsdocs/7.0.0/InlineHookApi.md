@@ -4,14 +4,14 @@ All URIs are relative to *https://subdomain.okta.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**activateInlineHook**](InlineHookApi.md#activateInlineHook) | **POST** /api/v1/inlineHooks/{inlineHookId}/lifecycle/activate | Activate an Inline Hook
-[**createInlineHook**](InlineHookApi.md#createInlineHook) | **POST** /api/v1/inlineHooks | Create an Inline Hook
-[**deactivateInlineHook**](InlineHookApi.md#deactivateInlineHook) | **POST** /api/v1/inlineHooks/{inlineHookId}/lifecycle/deactivate | Deactivate an Inline Hook
-[**deleteInlineHook**](InlineHookApi.md#deleteInlineHook) | **DELETE** /api/v1/inlineHooks/{inlineHookId} | Delete an Inline Hook
-[**executeInlineHook**](InlineHookApi.md#executeInlineHook) | **POST** /api/v1/inlineHooks/{inlineHookId}/execute | Execute an Inline Hook
-[**getInlineHook**](InlineHookApi.md#getInlineHook) | **GET** /api/v1/inlineHooks/{inlineHookId} | Retrieve an Inline Hook
-[**listInlineHooks**](InlineHookApi.md#listInlineHooks) | **GET** /api/v1/inlineHooks | List all Inline Hooks
-[**updateInlineHook**](InlineHookApi.md#updateInlineHook) | **PUT** /api/v1/inlineHooks/{inlineHookId} | Replace an Inline Hook
+[**activateInlineHook**](InlineHookApi.md#activateinlinehook) | **POST** /api/v1/inlineHooks/{inlineHookId}/lifecycle/activate | Activate an Inline Hook
+[**createInlineHook**](InlineHookApi.md#createinlinehook) | **POST** /api/v1/inlineHooks | Create an Inline Hook
+[**deactivateInlineHook**](InlineHookApi.md#deactivateinlinehook) | **POST** /api/v1/inlineHooks/{inlineHookId}/lifecycle/deactivate | Deactivate an Inline Hook
+[**deleteInlineHook**](InlineHookApi.md#deleteinlinehook) | **DELETE** /api/v1/inlineHooks/{inlineHookId} | Delete an Inline Hook
+[**executeInlineHook**](InlineHookApi.md#executeinlinehook) | **POST** /api/v1/inlineHooks/{inlineHookId}/execute | Execute an Inline Hook
+[**getInlineHook**](InlineHookApi.md#getinlinehook) | **GET** /api/v1/inlineHooks/{inlineHookId} | Retrieve an Inline Hook
+[**listInlineHooks**](InlineHookApi.md#listinlinehooks) | **GET** /api/v1/inlineHooks | List all Inline Hooks
+[**updateInlineHook**](InlineHookApi.md#updateinlinehook) | **PUT** /api/v1/inlineHooks/{inlineHookId} | Replace an Inline Hook
 
 
 # **activateInlineHook**
@@ -44,12 +44,12 @@ apiInstance.activateInlineHook(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inlineHookId** | [**string**] |  | defaults to undefined
+**inlineHookId** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**InlineHook**
+**[InlineHook](InlineHook.md)**
 
 ### Authorization
 
@@ -125,12 +125,12 @@ apiInstance.createInlineHook(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inlineHook** | **InlineHook**|  |
+ **inlineHook** | **[InlineHook](InlineHook.md)** |  | 
 
 
 ### Return type
 
-**InlineHook**
+**[InlineHook](InlineHook.md)**
 
 ### Authorization
 
@@ -182,12 +182,12 @@ apiInstance.deactivateInlineHook(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inlineHookId** | [**string**] |  | defaults to undefined
+**inlineHookId** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**InlineHook**
+**[InlineHook](InlineHook.md)**
 
 ### Authorization
 
@@ -239,7 +239,7 @@ apiInstance.deleteInlineHook(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inlineHookId** | [**string**] |  | defaults to undefined
+**inlineHookId** | **string** |  | defaults to undefined
 
 
 ### Return type
@@ -298,13 +298,13 @@ apiInstance.executeInlineHook(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **payloadData** | **any**|  |
- **inlineHookId** | [**string**] |  | defaults to undefined
+ **payloadData** | **any** |  | 
+**inlineHookId** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**InlineHookResponse**
+**[InlineHookResponse](InlineHookResponse.md)**
 
 ### Authorization
 
@@ -357,12 +357,12 @@ apiInstance.getInlineHook(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inlineHookId** | [**string**] |  | defaults to undefined
+**inlineHookId** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**InlineHook**
+**[InlineHook](InlineHook.md)**
 
 ### Authorization
 
@@ -414,12 +414,12 @@ apiInstance.listInlineHooks(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **type** | [**string**] |  | (optional) defaults to undefined
+**type** | **string** |  | (optional) defaults to undefined
 
 
 ### Return type
 
-**Array<InlineHook>**
+**[Array&lt;InlineHook&gt;](InlineHook.md)**
 
 ### Authorization
 
@@ -496,13 +496,13 @@ apiInstance.updateInlineHook(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inlineHook** | **InlineHook**|  |
- **inlineHookId** | [**string**] |  | defaults to undefined
+ **inlineHook** | **[InlineHook](InlineHook.md)** |  | 
+**inlineHookId** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**InlineHook**
+**[InlineHook](InlineHook.md)**
 
 ### Authorization
 

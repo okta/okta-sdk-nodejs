@@ -4,12 +4,12 @@ All URIs are relative to *https://subdomain.okta.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**activateAuthenticator**](AuthenticatorApi.md#activateAuthenticator) | **POST** /api/v1/authenticators/{authenticatorId}/lifecycle/activate | Activate an Authenticator
-[**createAuthenticator**](AuthenticatorApi.md#createAuthenticator) | **POST** /api/v1/authenticators | Create an Authenticator
-[**deactivateAuthenticator**](AuthenticatorApi.md#deactivateAuthenticator) | **POST** /api/v1/authenticators/{authenticatorId}/lifecycle/deactivate | Deactivate an Authenticator
-[**getAuthenticator**](AuthenticatorApi.md#getAuthenticator) | **GET** /api/v1/authenticators/{authenticatorId} | Retrieve an Authenticator
-[**listAuthenticators**](AuthenticatorApi.md#listAuthenticators) | **GET** /api/v1/authenticators | List all Authenticators
-[**updateAuthenticator**](AuthenticatorApi.md#updateAuthenticator) | **PUT** /api/v1/authenticators/{authenticatorId} | Replace an Authenticator
+[**activateAuthenticator**](AuthenticatorApi.md#activateauthenticator) | **POST** /api/v1/authenticators/{authenticatorId}/lifecycle/activate | Activate an Authenticator
+[**createAuthenticator**](AuthenticatorApi.md#createauthenticator) | **POST** /api/v1/authenticators | Create an Authenticator
+[**deactivateAuthenticator**](AuthenticatorApi.md#deactivateauthenticator) | **POST** /api/v1/authenticators/{authenticatorId}/lifecycle/deactivate | Deactivate an Authenticator
+[**getAuthenticator**](AuthenticatorApi.md#getauthenticator) | **GET** /api/v1/authenticators/{authenticatorId} | Retrieve an Authenticator
+[**listAuthenticators**](AuthenticatorApi.md#listauthenticators) | **GET** /api/v1/authenticators | List all Authenticators
+[**updateAuthenticator**](AuthenticatorApi.md#updateauthenticator) | **PUT** /api/v1/authenticators/{authenticatorId} | Replace an Authenticator
 
 
 # **activateAuthenticator**
@@ -42,12 +42,12 @@ apiInstance.activateAuthenticator(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **authenticatorId** | [**string**] |  | defaults to undefined
+**authenticatorId** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**Authenticator**
+**[Authenticator](Authenticator.md)**
 
 ### Authorization
 
@@ -120,13 +120,13 @@ apiInstance.createAuthenticator(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **authenticator** | **Authenticator**|  |
- **activate** | [**boolean**] | Whether to execute the activation lifecycle operation when Okta creates the authenticator | (optional) defaults to undefined
+ **authenticator** | **[Authenticator](Authenticator.md)** |  | 
+**activate** | **boolean** | Whether to execute the activation lifecycle operation when Okta creates the authenticator | (optional) defaults to undefined
 
 
 ### Return type
 
-**Authenticator**
+**[Authenticator](Authenticator.md)**
 
 ### Authorization
 
@@ -178,12 +178,12 @@ apiInstance.deactivateAuthenticator(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **authenticatorId** | [**string**] |  | defaults to undefined
+**authenticatorId** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**Authenticator**
+**[Authenticator](Authenticator.md)**
 
 ### Authorization
 
@@ -235,12 +235,12 @@ apiInstance.getAuthenticator(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **authenticatorId** | [**string**] |  | defaults to undefined
+**authenticatorId** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**Authenticator**
+**[Authenticator](Authenticator.md)**
 
 ### Authorization
 
@@ -291,7 +291,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-**Array<Authenticator>**
+**[Array&lt;Authenticator&gt;](Authenticator.md)**
 
 ### Authorization
 
@@ -363,13 +363,13 @@ apiInstance.updateAuthenticator(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **authenticator** | **Authenticator**|  |
- **authenticatorId** | [**string**] |  | defaults to undefined
+ **authenticator** | **[Authenticator](Authenticator.md)** |  | 
+**authenticatorId** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**Authenticator**
+**[Authenticator](Authenticator.md)**
 
 ### Authorization
 

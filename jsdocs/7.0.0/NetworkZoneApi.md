@@ -4,13 +4,13 @@ All URIs are relative to *https://subdomain.okta.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**activateNetworkZone**](NetworkZoneApi.md#activateNetworkZone) | **POST** /api/v1/zones/{zoneId}/lifecycle/activate | Activate a Network Zone
-[**createNetworkZone**](NetworkZoneApi.md#createNetworkZone) | **POST** /api/v1/zones | Create a Network Zone
-[**deactivateNetworkZone**](NetworkZoneApi.md#deactivateNetworkZone) | **POST** /api/v1/zones/{zoneId}/lifecycle/deactivate | Deactivate a Network Zone
-[**deleteNetworkZone**](NetworkZoneApi.md#deleteNetworkZone) | **DELETE** /api/v1/zones/{zoneId} | Delete a Network Zone
-[**getNetworkZone**](NetworkZoneApi.md#getNetworkZone) | **GET** /api/v1/zones/{zoneId} | Retrieve a Network Zone
-[**listNetworkZones**](NetworkZoneApi.md#listNetworkZones) | **GET** /api/v1/zones | List all Network Zones
-[**updateNetworkZone**](NetworkZoneApi.md#updateNetworkZone) | **PUT** /api/v1/zones/{zoneId} | Replace a Network Zone
+[**activateNetworkZone**](NetworkZoneApi.md#activatenetworkzone) | **POST** /api/v1/zones/{zoneId}/lifecycle/activate | Activate a Network Zone
+[**createNetworkZone**](NetworkZoneApi.md#createnetworkzone) | **POST** /api/v1/zones | Create a Network Zone
+[**deactivateNetworkZone**](NetworkZoneApi.md#deactivatenetworkzone) | **POST** /api/v1/zones/{zoneId}/lifecycle/deactivate | Deactivate a Network Zone
+[**deleteNetworkZone**](NetworkZoneApi.md#deletenetworkzone) | **DELETE** /api/v1/zones/{zoneId} | Delete a Network Zone
+[**getNetworkZone**](NetworkZoneApi.md#getnetworkzone) | **GET** /api/v1/zones/{zoneId} | Retrieve a Network Zone
+[**listNetworkZones**](NetworkZoneApi.md#listnetworkzones) | **GET** /api/v1/zones | List all Network Zones
+[**updateNetworkZone**](NetworkZoneApi.md#updatenetworkzone) | **PUT** /api/v1/zones/{zoneId} | Replace a Network Zone
 
 
 # **activateNetworkZone**
@@ -43,12 +43,12 @@ apiInstance.activateNetworkZone(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **zoneId** | [**string**] |  | defaults to undefined
+**zoneId** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**NetworkZone**
+**[NetworkZone](NetworkZone.md)**
 
 ### Authorization
 
@@ -128,12 +128,12 @@ apiInstance.createNetworkZone(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **zone** | **NetworkZone**|  |
+ **zone** | **[NetworkZone](NetworkZone.md)** |  | 
 
 
 ### Return type
 
-**NetworkZone**
+**[NetworkZone](NetworkZone.md)**
 
 ### Authorization
 
@@ -185,12 +185,12 @@ apiInstance.deactivateNetworkZone(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **zoneId** | [**string**] |  | defaults to undefined
+**zoneId** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**NetworkZone**
+**[NetworkZone](NetworkZone.md)**
 
 ### Authorization
 
@@ -242,7 +242,7 @@ apiInstance.deleteNetworkZone(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **zoneId** | [**string**] |  | defaults to undefined
+**zoneId** | **string** |  | defaults to undefined
 
 
 ### Return type
@@ -299,12 +299,12 @@ apiInstance.getNetworkZone(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **zoneId** | [**string**] |  | defaults to undefined
+**zoneId** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**NetworkZone**
+**[NetworkZone](NetworkZone.md)**
 
 ### Authorization
 
@@ -360,14 +360,14 @@ apiInstance.listNetworkZones(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **after** | [**string**] | Specifies the pagination cursor for the next page of network zones | (optional) defaults to undefined
- **limit** | [**number**] | Specifies the number of results for a page | (optional) defaults to -1
- **filter** | [**string**] | Filters zones by usage or id expression | (optional) defaults to undefined
+**after** | **string** | Specifies the pagination cursor for the next page of network zones | (optional) defaults to undefined
+**limit** | **number** | Specifies the number of results for a page | (optional) defaults to -1
+**filter** | **string** | Filters zones by usage or id expression | (optional) defaults to undefined
 
 
 ### Return type
 
-**Array<NetworkZone>**
+**[Array&lt;NetworkZone&gt;](NetworkZone.md)**
 
 ### Authorization
 
@@ -448,13 +448,13 @@ apiInstance.updateNetworkZone(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **zone** | **NetworkZone**|  |
- **zoneId** | [**string**] |  | defaults to undefined
+ **zone** | **[NetworkZone](NetworkZone.md)** |  | 
+**zoneId** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**NetworkZone**
+**[NetworkZone](NetworkZone.md)**
 
 ### Authorization
 

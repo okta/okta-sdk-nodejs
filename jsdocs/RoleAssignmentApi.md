@@ -4,14 +4,14 @@ All URIs are relative to *https://subdomain.okta.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**assignRoleToGroup**](RoleAssignmentApi.md#assignRoleToGroup) | **POST** /api/v1/groups/{groupId}/roles | Assign a Role to a Group
-[**assignRoleToUser**](RoleAssignmentApi.md#assignRoleToUser) | **POST** /api/v1/users/{userId}/roles | Assign a Role to a User
-[**getGroupAssignedRole**](RoleAssignmentApi.md#getGroupAssignedRole) | **GET** /api/v1/groups/{groupId}/roles/{roleId} | Retrieve a Role assigned to Group
-[**getUserAssignedRole**](RoleAssignmentApi.md#getUserAssignedRole) | **GET** /api/v1/users/{userId}/roles/{roleId} | Retrieve a Role assigned to a User
-[**listAssignedRolesForUser**](RoleAssignmentApi.md#listAssignedRolesForUser) | **GET** /api/v1/users/{userId}/roles | List all Roles assigned to a User
-[**listGroupAssignedRoles**](RoleAssignmentApi.md#listGroupAssignedRoles) | **GET** /api/v1/groups/{groupId}/roles | List all Assigned Roles of Group
-[**unassignRoleFromGroup**](RoleAssignmentApi.md#unassignRoleFromGroup) | **DELETE** /api/v1/groups/{groupId}/roles/{roleId} | Unassign a Role from a Group
-[**unassignRoleFromUser**](RoleAssignmentApi.md#unassignRoleFromUser) | **DELETE** /api/v1/users/{userId}/roles/{roleId} | Unassign a Role from a User
+[**assignRoleToGroup**](RoleAssignmentApi.md#assignroletogroup) | **POST** /api/v1/groups/{groupId}/roles | Assign a Role to a Group
+[**assignRoleToUser**](RoleAssignmentApi.md#assignroletouser) | **POST** /api/v1/users/{userId}/roles | Assign a Role to a User
+[**getGroupAssignedRole**](RoleAssignmentApi.md#getgroupassignedrole) | **GET** /api/v1/groups/{groupId}/roles/{roleId} | Retrieve a Role assigned to Group
+[**getUserAssignedRole**](RoleAssignmentApi.md#getuserassignedrole) | **GET** /api/v1/users/{userId}/roles/{roleId} | Retrieve a Role assigned to a User
+[**listAssignedRolesForUser**](RoleAssignmentApi.md#listassignedrolesforuser) | **GET** /api/v1/users/{userId}/roles | List all Roles assigned to a User
+[**listGroupAssignedRoles**](RoleAssignmentApi.md#listgroupassignedroles) | **GET** /api/v1/groups/{groupId}/roles | List all Assigned Roles of Group
+[**unassignRoleFromGroup**](RoleAssignmentApi.md#unassignrolefromgroup) | **DELETE** /api/v1/groups/{groupId}/roles/{roleId} | Unassign a Role from a Group
+[**unassignRoleFromUser**](RoleAssignmentApi.md#unassignrolefromuser) | **DELETE** /api/v1/users/{userId}/roles/{roleId} | Unassign a Role from a User
 
 
 # **assignRoleToGroup**
@@ -50,14 +50,14 @@ apiInstance.assignRoleToGroup(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **assignRoleRequest** | **AssignRoleRequest**|  |
- **groupId** | [**string**] |  | defaults to undefined
- **disableNotifications** | [**boolean**] | Setting this to &#x60;true&#x60; grants the group third-party admin status | (optional) defaults to undefined
+ **assignRoleRequest** | **[AssignRoleRequest](AssignRoleRequest.md)** |  | 
+**groupId** | **string** |  | defaults to undefined
+**disableNotifications** | **boolean** | Setting this to &#x60;true&#x60; grants the group third-party admin status | (optional) defaults to undefined
 
 
 ### Return type
 
-**Role | void**
+**[Role | void](Role.md)**
 
 ### Authorization
 
@@ -117,14 +117,14 @@ apiInstance.assignRoleToUser(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **assignRoleRequest** | **AssignRoleRequest**|  |
- **userId** | [**string**] |  | defaults to undefined
- **disableNotifications** | [**boolean**] | Setting this to &#x60;true&#x60; grants the user third-party admin status | (optional) defaults to undefined
+ **assignRoleRequest** | **[AssignRoleRequest](AssignRoleRequest.md)** |  | 
+**userId** | **string** |  | defaults to undefined
+**disableNotifications** | **boolean** | Setting this to &#x60;true&#x60; grants the user third-party admin status | (optional) defaults to undefined
 
 
 ### Return type
 
-**Role**
+**[Role](Role.md)**
 
 ### Authorization
 
@@ -179,13 +179,13 @@ apiInstance.getGroupAssignedRole(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **groupId** | [**string**] |  | defaults to undefined
- **roleId** | [**string**] |  | defaults to undefined
+**groupId** | **string** |  | defaults to undefined
+**roleId** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**Role**
+**[Role](Role.md)**
 
 ### Authorization
 
@@ -239,13 +239,13 @@ apiInstance.getUserAssignedRole(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | [**string**] |  | defaults to undefined
- **roleId** | [**string**] |  | defaults to undefined
+**userId** | **string** |  | defaults to undefined
+**roleId** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**Role**
+**[Role](Role.md)**
 
 ### Authorization
 
@@ -299,13 +299,13 @@ apiInstance.listAssignedRolesForUser(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | [**string**] |  | defaults to undefined
- **expand** | [**string**] |  | (optional) defaults to undefined
+**userId** | **string** |  | defaults to undefined
+**expand** | **string** |  | (optional) defaults to undefined
 
 
 ### Return type
 
-**Array<Role>**
+**[Array&lt;Role&gt;](Role.md)**
 
 ### Authorization
 
@@ -359,13 +359,13 @@ apiInstance.listGroupAssignedRoles(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **groupId** | [**string**] |  | defaults to undefined
- **expand** | [**string**] |  | (optional) defaults to undefined
+**groupId** | **string** |  | defaults to undefined
+**expand** | **string** |  | (optional) defaults to undefined
 
 
 ### Return type
 
-**Array<Role>**
+**[Array&lt;Role&gt;](Role.md)**
 
 ### Authorization
 
@@ -419,8 +419,8 @@ apiInstance.unassignRoleFromGroup(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **groupId** | [**string**] |  | defaults to undefined
- **roleId** | [**string**] |  | defaults to undefined
+**groupId** | **string** |  | defaults to undefined
+**roleId** | **string** |  | defaults to undefined
 
 
 ### Return type
@@ -479,8 +479,8 @@ apiInstance.unassignRoleFromUser(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | [**string**] |  | defaults to undefined
- **roleId** | [**string**] |  | defaults to undefined
+**userId** | **string** |  | defaults to undefined
+**roleId** | **string** |  | defaults to undefined
 
 
 ### Return type

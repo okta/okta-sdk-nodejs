@@ -4,7 +4,7 @@ All URIs are relative to *https://subdomain.okta.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**getLogs**](SystemLogApi.md#getLogs) | **GET** /api/v1/logs | List all System Log Events
+[**getLogs**](SystemLogApi.md#getlogs) | **GET** /api/v1/logs | List all System Log Events
 
 
 # **getLogs**
@@ -49,18 +49,18 @@ apiInstance.getLogs(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **since** | [**Date**] |  | (optional) defaults to undefined
- **until** | [**Date**] |  | (optional) defaults to undefined
- **filter** | [**string**] |  | (optional) defaults to undefined
- **q** | [**string**] |  | (optional) defaults to undefined
- **limit** | [**number**] |  | (optional) defaults to 100
- **sortOrder** | [**string**] |  | (optional) defaults to 'ASCENDING'
- **after** | [**string**] |  | (optional) defaults to undefined
+**since** | **Date** |  | (optional) defaults to undefined
+**until** | **Date** |  | (optional) defaults to undefined
+**filter** | **string** |  | (optional) defaults to undefined
+**q** | **string** |  | (optional) defaults to undefined
+**limit** | **number** |  | (optional) defaults to 100
+**sortOrder** | **string** |  | (optional) defaults to 'ASCENDING'
+**after** | **string** |  | (optional) defaults to undefined
 
 
 ### Return type
 
-**Array<LogEvent>**
+**[Array&lt;LogEvent&gt;](LogEvent.md)**
 
 ### Authorization
 

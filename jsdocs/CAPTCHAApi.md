@@ -4,12 +4,12 @@ All URIs are relative to *https://subdomain.okta.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**createCaptchaInstance**](CAPTCHAApi.md#createCaptchaInstance) | **POST** /api/v1/captchas | Create a CAPTCHA instance
-[**deleteCaptchaInstance**](CAPTCHAApi.md#deleteCaptchaInstance) | **DELETE** /api/v1/captchas/{captchaId} | Delete a CAPTCHA Instance
-[**getCaptchaInstance**](CAPTCHAApi.md#getCaptchaInstance) | **GET** /api/v1/captchas/{captchaId} | Retrieve a CAPTCHA Instance
-[**listCaptchaInstances**](CAPTCHAApi.md#listCaptchaInstances) | **GET** /api/v1/captchas | List all CAPTCHA instances
-[**partialUpdateCaptchaInstance**](CAPTCHAApi.md#partialUpdateCaptchaInstance) | **POST** /api/v1/captchas/{captchaId} | Update a CAPTCHA instance
-[**updateCaptchaInstance**](CAPTCHAApi.md#updateCaptchaInstance) | **PUT** /api/v1/captchas/{captchaId} | Replace a CAPTCHA instance
+[**createCaptchaInstance**](CAPTCHAApi.md#createcaptchainstance) | **POST** /api/v1/captchas | Create a CAPTCHA instance
+[**deleteCaptchaInstance**](CAPTCHAApi.md#deletecaptchainstance) | **DELETE** /api/v1/captchas/{captchaId} | Delete a CAPTCHA Instance
+[**getCaptchaInstance**](CAPTCHAApi.md#getcaptchainstance) | **GET** /api/v1/captchas/{captchaId} | Retrieve a CAPTCHA Instance
+[**listCaptchaInstances**](CAPTCHAApi.md#listcaptchainstances) | **GET** /api/v1/captchas | List all CAPTCHA instances
+[**partialUpdateCaptchaInstance**](CAPTCHAApi.md#partialupdatecaptchainstance) | **POST** /api/v1/captchas/{captchaId} | Update a CAPTCHA instance
+[**updateCaptchaInstance**](CAPTCHAApi.md#updatecaptchainstance) | **PUT** /api/v1/captchas/{captchaId} | Replace a CAPTCHA instance
 
 
 # **createCaptchaInstance**
@@ -47,12 +47,12 @@ apiInstance.createCaptchaInstance(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **instance** | **CAPTCHAInstance**|  |
+ **instance** | **[CAPTCHAInstance](CAPTCHAInstance.md)** |  | 
 
 
 ### Return type
 
-**CAPTCHAInstance**
+**[CAPTCHAInstance](CAPTCHAInstance.md)**
 
 ### Authorization
 
@@ -104,7 +104,7 @@ apiInstance.deleteCaptchaInstance(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **captchaId** | [**string**] | id of the CAPTCHA | defaults to undefined
+**captchaId** | **string** | id of the CAPTCHA | defaults to undefined
 
 
 ### Return type
@@ -161,12 +161,12 @@ apiInstance.getCaptchaInstance(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **captchaId** | [**string**] | id of the CAPTCHA | defaults to undefined
+**captchaId** | **string** | id of the CAPTCHA | defaults to undefined
 
 
 ### Return type
 
-**CAPTCHAInstance**
+**[CAPTCHAInstance](CAPTCHAInstance.md)**
 
 ### Authorization
 
@@ -217,7 +217,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-**Array<CAPTCHAInstance>**
+**[Array&lt;CAPTCHAInstance&gt;](CAPTCHAInstance.md)**
 
 ### Authorization
 
@@ -275,13 +275,13 @@ apiInstance.partialUpdateCaptchaInstance(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **instance** | **CAPTCHAInstance**|  |
- **captchaId** | [**string**] | id of the CAPTCHA | defaults to undefined
+ **instance** | **[CAPTCHAInstance](CAPTCHAInstance.md)** |  | 
+**captchaId** | **string** | id of the CAPTCHA | defaults to undefined
 
 
 ### Return type
 
-**CAPTCHAInstance**
+**[CAPTCHAInstance](CAPTCHAInstance.md)**
 
 ### Authorization
 
@@ -341,13 +341,13 @@ apiInstance.updateCaptchaInstance(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **instance** | **CAPTCHAInstance**|  |
- **captchaId** | [**string**] | id of the CAPTCHA | defaults to undefined
+ **instance** | **[CAPTCHAInstance](CAPTCHAInstance.md)** |  | 
+**captchaId** | **string** | id of the CAPTCHA | defaults to undefined
 
 
 ### Return type
 
-**CAPTCHAInstance**
+**[CAPTCHAInstance](CAPTCHAInstance.md)**
 
 ### Authorization
 

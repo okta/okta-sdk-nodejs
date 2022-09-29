@@ -4,9 +4,9 @@ All URIs are relative to *https://subdomain.okta.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**getProfileMapping**](ProfileMappingApi.md#getProfileMapping) | **GET** /api/v1/mappings/{mappingId} | Retrieve a Profile Mapping
-[**listProfileMappings**](ProfileMappingApi.md#listProfileMappings) | **GET** /api/v1/mappings | List all Profile Mappings
-[**updateProfileMapping**](ProfileMappingApi.md#updateProfileMapping) | **POST** /api/v1/mappings/{mappingId} | Update a Profile Mapping
+[**getProfileMapping**](ProfileMappingApi.md#getprofilemapping) | **GET** /api/v1/mappings/{mappingId} | Retrieve a Profile Mapping
+[**listProfileMappings**](ProfileMappingApi.md#listprofilemappings) | **GET** /api/v1/mappings | List all Profile Mappings
+[**updateProfileMapping**](ProfileMappingApi.md#updateprofilemapping) | **POST** /api/v1/mappings/{mappingId} | Update a Profile Mapping
 
 
 # **getProfileMapping**
@@ -39,12 +39,12 @@ apiInstance.getProfileMapping(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **mappingId** | [**string**] |  | defaults to undefined
+**mappingId** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**ProfileMapping**
+**[ProfileMapping](ProfileMapping.md)**
 
 ### Authorization
 
@@ -102,15 +102,15 @@ apiInstance.listProfileMappings(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **after** | [**string**] |  | (optional) defaults to undefined
- **limit** | [**number**] |  | (optional) defaults to -1
- **sourceId** | [**string**] |  | (optional) defaults to undefined
- **targetId** | [**string**] |  | (optional) defaults to ''
+**after** | **string** |  | (optional) defaults to undefined
+**limit** | **number** |  | (optional) defaults to -1
+**sourceId** | **string** |  | (optional) defaults to undefined
+**targetId** | **string** |  | (optional) defaults to ''
 
 
 ### Return type
 
-**Array<ProfileMapping>**
+**[Array&lt;ProfileMapping&gt;](ProfileMapping.md)**
 
 ### Authorization
 
@@ -168,13 +168,13 @@ apiInstance.updateProfileMapping(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **profileMapping** | **ProfileMapping**|  |
- **mappingId** | [**string**] |  | defaults to undefined
+ **profileMapping** | **[ProfileMapping](ProfileMapping.md)** |  | 
+**mappingId** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**ProfileMapping**
+**[ProfileMapping](ProfileMapping.md)**
 
 ### Authorization
 

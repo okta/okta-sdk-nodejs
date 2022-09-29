@@ -4,13 +4,13 @@ All URIs are relative to *https://subdomain.okta.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**getApplicationLayout**](SchemaApi.md#getApplicationLayout) | **GET** /api/v1/meta/layouts/apps/{appName} | Retrieve the UI Layout for an Application
-[**getApplicationUserSchema**](SchemaApi.md#getApplicationUserSchema) | **GET** /api/v1/meta/schemas/apps/{appInstanceId}/default | Retrieve the default Application User Schema for an Application
-[**getGroupSchema**](SchemaApi.md#getGroupSchema) | **GET** /api/v1/meta/schemas/group/default | Retrieve the default Group Schema
-[**getUserSchema**](SchemaApi.md#getUserSchema) | **GET** /api/v1/meta/schemas/user/{schemaId} | Retrieve a User Schema
-[**updateApplicationUserProfile**](SchemaApi.md#updateApplicationUserProfile) | **POST** /api/v1/meta/schemas/apps/{appInstanceId}/default | Update the default Application User Schema for an Application
-[**updateGroupSchema**](SchemaApi.md#updateGroupSchema) | **POST** /api/v1/meta/schemas/group/default | Update the default Group Schema
-[**updateUserProfile**](SchemaApi.md#updateUserProfile) | **POST** /api/v1/meta/schemas/user/{schemaId} | Update a User Schema
+[**getApplicationLayout**](SchemaApi.md#getapplicationlayout) | **GET** /api/v1/meta/layouts/apps/{appName} | Retrieve the UI Layout for an Application
+[**getApplicationUserSchema**](SchemaApi.md#getapplicationuserschema) | **GET** /api/v1/meta/schemas/apps/{appInstanceId}/default | Retrieve the default Application User Schema for an Application
+[**getGroupSchema**](SchemaApi.md#getgroupschema) | **GET** /api/v1/meta/schemas/group/default | Retrieve the default Group Schema
+[**getUserSchema**](SchemaApi.md#getuserschema) | **GET** /api/v1/meta/schemas/user/{schemaId} | Retrieve a User Schema
+[**updateApplicationUserProfile**](SchemaApi.md#updateapplicationuserprofile) | **POST** /api/v1/meta/schemas/apps/{appInstanceId}/default | Update the default Application User Schema for an Application
+[**updateGroupSchema**](SchemaApi.md#updategroupschema) | **POST** /api/v1/meta/schemas/group/default | Update the default Group Schema
+[**updateUserProfile**](SchemaApi.md#updateuserprofile) | **POST** /api/v1/meta/schemas/user/{schemaId} | Update a User Schema
 
 
 # **getApplicationLayout**
@@ -43,12 +43,12 @@ apiInstance.getApplicationLayout(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **appName** | [**string**] |  | defaults to undefined
+**appName** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**ApplicationLayout**
+**[ApplicationLayout](ApplicationLayout.md)**
 
 ### Authorization
 
@@ -100,12 +100,12 @@ apiInstance.getApplicationUserSchema(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **appInstanceId** | [**string**] |  | defaults to undefined
+**appInstanceId** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**UserSchema**
+**[UserSchema](UserSchema.md)**
 
 ### Authorization
 
@@ -156,7 +156,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-**GroupSchema**
+**[GroupSchema](GroupSchema.md)**
 
 ### Authorization
 
@@ -207,12 +207,12 @@ apiInstance.getUserSchema(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **schemaId** | [**string**] |  | defaults to undefined
+**schemaId** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**UserSchema**
+**[UserSchema](UserSchema.md)**
 
 ### Authorization
 
@@ -1929,13 +1929,13 @@ apiInstance.updateApplicationUserProfile(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | **UserSchema**|  |
- **appInstanceId** | [**string**] |  | defaults to undefined
+ **body** | **[UserSchema](UserSchema.md)** |  | 
+**appInstanceId** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**UserSchema**
+**[UserSchema](UserSchema.md)**
 
 ### Authorization
 
@@ -2168,12 +2168,12 @@ apiInstance.updateGroupSchema(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **GroupSchema** | **GroupSchema**|  |
+ **GroupSchema** | **[GroupSchema](GroupSchema.md)** |  | 
 
 
 ### Return type
 
-**GroupSchema**
+**[GroupSchema](GroupSchema.md)**
 
 ### Authorization
 
@@ -3890,13 +3890,13 @@ apiInstance.updateUserProfile(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userSchema** | **UserSchema**|  |
- **schemaId** | [**string**] |  | defaults to undefined
+ **userSchema** | **[UserSchema](UserSchema.md)** |  | 
+**schemaId** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**UserSchema**
+**[UserSchema](UserSchema.md)**
 
 ### Authorization
 

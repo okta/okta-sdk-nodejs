@@ -4,10 +4,10 @@ All URIs are relative to *https://subdomain.okta.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**createSession**](SessionApi.md#createSession) | **POST** /api/v1/sessions | Create a Session with Session Token
-[**endSession**](SessionApi.md#endSession) | **DELETE** /api/v1/sessions/{sessionId} | Delete a Session
-[**getSession**](SessionApi.md#getSession) | **GET** /api/v1/sessions/{sessionId} | Retrieve a Session
-[**refreshSession**](SessionApi.md#refreshSession) | **POST** /api/v1/sessions/{sessionId}/lifecycle/refresh | Refresh a Session
+[**createSession**](SessionApi.md#createsession) | **POST** /api/v1/sessions | Create a Session with Session Token
+[**endSession**](SessionApi.md#endsession) | **DELETE** /api/v1/sessions/{sessionId} | Delete a Session
+[**getSession**](SessionApi.md#getsession) | **GET** /api/v1/sessions/{sessionId} | Retrieve a Session
+[**refreshSession**](SessionApi.md#refreshsession) | **POST** /api/v1/sessions/{sessionId}/lifecycle/refresh | Refresh a Session
 
 
 # **createSession**
@@ -42,12 +42,12 @@ apiInstance.createSession(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **createSessionRequest** | **CreateSessionRequest**|  |
+ **createSessionRequest** | **[CreateSessionRequest](CreateSessionRequest.md)** |  | 
 
 
 ### Return type
 
-**Session**
+**[Session](Session.md)**
 
 ### Authorization
 
@@ -99,7 +99,7 @@ apiInstance.endSession(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **sessionId** | [**string**] |  | defaults to undefined
+**sessionId** | **string** |  | defaults to undefined
 
 
 ### Return type
@@ -156,12 +156,12 @@ apiInstance.getSession(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **sessionId** | [**string**] |  | defaults to undefined
+**sessionId** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**Session**
+**[Session](Session.md)**
 
 ### Authorization
 
@@ -214,12 +214,12 @@ apiInstance.refreshSession(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **sessionId** | [**string**] |  | defaults to undefined
+**sessionId** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**Session**
+**[Session](Session.md)**
 
 ### Authorization
 

@@ -4,23 +4,23 @@ All URIs are relative to *https://subdomain.okta.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**addAllAppsAsTargetToRole**](RoleTargetApi.md#addAllAppsAsTargetToRole) | **PUT** /api/v1/users/{userId}/roles/{roleId}/targets/catalog/apps | Assign all Apps as Target to Role
-[**addApplicationInstanceTargetToAppAdminRoleGivenToGroup**](RoleTargetApi.md#addApplicationInstanceTargetToAppAdminRoleGivenToGroup) | **PUT** /api/v1/groups/{groupId}/roles/{roleId}/targets/catalog/apps/{appName}/{applicationId} | Assign an Application Instance Target to Application Administrator Role
-[**addApplicationTargetToAdminRoleForUser**](RoleTargetApi.md#addApplicationTargetToAdminRoleForUser) | **PUT** /api/v1/users/{userId}/roles/{roleId}/targets/catalog/apps/{appName} | Assign an Application Target to Administrator Role
-[**addApplicationTargetToAdminRoleGivenToGroup**](RoleTargetApi.md#addApplicationTargetToAdminRoleGivenToGroup) | **PUT** /api/v1/groups/{groupId}/roles/{roleId}/targets/catalog/apps/{appName} | Assign an Application Target to Administrator Role
-[**addApplicationTargetToAppAdminRoleForUser**](RoleTargetApi.md#addApplicationTargetToAppAdminRoleForUser) | **PUT** /api/v1/users/{userId}/roles/{roleId}/targets/catalog/apps/{appName}/{applicationId} | Assign an Application Instance Target to an Application Administrator Role
-[**addGroupTargetToGroupAdministratorRoleForGroup**](RoleTargetApi.md#addGroupTargetToGroupAdministratorRoleForGroup) | **PUT** /api/v1/groups/{groupId}/roles/{roleId}/targets/groups/{targetGroupId} | Assign a Group Target for Group Role
-[**addGroupTargetToRole**](RoleTargetApi.md#addGroupTargetToRole) | **PUT** /api/v1/users/{userId}/roles/{roleId}/targets/groups/{groupId} | Assign a Group Target to Role
-[**listApplicationTargetsForApplicationAdministratorRoleForGroup**](RoleTargetApi.md#listApplicationTargetsForApplicationAdministratorRoleForGroup) | **GET** /api/v1/groups/{groupId}/roles/{roleId}/targets/catalog/apps | List all Application Targets for an Application Administrator Role
-[**listApplicationTargetsForApplicationAdministratorRoleForUser**](RoleTargetApi.md#listApplicationTargetsForApplicationAdministratorRoleForUser) | **GET** /api/v1/users/{userId}/roles/{roleId}/targets/catalog/apps | List all Application Targets for Application Administrator Role
-[**listGroupTargetsForGroupRole**](RoleTargetApi.md#listGroupTargetsForGroupRole) | **GET** /api/v1/groups/{groupId}/roles/{roleId}/targets/groups | List all Group Targets for a Group Role
-[**listGroupTargetsForRole**](RoleTargetApi.md#listGroupTargetsForRole) | **GET** /api/v1/users/{userId}/roles/{roleId}/targets/groups | List all Group Targets for Role
-[**removeApplicationTargetFromAdministratorRoleForUser**](RoleTargetApi.md#removeApplicationTargetFromAdministratorRoleForUser) | **DELETE** /api/v1/users/{userId}/roles/{roleId}/targets/catalog/apps/{appName}/{applicationId} | Unassign an Application Instance Target to Application Administrator Role
-[**removeApplicationTargetFromAdministratorRoleGivenToGroup**](RoleTargetApi.md#removeApplicationTargetFromAdministratorRoleGivenToGroup) | **DELETE** /api/v1/groups/{groupId}/roles/{roleId}/targets/catalog/apps/{appName}/{applicationId} | Delete an Application Instance Target to Application Administrator Role
-[**removeApplicationTargetFromApplicationAdministratorRoleForUser**](RoleTargetApi.md#removeApplicationTargetFromApplicationAdministratorRoleForUser) | **DELETE** /api/v1/users/{userId}/roles/{roleId}/targets/catalog/apps/{appName} | Unassign an Application Target from Application Administrator Role
-[**removeApplicationTargetFromApplicationAdministratorRoleGivenToGroup**](RoleTargetApi.md#removeApplicationTargetFromApplicationAdministratorRoleGivenToGroup) | **DELETE** /api/v1/groups/{groupId}/roles/{roleId}/targets/catalog/apps/{appName} | Delete an Application Target from Application Administrator Role
-[**removeGroupTargetFromGroupAdministratorRoleGivenToGroup**](RoleTargetApi.md#removeGroupTargetFromGroupAdministratorRoleGivenToGroup) | **DELETE** /api/v1/groups/{groupId}/roles/{roleId}/targets/groups/{targetGroupId} | Delete a Group Target for Group Role
-[**removeGroupTargetFromRole**](RoleTargetApi.md#removeGroupTargetFromRole) | **DELETE** /api/v1/users/{userId}/roles/{roleId}/targets/groups/{groupId} | Unassign a Group Target from Role
+[**addAllAppsAsTargetToRole**](RoleTargetApi.md#addallappsastargettorole) | **PUT** /api/v1/users/{userId}/roles/{roleId}/targets/catalog/apps | Assign all Apps as Target to Role
+[**addApplicationInstanceTargetToAppAdminRoleGivenToGroup**](RoleTargetApi.md#addapplicationinstancetargettoappadminrolegiventogroup) | **PUT** /api/v1/groups/{groupId}/roles/{roleId}/targets/catalog/apps/{appName}/{applicationId} | Assign an Application Instance Target to Application Administrator Role
+[**addApplicationTargetToAdminRoleForUser**](RoleTargetApi.md#addapplicationtargettoadminroleforuser) | **PUT** /api/v1/users/{userId}/roles/{roleId}/targets/catalog/apps/{appName} | Assign an Application Target to Administrator Role
+[**addApplicationTargetToAdminRoleGivenToGroup**](RoleTargetApi.md#addapplicationtargettoadminrolegiventogroup) | **PUT** /api/v1/groups/{groupId}/roles/{roleId}/targets/catalog/apps/{appName} | Assign an Application Target to Administrator Role
+[**addApplicationTargetToAppAdminRoleForUser**](RoleTargetApi.md#addapplicationtargettoappadminroleforuser) | **PUT** /api/v1/users/{userId}/roles/{roleId}/targets/catalog/apps/{appName}/{applicationId} | Assign an Application Instance Target to an Application Administrator Role
+[**addGroupTargetToGroupAdministratorRoleForGroup**](RoleTargetApi.md#addgrouptargettogroupadministratorroleforgroup) | **PUT** /api/v1/groups/{groupId}/roles/{roleId}/targets/groups/{targetGroupId} | Assign a Group Target for Group Role
+[**addGroupTargetToRole**](RoleTargetApi.md#addgrouptargettorole) | **PUT** /api/v1/users/{userId}/roles/{roleId}/targets/groups/{groupId} | Assign a Group Target to Role
+[**listApplicationTargetsForApplicationAdministratorRoleForGroup**](RoleTargetApi.md#listapplicationtargetsforapplicationadministratorroleforgroup) | **GET** /api/v1/groups/{groupId}/roles/{roleId}/targets/catalog/apps | List all Application Targets for an Application Administrator Role
+[**listApplicationTargetsForApplicationAdministratorRoleForUser**](RoleTargetApi.md#listapplicationtargetsforapplicationadministratorroleforuser) | **GET** /api/v1/users/{userId}/roles/{roleId}/targets/catalog/apps | List all Application Targets for Application Administrator Role
+[**listGroupTargetsForGroupRole**](RoleTargetApi.md#listgrouptargetsforgrouprole) | **GET** /api/v1/groups/{groupId}/roles/{roleId}/targets/groups | List all Group Targets for a Group Role
+[**listGroupTargetsForRole**](RoleTargetApi.md#listgrouptargetsforrole) | **GET** /api/v1/users/{userId}/roles/{roleId}/targets/groups | List all Group Targets for Role
+[**removeApplicationTargetFromAdministratorRoleForUser**](RoleTargetApi.md#removeapplicationtargetfromadministratorroleforuser) | **DELETE** /api/v1/users/{userId}/roles/{roleId}/targets/catalog/apps/{appName}/{applicationId} | Unassign an Application Instance Target to Application Administrator Role
+[**removeApplicationTargetFromAdministratorRoleGivenToGroup**](RoleTargetApi.md#removeapplicationtargetfromadministratorrolegiventogroup) | **DELETE** /api/v1/groups/{groupId}/roles/{roleId}/targets/catalog/apps/{appName}/{applicationId} | Delete an Application Instance Target to Application Administrator Role
+[**removeApplicationTargetFromApplicationAdministratorRoleForUser**](RoleTargetApi.md#removeapplicationtargetfromapplicationadministratorroleforuser) | **DELETE** /api/v1/users/{userId}/roles/{roleId}/targets/catalog/apps/{appName} | Unassign an Application Target from Application Administrator Role
+[**removeApplicationTargetFromApplicationAdministratorRoleGivenToGroup**](RoleTargetApi.md#removeapplicationtargetfromapplicationadministratorrolegiventogroup) | **DELETE** /api/v1/groups/{groupId}/roles/{roleId}/targets/catalog/apps/{appName} | Delete an Application Target from Application Administrator Role
+[**removeGroupTargetFromGroupAdministratorRoleGivenToGroup**](RoleTargetApi.md#removegrouptargetfromgroupadministratorrolegiventogroup) | **DELETE** /api/v1/groups/{groupId}/roles/{roleId}/targets/groups/{targetGroupId} | Delete a Group Target for Group Role
+[**removeGroupTargetFromRole**](RoleTargetApi.md#removegrouptargetfromrole) | **DELETE** /api/v1/users/{userId}/roles/{roleId}/targets/groups/{groupId} | Unassign a Group Target from Role
 
 
 # **addAllAppsAsTargetToRole**
@@ -55,8 +55,8 @@ apiInstance.addAllAppsAsTargetToRole(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | [**string**] |  | defaults to undefined
- **roleId** | [**string**] |  | defaults to undefined
+**userId** | **string** |  | defaults to undefined
+**roleId** | **string** |  | defaults to undefined
 
 
 ### Return type
@@ -119,10 +119,10 @@ apiInstance.addApplicationInstanceTargetToAppAdminRoleGivenToGroup(body).then((d
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **groupId** | [**string**] |  | defaults to undefined
- **roleId** | [**string**] |  | defaults to undefined
- **appName** | [**string**] |  | defaults to undefined
- **applicationId** | [**string**] |  | defaults to undefined
+**groupId** | **string** |  | defaults to undefined
+**roleId** | **string** |  | defaults to undefined
+**appName** | **string** |  | defaults to undefined
+**applicationId** | **string** |  | defaults to undefined
 
 
 ### Return type
@@ -183,9 +183,9 @@ apiInstance.addApplicationTargetToAdminRoleForUser(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | [**string**] |  | defaults to undefined
- **roleId** | [**string**] |  | defaults to undefined
- **appName** | [**string**] |  | defaults to undefined
+**userId** | **string** |  | defaults to undefined
+**roleId** | **string** |  | defaults to undefined
+**appName** | **string** |  | defaults to undefined
 
 
 ### Return type
@@ -246,9 +246,9 @@ apiInstance.addApplicationTargetToAdminRoleGivenToGroup(body).then((data:any) =>
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **groupId** | [**string**] |  | defaults to undefined
- **roleId** | [**string**] |  | defaults to undefined
- **appName** | [**string**] |  | defaults to undefined
+**groupId** | **string** |  | defaults to undefined
+**roleId** | **string** |  | defaults to undefined
+**appName** | **string** |  | defaults to undefined
 
 
 ### Return type
@@ -311,10 +311,10 @@ apiInstance.addApplicationTargetToAppAdminRoleForUser(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | [**string**] |  | defaults to undefined
- **roleId** | [**string**] |  | defaults to undefined
- **appName** | [**string**] |  | defaults to undefined
- **applicationId** | [**string**] |  | defaults to undefined
+**userId** | **string** |  | defaults to undefined
+**roleId** | **string** |  | defaults to undefined
+**appName** | **string** |  | defaults to undefined
+**applicationId** | **string** |  | defaults to undefined
 
 
 ### Return type
@@ -375,9 +375,9 @@ apiInstance.addGroupTargetToGroupAdministratorRoleForGroup(body).then((data:any)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **groupId** | [**string**] |  | defaults to undefined
- **roleId** | [**string**] |  | defaults to undefined
- **targetGroupId** | [**string**] |  | defaults to undefined
+**groupId** | **string** |  | defaults to undefined
+**roleId** | **string** |  | defaults to undefined
+**targetGroupId** | **string** |  | defaults to undefined
 
 
 ### Return type
@@ -438,9 +438,9 @@ apiInstance.addGroupTargetToRole(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | [**string**] |  | defaults to undefined
- **roleId** | [**string**] |  | defaults to undefined
- **groupId** | [**string**] |  | defaults to undefined
+**userId** | **string** |  | defaults to undefined
+**roleId** | **string** |  | defaults to undefined
+**groupId** | **string** |  | defaults to undefined
 
 
 ### Return type
@@ -503,15 +503,15 @@ apiInstance.listApplicationTargetsForApplicationAdministratorRoleForGroup(body).
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **groupId** | [**string**] |  | defaults to undefined
- **roleId** | [**string**] |  | defaults to undefined
- **after** | [**string**] |  | (optional) defaults to undefined
- **limit** | [**number**] |  | (optional) defaults to 20
+**groupId** | **string** |  | defaults to undefined
+**roleId** | **string** |  | defaults to undefined
+**after** | **string** |  | (optional) defaults to undefined
+**limit** | **number** |  | (optional) defaults to 20
 
 
 ### Return type
 
-**Array<CatalogApplication>**
+**[Array&lt;CatalogApplication&gt;](CatalogApplication.md)**
 
 ### Authorization
 
@@ -569,15 +569,15 @@ apiInstance.listApplicationTargetsForApplicationAdministratorRoleForUser(body).t
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | [**string**] |  | defaults to undefined
- **roleId** | [**string**] |  | defaults to undefined
- **after** | [**string**] |  | (optional) defaults to undefined
- **limit** | [**number**] |  | (optional) defaults to 20
+**userId** | **string** |  | defaults to undefined
+**roleId** | **string** |  | defaults to undefined
+**after** | **string** |  | (optional) defaults to undefined
+**limit** | **number** |  | (optional) defaults to 20
 
 
 ### Return type
 
-**Array<CatalogApplication>**
+**[Array&lt;CatalogApplication&gt;](CatalogApplication.md)**
 
 ### Authorization
 
@@ -635,15 +635,15 @@ apiInstance.listGroupTargetsForGroupRole(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **groupId** | [**string**] |  | defaults to undefined
- **roleId** | [**string**] |  | defaults to undefined
- **after** | [**string**] |  | (optional) defaults to undefined
- **limit** | [**number**] |  | (optional) defaults to 20
+**groupId** | **string** |  | defaults to undefined
+**roleId** | **string** |  | defaults to undefined
+**after** | **string** |  | (optional) defaults to undefined
+**limit** | **number** |  | (optional) defaults to 20
 
 
 ### Return type
 
-**Array<Group>**
+**[Array&lt;Group&gt;](Group.md)**
 
 ### Authorization
 
@@ -701,15 +701,15 @@ apiInstance.listGroupTargetsForRole(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | [**string**] |  | defaults to undefined
- **roleId** | [**string**] |  | defaults to undefined
- **after** | [**string**] |  | (optional) defaults to undefined
- **limit** | [**number**] |  | (optional) defaults to 20
+**userId** | **string** |  | defaults to undefined
+**roleId** | **string** |  | defaults to undefined
+**after** | **string** |  | (optional) defaults to undefined
+**limit** | **number** |  | (optional) defaults to 20
 
 
 ### Return type
 
-**Array<Group>**
+**[Array&lt;Group&gt;](Group.md)**
 
 ### Authorization
 
@@ -767,10 +767,10 @@ apiInstance.removeApplicationTargetFromAdministratorRoleForUser(body).then((data
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | [**string**] |  | defaults to undefined
- **roleId** | [**string**] |  | defaults to undefined
- **appName** | [**string**] |  | defaults to undefined
- **applicationId** | [**string**] |  | defaults to undefined
+**userId** | **string** |  | defaults to undefined
+**roleId** | **string** |  | defaults to undefined
+**appName** | **string** |  | defaults to undefined
+**applicationId** | **string** |  | defaults to undefined
 
 
 ### Return type
@@ -833,10 +833,10 @@ apiInstance.removeApplicationTargetFromAdministratorRoleGivenToGroup(body).then(
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **groupId** | [**string**] |  | defaults to undefined
- **roleId** | [**string**] |  | defaults to undefined
- **appName** | [**string**] |  | defaults to undefined
- **applicationId** | [**string**] |  | defaults to undefined
+**groupId** | **string** |  | defaults to undefined
+**roleId** | **string** |  | defaults to undefined
+**appName** | **string** |  | defaults to undefined
+**applicationId** | **string** |  | defaults to undefined
 
 
 ### Return type
@@ -897,9 +897,9 @@ apiInstance.removeApplicationTargetFromApplicationAdministratorRoleForUser(body)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | [**string**] |  | defaults to undefined
- **roleId** | [**string**] |  | defaults to undefined
- **appName** | [**string**] |  | defaults to undefined
+**userId** | **string** |  | defaults to undefined
+**roleId** | **string** |  | defaults to undefined
+**appName** | **string** |  | defaults to undefined
 
 
 ### Return type
@@ -960,9 +960,9 @@ apiInstance.removeApplicationTargetFromApplicationAdministratorRoleGivenToGroup(
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **groupId** | [**string**] |  | defaults to undefined
- **roleId** | [**string**] |  | defaults to undefined
- **appName** | [**string**] |  | defaults to undefined
+**groupId** | **string** |  | defaults to undefined
+**roleId** | **string** |  | defaults to undefined
+**appName** | **string** |  | defaults to undefined
 
 
 ### Return type
@@ -1023,9 +1023,9 @@ apiInstance.removeGroupTargetFromGroupAdministratorRoleGivenToGroup(body).then((
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **groupId** | [**string**] |  | defaults to undefined
- **roleId** | [**string**] |  | defaults to undefined
- **targetGroupId** | [**string**] |  | defaults to undefined
+**groupId** | **string** |  | defaults to undefined
+**roleId** | **string** |  | defaults to undefined
+**targetGroupId** | **string** |  | defaults to undefined
 
 
 ### Return type
@@ -1086,9 +1086,9 @@ apiInstance.removeGroupTargetFromRole(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | [**string**] |  | defaults to undefined
- **roleId** | [**string**] |  | defaults to undefined
- **groupId** | [**string**] |  | defaults to undefined
+**userId** | **string** |  | defaults to undefined
+**roleId** | **string** |  | defaults to undefined
+**groupId** | **string** |  | defaults to undefined
 
 
 ### Return type

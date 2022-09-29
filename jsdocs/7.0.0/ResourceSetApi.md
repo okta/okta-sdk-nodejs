@@ -4,17 +4,17 @@ All URIs are relative to *https://subdomain.okta.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**addMembersToBinding**](ResourceSetApi.md#addMembersToBinding) | **PATCH** /api/v1/iam/resource-sets/{resourceSetId}/bindings/{roleIdOrLabel}/members | Add more members to a Binding
-[**createResourceSet**](ResourceSetApi.md#createResourceSet) | **POST** /api/v1/iam/resource-sets | Create a Resource Set
-[**createResourceSetBinding**](ResourceSetApi.md#createResourceSetBinding) | **POST** /api/v1/iam/resource-sets/{resourceSetId}/bindings | Create a Resource Set Binding
-[**deleteBinding**](ResourceSetApi.md#deleteBinding) | **DELETE** /api/v1/iam/resource-sets/{resourceSetId}/bindings/{roleIdOrLabel} | Delete a Binding
-[**deleteResourceSet**](ResourceSetApi.md#deleteResourceSet) | **DELETE** /api/v1/iam/resource-sets/{resourceSetId} | Delete a Resource Set
-[**getBinding**](ResourceSetApi.md#getBinding) | **GET** /api/v1/iam/resource-sets/{resourceSetId}/bindings/{roleIdOrLabel} | Retrieve a Binding
-[**getResourceSet**](ResourceSetApi.md#getResourceSet) | **GET** /api/v1/iam/resource-sets/{resourceSetId} | Retrieve a Resource Set
-[**listBindings**](ResourceSetApi.md#listBindings) | **GET** /api/v1/iam/resource-sets/{resourceSetId}/bindings | List all Bindings
-[**listMembersOfBinding**](ResourceSetApi.md#listMembersOfBinding) | **GET** /api/v1/iam/resource-sets/{resourceSetId}/bindings/{roleIdOrLabel}/members | List all members of a Binding
-[**listResourceSets**](ResourceSetApi.md#listResourceSets) | **GET** /api/v1/iam/resource-sets | List all Resource Sets
-[**replaceResourceSet**](ResourceSetApi.md#replaceResourceSet) | **PUT** /api/v1/iam/resource-sets/{resourceSetId} | Replace a Resource Set
+[**addMembersToBinding**](ResourceSetApi.md#addmemberstobinding) | **PATCH** /api/v1/iam/resource-sets/{resourceSetId}/bindings/{roleIdOrLabel}/members | Add more members to a Binding
+[**createResourceSet**](ResourceSetApi.md#createresourceset) | **POST** /api/v1/iam/resource-sets | Create a Resource Set
+[**createResourceSetBinding**](ResourceSetApi.md#createresourcesetbinding) | **POST** /api/v1/iam/resource-sets/{resourceSetId}/bindings | Create a Resource Set Binding
+[**deleteBinding**](ResourceSetApi.md#deletebinding) | **DELETE** /api/v1/iam/resource-sets/{resourceSetId}/bindings/{roleIdOrLabel} | Delete a Binding
+[**deleteResourceSet**](ResourceSetApi.md#deleteresourceset) | **DELETE** /api/v1/iam/resource-sets/{resourceSetId} | Delete a Resource Set
+[**getBinding**](ResourceSetApi.md#getbinding) | **GET** /api/v1/iam/resource-sets/{resourceSetId}/bindings/{roleIdOrLabel} | Retrieve a Binding
+[**getResourceSet**](ResourceSetApi.md#getresourceset) | **GET** /api/v1/iam/resource-sets/{resourceSetId} | Retrieve a Resource Set
+[**listBindings**](ResourceSetApi.md#listbindings) | **GET** /api/v1/iam/resource-sets/{resourceSetId}/bindings | List all Bindings
+[**listMembersOfBinding**](ResourceSetApi.md#listmembersofbinding) | **GET** /api/v1/iam/resource-sets/{resourceSetId}/bindings/{roleIdOrLabel}/members | List all members of a Binding
+[**listResourceSets**](ResourceSetApi.md#listresourcesets) | **GET** /api/v1/iam/resource-sets | List all Resource Sets
+[**replaceResourceSet**](ResourceSetApi.md#replaceresourceset) | **PUT** /api/v1/iam/resource-sets/{resourceSetId} | Replace a Resource Set
 
 
 # **addMembersToBinding**
@@ -55,14 +55,14 @@ apiInstance.addMembersToBinding(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **instance** | **ResourceSetBindingAddMembersRequest**|  |
- **resourceSetId** | [**string**] | &#x60;id&#x60; of a resource set | defaults to undefined
- **roleIdOrLabel** | [**string**] | &#x60;id&#x60; or &#x60;label&#x60; of the role | defaults to undefined
+ **instance** | **[ResourceSetBindingAddMembersRequest](ResourceSetBindingAddMembersRequest.md)** |  | 
+**resourceSetId** | **string** | &#x60;id&#x60; of a resource set | defaults to undefined
+**roleIdOrLabel** | **string** | &#x60;id&#x60; or &#x60;label&#x60; of the role | defaults to undefined
 
 
 ### Return type
 
-**ResourceSetBindingResponse**
+**[ResourceSetBindingResponse](ResourceSetBindingResponse.md)**
 
 ### Authorization
 
@@ -118,12 +118,12 @@ apiInstance.createResourceSet(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **instance** | **ResourceSet**|  |
+ **instance** | **[ResourceSet](ResourceSet.md)** |  | 
 
 
 ### Return type
 
-**ResourceSet**
+**[ResourceSet](ResourceSet.md)**
 
 ### Authorization
 
@@ -182,13 +182,13 @@ apiInstance.createResourceSetBinding(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **instance** | **ResourceSetBindingCreateRequest**|  |
- **resourceSetId** | [**string**] | &#x60;id&#x60; of a resource set | defaults to undefined
+ **instance** | **[ResourceSetBindingCreateRequest](ResourceSetBindingCreateRequest.md)** |  | 
+**resourceSetId** | **string** | &#x60;id&#x60; of a resource set | defaults to undefined
 
 
 ### Return type
 
-**ResourceSetBindingResponse**
+**[ResourceSetBindingResponse](ResourceSetBindingResponse.md)**
 
 ### Authorization
 
@@ -243,8 +243,8 @@ apiInstance.deleteBinding(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **resourceSetId** | [**string**] | &#x60;id&#x60; of a resource set | defaults to undefined
- **roleIdOrLabel** | [**string**] | &#x60;id&#x60; or &#x60;label&#x60; of the role | defaults to undefined
+**resourceSetId** | **string** | &#x60;id&#x60; of a resource set | defaults to undefined
+**roleIdOrLabel** | **string** | &#x60;id&#x60; or &#x60;label&#x60; of the role | defaults to undefined
 
 
 ### Return type
@@ -301,7 +301,7 @@ apiInstance.deleteResourceSet(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **resourceSetId** | [**string**] | &#x60;id&#x60; of a resource set | defaults to undefined
+**resourceSetId** | **string** | &#x60;id&#x60; of a resource set | defaults to undefined
 
 
 ### Return type
@@ -360,13 +360,13 @@ apiInstance.getBinding(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **resourceSetId** | [**string**] | &#x60;id&#x60; of a resource set | defaults to undefined
- **roleIdOrLabel** | [**string**] | &#x60;id&#x60; or &#x60;label&#x60; of the role | defaults to undefined
+**resourceSetId** | **string** | &#x60;id&#x60; of a resource set | defaults to undefined
+**roleIdOrLabel** | **string** | &#x60;id&#x60; or &#x60;label&#x60; of the role | defaults to undefined
 
 
 ### Return type
 
-**ResourceSetBindingResponse**
+**[ResourceSetBindingResponse](ResourceSetBindingResponse.md)**
 
 ### Authorization
 
@@ -418,12 +418,12 @@ apiInstance.getResourceSet(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **resourceSetId** | [**string**] | &#x60;id&#x60; of a resource set | defaults to undefined
+**resourceSetId** | **string** | &#x60;id&#x60; of a resource set | defaults to undefined
 
 
 ### Return type
 
-**ResourceSet**
+**[ResourceSet](ResourceSet.md)**
 
 ### Authorization
 
@@ -477,13 +477,13 @@ apiInstance.listBindings(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **resourceSetId** | [**string**] | &#x60;id&#x60; of a resource set | defaults to undefined
- **after** | [**string**] | The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](/#pagination) for more information. | (optional) defaults to undefined
+**resourceSetId** | **string** | &#x60;id&#x60; of a resource set | defaults to undefined
+**after** | **string** | The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](/#pagination) for more information. | (optional) defaults to undefined
 
 
 ### Return type
 
-**ResourceSetBindings**
+**[ResourceSetBindings](ResourceSetBindings.md)**
 
 ### Authorization
 
@@ -539,14 +539,14 @@ apiInstance.listMembersOfBinding(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **resourceSetId** | [**string**] | &#x60;id&#x60; of a resource set | defaults to undefined
- **roleIdOrLabel** | [**string**] | &#x60;id&#x60; or &#x60;label&#x60; of the role | defaults to undefined
- **after** | [**string**] | The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](/#pagination) for more information. | (optional) defaults to undefined
+**resourceSetId** | **string** | &#x60;id&#x60; of a resource set | defaults to undefined
+**roleIdOrLabel** | **string** | &#x60;id&#x60; or &#x60;label&#x60; of the role | defaults to undefined
+**after** | **string** | The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](/#pagination) for more information. | (optional) defaults to undefined
 
 
 ### Return type
 
-**ResourceSetBindingMembers**
+**[ResourceSetBindingMembers](ResourceSetBindingMembers.md)**
 
 ### Authorization
 
@@ -598,12 +598,12 @@ apiInstance.listResourceSets(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **after** | [**string**] | The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](/#pagination) for more information. | (optional) defaults to undefined
+**after** | **string** | The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](/#pagination) for more information. | (optional) defaults to undefined
 
 
 ### Return type
 
-**ResourceSets**
+**[ResourceSets](ResourceSets.md)**
 
 ### Authorization
 
@@ -659,13 +659,13 @@ apiInstance.replaceResourceSet(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **instance** | **ResourceSet**|  |
- **resourceSetId** | [**string**] | &#x60;id&#x60; of a resource set | defaults to undefined
+ **instance** | **[ResourceSet](ResourceSet.md)** |  | 
+**resourceSetId** | **string** | &#x60;id&#x60; of a resource set | defaults to undefined
 
 
 ### Return type
 
-**ResourceSet**
+**[ResourceSet](ResourceSet.md)**
 
 ### Authorization
 

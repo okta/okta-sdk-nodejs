@@ -4,15 +4,15 @@ All URIs are relative to *https://subdomain.okta.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**activateFactor**](UserFactorApi.md#activateFactor) | **POST** /api/v1/users/{userId}/factors/{factorId}/lifecycle/activate | Activate a Factor
-[**deleteFactor**](UserFactorApi.md#deleteFactor) | **DELETE** /api/v1/users/{userId}/factors/{factorId} | Delete a Factor
-[**enrollFactor**](UserFactorApi.md#enrollFactor) | **POST** /api/v1/users/{userId}/factors | Enroll a Factor
-[**getFactor**](UserFactorApi.md#getFactor) | **GET** /api/v1/users/{userId}/factors/{factorId} | Retrieve a Factor
-[**getFactorTransactionStatus**](UserFactorApi.md#getFactorTransactionStatus) | **GET** /api/v1/users/{userId}/factors/{factorId}/transactions/{transactionId} | Retrieve a Factor Transaction Status
-[**listFactors**](UserFactorApi.md#listFactors) | **GET** /api/v1/users/{userId}/factors | List all Factors
-[**listSupportedFactors**](UserFactorApi.md#listSupportedFactors) | **GET** /api/v1/users/{userId}/factors/catalog | List all Supported Factors
-[**listSupportedSecurityQuestions**](UserFactorApi.md#listSupportedSecurityQuestions) | **GET** /api/v1/users/{userId}/factors/questions | List all Supported Security Questions
-[**verifyFactor**](UserFactorApi.md#verifyFactor) | **POST** /api/v1/users/{userId}/factors/{factorId}/verify | Verify an MFA Factor
+[**activateFactor**](UserFactorApi.md#activatefactor) | **POST** /api/v1/users/{userId}/factors/{factorId}/lifecycle/activate | Activate a Factor
+[**deleteFactor**](UserFactorApi.md#deletefactor) | **DELETE** /api/v1/users/{userId}/factors/{factorId} | Delete a Factor
+[**enrollFactor**](UserFactorApi.md#enrollfactor) | **POST** /api/v1/users/{userId}/factors | Enroll a Factor
+[**getFactor**](UserFactorApi.md#getfactor) | **GET** /api/v1/users/{userId}/factors/{factorId} | Retrieve a Factor
+[**getFactorTransactionStatus**](UserFactorApi.md#getfactortransactionstatus) | **GET** /api/v1/users/{userId}/factors/{factorId}/transactions/{transactionId} | Retrieve a Factor Transaction Status
+[**listFactors**](UserFactorApi.md#listfactors) | **GET** /api/v1/users/{userId}/factors | List all Factors
+[**listSupportedFactors**](UserFactorApi.md#listsupportedfactors) | **GET** /api/v1/users/{userId}/factors/catalog | List all Supported Factors
+[**listSupportedSecurityQuestions**](UserFactorApi.md#listsupportedsecurityquestions) | **GET** /api/v1/users/{userId}/factors/questions | List all Supported Security Questions
+[**verifyFactor**](UserFactorApi.md#verifyfactor) | **POST** /api/v1/users/{userId}/factors/{factorId}/verify | Verify an MFA Factor
 
 
 # **activateFactor**
@@ -55,14 +55,14 @@ apiInstance.activateFactor(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | **ActivateFactorRequest**|  |
- **userId** | [**string**] |  | defaults to undefined
- **factorId** | [**string**] |  | defaults to undefined
+ **body** | **[ActivateFactorRequest](ActivateFactorRequest.md)** |  | 
+**userId** | **string** |  | defaults to undefined
+**factorId** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**UserFactor**
+**[UserFactor](UserFactor.md)**
 
 ### Authorization
 
@@ -119,9 +119,9 @@ apiInstance.deleteFactor(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | [**string**] |  | defaults to undefined
- **factorId** | [**string**] |  | defaults to undefined
- **removeEnrollmentRecovery** | [**boolean**] |  | (optional) defaults to undefined
+**userId** | **string** |  | defaults to undefined
+**factorId** | **string** |  | defaults to undefined
+**removeEnrollmentRecovery** | **boolean** |  | (optional) defaults to undefined
 
 
 ### Return type
@@ -188,17 +188,17 @@ apiInstance.enrollFactor(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | **UserFactor**| Factor |
- **userId** | [**string**] |  | defaults to undefined
- **updatePhone** | [**boolean**] |  | (optional) defaults to undefined
- **templateId** | [**string**] | id of SMS template (only for SMS factor) | (optional) defaults to undefined
- **tokenLifetimeSeconds** | [**number**] |  | (optional) defaults to 300
- **activate** | [**boolean**] |  | (optional) defaults to undefined
+ **body** | **[UserFactor](UserFactor.md)** | Factor | 
+**userId** | **string** |  | defaults to undefined
+**updatePhone** | **boolean** |  | (optional) defaults to undefined
+**templateId** | **string** | id of SMS template (only for SMS factor) | (optional) defaults to undefined
+**tokenLifetimeSeconds** | **number** |  | (optional) defaults to 300
+**activate** | **boolean** |  | (optional) defaults to undefined
 
 
 ### Return type
 
-**UserFactor**
+**[UserFactor](UserFactor.md)**
 
 ### Authorization
 
@@ -253,13 +253,13 @@ apiInstance.getFactor(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | [**string**] |  | defaults to undefined
- **factorId** | [**string**] |  | defaults to undefined
+**userId** | **string** |  | defaults to undefined
+**factorId** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**UserFactor**
+**[UserFactor](UserFactor.md)**
 
 ### Authorization
 
@@ -315,14 +315,14 @@ apiInstance.getFactorTransactionStatus(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | [**string**] |  | defaults to undefined
- **factorId** | [**string**] |  | defaults to undefined
- **transactionId** | [**string**] |  | defaults to undefined
+**userId** | **string** |  | defaults to undefined
+**factorId** | **string** |  | defaults to undefined
+**transactionId** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**VerifyUserFactorResponse**
+**[VerifyUserFactorResponse](VerifyUserFactorResponse.md)**
 
 ### Authorization
 
@@ -374,12 +374,12 @@ apiInstance.listFactors(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | [**string**] |  | defaults to undefined
+**userId** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**Array<UserFactor>**
+**[Array&lt;UserFactor&gt;](UserFactor.md)**
 
 ### Authorization
 
@@ -431,12 +431,12 @@ apiInstance.listSupportedFactors(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | [**string**] |  | defaults to undefined
+**userId** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**Array<UserFactor>**
+**[Array&lt;UserFactor&gt;](UserFactor.md)**
 
 ### Authorization
 
@@ -488,12 +488,12 @@ apiInstance.listSupportedSecurityQuestions(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | [**string**] |  | defaults to undefined
+**userId** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**Array<SecurityQuestion>**
+**[Array&lt;SecurityQuestion&gt;](SecurityQuestion.md)**
 
 ### Authorization
 
@@ -568,19 +568,19 @@ apiInstance.verifyFactor(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | **VerifyFactorRequest**|  |
- **userId** | [**string**] |  | defaults to undefined
- **factorId** | [**string**] |  | defaults to undefined
- **templateId** | [**string**] |  | (optional) defaults to undefined
- **tokenLifetimeSeconds** | [**number**] |  | (optional) defaults to 300
- **X_Forwarded_For** | [**string**] |  | (optional) defaults to undefined
- **User_Agent** | [**string**] |  | (optional) defaults to undefined
- **Accept_Language** | [**string**] |  | (optional) defaults to undefined
+ **body** | **[VerifyFactorRequest](VerifyFactorRequest.md)** |  | 
+**userId** | **string** |  | defaults to undefined
+**factorId** | **string** |  | defaults to undefined
+**templateId** | **string** |  | (optional) defaults to undefined
+**tokenLifetimeSeconds** | **number** |  | (optional) defaults to 300
+**X_Forwarded_For** | **string** |  | (optional) defaults to undefined
+**User_Agent** | **string** |  | (optional) defaults to undefined
+**Accept_Language** | **string** |  | (optional) defaults to undefined
 
 
 ### Return type
 
-**VerifyUserFactorResponse**
+**[VerifyUserFactorResponse](VerifyUserFactorResponse.md)**
 
 ### Authorization
 

@@ -4,10 +4,10 @@ All URIs are relative to *https://subdomain.okta.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**createPrincipalRateLimitEntity**](PrincipalRateLimitApi.md#createPrincipalRateLimitEntity) | **POST** /api/v1/principal-rate-limits | Create a Principal Rate Limit
-[**getPrincipalRateLimitEntity**](PrincipalRateLimitApi.md#getPrincipalRateLimitEntity) | **GET** /api/v1/principal-rate-limits/{principalRateLimitId} | Retrieve a Principal Rate Limit
-[**listPrincipalRateLimitEntities**](PrincipalRateLimitApi.md#listPrincipalRateLimitEntities) | **GET** /api/v1/principal-rate-limits | List all Principal Rate Limits
-[**updatePrincipalRateLimitEntity**](PrincipalRateLimitApi.md#updatePrincipalRateLimitEntity) | **PUT** /api/v1/principal-rate-limits/{principalRateLimitId} | Replace a Principal Rate Limit
+[**createPrincipalRateLimitEntity**](PrincipalRateLimitApi.md#createprincipalratelimitentity) | **POST** /api/v1/principal-rate-limits | Create a Principal Rate Limit
+[**getPrincipalRateLimitEntity**](PrincipalRateLimitApi.md#getprincipalratelimitentity) | **GET** /api/v1/principal-rate-limits/{principalRateLimitId} | Retrieve a Principal Rate Limit
+[**listPrincipalRateLimitEntities**](PrincipalRateLimitApi.md#listprincipalratelimitentities) | **GET** /api/v1/principal-rate-limits | List all Principal Rate Limits
+[**updatePrincipalRateLimitEntity**](PrincipalRateLimitApi.md#updateprincipalratelimitentity) | **PUT** /api/v1/principal-rate-limits/{principalRateLimitId} | Replace a Principal Rate Limit
 
 
 # **createPrincipalRateLimitEntity**
@@ -43,12 +43,12 @@ apiInstance.createPrincipalRateLimitEntity(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **entity** | **PrincipalRateLimitEntity**|  |
+ **entity** | **[PrincipalRateLimitEntity](PrincipalRateLimitEntity.md)** |  | 
 
 
 ### Return type
 
-**PrincipalRateLimitEntity**
+**[PrincipalRateLimitEntity](PrincipalRateLimitEntity.md)**
 
 ### Authorization
 
@@ -101,12 +101,12 @@ apiInstance.getPrincipalRateLimitEntity(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **principalRateLimitId** | [**string**] | id of the Principal Rate Limit | defaults to undefined
+**principalRateLimitId** | **string** | id of the Principal Rate Limit | defaults to undefined
 
 
 ### Return type
 
-**PrincipalRateLimitEntity**
+**[PrincipalRateLimitEntity](PrincipalRateLimitEntity.md)**
 
 ### Authorization
 
@@ -162,14 +162,14 @@ apiInstance.listPrincipalRateLimitEntities(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **filter** | [**string**] |  | (optional) defaults to undefined
- **after** | [**string**] |  | (optional) defaults to undefined
- **limit** | [**number**] |  | (optional) defaults to 20
+**filter** | **string** |  | (optional) defaults to undefined
+**after** | **string** |  | (optional) defaults to undefined
+**limit** | **number** |  | (optional) defaults to 20
 
 
 ### Return type
 
-**Array<PrincipalRateLimitEntity>**
+**[Array&lt;PrincipalRateLimitEntity&gt;](PrincipalRateLimitEntity.md)**
 
 ### Authorization
 
@@ -226,13 +226,13 @@ apiInstance.updatePrincipalRateLimitEntity(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **entity** | **PrincipalRateLimitEntity**|  |
- **principalRateLimitId** | [**string**] | id of the Principal Rate Limit | defaults to undefined
+ **entity** | **[PrincipalRateLimitEntity](PrincipalRateLimitEntity.md)** |  | 
+**principalRateLimitId** | **string** | id of the Principal Rate Limit | defaults to undefined
 
 
 ### Return type
 
-**PrincipalRateLimitEntity**
+**[PrincipalRateLimitEntity](PrincipalRateLimitEntity.md)**
 
 ### Authorization
 

@@ -4,25 +4,25 @@ All URIs are relative to *https://subdomain.okta.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**activateGroupRule**](GroupApi.md#activateGroupRule) | **POST** /api/v1/groups/rules/{ruleId}/lifecycle/activate | Activate a Group Rule
-[**addGroupOwner**](GroupApi.md#addGroupOwner) | **POST** /api/v1/groups/{groupId}/owners | Assign a Group Owner
-[**addUserToGroup**](GroupApi.md#addUserToGroup) | **PUT** /api/v1/groups/{groupId}/users/{userId} | Assign a User
-[**createGroup**](GroupApi.md#createGroup) | **POST** /api/v1/groups | Create a Group
-[**createGroupRule**](GroupApi.md#createGroupRule) | **POST** /api/v1/groups/rules | Create a Group Rule
-[**deactivateGroupRule**](GroupApi.md#deactivateGroupRule) | **POST** /api/v1/groups/rules/{ruleId}/lifecycle/deactivate | Deactivate a Group Rule
-[**deleteGroup**](GroupApi.md#deleteGroup) | **DELETE** /api/v1/groups/{groupId} | Delete a Group
-[**deleteGroupOwner**](GroupApi.md#deleteGroupOwner) | **DELETE** /api/v1/groups/{groupId}/owners/{ownerId} | Delete a Group Owner
-[**deleteGroupRule**](GroupApi.md#deleteGroupRule) | **DELETE** /api/v1/groups/rules/{ruleId} | Delete a group Rule
-[**getGroup**](GroupApi.md#getGroup) | **GET** /api/v1/groups/{groupId} | List all Group Rules
-[**getGroupOwners**](GroupApi.md#getGroupOwners) | **GET** /api/v1/groups/{groupId}/owners | List all Owners
-[**getGroupRule**](GroupApi.md#getGroupRule) | **GET** /api/v1/groups/rules/{ruleId} | Retrieve a Group Rule
-[**listAssignedApplicationsForGroup**](GroupApi.md#listAssignedApplicationsForGroup) | **GET** /api/v1/groups/{groupId}/apps | List all Assigned Applications
-[**listGroupRules**](GroupApi.md#listGroupRules) | **GET** /api/v1/groups/rules | List all Group Rules
-[**listGroupUsers**](GroupApi.md#listGroupUsers) | **GET** /api/v1/groups/{groupId}/users | List all Member Users
-[**listGroups**](GroupApi.md#listGroups) | **GET** /api/v1/groups | List all Groups
-[**removeUserFromGroup**](GroupApi.md#removeUserFromGroup) | **DELETE** /api/v1/groups/{groupId}/users/{userId} | Unassign a User
-[**updateGroup**](GroupApi.md#updateGroup) | **PUT** /api/v1/groups/{groupId} | Replace a Group
-[**updateGroupRule**](GroupApi.md#updateGroupRule) | **PUT** /api/v1/groups/rules/{ruleId} | Replace a Group Rule
+[**activateGroupRule**](GroupApi.md#activategrouprule) | **POST** /api/v1/groups/rules/{ruleId}/lifecycle/activate | Activate a Group Rule
+[**addGroupOwner**](GroupApi.md#addgroupowner) | **POST** /api/v1/groups/{groupId}/owners | Assign a Group Owner
+[**addUserToGroup**](GroupApi.md#addusertogroup) | **PUT** /api/v1/groups/{groupId}/users/{userId} | Assign a User
+[**createGroup**](GroupApi.md#creategroup) | **POST** /api/v1/groups | Create a Group
+[**createGroupRule**](GroupApi.md#creategrouprule) | **POST** /api/v1/groups/rules | Create a Group Rule
+[**deactivateGroupRule**](GroupApi.md#deactivategrouprule) | **POST** /api/v1/groups/rules/{ruleId}/lifecycle/deactivate | Deactivate a Group Rule
+[**deleteGroup**](GroupApi.md#deletegroup) | **DELETE** /api/v1/groups/{groupId} | Delete a Group
+[**deleteGroupOwner**](GroupApi.md#deletegroupowner) | **DELETE** /api/v1/groups/{groupId}/owners/{ownerId} | Delete a Group Owner
+[**deleteGroupRule**](GroupApi.md#deletegrouprule) | **DELETE** /api/v1/groups/rules/{ruleId} | Delete a group Rule
+[**getGroup**](GroupApi.md#getgroup) | **GET** /api/v1/groups/{groupId} | List all Group Rules
+[**getGroupOwners**](GroupApi.md#getgroupowners) | **GET** /api/v1/groups/{groupId}/owners | List all Owners
+[**getGroupRule**](GroupApi.md#getgrouprule) | **GET** /api/v1/groups/rules/{ruleId} | Retrieve a Group Rule
+[**listAssignedApplicationsForGroup**](GroupApi.md#listassignedapplicationsforgroup) | **GET** /api/v1/groups/{groupId}/apps | List all Assigned Applications
+[**listGroupRules**](GroupApi.md#listgrouprules) | **GET** /api/v1/groups/rules | List all Group Rules
+[**listGroupUsers**](GroupApi.md#listgroupusers) | **GET** /api/v1/groups/{groupId}/users | List all Member Users
+[**listGroups**](GroupApi.md#listgroups) | **GET** /api/v1/groups | List all Groups
+[**removeUserFromGroup**](GroupApi.md#removeuserfromgroup) | **DELETE** /api/v1/groups/{groupId}/users/{userId} | Unassign a User
+[**updateGroup**](GroupApi.md#updategroup) | **PUT** /api/v1/groups/{groupId} | Replace a Group
+[**updateGroupRule**](GroupApi.md#updategrouprule) | **PUT** /api/v1/groups/rules/{ruleId} | Replace a Group Rule
 
 
 # **activateGroupRule**
@@ -55,7 +55,7 @@ apiInstance.activateGroupRule(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ruleId** | [**string**] |  | defaults to undefined
+**ruleId** | **string** |  | defaults to undefined
 
 
 ### Return type
@@ -119,13 +119,13 @@ apiInstance.addGroupOwner(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **GroupOwner** | **GroupOwner**|  |
- **groupId** | [**string**] |  | defaults to undefined
+ **GroupOwner** | **[GroupOwner](GroupOwner.md)** |  | 
+**groupId** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**GroupOwner**
+**[GroupOwner](GroupOwner.md)**
 
 ### Authorization
 
@@ -180,8 +180,8 @@ apiInstance.addUserToGroup(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **groupId** | [**string**] |  | defaults to undefined
- **userId** | [**string**] |  | defaults to undefined
+**groupId** | **string** |  | defaults to undefined
+**userId** | **string** |  | defaults to undefined
 
 
 ### Return type
@@ -244,12 +244,12 @@ apiInstance.createGroup(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **group** | **Group**|  |
+ **group** | **[Group](Group.md)** |  | 
 
 
 ### Return type
 
-**Group**
+**[Group](Group.md)**
 
 ### Authorization
 
@@ -336,12 +336,12 @@ apiInstance.createGroupRule(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **groupRule** | **GroupRule**|  |
+ **groupRule** | **[GroupRule](GroupRule.md)** |  | 
 
 
 ### Return type
 
-**GroupRule**
+**[GroupRule](GroupRule.md)**
 
 ### Authorization
 
@@ -393,7 +393,7 @@ apiInstance.deactivateGroupRule(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ruleId** | [**string**] |  | defaults to undefined
+**ruleId** | **string** |  | defaults to undefined
 
 
 ### Return type
@@ -450,7 +450,7 @@ apiInstance.deleteGroup(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **groupId** | [**string**] |  | defaults to undefined
+**groupId** | **string** |  | defaults to undefined
 
 
 ### Return type
@@ -509,8 +509,8 @@ apiInstance.deleteGroupOwner(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **groupId** | [**string**] |  | defaults to undefined
- **ownerId** | [**string**] |  | defaults to undefined
+**groupId** | **string** |  | defaults to undefined
+**ownerId** | **string** |  | defaults to undefined
 
 
 ### Return type
@@ -569,8 +569,8 @@ apiInstance.deleteGroupRule(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ruleId** | [**string**] |  | defaults to undefined
- **removeUsers** | [**boolean**] | Indicates whether to keep or remove users from groups assigned by this rule. | (optional) defaults to undefined
+**ruleId** | **string** |  | defaults to undefined
+**removeUsers** | **boolean** | Indicates whether to keep or remove users from groups assigned by this rule. | (optional) defaults to undefined
 
 
 ### Return type
@@ -627,12 +627,12 @@ apiInstance.getGroup(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **groupId** | [**string**] |  | defaults to undefined
+**groupId** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**Group**
+**[Group](Group.md)**
 
 ### Authorization
 
@@ -690,15 +690,15 @@ apiInstance.getGroupOwners(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **groupId** | [**string**] |  | defaults to undefined
- **filter** | [**string**] | SCIM Filter expression for group owners. Allows to filter owners by type. | (optional) defaults to undefined
- **after** | [**string**] | Specifies the pagination cursor for the next page of owners | (optional) defaults to undefined
- **limit** | [**number**] | Specifies the number of owner results in a page | (optional) defaults to 1000
+**groupId** | **string** |  | defaults to undefined
+**filter** | **string** | SCIM Filter expression for group owners. Allows to filter owners by type. | (optional) defaults to undefined
+**after** | **string** | Specifies the pagination cursor for the next page of owners | (optional) defaults to undefined
+**limit** | **number** | Specifies the number of owner results in a page | (optional) defaults to 1000
 
 
 ### Return type
 
-**Array<GroupOwner>**
+**[Array&lt;GroupOwner&gt;](GroupOwner.md)**
 
 ### Authorization
 
@@ -752,13 +752,13 @@ apiInstance.getGroupRule(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ruleId** | [**string**] |  | defaults to undefined
- **expand** | [**string**] |  | (optional) defaults to undefined
+**ruleId** | **string** |  | defaults to undefined
+**expand** | **string** |  | (optional) defaults to undefined
 
 
 ### Return type
 
-**GroupRule**
+**[GroupRule](GroupRule.md)**
 
 ### Authorization
 
@@ -814,14 +814,14 @@ apiInstance.listAssignedApplicationsForGroup(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **groupId** | [**string**] |  | defaults to undefined
- **after** | [**string**] | Specifies the pagination cursor for the next page of apps | (optional) defaults to undefined
- **limit** | [**number**] | Specifies the number of app results for a page | (optional) defaults to 20
+**groupId** | **string** |  | defaults to undefined
+**after** | **string** | Specifies the pagination cursor for the next page of apps | (optional) defaults to undefined
+**limit** | **number** | Specifies the number of app results for a page | (optional) defaults to 20
 
 
 ### Return type
 
-**Array<Application>**
+**[Array&lt;Application&gt;](Application.md)**
 
 ### Authorization
 
@@ -879,15 +879,15 @@ apiInstance.listGroupRules(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **limit** | [**number**] | Specifies the number of rule results in a page | (optional) defaults to 50
- **after** | [**string**] | Specifies the pagination cursor for the next page of rules | (optional) defaults to undefined
- **search** | [**string**] | Specifies the keyword to search fules for | (optional) defaults to undefined
- **expand** | [**string**] | If specified as &#x60;groupIdToGroupNameMap&#x60;, then show group names | (optional) defaults to undefined
+**limit** | **number** | Specifies the number of rule results in a page | (optional) defaults to 50
+**after** | **string** | Specifies the pagination cursor for the next page of rules | (optional) defaults to undefined
+**search** | **string** | Specifies the keyword to search fules for | (optional) defaults to undefined
+**expand** | **string** | If specified as &#x60;groupIdToGroupNameMap&#x60;, then show group names | (optional) defaults to undefined
 
 
 ### Return type
 
-**Array<GroupRule>**
+**[Array&lt;GroupRule&gt;](GroupRule.md)**
 
 ### Authorization
 
@@ -942,14 +942,14 @@ apiInstance.listGroupUsers(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **groupId** | [**string**] |  | defaults to undefined
- **after** | [**string**] | Specifies the pagination cursor for the next page of users | (optional) defaults to undefined
- **limit** | [**number**] | Specifies the number of user results in a page | (optional) defaults to 1000
+**groupId** | **string** |  | defaults to undefined
+**after** | **string** | Specifies the pagination cursor for the next page of users | (optional) defaults to undefined
+**limit** | **number** | Specifies the number of user results in a page | (optional) defaults to 1000
 
 
 ### Return type
 
-**Array<User>**
+**[Array&lt;User&gt;](User.md)**
 
 ### Authorization
 
@@ -1011,17 +1011,17 @@ apiInstance.listGroups(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **q** | [**string**] | Searches the name property of groups for matching value | (optional) defaults to undefined
- **filter** | [**string**] | Filter expression for groups | (optional) defaults to undefined
- **after** | [**string**] | Specifies the pagination cursor for the next page of groups | (optional) defaults to undefined
- **limit** | [**number**] | Specifies the number of group results in a page | (optional) defaults to 10000
- **expand** | [**string**] | If specified, it causes additional metadata to be included in the response. | (optional) defaults to undefined
- **search** | [**string**] | Searches for groups with a supported filtering expression for all attributes except for _embedded, _links, and objectClass | (optional) defaults to undefined
+**q** | **string** | Searches the name property of groups for matching value | (optional) defaults to undefined
+**filter** | **string** | Filter expression for groups | (optional) defaults to undefined
+**after** | **string** | Specifies the pagination cursor for the next page of groups | (optional) defaults to undefined
+**limit** | **number** | Specifies the number of group results in a page | (optional) defaults to 10000
+**expand** | **string** | If specified, it causes additional metadata to be included in the response. | (optional) defaults to undefined
+**search** | **string** | Searches for groups with a supported filtering expression for all attributes except for _embedded, _links, and objectClass | (optional) defaults to undefined
 
 
 ### Return type
 
-**Array<Group>**
+**[Array&lt;Group&gt;](Group.md)**
 
 ### Authorization
 
@@ -1074,8 +1074,8 @@ apiInstance.removeUserFromGroup(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **groupId** | [**string**] |  | defaults to undefined
- **userId** | [**string**] |  | defaults to undefined
+**groupId** | **string** |  | defaults to undefined
+**userId** | **string** |  | defaults to undefined
 
 
 ### Return type
@@ -1140,13 +1140,13 @@ apiInstance.updateGroup(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **group** | **Group**|  |
- **groupId** | [**string**] |  | defaults to undefined
+ **group** | **[Group](Group.md)** |  | 
+**groupId** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**Group**
+**[Group](Group.md)**
 
 ### Authorization
 
@@ -1236,13 +1236,13 @@ apiInstance.updateGroupRule(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **groupRule** | **GroupRule**|  |
- **ruleId** | [**string**] |  | defaults to undefined
+ **groupRule** | **[GroupRule](GroupRule.md)** |  | 
+**ruleId** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**GroupRule**
+**[GroupRule](GroupRule.md)**
 
 ### Authorization
 

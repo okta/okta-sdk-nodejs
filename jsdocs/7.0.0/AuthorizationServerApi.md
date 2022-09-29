@@ -4,44 +4,44 @@ All URIs are relative to *https://subdomain.okta.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**activateAuthorizationServer**](AuthorizationServerApi.md#activateAuthorizationServer) | **POST** /api/v1/authorizationServers/{authServerId}/lifecycle/activate | Activate an Authorization Server
-[**activateAuthorizationServerPolicy**](AuthorizationServerApi.md#activateAuthorizationServerPolicy) | **POST** /api/v1/authorizationServers/{authServerId}/policies/{policyId}/lifecycle/activate | Activate a Policy
-[**activateAuthorizationServerPolicyRule**](AuthorizationServerApi.md#activateAuthorizationServerPolicyRule) | **POST** /api/v1/authorizationServers/{authServerId}/policies/{policyId}/rules/{ruleId}/lifecycle/activate | Activate a Policy Rule
-[**createAuthorizationServer**](AuthorizationServerApi.md#createAuthorizationServer) | **POST** /api/v1/authorizationServers | Create an Authorization Server
-[**createAuthorizationServerPolicy**](AuthorizationServerApi.md#createAuthorizationServerPolicy) | **POST** /api/v1/authorizationServers/{authServerId}/policies | Create a Policy
-[**createAuthorizationServerPolicyRule**](AuthorizationServerApi.md#createAuthorizationServerPolicyRule) | **POST** /api/v1/authorizationServers/{authServerId}/policies/{policyId}/rules | Create a Policy Rule
-[**createOAuth2Claim**](AuthorizationServerApi.md#createOAuth2Claim) | **POST** /api/v1/authorizationServers/{authServerId}/claims | Create a Custom Token Claim
-[**createOAuth2Scope**](AuthorizationServerApi.md#createOAuth2Scope) | **POST** /api/v1/authorizationServers/{authServerId}/scopes | Create a Custom Token Scope
-[**deactivateAuthorizationServer**](AuthorizationServerApi.md#deactivateAuthorizationServer) | **POST** /api/v1/authorizationServers/{authServerId}/lifecycle/deactivate | Deactivate an Authorization Server
-[**deactivateAuthorizationServerPolicy**](AuthorizationServerApi.md#deactivateAuthorizationServerPolicy) | **POST** /api/v1/authorizationServers/{authServerId}/policies/{policyId}/lifecycle/deactivate | Deactivate a Policy
-[**deactivateAuthorizationServerPolicyRule**](AuthorizationServerApi.md#deactivateAuthorizationServerPolicyRule) | **POST** /api/v1/authorizationServers/{authServerId}/policies/{policyId}/rules/{ruleId}/lifecycle/deactivate | Deactivate a Policy Rule
-[**deleteAuthorizationServer**](AuthorizationServerApi.md#deleteAuthorizationServer) | **DELETE** /api/v1/authorizationServers/{authServerId} | Delete an Authorization Server
-[**deleteAuthorizationServerPolicy**](AuthorizationServerApi.md#deleteAuthorizationServerPolicy) | **DELETE** /api/v1/authorizationServers/{authServerId}/policies/{policyId} | Delete a Policy
-[**deleteAuthorizationServerPolicyRule**](AuthorizationServerApi.md#deleteAuthorizationServerPolicyRule) | **DELETE** /api/v1/authorizationServers/{authServerId}/policies/{policyId}/rules/{ruleId} | Delete a Policy Rule
-[**deleteOAuth2Claim**](AuthorizationServerApi.md#deleteOAuth2Claim) | **DELETE** /api/v1/authorizationServers/{authServerId}/claims/{claimId} | Delete a Custom Token Claim
-[**deleteOAuth2Scope**](AuthorizationServerApi.md#deleteOAuth2Scope) | **DELETE** /api/v1/authorizationServers/{authServerId}/scopes/{scopeId} | Delete a Custom Token Scope
-[**getAuthorizationServer**](AuthorizationServerApi.md#getAuthorizationServer) | **GET** /api/v1/authorizationServers/{authServerId} | Retrieve an Authorization Server
-[**getAuthorizationServerPolicy**](AuthorizationServerApi.md#getAuthorizationServerPolicy) | **GET** /api/v1/authorizationServers/{authServerId}/policies/{policyId} | Retrieve a Policy
-[**getAuthorizationServerPolicyRule**](AuthorizationServerApi.md#getAuthorizationServerPolicyRule) | **GET** /api/v1/authorizationServers/{authServerId}/policies/{policyId}/rules/{ruleId} | Retrieve a Policy Rule
-[**getOAuth2Claim**](AuthorizationServerApi.md#getOAuth2Claim) | **GET** /api/v1/authorizationServers/{authServerId}/claims/{claimId} | Retrieve a Custom Token Claim
-[**getOAuth2Scope**](AuthorizationServerApi.md#getOAuth2Scope) | **GET** /api/v1/authorizationServers/{authServerId}/scopes/{scopeId} | Retrieve a Custom Token Scope
-[**getRefreshTokenForAuthorizationServerAndClient**](AuthorizationServerApi.md#getRefreshTokenForAuthorizationServerAndClient) | **GET** /api/v1/authorizationServers/{authServerId}/clients/{clientId}/tokens/{tokenId} | Retrieve a Refresh Token for a Client
-[**listAuthorizationServerKeys**](AuthorizationServerApi.md#listAuthorizationServerKeys) | **GET** /api/v1/authorizationServers/{authServerId}/credentials/keys | List all Credential Keys
-[**listAuthorizationServerPolicies**](AuthorizationServerApi.md#listAuthorizationServerPolicies) | **GET** /api/v1/authorizationServers/{authServerId}/policies | List all Policies
-[**listAuthorizationServerPolicyRules**](AuthorizationServerApi.md#listAuthorizationServerPolicyRules) | **GET** /api/v1/authorizationServers/{authServerId}/policies/{policyId}/rules | List all Policy Rules
-[**listAuthorizationServers**](AuthorizationServerApi.md#listAuthorizationServers) | **GET** /api/v1/authorizationServers | List all Authorization Servers
-[**listOAuth2Claims**](AuthorizationServerApi.md#listOAuth2Claims) | **GET** /api/v1/authorizationServers/{authServerId}/claims | List all Custom Token Claims
-[**listOAuth2ClientsForAuthorizationServer**](AuthorizationServerApi.md#listOAuth2ClientsForAuthorizationServer) | **GET** /api/v1/authorizationServers/{authServerId}/clients | List all Clients
-[**listOAuth2Scopes**](AuthorizationServerApi.md#listOAuth2Scopes) | **GET** /api/v1/authorizationServers/{authServerId}/scopes | List all Custom Token Scopes
-[**listRefreshTokensForAuthorizationServerAndClient**](AuthorizationServerApi.md#listRefreshTokensForAuthorizationServerAndClient) | **GET** /api/v1/authorizationServers/{authServerId}/clients/{clientId}/tokens | List all Refresh Tokens for a Client
-[**revokeRefreshTokenForAuthorizationServerAndClient**](AuthorizationServerApi.md#revokeRefreshTokenForAuthorizationServerAndClient) | **DELETE** /api/v1/authorizationServers/{authServerId}/clients/{clientId}/tokens/{tokenId} | Revoke a Refresh Token for a Client
-[**revokeRefreshTokensForAuthorizationServerAndClient**](AuthorizationServerApi.md#revokeRefreshTokensForAuthorizationServerAndClient) | **DELETE** /api/v1/authorizationServers/{authServerId}/clients/{clientId}/tokens | Revoke all Refresh Tokens for a Client
-[**rotateAuthorizationServerKeys**](AuthorizationServerApi.md#rotateAuthorizationServerKeys) | **POST** /api/v1/authorizationServers/{authServerId}/credentials/lifecycle/keyRotate | Rotate all Credential Keys
-[**updateAuthorizationServer**](AuthorizationServerApi.md#updateAuthorizationServer) | **PUT** /api/v1/authorizationServers/{authServerId} | Replace an Authorization Server
-[**updateAuthorizationServerPolicy**](AuthorizationServerApi.md#updateAuthorizationServerPolicy) | **PUT** /api/v1/authorizationServers/{authServerId}/policies/{policyId} | Replace a Policy
-[**updateAuthorizationServerPolicyRule**](AuthorizationServerApi.md#updateAuthorizationServerPolicyRule) | **PUT** /api/v1/authorizationServers/{authServerId}/policies/{policyId}/rules/{ruleId} | Replace a Policy Rule
-[**updateOAuth2Claim**](AuthorizationServerApi.md#updateOAuth2Claim) | **PUT** /api/v1/authorizationServers/{authServerId}/claims/{claimId} | Replace a Custom Token Claim
-[**updateOAuth2Scope**](AuthorizationServerApi.md#updateOAuth2Scope) | **PUT** /api/v1/authorizationServers/{authServerId}/scopes/{scopeId} | Replace a Custom Token Scope
+[**activateAuthorizationServer**](AuthorizationServerApi.md#activateauthorizationserver) | **POST** /api/v1/authorizationServers/{authServerId}/lifecycle/activate | Activate an Authorization Server
+[**activateAuthorizationServerPolicy**](AuthorizationServerApi.md#activateauthorizationserverpolicy) | **POST** /api/v1/authorizationServers/{authServerId}/policies/{policyId}/lifecycle/activate | Activate a Policy
+[**activateAuthorizationServerPolicyRule**](AuthorizationServerApi.md#activateauthorizationserverpolicyrule) | **POST** /api/v1/authorizationServers/{authServerId}/policies/{policyId}/rules/{ruleId}/lifecycle/activate | Activate a Policy Rule
+[**createAuthorizationServer**](AuthorizationServerApi.md#createauthorizationserver) | **POST** /api/v1/authorizationServers | Create an Authorization Server
+[**createAuthorizationServerPolicy**](AuthorizationServerApi.md#createauthorizationserverpolicy) | **POST** /api/v1/authorizationServers/{authServerId}/policies | Create a Policy
+[**createAuthorizationServerPolicyRule**](AuthorizationServerApi.md#createauthorizationserverpolicyrule) | **POST** /api/v1/authorizationServers/{authServerId}/policies/{policyId}/rules | Create a Policy Rule
+[**createOAuth2Claim**](AuthorizationServerApi.md#createoauth2claim) | **POST** /api/v1/authorizationServers/{authServerId}/claims | Create a Custom Token Claim
+[**createOAuth2Scope**](AuthorizationServerApi.md#createoauth2scope) | **POST** /api/v1/authorizationServers/{authServerId}/scopes | Create a Custom Token Scope
+[**deactivateAuthorizationServer**](AuthorizationServerApi.md#deactivateauthorizationserver) | **POST** /api/v1/authorizationServers/{authServerId}/lifecycle/deactivate | Deactivate an Authorization Server
+[**deactivateAuthorizationServerPolicy**](AuthorizationServerApi.md#deactivateauthorizationserverpolicy) | **POST** /api/v1/authorizationServers/{authServerId}/policies/{policyId}/lifecycle/deactivate | Deactivate a Policy
+[**deactivateAuthorizationServerPolicyRule**](AuthorizationServerApi.md#deactivateauthorizationserverpolicyrule) | **POST** /api/v1/authorizationServers/{authServerId}/policies/{policyId}/rules/{ruleId}/lifecycle/deactivate | Deactivate a Policy Rule
+[**deleteAuthorizationServer**](AuthorizationServerApi.md#deleteauthorizationserver) | **DELETE** /api/v1/authorizationServers/{authServerId} | Delete an Authorization Server
+[**deleteAuthorizationServerPolicy**](AuthorizationServerApi.md#deleteauthorizationserverpolicy) | **DELETE** /api/v1/authorizationServers/{authServerId}/policies/{policyId} | Delete a Policy
+[**deleteAuthorizationServerPolicyRule**](AuthorizationServerApi.md#deleteauthorizationserverpolicyrule) | **DELETE** /api/v1/authorizationServers/{authServerId}/policies/{policyId}/rules/{ruleId} | Delete a Policy Rule
+[**deleteOAuth2Claim**](AuthorizationServerApi.md#deleteoauth2claim) | **DELETE** /api/v1/authorizationServers/{authServerId}/claims/{claimId} | Delete a Custom Token Claim
+[**deleteOAuth2Scope**](AuthorizationServerApi.md#deleteoauth2scope) | **DELETE** /api/v1/authorizationServers/{authServerId}/scopes/{scopeId} | Delete a Custom Token Scope
+[**getAuthorizationServer**](AuthorizationServerApi.md#getauthorizationserver) | **GET** /api/v1/authorizationServers/{authServerId} | Retrieve an Authorization Server
+[**getAuthorizationServerPolicy**](AuthorizationServerApi.md#getauthorizationserverpolicy) | **GET** /api/v1/authorizationServers/{authServerId}/policies/{policyId} | Retrieve a Policy
+[**getAuthorizationServerPolicyRule**](AuthorizationServerApi.md#getauthorizationserverpolicyrule) | **GET** /api/v1/authorizationServers/{authServerId}/policies/{policyId}/rules/{ruleId} | Retrieve a Policy Rule
+[**getOAuth2Claim**](AuthorizationServerApi.md#getoauth2claim) | **GET** /api/v1/authorizationServers/{authServerId}/claims/{claimId} | Retrieve a Custom Token Claim
+[**getOAuth2Scope**](AuthorizationServerApi.md#getoauth2scope) | **GET** /api/v1/authorizationServers/{authServerId}/scopes/{scopeId} | Retrieve a Custom Token Scope
+[**getRefreshTokenForAuthorizationServerAndClient**](AuthorizationServerApi.md#getrefreshtokenforauthorizationserverandclient) | **GET** /api/v1/authorizationServers/{authServerId}/clients/{clientId}/tokens/{tokenId} | Retrieve a Refresh Token for a Client
+[**listAuthorizationServerKeys**](AuthorizationServerApi.md#listauthorizationserverkeys) | **GET** /api/v1/authorizationServers/{authServerId}/credentials/keys | List all Credential Keys
+[**listAuthorizationServerPolicies**](AuthorizationServerApi.md#listauthorizationserverpolicies) | **GET** /api/v1/authorizationServers/{authServerId}/policies | List all Policies
+[**listAuthorizationServerPolicyRules**](AuthorizationServerApi.md#listauthorizationserverpolicyrules) | **GET** /api/v1/authorizationServers/{authServerId}/policies/{policyId}/rules | List all Policy Rules
+[**listAuthorizationServers**](AuthorizationServerApi.md#listauthorizationservers) | **GET** /api/v1/authorizationServers | List all Authorization Servers
+[**listOAuth2Claims**](AuthorizationServerApi.md#listoauth2claims) | **GET** /api/v1/authorizationServers/{authServerId}/claims | List all Custom Token Claims
+[**listOAuth2ClientsForAuthorizationServer**](AuthorizationServerApi.md#listoauth2clientsforauthorizationserver) | **GET** /api/v1/authorizationServers/{authServerId}/clients | List all Clients
+[**listOAuth2Scopes**](AuthorizationServerApi.md#listoauth2scopes) | **GET** /api/v1/authorizationServers/{authServerId}/scopes | List all Custom Token Scopes
+[**listRefreshTokensForAuthorizationServerAndClient**](AuthorizationServerApi.md#listrefreshtokensforauthorizationserverandclient) | **GET** /api/v1/authorizationServers/{authServerId}/clients/{clientId}/tokens | List all Refresh Tokens for a Client
+[**revokeRefreshTokenForAuthorizationServerAndClient**](AuthorizationServerApi.md#revokerefreshtokenforauthorizationserverandclient) | **DELETE** /api/v1/authorizationServers/{authServerId}/clients/{clientId}/tokens/{tokenId} | Revoke a Refresh Token for a Client
+[**revokeRefreshTokensForAuthorizationServerAndClient**](AuthorizationServerApi.md#revokerefreshtokensforauthorizationserverandclient) | **DELETE** /api/v1/authorizationServers/{authServerId}/clients/{clientId}/tokens | Revoke all Refresh Tokens for a Client
+[**rotateAuthorizationServerKeys**](AuthorizationServerApi.md#rotateauthorizationserverkeys) | **POST** /api/v1/authorizationServers/{authServerId}/credentials/lifecycle/keyRotate | Rotate all Credential Keys
+[**updateAuthorizationServer**](AuthorizationServerApi.md#updateauthorizationserver) | **PUT** /api/v1/authorizationServers/{authServerId} | Replace an Authorization Server
+[**updateAuthorizationServerPolicy**](AuthorizationServerApi.md#updateauthorizationserverpolicy) | **PUT** /api/v1/authorizationServers/{authServerId}/policies/{policyId} | Replace a Policy
+[**updateAuthorizationServerPolicyRule**](AuthorizationServerApi.md#updateauthorizationserverpolicyrule) | **PUT** /api/v1/authorizationServers/{authServerId}/policies/{policyId}/rules/{ruleId} | Replace a Policy Rule
+[**updateOAuth2Claim**](AuthorizationServerApi.md#updateoauth2claim) | **PUT** /api/v1/authorizationServers/{authServerId}/claims/{claimId} | Replace a Custom Token Claim
+[**updateOAuth2Scope**](AuthorizationServerApi.md#updateoauth2scope) | **PUT** /api/v1/authorizationServers/{authServerId}/scopes/{scopeId} | Replace a Custom Token Scope
 
 
 # **activateAuthorizationServer**
@@ -74,7 +74,7 @@ apiInstance.activateAuthorizationServer(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **authServerId** | [**string**] |  | defaults to undefined
+**authServerId** | **string** |  | defaults to undefined
 
 
 ### Return type
@@ -133,8 +133,8 @@ apiInstance.activateAuthorizationServerPolicy(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **authServerId** | [**string**] |  | defaults to undefined
- **policyId** | [**string**] |  | defaults to undefined
+**authServerId** | **string** |  | defaults to undefined
+**policyId** | **string** |  | defaults to undefined
 
 
 ### Return type
@@ -195,9 +195,9 @@ apiInstance.activateAuthorizationServerPolicyRule(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **authServerId** | [**string**] |  | defaults to undefined
- **policyId** | [**string**] |  | defaults to undefined
- **ruleId** | [**string**] |  | defaults to undefined
+**authServerId** | **string** |  | defaults to undefined
+**policyId** | **string** |  | defaults to undefined
+**ruleId** | **string** |  | defaults to undefined
 
 
 ### Return type
@@ -270,12 +270,12 @@ apiInstance.createAuthorizationServer(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **authorizationServer** | **AuthorizationServer**|  |
+ **authorizationServer** | **[AuthorizationServer](AuthorizationServer.md)** |  | 
 
 
 ### Return type
 
-**AuthorizationServer**
+**[AuthorizationServer](AuthorizationServer.md)**
 
 ### Authorization
 
@@ -329,13 +329,13 @@ apiInstance.createAuthorizationServerPolicy(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **policy** | **AuthorizationServerPolicy**|  |
- **authServerId** | [**string**] |  | defaults to undefined
+ **policy** | **[AuthorizationServerPolicy](AuthorizationServerPolicy.md)** |  | 
+**authServerId** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**AuthorizationServerPolicy**
+**[AuthorizationServerPolicy](AuthorizationServerPolicy.md)**
 
 ### Authorization
 
@@ -392,14 +392,14 @@ apiInstance.createAuthorizationServerPolicyRule(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **policyRule** | **AuthorizationServerPolicyRule**|  |
- **policyId** | [**string**] |  | defaults to undefined
- **authServerId** | [**string**] |  | defaults to undefined
+ **policyRule** | **[AuthorizationServerPolicyRule](AuthorizationServerPolicyRule.md)** |  | 
+**policyId** | **string** |  | defaults to undefined
+**authServerId** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**AuthorizationServerPolicyRule**
+**[AuthorizationServerPolicyRule](AuthorizationServerPolicyRule.md)**
 
 ### Authorization
 
@@ -468,13 +468,13 @@ apiInstance.createOAuth2Claim(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **oAuth2Claim** | **OAuth2Claim**|  |
- **authServerId** | [**string**] |  | defaults to undefined
+ **oAuth2Claim** | **[OAuth2Claim](OAuth2Claim.md)** |  | 
+**authServerId** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**OAuth2Claim**
+**[OAuth2Claim](OAuth2Claim.md)**
 
 ### Authorization
 
@@ -537,13 +537,13 @@ apiInstance.createOAuth2Scope(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **oAuth2Scope** | **OAuth2Scope**|  |
- **authServerId** | [**string**] |  | defaults to undefined
+ **oAuth2Scope** | **[OAuth2Scope](OAuth2Scope.md)** |  | 
+**authServerId** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**OAuth2Scope**
+**[OAuth2Scope](OAuth2Scope.md)**
 
 ### Authorization
 
@@ -596,7 +596,7 @@ apiInstance.deactivateAuthorizationServer(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **authServerId** | [**string**] |  | defaults to undefined
+**authServerId** | **string** |  | defaults to undefined
 
 
 ### Return type
@@ -655,8 +655,8 @@ apiInstance.deactivateAuthorizationServerPolicy(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **authServerId** | [**string**] |  | defaults to undefined
- **policyId** | [**string**] |  | defaults to undefined
+**authServerId** | **string** |  | defaults to undefined
+**policyId** | **string** |  | defaults to undefined
 
 
 ### Return type
@@ -717,9 +717,9 @@ apiInstance.deactivateAuthorizationServerPolicyRule(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **authServerId** | [**string**] |  | defaults to undefined
- **policyId** | [**string**] |  | defaults to undefined
- **ruleId** | [**string**] |  | defaults to undefined
+**authServerId** | **string** |  | defaults to undefined
+**policyId** | **string** |  | defaults to undefined
+**ruleId** | **string** |  | defaults to undefined
 
 
 ### Return type
@@ -776,7 +776,7 @@ apiInstance.deleteAuthorizationServer(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **authServerId** | [**string**] |  | defaults to undefined
+**authServerId** | **string** |  | defaults to undefined
 
 
 ### Return type
@@ -835,8 +835,8 @@ apiInstance.deleteAuthorizationServerPolicy(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **authServerId** | [**string**] |  | defaults to undefined
- **policyId** | [**string**] |  | defaults to undefined
+**authServerId** | **string** |  | defaults to undefined
+**policyId** | **string** |  | defaults to undefined
 
 
 ### Return type
@@ -897,9 +897,9 @@ apiInstance.deleteAuthorizationServerPolicyRule(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **policyId** | [**string**] |  | defaults to undefined
- **authServerId** | [**string**] |  | defaults to undefined
- **ruleId** | [**string**] |  | defaults to undefined
+**policyId** | **string** |  | defaults to undefined
+**authServerId** | **string** |  | defaults to undefined
+**ruleId** | **string** |  | defaults to undefined
 
 
 ### Return type
@@ -958,8 +958,8 @@ apiInstance.deleteOAuth2Claim(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **authServerId** | [**string**] |  | defaults to undefined
- **claimId** | [**string**] |  | defaults to undefined
+**authServerId** | **string** |  | defaults to undefined
+**claimId** | **string** |  | defaults to undefined
 
 
 ### Return type
@@ -1018,8 +1018,8 @@ apiInstance.deleteOAuth2Scope(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **authServerId** | [**string**] |  | defaults to undefined
- **scopeId** | [**string**] |  | defaults to undefined
+**authServerId** | **string** |  | defaults to undefined
+**scopeId** | **string** |  | defaults to undefined
 
 
 ### Return type
@@ -1076,12 +1076,12 @@ apiInstance.getAuthorizationServer(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **authServerId** | [**string**] |  | defaults to undefined
+**authServerId** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**AuthorizationServer**
+**[AuthorizationServer](AuthorizationServer.md)**
 
 ### Authorization
 
@@ -1135,13 +1135,13 @@ apiInstance.getAuthorizationServerPolicy(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **authServerId** | [**string**] |  | defaults to undefined
- **policyId** | [**string**] |  | defaults to undefined
+**authServerId** | **string** |  | defaults to undefined
+**policyId** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**AuthorizationServerPolicy**
+**[AuthorizationServerPolicy](AuthorizationServerPolicy.md)**
 
 ### Authorization
 
@@ -1197,14 +1197,14 @@ apiInstance.getAuthorizationServerPolicyRule(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **policyId** | [**string**] |  | defaults to undefined
- **authServerId** | [**string**] |  | defaults to undefined
- **ruleId** | [**string**] |  | defaults to undefined
+**policyId** | **string** |  | defaults to undefined
+**authServerId** | **string** |  | defaults to undefined
+**ruleId** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**AuthorizationServerPolicyRule**
+**[AuthorizationServerPolicyRule](AuthorizationServerPolicyRule.md)**
 
 ### Authorization
 
@@ -1258,13 +1258,13 @@ apiInstance.getOAuth2Claim(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **authServerId** | [**string**] |  | defaults to undefined
- **claimId** | [**string**] |  | defaults to undefined
+**authServerId** | **string** |  | defaults to undefined
+**claimId** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**OAuth2Claim**
+**[OAuth2Claim](OAuth2Claim.md)**
 
 ### Authorization
 
@@ -1318,13 +1318,13 @@ apiInstance.getOAuth2Scope(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **authServerId** | [**string**] |  | defaults to undefined
- **scopeId** | [**string**] |  | defaults to undefined
+**authServerId** | **string** |  | defaults to undefined
+**scopeId** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**OAuth2Scope**
+**[OAuth2Scope](OAuth2Scope.md)**
 
 ### Authorization
 
@@ -1382,15 +1382,15 @@ apiInstance.getRefreshTokenForAuthorizationServerAndClient(body).then((data:any)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **authServerId** | [**string**] |  | defaults to undefined
- **clientId** | [**string**] |  | defaults to undefined
- **tokenId** | [**string**] |  | defaults to undefined
- **expand** | [**string**] |  | (optional) defaults to undefined
+**authServerId** | **string** |  | defaults to undefined
+**clientId** | **string** |  | defaults to undefined
+**tokenId** | **string** |  | defaults to undefined
+**expand** | **string** |  | (optional) defaults to undefined
 
 
 ### Return type
 
-**OAuth2RefreshToken**
+**[OAuth2RefreshToken](OAuth2RefreshToken.md)**
 
 ### Authorization
 
@@ -1442,12 +1442,12 @@ apiInstance.listAuthorizationServerKeys(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **authServerId** | [**string**] |  | defaults to undefined
+**authServerId** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**Array<JsonWebKey>**
+**[Array&lt;JsonWebKey&gt;](JsonWebKey.md)**
 
 ### Authorization
 
@@ -1499,12 +1499,12 @@ apiInstance.listAuthorizationServerPolicies(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **authServerId** | [**string**] |  | defaults to undefined
+**authServerId** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**Array<AuthorizationServerPolicy>**
+**[Array&lt;AuthorizationServerPolicy&gt;](AuthorizationServerPolicy.md)**
 
 ### Authorization
 
@@ -1558,13 +1558,13 @@ apiInstance.listAuthorizationServerPolicyRules(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **policyId** | [**string**] |  | defaults to undefined
- **authServerId** | [**string**] |  | defaults to undefined
+**policyId** | **string** |  | defaults to undefined
+**authServerId** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**Array<AuthorizationServerPolicyRule>**
+**[Array&lt;AuthorizationServerPolicyRule&gt;](AuthorizationServerPolicyRule.md)**
 
 ### Authorization
 
@@ -1620,14 +1620,14 @@ apiInstance.listAuthorizationServers(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **q** | [**string**] |  | (optional) defaults to undefined
- **limit** | [**number**] |  | (optional) defaults to 200
- **after** | [**string**] |  | (optional) defaults to undefined
+**q** | **string** |  | (optional) defaults to undefined
+**limit** | **number** |  | (optional) defaults to 200
+**after** | **string** |  | (optional) defaults to undefined
 
 
 ### Return type
 
-**Array<AuthorizationServer>**
+**[Array&lt;AuthorizationServer&gt;](AuthorizationServer.md)**
 
 ### Authorization
 
@@ -1678,12 +1678,12 @@ apiInstance.listOAuth2Claims(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **authServerId** | [**string**] |  | defaults to undefined
+**authServerId** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**Array<OAuth2Claim>**
+**[Array&lt;OAuth2Claim&gt;](OAuth2Claim.md)**
 
 ### Authorization
 
@@ -1735,12 +1735,12 @@ apiInstance.listOAuth2ClientsForAuthorizationServer(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **authServerId** | [**string**] |  | defaults to undefined
+**authServerId** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**Array<OAuth2Client>**
+**[Array&lt;OAuth2Client&gt;](OAuth2Client.md)**
 
 ### Authorization
 
@@ -1800,16 +1800,16 @@ apiInstance.listOAuth2Scopes(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **authServerId** | [**string**] |  | defaults to undefined
- **q** | [**string**] |  | (optional) defaults to undefined
- **filter** | [**string**] |  | (optional) defaults to undefined
- **cursor** | [**string**] |  | (optional) defaults to undefined
- **limit** | [**number**] |  | (optional) defaults to -1
+**authServerId** | **string** |  | defaults to undefined
+**q** | **string** |  | (optional) defaults to undefined
+**filter** | **string** |  | (optional) defaults to undefined
+**cursor** | **string** |  | (optional) defaults to undefined
+**limit** | **number** |  | (optional) defaults to -1
 
 
 ### Return type
 
-**Array<OAuth2Scope>**
+**[Array&lt;OAuth2Scope&gt;](OAuth2Scope.md)**
 
 ### Authorization
 
@@ -1869,16 +1869,16 @@ apiInstance.listRefreshTokensForAuthorizationServerAndClient(body).then((data:an
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **authServerId** | [**string**] |  | defaults to undefined
- **clientId** | [**string**] |  | defaults to undefined
- **expand** | [**string**] |  | (optional) defaults to undefined
- **after** | [**string**] |  | (optional) defaults to undefined
- **limit** | [**number**] |  | (optional) defaults to -1
+**authServerId** | **string** |  | defaults to undefined
+**clientId** | **string** |  | defaults to undefined
+**expand** | **string** |  | (optional) defaults to undefined
+**after** | **string** |  | (optional) defaults to undefined
+**limit** | **number** |  | (optional) defaults to -1
 
 
 ### Return type
 
-**Array<OAuth2RefreshToken>**
+**[Array&lt;OAuth2RefreshToken&gt;](OAuth2RefreshToken.md)**
 
 ### Authorization
 
@@ -1934,9 +1934,9 @@ apiInstance.revokeRefreshTokenForAuthorizationServerAndClient(body).then((data:a
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **authServerId** | [**string**] |  | defaults to undefined
- **clientId** | [**string**] |  | defaults to undefined
- **tokenId** | [**string**] |  | defaults to undefined
+**authServerId** | **string** |  | defaults to undefined
+**clientId** | **string** |  | defaults to undefined
+**tokenId** | **string** |  | defaults to undefined
 
 
 ### Return type
@@ -1995,8 +1995,8 @@ apiInstance.revokeRefreshTokensForAuthorizationServerAndClient(body).then((data:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **authServerId** | [**string**] |  | defaults to undefined
- **clientId** | [**string**] |  | defaults to undefined
+**authServerId** | **string** |  | defaults to undefined
+**clientId** | **string** |  | defaults to undefined
 
 
 ### Return type
@@ -2057,13 +2057,13 @@ apiInstance.rotateAuthorizationServerKeys(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **use** | **JwkUse**|  |
- **authServerId** | [**string**] |  | defaults to undefined
+ **use** | **[JwkUse](JwkUse.md)** |  | 
+**authServerId** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**Array<JsonWebKey>**
+**[Array&lt;JsonWebKey&gt;](JsonWebKey.md)**
 
 ### Authorization
 
@@ -2134,13 +2134,13 @@ apiInstance.updateAuthorizationServer(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **authorizationServer** | **AuthorizationServer**|  |
- **authServerId** | [**string**] |  | defaults to undefined
+ **authorizationServer** | **[AuthorizationServer](AuthorizationServer.md)** |  | 
+**authServerId** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**AuthorizationServer**
+**[AuthorizationServer](AuthorizationServer.md)**
 
 ### Authorization
 
@@ -2197,14 +2197,14 @@ apiInstance.updateAuthorizationServerPolicy(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **policy** | **AuthorizationServerPolicy**|  |
- **authServerId** | [**string**] |  | defaults to undefined
- **policyId** | [**string**] |  | defaults to undefined
+ **policy** | **[AuthorizationServerPolicy](AuthorizationServerPolicy.md)** |  | 
+**authServerId** | **string** |  | defaults to undefined
+**policyId** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**AuthorizationServerPolicy**
+**[AuthorizationServerPolicy](AuthorizationServerPolicy.md)**
 
 ### Authorization
 
@@ -2263,15 +2263,15 @@ apiInstance.updateAuthorizationServerPolicyRule(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **policyRule** | **AuthorizationServerPolicyRule**|  |
- **policyId** | [**string**] |  | defaults to undefined
- **authServerId** | [**string**] |  | defaults to undefined
- **ruleId** | [**string**] |  | defaults to undefined
+ **policyRule** | **[AuthorizationServerPolicyRule](AuthorizationServerPolicyRule.md)** |  | 
+**policyId** | **string** |  | defaults to undefined
+**authServerId** | **string** |  | defaults to undefined
+**ruleId** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**AuthorizationServerPolicyRule**
+**[AuthorizationServerPolicyRule](AuthorizationServerPolicyRule.md)**
 
 ### Authorization
 
@@ -2342,14 +2342,14 @@ apiInstance.updateOAuth2Claim(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **oAuth2Claim** | **OAuth2Claim**|  |
- **authServerId** | [**string**] |  | defaults to undefined
- **claimId** | [**string**] |  | defaults to undefined
+ **oAuth2Claim** | **[OAuth2Claim](OAuth2Claim.md)** |  | 
+**authServerId** | **string** |  | defaults to undefined
+**claimId** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**OAuth2Claim**
+**[OAuth2Claim](OAuth2Claim.md)**
 
 ### Authorization
 
@@ -2414,14 +2414,14 @@ apiInstance.updateOAuth2Scope(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **oAuth2Scope** | **OAuth2Scope**|  |
- **authServerId** | [**string**] |  | defaults to undefined
- **scopeId** | [**string**] |  | defaults to undefined
+ **oAuth2Scope** | **[OAuth2Scope](OAuth2Scope.md)** |  | 
+**authServerId** | **string** |  | defaults to undefined
+**scopeId** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**OAuth2Scope**
+**[OAuth2Scope](OAuth2Scope.md)**
 
 ### Authorization
 

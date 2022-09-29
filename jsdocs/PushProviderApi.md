@@ -4,11 +4,11 @@ All URIs are relative to *https://subdomain.okta.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**createPushProvider**](PushProviderApi.md#createPushProvider) | **POST** /api/v1/push-providers | Create a Push Provider
-[**deletePushProvider**](PushProviderApi.md#deletePushProvider) | **DELETE** /api/v1/push-providers/{pushProviderId} | Delete a Push Provider
-[**getPushProvider**](PushProviderApi.md#getPushProvider) | **GET** /api/v1/push-providers/{pushProviderId} | Retrieve a Push Provider
-[**listPushProviders**](PushProviderApi.md#listPushProviders) | **GET** /api/v1/push-providers | List all Push Providers
-[**updatePushProvider**](PushProviderApi.md#updatePushProvider) | **PUT** /api/v1/push-providers/{pushProviderId} | Replace a Push Provider
+[**createPushProvider**](PushProviderApi.md#createpushprovider) | **POST** /api/v1/push-providers | Create a Push Provider
+[**deletePushProvider**](PushProviderApi.md#deletepushprovider) | **DELETE** /api/v1/push-providers/{pushProviderId} | Delete a Push Provider
+[**getPushProvider**](PushProviderApi.md#getpushprovider) | **GET** /api/v1/push-providers/{pushProviderId} | Retrieve a Push Provider
+[**listPushProviders**](PushProviderApi.md#listpushproviders) | **GET** /api/v1/push-providers | List all Push Providers
+[**updatePushProvider**](PushProviderApi.md#updatepushprovider) | **PUT** /api/v1/push-providers/{pushProviderId} | Replace a Push Provider
 
 
 # **createPushProvider**
@@ -41,12 +41,12 @@ apiInstance.createPushProvider(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **pushProvider** | **PushProvider**|  |
+ **pushProvider** | **[PushProvider](PushProvider.md)** |  | 
 
 
 ### Return type
 
-**PushProvider**
+**[PushProvider](PushProvider.md)**
 
 ### Authorization
 
@@ -98,7 +98,7 @@ apiInstance.deletePushProvider(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **pushProviderId** | [**string**] | Id of the push provider | defaults to undefined
+**pushProviderId** | **string** | Id of the push provider | defaults to undefined
 
 
 ### Return type
@@ -156,12 +156,12 @@ apiInstance.getPushProvider(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **pushProviderId** | [**string**] | Id of the push provider | defaults to undefined
+**pushProviderId** | **string** | Id of the push provider | defaults to undefined
 
 
 ### Return type
 
-**PushProvider**
+**[PushProvider](PushProvider.md)**
 
 ### Authorization
 
@@ -213,12 +213,12 @@ apiInstance.listPushProviders(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **type** | **ProviderType** | Filters push providers by &#x60;providerType&#x60; | (optional) defaults to undefined
+**type** | **[ProviderType](ProviderType.md)** | Filters push providers by &#x60;providerType&#x60; | (optional) defaults to undefined
 
 
 ### Return type
 
-**Array<PushProvider>**
+**[Array&lt;PushProvider&gt;](PushProvider.md)**
 
 ### Authorization
 
@@ -271,13 +271,13 @@ apiInstance.updatePushProvider(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **pushProvider** | **PushProvider**|  |
- **pushProviderId** | [**string**] | Id of the push provider | defaults to undefined
+ **pushProvider** | **[PushProvider](PushProvider.md)** |  | 
+**pushProviderId** | **string** | Id of the push provider | defaults to undefined
 
 
 ### Return type
 
-**PushProvider**
+**[PushProvider](PushProvider.md)**
 
 ### Authorization
 

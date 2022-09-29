@@ -4,11 +4,11 @@ All URIs are relative to *https://subdomain.okta.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**createRiskProvider**](RiskProviderApi.md#createRiskProvider) | **POST** /api/v1/risk/providers | Create a Risk Provider
-[**deleteRiskProvider**](RiskProviderApi.md#deleteRiskProvider) | **DELETE** /api/v1/risk/providers/{riskProviderId} | Delete a Risk Provider
-[**getRiskProvider**](RiskProviderApi.md#getRiskProvider) | **GET** /api/v1/risk/providers/{riskProviderId} | Retrieve a Risk Provider
-[**listRiskProviders**](RiskProviderApi.md#listRiskProviders) | **GET** /api/v1/risk/providers | List all Risk Providers
-[**updateRiskProvider**](RiskProviderApi.md#updateRiskProvider) | **PUT** /api/v1/risk/providers/{riskProviderId} | Replace a Risk Provider
+[**createRiskProvider**](RiskProviderApi.md#createriskprovider) | **POST** /api/v1/risk/providers | Create a Risk Provider
+[**deleteRiskProvider**](RiskProviderApi.md#deleteriskprovider) | **DELETE** /api/v1/risk/providers/{riskProviderId} | Delete a Risk Provider
+[**getRiskProvider**](RiskProviderApi.md#getriskprovider) | **GET** /api/v1/risk/providers/{riskProviderId} | Retrieve a Risk Provider
+[**listRiskProviders**](RiskProviderApi.md#listriskproviders) | **GET** /api/v1/risk/providers | List all Risk Providers
+[**updateRiskProvider**](RiskProviderApi.md#updateriskprovider) | **PUT** /api/v1/risk/providers/{riskProviderId} | Replace a Risk Provider
 
 
 # **createRiskProvider**
@@ -45,12 +45,12 @@ apiInstance.createRiskProvider(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **instance** | **RiskProvider**|  |
+ **instance** | **[RiskProvider](RiskProvider.md)** |  | 
 
 
 ### Return type
 
-**RiskProvider**
+**[RiskProvider](RiskProvider.md)**
 
 ### Authorization
 
@@ -102,7 +102,7 @@ apiInstance.deleteRiskProvider(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **riskProviderId** | [**string**] | &#x60;id&#x60; of the risk provider | defaults to undefined
+**riskProviderId** | **string** | &#x60;id&#x60; of the risk provider | defaults to undefined
 
 
 ### Return type
@@ -159,12 +159,12 @@ apiInstance.getRiskProvider(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **riskProviderId** | [**string**] | &#x60;id&#x60; of the risk provider | defaults to undefined
+**riskProviderId** | **string** | &#x60;id&#x60; of the risk provider | defaults to undefined
 
 
 ### Return type
 
-**RiskProvider**
+**[RiskProvider](RiskProvider.md)**
 
 ### Authorization
 
@@ -215,7 +215,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-**Array<RiskProvider>**
+**[Array&lt;RiskProvider&gt;](RiskProvider.md)**
 
 ### Authorization
 
@@ -272,13 +272,13 @@ apiInstance.updateRiskProvider(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **instance** | **RiskProvider**|  |
- **riskProviderId** | [**string**] | &#x60;id&#x60; of the risk provider | defaults to undefined
+ **instance** | **[RiskProvider](RiskProvider.md)** |  | 
+**riskProviderId** | **string** | &#x60;id&#x60; of the risk provider | defaults to undefined
 
 
 ### Return type
 
-**RiskProvider**
+**[RiskProvider](RiskProvider.md)**
 
 ### Authorization
 

@@ -4,13 +4,13 @@ All URIs are relative to *https://subdomain.okta.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**createCertificate**](DomainApi.md#createCertificate) | **PUT** /api/v1/domains/{domainId}/certificate | Replace the Certificate
-[**createDomain**](DomainApi.md#createDomain) | **POST** /api/v1/domains | Create a Domain
-[**deleteDomain**](DomainApi.md#deleteDomain) | **DELETE** /api/v1/domains/{domainId} | Delete a Domain
-[**getDomain**](DomainApi.md#getDomain) | **GET** /api/v1/domains/{domainId} | Retrieve a Domain
-[**listDomains**](DomainApi.md#listDomains) | **GET** /api/v1/domains | List all Domains
-[**updateDomain**](DomainApi.md#updateDomain) | **PUT** /api/v1/domains/{domainId} | Replace a Domain&#39;s brandId
-[**verifyDomain**](DomainApi.md#verifyDomain) | **POST** /api/v1/domains/{domainId}/verify | Verify a Domain
+[**createCertificate**](DomainApi.md#createcertificate) | **PUT** /api/v1/domains/{domainId}/certificate | Replace the Certificate
+[**createDomain**](DomainApi.md#createdomain) | **POST** /api/v1/domains | Create a Domain
+[**deleteDomain**](DomainApi.md#deletedomain) | **DELETE** /api/v1/domains/{domainId} | Delete a Domain
+[**getDomain**](DomainApi.md#getdomain) | **GET** /api/v1/domains/{domainId} | Retrieve a Domain
+[**listDomains**](DomainApi.md#listdomains) | **GET** /api/v1/domains | List all Domains
+[**updateDomain**](DomainApi.md#updatedomain) | **PUT** /api/v1/domains/{domainId} | Replace a Domain&#39;s brandId
+[**verifyDomain**](DomainApi.md#verifydomain) | **POST** /api/v1/domains/{domainId}/verify | Verify a Domain
 
 
 # **createCertificate**
@@ -50,8 +50,8 @@ apiInstance.createCertificate(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **certificate** | **DomainCertificate**|  |
- **domainId** | [**string**] |  | defaults to undefined
+ **certificate** | **[DomainCertificate](DomainCertificate.md)** |  | 
+**domainId** | **string** |  | defaults to undefined
 
 
 ### Return type
@@ -130,12 +130,12 @@ apiInstance.createDomain(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **domain** | **Domain**|  |
+ **domain** | **[Domain](Domain.md)** |  | 
 
 
 ### Return type
 
-**DomainResponse**
+**[DomainResponse](DomainResponse.md)**
 
 ### Authorization
 
@@ -187,7 +187,7 @@ apiInstance.deleteDomain(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **domainId** | [**string**] |  | defaults to undefined
+**domainId** | **string** |  | defaults to undefined
 
 
 ### Return type
@@ -244,12 +244,12 @@ apiInstance.getDomain(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **domainId** | [**string**] |  | defaults to undefined
+**domainId** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**DomainResponse**
+**[DomainResponse](DomainResponse.md)**
 
 ### Authorization
 
@@ -300,7 +300,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-**DomainListResponse**
+**[DomainListResponse](DomainListResponse.md)**
 
 ### Authorization
 
@@ -355,13 +355,13 @@ apiInstance.updateDomain(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **UpdateDomain** | **UpdateDomain**|  |
- **domainId** | [**string**] |  | defaults to undefined
+ **UpdateDomain** | **[UpdateDomain](UpdateDomain.md)** |  | 
+**domainId** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**DomainResponse**
+**[DomainResponse](DomainResponse.md)**
 
 ### Authorization
 
@@ -413,12 +413,12 @@ apiInstance.verifyDomain(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **domainId** | [**string**] |  | defaults to undefined
+**domainId** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**DomainResponse**
+**[DomainResponse](DomainResponse.md)**
 
 ### Authorization
 

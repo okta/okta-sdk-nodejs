@@ -4,11 +4,11 @@ All URIs are relative to *https://subdomain.okta.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**getFeature**](FeatureApi.md#getFeature) | **GET** /api/v1/features/{featureId} | Retrieve a Feature
-[**listFeatureDependencies**](FeatureApi.md#listFeatureDependencies) | **GET** /api/v1/features/{featureId}/dependencies | List all Dependencies
-[**listFeatureDependents**](FeatureApi.md#listFeatureDependents) | **GET** /api/v1/features/{featureId}/dependents | List all Dependents
-[**listFeatures**](FeatureApi.md#listFeatures) | **GET** /api/v1/features | List all Features
-[**updateFeatureLifecycle**](FeatureApi.md#updateFeatureLifecycle) | **POST** /api/v1/features/{featureId}/{lifecycle} | Update a Feature Lifecycle
+[**getFeature**](FeatureApi.md#getfeature) | **GET** /api/v1/features/{featureId} | Retrieve a Feature
+[**listFeatureDependencies**](FeatureApi.md#listfeaturedependencies) | **GET** /api/v1/features/{featureId}/dependencies | List all Dependencies
+[**listFeatureDependents**](FeatureApi.md#listfeaturedependents) | **GET** /api/v1/features/{featureId}/dependents | List all Dependents
+[**listFeatures**](FeatureApi.md#listfeatures) | **GET** /api/v1/features | List all Features
+[**updateFeatureLifecycle**](FeatureApi.md#updatefeaturelifecycle) | **POST** /api/v1/features/{featureId}/{lifecycle} | Update a Feature Lifecycle
 
 
 # **getFeature**
@@ -41,12 +41,12 @@ apiInstance.getFeature(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **featureId** | [**string**] |  | defaults to undefined
+**featureId** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**Feature**
+**[Feature](Feature.md)**
 
 ### Authorization
 
@@ -98,12 +98,12 @@ apiInstance.listFeatureDependencies(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **featureId** | [**string**] |  | defaults to undefined
+**featureId** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**Array<Feature>**
+**[Array&lt;Feature&gt;](Feature.md)**
 
 ### Authorization
 
@@ -155,12 +155,12 @@ apiInstance.listFeatureDependents(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **featureId** | [**string**] |  | defaults to undefined
+**featureId** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**Array<Feature>**
+**[Array&lt;Feature&gt;](Feature.md)**
 
 ### Authorization
 
@@ -211,7 +211,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-**Array<Feature>**
+**[Array&lt;Feature&gt;](Feature.md)**
 
 ### Authorization
 
@@ -266,14 +266,14 @@ apiInstance.updateFeatureLifecycle(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **featureId** | [**string**] |  | defaults to undefined
- **lifecycle** | [**string**] |  | defaults to undefined
- **mode** | [**string**] |  | (optional) defaults to undefined
+**featureId** | **string** |  | defaults to undefined
+**lifecycle** | **string** |  | defaults to undefined
+**mode** | **string** |  | (optional) defaults to undefined
 
 
 ### Return type
 
-**Feature**
+**[Feature](Feature.md)**
 
 ### Authorization
 

@@ -4,13 +4,13 @@ All URIs are relative to *https://subdomain.okta.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**activateLogStream**](LogStreamApi.md#activateLogStream) | **POST** /api/v1/logStreams/{logStreamId}/lifecycle/activate | Activate a Log Stream
-[**createLogStream**](LogStreamApi.md#createLogStream) | **POST** /api/v1/logStreams | Create a Log Stream
-[**deactivateLogStream**](LogStreamApi.md#deactivateLogStream) | **POST** /api/v1/logStreams/{logStreamId}/lifecycle/deactivate | Deactivate a Log Stream
-[**deleteLogStream**](LogStreamApi.md#deleteLogStream) | **DELETE** /api/v1/logStreams/{logStreamId} | Delete a Log Stream
-[**getLogStream**](LogStreamApi.md#getLogStream) | **GET** /api/v1/logStreams/{logStreamId} | Retrieve a Log Stream
-[**listLogStreams**](LogStreamApi.md#listLogStreams) | **GET** /api/v1/logStreams | List all Log Streams
-[**replaceLogStream**](LogStreamApi.md#replaceLogStream) | **PUT** /api/v1/logStreams/{logStreamId} | Replace a Log Stream
+[**activateLogStream**](LogStreamApi.md#activatelogstream) | **POST** /api/v1/logStreams/{logStreamId}/lifecycle/activate | Activate a Log Stream
+[**createLogStream**](LogStreamApi.md#createlogstream) | **POST** /api/v1/logStreams | Create a Log Stream
+[**deactivateLogStream**](LogStreamApi.md#deactivatelogstream) | **POST** /api/v1/logStreams/{logStreamId}/lifecycle/deactivate | Deactivate a Log Stream
+[**deleteLogStream**](LogStreamApi.md#deletelogstream) | **DELETE** /api/v1/logStreams/{logStreamId} | Delete a Log Stream
+[**getLogStream**](LogStreamApi.md#getlogstream) | **GET** /api/v1/logStreams/{logStreamId} | Retrieve a Log Stream
+[**listLogStreams**](LogStreamApi.md#listlogstreams) | **GET** /api/v1/logStreams | List all Log Streams
+[**replaceLogStream**](LogStreamApi.md#replacelogstream) | **PUT** /api/v1/logStreams/{logStreamId} | Replace a Log Stream
 
 
 # **activateLogStream**
@@ -43,12 +43,12 @@ apiInstance.activateLogStream(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **logStreamId** | [**string**] | id of the log stream | defaults to undefined
+**logStreamId** | **string** | id of the log stream | defaults to undefined
 
 
 ### Return type
 
-**LogStream**
+**[LogStream](LogStream.md)**
 
 ### Authorization
 
@@ -100,12 +100,12 @@ apiInstance.createLogStream(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **instance** | **LogStream**|  |
+ **instance** | **[LogStream](LogStream.md)** |  | 
 
 
 ### Return type
 
-**LogStream**
+**[LogStream](LogStream.md)**
 
 ### Authorization
 
@@ -157,12 +157,12 @@ apiInstance.deactivateLogStream(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **logStreamId** | [**string**] | id of the log stream | defaults to undefined
+**logStreamId** | **string** | id of the log stream | defaults to undefined
 
 
 ### Return type
 
-**LogStream**
+**[LogStream](LogStream.md)**
 
 ### Authorization
 
@@ -214,7 +214,7 @@ apiInstance.deleteLogStream(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **logStreamId** | [**string**] | id of the log stream | defaults to undefined
+**logStreamId** | **string** | id of the log stream | defaults to undefined
 
 
 ### Return type
@@ -271,12 +271,12 @@ apiInstance.getLogStream(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **logStreamId** | [**string**] | id of the log stream | defaults to undefined
+**logStreamId** | **string** | id of the log stream | defaults to undefined
 
 
 ### Return type
 
-**LogStream**
+**[LogStream](LogStream.md)**
 
 ### Authorization
 
@@ -332,14 +332,14 @@ apiInstance.listLogStreams(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **after** | [**string**] | The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](/#pagination) for more information. | (optional) defaults to undefined
- **limit** | [**number**] | A limit on the number of objects to return. | (optional) defaults to 20
- **filter** | [**string**] | SCIM filter expression that filters the results. This expression only supports the &#x60;eq&#x60; operator on either the &#x60;status&#x60; or &#x60;type&#x60;. | (optional) defaults to undefined
+**after** | **string** | The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](/#pagination) for more information. | (optional) defaults to undefined
+**limit** | **number** | A limit on the number of objects to return. | (optional) defaults to 20
+**filter** | **string** | SCIM filter expression that filters the results. This expression only supports the &#x60;eq&#x60; operator on either the &#x60;status&#x60; or &#x60;type&#x60;. | (optional) defaults to undefined
 
 
 ### Return type
 
-**Array<LogStream>**
+**[Array&lt;LogStream&gt;](LogStream.md)**
 
 ### Authorization
 
@@ -392,13 +392,13 @@ apiInstance.replaceLogStream(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **instance** | **LogStream**|  |
- **logStreamId** | [**string**] | id of the log stream | defaults to undefined
+ **instance** | **[LogStream](LogStream.md)** |  | 
+**logStreamId** | **string** | id of the log stream | defaults to undefined
 
 
 ### Return type
 
-**LogStream**
+**[LogStream](LogStream.md)**
 
 ### Authorization
 

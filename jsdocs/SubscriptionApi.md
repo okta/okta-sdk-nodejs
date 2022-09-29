@@ -4,14 +4,14 @@ All URIs are relative to *https://subdomain.okta.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**getRoleSubscriptionByNotificationType**](SubscriptionApi.md#getRoleSubscriptionByNotificationType) | **GET** /api/v1/roles/{roleTypeOrRoleId}/subscriptions/{notificationType} | List all Subscriptions of a Custom Role with a specific notification type
-[**getUserSubscriptionByNotificationType**](SubscriptionApi.md#getUserSubscriptionByNotificationType) | **GET** /api/v1/users/{userId}/subscriptions/{notificationType} | List all Subscriptions by type
-[**listRoleSubscriptions**](SubscriptionApi.md#listRoleSubscriptions) | **GET** /api/v1/roles/{roleTypeOrRoleId}/subscriptions | List all Subscriptions of a Custom Role
-[**listUserSubscriptions**](SubscriptionApi.md#listUserSubscriptions) | **GET** /api/v1/users/{userId}/subscriptions | List all Subscriptions
-[**subscribeRoleSubscriptionByNotificationType**](SubscriptionApi.md#subscribeRoleSubscriptionByNotificationType) | **POST** /api/v1/roles/{roleTypeOrRoleId}/subscriptions/{notificationType}/subscribe | Subscribe a Custom Role to a specific notification type
-[**subscribeUserSubscriptionByNotificationType**](SubscriptionApi.md#subscribeUserSubscriptionByNotificationType) | **POST** /api/v1/users/{userId}/subscriptions/{notificationType}/subscribe | Subscribe to a specific notification type
-[**unsubscribeRoleSubscriptionByNotificationType**](SubscriptionApi.md#unsubscribeRoleSubscriptionByNotificationType) | **POST** /api/v1/roles/{roleTypeOrRoleId}/subscriptions/{notificationType}/unsubscribe | Unsubscribe a Custom Role from a specific notification type
-[**unsubscribeUserSubscriptionByNotificationType**](SubscriptionApi.md#unsubscribeUserSubscriptionByNotificationType) | **POST** /api/v1/users/{userId}/subscriptions/{notificationType}/unsubscribe | Unsubscribe from a specific notification type
+[**getRoleSubscriptionByNotificationType**](SubscriptionApi.md#getrolesubscriptionbynotificationtype) | **GET** /api/v1/roles/{roleTypeOrRoleId}/subscriptions/{notificationType} | List all Subscriptions of a Custom Role with a specific notification type
+[**getUserSubscriptionByNotificationType**](SubscriptionApi.md#getusersubscriptionbynotificationtype) | **GET** /api/v1/users/{userId}/subscriptions/{notificationType} | List all Subscriptions by type
+[**listRoleSubscriptions**](SubscriptionApi.md#listrolesubscriptions) | **GET** /api/v1/roles/{roleTypeOrRoleId}/subscriptions | List all Subscriptions of a Custom Role
+[**listUserSubscriptions**](SubscriptionApi.md#listusersubscriptions) | **GET** /api/v1/users/{userId}/subscriptions | List all Subscriptions
+[**subscribeRoleSubscriptionByNotificationType**](SubscriptionApi.md#subscriberolesubscriptionbynotificationtype) | **POST** /api/v1/roles/{roleTypeOrRoleId}/subscriptions/{notificationType}/subscribe | Subscribe a Custom Role to a specific notification type
+[**subscribeUserSubscriptionByNotificationType**](SubscriptionApi.md#subscribeusersubscriptionbynotificationtype) | **POST** /api/v1/users/{userId}/subscriptions/{notificationType}/subscribe | Subscribe to a specific notification type
+[**unsubscribeRoleSubscriptionByNotificationType**](SubscriptionApi.md#unsubscriberolesubscriptionbynotificationtype) | **POST** /api/v1/roles/{roleTypeOrRoleId}/subscriptions/{notificationType}/unsubscribe | Unsubscribe a Custom Role from a specific notification type
+[**unsubscribeUserSubscriptionByNotificationType**](SubscriptionApi.md#unsubscribeusersubscriptionbynotificationtype) | **POST** /api/v1/users/{userId}/subscriptions/{notificationType}/unsubscribe | Unsubscribe from a specific notification type
 
 
 # **getRoleSubscriptionByNotificationType**
@@ -46,13 +46,13 @@ apiInstance.getRoleSubscriptionByNotificationType(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **roleTypeOrRoleId** | [**string**] |  | defaults to undefined
- **notificationType** | [**string**] |  | defaults to undefined
+**roleTypeOrRoleId** | **string** |  | defaults to undefined
+**notificationType** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**Subscription**
+**[Subscription](Subscription.md)**
 
 ### Authorization
 
@@ -106,13 +106,13 @@ apiInstance.getUserSubscriptionByNotificationType(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | [**string**] |  | defaults to undefined
- **notificationType** | [**string**] |  | defaults to undefined
+**userId** | **string** |  | defaults to undefined
+**notificationType** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**Subscription**
+**[Subscription](Subscription.md)**
 
 ### Authorization
 
@@ -164,12 +164,12 @@ apiInstance.listRoleSubscriptions(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **roleTypeOrRoleId** | [**string**] |  | defaults to undefined
+**roleTypeOrRoleId** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**Array<Subscription>**
+**[Array&lt;Subscription&gt;](Subscription.md)**
 
 ### Authorization
 
@@ -221,12 +221,12 @@ apiInstance.listUserSubscriptions(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | [**string**] |  | defaults to undefined
+**userId** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**Array<Subscription>**
+**[Array&lt;Subscription&gt;](Subscription.md)**
 
 ### Authorization
 
@@ -280,8 +280,8 @@ apiInstance.subscribeRoleSubscriptionByNotificationType(body).then((data:any) =>
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **roleTypeOrRoleId** | [**string**] |  | defaults to undefined
- **notificationType** | [**string**] |  | defaults to undefined
+**roleTypeOrRoleId** | **string** |  | defaults to undefined
+**notificationType** | **string** |  | defaults to undefined
 
 
 ### Return type
@@ -340,8 +340,8 @@ apiInstance.subscribeUserSubscriptionByNotificationType(body).then((data:any) =>
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | [**string**] |  | defaults to undefined
- **notificationType** | [**string**] |  | defaults to undefined
+**userId** | **string** |  | defaults to undefined
+**notificationType** | **string** |  | defaults to undefined
 
 
 ### Return type
@@ -400,8 +400,8 @@ apiInstance.unsubscribeRoleSubscriptionByNotificationType(body).then((data:any) 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **roleTypeOrRoleId** | [**string**] |  | defaults to undefined
- **notificationType** | [**string**] |  | defaults to undefined
+**roleTypeOrRoleId** | **string** |  | defaults to undefined
+**notificationType** | **string** |  | defaults to undefined
 
 
 ### Return type
@@ -460,8 +460,8 @@ apiInstance.unsubscribeUserSubscriptionByNotificationType(body).then((data:any) 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | [**string**] |  | defaults to undefined
- **notificationType** | [**string**] |  | defaults to undefined
+**userId** | **string** |  | defaults to undefined
+**notificationType** | **string** |  | defaults to undefined
 
 
 ### Return type

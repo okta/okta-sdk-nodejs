@@ -4,48 +4,48 @@ All URIs are relative to *https://subdomain.okta.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**createBrand**](CustomizationApi.md#createBrand) | **POST** /api/v1/brands | Create a Brand
-[**createEmailCustomization**](CustomizationApi.md#createEmailCustomization) | **POST** /api/v1/brands/{brandId}/templates/email/{templateName}/customizations | Create an Email Customization
-[**deleteAllCustomizations**](CustomizationApi.md#deleteAllCustomizations) | **DELETE** /api/v1/brands/{brandId}/templates/email/{templateName}/customizations | Delete all Email Customizations
-[**deleteBrand**](CustomizationApi.md#deleteBrand) | **DELETE** /api/v1/brands/{brandId} | Delete a brand
-[**deleteBrandThemeBackgroundImage**](CustomizationApi.md#deleteBrandThemeBackgroundImage) | **DELETE** /api/v1/brands/{brandId}/themes/{themeId}/background-image | Delete the Background Image
-[**deleteBrandThemeFavicon**](CustomizationApi.md#deleteBrandThemeFavicon) | **DELETE** /api/v1/brands/{brandId}/themes/{themeId}/favicon | Delete the Favicon
-[**deleteBrandThemeLogo**](CustomizationApi.md#deleteBrandThemeLogo) | **DELETE** /api/v1/brands/{brandId}/themes/{themeId}/logo | Delete the Logo
-[**deleteEmailCustomization**](CustomizationApi.md#deleteEmailCustomization) | **DELETE** /api/v1/brands/{brandId}/templates/email/{templateName}/customizations/{customizationId} | Delete an Email Customization
-[**getBrand**](CustomizationApi.md#getBrand) | **GET** /api/v1/brands/{brandId} | Retrieve a Brand
-[**getBrandDomains**](CustomizationApi.md#getBrandDomains) | **GET** /api/v1/brands/{brandId}/domains | List all Domains associated with a Brand
-[**getBrandTheme**](CustomizationApi.md#getBrandTheme) | **GET** /api/v1/brands/{brandId}/themes/{themeId} | Retrieve a Theme
-[**getCustomizationPreview**](CustomizationApi.md#getCustomizationPreview) | **GET** /api/v1/brands/{brandId}/templates/email/{templateName}/customizations/{customizationId}/preview | Preview an Email Customization
-[**getEmailCustomization**](CustomizationApi.md#getEmailCustomization) | **GET** /api/v1/brands/{brandId}/templates/email/{templateName}/customizations/{customizationId} | Retrieve an Email Customization
-[**getEmailDefaultContent**](CustomizationApi.md#getEmailDefaultContent) | **GET** /api/v1/brands/{brandId}/templates/email/{templateName}/default-content | Retrieve an Email Template Default Content
-[**getEmailDefaultPreview**](CustomizationApi.md#getEmailDefaultPreview) | **GET** /api/v1/brands/{brandId}/templates/email/{templateName}/default-content/preview | Preview the Email Template Default Content
-[**getEmailSettings**](CustomizationApi.md#getEmailSettings) | **GET** /api/v1/brands/{brandId}/templates/email/{templateName}/settings | Retrieve the Email Template Settings
-[**getEmailTemplate**](CustomizationApi.md#getEmailTemplate) | **GET** /api/v1/brands/{brandId}/templates/email/{templateName} | Retrieve an Email Template
-[**linkBrandDomain**](CustomizationApi.md#linkBrandDomain) | **POST** /api/v1/brands/{brandId}/domains | Link a Brand to a Domain
-[**listAllSignInWidgetVersions**](CustomizationApi.md#listAllSignInWidgetVersions) | **GET** /api/v1/brands/{brandId}/pages/sign-in/widget-versions | List all Sign-in Widget Versions
-[**listBrandThemes**](CustomizationApi.md#listBrandThemes) | **GET** /api/v1/brands/{brandId}/themes | List all Themes
-[**listBrands**](CustomizationApi.md#listBrands) | **GET** /api/v1/brands | List all Brands
-[**listEmailCustomizations**](CustomizationApi.md#listEmailCustomizations) | **GET** /api/v1/brands/{brandId}/templates/email/{templateName}/customizations | List all Email Customizations
-[**listEmailTemplates**](CustomizationApi.md#listEmailTemplates) | **GET** /api/v1/brands/{brandId}/templates/email | List all Email Templates
-[**previewErrorPage**](CustomizationApi.md#previewErrorPage) | **POST** /api/v1/brands/{brandId}/pages/error/preview | Preview the Error Page
-[**replaceErrorPage**](CustomizationApi.md#replaceErrorPage) | **PUT** /api/v1/brands/{brandId}/pages/error | Replace the Error Page
-[**replaceSignInPage**](CustomizationApi.md#replaceSignInPage) | **PUT** /api/v1/brands/{brandId}/pages/sign-in | Replace the Sign-in Page
-[**replaceSignInPagePreview**](CustomizationApi.md#replaceSignInPagePreview) | **PUT** /api/v1/brands/{brandId}/pages/sign-in/preview | Replace the Sign-in Page Preview
-[**replaceSignOutPageSettings**](CustomizationApi.md#replaceSignOutPageSettings) | **PUT** /api/v1/brands/{brandId}/pages/sign-out | Replace the Sign-out Page Settings
-[**resetErrorPage**](CustomizationApi.md#resetErrorPage) | **DELETE** /api/v1/brands/{brandId}/pages/error | Reset the Error Page
-[**resetSignInPage**](CustomizationApi.md#resetSignInPage) | **DELETE** /api/v1/brands/{brandId}/pages/sign-in | Reset the Sign-in Page
-[**retrieveErrorPage**](CustomizationApi.md#retrieveErrorPage) | **GET** /api/v1/brands/{brandId}/pages/error | Retrieve the Error Page
-[**retrieveSignInPage**](CustomizationApi.md#retrieveSignInPage) | **GET** /api/v1/brands/{brandId}/pages/sign-in | Retrieve the Sign-in Page
-[**retrieveSignOutPageSettings**](CustomizationApi.md#retrieveSignOutPageSettings) | **GET** /api/v1/brands/{brandId}/pages/sign-out | Retrieve the Sign-out Page Settings
-[**sendTestEmail**](CustomizationApi.md#sendTestEmail) | **POST** /api/v1/brands/{brandId}/templates/email/{templateName}/test | Send a Test Email
-[**unlinkBrandDomain**](CustomizationApi.md#unlinkBrandDomain) | **DELETE** /api/v1/brands/{brandId}/domains/{domainId} | Unlink a Brand from a Domain
-[**updateBrand**](CustomizationApi.md#updateBrand) | **PUT** /api/v1/brands/{brandId} | Replace a Brand
-[**updateBrandTheme**](CustomizationApi.md#updateBrandTheme) | **PUT** /api/v1/brands/{brandId}/themes/{themeId} | Replace a Theme
-[**updateEmailCustomization**](CustomizationApi.md#updateEmailCustomization) | **PUT** /api/v1/brands/{brandId}/templates/email/{templateName}/customizations/{customizationId} | Replace an Email Customization
-[**updateEmailSettings**](CustomizationApi.md#updateEmailSettings) | **PUT** /api/v1/brands/{brandId}/templates/email/{templateName}/settings | Replace the Email Template Settings
-[**uploadBrandThemeBackgroundImage**](CustomizationApi.md#uploadBrandThemeBackgroundImage) | **POST** /api/v1/brands/{brandId}/themes/{themeId}/background-image | Upload the Background Image
-[**uploadBrandThemeFavicon**](CustomizationApi.md#uploadBrandThemeFavicon) | **POST** /api/v1/brands/{brandId}/themes/{themeId}/favicon | Upload the Favicon
-[**uploadBrandThemeLogo**](CustomizationApi.md#uploadBrandThemeLogo) | **POST** /api/v1/brands/{brandId}/themes/{themeId}/logo | Upload the Logo
+[**createBrand**](CustomizationApi.md#createbrand) | **POST** /api/v1/brands | Create a Brand
+[**createEmailCustomization**](CustomizationApi.md#createemailcustomization) | **POST** /api/v1/brands/{brandId}/templates/email/{templateName}/customizations | Create an Email Customization
+[**deleteAllCustomizations**](CustomizationApi.md#deleteallcustomizations) | **DELETE** /api/v1/brands/{brandId}/templates/email/{templateName}/customizations | Delete all Email Customizations
+[**deleteBrand**](CustomizationApi.md#deletebrand) | **DELETE** /api/v1/brands/{brandId} | Delete a brand
+[**deleteBrandThemeBackgroundImage**](CustomizationApi.md#deletebrandthemebackgroundimage) | **DELETE** /api/v1/brands/{brandId}/themes/{themeId}/background-image | Delete the Background Image
+[**deleteBrandThemeFavicon**](CustomizationApi.md#deletebrandthemefavicon) | **DELETE** /api/v1/brands/{brandId}/themes/{themeId}/favicon | Delete the Favicon
+[**deleteBrandThemeLogo**](CustomizationApi.md#deletebrandthemelogo) | **DELETE** /api/v1/brands/{brandId}/themes/{themeId}/logo | Delete the Logo
+[**deleteEmailCustomization**](CustomizationApi.md#deleteemailcustomization) | **DELETE** /api/v1/brands/{brandId}/templates/email/{templateName}/customizations/{customizationId} | Delete an Email Customization
+[**getBrand**](CustomizationApi.md#getbrand) | **GET** /api/v1/brands/{brandId} | Retrieve a Brand
+[**getBrandDomains**](CustomizationApi.md#getbranddomains) | **GET** /api/v1/brands/{brandId}/domains | List all Domains associated with a Brand
+[**getBrandTheme**](CustomizationApi.md#getbrandtheme) | **GET** /api/v1/brands/{brandId}/themes/{themeId} | Retrieve a Theme
+[**getCustomizationPreview**](CustomizationApi.md#getcustomizationpreview) | **GET** /api/v1/brands/{brandId}/templates/email/{templateName}/customizations/{customizationId}/preview | Preview an Email Customization
+[**getEmailCustomization**](CustomizationApi.md#getemailcustomization) | **GET** /api/v1/brands/{brandId}/templates/email/{templateName}/customizations/{customizationId} | Retrieve an Email Customization
+[**getEmailDefaultContent**](CustomizationApi.md#getemaildefaultcontent) | **GET** /api/v1/brands/{brandId}/templates/email/{templateName}/default-content | Retrieve an Email Template Default Content
+[**getEmailDefaultPreview**](CustomizationApi.md#getemaildefaultpreview) | **GET** /api/v1/brands/{brandId}/templates/email/{templateName}/default-content/preview | Preview the Email Template Default Content
+[**getEmailSettings**](CustomizationApi.md#getemailsettings) | **GET** /api/v1/brands/{brandId}/templates/email/{templateName}/settings | Retrieve the Email Template Settings
+[**getEmailTemplate**](CustomizationApi.md#getemailtemplate) | **GET** /api/v1/brands/{brandId}/templates/email/{templateName} | Retrieve an Email Template
+[**linkBrandDomain**](CustomizationApi.md#linkbranddomain) | **POST** /api/v1/brands/{brandId}/domains | Link a Brand to a Domain
+[**listAllSignInWidgetVersions**](CustomizationApi.md#listallsigninwidgetversions) | **GET** /api/v1/brands/{brandId}/pages/sign-in/widget-versions | List all Sign-in Widget Versions
+[**listBrandThemes**](CustomizationApi.md#listbrandthemes) | **GET** /api/v1/brands/{brandId}/themes | List all Themes
+[**listBrands**](CustomizationApi.md#listbrands) | **GET** /api/v1/brands | List all Brands
+[**listEmailCustomizations**](CustomizationApi.md#listemailcustomizations) | **GET** /api/v1/brands/{brandId}/templates/email/{templateName}/customizations | List all Email Customizations
+[**listEmailTemplates**](CustomizationApi.md#listemailtemplates) | **GET** /api/v1/brands/{brandId}/templates/email | List all Email Templates
+[**previewErrorPage**](CustomizationApi.md#previewerrorpage) | **POST** /api/v1/brands/{brandId}/pages/error/preview | Preview the Error Page
+[**replaceErrorPage**](CustomizationApi.md#replaceerrorpage) | **PUT** /api/v1/brands/{brandId}/pages/error | Replace the Error Page
+[**replaceSignInPage**](CustomizationApi.md#replacesigninpage) | **PUT** /api/v1/brands/{brandId}/pages/sign-in | Replace the Sign-in Page
+[**replaceSignInPagePreview**](CustomizationApi.md#replacesigninpagepreview) | **PUT** /api/v1/brands/{brandId}/pages/sign-in/preview | Replace the Sign-in Page Preview
+[**replaceSignOutPageSettings**](CustomizationApi.md#replacesignoutpagesettings) | **PUT** /api/v1/brands/{brandId}/pages/sign-out | Replace the Sign-out Page Settings
+[**resetErrorPage**](CustomizationApi.md#reseterrorpage) | **DELETE** /api/v1/brands/{brandId}/pages/error | Reset the Error Page
+[**resetSignInPage**](CustomizationApi.md#resetsigninpage) | **DELETE** /api/v1/brands/{brandId}/pages/sign-in | Reset the Sign-in Page
+[**retrieveErrorPage**](CustomizationApi.md#retrieveerrorpage) | **GET** /api/v1/brands/{brandId}/pages/error | Retrieve the Error Page
+[**retrieveSignInPage**](CustomizationApi.md#retrievesigninpage) | **GET** /api/v1/brands/{brandId}/pages/sign-in | Retrieve the Sign-in Page
+[**retrieveSignOutPageSettings**](CustomizationApi.md#retrievesignoutpagesettings) | **GET** /api/v1/brands/{brandId}/pages/sign-out | Retrieve the Sign-out Page Settings
+[**sendTestEmail**](CustomizationApi.md#sendtestemail) | **POST** /api/v1/brands/{brandId}/templates/email/{templateName}/test | Send a Test Email
+[**unlinkBrandDomain**](CustomizationApi.md#unlinkbranddomain) | **DELETE** /api/v1/brands/{brandId}/domains/{domainId} | Unlink a Brand from a Domain
+[**updateBrand**](CustomizationApi.md#updatebrand) | **PUT** /api/v1/brands/{brandId} | Replace a Brand
+[**updateBrandTheme**](CustomizationApi.md#updatebrandtheme) | **PUT** /api/v1/brands/{brandId}/themes/{themeId} | Replace a Theme
+[**updateEmailCustomization**](CustomizationApi.md#updateemailcustomization) | **PUT** /api/v1/brands/{brandId}/templates/email/{templateName}/customizations/{customizationId} | Replace an Email Customization
+[**updateEmailSettings**](CustomizationApi.md#updateemailsettings) | **PUT** /api/v1/brands/{brandId}/templates/email/{templateName}/settings | Replace the Email Template Settings
+[**uploadBrandThemeBackgroundImage**](CustomizationApi.md#uploadbrandthemebackgroundimage) | **POST** /api/v1/brands/{brandId}/themes/{themeId}/background-image | Upload the Background Image
+[**uploadBrandThemeFavicon**](CustomizationApi.md#uploadbrandthemefavicon) | **POST** /api/v1/brands/{brandId}/themes/{themeId}/favicon | Upload the Favicon
+[**uploadBrandThemeLogo**](CustomizationApi.md#uploadbrandthemelogo) | **POST** /api/v1/brands/{brandId}/themes/{themeId}/logo | Upload the Logo
 
 
 # **createBrand**
@@ -80,12 +80,12 @@ apiInstance.createBrand(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **CreateBrandRequest** | **CreateBrandRequest**|  |
+ **CreateBrandRequest** | **[CreateBrandRequest](CreateBrandRequest.md)** |  | 
 
 
 ### Return type
 
-**Brand**
+**[Brand](Brand.md)**
 
 ### Authorization
 
@@ -141,14 +141,14 @@ apiInstance.createEmailCustomization(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **instance** | **EmailCustomization**|  |
- **brandId** | [**string**] | The ID of the brand. | defaults to undefined
- **templateName** | [**string**] | The name of the email template. | defaults to undefined
+ **instance** | **[EmailCustomization](EmailCustomization.md)** |  | 
+**brandId** | **string** | The ID of the brand. | defaults to undefined
+**templateName** | **string** | The name of the email template. | defaults to undefined
 
 
 ### Return type
 
-**EmailCustomization**
+**[EmailCustomization](EmailCustomization.md)**
 
 ### Authorization
 
@@ -204,8 +204,8 @@ apiInstance.deleteAllCustomizations(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **brandId** | [**string**] | The ID of the brand. | defaults to undefined
- **templateName** | [**string**] | The name of the email template. | defaults to undefined
+**brandId** | **string** | The ID of the brand. | defaults to undefined
+**templateName** | **string** | The name of the email template. | defaults to undefined
 
 
 ### Return type
@@ -262,7 +262,7 @@ apiInstance.deleteBrand(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **brandId** | [**string**] | The ID of the brand. | defaults to undefined
+**brandId** | **string** | The ID of the brand. | defaults to undefined
 
 
 ### Return type
@@ -321,8 +321,8 @@ apiInstance.deleteBrandThemeBackgroundImage(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **brandId** | [**string**] | The ID of the brand. | defaults to undefined
- **themeId** | [**string**] | The ID of the theme. | defaults to undefined
+**brandId** | **string** | The ID of the brand. | defaults to undefined
+**themeId** | **string** | The ID of the theme. | defaults to undefined
 
 
 ### Return type
@@ -381,8 +381,8 @@ apiInstance.deleteBrandThemeFavicon(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **brandId** | [**string**] | The ID of the brand. | defaults to undefined
- **themeId** | [**string**] | The ID of the theme. | defaults to undefined
+**brandId** | **string** | The ID of the brand. | defaults to undefined
+**themeId** | **string** | The ID of the theme. | defaults to undefined
 
 
 ### Return type
@@ -441,8 +441,8 @@ apiInstance.deleteBrandThemeLogo(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **brandId** | [**string**] | The ID of the brand. | defaults to undefined
- **themeId** | [**string**] | The ID of the theme. | defaults to undefined
+**brandId** | **string** | The ID of the brand. | defaults to undefined
+**themeId** | **string** | The ID of the theme. | defaults to undefined
 
 
 ### Return type
@@ -503,9 +503,9 @@ apiInstance.deleteEmailCustomization(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **brandId** | [**string**] | The ID of the brand. | defaults to undefined
- **templateName** | [**string**] | The name of the email template. | defaults to undefined
- **customizationId** | [**string**] | The ID of the email customization. | defaults to undefined
+**brandId** | **string** | The ID of the brand. | defaults to undefined
+**templateName** | **string** | The name of the email template. | defaults to undefined
+**customizationId** | **string** | The ID of the email customization. | defaults to undefined
 
 
 ### Return type
@@ -563,12 +563,12 @@ apiInstance.getBrand(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **brandId** | [**string**] | The ID of the brand. | defaults to undefined
+**brandId** | **string** | The ID of the brand. | defaults to undefined
 
 
 ### Return type
 
-**Brand**
+**[Brand](Brand.md)**
 
 ### Authorization
 
@@ -620,12 +620,12 @@ apiInstance.getBrandDomains(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **brandId** | [**string**] | The ID of the brand. | defaults to undefined
+**brandId** | **string** | The ID of the brand. | defaults to undefined
 
 
 ### Return type
 
-**Array<DomainResponse>**
+**[Array&lt;DomainResponse&gt;](DomainResponse.md)**
 
 ### Authorization
 
@@ -679,13 +679,13 @@ apiInstance.getBrandTheme(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **brandId** | [**string**] | The ID of the brand. | defaults to undefined
- **themeId** | [**string**] | The ID of the theme. | defaults to undefined
+**brandId** | **string** | The ID of the brand. | defaults to undefined
+**themeId** | **string** | The ID of the theme. | defaults to undefined
 
 
 ### Return type
 
-**ThemeResponse**
+**[ThemeResponse](ThemeResponse.md)**
 
 ### Authorization
 
@@ -741,14 +741,14 @@ apiInstance.getCustomizationPreview(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **brandId** | [**string**] | The ID of the brand. | defaults to undefined
- **templateName** | [**string**] | The name of the email template. | defaults to undefined
- **customizationId** | [**string**] | The ID of the email customization. | defaults to undefined
+**brandId** | **string** | The ID of the brand. | defaults to undefined
+**templateName** | **string** | The name of the email template. | defaults to undefined
+**customizationId** | **string** | The ID of the email customization. | defaults to undefined
 
 
 ### Return type
 
-**EmailPreview**
+**[EmailPreview](EmailPreview.md)**
 
 ### Authorization
 
@@ -804,14 +804,14 @@ apiInstance.getEmailCustomization(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **brandId** | [**string**] | The ID of the brand. | defaults to undefined
- **templateName** | [**string**] | The name of the email template. | defaults to undefined
- **customizationId** | [**string**] | The ID of the email customization. | defaults to undefined
+**brandId** | **string** | The ID of the brand. | defaults to undefined
+**templateName** | **string** | The name of the email template. | defaults to undefined
+**customizationId** | **string** | The ID of the email customization. | defaults to undefined
 
 
 ### Return type
 
-**EmailCustomization**
+**[EmailCustomization](EmailCustomization.md)**
 
 ### Authorization
 
@@ -867,14 +867,14 @@ apiInstance.getEmailDefaultContent(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **brandId** | [**string**] | The ID of the brand. | defaults to undefined
- **templateName** | [**string**] | The name of the email template. | defaults to undefined
- **language** | [**string**] | The language to use for the email. Defaults to the current user&#39;s language if unspecified. | (optional) defaults to undefined
+**brandId** | **string** | The ID of the brand. | defaults to undefined
+**templateName** | **string** | The name of the email template. | defaults to undefined
+**language** | **string** | The language to use for the email. Defaults to the current user&#39;s language if unspecified. | (optional) defaults to undefined
 
 
 ### Return type
 
-**EmailDefaultContent**
+**[EmailDefaultContent](EmailDefaultContent.md)**
 
 ### Authorization
 
@@ -930,14 +930,14 @@ apiInstance.getEmailDefaultPreview(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **brandId** | [**string**] | The ID of the brand. | defaults to undefined
- **templateName** | [**string**] | The name of the email template. | defaults to undefined
- **language** | [**string**] | The language to use for the email. Defaults to the current user&#39;s language if unspecified. | (optional) defaults to undefined
+**brandId** | **string** | The ID of the brand. | defaults to undefined
+**templateName** | **string** | The name of the email template. | defaults to undefined
+**language** | **string** | The language to use for the email. Defaults to the current user&#39;s language if unspecified. | (optional) defaults to undefined
 
 
 ### Return type
 
-**EmailPreview**
+**[EmailPreview](EmailPreview.md)**
 
 ### Authorization
 
@@ -991,13 +991,13 @@ apiInstance.getEmailSettings(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **brandId** | [**string**] | The ID of the brand. | defaults to undefined
- **templateName** | [**string**] | The name of the email template. | defaults to undefined
+**brandId** | **string** | The ID of the brand. | defaults to undefined
+**templateName** | **string** | The name of the email template. | defaults to undefined
 
 
 ### Return type
 
-**EmailSettings**
+**[EmailSettings](EmailSettings.md)**
 
 ### Authorization
 
@@ -1055,14 +1055,14 @@ apiInstance.getEmailTemplate(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **brandId** | [**string**] | The ID of the brand. | defaults to undefined
- **templateName** | [**string**] | The name of the email template. | defaults to undefined
- **expand** | **Array<&#39;settings&#39; &#124; &#39;customizationCount&#39;>** | Specifies additional metadata to be included in the response. | (optional) defaults to undefined
+**brandId** | **string** | The ID of the brand. | defaults to undefined
+**templateName** | **string** | The name of the email template. | defaults to undefined
+**expand** | **Array<&#39;settings&#39; &#124; &#39;customizationCount&#39;>** | Specifies additional metadata to be included in the response. | (optional) defaults to undefined
 
 
 ### Return type
 
-**EmailTemplate**
+**[EmailTemplate](EmailTemplate.md)**
 
 ### Authorization
 
@@ -1118,13 +1118,13 @@ apiInstance.linkBrandDomain(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **CreateBrandDomainRequest** | **CreateBrandDomainRequest**|  |
- **brandId** | [**string**] | The ID of the brand. | defaults to undefined
+ **CreateBrandDomainRequest** | **[CreateBrandDomainRequest](CreateBrandDomainRequest.md)** |  | 
+**brandId** | **string** | The ID of the brand. | defaults to undefined
 
 
 ### Return type
 
-**BrandDomain**
+**[BrandDomain](BrandDomain.md)**
 
 ### Authorization
 
@@ -1176,7 +1176,7 @@ apiInstance.listAllSignInWidgetVersions(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **brandId** | [**string**] | The ID of the brand. | defaults to undefined
+**brandId** | **string** | The ID of the brand. | defaults to undefined
 
 
 ### Return type
@@ -1233,12 +1233,12 @@ apiInstance.listBrandThemes(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **brandId** | [**string**] | The ID of the brand. | defaults to undefined
+**brandId** | **string** | The ID of the brand. | defaults to undefined
 
 
 ### Return type
 
-**Array<ThemeResponse>**
+**[Array&lt;ThemeResponse&gt;](ThemeResponse.md)**
 
 ### Authorization
 
@@ -1289,7 +1289,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-**Array<Brand>**
+**[Array&lt;Brand&gt;](Brand.md)**
 
 ### Authorization
 
@@ -1346,15 +1346,15 @@ apiInstance.listEmailCustomizations(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **brandId** | [**string**] | The ID of the brand. | defaults to undefined
- **templateName** | [**string**] | The name of the email template. | defaults to undefined
- **after** | [**string**] | The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](/#pagination) for more information. | (optional) defaults to undefined
- **limit** | [**number**] | A limit on the number of objects to return. | (optional) defaults to 20
+**brandId** | **string** | The ID of the brand. | defaults to undefined
+**templateName** | **string** | The name of the email template. | defaults to undefined
+**after** | **string** | The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](/#pagination) for more information. | (optional) defaults to undefined
+**limit** | **number** | A limit on the number of objects to return. | (optional) defaults to 20
 
 
 ### Return type
 
-**Array<EmailCustomization>**
+**[Array&lt;EmailCustomization&gt;](EmailCustomization.md)**
 
 ### Authorization
 
@@ -1414,15 +1414,15 @@ apiInstance.listEmailTemplates(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **brandId** | [**string**] | The ID of the brand. | defaults to undefined
- **after** | [**string**] | The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](/#pagination) for more information. | (optional) defaults to undefined
- **limit** | [**number**] | A limit on the number of objects to return. | (optional) defaults to 20
- **expand** | **Array<&#39;settings&#39; &#124; &#39;customizationCount&#39;>** | Specifies additional metadata to be included in the response. | (optional) defaults to undefined
+**brandId** | **string** | The ID of the brand. | defaults to undefined
+**after** | **string** | The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](/#pagination) for more information. | (optional) defaults to undefined
+**limit** | **number** | A limit on the number of objects to return. | (optional) defaults to 20
+**expand** | **Array<&#39;settings&#39; &#124; &#39;customizationCount&#39;>** | Specifies additional metadata to be included in the response. | (optional) defaults to undefined
 
 
 ### Return type
 
-**Array<EmailTemplate>**
+**[Array&lt;EmailTemplate&gt;](EmailTemplate.md)**
 
 ### Authorization
 
@@ -1478,8 +1478,8 @@ apiInstance.previewErrorPage(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **CustomizablePage** | **CustomizablePage**|  |
- **brandId** | [**string**] | The ID of the brand. | defaults to undefined
+ **CustomizablePage** | **[CustomizablePage](CustomizablePage.md)** |  | 
+**brandId** | **string** | The ID of the brand. | defaults to undefined
 
 
 ### Return type
@@ -1541,13 +1541,13 @@ apiInstance.replaceErrorPage(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **CustomizablePage** | **CustomizablePage**|  |
- **brandId** | [**string**] | The ID of the brand. | defaults to undefined
+ **CustomizablePage** | **[CustomizablePage](CustomizablePage.md)** |  | 
+**brandId** | **string** | The ID of the brand. | defaults to undefined
 
 
 ### Return type
 
-**CustomizablePage**
+**[CustomizablePage](CustomizablePage.md)**
 
 ### Authorization
 
@@ -1602,13 +1602,13 @@ apiInstance.replaceSignInPage(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **SignInPage** | **SignInPage**|  |
- **brandId** | [**string**] | The ID of the brand. | defaults to undefined
+ **SignInPage** | **[SignInPage](SignInPage.md)** |  | 
+**brandId** | **string** | The ID of the brand. | defaults to undefined
 
 
 ### Return type
 
-**SignInPage**
+**[SignInPage](SignInPage.md)**
 
 ### Authorization
 
@@ -1663,8 +1663,8 @@ apiInstance.replaceSignInPagePreview(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **SignInPage** | **SignInPage**|  |
- **brandId** | [**string**] | The ID of the brand. | defaults to undefined
+ **SignInPage** | **[SignInPage](SignInPage.md)** |  | 
+**brandId** | **string** | The ID of the brand. | defaults to undefined
 
 
 ### Return type
@@ -1727,13 +1727,13 @@ apiInstance.replaceSignOutPageSettings(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **HostedPage** | **HostedPage**|  |
- **brandId** | [**string**] | The ID of the brand. | defaults to undefined
+ **HostedPage** | **[HostedPage](HostedPage.md)** |  | 
+**brandId** | **string** | The ID of the brand. | defaults to undefined
 
 
 ### Return type
 
-**HostedPage**
+**[HostedPage](HostedPage.md)**
 
 ### Authorization
 
@@ -1786,7 +1786,7 @@ apiInstance.resetErrorPage(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **brandId** | [**string**] | The ID of the brand. | defaults to undefined
+**brandId** | **string** | The ID of the brand. | defaults to undefined
 
 
 ### Return type
@@ -1843,7 +1843,7 @@ apiInstance.resetSignInPage(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **brandId** | [**string**] | The ID of the brand. | defaults to undefined
+**brandId** | **string** | The ID of the brand. | defaults to undefined
 
 
 ### Return type
@@ -1900,12 +1900,12 @@ apiInstance.retrieveErrorPage(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **brandId** | [**string**] | The ID of the brand. | defaults to undefined
+**brandId** | **string** | The ID of the brand. | defaults to undefined
 
 
 ### Return type
 
-**CustomizablePage**
+**[CustomizablePage](CustomizablePage.md)**
 
 ### Authorization
 
@@ -1957,12 +1957,12 @@ apiInstance.retrieveSignInPage(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **brandId** | [**string**] | The ID of the brand. | defaults to undefined
+**brandId** | **string** | The ID of the brand. | defaults to undefined
 
 
 ### Return type
 
-**SignInPage**
+**[SignInPage](SignInPage.md)**
 
 ### Authorization
 
@@ -2014,12 +2014,12 @@ apiInstance.retrieveSignOutPageSettings(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **brandId** | [**string**] | The ID of the brand. | defaults to undefined
+**brandId** | **string** | The ID of the brand. | defaults to undefined
 
 
 ### Return type
 
-**HostedPage**
+**[HostedPage](HostedPage.md)**
 
 ### Authorization
 
@@ -2075,9 +2075,9 @@ apiInstance.sendTestEmail(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **brandId** | [**string**] | The ID of the brand. | defaults to undefined
- **templateName** | [**string**] | The name of the email template. | defaults to undefined
- **language** | [**string**] | The language to use for the email. Defaults to the current user&#39;s language if unspecified. | (optional) defaults to undefined
+**brandId** | **string** | The ID of the brand. | defaults to undefined
+**templateName** | **string** | The name of the email template. | defaults to undefined
+**language** | **string** | The language to use for the email. Defaults to the current user&#39;s language if unspecified. | (optional) defaults to undefined
 
 
 ### Return type
@@ -2136,8 +2136,8 @@ apiInstance.unlinkBrandDomain(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **brandId** | [**string**] | The ID of the brand. | defaults to undefined
- **domainId** | [**string**] | The ID of the domain. | defaults to undefined
+**brandId** | **string** | The ID of the brand. | defaults to undefined
+**domainId** | **string** | The ID of the domain. | defaults to undefined
 
 
 ### Return type
@@ -2200,13 +2200,13 @@ apiInstance.updateBrand(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **brand** | **BrandRequest**|  |
- **brandId** | [**string**] | The ID of the brand. | defaults to undefined
+ **brand** | **[BrandRequest](BrandRequest.md)** |  | 
+**brandId** | **string** | The ID of the brand. | defaults to undefined
 
 
 ### Return type
 
-**Brand**
+**[Brand](Brand.md)**
 
 ### Authorization
 
@@ -2272,14 +2272,14 @@ apiInstance.updateBrandTheme(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **theme** | **Theme**|  |
- **brandId** | [**string**] | The ID of the brand. | defaults to undefined
- **themeId** | [**string**] | The ID of the theme. | defaults to undefined
+ **theme** | **[Theme](Theme.md)** |  | 
+**brandId** | **string** | The ID of the brand. | defaults to undefined
+**themeId** | **string** | The ID of the theme. | defaults to undefined
 
 
 ### Return type
 
-**ThemeResponse**
+**[ThemeResponse](ThemeResponse.md)**
 
 ### Authorization
 
@@ -2338,15 +2338,15 @@ apiInstance.updateEmailCustomization(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **instance** | **EmailCustomization**| Request |
- **brandId** | [**string**] | The ID of the brand. | defaults to undefined
- **templateName** | [**string**] | The name of the email template. | defaults to undefined
- **customizationId** | [**string**] | The ID of the email customization. | defaults to undefined
+ **instance** | **[EmailCustomization](EmailCustomization.md)** | Request | 
+**brandId** | **string** | The ID of the brand. | defaults to undefined
+**templateName** | **string** | The name of the email template. | defaults to undefined
+**customizationId** | **string** | The ID of the email customization. | defaults to undefined
 
 
 ### Return type
 
-**EmailCustomization**
+**[EmailCustomization](EmailCustomization.md)**
 
 ### Authorization
 
@@ -2406,9 +2406,9 @@ apiInstance.updateEmailSettings(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **EmailSettings** | **EmailSettings**|  |
- **brandId** | [**string**] | The ID of the brand. | defaults to undefined
- **templateName** | [**string**] | The name of the email template. | defaults to undefined
+ **EmailSettings** | **[EmailSettings](EmailSettings.md)** |  | 
+**brandId** | **string** | The ID of the brand. | defaults to undefined
+**templateName** | **string** | The name of the email template. | defaults to undefined
 
 
 ### Return type
@@ -2471,14 +2471,14 @@ apiInstance.uploadBrandThemeBackgroundImage(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **brandId** | [**string**] | The ID of the brand. | defaults to undefined
- **themeId** | [**string**] | The ID of the theme. | defaults to undefined
- **file** | [**HttpFile**] |  | defaults to undefined
+**brandId** | **string** | The ID of the brand. | defaults to undefined
+**themeId** | **string** | The ID of the theme. | defaults to undefined
+**file** | **HttpFile** |  | defaults to undefined
 
 
 ### Return type
 
-**ImageUploadResponse**
+**[ImageUploadResponse](ImageUploadResponse.md)**
 
 ### Authorization
 
@@ -2535,14 +2535,14 @@ apiInstance.uploadBrandThemeFavicon(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **brandId** | [**string**] | The ID of the brand. | defaults to undefined
- **themeId** | [**string**] | The ID of the theme. | defaults to undefined
- **file** | [**HttpFile**] |  | defaults to undefined
+**brandId** | **string** | The ID of the brand. | defaults to undefined
+**themeId** | **string** | The ID of the theme. | defaults to undefined
+**file** | **HttpFile** |  | defaults to undefined
 
 
 ### Return type
 
-**ImageUploadResponse**
+**[ImageUploadResponse](ImageUploadResponse.md)**
 
 ### Authorization
 
@@ -2599,14 +2599,14 @@ apiInstance.uploadBrandThemeLogo(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **brandId** | [**string**] | The ID of the brand. | defaults to undefined
- **themeId** | [**string**] | The ID of the theme. | defaults to undefined
- **file** | [**HttpFile**] |  | defaults to undefined
+**brandId** | **string** | The ID of the brand. | defaults to undefined
+**themeId** | **string** | The ID of the theme. | defaults to undefined
+**file** | **HttpFile** |  | defaults to undefined
 
 
 ### Return type
 
-**ImageUploadResponse**
+**[ImageUploadResponse](ImageUploadResponse.md)**
 
 ### Authorization
 

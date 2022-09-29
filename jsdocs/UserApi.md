@@ -4,44 +4,44 @@ All URIs are relative to *https://subdomain.okta.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**activateUser**](UserApi.md#activateUser) | **POST** /api/v1/users/{userId}/lifecycle/activate | Activate a User
-[**changePassword**](UserApi.md#changePassword) | **POST** /api/v1/users/{userId}/credentials/change_password | Change Password
-[**changeRecoveryQuestion**](UserApi.md#changeRecoveryQuestion) | **POST** /api/v1/users/{userId}/credentials/change_recovery_question | Change Recovery Question
-[**clearUserSessions**](UserApi.md#clearUserSessions) | **DELETE** /api/v1/users/{userId}/sessions | Delete all User Sessions
-[**createUser**](UserApi.md#createUser) | **POST** /api/v1/users | Create a User
-[**deactivateOrDeleteUser**](UserApi.md#deactivateOrDeleteUser) | **DELETE** /api/v1/users/{userId} | Delete a User
-[**deactivateUser**](UserApi.md#deactivateUser) | **POST** /api/v1/users/{userId}/lifecycle/deactivate | Deactivate a User
-[**expirePassword**](UserApi.md#expirePassword) | **POST** /api/v1/users/{userId}/lifecycle/expire_password | Expire Password
-[**expirePasswordAndGetTemporaryPassword**](UserApi.md#expirePasswordAndGetTemporaryPassword) | **POST** /api/v1/users/{userId}/lifecycle/expire_password_with_temp_password | Expire Password and Set Temporary Password
-[**forgotPassword**](UserApi.md#forgotPassword) | **POST** /api/v1/users/{userId}/credentials/forgot_password | Initiate Forgot Password
-[**forgotPasswordSetNewPassword**](UserApi.md#forgotPasswordSetNewPassword) | **POST** /api/v1/users/{userId}/credentials/forgot_password_recovery_question | Reset Password with Recovery Question
-[**getLinkedObjectsForUser**](UserApi.md#getLinkedObjectsForUser) | **GET** /api/v1/users/{userId}/linkedObjects/{relationshipName} | List all Linked Objects
-[**getRefreshTokenForUserAndClient**](UserApi.md#getRefreshTokenForUserAndClient) | **GET** /api/v1/users/{userId}/clients/{clientId}/tokens/{tokenId} | Retrieve a Refresh Token for a Client
-[**getUser**](UserApi.md#getUser) | **GET** /api/v1/users/{userId} | Retrieve a User
-[**getUserGrant**](UserApi.md#getUserGrant) | **GET** /api/v1/users/{userId}/grants/{grantId} | Retrieve a User Grant
-[**listAppLinks**](UserApi.md#listAppLinks) | **GET** /api/v1/users/{userId}/appLinks | List all Assigned Application Links
-[**listGrantsForUserAndClient**](UserApi.md#listGrantsForUserAndClient) | **GET** /api/v1/users/{userId}/clients/{clientId}/grants | List all Grants for a Client
-[**listRefreshTokensForUserAndClient**](UserApi.md#listRefreshTokensForUserAndClient) | **GET** /api/v1/users/{userId}/clients/{clientId}/tokens | List all Refresh Tokens for a Client
-[**listUserClients**](UserApi.md#listUserClients) | **GET** /api/v1/users/{userId}/clients | List all Clients
-[**listUserGrants**](UserApi.md#listUserGrants) | **GET** /api/v1/users/{userId}/grants | List all User Grants
-[**listUserGroups**](UserApi.md#listUserGroups) | **GET** /api/v1/users/{userId}/groups | List all Groups
-[**listUserIdentityProviders**](UserApi.md#listUserIdentityProviders) | **GET** /api/v1/users/{userId}/idps | List all Identity Providers
-[**listUsers**](UserApi.md#listUsers) | **GET** /api/v1/users | List all Users
-[**partialUpdateUser**](UserApi.md#partialUpdateUser) | **POST** /api/v1/users/{userId} | Update a User
-[**reactivateUser**](UserApi.md#reactivateUser) | **POST** /api/v1/users/{userId}/lifecycle/reactivate | Reactivate a User
-[**removeLinkedObjectForUser**](UserApi.md#removeLinkedObjectForUser) | **DELETE** /api/v1/users/{userId}/linkedObjects/{relationshipName} | Delete a Linked Object
-[**resetFactors**](UserApi.md#resetFactors) | **POST** /api/v1/users/{userId}/lifecycle/reset_factors | Reset all Factors
-[**resetPassword**](UserApi.md#resetPassword) | **POST** /api/v1/users/{userId}/lifecycle/reset_password | Reset Password
-[**revokeGrantsForUserAndClient**](UserApi.md#revokeGrantsForUserAndClient) | **DELETE** /api/v1/users/{userId}/clients/{clientId}/grants | Revoke all Grants for a Client
-[**revokeTokenForUserAndClient**](UserApi.md#revokeTokenForUserAndClient) | **DELETE** /api/v1/users/{userId}/clients/{clientId}/tokens/{tokenId} | Revoke a Token for a Client
-[**revokeTokensForUserAndClient**](UserApi.md#revokeTokensForUserAndClient) | **DELETE** /api/v1/users/{userId}/clients/{clientId}/tokens | Revoke all Refresh Tokens for a Client
-[**revokeUserGrant**](UserApi.md#revokeUserGrant) | **DELETE** /api/v1/users/{userId}/grants/{grantId} | Revoke a User Grant
-[**revokeUserGrants**](UserApi.md#revokeUserGrants) | **DELETE** /api/v1/users/{userId}/grants | Revoke all User Grants
-[**setLinkedObjectForUser**](UserApi.md#setLinkedObjectForUser) | **PUT** /api/v1/users/{associatedUserId}/linkedObjects/{primaryRelationshipName}/{primaryUserId} | Create a Linked Object for two User
-[**suspendUser**](UserApi.md#suspendUser) | **POST** /api/v1/users/{userId}/lifecycle/suspend | Suspend a User
-[**unlockUser**](UserApi.md#unlockUser) | **POST** /api/v1/users/{userId}/lifecycle/unlock | Unlock a User
-[**unsuspendUser**](UserApi.md#unsuspendUser) | **POST** /api/v1/users/{userId}/lifecycle/unsuspend | Unsuspend a User
-[**updateUser**](UserApi.md#updateUser) | **PUT** /api/v1/users/{userId} | Replace a User
+[**activateUser**](UserApi.md#activateuser) | **POST** /api/v1/users/{userId}/lifecycle/activate | Activate a User
+[**changePassword**](UserApi.md#changepassword) | **POST** /api/v1/users/{userId}/credentials/change_password | Change Password
+[**changeRecoveryQuestion**](UserApi.md#changerecoveryquestion) | **POST** /api/v1/users/{userId}/credentials/change_recovery_question | Change Recovery Question
+[**clearUserSessions**](UserApi.md#clearusersessions) | **DELETE** /api/v1/users/{userId}/sessions | Delete all User Sessions
+[**createUser**](UserApi.md#createuser) | **POST** /api/v1/users | Create a User
+[**deactivateOrDeleteUser**](UserApi.md#deactivateordeleteuser) | **DELETE** /api/v1/users/{userId} | Delete a User
+[**deactivateUser**](UserApi.md#deactivateuser) | **POST** /api/v1/users/{userId}/lifecycle/deactivate | Deactivate a User
+[**expirePassword**](UserApi.md#expirepassword) | **POST** /api/v1/users/{userId}/lifecycle/expire_password | Expire Password
+[**expirePasswordAndGetTemporaryPassword**](UserApi.md#expirepasswordandgettemporarypassword) | **POST** /api/v1/users/{userId}/lifecycle/expire_password_with_temp_password | Expire Password and Set Temporary Password
+[**forgotPassword**](UserApi.md#forgotpassword) | **POST** /api/v1/users/{userId}/credentials/forgot_password | Initiate Forgot Password
+[**forgotPasswordSetNewPassword**](UserApi.md#forgotpasswordsetnewpassword) | **POST** /api/v1/users/{userId}/credentials/forgot_password_recovery_question | Reset Password with Recovery Question
+[**getLinkedObjectsForUser**](UserApi.md#getlinkedobjectsforuser) | **GET** /api/v1/users/{userId}/linkedObjects/{relationshipName} | List all Linked Objects
+[**getRefreshTokenForUserAndClient**](UserApi.md#getrefreshtokenforuserandclient) | **GET** /api/v1/users/{userId}/clients/{clientId}/tokens/{tokenId} | Retrieve a Refresh Token for a Client
+[**getUser**](UserApi.md#getuser) | **GET** /api/v1/users/{userId} | Retrieve a User
+[**getUserGrant**](UserApi.md#getusergrant) | **GET** /api/v1/users/{userId}/grants/{grantId} | Retrieve a User Grant
+[**listAppLinks**](UserApi.md#listapplinks) | **GET** /api/v1/users/{userId}/appLinks | List all Assigned Application Links
+[**listGrantsForUserAndClient**](UserApi.md#listgrantsforuserandclient) | **GET** /api/v1/users/{userId}/clients/{clientId}/grants | List all Grants for a Client
+[**listRefreshTokensForUserAndClient**](UserApi.md#listrefreshtokensforuserandclient) | **GET** /api/v1/users/{userId}/clients/{clientId}/tokens | List all Refresh Tokens for a Client
+[**listUserClients**](UserApi.md#listuserclients) | **GET** /api/v1/users/{userId}/clients | List all Clients
+[**listUserGrants**](UserApi.md#listusergrants) | **GET** /api/v1/users/{userId}/grants | List all User Grants
+[**listUserGroups**](UserApi.md#listusergroups) | **GET** /api/v1/users/{userId}/groups | List all Groups
+[**listUserIdentityProviders**](UserApi.md#listuseridentityproviders) | **GET** /api/v1/users/{userId}/idps | List all Identity Providers
+[**listUsers**](UserApi.md#listusers) | **GET** /api/v1/users | List all Users
+[**partialUpdateUser**](UserApi.md#partialupdateuser) | **POST** /api/v1/users/{userId} | Update a User
+[**reactivateUser**](UserApi.md#reactivateuser) | **POST** /api/v1/users/{userId}/lifecycle/reactivate | Reactivate a User
+[**removeLinkedObjectForUser**](UserApi.md#removelinkedobjectforuser) | **DELETE** /api/v1/users/{userId}/linkedObjects/{relationshipName} | Delete a Linked Object
+[**resetFactors**](UserApi.md#resetfactors) | **POST** /api/v1/users/{userId}/lifecycle/reset_factors | Reset all Factors
+[**resetPassword**](UserApi.md#resetpassword) | **POST** /api/v1/users/{userId}/lifecycle/reset_password | Reset Password
+[**revokeGrantsForUserAndClient**](UserApi.md#revokegrantsforuserandclient) | **DELETE** /api/v1/users/{userId}/clients/{clientId}/grants | Revoke all Grants for a Client
+[**revokeTokenForUserAndClient**](UserApi.md#revoketokenforuserandclient) | **DELETE** /api/v1/users/{userId}/clients/{clientId}/tokens/{tokenId} | Revoke a Token for a Client
+[**revokeTokensForUserAndClient**](UserApi.md#revoketokensforuserandclient) | **DELETE** /api/v1/users/{userId}/clients/{clientId}/tokens | Revoke all Refresh Tokens for a Client
+[**revokeUserGrant**](UserApi.md#revokeusergrant) | **DELETE** /api/v1/users/{userId}/grants/{grantId} | Revoke a User Grant
+[**revokeUserGrants**](UserApi.md#revokeusergrants) | **DELETE** /api/v1/users/{userId}/grants | Revoke all User Grants
+[**setLinkedObjectForUser**](UserApi.md#setlinkedobjectforuser) | **PUT** /api/v1/users/{associatedUserId}/linkedObjects/{primaryRelationshipName}/{primaryUserId} | Create a Linked Object for two User
+[**suspendUser**](UserApi.md#suspenduser) | **POST** /api/v1/users/{userId}/lifecycle/suspend | Suspend a User
+[**unlockUser**](UserApi.md#unlockuser) | **POST** /api/v1/users/{userId}/lifecycle/unlock | Unlock a User
+[**unsuspendUser**](UserApi.md#unsuspenduser) | **POST** /api/v1/users/{userId}/lifecycle/unsuspend | Unsuspend a User
+[**updateUser**](UserApi.md#updateuser) | **PUT** /api/v1/users/{userId} | Replace a User
 
 
 # **activateUser**
@@ -76,13 +76,13 @@ apiInstance.activateUser(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | [**string**] |  | defaults to undefined
- **sendEmail** | [**boolean**] | Sends an activation email to the user if true | defaults to undefined
+**userId** | **string** |  | defaults to undefined
+**sendEmail** | **boolean** | Sends an activation email to the user if true | defaults to undefined
 
 
 ### Return type
 
-**UserActivationToken**
+**[UserActivationToken](UserActivationToken.md)**
 
 ### Authorization
 
@@ -165,14 +165,14 @@ apiInstance.changePassword(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **changePasswordRequest** | **ChangePasswordRequest**|  |
- **userId** | [**string**] |  | defaults to undefined
- **strict** | [**boolean**] |  | (optional) defaults to undefined
+ **changePasswordRequest** | **[ChangePasswordRequest](ChangePasswordRequest.md)** |  | 
+**userId** | **string** |  | defaults to undefined
+**strict** | **boolean** |  | (optional) defaults to undefined
 
 
 ### Return type
 
-**UserCredentials**
+**[UserCredentials](UserCredentials.md)**
 
 ### Authorization
 
@@ -249,13 +249,13 @@ apiInstance.changeRecoveryQuestion(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userCredentials** | **UserCredentials**|  |
- **userId** | [**string**] |  | defaults to undefined
+ **userCredentials** | **[UserCredentials](UserCredentials.md)** |  | 
+**userId** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**UserCredentials**
+**[UserCredentials](UserCredentials.md)**
 
 ### Authorization
 
@@ -310,8 +310,8 @@ apiInstance.clearUserSessions(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | [**string**] |  | defaults to undefined
- **oauthTokens** | [**boolean**] | Revoke issued OpenID Connect and OAuth refresh and access tokens | (optional) defaults to undefined
+**userId** | **string** |  | defaults to undefined
+**oauthTokens** | **boolean** | Revoke issued OpenID Connect and OAuth refresh and access tokens | (optional) defaults to undefined
 
 
 ### Return type
@@ -382,39 +382,9 @@ let body:okta.UserApiCreateUserRequest = {
     groupIds: [
       "groupIds_example",
     ],
-    profile: {
-      city: "city_example",
-      costCenter: "costCenter_example",
-      countryCode: "countryCode_example",
-      department: "department_example",
-      displayName: "displayName_example",
-      division: "division_example",
-      email: "email_example",
-      employeeNumber: "employeeNumber_example",
-      firstName: "firstName_example",
-      honorificPrefix: "honorificPrefix_example",
-      honorificSuffix: "honorificSuffix_example",
-      lastName: "lastName_example",
-      locale: "locale_example",
-      login: "login_example",
-      manager: "manager_example",
-      managerId: "managerId_example",
-      middleName: "middleName_example",
-      mobilePhone: "mobilePhone_example",
-      nickName: "nickName_example",
-      organization: "organization_example",
-      postalAddress: "postalAddress_example",
-      preferredLanguage: "preferredLanguage_example",
-      primaryPhone: "primaryPhone_example",
-      profileUrl: "profileUrl_example",
-      secondEmail: "secondEmail_example",
-      state: "state_example",
-      streetAddress: "streetAddress_example",
-      timezone: "timezone_example",
-      title: "title_example",
-      userType: "userType_example",
-      zipCode: "zipCode_example",
-    },
+    profile: 
+      key: {},
+    ,
     type: {
       description: "description_example",
       displayName: "displayName_example",
@@ -440,15 +410,15 @@ apiInstance.createUser(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | **CreateUserRequest**|  |
- **activate** | [**boolean**] | Executes activation lifecycle operation when creating the user | (optional) defaults to undefined
- **provider** | [**boolean**] | Indicates whether to create a user with a specified authentication provider | (optional) defaults to undefined
- **nextLogin** | **UserNextLogin** | With activate&#x3D;true, set nextLogin to \&quot;changePassword\&quot; to have the password be EXPIRED, so user must change it the next time they log in. | (optional) defaults to undefined
+ **body** | **[CreateUserRequest](CreateUserRequest.md)** |  | 
+**activate** | **boolean** | Executes activation lifecycle operation when creating the user | (optional) defaults to undefined
+**provider** | **boolean** | Indicates whether to create a user with a specified authentication provider | (optional) defaults to undefined
+**nextLogin** | **[UserNextLogin](UserNextLogin.md)** | With activate&#x3D;true, set nextLogin to \&quot;changePassword\&quot; to have the password be EXPIRED, so user must change it the next time they log in. | (optional) defaults to undefined
 
 
 ### Return type
 
-**User**
+**[User](User.md)**
 
 ### Authorization
 
@@ -502,8 +472,8 @@ apiInstance.deactivateOrDeleteUser(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | [**string**] |  | defaults to undefined
- **sendEmail** | [**boolean**] |  | (optional) defaults to undefined
+**userId** | **string** |  | defaults to undefined
+**sendEmail** | **boolean** |  | (optional) defaults to undefined
 
 
 ### Return type
@@ -563,8 +533,8 @@ apiInstance.deactivateUser(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | [**string**] |  | defaults to undefined
- **sendEmail** | [**boolean**] |  | (optional) defaults to undefined
+**userId** | **string** |  | defaults to undefined
+**sendEmail** | **boolean** |  | (optional) defaults to undefined
 
 
 ### Return type
@@ -621,12 +591,12 @@ apiInstance.expirePassword(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | [**string**] |  | defaults to undefined
+**userId** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**User**
+**[User](User.md)**
 
 ### Authorization
 
@@ -678,12 +648,12 @@ apiInstance.expirePasswordAndGetTemporaryPassword(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | [**string**] |  | defaults to undefined
+**userId** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**TempPassword**
+**[TempPassword](TempPassword.md)**
 
 ### Authorization
 
@@ -737,13 +707,13 @@ apiInstance.forgotPassword(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | [**string**] |  | defaults to undefined
- **sendEmail** | [**boolean**] |  | (optional) defaults to undefined
+**userId** | **string** |  | defaults to undefined
+**sendEmail** | **boolean** |  | (optional) defaults to undefined
 
 
 ### Return type
 
-**ForgotPasswordResponse**
+**[ForgotPasswordResponse](ForgotPasswordResponse.md)**
 
 ### Authorization
 
@@ -821,14 +791,14 @@ apiInstance.forgotPasswordSetNewPassword(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userCredentials** | **UserCredentials**|  |
- **userId** | [**string**] |  | defaults to undefined
- **sendEmail** | [**boolean**] |  | (optional) defaults to undefined
+ **userCredentials** | **[UserCredentials](UserCredentials.md)** |  | 
+**userId** | **string** |  | defaults to undefined
+**sendEmail** | **boolean** |  | (optional) defaults to undefined
 
 
 ### Return type
 
-**UserCredentials**
+**[UserCredentials](UserCredentials.md)**
 
 ### Authorization
 
@@ -887,10 +857,10 @@ apiInstance.getLinkedObjectsForUser(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | [**string**] |  | defaults to undefined
- **relationshipName** | [**string**] |  | defaults to undefined
- **after** | [**string**] |  | (optional) defaults to undefined
- **limit** | [**number**] |  | (optional) defaults to -1
+**userId** | **string** |  | defaults to undefined
+**relationshipName** | **string** |  | defaults to undefined
+**after** | **string** |  | (optional) defaults to undefined
+**limit** | **number** |  | (optional) defaults to -1
 
 
 ### Return type
@@ -957,17 +927,17 @@ apiInstance.getRefreshTokenForUserAndClient(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | [**string**] |  | defaults to undefined
- **clientId** | [**string**] |  | defaults to undefined
- **tokenId** | [**string**] |  | defaults to undefined
- **expand** | [**string**] |  | (optional) defaults to undefined
- **limit** | [**number**] |  | (optional) defaults to 20
- **after** | [**string**] |  | (optional) defaults to undefined
+**userId** | **string** |  | defaults to undefined
+**clientId** | **string** |  | defaults to undefined
+**tokenId** | **string** |  | defaults to undefined
+**expand** | **string** |  | (optional) defaults to undefined
+**limit** | **number** |  | (optional) defaults to 20
+**after** | **string** |  | (optional) defaults to undefined
 
 
 ### Return type
 
-**OAuth2RefreshToken**
+**[OAuth2RefreshToken](OAuth2RefreshToken.md)**
 
 ### Authorization
 
@@ -1019,12 +989,12 @@ apiInstance.getUser(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | [**string**] |  | defaults to undefined
+**userId** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**User**
+**[User](User.md)**
 
 ### Authorization
 
@@ -1080,14 +1050,14 @@ apiInstance.getUserGrant(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | [**string**] |  | defaults to undefined
- **grantId** | [**string**] |  | defaults to undefined
- **expand** | [**string**] |  | (optional) defaults to undefined
+**userId** | **string** |  | defaults to undefined
+**grantId** | **string** |  | defaults to undefined
+**expand** | **string** |  | (optional) defaults to undefined
 
 
 ### Return type
 
-**OAuth2ScopeConsentGrant**
+**[OAuth2ScopeConsentGrant](OAuth2ScopeConsentGrant.md)**
 
 ### Authorization
 
@@ -1139,12 +1109,12 @@ apiInstance.listAppLinks(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | [**string**] |  | defaults to undefined
+**userId** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**Array<AppLink>**
+**[Array&lt;AppLink&gt;](AppLink.md)**
 
 ### Authorization
 
@@ -1204,16 +1174,16 @@ apiInstance.listGrantsForUserAndClient(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | [**string**] |  | defaults to undefined
- **clientId** | [**string**] |  | defaults to undefined
- **expand** | [**string**] |  | (optional) defaults to undefined
- **after** | [**string**] |  | (optional) defaults to undefined
- **limit** | [**number**] |  | (optional) defaults to 20
+**userId** | **string** |  | defaults to undefined
+**clientId** | **string** |  | defaults to undefined
+**expand** | **string** |  | (optional) defaults to undefined
+**after** | **string** |  | (optional) defaults to undefined
+**limit** | **number** |  | (optional) defaults to 20
 
 
 ### Return type
 
-**Array<OAuth2ScopeConsentGrant>**
+**[Array&lt;OAuth2ScopeConsentGrant&gt;](OAuth2ScopeConsentGrant.md)**
 
 ### Authorization
 
@@ -1273,16 +1243,16 @@ apiInstance.listRefreshTokensForUserAndClient(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | [**string**] |  | defaults to undefined
- **clientId** | [**string**] |  | defaults to undefined
- **expand** | [**string**] |  | (optional) defaults to undefined
- **after** | [**string**] |  | (optional) defaults to undefined
- **limit** | [**number**] |  | (optional) defaults to 20
+**userId** | **string** |  | defaults to undefined
+**clientId** | **string** |  | defaults to undefined
+**expand** | **string** |  | (optional) defaults to undefined
+**after** | **string** |  | (optional) defaults to undefined
+**limit** | **number** |  | (optional) defaults to 20
 
 
 ### Return type
 
-**Array<OAuth2RefreshToken>**
+**[Array&lt;OAuth2RefreshToken&gt;](OAuth2RefreshToken.md)**
 
 ### Authorization
 
@@ -1334,12 +1304,12 @@ apiInstance.listUserClients(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | [**string**] |  | defaults to undefined
+**userId** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**Array<OAuth2Client>**
+**[Array&lt;OAuth2Client&gt;](OAuth2Client.md)**
 
 ### Authorization
 
@@ -1399,16 +1369,16 @@ apiInstance.listUserGrants(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | [**string**] |  | defaults to undefined
- **scopeId** | [**string**] |  | (optional) defaults to undefined
- **expand** | [**string**] |  | (optional) defaults to undefined
- **after** | [**string**] |  | (optional) defaults to undefined
- **limit** | [**number**] |  | (optional) defaults to 20
+**userId** | **string** |  | defaults to undefined
+**scopeId** | **string** |  | (optional) defaults to undefined
+**expand** | **string** |  | (optional) defaults to undefined
+**after** | **string** |  | (optional) defaults to undefined
+**limit** | **number** |  | (optional) defaults to 20
 
 
 ### Return type
 
-**Array<OAuth2ScopeConsentGrant>**
+**[Array&lt;OAuth2ScopeConsentGrant&gt;](OAuth2ScopeConsentGrant.md)**
 
 ### Authorization
 
@@ -1460,12 +1430,12 @@ apiInstance.listUserGroups(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | [**string**] |  | defaults to undefined
+**userId** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**Array<Group>**
+**[Array&lt;Group&gt;](Group.md)**
 
 ### Authorization
 
@@ -1517,12 +1487,12 @@ apiInstance.listUserIdentityProviders(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | [**string**] |  | defaults to undefined
+**userId** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**Array<IdentityProvider>**
+**[Array&lt;IdentityProvider&gt;](IdentityProvider.md)**
 
 ### Authorization
 
@@ -1586,18 +1556,18 @@ apiInstance.listUsers(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **q** | [**string**] | Finds a user that matches firstName, lastName, and email properties | (optional) defaults to undefined
- **after** | [**string**] | The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](/#pagination) for more information. | (optional) defaults to undefined
- **limit** | [**number**] | Specifies the number of results returned. Defaults to 10 if &#x60;q&#x60; is provided. | (optional) defaults to 200
- **filter** | [**string**] | Filters users with a supported expression for a subset of properties | (optional) defaults to undefined
- **search** | [**string**] | Searches for users with a supported filtering expression for most properties. Okta recommends using this parameter for search for best performance. | (optional) defaults to undefined
- **sortBy** | [**string**] |  | (optional) defaults to undefined
- **sortOrder** | [**string**] |  | (optional) defaults to undefined
+**q** | **string** | Finds a user that matches firstName, lastName, and email properties | (optional) defaults to undefined
+**after** | **string** | The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](/#pagination) for more information. | (optional) defaults to undefined
+**limit** | **number** | Specifies the number of results returned. Defaults to 10 if &#x60;q&#x60; is provided. | (optional) defaults to 200
+**filter** | **string** | Filters users with a supported expression for a subset of properties | (optional) defaults to undefined
+**search** | **string** | Searches for users with a supported filtering expression for most properties. Okta recommends using this parameter for search for best performance. | (optional) defaults to undefined
+**sortBy** | **string** |  | (optional) defaults to undefined
+**sortOrder** | **string** |  | (optional) defaults to undefined
 
 
 ### Return type
 
-**Array<User>**
+**[Array&lt;User&gt;](User.md)**
 
 ### Authorization
 
@@ -1661,39 +1631,9 @@ let body:okta.UserApiPartialUpdateUserRequest = {
         question: "question_example",
       },
     },
-    profile: {
-      city: "city_example",
-      costCenter: "costCenter_example",
-      countryCode: "countryCode_example",
-      department: "department_example",
-      displayName: "displayName_example",
-      division: "division_example",
-      email: "email_example",
-      employeeNumber: "employeeNumber_example",
-      firstName: "firstName_example",
-      honorificPrefix: "honorificPrefix_example",
-      honorificSuffix: "honorificSuffix_example",
-      lastName: "lastName_example",
-      locale: "locale_example",
-      login: "login_example",
-      manager: "manager_example",
-      managerId: "managerId_example",
-      middleName: "middleName_example",
-      mobilePhone: "mobilePhone_example",
-      nickName: "nickName_example",
-      organization: "organization_example",
-      postalAddress: "postalAddress_example",
-      preferredLanguage: "preferredLanguage_example",
-      primaryPhone: "primaryPhone_example",
-      profileUrl: "profileUrl_example",
-      secondEmail: "secondEmail_example",
-      state: "state_example",
-      streetAddress: "streetAddress_example",
-      timezone: "timezone_example",
-      title: "title_example",
-      userType: "userType_example",
-      zipCode: "zipCode_example",
-    },
+    profile: 
+      key: {},
+    ,
   },
   // boolean (optional)
   strict: true,
@@ -1709,14 +1649,14 @@ apiInstance.partialUpdateUser(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **user** | **UpdateUserRequest**|  |
- **userId** | [**string**] |  | defaults to undefined
- **strict** | [**boolean**] |  | (optional) defaults to undefined
+ **user** | **[UpdateUserRequest](UpdateUserRequest.md)** |  | 
+**userId** | **string** |  | defaults to undefined
+**strict** | **boolean** |  | (optional) defaults to undefined
 
 
 ### Return type
 
-**User**
+**[User](User.md)**
 
 ### Authorization
 
@@ -1771,13 +1711,13 @@ apiInstance.reactivateUser(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | [**string**] |  | defaults to undefined
- **sendEmail** | [**boolean**] | Sends an activation email to the user if true | (optional) defaults to undefined
+**userId** | **string** |  | defaults to undefined
+**sendEmail** | **boolean** | Sends an activation email to the user if true | (optional) defaults to undefined
 
 
 ### Return type
 
-**UserActivationToken**
+**[UserActivationToken](UserActivationToken.md)**
 
 ### Authorization
 
@@ -1831,8 +1771,8 @@ apiInstance.removeLinkedObjectForUser(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | [**string**] |  | defaults to undefined
- **relationshipName** | [**string**] |  | defaults to undefined
+**userId** | **string** |  | defaults to undefined
+**relationshipName** | **string** |  | defaults to undefined
 
 
 ### Return type
@@ -1889,7 +1829,7 @@ apiInstance.resetFactors(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | [**string**] |  | defaults to undefined
+**userId** | **string** |  | defaults to undefined
 
 
 ### Return type
@@ -1948,13 +1888,13 @@ apiInstance.resetPassword(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | [**string**] |  | defaults to undefined
- **sendEmail** | [**boolean**] |  | defaults to undefined
+**userId** | **string** |  | defaults to undefined
+**sendEmail** | **boolean** |  | defaults to undefined
 
 
 ### Return type
 
-**ResetPasswordToken**
+**[ResetPasswordToken](ResetPasswordToken.md)**
 
 ### Authorization
 
@@ -2008,8 +1948,8 @@ apiInstance.revokeGrantsForUserAndClient(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | [**string**] |  | defaults to undefined
- **clientId** | [**string**] |  | defaults to undefined
+**userId** | **string** |  | defaults to undefined
+**clientId** | **string** |  | defaults to undefined
 
 
 ### Return type
@@ -2070,9 +2010,9 @@ apiInstance.revokeTokenForUserAndClient(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | [**string**] |  | defaults to undefined
- **clientId** | [**string**] |  | defaults to undefined
- **tokenId** | [**string**] |  | defaults to undefined
+**userId** | **string** |  | defaults to undefined
+**clientId** | **string** |  | defaults to undefined
+**tokenId** | **string** |  | defaults to undefined
 
 
 ### Return type
@@ -2131,8 +2071,8 @@ apiInstance.revokeTokensForUserAndClient(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | [**string**] |  | defaults to undefined
- **clientId** | [**string**] |  | defaults to undefined
+**userId** | **string** |  | defaults to undefined
+**clientId** | **string** |  | defaults to undefined
 
 
 ### Return type
@@ -2191,8 +2131,8 @@ apiInstance.revokeUserGrant(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | [**string**] |  | defaults to undefined
- **grantId** | [**string**] |  | defaults to undefined
+**userId** | **string** |  | defaults to undefined
+**grantId** | **string** |  | defaults to undefined
 
 
 ### Return type
@@ -2249,7 +2189,7 @@ apiInstance.revokeUserGrants(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | [**string**] |  | defaults to undefined
+**userId** | **string** |  | defaults to undefined
 
 
 ### Return type
@@ -2310,9 +2250,9 @@ apiInstance.setLinkedObjectForUser(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **associatedUserId** | [**string**] |  | defaults to undefined
- **primaryRelationshipName** | [**string**] |  | defaults to undefined
- **primaryUserId** | [**string**] |  | defaults to undefined
+**associatedUserId** | **string** |  | defaults to undefined
+**primaryRelationshipName** | **string** |  | defaults to undefined
+**primaryUserId** | **string** |  | defaults to undefined
 
 
 ### Return type
@@ -2369,7 +2309,7 @@ apiInstance.suspendUser(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | [**string**] |  | defaults to undefined
+**userId** | **string** |  | defaults to undefined
 
 
 ### Return type
@@ -2426,7 +2366,7 @@ apiInstance.unlockUser(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | [**string**] |  | defaults to undefined
+**userId** | **string** |  | defaults to undefined
 
 
 ### Return type
@@ -2483,7 +2423,7 @@ apiInstance.unsuspendUser(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | [**string**] |  | defaults to undefined
+**userId** | **string** |  | defaults to undefined
 
 
 ### Return type
@@ -2553,39 +2493,9 @@ let body:okta.UserApiUpdateUserRequest = {
         question: "question_example",
       },
     },
-    profile: {
-      city: "city_example",
-      costCenter: "costCenter_example",
-      countryCode: "countryCode_example",
-      department: "department_example",
-      displayName: "displayName_example",
-      division: "division_example",
-      email: "email_example",
-      employeeNumber: "employeeNumber_example",
-      firstName: "firstName_example",
-      honorificPrefix: "honorificPrefix_example",
-      honorificSuffix: "honorificSuffix_example",
-      lastName: "lastName_example",
-      locale: "locale_example",
-      login: "login_example",
-      manager: "manager_example",
-      managerId: "managerId_example",
-      middleName: "middleName_example",
-      mobilePhone: "mobilePhone_example",
-      nickName: "nickName_example",
-      organization: "organization_example",
-      postalAddress: "postalAddress_example",
-      preferredLanguage: "preferredLanguage_example",
-      primaryPhone: "primaryPhone_example",
-      profileUrl: "profileUrl_example",
-      secondEmail: "secondEmail_example",
-      state: "state_example",
-      streetAddress: "streetAddress_example",
-      timezone: "timezone_example",
-      title: "title_example",
-      userType: "userType_example",
-      zipCode: "zipCode_example",
-    },
+    profile: 
+      key: {},
+    ,
   },
   // boolean (optional)
   strict: true,
@@ -2601,14 +2511,14 @@ apiInstance.updateUser(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **user** | **UpdateUserRequest**|  |
- **userId** | [**string**] |  | defaults to undefined
- **strict** | [**boolean**] |  | (optional) defaults to undefined
+ **user** | **[UpdateUserRequest](UpdateUserRequest.md)** |  | 
+**userId** | **string** |  | defaults to undefined
+**strict** | **boolean** |  | (optional) defaults to undefined
 
 
 ### Return type
 
-**User**
+**[User](User.md)**
 
 ### Authorization
 

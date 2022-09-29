@@ -4,7 +4,7 @@ All URIs are relative to *https://subdomain.okta.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**sendRiskEvents**](RiskEventApi.md#sendRiskEvents) | **POST** /api/v1/risk/events/ip | Send multiple Risk Events
+[**sendRiskEvents**](RiskEventApi.md#sendriskevents) | **POST** /api/v1/risk/events/ip | Send multiple Risk Events
 
 
 # **sendRiskEvents**
@@ -49,7 +49,7 @@ apiInstance.sendRiskEvents(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **instance** | **Array<RiskEvent>**|  |
+ **instance** | **[Array&lt;RiskEvent&gt;](RiskEvent.md)** |  | 
 
 
 ### Return type

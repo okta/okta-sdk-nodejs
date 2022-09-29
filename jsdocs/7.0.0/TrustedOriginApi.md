@@ -4,13 +4,13 @@ All URIs are relative to *https://subdomain.okta.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**activateOrigin**](TrustedOriginApi.md#activateOrigin) | **POST** /api/v1/trustedOrigins/{trustedOriginId}/lifecycle/activate | Activate a Trusted Origin
-[**createOrigin**](TrustedOriginApi.md#createOrigin) | **POST** /api/v1/trustedOrigins | Create a Trusted Origin
-[**deactivateOrigin**](TrustedOriginApi.md#deactivateOrigin) | **POST** /api/v1/trustedOrigins/{trustedOriginId}/lifecycle/deactivate | Deactivate a Trusted Origin
-[**deleteOrigin**](TrustedOriginApi.md#deleteOrigin) | **DELETE** /api/v1/trustedOrigins/{trustedOriginId} | Delete a Trusted Origin
-[**getOrigin**](TrustedOriginApi.md#getOrigin) | **GET** /api/v1/trustedOrigins/{trustedOriginId} | Retrieve a Trusted Origin
-[**listOrigins**](TrustedOriginApi.md#listOrigins) | **GET** /api/v1/trustedOrigins | List all Trusted Origins
-[**updateOrigin**](TrustedOriginApi.md#updateOrigin) | **PUT** /api/v1/trustedOrigins/{trustedOriginId} | Replace a Trusted Origin
+[**activateOrigin**](TrustedOriginApi.md#activateorigin) | **POST** /api/v1/trustedOrigins/{trustedOriginId}/lifecycle/activate | Activate a Trusted Origin
+[**createOrigin**](TrustedOriginApi.md#createorigin) | **POST** /api/v1/trustedOrigins | Create a Trusted Origin
+[**deactivateOrigin**](TrustedOriginApi.md#deactivateorigin) | **POST** /api/v1/trustedOrigins/{trustedOriginId}/lifecycle/deactivate | Deactivate a Trusted Origin
+[**deleteOrigin**](TrustedOriginApi.md#deleteorigin) | **DELETE** /api/v1/trustedOrigins/{trustedOriginId} | Delete a Trusted Origin
+[**getOrigin**](TrustedOriginApi.md#getorigin) | **GET** /api/v1/trustedOrigins/{trustedOriginId} | Retrieve a Trusted Origin
+[**listOrigins**](TrustedOriginApi.md#listorigins) | **GET** /api/v1/trustedOrigins | List all Trusted Origins
+[**updateOrigin**](TrustedOriginApi.md#updateorigin) | **PUT** /api/v1/trustedOrigins/{trustedOriginId} | Replace a Trusted Origin
 
 
 # **activateOrigin**
@@ -43,12 +43,12 @@ apiInstance.activateOrigin(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **trustedOriginId** | [**string**] |  | defaults to undefined
+**trustedOriginId** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**TrustedOrigin**
+**[TrustedOrigin](TrustedOrigin.md)**
 
 ### Authorization
 
@@ -114,12 +114,12 @@ apiInstance.createOrigin(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **trustedOrigin** | **TrustedOrigin**|  |
+ **trustedOrigin** | **[TrustedOrigin](TrustedOrigin.md)** |  | 
 
 
 ### Return type
 
-**TrustedOrigin**
+**[TrustedOrigin](TrustedOrigin.md)**
 
 ### Authorization
 
@@ -171,12 +171,12 @@ apiInstance.deactivateOrigin(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **trustedOriginId** | [**string**] |  | defaults to undefined
+**trustedOriginId** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**TrustedOrigin**
+**[TrustedOrigin](TrustedOrigin.md)**
 
 ### Authorization
 
@@ -228,7 +228,7 @@ apiInstance.deleteOrigin(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **trustedOriginId** | [**string**] |  | defaults to undefined
+**trustedOriginId** | **string** |  | defaults to undefined
 
 
 ### Return type
@@ -285,12 +285,12 @@ apiInstance.getOrigin(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **trustedOriginId** | [**string**] |  | defaults to undefined
+**trustedOriginId** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**TrustedOrigin**
+**[TrustedOrigin](TrustedOrigin.md)**
 
 ### Authorization
 
@@ -348,15 +348,15 @@ apiInstance.listOrigins(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **q** | [**string**] |  | (optional) defaults to undefined
- **filter** | [**string**] |  | (optional) defaults to undefined
- **after** | [**string**] |  | (optional) defaults to undefined
- **limit** | [**number**] |  | (optional) defaults to -1
+**q** | **string** |  | (optional) defaults to undefined
+**filter** | **string** |  | (optional) defaults to undefined
+**after** | **string** |  | (optional) defaults to undefined
+**limit** | **number** |  | (optional) defaults to -1
 
 
 ### Return type
 
-**Array<TrustedOrigin>**
+**[Array&lt;TrustedOrigin&gt;](TrustedOrigin.md)**
 
 ### Authorization
 
@@ -423,13 +423,13 @@ apiInstance.updateOrigin(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **trustedOrigin** | **TrustedOrigin**|  |
- **trustedOriginId** | [**string**] |  | defaults to undefined
+ **trustedOrigin** | **[TrustedOrigin](TrustedOrigin.md)** |  | 
+**trustedOriginId** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**TrustedOrigin**
+**[TrustedOrigin](TrustedOrigin.md)**
 
 ### Authorization
 

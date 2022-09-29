@@ -4,12 +4,12 @@ All URIs are relative to *https://subdomain.okta.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**createUserType**](UserTypeApi.md#createUserType) | **POST** /api/v1/meta/types/user | Create a User Type
-[**deleteUserType**](UserTypeApi.md#deleteUserType) | **DELETE** /api/v1/meta/types/user/{typeId} | Delete a User Type
-[**getUserType**](UserTypeApi.md#getUserType) | **GET** /api/v1/meta/types/user/{typeId} | Retrieve a User Type
-[**listUserTypes**](UserTypeApi.md#listUserTypes) | **GET** /api/v1/meta/types/user | List all User Types
-[**replaceUserType**](UserTypeApi.md#replaceUserType) | **PUT** /api/v1/meta/types/user/{typeId} | Replace a User Type
-[**updateUserType**](UserTypeApi.md#updateUserType) | **POST** /api/v1/meta/types/user/{typeId} | Update a User Type
+[**createUserType**](UserTypeApi.md#createusertype) | **POST** /api/v1/meta/types/user | Create a User Type
+[**deleteUserType**](UserTypeApi.md#deleteusertype) | **DELETE** /api/v1/meta/types/user/{typeId} | Delete a User Type
+[**getUserType**](UserTypeApi.md#getusertype) | **GET** /api/v1/meta/types/user/{typeId} | Retrieve a User Type
+[**listUserTypes**](UserTypeApi.md#listusertypes) | **GET** /api/v1/meta/types/user | List all User Types
+[**replaceUserType**](UserTypeApi.md#replaceusertype) | **PUT** /api/v1/meta/types/user/{typeId} | Replace a User Type
+[**updateUserType**](UserTypeApi.md#updateusertype) | **POST** /api/v1/meta/types/user/{typeId} | Update a User Type
 
 
 # **createUserType**
@@ -47,12 +47,12 @@ apiInstance.createUserType(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userType** | **UserType**|  |
+ **userType** | **[UserType](UserType.md)** |  | 
 
 
 ### Return type
 
-**UserType**
+**[UserType](UserType.md)**
 
 ### Authorization
 
@@ -104,7 +104,7 @@ apiInstance.deleteUserType(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **typeId** | [**string**] |  | defaults to undefined
+**typeId** | **string** |  | defaults to undefined
 
 
 ### Return type
@@ -161,12 +161,12 @@ apiInstance.getUserType(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **typeId** | [**string**] |  | defaults to undefined
+**typeId** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**UserType**
+**[UserType](UserType.md)**
 
 ### Authorization
 
@@ -217,7 +217,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-**Array<UserType>**
+**[Array&lt;UserType&gt;](UserType.md)**
 
 ### Authorization
 
@@ -275,13 +275,13 @@ apiInstance.replaceUserType(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userType** | **UserType**|  |
- **typeId** | [**string**] |  | defaults to undefined
+ **userType** | **[UserType](UserType.md)** |  | 
+**typeId** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**UserType**
+**[UserType](UserType.md)**
 
 ### Authorization
 
@@ -341,13 +341,13 @@ apiInstance.updateUserType(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userType** | **UserType**|  |
- **typeId** | [**string**] |  | defaults to undefined
+ **userType** | **[UserType](UserType.md)** |  | 
+**typeId** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**UserType**
+**[UserType](UserType.md)**
 
 ### Authorization
 

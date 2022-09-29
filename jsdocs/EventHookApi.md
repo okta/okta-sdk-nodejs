@@ -4,14 +4,14 @@ All URIs are relative to *https://subdomain.okta.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**activateEventHook**](EventHookApi.md#activateEventHook) | **POST** /api/v1/eventHooks/{eventHookId}/lifecycle/activate | Activate an Event Hook
-[**createEventHook**](EventHookApi.md#createEventHook) | **POST** /api/v1/eventHooks | Create an Event Hook
-[**deactivateEventHook**](EventHookApi.md#deactivateEventHook) | **POST** /api/v1/eventHooks/{eventHookId}/lifecycle/deactivate | Deactivate an Event Hook
-[**deleteEventHook**](EventHookApi.md#deleteEventHook) | **DELETE** /api/v1/eventHooks/{eventHookId} | Delete an Event Hook
-[**getEventHook**](EventHookApi.md#getEventHook) | **GET** /api/v1/eventHooks/{eventHookId} | Retrieve an Event Hook
-[**listEventHooks**](EventHookApi.md#listEventHooks) | **GET** /api/v1/eventHooks | List all Event Hooks
-[**updateEventHook**](EventHookApi.md#updateEventHook) | **PUT** /api/v1/eventHooks/{eventHookId} | Replace an Event Hook
-[**verifyEventHook**](EventHookApi.md#verifyEventHook) | **POST** /api/v1/eventHooks/{eventHookId}/lifecycle/verify | Verify an Event Hook
+[**activateEventHook**](EventHookApi.md#activateeventhook) | **POST** /api/v1/eventHooks/{eventHookId}/lifecycle/activate | Activate an Event Hook
+[**createEventHook**](EventHookApi.md#createeventhook) | **POST** /api/v1/eventHooks | Create an Event Hook
+[**deactivateEventHook**](EventHookApi.md#deactivateeventhook) | **POST** /api/v1/eventHooks/{eventHookId}/lifecycle/deactivate | Deactivate an Event Hook
+[**deleteEventHook**](EventHookApi.md#deleteeventhook) | **DELETE** /api/v1/eventHooks/{eventHookId} | Delete an Event Hook
+[**getEventHook**](EventHookApi.md#geteventhook) | **GET** /api/v1/eventHooks/{eventHookId} | Retrieve an Event Hook
+[**listEventHooks**](EventHookApi.md#listeventhooks) | **GET** /api/v1/eventHooks | List all Event Hooks
+[**updateEventHook**](EventHookApi.md#updateeventhook) | **PUT** /api/v1/eventHooks/{eventHookId} | Replace an Event Hook
+[**verifyEventHook**](EventHookApi.md#verifyeventhook) | **POST** /api/v1/eventHooks/{eventHookId}/lifecycle/verify | Verify an Event Hook
 
 
 # **activateEventHook**
@@ -44,12 +44,12 @@ apiInstance.activateEventHook(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **eventHookId** | [**string**] |  | defaults to undefined
+**eventHookId** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**EventHook**
+**[EventHook](EventHook.md)**
 
 ### Authorization
 
@@ -125,12 +125,12 @@ apiInstance.createEventHook(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **eventHook** | **EventHook**|  |
+ **eventHook** | **[EventHook](EventHook.md)** |  | 
 
 
 ### Return type
 
-**EventHook**
+**[EventHook](EventHook.md)**
 
 ### Authorization
 
@@ -182,12 +182,12 @@ apiInstance.deactivateEventHook(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **eventHookId** | [**string**] |  | defaults to undefined
+**eventHookId** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**EventHook**
+**[EventHook](EventHook.md)**
 
 ### Authorization
 
@@ -239,7 +239,7 @@ apiInstance.deleteEventHook(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **eventHookId** | [**string**] |  | defaults to undefined
+**eventHookId** | **string** |  | defaults to undefined
 
 
 ### Return type
@@ -296,12 +296,12 @@ apiInstance.getEventHook(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **eventHookId** | [**string**] |  | defaults to undefined
+**eventHookId** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**EventHook**
+**[EventHook](EventHook.md)**
 
 ### Authorization
 
@@ -352,7 +352,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-**Array<EventHook>**
+**[Array&lt;EventHook&gt;](EventHook.md)**
 
 ### Authorization
 
@@ -429,13 +429,13 @@ apiInstance.updateEventHook(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **eventHook** | **EventHook**|  |
- **eventHookId** | [**string**] |  | defaults to undefined
+ **eventHook** | **[EventHook](EventHook.md)** |  | 
+**eventHookId** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**EventHook**
+**[EventHook](EventHook.md)**
 
 ### Authorization
 
@@ -488,12 +488,12 @@ apiInstance.verifyEventHook(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **eventHookId** | [**string**] |  | defaults to undefined
+**eventHookId** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**EventHook**
+**[EventHook](EventHook.md)**
 
 ### Authorization
 

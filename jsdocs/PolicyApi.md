@@ -4,21 +4,21 @@ All URIs are relative to *https://subdomain.okta.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**activatePolicy**](PolicyApi.md#activatePolicy) | **POST** /api/v1/policies/{policyId}/lifecycle/activate | Activate a Policy
-[**activatePolicyRule**](PolicyApi.md#activatePolicyRule) | **POST** /api/v1/policies/{policyId}/rules/{ruleId}/lifecycle/activate | Activate a Policy Rule
-[**clonePolicy**](PolicyApi.md#clonePolicy) | **POST** /api/v1/policies/{policyId}/clone | Clone an existing policy
-[**createPolicy**](PolicyApi.md#createPolicy) | **POST** /api/v1/policies | Create a Policy
-[**createPolicyRule**](PolicyApi.md#createPolicyRule) | **POST** /api/v1/policies/{policyId}/rules | Create a Policy Rule
-[**deactivatePolicy**](PolicyApi.md#deactivatePolicy) | **POST** /api/v1/policies/{policyId}/lifecycle/deactivate | Deactivate a Policy
-[**deactivatePolicyRule**](PolicyApi.md#deactivatePolicyRule) | **POST** /api/v1/policies/{policyId}/rules/{ruleId}/lifecycle/deactivate | Deactivate a Policy Rule
-[**deletePolicy**](PolicyApi.md#deletePolicy) | **DELETE** /api/v1/policies/{policyId} | Delete a Policy
-[**deletePolicyRule**](PolicyApi.md#deletePolicyRule) | **DELETE** /api/v1/policies/{policyId}/rules/{ruleId} | Delete a Policy Rule
-[**getPolicy**](PolicyApi.md#getPolicy) | **GET** /api/v1/policies/{policyId} | Retrieve a Policy
-[**getPolicyRule**](PolicyApi.md#getPolicyRule) | **GET** /api/v1/policies/{policyId}/rules/{ruleId} | Retrieve a Policy Rule
-[**listPolicies**](PolicyApi.md#listPolicies) | **GET** /api/v1/policies | List all Policies
-[**listPolicyRules**](PolicyApi.md#listPolicyRules) | **GET** /api/v1/policies/{policyId}/rules | List all Policy Rules
-[**updatePolicy**](PolicyApi.md#updatePolicy) | **PUT** /api/v1/policies/{policyId} | Replace a Policy
-[**updatePolicyRule**](PolicyApi.md#updatePolicyRule) | **PUT** /api/v1/policies/{policyId}/rules/{ruleId} | Replace a Policy Rule
+[**activatePolicy**](PolicyApi.md#activatepolicy) | **POST** /api/v1/policies/{policyId}/lifecycle/activate | Activate a Policy
+[**activatePolicyRule**](PolicyApi.md#activatepolicyrule) | **POST** /api/v1/policies/{policyId}/rules/{ruleId}/lifecycle/activate | Activate a Policy Rule
+[**clonePolicy**](PolicyApi.md#clonepolicy) | **POST** /api/v1/policies/{policyId}/clone | Clone an existing policy
+[**createPolicy**](PolicyApi.md#createpolicy) | **POST** /api/v1/policies | Create a Policy
+[**createPolicyRule**](PolicyApi.md#createpolicyrule) | **POST** /api/v1/policies/{policyId}/rules | Create a Policy Rule
+[**deactivatePolicy**](PolicyApi.md#deactivatepolicy) | **POST** /api/v1/policies/{policyId}/lifecycle/deactivate | Deactivate a Policy
+[**deactivatePolicyRule**](PolicyApi.md#deactivatepolicyrule) | **POST** /api/v1/policies/{policyId}/rules/{ruleId}/lifecycle/deactivate | Deactivate a Policy Rule
+[**deletePolicy**](PolicyApi.md#deletepolicy) | **DELETE** /api/v1/policies/{policyId} | Delete a Policy
+[**deletePolicyRule**](PolicyApi.md#deletepolicyrule) | **DELETE** /api/v1/policies/{policyId}/rules/{ruleId} | Delete a Policy Rule
+[**getPolicy**](PolicyApi.md#getpolicy) | **GET** /api/v1/policies/{policyId} | Retrieve a Policy
+[**getPolicyRule**](PolicyApi.md#getpolicyrule) | **GET** /api/v1/policies/{policyId}/rules/{ruleId} | Retrieve a Policy Rule
+[**listPolicies**](PolicyApi.md#listpolicies) | **GET** /api/v1/policies | List all Policies
+[**listPolicyRules**](PolicyApi.md#listpolicyrules) | **GET** /api/v1/policies/{policyId}/rules | List all Policy Rules
+[**updatePolicy**](PolicyApi.md#updatepolicy) | **PUT** /api/v1/policies/{policyId} | Replace a Policy
+[**updatePolicyRule**](PolicyApi.md#updatepolicyrule) | **PUT** /api/v1/policies/{policyId}/rules/{ruleId} | Replace a Policy Rule
 
 
 # **activatePolicy**
@@ -51,7 +51,7 @@ apiInstance.activatePolicy(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **policyId** | [**string**] |  | defaults to undefined
+**policyId** | **string** |  | defaults to undefined
 
 
 ### Return type
@@ -110,8 +110,8 @@ apiInstance.activatePolicyRule(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **policyId** | [**string**] |  | defaults to undefined
- **ruleId** | [**string**] |  | defaults to undefined
+**policyId** | **string** |  | defaults to undefined
+**ruleId** | **string** |  | defaults to undefined
 
 
 ### Return type
@@ -168,12 +168,12 @@ apiInstance.clonePolicy(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **policyId** | [**string**] |  | defaults to undefined
+**policyId** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**Policy**
+**[Policy](Policy.md)**
 
 ### Authorization
 
@@ -228,13 +228,13 @@ apiInstance.createPolicy(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **policy** | **Policy**|  |
- **activate** | [**boolean**] |  | (optional) defaults to undefined
+ **policy** | **[Policy](Policy.md)** |  | 
+**activate** | **boolean** |  | (optional) defaults to undefined
 
 
 ### Return type
 
-**Policy**
+**[Policy](Policy.md)**
 
 ### Authorization
 
@@ -288,13 +288,13 @@ apiInstance.createPolicyRule(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **policyRule** | **PolicyRule**|  |
- **policyId** | [**string**] |  | defaults to undefined
+ **policyRule** | **[PolicyRule](PolicyRule.md)** |  | 
+**policyId** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**PolicyRule**
+**[PolicyRule](PolicyRule.md)**
 
 ### Authorization
 
@@ -347,7 +347,7 @@ apiInstance.deactivatePolicy(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **policyId** | [**string**] |  | defaults to undefined
+**policyId** | **string** |  | defaults to undefined
 
 
 ### Return type
@@ -406,8 +406,8 @@ apiInstance.deactivatePolicyRule(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **policyId** | [**string**] |  | defaults to undefined
- **ruleId** | [**string**] |  | defaults to undefined
+**policyId** | **string** |  | defaults to undefined
+**ruleId** | **string** |  | defaults to undefined
 
 
 ### Return type
@@ -464,7 +464,7 @@ apiInstance.deletePolicy(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **policyId** | [**string**] |  | defaults to undefined
+**policyId** | **string** |  | defaults to undefined
 
 
 ### Return type
@@ -523,8 +523,8 @@ apiInstance.deletePolicyRule(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **policyId** | [**string**] |  | defaults to undefined
- **ruleId** | [**string**] |  | defaults to undefined
+**policyId** | **string** |  | defaults to undefined
+**ruleId** | **string** |  | defaults to undefined
 
 
 ### Return type
@@ -583,13 +583,13 @@ apiInstance.getPolicy(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **policyId** | [**string**] |  | defaults to undefined
- **expand** | [**string**] |  | (optional) defaults to ''
+**policyId** | **string** |  | defaults to undefined
+**expand** | **string** |  | (optional) defaults to ''
 
 
 ### Return type
 
-**Policy**
+**[Policy](Policy.md)**
 
 ### Authorization
 
@@ -643,13 +643,13 @@ apiInstance.getPolicyRule(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **policyId** | [**string**] |  | defaults to undefined
- **ruleId** | [**string**] |  | defaults to undefined
+**policyId** | **string** |  | defaults to undefined
+**ruleId** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**PolicyRule**
+**[PolicyRule](PolicyRule.md)**
 
 ### Authorization
 
@@ -705,14 +705,14 @@ apiInstance.listPolicies(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **type** | [**string**] |  | defaults to undefined
- **status** | [**string**] |  | (optional) defaults to undefined
- **expand** | [**string**] |  | (optional) defaults to ''
+**type** | **string** |  | defaults to undefined
+**status** | **string** |  | (optional) defaults to undefined
+**expand** | **string** |  | (optional) defaults to ''
 
 
 ### Return type
 
-**Array<Policy>**
+**[Array&lt;Policy&gt;](Policy.md)**
 
 ### Authorization
 
@@ -763,12 +763,12 @@ apiInstance.listPolicyRules(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **policyId** | [**string**] |  | defaults to undefined
+**policyId** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**Array<PolicyRule>**
+**[Array&lt;PolicyRule&gt;](PolicyRule.md)**
 
 ### Authorization
 
@@ -822,13 +822,13 @@ apiInstance.updatePolicy(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **policy** | **Policy**|  |
- **policyId** | [**string**] |  | defaults to undefined
+ **policy** | **[Policy](Policy.md)** |  | 
+**policyId** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**Policy**
+**[Policy](Policy.md)**
 
 ### Authorization
 
@@ -885,14 +885,14 @@ apiInstance.updatePolicyRule(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **policyRule** | **PolicyRule**|  |
- **policyId** | [**string**] |  | defaults to undefined
- **ruleId** | [**string**] |  | defaults to undefined
+ **policyRule** | **[PolicyRule](PolicyRule.md)** |  | 
+**policyId** | **string** |  | defaults to undefined
+**ruleId** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**PolicyRule**
+**[PolicyRule](PolicyRule.md)**
 
 ### Authorization
 

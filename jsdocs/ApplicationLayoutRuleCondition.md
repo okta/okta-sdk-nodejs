@@ -4,6 +4,6 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**schema** | **any** |  | [optional] [default to undefined]
+**schema** | **{ [key: string]: any; }** |  | [optional] [default to undefined]
 **scope** | **string** |  | [optional] [default to undefined]
 

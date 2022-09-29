@@ -4,8 +4,8 @@ All URIs are relative to *https://subdomain.okta.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**getCurrentConfiguration**](ThreatInsightApi.md#getCurrentConfiguration) | **GET** /api/v1/threats/configuration | Retrieve the ThreatInsight Configuration
-[**updateConfiguration**](ThreatInsightApi.md#updateConfiguration) | **POST** /api/v1/threats/configuration | Update the ThreatInsight Configuration
+[**getCurrentConfiguration**](ThreatInsightApi.md#getcurrentconfiguration) | **GET** /api/v1/threats/configuration | Retrieve the ThreatInsight Configuration
+[**updateConfiguration**](ThreatInsightApi.md#updateconfiguration) | **POST** /api/v1/threats/configuration | Update the ThreatInsight Configuration
 
 
 # **getCurrentConfiguration**
@@ -37,7 +37,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-**ThreatInsightConfiguration**
+**[ThreatInsightConfiguration](ThreatInsightConfiguration.md)**
 
 ### Authorization
 
@@ -93,12 +93,12 @@ apiInstance.updateConfiguration(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **threatInsightConfiguration** | **ThreatInsightConfiguration**|  |
+ **threatInsightConfiguration** | **[ThreatInsightConfiguration](ThreatInsightConfiguration.md)** |  | 
 
 
 ### Return type
 
-**ThreatInsightConfiguration**
+**[ThreatInsightConfiguration](ThreatInsightConfiguration.md)**
 
 ### Authorization
 

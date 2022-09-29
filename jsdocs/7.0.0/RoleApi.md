@@ -4,15 +4,15 @@ All URIs are relative to *https://subdomain.okta.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**addRolePermission**](RoleApi.md#addRolePermission) | **POST** /api/v1/iam/roles/{roleIdOrLabel}/permissions/{permissionType} | Create a Permission
-[**createRole**](RoleApi.md#createRole) | **POST** /api/v1/iam/roles | Create a Role
-[**deleteRole**](RoleApi.md#deleteRole) | **DELETE** /api/v1/iam/roles/{roleIdOrLabel} | Delete a Role
-[**deleteRolePermission**](RoleApi.md#deleteRolePermission) | **DELETE** /api/v1/iam/roles/{roleIdOrLabel}/permissions/{permissionType} | Delete a Permission
-[**getRole**](RoleApi.md#getRole) | **GET** /api/v1/iam/roles/{roleIdOrLabel} | Retrieve a Role
-[**getRolePermission**](RoleApi.md#getRolePermission) | **GET** /api/v1/iam/roles/{roleIdOrLabel}/permissions/{permissionType} | Retrieve a Permission
-[**listRolePermissions**](RoleApi.md#listRolePermissions) | **GET** /api/v1/iam/roles/{roleIdOrLabel}/permissions | List all Permissions
-[**listRoles**](RoleApi.md#listRoles) | **GET** /api/v1/iam/roles | List all Roles
-[**replaceRole**](RoleApi.md#replaceRole) | **PUT** /api/v1/iam/roles/{roleIdOrLabel} | Replace a Role
+[**addRolePermission**](RoleApi.md#addrolepermission) | **POST** /api/v1/iam/roles/{roleIdOrLabel}/permissions/{permissionType} | Create a Permission
+[**createRole**](RoleApi.md#createrole) | **POST** /api/v1/iam/roles | Create a Role
+[**deleteRole**](RoleApi.md#deleterole) | **DELETE** /api/v1/iam/roles/{roleIdOrLabel} | Delete a Role
+[**deleteRolePermission**](RoleApi.md#deleterolepermission) | **DELETE** /api/v1/iam/roles/{roleIdOrLabel}/permissions/{permissionType} | Delete a Permission
+[**getRole**](RoleApi.md#getrole) | **GET** /api/v1/iam/roles/{roleIdOrLabel} | Retrieve a Role
+[**getRolePermission**](RoleApi.md#getrolepermission) | **GET** /api/v1/iam/roles/{roleIdOrLabel}/permissions/{permissionType} | Retrieve a Permission
+[**listRolePermissions**](RoleApi.md#listrolepermissions) | **GET** /api/v1/iam/roles/{roleIdOrLabel}/permissions | List all Permissions
+[**listRoles**](RoleApi.md#listroles) | **GET** /api/v1/iam/roles | List all Roles
+[**replaceRole**](RoleApi.md#replacerole) | **PUT** /api/v1/iam/roles/{roleIdOrLabel} | Replace a Role
 
 
 # **addRolePermission**
@@ -47,8 +47,8 @@ apiInstance.addRolePermission(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **roleIdOrLabel** | [**string**] | &#x60;id&#x60; or &#x60;label&#x60; of the role | defaults to undefined
- **permissionType** | [**string**] | An okta permission type | defaults to undefined
+**roleIdOrLabel** | **string** | &#x60;id&#x60; or &#x60;label&#x60; of the role | defaults to undefined
+**permissionType** | **string** | An okta permission type | defaults to undefined
 
 
 ### Return type
@@ -112,12 +112,12 @@ apiInstance.createRole(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **instance** | **IamRole**|  |
+ **instance** | **[IamRole](IamRole.md)** |  | 
 
 
 ### Return type
 
-**IamRole**
+**[IamRole](IamRole.md)**
 
 ### Authorization
 
@@ -169,7 +169,7 @@ apiInstance.deleteRole(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **roleIdOrLabel** | [**string**] | &#x60;id&#x60; or &#x60;label&#x60; of the role | defaults to undefined
+**roleIdOrLabel** | **string** | &#x60;id&#x60; or &#x60;label&#x60; of the role | defaults to undefined
 
 
 ### Return type
@@ -228,8 +228,8 @@ apiInstance.deleteRolePermission(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **roleIdOrLabel** | [**string**] | &#x60;id&#x60; or &#x60;label&#x60; of the role | defaults to undefined
- **permissionType** | [**string**] | An okta permission type | defaults to undefined
+**roleIdOrLabel** | **string** | &#x60;id&#x60; or &#x60;label&#x60; of the role | defaults to undefined
+**permissionType** | **string** | An okta permission type | defaults to undefined
 
 
 ### Return type
@@ -286,12 +286,12 @@ apiInstance.getRole(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **roleIdOrLabel** | [**string**] | &#x60;id&#x60; or &#x60;label&#x60; of the role | defaults to undefined
+**roleIdOrLabel** | **string** | &#x60;id&#x60; or &#x60;label&#x60; of the role | defaults to undefined
 
 
 ### Return type
 
-**IamRole**
+**[IamRole](IamRole.md)**
 
 ### Authorization
 
@@ -345,13 +345,13 @@ apiInstance.getRolePermission(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **roleIdOrLabel** | [**string**] | &#x60;id&#x60; or &#x60;label&#x60; of the role | defaults to undefined
- **permissionType** | [**string**] | An okta permission type | defaults to undefined
+**roleIdOrLabel** | **string** | &#x60;id&#x60; or &#x60;label&#x60; of the role | defaults to undefined
+**permissionType** | **string** | An okta permission type | defaults to undefined
 
 
 ### Return type
 
-**Permission**
+**[Permission](Permission.md)**
 
 ### Authorization
 
@@ -403,12 +403,12 @@ apiInstance.listRolePermissions(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **roleIdOrLabel** | [**string**] | &#x60;id&#x60; or &#x60;label&#x60; of the role | defaults to undefined
+**roleIdOrLabel** | **string** | &#x60;id&#x60; or &#x60;label&#x60; of the role | defaults to undefined
 
 
 ### Return type
 
-**Permissions**
+**[Permissions](Permissions.md)**
 
 ### Authorization
 
@@ -460,12 +460,12 @@ apiInstance.listRoles(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **after** | [**string**] | The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](/#pagination) for more information. | (optional) defaults to undefined
+**after** | **string** | The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](/#pagination) for more information. | (optional) defaults to undefined
 
 
 ### Return type
 
-**IamRoles**
+**[IamRoles](IamRoles.md)**
 
 ### Authorization
 
@@ -524,13 +524,13 @@ apiInstance.replaceRole(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **instance** | **IamRole**|  |
- **roleIdOrLabel** | [**string**] | &#x60;id&#x60; or &#x60;label&#x60; of the role | defaults to undefined
+ **instance** | **[IamRole](IamRole.md)** |  | 
+**roleIdOrLabel** | **string** | &#x60;id&#x60; or &#x60;label&#x60; of the role | defaults to undefined
 
 
 ### Return type
 
-**IamRole**
+**[IamRole](IamRole.md)**
 
 ### Authorization
 

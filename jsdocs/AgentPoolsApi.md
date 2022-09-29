@@ -4,20 +4,20 @@ All URIs are relative to *https://subdomain.okta.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**activateAgentPoolsUpdate**](AgentPoolsApi.md#activateAgentPoolsUpdate) | **POST** /api/v1/agentPools/{poolId}/updates/{updateId}/activate | Activate an Agent Pool update
-[**createAgentPoolsUpdate**](AgentPoolsApi.md#createAgentPoolsUpdate) | **POST** /api/v1/agentPools/{poolId}/updates | Create an Agent Pool update
-[**deactivateAgentPoolsUpdate**](AgentPoolsApi.md#deactivateAgentPoolsUpdate) | **POST** /api/v1/agentPools/{poolId}/updates/{updateId}/deactivate | Deactivate an Agent Pool update
-[**deleteAgentPoolsUpdate**](AgentPoolsApi.md#deleteAgentPoolsUpdate) | **DELETE** /api/v1/agentPools/{poolId}/updates/{updateId} | Delete an Agent Pool update
-[**getAgentPools**](AgentPoolsApi.md#getAgentPools) | **GET** /api/v1/agentPools | List all Agent Pools
-[**getAgentPoolsUpdateInstance**](AgentPoolsApi.md#getAgentPoolsUpdateInstance) | **GET** /api/v1/agentPools/{poolId}/updates/{updateId} | Retrieve an Agent Pool update by id
-[**getAgentPoolsUpdateSettings**](AgentPoolsApi.md#getAgentPoolsUpdateSettings) | **GET** /api/v1/agentPools/{poolId}/updates/settings | Retrieve an Agent Pool update&#39;s settings
-[**getAgentPoolsUpdates**](AgentPoolsApi.md#getAgentPoolsUpdates) | **GET** /api/v1/agentPools/{poolId}/updates | List all Agent Pool updates
-[**pauseAgentPoolsUpdate**](AgentPoolsApi.md#pauseAgentPoolsUpdate) | **POST** /api/v1/agentPools/{poolId}/updates/{updateId}/pause | Pause an Agent Pool update
-[**resumeAgentPoolsUpdate**](AgentPoolsApi.md#resumeAgentPoolsUpdate) | **POST** /api/v1/agentPools/{poolId}/updates/{updateId}/resume | Resume an Agent Pool update
-[**retryAgentPoolsUpdate**](AgentPoolsApi.md#retryAgentPoolsUpdate) | **POST** /api/v1/agentPools/{poolId}/updates/{updateId}/retry | Retry an Agent Pool update
-[**setAgentPoolsUpdateSettings**](AgentPoolsApi.md#setAgentPoolsUpdateSettings) | **POST** /api/v1/agentPools/{poolId}/updates/settings | Update an Agent pool update settings
-[**stopAgentPoolsUpdate**](AgentPoolsApi.md#stopAgentPoolsUpdate) | **POST** /api/v1/agentPools/{poolId}/updates/{updateId}/stop | Stop an Agent Pool update
-[**updateAgentPoolsUpdate**](AgentPoolsApi.md#updateAgentPoolsUpdate) | **POST** /api/v1/agentPools/{poolId}/updates/{updateId} | Update an Agent Pool update by id
+[**activateAgentPoolsUpdate**](AgentPoolsApi.md#activateagentpoolsupdate) | **POST** /api/v1/agentPools/{poolId}/updates/{updateId}/activate | Activate an Agent Pool update
+[**createAgentPoolsUpdate**](AgentPoolsApi.md#createagentpoolsupdate) | **POST** /api/v1/agentPools/{poolId}/updates | Create an Agent Pool update
+[**deactivateAgentPoolsUpdate**](AgentPoolsApi.md#deactivateagentpoolsupdate) | **POST** /api/v1/agentPools/{poolId}/updates/{updateId}/deactivate | Deactivate an Agent Pool update
+[**deleteAgentPoolsUpdate**](AgentPoolsApi.md#deleteagentpoolsupdate) | **DELETE** /api/v1/agentPools/{poolId}/updates/{updateId} | Delete an Agent Pool update
+[**getAgentPools**](AgentPoolsApi.md#getagentpools) | **GET** /api/v1/agentPools | List all Agent Pools
+[**getAgentPoolsUpdateInstance**](AgentPoolsApi.md#getagentpoolsupdateinstance) | **GET** /api/v1/agentPools/{poolId}/updates/{updateId} | Retrieve an Agent Pool update by id
+[**getAgentPoolsUpdateSettings**](AgentPoolsApi.md#getagentpoolsupdatesettings) | **GET** /api/v1/agentPools/{poolId}/updates/settings | Retrieve an Agent Pool update&#39;s settings
+[**getAgentPoolsUpdates**](AgentPoolsApi.md#getagentpoolsupdates) | **GET** /api/v1/agentPools/{poolId}/updates | List all Agent Pool updates
+[**pauseAgentPoolsUpdate**](AgentPoolsApi.md#pauseagentpoolsupdate) | **POST** /api/v1/agentPools/{poolId}/updates/{updateId}/pause | Pause an Agent Pool update
+[**resumeAgentPoolsUpdate**](AgentPoolsApi.md#resumeagentpoolsupdate) | **POST** /api/v1/agentPools/{poolId}/updates/{updateId}/resume | Resume an Agent Pool update
+[**retryAgentPoolsUpdate**](AgentPoolsApi.md#retryagentpoolsupdate) | **POST** /api/v1/agentPools/{poolId}/updates/{updateId}/retry | Retry an Agent Pool update
+[**setAgentPoolsUpdateSettings**](AgentPoolsApi.md#setagentpoolsupdatesettings) | **POST** /api/v1/agentPools/{poolId}/updates/settings | Update an Agent pool update settings
+[**stopAgentPoolsUpdate**](AgentPoolsApi.md#stopagentpoolsupdate) | **POST** /api/v1/agentPools/{poolId}/updates/{updateId}/stop | Stop an Agent Pool update
+[**updateAgentPoolsUpdate**](AgentPoolsApi.md#updateagentpoolsupdate) | **POST** /api/v1/agentPools/{poolId}/updates/{updateId} | Update an Agent Pool update by id
 
 
 # **activateAgentPoolsUpdate**
@@ -52,13 +52,13 @@ apiInstance.activateAgentPoolsUpdate(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **poolId** | [**string**] | Id of the agent pool for which the settings will apply | defaults to undefined
- **updateId** | [**string**] | Id of the update | defaults to undefined
+**poolId** | **string** | Id of the agent pool for which the settings will apply | defaults to undefined
+**updateId** | **string** | Id of the update | defaults to undefined
 
 
 ### Return type
 
-**AgentPoolUpdate**
+**[AgentPoolUpdate](AgentPoolUpdate.md)**
 
 ### Authorization
 
@@ -162,13 +162,13 @@ apiInstance.createAgentPoolsUpdate(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **AgentPoolUpdate** | **AgentPoolUpdate**|  |
- **poolId** | [**string**] | Id of the agent pool for which the settings will apply | defaults to undefined
+ **AgentPoolUpdate** | **[AgentPoolUpdate](AgentPoolUpdate.md)** |  | 
+**poolId** | **string** | Id of the agent pool for which the settings will apply | defaults to undefined
 
 
 ### Return type
 
-**AgentPoolUpdate**
+**[AgentPoolUpdate](AgentPoolUpdate.md)**
 
 ### Authorization
 
@@ -223,13 +223,13 @@ apiInstance.deactivateAgentPoolsUpdate(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **poolId** | [**string**] | Id of the agent pool for which the settings will apply | defaults to undefined
- **updateId** | [**string**] | Id of the update | defaults to undefined
+**poolId** | **string** | Id of the agent pool for which the settings will apply | defaults to undefined
+**updateId** | **string** | Id of the update | defaults to undefined
 
 
 ### Return type
 
-**AgentPoolUpdate**
+**[AgentPoolUpdate](AgentPoolUpdate.md)**
 
 ### Authorization
 
@@ -283,8 +283,8 @@ apiInstance.deleteAgentPoolsUpdate(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **poolId** | [**string**] | Id of the agent pool for which the settings will apply | defaults to undefined
- **updateId** | [**string**] | Id of the update | defaults to undefined
+**poolId** | **string** | Id of the agent pool for which the settings will apply | defaults to undefined
+**updateId** | **string** | Id of the update | defaults to undefined
 
 
 ### Return type
@@ -345,14 +345,14 @@ apiInstance.getAgentPools(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **limitPerPoolType** | [**number**] | Maximum number of AgentPools being returned | (optional) defaults to 5
- **poolType** | **AgentType** | Agent type to search for | (optional) defaults to undefined
- **after** | [**string**] | The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](/#pagination) for more information. | (optional) defaults to undefined
+**limitPerPoolType** | **number** | Maximum number of AgentPools being returned | (optional) defaults to 5
+**poolType** | **[AgentType](AgentType.md)** | Agent type to search for | (optional) defaults to undefined
+**after** | **string** | The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](/#pagination) for more information. | (optional) defaults to undefined
 
 
 ### Return type
 
-**Array<AgentPool>**
+**[Array&lt;AgentPool&gt;](AgentPool.md)**
 
 ### Authorization
 
@@ -405,13 +405,13 @@ apiInstance.getAgentPoolsUpdateInstance(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **poolId** | [**string**] | Id of the agent pool for which the settings will apply | defaults to undefined
- **updateId** | [**string**] | Id of the update | defaults to undefined
+**poolId** | **string** | Id of the agent pool for which the settings will apply | defaults to undefined
+**updateId** | **string** | Id of the update | defaults to undefined
 
 
 ### Return type
 
-**AgentPoolUpdate**
+**[AgentPoolUpdate](AgentPoolUpdate.md)**
 
 ### Authorization
 
@@ -463,12 +463,12 @@ apiInstance.getAgentPoolsUpdateSettings(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **poolId** | [**string**] | Id of the agent pool for which the settings will apply | defaults to undefined
+**poolId** | **string** | Id of the agent pool for which the settings will apply | defaults to undefined
 
 
 ### Return type
 
-**AgentPoolUpdateSetting**
+**[AgentPoolUpdateSetting](AgentPoolUpdateSetting.md)**
 
 ### Authorization
 
@@ -522,13 +522,13 @@ apiInstance.getAgentPoolsUpdates(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **poolId** | [**string**] | Id of the agent pool for which the settings will apply | defaults to undefined
- **scheduled** | [**boolean**] | Scope the list only to scheduled or ad-hoc updates. If the parameter is not provided we will return the whole list of updates. | (optional) defaults to undefined
+**poolId** | **string** | Id of the agent pool for which the settings will apply | defaults to undefined
+**scheduled** | **boolean** | Scope the list only to scheduled or ad-hoc updates. If the parameter is not provided we will return the whole list of updates. | (optional) defaults to undefined
 
 
 ### Return type
 
-**Array<AgentPoolUpdate>**
+**[Array&lt;AgentPoolUpdate&gt;](AgentPoolUpdate.md)**
 
 ### Authorization
 
@@ -582,13 +582,13 @@ apiInstance.pauseAgentPoolsUpdate(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **poolId** | [**string**] | Id of the agent pool for which the settings will apply | defaults to undefined
- **updateId** | [**string**] | Id of the update | defaults to undefined
+**poolId** | **string** | Id of the agent pool for which the settings will apply | defaults to undefined
+**updateId** | **string** | Id of the update | defaults to undefined
 
 
 ### Return type
 
-**AgentPoolUpdate**
+**[AgentPoolUpdate](AgentPoolUpdate.md)**
 
 ### Authorization
 
@@ -642,13 +642,13 @@ apiInstance.resumeAgentPoolsUpdate(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **poolId** | [**string**] | Id of the agent pool for which the settings will apply | defaults to undefined
- **updateId** | [**string**] | Id of the update | defaults to undefined
+**poolId** | **string** | Id of the agent pool for which the settings will apply | defaults to undefined
+**updateId** | **string** | Id of the update | defaults to undefined
 
 
 ### Return type
 
-**AgentPoolUpdate**
+**[AgentPoolUpdate](AgentPoolUpdate.md)**
 
 ### Authorization
 
@@ -702,13 +702,13 @@ apiInstance.retryAgentPoolsUpdate(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **poolId** | [**string**] | Id of the agent pool for which the settings will apply | defaults to undefined
- **updateId** | [**string**] | Id of the update | defaults to undefined
+**poolId** | **string** | Id of the agent pool for which the settings will apply | defaults to undefined
+**updateId** | **string** | Id of the update | defaults to undefined
 
 
 ### Return type
 
-**AgentPoolUpdate**
+**[AgentPoolUpdate](AgentPoolUpdate.md)**
 
 ### Authorization
 
@@ -769,13 +769,13 @@ apiInstance.setAgentPoolsUpdateSettings(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **AgentPoolUpdateSetting** | **AgentPoolUpdateSetting**|  |
- **poolId** | [**string**] | Id of the agent pool for which the settings will apply | defaults to undefined
+ **AgentPoolUpdateSetting** | **[AgentPoolUpdateSetting](AgentPoolUpdateSetting.md)** |  | 
+**poolId** | **string** | Id of the agent pool for which the settings will apply | defaults to undefined
 
 
 ### Return type
 
-**AgentPoolUpdateSetting**
+**[AgentPoolUpdateSetting](AgentPoolUpdateSetting.md)**
 
 ### Authorization
 
@@ -830,13 +830,13 @@ apiInstance.stopAgentPoolsUpdate(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **poolId** | [**string**] | Id of the agent pool for which the settings will apply | defaults to undefined
- **updateId** | [**string**] | Id of the update | defaults to undefined
+**poolId** | **string** | Id of the agent pool for which the settings will apply | defaults to undefined
+**updateId** | **string** | Id of the update | defaults to undefined
 
 
 ### Return type
 
-**AgentPoolUpdate**
+**[AgentPoolUpdate](AgentPoolUpdate.md)**
 
 ### Authorization
 
@@ -942,14 +942,14 @@ apiInstance.updateAgentPoolsUpdate(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **AgentPoolUpdate** | **AgentPoolUpdate**|  |
- **poolId** | [**string**] | Id of the agent pool for which the settings will apply | defaults to undefined
- **updateId** | [**string**] | Id of the update | defaults to undefined
+ **AgentPoolUpdate** | **[AgentPoolUpdate](AgentPoolUpdate.md)** |  | 
+**poolId** | **string** | Id of the agent pool for which the settings will apply | defaults to undefined
+**updateId** | **string** | Id of the update | defaults to undefined
 
 
 ### Return type
 
-**AgentPoolUpdate**
+**[AgentPoolUpdate](AgentPoolUpdate.md)**
 
 ### Authorization
 

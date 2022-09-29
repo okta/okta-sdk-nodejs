@@ -4,13 +4,13 @@ All URIs are relative to *https://subdomain.okta.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**createEmailDomain**](EmailDomainApi.md#createEmailDomain) | **POST** /api/v1/email-domains | Create an Email Domain
-[**deleteEmailDomain**](EmailDomainApi.md#deleteEmailDomain) | **DELETE** /api/v1/email-domains/{emailDomainId} | Delete an Email Domain
-[**getEmailDomain**](EmailDomainApi.md#getEmailDomain) | **GET** /api/v1/email-domains/{emailDomainId} | Retrieve a Email Domain
-[**listEmailDomainBrands**](EmailDomainApi.md#listEmailDomainBrands) | **GET** /api/v1/email-domains/{emailDomainId}/brands | List all brands linked to an email domain
-[**listEmailDomains**](EmailDomainApi.md#listEmailDomains) | **GET** /api/v1/email-domains | List all email domains
-[**updateEmailDomain**](EmailDomainApi.md#updateEmailDomain) | **PUT** /api/v1/email-domains/{emailDomainId} | Replace an Email Domain
-[**verifyEmailDomain**](EmailDomainApi.md#verifyEmailDomain) | **POST** /api/v1/email-domains/{emailDomainId}/verify | Verify an Email Domain
+[**createEmailDomain**](EmailDomainApi.md#createemaildomain) | **POST** /api/v1/email-domains | Create an Email Domain
+[**deleteEmailDomain**](EmailDomainApi.md#deleteemaildomain) | **DELETE** /api/v1/email-domains/{emailDomainId} | Delete an Email Domain
+[**getEmailDomain**](EmailDomainApi.md#getemaildomain) | **GET** /api/v1/email-domains/{emailDomainId} | Retrieve a Email Domain
+[**listEmailDomainBrands**](EmailDomainApi.md#listemaildomainbrands) | **GET** /api/v1/email-domains/{emailDomainId}/brands | List all brands linked to an email domain
+[**listEmailDomains**](EmailDomainApi.md#listemaildomains) | **GET** /api/v1/email-domains | List all email domains
+[**updateEmailDomain**](EmailDomainApi.md#updateemaildomain) | **PUT** /api/v1/email-domains/{emailDomainId} | Replace an Email Domain
+[**verifyEmailDomain**](EmailDomainApi.md#verifyemaildomain) | **POST** /api/v1/email-domains/{emailDomainId}/verify | Verify an Email Domain
 
 
 # **createEmailDomain**
@@ -43,12 +43,12 @@ apiInstance.createEmailDomain(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **emailDomain** | **EmailDomain**|  |
+ **emailDomain** | **[EmailDomain](EmailDomain.md)** |  | 
 
 
 ### Return type
 
-**EmailDomainResponse**
+**[EmailDomainResponse](EmailDomainResponse.md)**
 
 ### Authorization
 
@@ -100,7 +100,7 @@ apiInstance.deleteEmailDomain(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **emailDomainId** | [**string**] |  | defaults to undefined
+**emailDomainId** | **string** |  | defaults to undefined
 
 
 ### Return type
@@ -157,12 +157,12 @@ apiInstance.getEmailDomain(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **emailDomainId** | [**string**] |  | defaults to undefined
+**emailDomainId** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**EmailDomainResponse**
+**[EmailDomainResponse](EmailDomainResponse.md)**
 
 ### Authorization
 
@@ -214,12 +214,12 @@ apiInstance.listEmailDomainBrands(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **emailDomainId** | [**string**] |  | defaults to undefined
+**emailDomainId** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**Array<Brand>**
+**[Array&lt;Brand&gt;](Brand.md)**
 
 ### Authorization
 
@@ -270,7 +270,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-**EmailDomainListResponse**
+**[EmailDomainListResponse](EmailDomainListResponse.md)**
 
 ### Authorization
 
@@ -323,13 +323,13 @@ apiInstance.updateEmailDomain(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **updateEmailDomain** | **UpdateEmailDomain**|  |
- **emailDomainId** | [**string**] |  | defaults to undefined
+ **updateEmailDomain** | **[UpdateEmailDomain](UpdateEmailDomain.md)** |  | 
+**emailDomainId** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**EmailDomainResponse**
+**[EmailDomainResponse](EmailDomainResponse.md)**
 
 ### Authorization
 
@@ -382,12 +382,12 @@ apiInstance.verifyEmailDomain(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **emailDomainId** | [**string**] |  | defaults to undefined
+**emailDomainId** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**EmailDomainResponse**
+**[EmailDomainResponse](EmailDomainResponse.md)**
 
 ### Authorization
 

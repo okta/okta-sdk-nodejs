@@ -4,13 +4,13 @@ All URIs are relative to *https://subdomain.okta.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**activateBehaviorDetectionRule**](BehaviorApi.md#activateBehaviorDetectionRule) | **POST** /api/v1/behaviors/{behaviorId}/lifecycle/activate | Activate a Behavior Detection Rule
-[**createBehaviorDetectionRule**](BehaviorApi.md#createBehaviorDetectionRule) | **POST** /api/v1/behaviors | Create a Behavior Detection Rule
-[**deactivateBehaviorDetectionRule**](BehaviorApi.md#deactivateBehaviorDetectionRule) | **POST** /api/v1/behaviors/{behaviorId}/lifecycle/deactivate | Deactivate a Behavior Detection Rule
-[**deleteBehaviorDetectionRule**](BehaviorApi.md#deleteBehaviorDetectionRule) | **DELETE** /api/v1/behaviors/{behaviorId} | Delete a Behavior Detection Rule
-[**getBehaviorDetectionRule**](BehaviorApi.md#getBehaviorDetectionRule) | **GET** /api/v1/behaviors/{behaviorId} | Retrieve a Behavior Detection Rule
-[**listBehaviorDetectionRules**](BehaviorApi.md#listBehaviorDetectionRules) | **GET** /api/v1/behaviors | List all Behavior Detection Rules
-[**updateBehaviorDetectionRule**](BehaviorApi.md#updateBehaviorDetectionRule) | **PUT** /api/v1/behaviors/{behaviorId} | Replace a Behavior Detection Rule
+[**activateBehaviorDetectionRule**](BehaviorApi.md#activatebehaviordetectionrule) | **POST** /api/v1/behaviors/{behaviorId}/lifecycle/activate | Activate a Behavior Detection Rule
+[**createBehaviorDetectionRule**](BehaviorApi.md#createbehaviordetectionrule) | **POST** /api/v1/behaviors | Create a Behavior Detection Rule
+[**deactivateBehaviorDetectionRule**](BehaviorApi.md#deactivatebehaviordetectionrule) | **POST** /api/v1/behaviors/{behaviorId}/lifecycle/deactivate | Deactivate a Behavior Detection Rule
+[**deleteBehaviorDetectionRule**](BehaviorApi.md#deletebehaviordetectionrule) | **DELETE** /api/v1/behaviors/{behaviorId} | Delete a Behavior Detection Rule
+[**getBehaviorDetectionRule**](BehaviorApi.md#getbehaviordetectionrule) | **GET** /api/v1/behaviors/{behaviorId} | Retrieve a Behavior Detection Rule
+[**listBehaviorDetectionRules**](BehaviorApi.md#listbehaviordetectionrules) | **GET** /api/v1/behaviors | List all Behavior Detection Rules
+[**updateBehaviorDetectionRule**](BehaviorApi.md#updatebehaviordetectionrule) | **PUT** /api/v1/behaviors/{behaviorId} | Replace a Behavior Detection Rule
 
 
 # **activateBehaviorDetectionRule**
@@ -43,12 +43,12 @@ apiInstance.activateBehaviorDetectionRule(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **behaviorId** | [**string**] | id of the Behavior Detection Rule | defaults to undefined
+**behaviorId** | **string** | id of the Behavior Detection Rule | defaults to undefined
 
 
 ### Return type
 
-**BehaviorRule**
+**[BehaviorRule](BehaviorRule.md)**
 
 ### Authorization
 
@@ -100,12 +100,12 @@ apiInstance.createBehaviorDetectionRule(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **rule** | **BehaviorRule**|  |
+ **rule** | **[BehaviorRule](BehaviorRule.md)** |  | 
 
 
 ### Return type
 
-**BehaviorRule**
+**[BehaviorRule](BehaviorRule.md)**
 
 ### Authorization
 
@@ -157,12 +157,12 @@ apiInstance.deactivateBehaviorDetectionRule(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **behaviorId** | [**string**] | id of the Behavior Detection Rule | defaults to undefined
+**behaviorId** | **string** | id of the Behavior Detection Rule | defaults to undefined
 
 
 ### Return type
 
-**BehaviorRule**
+**[BehaviorRule](BehaviorRule.md)**
 
 ### Authorization
 
@@ -214,7 +214,7 @@ apiInstance.deleteBehaviorDetectionRule(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **behaviorId** | [**string**] | id of the Behavior Detection Rule | defaults to undefined
+**behaviorId** | **string** | id of the Behavior Detection Rule | defaults to undefined
 
 
 ### Return type
@@ -271,12 +271,12 @@ apiInstance.getBehaviorDetectionRule(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **behaviorId** | [**string**] | id of the Behavior Detection Rule | defaults to undefined
+**behaviorId** | **string** | id of the Behavior Detection Rule | defaults to undefined
 
 
 ### Return type
 
-**BehaviorRule**
+**[BehaviorRule](BehaviorRule.md)**
 
 ### Authorization
 
@@ -327,7 +327,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-**Array<BehaviorRule>**
+**[Array&lt;BehaviorRule&gt;](BehaviorRule.md)**
 
 ### Authorization
 
@@ -380,13 +380,13 @@ apiInstance.updateBehaviorDetectionRule(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **rule** | **BehaviorRule**|  |
- **behaviorId** | [**string**] | id of the Behavior Detection Rule | defaults to undefined
+ **rule** | **[BehaviorRule](BehaviorRule.md)** |  | 
+**behaviorId** | **string** | id of the Behavior Detection Rule | defaults to undefined
 
 
 ### Return type
 
-**BehaviorRule**
+**[BehaviorRule](BehaviorRule.md)**
 
 ### Authorization
 

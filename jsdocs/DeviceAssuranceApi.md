@@ -4,11 +4,11 @@ All URIs are relative to *https://subdomain.okta.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**createDeviceAssurancePolicy**](DeviceAssuranceApi.md#createDeviceAssurancePolicy) | **POST** /api/v1/device-assurances | Create a Device Assurance Policy
-[**deleteDeviceAssurancePolicy**](DeviceAssuranceApi.md#deleteDeviceAssurancePolicy) | **DELETE** /api/v1/device-assurances/{deviceAssuranceId} | Delete a Device Assurance Policy
-[**getDeviceAssurancePolicy**](DeviceAssuranceApi.md#getDeviceAssurancePolicy) | **GET** /api/v1/device-assurances/{deviceAssuranceId} | Retrieve a Device Assurance Policy
-[**listDeviceAssurancePolicies**](DeviceAssuranceApi.md#listDeviceAssurancePolicies) | **GET** /api/v1/device-assurances | List all Device Assurance Policies
-[**updateDeviceAssurancePolicy**](DeviceAssuranceApi.md#updateDeviceAssurancePolicy) | **PUT** /api/v1/device-assurances/{deviceAssuranceId} | Replace a Device Assurance Policy
+[**createDeviceAssurancePolicy**](DeviceAssuranceApi.md#createdeviceassurancepolicy) | **POST** /api/v1/device-assurances | Create a Device Assurance Policy
+[**deleteDeviceAssurancePolicy**](DeviceAssuranceApi.md#deletedeviceassurancepolicy) | **DELETE** /api/v1/device-assurances/{deviceAssuranceId} | Delete a Device Assurance Policy
+[**getDeviceAssurancePolicy**](DeviceAssuranceApi.md#getdeviceassurancepolicy) | **GET** /api/v1/device-assurances/{deviceAssuranceId} | Retrieve a Device Assurance Policy
+[**listDeviceAssurancePolicies**](DeviceAssuranceApi.md#listdeviceassurancepolicies) | **GET** /api/v1/device-assurances | List all Device Assurance Policies
+[**updateDeviceAssurancePolicy**](DeviceAssuranceApi.md#updatedeviceassurancepolicy) | **PUT** /api/v1/device-assurances/{deviceAssuranceId} | Replace a Device Assurance Policy
 
 
 # **createDeviceAssurancePolicy**
@@ -59,12 +59,12 @@ apiInstance.createDeviceAssurancePolicy(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **deviceAssurance** | **DeviceAssurance**|  |
+ **deviceAssurance** | **[DeviceAssurance](DeviceAssurance.md)** |  | 
 
 
 ### Return type
 
-**DeviceAssurance**
+**[DeviceAssurance](DeviceAssurance.md)**
 
 ### Authorization
 
@@ -116,7 +116,7 @@ apiInstance.deleteDeviceAssurancePolicy(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **deviceAssuranceId** | [**string**] | Id of the Device Assurance Policy | defaults to undefined
+**deviceAssuranceId** | **string** | Id of the Device Assurance Policy | defaults to undefined
 
 
 ### Return type
@@ -174,12 +174,12 @@ apiInstance.getDeviceAssurancePolicy(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **deviceAssuranceId** | [**string**] | Id of the Device Assurance Policy | defaults to undefined
+**deviceAssuranceId** | **string** | Id of the Device Assurance Policy | defaults to undefined
 
 
 ### Return type
 
-**DeviceAssurance**
+**[DeviceAssurance](DeviceAssurance.md)**
 
 ### Authorization
 
@@ -230,7 +230,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-**Array<DeviceAssurance>**
+**[Array&lt;DeviceAssurance&gt;](DeviceAssurance.md)**
 
 ### Authorization
 
@@ -301,13 +301,13 @@ apiInstance.updateDeviceAssurancePolicy(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **deviceAssurance** | **DeviceAssurance**|  |
- **deviceAssuranceId** | [**string**] | Id of the Device Assurance Policy | defaults to undefined
+ **deviceAssurance** | **[DeviceAssurance](DeviceAssurance.md)** |  | 
+**deviceAssuranceId** | **string** | Id of the Device Assurance Policy | defaults to undefined
 
 
 ### Return type
 
-**DeviceAssurance**
+**[DeviceAssurance](DeviceAssurance.md)**
 
 ### Authorization
 

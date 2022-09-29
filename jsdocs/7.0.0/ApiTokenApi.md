@@ -4,10 +4,10 @@ All URIs are relative to *https://subdomain.okta.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**getApiToken**](ApiTokenApi.md#getApiToken) | **GET** /api/v1/api-tokens/{apiTokenId} | Retrieve an API Token&#39;s Metadata
-[**listApiTokens**](ApiTokenApi.md#listApiTokens) | **GET** /api/v1/api-tokens | List all API Token Metadata
-[**revokeApiToken**](ApiTokenApi.md#revokeApiToken) | **DELETE** /api/v1/api-tokens/{apiTokenId} | Revoke an API Token
-[**revokeCurrentApiToken**](ApiTokenApi.md#revokeCurrentApiToken) | **DELETE** /api/v1/api-tokens/current | Revoke the Current API Token
+[**getApiToken**](ApiTokenApi.md#getapitoken) | **GET** /api/v1/api-tokens/{apiTokenId} | Retrieve an API Token&#39;s Metadata
+[**listApiTokens**](ApiTokenApi.md#listapitokens) | **GET** /api/v1/api-tokens | List all API Token Metadata
+[**revokeApiToken**](ApiTokenApi.md#revokeapitoken) | **DELETE** /api/v1/api-tokens/{apiTokenId} | Revoke an API Token
+[**revokeCurrentApiToken**](ApiTokenApi.md#revokecurrentapitoken) | **DELETE** /api/v1/api-tokens/current | Revoke the Current API Token
 
 
 # **getApiToken**
@@ -40,12 +40,12 @@ apiInstance.getApiToken(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **apiTokenId** | [**string**] | id of the API Token | defaults to undefined
+**apiTokenId** | **string** | id of the API Token | defaults to undefined
 
 
 ### Return type
 
-**ApiToken**
+**[ApiToken](ApiToken.md)**
 
 ### Authorization
 
@@ -101,14 +101,14 @@ apiInstance.listApiTokens(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **after** | [**string**] | The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](/#pagination) for more information. | (optional) defaults to undefined
- **limit** | [**number**] | A limit on the number of objects to return. | (optional) defaults to 20
- **q** | [**string**] | Finds a token that matches the name or clientName. | (optional) defaults to undefined
+**after** | **string** | The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](/#pagination) for more information. | (optional) defaults to undefined
+**limit** | **number** | A limit on the number of objects to return. | (optional) defaults to 20
+**q** | **string** | Finds a token that matches the name or clientName. | (optional) defaults to undefined
 
 
 ### Return type
 
-**Array<ApiToken>**
+**[Array&lt;ApiToken&gt;](ApiToken.md)**
 
 ### Authorization
 
@@ -159,7 +159,7 @@ apiInstance.revokeApiToken(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **apiTokenId** | [**string**] | id of the API Token | defaults to undefined
+**apiTokenId** | **string** | id of the API Token | defaults to undefined
 
 
 ### Return type

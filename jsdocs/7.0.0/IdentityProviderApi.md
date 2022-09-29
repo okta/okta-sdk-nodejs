@@ -4,31 +4,31 @@ All URIs are relative to *https://subdomain.okta.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**activateIdentityProvider**](IdentityProviderApi.md#activateIdentityProvider) | **POST** /api/v1/idps/{idpId}/lifecycle/activate | Activate an Identity Provider
-[**cloneIdentityProviderKey**](IdentityProviderApi.md#cloneIdentityProviderKey) | **POST** /api/v1/idps/{idpId}/credentials/keys/{keyId}/clone | Clone a Signing Credential Key
-[**createIdentityProvider**](IdentityProviderApi.md#createIdentityProvider) | **POST** /api/v1/idps | Create an Identity Provider
-[**createIdentityProviderKey**](IdentityProviderApi.md#createIdentityProviderKey) | **POST** /api/v1/idps/credentials/keys | Create an X.509 Certificate Public Key
-[**deactivateIdentityProvider**](IdentityProviderApi.md#deactivateIdentityProvider) | **POST** /api/v1/idps/{idpId}/lifecycle/deactivate | Deactivate an Identity Provider
-[**deleteIdentityProvider**](IdentityProviderApi.md#deleteIdentityProvider) | **DELETE** /api/v1/idps/{idpId} | Delete an Identity Provider
-[**deleteIdentityProviderKey**](IdentityProviderApi.md#deleteIdentityProviderKey) | **DELETE** /api/v1/idps/credentials/keys/{keyId} | Delete a Signing Credential Key
-[**generateCsrForIdentityProvider**](IdentityProviderApi.md#generateCsrForIdentityProvider) | **POST** /api/v1/idps/{idpId}/credentials/csrs | Generate a Certificate Signing Request
-[**generateIdentityProviderSigningKey**](IdentityProviderApi.md#generateIdentityProviderSigningKey) | **POST** /api/v1/idps/{idpId}/credentials/keys/generate | Generate a new Signing Credential Key
-[**getCsrForIdentityProvider**](IdentityProviderApi.md#getCsrForIdentityProvider) | **GET** /api/v1/idps/{idpId}/credentials/csrs/{csrId} | Retrieve a Certificate Signing Request
-[**getIdentityProvider**](IdentityProviderApi.md#getIdentityProvider) | **GET** /api/v1/idps/{idpId} | Retrieve an Identity Provider
-[**getIdentityProviderApplicationUser**](IdentityProviderApi.md#getIdentityProviderApplicationUser) | **GET** /api/v1/idps/{idpId}/users/{userId} | Retrieve a User
-[**getIdentityProviderKey**](IdentityProviderApi.md#getIdentityProviderKey) | **GET** /api/v1/idps/credentials/keys/{keyId} | Retrieve an Credential Key
-[**getIdentityProviderSigningKey**](IdentityProviderApi.md#getIdentityProviderSigningKey) | **GET** /api/v1/idps/{idpId}/credentials/keys/{keyId} | Retrieve a Signing Credential Key
-[**linkUserToIdentityProvider**](IdentityProviderApi.md#linkUserToIdentityProvider) | **POST** /api/v1/idps/{idpId}/users/{userId} | Link a User to a Social IdP
-[**listCsrsForIdentityProvider**](IdentityProviderApi.md#listCsrsForIdentityProvider) | **GET** /api/v1/idps/{idpId}/credentials/csrs | List all Certificate Signing Requests
-[**listIdentityProviderApplicationUsers**](IdentityProviderApi.md#listIdentityProviderApplicationUsers) | **GET** /api/v1/idps/{idpId}/users | List all Users
-[**listIdentityProviderKeys**](IdentityProviderApi.md#listIdentityProviderKeys) | **GET** /api/v1/idps/credentials/keys | List all Credential Keys
-[**listIdentityProviderSigningKeys**](IdentityProviderApi.md#listIdentityProviderSigningKeys) | **GET** /api/v1/idps/{idpId}/credentials/keys | List all Signing Credential Keys
-[**listIdentityProviders**](IdentityProviderApi.md#listIdentityProviders) | **GET** /api/v1/idps | List all Identity Providers
-[**listSocialAuthTokens**](IdentityProviderApi.md#listSocialAuthTokens) | **GET** /api/v1/idps/{idpId}/users/{userId}/credentials/tokens | List all Tokens from a OIDC Identity Provider
-[**publishCsrForIdentityProvider**](IdentityProviderApi.md#publishCsrForIdentityProvider) | **POST** /api/v1/idps/{idpId}/credentials/csrs/{csrId}/lifecycle/publish | Publish a Certificate Signing Request
-[**revokeCsrForIdentityProvider**](IdentityProviderApi.md#revokeCsrForIdentityProvider) | **DELETE** /api/v1/idps/{idpId}/credentials/csrs/{csrId} | Revoke a Certificate Signing Request
-[**unlinkUserFromIdentityProvider**](IdentityProviderApi.md#unlinkUserFromIdentityProvider) | **DELETE** /api/v1/idps/{idpId}/users/{userId} | Unlink a User from IdP
-[**updateIdentityProvider**](IdentityProviderApi.md#updateIdentityProvider) | **PUT** /api/v1/idps/{idpId} | Replace an Identity Provider
+[**activateIdentityProvider**](IdentityProviderApi.md#activateidentityprovider) | **POST** /api/v1/idps/{idpId}/lifecycle/activate | Activate an Identity Provider
+[**cloneIdentityProviderKey**](IdentityProviderApi.md#cloneidentityproviderkey) | **POST** /api/v1/idps/{idpId}/credentials/keys/{keyId}/clone | Clone a Signing Credential Key
+[**createIdentityProvider**](IdentityProviderApi.md#createidentityprovider) | **POST** /api/v1/idps | Create an Identity Provider
+[**createIdentityProviderKey**](IdentityProviderApi.md#createidentityproviderkey) | **POST** /api/v1/idps/credentials/keys | Create an X.509 Certificate Public Key
+[**deactivateIdentityProvider**](IdentityProviderApi.md#deactivateidentityprovider) | **POST** /api/v1/idps/{idpId}/lifecycle/deactivate | Deactivate an Identity Provider
+[**deleteIdentityProvider**](IdentityProviderApi.md#deleteidentityprovider) | **DELETE** /api/v1/idps/{idpId} | Delete an Identity Provider
+[**deleteIdentityProviderKey**](IdentityProviderApi.md#deleteidentityproviderkey) | **DELETE** /api/v1/idps/credentials/keys/{keyId} | Delete a Signing Credential Key
+[**generateCsrForIdentityProvider**](IdentityProviderApi.md#generatecsrforidentityprovider) | **POST** /api/v1/idps/{idpId}/credentials/csrs | Generate a Certificate Signing Request
+[**generateIdentityProviderSigningKey**](IdentityProviderApi.md#generateidentityprovidersigningkey) | **POST** /api/v1/idps/{idpId}/credentials/keys/generate | Generate a new Signing Credential Key
+[**getCsrForIdentityProvider**](IdentityProviderApi.md#getcsrforidentityprovider) | **GET** /api/v1/idps/{idpId}/credentials/csrs/{csrId} | Retrieve a Certificate Signing Request
+[**getIdentityProvider**](IdentityProviderApi.md#getidentityprovider) | **GET** /api/v1/idps/{idpId} | Retrieve an Identity Provider
+[**getIdentityProviderApplicationUser**](IdentityProviderApi.md#getidentityproviderapplicationuser) | **GET** /api/v1/idps/{idpId}/users/{userId} | Retrieve a User
+[**getIdentityProviderKey**](IdentityProviderApi.md#getidentityproviderkey) | **GET** /api/v1/idps/credentials/keys/{keyId} | Retrieve an Credential Key
+[**getIdentityProviderSigningKey**](IdentityProviderApi.md#getidentityprovidersigningkey) | **GET** /api/v1/idps/{idpId}/credentials/keys/{keyId} | Retrieve a Signing Credential Key
+[**linkUserToIdentityProvider**](IdentityProviderApi.md#linkusertoidentityprovider) | **POST** /api/v1/idps/{idpId}/users/{userId} | Link a User to a Social IdP
+[**listCsrsForIdentityProvider**](IdentityProviderApi.md#listcsrsforidentityprovider) | **GET** /api/v1/idps/{idpId}/credentials/csrs | List all Certificate Signing Requests
+[**listIdentityProviderApplicationUsers**](IdentityProviderApi.md#listidentityproviderapplicationusers) | **GET** /api/v1/idps/{idpId}/users | List all Users
+[**listIdentityProviderKeys**](IdentityProviderApi.md#listidentityproviderkeys) | **GET** /api/v1/idps/credentials/keys | List all Credential Keys
+[**listIdentityProviderSigningKeys**](IdentityProviderApi.md#listidentityprovidersigningkeys) | **GET** /api/v1/idps/{idpId}/credentials/keys | List all Signing Credential Keys
+[**listIdentityProviders**](IdentityProviderApi.md#listidentityproviders) | **GET** /api/v1/idps | List all Identity Providers
+[**listSocialAuthTokens**](IdentityProviderApi.md#listsocialauthtokens) | **GET** /api/v1/idps/{idpId}/users/{userId}/credentials/tokens | List all Tokens from a OIDC Identity Provider
+[**publishCsrForIdentityProvider**](IdentityProviderApi.md#publishcsrforidentityprovider) | **POST** /api/v1/idps/{idpId}/credentials/csrs/{csrId}/lifecycle/publish | Publish a Certificate Signing Request
+[**revokeCsrForIdentityProvider**](IdentityProviderApi.md#revokecsrforidentityprovider) | **DELETE** /api/v1/idps/{idpId}/credentials/csrs/{csrId} | Revoke a Certificate Signing Request
+[**unlinkUserFromIdentityProvider**](IdentityProviderApi.md#unlinkuserfromidentityprovider) | **DELETE** /api/v1/idps/{idpId}/users/{userId} | Unlink a User from IdP
+[**updateIdentityProvider**](IdentityProviderApi.md#updateidentityprovider) | **PUT** /api/v1/idps/{idpId} | Replace an Identity Provider
 
 
 # **activateIdentityProvider**
@@ -61,12 +61,12 @@ apiInstance.activateIdentityProvider(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **idpId** | [**string**] |  | defaults to undefined
+**idpId** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**IdentityProvider**
+**[IdentityProvider](IdentityProvider.md)**
 
 ### Authorization
 
@@ -122,14 +122,14 @@ apiInstance.cloneIdentityProviderKey(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **idpId** | [**string**] |  | defaults to undefined
- **keyId** | [**string**] |  | defaults to undefined
- **targetIdpId** | [**string**] |  | defaults to undefined
+**idpId** | **string** |  | defaults to undefined
+**keyId** | **string** |  | defaults to undefined
+**targetIdpId** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**JsonWebKey**
+**[JsonWebKey](JsonWebKey.md)**
 
 ### Authorization
 
@@ -285,12 +285,12 @@ apiInstance.createIdentityProvider(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **identityProvider** | **IdentityProvider**|  |
+ **identityProvider** | **[IdentityProvider](IdentityProvider.md)** |  | 
 
 
 ### Return type
 
-**IdentityProvider**
+**[IdentityProvider](IdentityProvider.md)**
 
 ### Authorization
 
@@ -362,12 +362,12 @@ apiInstance.createIdentityProviderKey(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **jsonWebKey** | **JsonWebKey**|  |
+ **jsonWebKey** | **[JsonWebKey](JsonWebKey.md)** |  | 
 
 
 ### Return type
 
-**JsonWebKey**
+**[JsonWebKey](JsonWebKey.md)**
 
 ### Authorization
 
@@ -419,12 +419,12 @@ apiInstance.deactivateIdentityProvider(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **idpId** | [**string**] |  | defaults to undefined
+**idpId** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**IdentityProvider**
+**[IdentityProvider](IdentityProvider.md)**
 
 ### Authorization
 
@@ -476,7 +476,7 @@ apiInstance.deleteIdentityProvider(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **idpId** | [**string**] |  | defaults to undefined
+**idpId** | **string** |  | defaults to undefined
 
 
 ### Return type
@@ -533,7 +533,7 @@ apiInstance.deleteIdentityProviderKey(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **keyId** | [**string**] |  | defaults to undefined
+**keyId** | **string** |  | defaults to undefined
 
 
 ### Return type
@@ -606,13 +606,13 @@ apiInstance.generateCsrForIdentityProvider(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **metadata** | **CsrMetadata**|  |
- **idpId** | [**string**] |  | defaults to undefined
+ **metadata** | **[CsrMetadata](CsrMetadata.md)** |  | 
+**idpId** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**Csr**
+**[Csr](Csr.md)**
 
 ### Authorization
 
@@ -667,13 +667,13 @@ apiInstance.generateIdentityProviderSigningKey(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **idpId** | [**string**] |  | defaults to undefined
- **validityYears** | [**number**] | expiry of the IdP Key Credential | defaults to undefined
+**idpId** | **string** |  | defaults to undefined
+**validityYears** | **number** | expiry of the IdP Key Credential | defaults to undefined
 
 
 ### Return type
 
-**JsonWebKey**
+**[JsonWebKey](JsonWebKey.md)**
 
 ### Authorization
 
@@ -727,13 +727,13 @@ apiInstance.getCsrForIdentityProvider(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **idpId** | [**string**] |  | defaults to undefined
- **csrId** | [**string**] |  | defaults to undefined
+**idpId** | **string** |  | defaults to undefined
+**csrId** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**Csr**
+**[Csr](Csr.md)**
 
 ### Authorization
 
@@ -785,12 +785,12 @@ apiInstance.getIdentityProvider(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **idpId** | [**string**] |  | defaults to undefined
+**idpId** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**IdentityProvider**
+**[IdentityProvider](IdentityProvider.md)**
 
 ### Authorization
 
@@ -844,13 +844,13 @@ apiInstance.getIdentityProviderApplicationUser(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **idpId** | [**string**] |  | defaults to undefined
- **userId** | [**string**] |  | defaults to undefined
+**idpId** | **string** |  | defaults to undefined
+**userId** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**IdentityProviderApplicationUser**
+**[IdentityProviderApplicationUser](IdentityProviderApplicationUser.md)**
 
 ### Authorization
 
@@ -902,12 +902,12 @@ apiInstance.getIdentityProviderKey(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **keyId** | [**string**] |  | defaults to undefined
+**keyId** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**JsonWebKey**
+**[JsonWebKey](JsonWebKey.md)**
 
 ### Authorization
 
@@ -961,13 +961,13 @@ apiInstance.getIdentityProviderSigningKey(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **idpId** | [**string**] |  | defaults to undefined
- **keyId** | [**string**] |  | defaults to undefined
+**idpId** | **string** |  | defaults to undefined
+**keyId** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**JsonWebKey**
+**[JsonWebKey](JsonWebKey.md)**
 
 ### Authorization
 
@@ -1025,14 +1025,14 @@ apiInstance.linkUserToIdentityProvider(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userIdentityProviderLinkRequest** | **UserIdentityProviderLinkRequest**|  |
- **idpId** | [**string**] |  | defaults to undefined
- **userId** | [**string**] |  | defaults to undefined
+ **userIdentityProviderLinkRequest** | **[UserIdentityProviderLinkRequest](UserIdentityProviderLinkRequest.md)** |  | 
+**idpId** | **string** |  | defaults to undefined
+**userId** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**IdentityProviderApplicationUser**
+**[IdentityProviderApplicationUser](IdentityProviderApplicationUser.md)**
 
 ### Authorization
 
@@ -1085,12 +1085,12 @@ apiInstance.listCsrsForIdentityProvider(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **idpId** | [**string**] |  | defaults to undefined
+**idpId** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**Array<Csr>**
+**[Array&lt;Csr&gt;](Csr.md)**
 
 ### Authorization
 
@@ -1142,12 +1142,12 @@ apiInstance.listIdentityProviderApplicationUsers(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **idpId** | [**string**] |  | defaults to undefined
+**idpId** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**Array<IdentityProviderApplicationUser>**
+**[Array&lt;IdentityProviderApplicationUser&gt;](IdentityProviderApplicationUser.md)**
 
 ### Authorization
 
@@ -1201,13 +1201,13 @@ apiInstance.listIdentityProviderKeys(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **after** | [**string**] | Specifies the pagination cursor for the next page of keys | (optional) defaults to undefined
- **limit** | [**number**] | Specifies the number of key results in a page | (optional) defaults to 20
+**after** | **string** | Specifies the pagination cursor for the next page of keys | (optional) defaults to undefined
+**limit** | **number** | Specifies the number of key results in a page | (optional) defaults to 20
 
 
 ### Return type
 
-**Array<JsonWebKey>**
+**[Array&lt;JsonWebKey&gt;](JsonWebKey.md)**
 
 ### Authorization
 
@@ -1258,12 +1258,12 @@ apiInstance.listIdentityProviderSigningKeys(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **idpId** | [**string**] |  | defaults to undefined
+**idpId** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**Array<JsonWebKey>**
+**[Array&lt;JsonWebKey&gt;](JsonWebKey.md)**
 
 ### Authorization
 
@@ -1321,15 +1321,15 @@ apiInstance.listIdentityProviders(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **q** | [**string**] | Searches the name property of IdPs for matching value | (optional) defaults to undefined
- **after** | [**string**] | Specifies the pagination cursor for the next page of IdPs | (optional) defaults to undefined
- **limit** | [**number**] | Specifies the number of IdP results in a page | (optional) defaults to 20
- **type** | [**string**] | Filters IdPs by type | (optional) defaults to undefined
+**q** | **string** | Searches the name property of IdPs for matching value | (optional) defaults to undefined
+**after** | **string** | Specifies the pagination cursor for the next page of IdPs | (optional) defaults to undefined
+**limit** | **number** | Specifies the number of IdP results in a page | (optional) defaults to 20
+**type** | **string** | Filters IdPs by type | (optional) defaults to undefined
 
 
 ### Return type
 
-**Array<IdentityProvider>**
+**[Array&lt;IdentityProvider&gt;](IdentityProvider.md)**
 
 ### Authorization
 
@@ -1382,13 +1382,13 @@ apiInstance.listSocialAuthTokens(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **idpId** | [**string**] |  | defaults to undefined
- **userId** | [**string**] |  | defaults to undefined
+**idpId** | **string** |  | defaults to undefined
+**userId** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**Array<SocialAuthToken>**
+**[Array&lt;SocialAuthToken&gt;](SocialAuthToken.md)**
 
 ### Authorization
 
@@ -1444,14 +1444,14 @@ apiInstance.publishCsrForIdentityProvider(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | **HttpFile**|  |
- **idpId** | [**string**] |  | defaults to undefined
- **csrId** | [**string**] |  | defaults to undefined
+ **body** | **HttpFile** |  | 
+**idpId** | **string** |  | defaults to undefined
+**csrId** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**JsonWebKey**
+**[JsonWebKey](JsonWebKey.md)**
 
 ### Authorization
 
@@ -1506,8 +1506,8 @@ apiInstance.revokeCsrForIdentityProvider(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **idpId** | [**string**] |  | defaults to undefined
- **csrId** | [**string**] |  | defaults to undefined
+**idpId** | **string** |  | defaults to undefined
+**csrId** | **string** |  | defaults to undefined
 
 
 ### Return type
@@ -1566,8 +1566,8 @@ apiInstance.unlinkUserFromIdentityProvider(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **idpId** | [**string**] |  | defaults to undefined
- **userId** | [**string**] |  | defaults to undefined
+**idpId** | **string** |  | defaults to undefined
+**userId** | **string** |  | defaults to undefined
 
 
 ### Return type
@@ -1730,13 +1730,13 @@ apiInstance.updateIdentityProvider(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **identityProvider** | **IdentityProvider**|  |
- **idpId** | [**string**] |  | defaults to undefined
+ **identityProvider** | **[IdentityProvider](IdentityProvider.md)** |  | 
+**idpId** | **string** |  | defaults to undefined
 
 
 ### Return type
 
-**IdentityProvider**
+**[IdentityProvider](IdentityProvider.md)**
 
 ### Authorization
 
