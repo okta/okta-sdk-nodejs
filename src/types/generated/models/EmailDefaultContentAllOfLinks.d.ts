@@ -12,7 +12,7 @@
 
 
 /**
- * Okta API
+ * Okta Management APIs
  * Allows customers to easily access the Okta API
  *
  * OpenAPI spec version: 3.0.0
@@ -22,7 +22,7 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { HrefObject } from './HrefObject';
+import { HrefObject } from './../models/HrefObject';
 /**
 * Links to resources related to this email template's default content.
 */

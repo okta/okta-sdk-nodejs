@@ -12,7 +12,7 @@
 
 
 /**
- * Okta API
+ * Okta Management APIs
  * Allows customers to easily access the Okta API
  *
  * OpenAPI spec version: 3.0.0

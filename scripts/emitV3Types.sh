@@ -12,7 +12,9 @@ sed -i '' '/this.providerType =/d' ./src/generated/models/*.ts
 sed -i '' '/^import { Set }/d' ./src/generated/models/*.ts
 sed -i '' '/^import { URI }/d' ./src/generated/**/*.ts
 
-
+# remove *AllOf imports
+sed -i '' "/AllOf'/d" ./src/generated/**/*.ts
+sed -i '' '/AllOf,/d' ./src/generated/**/*.ts
 ignoredFiles=()
 
 tsc --project ./src/generated/tsconfig.json
@@ -24,6 +26,10 @@ done
 
 # copy generated typings to src/types
 rsync -r --include='*.d.ts' --exclude="*.js" --exclude="*.ts" --exclude="*.md" --exclude="*.json" --exclude ".openapi-generator*" -- src/generated/ src/types/generated
+
+# move generated .md files into docs directory
+mkdir -p api-docs
+mv ./src/generated/*.md api-docs
 
 # remove non-js files from src
 find src/generated/ -type f ! -name "*.js" ! -name ".openapi-generator-ignore" ! -name "tsconfig.json" -delete
