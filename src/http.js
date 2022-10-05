@@ -127,7 +127,6 @@ class Http {
       }
 
       const ctx = {
-        uri, // TODO: remove unused property. req.url should be the key. OKTA-351525
         isCollection: context.isCollection,
         resources: context.resources,
         req: request,

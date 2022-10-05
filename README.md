@@ -679,7 +679,7 @@ const client = new okta.Client({
 
 The context contains:
 * `req` - An object containing details about the request:
-  * `uri`
+  * `url`
   * `method`
   * `body`
 * `res` - An object containing details about the response. This is the [same interface as a response you'd receive from `fetch`](https://developer.mozilla.org/en-US/docs/Web/API/Response).
