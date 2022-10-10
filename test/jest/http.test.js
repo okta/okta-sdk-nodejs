@@ -423,7 +423,6 @@ describe('Http class', () => {
           expect(http.cacheMiddleware).toHaveBeenCalledWith({
             resources: ['a', 'b'],
             isCollection: true,
-            uri: 'http://fakey.local',
             cacheStore: expect.any(Object),
             req: {
               headers: {},

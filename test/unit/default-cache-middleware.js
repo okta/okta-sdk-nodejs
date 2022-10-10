@@ -104,12 +104,12 @@ describe('Default cache middleware', function () {
     const ctx = {
       req: {
         method: 'get',
-        uri: 'http://example.com/item'
+        url: 'http://example.com/item'
       },
       cacheStore
     };
     await middleware(ctx, () => next(ctx));
-    expect(await cacheStore.get(ctx.req.uri)).to.be.undefined;
+    expect(await cacheStore.get(ctx.req.url)).to.be.undefined;
   });
 
   it('doesn\'t cache collections', async () => {
@@ -117,13 +117,13 @@ describe('Default cache middleware', function () {
     const ctx = {
       req: {
         method: 'get',
-        uri: 'http://example.com/collection'
+        url: 'http://example.com/collection'
       },
       isCollection: true,
       cacheStore
     };
     await middleware(ctx, () => next(ctx));
-    expect(await cacheStore.get(ctx.req.uri)).to.be.undefined;
+    expect(await cacheStore.get(ctx.req.url)).to.be.undefined;
   });
 
   it('removes cache for related resources on non-GET requests', async () => {
@@ -131,7 +131,7 @@ describe('Default cache middleware', function () {
     const ctx = {
       req: {
         method: 'post',
-        uri: 'http://example.com/item'
+        url: 'http://example.com/item'
       },
       resources: [
         'http://example.com/item'
@@ -139,7 +139,7 @@ describe('Default cache middleware', function () {
       cacheStore
     };
     await middleware(ctx, () => next(ctx));
-    expect(await cacheStore.get(ctx.req.uri)).to.be.undefined;
+    expect(await cacheStore.get(ctx.req.url)).to.be.undefined;
   });
 
   it('fails to clone large response using default stream buffer size (highWaterMark)', async () => {
