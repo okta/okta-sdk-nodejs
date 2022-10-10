@@ -15,6 +15,9 @@ sed -i '' '/^import { URI }/d' ./src/generated/**/*.ts
 # remove *AllOf imports
 sed -i '' "/AllOf'/d" ./src/generated/**/*.ts
 sed -i '' '/AllOf,/d' ./src/generated/**/*.ts
+find . -name '*AllOfLinks.ts' -exec bash -c ' mv $0 ${0//AllOfLinks/Links}' {} \;
+sed -i '' 's/AllOfLinks/Links/g' ./src/generated/**/*.ts
+
 ignoredFiles=()
 
 tsc --project ./src/generated/tsconfig.json
