@@ -17,6 +17,7 @@ module.exports = Object.assign(
     RequestExecutor: require('./request-executor'),
     DefaultRequestExecutor: require('./default-request-executor'),
     Collection: require('./collection'),
+    MemoryStore: require('./memory-store'),
   },
   require('./models')
 );

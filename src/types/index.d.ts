@@ -17,6 +17,7 @@ export * from './client';
 export * from './request-executor';
 export * from './default-request-executor';
 export * from './collection';
+export * from './memory-store';
 export * from './parameterized-operations-client';
 export * from './request-options/AutoLoginApplicationOptions';
 export * from './request-options/BasicAuthApplicationOptions';
