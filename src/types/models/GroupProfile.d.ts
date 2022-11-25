@@ -14,6 +14,7 @@
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
 import { Resource } from '../resource';
+import { CustomAttributeValue } from '../custom-attributes';
 import { Client } from '../client';
 import { OptionalKnownProperties } from '../optional-known-properties-type';
 
@@ -23,6 +24,7 @@ declare class GroupProfile extends Resource {
 
   description: string;
   name: string;
+  [key: string]: CustomAttributeValue | CustomAttributeValue[]
 
 }
 
