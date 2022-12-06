@@ -1,6 +1,6 @@
 # Okta Node SDK Changelog
 
-# 6.5.1
+# 6.6.0
 
 ### Bug Fixes
 
