@@ -16,7 +16,7 @@ const client = new Client({
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
   requestExecutor: new DefaultRequestExecutor(),
-  cacheMiddleware: new MemoryStore(),
+  cacheStore: new MemoryStore(),
 });
 
 describe('App User Schema', () => {
