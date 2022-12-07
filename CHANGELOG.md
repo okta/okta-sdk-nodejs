@@ -1,5 +1,12 @@
 # Okta Node SDK Changelog
 
+# 6.6.0
+
+### Bug Fixes
+
+- [#329](https://github.com/okta/okta-sdk-nodejs/pull/360) Fixes path and type signature issues for MemoryStore.
+
+
 # 6.5.0
 
 ### Features

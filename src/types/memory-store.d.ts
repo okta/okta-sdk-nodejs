@@ -12,7 +12,7 @@
 
 /** Interface methods required for cache storage implementations. */
 export interface CacheStorage {
-  get(key: string): Promise<string>;
+  get(key: string): Promise<string | undefined>;
   set(key: string, value: string, options?: Record<string, string | number>): Promise<string>;
   delete(key: string): Promise<void>;
 }
@@ -26,7 +26,7 @@ export declare class MemoryStore implements CacheStorage {
   _keyLimit: number;
   _store: Map<string, unknown>;
   _interval: NodeJS.Timeout;
-  get(key: string): Promise<string>;
+  get(key: string): Promise<string | undefined>;
   set(key: string, string: string, options?: {ttl: number }): Promise<string>;
   delete(key: string): Promise<void>;
 }

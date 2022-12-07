@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 
 import utils = require('../utils');
-import { Client, BookmarkApplication, UserSchema, DefaultRequestExecutor } from '@okta/okta-sdk-nodejs';
+import { Client, BookmarkApplication, UserSchema, DefaultRequestExecutor, MemoryStore } from '@okta/okta-sdk-nodejs';
 import getMockSchemaProperty = require('./mocks/user-schema-property');
 
 
@@ -15,7 +15,8 @@ const client = new Client({
   scopes: ['okta.schemas.read', 'okta.schemas.manage'],
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
-  requestExecutor: new DefaultRequestExecutor()
+  requestExecutor: new DefaultRequestExecutor(),
+  cacheStore: new MemoryStore(),
 });
 
 describe('App User Schema', () => {

@@ -586,7 +586,7 @@ To prevent this behavior, and instead remove expired values from memory proactiv
 
 ```javascript
 const okta = require('@okta/okta-sdk-nodejs');
-const MemoryStore = require('@okta/okta-sdk-nodejs/src/memory-store');
+const MemoryStore = okta.MemoryStore;
 
 const client = new okta.Client({
   orgUrl: 'https://dev-1234.oktapreview.com/',
