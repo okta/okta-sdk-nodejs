@@ -14,6 +14,7 @@
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
 import { Resource } from '../resource';
+import { CustomAttributeValue } from '../custom-attributes';
 import { Client } from '../client';
 import { OptionalKnownProperties } from '../optional-known-properties-type';
 
@@ -52,6 +53,7 @@ declare class UserProfile extends Resource {
   title: string;
   userType: string;
   zipCode: string;
+  [key: string]: CustomAttributeValue | CustomAttributeValue[]
 
 }
 

@@ -6,6 +6,9 @@ import { {{extends}} } from './{{extends}}';
 {{else}}
 import { Resource } from '../resource';
 {{/if}}
+{{#if this.isExtensible}}
+import { CustomAttributeValue } from '../custom-attributes';
+{{/if}}
 import { Client } from '../client';
 {{#if (shouldGenerateOptionsType modelName)}}
 {{#if properties.length}}
@@ -36,6 +39,9 @@ declare class {{modelName}} extends Resource {
 {{/if}}
 {{/unless}}
 {{/each}}
+{{#if this.isExtensible}}
+  [key: string]: CustomAttributeValue | CustomAttributeValue[]
+{{/if}}
 
   {{#each crud}}
   {{#if (eq alias 'update')}}

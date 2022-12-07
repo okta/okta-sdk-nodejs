@@ -14,12 +14,14 @@
 /* THIS FILE IS AUTO-GENERATED - SEE CONTRIBUTOR DOCUMENTATION */
 
 import { Resource } from '../resource';
+import { CustomAttributeValue } from '../custom-attributes';
 import { Client } from '../client';
 
 
 declare class SmsTemplateTranslations extends Resource {
   constructor(resourceJson: Record<string, unknown>, client: Client);
 
+  [key: string]: CustomAttributeValue | CustomAttributeValue[]
 
 }
 
