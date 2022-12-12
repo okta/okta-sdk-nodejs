@@ -481,6 +481,7 @@ function getV3MethodName(v2OperationId) {
     publishDerCertForIdentityProvider: 'publishCsrForIdentityProvider',
     publishBinaryDerCertForIdentityProvider: 'publishCsrForIdentityProvider',
     publishBinaryPemCertForIdentityProvider: 'publishCsrForIdentityProvider',
+    deactivateOrDeleteUser: 'deleteUser',
   }[v2OperationId] || v2OperationId;
 }
 

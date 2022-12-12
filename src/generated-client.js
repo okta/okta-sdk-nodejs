@@ -5424,7 +5424,7 @@ class GeneratedApiClient {
     if (queryParameters) {
       params.sendEmail = queryParameters.sendEmail;
     }
-    return this.userApi.deactivateOrDeleteUser(params);
+    return this.userApi.deleteUser(params);
   }
 
   /**
