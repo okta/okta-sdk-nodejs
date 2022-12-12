@@ -25,7 +25,7 @@ const util_1 = require('../util');
  */
 class IdentityProviderApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   /**
-     * Activates an inactive IdP.
+     * Activates an inactive IdP
      * Activate an Identity Provider
      * @param idpId
      */
@@ -45,12 +45,12 @@ class IdentityProviderApiRequestFactory extends baseapi_1.BaseAPIRequestFactory 
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -96,12 +96,12 @@ class IdentityProviderApiRequestFactory extends baseapi_1.BaseAPIRequestFactory 
     }
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -112,7 +112,7 @@ class IdentityProviderApiRequestFactory extends baseapi_1.BaseAPIRequestFactory 
     return requestContext;
   }
   /**
-     * Adds a new IdP to your organization.
+     * Creates a new identity provider integration
      * Create an Identity Provider
      * @param identityProvider
      */
@@ -137,12 +137,12 @@ class IdentityProviderApiRequestFactory extends baseapi_1.BaseAPIRequestFactory 
     requestContext.setBody(serializedBody);
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -153,7 +153,7 @@ class IdentityProviderApiRequestFactory extends baseapi_1.BaseAPIRequestFactory 
     return requestContext;
   }
   /**
-     * Adds a new X.509 certificate credential to the IdP key store.
+     * Creates a new X.509 certificate credential to the IdP key store.
      * Create an X.509 Certificate Public Key
      * @param jsonWebKey
      */
@@ -178,12 +178,12 @@ class IdentityProviderApiRequestFactory extends baseapi_1.BaseAPIRequestFactory 
     requestContext.setBody(serializedBody);
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -194,7 +194,7 @@ class IdentityProviderApiRequestFactory extends baseapi_1.BaseAPIRequestFactory 
     return requestContext;
   }
   /**
-     * Deactivates an active IdP.
+     * Deactivates an active IdP
      * Deactivate an Identity Provider
      * @param idpId
      */
@@ -214,12 +214,12 @@ class IdentityProviderApiRequestFactory extends baseapi_1.BaseAPIRequestFactory 
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -230,7 +230,7 @@ class IdentityProviderApiRequestFactory extends baseapi_1.BaseAPIRequestFactory 
     return requestContext;
   }
   /**
-     * Removes an IdP from your organization.
+     * Deletes an identity provider integration by `idpId`
      * Delete an Identity Provider
      * @param idpId
      */
@@ -250,12 +250,12 @@ class IdentityProviderApiRequestFactory extends baseapi_1.BaseAPIRequestFactory 
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -266,7 +266,7 @@ class IdentityProviderApiRequestFactory extends baseapi_1.BaseAPIRequestFactory 
     return requestContext;
   }
   /**
-     * Deletes a specific IdP Key Credential by `kid` if it is not currently being used by an Active or Inactive IdP.
+     * Deletes a specific IdP Key Credential by `kid` if it is not currently being used by an Active or Inactive IdP
      * Delete a Signing Credential Key
      * @param keyId
      */
@@ -286,12 +286,12 @@ class IdentityProviderApiRequestFactory extends baseapi_1.BaseAPIRequestFactory 
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -302,7 +302,7 @@ class IdentityProviderApiRequestFactory extends baseapi_1.BaseAPIRequestFactory 
     return requestContext;
   }
   /**
-     * Generates a new key pair and returns a Certificate Signing Request for it.
+     * Generates a new key pair and returns a Certificate Signing Request for it
      * Generate a Certificate Signing Request
      * @param idpId
      * @param metadata
@@ -335,12 +335,12 @@ class IdentityProviderApiRequestFactory extends baseapi_1.BaseAPIRequestFactory 
     requestContext.setBody(serializedBody);
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -380,12 +380,12 @@ class IdentityProviderApiRequestFactory extends baseapi_1.BaseAPIRequestFactory 
     }
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -396,7 +396,7 @@ class IdentityProviderApiRequestFactory extends baseapi_1.BaseAPIRequestFactory 
     return requestContext;
   }
   /**
-     * Gets a specific Certificate Signing Request model by id
+     * Retrieves a specific Certificate Signing Request model by id
      * Retrieve a Certificate Signing Request
      * @param idpId
      * @param csrId
@@ -422,12 +422,12 @@ class IdentityProviderApiRequestFactory extends baseapi_1.BaseAPIRequestFactory 
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -438,7 +438,7 @@ class IdentityProviderApiRequestFactory extends baseapi_1.BaseAPIRequestFactory 
     return requestContext;
   }
   /**
-     * Fetches an IdP by `id`.
+     * Retrieves an identity provider integration by `idpId`
      * Retrieve an Identity Provider
      * @param idpId
      */
@@ -458,12 +458,12 @@ class IdentityProviderApiRequestFactory extends baseapi_1.BaseAPIRequestFactory 
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -474,7 +474,7 @@ class IdentityProviderApiRequestFactory extends baseapi_1.BaseAPIRequestFactory 
     return requestContext;
   }
   /**
-     * Fetches a linked IdP user by ID
+     * Retrieves a linked IdP user by ID
      * Retrieve a User
      * @param idpId
      * @param userId
@@ -500,12 +500,12 @@ class IdentityProviderApiRequestFactory extends baseapi_1.BaseAPIRequestFactory 
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -516,7 +516,7 @@ class IdentityProviderApiRequestFactory extends baseapi_1.BaseAPIRequestFactory 
     return requestContext;
   }
   /**
-     * Gets a specific IdP Key Credential by `kid`
+     * Retrieves a specific IdP Key Credential by `kid`
      * Retrieve an Credential Key
      * @param keyId
      */
@@ -536,12 +536,12 @@ class IdentityProviderApiRequestFactory extends baseapi_1.BaseAPIRequestFactory 
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -552,7 +552,7 @@ class IdentityProviderApiRequestFactory extends baseapi_1.BaseAPIRequestFactory 
     return requestContext;
   }
   /**
-     * Gets a specific IdP Key Credential by `kid`
+     * Retrieves a specific IdP Key Credential by `kid`
      * Retrieve a Signing Credential Key
      * @param idpId
      * @param keyId
@@ -578,12 +578,12 @@ class IdentityProviderApiRequestFactory extends baseapi_1.BaseAPIRequestFactory 
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -633,12 +633,12 @@ class IdentityProviderApiRequestFactory extends baseapi_1.BaseAPIRequestFactory 
     requestContext.setBody(serializedBody);
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -649,7 +649,7 @@ class IdentityProviderApiRequestFactory extends baseapi_1.BaseAPIRequestFactory 
     return requestContext;
   }
   /**
-     * Enumerates Certificate Signing Requests for an IdP
+     * Lists all Certificate Signing Requests for an IdP
      * List all Certificate Signing Requests
      * @param idpId
      */
@@ -669,12 +669,12 @@ class IdentityProviderApiRequestFactory extends baseapi_1.BaseAPIRequestFactory 
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -685,7 +685,7 @@ class IdentityProviderApiRequestFactory extends baseapi_1.BaseAPIRequestFactory 
     return requestContext;
   }
   /**
-     * Find all the users linked to an identity provider
+     * Lists all users linked to the identity provider
      * List all Users
      * @param idpId
      */
@@ -705,12 +705,12 @@ class IdentityProviderApiRequestFactory extends baseapi_1.BaseAPIRequestFactory 
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -721,7 +721,7 @@ class IdentityProviderApiRequestFactory extends baseapi_1.BaseAPIRequestFactory 
     return requestContext;
   }
   /**
-     * Enumerates IdP key credentials.
+     * Lists all IdP key credentials
      * List all Credential Keys
      * @param after Specifies the pagination cursor for the next page of keys
      * @param limit Specifies the number of key results in a page
@@ -743,12 +743,12 @@ class IdentityProviderApiRequestFactory extends baseapi_1.BaseAPIRequestFactory 
     }
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -759,7 +759,7 @@ class IdentityProviderApiRequestFactory extends baseapi_1.BaseAPIRequestFactory 
     return requestContext;
   }
   /**
-     * Enumerates signing key credentials for an IdP
+     * Lists all signing key credentials for an IdP
      * List all Signing Credential Keys
      * @param idpId
      */
@@ -779,12 +779,12 @@ class IdentityProviderApiRequestFactory extends baseapi_1.BaseAPIRequestFactory 
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -795,7 +795,7 @@ class IdentityProviderApiRequestFactory extends baseapi_1.BaseAPIRequestFactory 
     return requestContext;
   }
   /**
-     * Enumerates IdPs in your organization with pagination. A subset of IdPs can be returned that match a supported filter expression or query.
+     * Lists all identity provider integrations with pagination. A subset of IdPs can be returned that match a supported filter expression or query.
      * List all Identity Providers
      * @param q Searches the name property of IdPs for matching value
      * @param after Specifies the pagination cursor for the next page of IdPs
@@ -827,12 +827,12 @@ class IdentityProviderApiRequestFactory extends baseapi_1.BaseAPIRequestFactory 
     }
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -843,7 +843,7 @@ class IdentityProviderApiRequestFactory extends baseapi_1.BaseAPIRequestFactory 
     return requestContext;
   }
   /**
-     * Fetches the tokens minted by the Social Authentication Provider when the user authenticates with Okta via Social Auth.
+     * Lists the tokens minted by the Social Authentication Provider when the user authenticates with Okta via Social Auth
      * List all Tokens from a OIDC Identity Provider
      * @param idpId
      * @param userId
@@ -869,12 +869,12 @@ class IdentityProviderApiRequestFactory extends baseapi_1.BaseAPIRequestFactory 
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -885,7 +885,7 @@ class IdentityProviderApiRequestFactory extends baseapi_1.BaseAPIRequestFactory 
     return requestContext;
   }
   /**
-     * Update the Certificate Signing Request with a signed X.509 certificate and add it into the signing key credentials for the IdP.
+     * Publishes a certificate signing request with a signed X.509 certificate and adds it into the signing key credentials for the IdP
      * Publish a Certificate Signing Request
      * @param idpId
      * @param csrId
@@ -926,12 +926,12 @@ class IdentityProviderApiRequestFactory extends baseapi_1.BaseAPIRequestFactory 
     requestContext.setBody(serializedBody);
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -942,7 +942,56 @@ class IdentityProviderApiRequestFactory extends baseapi_1.BaseAPIRequestFactory 
     return requestContext;
   }
   /**
-     * Revoke a Certificate Signing Request and delete the key pair from the IdP
+     * Replaces an identity provider integration by `idpId`
+     * Replace an Identity Provider
+     * @param idpId
+     * @param identityProvider
+     */
+  async replaceIdentityProvider(idpId, identityProvider, _options) {
+    let _config = _options || this.configuration;
+    // verify required parameter 'idpId' is not null or undefined
+    if (idpId === null || idpId === undefined) {
+      throw new baseapi_1.RequiredError('IdentityProviderApi', 'replaceIdentityProvider', 'idpId');
+    }
+    // verify required parameter 'identityProvider' is not null or undefined
+    if (identityProvider === null || identityProvider === undefined) {
+      throw new baseapi_1.RequiredError('IdentityProviderApi', 'replaceIdentityProvider', 'identityProvider');
+    }
+    // Path Params
+    const path = '/api/v1/idps/{idpId}';
+    const vars = {
+      ['idpId']: String(idpId),
+    };
+    // Make Request Context
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.PUT, vars);
+    requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
+    // Body Params
+    const [contentType, contentEncoding] = ObjectSerializer_1.ObjectSerializer.getPreferredMediaTypeAndEncoding([
+      'application/json'
+    ], identityProvider);
+    requestContext.setHeaderParam('Content-Type', contentType);
+    requestContext.setHeaderParam('Content-Transfer-Encoding', contentEncoding);
+    const serializedBody = ObjectSerializer_1.ObjectSerializer.stringify(ObjectSerializer_1.ObjectSerializer.serialize(identityProvider, 'IdentityProvider', ''), contentType);
+    requestContext.setBody(serializedBody);
+    let authMethod;
+    // Apply auth methods
+    authMethod = _config.authMethods['apiToken'];
+    if (authMethod?.applySecurityAuthentication) {
+      await authMethod?.applySecurityAuthentication(requestContext);
+    }
+    // Apply auth methods
+    authMethod = _config.authMethods['oauth2'];
+    if (authMethod?.applySecurityAuthentication) {
+      await authMethod?.applySecurityAuthentication(requestContext);
+    }
+    const defaultAuth = _options?.authMethods?.default || this.configuration?.authMethods?.default;
+    if (defaultAuth?.applySecurityAuthentication) {
+      await defaultAuth?.applySecurityAuthentication(requestContext);
+    }
+    return requestContext;
+  }
+  /**
+     * Revokes a certificate signing request and deletes the key pair from the IdP
      * Revoke a Certificate Signing Request
      * @param idpId
      * @param csrId
@@ -968,12 +1017,12 @@ class IdentityProviderApiRequestFactory extends baseapi_1.BaseAPIRequestFactory 
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -984,7 +1033,7 @@ class IdentityProviderApiRequestFactory extends baseapi_1.BaseAPIRequestFactory 
     return requestContext;
   }
   /**
-     * Removes the link between the Okta user and the IdP user.
+     * Unlinks the link between the Okta user and the IdP user
      * Unlink a User from IdP
      * @param idpId
      * @param userId
@@ -1010,61 +1059,12 @@ class IdentityProviderApiRequestFactory extends baseapi_1.BaseAPIRequestFactory 
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
-    if (authMethod?.applySecurityAuthentication) {
-      await authMethod?.applySecurityAuthentication(requestContext);
-    }
-    const defaultAuth = _options?.authMethods?.default || this.configuration?.authMethods?.default;
-    if (defaultAuth?.applySecurityAuthentication) {
-      await defaultAuth?.applySecurityAuthentication(requestContext);
-    }
-    return requestContext;
-  }
-  /**
-     * Updates the configuration for an IdP.
-     * Replace an Identity Provider
-     * @param idpId
-     * @param identityProvider
-     */
-  async updateIdentityProvider(idpId, identityProvider, _options) {
-    let _config = _options || this.configuration;
-    // verify required parameter 'idpId' is not null or undefined
-    if (idpId === null || idpId === undefined) {
-      throw new baseapi_1.RequiredError('IdentityProviderApi', 'updateIdentityProvider', 'idpId');
-    }
-    // verify required parameter 'identityProvider' is not null or undefined
-    if (identityProvider === null || identityProvider === undefined) {
-      throw new baseapi_1.RequiredError('IdentityProviderApi', 'updateIdentityProvider', 'identityProvider');
-    }
-    // Path Params
-    const path = '/api/v1/idps/{idpId}';
-    const vars = {
-      ['idpId']: String(idpId),
-    };
-    // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.PUT, vars);
-    requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
-    // Body Params
-    const [contentType, contentEncoding] = ObjectSerializer_1.ObjectSerializer.getPreferredMediaTypeAndEncoding([
-      'application/json'
-    ], identityProvider);
-    requestContext.setHeaderParam('Content-Type', contentType);
-    requestContext.setHeaderParam('Content-Transfer-Encoding', contentEncoding);
-    const serializedBody = ObjectSerializer_1.ObjectSerializer.stringify(ObjectSerializer_1.ObjectSerializer.serialize(identityProvider, 'IdentityProvider', ''), contentType);
-    requestContext.setBody(serializedBody);
-    let authMethod;
-    // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
-    if (authMethod?.applySecurityAuthentication) {
-      await authMethod?.applySecurityAuthentication(requestContext);
-    }
-    // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -1787,6 +1787,42 @@ class IdentityProviderApiResponseProcessor {
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
+     * @params response Response returned by the server for a request to replaceIdentityProvider
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+  async replaceIdentityProvider(response) {
+    const contentType = ObjectSerializer_1.ObjectSerializer.normalizeMediaType(response.headers['content-type']);
+    if ((0, util_1.isCodeInRange)('200', response.httpStatusCode)) {
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'IdentityProvider', '');
+      return body;
+    }
+    if ((0, util_1.isCodeInRange)('400', response.httpStatusCode)) {
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      throw new exception_1.ApiException(400, 'Bad Request', body, response.headers);
+    }
+    if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      throw new exception_1.ApiException(403, 'Forbidden', body, response.headers);
+    }
+    if ((0, util_1.isCodeInRange)('404', response.httpStatusCode)) {
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      throw new exception_1.ApiException(404, 'Not Found', body, response.headers);
+    }
+    if ((0, util_1.isCodeInRange)('429', response.httpStatusCode)) {
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      throw new exception_1.ApiException(429, 'Too Many Requests', body, response.headers);
+    }
+    // Work around for missing responses in specification, e.g. for petstore.yaml
+    if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'IdentityProvider', '');
+      return body;
+    }
+    throw new exception_1.ApiException(response.httpStatusCode, 'Unknown API Status Code!', await response.getBodyAsAny(), response.headers);
+  }
+  /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
      * @params response Response returned by the server for a request to revokeCsrForIdentityProvider
      * @throws ApiException if the response code was not in [200, 299]
      */
@@ -1841,42 +1877,6 @@ class IdentityProviderApiResponseProcessor {
     // Work around for missing responses in specification, e.g. for petstore.yaml
     if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
       const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'void', '');
-      return body;
-    }
-    throw new exception_1.ApiException(response.httpStatusCode, 'Unknown API Status Code!', await response.getBodyAsAny(), response.headers);
-  }
-  /**
-     * Unwraps the actual response sent by the server from the response context and deserializes the response content
-     * to the expected objects
-     *
-     * @params response Response returned by the server for a request to updateIdentityProvider
-     * @throws ApiException if the response code was not in [200, 299]
-     */
-  async updateIdentityProvider(response) {
-    const contentType = ObjectSerializer_1.ObjectSerializer.normalizeMediaType(response.headers['content-type']);
-    if ((0, util_1.isCodeInRange)('200', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'IdentityProvider', '');
-      return body;
-    }
-    if ((0, util_1.isCodeInRange)('400', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
-      throw new exception_1.ApiException(400, 'Bad Request', body, response.headers);
-    }
-    if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
-      throw new exception_1.ApiException(403, 'Forbidden', body, response.headers);
-    }
-    if ((0, util_1.isCodeInRange)('404', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
-      throw new exception_1.ApiException(404, 'Not Found', body, response.headers);
-    }
-    if ((0, util_1.isCodeInRange)('429', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
-      throw new exception_1.ApiException(429, 'Too Many Requests', body, response.headers);
-    }
-    // Work around for missing responses in specification, e.g. for petstore.yaml
-    if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'IdentityProvider', '');
       return body;
     }
     throw new exception_1.ApiException(response.httpStatusCode, 'Unknown API Status Code!', await response.getBodyAsAny(), response.headers);

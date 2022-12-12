@@ -31,17 +31,32 @@ import { ProvisioningConnectionRequest } from '../models/ProvisioningConnectionR
  */
 export declare class ApplicationApiRequestFactory extends BaseAPIRequestFactory {
   /**
-     * Activates an inactive application.
+     * Activates an inactive application
      * Activate an Application
      * @param appId
      */
   activateApplication(appId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Activates the default Provisioning Connection for an application.
+     * Activates the default Provisioning Connection for an application
      * Activate the default Provisioning Connection
      * @param appId
      */
   activateDefaultProvisioningConnectionForApplication(appId: string, _options?: Configuration): Promise<RequestContext>;
+  /**
+     * Assigns an application to a policy identified by `policyId`. If the application was previously assigned to another policy, this removes that assignment.
+     * Assign an Application to a Policy
+     * @param appId
+     * @param policyId
+     */
+  assignApplicationPolicy(appId: string, policyId: string, _options?: Configuration): Promise<RequestContext>;
+  /**
+     * Assigns a group to an application
+     * Assign a Group
+     * @param appId
+     * @param groupId
+     * @param applicationGroupAssignment
+     */
+  assignGroupToApplication(appId: string, groupId: string, applicationGroupAssignment?: ApplicationGroupAssignment, _options?: Configuration): Promise<RequestContext>;
   /**
      * Assigns an user to an application with [credentials](#application-user-credentials-object) and an app-specific [profile](#application-user-profile-object). Profile mappings defined for the application are first applied before applying any profile properties specified in the request.
      * Assign a User
@@ -58,7 +73,7 @@ export declare class ApplicationApiRequestFactory extends BaseAPIRequestFactory 
      */
   cloneApplicationKey(appId: string, keyId: string, targetAid: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Adds a new application to your Okta organization.
+     * Creates a new application to your Okta organization
      * Create an Application
      * @param application
      * @param activate Executes activation lifecycle operation when creating the app
@@ -66,46 +81,23 @@ export declare class ApplicationApiRequestFactory extends BaseAPIRequestFactory 
      */
   createApplication(application: Application, activate?: boolean, OktaAccessGateway_Agent?: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Assigns a group to an application
-     * Assign a Group
-     * @param appId
-     * @param groupId
-     * @param applicationGroupAssignment
-     */
-  createApplicationGroupAssignment(appId: string, groupId: string, applicationGroupAssignment?: ApplicationGroupAssignment, _options?: Configuration): Promise<RequestContext>;
-  /**
-     * Deactivates an active application.
+     * Deactivates an active application
      * Deactivate an Application
      * @param appId
      */
   deactivateApplication(appId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Deactivates the default Provisioning Connection for an application.
+     * Deactivates the default Provisioning Connection for an application
      * Deactivate the default Provisioning Connection for an Application
      * @param appId
      */
   deactivateDefaultProvisioningConnectionForApplication(appId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Removes an inactive application.
+     * Deletes an inactive application
      * Delete an Application
      * @param appId
      */
   deleteApplication(appId: string, _options?: Configuration): Promise<RequestContext>;
-  /**
-     * Removes a group assignment from an application.
-     * Unassign a Group
-     * @param appId
-     * @param groupId
-     */
-  deleteApplicationGroupAssignment(appId: string, groupId: string, _options?: Configuration): Promise<RequestContext>;
-  /**
-     * Removes an assignment for a user from an application.
-     * Unassign a User
-     * @param appId
-     * @param userId
-     * @param sendEmail
-     */
-  deleteApplicationUser(appId: string, userId: string, sendEmail?: boolean, _options?: Configuration): Promise<RequestContext>;
   /**
      * Generates a new X.509 certificate for an application key credential
      * Generate a Key Credential
@@ -114,21 +106,21 @@ export declare class ApplicationApiRequestFactory extends BaseAPIRequestFactory 
      */
   generateApplicationKey(appId: string, validityYears?: number, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Generates a new key pair and returns the Certificate Signing Request for it.
+     * Generates a new key pair and returns the Certificate Signing Request for it
      * Generate a Certificate Signing Request
      * @param appId
      * @param metadata
      */
   generateCsrForApplication(appId: string, metadata: CsrMetadata, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Fetches an application from your Okta organization by `id`.
+     * Retrieves an application from your Okta organization by `id`
      * Retrieve an Application
      * @param appId
      * @param expand
      */
   getApplication(appId: string, expand?: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Fetches an application group assignment
+     * Retrieves an application group assignment
      * Retrieve an Assigned Group
      * @param appId
      * @param groupId
@@ -136,14 +128,14 @@ export declare class ApplicationApiRequestFactory extends BaseAPIRequestFactory 
      */
   getApplicationGroupAssignment(appId: string, groupId: string, expand?: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Gets a specific application key credential by kid
+     * Retrieves a specific application key credential by kid
      * Retrieve a Key Credential
      * @param appId
      * @param keyId
      */
   getApplicationKey(appId: string, keyId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Fetches a specific user assignment for application by `id`.
+     * Retrieves a specific user assignment for application by `id`
      * Retrieve an Assigned User
      * @param appId
      * @param userId
@@ -151,27 +143,27 @@ export declare class ApplicationApiRequestFactory extends BaseAPIRequestFactory 
      */
   getApplicationUser(appId: string, userId: string, expand?: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Fetches a certificate signing request for the app by `id`.
+     * Retrieves a certificate signing request for the app by `id`
      * Retrieve a Certificate Signing Request
      * @param appId
      * @param csrId
      */
   getCsrForApplication(appId: string, csrId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Get default Provisioning Connection for application
+     * Retrieves the default Provisioning Connection for application
      * Retrieve the default Provisioning Connection
      * @param appId
      */
   getDefaultProvisioningConnectionForApplication(appId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Fetches a Feature object for an application.
+     * Retrieves a Feature object for an application
      * Retrieve a Feature
      * @param appId
      * @param name
      */
   getFeatureForApplication(appId: string, name: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Gets a token for the specified application
+     * Retrieves a token for the specified application
      * Retrieve an OAuth 2.0 Token
      * @param appId
      * @param tokenId
@@ -179,7 +171,7 @@ export declare class ApplicationApiRequestFactory extends BaseAPIRequestFactory 
      */
   getOAuth2TokenForApplication(appId: string, tokenId: string, expand?: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Fetches a single scope consent grant for the application
+     * Retrieves a single scope consent grant for the application
      * Retrieve a Scope Consent Grant
      * @param appId
      * @param grantId
@@ -194,7 +186,7 @@ export declare class ApplicationApiRequestFactory extends BaseAPIRequestFactory 
      */
   grantConsentToScope(appId: string, oAuth2ScopeConsentGrant: OAuth2ScopeConsentGrant, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Enumerates group assignments for an application.
+     * Lists all group assignments for an application
      * List all Assigned Groups
      * @param appId
      * @param q
@@ -204,13 +196,13 @@ export declare class ApplicationApiRequestFactory extends BaseAPIRequestFactory 
      */
   listApplicationGroupAssignments(appId: string, q?: string, after?: string, limit?: number, expand?: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Enumerates key credentials for an application
+     * Lists all key credentials for an application
      * List all Key Credentials
      * @param appId
      */
   listApplicationKeys(appId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Enumerates all assigned [application users](#application-user-model) for an application.
+     * Lists all assigned [application users](#application-user-model) for an application
      * List all Assigned Users
      * @param appId
      * @param q
@@ -222,7 +214,7 @@ export declare class ApplicationApiRequestFactory extends BaseAPIRequestFactory 
      */
   listApplicationUsers(appId: string, q?: string, query_scope?: string, after?: string, limit?: number, filter?: string, expand?: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Enumerates apps added to your organization with pagination. A subset of apps can be returned that match a supported filter expression or query.
+     * Lists all applications with pagination. A subset of apps can be returned that match a supported filter expression or query.
      * List all Applications
      * @param q
      * @param after Specifies the pagination cursor for the next page of apps
@@ -233,13 +225,13 @@ export declare class ApplicationApiRequestFactory extends BaseAPIRequestFactory 
      */
   listApplications(q?: string, after?: string, limit?: number, filter?: string, expand?: string, includeNonDeleted?: boolean, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Enumerates Certificate Signing Requests for an application
+     * Lists all Certificate Signing Requests for an application
      * List all Certificate Signing Requests
      * @param appId
      */
   listCsrsForApplication(appId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * List Features for application
+     * Lists all features for an application
      * List all Features
      * @param appId
      */
@@ -261,7 +253,7 @@ export declare class ApplicationApiRequestFactory extends BaseAPIRequestFactory 
      */
   listScopeConsentGrants(appId: string, expand?: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Updates a certificate signing request for the app with a signed X.509 certificate and adds it into the application key credentials
+     * Publishes a certificate signing request for the app with a signed X.509 certificate and adds it into the application key credentials
      * Publish a Certificate Signing Request
      * @param appId
      * @param csrId
@@ -269,7 +261,14 @@ export declare class ApplicationApiRequestFactory extends BaseAPIRequestFactory 
      */
   publishCsrFromApplication(appId: string, csrId: string, body: HttpFile, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Revokes a certificate signing request and deletes the key pair from the application.
+     * Replaces an application
+     * Replace an Application
+     * @param appId
+     * @param application
+     */
+  replaceApplication(appId: string, application: Application, _options?: Configuration): Promise<RequestContext>;
+  /**
+     * Revokes a certificate signing request and deletes the key pair from the application
      * Revoke a Certificate Signing Request
      * @param appId
      * @param csrId
@@ -296,20 +295,20 @@ export declare class ApplicationApiRequestFactory extends BaseAPIRequestFactory 
      */
   revokeScopeConsentGrant(appId: string, grantId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Set default Provisioning Connection for application
-     * Update the default Provisioning Connection
+     * Unassigns a group from an application
+     * Unassign a Group
      * @param appId
-     * @param ProvisioningConnectionRequest
-     * @param activate
+     * @param groupId
      */
-  setDefaultProvisioningConnectionForApplication(appId: string, ProvisioningConnectionRequest: ProvisioningConnectionRequest, activate?: boolean, _options?: Configuration): Promise<RequestContext>;
+  unassignApplicationFromGroup(appId: string, groupId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Updates an application in your organization.
-     * Replace an Application
+     * Unassigns a user from an application
+     * Unassign a User
      * @param appId
-     * @param application
+     * @param userId
+     * @param sendEmail
      */
-  updateApplication(appId: string, application: Application, _options?: Configuration): Promise<RequestContext>;
+  unassignUserFromApplication(appId: string, userId: string, sendEmail?: boolean, _options?: Configuration): Promise<RequestContext>;
   /**
      * Updates a user's profile for an application
      * Update an Application Profile for Assigned User
@@ -319,7 +318,15 @@ export declare class ApplicationApiRequestFactory extends BaseAPIRequestFactory 
      */
   updateApplicationUser(appId: string, userId: string, appUser: AppUser, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Updates a Feature object for an application.
+     * Updates the default provisioning connection for application
+     * Update the default Provisioning Connection
+     * @param appId
+     * @param ProvisioningConnectionRequest
+     * @param activate
+     */
+  updateDefaultProvisioningConnectionForApplication(appId: string, ProvisioningConnectionRequest: ProvisioningConnectionRequest, activate?: boolean, _options?: Configuration): Promise<RequestContext>;
+  /**
+     * Updates a Feature object for an application
      * Update a Feature
      * @param appId
      * @param name
@@ -327,7 +334,7 @@ export declare class ApplicationApiRequestFactory extends BaseAPIRequestFactory 
      */
   updateFeatureForApplication(appId: string, name: string, CapabilitiesObject: CapabilitiesObject, _options?: Configuration): Promise<RequestContext>;
   /**
-     * The file must be in PNG, JPG, or GIF format, and less than 1 MB in size. For best results use landscape orientation, a transparent background, and a minimum size of 420px by 120px to prevent upscaling.
+     * Uploads a logo for the application. The file must be in PNG, JPG, or GIF format, and less than 1 MB in size. For best results use landscape orientation, a transparent background, and a minimum size of 420px by 120px to prevent upscaling.
      * Upload a Logo
      * @param appId
      * @param file
@@ -351,6 +358,22 @@ export declare class ApplicationApiResponseProcessor {
      * @throws ApiException if the response code was not in [200, 299]
      */
   activateDefaultProvisioningConnectionForApplication(response: ResponseContext): Promise<void>;
+  /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
+     * @params response Response returned by the server for a request to assignApplicationPolicy
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+  assignApplicationPolicy(response: ResponseContext): Promise<void>;
+  /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
+     * @params response Response returned by the server for a request to assignGroupToApplication
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+  assignGroupToApplication(response: ResponseContext): Promise<ApplicationGroupAssignment>;
   /**
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
@@ -379,14 +402,6 @@ export declare class ApplicationApiResponseProcessor {
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
-     * @params response Response returned by the server for a request to createApplicationGroupAssignment
-     * @throws ApiException if the response code was not in [200, 299]
-     */
-  createApplicationGroupAssignment(response: ResponseContext): Promise<ApplicationGroupAssignment>;
-  /**
-     * Unwraps the actual response sent by the server from the response context and deserializes the response content
-     * to the expected objects
-     *
      * @params response Response returned by the server for a request to deactivateApplication
      * @throws ApiException if the response code was not in [200, 299]
      */
@@ -407,22 +422,6 @@ export declare class ApplicationApiResponseProcessor {
      * @throws ApiException if the response code was not in [200, 299]
      */
   deleteApplication(response: ResponseContext): Promise<void>;
-  /**
-     * Unwraps the actual response sent by the server from the response context and deserializes the response content
-     * to the expected objects
-     *
-     * @params response Response returned by the server for a request to deleteApplicationGroupAssignment
-     * @throws ApiException if the response code was not in [200, 299]
-     */
-  deleteApplicationGroupAssignment(response: ResponseContext): Promise<void>;
-  /**
-     * Unwraps the actual response sent by the server from the response context and deserializes the response content
-     * to the expected objects
-     *
-     * @params response Response returned by the server for a request to deleteApplicationUser
-     * @throws ApiException if the response code was not in [200, 299]
-     */
-  deleteApplicationUser(response: ResponseContext): Promise<void>;
   /**
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
@@ -595,6 +594,14 @@ export declare class ApplicationApiResponseProcessor {
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
+     * @params response Response returned by the server for a request to replaceApplication
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+  replaceApplication(response: ResponseContext): Promise<Application>;
+  /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
      * @params response Response returned by the server for a request to revokeCsrFromApplication
      * @throws ApiException if the response code was not in [200, 299]
      */
@@ -627,18 +634,18 @@ export declare class ApplicationApiResponseProcessor {
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
-     * @params response Response returned by the server for a request to setDefaultProvisioningConnectionForApplication
+     * @params response Response returned by the server for a request to unassignApplicationFromGroup
      * @throws ApiException if the response code was not in [200, 299]
      */
-  setDefaultProvisioningConnectionForApplication(response: ResponseContext): Promise<ProvisioningConnection>;
+  unassignApplicationFromGroup(response: ResponseContext): Promise<void>;
   /**
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
-     * @params response Response returned by the server for a request to updateApplication
+     * @params response Response returned by the server for a request to unassignUserFromApplication
      * @throws ApiException if the response code was not in [200, 299]
      */
-  updateApplication(response: ResponseContext): Promise<Application>;
+  unassignUserFromApplication(response: ResponseContext): Promise<void>;
   /**
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
@@ -647,6 +654,14 @@ export declare class ApplicationApiResponseProcessor {
      * @throws ApiException if the response code was not in [200, 299]
      */
   updateApplicationUser(response: ResponseContext): Promise<AppUser>;
+  /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
+     * @params response Response returned by the server for a request to updateDefaultProvisioningConnectionForApplication
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+  updateDefaultProvisioningConnectionForApplication(response: ResponseContext): Promise<ProvisioningConnection>;
   /**
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects

@@ -13,7 +13,7 @@
 
 'use strict';
 Object.defineProperty(exports, '__esModule', { value: true });
-exports.ObservableUserTypeApi = exports.ObservableUserFactorApi = exports.ObservableUserApi = exports.ObservableTrustedOriginApi = exports.ObservableThreatInsightApi = exports.ObservableTemplateApi = exports.ObservableSystemLogApi = exports.ObservableSubscriptionApi = exports.ObservableSessionApi = exports.ObservableSchemaApi = exports.ObservablePushProviderApi = exports.ObservableProfileMappingApi = exports.ObservablePrincipalRateLimitApi = exports.ObservablePolicyApi = exports.ObservableOrgSettingApi = exports.ObservableNetworkZoneApi = exports.ObservableLinkedObjectApi = exports.ObservableInlineHookApi = exports.ObservableIdentityProviderApi = exports.ObservableGroupApi = exports.ObservableFeatureApi = exports.ObservableEventHookApi = exports.ObservableEmailDomainApi = exports.ObservableDomainApi = exports.ObservableDeviceAssuranceApi = exports.ObservableCustomizationApi = exports.ObservableCAPTCHAApi = exports.ObservableBehaviorApi = exports.ObservableAuthorizationServerApi = exports.ObservableAuthenticatorApi = exports.ObservableApplicationApi = exports.ObservableApiTokenApi = exports.ObservableAgentPoolsApi = void 0;
+exports.ObservableUserTypeApi = exports.ObservableUserFactorApi = exports.ObservableUserApi = exports.ObservableTrustedOriginApi = exports.ObservableThreatInsightApi = exports.ObservableTemplateApi = exports.ObservableSystemLogApi = exports.ObservableSubscriptionApi = exports.ObservableSessionApi = exports.ObservableSchemaApi = exports.ObservableRoleTargetApi = exports.ObservableRoleAssignmentApi = exports.ObservableRoleApi = exports.ObservableRiskProviderApi = exports.ObservableRiskEventApi = exports.ObservableResourceSetApi = exports.ObservableRateLimitSettingsApi = exports.ObservablePushProviderApi = exports.ObservableProfileMappingApi = exports.ObservablePrincipalRateLimitApi = exports.ObservablePolicyApi = exports.ObservableOrgSettingApi = exports.ObservableNetworkZoneApi = exports.ObservableLogStreamApi = exports.ObservableLinkedObjectApi = exports.ObservableInlineHookApi = exports.ObservableIdentitySourceApi = exports.ObservableIdentityProviderApi = exports.ObservableHookKeyApi = exports.ObservableGroupApi = exports.ObservableFeatureApi = exports.ObservableEventHookApi = exports.ObservableEmailDomainApi = exports.ObservableDeviceAssuranceApi = exports.ObservableDeviceApi = exports.ObservableCustomizationApi = exports.ObservableCustomDomainApi = exports.ObservableCAPTCHAApi = exports.ObservableBehaviorApi = exports.ObservableAuthorizationServerApi = exports.ObservableAuthenticatorApi = exports.ObservableAttackProtectionApi = exports.ObservableApplicationApi = exports.ObservableApiTokenApi = exports.ObservableAgentPoolsApi = void 0;
 const collection_1 = require('../../collection');
 const rxjsStub_1 = require('../rxjsStub');
 const rxjsStub_2 = require('../rxjsStub');
@@ -113,23 +113,7 @@ class ObservableAgentPoolsApi {
       }));
   }
   /**
-      * Fetches AgentPools based on request parameters for a given org
-      * List all Agent Pools
-      * @param limitPerPoolType Maximum number of AgentPools being returned
-      * @param poolType Agent type to search for
-      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/reference/core-okta-api/#pagination) for more information.
-      */
-  getAgentPools(limitPerPoolType, poolType, after, _options) {
-    const requestContextPromise = this.requestFactory.getAgentPools(limitPerPoolType, poolType, after, _options);
-    const modelFactory = {
-      parseResponse: (rsp) => this.responseProcessor.getAgentPools(rsp),
-    };
-    return (0, rxjsStub_1.from)(requestContextPromise).pipe((0, rxjsStub_2.mergeMap)((ctx) => {
-      return (0, rxjsStub_1.from)(Promise.resolve(new collection_1.Collection(this.configuration.httpApi, ctx.getUrl(), modelFactory, ctx)));
-    }));
-  }
-  /**
-      * Gets Agent pool update from updateId
+      * Retrieves Agent pool update from updateId
       * Retrieve an Agent Pool update by id
       * @param poolId Id of the agent pool for which the settings will apply
       * @param updateId Id of the update
@@ -151,7 +135,7 @@ class ObservableAgentPoolsApi {
       }));
   }
   /**
-      * Gets the current state of the agent pool update instance settings
+      * Retrieves the current state of the agent pool update instance settings
       * Retrieve an Agent Pool update's settings
       * @param poolId Id of the agent pool for which the settings will apply
       */
@@ -172,15 +156,31 @@ class ObservableAgentPoolsApi {
       }));
   }
   /**
-      * Gets List of Agent pool updates
+      * Lists all agent pools with pagination support
+      * List all Agent Pools
+      * @param limitPerPoolType Maximum number of AgentPools being returned
+      * @param poolType Agent type to search for
+      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](/#pagination) for more information.
+      */
+  listAgentPools(limitPerPoolType, poolType, after, _options) {
+    const requestContextPromise = this.requestFactory.listAgentPools(limitPerPoolType, poolType, after, _options);
+    const modelFactory = {
+      parseResponse: (rsp) => this.responseProcessor.listAgentPools(rsp),
+    };
+    return (0, rxjsStub_1.from)(requestContextPromise).pipe((0, rxjsStub_2.mergeMap)((ctx) => {
+      return (0, rxjsStub_1.from)(Promise.resolve(new collection_1.Collection(this.configuration.httpApi, ctx.getUrl(), modelFactory, ctx)));
+    }));
+  }
+  /**
+      * Lists all agent pool updates
       * List all Agent Pool updates
       * @param poolId Id of the agent pool for which the settings will apply
       * @param scheduled Scope the list only to scheduled or ad-hoc updates. If the parameter is not provided we will return the whole list of updates.
       */
-  getAgentPoolsUpdates(poolId, scheduled, _options) {
-    const requestContextPromise = this.requestFactory.getAgentPoolsUpdates(poolId, scheduled, _options);
+  listAgentPoolsUpdates(poolId, scheduled, _options) {
+    const requestContextPromise = this.requestFactory.listAgentPoolsUpdates(poolId, scheduled, _options);
     const modelFactory = {
-      parseResponse: (rsp) => this.responseProcessor.getAgentPoolsUpdates(rsp),
+      parseResponse: (rsp) => this.responseProcessor.listAgentPoolsUpdates(rsp),
     };
     return (0, rxjsStub_1.from)(requestContextPromise).pipe((0, rxjsStub_2.mergeMap)((ctx) => {
       return (0, rxjsStub_1.from)(Promise.resolve(new collection_1.Collection(this.configuration.httpApi, ctx.getUrl(), modelFactory, ctx)));
@@ -253,28 +253,6 @@ class ObservableAgentPoolsApi {
       }));
   }
   /**
-      * Updates Agent pool update settings
-      * Update an Agent pool update settings
-      * @param poolId Id of the agent pool for which the settings will apply
-      * @param AgentPoolUpdateSetting
-      */
-  setAgentPoolsUpdateSettings(poolId, AgentPoolUpdateSetting, _options) {
-    const requestContextPromise = this.requestFactory.setAgentPoolsUpdateSettings(poolId, AgentPoolUpdateSetting, _options);
-    // build promise chain
-    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
-    for (let middleware of this.configuration.middleware) {
-      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
-    }
-    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
-      pipe((0, rxjsStub_2.mergeMap)((response) => {
-        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
-        for (let middleware of this.configuration.middleware) {
-          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
-        }
-        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.setAgentPoolsUpdateSettings(rsp)));
-      }));
-  }
-  /**
       * Stops Agent pool update
       * Stop an Agent Pool update
       * @param poolId Id of the agent pool for which the settings will apply
@@ -319,6 +297,28 @@ class ObservableAgentPoolsApi {
         return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.updateAgentPoolsUpdate(rsp)));
       }));
   }
+  /**
+      * Updates an agent pool update settings
+      * Update an Agent Pool update settings
+      * @param poolId Id of the agent pool for which the settings will apply
+      * @param AgentPoolUpdateSetting
+      */
+  updateAgentPoolsUpdateSettings(poolId, AgentPoolUpdateSetting, _options) {
+    const requestContextPromise = this.requestFactory.updateAgentPoolsUpdateSettings(poolId, AgentPoolUpdateSetting, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.updateAgentPoolsUpdateSettings(rsp)));
+      }));
+  }
 }
 exports.ObservableAgentPoolsApi = ObservableAgentPoolsApi;
 const ApiTokenApi_1 = require('../apis/ApiTokenApi');
@@ -329,7 +329,7 @@ class ObservableApiTokenApi {
     this.responseProcessor = responseProcessor || new ApiTokenApi_1.ApiTokenApiResponseProcessor();
   }
   /**
-      * Get the metadata for an active API token by id.
+      * Retrieves the metadata for an active API token by id
       * Retrieve an API Token's Metadata
       * @param apiTokenId id of the API Token
       */
@@ -350,9 +350,9 @@ class ObservableApiTokenApi {
       }));
   }
   /**
-      * Enumerates the metadata of the active API tokens in your organization.
+      * Lists all the metadata of the active API tokens
       * List all API Token Metadata
-      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/reference/core-okta-api/#pagination) for more information.
+      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](/#pagination) for more information.
       * @param limit A limit on the number of objects to return.
       * @param q Finds a token that matches the name or clientName.
       */
@@ -366,7 +366,7 @@ class ObservableApiTokenApi {
     }));
   }
   /**
-      * Revoke an API token by id.
+      * Revokes an API token by `apiTokenId`
       * Revoke an API Token
       * @param apiTokenId id of the API Token
       */
@@ -387,7 +387,7 @@ class ObservableApiTokenApi {
       }));
   }
   /**
-      * Revokes the API token provided in the Authorization header.
+      * Revokes the API token provided in the Authorization header
       * Revoke the Current API Token
       */
   revokeCurrentApiToken(_options) {
@@ -416,7 +416,7 @@ class ObservableApplicationApi {
     this.responseProcessor = responseProcessor || new ApplicationApi_1.ApplicationApiResponseProcessor();
   }
   /**
-      * Activates an inactive application.
+      * Activates an inactive application
       * Activate an Application
       * @param appId
       */
@@ -437,7 +437,7 @@ class ObservableApplicationApi {
       }));
   }
   /**
-      * Activates the default Provisioning Connection for an application.
+      * Activates the default Provisioning Connection for an application
       * Activate the default Provisioning Connection
       * @param appId
       */
@@ -455,6 +455,51 @@ class ObservableApplicationApi {
           middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
         }
         return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.activateDefaultProvisioningConnectionForApplication(rsp)));
+      }));
+  }
+  /**
+      * Assigns an application to a policy identified by `policyId`. If the application was previously assigned to another policy, this removes that assignment.
+      * Assign an Application to a Policy
+      * @param appId
+      * @param policyId
+      */
+  assignApplicationPolicy(appId, policyId, _options) {
+    const requestContextPromise = this.requestFactory.assignApplicationPolicy(appId, policyId, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.assignApplicationPolicy(rsp)));
+      }));
+  }
+  /**
+      * Assigns a group to an application
+      * Assign a Group
+      * @param appId
+      * @param groupId
+      * @param applicationGroupAssignment
+      */
+  assignGroupToApplication(appId, groupId, applicationGroupAssignment, _options) {
+    const requestContextPromise = this.requestFactory.assignGroupToApplication(appId, groupId, applicationGroupAssignment, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.assignGroupToApplication(rsp)));
       }));
   }
   /**
@@ -503,7 +548,7 @@ class ObservableApplicationApi {
       }));
   }
   /**
-      * Adds a new application to your Okta organization.
+      * Creates a new application to your Okta organization
       * Create an Application
       * @param application
       * @param activate Executes activation lifecycle operation when creating the app
@@ -526,30 +571,7 @@ class ObservableApplicationApi {
       }));
   }
   /**
-      * Assigns a group to an application
-      * Assign a Group
-      * @param appId
-      * @param groupId
-      * @param applicationGroupAssignment
-      */
-  createApplicationGroupAssignment(appId, groupId, applicationGroupAssignment, _options) {
-    const requestContextPromise = this.requestFactory.createApplicationGroupAssignment(appId, groupId, applicationGroupAssignment, _options);
-    // build promise chain
-    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
-    for (let middleware of this.configuration.middleware) {
-      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
-    }
-    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
-      pipe((0, rxjsStub_2.mergeMap)((response) => {
-        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
-        for (let middleware of this.configuration.middleware) {
-          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
-        }
-        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.createApplicationGroupAssignment(rsp)));
-      }));
-  }
-  /**
-      * Deactivates an active application.
+      * Deactivates an active application
       * Deactivate an Application
       * @param appId
       */
@@ -570,7 +592,7 @@ class ObservableApplicationApi {
       }));
   }
   /**
-      * Deactivates the default Provisioning Connection for an application.
+      * Deactivates the default Provisioning Connection for an application
       * Deactivate the default Provisioning Connection for an Application
       * @param appId
       */
@@ -591,7 +613,7 @@ class ObservableApplicationApi {
       }));
   }
   /**
-      * Removes an inactive application.
+      * Deletes an inactive application
       * Delete an Application
       * @param appId
       */
@@ -609,51 +631,6 @@ class ObservableApplicationApi {
           middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
         }
         return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.deleteApplication(rsp)));
-      }));
-  }
-  /**
-      * Removes a group assignment from an application.
-      * Unassign a Group
-      * @param appId
-      * @param groupId
-      */
-  deleteApplicationGroupAssignment(appId, groupId, _options) {
-    const requestContextPromise = this.requestFactory.deleteApplicationGroupAssignment(appId, groupId, _options);
-    // build promise chain
-    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
-    for (let middleware of this.configuration.middleware) {
-      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
-    }
-    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
-      pipe((0, rxjsStub_2.mergeMap)((response) => {
-        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
-        for (let middleware of this.configuration.middleware) {
-          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
-        }
-        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.deleteApplicationGroupAssignment(rsp)));
-      }));
-  }
-  /**
-      * Removes an assignment for a user from an application.
-      * Unassign a User
-      * @param appId
-      * @param userId
-      * @param sendEmail
-      */
-  deleteApplicationUser(appId, userId, sendEmail, _options) {
-    const requestContextPromise = this.requestFactory.deleteApplicationUser(appId, userId, sendEmail, _options);
-    // build promise chain
-    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
-    for (let middleware of this.configuration.middleware) {
-      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
-    }
-    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
-      pipe((0, rxjsStub_2.mergeMap)((response) => {
-        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
-        for (let middleware of this.configuration.middleware) {
-          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
-        }
-        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.deleteApplicationUser(rsp)));
       }));
   }
   /**
@@ -679,7 +656,7 @@ class ObservableApplicationApi {
       }));
   }
   /**
-      * Generates a new key pair and returns the Certificate Signing Request for it.
+      * Generates a new key pair and returns the Certificate Signing Request for it
       * Generate a Certificate Signing Request
       * @param appId
       * @param metadata
@@ -701,7 +678,7 @@ class ObservableApplicationApi {
       }));
   }
   /**
-      * Fetches an application from your Okta organization by `id`.
+      * Retrieves an application from your Okta organization by `id`
       * Retrieve an Application
       * @param appId
       * @param expand
@@ -723,7 +700,7 @@ class ObservableApplicationApi {
       }));
   }
   /**
-      * Fetches an application group assignment
+      * Retrieves an application group assignment
       * Retrieve an Assigned Group
       * @param appId
       * @param groupId
@@ -746,7 +723,7 @@ class ObservableApplicationApi {
       }));
   }
   /**
-      * Gets a specific application key credential by kid
+      * Retrieves a specific application key credential by kid
       * Retrieve a Key Credential
       * @param appId
       * @param keyId
@@ -768,7 +745,7 @@ class ObservableApplicationApi {
       }));
   }
   /**
-      * Fetches a specific user assignment for application by `id`.
+      * Retrieves a specific user assignment for application by `id`
       * Retrieve an Assigned User
       * @param appId
       * @param userId
@@ -791,7 +768,7 @@ class ObservableApplicationApi {
       }));
   }
   /**
-      * Fetches a certificate signing request for the app by `id`.
+      * Retrieves a certificate signing request for the app by `id`
       * Retrieve a Certificate Signing Request
       * @param appId
       * @param csrId
@@ -813,7 +790,7 @@ class ObservableApplicationApi {
       }));
   }
   /**
-      * Get default Provisioning Connection for application
+      * Retrieves the default Provisioning Connection for application
       * Retrieve the default Provisioning Connection
       * @param appId
       */
@@ -834,7 +811,7 @@ class ObservableApplicationApi {
       }));
   }
   /**
-      * Fetches a Feature object for an application.
+      * Retrieves a Feature object for an application
       * Retrieve a Feature
       * @param appId
       * @param name
@@ -856,7 +833,7 @@ class ObservableApplicationApi {
       }));
   }
   /**
-      * Gets a token for the specified application
+      * Retrieves a token for the specified application
       * Retrieve an OAuth 2.0 Token
       * @param appId
       * @param tokenId
@@ -879,7 +856,7 @@ class ObservableApplicationApi {
       }));
   }
   /**
-      * Fetches a single scope consent grant for the application
+      * Retrieves a single scope consent grant for the application
       * Retrieve a Scope Consent Grant
       * @param appId
       * @param grantId
@@ -924,7 +901,7 @@ class ObservableApplicationApi {
       }));
   }
   /**
-      * Enumerates group assignments for an application.
+      * Lists all group assignments for an application
       * List all Assigned Groups
       * @param appId
       * @param q
@@ -942,7 +919,7 @@ class ObservableApplicationApi {
     }));
   }
   /**
-      * Enumerates key credentials for an application
+      * Lists all key credentials for an application
       * List all Key Credentials
       * @param appId
       */
@@ -956,7 +933,7 @@ class ObservableApplicationApi {
     }));
   }
   /**
-      * Enumerates all assigned [application users](#application-user-model) for an application.
+      * Lists all assigned [application users](#application-user-model) for an application
       * List all Assigned Users
       * @param appId
       * @param q
@@ -976,7 +953,7 @@ class ObservableApplicationApi {
     }));
   }
   /**
-      * Enumerates apps added to your organization with pagination. A subset of apps can be returned that match a supported filter expression or query.
+      * Lists all applications with pagination. A subset of apps can be returned that match a supported filter expression or query.
       * List all Applications
       * @param q
       * @param after Specifies the pagination cursor for the next page of apps
@@ -995,7 +972,7 @@ class ObservableApplicationApi {
     }));
   }
   /**
-      * Enumerates Certificate Signing Requests for an application
+      * Lists all Certificate Signing Requests for an application
       * List all Certificate Signing Requests
       * @param appId
       */
@@ -1009,7 +986,7 @@ class ObservableApplicationApi {
     }));
   }
   /**
-      * List Features for application
+      * Lists all features for an application
       * List all Features
       * @param appId
       */
@@ -1055,7 +1032,7 @@ class ObservableApplicationApi {
     }));
   }
   /**
-      * Updates a certificate signing request for the app with a signed X.509 certificate and adds it into the application key credentials
+      * Publishes a certificate signing request for the app with a signed X.509 certificate and adds it into the application key credentials
       * Publish a Certificate Signing Request
       * @param appId
       * @param csrId
@@ -1078,7 +1055,29 @@ class ObservableApplicationApi {
       }));
   }
   /**
-      * Revokes a certificate signing request and deletes the key pair from the application.
+      * Replaces an application
+      * Replace an Application
+      * @param appId
+      * @param application
+      */
+  replaceApplication(appId, application, _options) {
+    const requestContextPromise = this.requestFactory.replaceApplication(appId, application, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.replaceApplication(rsp)));
+      }));
+  }
+  /**
+      * Revokes a certificate signing request and deletes the key pair from the application
       * Revoke a Certificate Signing Request
       * @param appId
       * @param csrId
@@ -1165,14 +1164,13 @@ class ObservableApplicationApi {
       }));
   }
   /**
-      * Set default Provisioning Connection for application
-      * Update the default Provisioning Connection
+      * Unassigns a group from an application
+      * Unassign a Group
       * @param appId
-      * @param ProvisioningConnectionRequest
-      * @param activate
+      * @param groupId
       */
-  setDefaultProvisioningConnectionForApplication(appId, ProvisioningConnectionRequest, activate, _options) {
-    const requestContextPromise = this.requestFactory.setDefaultProvisioningConnectionForApplication(appId, ProvisioningConnectionRequest, activate, _options);
+  unassignApplicationFromGroup(appId, groupId, _options) {
+    const requestContextPromise = this.requestFactory.unassignApplicationFromGroup(appId, groupId, _options);
     // build promise chain
     let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
     for (let middleware of this.configuration.middleware) {
@@ -1184,17 +1182,18 @@ class ObservableApplicationApi {
         for (let middleware of this.configuration.middleware) {
           middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
         }
-        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.setDefaultProvisioningConnectionForApplication(rsp)));
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.unassignApplicationFromGroup(rsp)));
       }));
   }
   /**
-      * Updates an application in your organization.
-      * Replace an Application
+      * Unassigns a user from an application
+      * Unassign a User
       * @param appId
-      * @param application
+      * @param userId
+      * @param sendEmail
       */
-  updateApplication(appId, application, _options) {
-    const requestContextPromise = this.requestFactory.updateApplication(appId, application, _options);
+  unassignUserFromApplication(appId, userId, sendEmail, _options) {
+    const requestContextPromise = this.requestFactory.unassignUserFromApplication(appId, userId, sendEmail, _options);
     // build promise chain
     let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
     for (let middleware of this.configuration.middleware) {
@@ -1206,7 +1205,7 @@ class ObservableApplicationApi {
         for (let middleware of this.configuration.middleware) {
           middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
         }
-        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.updateApplication(rsp)));
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.unassignUserFromApplication(rsp)));
       }));
   }
   /**
@@ -1233,7 +1232,30 @@ class ObservableApplicationApi {
       }));
   }
   /**
-      * Updates a Feature object for an application.
+      * Updates the default provisioning connection for application
+      * Update the default Provisioning Connection
+      * @param appId
+      * @param ProvisioningConnectionRequest
+      * @param activate
+      */
+  updateDefaultProvisioningConnectionForApplication(appId, ProvisioningConnectionRequest, activate, _options) {
+    const requestContextPromise = this.requestFactory.updateDefaultProvisioningConnectionForApplication(appId, ProvisioningConnectionRequest, activate, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.updateDefaultProvisioningConnectionForApplication(rsp)));
+      }));
+  }
+  /**
+      * Updates a Feature object for an application
       * Update a Feature
       * @param appId
       * @param name
@@ -1256,7 +1278,7 @@ class ObservableApplicationApi {
       }));
   }
   /**
-      * The file must be in PNG, JPG, or GIF format, and less than 1 MB in size. For best results use landscape orientation, a transparent background, and a minimum size of 420px by 120px to prevent upscaling.
+      * Uploads a logo for the application. The file must be in PNG, JPG, or GIF format, and less than 1 MB in size. For best results use landscape orientation, a transparent background, and a minimum size of 420px by 120px to prevent upscaling.
       * Upload a Logo
       * @param appId
       * @param file
@@ -1279,6 +1301,49 @@ class ObservableApplicationApi {
   }
 }
 exports.ObservableApplicationApi = ObservableApplicationApi;
+const AttackProtectionApi_1 = require('../apis/AttackProtectionApi');
+class ObservableAttackProtectionApi {
+  constructor(configuration, requestFactory, responseProcessor) {
+    this.configuration = configuration;
+    this.requestFactory = requestFactory || new AttackProtectionApi_1.AttackProtectionApiRequestFactory(configuration);
+    this.responseProcessor = responseProcessor || new AttackProtectionApi_1.AttackProtectionApiResponseProcessor();
+  }
+  /**
+      * Retrieves the User Lockout Settings for an org
+      * Retrieve the User Lockout Settings
+      */
+  getUserLockoutSettings(_options) {
+    const requestContextPromise = this.requestFactory.getUserLockoutSettings(_options);
+    const modelFactory = {
+      parseResponse: (rsp) => this.responseProcessor.getUserLockoutSettings(rsp),
+    };
+    return (0, rxjsStub_1.from)(requestContextPromise).pipe((0, rxjsStub_2.mergeMap)((ctx) => {
+      return (0, rxjsStub_1.from)(Promise.resolve(new collection_1.Collection(this.configuration.httpApi, ctx.getUrl(), modelFactory, ctx)));
+    }));
+  }
+  /**
+      * Replaces the User Lockout Settings for an org
+      * Replace the User Lockout Settings
+      * @param lockoutSettings
+      */
+  replaceUserLockoutSettings(lockoutSettings, _options) {
+    const requestContextPromise = this.requestFactory.replaceUserLockoutSettings(lockoutSettings, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.replaceUserLockoutSettings(rsp)));
+      }));
+  }
+}
+exports.ObservableAttackProtectionApi = ObservableAttackProtectionApi;
 const AuthenticatorApi_1 = require('../apis/AuthenticatorApi');
 class ObservableAuthenticatorApi {
   constructor(configuration, requestFactory, responseProcessor) {
@@ -1287,7 +1352,7 @@ class ObservableAuthenticatorApi {
     this.responseProcessor = responseProcessor || new AuthenticatorApi_1.AuthenticatorApiResponseProcessor();
   }
   /**
-      * Activates an authenticator by `authenticatorId`.
+      * Activates an authenticator by `authenticatorId`
       * Activate an Authenticator
       * @param authenticatorId
       */
@@ -1308,7 +1373,29 @@ class ObservableAuthenticatorApi {
       }));
   }
   /**
-      * Deactivates an authenticator by `authenticatorId`.
+      * Creates an authenticator. You can use this operation as part of the \"Create a custom authenticator\" flow. See the [Custom authenticator integration guide](https://developer.okta.com/docs/guides/authenticators-custom-authenticator/android/main/).
+      * Create an Authenticator
+      * @param authenticator
+      * @param activate Whether to execute the activation lifecycle operation when Okta creates the authenticator
+      */
+  createAuthenticator(authenticator, activate, _options) {
+    const requestContextPromise = this.requestFactory.createAuthenticator(authenticator, activate, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.createAuthenticator(rsp)));
+      }));
+  }
+  /**
+      * Deactivates an authenticator by `authenticatorId`
       * Deactivate an Authenticator
       * @param authenticatorId
       */
@@ -1329,7 +1416,7 @@ class ObservableAuthenticatorApi {
       }));
   }
   /**
-      * Fetches an authenticator from your Okta organization by `authenticatorId`.
+      * Retrieves an authenticator from your Okta organization by `authenticatorId`
       * Retrieve an Authenticator
       * @param authenticatorId
       */
@@ -1350,7 +1437,7 @@ class ObservableAuthenticatorApi {
       }));
   }
   /**
-      * Enumerates authenticators in your organization.
+      * Lists all authenticators
       * List all Authenticators
       */
   listAuthenticators(_options) {
@@ -1363,13 +1450,13 @@ class ObservableAuthenticatorApi {
     }));
   }
   /**
-      * Updates an authenticator
+      * Replaces an authenticator
       * Replace an Authenticator
       * @param authenticatorId
       * @param authenticator
       */
-  updateAuthenticator(authenticatorId, authenticator, _options) {
-    const requestContextPromise = this.requestFactory.updateAuthenticator(authenticatorId, authenticator, _options);
+  replaceAuthenticator(authenticatorId, authenticator, _options) {
+    const requestContextPromise = this.requestFactory.replaceAuthenticator(authenticatorId, authenticator, _options);
     // build promise chain
     let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
     for (let middleware of this.configuration.middleware) {
@@ -1381,7 +1468,7 @@ class ObservableAuthenticatorApi {
         for (let middleware of this.configuration.middleware) {
           middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
         }
-        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.updateAuthenticator(rsp)));
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.replaceAuthenticator(rsp)));
       }));
   }
 }
@@ -1394,7 +1481,7 @@ class ObservableAuthorizationServerApi {
     this.responseProcessor = responseProcessor || new AuthorizationServerApi_1.AuthorizationServerApiResponseProcessor();
   }
   /**
-      * Success
+      * Activates an authorization server
       * Activate an Authorization Server
       * @param authServerId
       */
@@ -1415,7 +1502,7 @@ class ObservableAuthorizationServerApi {
       }));
   }
   /**
-      * Activate Authorization Server Policy
+      * Activates an authorization server policy
       * Activate a Policy
       * @param authServerId
       * @param policyId
@@ -1437,7 +1524,7 @@ class ObservableAuthorizationServerApi {
       }));
   }
   /**
-      * Activate Authorization Server Policy Rule
+      * Activates an authorization server policy rule
       * Activate a Policy Rule
       * @param authServerId
       * @param policyId
@@ -1460,7 +1547,7 @@ class ObservableAuthorizationServerApi {
       }));
   }
   /**
-      * Success
+      * Creates an authorization server
       * Create an Authorization Server
       * @param authorizationServer
       */
@@ -1481,7 +1568,7 @@ class ObservableAuthorizationServerApi {
       }));
   }
   /**
-      * Success
+      * Creates a policy
       * Create a Policy
       * @param authServerId
       * @param policy
@@ -1503,7 +1590,7 @@ class ObservableAuthorizationServerApi {
       }));
   }
   /**
-      * Creates a policy rule for the specified Custom Authorization Server and Policy.
+      * Creates a policy rule for the specified Custom Authorization Server and Policy
       * Create a Policy Rule
       * @param policyId
       * @param authServerId
@@ -1526,7 +1613,7 @@ class ObservableAuthorizationServerApi {
       }));
   }
   /**
-      * Success
+      * Creates a custom token claim
       * Create a Custom Token Claim
       * @param authServerId
       * @param oAuth2Claim
@@ -1548,7 +1635,7 @@ class ObservableAuthorizationServerApi {
       }));
   }
   /**
-      * Success
+      * Creates a custom token scope
       * Create a Custom Token Scope
       * @param authServerId
       * @param oAuth2Scope
@@ -1570,7 +1657,7 @@ class ObservableAuthorizationServerApi {
       }));
   }
   /**
-      * Success
+      * Deactivates an authorization server
       * Deactivate an Authorization Server
       * @param authServerId
       */
@@ -1591,7 +1678,7 @@ class ObservableAuthorizationServerApi {
       }));
   }
   /**
-      * Deactivate Authorization Server Policy
+      * Deactivates an authorization server policy
       * Deactivate a Policy
       * @param authServerId
       * @param policyId
@@ -1613,7 +1700,7 @@ class ObservableAuthorizationServerApi {
       }));
   }
   /**
-      * Deactivate Authorization Server Policy Rule
+      * Deactivates an authorization server policy rule
       * Deactivate a Policy Rule
       * @param authServerId
       * @param policyId
@@ -1636,7 +1723,7 @@ class ObservableAuthorizationServerApi {
       }));
   }
   /**
-      * Success
+      * Deletes an authorization server
       * Delete an Authorization Server
       * @param authServerId
       */
@@ -1657,7 +1744,7 @@ class ObservableAuthorizationServerApi {
       }));
   }
   /**
-      * Success
+      * Deletes a policy
       * Delete a Policy
       * @param authServerId
       * @param policyId
@@ -1679,7 +1766,7 @@ class ObservableAuthorizationServerApi {
       }));
   }
   /**
-      * Deletes a Policy Rule defined in the specified Custom Authorization Server and Policy.
+      * Deletes a Policy Rule defined in the specified Custom Authorization Server and Policy
       * Delete a Policy Rule
       * @param policyId
       * @param authServerId
@@ -1702,7 +1789,7 @@ class ObservableAuthorizationServerApi {
       }));
   }
   /**
-      * Success
+      * Deletes a custom token claim
       * Delete a Custom Token Claim
       * @param authServerId
       * @param claimId
@@ -1724,7 +1811,7 @@ class ObservableAuthorizationServerApi {
       }));
   }
   /**
-      * Success
+      * Deletes a custom token scope
       * Delete a Custom Token Scope
       * @param authServerId
       * @param scopeId
@@ -1746,7 +1833,7 @@ class ObservableAuthorizationServerApi {
       }));
   }
   /**
-      * Success
+      * Retrieves an authorization server
       * Retrieve an Authorization Server
       * @param authServerId
       */
@@ -1767,7 +1854,7 @@ class ObservableAuthorizationServerApi {
       }));
   }
   /**
-      * Success
+      * Retrieves a policy
       * Retrieve a Policy
       * @param authServerId
       * @param policyId
@@ -1789,7 +1876,7 @@ class ObservableAuthorizationServerApi {
       }));
   }
   /**
-      * Returns a Policy Rule by ID that is defined in the specified Custom Authorization Server and Policy.
+      * Retrieves a policy rule by `ruleId`
       * Retrieve a Policy Rule
       * @param policyId
       * @param authServerId
@@ -1812,7 +1899,7 @@ class ObservableAuthorizationServerApi {
       }));
   }
   /**
-      * Success
+      * Retrieves a custom token claim
       * Retrieve a Custom Token Claim
       * @param authServerId
       * @param claimId
@@ -1834,7 +1921,7 @@ class ObservableAuthorizationServerApi {
       }));
   }
   /**
-      * Success
+      * Retrieves a custom token scope
       * Retrieve a Custom Token Scope
       * @param authServerId
       * @param scopeId
@@ -1856,7 +1943,7 @@ class ObservableAuthorizationServerApi {
       }));
   }
   /**
-      * Success
+      * Retrieves a refresh token for a client
       * Retrieve a Refresh Token for a Client
       * @param authServerId
       * @param clientId
@@ -1880,7 +1967,7 @@ class ObservableAuthorizationServerApi {
       }));
   }
   /**
-      * Success
+      * Lists all credential keys
       * List all Credential Keys
       * @param authServerId
       */
@@ -1894,7 +1981,7 @@ class ObservableAuthorizationServerApi {
     }));
   }
   /**
-      * Success
+      * Lists all policies
       * List all Policies
       * @param authServerId
       */
@@ -1908,7 +1995,7 @@ class ObservableAuthorizationServerApi {
     }));
   }
   /**
-      * Enumerates all policy rules for the specified Custom Authorization Server and Policy.
+      * Lists all policy rules for the specified Custom Authorization Server and Policy
       * List all Policy Rules
       * @param policyId
       * @param authServerId
@@ -1923,7 +2010,7 @@ class ObservableAuthorizationServerApi {
     }));
   }
   /**
-      * Success
+      * Lists all authorization servers
       * List all Authorization Servers
       * @param q
       * @param limit
@@ -1939,7 +2026,7 @@ class ObservableAuthorizationServerApi {
     }));
   }
   /**
-      * Success
+      * Lists all custom token claims
       * List all Custom Token Claims
       * @param authServerId
       */
@@ -1953,7 +2040,7 @@ class ObservableAuthorizationServerApi {
     }));
   }
   /**
-      * Success
+      * Lists all clients
       * List all Clients
       * @param authServerId
       */
@@ -1967,7 +2054,7 @@ class ObservableAuthorizationServerApi {
     }));
   }
   /**
-      * Success
+      * Lists all custom token scopes
       * List all Custom Token Scopes
       * @param authServerId
       * @param q
@@ -1985,7 +2072,7 @@ class ObservableAuthorizationServerApi {
     }));
   }
   /**
-      * Success
+      * Lists all refresh tokens for a client
       * List all Refresh Tokens for a Client
       * @param authServerId
       * @param clientId
@@ -2003,7 +2090,122 @@ class ObservableAuthorizationServerApi {
     }));
   }
   /**
-      * Success
+      * Replaces an authorization server
+      * Replace an Authorization Server
+      * @param authServerId
+      * @param authorizationServer
+      */
+  replaceAuthorizationServer(authServerId, authorizationServer, _options) {
+    const requestContextPromise = this.requestFactory.replaceAuthorizationServer(authServerId, authorizationServer, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.replaceAuthorizationServer(rsp)));
+      }));
+  }
+  /**
+      * Replaces a policy
+      * Replace a Policy
+      * @param authServerId
+      * @param policyId
+      * @param policy
+      */
+  replaceAuthorizationServerPolicy(authServerId, policyId, policy, _options) {
+    const requestContextPromise = this.requestFactory.replaceAuthorizationServerPolicy(authServerId, policyId, policy, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.replaceAuthorizationServerPolicy(rsp)));
+      }));
+  }
+  /**
+      * Replaces the configuration of the Policy Rule defined in the specified Custom Authorization Server and Policy
+      * Replace a Policy Rule
+      * @param policyId
+      * @param authServerId
+      * @param ruleId
+      * @param policyRule
+      */
+  replaceAuthorizationServerPolicyRule(policyId, authServerId, ruleId, policyRule, _options) {
+    const requestContextPromise = this.requestFactory.replaceAuthorizationServerPolicyRule(policyId, authServerId, ruleId, policyRule, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.replaceAuthorizationServerPolicyRule(rsp)));
+      }));
+  }
+  /**
+      * Replaces a custom token claim
+      * Replace a Custom Token Claim
+      * @param authServerId
+      * @param claimId
+      * @param oAuth2Claim
+      */
+  replaceOAuth2Claim(authServerId, claimId, oAuth2Claim, _options) {
+    const requestContextPromise = this.requestFactory.replaceOAuth2Claim(authServerId, claimId, oAuth2Claim, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.replaceOAuth2Claim(rsp)));
+      }));
+  }
+  /**
+      * Replaces a custom token scope
+      * Replace a Custom Token Scope
+      * @param authServerId
+      * @param scopeId
+      * @param oAuth2Scope
+      */
+  replaceOAuth2Scope(authServerId, scopeId, oAuth2Scope, _options) {
+    const requestContextPromise = this.requestFactory.replaceOAuth2Scope(authServerId, scopeId, oAuth2Scope, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.replaceOAuth2Scope(rsp)));
+      }));
+  }
+  /**
+      * Revokes a refresh token for a client
       * Revoke a Refresh Token for a Client
       * @param authServerId
       * @param clientId
@@ -2026,7 +2228,7 @@ class ObservableAuthorizationServerApi {
       }));
   }
   /**
-      * Success
+      * Revokes all refresh tokens for a client
       * Revoke all Refresh Tokens for a Client
       * @param authServerId
       * @param clientId
@@ -2048,7 +2250,7 @@ class ObservableAuthorizationServerApi {
       }));
   }
   /**
-      * Success
+      * Rotates all credential keys
       * Rotate all Credential Keys
       * @param authServerId
       * @param use
@@ -2062,121 +2264,6 @@ class ObservableAuthorizationServerApi {
       return (0, rxjsStub_1.from)(Promise.resolve(new collection_1.Collection(this.configuration.httpApi, ctx.getUrl(), modelFactory, ctx)));
     }));
   }
-  /**
-      * Success
-      * Replace an Authorization Server
-      * @param authServerId
-      * @param authorizationServer
-      */
-  updateAuthorizationServer(authServerId, authorizationServer, _options) {
-    const requestContextPromise = this.requestFactory.updateAuthorizationServer(authServerId, authorizationServer, _options);
-    // build promise chain
-    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
-    for (let middleware of this.configuration.middleware) {
-      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
-    }
-    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
-      pipe((0, rxjsStub_2.mergeMap)((response) => {
-        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
-        for (let middleware of this.configuration.middleware) {
-          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
-        }
-        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.updateAuthorizationServer(rsp)));
-      }));
-  }
-  /**
-      * Success
-      * Replace a Policy
-      * @param authServerId
-      * @param policyId
-      * @param policy
-      */
-  updateAuthorizationServerPolicy(authServerId, policyId, policy, _options) {
-    const requestContextPromise = this.requestFactory.updateAuthorizationServerPolicy(authServerId, policyId, policy, _options);
-    // build promise chain
-    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
-    for (let middleware of this.configuration.middleware) {
-      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
-    }
-    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
-      pipe((0, rxjsStub_2.mergeMap)((response) => {
-        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
-        for (let middleware of this.configuration.middleware) {
-          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
-        }
-        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.updateAuthorizationServerPolicy(rsp)));
-      }));
-  }
-  /**
-      * Updates the configuration of the Policy Rule defined in the specified Custom Authorization Server and Policy.
-      * Replace a Policy Rule
-      * @param policyId
-      * @param authServerId
-      * @param ruleId
-      * @param policyRule
-      */
-  updateAuthorizationServerPolicyRule(policyId, authServerId, ruleId, policyRule, _options) {
-    const requestContextPromise = this.requestFactory.updateAuthorizationServerPolicyRule(policyId, authServerId, ruleId, policyRule, _options);
-    // build promise chain
-    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
-    for (let middleware of this.configuration.middleware) {
-      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
-    }
-    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
-      pipe((0, rxjsStub_2.mergeMap)((response) => {
-        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
-        for (let middleware of this.configuration.middleware) {
-          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
-        }
-        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.updateAuthorizationServerPolicyRule(rsp)));
-      }));
-  }
-  /**
-      * Success
-      * Replace a Custom Token Claim
-      * @param authServerId
-      * @param claimId
-      * @param oAuth2Claim
-      */
-  updateOAuth2Claim(authServerId, claimId, oAuth2Claim, _options) {
-    const requestContextPromise = this.requestFactory.updateOAuth2Claim(authServerId, claimId, oAuth2Claim, _options);
-    // build promise chain
-    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
-    for (let middleware of this.configuration.middleware) {
-      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
-    }
-    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
-      pipe((0, rxjsStub_2.mergeMap)((response) => {
-        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
-        for (let middleware of this.configuration.middleware) {
-          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
-        }
-        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.updateOAuth2Claim(rsp)));
-      }));
-  }
-  /**
-      * Success
-      * Replace a Custom Token Scope
-      * @param authServerId
-      * @param scopeId
-      * @param oAuth2Scope
-      */
-  updateOAuth2Scope(authServerId, scopeId, oAuth2Scope, _options) {
-    const requestContextPromise = this.requestFactory.updateOAuth2Scope(authServerId, scopeId, oAuth2Scope, _options);
-    // build promise chain
-    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
-    for (let middleware of this.configuration.middleware) {
-      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
-    }
-    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
-      pipe((0, rxjsStub_2.mergeMap)((response) => {
-        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
-        for (let middleware of this.configuration.middleware) {
-          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
-        }
-        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.updateOAuth2Scope(rsp)));
-      }));
-  }
 }
 exports.ObservableAuthorizationServerApi = ObservableAuthorizationServerApi;
 const BehaviorApi_1 = require('../apis/BehaviorApi');
@@ -2187,7 +2274,7 @@ class ObservableBehaviorApi {
     this.responseProcessor = responseProcessor || new BehaviorApi_1.BehaviorApiResponseProcessor();
   }
   /**
-      * Activate Behavior Detection Rule
+      * Activates a behavior detection rule
       * Activate a Behavior Detection Rule
       * @param behaviorId id of the Behavior Detection Rule
       */
@@ -2208,7 +2295,7 @@ class ObservableBehaviorApi {
       }));
   }
   /**
-      * Adds a new Behavior Detection Rule to your organization.
+      * Creates a new behavior detection rule
       * Create a Behavior Detection Rule
       * @param rule
       */
@@ -2229,7 +2316,7 @@ class ObservableBehaviorApi {
       }));
   }
   /**
-      * Deactivate Behavior Detection Rule
+      * Deactivates a behavior detection rule
       * Deactivate a Behavior Detection Rule
       * @param behaviorId id of the Behavior Detection Rule
       */
@@ -2250,7 +2337,7 @@ class ObservableBehaviorApi {
       }));
   }
   /**
-      * Delete a Behavior Detection Rule by `behaviorId`.
+      * Deletes a Behavior Detection Rule by `behaviorId`
       * Delete a Behavior Detection Rule
       * @param behaviorId id of the Behavior Detection Rule
       */
@@ -2271,7 +2358,7 @@ class ObservableBehaviorApi {
       }));
   }
   /**
-      * Fetches a Behavior Detection Rule by `behaviorId`.
+      * Retrieves a Behavior Detection Rule by `behaviorId`
       * Retrieve a Behavior Detection Rule
       * @param behaviorId id of the Behavior Detection Rule
       */
@@ -2292,7 +2379,7 @@ class ObservableBehaviorApi {
       }));
   }
   /**
-      * Enumerates Behavior Detection Rules in your organization with pagination.
+      * Lists all behavior detection rules with pagination support
       * List all Behavior Detection Rules
       */
   listBehaviorDetectionRules(_options) {
@@ -2305,13 +2392,13 @@ class ObservableBehaviorApi {
     }));
   }
   /**
-      * Update a Behavior Detection Rule by `behaviorId`.
+      * Replaces a Behavior Detection Rule by `behaviorId`
       * Replace a Behavior Detection Rule
       * @param behaviorId id of the Behavior Detection Rule
       * @param rule
       */
-  updateBehaviorDetectionRule(behaviorId, rule, _options) {
-    const requestContextPromise = this.requestFactory.updateBehaviorDetectionRule(behaviorId, rule, _options);
+  replaceBehaviorDetectionRule(behaviorId, rule, _options) {
+    const requestContextPromise = this.requestFactory.replaceBehaviorDetectionRule(behaviorId, rule, _options);
     // build promise chain
     let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
     for (let middleware of this.configuration.middleware) {
@@ -2323,7 +2410,7 @@ class ObservableBehaviorApi {
         for (let middleware of this.configuration.middleware) {
           middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
         }
-        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.updateBehaviorDetectionRule(rsp)));
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.replaceBehaviorDetectionRule(rsp)));
       }));
   }
 }
@@ -2336,7 +2423,7 @@ class ObservableCAPTCHAApi {
     this.responseProcessor = responseProcessor || new CAPTCHAApi_1.CAPTCHAApiResponseProcessor();
   }
   /**
-      * Adds a new CAPTCHA instance to your organization. In the current release, we only allow one CAPTCHA instance per org.
+      * Creates a new CAPTCHA instance. In the current release, we only allow one CAPTCHA instance per org.
       * Create a CAPTCHA instance
       * @param instance
       */
@@ -2357,7 +2444,7 @@ class ObservableCAPTCHAApi {
       }));
   }
   /**
-      * Delete a CAPTCHA instance by `captchaId`. If the CAPTCHA instance is currently being used in the org, the delete will not be allowed.
+      * Deletes a CAPTCHA instance by `captchaId`. If the CAPTCHA instance is currently being used in the org, the delete will not be allowed.
       * Delete a CAPTCHA Instance
       * @param captchaId id of the CAPTCHA
       */
@@ -2378,7 +2465,7 @@ class ObservableCAPTCHAApi {
       }));
   }
   /**
-      * Fetches a CAPTCHA instance by `captchaId`.
+      * Retrieves a CAPTCHA instance by `captchaId`
       * Retrieve a CAPTCHA Instance
       * @param captchaId id of the CAPTCHA
       */
@@ -2399,7 +2486,7 @@ class ObservableCAPTCHAApi {
       }));
   }
   /**
-      * Enumerates CAPTCHA instances in your organization with pagination. A subset of CAPTCHA instances can be returned that match a supported filter expression or query.
+      * Lists all CAPTCHA instances with pagination support. A subset of CAPTCHA instances can be returned that match a supported filter expression or query.
       * List all CAPTCHA instances
       */
   listCaptchaInstances(_options) {
@@ -2412,13 +2499,13 @@ class ObservableCAPTCHAApi {
     }));
   }
   /**
-      * Partially update a CAPTCHA instance by `captchaId`.
-      * Update a CAPTCHA instance
+      * Replaces a CAPTCHA instance by `captchaId`
+      * Replace a CAPTCHA instance
       * @param captchaId id of the CAPTCHA
       * @param instance
       */
-  partialUpdateCaptchaInstance(captchaId, instance, _options) {
-    const requestContextPromise = this.requestFactory.partialUpdateCaptchaInstance(captchaId, instance, _options);
+  replaceCaptchaInstance(captchaId, instance, _options) {
+    const requestContextPromise = this.requestFactory.replaceCaptchaInstance(captchaId, instance, _options);
     // build promise chain
     let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
     for (let middleware of this.configuration.middleware) {
@@ -2430,12 +2517,12 @@ class ObservableCAPTCHAApi {
         for (let middleware of this.configuration.middleware) {
           middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
         }
-        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.partialUpdateCaptchaInstance(rsp)));
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.replaceCaptchaInstance(rsp)));
       }));
   }
   /**
-      * Update a CAPTCHA instance by `captchaId`.
-      * Replace a CAPTCHA instance
+      * Partially updates a CAPTCHA instance by `captchaId`
+      * Update a CAPTCHA instance
       * @param captchaId id of the CAPTCHA
       * @param instance
       */
@@ -2457,6 +2544,163 @@ class ObservableCAPTCHAApi {
   }
 }
 exports.ObservableCAPTCHAApi = ObservableCAPTCHAApi;
+const CustomDomainApi_1 = require('../apis/CustomDomainApi');
+class ObservableCustomDomainApi {
+  constructor(configuration, requestFactory, responseProcessor) {
+    this.configuration = configuration;
+    this.requestFactory = requestFactory || new CustomDomainApi_1.CustomDomainApiRequestFactory(configuration);
+    this.responseProcessor = responseProcessor || new CustomDomainApi_1.CustomDomainApiResponseProcessor();
+  }
+  /**
+      * Creates your Custom Domain
+      * Create a Custom Domain
+      * @param domain
+      */
+  createCustomDomain(domain, _options) {
+    const requestContextPromise = this.requestFactory.createCustomDomain(domain, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.createCustomDomain(rsp)));
+      }));
+  }
+  /**
+      * Deletes a Custom Domain by `id`
+      * Delete a Custom Domain
+      * @param domainId
+      */
+  deleteCustomDomain(domainId, _options) {
+    const requestContextPromise = this.requestFactory.deleteCustomDomain(domainId, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.deleteCustomDomain(rsp)));
+      }));
+  }
+  /**
+      * Retrieves a Custom Domain by `id`
+      * Retrieve a Custom Domain
+      * @param domainId
+      */
+  getCustomDomain(domainId, _options) {
+    const requestContextPromise = this.requestFactory.getCustomDomain(domainId, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.getCustomDomain(rsp)));
+      }));
+  }
+  /**
+      * Lists all verified Custom Domains for the org
+      * List all Custom Domains
+      */
+  listCustomDomains(_options) {
+    const requestContextPromise = this.requestFactory.listCustomDomains(_options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.listCustomDomains(rsp)));
+      }));
+  }
+  /**
+      * Replaces a Custom Domain by `id`
+      * Replace a Custom Domain's brandId
+      * @param domainId
+      * @param UpdateDomain
+      */
+  replaceCustomDomain(domainId, UpdateDomain, _options) {
+    const requestContextPromise = this.requestFactory.replaceCustomDomain(domainId, UpdateDomain, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.replaceCustomDomain(rsp)));
+      }));
+  }
+  /**
+      * Creates or replaces the certificate for the custom domain
+      * Upsert the Certificate
+      * @param domainId
+      * @param certificate
+      */
+  upsertCertificate(domainId, certificate, _options) {
+    const requestContextPromise = this.requestFactory.upsertCertificate(domainId, certificate, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.upsertCertificate(rsp)));
+      }));
+  }
+  /**
+      * Verifies the Custom Domain by `id`
+      * Verify a Custom Domain
+      * @param domainId
+      */
+  verifyDomain(domainId, _options) {
+    const requestContextPromise = this.requestFactory.verifyDomain(domainId, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.verifyDomain(rsp)));
+      }));
+  }
+}
+exports.ObservableCustomDomainApi = ObservableCustomDomainApi;
 const CustomizationApi_1 = require('../apis/CustomizationApi');
 class ObservableCustomizationApi {
   constructor(configuration, requestFactory, responseProcessor) {
@@ -2465,7 +2709,28 @@ class ObservableCustomizationApi {
     this.responseProcessor = responseProcessor || new CustomizationApi_1.CustomizationApiResponseProcessor();
   }
   /**
-      * Creates a new email customization.
+      * Creates new brand in your org
+      * Create a Brand
+      * @param CreateBrandRequest
+      */
+  createBrand(CreateBrandRequest, _options) {
+    const requestContextPromise = this.requestFactory.createBrand(CreateBrandRequest, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.createBrand(rsp)));
+      }));
+  }
+  /**
+      * Creates a new email customization
       * Create an Email Customization
       * @param brandId The ID of the brand.
       * @param templateName The name of the email template.
@@ -2488,7 +2753,7 @@ class ObservableCustomizationApi {
       }));
   }
   /**
-      * Deletes all customizations for an email template.
+      * Deletes all customizations for an email template
       * Delete all Email Customizations
       * @param brandId The ID of the brand.
       * @param templateName The name of the email template.
@@ -2510,10 +2775,31 @@ class ObservableCustomizationApi {
       }));
   }
   /**
-      * Deletes a Theme background image.
+      * Deletes a brand by its unique identifier
+      * Delete a brand
+      * @param brandId The ID of the brand.
+      */
+  deleteBrand(brandId, _options) {
+    const requestContextPromise = this.requestFactory.deleteBrand(brandId, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.deleteBrand(rsp)));
+      }));
+  }
+  /**
+      * Deletes a Theme background image
       * Delete the Background Image
-      * @param brandId
-      * @param themeId
+      * @param brandId The ID of the brand.
+      * @param themeId The ID of the theme.
       */
   deleteBrandThemeBackgroundImage(brandId, themeId, _options) {
     const requestContextPromise = this.requestFactory.deleteBrandThemeBackgroundImage(brandId, themeId, _options);
@@ -2534,8 +2820,8 @@ class ObservableCustomizationApi {
   /**
       * Deletes a Theme favicon. The theme will use the default Okta favicon.
       * Delete the Favicon
-      * @param brandId
-      * @param themeId
+      * @param brandId The ID of the brand.
+      * @param themeId The ID of the theme.
       */
   deleteBrandThemeFavicon(brandId, themeId, _options) {
     const requestContextPromise = this.requestFactory.deleteBrandThemeFavicon(brandId, themeId, _options);
@@ -2556,8 +2842,8 @@ class ObservableCustomizationApi {
   /**
       * Deletes a Theme logo. The theme will use the default Okta logo.
       * Delete the Logo
-      * @param brandId
-      * @param themeId
+      * @param brandId The ID of the brand.
+      * @param themeId The ID of the theme.
       */
   deleteBrandThemeLogo(brandId, themeId, _options) {
     const requestContextPromise = this.requestFactory.deleteBrandThemeLogo(brandId, themeId, _options);
@@ -2576,7 +2862,7 @@ class ObservableCustomizationApi {
       }));
   }
   /**
-      * Deletes an email customization by its unique identifier.
+      * Deletes an email customization by its unique identifier
       * Delete an Email Customization
       * @param brandId The ID of the brand.
       * @param templateName The name of the email template.
@@ -2599,9 +2885,9 @@ class ObservableCustomizationApi {
       }));
   }
   /**
-      * Fetches a brand by `brandId`
+      * Retrieves a brand by `brandId`
       * Retrieve a Brand
-      * @param brandId
+      * @param brandId The ID of the brand.
       */
   getBrand(brandId, _options) {
     const requestContextPromise = this.requestFactory.getBrand(brandId, _options);
@@ -2620,10 +2906,10 @@ class ObservableCustomizationApi {
       }));
   }
   /**
-      * Fetches a theme for a brand
+      * Retrieves a theme for a brand
       * Retrieve a Theme
-      * @param brandId
-      * @param themeId
+      * @param brandId The ID of the brand.
+      * @param themeId The ID of the theme.
       */
   getBrandTheme(brandId, themeId, _options) {
     const requestContextPromise = this.requestFactory.getBrandTheme(brandId, themeId, _options);
@@ -2642,8 +2928,8 @@ class ObservableCustomizationApi {
       }));
   }
   /**
-      * Generates a preview of an email customization. All variable references (e.g., `${user.profile.firstName}`) are populated using the current user's context.
-      * Preview an Email Customization
+      * Retrieves a preview of an email customization. All variable references (e.g., `${user.profile.firstName}`) are populated using the current user's context.
+      * Retrieve a Preview of an Email Customization
       * @param brandId The ID of the brand.
       * @param templateName The name of the email template.
       * @param customizationId The ID of the email customization.
@@ -2665,7 +2951,91 @@ class ObservableCustomizationApi {
       }));
   }
   /**
-      * Gets an email customization by its unique identifier.
+      * Retrieves the customized error page
+      * Retrieve the Customized Error Page
+      * @param brandId The ID of the brand.
+      */
+  getCustomizedErrorPage(brandId, _options) {
+    const requestContextPromise = this.requestFactory.getCustomizedErrorPage(brandId, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.getCustomizedErrorPage(rsp)));
+      }));
+  }
+  /**
+      * Retrieves the customized sign-in page
+      * Retrieve the Customized Sign-in Page
+      * @param brandId The ID of the brand.
+      */
+  getCustomizedSignInPage(brandId, _options) {
+    const requestContextPromise = this.requestFactory.getCustomizedSignInPage(brandId, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.getCustomizedSignInPage(rsp)));
+      }));
+  }
+  /**
+      * Retrieves the default error page
+      * Retrieve the Default Error Page
+      * @param brandId The ID of the brand.
+      */
+  getDefaultErrorPage(brandId, _options) {
+    const requestContextPromise = this.requestFactory.getDefaultErrorPage(brandId, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.getDefaultErrorPage(rsp)));
+      }));
+  }
+  /**
+      * Retrieves the default sign-in page
+      * Retrieve the Default Sign-in Page
+      * @param brandId The ID of the brand.
+      */
+  getDefaultSignInPage(brandId, _options) {
+    const requestContextPromise = this.requestFactory.getDefaultSignInPage(brandId, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.getDefaultSignInPage(rsp)));
+      }));
+  }
+  /**
+      * Retrieves an email customization by its unique identifier
       * Retrieve an Email Customization
       * @param brandId The ID of the brand.
       * @param templateName The name of the email template.
@@ -2688,7 +3058,7 @@ class ObservableCustomizationApi {
       }));
   }
   /**
-      * Gets an email template's default content.
+      * Retrieves an email template's default content
       * Retrieve an Email Template Default Content
       * @param brandId The ID of the brand.
       * @param templateName The name of the email template.
@@ -2711,8 +3081,8 @@ class ObservableCustomizationApi {
       }));
   }
   /**
-      * Generates a preview of an email template's default content. All variable references (e.g., `${user.profile.firstName}`) are populated using the current user's context.
-      * Preview the Email Template Default Content
+      * Retrieves a preview of an email template's default content. All variable references (e.g., `${user.profile.firstName}`) are populated using the current user's context.
+      * Retrieve a Preview of the Email Template Default Content
       * @param brandId The ID of the brand.
       * @param templateName The name of the email template.
       * @param language The language to use for the email. Defaults to the current user&#39;s language if unspecified.
@@ -2734,7 +3104,7 @@ class ObservableCustomizationApi {
       }));
   }
   /**
-      * Gets an email template's settings.
+      * Retrieves an email template's settings
       * Retrieve the Email Template Settings
       * @param brandId The ID of the brand.
       * @param templateName The name of the email template.
@@ -2756,7 +3126,7 @@ class ObservableCustomizationApi {
       }));
   }
   /**
-      * Gets the details of an email template by name.
+      * Retrieves the details of an email template by name
       * Retrieve an Email Template
       * @param brandId The ID of the brand.
       * @param templateName The name of the email template.
@@ -2779,7 +3149,114 @@ class ObservableCustomizationApi {
       }));
   }
   /**
-      * List all sign-in widget versions.
+      * Retrieves the error page
+      * Retrieve the Error Page
+      * @param brandId The ID of the brand.
+      * @param expand Specifies additional metadata to be included in the response.
+      */
+  getErrorPage(brandId, expand, _options) {
+    const requestContextPromise = this.requestFactory.getErrorPage(brandId, expand, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.getErrorPage(rsp)));
+      }));
+  }
+  /**
+      * Retrieves the preview error page
+      * Retrieve the Preview Error Page Preview
+      * @param brandId The ID of the brand.
+      */
+  getPreviewErrorPage(brandId, _options) {
+    const requestContextPromise = this.requestFactory.getPreviewErrorPage(brandId, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.getPreviewErrorPage(rsp)));
+      }));
+  }
+  /**
+      * Retrieves the preview sign-in page
+      * Retrieve the Preview Sign-in Page Preview
+      * @param brandId The ID of the brand.
+      */
+  getPreviewSignInPage(brandId, _options) {
+    const requestContextPromise = this.requestFactory.getPreviewSignInPage(brandId, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.getPreviewSignInPage(rsp)));
+      }));
+  }
+  /**
+      * Retrieves the sign-in page
+      * Retrieve the Sign-in Page
+      * @param brandId The ID of the brand.
+      * @param expand Specifies additional metadata to be included in the response.
+      */
+  getSignInPage(brandId, expand, _options) {
+    const requestContextPromise = this.requestFactory.getSignInPage(brandId, expand, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.getSignInPage(rsp)));
+      }));
+  }
+  /**
+      * Retrieves the sign-out page settings
+      * Retrieve the Sign-out Page Settings
+      * @param brandId The ID of the brand.
+      */
+  getSignOutPageSettings(brandId, _options) {
+    const requestContextPromise = this.requestFactory.getSignOutPageSettings(brandId, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.getSignOutPageSettings(rsp)));
+      }));
+  }
+  /**
+      * Lists all sign-in widget versions
       * List all Sign-in Widget Versions
       * @param brandId The ID of the brand.
       */
@@ -2793,9 +3270,30 @@ class ObservableCustomizationApi {
     }));
   }
   /**
-      * List all the themes in your brand
+      * Lists all domains associated with a brand by `brandId`
+      * List all Domains associated with a Brand
+      * @param brandId The ID of the brand.
+      */
+  listBrandDomains(brandId, _options) {
+    const requestContextPromise = this.requestFactory.listBrandDomains(brandId, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.listBrandDomains(rsp)));
+      }));
+  }
+  /**
+      * Lists all the themes in your brand
       * List all Themes
-      * @param brandId
+      * @param brandId The ID of the brand.
       */
   listBrandThemes(brandId, _options) {
     const requestContextPromise = this.requestFactory.listBrandThemes(brandId, _options);
@@ -2807,7 +3305,7 @@ class ObservableCustomizationApi {
     }));
   }
   /**
-      * List all the brands in your org.
+      * Lists all the brands in your org
       * List all Brands
       */
   listBrands(_options) {
@@ -2820,11 +3318,11 @@ class ObservableCustomizationApi {
     }));
   }
   /**
-      * Lists all customizations of an email template.
+      * Lists all customizations of an email template
       * List all Email Customizations
       * @param brandId The ID of the brand.
       * @param templateName The name of the email template.
-      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/reference/core-okta-api/#pagination) for more information.
+      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](/#pagination) for more information.
       * @param limit A limit on the number of objects to return.
       */
   listEmailCustomizations(brandId, templateName, after, limit, _options) {
@@ -2837,10 +3335,10 @@ class ObservableCustomizationApi {
     }));
   }
   /**
-      * Lists all email templates.
+      * Lists all email templates
       * List all Email Templates
       * @param brandId The ID of the brand.
-      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/reference/core-okta-api/#pagination) for more information.
+      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](/#pagination) for more information.
       * @param limit A limit on the number of objects to return.
       * @param expand Specifies additional metadata to be included in the response.
       */
@@ -2854,13 +3352,58 @@ class ObservableCustomizationApi {
     }));
   }
   /**
-      * Previews the error page.
-      * Preview the Error Page
+      * Replaces a brand by `brandId`
+      * Replace a Brand
+      * @param brandId The ID of the brand.
+      * @param brand
+      */
+  replaceBrand(brandId, brand, _options) {
+    const requestContextPromise = this.requestFactory.replaceBrand(brandId, brand, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.replaceBrand(rsp)));
+      }));
+  }
+  /**
+      * Replaces a theme for a brand
+      * Replace a Theme
+      * @param brandId The ID of the brand.
+      * @param themeId The ID of the theme.
+      * @param theme
+      */
+  replaceBrandTheme(brandId, themeId, theme, _options) {
+    const requestContextPromise = this.requestFactory.replaceBrandTheme(brandId, themeId, theme, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.replaceBrandTheme(rsp)));
+      }));
+  }
+  /**
+      * Replaces the customized error page
+      * Replace the Customized Error Page
       * @param brandId The ID of the brand.
       * @param CustomizablePage
       */
-  previewErrorPage(brandId, CustomizablePage, _options) {
-    const requestContextPromise = this.requestFactory.previewErrorPage(brandId, CustomizablePage, _options);
+  replaceCustomizedErrorPage(brandId, CustomizablePage, _options) {
+    const requestContextPromise = this.requestFactory.replaceCustomizedErrorPage(brandId, CustomizablePage, _options);
     // build promise chain
     let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
     for (let middleware of this.configuration.middleware) {
@@ -2872,17 +3415,86 @@ class ObservableCustomizationApi {
         for (let middleware of this.configuration.middleware) {
           middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
         }
-        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.previewErrorPage(rsp)));
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.replaceCustomizedErrorPage(rsp)));
       }));
   }
   /**
-      * Replaces the error page.
-      * Replace the Error Page
+      * Replaces the customized sign-in page
+      * Replace the Customized Sign-in Page
+      * @param brandId The ID of the brand.
+      * @param SignInPage
+      */
+  replaceCustomizedSignInPage(brandId, SignInPage, _options) {
+    const requestContextPromise = this.requestFactory.replaceCustomizedSignInPage(brandId, SignInPage, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.replaceCustomizedSignInPage(rsp)));
+      }));
+  }
+  /**
+      * Replaces an existing email customization using the property values provided
+      * Replace an Email Customization
+      * @param brandId The ID of the brand.
+      * @param templateName The name of the email template.
+      * @param customizationId The ID of the email customization.
+      * @param instance Request
+      */
+  replaceEmailCustomization(brandId, templateName, customizationId, instance, _options) {
+    const requestContextPromise = this.requestFactory.replaceEmailCustomization(brandId, templateName, customizationId, instance, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.replaceEmailCustomization(rsp)));
+      }));
+  }
+  /**
+      * Replaces an email template's settings
+      * Replace the Email Template Settings
+      * @param brandId The ID of the brand.
+      * @param templateName The name of the email template.
+      * @param EmailSettings
+      */
+  replaceEmailSettings(brandId, templateName, EmailSettings, _options) {
+    const requestContextPromise = this.requestFactory.replaceEmailSettings(brandId, templateName, EmailSettings, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.replaceEmailSettings(rsp)));
+      }));
+  }
+  /**
+      * Replaces the preview error page
+      * Replace the Preview Error Page
       * @param brandId The ID of the brand.
       * @param CustomizablePage
       */
-  replaceErrorPage(brandId, CustomizablePage, _options) {
-    const requestContextPromise = this.requestFactory.replaceErrorPage(brandId, CustomizablePage, _options);
+  replacePreviewErrorPage(brandId, CustomizablePage, _options) {
+    const requestContextPromise = this.requestFactory.replacePreviewErrorPage(brandId, CustomizablePage, _options);
     // build promise chain
     let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
     for (let middleware of this.configuration.middleware) {
@@ -2894,17 +3506,17 @@ class ObservableCustomizationApi {
         for (let middleware of this.configuration.middleware) {
           middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
         }
-        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.replaceErrorPage(rsp)));
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.replacePreviewErrorPage(rsp)));
       }));
   }
   /**
-      * Replaces the sign-in page.
-      * Replace the Sign-in Page
+      * Replaces the preview sign-in page
+      * Replace the Preview Sign-in Page
       * @param brandId The ID of the brand.
       * @param SignInPage
       */
-  replaceSignInPage(brandId, SignInPage, _options) {
-    const requestContextPromise = this.requestFactory.replaceSignInPage(brandId, SignInPage, _options);
+  replacePreviewSignInPage(brandId, SignInPage, _options) {
+    const requestContextPromise = this.requestFactory.replacePreviewSignInPage(brandId, SignInPage, _options);
     // build promise chain
     let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
     for (let middleware of this.configuration.middleware) {
@@ -2916,33 +3528,11 @@ class ObservableCustomizationApi {
         for (let middleware of this.configuration.middleware) {
           middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
         }
-        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.replaceSignInPage(rsp)));
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.replacePreviewSignInPage(rsp)));
       }));
   }
   /**
-      * Replace the sign-in page preview.
-      * Replace the Sign-in Page Preview
-      * @param brandId The ID of the brand.
-      * @param SignInPage
-      */
-  replaceSignInPagePreview(brandId, SignInPage, _options) {
-    const requestContextPromise = this.requestFactory.replaceSignInPagePreview(brandId, SignInPage, _options);
-    // build promise chain
-    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
-    for (let middleware of this.configuration.middleware) {
-      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
-    }
-    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
-      pipe((0, rxjsStub_2.mergeMap)((response) => {
-        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
-        for (let middleware of this.configuration.middleware) {
-          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
-        }
-        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.replaceSignInPagePreview(rsp)));
-      }));
-  }
-  /**
-      * Replaces the sign-out page settings.
+      * Replaces the sign-out page settings
       * Replace the Sign-out Page Settings
       * @param brandId The ID of the brand.
       * @param HostedPage
@@ -2964,12 +3554,12 @@ class ObservableCustomizationApi {
       }));
   }
   /**
-      * Resets the error page.
-      * Reset the Error Page
+      * Resets the customized error page
+      * Reset the Customized Error Page
       * @param brandId The ID of the brand.
       */
-  resetErrorPage(brandId, _options) {
-    const requestContextPromise = this.requestFactory.resetErrorPage(brandId, _options);
+  resetCustomizedErrorPage(brandId, _options) {
+    const requestContextPromise = this.requestFactory.resetCustomizedErrorPage(brandId, _options);
     // build promise chain
     let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
     for (let middleware of this.configuration.middleware) {
@@ -2981,16 +3571,16 @@ class ObservableCustomizationApi {
         for (let middleware of this.configuration.middleware) {
           middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
         }
-        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.resetErrorPage(rsp)));
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.resetCustomizedErrorPage(rsp)));
       }));
   }
   /**
-      * Reset the sign-in page.
-      * Reset the Sign-in Page
+      * Resets the customized sign-in page
+      * Reset the Customized Sign-in Page
       * @param brandId The ID of the brand.
       */
-  resetSignInPage(brandId, _options) {
-    const requestContextPromise = this.requestFactory.resetSignInPage(brandId, _options);
+  resetCustomizedSignInPage(brandId, _options) {
+    const requestContextPromise = this.requestFactory.resetCustomizedSignInPage(brandId, _options);
     // build promise chain
     let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
     for (let middleware of this.configuration.middleware) {
@@ -3002,16 +3592,16 @@ class ObservableCustomizationApi {
         for (let middleware of this.configuration.middleware) {
           middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
         }
-        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.resetSignInPage(rsp)));
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.resetCustomizedSignInPage(rsp)));
       }));
   }
   /**
-      * Retrieves the error page.
-      * Retrieve the Error Page
+      * Resets the preview error page
+      * Reset the Preview Error Page
       * @param brandId The ID of the brand.
       */
-  retrieveErrorPage(brandId, _options) {
-    const requestContextPromise = this.requestFactory.retrieveErrorPage(brandId, _options);
+  resetPreviewErrorPage(brandId, _options) {
+    const requestContextPromise = this.requestFactory.resetPreviewErrorPage(brandId, _options);
     // build promise chain
     let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
     for (let middleware of this.configuration.middleware) {
@@ -3023,16 +3613,16 @@ class ObservableCustomizationApi {
         for (let middleware of this.configuration.middleware) {
           middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
         }
-        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.retrieveErrorPage(rsp)));
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.resetPreviewErrorPage(rsp)));
       }));
   }
   /**
-      * Retrieves the sign-in page.
-      * Retrieve the Sign-in Page
+      * Resets the preview sign-in page
+      * Reset the Preview Sign-in Page
       * @param brandId The ID of the brand.
       */
-  retrieveSignInPage(brandId, _options) {
-    const requestContextPromise = this.requestFactory.retrieveSignInPage(brandId, _options);
+  resetPreviewSignInPage(brandId, _options) {
+    const requestContextPromise = this.requestFactory.resetPreviewSignInPage(brandId, _options);
     // build promise chain
     let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
     for (let middleware of this.configuration.middleware) {
@@ -3044,28 +3634,7 @@ class ObservableCustomizationApi {
         for (let middleware of this.configuration.middleware) {
           middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
         }
-        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.retrieveSignInPage(rsp)));
-      }));
-  }
-  /**
-      * Retrieves the sign-out page settings.
-      * Retrieve the Sign-out Page Settings
-      * @param brandId The ID of the brand.
-      */
-  retrieveSignOutPageSettings(brandId, _options) {
-    const requestContextPromise = this.requestFactory.retrieveSignOutPageSettings(brandId, _options);
-    // build promise chain
-    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
-    for (let middleware of this.configuration.middleware) {
-      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
-    }
-    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
-      pipe((0, rxjsStub_2.mergeMap)((response) => {
-        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
-        for (let middleware of this.configuration.middleware) {
-          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
-        }
-        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.retrieveSignOutPageSettings(rsp)));
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.resetPreviewSignInPage(rsp)));
       }));
   }
   /**
@@ -3092,102 +3661,10 @@ class ObservableCustomizationApi {
       }));
   }
   /**
-      * Updates a brand by `brandId`
-      * Replace a Brand
-      * @param brandId
-      * @param brand
-      */
-  updateBrand(brandId, brand, _options) {
-    const requestContextPromise = this.requestFactory.updateBrand(brandId, brand, _options);
-    // build promise chain
-    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
-    for (let middleware of this.configuration.middleware) {
-      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
-    }
-    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
-      pipe((0, rxjsStub_2.mergeMap)((response) => {
-        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
-        for (let middleware of this.configuration.middleware) {
-          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
-        }
-        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.updateBrand(rsp)));
-      }));
-  }
-  /**
-      * Updates a theme for a brand
-      * Replace a Theme
-      * @param brandId
-      * @param themeId
-      * @param theme
-      */
-  updateBrandTheme(brandId, themeId, theme, _options) {
-    const requestContextPromise = this.requestFactory.updateBrandTheme(brandId, themeId, theme, _options);
-    // build promise chain
-    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
-    for (let middleware of this.configuration.middleware) {
-      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
-    }
-    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
-      pipe((0, rxjsStub_2.mergeMap)((response) => {
-        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
-        for (let middleware of this.configuration.middleware) {
-          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
-        }
-        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.updateBrandTheme(rsp)));
-      }));
-  }
-  /**
-      * Updates an existing email customization using the property values provided.
-      * Replace an Email Customization
-      * @param brandId The ID of the brand.
-      * @param templateName The name of the email template.
-      * @param customizationId The ID of the email customization.
-      * @param instance Request
-      */
-  updateEmailCustomization(brandId, templateName, customizationId, instance, _options) {
-    const requestContextPromise = this.requestFactory.updateEmailCustomization(brandId, templateName, customizationId, instance, _options);
-    // build promise chain
-    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
-    for (let middleware of this.configuration.middleware) {
-      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
-    }
-    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
-      pipe((0, rxjsStub_2.mergeMap)((response) => {
-        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
-        for (let middleware of this.configuration.middleware) {
-          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
-        }
-        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.updateEmailCustomization(rsp)));
-      }));
-  }
-  /**
-      * Updates an email template's settings.
-      * Replace the Email Template Settings
-      * @param brandId The ID of the brand.
-      * @param templateName The name of the email template.
-      * @param EmailSettings
-      */
-  updateEmailSettings(brandId, templateName, EmailSettings, _options) {
-    const requestContextPromise = this.requestFactory.updateEmailSettings(brandId, templateName, EmailSettings, _options);
-    // build promise chain
-    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
-    for (let middleware of this.configuration.middleware) {
-      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
-    }
-    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
-      pipe((0, rxjsStub_2.mergeMap)((response) => {
-        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
-        for (let middleware of this.configuration.middleware) {
-          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
-        }
-        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.updateEmailSettings(rsp)));
-      }));
-  }
-  /**
-      * Updates the background image for your Theme
+      * Uploads and replaces the background image for the theme. The file must be in PNG, JPG, or GIF format and less than 2 MB in size.
       * Upload the Background Image
-      * @param brandId
-      * @param themeId
+      * @param brandId The ID of the brand.
+      * @param themeId The ID of the theme.
       * @param file
       */
   uploadBrandThemeBackgroundImage(brandId, themeId, file, _options) {
@@ -3207,10 +3684,10 @@ class ObservableCustomizationApi {
       }));
   }
   /**
-      * Updates the favicon for your theme
+      * Uploads and replaces the favicon for the theme
       * Upload the Favicon
-      * @param brandId
-      * @param themeId
+      * @param brandId The ID of the brand.
+      * @param themeId The ID of the theme.
       * @param file
       */
   uploadBrandThemeFavicon(brandId, themeId, file, _options) {
@@ -3230,10 +3707,10 @@ class ObservableCustomizationApi {
       }));
   }
   /**
-      * Updates the logo for your Theme
+      * Uploads and replaces the logo for the theme. The file must be in PNG, JPG, or GIF format and less than 100kB in size. For best results use landscape orientation, a transparent background, and a minimum size of 300px by 50px to prevent upscaling.
       * Upload the Logo
-      * @param brandId
-      * @param themeId
+      * @param brandId The ID of the brand.
+      * @param themeId The ID of the theme.
       * @param file
       */
   uploadBrandThemeLogo(brandId, themeId, file, _options) {
@@ -3254,6 +3731,157 @@ class ObservableCustomizationApi {
   }
 }
 exports.ObservableCustomizationApi = ObservableCustomizationApi;
+const DeviceApi_1 = require('../apis/DeviceApi');
+class ObservableDeviceApi {
+  constructor(configuration, requestFactory, responseProcessor) {
+    this.configuration = configuration;
+    this.requestFactory = requestFactory || new DeviceApi_1.DeviceApiRequestFactory(configuration);
+    this.responseProcessor = responseProcessor || new DeviceApi_1.DeviceApiResponseProcessor();
+  }
+  /**
+      * Activates a device by `deviceId`
+      * Activate a Device
+      * @param deviceId &#x60;id&#x60; of the device
+      */
+  activateDevice(deviceId, _options) {
+    const requestContextPromise = this.requestFactory.activateDevice(deviceId, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.activateDevice(rsp)));
+      }));
+  }
+  /**
+      * Deactivates a device by `deviceId`
+      * Deactivate a Device
+      * @param deviceId &#x60;id&#x60; of the device
+      */
+  deactivateDevice(deviceId, _options) {
+    const requestContextPromise = this.requestFactory.deactivateDevice(deviceId, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.deactivateDevice(rsp)));
+      }));
+  }
+  /**
+      * Deletes a device by `deviceId`
+      * Delete a Device
+      * @param deviceId &#x60;id&#x60; of the device
+      */
+  deleteDevice(deviceId, _options) {
+    const requestContextPromise = this.requestFactory.deleteDevice(deviceId, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.deleteDevice(rsp)));
+      }));
+  }
+  /**
+      * Retrieves a device by `deviceId`
+      * Retrieve a Device
+      * @param deviceId &#x60;id&#x60; of the device
+      */
+  getDevice(deviceId, _options) {
+    const requestContextPromise = this.requestFactory.getDevice(deviceId, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.getDevice(rsp)));
+      }));
+  }
+  /**
+      * Lists all devices with pagination support.  A subset of Devices can be returned that match a supported search criteria using the `search` query parameter.  Searches for devices based on the properties specified in the `search` parameter conforming SCIM filter specifications (case-insensitive). This data is eventually consistent. The API returns different results depending on specified queries in the request. Empty list is returned if no objects match `search` request.  > **Note:** Listing devices with `search` should not be used as a part of any critical flows—such as authentication or updates—to prevent potential data loss. `search` results may not reflect the latest information, as this endpoint uses a search index which may not be up-to-date with recent updates to the object. <br> Don't use search results directly for record updates, as the data might be stale and therefore overwrite newer data, resulting in data loss. <br> Use an `id` lookup for records that you update to ensure your results contain the latest data.  This operation equires [URL encoding](http://en.wikipedia.org/wiki/Percent-encoding). For example, `search=profile.displayName eq \"Bob\"` is encoded as `search=profile.displayName%20eq%20%22Bob%22`.
+      * List all Devices
+      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](/#pagination) for more information.
+      * @param limit A limit on the number of objects to return.
+      * @param search SCIM filter expression that filters the results. Searches include all Device &#x60;profile&#x60; properties, as well as the Device &#x60;id&#x60;, &#x60;status&#x60; and &#x60;lastUpdated&#x60; properties.
+      */
+  listDevices(after, limit, search, _options) {
+    const requestContextPromise = this.requestFactory.listDevices(after, limit, search, _options);
+    const modelFactory = {
+      parseResponse: (rsp) => this.responseProcessor.listDevices(rsp),
+    };
+    return (0, rxjsStub_1.from)(requestContextPromise).pipe((0, rxjsStub_2.mergeMap)((ctx) => {
+      return (0, rxjsStub_1.from)(Promise.resolve(new collection_1.Collection(this.configuration.httpApi, ctx.getUrl(), modelFactory, ctx)));
+    }));
+  }
+  /**
+      * Suspends a device by `deviceId`
+      * Suspend a Device
+      * @param deviceId &#x60;id&#x60; of the device
+      */
+  suspendDevice(deviceId, _options) {
+    const requestContextPromise = this.requestFactory.suspendDevice(deviceId, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.suspendDevice(rsp)));
+      }));
+  }
+  /**
+      * Unsuspends a device by `deviceId`
+      * Unsuspend a Device
+      * @param deviceId &#x60;id&#x60; of the device
+      */
+  unsuspendDevice(deviceId, _options) {
+    const requestContextPromise = this.requestFactory.unsuspendDevice(deviceId, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.unsuspendDevice(rsp)));
+      }));
+  }
+}
+exports.ObservableDeviceApi = ObservableDeviceApi;
 const DeviceAssuranceApi_1 = require('../apis/DeviceAssuranceApi');
 class ObservableDeviceAssuranceApi {
   constructor(configuration, requestFactory, responseProcessor) {
@@ -3262,7 +3890,7 @@ class ObservableDeviceAssuranceApi {
     this.responseProcessor = responseProcessor || new DeviceAssuranceApi_1.DeviceAssuranceApiResponseProcessor();
   }
   /**
-      * Adds a new Device Assurance Policy.
+      * Creates a new Device Assurance Policy
       * Create a Device Assurance Policy
       * @param deviceAssurance
       */
@@ -3283,7 +3911,7 @@ class ObservableDeviceAssuranceApi {
       }));
   }
   /**
-      * Delete a Device Assurance Policy by `deviceAssuranceId`. If the Device Assurance Policy is currently being used in the org Authentication Policies, the delete will not be allowed.
+      * Deletes a Device Assurance Policy by `deviceAssuranceId`. If the Device Assurance Policy is currently being used in the org Authentication Policies, the delete will not be allowed.
       * Delete a Device Assurance Policy
       * @param deviceAssuranceId Id of the Device Assurance Policy
       */
@@ -3304,7 +3932,7 @@ class ObservableDeviceAssuranceApi {
       }));
   }
   /**
-      * Fetches a Device Assurance Policy by `deviceAssuranceId`.
+      * Retrieves a Device Assurance Policy by `deviceAssuranceId`
       * Retrieve a Device Assurance Policy
       * @param deviceAssuranceId Id of the Device Assurance Policy
       */
@@ -3325,7 +3953,7 @@ class ObservableDeviceAssuranceApi {
       }));
   }
   /**
-      * Enumerates Device Assurance Policies in your organization.
+      * Lists all device assurance policies
       * List all Device Assurance Policies
       */
   listDeviceAssurancePolicies(_options) {
@@ -3338,13 +3966,13 @@ class ObservableDeviceAssuranceApi {
     }));
   }
   /**
-      * Updates a Device Assurance Policy by `deviceAssuranceId`.
+      * Replaces a Device Assurance Policy by `deviceAssuranceId`
       * Replace a Device Assurance Policy
       * @param deviceAssuranceId Id of the Device Assurance Policy
       * @param deviceAssurance
       */
-  updateDeviceAssurancePolicy(deviceAssuranceId, deviceAssurance, _options) {
-    const requestContextPromise = this.requestFactory.updateDeviceAssurancePolicy(deviceAssuranceId, deviceAssurance, _options);
+  replaceDeviceAssurancePolicy(deviceAssuranceId, deviceAssurance, _options) {
+    const requestContextPromise = this.requestFactory.replaceDeviceAssurancePolicy(deviceAssuranceId, deviceAssurance, _options);
     // build promise chain
     let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
     for (let middleware of this.configuration.middleware) {
@@ -3356,146 +3984,11 @@ class ObservableDeviceAssuranceApi {
         for (let middleware of this.configuration.middleware) {
           middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
         }
-        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.updateDeviceAssurancePolicy(rsp)));
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.replaceDeviceAssurancePolicy(rsp)));
       }));
   }
 }
 exports.ObservableDeviceAssuranceApi = ObservableDeviceAssuranceApi;
-const DomainApi_1 = require('../apis/DomainApi');
-class ObservableDomainApi {
-  constructor(configuration, requestFactory, responseProcessor) {
-    this.configuration = configuration;
-    this.requestFactory = requestFactory || new DomainApi_1.DomainApiRequestFactory(configuration);
-    this.responseProcessor = responseProcessor || new DomainApi_1.DomainApiResponseProcessor();
-  }
-  /**
-      * Creates the Certificate for the Domain.
-      * Replace the Certificate
-      * @param domainId
-      * @param certificate
-      */
-  createCertificate(domainId, certificate, _options) {
-    const requestContextPromise = this.requestFactory.createCertificate(domainId, certificate, _options);
-    // build promise chain
-    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
-    for (let middleware of this.configuration.middleware) {
-      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
-    }
-    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
-      pipe((0, rxjsStub_2.mergeMap)((response) => {
-        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
-        for (let middleware of this.configuration.middleware) {
-          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
-        }
-        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.createCertificate(rsp)));
-      }));
-  }
-  /**
-      * Creates your domain.
-      * Create a Domain
-      * @param domain
-      */
-  createDomain(domain, _options) {
-    const requestContextPromise = this.requestFactory.createDomain(domain, _options);
-    // build promise chain
-    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
-    for (let middleware of this.configuration.middleware) {
-      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
-    }
-    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
-      pipe((0, rxjsStub_2.mergeMap)((response) => {
-        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
-        for (let middleware of this.configuration.middleware) {
-          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
-        }
-        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.createDomain(rsp)));
-      }));
-  }
-  /**
-      * Deletes a Domain by `id`.
-      * Delete a Domain
-      * @param domainId
-      */
-  deleteDomain(domainId, _options) {
-    const requestContextPromise = this.requestFactory.deleteDomain(domainId, _options);
-    // build promise chain
-    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
-    for (let middleware of this.configuration.middleware) {
-      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
-    }
-    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
-      pipe((0, rxjsStub_2.mergeMap)((response) => {
-        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
-        for (let middleware of this.configuration.middleware) {
-          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
-        }
-        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.deleteDomain(rsp)));
-      }));
-  }
-  /**
-      * Fetches a Domain by `id`.
-      * Retrieve a Domain
-      * @param domainId
-      */
-  getDomain(domainId, _options) {
-    const requestContextPromise = this.requestFactory.getDomain(domainId, _options);
-    // build promise chain
-    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
-    for (let middleware of this.configuration.middleware) {
-      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
-    }
-    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
-      pipe((0, rxjsStub_2.mergeMap)((response) => {
-        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
-        for (let middleware of this.configuration.middleware) {
-          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
-        }
-        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.getDomain(rsp)));
-      }));
-  }
-  /**
-      * List all verified custom Domains for the org.
-      * List all Domains
-      */
-  listDomains(_options) {
-    const requestContextPromise = this.requestFactory.listDomains(_options);
-    // build promise chain
-    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
-    for (let middleware of this.configuration.middleware) {
-      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
-    }
-    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
-      pipe((0, rxjsStub_2.mergeMap)((response) => {
-        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
-        for (let middleware of this.configuration.middleware) {
-          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
-        }
-        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.listDomains(rsp)));
-      }));
-  }
-  /**
-      * Verifies the Domain by `id`.
-      * Verify a Domain
-      * @param domainId
-      */
-  verifyDomain(domainId, _options) {
-    const requestContextPromise = this.requestFactory.verifyDomain(domainId, _options);
-    // build promise chain
-    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
-    for (let middleware of this.configuration.middleware) {
-      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
-    }
-    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
-      pipe((0, rxjsStub_2.mergeMap)((response) => {
-        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
-        for (let middleware of this.configuration.middleware) {
-          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
-        }
-        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.verifyDomain(rsp)));
-      }));
-  }
-}
-exports.ObservableDomainApi = ObservableDomainApi;
 const EmailDomainApi_1 = require('../apis/EmailDomainApi');
 class ObservableEmailDomainApi {
   constructor(configuration, requestFactory, responseProcessor) {
@@ -3504,7 +3997,7 @@ class ObservableEmailDomainApi {
     this.responseProcessor = responseProcessor || new EmailDomainApi_1.EmailDomainApiResponseProcessor();
   }
   /**
-      * Creates a custom email domain.
+      * Creates an Email Domain in your org, along with associated username and sender display name
       * Create an Email Domain
       * @param emailDomain
       */
@@ -3525,7 +4018,7 @@ class ObservableEmailDomainApi {
       }));
   }
   /**
-      * Deletes an Email Domain by `emailDomainId`.
+      * Deletes an Email Domain by `emailDomainId`
       * Delete an Email Domain
       * @param emailDomainId
       */
@@ -3546,7 +4039,7 @@ class ObservableEmailDomainApi {
       }));
   }
   /**
-      * Fetches an Email Domain by `emailDomainId`.
+      * Retrieves an Email Domain by `emailDomainId`, along with associated username and sender display name
       * Retrieve a Email Domain
       * @param emailDomainId
       */
@@ -3567,7 +4060,7 @@ class ObservableEmailDomainApi {
       }));
   }
   /**
-      * List all brands linked to an email domain.
+      * Lists all brands linked to an email domain
       * List all brands linked to an email domain
       * @param emailDomainId
       */
@@ -3581,8 +4074,8 @@ class ObservableEmailDomainApi {
     }));
   }
   /**
-      * List all the email domains in your org.
-      * List all email domains
+      * Lists all the Email Domains in your org, along with associated username and sender display name
+      * List all Email Domains
       */
   listEmailDomains(_options) {
     const requestContextPromise = this.requestFactory.listEmailDomains(_options);
@@ -3601,13 +4094,13 @@ class ObservableEmailDomainApi {
       }));
   }
   /**
-      * Updates an email domain by `emailDomainId`
-      * Update an Email Domain
+      * Replaces associated username and sender display name by `emailDomainId`
+      * Replace an Email Domain
       * @param emailDomainId
       * @param updateEmailDomain
       */
-  updateEmailDomain(emailDomainId, updateEmailDomain, _options) {
-    const requestContextPromise = this.requestFactory.updateEmailDomain(emailDomainId, updateEmailDomain, _options);
+  replaceEmailDomain(emailDomainId, updateEmailDomain, _options) {
+    const requestContextPromise = this.requestFactory.replaceEmailDomain(emailDomainId, updateEmailDomain, _options);
     // build promise chain
     let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
     for (let middleware of this.configuration.middleware) {
@@ -3619,12 +4112,12 @@ class ObservableEmailDomainApi {
         for (let middleware of this.configuration.middleware) {
           middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
         }
-        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.updateEmailDomain(rsp)));
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.replaceEmailDomain(rsp)));
       }));
   }
   /**
-      * Verifies the Email Domain by `id`.
-      * Verify Email Domain
+      * Verifies an Email Domain by `emailDomainId`
+      * Verify an Email Domain
       * @param emailDomainId
       */
   verifyEmailDomain(emailDomainId, _options) {
@@ -3653,7 +4146,7 @@ class ObservableEventHookApi {
     this.responseProcessor = responseProcessor || new EventHookApi_1.EventHookApiResponseProcessor();
   }
   /**
-      * Success
+      * Activates an event hook
       * Activate an Event Hook
       * @param eventHookId
       */
@@ -3674,7 +4167,7 @@ class ObservableEventHookApi {
       }));
   }
   /**
-      * Success
+      * Creates an event hook
       * Create an Event Hook
       * @param eventHook
       */
@@ -3695,7 +4188,7 @@ class ObservableEventHookApi {
       }));
   }
   /**
-      * Success
+      * Deactivates an event hook
       * Deactivate an Event Hook
       * @param eventHookId
       */
@@ -3716,7 +4209,7 @@ class ObservableEventHookApi {
       }));
   }
   /**
-      * Success
+      * Deletes an event hook
       * Delete an Event Hook
       * @param eventHookId
       */
@@ -3737,7 +4230,7 @@ class ObservableEventHookApi {
       }));
   }
   /**
-      * Success
+      * Retrieves an event hook
       * Retrieve an Event Hook
       * @param eventHookId
       */
@@ -3758,7 +4251,7 @@ class ObservableEventHookApi {
       }));
   }
   /**
-      * Success
+      * Lists all event hooks
       * List all Event Hooks
       */
   listEventHooks(_options) {
@@ -3771,13 +4264,13 @@ class ObservableEventHookApi {
     }));
   }
   /**
-      * Success
+      * Replaces an event hook
       * Replace an Event Hook
       * @param eventHookId
       * @param eventHook
       */
-  updateEventHook(eventHookId, eventHook, _options) {
-    const requestContextPromise = this.requestFactory.updateEventHook(eventHookId, eventHook, _options);
+  replaceEventHook(eventHookId, eventHook, _options) {
+    const requestContextPromise = this.requestFactory.replaceEventHook(eventHookId, eventHook, _options);
     // build promise chain
     let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
     for (let middleware of this.configuration.middleware) {
@@ -3789,11 +4282,11 @@ class ObservableEventHookApi {
         for (let middleware of this.configuration.middleware) {
           middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
         }
-        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.updateEventHook(rsp)));
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.replaceEventHook(rsp)));
       }));
   }
   /**
-      * Success
+      * Verifies an event hook
       * Verify an Event Hook
       * @param eventHookId
       */
@@ -3823,7 +4316,7 @@ class ObservableFeatureApi {
     this.responseProcessor = responseProcessor || new FeatureApi_1.FeatureApiResponseProcessor();
   }
   /**
-      * Success
+      * Retrieves a feature
       * Retrieve a Feature
       * @param featureId
       */
@@ -3844,7 +4337,7 @@ class ObservableFeatureApi {
       }));
   }
   /**
-      * Success
+      * Lists all dependencies
       * List all Dependencies
       * @param featureId
       */
@@ -3858,7 +4351,7 @@ class ObservableFeatureApi {
     }));
   }
   /**
-      * Success
+      * Lists all dependents
       * List all Dependents
       * @param featureId
       */
@@ -3872,7 +4365,7 @@ class ObservableFeatureApi {
     }));
   }
   /**
-      * Success
+      * Lists all features
       * List all Features
       */
   listFeatures(_options) {
@@ -3885,7 +4378,7 @@ class ObservableFeatureApi {
     }));
   }
   /**
-      * Success
+      * Updates a feature lifecycle
       * Update a Feature Lifecycle
       * @param featureId
       * @param lifecycle
@@ -3917,7 +4410,7 @@ class ObservableGroupApi {
     this.responseProcessor = responseProcessor || new GroupApi_1.GroupApiResponseProcessor();
   }
   /**
-      * Activates a specific group rule by id from your organization
+      * Activates a specific group rule by `ruleId`
       * Activate a Group Rule
       * @param ruleId
       */
@@ -3938,15 +4431,13 @@ class ObservableGroupApi {
       }));
   }
   /**
-      * Add App Instance Target to App Administrator Role given to a Group
-      * Assign an Application Instance Target to Application Administrator Role
+      * Assigns a group owner
+      * Assign a Group Owner
       * @param groupId
-      * @param roleId
-      * @param appName
-      * @param applicationId
+      * @param GroupOwner
       */
-  addApplicationInstanceTargetToAppAdminRoleGivenToGroup(groupId, roleId, appName, applicationId, _options) {
-    const requestContextPromise = this.requestFactory.addApplicationInstanceTargetToAppAdminRoleGivenToGroup(groupId, roleId, appName, applicationId, _options);
+  assignGroupOwner(groupId, GroupOwner, _options) {
+    const requestContextPromise = this.requestFactory.assignGroupOwner(groupId, GroupOwner, _options);
     // build promise chain
     let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
     for (let middleware of this.configuration.middleware) {
@@ -3958,63 +4449,17 @@ class ObservableGroupApi {
         for (let middleware of this.configuration.middleware) {
           middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
         }
-        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.addApplicationInstanceTargetToAppAdminRoleGivenToGroup(rsp)));
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.assignGroupOwner(rsp)));
       }));
   }
   /**
-      * Success
-      * Assign an Application Target to Administrator Role
-      * @param groupId
-      * @param roleId
-      * @param appName
-      */
-  addApplicationTargetToAdminRoleGivenToGroup(groupId, roleId, appName, _options) {
-    const requestContextPromise = this.requestFactory.addApplicationTargetToAdminRoleGivenToGroup(groupId, roleId, appName, _options);
-    // build promise chain
-    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
-    for (let middleware of this.configuration.middleware) {
-      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
-    }
-    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
-      pipe((0, rxjsStub_2.mergeMap)((response) => {
-        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
-        for (let middleware of this.configuration.middleware) {
-          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
-        }
-        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.addApplicationTargetToAdminRoleGivenToGroup(rsp)));
-      }));
-  }
-  /**
-      * Enumerates group targets for a group role.
-      * Assign a Group Target for Group Role
-      * @param groupId
-      * @param roleId
-      * @param targetGroupId
-      */
-  addGroupTargetToGroupAdministratorRoleForGroup(groupId, roleId, targetGroupId, _options) {
-    const requestContextPromise = this.requestFactory.addGroupTargetToGroupAdministratorRoleForGroup(groupId, roleId, targetGroupId, _options);
-    // build promise chain
-    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
-    for (let middleware of this.configuration.middleware) {
-      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
-    }
-    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
-      pipe((0, rxjsStub_2.mergeMap)((response) => {
-        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
-        for (let middleware of this.configuration.middleware) {
-          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
-        }
-        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.addGroupTargetToGroupAdministratorRoleForGroup(rsp)));
-      }));
-  }
-  /**
-      * Adds a user to a group with 'OKTA_GROUP' type.
+      * Assigns a user to a group with 'OKTA_GROUP' type
       * Assign a User
       * @param groupId
       * @param userId
       */
-  addUserToGroup(groupId, userId, _options) {
-    const requestContextPromise = this.requestFactory.addUserToGroup(groupId, userId, _options);
+  assignUserToGroup(groupId, userId, _options) {
+    const requestContextPromise = this.requestFactory.assignUserToGroup(groupId, userId, _options);
     // build promise chain
     let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
     for (let middleware of this.configuration.middleware) {
@@ -4026,34 +4471,11 @@ class ObservableGroupApi {
         for (let middleware of this.configuration.middleware) {
           middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
         }
-        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.addUserToGroup(rsp)));
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.assignUserToGroup(rsp)));
       }));
   }
   /**
-      * Assigns a Role to a Group
-      * Assign a Role
-      * @param groupId
-      * @param assignRoleRequest
-      * @param disableNotifications
-      */
-  assignRoleToGroup(groupId, assignRoleRequest, disableNotifications, _options) {
-    const requestContextPromise = this.requestFactory.assignRoleToGroup(groupId, assignRoleRequest, disableNotifications, _options);
-    // build promise chain
-    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
-    for (let middleware of this.configuration.middleware) {
-      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
-    }
-    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
-      pipe((0, rxjsStub_2.mergeMap)((response) => {
-        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
-        for (let middleware of this.configuration.middleware) {
-          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
-        }
-        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.assignRoleToGroup(rsp)));
-      }));
-  }
-  /**
-      * Adds a new group with `OKTA_GROUP` type to your organization.
+      * Creates a new group with `OKTA_GROUP` type
       * Create a Group
       * @param group
       */
@@ -4095,7 +4517,7 @@ class ObservableGroupApi {
       }));
   }
   /**
-      * Deactivates a specific group rule by id from your organization
+      * Deactivates a specific group rule by `ruleId`
       * Deactivate a Group Rule
       * @param ruleId
       */
@@ -4116,7 +4538,7 @@ class ObservableGroupApi {
       }));
   }
   /**
-      * Removes a group with `OKTA_GROUP` type from your organization.
+      * Deletes a group with `OKTA_GROUP` type
       * Delete a Group
       * @param groupId
       */
@@ -4137,7 +4559,29 @@ class ObservableGroupApi {
       }));
   }
   /**
-      * Removes a specific group rule by id from your organization
+      * Deletes a group owner from a specific group
+      * Delete a Group Owner
+      * @param groupId
+      * @param ownerId
+      */
+  deleteGroupOwner(groupId, ownerId, _options) {
+    const requestContextPromise = this.requestFactory.deleteGroupOwner(groupId, ownerId, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.deleteGroupOwner(rsp)));
+      }));
+  }
+  /**
+      * Deletes a specific group rule by `ruleId`
       * Delete a group Rule
       * @param ruleId
       * @param removeUsers Indicates whether to keep or remove users from groups assigned by this rule.
@@ -4159,8 +4603,8 @@ class ObservableGroupApi {
       }));
   }
   /**
-      * Fetches a group from your organization.
-      * List all Group Rules
+      * Retrieves a group by `groupId`
+      * Retrieve a Group
       * @param groupId
       */
   getGroup(groupId, _options) {
@@ -4180,7 +4624,7 @@ class ObservableGroupApi {
       }));
   }
   /**
-      * Fetches a specific group rule by id from your organization
+      * Retrieves a specific group rule by `ruleId`
       * Retrieve a Group Rule
       * @param ruleId
       * @param expand
@@ -4202,46 +4646,7 @@ class ObservableGroupApi {
       }));
   }
   /**
-      * Success
-      * Retrieve a Role
-      * @param groupId
-      * @param roleId
-      */
-  getRole(groupId, roleId, _options) {
-    const requestContextPromise = this.requestFactory.getRole(groupId, roleId, _options);
-    // build promise chain
-    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
-    for (let middleware of this.configuration.middleware) {
-      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
-    }
-    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
-      pipe((0, rxjsStub_2.mergeMap)((response) => {
-        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
-        for (let middleware of this.configuration.middleware) {
-          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
-        }
-        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.getRole(rsp)));
-      }));
-  }
-  /**
-      * Lists all App targets for an `APP_ADMIN` Role assigned to a Group. This methods return list may include full Applications or Instances. The response for an instance will have an `ID` value, while Application will not have an ID.
-      * List all Application Targets for an Application Administrator Role
-      * @param groupId
-      * @param roleId
-      * @param after
-      * @param limit
-      */
-  listApplicationTargetsForApplicationAdministratorRoleForGroup(groupId, roleId, after, limit, _options) {
-    const requestContextPromise = this.requestFactory.listApplicationTargetsForApplicationAdministratorRoleForGroup(groupId, roleId, after, limit, _options);
-    const modelFactory = {
-      parseResponse: (rsp) => this.responseProcessor.listApplicationTargetsForApplicationAdministratorRoleForGroup(rsp),
-    };
-    return (0, rxjsStub_1.from)(requestContextPromise).pipe((0, rxjsStub_2.mergeMap)((ctx) => {
-      return (0, rxjsStub_1.from)(Promise.resolve(new collection_1.Collection(this.configuration.httpApi, ctx.getUrl(), modelFactory, ctx)));
-    }));
-  }
-  /**
-      * Enumerates all applications that are assigned to a group.
+      * Lists all applications that are assigned to a group
       * List all Assigned Applications
       * @param groupId
       * @param after Specifies the pagination cursor for the next page of apps
@@ -4257,22 +4662,24 @@ class ObservableGroupApi {
     }));
   }
   /**
-      * Success
-      * List all Assigned Roles
+      * Lists all owners for a specific group
+      * List all Group Owners
       * @param groupId
-      * @param expand
+      * @param filter SCIM Filter expression for group owners. Allows to filter owners by type.
+      * @param after Specifies the pagination cursor for the next page of owners
+      * @param limit Specifies the number of owner results in a page
       */
-  listGroupAssignedRoles(groupId, expand, _options) {
-    const requestContextPromise = this.requestFactory.listGroupAssignedRoles(groupId, expand, _options);
+  listGroupOwners(groupId, filter, after, limit, _options) {
+    const requestContextPromise = this.requestFactory.listGroupOwners(groupId, filter, after, limit, _options);
     const modelFactory = {
-      parseResponse: (rsp) => this.responseProcessor.listGroupAssignedRoles(rsp),
+      parseResponse: (rsp) => this.responseProcessor.listGroupOwners(rsp),
     };
     return (0, rxjsStub_1.from)(requestContextPromise).pipe((0, rxjsStub_2.mergeMap)((ctx) => {
       return (0, rxjsStub_1.from)(Promise.resolve(new collection_1.Collection(this.configuration.httpApi, ctx.getUrl(), modelFactory, ctx)));
     }));
   }
   /**
-      * Lists all group rules for your organization.
+      * Lists all group rules
       * List all Group Rules
       * @param limit Specifies the number of rule results in a page
       * @param after Specifies the pagination cursor for the next page of rules
@@ -4289,24 +4696,7 @@ class ObservableGroupApi {
     }));
   }
   /**
-      * Enumerates group targets for a group role.
-      * List all Group Targets for a Group Role
-      * @param groupId
-      * @param roleId
-      * @param after
-      * @param limit
-      */
-  listGroupTargetsForGroupRole(groupId, roleId, after, limit, _options) {
-    const requestContextPromise = this.requestFactory.listGroupTargetsForGroupRole(groupId, roleId, after, limit, _options);
-    const modelFactory = {
-      parseResponse: (rsp) => this.responseProcessor.listGroupTargetsForGroupRole(rsp),
-    };
-    return (0, rxjsStub_1.from)(requestContextPromise).pipe((0, rxjsStub_2.mergeMap)((ctx) => {
-      return (0, rxjsStub_1.from)(Promise.resolve(new collection_1.Collection(this.configuration.httpApi, ctx.getUrl(), modelFactory, ctx)));
-    }));
-  }
-  /**
-      * Enumerates all users that are a member of a group.
+      * Lists all users that are a member of a group
       * List all Member Users
       * @param groupId
       * @param after Specifies the pagination cursor for the next page of users
@@ -4322,7 +4712,7 @@ class ObservableGroupApi {
     }));
   }
   /**
-      * Enumerates groups in your organization with pagination. A subset of groups can be returned that match a supported filter expression or query.
+      * Lists all groups with pagination support. A subset of groups can be returned that match a supported filter expression or query.
       * List all Groups
       * @param q Searches the name property of groups for matching value
       * @param filter Filter expression for groups
@@ -4341,127 +4731,13 @@ class ObservableGroupApi {
     }));
   }
   /**
-      * Remove App Instance Target to App Administrator Role given to a Group
-      * Delete an Application Instance Target to Application Administrator Role
-      * @param groupId
-      * @param roleId
-      * @param appName
-      * @param applicationId
-      */
-  removeApplicationTargetFromAdministratorRoleGivenToGroup(groupId, roleId, appName, applicationId, _options) {
-    const requestContextPromise = this.requestFactory.removeApplicationTargetFromAdministratorRoleGivenToGroup(groupId, roleId, appName, applicationId, _options);
-    // build promise chain
-    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
-    for (let middleware of this.configuration.middleware) {
-      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
-    }
-    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
-      pipe((0, rxjsStub_2.mergeMap)((response) => {
-        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
-        for (let middleware of this.configuration.middleware) {
-          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
-        }
-        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.removeApplicationTargetFromAdministratorRoleGivenToGroup(rsp)));
-      }));
-  }
-  /**
-      * Success
-      * Delete an Application Target from Application Administrator Role
-      * @param groupId
-      * @param roleId
-      * @param appName
-      */
-  removeApplicationTargetFromApplicationAdministratorRoleGivenToGroup(groupId, roleId, appName, _options) {
-    const requestContextPromise = this.requestFactory.removeApplicationTargetFromApplicationAdministratorRoleGivenToGroup(groupId, roleId, appName, _options);
-    // build promise chain
-    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
-    for (let middleware of this.configuration.middleware) {
-      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
-    }
-    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
-      pipe((0, rxjsStub_2.mergeMap)((response) => {
-        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
-        for (let middleware of this.configuration.middleware) {
-          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
-        }
-        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.removeApplicationTargetFromApplicationAdministratorRoleGivenToGroup(rsp)));
-      }));
-  }
-  /**
-      * remove group target for a group role.
-      * Delete a Group Target for Group Role
-      * @param groupId
-      * @param roleId
-      * @param targetGroupId
-      */
-  removeGroupTargetFromGroupAdministratorRoleGivenToGroup(groupId, roleId, targetGroupId, _options) {
-    const requestContextPromise = this.requestFactory.removeGroupTargetFromGroupAdministratorRoleGivenToGroup(groupId, roleId, targetGroupId, _options);
-    // build promise chain
-    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
-    for (let middleware of this.configuration.middleware) {
-      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
-    }
-    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
-      pipe((0, rxjsStub_2.mergeMap)((response) => {
-        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
-        for (let middleware of this.configuration.middleware) {
-          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
-        }
-        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.removeGroupTargetFromGroupAdministratorRoleGivenToGroup(rsp)));
-      }));
-  }
-  /**
-      * Unassigns a Role from a Group
-      * Delete a Role
-      * @param groupId
-      * @param roleId
-      */
-  removeRoleFromGroup(groupId, roleId, _options) {
-    const requestContextPromise = this.requestFactory.removeRoleFromGroup(groupId, roleId, _options);
-    // build promise chain
-    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
-    for (let middleware of this.configuration.middleware) {
-      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
-    }
-    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
-      pipe((0, rxjsStub_2.mergeMap)((response) => {
-        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
-        for (let middleware of this.configuration.middleware) {
-          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
-        }
-        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.removeRoleFromGroup(rsp)));
-      }));
-  }
-  /**
-      * Removes a user from a group with 'OKTA_GROUP' type.
-      * Unassign a User
-      * @param groupId
-      * @param userId
-      */
-  removeUserFromGroup(groupId, userId, _options) {
-    const requestContextPromise = this.requestFactory.removeUserFromGroup(groupId, userId, _options);
-    // build promise chain
-    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
-    for (let middleware of this.configuration.middleware) {
-      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
-    }
-    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
-      pipe((0, rxjsStub_2.mergeMap)((response) => {
-        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
-        for (let middleware of this.configuration.middleware) {
-          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
-        }
-        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.removeUserFromGroup(rsp)));
-      }));
-  }
-  /**
-      * Updates the profile for a group with `OKTA_GROUP` type from your organization.
+      * Replaces the profile for a group with `OKTA_GROUP` type
       * Replace a Group
       * @param groupId
       * @param group
       */
-  updateGroup(groupId, group, _options) {
-    const requestContextPromise = this.requestFactory.updateGroup(groupId, group, _options);
+  replaceGroup(groupId, group, _options) {
+    const requestContextPromise = this.requestFactory.replaceGroup(groupId, group, _options);
     // build promise chain
     let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
     for (let middleware of this.configuration.middleware) {
@@ -4473,17 +4749,17 @@ class ObservableGroupApi {
         for (let middleware of this.configuration.middleware) {
           middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
         }
-        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.updateGroup(rsp)));
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.replaceGroup(rsp)));
       }));
   }
   /**
-      * Updates a group rule. Only `INACTIVE` rules can be updated.
+      * Replaces a group rule. Only `INACTIVE` rules can be updated.
       * Replace a Group Rule
       * @param ruleId
       * @param groupRule
       */
-  updateGroupRule(ruleId, groupRule, _options) {
-    const requestContextPromise = this.requestFactory.updateGroupRule(ruleId, groupRule, _options);
+  replaceGroupRule(ruleId, groupRule, _options) {
+    const requestContextPromise = this.requestFactory.replaceGroupRule(ruleId, groupRule, _options);
     // build promise chain
     let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
     for (let middleware of this.configuration.middleware) {
@@ -4495,11 +4771,161 @@ class ObservableGroupApi {
         for (let middleware of this.configuration.middleware) {
           middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
         }
-        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.updateGroupRule(rsp)));
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.replaceGroupRule(rsp)));
+      }));
+  }
+  /**
+      * Unassigns a user from a group with 'OKTA_GROUP' type
+      * Unassign a User
+      * @param groupId
+      * @param userId
+      */
+  unassignUserFromGroup(groupId, userId, _options) {
+    const requestContextPromise = this.requestFactory.unassignUserFromGroup(groupId, userId, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.unassignUserFromGroup(rsp)));
       }));
   }
 }
 exports.ObservableGroupApi = ObservableGroupApi;
+const HookKeyApi_1 = require('../apis/HookKeyApi');
+class ObservableHookKeyApi {
+  constructor(configuration, requestFactory, responseProcessor) {
+    this.configuration = configuration;
+    this.requestFactory = requestFactory || new HookKeyApi_1.HookKeyApiRequestFactory(configuration);
+    this.responseProcessor = responseProcessor || new HookKeyApi_1.HookKeyApiResponseProcessor();
+  }
+  /**
+      * Creates a key
+      * Create a key
+      * @param keyRequest
+      */
+  createHookKey(keyRequest, _options) {
+    const requestContextPromise = this.requestFactory.createHookKey(keyRequest, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.createHookKey(rsp)));
+      }));
+  }
+  /**
+      * Deletes a key by `hookKeyId`. Once deleted, the Hook Key is unrecoverable. As a safety precaution, unused keys are eligible for deletion.
+      * Delete a key
+      * @param hookKeyId
+      */
+  deleteHookKey(hookKeyId, _options) {
+    const requestContextPromise = this.requestFactory.deleteHookKey(hookKeyId, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.deleteHookKey(rsp)));
+      }));
+  }
+  /**
+      * Retrieves a key by `hookKeyId`
+      * Retrieve a key
+      * @param hookKeyId
+      */
+  getHookKey(hookKeyId, _options) {
+    const requestContextPromise = this.requestFactory.getHookKey(hookKeyId, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.getHookKey(rsp)));
+      }));
+  }
+  /**
+      * Retrieves a public key by `keyId`
+      * Retrieve a public key
+      * @param keyId
+      */
+  getPublicKey(keyId, _options) {
+    const requestContextPromise = this.requestFactory.getPublicKey(keyId, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.getPublicKey(rsp)));
+      }));
+  }
+  /**
+      * Lists all keys
+      * List all keys
+      */
+  listHookKeys(_options) {
+    const requestContextPromise = this.requestFactory.listHookKeys(_options);
+    const modelFactory = {
+      parseResponse: (rsp) => this.responseProcessor.listHookKeys(rsp),
+    };
+    return (0, rxjsStub_1.from)(requestContextPromise).pipe((0, rxjsStub_2.mergeMap)((ctx) => {
+      return (0, rxjsStub_1.from)(Promise.resolve(new collection_1.Collection(this.configuration.httpApi, ctx.getUrl(), modelFactory, ctx)));
+    }));
+  }
+  /**
+      * Replaces a key by `hookKeyId`
+      * Replace a key
+      * @param hookKeyId
+      * @param keyRequest
+      */
+  replaceHookKey(hookKeyId, keyRequest, _options) {
+    const requestContextPromise = this.requestFactory.replaceHookKey(hookKeyId, keyRequest, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.replaceHookKey(rsp)));
+      }));
+  }
+}
+exports.ObservableHookKeyApi = ObservableHookKeyApi;
 const IdentityProviderApi_1 = require('../apis/IdentityProviderApi');
 class ObservableIdentityProviderApi {
   constructor(configuration, requestFactory, responseProcessor) {
@@ -4508,7 +4934,7 @@ class ObservableIdentityProviderApi {
     this.responseProcessor = responseProcessor || new IdentityProviderApi_1.IdentityProviderApiResponseProcessor();
   }
   /**
-      * Activates an inactive IdP.
+      * Activates an inactive IdP
       * Activate an Identity Provider
       * @param idpId
       */
@@ -4552,7 +4978,7 @@ class ObservableIdentityProviderApi {
       }));
   }
   /**
-      * Adds a new IdP to your organization.
+      * Creates a new identity provider integration
       * Create an Identity Provider
       * @param identityProvider
       */
@@ -4573,7 +4999,7 @@ class ObservableIdentityProviderApi {
       }));
   }
   /**
-      * Adds a new X.509 certificate credential to the IdP key store.
+      * Creates a new X.509 certificate credential to the IdP key store.
       * Create an X.509 Certificate Public Key
       * @param jsonWebKey
       */
@@ -4594,7 +5020,7 @@ class ObservableIdentityProviderApi {
       }));
   }
   /**
-      * Deactivates an active IdP.
+      * Deactivates an active IdP
       * Deactivate an Identity Provider
       * @param idpId
       */
@@ -4615,7 +5041,7 @@ class ObservableIdentityProviderApi {
       }));
   }
   /**
-      * Removes an IdP from your organization.
+      * Deletes an identity provider integration by `idpId`
       * Delete an Identity Provider
       * @param idpId
       */
@@ -4636,7 +5062,7 @@ class ObservableIdentityProviderApi {
       }));
   }
   /**
-      * Deletes a specific IdP Key Credential by `kid` if it is not currently being used by an Active or Inactive IdP.
+      * Deletes a specific IdP Key Credential by `kid` if it is not currently being used by an Active or Inactive IdP
       * Delete a Signing Credential Key
       * @param keyId
       */
@@ -4657,7 +5083,7 @@ class ObservableIdentityProviderApi {
       }));
   }
   /**
-      * Generates a new key pair and returns a Certificate Signing Request for it.
+      * Generates a new key pair and returns a Certificate Signing Request for it
       * Generate a Certificate Signing Request
       * @param idpId
       * @param metadata
@@ -4701,7 +5127,7 @@ class ObservableIdentityProviderApi {
       }));
   }
   /**
-      * Gets a specific Certificate Signing Request model by id
+      * Retrieves a specific Certificate Signing Request model by id
       * Retrieve a Certificate Signing Request
       * @param idpId
       * @param csrId
@@ -4723,7 +5149,7 @@ class ObservableIdentityProviderApi {
       }));
   }
   /**
-      * Fetches an IdP by `id`.
+      * Retrieves an identity provider integration by `idpId`
       * Retrieve an Identity Provider
       * @param idpId
       */
@@ -4744,7 +5170,7 @@ class ObservableIdentityProviderApi {
       }));
   }
   /**
-      * Fetches a linked IdP user by ID
+      * Retrieves a linked IdP user by ID
       * Retrieve a User
       * @param idpId
       * @param userId
@@ -4766,7 +5192,7 @@ class ObservableIdentityProviderApi {
       }));
   }
   /**
-      * Gets a specific IdP Key Credential by `kid`
+      * Retrieves a specific IdP Key Credential by `kid`
       * Retrieve an Credential Key
       * @param keyId
       */
@@ -4787,7 +5213,7 @@ class ObservableIdentityProviderApi {
       }));
   }
   /**
-      * Gets a specific IdP Key Credential by `kid`
+      * Retrieves a specific IdP Key Credential by `kid`
       * Retrieve a Signing Credential Key
       * @param idpId
       * @param keyId
@@ -4832,7 +5258,7 @@ class ObservableIdentityProviderApi {
       }));
   }
   /**
-      * Enumerates Certificate Signing Requests for an IdP
+      * Lists all Certificate Signing Requests for an IdP
       * List all Certificate Signing Requests
       * @param idpId
       */
@@ -4846,7 +5272,7 @@ class ObservableIdentityProviderApi {
     }));
   }
   /**
-      * Find all the users linked to an identity provider
+      * Lists all users linked to the identity provider
       * List all Users
       * @param idpId
       */
@@ -4860,7 +5286,7 @@ class ObservableIdentityProviderApi {
     }));
   }
   /**
-      * Enumerates IdP key credentials.
+      * Lists all IdP key credentials
       * List all Credential Keys
       * @param after Specifies the pagination cursor for the next page of keys
       * @param limit Specifies the number of key results in a page
@@ -4875,7 +5301,7 @@ class ObservableIdentityProviderApi {
     }));
   }
   /**
-      * Enumerates signing key credentials for an IdP
+      * Lists all signing key credentials for an IdP
       * List all Signing Credential Keys
       * @param idpId
       */
@@ -4889,7 +5315,7 @@ class ObservableIdentityProviderApi {
     }));
   }
   /**
-      * Enumerates IdPs in your organization with pagination. A subset of IdPs can be returned that match a supported filter expression or query.
+      * Lists all identity provider integrations with pagination. A subset of IdPs can be returned that match a supported filter expression or query.
       * List all Identity Providers
       * @param q Searches the name property of IdPs for matching value
       * @param after Specifies the pagination cursor for the next page of IdPs
@@ -4906,7 +5332,7 @@ class ObservableIdentityProviderApi {
     }));
   }
   /**
-      * Fetches the tokens minted by the Social Authentication Provider when the user authenticates with Okta via Social Auth.
+      * Lists the tokens minted by the Social Authentication Provider when the user authenticates with Okta via Social Auth
       * List all Tokens from a OIDC Identity Provider
       * @param idpId
       * @param userId
@@ -4921,7 +5347,7 @@ class ObservableIdentityProviderApi {
     }));
   }
   /**
-      * Update the Certificate Signing Request with a signed X.509 certificate and add it into the signing key credentials for the IdP.
+      * Publishes a certificate signing request with a signed X.509 certificate and adds it into the signing key credentials for the IdP
       * Publish a Certificate Signing Request
       * @param idpId
       * @param csrId
@@ -4944,7 +5370,29 @@ class ObservableIdentityProviderApi {
       }));
   }
   /**
-      * Revoke a Certificate Signing Request and delete the key pair from the IdP
+      * Replaces an identity provider integration by `idpId`
+      * Replace an Identity Provider
+      * @param idpId
+      * @param identityProvider
+      */
+  replaceIdentityProvider(idpId, identityProvider, _options) {
+    const requestContextPromise = this.requestFactory.replaceIdentityProvider(idpId, identityProvider, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.replaceIdentityProvider(rsp)));
+      }));
+  }
+  /**
+      * Revokes a certificate signing request and deletes the key pair from the IdP
       * Revoke a Certificate Signing Request
       * @param idpId
       * @param csrId
@@ -4966,7 +5414,7 @@ class ObservableIdentityProviderApi {
       }));
   }
   /**
-      * Removes the link between the Okta user and the IdP user.
+      * Unlinks the link between the Okta user and the IdP user
       * Unlink a User from IdP
       * @param idpId
       * @param userId
@@ -4987,14 +5435,37 @@ class ObservableIdentityProviderApi {
         return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.unlinkUserFromIdentityProvider(rsp)));
       }));
   }
+}
+exports.ObservableIdentityProviderApi = ObservableIdentityProviderApi;
+const IdentitySourceApi_1 = require('../apis/IdentitySourceApi');
+class ObservableIdentitySourceApi {
+  constructor(configuration, requestFactory, responseProcessor) {
+    this.configuration = configuration;
+    this.requestFactory = requestFactory || new IdentitySourceApi_1.IdentitySourceApiRequestFactory(configuration);
+    this.responseProcessor = responseProcessor || new IdentitySourceApi_1.IdentitySourceApiResponseProcessor();
+  }
   /**
-      * Updates the configuration for an IdP.
-      * Replace an Identity Provider
-      * @param idpId
-      * @param identityProvider
+      * Creates an identity source session for the given identity source instance
+      * Create an Identity Source Session
+      * @param identitySourceId
       */
-  updateIdentityProvider(idpId, identityProvider, _options) {
-    const requestContextPromise = this.requestFactory.updateIdentityProvider(idpId, identityProvider, _options);
+  createIdentitySourceSession(identitySourceId, _options) {
+    const requestContextPromise = this.requestFactory.createIdentitySourceSession(identitySourceId, _options);
+    const modelFactory = {
+      parseResponse: (rsp) => this.responseProcessor.createIdentitySourceSession(rsp),
+    };
+    return (0, rxjsStub_1.from)(requestContextPromise).pipe((0, rxjsStub_2.mergeMap)((ctx) => {
+      return (0, rxjsStub_1.from)(Promise.resolve(new collection_1.Collection(this.configuration.httpApi, ctx.getUrl(), modelFactory, ctx)));
+    }));
+  }
+  /**
+      * Deletes an identity source session for a given `identitySourceId` and `sessionId`
+      * Delete an Identity Source Session
+      * @param identitySourceId
+      * @param sessionId
+      */
+  deleteIdentitySourceSession(identitySourceId, sessionId, _options) {
+    const requestContextPromise = this.requestFactory.deleteIdentitySourceSession(identitySourceId, sessionId, _options);
     // build promise chain
     let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
     for (let middleware of this.configuration.middleware) {
@@ -5006,11 +5477,108 @@ class ObservableIdentityProviderApi {
         for (let middleware of this.configuration.middleware) {
           middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
         }
-        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.updateIdentityProvider(rsp)));
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.deleteIdentitySourceSession(rsp)));
+      }));
+  }
+  /**
+      * Retrieves an identity source session for a given identity source id and session id
+      * Retrieve an Identity Source Session
+      * @param identitySourceId
+      * @param sessionId
+      */
+  getIdentitySourceSession(identitySourceId, sessionId, _options) {
+    const requestContextPromise = this.requestFactory.getIdentitySourceSession(identitySourceId, sessionId, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.getIdentitySourceSession(rsp)));
+      }));
+  }
+  /**
+      * Lists all identity source sessions for the given identity source instance
+      * List all Identity Source Sessions
+      * @param identitySourceId
+      */
+  listIdentitySourceSessions(identitySourceId, _options) {
+    const requestContextPromise = this.requestFactory.listIdentitySourceSessions(identitySourceId, _options);
+    const modelFactory = {
+      parseResponse: (rsp) => this.responseProcessor.listIdentitySourceSessions(rsp),
+    };
+    return (0, rxjsStub_1.from)(requestContextPromise).pipe((0, rxjsStub_2.mergeMap)((ctx) => {
+      return (0, rxjsStub_1.from)(Promise.resolve(new collection_1.Collection(this.configuration.httpApi, ctx.getUrl(), modelFactory, ctx)));
+    }));
+  }
+  /**
+      * Starts the import from the identity source described by the uploaded bulk operations
+      * Start the import from the Identity Source
+      * @param identitySourceId
+      * @param sessionId
+      */
+  startImportFromIdentitySource(identitySourceId, sessionId, _options) {
+    const requestContextPromise = this.requestFactory.startImportFromIdentitySource(identitySourceId, sessionId, _options);
+    const modelFactory = {
+      parseResponse: (rsp) => this.responseProcessor.startImportFromIdentitySource(rsp),
+    };
+    return (0, rxjsStub_1.from)(requestContextPromise).pipe((0, rxjsStub_2.mergeMap)((ctx) => {
+      return (0, rxjsStub_1.from)(Promise.resolve(new collection_1.Collection(this.configuration.httpApi, ctx.getUrl(), modelFactory, ctx)));
+    }));
+  }
+  /**
+      * Uploads entities that need to be deleted in Okta from the identity source for the given session
+      * Upload the data to be deleted in Okta
+      * @param identitySourceId
+      * @param sessionId
+      * @param BulkDeleteRequestBody
+      */
+  uploadIdentitySourceDataForDelete(identitySourceId, sessionId, BulkDeleteRequestBody, _options) {
+    const requestContextPromise = this.requestFactory.uploadIdentitySourceDataForDelete(identitySourceId, sessionId, BulkDeleteRequestBody, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.uploadIdentitySourceDataForDelete(rsp)));
+      }));
+  }
+  /**
+      * Uploads entities that need to be upserted in Okta from the identity source for the given session
+      * Upload the data to be upserted in Okta
+      * @param identitySourceId
+      * @param sessionId
+      * @param BulkUpsertRequestBody
+      */
+  uploadIdentitySourceDataForUpsert(identitySourceId, sessionId, BulkUpsertRequestBody, _options) {
+    const requestContextPromise = this.requestFactory.uploadIdentitySourceDataForUpsert(identitySourceId, sessionId, BulkUpsertRequestBody, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.uploadIdentitySourceDataForUpsert(rsp)));
       }));
   }
 }
-exports.ObservableIdentityProviderApi = ObservableIdentityProviderApi;
+exports.ObservableIdentitySourceApi = ObservableIdentitySourceApi;
 const InlineHookApi_1 = require('../apis/InlineHookApi');
 class ObservableInlineHookApi {
   constructor(configuration, requestFactory, responseProcessor) {
@@ -5019,7 +5587,7 @@ class ObservableInlineHookApi {
     this.responseProcessor = responseProcessor || new InlineHookApi_1.InlineHookApiResponseProcessor();
   }
   /**
-      * Activates the Inline Hook matching the provided id
+      * Activates the inline hook by `inlineHookId`
       * Activate an Inline Hook
       * @param inlineHookId
       */
@@ -5040,7 +5608,7 @@ class ObservableInlineHookApi {
       }));
   }
   /**
-      * Success
+      * Creates an inline hook
       * Create an Inline Hook
       * @param inlineHook
       */
@@ -5061,7 +5629,7 @@ class ObservableInlineHookApi {
       }));
   }
   /**
-      * Deactivates the Inline Hook matching the provided id
+      * Deactivates the inline hook by `inlineHookId`
       * Deactivate an Inline Hook
       * @param inlineHookId
       */
@@ -5082,7 +5650,7 @@ class ObservableInlineHookApi {
       }));
   }
   /**
-      * Deletes the Inline Hook matching the provided id. Once deleted, the Inline Hook is unrecoverable. As a safety precaution, only Inline Hooks with a status of INACTIVE are eligible for deletion.
+      * Deletes an inline hook by `inlineHookId`. Once deleted, the Inline Hook is unrecoverable. As a safety precaution, only Inline Hooks with a status of INACTIVE are eligible for deletion.
       * Delete an Inline Hook
       * @param inlineHookId
       */
@@ -5103,7 +5671,7 @@ class ObservableInlineHookApi {
       }));
   }
   /**
-      * Executes the Inline Hook matching the provided inlineHookId using the request body as the input. This will send the provided data through the Channel and return a response if it matches the correct data contract. This execution endpoint should only be used for testing purposes.
+      * Executes the inline hook by `inlineHookId` using the request body as the input. This will send the provided data through the Channel and return a response if it matches the correct data contract. This execution endpoint should only be used for testing purposes.
       * Execute an Inline Hook
       * @param inlineHookId
       * @param payloadData
@@ -5125,7 +5693,7 @@ class ObservableInlineHookApi {
       }));
   }
   /**
-      * Gets an inline hook by ID
+      * Retrieves an inline hook by `inlineHookId`
       * Retrieve an Inline Hook
       * @param inlineHookId
       */
@@ -5146,7 +5714,7 @@ class ObservableInlineHookApi {
       }));
   }
   /**
-      * Success
+      * Lists all inline hooks
       * List all Inline Hooks
       * @param type
       */
@@ -5160,13 +5728,13 @@ class ObservableInlineHookApi {
     }));
   }
   /**
-      * Updates an inline hook by ID
+      * Replaces an inline hook by `inlineHookId`
       * Replace an Inline Hook
       * @param inlineHookId
       * @param inlineHook
       */
-  updateInlineHook(inlineHookId, inlineHook, _options) {
-    const requestContextPromise = this.requestFactory.updateInlineHook(inlineHookId, inlineHook, _options);
+  replaceInlineHook(inlineHookId, inlineHook, _options) {
+    const requestContextPromise = this.requestFactory.replaceInlineHook(inlineHookId, inlineHook, _options);
     // build promise chain
     let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
     for (let middleware of this.configuration.middleware) {
@@ -5178,7 +5746,7 @@ class ObservableInlineHookApi {
         for (let middleware of this.configuration.middleware) {
           middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
         }
-        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.updateInlineHook(rsp)));
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.replaceInlineHook(rsp)));
       }));
   }
 }
@@ -5191,12 +5759,12 @@ class ObservableLinkedObjectApi {
     this.responseProcessor = responseProcessor || new LinkedObjectApi_1.LinkedObjectApiResponseProcessor();
   }
   /**
-      * Success
+      * Creates a linked object definition
       * Create a Linked Object Definition
       * @param linkedObject
       */
-  addLinkedObjectDefinition(linkedObject, _options) {
-    const requestContextPromise = this.requestFactory.addLinkedObjectDefinition(linkedObject, _options);
+  createLinkedObjectDefinition(linkedObject, _options) {
+    const requestContextPromise = this.requestFactory.createLinkedObjectDefinition(linkedObject, _options);
     // build promise chain
     let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
     for (let middleware of this.configuration.middleware) {
@@ -5208,11 +5776,11 @@ class ObservableLinkedObjectApi {
         for (let middleware of this.configuration.middleware) {
           middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
         }
-        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.addLinkedObjectDefinition(rsp)));
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.createLinkedObjectDefinition(rsp)));
       }));
   }
   /**
-      * Success
+      * Deletes a linked object definition
       * Delete a Linked Object Definition
       * @param linkedObjectName
       */
@@ -5233,7 +5801,7 @@ class ObservableLinkedObjectApi {
       }));
   }
   /**
-      * Success
+      * Retrieves a linked object definition
       * Retrieve a Linked Object Definition
       * @param linkedObjectName
       */
@@ -5254,7 +5822,7 @@ class ObservableLinkedObjectApi {
       }));
   }
   /**
-      * Success
+      * Lists all linked object definitions
       * List all Linked Object Definitions
       */
   listLinkedObjectDefinitions(_options) {
@@ -5268,6 +5836,158 @@ class ObservableLinkedObjectApi {
   }
 }
 exports.ObservableLinkedObjectApi = ObservableLinkedObjectApi;
+const LogStreamApi_1 = require('../apis/LogStreamApi');
+class ObservableLogStreamApi {
+  constructor(configuration, requestFactory, responseProcessor) {
+    this.configuration = configuration;
+    this.requestFactory = requestFactory || new LogStreamApi_1.LogStreamApiRequestFactory(configuration);
+    this.responseProcessor = responseProcessor || new LogStreamApi_1.LogStreamApiResponseProcessor();
+  }
+  /**
+      * Activates a log stream by `logStreamId`
+      * Activate a Log Stream
+      * @param logStreamId id of the log stream
+      */
+  activateLogStream(logStreamId, _options) {
+    const requestContextPromise = this.requestFactory.activateLogStream(logStreamId, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.activateLogStream(rsp)));
+      }));
+  }
+  /**
+      * Creates a new log stream
+      * Create a Log Stream
+      * @param instance
+      */
+  createLogStream(instance, _options) {
+    const requestContextPromise = this.requestFactory.createLogStream(instance, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.createLogStream(rsp)));
+      }));
+  }
+  /**
+      * Deactivates a log stream by `logStreamId`
+      * Deactivate a Log Stream
+      * @param logStreamId id of the log stream
+      */
+  deactivateLogStream(logStreamId, _options) {
+    const requestContextPromise = this.requestFactory.deactivateLogStream(logStreamId, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.deactivateLogStream(rsp)));
+      }));
+  }
+  /**
+      * Deletes a log stream by `logStreamId`
+      * Delete a Log Stream
+      * @param logStreamId id of the log stream
+      */
+  deleteLogStream(logStreamId, _options) {
+    const requestContextPromise = this.requestFactory.deleteLogStream(logStreamId, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.deleteLogStream(rsp)));
+      }));
+  }
+  /**
+      * Retrieves a log stream by `logStreamId`
+      * Retrieve a Log Stream
+      * @param logStreamId id of the log stream
+      */
+  getLogStream(logStreamId, _options) {
+    const requestContextPromise = this.requestFactory.getLogStream(logStreamId, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.getLogStream(rsp)));
+      }));
+  }
+  /**
+      * Lists all log streams. You can request a paginated list or a subset of Log Streams that match a supported filter expression.
+      * List all Log Streams
+      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](/#pagination) for more information.
+      * @param limit A limit on the number of objects to return.
+      * @param filter SCIM filter expression that filters the results. This expression only supports the &#x60;eq&#x60; operator on either the &#x60;status&#x60; or &#x60;type&#x60;.
+      */
+  listLogStreams(after, limit, filter, _options) {
+    const requestContextPromise = this.requestFactory.listLogStreams(after, limit, filter, _options);
+    const modelFactory = {
+      parseResponse: (rsp) => this.responseProcessor.listLogStreams(rsp),
+    };
+    return (0, rxjsStub_1.from)(requestContextPromise).pipe((0, rxjsStub_2.mergeMap)((ctx) => {
+      return (0, rxjsStub_1.from)(Promise.resolve(new collection_1.Collection(this.configuration.httpApi, ctx.getUrl(), modelFactory, ctx)));
+    }));
+  }
+  /**
+      * Replaces a log stream by `logStreamId`
+      * Replace a Log Stream
+      * @param logStreamId id of the log stream
+      * @param instance
+      */
+  replaceLogStream(logStreamId, instance, _options) {
+    const requestContextPromise = this.requestFactory.replaceLogStream(logStreamId, instance, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.replaceLogStream(rsp)));
+      }));
+  }
+}
+exports.ObservableLogStreamApi = ObservableLogStreamApi;
 const NetworkZoneApi_1 = require('../apis/NetworkZoneApi');
 class ObservableNetworkZoneApi {
   constructor(configuration, requestFactory, responseProcessor) {
@@ -5276,7 +5996,7 @@ class ObservableNetworkZoneApi {
     this.responseProcessor = responseProcessor || new NetworkZoneApi_1.NetworkZoneApiResponseProcessor();
   }
   /**
-      * Activate Network Zone
+      * Activates a network zone by `zoneId`
       * Activate a Network Zone
       * @param zoneId
       */
@@ -5297,7 +6017,7 @@ class ObservableNetworkZoneApi {
       }));
   }
   /**
-      * Adds a new network zone to your Okta organization.
+      * Creates a new network zone. * At least one of either the `gateways` attribute or `proxies` attribute must be defined when creating a Network Zone. * At least one of the following attributes must be defined: `proxyType`, `locations`, or `asns`.
       * Create a Network Zone
       * @param zone
       */
@@ -5318,7 +6038,7 @@ class ObservableNetworkZoneApi {
       }));
   }
   /**
-      * Deactivates a network zone.
+      * Deactivates a network zone by `zoneId`
       * Deactivate a Network Zone
       * @param zoneId
       */
@@ -5339,7 +6059,7 @@ class ObservableNetworkZoneApi {
       }));
   }
   /**
-      * Removes network zone.
+      * Deletes network zone by `zoneId`
       * Delete a Network Zone
       * @param zoneId
       */
@@ -5360,7 +6080,7 @@ class ObservableNetworkZoneApi {
       }));
   }
   /**
-      * Fetches a network zone from your Okta organization by `id`.
+      * Retrieves a network zone by `zoneId`
       * Retrieve a Network Zone
       * @param zoneId
       */
@@ -5381,7 +6101,7 @@ class ObservableNetworkZoneApi {
       }));
   }
   /**
-      * Enumerates network zones added to your organization with pagination. A subset of zones can be returned that match a supported filter expression or query.
+      * Lists all network zones with pagination. A subset of zones can be returned that match a supported filter expression or query.  This operation requires URL encoding. For example, `filter=(id eq \"nzoul0wf9jyb8xwZm0g3\" or id eq \"nzoul1MxmGN18NDQT0g3\")` is encoded as `filter=%28id+eq+%22nzoul0wf9jyb8xwZm0g3%22+or+id+eq+%22nzoul1MxmGN18NDQT0g3%22%29`.  Okta supports filtering on the `id` and `usage` properties. See [Filtering](https://developer.okta.com/docs/reference/core-okta-api/#filter) for more information on the expressions that are used in filtering.
       * List all Network Zones
       * @param after Specifies the pagination cursor for the next page of network zones
       * @param limit Specifies the number of results for a page
@@ -5397,13 +6117,13 @@ class ObservableNetworkZoneApi {
     }));
   }
   /**
-      * Updates a network zone in your organization.
+      * Replaces a network zone by `zoneId`. The replaced network zone type must be the same as the existing type. You may replace the usage (`POLICY`, `BLOCKLIST`) of a network zone by updating the `usage` attribute.
       * Replace a Network Zone
       * @param zoneId
       * @param zone
       */
-  updateNetworkZone(zoneId, zone, _options) {
-    const requestContextPromise = this.requestFactory.updateNetworkZone(zoneId, zone, _options);
+  replaceNetworkZone(zoneId, zone, _options) {
+    const requestContextPromise = this.requestFactory.replaceNetworkZone(zoneId, zone, _options);
     // build promise chain
     let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
     for (let middleware of this.configuration.middleware) {
@@ -5415,7 +6135,7 @@ class ObservableNetworkZoneApi {
         for (let middleware of this.configuration.middleware) {
           middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
         }
-        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.updateNetworkZone(rsp)));
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.replaceNetworkZone(rsp)));
       }));
   }
 }
@@ -5428,7 +6148,7 @@ class ObservableOrgSettingApi {
     this.responseProcessor = responseProcessor || new OrgSettingApi_1.OrgSettingApiResponseProcessor();
   }
   /**
-      * A list of email addresses to be removed from the set of email addresses that are bounced.
+      * Removes a list of email addresses to be removed from the set of email addresses that are bounced
       * Remove Emails from Email Provider Bounce List
       * @param BouncesRemoveListObj
       */
@@ -5469,8 +6189,8 @@ class ObservableOrgSettingApi {
       }));
   }
   /**
-      * Gets Okta Communication Settings of your organization.
-      * Retreive the Okta Communication Settings
+      * Retrieves Okta Communication Settings of your organization
+      * Retrieve the Okta Communication Settings
       */
   getOktaCommunicationSettings(_options) {
     const requestContextPromise = this.requestFactory.getOktaCommunicationSettings(_options);
@@ -5489,7 +6209,7 @@ class ObservableOrgSettingApi {
       }));
   }
   /**
-      * Gets Contact Types of your organization.
+      * Retrieves Contact Types of your organization
       * Retrieve the Org Contact Types
       */
   getOrgContactTypes(_options) {
@@ -5502,7 +6222,7 @@ class ObservableOrgSettingApi {
     }));
   }
   /**
-      * Retrieves the URL of the User associated with the specified Contact Type.
+      * Retrieves the URL of the User associated with the specified Contact Type
       * Retrieve the User of the Contact Type
       * @param contactType
       */
@@ -5523,7 +6243,7 @@ class ObservableOrgSettingApi {
       }));
   }
   /**
-      * Gets Okta Support Settings of your organization.
+      * Retrieves Okta Support Settings of your organization
       * Retrieve the Okta Support Settings
       */
   getOrgOktaSupportSettings(_options) {
@@ -5543,7 +6263,7 @@ class ObservableOrgSettingApi {
       }));
   }
   /**
-      * Gets preferences of your organization.
+      * Retrieves preferences of your organization
       * Retrieve the Org Preferences
       */
   getOrgPreferences(_options) {
@@ -5563,7 +6283,7 @@ class ObservableOrgSettingApi {
       }));
   }
   /**
-      * Get settings of your organization.
+      * Retrieves the org settings
       * Retrieve the Org Settings
       */
   getOrgSettings(_options) {
@@ -5583,7 +6303,27 @@ class ObservableOrgSettingApi {
       }));
   }
   /**
-      * Enables you to temporarily allow Okta Support to access your org as an administrator for eight hours.
+      * Retrieves the well-known org metadata, which includes the id, configured custom domains, authentication pipeline, and various other org settings
+      * Retrieve the Well-Known Org Metadata
+      */
+  getWellknownOrgMetadata(_options) {
+    const requestContextPromise = this.requestFactory.getWellknownOrgMetadata(_options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.getWellknownOrgMetadata(rsp)));
+      }));
+  }
+  /**
+      * Grants Okta Support temporary access your org as an administrator for eight hours
       * Grant Okta Support Access to your Org
       */
   grantOktaSupport(_options) {
@@ -5603,27 +6343,7 @@ class ObservableOrgSettingApi {
       }));
   }
   /**
-      * Hide the Okta UI footer for all end users of your organization.
-      * Update the Preference to Hide the Okta Dashboard Footer
-      */
-  hideOktaUIFooter(_options) {
-    const requestContextPromise = this.requestFactory.hideOktaUIFooter(_options);
-    // build promise chain
-    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
-    for (let middleware of this.configuration.middleware) {
-      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
-    }
-    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
-      pipe((0, rxjsStub_2.mergeMap)((response) => {
-        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
-        for (let middleware of this.configuration.middleware) {
-          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
-        }
-        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.hideOktaUIFooter(rsp)));
-      }));
-  }
-  /**
-      * Opts in all users of this org to Okta Communication emails.
+      * Opts in all users of this org to Okta Communication emails
       * Opt in all Users to Okta Communication emails
       */
   optInUsersToOktaCommunicationEmails(_options) {
@@ -5643,7 +6363,7 @@ class ObservableOrgSettingApi {
       }));
   }
   /**
-      * Opts out all users of this org from Okta Communication emails.
+      * Opts out all users of this org from Okta Communication emails
       * Opt out all Users from Okta Communication emails
       */
   optOutUsersFromOktaCommunicationEmails(_options) {
@@ -5663,12 +6383,13 @@ class ObservableOrgSettingApi {
       }));
   }
   /**
-      * Partial update settings of your organization.
-      * Update the Org Settings
-      * @param OrgSetting
+      * Replaces the User associated with the specified Contact Type
+      * Replace the User of the Contact Type
+      * @param contactType
+      * @param orgContactUser
       */
-  partialUpdateOrgSetting(OrgSetting, _options) {
-    const requestContextPromise = this.requestFactory.partialUpdateOrgSetting(OrgSetting, _options);
+  replaceOrgContactUser(contactType, orgContactUser, _options) {
+    const requestContextPromise = this.requestFactory.replaceOrgContactUser(contactType, orgContactUser, _options);
     // build promise chain
     let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
     for (let middleware of this.configuration.middleware) {
@@ -5680,11 +6401,32 @@ class ObservableOrgSettingApi {
         for (let middleware of this.configuration.middleware) {
           middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
         }
-        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.partialUpdateOrgSetting(rsp)));
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.replaceOrgContactUser(rsp)));
       }));
   }
   /**
-      * Revokes Okta Support access to your organization.
+      * Replaces the settings of your organization
+      * Replace the Org Settings
+      * @param orgSetting
+      */
+  replaceOrgSettings(orgSetting, _options) {
+    const requestContextPromise = this.requestFactory.replaceOrgSettings(orgSetting, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.replaceOrgSettings(rsp)));
+      }));
+  }
+  /**
+      * Revokes Okta Support access to your organization
       * Revoke Okta Support Access
       */
   revokeOktaSupport(_options) {
@@ -5704,11 +6446,52 @@ class ObservableOrgSettingApi {
       }));
   }
   /**
-      * Makes the Okta UI footer visible for all end users of your organization.
+      * Updates the preference hide the Okta UI footer for all end users of your organization
+      * Update the Preference to Hide the Okta Dashboard Footer
+      */
+  updateOrgHideOktaUIFooter(_options) {
+    const requestContextPromise = this.requestFactory.updateOrgHideOktaUIFooter(_options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.updateOrgHideOktaUIFooter(rsp)));
+      }));
+  }
+  /**
+      * Partially updates the org settings depending on provided fields
+      * Update the Org Settings
+      * @param OrgSetting
+      */
+  updateOrgSettings(OrgSetting, _options) {
+    const requestContextPromise = this.requestFactory.updateOrgSettings(OrgSetting, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.updateOrgSettings(rsp)));
+      }));
+  }
+  /**
+      * Updates the preference to show the Okta UI footer for all end users of your organization
       * Update the Preference to Show the Okta Dashboard Footer
       */
-  showOktaUIFooter(_options) {
-    const requestContextPromise = this.requestFactory.showOktaUIFooter(_options);
+  updateOrgShowOktaUIFooter(_options) {
+    const requestContextPromise = this.requestFactory.updateOrgShowOktaUIFooter(_options);
     // build promise chain
     let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
     for (let middleware of this.configuration.middleware) {
@@ -5720,38 +6503,16 @@ class ObservableOrgSettingApi {
         for (let middleware of this.configuration.middleware) {
           middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
         }
-        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.showOktaUIFooter(rsp)));
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.updateOrgShowOktaUIFooter(rsp)));
       }));
   }
   /**
-      * Updates the User associated with the specified Contact Type.
-      * Replace the User of the Contact Type
-      * @param contactType
-      * @param orgContactUser
-      */
-  updateOrgContactUser(contactType, orgContactUser, _options) {
-    const requestContextPromise = this.requestFactory.updateOrgContactUser(contactType, orgContactUser, _options);
-    // build promise chain
-    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
-    for (let middleware of this.configuration.middleware) {
-      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
-    }
-    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
-      pipe((0, rxjsStub_2.mergeMap)((response) => {
-        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
-        for (let middleware of this.configuration.middleware) {
-          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
-        }
-        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.updateOrgContactUser(rsp)));
-      }));
-  }
-  /**
-      * Updates the logo for your organization.
+      * Uploads and replaces the logo for your organization. The file must be in PNG, JPG, or GIF format and less than 100kB in size. For best results use landscape orientation, a transparent background, and a minimum size of 300px by 50px to prevent upscaling.
       * Upload the Org Logo
       * @param file
       */
-  updateOrgLogo(file, _options) {
-    const requestContextPromise = this.requestFactory.updateOrgLogo(file, _options);
+  uploadOrgLogo(file, _options) {
+    const requestContextPromise = this.requestFactory.uploadOrgLogo(file, _options);
     // build promise chain
     let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
     for (let middleware of this.configuration.middleware) {
@@ -5763,28 +6524,7 @@ class ObservableOrgSettingApi {
         for (let middleware of this.configuration.middleware) {
           middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
         }
-        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.updateOrgLogo(rsp)));
-      }));
-  }
-  /**
-      * Update settings of your organization.
-      * Replace the Org Settings
-      * @param orgSetting
-      */
-  updateOrgSetting(orgSetting, _options) {
-    const requestContextPromise = this.requestFactory.updateOrgSetting(orgSetting, _options);
-    // build promise chain
-    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
-    for (let middleware of this.configuration.middleware) {
-      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
-    }
-    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
-      pipe((0, rxjsStub_2.mergeMap)((response) => {
-        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
-        for (let middleware of this.configuration.middleware) {
-          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
-        }
-        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.updateOrgSetting(rsp)));
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.uploadOrgLogo(rsp)));
       }));
   }
 }
@@ -5797,7 +6537,7 @@ class ObservablePolicyApi {
     this.responseProcessor = responseProcessor || new PolicyApi_1.PolicyApiResponseProcessor();
   }
   /**
-      * Activates a policy.
+      * Activates a policy
       * Activate a Policy
       * @param policyId
       */
@@ -5818,7 +6558,7 @@ class ObservablePolicyApi {
       }));
   }
   /**
-      * Activates a policy rule.
+      * Activates a policy rule
       * Activate a Policy Rule
       * @param policyId
       * @param ruleId
@@ -5840,7 +6580,7 @@ class ObservablePolicyApi {
       }));
   }
   /**
-      * Clones an existing policy.
+      * Clones an existing policy
       * Clone an existing policy
       * @param policyId
       */
@@ -5861,7 +6601,7 @@ class ObservablePolicyApi {
       }));
   }
   /**
-      * Creates a policy.
+      * Creates a policy
       * Create a Policy
       * @param policy
       * @param activate
@@ -5883,7 +6623,7 @@ class ObservablePolicyApi {
       }));
   }
   /**
-      * Creates a policy rule.
+      * Creates a policy rule
       * Create a Policy Rule
       * @param policyId
       * @param policyRule
@@ -5905,7 +6645,7 @@ class ObservablePolicyApi {
       }));
   }
   /**
-      * Deactivates a policy.
+      * Deactivates a policy
       * Deactivate a Policy
       * @param policyId
       */
@@ -5926,7 +6666,7 @@ class ObservablePolicyApi {
       }));
   }
   /**
-      * Deactivates a policy rule.
+      * Deactivates a policy rule
       * Deactivate a Policy Rule
       * @param policyId
       * @param ruleId
@@ -5948,7 +6688,7 @@ class ObservablePolicyApi {
       }));
   }
   /**
-      * Removes a policy.
+      * Deletes a policy
       * Delete a Policy
       * @param policyId
       */
@@ -5969,7 +6709,7 @@ class ObservablePolicyApi {
       }));
   }
   /**
-      * Removes a policy rule.
+      * Deletes a policy rule
       * Delete a Policy Rule
       * @param policyId
       * @param ruleId
@@ -5991,7 +6731,7 @@ class ObservablePolicyApi {
       }));
   }
   /**
-      * Gets a policy.
+      * Retrieves a policy
       * Retrieve a Policy
       * @param policyId
       * @param expand
@@ -6013,7 +6753,7 @@ class ObservablePolicyApi {
       }));
   }
   /**
-      * Gets a policy rule.
+      * Retrieves a policy rule
       * Retrieve a Policy Rule
       * @param policyId
       * @param ruleId
@@ -6035,7 +6775,7 @@ class ObservablePolicyApi {
       }));
   }
   /**
-      * Gets all policies with the specified type.
+      * Lists all policies with the specified type
       * List all Policies
       * @param type
       * @param status
@@ -6051,7 +6791,21 @@ class ObservablePolicyApi {
     }));
   }
   /**
-      * Enumerates all policy rules.
+      * Lists all applications mapped to a policy identified by `policyId`
+      * List all Applications mapped to a Policy
+      * @param policyId
+      */
+  listPolicyApps(policyId, _options) {
+    const requestContextPromise = this.requestFactory.listPolicyApps(policyId, _options);
+    const modelFactory = {
+      parseResponse: (rsp) => this.responseProcessor.listPolicyApps(rsp),
+    };
+    return (0, rxjsStub_1.from)(requestContextPromise).pipe((0, rxjsStub_2.mergeMap)((ctx) => {
+      return (0, rxjsStub_1.from)(Promise.resolve(new collection_1.Collection(this.configuration.httpApi, ctx.getUrl(), modelFactory, ctx)));
+    }));
+  }
+  /**
+      * Lists all policy rules
       * List all Policy Rules
       * @param policyId
       */
@@ -6065,13 +6819,13 @@ class ObservablePolicyApi {
     }));
   }
   /**
-      * Updates a policy.
+      * Replaces a policy
       * Replace a Policy
       * @param policyId
       * @param policy
       */
-  updatePolicy(policyId, policy, _options) {
-    const requestContextPromise = this.requestFactory.updatePolicy(policyId, policy, _options);
+  replacePolicy(policyId, policy, _options) {
+    const requestContextPromise = this.requestFactory.replacePolicy(policyId, policy, _options);
     // build promise chain
     let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
     for (let middleware of this.configuration.middleware) {
@@ -6083,18 +6837,18 @@ class ObservablePolicyApi {
         for (let middleware of this.configuration.middleware) {
           middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
         }
-        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.updatePolicy(rsp)));
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.replacePolicy(rsp)));
       }));
   }
   /**
-      * Updates a policy rule.
+      * Replaces a policy rules
       * Replace a Policy Rule
       * @param policyId
       * @param ruleId
       * @param policyRule
       */
-  updatePolicyRule(policyId, ruleId, policyRule, _options) {
-    const requestContextPromise = this.requestFactory.updatePolicyRule(policyId, ruleId, policyRule, _options);
+  replacePolicyRule(policyId, ruleId, policyRule, _options) {
+    const requestContextPromise = this.requestFactory.replacePolicyRule(policyId, ruleId, policyRule, _options);
     // build promise chain
     let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
     for (let middleware of this.configuration.middleware) {
@@ -6106,7 +6860,7 @@ class ObservablePolicyApi {
         for (let middleware of this.configuration.middleware) {
           middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
         }
-        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.updatePolicyRule(rsp)));
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.replacePolicyRule(rsp)));
       }));
   }
 }
@@ -6119,7 +6873,7 @@ class ObservablePrincipalRateLimitApi {
     this.responseProcessor = responseProcessor || new PrincipalRateLimitApi_1.PrincipalRateLimitApiResponseProcessor();
   }
   /**
-      * Adds a new Principal Rate Limit entity to your organization. In the current release, we only allow one Principal Rate Limit entity per org and principal.
+      * Creates a new Principal Rate Limit entity. In the current release, we only allow one Principal Rate Limit entity per org and principal.
       * Create a Principal Rate Limit
       * @param entity
       */
@@ -6140,7 +6894,7 @@ class ObservablePrincipalRateLimitApi {
       }));
   }
   /**
-      * Fetches a Principal Rate Limit entity by `principalRateLimitId`.
+      * Retrieves a Principal Rate Limit entity by `principalRateLimitId`
       * Retrieve a Principal Rate Limit
       * @param principalRateLimitId id of the Principal Rate Limit
       */
@@ -6161,7 +6915,7 @@ class ObservablePrincipalRateLimitApi {
       }));
   }
   /**
-      * Lists all Principal Rate Limit entities considering the provided parameters.
+      * Lists all Principal Rate Limit entities considering the provided parameters
       * List all Principal Rate Limits
       * @param filter
       * @param after
@@ -6177,13 +6931,13 @@ class ObservablePrincipalRateLimitApi {
     }));
   }
   /**
-      * Update a  Principal Rate Limit entity by `principalRateLimitId`.
+      * Replaces a principal rate limit entity by `principalRateLimitId`
       * Replace a Principal Rate Limit
       * @param principalRateLimitId id of the Principal Rate Limit
       * @param entity
       */
-  updatePrincipalRateLimitEntity(principalRateLimitId, entity, _options) {
-    const requestContextPromise = this.requestFactory.updatePrincipalRateLimitEntity(principalRateLimitId, entity, _options);
+  replacePrincipalRateLimitEntity(principalRateLimitId, entity, _options) {
+    const requestContextPromise = this.requestFactory.replacePrincipalRateLimitEntity(principalRateLimitId, entity, _options);
     // build promise chain
     let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
     for (let middleware of this.configuration.middleware) {
@@ -6195,7 +6949,7 @@ class ObservablePrincipalRateLimitApi {
         for (let middleware of this.configuration.middleware) {
           middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
         }
-        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.updatePrincipalRateLimitEntity(rsp)));
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.replacePrincipalRateLimitEntity(rsp)));
       }));
   }
 }
@@ -6208,7 +6962,7 @@ class ObservableProfileMappingApi {
     this.responseProcessor = responseProcessor || new ProfileMappingApi_1.ProfileMappingApiResponseProcessor();
   }
   /**
-      * Fetches a single Profile Mapping referenced by its ID.
+      * Retrieves a single Profile Mapping referenced by its ID
       * Retrieve a Profile Mapping
       * @param mappingId
       */
@@ -6229,7 +6983,7 @@ class ObservableProfileMappingApi {
       }));
   }
   /**
-      * Enumerates Profile Mappings in your organization with pagination.
+      * Lists all profile mappings with pagination
       * List all Profile Mappings
       * @param after
       * @param limit
@@ -6246,7 +7000,7 @@ class ObservableProfileMappingApi {
     }));
   }
   /**
-      * Updates an existing Profile Mapping by adding, updating, or removing one or many Property Mappings.
+      * Updates an existing Profile Mapping by adding, updating, or removing one or many Property Mappings
       * Update a Profile Mapping
       * @param mappingId
       * @param profileMapping
@@ -6277,7 +7031,7 @@ class ObservablePushProviderApi {
     this.responseProcessor = responseProcessor || new PushProviderApi_1.PushProviderApiResponseProcessor();
   }
   /**
-      * Adds a new push provider to your organization.
+      * Creates a new push provider
       * Create a Push Provider
       * @param pushProvider
       */
@@ -6298,7 +7052,7 @@ class ObservablePushProviderApi {
       }));
   }
   /**
-      * Delete a push provider by `pushProviderId`. If the push provider is currently being used in the org by a custom authenticator, the delete will not be allowed.
+      * Deletes a push provider by `pushProviderId`. If the push provider is currently being used in the org by a custom authenticator, the delete will not be allowed.
       * Delete a Push Provider
       * @param pushProviderId Id of the push provider
       */
@@ -6319,7 +7073,7 @@ class ObservablePushProviderApi {
       }));
   }
   /**
-      * Fetches a push provider by `pushProviderId`.
+      * Retrieves a push provider by `pushProviderId`
       * Retrieve a Push Provider
       * @param pushProviderId Id of the push provider
       */
@@ -6340,7 +7094,7 @@ class ObservablePushProviderApi {
       }));
   }
   /**
-      * Enumerates push providers in your organization.
+      * Lists all push providers
       * List all Push Providers
       * @param type Filters push providers by &#x60;providerType&#x60;
       */
@@ -6354,13 +7108,13 @@ class ObservablePushProviderApi {
     }));
   }
   /**
-      * Updates a push provider by `pushProviderId`.
+      * Replaces a push provider by `pushProviderId`
       * Replace a Push Provider
       * @param pushProviderId Id of the push provider
       * @param pushProvider
       */
-  updatePushProvider(pushProviderId, pushProvider, _options) {
-    const requestContextPromise = this.requestFactory.updatePushProvider(pushProviderId, pushProvider, _options);
+  replacePushProvider(pushProviderId, pushProvider, _options) {
+    const requestContextPromise = this.requestFactory.replacePushProvider(pushProviderId, pushProvider, _options);
     // build promise chain
     let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
     for (let middleware of this.configuration.middleware) {
@@ -6372,11 +7126,1353 @@ class ObservablePushProviderApi {
         for (let middleware of this.configuration.middleware) {
           middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
         }
-        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.updatePushProvider(rsp)));
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.replacePushProvider(rsp)));
       }));
   }
 }
 exports.ObservablePushProviderApi = ObservablePushProviderApi;
+const RateLimitSettingsApi_1 = require('../apis/RateLimitSettingsApi');
+class ObservableRateLimitSettingsApi {
+  constructor(configuration, requestFactory, responseProcessor) {
+    this.configuration = configuration;
+    this.requestFactory = requestFactory || new RateLimitSettingsApi_1.RateLimitSettingsApiRequestFactory(configuration);
+    this.responseProcessor = responseProcessor || new RateLimitSettingsApi_1.RateLimitSettingsApiResponseProcessor();
+  }
+  /**
+      * Retrieves the currently configured Rate Limit Admin Notification Settings
+      * Retrieve the Rate Limit Admin Notification Settings
+      */
+  getRateLimitSettingsAdminNotifications(_options) {
+    const requestContextPromise = this.requestFactory.getRateLimitSettingsAdminNotifications(_options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.getRateLimitSettingsAdminNotifications(rsp)));
+      }));
+  }
+  /**
+      * Retrieves the currently configured Per-Client Rate Limit Settings
+      * Retrieve the Per-Client Rate Limit Settings
+      */
+  getRateLimitSettingsPerClient(_options) {
+    const requestContextPromise = this.requestFactory.getRateLimitSettingsPerClient(_options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.getRateLimitSettingsPerClient(rsp)));
+      }));
+  }
+  /**
+      * Replaces the Rate Limit Admin Notification Settings and returns the configured properties
+      * Replace the Rate Limit Admin Notification Settings
+      * @param RateLimitAdminNotifications
+      */
+  replaceRateLimitSettingsAdminNotifications(RateLimitAdminNotifications, _options) {
+    const requestContextPromise = this.requestFactory.replaceRateLimitSettingsAdminNotifications(RateLimitAdminNotifications, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.replaceRateLimitSettingsAdminNotifications(rsp)));
+      }));
+  }
+  /**
+      * Replaces the Per-Client Rate Limit Settings and returns the configured properties
+      * Replace the Per-Client Rate Limit Settings
+      * @param perClientRateLimitSettings
+      */
+  replaceRateLimitSettingsPerClient(perClientRateLimitSettings, _options) {
+    const requestContextPromise = this.requestFactory.replaceRateLimitSettingsPerClient(perClientRateLimitSettings, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.replaceRateLimitSettingsPerClient(rsp)));
+      }));
+  }
+}
+exports.ObservableRateLimitSettingsApi = ObservableRateLimitSettingsApi;
+const ResourceSetApi_1 = require('../apis/ResourceSetApi');
+class ObservableResourceSetApi {
+  constructor(configuration, requestFactory, responseProcessor) {
+    this.configuration = configuration;
+    this.requestFactory = requestFactory || new ResourceSetApi_1.ResourceSetApiRequestFactory(configuration);
+    this.responseProcessor = responseProcessor || new ResourceSetApi_1.ResourceSetApiResponseProcessor();
+  }
+  /**
+      * Adds more members to a resource set binding
+      * Add more Members to a binding
+      * @param resourceSetId &#x60;id&#x60; of a resource set
+      * @param roleIdOrLabel &#x60;id&#x60; or &#x60;label&#x60; of the role
+      * @param instance
+      */
+  addMembersToBinding(resourceSetId, roleIdOrLabel, instance, _options) {
+    const requestContextPromise = this.requestFactory.addMembersToBinding(resourceSetId, roleIdOrLabel, instance, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.addMembersToBinding(rsp)));
+      }));
+  }
+  /**
+      * Adds more resources to a resource set
+      * Add more Resource to a resource set
+      * @param resourceSetId &#x60;id&#x60; of a resource set
+      * @param instance
+      */
+  addResourceSetResource(resourceSetId, instance, _options) {
+    const requestContextPromise = this.requestFactory.addResourceSetResource(resourceSetId, instance, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.addResourceSetResource(rsp)));
+      }));
+  }
+  /**
+      * Creates a new resource set
+      * Create a Resource Set
+      * @param instance
+      */
+  createResourceSet(instance, _options) {
+    const requestContextPromise = this.requestFactory.createResourceSet(instance, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.createResourceSet(rsp)));
+      }));
+  }
+  /**
+      * Creates a new resource set binding
+      * Create a Resource Set Binding
+      * @param resourceSetId &#x60;id&#x60; of a resource set
+      * @param instance
+      */
+  createResourceSetBinding(resourceSetId, instance, _options) {
+    const requestContextPromise = this.requestFactory.createResourceSetBinding(resourceSetId, instance, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.createResourceSetBinding(rsp)));
+      }));
+  }
+  /**
+      * Deletes a resource set binding by `resourceSetId` and `roleIdOrLabel`
+      * Delete a Binding
+      * @param resourceSetId &#x60;id&#x60; of a resource set
+      * @param roleIdOrLabel &#x60;id&#x60; or &#x60;label&#x60; of the role
+      */
+  deleteBinding(resourceSetId, roleIdOrLabel, _options) {
+    const requestContextPromise = this.requestFactory.deleteBinding(resourceSetId, roleIdOrLabel, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.deleteBinding(rsp)));
+      }));
+  }
+  /**
+      * Deletes a role by `resourceSetId`
+      * Delete a Resource Set
+      * @param resourceSetId &#x60;id&#x60; of a resource set
+      */
+  deleteResourceSet(resourceSetId, _options) {
+    const requestContextPromise = this.requestFactory.deleteResourceSet(resourceSetId, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.deleteResourceSet(rsp)));
+      }));
+  }
+  /**
+      * Deletes a resource identified by `resourceId` from a resource set
+      * Delete a Resource from a resource set
+      * @param resourceSetId &#x60;id&#x60; of a resource set
+      * @param resourceId &#x60;id&#x60; of a resource
+      */
+  deleteResourceSetResource(resourceSetId, resourceId, _options) {
+    const requestContextPromise = this.requestFactory.deleteResourceSetResource(resourceSetId, resourceId, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.deleteResourceSetResource(rsp)));
+      }));
+  }
+  /**
+      * Retrieves a resource set binding by `resourceSetId` and `roleIdOrLabel`
+      * Retrieve a Binding
+      * @param resourceSetId &#x60;id&#x60; of a resource set
+      * @param roleIdOrLabel &#x60;id&#x60; or &#x60;label&#x60; of the role
+      */
+  getBinding(resourceSetId, roleIdOrLabel, _options) {
+    const requestContextPromise = this.requestFactory.getBinding(resourceSetId, roleIdOrLabel, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.getBinding(rsp)));
+      }));
+  }
+  /**
+      * Retrieves a member identified by `memberId` for a binding
+      * Retrieve a Member of a binding
+      * @param resourceSetId &#x60;id&#x60; of a resource set
+      * @param roleIdOrLabel &#x60;id&#x60; or &#x60;label&#x60; of the role
+      * @param memberId &#x60;id&#x60; of a member
+      */
+  getMemberOfBinding(resourceSetId, roleIdOrLabel, memberId, _options) {
+    const requestContextPromise = this.requestFactory.getMemberOfBinding(resourceSetId, roleIdOrLabel, memberId, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.getMemberOfBinding(rsp)));
+      }));
+  }
+  /**
+      * Retrieves a resource set by `resourceSetId`
+      * Retrieve a Resource Set
+      * @param resourceSetId &#x60;id&#x60; of a resource set
+      */
+  getResourceSet(resourceSetId, _options) {
+    const requestContextPromise = this.requestFactory.getResourceSet(resourceSetId, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.getResourceSet(rsp)));
+      }));
+  }
+  /**
+      * Lists all resource set bindings with pagination support
+      * List all Bindings
+      * @param resourceSetId &#x60;id&#x60; of a resource set
+      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](/#pagination) for more information.
+      */
+  listBindings(resourceSetId, after, _options) {
+    const requestContextPromise = this.requestFactory.listBindings(resourceSetId, after, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.listBindings(rsp)));
+      }));
+  }
+  /**
+      * Lists all members of a resource set binding with pagination support
+      * List all Members of a binding
+      * @param resourceSetId &#x60;id&#x60; of a resource set
+      * @param roleIdOrLabel &#x60;id&#x60; or &#x60;label&#x60; of the role
+      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](/#pagination) for more information.
+      */
+  listMembersOfBinding(resourceSetId, roleIdOrLabel, after, _options) {
+    const requestContextPromise = this.requestFactory.listMembersOfBinding(resourceSetId, roleIdOrLabel, after, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.listMembersOfBinding(rsp)));
+      }));
+  }
+  /**
+      * Lists all resources that make up the resource set
+      * List all Resources of a resource set
+      * @param resourceSetId &#x60;id&#x60; of a resource set
+      */
+  listResourceSetResources(resourceSetId, _options) {
+    const requestContextPromise = this.requestFactory.listResourceSetResources(resourceSetId, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.listResourceSetResources(rsp)));
+      }));
+  }
+  /**
+      * Lists all resource sets with pagination support
+      * List all Resource Sets
+      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](/#pagination) for more information.
+      */
+  listResourceSets(after, _options) {
+    const requestContextPromise = this.requestFactory.listResourceSets(after, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.listResourceSets(rsp)));
+      }));
+  }
+  /**
+      * Replaces a resource set by `resourceSetId`
+      * Replace a Resource Set
+      * @param resourceSetId &#x60;id&#x60; of a resource set
+      * @param instance
+      */
+  replaceResourceSet(resourceSetId, instance, _options) {
+    const requestContextPromise = this.requestFactory.replaceResourceSet(resourceSetId, instance, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.replaceResourceSet(rsp)));
+      }));
+  }
+  /**
+      * Unassigns a member identified by `memberId` from a binding
+      * Unassign a Member from a binding
+      * @param resourceSetId &#x60;id&#x60; of a resource set
+      * @param roleIdOrLabel &#x60;id&#x60; or &#x60;label&#x60; of the role
+      * @param memberId &#x60;id&#x60; of a member
+      */
+  unassignMemberFromBinding(resourceSetId, roleIdOrLabel, memberId, _options) {
+    const requestContextPromise = this.requestFactory.unassignMemberFromBinding(resourceSetId, roleIdOrLabel, memberId, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.unassignMemberFromBinding(rsp)));
+      }));
+  }
+}
+exports.ObservableResourceSetApi = ObservableResourceSetApi;
+const RiskEventApi_1 = require('../apis/RiskEventApi');
+class ObservableRiskEventApi {
+  constructor(configuration, requestFactory, responseProcessor) {
+    this.configuration = configuration;
+    this.requestFactory = requestFactory || new RiskEventApi_1.RiskEventApiRequestFactory(configuration);
+    this.responseProcessor = responseProcessor || new RiskEventApi_1.RiskEventApiResponseProcessor();
+  }
+  /**
+      * Sends multiple risk events to Okta. This API is intended for Risk Providers. This API has a rate limit of 30 requests per minute. The caller should include multiple Risk Events (up to a maximum of 20 events) in a single payload to reduce the number of API calls. If a client has more risk signals to send than what the API supports, we recommend prioritizing posting high risk signals.
+      * Send multiple Risk Events
+      * @param instance
+      */
+  sendRiskEvents(instance, _options) {
+    const requestContextPromise = this.requestFactory.sendRiskEvents(instance, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.sendRiskEvents(rsp)));
+      }));
+  }
+}
+exports.ObservableRiskEventApi = ObservableRiskEventApi;
+const RiskProviderApi_1 = require('../apis/RiskProviderApi');
+class ObservableRiskProviderApi {
+  constructor(configuration, requestFactory, responseProcessor) {
+    this.configuration = configuration;
+    this.requestFactory = requestFactory || new RiskProviderApi_1.RiskProviderApiRequestFactory(configuration);
+    this.responseProcessor = responseProcessor || new RiskProviderApi_1.RiskProviderApiResponseProcessor();
+  }
+  /**
+      * Creates a risk provider. A maximum of 3 providers can be created. By default, one risk provider is created by Okta.
+      * Create a Risk Provider
+      * @param instance
+      */
+  createRiskProvider(instance, _options) {
+    const requestContextPromise = this.requestFactory.createRiskProvider(instance, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.createRiskProvider(rsp)));
+      }));
+  }
+  /**
+      * Deletes a CAPTCHA instance by `riskProviderId`
+      * Delete a Risk Provider
+      * @param riskProviderId &#x60;id&#x60; of the risk provider
+      */
+  deleteRiskProvider(riskProviderId, _options) {
+    const requestContextPromise = this.requestFactory.deleteRiskProvider(riskProviderId, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.deleteRiskProvider(rsp)));
+      }));
+  }
+  /**
+      * Retrieves a risk provider by `riskProviderId`
+      * Retrieve a Risk Provider
+      * @param riskProviderId &#x60;id&#x60; of the risk provider
+      */
+  getRiskProvider(riskProviderId, _options) {
+    const requestContextPromise = this.requestFactory.getRiskProvider(riskProviderId, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.getRiskProvider(rsp)));
+      }));
+  }
+  /**
+      * Lists all Risk Providers
+      * List all Risk Providers
+      */
+  listRiskProviders(_options) {
+    const requestContextPromise = this.requestFactory.listRiskProviders(_options);
+    const modelFactory = {
+      parseResponse: (rsp) => this.responseProcessor.listRiskProviders(rsp),
+    };
+    return (0, rxjsStub_1.from)(requestContextPromise).pipe((0, rxjsStub_2.mergeMap)((ctx) => {
+      return (0, rxjsStub_1.from)(Promise.resolve(new collection_1.Collection(this.configuration.httpApi, ctx.getUrl(), modelFactory, ctx)));
+    }));
+  }
+  /**
+      * Replaces a risk provider by `riskProviderId`
+      * Replace a Risk Provider
+      * @param riskProviderId &#x60;id&#x60; of the risk provider
+      * @param instance
+      */
+  replaceRiskProvider(riskProviderId, instance, _options) {
+    const requestContextPromise = this.requestFactory.replaceRiskProvider(riskProviderId, instance, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.replaceRiskProvider(rsp)));
+      }));
+  }
+}
+exports.ObservableRiskProviderApi = ObservableRiskProviderApi;
+const RoleApi_1 = require('../apis/RoleApi');
+class ObservableRoleApi {
+  constructor(configuration, requestFactory, responseProcessor) {
+    this.configuration = configuration;
+    this.requestFactory = requestFactory || new RoleApi_1.RoleApiRequestFactory(configuration);
+    this.responseProcessor = responseProcessor || new RoleApi_1.RoleApiResponseProcessor();
+  }
+  /**
+      * Creates a new role
+      * Create a Role
+      * @param instance
+      */
+  createRole(instance, _options) {
+    const requestContextPromise = this.requestFactory.createRole(instance, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.createRole(rsp)));
+      }));
+  }
+  /**
+      * Creates a permission specified by `permissionType` to the role
+      * Create a Permission
+      * @param roleIdOrLabel &#x60;id&#x60; or &#x60;label&#x60; of the role
+      * @param permissionType An okta permission type
+      */
+  createRolePermission(roleIdOrLabel, permissionType, _options) {
+    const requestContextPromise = this.requestFactory.createRolePermission(roleIdOrLabel, permissionType, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.createRolePermission(rsp)));
+      }));
+  }
+  /**
+      * Deletes a role by `roleIdOrLabel`
+      * Delete a Role
+      * @param roleIdOrLabel &#x60;id&#x60; or &#x60;label&#x60; of the role
+      */
+  deleteRole(roleIdOrLabel, _options) {
+    const requestContextPromise = this.requestFactory.deleteRole(roleIdOrLabel, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.deleteRole(rsp)));
+      }));
+  }
+  /**
+      * Deletes a permission from a role by `permissionType`
+      * Delete a Permission
+      * @param roleIdOrLabel &#x60;id&#x60; or &#x60;label&#x60; of the role
+      * @param permissionType An okta permission type
+      */
+  deleteRolePermission(roleIdOrLabel, permissionType, _options) {
+    const requestContextPromise = this.requestFactory.deleteRolePermission(roleIdOrLabel, permissionType, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.deleteRolePermission(rsp)));
+      }));
+  }
+  /**
+      * Retrieves a role by `roleIdOrLabel`
+      * Retrieve a Role
+      * @param roleIdOrLabel &#x60;id&#x60; or &#x60;label&#x60; of the role
+      */
+  getRole(roleIdOrLabel, _options) {
+    const requestContextPromise = this.requestFactory.getRole(roleIdOrLabel, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.getRole(rsp)));
+      }));
+  }
+  /**
+      * Retrieves a permission by `permissionType`
+      * Retrieve a Permission
+      * @param roleIdOrLabel &#x60;id&#x60; or &#x60;label&#x60; of the role
+      * @param permissionType An okta permission type
+      */
+  getRolePermission(roleIdOrLabel, permissionType, _options) {
+    const requestContextPromise = this.requestFactory.getRolePermission(roleIdOrLabel, permissionType, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.getRolePermission(rsp)));
+      }));
+  }
+  /**
+      * Lists all permissions of the role by `roleIdOrLabel`
+      * List all Permissions
+      * @param roleIdOrLabel &#x60;id&#x60; or &#x60;label&#x60; of the role
+      */
+  listRolePermissions(roleIdOrLabel, _options) {
+    const requestContextPromise = this.requestFactory.listRolePermissions(roleIdOrLabel, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.listRolePermissions(rsp)));
+      }));
+  }
+  /**
+      * Lists all roles with pagination support
+      * List all Roles
+      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](/#pagination) for more information.
+      */
+  listRoles(after, _options) {
+    const requestContextPromise = this.requestFactory.listRoles(after, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.listRoles(rsp)));
+      }));
+  }
+  /**
+      * Replaces a role by `roleIdOrLabel`
+      * Replace a Role
+      * @param roleIdOrLabel &#x60;id&#x60; or &#x60;label&#x60; of the role
+      * @param instance
+      */
+  replaceRole(roleIdOrLabel, instance, _options) {
+    const requestContextPromise = this.requestFactory.replaceRole(roleIdOrLabel, instance, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.replaceRole(rsp)));
+      }));
+  }
+}
+exports.ObservableRoleApi = ObservableRoleApi;
+const RoleAssignmentApi_1 = require('../apis/RoleAssignmentApi');
+class ObservableRoleAssignmentApi {
+  constructor(configuration, requestFactory, responseProcessor) {
+    this.configuration = configuration;
+    this.requestFactory = requestFactory || new RoleAssignmentApi_1.RoleAssignmentApiRequestFactory(configuration);
+    this.responseProcessor = responseProcessor || new RoleAssignmentApi_1.RoleAssignmentApiResponseProcessor();
+  }
+  /**
+      * Assigns a role to a group
+      * Assign a Role to a Group
+      * @param groupId
+      * @param assignRoleRequest
+      * @param disableNotifications Setting this to &#x60;true&#x60; grants the group third-party admin status
+      */
+  assignRoleToGroup(groupId, assignRoleRequest, disableNotifications, _options) {
+    const requestContextPromise = this.requestFactory.assignRoleToGroup(groupId, assignRoleRequest, disableNotifications, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.assignRoleToGroup(rsp)));
+      }));
+  }
+  /**
+      * Assigns a role to a user identified by `userId`
+      * Assign a Role to a User
+      * @param userId
+      * @param assignRoleRequest
+      * @param disableNotifications Setting this to &#x60;true&#x60; grants the user third-party admin status
+      */
+  assignRoleToUser(userId, assignRoleRequest, disableNotifications, _options) {
+    const requestContextPromise = this.requestFactory.assignRoleToUser(userId, assignRoleRequest, disableNotifications, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.assignRoleToUser(rsp)));
+      }));
+  }
+  /**
+      * Retrieves a role identified by `roleId` assigned to group identified by `groupId`
+      * Retrieve a Role assigned to Group
+      * @param groupId
+      * @param roleId
+      */
+  getGroupAssignedRole(groupId, roleId, _options) {
+    const requestContextPromise = this.requestFactory.getGroupAssignedRole(groupId, roleId, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.getGroupAssignedRole(rsp)));
+      }));
+  }
+  /**
+      * Retrieves a role identified by `roleId` assigned to a user identified by `userId`
+      * Retrieve a Role assigned to a User
+      * @param userId
+      * @param roleId
+      */
+  getUserAssignedRole(userId, roleId, _options) {
+    const requestContextPromise = this.requestFactory.getUserAssignedRole(userId, roleId, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.getUserAssignedRole(rsp)));
+      }));
+  }
+  /**
+      * Lists all roles assigned to a user identified by `userId`
+      * List all Roles assigned to a User
+      * @param userId
+      * @param expand
+      */
+  listAssignedRolesForUser(userId, expand, _options) {
+    const requestContextPromise = this.requestFactory.listAssignedRolesForUser(userId, expand, _options);
+    const modelFactory = {
+      parseResponse: (rsp) => this.responseProcessor.listAssignedRolesForUser(rsp),
+    };
+    return (0, rxjsStub_1.from)(requestContextPromise).pipe((0, rxjsStub_2.mergeMap)((ctx) => {
+      return (0, rxjsStub_1.from)(Promise.resolve(new collection_1.Collection(this.configuration.httpApi, ctx.getUrl(), modelFactory, ctx)));
+    }));
+  }
+  /**
+      * Lists all assigned roles of group identified by `groupId`
+      * List all Assigned Roles of Group
+      * @param groupId
+      * @param expand
+      */
+  listGroupAssignedRoles(groupId, expand, _options) {
+    const requestContextPromise = this.requestFactory.listGroupAssignedRoles(groupId, expand, _options);
+    const modelFactory = {
+      parseResponse: (rsp) => this.responseProcessor.listGroupAssignedRoles(rsp),
+    };
+    return (0, rxjsStub_1.from)(requestContextPromise).pipe((0, rxjsStub_2.mergeMap)((ctx) => {
+      return (0, rxjsStub_1.from)(Promise.resolve(new collection_1.Collection(this.configuration.httpApi, ctx.getUrl(), modelFactory, ctx)));
+    }));
+  }
+  /**
+      * Unassigns a role identified by `roleId` assigned to group identified by `groupId`
+      * Unassign a Role from a Group
+      * @param groupId
+      * @param roleId
+      */
+  unassignRoleFromGroup(groupId, roleId, _options) {
+    const requestContextPromise = this.requestFactory.unassignRoleFromGroup(groupId, roleId, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.unassignRoleFromGroup(rsp)));
+      }));
+  }
+  /**
+      * Unassigns a role identified by `roleId` from a user identified by `userId`
+      * Unassign a Role from a User
+      * @param userId
+      * @param roleId
+      */
+  unassignRoleFromUser(userId, roleId, _options) {
+    const requestContextPromise = this.requestFactory.unassignRoleFromUser(userId, roleId, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.unassignRoleFromUser(rsp)));
+      }));
+  }
+}
+exports.ObservableRoleAssignmentApi = ObservableRoleAssignmentApi;
+const RoleTargetApi_1 = require('../apis/RoleTargetApi');
+class ObservableRoleTargetApi {
+  constructor(configuration, requestFactory, responseProcessor) {
+    this.configuration = configuration;
+    this.requestFactory = requestFactory || new RoleTargetApi_1.RoleTargetApiRequestFactory(configuration);
+    this.responseProcessor = responseProcessor || new RoleTargetApi_1.RoleTargetApiResponseProcessor();
+  }
+  /**
+      * Assigns all Apps as Target to Role
+      * Assign all Apps as Target to Role
+      * @param userId
+      * @param roleId
+      */
+  assignAllAppsAsTargetToRoleForUser(userId, roleId, _options) {
+    const requestContextPromise = this.requestFactory.assignAllAppsAsTargetToRoleForUser(userId, roleId, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.assignAllAppsAsTargetToRoleForUser(rsp)));
+      }));
+  }
+  /**
+      * Assigns App Instance Target to App Administrator Role given to a Group
+      * Assign an Application Instance Target to Application Administrator Role
+      * @param groupId
+      * @param roleId
+      * @param appName
+      * @param applicationId
+      */
+  assignAppInstanceTargetToAppAdminRoleForGroup(groupId, roleId, appName, applicationId, _options) {
+    const requestContextPromise = this.requestFactory.assignAppInstanceTargetToAppAdminRoleForGroup(groupId, roleId, appName, applicationId, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.assignAppInstanceTargetToAppAdminRoleForGroup(rsp)));
+      }));
+  }
+  /**
+      * Assigns anapplication instance target to appplication administrator role
+      * Assign an Application Instance Target to an Application Administrator Role
+      * @param userId
+      * @param roleId
+      * @param appName
+      * @param applicationId
+      */
+  assignAppInstanceTargetToAppAdminRoleForUser(userId, roleId, appName, applicationId, _options) {
+    const requestContextPromise = this.requestFactory.assignAppInstanceTargetToAppAdminRoleForUser(userId, roleId, appName, applicationId, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.assignAppInstanceTargetToAppAdminRoleForUser(rsp)));
+      }));
+  }
+  /**
+      * Assigns an application target to administrator role
+      * Assign an Application Target to Administrator Role
+      * @param groupId
+      * @param roleId
+      * @param appName
+      */
+  assignAppTargetToAdminRoleForGroup(groupId, roleId, appName, _options) {
+    const requestContextPromise = this.requestFactory.assignAppTargetToAdminRoleForGroup(groupId, roleId, appName, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.assignAppTargetToAdminRoleForGroup(rsp)));
+      }));
+  }
+  /**
+      * Assigns an application target to administrator role
+      * Assign an Application Target to Administrator Role
+      * @param userId
+      * @param roleId
+      * @param appName
+      */
+  assignAppTargetToAdminRoleForUser(userId, roleId, appName, _options) {
+    const requestContextPromise = this.requestFactory.assignAppTargetToAdminRoleForUser(userId, roleId, appName, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.assignAppTargetToAdminRoleForUser(rsp)));
+      }));
+  }
+  /**
+      * Assigns a group target to a group role
+      * Assign a Group Target to a Group Role
+      * @param groupId
+      * @param roleId
+      * @param targetGroupId
+      */
+  assignGroupTargetToGroupAdminRole(groupId, roleId, targetGroupId, _options) {
+    const requestContextPromise = this.requestFactory.assignGroupTargetToGroupAdminRole(groupId, roleId, targetGroupId, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.assignGroupTargetToGroupAdminRole(rsp)));
+      }));
+  }
+  /**
+      * Assigns a Group Target to Role
+      * Assign a Group Target to Role
+      * @param userId
+      * @param roleId
+      * @param groupId
+      */
+  assignGroupTargetToUserRole(userId, roleId, groupId, _options) {
+    const requestContextPromise = this.requestFactory.assignGroupTargetToUserRole(userId, roleId, groupId, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.assignGroupTargetToUserRole(rsp)));
+      }));
+  }
+  /**
+      * Lists all App targets for an `APP_ADMIN` Role assigned to a Group. This methods return list may include full Applications or Instances. The response for an instance will have an `ID` value, while Application will not have an ID.
+      * List all Application Targets for an Application Administrator Role
+      * @param groupId
+      * @param roleId
+      * @param after
+      * @param limit
+      */
+  listApplicationTargetsForApplicationAdministratorRoleForGroup(groupId, roleId, after, limit, _options) {
+    const requestContextPromise = this.requestFactory.listApplicationTargetsForApplicationAdministratorRoleForGroup(groupId, roleId, after, limit, _options);
+    const modelFactory = {
+      parseResponse: (rsp) => this.responseProcessor.listApplicationTargetsForApplicationAdministratorRoleForGroup(rsp),
+    };
+    return (0, rxjsStub_1.from)(requestContextPromise).pipe((0, rxjsStub_2.mergeMap)((ctx) => {
+      return (0, rxjsStub_1.from)(Promise.resolve(new collection_1.Collection(this.configuration.httpApi, ctx.getUrl(), modelFactory, ctx)));
+    }));
+  }
+  /**
+      * Lists all App targets for an `APP_ADMIN` Role assigned to a User. This methods return list may include full Applications or Instances. The response for an instance will have an `ID` value, while Application will not have an ID.
+      * List all Application Targets for Application Administrator Role
+      * @param userId
+      * @param roleId
+      * @param after
+      * @param limit
+      */
+  listApplicationTargetsForApplicationAdministratorRoleForUser(userId, roleId, after, limit, _options) {
+    const requestContextPromise = this.requestFactory.listApplicationTargetsForApplicationAdministratorRoleForUser(userId, roleId, after, limit, _options);
+    const modelFactory = {
+      parseResponse: (rsp) => this.responseProcessor.listApplicationTargetsForApplicationAdministratorRoleForUser(rsp),
+    };
+    return (0, rxjsStub_1.from)(requestContextPromise).pipe((0, rxjsStub_2.mergeMap)((ctx) => {
+      return (0, rxjsStub_1.from)(Promise.resolve(new collection_1.Collection(this.configuration.httpApi, ctx.getUrl(), modelFactory, ctx)));
+    }));
+  }
+  /**
+      * Lists all group targets for a group role
+      * List all Group Targets for a Group Role
+      * @param groupId
+      * @param roleId
+      * @param after
+      * @param limit
+      */
+  listGroupTargetsForGroupRole(groupId, roleId, after, limit, _options) {
+    const requestContextPromise = this.requestFactory.listGroupTargetsForGroupRole(groupId, roleId, after, limit, _options);
+    const modelFactory = {
+      parseResponse: (rsp) => this.responseProcessor.listGroupTargetsForGroupRole(rsp),
+    };
+    return (0, rxjsStub_1.from)(requestContextPromise).pipe((0, rxjsStub_2.mergeMap)((ctx) => {
+      return (0, rxjsStub_1.from)(Promise.resolve(new collection_1.Collection(this.configuration.httpApi, ctx.getUrl(), modelFactory, ctx)));
+    }));
+  }
+  /**
+      * Lists all group targets for role
+      * List all Group Targets for Role
+      * @param userId
+      * @param roleId
+      * @param after
+      * @param limit
+      */
+  listGroupTargetsForRole(userId, roleId, after, limit, _options) {
+    const requestContextPromise = this.requestFactory.listGroupTargetsForRole(userId, roleId, after, limit, _options);
+    const modelFactory = {
+      parseResponse: (rsp) => this.responseProcessor.listGroupTargetsForRole(rsp),
+    };
+    return (0, rxjsStub_1.from)(requestContextPromise).pipe((0, rxjsStub_2.mergeMap)((ctx) => {
+      return (0, rxjsStub_1.from)(Promise.resolve(new collection_1.Collection(this.configuration.httpApi, ctx.getUrl(), modelFactory, ctx)));
+    }));
+  }
+  /**
+      * Unassigns an application instance target from an application administrator role
+      * Unassign an Application Instance Target from an Application Administrator Role
+      * @param userId
+      * @param roleId
+      * @param appName
+      * @param applicationId
+      */
+  unassignAppInstanceTargetFromAdminRoleForUser(userId, roleId, appName, applicationId, _options) {
+    const requestContextPromise = this.requestFactory.unassignAppInstanceTargetFromAdminRoleForUser(userId, roleId, appName, applicationId, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.unassignAppInstanceTargetFromAdminRoleForUser(rsp)));
+      }));
+  }
+  /**
+      * Unassigns an application instance target from application administrator role
+      * Unassign an Application Instance Target from an Application Administrator Role
+      * @param groupId
+      * @param roleId
+      * @param appName
+      * @param applicationId
+      */
+  unassignAppInstanceTargetToAppAdminRoleForGroup(groupId, roleId, appName, applicationId, _options) {
+    const requestContextPromise = this.requestFactory.unassignAppInstanceTargetToAppAdminRoleForGroup(groupId, roleId, appName, applicationId, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.unassignAppInstanceTargetToAppAdminRoleForGroup(rsp)));
+      }));
+  }
+  /**
+      * Unassigns an application target from application administrator role
+      * Unassign an Application Target from an Application Administrator Role
+      * @param userId
+      * @param roleId
+      * @param appName
+      */
+  unassignAppTargetFromAppAdminRoleForUser(userId, roleId, appName, _options) {
+    const requestContextPromise = this.requestFactory.unassignAppTargetFromAppAdminRoleForUser(userId, roleId, appName, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.unassignAppTargetFromAppAdminRoleForUser(rsp)));
+      }));
+  }
+  /**
+      * Unassigns an application target from application administrator role
+      * Unassign an Application Target from Application Administrator Role
+      * @param groupId
+      * @param roleId
+      * @param appName
+      */
+  unassignAppTargetToAdminRoleForGroup(groupId, roleId, appName, _options) {
+    const requestContextPromise = this.requestFactory.unassignAppTargetToAdminRoleForGroup(groupId, roleId, appName, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.unassignAppTargetToAdminRoleForGroup(rsp)));
+      }));
+  }
+  /**
+      * Unassigns a group target from a group role
+      * Unassign a Group Target from a Group Role
+      * @param groupId
+      * @param roleId
+      * @param targetGroupId
+      */
+  unassignGroupTargetFromGroupAdminRole(groupId, roleId, targetGroupId, _options) {
+    const requestContextPromise = this.requestFactory.unassignGroupTargetFromGroupAdminRole(groupId, roleId, targetGroupId, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.unassignGroupTargetFromGroupAdminRole(rsp)));
+      }));
+  }
+  /**
+      * Unassigns a Group Target from Role
+      * Unassign a Group Target from Role
+      * @param userId
+      * @param roleId
+      * @param groupId
+      */
+  unassignGroupTargetFromUserAdminRole(userId, roleId, groupId, _options) {
+    const requestContextPromise = this.requestFactory.unassignGroupTargetFromUserAdminRole(userId, roleId, groupId, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.unassignGroupTargetFromUserAdminRole(rsp)));
+      }));
+  }
+}
+exports.ObservableRoleTargetApi = ObservableRoleTargetApi;
 const SchemaApi_1 = require('../apis/SchemaApi');
 class ObservableSchemaApi {
   constructor(configuration, requestFactory, responseProcessor) {
@@ -6385,12 +8481,14 @@ class ObservableSchemaApi {
     this.responseProcessor = responseProcessor || new SchemaApi_1.SchemaApiResponseProcessor();
   }
   /**
-      * Takes an Application name as an input parameter and retrieves the App Instance page Layout for that Application.
-      * Retrieve the UI Layout for an Application
+      * Retrieves the UI schema for an Application given `appName`, `section` and `operation`
+      * Retrieve the UI schema for a section
       * @param appName
+      * @param section
+      * @param operation
       */
-  getApplicationLayout(appName, _options) {
-    const requestContextPromise = this.requestFactory.getApplicationLayout(appName, _options);
+  getAppUISchema(appName, section, operation, _options) {
+    const requestContextPromise = this.requestFactory.getAppUISchema(appName, section, operation, _options);
     // build promise chain
     let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
     for (let middleware of this.configuration.middleware) {
@@ -6402,11 +8500,32 @@ class ObservableSchemaApi {
         for (let middleware of this.configuration.middleware) {
           middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
         }
-        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.getApplicationLayout(rsp)));
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.getAppUISchema(rsp)));
       }));
   }
   /**
-      * Fetches the Schema for an App User
+      * Retrieves the links for UI schemas for an Application given `appName`
+      * Retrieve the links for UI schemas for an Application
+      * @param appName
+      */
+  getAppUISchemaLinks(appName, _options) {
+    const requestContextPromise = this.requestFactory.getAppUISchemaLinks(appName, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.getAppUISchemaLinks(rsp)));
+      }));
+  }
+  /**
+      * Retrieves the Schema for an App User
       * Retrieve the default Application User Schema for an Application
       * @param appInstanceId
       */
@@ -6427,7 +8546,7 @@ class ObservableSchemaApi {
       }));
   }
   /**
-      * Fetches the group schema
+      * Retrieves the group schema
       * Retrieve the default Group Schema
       */
   getGroupSchema(_options) {
@@ -6447,7 +8566,28 @@ class ObservableSchemaApi {
       }));
   }
   /**
-      * Fetches the schema for a Schema Id.
+      * Retrieves the schema for a Log Stream type. The `logStreamType` element in the URL specifies the Log Stream type, which is either `aws_eventbridge` or `splunk_cloud_logstreaming`. Use the `aws_eventbridge` literal to retrieve the AWS EventBridge type schema, and use the `splunk_cloud_logstreaming` literal retrieve the Splunk Cloud type schema.
+      * Retrieve the Log Stream Schema for the schema type
+      * @param logStreamType
+      */
+  getLogStreamSchema(logStreamType, _options) {
+    const requestContextPromise = this.requestFactory.getLogStreamSchema(logStreamType, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.getLogStreamSchema(rsp)));
+      }));
+  }
+  /**
+      * Retrieves the schema for a Schema Id
       * Retrieve a User Schema
       * @param schemaId
       */
@@ -6468,7 +8608,20 @@ class ObservableSchemaApi {
       }));
   }
   /**
-      * Partial updates on the User Profile properties of the Application User Schema.
+      * Lists the schema for all log stream types visible for this org
+      * List the Log Stream Schemas
+      */
+  listLogStreamSchemas(_options) {
+    const requestContextPromise = this.requestFactory.listLogStreamSchemas(_options);
+    const modelFactory = {
+      parseResponse: (rsp) => this.responseProcessor.listLogStreamSchemas(rsp),
+    };
+    return (0, rxjsStub_1.from)(requestContextPromise).pipe((0, rxjsStub_2.mergeMap)((ctx) => {
+      return (0, rxjsStub_1.from)(Promise.resolve(new collection_1.Collection(this.configuration.httpApi, ctx.getUrl(), modelFactory, ctx)));
+    }));
+  }
+  /**
+      * Partially updates on the User Profile properties of the Application User Schema
       * Update the default Application User Schema for an Application
       * @param appInstanceId
       * @param body
@@ -6490,7 +8643,7 @@ class ObservableSchemaApi {
       }));
   }
   /**
-      * Updates, adds or removes one or more custom Group Profile properties in the schema
+      * Updates the default group schema. This updates, adds, or removes one or more custom Group Profile properties in the schema.
       * Update the default Group Schema
       * @param GroupSchema
       */
@@ -6511,7 +8664,7 @@ class ObservableSchemaApi {
       }));
   }
   /**
-      * Partial updates on the User Profile properties of the user schema.
+      * Partially updates on the User Profile properties of the user schema
       * Update a User Schema
       * @param schemaId
       * @param userSchema
@@ -6563,28 +8716,7 @@ class ObservableSessionApi {
       }));
   }
   /**
-      * End a session.
-      * Delete a Session
-      * @param sessionId
-      */
-  endSession(sessionId, _options) {
-    const requestContextPromise = this.requestFactory.endSession(sessionId, _options);
-    // build promise chain
-    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
-    for (let middleware of this.configuration.middleware) {
-      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
-    }
-    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
-      pipe((0, rxjsStub_2.mergeMap)((response) => {
-        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
-        for (let middleware of this.configuration.middleware) {
-          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
-        }
-        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.endSession(rsp)));
-      }));
-  }
-  /**
-      * Get details about a session.
+      * Retrieves the details about a session
       * Retrieve a Session
       * @param sessionId
       */
@@ -6605,7 +8737,7 @@ class ObservableSessionApi {
       }));
   }
   /**
-      * Refresh a session.
+      * Refreshes a session
       * Refresh a Session
       * @param sessionId
       */
@@ -6625,6 +8757,27 @@ class ObservableSessionApi {
         return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.refreshSession(rsp)));
       }));
   }
+  /**
+      * Revokes a session
+      * Revoke a Session
+      * @param sessionId
+      */
+  revokeSession(sessionId, _options) {
+    const requestContextPromise = this.requestFactory.revokeSession(sessionId, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.revokeSession(rsp)));
+      }));
+  }
 }
 exports.ObservableSessionApi = ObservableSessionApi;
 const SubscriptionApi_1 = require('../apis/SubscriptionApi');
@@ -6635,51 +8788,7 @@ class ObservableSubscriptionApi {
     this.responseProcessor = responseProcessor || new SubscriptionApi_1.SubscriptionApiResponseProcessor();
   }
   /**
-      * When roleType Get subscriptions of a Role with a specific notification type. Else when roleId Get subscription of a Custom Role with a specific notification type.
-      * List all Subscriptions of a Custom Role with a specific notification type
-      * @param roleTypeOrRoleId
-      * @param notificationType
-      */
-  getRoleSubscriptionByNotificationType(roleTypeOrRoleId, notificationType, _options) {
-    const requestContextPromise = this.requestFactory.getRoleSubscriptionByNotificationType(roleTypeOrRoleId, notificationType, _options);
-    // build promise chain
-    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
-    for (let middleware of this.configuration.middleware) {
-      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
-    }
-    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
-      pipe((0, rxjsStub_2.mergeMap)((response) => {
-        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
-        for (let middleware of this.configuration.middleware) {
-          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
-        }
-        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.getRoleSubscriptionByNotificationType(rsp)));
-      }));
-  }
-  /**
-      * Get the subscriptions of a User with a specific notification type. Only gets subscriptions for current user. An AccessDeniedException message is sent if requests are made from other users.
-      * List all Subscriptions by type
-      * @param userId
-      * @param notificationType
-      */
-  getUserSubscriptionByNotificationType(userId, notificationType, _options) {
-    const requestContextPromise = this.requestFactory.getUserSubscriptionByNotificationType(userId, notificationType, _options);
-    // build promise chain
-    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
-    for (let middleware of this.configuration.middleware) {
-      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
-    }
-    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
-      pipe((0, rxjsStub_2.mergeMap)((response) => {
-        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
-        for (let middleware of this.configuration.middleware) {
-          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
-        }
-        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.getUserSubscriptionByNotificationType(rsp)));
-      }));
-  }
-  /**
-      * When roleType List all subscriptions of a Role. Else when roleId List subscriptions of a Custom Role
+      * Lists all subscriptions of a Role identified by `roleType` or of a Custom Role identified by `roleId`
       * List all Subscriptions of a Custom Role
       * @param roleTypeOrRoleId
       */
@@ -6693,7 +8802,29 @@ class ObservableSubscriptionApi {
     }));
   }
   /**
-      * List subscriptions of a User. Only lists subscriptions for current user. An AccessDeniedException message is sent if requests are made from other users.
+      * Lists all subscriptions with a specific notification type of a Role identified by `roleType` or of a Custom Role identified by `roleId`
+      * List all Subscriptions of a Custom Role with a specific notification type
+      * @param roleTypeOrRoleId
+      * @param notificationType
+      */
+  listRoleSubscriptionsByNotificationType(roleTypeOrRoleId, notificationType, _options) {
+    const requestContextPromise = this.requestFactory.listRoleSubscriptionsByNotificationType(roleTypeOrRoleId, notificationType, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.listRoleSubscriptionsByNotificationType(rsp)));
+      }));
+  }
+  /**
+      * Lists all subscriptions of a user. Only lists subscriptions for current user. An AccessDeniedException message is sent if requests are made from other users.
       * List all Subscriptions
       * @param userId
       */
@@ -6707,7 +8838,29 @@ class ObservableSubscriptionApi {
     }));
   }
   /**
-      * When roleType Subscribes a Role to a specific notification type. When you change the subscription status of a Role, it overrides the subscription of any individual user of that Role. Else when roleId Subscribes a Custom Role to a specific notification type. When you change the subscription status of a Custom Role, it overrides the subscription of any individual user of that Custom Role.
+      * Lists all the subscriptions of a User with a specific notification type. Only gets subscriptions for current user. An AccessDeniedException message is sent if requests are made from other users.
+      * List all Subscriptions by type
+      * @param userId
+      * @param notificationType
+      */
+  listUserSubscriptionsByNotificationType(userId, notificationType, _options) {
+    const requestContextPromise = this.requestFactory.listUserSubscriptionsByNotificationType(userId, notificationType, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.listUserSubscriptionsByNotificationType(rsp)));
+      }));
+  }
+  /**
+      * Subscribes a Role identified by `roleType` or of a Custom Role identified by `roleId` to a specific notification type. When you change the subscription status of a Role or Custom Role, it overrides the subscription of any individual user of that Role or Custom Role.
       * Subscribe a Custom Role to a specific notification type
       * @param roleTypeOrRoleId
       * @param notificationType
@@ -6751,7 +8904,7 @@ class ObservableSubscriptionApi {
       }));
   }
   /**
-      * When roleType Unsubscribes a Role from a specific notification type. When you change the subscription status of a Role, it overrides the subscription of any individual user of that Role. Else when roleId Unsubscribes a Custom Role from a specific notification type. When you change the subscription status of a Custom Role, it overrides the subscription of any individual user of that Custom Role.
+      * Unsubscribes a Role identified by `roleType` or of a Custom Role identified by `roleId` from a specific notification type. When you change the subscription status of a Role or Custom Role, it overrides the subscription of any individual user of that Role or Custom Role.
       * Unsubscribe a Custom Role from a specific notification type
       * @param roleTypeOrRoleId
       * @param notificationType
@@ -6804,7 +8957,7 @@ class ObservableSystemLogApi {
     this.responseProcessor = responseProcessor || new SystemLogApi_1.SystemLogApiResponseProcessor();
   }
   /**
-      * The Okta System Log API provides read access to your organization’s system log. This API provides more functionality than the Events API
+      * Lists all system log events. The Okta System Log API provides read access to your organization’s system log. This API provides more functionality than the Events API
       * List all System Log Events
       * @param since
       * @param until
@@ -6814,10 +8967,10 @@ class ObservableSystemLogApi {
       * @param sortOrder
       * @param after
       */
-  getLogs(since, until, filter, q, limit, sortOrder, after, _options) {
-    const requestContextPromise = this.requestFactory.getLogs(since, until, filter, q, limit, sortOrder, after, _options);
+  listLogEvents(since, until, filter, q, limit, sortOrder, after, _options) {
+    const requestContextPromise = this.requestFactory.listLogEvents(since, until, filter, q, limit, sortOrder, after, _options);
     const modelFactory = {
-      parseResponse: (rsp) => this.responseProcessor.getLogs(rsp),
+      parseResponse: (rsp) => this.responseProcessor.listLogEvents(rsp),
     };
     return (0, rxjsStub_1.from)(requestContextPromise).pipe((0, rxjsStub_2.mergeMap)((ctx) => {
       return (0, rxjsStub_1.from)(Promise.resolve(new collection_1.Collection(this.configuration.httpApi, ctx.getUrl(), modelFactory, ctx)));
@@ -6833,7 +8986,7 @@ class ObservableTemplateApi {
     this.responseProcessor = responseProcessor || new TemplateApi_1.TemplateApiResponseProcessor();
   }
   /**
-      * Adds a new custom SMS template to your organization.
+      * Creates a new custom SMS template
       * Create an SMS Template
       * @param smsTemplate
       */
@@ -6854,7 +9007,7 @@ class ObservableTemplateApi {
       }));
   }
   /**
-      * Removes an SMS template.
+      * Deletes an SMS template
       * Delete an SMS Template
       * @param templateId
       */
@@ -6875,7 +9028,7 @@ class ObservableTemplateApi {
       }));
   }
   /**
-      * Fetches a specific template by `id`
+      * Retrieves a specific template by `id`
       * Retrieve an SMS Template
       * @param templateId
       */
@@ -6896,7 +9049,7 @@ class ObservableTemplateApi {
       }));
   }
   /**
-      * Enumerates custom SMS templates in your organization. A subset of templates can be returned that match a template type.
+      * Lists all custom SMS templates. A subset of templates can be returned that match a template type.
       * List all SMS Templates
       * @param templateType
       */
@@ -6910,13 +9063,13 @@ class ObservableTemplateApi {
     }));
   }
   /**
-      * Updates only some of the SMS template properties:
-      * Update an SMS Template
+      * Replaces the SMS template
+      * Replace an SMS Template
       * @param templateId
       * @param smsTemplate
       */
-  partialUpdateSmsTemplate(templateId, smsTemplate, _options) {
-    const requestContextPromise = this.requestFactory.partialUpdateSmsTemplate(templateId, smsTemplate, _options);
+  replaceSmsTemplate(templateId, smsTemplate, _options) {
+    const requestContextPromise = this.requestFactory.replaceSmsTemplate(templateId, smsTemplate, _options);
     // build promise chain
     let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
     for (let middleware of this.configuration.middleware) {
@@ -6928,12 +9081,12 @@ class ObservableTemplateApi {
         for (let middleware of this.configuration.middleware) {
           middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
         }
-        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.partialUpdateSmsTemplate(rsp)));
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.replaceSmsTemplate(rsp)));
       }));
   }
   /**
-      * Updates the SMS template.
-      * Replace an SMS Template
+      * Updates an SMS template
+      * Update an SMS Template
       * @param templateId
       * @param smsTemplate
       */
@@ -6963,7 +9116,7 @@ class ObservableThreatInsightApi {
     this.responseProcessor = responseProcessor || new ThreatInsightApi_1.ThreatInsightApiResponseProcessor();
   }
   /**
-      * Gets current ThreatInsight configuration
+      * Retrieves current ThreatInsight configuration
       * Retrieve the ThreatInsight Configuration
       */
   getCurrentConfiguration(_options) {
@@ -7013,12 +9166,12 @@ class ObservableTrustedOriginApi {
     this.responseProcessor = responseProcessor || new TrustedOriginApi_1.TrustedOriginApiResponseProcessor();
   }
   /**
-      * Success
+      * Activates a trusted origin
       * Activate a Trusted Origin
       * @param trustedOriginId
       */
-  activateOrigin(trustedOriginId, _options) {
-    const requestContextPromise = this.requestFactory.activateOrigin(trustedOriginId, _options);
+  activateTrustedOrigin(trustedOriginId, _options) {
+    const requestContextPromise = this.requestFactory.activateTrustedOrigin(trustedOriginId, _options);
     // build promise chain
     let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
     for (let middleware of this.configuration.middleware) {
@@ -7030,16 +9183,16 @@ class ObservableTrustedOriginApi {
         for (let middleware of this.configuration.middleware) {
           middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
         }
-        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.activateOrigin(rsp)));
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.activateTrustedOrigin(rsp)));
       }));
   }
   /**
-      * Success
+      * Creates a trusted origin
       * Create a Trusted Origin
       * @param trustedOrigin
       */
-  createOrigin(trustedOrigin, _options) {
-    const requestContextPromise = this.requestFactory.createOrigin(trustedOrigin, _options);
+  createTrustedOrigin(trustedOrigin, _options) {
+    const requestContextPromise = this.requestFactory.createTrustedOrigin(trustedOrigin, _options);
     // build promise chain
     let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
     for (let middleware of this.configuration.middleware) {
@@ -7051,16 +9204,16 @@ class ObservableTrustedOriginApi {
         for (let middleware of this.configuration.middleware) {
           middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
         }
-        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.createOrigin(rsp)));
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.createTrustedOrigin(rsp)));
       }));
   }
   /**
-      * Success
+      * Deactivates a trusted origin
       * Deactivate a Trusted Origin
       * @param trustedOriginId
       */
-  deactivateOrigin(trustedOriginId, _options) {
-    const requestContextPromise = this.requestFactory.deactivateOrigin(trustedOriginId, _options);
+  deactivateTrustedOrigin(trustedOriginId, _options) {
+    const requestContextPromise = this.requestFactory.deactivateTrustedOrigin(trustedOriginId, _options);
     // build promise chain
     let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
     for (let middleware of this.configuration.middleware) {
@@ -7072,16 +9225,16 @@ class ObservableTrustedOriginApi {
         for (let middleware of this.configuration.middleware) {
           middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
         }
-        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.deactivateOrigin(rsp)));
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.deactivateTrustedOrigin(rsp)));
       }));
   }
   /**
-      * Success
+      * Deletes a trusted origin
       * Delete a Trusted Origin
       * @param trustedOriginId
       */
-  deleteOrigin(trustedOriginId, _options) {
-    const requestContextPromise = this.requestFactory.deleteOrigin(trustedOriginId, _options);
+  deleteTrustedOrigin(trustedOriginId, _options) {
+    const requestContextPromise = this.requestFactory.deleteTrustedOrigin(trustedOriginId, _options);
     // build promise chain
     let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
     for (let middleware of this.configuration.middleware) {
@@ -7093,16 +9246,16 @@ class ObservableTrustedOriginApi {
         for (let middleware of this.configuration.middleware) {
           middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
         }
-        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.deleteOrigin(rsp)));
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.deleteTrustedOrigin(rsp)));
       }));
   }
   /**
-      * Success
+      * Retrieves a trusted origin
       * Retrieve a Trusted Origin
       * @param trustedOriginId
       */
-  getOrigin(trustedOriginId, _options) {
-    const requestContextPromise = this.requestFactory.getOrigin(trustedOriginId, _options);
+  getTrustedOrigin(trustedOriginId, _options) {
+    const requestContextPromise = this.requestFactory.getTrustedOrigin(trustedOriginId, _options);
     // build promise chain
     let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
     for (let middleware of this.configuration.middleware) {
@@ -7114,34 +9267,34 @@ class ObservableTrustedOriginApi {
         for (let middleware of this.configuration.middleware) {
           middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
         }
-        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.getOrigin(rsp)));
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.getTrustedOrigin(rsp)));
       }));
   }
   /**
-      * Success
+      * Lists all trusted origins
       * List all Trusted Origins
       * @param q
       * @param filter
       * @param after
       * @param limit
       */
-  listOrigins(q, filter, after, limit, _options) {
-    const requestContextPromise = this.requestFactory.listOrigins(q, filter, after, limit, _options);
+  listTrustedOrigins(q, filter, after, limit, _options) {
+    const requestContextPromise = this.requestFactory.listTrustedOrigins(q, filter, after, limit, _options);
     const modelFactory = {
-      parseResponse: (rsp) => this.responseProcessor.listOrigins(rsp),
+      parseResponse: (rsp) => this.responseProcessor.listTrustedOrigins(rsp),
     };
     return (0, rxjsStub_1.from)(requestContextPromise).pipe((0, rxjsStub_2.mergeMap)((ctx) => {
       return (0, rxjsStub_1.from)(Promise.resolve(new collection_1.Collection(this.configuration.httpApi, ctx.getUrl(), modelFactory, ctx)));
     }));
   }
   /**
-      * Success
+      * Replaces a trusted origin
       * Replace a Trusted Origin
       * @param trustedOriginId
       * @param trustedOrigin
       */
-  updateOrigin(trustedOriginId, trustedOrigin, _options) {
-    const requestContextPromise = this.requestFactory.updateOrigin(trustedOriginId, trustedOrigin, _options);
+  replaceTrustedOrigin(trustedOriginId, trustedOrigin, _options) {
+    const requestContextPromise = this.requestFactory.replaceTrustedOrigin(trustedOriginId, trustedOrigin, _options);
     // build promise chain
     let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
     for (let middleware of this.configuration.middleware) {
@@ -7153,7 +9306,7 @@ class ObservableTrustedOriginApi {
         for (let middleware of this.configuration.middleware) {
           middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
         }
-        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.updateOrigin(rsp)));
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.replaceTrustedOrigin(rsp)));
       }));
   }
 }
@@ -7185,121 +9338,6 @@ class ObservableUserApi {
           middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
         }
         return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.activateUser(rsp)));
-      }));
-  }
-  /**
-      * Assign all Apps as Target to Role
-      * Assign all Apps as Target to Role
-      * @param userId
-      * @param roleId
-      */
-  addAllAppsAsTargetToRole(userId, roleId, _options) {
-    const requestContextPromise = this.requestFactory.addAllAppsAsTargetToRole(userId, roleId, _options);
-    // build promise chain
-    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
-    for (let middleware of this.configuration.middleware) {
-      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
-    }
-    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
-      pipe((0, rxjsStub_2.mergeMap)((response) => {
-        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
-        for (let middleware of this.configuration.middleware) {
-          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
-        }
-        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.addAllAppsAsTargetToRole(rsp)));
-      }));
-  }
-  /**
-      * Success
-      * Assign an Application Target to Administrator Role
-      * @param userId
-      * @param roleId
-      * @param appName
-      */
-  addApplicationTargetToAdminRoleForUser(userId, roleId, appName, _options) {
-    const requestContextPromise = this.requestFactory.addApplicationTargetToAdminRoleForUser(userId, roleId, appName, _options);
-    // build promise chain
-    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
-    for (let middleware of this.configuration.middleware) {
-      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
-    }
-    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
-      pipe((0, rxjsStub_2.mergeMap)((response) => {
-        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
-        for (let middleware of this.configuration.middleware) {
-          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
-        }
-        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.addApplicationTargetToAdminRoleForUser(rsp)));
-      }));
-  }
-  /**
-      * Add App Instance Target to App Administrator Role given to a User
-      * Assign an Application Instance Target to an Application Administrator Role
-      * @param userId
-      * @param roleId
-      * @param appName
-      * @param applicationId
-      */
-  addApplicationTargetToAppAdminRoleForUser(userId, roleId, appName, applicationId, _options) {
-    const requestContextPromise = this.requestFactory.addApplicationTargetToAppAdminRoleForUser(userId, roleId, appName, applicationId, _options);
-    // build promise chain
-    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
-    for (let middleware of this.configuration.middleware) {
-      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
-    }
-    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
-      pipe((0, rxjsStub_2.mergeMap)((response) => {
-        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
-        for (let middleware of this.configuration.middleware) {
-          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
-        }
-        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.addApplicationTargetToAppAdminRoleForUser(rsp)));
-      }));
-  }
-  /**
-      * Assign a Group Target to Role
-      * Assign a Group Target to Role
-      * @param userId
-      * @param roleId
-      * @param groupId
-      */
-  addGroupTargetToRole(userId, roleId, groupId, _options) {
-    const requestContextPromise = this.requestFactory.addGroupTargetToRole(userId, roleId, groupId, _options);
-    // build promise chain
-    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
-    for (let middleware of this.configuration.middleware) {
-      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
-    }
-    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
-      pipe((0, rxjsStub_2.mergeMap)((response) => {
-        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
-        for (let middleware of this.configuration.middleware) {
-          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
-        }
-        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.addGroupTargetToRole(rsp)));
-      }));
-  }
-  /**
-      * Assigns a role to a user.
-      * Assign a Role
-      * @param userId
-      * @param assignRoleRequest
-      * @param disableNotifications
-      */
-  assignRoleToUser(userId, assignRoleRequest, disableNotifications, _options) {
-    const requestContextPromise = this.requestFactory.assignRoleToUser(userId, assignRoleRequest, disableNotifications, _options);
-    // build promise chain
-    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
-    for (let middleware of this.configuration.middleware) {
-      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
-    }
-    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
-      pipe((0, rxjsStub_2.mergeMap)((response) => {
-        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
-        for (let middleware of this.configuration.middleware) {
-          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
-        }
-        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.assignRoleToUser(rsp)));
       }));
   }
   /**
@@ -7348,29 +9386,7 @@ class ObservableUserApi {
       }));
   }
   /**
-      * Removes all active identity provider sessions. This forces the user to authenticate on the next operation. Optionally revokes OpenID Connect and OAuth refresh and access tokens issued to the user.
-      * Delete all User Sessions
-      * @param userId
-      * @param oauthTokens Revoke issued OpenID Connect and OAuth refresh and access tokens
-      */
-  clearUserSessions(userId, oauthTokens, _options) {
-    const requestContextPromise = this.requestFactory.clearUserSessions(userId, oauthTokens, _options);
-    // build promise chain
-    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
-    for (let middleware of this.configuration.middleware) {
-      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
-    }
-    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
-      pipe((0, rxjsStub_2.mergeMap)((response) => {
-        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
-        for (let middleware of this.configuration.middleware) {
-          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
-        }
-        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.clearUserSessions(rsp)));
-      }));
-  }
-  /**
-      * Creates a new user in your Okta organization with or without credentials.
+      * Creates a new user in your Okta organization with or without credentials
       * Create a User
       * @param body
       * @param activate Executes activation lifecycle operation when creating the user
@@ -7391,28 +9407,6 @@ class ObservableUserApi {
           middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
         }
         return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.createUser(rsp)));
-      }));
-  }
-  /**
-      * Deletes a user permanently.  This operation can only be performed on users that have a `DEPROVISIONED` status.  **This action cannot be recovered!**
-      * Delete a User
-      * @param userId
-      * @param sendEmail
-      */
-  deactivateOrDeleteUser(userId, sendEmail, _options) {
-    const requestContextPromise = this.requestFactory.deactivateOrDeleteUser(userId, sendEmail, _options);
-    // build promise chain
-    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
-    for (let middleware of this.configuration.middleware) {
-      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
-    }
-    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
-      pipe((0, rxjsStub_2.mergeMap)((response) => {
-        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
-        for (let middleware of this.configuration.middleware) {
-          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
-        }
-        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.deactivateOrDeleteUser(rsp)));
       }));
   }
   /**
@@ -7438,7 +9432,51 @@ class ObservableUserApi {
       }));
   }
   /**
-      * This operation transitions the user to the status of `PASSWORD_EXPIRED` so that the user is required to change their password at their next login.
+      * Deletes linked objects for a user, relationshipName can be ONLY a primary relationship name
+      * Delete a Linked Object
+      * @param userId
+      * @param relationshipName
+      */
+  deleteLinkedObjectForUser(userId, relationshipName, _options) {
+    const requestContextPromise = this.requestFactory.deleteLinkedObjectForUser(userId, relationshipName, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.deleteLinkedObjectForUser(rsp)));
+      }));
+  }
+  /**
+      * Deletes a user permanently. This operation can only be performed on users that have a `DEPROVISIONED` status.  **This action cannot be recovered!**. Calling this on an `ACTIVE` user will transition the user to `DEPROVISIONED`.
+      * Delete a User
+      * @param userId
+      * @param sendEmail
+      */
+  deleteUser(userId, sendEmail, _options) {
+    const requestContextPromise = this.requestFactory.deleteUser(userId, sendEmail, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.deleteUser(rsp)));
+      }));
+  }
+  /**
+      * Expires a user's password and transitions the user to the status of `PASSWORD_EXPIRED` so that the user is required to change their password at their next login
       * Expire Password
       * @param userId
       */
@@ -7459,7 +9497,7 @@ class ObservableUserApi {
       }));
   }
   /**
-      * This operation transitions the user to the status of `PASSWORD_EXPIRED` so that the user is required to change their password at their next login, and also sets the user's password to a temporary password returned in the response.
+      * Expires a user's password and transitions the user to the status of `PASSWORD_EXPIRED` so that the user is required to change their password at their next login, and also sets the user's password to a temporary password returned in the response
       * Expire Password and Set Temporary Password
       * @param userId
       */
@@ -7480,7 +9518,7 @@ class ObservableUserApi {
       }));
   }
   /**
-      * Initiate forgot password flow. Generates a one-time token (OTT) that can be used to reset a user's password.
+      * Initiates the forgot password flow. Generates a one-time token (OTT) that can be used to reset a user's password.
       * Initiate Forgot Password
       * @param userId
       * @param sendEmail
@@ -7502,7 +9540,7 @@ class ObservableUserApi {
       }));
   }
   /**
-      * Resets the user's password to the specified password if the provided answer to the recovery question is correct.
+      * Resets the user's password to the specified password if the provided answer to the recovery question is correct
       * Reset Password with Recovery Question
       * @param userId
       * @param userCredentials
@@ -7525,24 +9563,29 @@ class ObservableUserApi {
       }));
   }
   /**
-      * Get linked objects for a user, relationshipName can be a primary or associated relationship name
-      * List all Linked Objects
+      * Generates a one-time token (OTT) that can be used to reset a user's password.  The OTT link can be automatically emailed to the user or returned to the API caller and distributed using a custom flow.
+      * Generate a Reset Password Token
       * @param userId
-      * @param relationshipName
-      * @param after
-      * @param limit
+      * @param sendEmail
       */
-  getLinkedObjectsForUser(userId, relationshipName, after, limit, _options) {
-    const requestContextPromise = this.requestFactory.getLinkedObjectsForUser(userId, relationshipName, after, limit, _options);
-    const modelFactory = {
-      parseResponse: (rsp) => this.responseProcessor.getLinkedObjectsForUser(rsp),
-    };
-    return (0, rxjsStub_1.from)(requestContextPromise).pipe((0, rxjsStub_2.mergeMap)((ctx) => {
-      return (0, rxjsStub_1.from)(Promise.resolve(new collection_1.Collection(this.configuration.httpApi, ctx.getUrl(), modelFactory, ctx)));
-    }));
+  generateResetPasswordToken(userId, sendEmail, _options) {
+    const requestContextPromise = this.requestFactory.generateResetPasswordToken(userId, sendEmail, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.generateResetPasswordToken(rsp)));
+      }));
   }
   /**
-      * Gets a refresh token issued for the specified User and Client.
+      * Retrieves a refresh token issued for the specified User and Client
       * Retrieve a Refresh Token for a Client
       * @param userId
       * @param clientId
@@ -7568,12 +9611,13 @@ class ObservableUserApi {
       }));
   }
   /**
-      * Fetches a user from your Okta organization.
+      * Retrieves a user from your Okta organization
       * Retrieve a User
       * @param userId
+      * @param expand Specifies additional metadata to include in the response. Possible value: &#x60;blocks&#x60;
       */
-  getUser(userId, _options) {
-    const requestContextPromise = this.requestFactory.getUser(userId, _options);
+  getUser(userId, expand, _options) {
+    const requestContextPromise = this.requestFactory.getUser(userId, expand, _options);
     // build promise chain
     let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
     for (let middleware of this.configuration.middleware) {
@@ -7589,7 +9633,7 @@ class ObservableUserApi {
       }));
   }
   /**
-      * Gets a grant for the specified user
+      * Retrieves a grant for the specified user
       * Retrieve a User Grant
       * @param userId
       * @param grantId
@@ -7612,29 +9656,7 @@ class ObservableUserApi {
       }));
   }
   /**
-      * Gets role that is assigned to user.
-      * Retrieve a Role
-      * @param userId
-      * @param roleId
-      */
-  getUserRole(userId, roleId, _options) {
-    const requestContextPromise = this.requestFactory.getUserRole(userId, roleId, _options);
-    // build promise chain
-    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
-    for (let middleware of this.configuration.middleware) {
-      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
-    }
-    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
-      pipe((0, rxjsStub_2.mergeMap)((response) => {
-        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
-        for (let middleware of this.configuration.middleware) {
-          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
-        }
-        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.getUserRole(rsp)));
-      }));
-  }
-  /**
-      * Fetches appLinks for all direct or indirect (via group membership) assigned applications.
+      * Lists all appLinks for all direct or indirect (via group membership) assigned applications
       * List all Assigned Application Links
       * @param userId
       */
@@ -7642,38 +9664,6 @@ class ObservableUserApi {
     const requestContextPromise = this.requestFactory.listAppLinks(userId, _options);
     const modelFactory = {
       parseResponse: (rsp) => this.responseProcessor.listAppLinks(rsp),
-    };
-    return (0, rxjsStub_1.from)(requestContextPromise).pipe((0, rxjsStub_2.mergeMap)((ctx) => {
-      return (0, rxjsStub_1.from)(Promise.resolve(new collection_1.Collection(this.configuration.httpApi, ctx.getUrl(), modelFactory, ctx)));
-    }));
-  }
-  /**
-      * Lists all App targets for an `APP_ADMIN` Role assigned to a User. This methods return list may include full Applications or Instances. The response for an instance will have an `ID` value, while Application will not have an ID.
-      * List all Application Targets for Application Administrator Role
-      * @param userId
-      * @param roleId
-      * @param after
-      * @param limit
-      */
-  listApplicationTargetsForApplicationAdministratorRoleForUser(userId, roleId, after, limit, _options) {
-    const requestContextPromise = this.requestFactory.listApplicationTargetsForApplicationAdministratorRoleForUser(userId, roleId, after, limit, _options);
-    const modelFactory = {
-      parseResponse: (rsp) => this.responseProcessor.listApplicationTargetsForApplicationAdministratorRoleForUser(rsp),
-    };
-    return (0, rxjsStub_1.from)(requestContextPromise).pipe((0, rxjsStub_2.mergeMap)((ctx) => {
-      return (0, rxjsStub_1.from)(Promise.resolve(new collection_1.Collection(this.configuration.httpApi, ctx.getUrl(), modelFactory, ctx)));
-    }));
-  }
-  /**
-      * Lists all roles assigned to a user.
-      * List all Assigned Roles
-      * @param userId
-      * @param expand
-      */
-  listAssignedRolesForUser(userId, expand, _options) {
-    const requestContextPromise = this.requestFactory.listAssignedRolesForUser(userId, expand, _options);
-    const modelFactory = {
-      parseResponse: (rsp) => this.responseProcessor.listAssignedRolesForUser(rsp),
     };
     return (0, rxjsStub_1.from)(requestContextPromise).pipe((0, rxjsStub_2.mergeMap)((ctx) => {
       return (0, rxjsStub_1.from)(Promise.resolve(new collection_1.Collection(this.configuration.httpApi, ctx.getUrl(), modelFactory, ctx)));
@@ -7698,24 +9688,24 @@ class ObservableUserApi {
     }));
   }
   /**
-      * Success
-      * List all Group Targets for Role
+      * Lists all linked objects for a user, relationshipName can be a primary or associated relationship name
+      * List all Linked Objects
       * @param userId
-      * @param roleId
+      * @param relationshipName
       * @param after
       * @param limit
       */
-  listGroupTargetsForRole(userId, roleId, after, limit, _options) {
-    const requestContextPromise = this.requestFactory.listGroupTargetsForRole(userId, roleId, after, limit, _options);
+  listLinkedObjectsForUser(userId, relationshipName, after, limit, _options) {
+    const requestContextPromise = this.requestFactory.listLinkedObjectsForUser(userId, relationshipName, after, limit, _options);
     const modelFactory = {
-      parseResponse: (rsp) => this.responseProcessor.listGroupTargetsForRole(rsp),
+      parseResponse: (rsp) => this.responseProcessor.listLinkedObjectsForUser(rsp),
     };
     return (0, rxjsStub_1.from)(requestContextPromise).pipe((0, rxjsStub_2.mergeMap)((ctx) => {
       return (0, rxjsStub_1.from)(Promise.resolve(new collection_1.Collection(this.configuration.httpApi, ctx.getUrl(), modelFactory, ctx)));
     }));
   }
   /**
-      * Lists all refresh tokens issued for the specified User and Client.
+      * Lists all refresh tokens issued for the specified User and Client
       * List all Refresh Tokens for a Client
       * @param userId
       * @param clientId
@@ -7733,7 +9723,21 @@ class ObservableUserApi {
     }));
   }
   /**
-      * Lists all client resources for which the specified user has grants or tokens.
+      * Lists information about how the user is blocked from accessing their account
+      * List all User Blocks
+      * @param userId
+      */
+  listUserBlocks(userId, _options) {
+    const requestContextPromise = this.requestFactory.listUserBlocks(userId, _options);
+    const modelFactory = {
+      parseResponse: (rsp) => this.responseProcessor.listUserBlocks(rsp),
+    };
+    return (0, rxjsStub_1.from)(requestContextPromise).pipe((0, rxjsStub_2.mergeMap)((ctx) => {
+      return (0, rxjsStub_1.from)(Promise.resolve(new collection_1.Collection(this.configuration.httpApi, ctx.getUrl(), modelFactory, ctx)));
+    }));
+  }
+  /**
+      * Lists all client resources for which the specified user has grants or tokens
       * List all Clients
       * @param userId
       */
@@ -7765,7 +9769,7 @@ class ObservableUserApi {
     }));
   }
   /**
-      * Fetches the groups of which the user is a member.
+      * Lists all groups of which the user is a member
       * List all Groups
       * @param userId
       */
@@ -7779,7 +9783,7 @@ class ObservableUserApi {
     }));
   }
   /**
-      * Lists the IdPs associated with the user.
+      * Lists the IdPs associated with the user
       * List all Identity Providers
       * @param userId
       */
@@ -7793,13 +9797,13 @@ class ObservableUserApi {
     }));
   }
   /**
-      * Lists users in your organization with pagination in most cases.  A subset of users can be returned that match a supported filter expression or search criteria.
+      * Lists all users that do not have a status of 'DEPROVISIONED' (by default), up to the maximum (200 for most orgs), with pagination.  A subset of users can be returned that match a supported filter expression or search criteria.
       * List all Users
       * @param q Finds a user that matches firstName, lastName, and email properties
-      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/reference/core-okta-api/#pagination) for more information.
+      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](/#pagination) for more information.
       * @param limit Specifies the number of results returned. Defaults to 10 if &#x60;q&#x60; is provided.
       * @param filter Filters users with a supported expression for a subset of properties
-      * @param search Searches for users with a supported filtering  expression for most properties
+      * @param search Searches for users with a supported filtering expression for most properties. Okta recommends using this parameter for search for best performance.
       * @param sortBy
       * @param sortOrder
       */
@@ -7811,29 +9815,6 @@ class ObservableUserApi {
     return (0, rxjsStub_1.from)(requestContextPromise).pipe((0, rxjsStub_2.mergeMap)((ctx) => {
       return (0, rxjsStub_1.from)(Promise.resolve(new collection_1.Collection(this.configuration.httpApi, ctx.getUrl(), modelFactory, ctx)));
     }));
-  }
-  /**
-      * Fetch a user by `id`, `login`, or `login shortname` if the short name is unambiguous.
-      * Update a User
-      * @param userId
-      * @param user
-      * @param strict
-      */
-  partialUpdateUser(userId, user, strict, _options) {
-    const requestContextPromise = this.requestFactory.partialUpdateUser(userId, user, strict, _options);
-    // build promise chain
-    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
-    for (let middleware of this.configuration.middleware) {
-      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
-    }
-    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
-      pipe((0, rxjsStub_2.mergeMap)((response) => {
-        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
-        for (let middleware of this.configuration.middleware) {
-          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
-        }
-        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.partialUpdateUser(rsp)));
-      }));
   }
   /**
       * Reactivates a user.  This operation can only be performed on users with a `PROVISIONED` status.  This operation restarts the activation workflow if for some reason the user activation was not completed when using the activationToken from [Activate User](#activate-user).
@@ -7858,15 +9839,14 @@ class ObservableUserApi {
       }));
   }
   /**
-      * Remove App Instance Target to App Administrator Role given to a User
-      * Unassign an Application Instance Target to Application Administrator Role
+      * Replaces a user's profile and/or credentials using strict-update semantics
+      * Replace a User
       * @param userId
-      * @param roleId
-      * @param appName
-      * @param applicationId
+      * @param user
+      * @param strict
       */
-  removeApplicationTargetFromAdministratorRoleForUser(userId, roleId, appName, applicationId, _options) {
-    const requestContextPromise = this.requestFactory.removeApplicationTargetFromAdministratorRoleForUser(userId, roleId, appName, applicationId, _options);
+  replaceUser(userId, user, strict, _options) {
+    const requestContextPromise = this.requestFactory.replaceUser(userId, user, strict, _options);
     // build promise chain
     let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
     for (let middleware of this.configuration.middleware) {
@@ -7878,101 +9858,11 @@ class ObservableUserApi {
         for (let middleware of this.configuration.middleware) {
           middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
         }
-        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.removeApplicationTargetFromAdministratorRoleForUser(rsp)));
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.replaceUser(rsp)));
       }));
   }
   /**
-      * Success
-      * Unassign an Application Target from Application Administrator Role
-      * @param userId
-      * @param roleId
-      * @param appName
-      */
-  removeApplicationTargetFromApplicationAdministratorRoleForUser(userId, roleId, appName, _options) {
-    const requestContextPromise = this.requestFactory.removeApplicationTargetFromApplicationAdministratorRoleForUser(userId, roleId, appName, _options);
-    // build promise chain
-    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
-    for (let middleware of this.configuration.middleware) {
-      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
-    }
-    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
-      pipe((0, rxjsStub_2.mergeMap)((response) => {
-        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
-        for (let middleware of this.configuration.middleware) {
-          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
-        }
-        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.removeApplicationTargetFromApplicationAdministratorRoleForUser(rsp)));
-      }));
-  }
-  /**
-      * Unassign a Group Target from Role
-      * Unassign a Group Target from Role
-      * @param userId
-      * @param roleId
-      * @param groupId
-      */
-  removeGroupTargetFromRole(userId, roleId, groupId, _options) {
-    const requestContextPromise = this.requestFactory.removeGroupTargetFromRole(userId, roleId, groupId, _options);
-    // build promise chain
-    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
-    for (let middleware of this.configuration.middleware) {
-      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
-    }
-    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
-      pipe((0, rxjsStub_2.mergeMap)((response) => {
-        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
-        for (let middleware of this.configuration.middleware) {
-          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
-        }
-        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.removeGroupTargetFromRole(rsp)));
-      }));
-  }
-  /**
-      * Delete linked objects for a user, relationshipName can be ONLY a primary relationship name
-      * Delete a Linked Object
-      * @param userId
-      * @param relationshipName
-      */
-  removeLinkedObjectForUser(userId, relationshipName, _options) {
-    const requestContextPromise = this.requestFactory.removeLinkedObjectForUser(userId, relationshipName, _options);
-    // build promise chain
-    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
-    for (let middleware of this.configuration.middleware) {
-      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
-    }
-    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
-      pipe((0, rxjsStub_2.mergeMap)((response) => {
-        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
-        for (let middleware of this.configuration.middleware) {
-          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
-        }
-        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.removeLinkedObjectForUser(rsp)));
-      }));
-  }
-  /**
-      * Unassigns a role from a user.
-      * Delete a Role
-      * @param userId
-      * @param roleId
-      */
-  removeRoleFromUser(userId, roleId, _options) {
-    const requestContextPromise = this.requestFactory.removeRoleFromUser(userId, roleId, _options);
-    // build promise chain
-    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
-    for (let middleware of this.configuration.middleware) {
-      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
-    }
-    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
-      pipe((0, rxjsStub_2.mergeMap)((response) => {
-        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
-        for (let middleware of this.configuration.middleware) {
-          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
-        }
-        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.removeRoleFromUser(rsp)));
-      }));
-  }
-  /**
-      * This operation resets all factors for the specified user. All MFA factor enrollments returned to the unenrolled state. The user's status remains ACTIVE. This link is present only if the user is currently enrolled in one or more MFA factors.
+      * Resets all factors for the specified user. All MFA factor enrollments returned to the unenrolled state. The user's status remains ACTIVE. This link is present only if the user is currently enrolled in one or more MFA factors.
       * Reset all Factors
       * @param userId
       */
@@ -7990,28 +9880,6 @@ class ObservableUserApi {
           middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
         }
         return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.resetFactors(rsp)));
-      }));
-  }
-  /**
-      * Generates a one-time token (OTT) that can be used to reset a user's password.  The OTT link can be automatically emailed to the user or returned to the API caller and distributed using a custom flow.
-      * Reset Password
-      * @param userId
-      * @param sendEmail
-      */
-  resetPassword(userId, sendEmail, _options) {
-    const requestContextPromise = this.requestFactory.resetPassword(userId, sendEmail, _options);
-    // build promise chain
-    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
-    for (let middleware of this.configuration.middleware) {
-      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
-    }
-    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
-      pipe((0, rxjsStub_2.mergeMap)((response) => {
-        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
-        for (let middleware of this.configuration.middleware) {
-          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
-        }
-        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.resetPassword(rsp)));
       }));
   }
   /**
@@ -8037,7 +9905,7 @@ class ObservableUserApi {
       }));
   }
   /**
-      * Revokes the specified refresh token.
+      * Revokes the specified refresh token
       * Revoke a Token for a Client
       * @param userId
       * @param clientId
@@ -8060,7 +9928,7 @@ class ObservableUserApi {
       }));
   }
   /**
-      * Revokes all refresh tokens issued for the specified User and Client.
+      * Revokes all refresh tokens issued for the specified User and Client
       * Revoke all Refresh Tokens for a Client
       * @param userId
       * @param clientId
@@ -8125,7 +9993,29 @@ class ObservableUserApi {
       }));
   }
   /**
-      * Sets a linked object for two users.
+      * Revokes all active identity provider sessions of the user. This forces the user to authenticate on the next operation. Optionally revokes OpenID Connect and OAuth refresh and access tokens issued to the user.
+      * Revoke all User Sessions
+      * @param userId
+      * @param oauthTokens Revoke issued OpenID Connect and OAuth refresh and access tokens
+      */
+  revokeUserSessions(userId, oauthTokens, _options) {
+    const requestContextPromise = this.requestFactory.revokeUserSessions(userId, oauthTokens, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.revokeUserSessions(rsp)));
+      }));
+  }
+  /**
+      * Creates a linked object for two users
       * Create a Linked Object for two User
       * @param associatedUserId
       * @param primaryRelationshipName
@@ -8169,7 +10059,7 @@ class ObservableUserApi {
       }));
   }
   /**
-      * Unlocks a user with a `LOCKED_OUT` status and returns them to `ACTIVE` status.  Users will be able to login with their current password.
+      * Unlocks a user with a `LOCKED_OUT` status or unlocks a user with an `ACTIVE` status that is blocked from unknown devices. Unlocked users have an `ACTIVE` status and can sign in with their current password.
       * Unlock a User
       * @param userId
       */
@@ -8211,8 +10101,8 @@ class ObservableUserApi {
       }));
   }
   /**
-      * Update a user's profile and/or credentials using strict-update semantics.
-      * Replace a User
+      * Updates a user partially determined by the request parameters
+      * Update a User
       * @param userId
       * @param user
       * @param strict
@@ -8243,7 +10133,7 @@ class ObservableUserFactorApi {
     this.responseProcessor = responseProcessor || new UserFactorApi_1.UserFactorApiResponseProcessor();
   }
   /**
-      * The `sms` and `token:software:totp` factor types require activation to complete the enrollment process.
+      * Activates a factor. The `sms` and `token:software:totp` factor types require activation to complete the enrollment process.
       * Activate a Factor
       * @param userId
       * @param factorId
@@ -8266,30 +10156,7 @@ class ObservableUserFactorApi {
       }));
   }
   /**
-      * Unenrolls an existing factor for the specified user, allowing the user to enroll a new factor.
-      * Delete a Factor
-      * @param userId
-      * @param factorId
-      * @param removeEnrollmentRecovery
-      */
-  deleteFactor(userId, factorId, removeEnrollmentRecovery, _options) {
-    const requestContextPromise = this.requestFactory.deleteFactor(userId, factorId, removeEnrollmentRecovery, _options);
-    // build promise chain
-    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
-    for (let middleware of this.configuration.middleware) {
-      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
-    }
-    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
-      pipe((0, rxjsStub_2.mergeMap)((response) => {
-        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
-        for (let middleware of this.configuration.middleware) {
-          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
-        }
-        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.deleteFactor(rsp)));
-      }));
-  }
-  /**
-      * Enrolls a user with a supported factor.
+      * Enrolls a user with a supported factor
       * Enroll a Factor
       * @param userId
       * @param body Factor
@@ -8315,7 +10182,7 @@ class ObservableUserFactorApi {
       }));
   }
   /**
-      * Fetches a factor for the specified user
+      * Retrieves a factor for the specified user
       * Retrieve a Factor
       * @param userId
       * @param factorId
@@ -8337,7 +10204,7 @@ class ObservableUserFactorApi {
       }));
   }
   /**
-      * Polls factors verification transaction for status.
+      * Retrieves the factors verification transaction status
       * Retrieve a Factor Transaction Status
       * @param userId
       * @param factorId
@@ -8360,7 +10227,7 @@ class ObservableUserFactorApi {
       }));
   }
   /**
-      * Enumerates all the enrolled factors for the specified user
+      * Lists all the enrolled factors for the specified user
       * List all Factors
       * @param userId
       */
@@ -8374,7 +10241,7 @@ class ObservableUserFactorApi {
     }));
   }
   /**
-      * Enumerates all the supported factors that can be enrolled for the specified user
+      * Lists all the supported factors that can be enrolled for the specified user
       * List all Supported Factors
       * @param userId
       */
@@ -8388,7 +10255,7 @@ class ObservableUserFactorApi {
     }));
   }
   /**
-      * Enumerates all available security questions for a user's `question` factor
+      * Lists all available security questions for a user's `question` factor
       * List all Supported Security Questions
       * @param userId
       */
@@ -8400,6 +10267,29 @@ class ObservableUserFactorApi {
     return (0, rxjsStub_1.from)(requestContextPromise).pipe((0, rxjsStub_2.mergeMap)((ctx) => {
       return (0, rxjsStub_1.from)(Promise.resolve(new collection_1.Collection(this.configuration.httpApi, ctx.getUrl(), modelFactory, ctx)));
     }));
+  }
+  /**
+      * Unenrolls an existing factor for the specified user, allowing the user to enroll a new factor
+      * Unenroll a Factor
+      * @param userId
+      * @param factorId
+      * @param removeEnrollmentRecovery
+      */
+  unenrollFactor(userId, factorId, removeEnrollmentRecovery, _options) {
+    const requestContextPromise = this.requestFactory.unenrollFactor(userId, factorId, removeEnrollmentRecovery, _options);
+    // build promise chain
+    let middlewarePreObservable = (0, rxjsStub_1.from)(requestContextPromise);
+    for (let middleware of this.configuration.middleware) {
+      middlewarePreObservable = middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => middleware.pre(ctx)));
+    }
+    return middlewarePreObservable.pipe((0, rxjsStub_2.mergeMap)((ctx) => this.configuration.httpApi.send(ctx))).
+      pipe((0, rxjsStub_2.mergeMap)((response) => {
+        let middlewarePostObservable = (0, rxjsStub_1.of)(response);
+        for (let middleware of this.configuration.middleware) {
+          middlewarePostObservable = middlewarePostObservable.pipe((0, rxjsStub_2.mergeMap)((rsp) => middleware.post(rsp)));
+        }
+        return middlewarePostObservable.pipe((0, rxjsStub_2.map)((rsp) => this.responseProcessor.unenrollFactor(rsp)));
+      }));
   }
   /**
       * Verifies an OTP for a `token` or `token:hardware` factor
@@ -8481,7 +10371,7 @@ class ObservableUserTypeApi {
       }));
   }
   /**
-      * Fetches a User Type by ID. The special identifier `default` may be used to fetch the default User Type.
+      * Retrieves a User Type by ID. The special identifier `default` may be used to fetch the default User Type.
       * Retrieve a User Type
       * @param typeId
       */
@@ -8502,7 +10392,7 @@ class ObservableUserTypeApi {
       }));
   }
   /**
-      * Fetches all User Types in your org
+      * Lists all User Types in your org
       * List all User Types
       */
   listUserTypes(_options) {
@@ -8515,7 +10405,7 @@ class ObservableUserTypeApi {
     }));
   }
   /**
-      * Replace an existing User Type
+      * Replaces an existing user type
       * Replace a User Type
       * @param typeId
       * @param userType

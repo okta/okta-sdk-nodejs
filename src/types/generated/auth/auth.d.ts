@@ -30,7 +30,7 @@ export interface TokenProvider {
 /**
  * Applies apiKey authentication to the request context.
  */
-export declare class APITokenAuthentication implements SecurityAuthentication {
+export declare class ApiTokenAuthentication implements SecurityAuthentication {
   private apiKey;
   /**
      * Configures this api key authentication with the necessary properties
@@ -44,7 +44,7 @@ export declare class APITokenAuthentication implements SecurityAuthentication {
 /**
  * Applies oauth2 authentication to the request context.
  */
-export declare class OAuth20Authentication implements SecurityAuthentication {
+export declare class Oauth2Authentication implements SecurityAuthentication {
   private accessToken;
   /**
      * Configures OAuth2 with the necessary properties
@@ -57,8 +57,8 @@ export declare class OAuth20Authentication implements SecurityAuthentication {
 }
 export declare type AuthMethods = {
     'default'?: SecurityAuthentication;
-    'API_Token'?: SecurityAuthentication;
-    'OAuth_2.0'?: SecurityAuthentication;
+    'apiToken'?: SecurityAuthentication;
+    'oauth2'?: SecurityAuthentication;
 };
 export declare type ApiKeyConfiguration = string;
 export declare type HttpBasicConfiguration = {
@@ -73,8 +73,8 @@ export declare type OAuth2Configuration = {
 };
 export declare type AuthMethodsConfiguration = {
     'default'?: SecurityAuthentication;
-    'API_Token'?: ApiKeyConfiguration;
-    'OAuth_2.0'?: OAuth2Configuration;
+    'apiToken'?: ApiKeyConfiguration;
+    'oauth2'?: OAuth2Configuration;
 };
 /**
  * Creates the authentication methods from a swagger description.

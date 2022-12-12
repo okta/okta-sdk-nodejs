@@ -20,7 +20,6 @@ import {
   UserTypeApi,
   InlineHookApi,
   ProfileMappingApi,
-  DomainApi,
   LinkedObjectApi,
   SystemLogApi,
   FeatureApi,
@@ -65,7 +64,6 @@ export declare class Client {
   schemaApi: SchemaApi;
   inlineHookApi: InlineHookApi;
   profileMappingApi: ProfileMappingApi;
-  domainApi: DomainApi;
   linkedObjectApi: LinkedObjectApi;
   systemLogApi: SystemLogApi;
   featureApi: FeatureApi;

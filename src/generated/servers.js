@@ -13,7 +13,7 @@
 
 'use strict';
 Object.defineProperty(exports, '__esModule', { value: true });
-exports.servers = exports.server2 = exports.server1 = exports.ServerConfiguration = void 0;
+exports.servers = exports.server1 = exports.ServerConfiguration = void 0;
 const http_1 = require('./http/http');
 /**
  *
@@ -78,6 +78,5 @@ class ServerConfiguration {
   }
 }
 exports.ServerConfiguration = ServerConfiguration;
-exports.server1 = new ServerConfiguration('https://{subdomain}.{domain}', { 'subdomain': 'your-subdomain', 'domain': 'okta.com' });
-exports.server2 = new ServerConfiguration('https://{customDomain}', { 'customDomain': 'auth.your-custom-domain.com' });
-exports.servers = [exports.server1, exports.server2];
+exports.server1 = new ServerConfiguration('https://{yourOktaDomain}', { 'yourOktaDomain': 'subdomain.okta.com' });
+exports.servers = [exports.server1];

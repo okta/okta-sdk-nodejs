@@ -25,7 +25,7 @@ const util_1 = require('../util');
  */
 class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   /**
-     * Success
+     * Activates an authorization server
      * Activate an Authorization Server
      * @param authServerId
      */
@@ -45,12 +45,12 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -61,7 +61,7 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
     return requestContext;
   }
   /**
-     * Activate Authorization Server Policy
+     * Activates an authorization server policy
      * Activate a Policy
      * @param authServerId
      * @param policyId
@@ -87,12 +87,12 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -103,7 +103,7 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
     return requestContext;
   }
   /**
-     * Activate Authorization Server Policy Rule
+     * Activates an authorization server policy rule
      * Activate a Policy Rule
      * @param authServerId
      * @param policyId
@@ -135,12 +135,12 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -151,7 +151,7 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
     return requestContext;
   }
   /**
-     * Success
+     * Creates an authorization server
      * Create an Authorization Server
      * @param authorizationServer
      */
@@ -176,12 +176,12 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
     requestContext.setBody(serializedBody);
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -192,7 +192,7 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
     return requestContext;
   }
   /**
-     * Success
+     * Creates a policy
      * Create a Policy
      * @param authServerId
      * @param policy
@@ -225,12 +225,12 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
     requestContext.setBody(serializedBody);
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -241,7 +241,7 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
     return requestContext;
   }
   /**
-     * Creates a policy rule for the specified Custom Authorization Server and Policy.
+     * Creates a policy rule for the specified Custom Authorization Server and Policy
      * Create a Policy Rule
      * @param policyId
      * @param authServerId
@@ -280,12 +280,12 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
     requestContext.setBody(serializedBody);
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -296,7 +296,7 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
     return requestContext;
   }
   /**
-     * Success
+     * Creates a custom token claim
      * Create a Custom Token Claim
      * @param authServerId
      * @param oAuth2Claim
@@ -329,12 +329,12 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
     requestContext.setBody(serializedBody);
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -345,7 +345,7 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
     return requestContext;
   }
   /**
-     * Success
+     * Creates a custom token scope
      * Create a Custom Token Scope
      * @param authServerId
      * @param oAuth2Scope
@@ -378,12 +378,12 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
     requestContext.setBody(serializedBody);
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -394,7 +394,7 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
     return requestContext;
   }
   /**
-     * Success
+     * Deactivates an authorization server
      * Deactivate an Authorization Server
      * @param authServerId
      */
@@ -414,12 +414,12 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -430,7 +430,7 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
     return requestContext;
   }
   /**
-     * Deactivate Authorization Server Policy
+     * Deactivates an authorization server policy
      * Deactivate a Policy
      * @param authServerId
      * @param policyId
@@ -456,12 +456,12 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -472,7 +472,7 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
     return requestContext;
   }
   /**
-     * Deactivate Authorization Server Policy Rule
+     * Deactivates an authorization server policy rule
      * Deactivate a Policy Rule
      * @param authServerId
      * @param policyId
@@ -504,12 +504,12 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -520,7 +520,7 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
     return requestContext;
   }
   /**
-     * Success
+     * Deletes an authorization server
      * Delete an Authorization Server
      * @param authServerId
      */
@@ -540,12 +540,12 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -556,7 +556,7 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
     return requestContext;
   }
   /**
-     * Success
+     * Deletes a policy
      * Delete a Policy
      * @param authServerId
      * @param policyId
@@ -582,12 +582,12 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -598,7 +598,7 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
     return requestContext;
   }
   /**
-     * Deletes a Policy Rule defined in the specified Custom Authorization Server and Policy.
+     * Deletes a Policy Rule defined in the specified Custom Authorization Server and Policy
      * Delete a Policy Rule
      * @param policyId
      * @param authServerId
@@ -630,12 +630,12 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -646,7 +646,7 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
     return requestContext;
   }
   /**
-     * Success
+     * Deletes a custom token claim
      * Delete a Custom Token Claim
      * @param authServerId
      * @param claimId
@@ -672,12 +672,12 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -688,7 +688,7 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
     return requestContext;
   }
   /**
-     * Success
+     * Deletes a custom token scope
      * Delete a Custom Token Scope
      * @param authServerId
      * @param scopeId
@@ -714,12 +714,12 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -730,7 +730,7 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
     return requestContext;
   }
   /**
-     * Success
+     * Retrieves an authorization server
      * Retrieve an Authorization Server
      * @param authServerId
      */
@@ -750,12 +750,12 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -766,7 +766,7 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
     return requestContext;
   }
   /**
-     * Success
+     * Retrieves a policy
      * Retrieve a Policy
      * @param authServerId
      * @param policyId
@@ -792,12 +792,12 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -808,7 +808,7 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
     return requestContext;
   }
   /**
-     * Returns a Policy Rule by ID that is defined in the specified Custom Authorization Server and Policy.
+     * Retrieves a policy rule by `ruleId`
      * Retrieve a Policy Rule
      * @param policyId
      * @param authServerId
@@ -840,12 +840,12 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -856,7 +856,7 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
     return requestContext;
   }
   /**
-     * Success
+     * Retrieves a custom token claim
      * Retrieve a Custom Token Claim
      * @param authServerId
      * @param claimId
@@ -882,12 +882,12 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -898,7 +898,7 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
     return requestContext;
   }
   /**
-     * Success
+     * Retrieves a custom token scope
      * Retrieve a Custom Token Scope
      * @param authServerId
      * @param scopeId
@@ -924,12 +924,12 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -940,7 +940,7 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
     return requestContext;
   }
   /**
-     * Success
+     * Retrieves a refresh token for a client
      * Retrieve a Refresh Token for a Client
      * @param authServerId
      * @param clientId
@@ -977,12 +977,12 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
     }
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -993,7 +993,7 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
     return requestContext;
   }
   /**
-     * Success
+     * Lists all credential keys
      * List all Credential Keys
      * @param authServerId
      */
@@ -1013,12 +1013,12 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -1029,7 +1029,7 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
     return requestContext;
   }
   /**
-     * Success
+     * Lists all policies
      * List all Policies
      * @param authServerId
      */
@@ -1049,12 +1049,12 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -1065,7 +1065,7 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
     return requestContext;
   }
   /**
-     * Enumerates all policy rules for the specified Custom Authorization Server and Policy.
+     * Lists all policy rules for the specified Custom Authorization Server and Policy
      * List all Policy Rules
      * @param policyId
      * @param authServerId
@@ -1091,12 +1091,12 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -1107,7 +1107,7 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
     return requestContext;
   }
   /**
-     * Success
+     * Lists all authorization servers
      * List all Authorization Servers
      * @param q
      * @param limit
@@ -1134,12 +1134,12 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
     }
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -1150,7 +1150,7 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
     return requestContext;
   }
   /**
-     * Success
+     * Lists all custom token claims
      * List all Custom Token Claims
      * @param authServerId
      */
@@ -1170,12 +1170,12 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -1186,7 +1186,7 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
     return requestContext;
   }
   /**
-     * Success
+     * Lists all clients
      * List all Clients
      * @param authServerId
      */
@@ -1206,12 +1206,12 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -1222,7 +1222,7 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
     return requestContext;
   }
   /**
-     * Success
+     * Lists all custom token scopes
      * List all Custom Token Scopes
      * @param authServerId
      * @param q
@@ -1262,12 +1262,12 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
     }
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -1278,7 +1278,7 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
     return requestContext;
   }
   /**
-     * Success
+     * Lists all refresh tokens for a client
      * List all Refresh Tokens for a Client
      * @param authServerId
      * @param clientId
@@ -1319,12 +1319,12 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
     }
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -1335,7 +1335,282 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
     return requestContext;
   }
   /**
-     * Success
+     * Replaces an authorization server
+     * Replace an Authorization Server
+     * @param authServerId
+     * @param authorizationServer
+     */
+  async replaceAuthorizationServer(authServerId, authorizationServer, _options) {
+    let _config = _options || this.configuration;
+    // verify required parameter 'authServerId' is not null or undefined
+    if (authServerId === null || authServerId === undefined) {
+      throw new baseapi_1.RequiredError('AuthorizationServerApi', 'replaceAuthorizationServer', 'authServerId');
+    }
+    // verify required parameter 'authorizationServer' is not null or undefined
+    if (authorizationServer === null || authorizationServer === undefined) {
+      throw new baseapi_1.RequiredError('AuthorizationServerApi', 'replaceAuthorizationServer', 'authorizationServer');
+    }
+    // Path Params
+    const path = '/api/v1/authorizationServers/{authServerId}';
+    const vars = {
+      ['authServerId']: String(authServerId),
+    };
+    // Make Request Context
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.PUT, vars);
+    requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
+    // Body Params
+    const [contentType, contentEncoding] = ObjectSerializer_1.ObjectSerializer.getPreferredMediaTypeAndEncoding([
+      'application/json'
+    ], authorizationServer);
+    requestContext.setHeaderParam('Content-Type', contentType);
+    requestContext.setHeaderParam('Content-Transfer-Encoding', contentEncoding);
+    const serializedBody = ObjectSerializer_1.ObjectSerializer.stringify(ObjectSerializer_1.ObjectSerializer.serialize(authorizationServer, 'AuthorizationServer', ''), contentType);
+    requestContext.setBody(serializedBody);
+    let authMethod;
+    // Apply auth methods
+    authMethod = _config.authMethods['apiToken'];
+    if (authMethod?.applySecurityAuthentication) {
+      await authMethod?.applySecurityAuthentication(requestContext);
+    }
+    // Apply auth methods
+    authMethod = _config.authMethods['oauth2'];
+    if (authMethod?.applySecurityAuthentication) {
+      await authMethod?.applySecurityAuthentication(requestContext);
+    }
+    const defaultAuth = _options?.authMethods?.default || this.configuration?.authMethods?.default;
+    if (defaultAuth?.applySecurityAuthentication) {
+      await defaultAuth?.applySecurityAuthentication(requestContext);
+    }
+    return requestContext;
+  }
+  /**
+     * Replaces a policy
+     * Replace a Policy
+     * @param authServerId
+     * @param policyId
+     * @param policy
+     */
+  async replaceAuthorizationServerPolicy(authServerId, policyId, policy, _options) {
+    let _config = _options || this.configuration;
+    // verify required parameter 'authServerId' is not null or undefined
+    if (authServerId === null || authServerId === undefined) {
+      throw new baseapi_1.RequiredError('AuthorizationServerApi', 'replaceAuthorizationServerPolicy', 'authServerId');
+    }
+    // verify required parameter 'policyId' is not null or undefined
+    if (policyId === null || policyId === undefined) {
+      throw new baseapi_1.RequiredError('AuthorizationServerApi', 'replaceAuthorizationServerPolicy', 'policyId');
+    }
+    // verify required parameter 'policy' is not null or undefined
+    if (policy === null || policy === undefined) {
+      throw new baseapi_1.RequiredError('AuthorizationServerApi', 'replaceAuthorizationServerPolicy', 'policy');
+    }
+    // Path Params
+    const path = '/api/v1/authorizationServers/{authServerId}/policies/{policyId}';
+    const vars = {
+      ['authServerId']: String(authServerId),
+      ['policyId']: String(policyId),
+    };
+    // Make Request Context
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.PUT, vars);
+    requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
+    // Body Params
+    const [contentType, contentEncoding] = ObjectSerializer_1.ObjectSerializer.getPreferredMediaTypeAndEncoding([
+      'application/json'
+    ], policy);
+    requestContext.setHeaderParam('Content-Type', contentType);
+    requestContext.setHeaderParam('Content-Transfer-Encoding', contentEncoding);
+    const serializedBody = ObjectSerializer_1.ObjectSerializer.stringify(ObjectSerializer_1.ObjectSerializer.serialize(policy, 'AuthorizationServerPolicy', ''), contentType);
+    requestContext.setBody(serializedBody);
+    let authMethod;
+    // Apply auth methods
+    authMethod = _config.authMethods['apiToken'];
+    if (authMethod?.applySecurityAuthentication) {
+      await authMethod?.applySecurityAuthentication(requestContext);
+    }
+    // Apply auth methods
+    authMethod = _config.authMethods['oauth2'];
+    if (authMethod?.applySecurityAuthentication) {
+      await authMethod?.applySecurityAuthentication(requestContext);
+    }
+    const defaultAuth = _options?.authMethods?.default || this.configuration?.authMethods?.default;
+    if (defaultAuth?.applySecurityAuthentication) {
+      await defaultAuth?.applySecurityAuthentication(requestContext);
+    }
+    return requestContext;
+  }
+  /**
+     * Replaces the configuration of the Policy Rule defined in the specified Custom Authorization Server and Policy
+     * Replace a Policy Rule
+     * @param policyId
+     * @param authServerId
+     * @param ruleId
+     * @param policyRule
+     */
+  async replaceAuthorizationServerPolicyRule(policyId, authServerId, ruleId, policyRule, _options) {
+    let _config = _options || this.configuration;
+    // verify required parameter 'policyId' is not null or undefined
+    if (policyId === null || policyId === undefined) {
+      throw new baseapi_1.RequiredError('AuthorizationServerApi', 'replaceAuthorizationServerPolicyRule', 'policyId');
+    }
+    // verify required parameter 'authServerId' is not null or undefined
+    if (authServerId === null || authServerId === undefined) {
+      throw new baseapi_1.RequiredError('AuthorizationServerApi', 'replaceAuthorizationServerPolicyRule', 'authServerId');
+    }
+    // verify required parameter 'ruleId' is not null or undefined
+    if (ruleId === null || ruleId === undefined) {
+      throw new baseapi_1.RequiredError('AuthorizationServerApi', 'replaceAuthorizationServerPolicyRule', 'ruleId');
+    }
+    // verify required parameter 'policyRule' is not null or undefined
+    if (policyRule === null || policyRule === undefined) {
+      throw new baseapi_1.RequiredError('AuthorizationServerApi', 'replaceAuthorizationServerPolicyRule', 'policyRule');
+    }
+    // Path Params
+    const path = '/api/v1/authorizationServers/{authServerId}/policies/{policyId}/rules/{ruleId}';
+    const vars = {
+      ['policyId']: String(policyId),
+      ['authServerId']: String(authServerId),
+      ['ruleId']: String(ruleId),
+    };
+    // Make Request Context
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.PUT, vars);
+    requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
+    // Body Params
+    const [contentType, contentEncoding] = ObjectSerializer_1.ObjectSerializer.getPreferredMediaTypeAndEncoding([
+      'application/json'
+    ], policyRule);
+    requestContext.setHeaderParam('Content-Type', contentType);
+    requestContext.setHeaderParam('Content-Transfer-Encoding', contentEncoding);
+    const serializedBody = ObjectSerializer_1.ObjectSerializer.stringify(ObjectSerializer_1.ObjectSerializer.serialize(policyRule, 'AuthorizationServerPolicyRule', ''), contentType);
+    requestContext.setBody(serializedBody);
+    let authMethod;
+    // Apply auth methods
+    authMethod = _config.authMethods['apiToken'];
+    if (authMethod?.applySecurityAuthentication) {
+      await authMethod?.applySecurityAuthentication(requestContext);
+    }
+    // Apply auth methods
+    authMethod = _config.authMethods['oauth2'];
+    if (authMethod?.applySecurityAuthentication) {
+      await authMethod?.applySecurityAuthentication(requestContext);
+    }
+    const defaultAuth = _options?.authMethods?.default || this.configuration?.authMethods?.default;
+    if (defaultAuth?.applySecurityAuthentication) {
+      await defaultAuth?.applySecurityAuthentication(requestContext);
+    }
+    return requestContext;
+  }
+  /**
+     * Replaces a custom token claim
+     * Replace a Custom Token Claim
+     * @param authServerId
+     * @param claimId
+     * @param oAuth2Claim
+     */
+  async replaceOAuth2Claim(authServerId, claimId, oAuth2Claim, _options) {
+    let _config = _options || this.configuration;
+    // verify required parameter 'authServerId' is not null or undefined
+    if (authServerId === null || authServerId === undefined) {
+      throw new baseapi_1.RequiredError('AuthorizationServerApi', 'replaceOAuth2Claim', 'authServerId');
+    }
+    // verify required parameter 'claimId' is not null or undefined
+    if (claimId === null || claimId === undefined) {
+      throw new baseapi_1.RequiredError('AuthorizationServerApi', 'replaceOAuth2Claim', 'claimId');
+    }
+    // verify required parameter 'oAuth2Claim' is not null or undefined
+    if (oAuth2Claim === null || oAuth2Claim === undefined) {
+      throw new baseapi_1.RequiredError('AuthorizationServerApi', 'replaceOAuth2Claim', 'oAuth2Claim');
+    }
+    // Path Params
+    const path = '/api/v1/authorizationServers/{authServerId}/claims/{claimId}';
+    const vars = {
+      ['authServerId']: String(authServerId),
+      ['claimId']: String(claimId),
+    };
+    // Make Request Context
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.PUT, vars);
+    requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
+    // Body Params
+    const [contentType, contentEncoding] = ObjectSerializer_1.ObjectSerializer.getPreferredMediaTypeAndEncoding([
+      'application/json'
+    ], oAuth2Claim);
+    requestContext.setHeaderParam('Content-Type', contentType);
+    requestContext.setHeaderParam('Content-Transfer-Encoding', contentEncoding);
+    const serializedBody = ObjectSerializer_1.ObjectSerializer.stringify(ObjectSerializer_1.ObjectSerializer.serialize(oAuth2Claim, 'OAuth2Claim', ''), contentType);
+    requestContext.setBody(serializedBody);
+    let authMethod;
+    // Apply auth methods
+    authMethod = _config.authMethods['apiToken'];
+    if (authMethod?.applySecurityAuthentication) {
+      await authMethod?.applySecurityAuthentication(requestContext);
+    }
+    // Apply auth methods
+    authMethod = _config.authMethods['oauth2'];
+    if (authMethod?.applySecurityAuthentication) {
+      await authMethod?.applySecurityAuthentication(requestContext);
+    }
+    const defaultAuth = _options?.authMethods?.default || this.configuration?.authMethods?.default;
+    if (defaultAuth?.applySecurityAuthentication) {
+      await defaultAuth?.applySecurityAuthentication(requestContext);
+    }
+    return requestContext;
+  }
+  /**
+     * Replaces a custom token scope
+     * Replace a Custom Token Scope
+     * @param authServerId
+     * @param scopeId
+     * @param oAuth2Scope
+     */
+  async replaceOAuth2Scope(authServerId, scopeId, oAuth2Scope, _options) {
+    let _config = _options || this.configuration;
+    // verify required parameter 'authServerId' is not null or undefined
+    if (authServerId === null || authServerId === undefined) {
+      throw new baseapi_1.RequiredError('AuthorizationServerApi', 'replaceOAuth2Scope', 'authServerId');
+    }
+    // verify required parameter 'scopeId' is not null or undefined
+    if (scopeId === null || scopeId === undefined) {
+      throw new baseapi_1.RequiredError('AuthorizationServerApi', 'replaceOAuth2Scope', 'scopeId');
+    }
+    // verify required parameter 'oAuth2Scope' is not null or undefined
+    if (oAuth2Scope === null || oAuth2Scope === undefined) {
+      throw new baseapi_1.RequiredError('AuthorizationServerApi', 'replaceOAuth2Scope', 'oAuth2Scope');
+    }
+    // Path Params
+    const path = '/api/v1/authorizationServers/{authServerId}/scopes/{scopeId}';
+    const vars = {
+      ['authServerId']: String(authServerId),
+      ['scopeId']: String(scopeId),
+    };
+    // Make Request Context
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.PUT, vars);
+    requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
+    // Body Params
+    const [contentType, contentEncoding] = ObjectSerializer_1.ObjectSerializer.getPreferredMediaTypeAndEncoding([
+      'application/json'
+    ], oAuth2Scope);
+    requestContext.setHeaderParam('Content-Type', contentType);
+    requestContext.setHeaderParam('Content-Transfer-Encoding', contentEncoding);
+    const serializedBody = ObjectSerializer_1.ObjectSerializer.stringify(ObjectSerializer_1.ObjectSerializer.serialize(oAuth2Scope, 'OAuth2Scope', ''), contentType);
+    requestContext.setBody(serializedBody);
+    let authMethod;
+    // Apply auth methods
+    authMethod = _config.authMethods['apiToken'];
+    if (authMethod?.applySecurityAuthentication) {
+      await authMethod?.applySecurityAuthentication(requestContext);
+    }
+    // Apply auth methods
+    authMethod = _config.authMethods['oauth2'];
+    if (authMethod?.applySecurityAuthentication) {
+      await authMethod?.applySecurityAuthentication(requestContext);
+    }
+    const defaultAuth = _options?.authMethods?.default || this.configuration?.authMethods?.default;
+    if (defaultAuth?.applySecurityAuthentication) {
+      await defaultAuth?.applySecurityAuthentication(requestContext);
+    }
+    return requestContext;
+  }
+  /**
+     * Revokes a refresh token for a client
      * Revoke a Refresh Token for a Client
      * @param authServerId
      * @param clientId
@@ -1367,12 +1642,12 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -1383,7 +1658,7 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
     return requestContext;
   }
   /**
-     * Success
+     * Revokes all refresh tokens for a client
      * Revoke all Refresh Tokens for a Client
      * @param authServerId
      * @param clientId
@@ -1409,12 +1684,12 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -1425,7 +1700,7 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
     return requestContext;
   }
   /**
-     * Success
+     * Rotates all credential keys
      * Rotate all Credential Keys
      * @param authServerId
      * @param use
@@ -1458,287 +1733,12 @@ class AuthorizationServerApiRequestFactory extends baseapi_1.BaseAPIRequestFacto
     requestContext.setBody(serializedBody);
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
-    if (authMethod?.applySecurityAuthentication) {
-      await authMethod?.applySecurityAuthentication(requestContext);
-    }
-    const defaultAuth = _options?.authMethods?.default || this.configuration?.authMethods?.default;
-    if (defaultAuth?.applySecurityAuthentication) {
-      await defaultAuth?.applySecurityAuthentication(requestContext);
-    }
-    return requestContext;
-  }
-  /**
-     * Success
-     * Replace an Authorization Server
-     * @param authServerId
-     * @param authorizationServer
-     */
-  async updateAuthorizationServer(authServerId, authorizationServer, _options) {
-    let _config = _options || this.configuration;
-    // verify required parameter 'authServerId' is not null or undefined
-    if (authServerId === null || authServerId === undefined) {
-      throw new baseapi_1.RequiredError('AuthorizationServerApi', 'updateAuthorizationServer', 'authServerId');
-    }
-    // verify required parameter 'authorizationServer' is not null or undefined
-    if (authorizationServer === null || authorizationServer === undefined) {
-      throw new baseapi_1.RequiredError('AuthorizationServerApi', 'updateAuthorizationServer', 'authorizationServer');
-    }
-    // Path Params
-    const path = '/api/v1/authorizationServers/{authServerId}';
-    const vars = {
-      ['authServerId']: String(authServerId),
-    };
-    // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.PUT, vars);
-    requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
-    // Body Params
-    const [contentType, contentEncoding] = ObjectSerializer_1.ObjectSerializer.getPreferredMediaTypeAndEncoding([
-      'application/json'
-    ], authorizationServer);
-    requestContext.setHeaderParam('Content-Type', contentType);
-    requestContext.setHeaderParam('Content-Transfer-Encoding', contentEncoding);
-    const serializedBody = ObjectSerializer_1.ObjectSerializer.stringify(ObjectSerializer_1.ObjectSerializer.serialize(authorizationServer, 'AuthorizationServer', ''), contentType);
-    requestContext.setBody(serializedBody);
-    let authMethod;
-    // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
-    if (authMethod?.applySecurityAuthentication) {
-      await authMethod?.applySecurityAuthentication(requestContext);
-    }
-    // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
-    if (authMethod?.applySecurityAuthentication) {
-      await authMethod?.applySecurityAuthentication(requestContext);
-    }
-    const defaultAuth = _options?.authMethods?.default || this.configuration?.authMethods?.default;
-    if (defaultAuth?.applySecurityAuthentication) {
-      await defaultAuth?.applySecurityAuthentication(requestContext);
-    }
-    return requestContext;
-  }
-  /**
-     * Success
-     * Replace a Policy
-     * @param authServerId
-     * @param policyId
-     * @param policy
-     */
-  async updateAuthorizationServerPolicy(authServerId, policyId, policy, _options) {
-    let _config = _options || this.configuration;
-    // verify required parameter 'authServerId' is not null or undefined
-    if (authServerId === null || authServerId === undefined) {
-      throw new baseapi_1.RequiredError('AuthorizationServerApi', 'updateAuthorizationServerPolicy', 'authServerId');
-    }
-    // verify required parameter 'policyId' is not null or undefined
-    if (policyId === null || policyId === undefined) {
-      throw new baseapi_1.RequiredError('AuthorizationServerApi', 'updateAuthorizationServerPolicy', 'policyId');
-    }
-    // verify required parameter 'policy' is not null or undefined
-    if (policy === null || policy === undefined) {
-      throw new baseapi_1.RequiredError('AuthorizationServerApi', 'updateAuthorizationServerPolicy', 'policy');
-    }
-    // Path Params
-    const path = '/api/v1/authorizationServers/{authServerId}/policies/{policyId}';
-    const vars = {
-      ['authServerId']: String(authServerId),
-      ['policyId']: String(policyId),
-    };
-    // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.PUT, vars);
-    requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
-    // Body Params
-    const [contentType, contentEncoding] = ObjectSerializer_1.ObjectSerializer.getPreferredMediaTypeAndEncoding([
-      'application/json'
-    ], policy);
-    requestContext.setHeaderParam('Content-Type', contentType);
-    requestContext.setHeaderParam('Content-Transfer-Encoding', contentEncoding);
-    const serializedBody = ObjectSerializer_1.ObjectSerializer.stringify(ObjectSerializer_1.ObjectSerializer.serialize(policy, 'AuthorizationServerPolicy', ''), contentType);
-    requestContext.setBody(serializedBody);
-    let authMethod;
-    // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
-    if (authMethod?.applySecurityAuthentication) {
-      await authMethod?.applySecurityAuthentication(requestContext);
-    }
-    // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
-    if (authMethod?.applySecurityAuthentication) {
-      await authMethod?.applySecurityAuthentication(requestContext);
-    }
-    const defaultAuth = _options?.authMethods?.default || this.configuration?.authMethods?.default;
-    if (defaultAuth?.applySecurityAuthentication) {
-      await defaultAuth?.applySecurityAuthentication(requestContext);
-    }
-    return requestContext;
-  }
-  /**
-     * Updates the configuration of the Policy Rule defined in the specified Custom Authorization Server and Policy.
-     * Replace a Policy Rule
-     * @param policyId
-     * @param authServerId
-     * @param ruleId
-     * @param policyRule
-     */
-  async updateAuthorizationServerPolicyRule(policyId, authServerId, ruleId, policyRule, _options) {
-    let _config = _options || this.configuration;
-    // verify required parameter 'policyId' is not null or undefined
-    if (policyId === null || policyId === undefined) {
-      throw new baseapi_1.RequiredError('AuthorizationServerApi', 'updateAuthorizationServerPolicyRule', 'policyId');
-    }
-    // verify required parameter 'authServerId' is not null or undefined
-    if (authServerId === null || authServerId === undefined) {
-      throw new baseapi_1.RequiredError('AuthorizationServerApi', 'updateAuthorizationServerPolicyRule', 'authServerId');
-    }
-    // verify required parameter 'ruleId' is not null or undefined
-    if (ruleId === null || ruleId === undefined) {
-      throw new baseapi_1.RequiredError('AuthorizationServerApi', 'updateAuthorizationServerPolicyRule', 'ruleId');
-    }
-    // verify required parameter 'policyRule' is not null or undefined
-    if (policyRule === null || policyRule === undefined) {
-      throw new baseapi_1.RequiredError('AuthorizationServerApi', 'updateAuthorizationServerPolicyRule', 'policyRule');
-    }
-    // Path Params
-    const path = '/api/v1/authorizationServers/{authServerId}/policies/{policyId}/rules/{ruleId}';
-    const vars = {
-      ['policyId']: String(policyId),
-      ['authServerId']: String(authServerId),
-      ['ruleId']: String(ruleId),
-    };
-    // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.PUT, vars);
-    requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
-    // Body Params
-    const [contentType, contentEncoding] = ObjectSerializer_1.ObjectSerializer.getPreferredMediaTypeAndEncoding([
-      'application/json'
-    ], policyRule);
-    requestContext.setHeaderParam('Content-Type', contentType);
-    requestContext.setHeaderParam('Content-Transfer-Encoding', contentEncoding);
-    const serializedBody = ObjectSerializer_1.ObjectSerializer.stringify(ObjectSerializer_1.ObjectSerializer.serialize(policyRule, 'AuthorizationServerPolicyRule', ''), contentType);
-    requestContext.setBody(serializedBody);
-    let authMethod;
-    // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
-    if (authMethod?.applySecurityAuthentication) {
-      await authMethod?.applySecurityAuthentication(requestContext);
-    }
-    // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
-    if (authMethod?.applySecurityAuthentication) {
-      await authMethod?.applySecurityAuthentication(requestContext);
-    }
-    const defaultAuth = _options?.authMethods?.default || this.configuration?.authMethods?.default;
-    if (defaultAuth?.applySecurityAuthentication) {
-      await defaultAuth?.applySecurityAuthentication(requestContext);
-    }
-    return requestContext;
-  }
-  /**
-     * Success
-     * Replace a Custom Token Claim
-     * @param authServerId
-     * @param claimId
-     * @param oAuth2Claim
-     */
-  async updateOAuth2Claim(authServerId, claimId, oAuth2Claim, _options) {
-    let _config = _options || this.configuration;
-    // verify required parameter 'authServerId' is not null or undefined
-    if (authServerId === null || authServerId === undefined) {
-      throw new baseapi_1.RequiredError('AuthorizationServerApi', 'updateOAuth2Claim', 'authServerId');
-    }
-    // verify required parameter 'claimId' is not null or undefined
-    if (claimId === null || claimId === undefined) {
-      throw new baseapi_1.RequiredError('AuthorizationServerApi', 'updateOAuth2Claim', 'claimId');
-    }
-    // verify required parameter 'oAuth2Claim' is not null or undefined
-    if (oAuth2Claim === null || oAuth2Claim === undefined) {
-      throw new baseapi_1.RequiredError('AuthorizationServerApi', 'updateOAuth2Claim', 'oAuth2Claim');
-    }
-    // Path Params
-    const path = '/api/v1/authorizationServers/{authServerId}/claims/{claimId}';
-    const vars = {
-      ['authServerId']: String(authServerId),
-      ['claimId']: String(claimId),
-    };
-    // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.PUT, vars);
-    requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
-    // Body Params
-    const [contentType, contentEncoding] = ObjectSerializer_1.ObjectSerializer.getPreferredMediaTypeAndEncoding([
-      'application/json'
-    ], oAuth2Claim);
-    requestContext.setHeaderParam('Content-Type', contentType);
-    requestContext.setHeaderParam('Content-Transfer-Encoding', contentEncoding);
-    const serializedBody = ObjectSerializer_1.ObjectSerializer.stringify(ObjectSerializer_1.ObjectSerializer.serialize(oAuth2Claim, 'OAuth2Claim', ''), contentType);
-    requestContext.setBody(serializedBody);
-    let authMethod;
-    // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
-    if (authMethod?.applySecurityAuthentication) {
-      await authMethod?.applySecurityAuthentication(requestContext);
-    }
-    // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
-    if (authMethod?.applySecurityAuthentication) {
-      await authMethod?.applySecurityAuthentication(requestContext);
-    }
-    const defaultAuth = _options?.authMethods?.default || this.configuration?.authMethods?.default;
-    if (defaultAuth?.applySecurityAuthentication) {
-      await defaultAuth?.applySecurityAuthentication(requestContext);
-    }
-    return requestContext;
-  }
-  /**
-     * Success
-     * Replace a Custom Token Scope
-     * @param authServerId
-     * @param scopeId
-     * @param oAuth2Scope
-     */
-  async updateOAuth2Scope(authServerId, scopeId, oAuth2Scope, _options) {
-    let _config = _options || this.configuration;
-    // verify required parameter 'authServerId' is not null or undefined
-    if (authServerId === null || authServerId === undefined) {
-      throw new baseapi_1.RequiredError('AuthorizationServerApi', 'updateOAuth2Scope', 'authServerId');
-    }
-    // verify required parameter 'scopeId' is not null or undefined
-    if (scopeId === null || scopeId === undefined) {
-      throw new baseapi_1.RequiredError('AuthorizationServerApi', 'updateOAuth2Scope', 'scopeId');
-    }
-    // verify required parameter 'oAuth2Scope' is not null or undefined
-    if (oAuth2Scope === null || oAuth2Scope === undefined) {
-      throw new baseapi_1.RequiredError('AuthorizationServerApi', 'updateOAuth2Scope', 'oAuth2Scope');
-    }
-    // Path Params
-    const path = '/api/v1/authorizationServers/{authServerId}/scopes/{scopeId}';
-    const vars = {
-      ['authServerId']: String(authServerId),
-      ['scopeId']: String(scopeId),
-    };
-    // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.PUT, vars);
-    requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
-    // Body Params
-    const [contentType, contentEncoding] = ObjectSerializer_1.ObjectSerializer.getPreferredMediaTypeAndEncoding([
-      'application/json'
-    ], oAuth2Scope);
-    requestContext.setHeaderParam('Content-Type', contentType);
-    requestContext.setHeaderParam('Content-Transfer-Encoding', contentEncoding);
-    const serializedBody = ObjectSerializer_1.ObjectSerializer.stringify(ObjectSerializer_1.ObjectSerializer.serialize(oAuth2Scope, 'OAuth2Scope', ''), contentType);
-    requestContext.setBody(serializedBody);
-    let authMethod;
-    // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
-    if (authMethod?.applySecurityAuthentication) {
-      await authMethod?.applySecurityAuthentication(requestContext);
-    }
-    // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -2716,6 +2716,186 @@ class AuthorizationServerApiResponseProcessor {
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
+     * @params response Response returned by the server for a request to replaceAuthorizationServer
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+  async replaceAuthorizationServer(response) {
+    const contentType = ObjectSerializer_1.ObjectSerializer.normalizeMediaType(response.headers['content-type']);
+    if ((0, util_1.isCodeInRange)('200', response.httpStatusCode)) {
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'AuthorizationServer', '');
+      return body;
+    }
+    if ((0, util_1.isCodeInRange)('400', response.httpStatusCode)) {
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      throw new exception_1.ApiException(400, 'Bad Request', body, response.headers);
+    }
+    if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      throw new exception_1.ApiException(403, 'Forbidden', body, response.headers);
+    }
+    if ((0, util_1.isCodeInRange)('404', response.httpStatusCode)) {
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      throw new exception_1.ApiException(404, 'Not Found', body, response.headers);
+    }
+    if ((0, util_1.isCodeInRange)('429', response.httpStatusCode)) {
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      throw new exception_1.ApiException(429, 'Too Many Requests', body, response.headers);
+    }
+    // Work around for missing responses in specification, e.g. for petstore.yaml
+    if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'AuthorizationServer', '');
+      return body;
+    }
+    throw new exception_1.ApiException(response.httpStatusCode, 'Unknown API Status Code!', await response.getBodyAsAny(), response.headers);
+  }
+  /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
+     * @params response Response returned by the server for a request to replaceAuthorizationServerPolicy
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+  async replaceAuthorizationServerPolicy(response) {
+    const contentType = ObjectSerializer_1.ObjectSerializer.normalizeMediaType(response.headers['content-type']);
+    if ((0, util_1.isCodeInRange)('200', response.httpStatusCode)) {
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'AuthorizationServerPolicy', '');
+      return body;
+    }
+    if ((0, util_1.isCodeInRange)('400', response.httpStatusCode)) {
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      throw new exception_1.ApiException(400, 'Bad Request', body, response.headers);
+    }
+    if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      throw new exception_1.ApiException(403, 'Forbidden', body, response.headers);
+    }
+    if ((0, util_1.isCodeInRange)('404', response.httpStatusCode)) {
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      throw new exception_1.ApiException(404, 'Not Found', body, response.headers);
+    }
+    if ((0, util_1.isCodeInRange)('429', response.httpStatusCode)) {
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      throw new exception_1.ApiException(429, 'Too Many Requests', body, response.headers);
+    }
+    // Work around for missing responses in specification, e.g. for petstore.yaml
+    if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'AuthorizationServerPolicy', '');
+      return body;
+    }
+    throw new exception_1.ApiException(response.httpStatusCode, 'Unknown API Status Code!', await response.getBodyAsAny(), response.headers);
+  }
+  /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
+     * @params response Response returned by the server for a request to replaceAuthorizationServerPolicyRule
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+  async replaceAuthorizationServerPolicyRule(response) {
+    const contentType = ObjectSerializer_1.ObjectSerializer.normalizeMediaType(response.headers['content-type']);
+    if ((0, util_1.isCodeInRange)('200', response.httpStatusCode)) {
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'AuthorizationServerPolicyRule', '');
+      return body;
+    }
+    if ((0, util_1.isCodeInRange)('400', response.httpStatusCode)) {
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      throw new exception_1.ApiException(400, 'Bad Request', body, response.headers);
+    }
+    if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      throw new exception_1.ApiException(403, 'Forbidden', body, response.headers);
+    }
+    if ((0, util_1.isCodeInRange)('404', response.httpStatusCode)) {
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      throw new exception_1.ApiException(404, 'Not Found', body, response.headers);
+    }
+    if ((0, util_1.isCodeInRange)('429', response.httpStatusCode)) {
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      throw new exception_1.ApiException(429, 'Too Many Requests', body, response.headers);
+    }
+    // Work around for missing responses in specification, e.g. for petstore.yaml
+    if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'AuthorizationServerPolicyRule', '');
+      return body;
+    }
+    throw new exception_1.ApiException(response.httpStatusCode, 'Unknown API Status Code!', await response.getBodyAsAny(), response.headers);
+  }
+  /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
+     * @params response Response returned by the server for a request to replaceOAuth2Claim
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+  async replaceOAuth2Claim(response) {
+    const contentType = ObjectSerializer_1.ObjectSerializer.normalizeMediaType(response.headers['content-type']);
+    if ((0, util_1.isCodeInRange)('200', response.httpStatusCode)) {
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'OAuth2Claim', '');
+      return body;
+    }
+    if ((0, util_1.isCodeInRange)('400', response.httpStatusCode)) {
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      throw new exception_1.ApiException(400, 'Bad Request', body, response.headers);
+    }
+    if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      throw new exception_1.ApiException(403, 'Forbidden', body, response.headers);
+    }
+    if ((0, util_1.isCodeInRange)('404', response.httpStatusCode)) {
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      throw new exception_1.ApiException(404, 'Not Found', body, response.headers);
+    }
+    if ((0, util_1.isCodeInRange)('429', response.httpStatusCode)) {
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      throw new exception_1.ApiException(429, 'Too Many Requests', body, response.headers);
+    }
+    // Work around for missing responses in specification, e.g. for petstore.yaml
+    if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'OAuth2Claim', '');
+      return body;
+    }
+    throw new exception_1.ApiException(response.httpStatusCode, 'Unknown API Status Code!', await response.getBodyAsAny(), response.headers);
+  }
+  /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
+     * @params response Response returned by the server for a request to replaceOAuth2Scope
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+  async replaceOAuth2Scope(response) {
+    const contentType = ObjectSerializer_1.ObjectSerializer.normalizeMediaType(response.headers['content-type']);
+    if ((0, util_1.isCodeInRange)('200', response.httpStatusCode)) {
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'OAuth2Scope', '');
+      return body;
+    }
+    if ((0, util_1.isCodeInRange)('400', response.httpStatusCode)) {
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      throw new exception_1.ApiException(400, 'Bad Request', body, response.headers);
+    }
+    if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      throw new exception_1.ApiException(403, 'Forbidden', body, response.headers);
+    }
+    if ((0, util_1.isCodeInRange)('404', response.httpStatusCode)) {
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      throw new exception_1.ApiException(404, 'Not Found', body, response.headers);
+    }
+    if ((0, util_1.isCodeInRange)('429', response.httpStatusCode)) {
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      throw new exception_1.ApiException(429, 'Too Many Requests', body, response.headers);
+    }
+    // Work around for missing responses in specification, e.g. for petstore.yaml
+    if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'OAuth2Scope', '');
+      return body;
+    }
+    throw new exception_1.ApiException(response.httpStatusCode, 'Unknown API Status Code!', await response.getBodyAsAny(), response.headers);
+  }
+  /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
      * @params response Response returned by the server for a request to revokeRefreshTokenForAuthorizationServerAndClient
      * @throws ApiException if the response code was not in [200, 299]
      */
@@ -2806,186 +2986,6 @@ class AuthorizationServerApiResponseProcessor {
     // Work around for missing responses in specification, e.g. for petstore.yaml
     if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
       const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Array<JsonWebKey>', '');
-      return body;
-    }
-    throw new exception_1.ApiException(response.httpStatusCode, 'Unknown API Status Code!', await response.getBodyAsAny(), response.headers);
-  }
-  /**
-     * Unwraps the actual response sent by the server from the response context and deserializes the response content
-     * to the expected objects
-     *
-     * @params response Response returned by the server for a request to updateAuthorizationServer
-     * @throws ApiException if the response code was not in [200, 299]
-     */
-  async updateAuthorizationServer(response) {
-    const contentType = ObjectSerializer_1.ObjectSerializer.normalizeMediaType(response.headers['content-type']);
-    if ((0, util_1.isCodeInRange)('200', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'AuthorizationServer', '');
-      return body;
-    }
-    if ((0, util_1.isCodeInRange)('400', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
-      throw new exception_1.ApiException(400, 'Bad Request', body, response.headers);
-    }
-    if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
-      throw new exception_1.ApiException(403, 'Forbidden', body, response.headers);
-    }
-    if ((0, util_1.isCodeInRange)('404', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
-      throw new exception_1.ApiException(404, 'Not Found', body, response.headers);
-    }
-    if ((0, util_1.isCodeInRange)('429', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
-      throw new exception_1.ApiException(429, 'Too Many Requests', body, response.headers);
-    }
-    // Work around for missing responses in specification, e.g. for petstore.yaml
-    if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'AuthorizationServer', '');
-      return body;
-    }
-    throw new exception_1.ApiException(response.httpStatusCode, 'Unknown API Status Code!', await response.getBodyAsAny(), response.headers);
-  }
-  /**
-     * Unwraps the actual response sent by the server from the response context and deserializes the response content
-     * to the expected objects
-     *
-     * @params response Response returned by the server for a request to updateAuthorizationServerPolicy
-     * @throws ApiException if the response code was not in [200, 299]
-     */
-  async updateAuthorizationServerPolicy(response) {
-    const contentType = ObjectSerializer_1.ObjectSerializer.normalizeMediaType(response.headers['content-type']);
-    if ((0, util_1.isCodeInRange)('200', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'AuthorizationServerPolicy', '');
-      return body;
-    }
-    if ((0, util_1.isCodeInRange)('400', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
-      throw new exception_1.ApiException(400, 'Bad Request', body, response.headers);
-    }
-    if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
-      throw new exception_1.ApiException(403, 'Forbidden', body, response.headers);
-    }
-    if ((0, util_1.isCodeInRange)('404', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
-      throw new exception_1.ApiException(404, 'Not Found', body, response.headers);
-    }
-    if ((0, util_1.isCodeInRange)('429', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
-      throw new exception_1.ApiException(429, 'Too Many Requests', body, response.headers);
-    }
-    // Work around for missing responses in specification, e.g. for petstore.yaml
-    if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'AuthorizationServerPolicy', '');
-      return body;
-    }
-    throw new exception_1.ApiException(response.httpStatusCode, 'Unknown API Status Code!', await response.getBodyAsAny(), response.headers);
-  }
-  /**
-     * Unwraps the actual response sent by the server from the response context and deserializes the response content
-     * to the expected objects
-     *
-     * @params response Response returned by the server for a request to updateAuthorizationServerPolicyRule
-     * @throws ApiException if the response code was not in [200, 299]
-     */
-  async updateAuthorizationServerPolicyRule(response) {
-    const contentType = ObjectSerializer_1.ObjectSerializer.normalizeMediaType(response.headers['content-type']);
-    if ((0, util_1.isCodeInRange)('200', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'AuthorizationServerPolicyRule', '');
-      return body;
-    }
-    if ((0, util_1.isCodeInRange)('400', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
-      throw new exception_1.ApiException(400, 'Bad Request', body, response.headers);
-    }
-    if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
-      throw new exception_1.ApiException(403, 'Forbidden', body, response.headers);
-    }
-    if ((0, util_1.isCodeInRange)('404', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
-      throw new exception_1.ApiException(404, 'Not Found', body, response.headers);
-    }
-    if ((0, util_1.isCodeInRange)('429', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
-      throw new exception_1.ApiException(429, 'Too Many Requests', body, response.headers);
-    }
-    // Work around for missing responses in specification, e.g. for petstore.yaml
-    if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'AuthorizationServerPolicyRule', '');
-      return body;
-    }
-    throw new exception_1.ApiException(response.httpStatusCode, 'Unknown API Status Code!', await response.getBodyAsAny(), response.headers);
-  }
-  /**
-     * Unwraps the actual response sent by the server from the response context and deserializes the response content
-     * to the expected objects
-     *
-     * @params response Response returned by the server for a request to updateOAuth2Claim
-     * @throws ApiException if the response code was not in [200, 299]
-     */
-  async updateOAuth2Claim(response) {
-    const contentType = ObjectSerializer_1.ObjectSerializer.normalizeMediaType(response.headers['content-type']);
-    if ((0, util_1.isCodeInRange)('200', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'OAuth2Claim', '');
-      return body;
-    }
-    if ((0, util_1.isCodeInRange)('400', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
-      throw new exception_1.ApiException(400, 'Bad Request', body, response.headers);
-    }
-    if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
-      throw new exception_1.ApiException(403, 'Forbidden', body, response.headers);
-    }
-    if ((0, util_1.isCodeInRange)('404', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
-      throw new exception_1.ApiException(404, 'Not Found', body, response.headers);
-    }
-    if ((0, util_1.isCodeInRange)('429', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
-      throw new exception_1.ApiException(429, 'Too Many Requests', body, response.headers);
-    }
-    // Work around for missing responses in specification, e.g. for petstore.yaml
-    if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'OAuth2Claim', '');
-      return body;
-    }
-    throw new exception_1.ApiException(response.httpStatusCode, 'Unknown API Status Code!', await response.getBodyAsAny(), response.headers);
-  }
-  /**
-     * Unwraps the actual response sent by the server from the response context and deserializes the response content
-     * to the expected objects
-     *
-     * @params response Response returned by the server for a request to updateOAuth2Scope
-     * @throws ApiException if the response code was not in [200, 299]
-     */
-  async updateOAuth2Scope(response) {
-    const contentType = ObjectSerializer_1.ObjectSerializer.normalizeMediaType(response.headers['content-type']);
-    if ((0, util_1.isCodeInRange)('200', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'OAuth2Scope', '');
-      return body;
-    }
-    if ((0, util_1.isCodeInRange)('400', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
-      throw new exception_1.ApiException(400, 'Bad Request', body, response.headers);
-    }
-    if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
-      throw new exception_1.ApiException(403, 'Forbidden', body, response.headers);
-    }
-    if ((0, util_1.isCodeInRange)('404', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
-      throw new exception_1.ApiException(404, 'Not Found', body, response.headers);
-    }
-    if ((0, util_1.isCodeInRange)('429', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
-      throw new exception_1.ApiException(429, 'Too Many Requests', body, response.headers);
-    }
-    // Work around for missing responses in specification, e.g. for petstore.yaml
-    if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'OAuth2Scope', '');
       return body;
     }
     throw new exception_1.ApiException(response.httpStatusCode, 'Unknown API Status Code!', await response.getBodyAsAny(), response.headers);

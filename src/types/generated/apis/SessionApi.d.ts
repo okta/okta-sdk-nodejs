@@ -27,23 +27,23 @@ export declare class SessionApiRequestFactory extends BaseAPIRequestFactory {
      */
   createSession(createSessionRequest: CreateSessionRequest, _options?: Configuration): Promise<RequestContext>;
   /**
-     * End a session.
-     * Delete a Session
-     * @param sessionId
-     */
-  endSession(sessionId: string, _options?: Configuration): Promise<RequestContext>;
-  /**
-     * Get details about a session.
+     * Retrieves the details about a session
      * Retrieve a Session
      * @param sessionId
      */
   getSession(sessionId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Refresh a session.
+     * Refreshes a session
      * Refresh a Session
      * @param sessionId
      */
   refreshSession(sessionId: string, _options?: Configuration): Promise<RequestContext>;
+  /**
+     * Revokes a session
+     * Revoke a Session
+     * @param sessionId
+     */
+  revokeSession(sessionId: string, _options?: Configuration): Promise<RequestContext>;
 }
 export declare class SessionApiResponseProcessor {
   /**
@@ -54,14 +54,6 @@ export declare class SessionApiResponseProcessor {
      * @throws ApiException if the response code was not in [200, 299]
      */
   createSession(response: ResponseContext): Promise<Session>;
-  /**
-     * Unwraps the actual response sent by the server from the response context and deserializes the response content
-     * to the expected objects
-     *
-     * @params response Response returned by the server for a request to endSession
-     * @throws ApiException if the response code was not in [200, 299]
-     */
-  endSession(response: ResponseContext): Promise<void>;
   /**
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
@@ -78,4 +70,12 @@ export declare class SessionApiResponseProcessor {
      * @throws ApiException if the response code was not in [200, 299]
      */
   refreshSession(response: ResponseContext): Promise<Session>;
+  /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
+     * @params response Response returned by the server for a request to revokeSession
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+  revokeSession(response: ResponseContext): Promise<void>;
 }

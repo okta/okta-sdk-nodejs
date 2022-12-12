@@ -18,88 +18,104 @@ import { Domain } from '../models/Domain';
 import { DomainCertificate } from '../models/DomainCertificate';
 import { DomainListResponse } from '../models/DomainListResponse';
 import { DomainResponse } from '../models/DomainResponse';
+import { UpdateDomain } from '../models/UpdateDomain';
 /**
  * no description
  */
-export declare class DomainApiRequestFactory extends BaseAPIRequestFactory {
+export declare class CustomDomainApiRequestFactory extends BaseAPIRequestFactory {
   /**
-     * Creates the Certificate for the Domain.
-     * Replace the Certificate
+     * Creates your Custom Domain
+     * Create a Custom Domain
+     * @param domain
+     */
+  createCustomDomain(domain: Domain, _options?: Configuration): Promise<RequestContext>;
+  /**
+     * Deletes a Custom Domain by `id`
+     * Delete a Custom Domain
+     * @param domainId
+     */
+  deleteCustomDomain(domainId: string, _options?: Configuration): Promise<RequestContext>;
+  /**
+     * Retrieves a Custom Domain by `id`
+     * Retrieve a Custom Domain
+     * @param domainId
+     */
+  getCustomDomain(domainId: string, _options?: Configuration): Promise<RequestContext>;
+  /**
+     * Lists all verified Custom Domains for the org
+     * List all Custom Domains
+     */
+  listCustomDomains(_options?: Configuration): Promise<RequestContext>;
+  /**
+     * Replaces a Custom Domain by `id`
+     * Replace a Custom Domain's brandId
+     * @param domainId
+     * @param UpdateDomain
+     */
+  replaceCustomDomain(domainId: string, UpdateDomain: UpdateDomain, _options?: Configuration): Promise<RequestContext>;
+  /**
+     * Creates or replaces the certificate for the custom domain
+     * Upsert the Certificate
      * @param domainId
      * @param certificate
      */
-  createCertificate(domainId: string, certificate: DomainCertificate, _options?: Configuration): Promise<RequestContext>;
+  upsertCertificate(domainId: string, certificate: DomainCertificate, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Creates your domain.
-     * Create a Domain
-     * @param domain
-     */
-  createDomain(domain: Domain, _options?: Configuration): Promise<RequestContext>;
-  /**
-     * Deletes a Domain by `id`.
-     * Delete a Domain
-     * @param domainId
-     */
-  deleteDomain(domainId: string, _options?: Configuration): Promise<RequestContext>;
-  /**
-     * Fetches a Domain by `id`.
-     * Retrieve a Domain
-     * @param domainId
-     */
-  getDomain(domainId: string, _options?: Configuration): Promise<RequestContext>;
-  /**
-     * List all verified custom Domains for the org.
-     * List all Domains
-     */
-  listDomains(_options?: Configuration): Promise<RequestContext>;
-  /**
-     * Verifies the Domain by `id`.
-     * Verify a Domain
+     * Verifies the Custom Domain by `id`
+     * Verify a Custom Domain
      * @param domainId
      */
   verifyDomain(domainId: string, _options?: Configuration): Promise<RequestContext>;
 }
-export declare class DomainApiResponseProcessor {
+export declare class CustomDomainApiResponseProcessor {
   /**
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
-     * @params response Response returned by the server for a request to createCertificate
+     * @params response Response returned by the server for a request to createCustomDomain
      * @throws ApiException if the response code was not in [200, 299]
      */
-  createCertificate(response: ResponseContext): Promise<void>;
+  createCustomDomain(response: ResponseContext): Promise<DomainResponse>;
   /**
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
-     * @params response Response returned by the server for a request to createDomain
+     * @params response Response returned by the server for a request to deleteCustomDomain
      * @throws ApiException if the response code was not in [200, 299]
      */
-  createDomain(response: ResponseContext): Promise<DomainResponse>;
+  deleteCustomDomain(response: ResponseContext): Promise<void>;
   /**
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
-     * @params response Response returned by the server for a request to deleteDomain
+     * @params response Response returned by the server for a request to getCustomDomain
      * @throws ApiException if the response code was not in [200, 299]
      */
-  deleteDomain(response: ResponseContext): Promise<void>;
+  getCustomDomain(response: ResponseContext): Promise<DomainResponse>;
   /**
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
-     * @params response Response returned by the server for a request to getDomain
+     * @params response Response returned by the server for a request to listCustomDomains
      * @throws ApiException if the response code was not in [200, 299]
      */
-  getDomain(response: ResponseContext): Promise<DomainResponse>;
+  listCustomDomains(response: ResponseContext): Promise<DomainListResponse>;
   /**
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
-     * @params response Response returned by the server for a request to listDomains
+     * @params response Response returned by the server for a request to replaceCustomDomain
      * @throws ApiException if the response code was not in [200, 299]
      */
-  listDomains(response: ResponseContext): Promise<DomainListResponse>;
+  replaceCustomDomain(response: ResponseContext): Promise<DomainResponse>;
+  /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
+     * @params response Response returned by the server for a request to upsertCertificate
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+  upsertCertificate(response: ResponseContext): Promise<void>;
   /**
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects

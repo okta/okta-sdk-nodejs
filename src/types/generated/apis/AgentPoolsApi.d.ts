@@ -51,33 +51,33 @@ export declare class AgentPoolsApiRequestFactory extends BaseAPIRequestFactory {
      */
   deleteAgentPoolsUpdate(poolId: string, updateId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Fetches AgentPools based on request parameters for a given org
-     * List all Agent Pools
-     * @param limitPerPoolType Maximum number of AgentPools being returned
-     * @param poolType Agent type to search for
-     * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/reference/core-okta-api/#pagination) for more information.
-     */
-  getAgentPools(limitPerPoolType?: number, poolType?: AgentType, after?: string, _options?: Configuration): Promise<RequestContext>;
-  /**
-     * Gets Agent pool update from updateId
+     * Retrieves Agent pool update from updateId
      * Retrieve an Agent Pool update by id
      * @param poolId Id of the agent pool for which the settings will apply
      * @param updateId Id of the update
      */
   getAgentPoolsUpdateInstance(poolId: string, updateId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Gets the current state of the agent pool update instance settings
+     * Retrieves the current state of the agent pool update instance settings
      * Retrieve an Agent Pool update's settings
      * @param poolId Id of the agent pool for which the settings will apply
      */
   getAgentPoolsUpdateSettings(poolId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Gets List of Agent pool updates
+     * Lists all agent pools with pagination support
+     * List all Agent Pools
+     * @param limitPerPoolType Maximum number of AgentPools being returned
+     * @param poolType Agent type to search for
+     * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](/#pagination) for more information.
+     */
+  listAgentPools(limitPerPoolType?: number, poolType?: AgentType, after?: string, _options?: Configuration): Promise<RequestContext>;
+  /**
+     * Lists all agent pool updates
      * List all Agent Pool updates
      * @param poolId Id of the agent pool for which the settings will apply
      * @param scheduled Scope the list only to scheduled or ad-hoc updates. If the parameter is not provided we will return the whole list of updates.
      */
-  getAgentPoolsUpdates(poolId: string, scheduled?: boolean, _options?: Configuration): Promise<RequestContext>;
+  listAgentPoolsUpdates(poolId: string, scheduled?: boolean, _options?: Configuration): Promise<RequestContext>;
   /**
      * Pauses running or queued Agent pool update
      * Pause an Agent Pool update
@@ -100,13 +100,6 @@ export declare class AgentPoolsApiRequestFactory extends BaseAPIRequestFactory {
      */
   retryAgentPoolsUpdate(poolId: string, updateId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Updates Agent pool update settings
-     * Update an Agent pool update settings
-     * @param poolId Id of the agent pool for which the settings will apply
-     * @param AgentPoolUpdateSetting
-     */
-  setAgentPoolsUpdateSettings(poolId: string, AgentPoolUpdateSetting: AgentPoolUpdateSetting, _options?: Configuration): Promise<RequestContext>;
-  /**
      * Stops Agent pool update
      * Stop an Agent Pool update
      * @param poolId Id of the agent pool for which the settings will apply
@@ -121,6 +114,13 @@ export declare class AgentPoolsApiRequestFactory extends BaseAPIRequestFactory {
      * @param AgentPoolUpdate
      */
   updateAgentPoolsUpdate(poolId: string, updateId: string, AgentPoolUpdate: AgentPoolUpdate, _options?: Configuration): Promise<RequestContext>;
+  /**
+     * Updates an agent pool update settings
+     * Update an Agent Pool update settings
+     * @param poolId Id of the agent pool for which the settings will apply
+     * @param AgentPoolUpdateSetting
+     */
+  updateAgentPoolsUpdateSettings(poolId: string, AgentPoolUpdateSetting: AgentPoolUpdateSetting, _options?: Configuration): Promise<RequestContext>;
 }
 export declare class AgentPoolsApiResponseProcessor {
   /**
@@ -159,14 +159,6 @@ export declare class AgentPoolsApiResponseProcessor {
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
-     * @params response Response returned by the server for a request to getAgentPools
-     * @throws ApiException if the response code was not in [200, 299]
-     */
-  getAgentPools(response: ResponseContext): Promise<Array<AgentPool>>;
-  /**
-     * Unwraps the actual response sent by the server from the response context and deserializes the response content
-     * to the expected objects
-     *
      * @params response Response returned by the server for a request to getAgentPoolsUpdateInstance
      * @throws ApiException if the response code was not in [200, 299]
      */
@@ -183,10 +175,18 @@ export declare class AgentPoolsApiResponseProcessor {
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
-     * @params response Response returned by the server for a request to getAgentPoolsUpdates
+     * @params response Response returned by the server for a request to listAgentPools
      * @throws ApiException if the response code was not in [200, 299]
      */
-  getAgentPoolsUpdates(response: ResponseContext): Promise<Array<AgentPoolUpdate>>;
+  listAgentPools(response: ResponseContext): Promise<Array<AgentPool>>;
+  /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
+     * @params response Response returned by the server for a request to listAgentPoolsUpdates
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+  listAgentPoolsUpdates(response: ResponseContext): Promise<Array<AgentPoolUpdate>>;
   /**
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
@@ -215,14 +215,6 @@ export declare class AgentPoolsApiResponseProcessor {
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
-     * @params response Response returned by the server for a request to setAgentPoolsUpdateSettings
-     * @throws ApiException if the response code was not in [200, 299]
-     */
-  setAgentPoolsUpdateSettings(response: ResponseContext): Promise<AgentPoolUpdateSetting>;
-  /**
-     * Unwraps the actual response sent by the server from the response context and deserializes the response content
-     * to the expected objects
-     *
      * @params response Response returned by the server for a request to stopAgentPoolsUpdate
      * @throws ApiException if the response code was not in [200, 299]
      */
@@ -235,4 +227,12 @@ export declare class AgentPoolsApiResponseProcessor {
      * @throws ApiException if the response code was not in [200, 299]
      */
   updateAgentPoolsUpdate(response: ResponseContext): Promise<AgentPoolUpdate>;
+  /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
+     * @params response Response returned by the server for a request to updateAgentPoolsUpdateSettings
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+  updateAgentPoolsUpdateSettings(response: ResponseContext): Promise<AgentPoolUpdateSetting>;
 }

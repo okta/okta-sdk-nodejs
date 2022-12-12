@@ -25,7 +25,7 @@ const util_1 = require('../util');
  */
 class ProfileMappingApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   /**
-     * Fetches a single Profile Mapping referenced by its ID.
+     * Retrieves a single Profile Mapping referenced by its ID
      * Retrieve a Profile Mapping
      * @param mappingId
      */
@@ -45,12 +45,12 @@ class ProfileMappingApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -61,7 +61,7 @@ class ProfileMappingApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     return requestContext;
   }
   /**
-     * Enumerates Profile Mappings in your organization with pagination.
+     * Lists all profile mappings with pagination
      * List all Profile Mappings
      * @param after
      * @param limit
@@ -93,12 +93,12 @@ class ProfileMappingApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     }
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -109,7 +109,7 @@ class ProfileMappingApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     return requestContext;
   }
   /**
-     * Updates an existing Profile Mapping by adding, updating, or removing one or many Property Mappings.
+     * Updates an existing Profile Mapping by adding, updating, or removing one or many Property Mappings
      * Update a Profile Mapping
      * @param mappingId
      * @param profileMapping
@@ -142,12 +142,12 @@ class ProfileMappingApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     requestContext.setBody(serializedBody);
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }

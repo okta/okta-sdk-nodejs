@@ -25,15 +25,63 @@ const util_1 = require('../util');
  */
 class SchemaApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   /**
-     * Takes an Application name as an input parameter and retrieves the App Instance page Layout for that Application.
-     * Retrieve the UI Layout for an Application
+     * Retrieves the UI schema for an Application given `appName`, `section` and `operation`
+     * Retrieve the UI schema for a section
      * @param appName
+     * @param section
+     * @param operation
      */
-  async getApplicationLayout(appName, _options) {
+  async getAppUISchema(appName, section, operation, _options) {
     let _config = _options || this.configuration;
     // verify required parameter 'appName' is not null or undefined
     if (appName === null || appName === undefined) {
-      throw new baseapi_1.RequiredError('SchemaApi', 'getApplicationLayout', 'appName');
+      throw new baseapi_1.RequiredError('SchemaApi', 'getAppUISchema', 'appName');
+    }
+    // verify required parameter 'section' is not null or undefined
+    if (section === null || section === undefined) {
+      throw new baseapi_1.RequiredError('SchemaApi', 'getAppUISchema', 'section');
+    }
+    // verify required parameter 'operation' is not null or undefined
+    if (operation === null || operation === undefined) {
+      throw new baseapi_1.RequiredError('SchemaApi', 'getAppUISchema', 'operation');
+    }
+    // Path Params
+    const path = '/api/v1/meta/layouts/apps/{appName}/sections/{section}/{operation}';
+    const vars = {
+      ['appName']: String(appName),
+      ['section']: String(section),
+      ['operation']: String(operation),
+    };
+    // Make Request Context
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
+    requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
+    let authMethod;
+    // Apply auth methods
+    authMethod = _config.authMethods['apiToken'];
+    if (authMethod?.applySecurityAuthentication) {
+      await authMethod?.applySecurityAuthentication(requestContext);
+    }
+    // Apply auth methods
+    authMethod = _config.authMethods['oauth2'];
+    if (authMethod?.applySecurityAuthentication) {
+      await authMethod?.applySecurityAuthentication(requestContext);
+    }
+    const defaultAuth = _options?.authMethods?.default || this.configuration?.authMethods?.default;
+    if (defaultAuth?.applySecurityAuthentication) {
+      await defaultAuth?.applySecurityAuthentication(requestContext);
+    }
+    return requestContext;
+  }
+  /**
+     * Retrieves the links for UI schemas for an Application given `appName`
+     * Retrieve the links for UI schemas for an Application
+     * @param appName
+     */
+  async getAppUISchemaLinks(appName, _options) {
+    let _config = _options || this.configuration;
+    // verify required parameter 'appName' is not null or undefined
+    if (appName === null || appName === undefined) {
+      throw new baseapi_1.RequiredError('SchemaApi', 'getAppUISchemaLinks', 'appName');
     }
     // Path Params
     const path = '/api/v1/meta/layouts/apps/{appName}';
@@ -45,12 +93,12 @@ class SchemaApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -61,7 +109,7 @@ class SchemaApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     return requestContext;
   }
   /**
-     * Fetches the Schema for an App User
+     * Retrieves the Schema for an App User
      * Retrieve the default Application User Schema for an Application
      * @param appInstanceId
      */
@@ -81,12 +129,12 @@ class SchemaApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -97,7 +145,7 @@ class SchemaApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     return requestContext;
   }
   /**
-     * Fetches the group schema
+     * Retrieves the group schema
      * Retrieve the default Group Schema
      */
   async getGroupSchema(_options) {
@@ -109,12 +157,12 @@ class SchemaApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -125,7 +173,43 @@ class SchemaApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     return requestContext;
   }
   /**
-     * Fetches the schema for a Schema Id.
+     * Retrieves the schema for a Log Stream type. The `logStreamType` element in the URL specifies the Log Stream type, which is either `aws_eventbridge` or `splunk_cloud_logstreaming`. Use the `aws_eventbridge` literal to retrieve the AWS EventBridge type schema, and use the `splunk_cloud_logstreaming` literal retrieve the Splunk Cloud type schema.
+     * Retrieve the Log Stream Schema for the schema type
+     * @param logStreamType
+     */
+  async getLogStreamSchema(logStreamType, _options) {
+    let _config = _options || this.configuration;
+    // verify required parameter 'logStreamType' is not null or undefined
+    if (logStreamType === null || logStreamType === undefined) {
+      throw new baseapi_1.RequiredError('SchemaApi', 'getLogStreamSchema', 'logStreamType');
+    }
+    // Path Params
+    const path = '/api/v1/meta/schemas/logStream/{logStreamType}';
+    const vars = {
+      ['logStreamType']: String(logStreamType),
+    };
+    // Make Request Context
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
+    requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
+    let authMethod;
+    // Apply auth methods
+    authMethod = _config.authMethods['apiToken'];
+    if (authMethod?.applySecurityAuthentication) {
+      await authMethod?.applySecurityAuthentication(requestContext);
+    }
+    // Apply auth methods
+    authMethod = _config.authMethods['oauth2'];
+    if (authMethod?.applySecurityAuthentication) {
+      await authMethod?.applySecurityAuthentication(requestContext);
+    }
+    const defaultAuth = _options?.authMethods?.default || this.configuration?.authMethods?.default;
+    if (defaultAuth?.applySecurityAuthentication) {
+      await defaultAuth?.applySecurityAuthentication(requestContext);
+    }
+    return requestContext;
+  }
+  /**
+     * Retrieves the schema for a Schema Id
      * Retrieve a User Schema
      * @param schemaId
      */
@@ -145,12 +229,12 @@ class SchemaApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -161,7 +245,35 @@ class SchemaApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     return requestContext;
   }
   /**
-     * Partial updates on the User Profile properties of the Application User Schema.
+     * Lists the schema for all log stream types visible for this org
+     * List the Log Stream Schemas
+     */
+  async listLogStreamSchemas(_options) {
+    let _config = _options || this.configuration;
+    // Path Params
+    const path = '/api/v1/meta/schemas/logStream';
+    // Make Request Context
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET);
+    requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
+    let authMethod;
+    // Apply auth methods
+    authMethod = _config.authMethods['apiToken'];
+    if (authMethod?.applySecurityAuthentication) {
+      await authMethod?.applySecurityAuthentication(requestContext);
+    }
+    // Apply auth methods
+    authMethod = _config.authMethods['oauth2'];
+    if (authMethod?.applySecurityAuthentication) {
+      await authMethod?.applySecurityAuthentication(requestContext);
+    }
+    const defaultAuth = _options?.authMethods?.default || this.configuration?.authMethods?.default;
+    if (defaultAuth?.applySecurityAuthentication) {
+      await defaultAuth?.applySecurityAuthentication(requestContext);
+    }
+    return requestContext;
+  }
+  /**
+     * Partially updates on the User Profile properties of the Application User Schema
      * Update the default Application User Schema for an Application
      * @param appInstanceId
      * @param body
@@ -190,12 +302,12 @@ class SchemaApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     requestContext.setBody(serializedBody);
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -206,7 +318,7 @@ class SchemaApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     return requestContext;
   }
   /**
-     * Updates, adds or removes one or more custom Group Profile properties in the schema
+     * Updates the default group schema. This updates, adds, or removes one or more custom Group Profile properties in the schema.
      * Update the default Group Schema
      * @param GroupSchema
      */
@@ -227,12 +339,12 @@ class SchemaApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     requestContext.setBody(serializedBody);
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -243,7 +355,7 @@ class SchemaApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     return requestContext;
   }
   /**
-     * Partial updates on the User Profile properties of the user schema.
+     * Partially updates on the User Profile properties of the user schema
      * Update a User Schema
      * @param schemaId
      * @param userSchema
@@ -276,12 +388,12 @@ class SchemaApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     requestContext.setBody(serializedBody);
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -298,22 +410,62 @@ class SchemaApiResponseProcessor {
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
-     * @params response Response returned by the server for a request to getApplicationLayout
+     * @params response Response returned by the server for a request to getAppUISchema
      * @throws ApiException if the response code was not in [200, 299]
      */
-  async getApplicationLayout(response) {
+  async getAppUISchema(response) {
     const contentType = ObjectSerializer_1.ObjectSerializer.normalizeMediaType(response.headers['content-type']);
     if ((0, util_1.isCodeInRange)('200', response.httpStatusCode)) {
       const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ApplicationLayout', '');
       return body;
     }
+    if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      throw new exception_1.ApiException(403, 'Forbidden', body, response.headers);
+    }
     if ((0, util_1.isCodeInRange)('404', response.httpStatusCode)) {
       const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
       throw new exception_1.ApiException(404, 'Not Found', body, response.headers);
     }
+    if ((0, util_1.isCodeInRange)('429', response.httpStatusCode)) {
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      throw new exception_1.ApiException(429, 'Too Many Requests', body, response.headers);
+    }
     // Work around for missing responses in specification, e.g. for petstore.yaml
     if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
       const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ApplicationLayout', '');
+      return body;
+    }
+    throw new exception_1.ApiException(response.httpStatusCode, 'Unknown API Status Code!', await response.getBodyAsAny(), response.headers);
+  }
+  /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
+     * @params response Response returned by the server for a request to getAppUISchemaLinks
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+  async getAppUISchemaLinks(response) {
+    const contentType = ObjectSerializer_1.ObjectSerializer.normalizeMediaType(response.headers['content-type']);
+    if ((0, util_1.isCodeInRange)('200', response.httpStatusCode)) {
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ApplicationLayouts', '');
+      return body;
+    }
+    if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      throw new exception_1.ApiException(403, 'Forbidden', body, response.headers);
+    }
+    if ((0, util_1.isCodeInRange)('404', response.httpStatusCode)) {
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      throw new exception_1.ApiException(404, 'Not Found', body, response.headers);
+    }
+    if ((0, util_1.isCodeInRange)('429', response.httpStatusCode)) {
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      throw new exception_1.ApiException(429, 'Too Many Requests', body, response.headers);
+    }
+    // Work around for missing responses in specification, e.g. for petstore.yaml
+    if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'ApplicationLayouts', '');
       return body;
     }
     throw new exception_1.ApiException(response.httpStatusCode, 'Unknown API Status Code!', await response.getBodyAsAny(), response.headers);
@@ -382,6 +534,38 @@ class SchemaApiResponseProcessor {
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
+     * @params response Response returned by the server for a request to getLogStreamSchema
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+  async getLogStreamSchema(response) {
+    const contentType = ObjectSerializer_1.ObjectSerializer.normalizeMediaType(response.headers['content-type']);
+    if ((0, util_1.isCodeInRange)('200', response.httpStatusCode)) {
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'LogStreamSchema', '');
+      return body;
+    }
+    if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      throw new exception_1.ApiException(403, 'Forbidden', body, response.headers);
+    }
+    if ((0, util_1.isCodeInRange)('404', response.httpStatusCode)) {
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      throw new exception_1.ApiException(404, 'Not Found', body, response.headers);
+    }
+    if ((0, util_1.isCodeInRange)('429', response.httpStatusCode)) {
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      throw new exception_1.ApiException(429, 'Too Many Requests', body, response.headers);
+    }
+    // Work around for missing responses in specification, e.g. for petstore.yaml
+    if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'LogStreamSchema', '');
+      return body;
+    }
+    throw new exception_1.ApiException(response.httpStatusCode, 'Unknown API Status Code!', await response.getBodyAsAny(), response.headers);
+  }
+  /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
      * @params response Response returned by the server for a request to getUserSchema
      * @throws ApiException if the response code was not in [200, 299]
      */
@@ -406,6 +590,34 @@ class SchemaApiResponseProcessor {
     // Work around for missing responses in specification, e.g. for petstore.yaml
     if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
       const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'UserSchema', '');
+      return body;
+    }
+    throw new exception_1.ApiException(response.httpStatusCode, 'Unknown API Status Code!', await response.getBodyAsAny(), response.headers);
+  }
+  /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
+     * @params response Response returned by the server for a request to listLogStreamSchemas
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+  async listLogStreamSchemas(response) {
+    const contentType = ObjectSerializer_1.ObjectSerializer.normalizeMediaType(response.headers['content-type']);
+    if ((0, util_1.isCodeInRange)('200', response.httpStatusCode)) {
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Array<LogStreamSchema>', '');
+      return body;
+    }
+    if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      throw new exception_1.ApiException(403, 'Forbidden', body, response.headers);
+    }
+    if ((0, util_1.isCodeInRange)('429', response.httpStatusCode)) {
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      throw new exception_1.ApiException(429, 'Too Many Requests', body, response.headers);
+    }
+    // Work around for missing responses in specification, e.g. for petstore.yaml
+    if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Array<LogStreamSchema>', '');
       return body;
     }
     throw new exception_1.ApiException(response.httpStatusCode, 'Unknown API Status Code!', await response.getBodyAsAny(), response.headers);

@@ -20,19 +20,19 @@ import { PrincipalRateLimitEntity } from '../models/PrincipalRateLimitEntity';
  */
 export declare class PrincipalRateLimitApiRequestFactory extends BaseAPIRequestFactory {
   /**
-     * Adds a new Principal Rate Limit entity to your organization. In the current release, we only allow one Principal Rate Limit entity per org and principal.
+     * Creates a new Principal Rate Limit entity. In the current release, we only allow one Principal Rate Limit entity per org and principal.
      * Create a Principal Rate Limit
      * @param entity
      */
   createPrincipalRateLimitEntity(entity: PrincipalRateLimitEntity, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Fetches a Principal Rate Limit entity by `principalRateLimitId`.
+     * Retrieves a Principal Rate Limit entity by `principalRateLimitId`
      * Retrieve a Principal Rate Limit
      * @param principalRateLimitId id of the Principal Rate Limit
      */
   getPrincipalRateLimitEntity(principalRateLimitId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Lists all Principal Rate Limit entities considering the provided parameters.
+     * Lists all Principal Rate Limit entities considering the provided parameters
      * List all Principal Rate Limits
      * @param filter
      * @param after
@@ -40,12 +40,12 @@ export declare class PrincipalRateLimitApiRequestFactory extends BaseAPIRequestF
      */
   listPrincipalRateLimitEntities(filter?: string, after?: string, limit?: number, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Update a  Principal Rate Limit entity by `principalRateLimitId`.
+     * Replaces a principal rate limit entity by `principalRateLimitId`
      * Replace a Principal Rate Limit
      * @param principalRateLimitId id of the Principal Rate Limit
      * @param entity
      */
-  updatePrincipalRateLimitEntity(principalRateLimitId: string, entity: PrincipalRateLimitEntity, _options?: Configuration): Promise<RequestContext>;
+  replacePrincipalRateLimitEntity(principalRateLimitId: string, entity: PrincipalRateLimitEntity, _options?: Configuration): Promise<RequestContext>;
 }
 export declare class PrincipalRateLimitApiResponseProcessor {
   /**
@@ -76,8 +76,8 @@ export declare class PrincipalRateLimitApiResponseProcessor {
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
-     * @params response Response returned by the server for a request to updatePrincipalRateLimitEntity
+     * @params response Response returned by the server for a request to replacePrincipalRateLimitEntity
      * @throws ApiException if the response code was not in [200, 299]
      */
-  updatePrincipalRateLimitEntity(response: ResponseContext): Promise<PrincipalRateLimitEntity>;
+  replacePrincipalRateLimitEntity(response: ResponseContext): Promise<PrincipalRateLimitEntity>;
 }

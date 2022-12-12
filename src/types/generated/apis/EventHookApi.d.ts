@@ -20,49 +20,49 @@ import { EventHook } from '../models/EventHook';
  */
 export declare class EventHookApiRequestFactory extends BaseAPIRequestFactory {
   /**
-     * Success
+     * Activates an event hook
      * Activate an Event Hook
      * @param eventHookId
      */
   activateEventHook(eventHookId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Success
+     * Creates an event hook
      * Create an Event Hook
      * @param eventHook
      */
   createEventHook(eventHook: EventHook, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Success
+     * Deactivates an event hook
      * Deactivate an Event Hook
      * @param eventHookId
      */
   deactivateEventHook(eventHookId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Success
+     * Deletes an event hook
      * Delete an Event Hook
      * @param eventHookId
      */
   deleteEventHook(eventHookId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Success
+     * Retrieves an event hook
      * Retrieve an Event Hook
      * @param eventHookId
      */
   getEventHook(eventHookId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Success
+     * Lists all event hooks
      * List all Event Hooks
      */
   listEventHooks(_options?: Configuration): Promise<RequestContext>;
   /**
-     * Success
+     * Replaces an event hook
      * Replace an Event Hook
      * @param eventHookId
      * @param eventHook
      */
-  updateEventHook(eventHookId: string, eventHook: EventHook, _options?: Configuration): Promise<RequestContext>;
+  replaceEventHook(eventHookId: string, eventHook: EventHook, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Success
+     * Verifies an event hook
      * Verify an Event Hook
      * @param eventHookId
      */
@@ -121,10 +121,10 @@ export declare class EventHookApiResponseProcessor {
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
-     * @params response Response returned by the server for a request to updateEventHook
+     * @params response Response returned by the server for a request to replaceEventHook
      * @throws ApiException if the response code was not in [200, 299]
      */
-  updateEventHook(response: ResponseContext): Promise<EventHook>;
+  replaceEventHook(response: ResponseContext): Promise<EventHook>;
   /**
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects

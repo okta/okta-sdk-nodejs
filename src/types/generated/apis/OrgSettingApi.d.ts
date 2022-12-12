@@ -22,12 +22,13 @@ import { OrgOktaCommunicationSetting } from '../models/OrgOktaCommunicationSetti
 import { OrgOktaSupportSettingsObj } from '../models/OrgOktaSupportSettingsObj';
 import { OrgPreferences } from '../models/OrgPreferences';
 import { OrgSetting } from '../models/OrgSetting';
+import { WellKnownOrgMetadata } from '../models/WellKnownOrgMetadata';
 /**
  * no description
  */
 export declare class OrgSettingApiRequestFactory extends BaseAPIRequestFactory {
   /**
-     * A list of email addresses to be removed from the set of email addresses that are bounced.
+     * Removes a list of email addresses to be removed from the set of email addresses that are bounced
      * Remove Emails from Email Provider Bounce List
      * @param BouncesRemoveListObj
      */
@@ -38,91 +39,96 @@ export declare class OrgSettingApiRequestFactory extends BaseAPIRequestFactory {
      */
   extendOktaSupport(_options?: Configuration): Promise<RequestContext>;
   /**
-     * Gets Okta Communication Settings of your organization.
-     * Retreive the Okta Communication Settings
+     * Retrieves Okta Communication Settings of your organization
+     * Retrieve the Okta Communication Settings
      */
   getOktaCommunicationSettings(_options?: Configuration): Promise<RequestContext>;
   /**
-     * Gets Contact Types of your organization.
+     * Retrieves Contact Types of your organization
      * Retrieve the Org Contact Types
      */
   getOrgContactTypes(_options?: Configuration): Promise<RequestContext>;
   /**
-     * Retrieves the URL of the User associated with the specified Contact Type.
+     * Retrieves the URL of the User associated with the specified Contact Type
      * Retrieve the User of the Contact Type
      * @param contactType
      */
   getOrgContactUser(contactType: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Gets Okta Support Settings of your organization.
+     * Retrieves Okta Support Settings of your organization
      * Retrieve the Okta Support Settings
      */
   getOrgOktaSupportSettings(_options?: Configuration): Promise<RequestContext>;
   /**
-     * Gets preferences of your organization.
+     * Retrieves preferences of your organization
      * Retrieve the Org Preferences
      */
   getOrgPreferences(_options?: Configuration): Promise<RequestContext>;
   /**
-     * Get settings of your organization.
+     * Retrieves the org settings
      * Retrieve the Org Settings
      */
   getOrgSettings(_options?: Configuration): Promise<RequestContext>;
   /**
-     * Enables you to temporarily allow Okta Support to access your org as an administrator for eight hours.
+     * Retrieves the well-known org metadata, which includes the id, configured custom domains, authentication pipeline, and various other org settings
+     * Retrieve the Well-Known Org Metadata
+     */
+  getWellknownOrgMetadata(_options?: Configuration): Promise<RequestContext>;
+  /**
+     * Grants Okta Support temporary access your org as an administrator for eight hours
      * Grant Okta Support Access to your Org
      */
   grantOktaSupport(_options?: Configuration): Promise<RequestContext>;
   /**
-     * Hide the Okta UI footer for all end users of your organization.
-     * Update the Preference to Hide the Okta Dashboard Footer
-     */
-  hideOktaUIFooter(_options?: Configuration): Promise<RequestContext>;
-  /**
-     * Opts in all users of this org to Okta Communication emails.
+     * Opts in all users of this org to Okta Communication emails
      * Opt in all Users to Okta Communication emails
      */
   optInUsersToOktaCommunicationEmails(_options?: Configuration): Promise<RequestContext>;
   /**
-     * Opts out all users of this org from Okta Communication emails.
+     * Opts out all users of this org from Okta Communication emails
      * Opt out all Users from Okta Communication emails
      */
   optOutUsersFromOktaCommunicationEmails(_options?: Configuration): Promise<RequestContext>;
   /**
-     * Partial update settings of your organization.
-     * Update the Org Settings
-     * @param OrgSetting
-     */
-  partialUpdateOrgSetting(OrgSetting?: OrgSetting, _options?: Configuration): Promise<RequestContext>;
-  /**
-     * Revokes Okta Support access to your organization.
-     * Revoke Okta Support Access
-     */
-  revokeOktaSupport(_options?: Configuration): Promise<RequestContext>;
-  /**
-     * Makes the Okta UI footer visible for all end users of your organization.
-     * Update the Preference to Show the Okta Dashboard Footer
-     */
-  showOktaUIFooter(_options?: Configuration): Promise<RequestContext>;
-  /**
-     * Updates the User associated with the specified Contact Type.
+     * Replaces the User associated with the specified Contact Type
      * Replace the User of the Contact Type
      * @param contactType
      * @param orgContactUser
      */
-  updateOrgContactUser(contactType: string, orgContactUser: OrgContactUser, _options?: Configuration): Promise<RequestContext>;
+  replaceOrgContactUser(contactType: string, orgContactUser: OrgContactUser, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Updates the logo for your organization.
-     * Upload the Org Logo
-     * @param file
-     */
-  updateOrgLogo(file: HttpFile, _options?: Configuration): Promise<RequestContext>;
-  /**
-     * Update settings of your organization.
+     * Replaces the settings of your organization
      * Replace the Org Settings
      * @param orgSetting
      */
-  updateOrgSetting(orgSetting: OrgSetting, _options?: Configuration): Promise<RequestContext>;
+  replaceOrgSettings(orgSetting: OrgSetting, _options?: Configuration): Promise<RequestContext>;
+  /**
+     * Revokes Okta Support access to your organization
+     * Revoke Okta Support Access
+     */
+  revokeOktaSupport(_options?: Configuration): Promise<RequestContext>;
+  /**
+     * Updates the preference hide the Okta UI footer for all end users of your organization
+     * Update the Preference to Hide the Okta Dashboard Footer
+     */
+  updateOrgHideOktaUIFooter(_options?: Configuration): Promise<RequestContext>;
+  /**
+     * Partially updates the org settings depending on provided fields
+     * Update the Org Settings
+     * @param OrgSetting
+     */
+  updateOrgSettings(OrgSetting?: OrgSetting, _options?: Configuration): Promise<RequestContext>;
+  /**
+     * Updates the preference to show the Okta UI footer for all end users of your organization
+     * Update the Preference to Show the Okta Dashboard Footer
+     */
+  updateOrgShowOktaUIFooter(_options?: Configuration): Promise<RequestContext>;
+  /**
+     * Uploads and replaces the logo for your organization. The file must be in PNG, JPG, or GIF format and less than 100kB in size. For best results use landscape orientation, a transparent background, and a minimum size of 300px by 50px to prevent upscaling.
+     * Upload the Org Logo
+     * @param file
+     */
+  uploadOrgLogo(file: HttpFile, _options?: Configuration): Promise<RequestContext>;
 }
 export declare class OrgSettingApiResponseProcessor {
   /**
@@ -193,18 +199,18 @@ export declare class OrgSettingApiResponseProcessor {
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
-     * @params response Response returned by the server for a request to grantOktaSupport
+     * @params response Response returned by the server for a request to getWellknownOrgMetadata
      * @throws ApiException if the response code was not in [200, 299]
      */
-  grantOktaSupport(response: ResponseContext): Promise<OrgOktaSupportSettingsObj>;
+  getWellknownOrgMetadata(response: ResponseContext): Promise<WellKnownOrgMetadata>;
   /**
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
-     * @params response Response returned by the server for a request to hideOktaUIFooter
+     * @params response Response returned by the server for a request to grantOktaSupport
      * @throws ApiException if the response code was not in [200, 299]
      */
-  hideOktaUIFooter(response: ResponseContext): Promise<OrgPreferences>;
+  grantOktaSupport(response: ResponseContext): Promise<OrgOktaSupportSettingsObj>;
   /**
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
@@ -225,10 +231,18 @@ export declare class OrgSettingApiResponseProcessor {
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
-     * @params response Response returned by the server for a request to partialUpdateOrgSetting
+     * @params response Response returned by the server for a request to replaceOrgContactUser
      * @throws ApiException if the response code was not in [200, 299]
      */
-  partialUpdateOrgSetting(response: ResponseContext): Promise<OrgSetting>;
+  replaceOrgContactUser(response: ResponseContext): Promise<OrgContactUser>;
+  /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
+     * @params response Response returned by the server for a request to replaceOrgSettings
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+  replaceOrgSettings(response: ResponseContext): Promise<OrgSetting>;
   /**
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
@@ -241,32 +255,32 @@ export declare class OrgSettingApiResponseProcessor {
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
-     * @params response Response returned by the server for a request to showOktaUIFooter
+     * @params response Response returned by the server for a request to updateOrgHideOktaUIFooter
      * @throws ApiException if the response code was not in [200, 299]
      */
-  showOktaUIFooter(response: ResponseContext): Promise<OrgPreferences>;
+  updateOrgHideOktaUIFooter(response: ResponseContext): Promise<OrgPreferences>;
   /**
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
-     * @params response Response returned by the server for a request to updateOrgContactUser
+     * @params response Response returned by the server for a request to updateOrgSettings
      * @throws ApiException if the response code was not in [200, 299]
      */
-  updateOrgContactUser(response: ResponseContext): Promise<OrgContactUser>;
+  updateOrgSettings(response: ResponseContext): Promise<OrgSetting>;
   /**
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
-     * @params response Response returned by the server for a request to updateOrgLogo
+     * @params response Response returned by the server for a request to updateOrgShowOktaUIFooter
      * @throws ApiException if the response code was not in [200, 299]
      */
-  updateOrgLogo(response: ResponseContext): Promise<void>;
+  updateOrgShowOktaUIFooter(response: ResponseContext): Promise<OrgPreferences>;
   /**
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
-     * @params response Response returned by the server for a request to updateOrgSetting
+     * @params response Response returned by the server for a request to uploadOrgLogo
      * @throws ApiException if the response code was not in [200, 299]
      */
-  updateOrgSetting(response: ResponseContext): Promise<OrgSetting>;
+  uploadOrgLogo(response: ResponseContext): Promise<void>;
 }

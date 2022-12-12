@@ -25,7 +25,6 @@ const {
   UserTypeApi,
   InlineHookApi,
   ProfileMappingApi,
-  DomainApi,
   LinkedObjectApi,
   SystemLogApi,
   FeatureApi,
@@ -131,7 +130,6 @@ class Client {
     this.schemaApi = new SchemaApi(configuration);
     this.inlineHookApi = new InlineHookApi(configuration);
     this.profileMappingApi = new ProfileMappingApi(configuration);
-    this.domainApi = new DomainApi(configuration);
     this.linkedObjectApi = new LinkedObjectApi(configuration);
     this.systemLogApi = new SystemLogApi(configuration);
     this.featureApi = new FeatureApi(configuration);

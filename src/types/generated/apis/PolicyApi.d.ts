@@ -14,6 +14,7 @@
 import { BaseAPIRequestFactory } from './baseapi';
 import { Configuration } from '../configuration';
 import { RequestContext, ResponseContext } from '../http/http';
+import { Application } from '../models/Application';
 import { Policy } from '../models/Policy';
 import { PolicyRule } from '../models/PolicyRule';
 /**
@@ -21,80 +22,80 @@ import { PolicyRule } from '../models/PolicyRule';
  */
 export declare class PolicyApiRequestFactory extends BaseAPIRequestFactory {
   /**
-     * Activates a policy.
+     * Activates a policy
      * Activate a Policy
      * @param policyId
      */
   activatePolicy(policyId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Activates a policy rule.
+     * Activates a policy rule
      * Activate a Policy Rule
      * @param policyId
      * @param ruleId
      */
   activatePolicyRule(policyId: string, ruleId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Clones an existing policy.
+     * Clones an existing policy
      * Clone an existing policy
      * @param policyId
      */
   clonePolicy(policyId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Creates a policy.
+     * Creates a policy
      * Create a Policy
      * @param policy
      * @param activate
      */
   createPolicy(policy: Policy, activate?: boolean, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Creates a policy rule.
+     * Creates a policy rule
      * Create a Policy Rule
      * @param policyId
      * @param policyRule
      */
   createPolicyRule(policyId: string, policyRule: PolicyRule, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Deactivates a policy.
+     * Deactivates a policy
      * Deactivate a Policy
      * @param policyId
      */
   deactivatePolicy(policyId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Deactivates a policy rule.
+     * Deactivates a policy rule
      * Deactivate a Policy Rule
      * @param policyId
      * @param ruleId
      */
   deactivatePolicyRule(policyId: string, ruleId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Removes a policy.
+     * Deletes a policy
      * Delete a Policy
      * @param policyId
      */
   deletePolicy(policyId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Removes a policy rule.
+     * Deletes a policy rule
      * Delete a Policy Rule
      * @param policyId
      * @param ruleId
      */
   deletePolicyRule(policyId: string, ruleId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Gets a policy.
+     * Retrieves a policy
      * Retrieve a Policy
      * @param policyId
      * @param expand
      */
   getPolicy(policyId: string, expand?: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Gets a policy rule.
+     * Retrieves a policy rule
      * Retrieve a Policy Rule
      * @param policyId
      * @param ruleId
      */
   getPolicyRule(policyId: string, ruleId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Gets all policies with the specified type.
+     * Lists all policies with the specified type
      * List all Policies
      * @param type
      * @param status
@@ -102,26 +103,32 @@ export declare class PolicyApiRequestFactory extends BaseAPIRequestFactory {
      */
   listPolicies(type: string, status?: string, expand?: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Enumerates all policy rules.
+     * Lists all applications mapped to a policy identified by `policyId`
+     * List all Applications mapped to a Policy
+     * @param policyId
+     */
+  listPolicyApps(policyId: string, _options?: Configuration): Promise<RequestContext>;
+  /**
+     * Lists all policy rules
      * List all Policy Rules
      * @param policyId
      */
   listPolicyRules(policyId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Updates a policy.
+     * Replaces a policy
      * Replace a Policy
      * @param policyId
      * @param policy
      */
-  updatePolicy(policyId: string, policy: Policy, _options?: Configuration): Promise<RequestContext>;
+  replacePolicy(policyId: string, policy: Policy, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Updates a policy rule.
+     * Replaces a policy rules
      * Replace a Policy Rule
      * @param policyId
      * @param ruleId
      * @param policyRule
      */
-  updatePolicyRule(policyId: string, ruleId: string, policyRule: PolicyRule, _options?: Configuration): Promise<RequestContext>;
+  replacePolicyRule(policyId: string, ruleId: string, policyRule: PolicyRule, _options?: Configuration): Promise<RequestContext>;
 }
 export declare class PolicyApiResponseProcessor {
   /**
@@ -224,6 +231,14 @@ export declare class PolicyApiResponseProcessor {
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
+     * @params response Response returned by the server for a request to listPolicyApps
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+  listPolicyApps(response: ResponseContext): Promise<Array<Application>>;
+  /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
      * @params response Response returned by the server for a request to listPolicyRules
      * @throws ApiException if the response code was not in [200, 299]
      */
@@ -232,16 +247,16 @@ export declare class PolicyApiResponseProcessor {
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
-     * @params response Response returned by the server for a request to updatePolicy
+     * @params response Response returned by the server for a request to replacePolicy
      * @throws ApiException if the response code was not in [200, 299]
      */
-  updatePolicy(response: ResponseContext): Promise<Policy>;
+  replacePolicy(response: ResponseContext): Promise<Policy>;
   /**
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
-     * @params response Response returned by the server for a request to updatePolicyRule
+     * @params response Response returned by the server for a request to replacePolicyRule
      * @throws ApiException if the response code was not in [200, 299]
      */
-  updatePolicyRule(response: ResponseContext): Promise<PolicyRule>;
+  replacePolicyRule(response: ResponseContext): Promise<PolicyRule>;
 }

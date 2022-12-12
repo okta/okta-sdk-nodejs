@@ -25,7 +25,7 @@ const util_1 = require('../util');
  */
 class GroupApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   /**
-     * Activates a specific group rule by id from your organization
+     * Activates a specific group rule by `ruleId`
      * Activate a Group Rule
      * @param ruleId
      */
@@ -45,12 +45,12 @@ class GroupApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -61,50 +61,45 @@ class GroupApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     return requestContext;
   }
   /**
-     * Add App Instance Target to App Administrator Role given to a Group
-     * Assign an Application Instance Target to Application Administrator Role
+     * Assigns a group owner
+     * Assign a Group Owner
      * @param groupId
-     * @param roleId
-     * @param appName
-     * @param applicationId
+     * @param GroupOwner
      */
-  async addApplicationInstanceTargetToAppAdminRoleGivenToGroup(groupId, roleId, appName, applicationId, _options) {
+  async assignGroupOwner(groupId, GroupOwner, _options) {
     let _config = _options || this.configuration;
     // verify required parameter 'groupId' is not null or undefined
     if (groupId === null || groupId === undefined) {
-      throw new baseapi_1.RequiredError('GroupApi', 'addApplicationInstanceTargetToAppAdminRoleGivenToGroup', 'groupId');
+      throw new baseapi_1.RequiredError('GroupApi', 'assignGroupOwner', 'groupId');
     }
-    // verify required parameter 'roleId' is not null or undefined
-    if (roleId === null || roleId === undefined) {
-      throw new baseapi_1.RequiredError('GroupApi', 'addApplicationInstanceTargetToAppAdminRoleGivenToGroup', 'roleId');
-    }
-    // verify required parameter 'appName' is not null or undefined
-    if (appName === null || appName === undefined) {
-      throw new baseapi_1.RequiredError('GroupApi', 'addApplicationInstanceTargetToAppAdminRoleGivenToGroup', 'appName');
-    }
-    // verify required parameter 'applicationId' is not null or undefined
-    if (applicationId === null || applicationId === undefined) {
-      throw new baseapi_1.RequiredError('GroupApi', 'addApplicationInstanceTargetToAppAdminRoleGivenToGroup', 'applicationId');
+    // verify required parameter 'GroupOwner' is not null or undefined
+    if (GroupOwner === null || GroupOwner === undefined) {
+      throw new baseapi_1.RequiredError('GroupApi', 'assignGroupOwner', 'GroupOwner');
     }
     // Path Params
-    const path = '/api/v1/groups/{groupId}/roles/{roleId}/targets/catalog/apps/{appName}/{applicationId}';
+    const path = '/api/v1/groups/{groupId}/owners';
     const vars = {
       ['groupId']: String(groupId),
-      ['roleId']: String(roleId),
-      ['appName']: String(appName),
-      ['applicationId']: String(applicationId),
     };
     // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.PUT, vars);
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
+    // Body Params
+    const [contentType, contentEncoding] = ObjectSerializer_1.ObjectSerializer.getPreferredMediaTypeAndEncoding([
+      'application/json'
+    ], GroupOwner);
+    requestContext.setHeaderParam('Content-Type', contentType);
+    requestContext.setHeaderParam('Content-Transfer-Encoding', contentEncoding);
+    const serializedBody = ObjectSerializer_1.ObjectSerializer.stringify(ObjectSerializer_1.ObjectSerializer.serialize(GroupOwner, 'GroupOwner', ''), contentType);
+    requestContext.setBody(serializedBody);
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -115,111 +110,20 @@ class GroupApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     return requestContext;
   }
   /**
-     * Success
-     * Assign an Application Target to Administrator Role
-     * @param groupId
-     * @param roleId
-     * @param appName
-     */
-  async addApplicationTargetToAdminRoleGivenToGroup(groupId, roleId, appName, _options) {
-    let _config = _options || this.configuration;
-    // verify required parameter 'groupId' is not null or undefined
-    if (groupId === null || groupId === undefined) {
-      throw new baseapi_1.RequiredError('GroupApi', 'addApplicationTargetToAdminRoleGivenToGroup', 'groupId');
-    }
-    // verify required parameter 'roleId' is not null or undefined
-    if (roleId === null || roleId === undefined) {
-      throw new baseapi_1.RequiredError('GroupApi', 'addApplicationTargetToAdminRoleGivenToGroup', 'roleId');
-    }
-    // verify required parameter 'appName' is not null or undefined
-    if (appName === null || appName === undefined) {
-      throw new baseapi_1.RequiredError('GroupApi', 'addApplicationTargetToAdminRoleGivenToGroup', 'appName');
-    }
-    // Path Params
-    const path = '/api/v1/groups/{groupId}/roles/{roleId}/targets/catalog/apps/{appName}';
-    const vars = {
-      ['groupId']: String(groupId),
-      ['roleId']: String(roleId),
-      ['appName']: String(appName),
-    };
-    // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.PUT, vars);
-    requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
-    let authMethod;
-    // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
-    if (authMethod?.applySecurityAuthentication) {
-      await authMethod?.applySecurityAuthentication(requestContext);
-    }
-    // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
-    if (authMethod?.applySecurityAuthentication) {
-      await authMethod?.applySecurityAuthentication(requestContext);
-    }
-    const defaultAuth = _options?.authMethods?.default || this.configuration?.authMethods?.default;
-    if (defaultAuth?.applySecurityAuthentication) {
-      await defaultAuth?.applySecurityAuthentication(requestContext);
-    }
-    return requestContext;
-  }
-  /**
-     * Enumerates group targets for a group role.
-     * Assign a Group Target for Group Role
-     * @param groupId
-     * @param roleId
-     * @param targetGroupId
-     */
-  async addGroupTargetToGroupAdministratorRoleForGroup(groupId, roleId, targetGroupId, _options) {
-    let _config = _options || this.configuration;
-    // verify required parameter 'groupId' is not null or undefined
-    if (groupId === null || groupId === undefined) {
-      throw new baseapi_1.RequiredError('GroupApi', 'addGroupTargetToGroupAdministratorRoleForGroup', 'groupId');
-    }
-    // verify required parameter 'roleId' is not null or undefined
-    if (roleId === null || roleId === undefined) {
-      throw new baseapi_1.RequiredError('GroupApi', 'addGroupTargetToGroupAdministratorRoleForGroup', 'roleId');
-    }
-    // verify required parameter 'targetGroupId' is not null or undefined
-    if (targetGroupId === null || targetGroupId === undefined) {
-      throw new baseapi_1.RequiredError('GroupApi', 'addGroupTargetToGroupAdministratorRoleForGroup', 'targetGroupId');
-    }
-    // Path Params
-    const path = '/api/v1/groups/{groupId}/roles/{roleId}/targets/groups/{targetGroupId}';
-    const vars = {
-      ['groupId']: String(groupId),
-      ['roleId']: String(roleId),
-      ['targetGroupId']: String(targetGroupId),
-    };
-    // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.PUT, vars);
-    requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
-    let authMethod;
-    // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
-    if (authMethod?.applySecurityAuthentication) {
-      await authMethod?.applySecurityAuthentication(requestContext);
-    }
-    const defaultAuth = _options?.authMethods?.default || this.configuration?.authMethods?.default;
-    if (defaultAuth?.applySecurityAuthentication) {
-      await defaultAuth?.applySecurityAuthentication(requestContext);
-    }
-    return requestContext;
-  }
-  /**
-     * Adds a user to a group with 'OKTA_GROUP' type.
+     * Assigns a user to a group with 'OKTA_GROUP' type
      * Assign a User
      * @param groupId
      * @param userId
      */
-  async addUserToGroup(groupId, userId, _options) {
+  async assignUserToGroup(groupId, userId, _options) {
     let _config = _options || this.configuration;
     // verify required parameter 'groupId' is not null or undefined
     if (groupId === null || groupId === undefined) {
-      throw new baseapi_1.RequiredError('GroupApi', 'addUserToGroup', 'groupId');
+      throw new baseapi_1.RequiredError('GroupApi', 'assignUserToGroup', 'groupId');
     }
     // verify required parameter 'userId' is not null or undefined
     if (userId === null || userId === undefined) {
-      throw new baseapi_1.RequiredError('GroupApi', 'addUserToGroup', 'userId');
+      throw new baseapi_1.RequiredError('GroupApi', 'assignUserToGroup', 'userId');
     }
     // Path Params
     const path = '/api/v1/groups/{groupId}/users/{userId}';
@@ -232,12 +136,12 @@ class GroupApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -248,61 +152,7 @@ class GroupApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     return requestContext;
   }
   /**
-     * Assigns a Role to a Group
-     * Assign a Role
-     * @param groupId
-     * @param assignRoleRequest
-     * @param disableNotifications
-     */
-  async assignRoleToGroup(groupId, assignRoleRequest, disableNotifications, _options) {
-    let _config = _options || this.configuration;
-    // verify required parameter 'groupId' is not null or undefined
-    if (groupId === null || groupId === undefined) {
-      throw new baseapi_1.RequiredError('GroupApi', 'assignRoleToGroup', 'groupId');
-    }
-    // verify required parameter 'assignRoleRequest' is not null or undefined
-    if (assignRoleRequest === null || assignRoleRequest === undefined) {
-      throw new baseapi_1.RequiredError('GroupApi', 'assignRoleToGroup', 'assignRoleRequest');
-    }
-    // Path Params
-    const path = '/api/v1/groups/{groupId}/roles';
-    const vars = {
-      ['groupId']: String(groupId),
-    };
-    // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
-    requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
-    // Query Params
-    if (disableNotifications !== undefined) {
-      requestContext.setQueryParam('disableNotifications', ObjectSerializer_1.ObjectSerializer.serialize(disableNotifications, 'boolean', ''));
-    }
-    // Body Params
-    const [contentType, contentEncoding] = ObjectSerializer_1.ObjectSerializer.getPreferredMediaTypeAndEncoding([
-      'application/json'
-    ], assignRoleRequest);
-    requestContext.setHeaderParam('Content-Type', contentType);
-    requestContext.setHeaderParam('Content-Transfer-Encoding', contentEncoding);
-    const serializedBody = ObjectSerializer_1.ObjectSerializer.stringify(ObjectSerializer_1.ObjectSerializer.serialize(assignRoleRequest, 'AssignRoleRequest', ''), contentType);
-    requestContext.setBody(serializedBody);
-    let authMethod;
-    // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
-    if (authMethod?.applySecurityAuthentication) {
-      await authMethod?.applySecurityAuthentication(requestContext);
-    }
-    // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
-    if (authMethod?.applySecurityAuthentication) {
-      await authMethod?.applySecurityAuthentication(requestContext);
-    }
-    const defaultAuth = _options?.authMethods?.default || this.configuration?.authMethods?.default;
-    if (defaultAuth?.applySecurityAuthentication) {
-      await defaultAuth?.applySecurityAuthentication(requestContext);
-    }
-    return requestContext;
-  }
-  /**
-     * Adds a new group with `OKTA_GROUP` type to your organization.
+     * Creates a new group with `OKTA_GROUP` type
      * Create a Group
      * @param group
      */
@@ -327,12 +177,12 @@ class GroupApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     requestContext.setBody(serializedBody);
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -368,12 +218,12 @@ class GroupApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     requestContext.setBody(serializedBody);
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -384,7 +234,7 @@ class GroupApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     return requestContext;
   }
   /**
-     * Deactivates a specific group rule by id from your organization
+     * Deactivates a specific group rule by `ruleId`
      * Deactivate a Group Rule
      * @param ruleId
      */
@@ -404,12 +254,12 @@ class GroupApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -420,7 +270,7 @@ class GroupApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     return requestContext;
   }
   /**
-     * Removes a group with `OKTA_GROUP` type from your organization.
+     * Deletes a group with `OKTA_GROUP` type
      * Delete a Group
      * @param groupId
      */
@@ -440,12 +290,12 @@ class GroupApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -456,7 +306,49 @@ class GroupApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     return requestContext;
   }
   /**
-     * Removes a specific group rule by id from your organization
+     * Deletes a group owner from a specific group
+     * Delete a Group Owner
+     * @param groupId
+     * @param ownerId
+     */
+  async deleteGroupOwner(groupId, ownerId, _options) {
+    let _config = _options || this.configuration;
+    // verify required parameter 'groupId' is not null or undefined
+    if (groupId === null || groupId === undefined) {
+      throw new baseapi_1.RequiredError('GroupApi', 'deleteGroupOwner', 'groupId');
+    }
+    // verify required parameter 'ownerId' is not null or undefined
+    if (ownerId === null || ownerId === undefined) {
+      throw new baseapi_1.RequiredError('GroupApi', 'deleteGroupOwner', 'ownerId');
+    }
+    // Path Params
+    const path = '/api/v1/groups/{groupId}/owners/{ownerId}';
+    const vars = {
+      ['groupId']: String(groupId),
+      ['ownerId']: String(ownerId),
+    };
+    // Make Request Context
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.DELETE, vars);
+    requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
+    let authMethod;
+    // Apply auth methods
+    authMethod = _config.authMethods['apiToken'];
+    if (authMethod?.applySecurityAuthentication) {
+      await authMethod?.applySecurityAuthentication(requestContext);
+    }
+    // Apply auth methods
+    authMethod = _config.authMethods['oauth2'];
+    if (authMethod?.applySecurityAuthentication) {
+      await authMethod?.applySecurityAuthentication(requestContext);
+    }
+    const defaultAuth = _options?.authMethods?.default || this.configuration?.authMethods?.default;
+    if (defaultAuth?.applySecurityAuthentication) {
+      await defaultAuth?.applySecurityAuthentication(requestContext);
+    }
+    return requestContext;
+  }
+  /**
+     * Deletes a specific group rule by `ruleId`
      * Delete a group Rule
      * @param ruleId
      * @param removeUsers Indicates whether to keep or remove users from groups assigned by this rule.
@@ -481,12 +373,12 @@ class GroupApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     }
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -497,8 +389,8 @@ class GroupApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     return requestContext;
   }
   /**
-     * Fetches a group from your organization.
-     * List all Group Rules
+     * Retrieves a group by `groupId`
+     * Retrieve a Group
      * @param groupId
      */
   async getGroup(groupId, _options) {
@@ -517,12 +409,12 @@ class GroupApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -533,7 +425,7 @@ class GroupApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     return requestContext;
   }
   /**
-     * Fetches a specific group rule by id from your organization
+     * Retrieves a specific group rule by `ruleId`
      * Retrieve a Group Rule
      * @param ruleId
      * @param expand
@@ -558,12 +450,12 @@ class GroupApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     }
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -574,101 +466,7 @@ class GroupApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     return requestContext;
   }
   /**
-     * Success
-     * Retrieve a Role
-     * @param groupId
-     * @param roleId
-     */
-  async getRole(groupId, roleId, _options) {
-    let _config = _options || this.configuration;
-    // verify required parameter 'groupId' is not null or undefined
-    if (groupId === null || groupId === undefined) {
-      throw new baseapi_1.RequiredError('GroupApi', 'getRole', 'groupId');
-    }
-    // verify required parameter 'roleId' is not null or undefined
-    if (roleId === null || roleId === undefined) {
-      throw new baseapi_1.RequiredError('GroupApi', 'getRole', 'roleId');
-    }
-    // Path Params
-    const path = '/api/v1/groups/{groupId}/roles/{roleId}';
-    const vars = {
-      ['groupId']: String(groupId),
-      ['roleId']: String(roleId),
-    };
-    // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
-    requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
-    let authMethod;
-    // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
-    if (authMethod?.applySecurityAuthentication) {
-      await authMethod?.applySecurityAuthentication(requestContext);
-    }
-    // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
-    if (authMethod?.applySecurityAuthentication) {
-      await authMethod?.applySecurityAuthentication(requestContext);
-    }
-    const defaultAuth = _options?.authMethods?.default || this.configuration?.authMethods?.default;
-    if (defaultAuth?.applySecurityAuthentication) {
-      await defaultAuth?.applySecurityAuthentication(requestContext);
-    }
-    return requestContext;
-  }
-  /**
-     * Lists all App targets for an `APP_ADMIN` Role assigned to a Group. This methods return list may include full Applications or Instances. The response for an instance will have an `ID` value, while Application will not have an ID.
-     * List all Application Targets for an Application Administrator Role
-     * @param groupId
-     * @param roleId
-     * @param after
-     * @param limit
-     */
-  async listApplicationTargetsForApplicationAdministratorRoleForGroup(groupId, roleId, after, limit, _options) {
-    let _config = _options || this.configuration;
-    // verify required parameter 'groupId' is not null or undefined
-    if (groupId === null || groupId === undefined) {
-      throw new baseapi_1.RequiredError('GroupApi', 'listApplicationTargetsForApplicationAdministratorRoleForGroup', 'groupId');
-    }
-    // verify required parameter 'roleId' is not null or undefined
-    if (roleId === null || roleId === undefined) {
-      throw new baseapi_1.RequiredError('GroupApi', 'listApplicationTargetsForApplicationAdministratorRoleForGroup', 'roleId');
-    }
-    // Path Params
-    const path = '/api/v1/groups/{groupId}/roles/{roleId}/targets/catalog/apps';
-    const vars = {
-      ['groupId']: String(groupId),
-      ['roleId']: String(roleId),
-    };
-    // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
-    requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
-    // Query Params
-    if (after !== undefined) {
-      requestContext.setQueryParam('after', ObjectSerializer_1.ObjectSerializer.serialize(after, 'string', ''));
-    }
-    // Query Params
-    if (limit !== undefined) {
-      requestContext.setQueryParam('limit', ObjectSerializer_1.ObjectSerializer.serialize(limit, 'number', 'int32'));
-    }
-    let authMethod;
-    // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
-    if (authMethod?.applySecurityAuthentication) {
-      await authMethod?.applySecurityAuthentication(requestContext);
-    }
-    // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
-    if (authMethod?.applySecurityAuthentication) {
-      await authMethod?.applySecurityAuthentication(requestContext);
-    }
-    const defaultAuth = _options?.authMethods?.default || this.configuration?.authMethods?.default;
-    if (defaultAuth?.applySecurityAuthentication) {
-      await defaultAuth?.applySecurityAuthentication(requestContext);
-    }
-    return requestContext;
-  }
-  /**
-     * Enumerates all applications that are assigned to a group.
+     * Lists all applications that are assigned to a group
      * List all Assigned Applications
      * @param groupId
      * @param after Specifies the pagination cursor for the next page of apps
@@ -698,12 +496,12 @@ class GroupApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     }
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -714,19 +512,21 @@ class GroupApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     return requestContext;
   }
   /**
-     * Success
-     * List all Assigned Roles
+     * Lists all owners for a specific group
+     * List all Group Owners
      * @param groupId
-     * @param expand
+     * @param filter SCIM Filter expression for group owners. Allows to filter owners by type.
+     * @param after Specifies the pagination cursor for the next page of owners
+     * @param limit Specifies the number of owner results in a page
      */
-  async listGroupAssignedRoles(groupId, expand, _options) {
+  async listGroupOwners(groupId, filter, after, limit, _options) {
     let _config = _options || this.configuration;
     // verify required parameter 'groupId' is not null or undefined
     if (groupId === null || groupId === undefined) {
-      throw new baseapi_1.RequiredError('GroupApi', 'listGroupAssignedRoles', 'groupId');
+      throw new baseapi_1.RequiredError('GroupApi', 'listGroupOwners', 'groupId');
     }
     // Path Params
-    const path = '/api/v1/groups/{groupId}/roles';
+    const path = '/api/v1/groups/{groupId}/owners';
     const vars = {
       ['groupId']: String(groupId),
     };
@@ -734,17 +534,25 @@ class GroupApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     // Query Params
-    if (expand !== undefined) {
-      requestContext.setQueryParam('expand', ObjectSerializer_1.ObjectSerializer.serialize(expand, 'string', ''));
+    if (filter !== undefined) {
+      requestContext.setQueryParam('filter', ObjectSerializer_1.ObjectSerializer.serialize(filter, 'string', ''));
+    }
+    // Query Params
+    if (after !== undefined) {
+      requestContext.setQueryParam('after', ObjectSerializer_1.ObjectSerializer.serialize(after, 'string', ''));
+    }
+    // Query Params
+    if (limit !== undefined) {
+      requestContext.setQueryParam('limit', ObjectSerializer_1.ObjectSerializer.serialize(limit, 'number', 'int32'));
     }
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -755,7 +563,7 @@ class GroupApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     return requestContext;
   }
   /**
-     * Lists all group rules for your organization.
+     * Lists all group rules
      * List all Group Rules
      * @param limit Specifies the number of rule results in a page
      * @param after Specifies the pagination cursor for the next page of rules
@@ -787,12 +595,12 @@ class GroupApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     }
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -803,59 +611,7 @@ class GroupApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     return requestContext;
   }
   /**
-     * Enumerates group targets for a group role.
-     * List all Group Targets for a Group Role
-     * @param groupId
-     * @param roleId
-     * @param after
-     * @param limit
-     */
-  async listGroupTargetsForGroupRole(groupId, roleId, after, limit, _options) {
-    let _config = _options || this.configuration;
-    // verify required parameter 'groupId' is not null or undefined
-    if (groupId === null || groupId === undefined) {
-      throw new baseapi_1.RequiredError('GroupApi', 'listGroupTargetsForGroupRole', 'groupId');
-    }
-    // verify required parameter 'roleId' is not null or undefined
-    if (roleId === null || roleId === undefined) {
-      throw new baseapi_1.RequiredError('GroupApi', 'listGroupTargetsForGroupRole', 'roleId');
-    }
-    // Path Params
-    const path = '/api/v1/groups/{groupId}/roles/{roleId}/targets/groups';
-    const vars = {
-      ['groupId']: String(groupId),
-      ['roleId']: String(roleId),
-    };
-    // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET, vars);
-    requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
-    // Query Params
-    if (after !== undefined) {
-      requestContext.setQueryParam('after', ObjectSerializer_1.ObjectSerializer.serialize(after, 'string', ''));
-    }
-    // Query Params
-    if (limit !== undefined) {
-      requestContext.setQueryParam('limit', ObjectSerializer_1.ObjectSerializer.serialize(limit, 'number', 'int32'));
-    }
-    let authMethod;
-    // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
-    if (authMethod?.applySecurityAuthentication) {
-      await authMethod?.applySecurityAuthentication(requestContext);
-    }
-    // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
-    if (authMethod?.applySecurityAuthentication) {
-      await authMethod?.applySecurityAuthentication(requestContext);
-    }
-    const defaultAuth = _options?.authMethods?.default || this.configuration?.authMethods?.default;
-    if (defaultAuth?.applySecurityAuthentication) {
-      await defaultAuth?.applySecurityAuthentication(requestContext);
-    }
-    return requestContext;
-  }
-  /**
-     * Enumerates all users that are a member of a group.
+     * Lists all users that are a member of a group
      * List all Member Users
      * @param groupId
      * @param after Specifies the pagination cursor for the next page of users
@@ -885,12 +641,12 @@ class GroupApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     }
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -901,7 +657,7 @@ class GroupApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     return requestContext;
   }
   /**
-     * Enumerates groups in your organization with pagination. A subset of groups can be returned that match a supported filter expression or query.
+     * Lists all groups with pagination support. A subset of groups can be returned that match a supported filter expression or query.
      * List all Groups
      * @param q Searches the name property of groups for matching value
      * @param filter Filter expression for groups
@@ -943,12 +699,12 @@ class GroupApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     }
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -959,249 +715,20 @@ class GroupApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     return requestContext;
   }
   /**
-     * Remove App Instance Target to App Administrator Role given to a Group
-     * Delete an Application Instance Target to Application Administrator Role
-     * @param groupId
-     * @param roleId
-     * @param appName
-     * @param applicationId
-     */
-  async removeApplicationTargetFromAdministratorRoleGivenToGroup(groupId, roleId, appName, applicationId, _options) {
-    let _config = _options || this.configuration;
-    // verify required parameter 'groupId' is not null or undefined
-    if (groupId === null || groupId === undefined) {
-      throw new baseapi_1.RequiredError('GroupApi', 'removeApplicationTargetFromAdministratorRoleGivenToGroup', 'groupId');
-    }
-    // verify required parameter 'roleId' is not null or undefined
-    if (roleId === null || roleId === undefined) {
-      throw new baseapi_1.RequiredError('GroupApi', 'removeApplicationTargetFromAdministratorRoleGivenToGroup', 'roleId');
-    }
-    // verify required parameter 'appName' is not null or undefined
-    if (appName === null || appName === undefined) {
-      throw new baseapi_1.RequiredError('GroupApi', 'removeApplicationTargetFromAdministratorRoleGivenToGroup', 'appName');
-    }
-    // verify required parameter 'applicationId' is not null or undefined
-    if (applicationId === null || applicationId === undefined) {
-      throw new baseapi_1.RequiredError('GroupApi', 'removeApplicationTargetFromAdministratorRoleGivenToGroup', 'applicationId');
-    }
-    // Path Params
-    const path = '/api/v1/groups/{groupId}/roles/{roleId}/targets/catalog/apps/{appName}/{applicationId}';
-    const vars = {
-      ['groupId']: String(groupId),
-      ['roleId']: String(roleId),
-      ['appName']: String(appName),
-      ['applicationId']: String(applicationId),
-    };
-    // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.DELETE, vars);
-    requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
-    let authMethod;
-    // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
-    if (authMethod?.applySecurityAuthentication) {
-      await authMethod?.applySecurityAuthentication(requestContext);
-    }
-    // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
-    if (authMethod?.applySecurityAuthentication) {
-      await authMethod?.applySecurityAuthentication(requestContext);
-    }
-    const defaultAuth = _options?.authMethods?.default || this.configuration?.authMethods?.default;
-    if (defaultAuth?.applySecurityAuthentication) {
-      await defaultAuth?.applySecurityAuthentication(requestContext);
-    }
-    return requestContext;
-  }
-  /**
-     * Success
-     * Delete an Application Target from Application Administrator Role
-     * @param groupId
-     * @param roleId
-     * @param appName
-     */
-  async removeApplicationTargetFromApplicationAdministratorRoleGivenToGroup(groupId, roleId, appName, _options) {
-    let _config = _options || this.configuration;
-    // verify required parameter 'groupId' is not null or undefined
-    if (groupId === null || groupId === undefined) {
-      throw new baseapi_1.RequiredError('GroupApi', 'removeApplicationTargetFromApplicationAdministratorRoleGivenToGroup', 'groupId');
-    }
-    // verify required parameter 'roleId' is not null or undefined
-    if (roleId === null || roleId === undefined) {
-      throw new baseapi_1.RequiredError('GroupApi', 'removeApplicationTargetFromApplicationAdministratorRoleGivenToGroup', 'roleId');
-    }
-    // verify required parameter 'appName' is not null or undefined
-    if (appName === null || appName === undefined) {
-      throw new baseapi_1.RequiredError('GroupApi', 'removeApplicationTargetFromApplicationAdministratorRoleGivenToGroup', 'appName');
-    }
-    // Path Params
-    const path = '/api/v1/groups/{groupId}/roles/{roleId}/targets/catalog/apps/{appName}';
-    const vars = {
-      ['groupId']: String(groupId),
-      ['roleId']: String(roleId),
-      ['appName']: String(appName),
-    };
-    // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.DELETE, vars);
-    requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
-    let authMethod;
-    // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
-    if (authMethod?.applySecurityAuthentication) {
-      await authMethod?.applySecurityAuthentication(requestContext);
-    }
-    // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
-    if (authMethod?.applySecurityAuthentication) {
-      await authMethod?.applySecurityAuthentication(requestContext);
-    }
-    const defaultAuth = _options?.authMethods?.default || this.configuration?.authMethods?.default;
-    if (defaultAuth?.applySecurityAuthentication) {
-      await defaultAuth?.applySecurityAuthentication(requestContext);
-    }
-    return requestContext;
-  }
-  /**
-     * remove group target for a group role.
-     * Delete a Group Target for Group Role
-     * @param groupId
-     * @param roleId
-     * @param targetGroupId
-     */
-  async removeGroupTargetFromGroupAdministratorRoleGivenToGroup(groupId, roleId, targetGroupId, _options) {
-    let _config = _options || this.configuration;
-    // verify required parameter 'groupId' is not null or undefined
-    if (groupId === null || groupId === undefined) {
-      throw new baseapi_1.RequiredError('GroupApi', 'removeGroupTargetFromGroupAdministratorRoleGivenToGroup', 'groupId');
-    }
-    // verify required parameter 'roleId' is not null or undefined
-    if (roleId === null || roleId === undefined) {
-      throw new baseapi_1.RequiredError('GroupApi', 'removeGroupTargetFromGroupAdministratorRoleGivenToGroup', 'roleId');
-    }
-    // verify required parameter 'targetGroupId' is not null or undefined
-    if (targetGroupId === null || targetGroupId === undefined) {
-      throw new baseapi_1.RequiredError('GroupApi', 'removeGroupTargetFromGroupAdministratorRoleGivenToGroup', 'targetGroupId');
-    }
-    // Path Params
-    const path = '/api/v1/groups/{groupId}/roles/{roleId}/targets/groups/{targetGroupId}';
-    const vars = {
-      ['groupId']: String(groupId),
-      ['roleId']: String(roleId),
-      ['targetGroupId']: String(targetGroupId),
-    };
-    // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.DELETE, vars);
-    requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
-    let authMethod;
-    // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
-    if (authMethod?.applySecurityAuthentication) {
-      await authMethod?.applySecurityAuthentication(requestContext);
-    }
-    const defaultAuth = _options?.authMethods?.default || this.configuration?.authMethods?.default;
-    if (defaultAuth?.applySecurityAuthentication) {
-      await defaultAuth?.applySecurityAuthentication(requestContext);
-    }
-    return requestContext;
-  }
-  /**
-     * Unassigns a Role from a Group
-     * Delete a Role
-     * @param groupId
-     * @param roleId
-     */
-  async removeRoleFromGroup(groupId, roleId, _options) {
-    let _config = _options || this.configuration;
-    // verify required parameter 'groupId' is not null or undefined
-    if (groupId === null || groupId === undefined) {
-      throw new baseapi_1.RequiredError('GroupApi', 'removeRoleFromGroup', 'groupId');
-    }
-    // verify required parameter 'roleId' is not null or undefined
-    if (roleId === null || roleId === undefined) {
-      throw new baseapi_1.RequiredError('GroupApi', 'removeRoleFromGroup', 'roleId');
-    }
-    // Path Params
-    const path = '/api/v1/groups/{groupId}/roles/{roleId}';
-    const vars = {
-      ['groupId']: String(groupId),
-      ['roleId']: String(roleId),
-    };
-    // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.DELETE, vars);
-    requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
-    let authMethod;
-    // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
-    if (authMethod?.applySecurityAuthentication) {
-      await authMethod?.applySecurityAuthentication(requestContext);
-    }
-    // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
-    if (authMethod?.applySecurityAuthentication) {
-      await authMethod?.applySecurityAuthentication(requestContext);
-    }
-    const defaultAuth = _options?.authMethods?.default || this.configuration?.authMethods?.default;
-    if (defaultAuth?.applySecurityAuthentication) {
-      await defaultAuth?.applySecurityAuthentication(requestContext);
-    }
-    return requestContext;
-  }
-  /**
-     * Removes a user from a group with 'OKTA_GROUP' type.
-     * Unassign a User
-     * @param groupId
-     * @param userId
-     */
-  async removeUserFromGroup(groupId, userId, _options) {
-    let _config = _options || this.configuration;
-    // verify required parameter 'groupId' is not null or undefined
-    if (groupId === null || groupId === undefined) {
-      throw new baseapi_1.RequiredError('GroupApi', 'removeUserFromGroup', 'groupId');
-    }
-    // verify required parameter 'userId' is not null or undefined
-    if (userId === null || userId === undefined) {
-      throw new baseapi_1.RequiredError('GroupApi', 'removeUserFromGroup', 'userId');
-    }
-    // Path Params
-    const path = '/api/v1/groups/{groupId}/users/{userId}';
-    const vars = {
-      ['groupId']: String(groupId),
-      ['userId']: String(userId),
-    };
-    // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.DELETE, vars);
-    requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
-    let authMethod;
-    // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
-    if (authMethod?.applySecurityAuthentication) {
-      await authMethod?.applySecurityAuthentication(requestContext);
-    }
-    // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
-    if (authMethod?.applySecurityAuthentication) {
-      await authMethod?.applySecurityAuthentication(requestContext);
-    }
-    const defaultAuth = _options?.authMethods?.default || this.configuration?.authMethods?.default;
-    if (defaultAuth?.applySecurityAuthentication) {
-      await defaultAuth?.applySecurityAuthentication(requestContext);
-    }
-    return requestContext;
-  }
-  /**
-     * Updates the profile for a group with `OKTA_GROUP` type from your organization.
+     * Replaces the profile for a group with `OKTA_GROUP` type
      * Replace a Group
      * @param groupId
      * @param group
      */
-  async updateGroup(groupId, group, _options) {
+  async replaceGroup(groupId, group, _options) {
     let _config = _options || this.configuration;
     // verify required parameter 'groupId' is not null or undefined
     if (groupId === null || groupId === undefined) {
-      throw new baseapi_1.RequiredError('GroupApi', 'updateGroup', 'groupId');
+      throw new baseapi_1.RequiredError('GroupApi', 'replaceGroup', 'groupId');
     }
     // verify required parameter 'group' is not null or undefined
     if (group === null || group === undefined) {
-      throw new baseapi_1.RequiredError('GroupApi', 'updateGroup', 'group');
+      throw new baseapi_1.RequiredError('GroupApi', 'replaceGroup', 'group');
     }
     // Path Params
     const path = '/api/v1/groups/{groupId}';
@@ -1221,12 +748,12 @@ class GroupApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     requestContext.setBody(serializedBody);
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -1237,20 +764,20 @@ class GroupApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     return requestContext;
   }
   /**
-     * Updates a group rule. Only `INACTIVE` rules can be updated.
+     * Replaces a group rule. Only `INACTIVE` rules can be updated.
      * Replace a Group Rule
      * @param ruleId
      * @param groupRule
      */
-  async updateGroupRule(ruleId, groupRule, _options) {
+  async replaceGroupRule(ruleId, groupRule, _options) {
     let _config = _options || this.configuration;
     // verify required parameter 'ruleId' is not null or undefined
     if (ruleId === null || ruleId === undefined) {
-      throw new baseapi_1.RequiredError('GroupApi', 'updateGroupRule', 'ruleId');
+      throw new baseapi_1.RequiredError('GroupApi', 'replaceGroupRule', 'ruleId');
     }
     // verify required parameter 'groupRule' is not null or undefined
     if (groupRule === null || groupRule === undefined) {
-      throw new baseapi_1.RequiredError('GroupApi', 'updateGroupRule', 'groupRule');
+      throw new baseapi_1.RequiredError('GroupApi', 'replaceGroupRule', 'groupRule');
     }
     // Path Params
     const path = '/api/v1/groups/rules/{ruleId}';
@@ -1270,12 +797,54 @@ class GroupApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     requestContext.setBody(serializedBody);
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
+    if (authMethod?.applySecurityAuthentication) {
+      await authMethod?.applySecurityAuthentication(requestContext);
+    }
+    const defaultAuth = _options?.authMethods?.default || this.configuration?.authMethods?.default;
+    if (defaultAuth?.applySecurityAuthentication) {
+      await defaultAuth?.applySecurityAuthentication(requestContext);
+    }
+    return requestContext;
+  }
+  /**
+     * Unassigns a user from a group with 'OKTA_GROUP' type
+     * Unassign a User
+     * @param groupId
+     * @param userId
+     */
+  async unassignUserFromGroup(groupId, userId, _options) {
+    let _config = _options || this.configuration;
+    // verify required parameter 'groupId' is not null or undefined
+    if (groupId === null || groupId === undefined) {
+      throw new baseapi_1.RequiredError('GroupApi', 'unassignUserFromGroup', 'groupId');
+    }
+    // verify required parameter 'userId' is not null or undefined
+    if (userId === null || userId === undefined) {
+      throw new baseapi_1.RequiredError('GroupApi', 'unassignUserFromGroup', 'userId');
+    }
+    // Path Params
+    const path = '/api/v1/groups/{groupId}/users/{userId}';
+    const vars = {
+      ['groupId']: String(groupId),
+      ['userId']: String(userId),
+    };
+    // Make Request Context
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.DELETE, vars);
+    requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
+    let authMethod;
+    // Apply auth methods
+    authMethod = _config.authMethods['apiToken'];
+    if (authMethod?.applySecurityAuthentication) {
+      await authMethod?.applySecurityAuthentication(requestContext);
+    }
+    // Apply auth methods
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -1323,141 +892,14 @@ class GroupApiResponseProcessor {
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
-     * @params response Response returned by the server for a request to addApplicationInstanceTargetToAppAdminRoleGivenToGroup
+     * @params response Response returned by the server for a request to assignGroupOwner
      * @throws ApiException if the response code was not in [200, 299]
      */
-  async addApplicationInstanceTargetToAppAdminRoleGivenToGroup(response) {
+  async assignGroupOwner(response) {
     const contentType = ObjectSerializer_1.ObjectSerializer.normalizeMediaType(response.headers['content-type']);
-    if ((0, util_1.isCodeInRange)('204', response.httpStatusCode)) {
-      return;
-    }
-    if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
-      throw new exception_1.ApiException(403, 'Forbidden', body, response.headers);
-    }
-    if ((0, util_1.isCodeInRange)('404', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
-      throw new exception_1.ApiException(404, 'Not Found', body, response.headers);
-    }
-    if ((0, util_1.isCodeInRange)('429', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
-      throw new exception_1.ApiException(429, 'Too Many Requests', body, response.headers);
-    }
-    // Work around for missing responses in specification, e.g. for petstore.yaml
-    if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'void', '');
-      return body;
-    }
-    throw new exception_1.ApiException(response.httpStatusCode, 'Unknown API Status Code!', await response.getBodyAsAny(), response.headers);
-  }
-  /**
-     * Unwraps the actual response sent by the server from the response context and deserializes the response content
-     * to the expected objects
-     *
-     * @params response Response returned by the server for a request to addApplicationTargetToAdminRoleGivenToGroup
-     * @throws ApiException if the response code was not in [200, 299]
-     */
-  async addApplicationTargetToAdminRoleGivenToGroup(response) {
-    const contentType = ObjectSerializer_1.ObjectSerializer.normalizeMediaType(response.headers['content-type']);
-    if ((0, util_1.isCodeInRange)('200', response.httpStatusCode)) {
-      return;
-    }
-    if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
-      throw new exception_1.ApiException(403, 'Forbidden', body, response.headers);
-    }
-    if ((0, util_1.isCodeInRange)('404', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
-      throw new exception_1.ApiException(404, 'Not Found', body, response.headers);
-    }
-    if ((0, util_1.isCodeInRange)('429', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
-      throw new exception_1.ApiException(429, 'Too Many Requests', body, response.headers);
-    }
-    // Work around for missing responses in specification, e.g. for petstore.yaml
-    if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'void', '');
-      return body;
-    }
-    throw new exception_1.ApiException(response.httpStatusCode, 'Unknown API Status Code!', await response.getBodyAsAny(), response.headers);
-  }
-  /**
-     * Unwraps the actual response sent by the server from the response context and deserializes the response content
-     * to the expected objects
-     *
-     * @params response Response returned by the server for a request to addGroupTargetToGroupAdministratorRoleForGroup
-     * @throws ApiException if the response code was not in [200, 299]
-     */
-  async addGroupTargetToGroupAdministratorRoleForGroup(response) {
-    const contentType = ObjectSerializer_1.ObjectSerializer.normalizeMediaType(response.headers['content-type']);
-    if ((0, util_1.isCodeInRange)('204', response.httpStatusCode)) {
-      return;
-    }
-    if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
-      throw new exception_1.ApiException(403, 'Forbidden', body, response.headers);
-    }
-    if ((0, util_1.isCodeInRange)('404', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
-      throw new exception_1.ApiException(404, 'Not Found', body, response.headers);
-    }
-    if ((0, util_1.isCodeInRange)('429', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
-      throw new exception_1.ApiException(429, 'Too Many Requests', body, response.headers);
-    }
-    // Work around for missing responses in specification, e.g. for petstore.yaml
-    if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'void', '');
-      return body;
-    }
-    throw new exception_1.ApiException(response.httpStatusCode, 'Unknown API Status Code!', await response.getBodyAsAny(), response.headers);
-  }
-  /**
-     * Unwraps the actual response sent by the server from the response context and deserializes the response content
-     * to the expected objects
-     *
-     * @params response Response returned by the server for a request to addUserToGroup
-     * @throws ApiException if the response code was not in [200, 299]
-     */
-  async addUserToGroup(response) {
-    const contentType = ObjectSerializer_1.ObjectSerializer.normalizeMediaType(response.headers['content-type']);
-    if ((0, util_1.isCodeInRange)('204', response.httpStatusCode)) {
-      return;
-    }
-    if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
-      throw new exception_1.ApiException(403, 'Forbidden', body, response.headers);
-    }
-    if ((0, util_1.isCodeInRange)('404', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
-      throw new exception_1.ApiException(404, 'Not Found', body, response.headers);
-    }
-    if ((0, util_1.isCodeInRange)('429', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
-      throw new exception_1.ApiException(429, 'Too Many Requests', body, response.headers);
-    }
-    // Work around for missing responses in specification, e.g. for petstore.yaml
-    if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'void', '');
-      return body;
-    }
-    throw new exception_1.ApiException(response.httpStatusCode, 'Unknown API Status Code!', await response.getBodyAsAny(), response.headers);
-  }
-  /**
-     * Unwraps the actual response sent by the server from the response context and deserializes the response content
-     * to the expected objects
-     *
-     * @params response Response returned by the server for a request to assignRoleToGroup
-     * @throws ApiException if the response code was not in [200, 299]
-     */
-  async assignRoleToGroup(response) {
-    const contentType = ObjectSerializer_1.ObjectSerializer.normalizeMediaType(response.headers['content-type']);
-    if ((0, util_1.isCodeInRange)('200', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Role', '');
-      return body;
-    }
     if ((0, util_1.isCodeInRange)('201', response.httpStatusCode)) {
-      return;
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'GroupOwner', '');
+      return body;
     }
     if ((0, util_1.isCodeInRange)('400', response.httpStatusCode)) {
       const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
@@ -1477,7 +919,38 @@ class GroupApiResponseProcessor {
     }
     // Work around for missing responses in specification, e.g. for petstore.yaml
     if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Role | void', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'GroupOwner', '');
+      return body;
+    }
+    throw new exception_1.ApiException(response.httpStatusCode, 'Unknown API Status Code!', await response.getBodyAsAny(), response.headers);
+  }
+  /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
+     * @params response Response returned by the server for a request to assignUserToGroup
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+  async assignUserToGroup(response) {
+    const contentType = ObjectSerializer_1.ObjectSerializer.normalizeMediaType(response.headers['content-type']);
+    if ((0, util_1.isCodeInRange)('204', response.httpStatusCode)) {
+      return;
+    }
+    if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      throw new exception_1.ApiException(403, 'Forbidden', body, response.headers);
+    }
+    if ((0, util_1.isCodeInRange)('404', response.httpStatusCode)) {
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      throw new exception_1.ApiException(404, 'Not Found', body, response.headers);
+    }
+    if ((0, util_1.isCodeInRange)('429', response.httpStatusCode)) {
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      throw new exception_1.ApiException(429, 'Too Many Requests', body, response.headers);
+    }
+    // Work around for missing responses in specification, e.g. for petstore.yaml
+    if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'void', '');
       return body;
     }
     throw new exception_1.ApiException(response.httpStatusCode, 'Unknown API Status Code!', await response.getBodyAsAny(), response.headers);
@@ -1612,6 +1085,37 @@ class GroupApiResponseProcessor {
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
+     * @params response Response returned by the server for a request to deleteGroupOwner
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+  async deleteGroupOwner(response) {
+    const contentType = ObjectSerializer_1.ObjectSerializer.normalizeMediaType(response.headers['content-type']);
+    if ((0, util_1.isCodeInRange)('204', response.httpStatusCode)) {
+      return;
+    }
+    if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      throw new exception_1.ApiException(403, 'Forbidden', body, response.headers);
+    }
+    if ((0, util_1.isCodeInRange)('404', response.httpStatusCode)) {
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      throw new exception_1.ApiException(404, 'Not Found', body, response.headers);
+    }
+    if ((0, util_1.isCodeInRange)('429', response.httpStatusCode)) {
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      throw new exception_1.ApiException(429, 'Too Many Requests', body, response.headers);
+    }
+    // Work around for missing responses in specification, e.g. for petstore.yaml
+    if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'void', '');
+      return body;
+    }
+    throw new exception_1.ApiException(response.httpStatusCode, 'Unknown API Status Code!', await response.getBodyAsAny(), response.headers);
+  }
+  /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
      * @params response Response returned by the server for a request to deleteGroupRule
      * @throws ApiException if the response code was not in [200, 299]
      */
@@ -1707,70 +1211,6 @@ class GroupApiResponseProcessor {
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
-     * @params response Response returned by the server for a request to getRole
-     * @throws ApiException if the response code was not in [200, 299]
-     */
-  async getRole(response) {
-    const contentType = ObjectSerializer_1.ObjectSerializer.normalizeMediaType(response.headers['content-type']);
-    if ((0, util_1.isCodeInRange)('200', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Role', '');
-      return body;
-    }
-    if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
-      throw new exception_1.ApiException(403, 'Forbidden', body, response.headers);
-    }
-    if ((0, util_1.isCodeInRange)('404', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
-      throw new exception_1.ApiException(404, 'Not Found', body, response.headers);
-    }
-    if ((0, util_1.isCodeInRange)('429', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
-      throw new exception_1.ApiException(429, 'Too Many Requests', body, response.headers);
-    }
-    // Work around for missing responses in specification, e.g. for petstore.yaml
-    if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Role', '');
-      return body;
-    }
-    throw new exception_1.ApiException(response.httpStatusCode, 'Unknown API Status Code!', await response.getBodyAsAny(), response.headers);
-  }
-  /**
-     * Unwraps the actual response sent by the server from the response context and deserializes the response content
-     * to the expected objects
-     *
-     * @params response Response returned by the server for a request to listApplicationTargetsForApplicationAdministratorRoleForGroup
-     * @throws ApiException if the response code was not in [200, 299]
-     */
-  async listApplicationTargetsForApplicationAdministratorRoleForGroup(response) {
-    const contentType = ObjectSerializer_1.ObjectSerializer.normalizeMediaType(response.headers['content-type']);
-    if ((0, util_1.isCodeInRange)('200', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Array<CatalogApplication>', '');
-      return body;
-    }
-    if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
-      throw new exception_1.ApiException(403, 'Forbidden', body, response.headers);
-    }
-    if ((0, util_1.isCodeInRange)('404', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
-      throw new exception_1.ApiException(404, 'Not Found', body, response.headers);
-    }
-    if ((0, util_1.isCodeInRange)('429', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
-      throw new exception_1.ApiException(429, 'Too Many Requests', body, response.headers);
-    }
-    // Work around for missing responses in specification, e.g. for petstore.yaml
-    if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Array<CatalogApplication>', '');
-      return body;
-    }
-    throw new exception_1.ApiException(response.httpStatusCode, 'Unknown API Status Code!', await response.getBodyAsAny(), response.headers);
-  }
-  /**
-     * Unwraps the actual response sent by the server from the response context and deserializes the response content
-     * to the expected objects
-     *
      * @params response Response returned by the server for a request to listAssignedApplicationsForGroup
      * @throws ApiException if the response code was not in [200, 299]
      */
@@ -1803,13 +1243,13 @@ class GroupApiResponseProcessor {
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
-     * @params response Response returned by the server for a request to listGroupAssignedRoles
+     * @params response Response returned by the server for a request to listGroupOwners
      * @throws ApiException if the response code was not in [200, 299]
      */
-  async listGroupAssignedRoles(response) {
+  async listGroupOwners(response) {
     const contentType = ObjectSerializer_1.ObjectSerializer.normalizeMediaType(response.headers['content-type']);
     if ((0, util_1.isCodeInRange)('200', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Array<Role>', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Array<GroupOwner>', '');
       return body;
     }
     if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
@@ -1826,7 +1266,7 @@ class GroupApiResponseProcessor {
     }
     // Work around for missing responses in specification, e.g. for petstore.yaml
     if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Array<Role>', '');
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Array<GroupOwner>', '');
       return body;
     }
     throw new exception_1.ApiException(response.httpStatusCode, 'Unknown API Status Code!', await response.getBodyAsAny(), response.headers);
@@ -1855,38 +1295,6 @@ class GroupApiResponseProcessor {
     // Work around for missing responses in specification, e.g. for petstore.yaml
     if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
       const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Array<GroupRule>', '');
-      return body;
-    }
-    throw new exception_1.ApiException(response.httpStatusCode, 'Unknown API Status Code!', await response.getBodyAsAny(), response.headers);
-  }
-  /**
-     * Unwraps the actual response sent by the server from the response context and deserializes the response content
-     * to the expected objects
-     *
-     * @params response Response returned by the server for a request to listGroupTargetsForGroupRole
-     * @throws ApiException if the response code was not in [200, 299]
-     */
-  async listGroupTargetsForGroupRole(response) {
-    const contentType = ObjectSerializer_1.ObjectSerializer.normalizeMediaType(response.headers['content-type']);
-    if ((0, util_1.isCodeInRange)('200', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Array<Group>', '');
-      return body;
-    }
-    if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
-      throw new exception_1.ApiException(403, 'Forbidden', body, response.headers);
-    }
-    if ((0, util_1.isCodeInRange)('404', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
-      throw new exception_1.ApiException(404, 'Not Found', body, response.headers);
-    }
-    if ((0, util_1.isCodeInRange)('429', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
-      throw new exception_1.ApiException(429, 'Too Many Requests', body, response.headers);
-    }
-    // Work around for missing responses in specification, e.g. for petstore.yaml
-    if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Array<Group>', '');
       return body;
     }
     throw new exception_1.ApiException(response.httpStatusCode, 'Unknown API Status Code!', await response.getBodyAsAny(), response.headers);
@@ -1955,165 +1363,10 @@ class GroupApiResponseProcessor {
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
-     * @params response Response returned by the server for a request to removeApplicationTargetFromAdministratorRoleGivenToGroup
+     * @params response Response returned by the server for a request to replaceGroup
      * @throws ApiException if the response code was not in [200, 299]
      */
-  async removeApplicationTargetFromAdministratorRoleGivenToGroup(response) {
-    const contentType = ObjectSerializer_1.ObjectSerializer.normalizeMediaType(response.headers['content-type']);
-    if ((0, util_1.isCodeInRange)('204', response.httpStatusCode)) {
-      return;
-    }
-    if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
-      throw new exception_1.ApiException(403, 'Forbidden', body, response.headers);
-    }
-    if ((0, util_1.isCodeInRange)('404', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
-      throw new exception_1.ApiException(404, 'Not Found', body, response.headers);
-    }
-    if ((0, util_1.isCodeInRange)('429', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
-      throw new exception_1.ApiException(429, 'Too Many Requests', body, response.headers);
-    }
-    // Work around for missing responses in specification, e.g. for petstore.yaml
-    if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'void', '');
-      return body;
-    }
-    throw new exception_1.ApiException(response.httpStatusCode, 'Unknown API Status Code!', await response.getBodyAsAny(), response.headers);
-  }
-  /**
-     * Unwraps the actual response sent by the server from the response context and deserializes the response content
-     * to the expected objects
-     *
-     * @params response Response returned by the server for a request to removeApplicationTargetFromApplicationAdministratorRoleGivenToGroup
-     * @throws ApiException if the response code was not in [200, 299]
-     */
-  async removeApplicationTargetFromApplicationAdministratorRoleGivenToGroup(response) {
-    const contentType = ObjectSerializer_1.ObjectSerializer.normalizeMediaType(response.headers['content-type']);
-    if ((0, util_1.isCodeInRange)('204', response.httpStatusCode)) {
-      return;
-    }
-    if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
-      throw new exception_1.ApiException(403, 'Forbidden', body, response.headers);
-    }
-    if ((0, util_1.isCodeInRange)('404', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
-      throw new exception_1.ApiException(404, 'Not Found', body, response.headers);
-    }
-    if ((0, util_1.isCodeInRange)('429', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
-      throw new exception_1.ApiException(429, 'Too Many Requests', body, response.headers);
-    }
-    // Work around for missing responses in specification, e.g. for petstore.yaml
-    if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'void', '');
-      return body;
-    }
-    throw new exception_1.ApiException(response.httpStatusCode, 'Unknown API Status Code!', await response.getBodyAsAny(), response.headers);
-  }
-  /**
-     * Unwraps the actual response sent by the server from the response context and deserializes the response content
-     * to the expected objects
-     *
-     * @params response Response returned by the server for a request to removeGroupTargetFromGroupAdministratorRoleGivenToGroup
-     * @throws ApiException if the response code was not in [200, 299]
-     */
-  async removeGroupTargetFromGroupAdministratorRoleGivenToGroup(response) {
-    const contentType = ObjectSerializer_1.ObjectSerializer.normalizeMediaType(response.headers['content-type']);
-    if ((0, util_1.isCodeInRange)('204', response.httpStatusCode)) {
-      return;
-    }
-    if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
-      throw new exception_1.ApiException(403, 'Forbidden', body, response.headers);
-    }
-    if ((0, util_1.isCodeInRange)('404', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
-      throw new exception_1.ApiException(404, 'Not Found', body, response.headers);
-    }
-    if ((0, util_1.isCodeInRange)('429', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
-      throw new exception_1.ApiException(429, 'Too Many Requests', body, response.headers);
-    }
-    // Work around for missing responses in specification, e.g. for petstore.yaml
-    if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'void', '');
-      return body;
-    }
-    throw new exception_1.ApiException(response.httpStatusCode, 'Unknown API Status Code!', await response.getBodyAsAny(), response.headers);
-  }
-  /**
-     * Unwraps the actual response sent by the server from the response context and deserializes the response content
-     * to the expected objects
-     *
-     * @params response Response returned by the server for a request to removeRoleFromGroup
-     * @throws ApiException if the response code was not in [200, 299]
-     */
-  async removeRoleFromGroup(response) {
-    const contentType = ObjectSerializer_1.ObjectSerializer.normalizeMediaType(response.headers['content-type']);
-    if ((0, util_1.isCodeInRange)('204', response.httpStatusCode)) {
-      return;
-    }
-    if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
-      throw new exception_1.ApiException(403, 'Forbidden', body, response.headers);
-    }
-    if ((0, util_1.isCodeInRange)('404', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
-      throw new exception_1.ApiException(404, 'Not Found', body, response.headers);
-    }
-    if ((0, util_1.isCodeInRange)('429', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
-      throw new exception_1.ApiException(429, 'Too Many Requests', body, response.headers);
-    }
-    // Work around for missing responses in specification, e.g. for petstore.yaml
-    if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'void', '');
-      return body;
-    }
-    throw new exception_1.ApiException(response.httpStatusCode, 'Unknown API Status Code!', await response.getBodyAsAny(), response.headers);
-  }
-  /**
-     * Unwraps the actual response sent by the server from the response context and deserializes the response content
-     * to the expected objects
-     *
-     * @params response Response returned by the server for a request to removeUserFromGroup
-     * @throws ApiException if the response code was not in [200, 299]
-     */
-  async removeUserFromGroup(response) {
-    const contentType = ObjectSerializer_1.ObjectSerializer.normalizeMediaType(response.headers['content-type']);
-    if ((0, util_1.isCodeInRange)('204', response.httpStatusCode)) {
-      return;
-    }
-    if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
-      throw new exception_1.ApiException(403, 'Forbidden', body, response.headers);
-    }
-    if ((0, util_1.isCodeInRange)('404', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
-      throw new exception_1.ApiException(404, 'Not Found', body, response.headers);
-    }
-    if ((0, util_1.isCodeInRange)('429', response.httpStatusCode)) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
-      throw new exception_1.ApiException(429, 'Too Many Requests', body, response.headers);
-    }
-    // Work around for missing responses in specification, e.g. for petstore.yaml
-    if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'void', '');
-      return body;
-    }
-    throw new exception_1.ApiException(response.httpStatusCode, 'Unknown API Status Code!', await response.getBodyAsAny(), response.headers);
-  }
-  /**
-     * Unwraps the actual response sent by the server from the response context and deserializes the response content
-     * to the expected objects
-     *
-     * @params response Response returned by the server for a request to updateGroup
-     * @throws ApiException if the response code was not in [200, 299]
-     */
-  async updateGroup(response) {
+  async replaceGroup(response) {
     const contentType = ObjectSerializer_1.ObjectSerializer.normalizeMediaType(response.headers['content-type']);
     if ((0, util_1.isCodeInRange)('200', response.httpStatusCode)) {
       const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Group', '');
@@ -2146,10 +1399,10 @@ class GroupApiResponseProcessor {
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
-     * @params response Response returned by the server for a request to updateGroupRule
+     * @params response Response returned by the server for a request to replaceGroupRule
      * @throws ApiException if the response code was not in [200, 299]
      */
-  async updateGroupRule(response) {
+  async replaceGroupRule(response) {
     const contentType = ObjectSerializer_1.ObjectSerializer.normalizeMediaType(response.headers['content-type']);
     if ((0, util_1.isCodeInRange)('200', response.httpStatusCode)) {
       const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'GroupRule', '');
@@ -2174,6 +1427,37 @@ class GroupApiResponseProcessor {
     // Work around for missing responses in specification, e.g. for petstore.yaml
     if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
       const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'GroupRule', '');
+      return body;
+    }
+    throw new exception_1.ApiException(response.httpStatusCode, 'Unknown API Status Code!', await response.getBodyAsAny(), response.headers);
+  }
+  /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
+     * @params response Response returned by the server for a request to unassignUserFromGroup
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+  async unassignUserFromGroup(response) {
+    const contentType = ObjectSerializer_1.ObjectSerializer.normalizeMediaType(response.headers['content-type']);
+    if ((0, util_1.isCodeInRange)('204', response.httpStatusCode)) {
+      return;
+    }
+    if ((0, util_1.isCodeInRange)('403', response.httpStatusCode)) {
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      throw new exception_1.ApiException(403, 'Forbidden', body, response.headers);
+    }
+    if ((0, util_1.isCodeInRange)('404', response.httpStatusCode)) {
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      throw new exception_1.ApiException(404, 'Not Found', body, response.headers);
+    }
+    if ((0, util_1.isCodeInRange)('429', response.httpStatusCode)) {
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      throw new exception_1.ApiException(429, 'Too Many Requests', body, response.headers);
+    }
+    // Work around for missing responses in specification, e.g. for petstore.yaml
+    if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'void', '');
       return body;
     }
     throw new exception_1.ApiException(response.httpStatusCode, 'Unknown API Status Code!', await response.getBodyAsAny(), response.headers);

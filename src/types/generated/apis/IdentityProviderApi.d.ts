@@ -26,7 +26,7 @@ import { UserIdentityProviderLinkRequest } from '../models/UserIdentityProviderL
  */
 export declare class IdentityProviderApiRequestFactory extends BaseAPIRequestFactory {
   /**
-     * Activates an inactive IdP.
+     * Activates an inactive IdP
      * Activate an Identity Provider
      * @param idpId
      */
@@ -40,37 +40,37 @@ export declare class IdentityProviderApiRequestFactory extends BaseAPIRequestFac
      */
   cloneIdentityProviderKey(idpId: string, keyId: string, targetIdpId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Adds a new IdP to your organization.
+     * Creates a new identity provider integration
      * Create an Identity Provider
      * @param identityProvider
      */
   createIdentityProvider(identityProvider: IdentityProvider, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Adds a new X.509 certificate credential to the IdP key store.
+     * Creates a new X.509 certificate credential to the IdP key store.
      * Create an X.509 Certificate Public Key
      * @param jsonWebKey
      */
   createIdentityProviderKey(jsonWebKey: JsonWebKey, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Deactivates an active IdP.
+     * Deactivates an active IdP
      * Deactivate an Identity Provider
      * @param idpId
      */
   deactivateIdentityProvider(idpId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Removes an IdP from your organization.
+     * Deletes an identity provider integration by `idpId`
      * Delete an Identity Provider
      * @param idpId
      */
   deleteIdentityProvider(idpId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Deletes a specific IdP Key Credential by `kid` if it is not currently being used by an Active or Inactive IdP.
+     * Deletes a specific IdP Key Credential by `kid` if it is not currently being used by an Active or Inactive IdP
      * Delete a Signing Credential Key
      * @param keyId
      */
   deleteIdentityProviderKey(keyId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Generates a new key pair and returns a Certificate Signing Request for it.
+     * Generates a new key pair and returns a Certificate Signing Request for it
      * Generate a Certificate Signing Request
      * @param idpId
      * @param metadata
@@ -84,33 +84,33 @@ export declare class IdentityProviderApiRequestFactory extends BaseAPIRequestFac
      */
   generateIdentityProviderSigningKey(idpId: string, validityYears: number, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Gets a specific Certificate Signing Request model by id
+     * Retrieves a specific Certificate Signing Request model by id
      * Retrieve a Certificate Signing Request
      * @param idpId
      * @param csrId
      */
   getCsrForIdentityProvider(idpId: string, csrId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Fetches an IdP by `id`.
+     * Retrieves an identity provider integration by `idpId`
      * Retrieve an Identity Provider
      * @param idpId
      */
   getIdentityProvider(idpId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Fetches a linked IdP user by ID
+     * Retrieves a linked IdP user by ID
      * Retrieve a User
      * @param idpId
      * @param userId
      */
   getIdentityProviderApplicationUser(idpId: string, userId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Gets a specific IdP Key Credential by `kid`
+     * Retrieves a specific IdP Key Credential by `kid`
      * Retrieve an Credential Key
      * @param keyId
      */
   getIdentityProviderKey(keyId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Gets a specific IdP Key Credential by `kid`
+     * Retrieves a specific IdP Key Credential by `kid`
      * Retrieve a Signing Credential Key
      * @param idpId
      * @param keyId
@@ -125,32 +125,32 @@ export declare class IdentityProviderApiRequestFactory extends BaseAPIRequestFac
      */
   linkUserToIdentityProvider(idpId: string, userId: string, userIdentityProviderLinkRequest: UserIdentityProviderLinkRequest, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Enumerates Certificate Signing Requests for an IdP
+     * Lists all Certificate Signing Requests for an IdP
      * List all Certificate Signing Requests
      * @param idpId
      */
   listCsrsForIdentityProvider(idpId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Find all the users linked to an identity provider
+     * Lists all users linked to the identity provider
      * List all Users
      * @param idpId
      */
   listIdentityProviderApplicationUsers(idpId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Enumerates IdP key credentials.
+     * Lists all IdP key credentials
      * List all Credential Keys
      * @param after Specifies the pagination cursor for the next page of keys
      * @param limit Specifies the number of key results in a page
      */
   listIdentityProviderKeys(after?: string, limit?: number, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Enumerates signing key credentials for an IdP
+     * Lists all signing key credentials for an IdP
      * List all Signing Credential Keys
      * @param idpId
      */
   listIdentityProviderSigningKeys(idpId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Enumerates IdPs in your organization with pagination. A subset of IdPs can be returned that match a supported filter expression or query.
+     * Lists all identity provider integrations with pagination. A subset of IdPs can be returned that match a supported filter expression or query.
      * List all Identity Providers
      * @param q Searches the name property of IdPs for matching value
      * @param after Specifies the pagination cursor for the next page of IdPs
@@ -159,14 +159,14 @@ export declare class IdentityProviderApiRequestFactory extends BaseAPIRequestFac
      */
   listIdentityProviders(q?: string, after?: string, limit?: number, type?: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Fetches the tokens minted by the Social Authentication Provider when the user authenticates with Okta via Social Auth.
+     * Lists the tokens minted by the Social Authentication Provider when the user authenticates with Okta via Social Auth
      * List all Tokens from a OIDC Identity Provider
      * @param idpId
      * @param userId
      */
   listSocialAuthTokens(idpId: string, userId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Update the Certificate Signing Request with a signed X.509 certificate and add it into the signing key credentials for the IdP.
+     * Publishes a certificate signing request with a signed X.509 certificate and adds it into the signing key credentials for the IdP
      * Publish a Certificate Signing Request
      * @param idpId
      * @param csrId
@@ -174,26 +174,26 @@ export declare class IdentityProviderApiRequestFactory extends BaseAPIRequestFac
      */
   publishCsrForIdentityProvider(idpId: string, csrId: string, body: HttpFile, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Revoke a Certificate Signing Request and delete the key pair from the IdP
+     * Replaces an identity provider integration by `idpId`
+     * Replace an Identity Provider
+     * @param idpId
+     * @param identityProvider
+     */
+  replaceIdentityProvider(idpId: string, identityProvider: IdentityProvider, _options?: Configuration): Promise<RequestContext>;
+  /**
+     * Revokes a certificate signing request and deletes the key pair from the IdP
      * Revoke a Certificate Signing Request
      * @param idpId
      * @param csrId
      */
   revokeCsrForIdentityProvider(idpId: string, csrId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Removes the link between the Okta user and the IdP user.
+     * Unlinks the link between the Okta user and the IdP user
      * Unlink a User from IdP
      * @param idpId
      * @param userId
      */
   unlinkUserFromIdentityProvider(idpId: string, userId: string, _options?: Configuration): Promise<RequestContext>;
-  /**
-     * Updates the configuration for an IdP.
-     * Replace an Identity Provider
-     * @param idpId
-     * @param identityProvider
-     */
-  updateIdentityProvider(idpId: string, identityProvider: IdentityProvider, _options?: Configuration): Promise<RequestContext>;
 }
 export declare class IdentityProviderApiResponseProcessor {
   /**
@@ -376,6 +376,14 @@ export declare class IdentityProviderApiResponseProcessor {
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
+     * @params response Response returned by the server for a request to replaceIdentityProvider
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+  replaceIdentityProvider(response: ResponseContext): Promise<IdentityProvider>;
+  /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
      * @params response Response returned by the server for a request to revokeCsrForIdentityProvider
      * @throws ApiException if the response code was not in [200, 299]
      */
@@ -388,12 +396,4 @@ export declare class IdentityProviderApiResponseProcessor {
      * @throws ApiException if the response code was not in [200, 299]
      */
   unlinkUserFromIdentityProvider(response: ResponseContext): Promise<void>;
-  /**
-     * Unwraps the actual response sent by the server from the response context and deserializes the response content
-     * to the expected objects
-     *
-     * @params response Response returned by the server for a request to updateIdentityProvider
-     * @throws ApiException if the response code was not in [200, 299]
-     */
-  updateIdentityProvider(response: ResponseContext): Promise<IdentityProvider>;
 }

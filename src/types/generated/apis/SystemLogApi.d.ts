@@ -20,7 +20,7 @@ import { LogEvent } from '../models/LogEvent';
  */
 export declare class SystemLogApiRequestFactory extends BaseAPIRequestFactory {
   /**
-     * The Okta System Log API provides read access to your organization’s system log. This API provides more functionality than the Events API
+     * Lists all system log events. The Okta System Log API provides read access to your organization’s system log. This API provides more functionality than the Events API
      * List all System Log Events
      * @param since
      * @param until
@@ -30,15 +30,15 @@ export declare class SystemLogApiRequestFactory extends BaseAPIRequestFactory {
      * @param sortOrder
      * @param after
      */
-  getLogs(since?: Date, until?: Date, filter?: string, q?: string, limit?: number, sortOrder?: string, after?: string, _options?: Configuration): Promise<RequestContext>;
+  listLogEvents(since?: Date, until?: Date, filter?: string, q?: string, limit?: number, sortOrder?: string, after?: string, _options?: Configuration): Promise<RequestContext>;
 }
 export declare class SystemLogApiResponseProcessor {
   /**
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
-     * @params response Response returned by the server for a request to getLogs
+     * @params response Response returned by the server for a request to listLogEvents
      * @throws ApiException if the response code was not in [200, 299]
      */
-  getLogs(response: ResponseContext): Promise<Array<LogEvent>>;
+  listLogEvents(response: ResponseContext): Promise<Array<LogEvent>>;
 }

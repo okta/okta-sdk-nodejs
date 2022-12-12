@@ -5,7 +5,8 @@
     "modelPropertyNaming": "original",
     "platform": "node",
     "enumPropertyNaming": "original",
-    "useObjectParameters": true
+    "useObjectParameters": true,
+    "generateAliasAsModel": true
   },
   "moduleName": "okta",
   "projectName": "@okta/okta-sdk-nodejs",

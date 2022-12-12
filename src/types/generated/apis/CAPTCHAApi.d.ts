@@ -20,38 +20,38 @@ import { CAPTCHAInstance } from '../models/CAPTCHAInstance';
  */
 export declare class CAPTCHAApiRequestFactory extends BaseAPIRequestFactory {
   /**
-     * Adds a new CAPTCHA instance to your organization. In the current release, we only allow one CAPTCHA instance per org.
+     * Creates a new CAPTCHA instance. In the current release, we only allow one CAPTCHA instance per org.
      * Create a CAPTCHA instance
      * @param instance
      */
   createCaptchaInstance(instance: CAPTCHAInstance, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Delete a CAPTCHA instance by `captchaId`. If the CAPTCHA instance is currently being used in the org, the delete will not be allowed.
+     * Deletes a CAPTCHA instance by `captchaId`. If the CAPTCHA instance is currently being used in the org, the delete will not be allowed.
      * Delete a CAPTCHA Instance
      * @param captchaId id of the CAPTCHA
      */
   deleteCaptchaInstance(captchaId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Fetches a CAPTCHA instance by `captchaId`.
+     * Retrieves a CAPTCHA instance by `captchaId`
      * Retrieve a CAPTCHA Instance
      * @param captchaId id of the CAPTCHA
      */
   getCaptchaInstance(captchaId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Enumerates CAPTCHA instances in your organization with pagination. A subset of CAPTCHA instances can be returned that match a supported filter expression or query.
+     * Lists all CAPTCHA instances with pagination support. A subset of CAPTCHA instances can be returned that match a supported filter expression or query.
      * List all CAPTCHA instances
      */
   listCaptchaInstances(_options?: Configuration): Promise<RequestContext>;
   /**
-     * Partially update a CAPTCHA instance by `captchaId`.
-     * Update a CAPTCHA instance
+     * Replaces a CAPTCHA instance by `captchaId`
+     * Replace a CAPTCHA instance
      * @param captchaId id of the CAPTCHA
      * @param instance
      */
-  partialUpdateCaptchaInstance(captchaId: string, instance: CAPTCHAInstance, _options?: Configuration): Promise<RequestContext>;
+  replaceCaptchaInstance(captchaId: string, instance: CAPTCHAInstance, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Update a CAPTCHA instance by `captchaId`.
-     * Replace a CAPTCHA instance
+     * Partially updates a CAPTCHA instance by `captchaId`
+     * Update a CAPTCHA instance
      * @param captchaId id of the CAPTCHA
      * @param instance
      */
@@ -94,10 +94,10 @@ export declare class CAPTCHAApiResponseProcessor {
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
-     * @params response Response returned by the server for a request to partialUpdateCaptchaInstance
+     * @params response Response returned by the server for a request to replaceCaptchaInstance
      * @throws ApiException if the response code was not in [200, 299]
      */
-  partialUpdateCaptchaInstance(response: ResponseContext): Promise<CAPTCHAInstance>;
+  replaceCaptchaInstance(response: ResponseContext): Promise<CAPTCHAInstance>;
   /**
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects

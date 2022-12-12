@@ -25,15 +25,15 @@ const util_1 = require('../util');
  */
 class TrustedOriginApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   /**
-     * Success
+     * Activates a trusted origin
      * Activate a Trusted Origin
      * @param trustedOriginId
      */
-  async activateOrigin(trustedOriginId, _options) {
+  async activateTrustedOrigin(trustedOriginId, _options) {
     let _config = _options || this.configuration;
     // verify required parameter 'trustedOriginId' is not null or undefined
     if (trustedOriginId === null || trustedOriginId === undefined) {
-      throw new baseapi_1.RequiredError('TrustedOriginApi', 'activateOrigin', 'trustedOriginId');
+      throw new baseapi_1.RequiredError('TrustedOriginApi', 'activateTrustedOrigin', 'trustedOriginId');
     }
     // Path Params
     const path = '/api/v1/trustedOrigins/{trustedOriginId}/lifecycle/activate';
@@ -45,12 +45,12 @@ class TrustedOriginApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -61,15 +61,15 @@ class TrustedOriginApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     return requestContext;
   }
   /**
-     * Success
+     * Creates a trusted origin
      * Create a Trusted Origin
      * @param trustedOrigin
      */
-  async createOrigin(trustedOrigin, _options) {
+  async createTrustedOrigin(trustedOrigin, _options) {
     let _config = _options || this.configuration;
     // verify required parameter 'trustedOrigin' is not null or undefined
     if (trustedOrigin === null || trustedOrigin === undefined) {
-      throw new baseapi_1.RequiredError('TrustedOriginApi', 'createOrigin', 'trustedOrigin');
+      throw new baseapi_1.RequiredError('TrustedOriginApi', 'createTrustedOrigin', 'trustedOrigin');
     }
     // Path Params
     const path = '/api/v1/trustedOrigins';
@@ -86,12 +86,12 @@ class TrustedOriginApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     requestContext.setBody(serializedBody);
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -102,15 +102,15 @@ class TrustedOriginApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     return requestContext;
   }
   /**
-     * Success
+     * Deactivates a trusted origin
      * Deactivate a Trusted Origin
      * @param trustedOriginId
      */
-  async deactivateOrigin(trustedOriginId, _options) {
+  async deactivateTrustedOrigin(trustedOriginId, _options) {
     let _config = _options || this.configuration;
     // verify required parameter 'trustedOriginId' is not null or undefined
     if (trustedOriginId === null || trustedOriginId === undefined) {
-      throw new baseapi_1.RequiredError('TrustedOriginApi', 'deactivateOrigin', 'trustedOriginId');
+      throw new baseapi_1.RequiredError('TrustedOriginApi', 'deactivateTrustedOrigin', 'trustedOriginId');
     }
     // Path Params
     const path = '/api/v1/trustedOrigins/{trustedOriginId}/lifecycle/deactivate';
@@ -122,12 +122,12 @@ class TrustedOriginApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -138,15 +138,15 @@ class TrustedOriginApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     return requestContext;
   }
   /**
-     * Success
+     * Deletes a trusted origin
      * Delete a Trusted Origin
      * @param trustedOriginId
      */
-  async deleteOrigin(trustedOriginId, _options) {
+  async deleteTrustedOrigin(trustedOriginId, _options) {
     let _config = _options || this.configuration;
     // verify required parameter 'trustedOriginId' is not null or undefined
     if (trustedOriginId === null || trustedOriginId === undefined) {
-      throw new baseapi_1.RequiredError('TrustedOriginApi', 'deleteOrigin', 'trustedOriginId');
+      throw new baseapi_1.RequiredError('TrustedOriginApi', 'deleteTrustedOrigin', 'trustedOriginId');
     }
     // Path Params
     const path = '/api/v1/trustedOrigins/{trustedOriginId}';
@@ -158,12 +158,12 @@ class TrustedOriginApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -174,15 +174,15 @@ class TrustedOriginApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     return requestContext;
   }
   /**
-     * Success
+     * Retrieves a trusted origin
      * Retrieve a Trusted Origin
      * @param trustedOriginId
      */
-  async getOrigin(trustedOriginId, _options) {
+  async getTrustedOrigin(trustedOriginId, _options) {
     let _config = _options || this.configuration;
     // verify required parameter 'trustedOriginId' is not null or undefined
     if (trustedOriginId === null || trustedOriginId === undefined) {
-      throw new baseapi_1.RequiredError('TrustedOriginApi', 'getOrigin', 'trustedOriginId');
+      throw new baseapi_1.RequiredError('TrustedOriginApi', 'getTrustedOrigin', 'trustedOriginId');
     }
     // Path Params
     const path = '/api/v1/trustedOrigins/{trustedOriginId}';
@@ -194,12 +194,12 @@ class TrustedOriginApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -210,14 +210,14 @@ class TrustedOriginApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     return requestContext;
   }
   /**
-     * Success
+     * Lists all trusted origins
      * List all Trusted Origins
      * @param q
      * @param filter
      * @param after
      * @param limit
      */
-  async listOrigins(q, filter, after, limit, _options) {
+  async listTrustedOrigins(q, filter, after, limit, _options) {
     let _config = _options || this.configuration;
     // Path Params
     const path = '/api/v1/trustedOrigins';
@@ -242,12 +242,12 @@ class TrustedOriginApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     }
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -258,20 +258,20 @@ class TrustedOriginApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     return requestContext;
   }
   /**
-     * Success
+     * Replaces a trusted origin
      * Replace a Trusted Origin
      * @param trustedOriginId
      * @param trustedOrigin
      */
-  async updateOrigin(trustedOriginId, trustedOrigin, _options) {
+  async replaceTrustedOrigin(trustedOriginId, trustedOrigin, _options) {
     let _config = _options || this.configuration;
     // verify required parameter 'trustedOriginId' is not null or undefined
     if (trustedOriginId === null || trustedOriginId === undefined) {
-      throw new baseapi_1.RequiredError('TrustedOriginApi', 'updateOrigin', 'trustedOriginId');
+      throw new baseapi_1.RequiredError('TrustedOriginApi', 'replaceTrustedOrigin', 'trustedOriginId');
     }
     // verify required parameter 'trustedOrigin' is not null or undefined
     if (trustedOrigin === null || trustedOrigin === undefined) {
-      throw new baseapi_1.RequiredError('TrustedOriginApi', 'updateOrigin', 'trustedOrigin');
+      throw new baseapi_1.RequiredError('TrustedOriginApi', 'replaceTrustedOrigin', 'trustedOrigin');
     }
     // Path Params
     const path = '/api/v1/trustedOrigins/{trustedOriginId}';
@@ -291,12 +291,12 @@ class TrustedOriginApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     requestContext.setBody(serializedBody);
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -313,10 +313,10 @@ class TrustedOriginApiResponseProcessor {
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
-     * @params response Response returned by the server for a request to activateOrigin
+     * @params response Response returned by the server for a request to activateTrustedOrigin
      * @throws ApiException if the response code was not in [200, 299]
      */
-  async activateOrigin(response) {
+  async activateTrustedOrigin(response) {
     const contentType = ObjectSerializer_1.ObjectSerializer.normalizeMediaType(response.headers['content-type']);
     if ((0, util_1.isCodeInRange)('200', response.httpStatusCode)) {
       const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'TrustedOrigin', '');
@@ -345,10 +345,10 @@ class TrustedOriginApiResponseProcessor {
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
-     * @params response Response returned by the server for a request to createOrigin
+     * @params response Response returned by the server for a request to createTrustedOrigin
      * @throws ApiException if the response code was not in [200, 299]
      */
-  async createOrigin(response) {
+  async createTrustedOrigin(response) {
     const contentType = ObjectSerializer_1.ObjectSerializer.normalizeMediaType(response.headers['content-type']);
     if ((0, util_1.isCodeInRange)('200', response.httpStatusCode)) {
       const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'TrustedOrigin', '');
@@ -377,10 +377,10 @@ class TrustedOriginApiResponseProcessor {
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
-     * @params response Response returned by the server for a request to deactivateOrigin
+     * @params response Response returned by the server for a request to deactivateTrustedOrigin
      * @throws ApiException if the response code was not in [200, 299]
      */
-  async deactivateOrigin(response) {
+  async deactivateTrustedOrigin(response) {
     const contentType = ObjectSerializer_1.ObjectSerializer.normalizeMediaType(response.headers['content-type']);
     if ((0, util_1.isCodeInRange)('200', response.httpStatusCode)) {
       const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'TrustedOrigin', '');
@@ -409,10 +409,10 @@ class TrustedOriginApiResponseProcessor {
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
-     * @params response Response returned by the server for a request to deleteOrigin
+     * @params response Response returned by the server for a request to deleteTrustedOrigin
      * @throws ApiException if the response code was not in [200, 299]
      */
-  async deleteOrigin(response) {
+  async deleteTrustedOrigin(response) {
     const contentType = ObjectSerializer_1.ObjectSerializer.normalizeMediaType(response.headers['content-type']);
     if ((0, util_1.isCodeInRange)('204', response.httpStatusCode)) {
       return;
@@ -440,10 +440,10 @@ class TrustedOriginApiResponseProcessor {
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
-     * @params response Response returned by the server for a request to getOrigin
+     * @params response Response returned by the server for a request to getTrustedOrigin
      * @throws ApiException if the response code was not in [200, 299]
      */
-  async getOrigin(response) {
+  async getTrustedOrigin(response) {
     const contentType = ObjectSerializer_1.ObjectSerializer.normalizeMediaType(response.headers['content-type']);
     if ((0, util_1.isCodeInRange)('200', response.httpStatusCode)) {
       const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'TrustedOrigin', '');
@@ -472,10 +472,10 @@ class TrustedOriginApiResponseProcessor {
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
-     * @params response Response returned by the server for a request to listOrigins
+     * @params response Response returned by the server for a request to listTrustedOrigins
      * @throws ApiException if the response code was not in [200, 299]
      */
-  async listOrigins(response) {
+  async listTrustedOrigins(response) {
     const contentType = ObjectSerializer_1.ObjectSerializer.normalizeMediaType(response.headers['content-type']);
     if ((0, util_1.isCodeInRange)('200', response.httpStatusCode)) {
       const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Array<TrustedOrigin>', '');
@@ -500,10 +500,10 @@ class TrustedOriginApiResponseProcessor {
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
-     * @params response Response returned by the server for a request to updateOrigin
+     * @params response Response returned by the server for a request to replaceTrustedOrigin
      * @throws ApiException if the response code was not in [200, 299]
      */
-  async updateOrigin(response) {
+  async replaceTrustedOrigin(response) {
     const contentType = ObjectSerializer_1.ObjectSerializer.normalizeMediaType(response.headers['content-type']);
     if ((0, util_1.isCodeInRange)('200', response.httpStatusCode)) {
       const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'TrustedOrigin', '');

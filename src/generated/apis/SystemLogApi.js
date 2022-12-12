@@ -25,7 +25,7 @@ const util_1 = require('../util');
  */
 class SystemLogApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   /**
-     * The Okta System Log API provides read access to your organization’s system log. This API provides more functionality than the Events API
+     * Lists all system log events. The Okta System Log API provides read access to your organization’s system log. This API provides more functionality than the Events API
      * List all System Log Events
      * @param since
      * @param until
@@ -35,7 +35,7 @@ class SystemLogApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
      * @param sortOrder
      * @param after
      */
-  async getLogs(since, until, filter, q, limit, sortOrder, after, _options) {
+  async listLogEvents(since, until, filter, q, limit, sortOrder, after, _options) {
     let _config = _options || this.configuration;
     // Path Params
     const path = '/api/v1/logs';
@@ -72,12 +72,12 @@ class SystemLogApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     }
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -94,10 +94,10 @@ class SystemLogApiResponseProcessor {
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
-     * @params response Response returned by the server for a request to getLogs
+     * @params response Response returned by the server for a request to listLogEvents
      * @throws ApiException if the response code was not in [200, 299]
      */
-  async getLogs(response) {
+  async listLogEvents(response) {
     const contentType = ObjectSerializer_1.ObjectSerializer.normalizeMediaType(response.headers['content-type']);
     if ((0, util_1.isCodeInRange)('200', response.httpStatusCode)) {
       const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Array<LogEvent>', '');

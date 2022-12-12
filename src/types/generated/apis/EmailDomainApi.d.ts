@@ -24,44 +24,44 @@ import { UpdateEmailDomain } from '../models/UpdateEmailDomain';
  */
 export declare class EmailDomainApiRequestFactory extends BaseAPIRequestFactory {
   /**
-     * Creates a custom email domain.
+     * Creates an Email Domain in your org, along with associated username and sender display name
      * Create an Email Domain
      * @param emailDomain
      */
   createEmailDomain(emailDomain: EmailDomain, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Deletes an Email Domain by `emailDomainId`.
+     * Deletes an Email Domain by `emailDomainId`
      * Delete an Email Domain
      * @param emailDomainId
      */
   deleteEmailDomain(emailDomainId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Fetches an Email Domain by `emailDomainId`.
+     * Retrieves an Email Domain by `emailDomainId`, along with associated username and sender display name
      * Retrieve a Email Domain
      * @param emailDomainId
      */
   getEmailDomain(emailDomainId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * List all brands linked to an email domain.
+     * Lists all brands linked to an email domain
      * List all brands linked to an email domain
      * @param emailDomainId
      */
   listEmailDomainBrands(emailDomainId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * List all the email domains in your org.
-     * List all email domains
+     * Lists all the Email Domains in your org, along with associated username and sender display name
+     * List all Email Domains
      */
   listEmailDomains(_options?: Configuration): Promise<RequestContext>;
   /**
-     * Updates an email domain by `emailDomainId`
-     * Update an Email Domain
+     * Replaces associated username and sender display name by `emailDomainId`
+     * Replace an Email Domain
      * @param emailDomainId
      * @param updateEmailDomain
      */
-  updateEmailDomain(emailDomainId: string, updateEmailDomain: UpdateEmailDomain, _options?: Configuration): Promise<RequestContext>;
+  replaceEmailDomain(emailDomainId: string, updateEmailDomain: UpdateEmailDomain, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Verifies the Email Domain by `id`.
-     * Verify Email Domain
+     * Verifies an Email Domain by `emailDomainId`
+     * Verify an Email Domain
      * @param emailDomainId
      */
   verifyEmailDomain(emailDomainId: string, _options?: Configuration): Promise<RequestContext>;
@@ -111,10 +111,10 @@ export declare class EmailDomainApiResponseProcessor {
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
-     * @params response Response returned by the server for a request to updateEmailDomain
+     * @params response Response returned by the server for a request to replaceEmailDomain
      * @throws ApiException if the response code was not in [200, 299]
      */
-  updateEmailDomain(response: ResponseContext): Promise<EmailDomainResponse>;
+  replaceEmailDomain(response: ResponseContext): Promise<EmailDomainResponse>;
   /**
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects

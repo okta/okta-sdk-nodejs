@@ -27,6 +27,7 @@ import { Application } from '../models/Application';
 import { ApplicationFeature } from '../models/ApplicationFeature';
 import { ApplicationGroupAssignment } from '../models/ApplicationGroupAssignment';
 import { ApplicationLayout } from '../models/ApplicationLayout';
+import { ApplicationLayouts } from '../models/ApplicationLayouts';
 import { AssignRoleRequest } from '../models/AssignRoleRequest';
 import { Authenticator } from '../models/Authenticator';
 import { AuthorizationServer } from '../models/AuthorizationServer';
@@ -36,15 +37,21 @@ import { BehaviorRule } from '../models/BehaviorRule';
 import { BouncesRemoveListObj } from '../models/BouncesRemoveListObj';
 import { BouncesRemoveListResult } from '../models/BouncesRemoveListResult';
 import { Brand } from '../models/Brand';
+import { BrandDomains } from '../models/BrandDomains';
+import { BrandRequest } from '../models/BrandRequest';
+import { BulkDeleteRequestBody } from '../models/BulkDeleteRequestBody';
+import { BulkUpsertRequestBody } from '../models/BulkUpsertRequestBody';
 import { CAPTCHAInstance } from '../models/CAPTCHAInstance';
 import { CapabilitiesObject } from '../models/CapabilitiesObject';
 import { CatalogApplication } from '../models/CatalogApplication';
 import { ChangePasswordRequest } from '../models/ChangePasswordRequest';
+import { CreateBrandRequest } from '../models/CreateBrandRequest';
 import { CreateSessionRequest } from '../models/CreateSessionRequest';
 import { CreateUserRequest } from '../models/CreateUserRequest';
 import { Csr } from '../models/Csr';
 import { CsrMetadata } from '../models/CsrMetadata';
 import { CustomizablePage } from '../models/CustomizablePage';
+import { Device } from '../models/Device';
 import { DeviceAssurance } from '../models/DeviceAssurance';
 import { Domain } from '../models/Domain';
 import { DomainCertificate } from '../models/DomainCertificate';
@@ -62,18 +69,27 @@ import { EventHook } from '../models/EventHook';
 import { Feature } from '../models/Feature';
 import { ForgotPasswordResponse } from '../models/ForgotPasswordResponse';
 import { Group } from '../models/Group';
+import { GroupOwner } from '../models/GroupOwner';
 import { GroupRule } from '../models/GroupRule';
 import { GroupSchema } from '../models/GroupSchema';
+import { HookKey } from '../models/HookKey';
 import { HostedPage } from '../models/HostedPage';
+import { IamRole } from '../models/IamRole';
+import { IamRoles } from '../models/IamRoles';
 import { IdentityProvider } from '../models/IdentityProvider';
 import { IdentityProviderApplicationUser } from '../models/IdentityProviderApplicationUser';
+import { IdentitySourceSession } from '../models/IdentitySourceSession';
 import { ImageUploadResponse } from '../models/ImageUploadResponse';
 import { InlineHook } from '../models/InlineHook';
 import { InlineHookResponse } from '../models/InlineHookResponse';
 import { JsonWebKey } from '../models/JsonWebKey';
 import { JwkUse } from '../models/JwkUse';
+import { KeyRequest } from '../models/KeyRequest';
 import { LinkedObject } from '../models/LinkedObject';
 import { LogEvent } from '../models/LogEvent';
+import { LogStream } from '../models/LogStream';
+import { LogStreamSchema } from '../models/LogStreamSchema';
+import { LogStreamType } from '../models/LogStreamType';
 import { NetworkZone } from '../models/NetworkZone';
 import { OAuth2Claim } from '../models/OAuth2Claim';
 import { OAuth2Client } from '../models/OAuth2Client';
@@ -87,6 +103,10 @@ import { OrgOktaCommunicationSetting } from '../models/OrgOktaCommunicationSetti
 import { OrgOktaSupportSettingsObj } from '../models/OrgOktaSupportSettingsObj';
 import { OrgPreferences } from '../models/OrgPreferences';
 import { OrgSetting } from '../models/OrgSetting';
+import { PageRoot } from '../models/PageRoot';
+import { PerClientRateLimitSettings } from '../models/PerClientRateLimitSettings';
+import { Permission } from '../models/Permission';
+import { Permissions } from '../models/Permissions';
 import { Policy } from '../models/Policy';
 import { PolicyRule } from '../models/PolicyRule';
 import { PrincipalRateLimitEntity } from '../models/PrincipalRateLimitEntity';
@@ -95,7 +115,20 @@ import { ProviderType } from '../models/ProviderType';
 import { ProvisioningConnection } from '../models/ProvisioningConnection';
 import { ProvisioningConnectionRequest } from '../models/ProvisioningConnectionRequest';
 import { PushProvider } from '../models/PushProvider';
+import { RateLimitAdminNotifications } from '../models/RateLimitAdminNotifications';
 import { ResetPasswordToken } from '../models/ResetPasswordToken';
+import { ResourceSet } from '../models/ResourceSet';
+import { ResourceSetBindingAddMembersRequest } from '../models/ResourceSetBindingAddMembersRequest';
+import { ResourceSetBindingCreateRequest } from '../models/ResourceSetBindingCreateRequest';
+import { ResourceSetBindingMember } from '../models/ResourceSetBindingMember';
+import { ResourceSetBindingMembers } from '../models/ResourceSetBindingMembers';
+import { ResourceSetBindingResponse } from '../models/ResourceSetBindingResponse';
+import { ResourceSetBindings } from '../models/ResourceSetBindings';
+import { ResourceSetResourcePatchRequest } from '../models/ResourceSetResourcePatchRequest';
+import { ResourceSetResources } from '../models/ResourceSetResources';
+import { ResourceSets } from '../models/ResourceSets';
+import { RiskEvent } from '../models/RiskEvent';
+import { RiskProvider } from '../models/RiskProvider';
 import { Role } from '../models/Role';
 import { SecurityQuestion } from '../models/SecurityQuestion';
 import { Session } from '../models/Session';
@@ -109,18 +142,22 @@ import { Theme } from '../models/Theme';
 import { ThemeResponse } from '../models/ThemeResponse';
 import { ThreatInsightConfiguration } from '../models/ThreatInsightConfiguration';
 import { TrustedOrigin } from '../models/TrustedOrigin';
+import { UpdateDomain } from '../models/UpdateDomain';
 import { UpdateEmailDomain } from '../models/UpdateEmailDomain';
 import { UpdateUserRequest } from '../models/UpdateUserRequest';
 import { User } from '../models/User';
 import { UserActivationToken } from '../models/UserActivationToken';
+import { UserBlock } from '../models/UserBlock';
 import { UserCredentials } from '../models/UserCredentials';
 import { UserFactor } from '../models/UserFactor';
 import { UserIdentityProviderLinkRequest } from '../models/UserIdentityProviderLinkRequest';
+import { UserLockoutSettings } from '../models/UserLockoutSettings';
 import { UserNextLogin } from '../models/UserNextLogin';
 import { UserSchema } from '../models/UserSchema';
 import { UserType } from '../models/UserType';
 import { VerifyFactorRequest } from '../models/VerifyFactorRequest';
 import { VerifyUserFactorResponse } from '../models/VerifyUserFactorResponse';
+import { WellKnownOrgMetadata } from '../models/WellKnownOrgMetadata';
 import { AgentPoolsApiRequestFactory, AgentPoolsApiResponseProcessor } from '../apis/AgentPoolsApi';
 export declare class ObservableAgentPoolsApi {
   private requestFactory;
@@ -156,33 +193,33 @@ export declare class ObservableAgentPoolsApi {
       */
   deleteAgentPoolsUpdate(poolId: string, updateId: string, _options?: Configuration): Observable<void>;
   /**
-      * Fetches AgentPools based on request parameters for a given org
-      * List all Agent Pools
-      * @param limitPerPoolType Maximum number of AgentPools being returned
-      * @param poolType Agent type to search for
-      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/reference/core-okta-api/#pagination) for more information.
-      */
-  getAgentPools(limitPerPoolType?: number, poolType?: AgentType, after?: string, _options?: Configuration): Observable<Collection<AgentPool>>;
-  /**
-      * Gets Agent pool update from updateId
+      * Retrieves Agent pool update from updateId
       * Retrieve an Agent Pool update by id
       * @param poolId Id of the agent pool for which the settings will apply
       * @param updateId Id of the update
       */
   getAgentPoolsUpdateInstance(poolId: string, updateId: string, _options?: Configuration): Observable<AgentPoolUpdate>;
   /**
-      * Gets the current state of the agent pool update instance settings
+      * Retrieves the current state of the agent pool update instance settings
       * Retrieve an Agent Pool update's settings
       * @param poolId Id of the agent pool for which the settings will apply
       */
   getAgentPoolsUpdateSettings(poolId: string, _options?: Configuration): Observable<AgentPoolUpdateSetting>;
   /**
-      * Gets List of Agent pool updates
+      * Lists all agent pools with pagination support
+      * List all Agent Pools
+      * @param limitPerPoolType Maximum number of AgentPools being returned
+      * @param poolType Agent type to search for
+      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](/#pagination) for more information.
+      */
+  listAgentPools(limitPerPoolType?: number, poolType?: AgentType, after?: string, _options?: Configuration): Observable<Collection<AgentPool>>;
+  /**
+      * Lists all agent pool updates
       * List all Agent Pool updates
       * @param poolId Id of the agent pool for which the settings will apply
       * @param scheduled Scope the list only to scheduled or ad-hoc updates. If the parameter is not provided we will return the whole list of updates.
       */
-  getAgentPoolsUpdates(poolId: string, scheduled?: boolean, _options?: Configuration): Observable<Collection<AgentPoolUpdate>>;
+  listAgentPoolsUpdates(poolId: string, scheduled?: boolean, _options?: Configuration): Observable<Collection<AgentPoolUpdate>>;
   /**
       * Pauses running or queued Agent pool update
       * Pause an Agent Pool update
@@ -205,13 +242,6 @@ export declare class ObservableAgentPoolsApi {
       */
   retryAgentPoolsUpdate(poolId: string, updateId: string, _options?: Configuration): Observable<AgentPoolUpdate>;
   /**
-      * Updates Agent pool update settings
-      * Update an Agent pool update settings
-      * @param poolId Id of the agent pool for which the settings will apply
-      * @param AgentPoolUpdateSetting
-      */
-  setAgentPoolsUpdateSettings(poolId: string, AgentPoolUpdateSetting: AgentPoolUpdateSetting, _options?: Configuration): Observable<AgentPoolUpdateSetting>;
-  /**
       * Stops Agent pool update
       * Stop an Agent Pool update
       * @param poolId Id of the agent pool for which the settings will apply
@@ -226,6 +256,13 @@ export declare class ObservableAgentPoolsApi {
       * @param AgentPoolUpdate
       */
   updateAgentPoolsUpdate(poolId: string, updateId: string, AgentPoolUpdate: AgentPoolUpdate, _options?: Configuration): Observable<AgentPoolUpdate>;
+  /**
+      * Updates an agent pool update settings
+      * Update an Agent Pool update settings
+      * @param poolId Id of the agent pool for which the settings will apply
+      * @param AgentPoolUpdateSetting
+      */
+  updateAgentPoolsUpdateSettings(poolId: string, AgentPoolUpdateSetting: AgentPoolUpdateSetting, _options?: Configuration): Observable<AgentPoolUpdateSetting>;
 }
 import { ApiTokenApiRequestFactory, ApiTokenApiResponseProcessor } from '../apis/ApiTokenApi';
 export declare class ObservableApiTokenApi {
@@ -234,27 +271,27 @@ export declare class ObservableApiTokenApi {
   private configuration;
   constructor(configuration: Configuration, requestFactory?: ApiTokenApiRequestFactory, responseProcessor?: ApiTokenApiResponseProcessor);
   /**
-      * Get the metadata for an active API token by id.
+      * Retrieves the metadata for an active API token by id
       * Retrieve an API Token's Metadata
       * @param apiTokenId id of the API Token
       */
   getApiToken(apiTokenId: string, _options?: Configuration): Observable<ApiToken>;
   /**
-      * Enumerates the metadata of the active API tokens in your organization.
+      * Lists all the metadata of the active API tokens
       * List all API Token Metadata
-      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/reference/core-okta-api/#pagination) for more information.
+      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](/#pagination) for more information.
       * @param limit A limit on the number of objects to return.
       * @param q Finds a token that matches the name or clientName.
       */
   listApiTokens(after?: string, limit?: number, q?: string, _options?: Configuration): Observable<Collection<ApiToken>>;
   /**
-      * Revoke an API token by id.
+      * Revokes an API token by `apiTokenId`
       * Revoke an API Token
       * @param apiTokenId id of the API Token
       */
   revokeApiToken(apiTokenId: string, _options?: Configuration): Observable<void>;
   /**
-      * Revokes the API token provided in the Authorization header.
+      * Revokes the API token provided in the Authorization header
       * Revoke the Current API Token
       */
   revokeCurrentApiToken(_options?: Configuration): Observable<void>;
@@ -266,17 +303,32 @@ export declare class ObservableApplicationApi {
   private configuration;
   constructor(configuration: Configuration, requestFactory?: ApplicationApiRequestFactory, responseProcessor?: ApplicationApiResponseProcessor);
   /**
-      * Activates an inactive application.
+      * Activates an inactive application
       * Activate an Application
       * @param appId
       */
   activateApplication(appId: string, _options?: Configuration): Observable<void>;
   /**
-      * Activates the default Provisioning Connection for an application.
+      * Activates the default Provisioning Connection for an application
       * Activate the default Provisioning Connection
       * @param appId
       */
   activateDefaultProvisioningConnectionForApplication(appId: string, _options?: Configuration): Observable<void>;
+  /**
+      * Assigns an application to a policy identified by `policyId`. If the application was previously assigned to another policy, this removes that assignment.
+      * Assign an Application to a Policy
+      * @param appId
+      * @param policyId
+      */
+  assignApplicationPolicy(appId: string, policyId: string, _options?: Configuration): Observable<void>;
+  /**
+      * Assigns a group to an application
+      * Assign a Group
+      * @param appId
+      * @param groupId
+      * @param applicationGroupAssignment
+      */
+  assignGroupToApplication(appId: string, groupId: string, applicationGroupAssignment?: ApplicationGroupAssignment, _options?: Configuration): Observable<ApplicationGroupAssignment>;
   /**
       * Assigns an user to an application with [credentials](#application-user-credentials-object) and an app-specific [profile](#application-user-profile-object). Profile mappings defined for the application are first applied before applying any profile properties specified in the request.
       * Assign a User
@@ -293,7 +345,7 @@ export declare class ObservableApplicationApi {
       */
   cloneApplicationKey(appId: string, keyId: string, targetAid: string, _options?: Configuration): Observable<JsonWebKey>;
   /**
-      * Adds a new application to your Okta organization.
+      * Creates a new application to your Okta organization
       * Create an Application
       * @param application
       * @param activate Executes activation lifecycle operation when creating the app
@@ -301,46 +353,23 @@ export declare class ObservableApplicationApi {
       */
   createApplication(application: Application, activate?: boolean, OktaAccessGateway_Agent?: string, _options?: Configuration): Observable<Application>;
   /**
-      * Assigns a group to an application
-      * Assign a Group
-      * @param appId
-      * @param groupId
-      * @param applicationGroupAssignment
-      */
-  createApplicationGroupAssignment(appId: string, groupId: string, applicationGroupAssignment?: ApplicationGroupAssignment, _options?: Configuration): Observable<ApplicationGroupAssignment>;
-  /**
-      * Deactivates an active application.
+      * Deactivates an active application
       * Deactivate an Application
       * @param appId
       */
   deactivateApplication(appId: string, _options?: Configuration): Observable<void>;
   /**
-      * Deactivates the default Provisioning Connection for an application.
+      * Deactivates the default Provisioning Connection for an application
       * Deactivate the default Provisioning Connection for an Application
       * @param appId
       */
   deactivateDefaultProvisioningConnectionForApplication(appId: string, _options?: Configuration): Observable<void>;
   /**
-      * Removes an inactive application.
+      * Deletes an inactive application
       * Delete an Application
       * @param appId
       */
   deleteApplication(appId: string, _options?: Configuration): Observable<void>;
-  /**
-      * Removes a group assignment from an application.
-      * Unassign a Group
-      * @param appId
-      * @param groupId
-      */
-  deleteApplicationGroupAssignment(appId: string, groupId: string, _options?: Configuration): Observable<void>;
-  /**
-      * Removes an assignment for a user from an application.
-      * Unassign a User
-      * @param appId
-      * @param userId
-      * @param sendEmail
-      */
-  deleteApplicationUser(appId: string, userId: string, sendEmail?: boolean, _options?: Configuration): Observable<void>;
   /**
       * Generates a new X.509 certificate for an application key credential
       * Generate a Key Credential
@@ -349,21 +378,21 @@ export declare class ObservableApplicationApi {
       */
   generateApplicationKey(appId: string, validityYears?: number, _options?: Configuration): Observable<JsonWebKey>;
   /**
-      * Generates a new key pair and returns the Certificate Signing Request for it.
+      * Generates a new key pair and returns the Certificate Signing Request for it
       * Generate a Certificate Signing Request
       * @param appId
       * @param metadata
       */
   generateCsrForApplication(appId: string, metadata: CsrMetadata, _options?: Configuration): Observable<Csr>;
   /**
-      * Fetches an application from your Okta organization by `id`.
+      * Retrieves an application from your Okta organization by `id`
       * Retrieve an Application
       * @param appId
       * @param expand
       */
   getApplication(appId: string, expand?: string, _options?: Configuration): Observable<Application>;
   /**
-      * Fetches an application group assignment
+      * Retrieves an application group assignment
       * Retrieve an Assigned Group
       * @param appId
       * @param groupId
@@ -371,14 +400,14 @@ export declare class ObservableApplicationApi {
       */
   getApplicationGroupAssignment(appId: string, groupId: string, expand?: string, _options?: Configuration): Observable<ApplicationGroupAssignment>;
   /**
-      * Gets a specific application key credential by kid
+      * Retrieves a specific application key credential by kid
       * Retrieve a Key Credential
       * @param appId
       * @param keyId
       */
   getApplicationKey(appId: string, keyId: string, _options?: Configuration): Observable<JsonWebKey>;
   /**
-      * Fetches a specific user assignment for application by `id`.
+      * Retrieves a specific user assignment for application by `id`
       * Retrieve an Assigned User
       * @param appId
       * @param userId
@@ -386,27 +415,27 @@ export declare class ObservableApplicationApi {
       */
   getApplicationUser(appId: string, userId: string, expand?: string, _options?: Configuration): Observable<AppUser>;
   /**
-      * Fetches a certificate signing request for the app by `id`.
+      * Retrieves a certificate signing request for the app by `id`
       * Retrieve a Certificate Signing Request
       * @param appId
       * @param csrId
       */
   getCsrForApplication(appId: string, csrId: string, _options?: Configuration): Observable<Csr>;
   /**
-      * Get default Provisioning Connection for application
+      * Retrieves the default Provisioning Connection for application
       * Retrieve the default Provisioning Connection
       * @param appId
       */
   getDefaultProvisioningConnectionForApplication(appId: string, _options?: Configuration): Observable<ProvisioningConnection>;
   /**
-      * Fetches a Feature object for an application.
+      * Retrieves a Feature object for an application
       * Retrieve a Feature
       * @param appId
       * @param name
       */
   getFeatureForApplication(appId: string, name: string, _options?: Configuration): Observable<ApplicationFeature>;
   /**
-      * Gets a token for the specified application
+      * Retrieves a token for the specified application
       * Retrieve an OAuth 2.0 Token
       * @param appId
       * @param tokenId
@@ -414,7 +443,7 @@ export declare class ObservableApplicationApi {
       */
   getOAuth2TokenForApplication(appId: string, tokenId: string, expand?: string, _options?: Configuration): Observable<OAuth2Token>;
   /**
-      * Fetches a single scope consent grant for the application
+      * Retrieves a single scope consent grant for the application
       * Retrieve a Scope Consent Grant
       * @param appId
       * @param grantId
@@ -429,7 +458,7 @@ export declare class ObservableApplicationApi {
       */
   grantConsentToScope(appId: string, oAuth2ScopeConsentGrant: OAuth2ScopeConsentGrant, _options?: Configuration): Observable<OAuth2ScopeConsentGrant>;
   /**
-      * Enumerates group assignments for an application.
+      * Lists all group assignments for an application
       * List all Assigned Groups
       * @param appId
       * @param q
@@ -439,13 +468,13 @@ export declare class ObservableApplicationApi {
       */
   listApplicationGroupAssignments(appId: string, q?: string, after?: string, limit?: number, expand?: string, _options?: Configuration): Observable<Collection<ApplicationGroupAssignment>>;
   /**
-      * Enumerates key credentials for an application
+      * Lists all key credentials for an application
       * List all Key Credentials
       * @param appId
       */
   listApplicationKeys(appId: string, _options?: Configuration): Observable<Collection<JsonWebKey>>;
   /**
-      * Enumerates all assigned [application users](#application-user-model) for an application.
+      * Lists all assigned [application users](#application-user-model) for an application
       * List all Assigned Users
       * @param appId
       * @param q
@@ -457,7 +486,7 @@ export declare class ObservableApplicationApi {
       */
   listApplicationUsers(appId: string, q?: string, query_scope?: string, after?: string, limit?: number, filter?: string, expand?: string, _options?: Configuration): Observable<Collection<AppUser>>;
   /**
-      * Enumerates apps added to your organization with pagination. A subset of apps can be returned that match a supported filter expression or query.
+      * Lists all applications with pagination. A subset of apps can be returned that match a supported filter expression or query.
       * List all Applications
       * @param q
       * @param after Specifies the pagination cursor for the next page of apps
@@ -468,13 +497,13 @@ export declare class ObservableApplicationApi {
       */
   listApplications(q?: string, after?: string, limit?: number, filter?: string, expand?: string, includeNonDeleted?: boolean, _options?: Configuration): Observable<Collection<Application>>;
   /**
-      * Enumerates Certificate Signing Requests for an application
+      * Lists all Certificate Signing Requests for an application
       * List all Certificate Signing Requests
       * @param appId
       */
   listCsrsForApplication(appId: string, _options?: Configuration): Observable<Collection<Csr>>;
   /**
-      * List Features for application
+      * Lists all features for an application
       * List all Features
       * @param appId
       */
@@ -496,7 +525,7 @@ export declare class ObservableApplicationApi {
       */
   listScopeConsentGrants(appId: string, expand?: string, _options?: Configuration): Observable<Collection<OAuth2ScopeConsentGrant>>;
   /**
-      * Updates a certificate signing request for the app with a signed X.509 certificate and adds it into the application key credentials
+      * Publishes a certificate signing request for the app with a signed X.509 certificate and adds it into the application key credentials
       * Publish a Certificate Signing Request
       * @param appId
       * @param csrId
@@ -504,7 +533,14 @@ export declare class ObservableApplicationApi {
       */
   publishCsrFromApplication(appId: string, csrId: string, body: HttpFile, _options?: Configuration): Observable<JsonWebKey>;
   /**
-      * Revokes a certificate signing request and deletes the key pair from the application.
+      * Replaces an application
+      * Replace an Application
+      * @param appId
+      * @param application
+      */
+  replaceApplication(appId: string, application: Application, _options?: Configuration): Observable<Application>;
+  /**
+      * Revokes a certificate signing request and deletes the key pair from the application
       * Revoke a Certificate Signing Request
       * @param appId
       * @param csrId
@@ -531,20 +567,20 @@ export declare class ObservableApplicationApi {
       */
   revokeScopeConsentGrant(appId: string, grantId: string, _options?: Configuration): Observable<void>;
   /**
-      * Set default Provisioning Connection for application
-      * Update the default Provisioning Connection
+      * Unassigns a group from an application
+      * Unassign a Group
       * @param appId
-      * @param ProvisioningConnectionRequest
-      * @param activate
+      * @param groupId
       */
-  setDefaultProvisioningConnectionForApplication(appId: string, ProvisioningConnectionRequest: ProvisioningConnectionRequest, activate?: boolean, _options?: Configuration): Observable<ProvisioningConnection>;
+  unassignApplicationFromGroup(appId: string, groupId: string, _options?: Configuration): Observable<void>;
   /**
-      * Updates an application in your organization.
-      * Replace an Application
+      * Unassigns a user from an application
+      * Unassign a User
       * @param appId
-      * @param application
+      * @param userId
+      * @param sendEmail
       */
-  updateApplication(appId: string, application: Application, _options?: Configuration): Observable<Application>;
+  unassignUserFromApplication(appId: string, userId: string, sendEmail?: boolean, _options?: Configuration): Observable<void>;
   /**
       * Updates a user's profile for an application
       * Update an Application Profile for Assigned User
@@ -554,7 +590,15 @@ export declare class ObservableApplicationApi {
       */
   updateApplicationUser(appId: string, userId: string, appUser: AppUser, _options?: Configuration): Observable<AppUser>;
   /**
-      * Updates a Feature object for an application.
+      * Updates the default provisioning connection for application
+      * Update the default Provisioning Connection
+      * @param appId
+      * @param ProvisioningConnectionRequest
+      * @param activate
+      */
+  updateDefaultProvisioningConnectionForApplication(appId: string, ProvisioningConnectionRequest: ProvisioningConnectionRequest, activate?: boolean, _options?: Configuration): Observable<ProvisioningConnection>;
+  /**
+      * Updates a Feature object for an application
       * Update a Feature
       * @param appId
       * @param name
@@ -562,12 +606,30 @@ export declare class ObservableApplicationApi {
       */
   updateFeatureForApplication(appId: string, name: string, CapabilitiesObject: CapabilitiesObject, _options?: Configuration): Observable<ApplicationFeature>;
   /**
-      * The file must be in PNG, JPG, or GIF format, and less than 1 MB in size. For best results use landscape orientation, a transparent background, and a minimum size of 420px by 120px to prevent upscaling.
+      * Uploads a logo for the application. The file must be in PNG, JPG, or GIF format, and less than 1 MB in size. For best results use landscape orientation, a transparent background, and a minimum size of 420px by 120px to prevent upscaling.
       * Upload a Logo
       * @param appId
       * @param file
       */
   uploadApplicationLogo(appId: string, file: HttpFile, _options?: Configuration): Observable<void>;
+}
+import { AttackProtectionApiRequestFactory, AttackProtectionApiResponseProcessor } from '../apis/AttackProtectionApi';
+export declare class ObservableAttackProtectionApi {
+  private requestFactory;
+  private responseProcessor;
+  private configuration;
+  constructor(configuration: Configuration, requestFactory?: AttackProtectionApiRequestFactory, responseProcessor?: AttackProtectionApiResponseProcessor);
+  /**
+      * Retrieves the User Lockout Settings for an org
+      * Retrieve the User Lockout Settings
+      */
+  getUserLockoutSettings(_options?: Configuration): Observable<Collection<UserLockoutSettings>>;
+  /**
+      * Replaces the User Lockout Settings for an org
+      * Replace the User Lockout Settings
+      * @param lockoutSettings
+      */
+  replaceUserLockoutSettings(lockoutSettings: UserLockoutSettings, _options?: Configuration): Observable<UserLockoutSettings>;
 }
 import { AuthenticatorApiRequestFactory, AuthenticatorApiResponseProcessor } from '../apis/AuthenticatorApi';
 export declare class ObservableAuthenticatorApi {
@@ -576,35 +638,42 @@ export declare class ObservableAuthenticatorApi {
   private configuration;
   constructor(configuration: Configuration, requestFactory?: AuthenticatorApiRequestFactory, responseProcessor?: AuthenticatorApiResponseProcessor);
   /**
-      * Activates an authenticator by `authenticatorId`.
+      * Activates an authenticator by `authenticatorId`
       * Activate an Authenticator
       * @param authenticatorId
       */
   activateAuthenticator(authenticatorId: string, _options?: Configuration): Observable<Authenticator>;
   /**
-      * Deactivates an authenticator by `authenticatorId`.
+      * Creates an authenticator. You can use this operation as part of the \"Create a custom authenticator\" flow. See the [Custom authenticator integration guide](https://developer.okta.com/docs/guides/authenticators-custom-authenticator/android/main/).
+      * Create an Authenticator
+      * @param authenticator
+      * @param activate Whether to execute the activation lifecycle operation when Okta creates the authenticator
+      */
+  createAuthenticator(authenticator: Authenticator, activate?: boolean, _options?: Configuration): Observable<Authenticator>;
+  /**
+      * Deactivates an authenticator by `authenticatorId`
       * Deactivate an Authenticator
       * @param authenticatorId
       */
   deactivateAuthenticator(authenticatorId: string, _options?: Configuration): Observable<Authenticator>;
   /**
-      * Fetches an authenticator from your Okta organization by `authenticatorId`.
+      * Retrieves an authenticator from your Okta organization by `authenticatorId`
       * Retrieve an Authenticator
       * @param authenticatorId
       */
   getAuthenticator(authenticatorId: string, _options?: Configuration): Observable<Authenticator>;
   /**
-      * Enumerates authenticators in your organization.
+      * Lists all authenticators
       * List all Authenticators
       */
   listAuthenticators(_options?: Configuration): Observable<Collection<Authenticator>>;
   /**
-      * Updates an authenticator
+      * Replaces an authenticator
       * Replace an Authenticator
       * @param authenticatorId
       * @param authenticator
       */
-  updateAuthenticator(authenticatorId: string, authenticator: Authenticator, _options?: Configuration): Observable<Authenticator>;
+  replaceAuthenticator(authenticatorId: string, authenticator: Authenticator, _options?: Configuration): Observable<Authenticator>;
 }
 import { AuthorizationServerApiRequestFactory, AuthorizationServerApiResponseProcessor } from '../apis/AuthorizationServerApi';
 export declare class ObservableAuthorizationServerApi {
@@ -613,20 +682,20 @@ export declare class ObservableAuthorizationServerApi {
   private configuration;
   constructor(configuration: Configuration, requestFactory?: AuthorizationServerApiRequestFactory, responseProcessor?: AuthorizationServerApiResponseProcessor);
   /**
-      * Success
+      * Activates an authorization server
       * Activate an Authorization Server
       * @param authServerId
       */
   activateAuthorizationServer(authServerId: string, _options?: Configuration): Observable<void>;
   /**
-      * Activate Authorization Server Policy
+      * Activates an authorization server policy
       * Activate a Policy
       * @param authServerId
       * @param policyId
       */
   activateAuthorizationServerPolicy(authServerId: string, policyId: string, _options?: Configuration): Observable<void>;
   /**
-      * Activate Authorization Server Policy Rule
+      * Activates an authorization server policy rule
       * Activate a Policy Rule
       * @param authServerId
       * @param policyId
@@ -634,20 +703,20 @@ export declare class ObservableAuthorizationServerApi {
       */
   activateAuthorizationServerPolicyRule(authServerId: string, policyId: string, ruleId: string, _options?: Configuration): Observable<void>;
   /**
-      * Success
+      * Creates an authorization server
       * Create an Authorization Server
       * @param authorizationServer
       */
   createAuthorizationServer(authorizationServer: AuthorizationServer, _options?: Configuration): Observable<AuthorizationServer>;
   /**
-      * Success
+      * Creates a policy
       * Create a Policy
       * @param authServerId
       * @param policy
       */
   createAuthorizationServerPolicy(authServerId: string, policy: AuthorizationServerPolicy, _options?: Configuration): Observable<AuthorizationServerPolicy>;
   /**
-      * Creates a policy rule for the specified Custom Authorization Server and Policy.
+      * Creates a policy rule for the specified Custom Authorization Server and Policy
       * Create a Policy Rule
       * @param policyId
       * @param authServerId
@@ -655,34 +724,34 @@ export declare class ObservableAuthorizationServerApi {
       */
   createAuthorizationServerPolicyRule(policyId: string, authServerId: string, policyRule: AuthorizationServerPolicyRule, _options?: Configuration): Observable<AuthorizationServerPolicyRule>;
   /**
-      * Success
+      * Creates a custom token claim
       * Create a Custom Token Claim
       * @param authServerId
       * @param oAuth2Claim
       */
   createOAuth2Claim(authServerId: string, oAuth2Claim: OAuth2Claim, _options?: Configuration): Observable<OAuth2Claim>;
   /**
-      * Success
+      * Creates a custom token scope
       * Create a Custom Token Scope
       * @param authServerId
       * @param oAuth2Scope
       */
   createOAuth2Scope(authServerId: string, oAuth2Scope: OAuth2Scope, _options?: Configuration): Observable<OAuth2Scope>;
   /**
-      * Success
+      * Deactivates an authorization server
       * Deactivate an Authorization Server
       * @param authServerId
       */
   deactivateAuthorizationServer(authServerId: string, _options?: Configuration): Observable<void>;
   /**
-      * Deactivate Authorization Server Policy
+      * Deactivates an authorization server policy
       * Deactivate a Policy
       * @param authServerId
       * @param policyId
       */
   deactivateAuthorizationServerPolicy(authServerId: string, policyId: string, _options?: Configuration): Observable<void>;
   /**
-      * Deactivate Authorization Server Policy Rule
+      * Deactivates an authorization server policy rule
       * Deactivate a Policy Rule
       * @param authServerId
       * @param policyId
@@ -690,20 +759,20 @@ export declare class ObservableAuthorizationServerApi {
       */
   deactivateAuthorizationServerPolicyRule(authServerId: string, policyId: string, ruleId: string, _options?: Configuration): Observable<void>;
   /**
-      * Success
+      * Deletes an authorization server
       * Delete an Authorization Server
       * @param authServerId
       */
   deleteAuthorizationServer(authServerId: string, _options?: Configuration): Observable<void>;
   /**
-      * Success
+      * Deletes a policy
       * Delete a Policy
       * @param authServerId
       * @param policyId
       */
   deleteAuthorizationServerPolicy(authServerId: string, policyId: string, _options?: Configuration): Observable<void>;
   /**
-      * Deletes a Policy Rule defined in the specified Custom Authorization Server and Policy.
+      * Deletes a Policy Rule defined in the specified Custom Authorization Server and Policy
       * Delete a Policy Rule
       * @param policyId
       * @param authServerId
@@ -711,34 +780,34 @@ export declare class ObservableAuthorizationServerApi {
       */
   deleteAuthorizationServerPolicyRule(policyId: string, authServerId: string, ruleId: string, _options?: Configuration): Observable<void>;
   /**
-      * Success
+      * Deletes a custom token claim
       * Delete a Custom Token Claim
       * @param authServerId
       * @param claimId
       */
   deleteOAuth2Claim(authServerId: string, claimId: string, _options?: Configuration): Observable<void>;
   /**
-      * Success
+      * Deletes a custom token scope
       * Delete a Custom Token Scope
       * @param authServerId
       * @param scopeId
       */
   deleteOAuth2Scope(authServerId: string, scopeId: string, _options?: Configuration): Observable<void>;
   /**
-      * Success
+      * Retrieves an authorization server
       * Retrieve an Authorization Server
       * @param authServerId
       */
   getAuthorizationServer(authServerId: string, _options?: Configuration): Observable<AuthorizationServer>;
   /**
-      * Success
+      * Retrieves a policy
       * Retrieve a Policy
       * @param authServerId
       * @param policyId
       */
   getAuthorizationServerPolicy(authServerId: string, policyId: string, _options?: Configuration): Observable<AuthorizationServerPolicy>;
   /**
-      * Returns a Policy Rule by ID that is defined in the specified Custom Authorization Server and Policy.
+      * Retrieves a policy rule by `ruleId`
       * Retrieve a Policy Rule
       * @param policyId
       * @param authServerId
@@ -746,21 +815,21 @@ export declare class ObservableAuthorizationServerApi {
       */
   getAuthorizationServerPolicyRule(policyId: string, authServerId: string, ruleId: string, _options?: Configuration): Observable<AuthorizationServerPolicyRule>;
   /**
-      * Success
+      * Retrieves a custom token claim
       * Retrieve a Custom Token Claim
       * @param authServerId
       * @param claimId
       */
   getOAuth2Claim(authServerId: string, claimId: string, _options?: Configuration): Observable<OAuth2Claim>;
   /**
-      * Success
+      * Retrieves a custom token scope
       * Retrieve a Custom Token Scope
       * @param authServerId
       * @param scopeId
       */
   getOAuth2Scope(authServerId: string, scopeId: string, _options?: Configuration): Observable<OAuth2Scope>;
   /**
-      * Success
+      * Retrieves a refresh token for a client
       * Retrieve a Refresh Token for a Client
       * @param authServerId
       * @param clientId
@@ -769,26 +838,26 @@ export declare class ObservableAuthorizationServerApi {
       */
   getRefreshTokenForAuthorizationServerAndClient(authServerId: string, clientId: string, tokenId: string, expand?: string, _options?: Configuration): Observable<OAuth2RefreshToken>;
   /**
-      * Success
+      * Lists all credential keys
       * List all Credential Keys
       * @param authServerId
       */
   listAuthorizationServerKeys(authServerId: string, _options?: Configuration): Observable<Collection<JsonWebKey>>;
   /**
-      * Success
+      * Lists all policies
       * List all Policies
       * @param authServerId
       */
   listAuthorizationServerPolicies(authServerId: string, _options?: Configuration): Observable<Collection<AuthorizationServerPolicy>>;
   /**
-      * Enumerates all policy rules for the specified Custom Authorization Server and Policy.
+      * Lists all policy rules for the specified Custom Authorization Server and Policy
       * List all Policy Rules
       * @param policyId
       * @param authServerId
       */
   listAuthorizationServerPolicyRules(policyId: string, authServerId: string, _options?: Configuration): Observable<Collection<AuthorizationServerPolicyRule>>;
   /**
-      * Success
+      * Lists all authorization servers
       * List all Authorization Servers
       * @param q
       * @param limit
@@ -796,19 +865,19 @@ export declare class ObservableAuthorizationServerApi {
       */
   listAuthorizationServers(q?: string, limit?: number, after?: string, _options?: Configuration): Observable<Collection<AuthorizationServer>>;
   /**
-      * Success
+      * Lists all custom token claims
       * List all Custom Token Claims
       * @param authServerId
       */
   listOAuth2Claims(authServerId: string, _options?: Configuration): Observable<Collection<OAuth2Claim>>;
   /**
-      * Success
+      * Lists all clients
       * List all Clients
       * @param authServerId
       */
   listOAuth2ClientsForAuthorizationServer(authServerId: string, _options?: Configuration): Observable<Collection<OAuth2Client>>;
   /**
-      * Success
+      * Lists all custom token scopes
       * List all Custom Token Scopes
       * @param authServerId
       * @param q
@@ -818,7 +887,7 @@ export declare class ObservableAuthorizationServerApi {
       */
   listOAuth2Scopes(authServerId: string, q?: string, filter?: string, cursor?: string, limit?: number, _options?: Configuration): Observable<Collection<OAuth2Scope>>;
   /**
-      * Success
+      * Lists all refresh tokens for a client
       * List all Refresh Tokens for a Client
       * @param authServerId
       * @param clientId
@@ -828,7 +897,47 @@ export declare class ObservableAuthorizationServerApi {
       */
   listRefreshTokensForAuthorizationServerAndClient(authServerId: string, clientId: string, expand?: string, after?: string, limit?: number, _options?: Configuration): Observable<Collection<OAuth2RefreshToken>>;
   /**
-      * Success
+      * Replaces an authorization server
+      * Replace an Authorization Server
+      * @param authServerId
+      * @param authorizationServer
+      */
+  replaceAuthorizationServer(authServerId: string, authorizationServer: AuthorizationServer, _options?: Configuration): Observable<AuthorizationServer>;
+  /**
+      * Replaces a policy
+      * Replace a Policy
+      * @param authServerId
+      * @param policyId
+      * @param policy
+      */
+  replaceAuthorizationServerPolicy(authServerId: string, policyId: string, policy: AuthorizationServerPolicy, _options?: Configuration): Observable<AuthorizationServerPolicy>;
+  /**
+      * Replaces the configuration of the Policy Rule defined in the specified Custom Authorization Server and Policy
+      * Replace a Policy Rule
+      * @param policyId
+      * @param authServerId
+      * @param ruleId
+      * @param policyRule
+      */
+  replaceAuthorizationServerPolicyRule(policyId: string, authServerId: string, ruleId: string, policyRule: AuthorizationServerPolicyRule, _options?: Configuration): Observable<AuthorizationServerPolicyRule>;
+  /**
+      * Replaces a custom token claim
+      * Replace a Custom Token Claim
+      * @param authServerId
+      * @param claimId
+      * @param oAuth2Claim
+      */
+  replaceOAuth2Claim(authServerId: string, claimId: string, oAuth2Claim: OAuth2Claim, _options?: Configuration): Observable<OAuth2Claim>;
+  /**
+      * Replaces a custom token scope
+      * Replace a Custom Token Scope
+      * @param authServerId
+      * @param scopeId
+      * @param oAuth2Scope
+      */
+  replaceOAuth2Scope(authServerId: string, scopeId: string, oAuth2Scope: OAuth2Scope, _options?: Configuration): Observable<OAuth2Scope>;
+  /**
+      * Revokes a refresh token for a client
       * Revoke a Refresh Token for a Client
       * @param authServerId
       * @param clientId
@@ -836,59 +945,19 @@ export declare class ObservableAuthorizationServerApi {
       */
   revokeRefreshTokenForAuthorizationServerAndClient(authServerId: string, clientId: string, tokenId: string, _options?: Configuration): Observable<void>;
   /**
-      * Success
+      * Revokes all refresh tokens for a client
       * Revoke all Refresh Tokens for a Client
       * @param authServerId
       * @param clientId
       */
   revokeRefreshTokensForAuthorizationServerAndClient(authServerId: string, clientId: string, _options?: Configuration): Observable<void>;
   /**
-      * Success
+      * Rotates all credential keys
       * Rotate all Credential Keys
       * @param authServerId
       * @param use
       */
   rotateAuthorizationServerKeys(authServerId: string, use: JwkUse, _options?: Configuration): Observable<Collection<JsonWebKey>>;
-  /**
-      * Success
-      * Replace an Authorization Server
-      * @param authServerId
-      * @param authorizationServer
-      */
-  updateAuthorizationServer(authServerId: string, authorizationServer: AuthorizationServer, _options?: Configuration): Observable<AuthorizationServer>;
-  /**
-      * Success
-      * Replace a Policy
-      * @param authServerId
-      * @param policyId
-      * @param policy
-      */
-  updateAuthorizationServerPolicy(authServerId: string, policyId: string, policy: AuthorizationServerPolicy, _options?: Configuration): Observable<AuthorizationServerPolicy>;
-  /**
-      * Updates the configuration of the Policy Rule defined in the specified Custom Authorization Server and Policy.
-      * Replace a Policy Rule
-      * @param policyId
-      * @param authServerId
-      * @param ruleId
-      * @param policyRule
-      */
-  updateAuthorizationServerPolicyRule(policyId: string, authServerId: string, ruleId: string, policyRule: AuthorizationServerPolicyRule, _options?: Configuration): Observable<AuthorizationServerPolicyRule>;
-  /**
-      * Success
-      * Replace a Custom Token Claim
-      * @param authServerId
-      * @param claimId
-      * @param oAuth2Claim
-      */
-  updateOAuth2Claim(authServerId: string, claimId: string, oAuth2Claim: OAuth2Claim, _options?: Configuration): Observable<OAuth2Claim>;
-  /**
-      * Success
-      * Replace a Custom Token Scope
-      * @param authServerId
-      * @param scopeId
-      * @param oAuth2Scope
-      */
-  updateOAuth2Scope(authServerId: string, scopeId: string, oAuth2Scope: OAuth2Scope, _options?: Configuration): Observable<OAuth2Scope>;
 }
 import { BehaviorApiRequestFactory, BehaviorApiResponseProcessor } from '../apis/BehaviorApi';
 export declare class ObservableBehaviorApi {
@@ -897,47 +966,47 @@ export declare class ObservableBehaviorApi {
   private configuration;
   constructor(configuration: Configuration, requestFactory?: BehaviorApiRequestFactory, responseProcessor?: BehaviorApiResponseProcessor);
   /**
-      * Activate Behavior Detection Rule
+      * Activates a behavior detection rule
       * Activate a Behavior Detection Rule
       * @param behaviorId id of the Behavior Detection Rule
       */
   activateBehaviorDetectionRule(behaviorId: string, _options?: Configuration): Observable<BehaviorRule>;
   /**
-      * Adds a new Behavior Detection Rule to your organization.
+      * Creates a new behavior detection rule
       * Create a Behavior Detection Rule
       * @param rule
       */
   createBehaviorDetectionRule(rule: BehaviorRule, _options?: Configuration): Observable<BehaviorRule>;
   /**
-      * Deactivate Behavior Detection Rule
+      * Deactivates a behavior detection rule
       * Deactivate a Behavior Detection Rule
       * @param behaviorId id of the Behavior Detection Rule
       */
   deactivateBehaviorDetectionRule(behaviorId: string, _options?: Configuration): Observable<BehaviorRule>;
   /**
-      * Delete a Behavior Detection Rule by `behaviorId`.
+      * Deletes a Behavior Detection Rule by `behaviorId`
       * Delete a Behavior Detection Rule
       * @param behaviorId id of the Behavior Detection Rule
       */
   deleteBehaviorDetectionRule(behaviorId: string, _options?: Configuration): Observable<void>;
   /**
-      * Fetches a Behavior Detection Rule by `behaviorId`.
+      * Retrieves a Behavior Detection Rule by `behaviorId`
       * Retrieve a Behavior Detection Rule
       * @param behaviorId id of the Behavior Detection Rule
       */
   getBehaviorDetectionRule(behaviorId: string, _options?: Configuration): Observable<BehaviorRule>;
   /**
-      * Enumerates Behavior Detection Rules in your organization with pagination.
+      * Lists all behavior detection rules with pagination support
       * List all Behavior Detection Rules
       */
   listBehaviorDetectionRules(_options?: Configuration): Observable<Collection<BehaviorRule>>;
   /**
-      * Update a Behavior Detection Rule by `behaviorId`.
+      * Replaces a Behavior Detection Rule by `behaviorId`
       * Replace a Behavior Detection Rule
       * @param behaviorId id of the Behavior Detection Rule
       * @param rule
       */
-  updateBehaviorDetectionRule(behaviorId: string, rule: BehaviorRule, _options?: Configuration): Observable<BehaviorRule>;
+  replaceBehaviorDetectionRule(behaviorId: string, rule: BehaviorRule, _options?: Configuration): Observable<BehaviorRule>;
 }
 import { CAPTCHAApiRequestFactory, CAPTCHAApiResponseProcessor } from '../apis/CAPTCHAApi';
 export declare class ObservableCAPTCHAApi {
@@ -946,42 +1015,92 @@ export declare class ObservableCAPTCHAApi {
   private configuration;
   constructor(configuration: Configuration, requestFactory?: CAPTCHAApiRequestFactory, responseProcessor?: CAPTCHAApiResponseProcessor);
   /**
-      * Adds a new CAPTCHA instance to your organization. In the current release, we only allow one CAPTCHA instance per org.
+      * Creates a new CAPTCHA instance. In the current release, we only allow one CAPTCHA instance per org.
       * Create a CAPTCHA instance
       * @param instance
       */
   createCaptchaInstance(instance: CAPTCHAInstance, _options?: Configuration): Observable<CAPTCHAInstance>;
   /**
-      * Delete a CAPTCHA instance by `captchaId`. If the CAPTCHA instance is currently being used in the org, the delete will not be allowed.
+      * Deletes a CAPTCHA instance by `captchaId`. If the CAPTCHA instance is currently being used in the org, the delete will not be allowed.
       * Delete a CAPTCHA Instance
       * @param captchaId id of the CAPTCHA
       */
   deleteCaptchaInstance(captchaId: string, _options?: Configuration): Observable<void>;
   /**
-      * Fetches a CAPTCHA instance by `captchaId`.
+      * Retrieves a CAPTCHA instance by `captchaId`
       * Retrieve a CAPTCHA Instance
       * @param captchaId id of the CAPTCHA
       */
   getCaptchaInstance(captchaId: string, _options?: Configuration): Observable<CAPTCHAInstance>;
   /**
-      * Enumerates CAPTCHA instances in your organization with pagination. A subset of CAPTCHA instances can be returned that match a supported filter expression or query.
+      * Lists all CAPTCHA instances with pagination support. A subset of CAPTCHA instances can be returned that match a supported filter expression or query.
       * List all CAPTCHA instances
       */
   listCaptchaInstances(_options?: Configuration): Observable<Collection<CAPTCHAInstance>>;
   /**
-      * Partially update a CAPTCHA instance by `captchaId`.
-      * Update a CAPTCHA instance
-      * @param captchaId id of the CAPTCHA
-      * @param instance
-      */
-  partialUpdateCaptchaInstance(captchaId: string, instance: CAPTCHAInstance, _options?: Configuration): Observable<CAPTCHAInstance>;
-  /**
-      * Update a CAPTCHA instance by `captchaId`.
+      * Replaces a CAPTCHA instance by `captchaId`
       * Replace a CAPTCHA instance
       * @param captchaId id of the CAPTCHA
       * @param instance
       */
+  replaceCaptchaInstance(captchaId: string, instance: CAPTCHAInstance, _options?: Configuration): Observable<CAPTCHAInstance>;
+  /**
+      * Partially updates a CAPTCHA instance by `captchaId`
+      * Update a CAPTCHA instance
+      * @param captchaId id of the CAPTCHA
+      * @param instance
+      */
   updateCaptchaInstance(captchaId: string, instance: CAPTCHAInstance, _options?: Configuration): Observable<CAPTCHAInstance>;
+}
+import { CustomDomainApiRequestFactory, CustomDomainApiResponseProcessor } from '../apis/CustomDomainApi';
+export declare class ObservableCustomDomainApi {
+  private requestFactory;
+  private responseProcessor;
+  private configuration;
+  constructor(configuration: Configuration, requestFactory?: CustomDomainApiRequestFactory, responseProcessor?: CustomDomainApiResponseProcessor);
+  /**
+      * Creates your Custom Domain
+      * Create a Custom Domain
+      * @param domain
+      */
+  createCustomDomain(domain: Domain, _options?: Configuration): Observable<DomainResponse>;
+  /**
+      * Deletes a Custom Domain by `id`
+      * Delete a Custom Domain
+      * @param domainId
+      */
+  deleteCustomDomain(domainId: string, _options?: Configuration): Observable<void>;
+  /**
+      * Retrieves a Custom Domain by `id`
+      * Retrieve a Custom Domain
+      * @param domainId
+      */
+  getCustomDomain(domainId: string, _options?: Configuration): Observable<DomainResponse>;
+  /**
+      * Lists all verified Custom Domains for the org
+      * List all Custom Domains
+      */
+  listCustomDomains(_options?: Configuration): Observable<DomainListResponse>;
+  /**
+      * Replaces a Custom Domain by `id`
+      * Replace a Custom Domain's brandId
+      * @param domainId
+      * @param UpdateDomain
+      */
+  replaceCustomDomain(domainId: string, UpdateDomain: UpdateDomain, _options?: Configuration): Observable<DomainResponse>;
+  /**
+      * Creates or replaces the certificate for the custom domain
+      * Upsert the Certificate
+      * @param domainId
+      * @param certificate
+      */
+  upsertCertificate(domainId: string, certificate: DomainCertificate, _options?: Configuration): Observable<void>;
+  /**
+      * Verifies the Custom Domain by `id`
+      * Verify a Custom Domain
+      * @param domainId
+      */
+  verifyDomain(domainId: string, _options?: Configuration): Observable<DomainResponse>;
 }
 import { CustomizationApiRequestFactory, CustomizationApiResponseProcessor } from '../apis/CustomizationApi';
 export declare class ObservableCustomizationApi {
@@ -990,7 +1109,13 @@ export declare class ObservableCustomizationApi {
   private configuration;
   constructor(configuration: Configuration, requestFactory?: CustomizationApiRequestFactory, responseProcessor?: CustomizationApiResponseProcessor);
   /**
-      * Creates a new email customization.
+      * Creates new brand in your org
+      * Create a Brand
+      * @param CreateBrandRequest
+      */
+  createBrand(CreateBrandRequest?: CreateBrandRequest, _options?: Configuration): Observable<Brand>;
+  /**
+      * Creates a new email customization
       * Create an Email Customization
       * @param brandId The ID of the brand.
       * @param templateName The name of the email template.
@@ -998,35 +1123,41 @@ export declare class ObservableCustomizationApi {
       */
   createEmailCustomization(brandId: string, templateName: string, instance?: EmailCustomization, _options?: Configuration): Observable<EmailCustomization>;
   /**
-      * Deletes all customizations for an email template.
+      * Deletes all customizations for an email template
       * Delete all Email Customizations
       * @param brandId The ID of the brand.
       * @param templateName The name of the email template.
       */
   deleteAllCustomizations(brandId: string, templateName: string, _options?: Configuration): Observable<void>;
   /**
-      * Deletes a Theme background image.
+      * Deletes a brand by its unique identifier
+      * Delete a brand
+      * @param brandId The ID of the brand.
+      */
+  deleteBrand(brandId: string, _options?: Configuration): Observable<void>;
+  /**
+      * Deletes a Theme background image
       * Delete the Background Image
-      * @param brandId
-      * @param themeId
+      * @param brandId The ID of the brand.
+      * @param themeId The ID of the theme.
       */
   deleteBrandThemeBackgroundImage(brandId: string, themeId: string, _options?: Configuration): Observable<void>;
   /**
       * Deletes a Theme favicon. The theme will use the default Okta favicon.
       * Delete the Favicon
-      * @param brandId
-      * @param themeId
+      * @param brandId The ID of the brand.
+      * @param themeId The ID of the theme.
       */
   deleteBrandThemeFavicon(brandId: string, themeId: string, _options?: Configuration): Observable<void>;
   /**
       * Deletes a Theme logo. The theme will use the default Okta logo.
       * Delete the Logo
-      * @param brandId
-      * @param themeId
+      * @param brandId The ID of the brand.
+      * @param themeId The ID of the theme.
       */
   deleteBrandThemeLogo(brandId: string, themeId: string, _options?: Configuration): Observable<void>;
   /**
-      * Deletes an email customization by its unique identifier.
+      * Deletes an email customization by its unique identifier
       * Delete an Email Customization
       * @param brandId The ID of the brand.
       * @param templateName The name of the email template.
@@ -1034,28 +1165,52 @@ export declare class ObservableCustomizationApi {
       */
   deleteEmailCustomization(brandId: string, templateName: string, customizationId: string, _options?: Configuration): Observable<void>;
   /**
-      * Fetches a brand by `brandId`
+      * Retrieves a brand by `brandId`
       * Retrieve a Brand
-      * @param brandId
+      * @param brandId The ID of the brand.
       */
   getBrand(brandId: string, _options?: Configuration): Observable<Brand>;
   /**
-      * Fetches a theme for a brand
+      * Retrieves a theme for a brand
       * Retrieve a Theme
-      * @param brandId
-      * @param themeId
+      * @param brandId The ID of the brand.
+      * @param themeId The ID of the theme.
       */
   getBrandTheme(brandId: string, themeId: string, _options?: Configuration): Observable<ThemeResponse>;
   /**
-      * Generates a preview of an email customization. All variable references (e.g., `${user.profile.firstName}`) are populated using the current user's context.
-      * Preview an Email Customization
+      * Retrieves a preview of an email customization. All variable references (e.g., `${user.profile.firstName}`) are populated using the current user's context.
+      * Retrieve a Preview of an Email Customization
       * @param brandId The ID of the brand.
       * @param templateName The name of the email template.
       * @param customizationId The ID of the email customization.
       */
   getCustomizationPreview(brandId: string, templateName: string, customizationId: string, _options?: Configuration): Observable<EmailPreview>;
   /**
-      * Gets an email customization by its unique identifier.
+      * Retrieves the customized error page
+      * Retrieve the Customized Error Page
+      * @param brandId The ID of the brand.
+      */
+  getCustomizedErrorPage(brandId: string, _options?: Configuration): Observable<CustomizablePage>;
+  /**
+      * Retrieves the customized sign-in page
+      * Retrieve the Customized Sign-in Page
+      * @param brandId The ID of the brand.
+      */
+  getCustomizedSignInPage(brandId: string, _options?: Configuration): Observable<SignInPage>;
+  /**
+      * Retrieves the default error page
+      * Retrieve the Default Error Page
+      * @param brandId The ID of the brand.
+      */
+  getDefaultErrorPage(brandId: string, _options?: Configuration): Observable<CustomizablePage>;
+  /**
+      * Retrieves the default sign-in page
+      * Retrieve the Default Sign-in Page
+      * @param brandId The ID of the brand.
+      */
+  getDefaultSignInPage(brandId: string, _options?: Configuration): Observable<SignInPage>;
+  /**
+      * Retrieves an email customization by its unique identifier
       * Retrieve an Email Customization
       * @param brandId The ID of the brand.
       * @param templateName The name of the email template.
@@ -1063,7 +1218,7 @@ export declare class ObservableCustomizationApi {
       */
   getEmailCustomization(brandId: string, templateName: string, customizationId: string, _options?: Configuration): Observable<EmailCustomization>;
   /**
-      * Gets an email template's default content.
+      * Retrieves an email template's default content
       * Retrieve an Email Template Default Content
       * @param brandId The ID of the brand.
       * @param templateName The name of the email template.
@@ -1071,22 +1226,22 @@ export declare class ObservableCustomizationApi {
       */
   getEmailDefaultContent(brandId: string, templateName: string, language?: string, _options?: Configuration): Observable<EmailDefaultContent>;
   /**
-      * Generates a preview of an email template's default content. All variable references (e.g., `${user.profile.firstName}`) are populated using the current user's context.
-      * Preview the Email Template Default Content
+      * Retrieves a preview of an email template's default content. All variable references (e.g., `${user.profile.firstName}`) are populated using the current user's context.
+      * Retrieve a Preview of the Email Template Default Content
       * @param brandId The ID of the brand.
       * @param templateName The name of the email template.
       * @param language The language to use for the email. Defaults to the current user&#39;s language if unspecified.
       */
   getEmailDefaultPreview(brandId: string, templateName: string, language?: string, _options?: Configuration): Observable<EmailPreview>;
   /**
-      * Gets an email template's settings.
+      * Retrieves an email template's settings
       * Retrieve the Email Template Settings
       * @param brandId The ID of the brand.
       * @param templateName The name of the email template.
       */
   getEmailSettings(brandId: string, templateName: string, _options?: Configuration): Observable<EmailSettings>;
   /**
-      * Gets the details of an email template by name.
+      * Retrieves the details of an email template by name
       * Retrieve an Email Template
       * @param brandId The ID of the brand.
       * @param templateName The name of the email template.
@@ -1094,105 +1249,169 @@ export declare class ObservableCustomizationApi {
       */
   getEmailTemplate(brandId: string, templateName: string, expand?: Array<'settings' | 'customizationCount'>, _options?: Configuration): Observable<EmailTemplate>;
   /**
-      * List all sign-in widget versions.
+      * Retrieves the error page
+      * Retrieve the Error Page
+      * @param brandId The ID of the brand.
+      * @param expand Specifies additional metadata to be included in the response.
+      */
+  getErrorPage(brandId: string, expand?: Array<'default' | 'customized' | 'customizedUrl' | 'preview' | 'previewUrl'>, _options?: Configuration): Observable<PageRoot>;
+  /**
+      * Retrieves the preview error page
+      * Retrieve the Preview Error Page Preview
+      * @param brandId The ID of the brand.
+      */
+  getPreviewErrorPage(brandId: string, _options?: Configuration): Observable<CustomizablePage>;
+  /**
+      * Retrieves the preview sign-in page
+      * Retrieve the Preview Sign-in Page Preview
+      * @param brandId The ID of the brand.
+      */
+  getPreviewSignInPage(brandId: string, _options?: Configuration): Observable<SignInPage>;
+  /**
+      * Retrieves the sign-in page
+      * Retrieve the Sign-in Page
+      * @param brandId The ID of the brand.
+      * @param expand Specifies additional metadata to be included in the response.
+      */
+  getSignInPage(brandId: string, expand?: Array<'default' | 'customized' | 'customizedUrl' | 'preview' | 'previewUrl'>, _options?: Configuration): Observable<PageRoot>;
+  /**
+      * Retrieves the sign-out page settings
+      * Retrieve the Sign-out Page Settings
+      * @param brandId The ID of the brand.
+      */
+  getSignOutPageSettings(brandId: string, _options?: Configuration): Observable<HostedPage>;
+  /**
+      * Lists all sign-in widget versions
       * List all Sign-in Widget Versions
       * @param brandId The ID of the brand.
       */
   listAllSignInWidgetVersions(brandId: string, _options?: Configuration): Observable<Collection<string>>;
   /**
-      * List all the themes in your brand
+      * Lists all domains associated with a brand by `brandId`
+      * List all Domains associated with a Brand
+      * @param brandId The ID of the brand.
+      */
+  listBrandDomains(brandId: string, _options?: Configuration): Observable<BrandDomains>;
+  /**
+      * Lists all the themes in your brand
       * List all Themes
-      * @param brandId
+      * @param brandId The ID of the brand.
       */
   listBrandThemes(brandId: string, _options?: Configuration): Observable<Collection<ThemeResponse>>;
   /**
-      * List all the brands in your org.
+      * Lists all the brands in your org
       * List all Brands
       */
   listBrands(_options?: Configuration): Observable<Collection<Brand>>;
   /**
-      * Lists all customizations of an email template.
+      * Lists all customizations of an email template
       * List all Email Customizations
       * @param brandId The ID of the brand.
       * @param templateName The name of the email template.
-      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/reference/core-okta-api/#pagination) for more information.
+      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](/#pagination) for more information.
       * @param limit A limit on the number of objects to return.
       */
   listEmailCustomizations(brandId: string, templateName: string, after?: string, limit?: number, _options?: Configuration): Observable<Collection<EmailCustomization>>;
   /**
-      * Lists all email templates.
+      * Lists all email templates
       * List all Email Templates
       * @param brandId The ID of the brand.
-      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/reference/core-okta-api/#pagination) for more information.
+      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](/#pagination) for more information.
       * @param limit A limit on the number of objects to return.
       * @param expand Specifies additional metadata to be included in the response.
       */
   listEmailTemplates(brandId: string, after?: string, limit?: number, expand?: Array<'settings' | 'customizationCount'>, _options?: Configuration): Observable<Collection<EmailTemplate>>;
   /**
-      * Previews the error page.
-      * Preview the Error Page
+      * Replaces a brand by `brandId`
+      * Replace a Brand
+      * @param brandId The ID of the brand.
+      * @param brand
+      */
+  replaceBrand(brandId: string, brand: BrandRequest, _options?: Configuration): Observable<Brand>;
+  /**
+      * Replaces a theme for a brand
+      * Replace a Theme
+      * @param brandId The ID of the brand.
+      * @param themeId The ID of the theme.
+      * @param theme
+      */
+  replaceBrandTheme(brandId: string, themeId: string, theme: Theme, _options?: Configuration): Observable<ThemeResponse>;
+  /**
+      * Replaces the customized error page
+      * Replace the Customized Error Page
       * @param brandId The ID of the brand.
       * @param CustomizablePage
       */
-  previewErrorPage(brandId: string, CustomizablePage: CustomizablePage, _options?: Configuration): Observable<string>;
+  replaceCustomizedErrorPage(brandId: string, CustomizablePage: CustomizablePage, _options?: Configuration): Observable<CustomizablePage>;
   /**
-      * Replaces the error page.
-      * Replace the Error Page
+      * Replaces the customized sign-in page
+      * Replace the Customized Sign-in Page
+      * @param brandId The ID of the brand.
+      * @param SignInPage
+      */
+  replaceCustomizedSignInPage(brandId: string, SignInPage: SignInPage, _options?: Configuration): Observable<SignInPage>;
+  /**
+      * Replaces an existing email customization using the property values provided
+      * Replace an Email Customization
+      * @param brandId The ID of the brand.
+      * @param templateName The name of the email template.
+      * @param customizationId The ID of the email customization.
+      * @param instance Request
+      */
+  replaceEmailCustomization(brandId: string, templateName: string, customizationId: string, instance?: EmailCustomization, _options?: Configuration): Observable<EmailCustomization>;
+  /**
+      * Replaces an email template's settings
+      * Replace the Email Template Settings
+      * @param brandId The ID of the brand.
+      * @param templateName The name of the email template.
+      * @param EmailSettings
+      */
+  replaceEmailSettings(brandId: string, templateName: string, EmailSettings?: EmailSettings, _options?: Configuration): Observable<void>;
+  /**
+      * Replaces the preview error page
+      * Replace the Preview Error Page
       * @param brandId The ID of the brand.
       * @param CustomizablePage
       */
-  replaceErrorPage(brandId: string, CustomizablePage: CustomizablePage, _options?: Configuration): Observable<CustomizablePage>;
+  replacePreviewErrorPage(brandId: string, CustomizablePage: CustomizablePage, _options?: Configuration): Observable<CustomizablePage>;
   /**
-      * Replaces the sign-in page.
-      * Replace the Sign-in Page
+      * Replaces the preview sign-in page
+      * Replace the Preview Sign-in Page
       * @param brandId The ID of the brand.
       * @param SignInPage
       */
-  replaceSignInPage(brandId: string, SignInPage: SignInPage, _options?: Configuration): Observable<SignInPage>;
+  replacePreviewSignInPage(brandId: string, SignInPage: SignInPage, _options?: Configuration): Observable<SignInPage>;
   /**
-      * Replace the sign-in page preview.
-      * Replace the Sign-in Page Preview
-      * @param brandId The ID of the brand.
-      * @param SignInPage
-      */
-  replaceSignInPagePreview(brandId: string, SignInPage: SignInPage, _options?: Configuration): Observable<void>;
-  /**
-      * Replaces the sign-out page settings.
+      * Replaces the sign-out page settings
       * Replace the Sign-out Page Settings
       * @param brandId The ID of the brand.
       * @param HostedPage
       */
   replaceSignOutPageSettings(brandId: string, HostedPage: HostedPage, _options?: Configuration): Observable<HostedPage>;
   /**
-      * Resets the error page.
-      * Reset the Error Page
+      * Resets the customized error page
+      * Reset the Customized Error Page
       * @param brandId The ID of the brand.
       */
-  resetErrorPage(brandId: string, _options?: Configuration): Observable<void>;
+  resetCustomizedErrorPage(brandId: string, _options?: Configuration): Observable<void>;
   /**
-      * Reset the sign-in page.
-      * Reset the Sign-in Page
+      * Resets the customized sign-in page
+      * Reset the Customized Sign-in Page
       * @param brandId The ID of the brand.
       */
-  resetSignInPage(brandId: string, _options?: Configuration): Observable<void>;
+  resetCustomizedSignInPage(brandId: string, _options?: Configuration): Observable<void>;
   /**
-      * Retrieves the error page.
-      * Retrieve the Error Page
+      * Resets the preview error page
+      * Reset the Preview Error Page
       * @param brandId The ID of the brand.
       */
-  retrieveErrorPage(brandId: string, _options?: Configuration): Observable<CustomizablePage>;
+  resetPreviewErrorPage(brandId: string, _options?: Configuration): Observable<void>;
   /**
-      * Retrieves the sign-in page.
-      * Retrieve the Sign-in Page
+      * Resets the preview sign-in page
+      * Reset the Preview Sign-in Page
       * @param brandId The ID of the brand.
       */
-  retrieveSignInPage(brandId: string, _options?: Configuration): Observable<SignInPage>;
-  /**
-      * Retrieves the sign-out page settings.
-      * Retrieve the Sign-out Page Settings
-      * @param brandId The ID of the brand.
-      */
-  retrieveSignOutPageSettings(brandId: string, _options?: Configuration): Observable<HostedPage>;
+  resetPreviewSignInPage(brandId: string, _options?: Configuration): Observable<void>;
   /**
       * Sends a test email to the current user’s primary and secondary email addresses. The email content is selected based on the following priority: 1. The email customization for the language specified in the `language` query parameter. 2. The email template's default customization. 3. The email template’s default content, translated to the current user's language.
       * Send a Test Email
@@ -1202,61 +1421,80 @@ export declare class ObservableCustomizationApi {
       */
   sendTestEmail(brandId: string, templateName: string, language?: string, _options?: Configuration): Observable<void>;
   /**
-      * Updates a brand by `brandId`
-      * Replace a Brand
-      * @param brandId
-      * @param brand
-      */
-  updateBrand(brandId: string, brand: Brand, _options?: Configuration): Observable<Brand>;
-  /**
-      * Updates a theme for a brand
-      * Replace a Theme
-      * @param brandId
-      * @param themeId
-      * @param theme
-      */
-  updateBrandTheme(brandId: string, themeId: string, theme: Theme, _options?: Configuration): Observable<ThemeResponse>;
-  /**
-      * Updates an existing email customization using the property values provided.
-      * Replace an Email Customization
-      * @param brandId The ID of the brand.
-      * @param templateName The name of the email template.
-      * @param customizationId The ID of the email customization.
-      * @param instance Request
-      */
-  updateEmailCustomization(brandId: string, templateName: string, customizationId: string, instance?: EmailCustomization, _options?: Configuration): Observable<EmailCustomization>;
-  /**
-      * Updates an email template's settings.
-      * Replace the Email Template Settings
-      * @param brandId The ID of the brand.
-      * @param templateName The name of the email template.
-      * @param EmailSettings
-      */
-  updateEmailSettings(brandId: string, templateName: string, EmailSettings?: EmailSettings, _options?: Configuration): Observable<void>;
-  /**
-      * Updates the background image for your Theme
+      * Uploads and replaces the background image for the theme. The file must be in PNG, JPG, or GIF format and less than 2 MB in size.
       * Upload the Background Image
-      * @param brandId
-      * @param themeId
+      * @param brandId The ID of the brand.
+      * @param themeId The ID of the theme.
       * @param file
       */
   uploadBrandThemeBackgroundImage(brandId: string, themeId: string, file: HttpFile, _options?: Configuration): Observable<ImageUploadResponse>;
   /**
-      * Updates the favicon for your theme
+      * Uploads and replaces the favicon for the theme
       * Upload the Favicon
-      * @param brandId
-      * @param themeId
+      * @param brandId The ID of the brand.
+      * @param themeId The ID of the theme.
       * @param file
       */
   uploadBrandThemeFavicon(brandId: string, themeId: string, file: HttpFile, _options?: Configuration): Observable<ImageUploadResponse>;
   /**
-      * Updates the logo for your Theme
+      * Uploads and replaces the logo for the theme. The file must be in PNG, JPG, or GIF format and less than 100kB in size. For best results use landscape orientation, a transparent background, and a minimum size of 300px by 50px to prevent upscaling.
       * Upload the Logo
-      * @param brandId
-      * @param themeId
+      * @param brandId The ID of the brand.
+      * @param themeId The ID of the theme.
       * @param file
       */
   uploadBrandThemeLogo(brandId: string, themeId: string, file: HttpFile, _options?: Configuration): Observable<ImageUploadResponse>;
+}
+import { DeviceApiRequestFactory, DeviceApiResponseProcessor } from '../apis/DeviceApi';
+export declare class ObservableDeviceApi {
+  private requestFactory;
+  private responseProcessor;
+  private configuration;
+  constructor(configuration: Configuration, requestFactory?: DeviceApiRequestFactory, responseProcessor?: DeviceApiResponseProcessor);
+  /**
+      * Activates a device by `deviceId`
+      * Activate a Device
+      * @param deviceId &#x60;id&#x60; of the device
+      */
+  activateDevice(deviceId: string, _options?: Configuration): Observable<void>;
+  /**
+      * Deactivates a device by `deviceId`
+      * Deactivate a Device
+      * @param deviceId &#x60;id&#x60; of the device
+      */
+  deactivateDevice(deviceId: string, _options?: Configuration): Observable<void>;
+  /**
+      * Deletes a device by `deviceId`
+      * Delete a Device
+      * @param deviceId &#x60;id&#x60; of the device
+      */
+  deleteDevice(deviceId: string, _options?: Configuration): Observable<void>;
+  /**
+      * Retrieves a device by `deviceId`
+      * Retrieve a Device
+      * @param deviceId &#x60;id&#x60; of the device
+      */
+  getDevice(deviceId: string, _options?: Configuration): Observable<Device>;
+  /**
+      * Lists all devices with pagination support.  A subset of Devices can be returned that match a supported search criteria using the `search` query parameter.  Searches for devices based on the properties specified in the `search` parameter conforming SCIM filter specifications (case-insensitive). This data is eventually consistent. The API returns different results depending on specified queries in the request. Empty list is returned if no objects match `search` request.  > **Note:** Listing devices with `search` should not be used as a part of any critical flows—such as authentication or updates—to prevent potential data loss. `search` results may not reflect the latest information, as this endpoint uses a search index which may not be up-to-date with recent updates to the object. <br> Don't use search results directly for record updates, as the data might be stale and therefore overwrite newer data, resulting in data loss. <br> Use an `id` lookup for records that you update to ensure your results contain the latest data.  This operation equires [URL encoding](http://en.wikipedia.org/wiki/Percent-encoding). For example, `search=profile.displayName eq \"Bob\"` is encoded as `search=profile.displayName%20eq%20%22Bob%22`.
+      * List all Devices
+      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](/#pagination) for more information.
+      * @param limit A limit on the number of objects to return.
+      * @param search SCIM filter expression that filters the results. Searches include all Device &#x60;profile&#x60; properties, as well as the Device &#x60;id&#x60;, &#x60;status&#x60; and &#x60;lastUpdated&#x60; properties.
+      */
+  listDevices(after?: string, limit?: number, search?: string, _options?: Configuration): Observable<Collection<Device>>;
+  /**
+      * Suspends a device by `deviceId`
+      * Suspend a Device
+      * @param deviceId &#x60;id&#x60; of the device
+      */
+  suspendDevice(deviceId: string, _options?: Configuration): Observable<void>;
+  /**
+      * Unsuspends a device by `deviceId`
+      * Unsuspend a Device
+      * @param deviceId &#x60;id&#x60; of the device
+      */
+  unsuspendDevice(deviceId: string, _options?: Configuration): Observable<void>;
 }
 import { DeviceAssuranceApiRequestFactory, DeviceAssuranceApiResponseProcessor } from '../apis/DeviceAssuranceApi';
 export declare class ObservableDeviceAssuranceApi {
@@ -1265,78 +1503,35 @@ export declare class ObservableDeviceAssuranceApi {
   private configuration;
   constructor(configuration: Configuration, requestFactory?: DeviceAssuranceApiRequestFactory, responseProcessor?: DeviceAssuranceApiResponseProcessor);
   /**
-      * Adds a new Device Assurance Policy.
+      * Creates a new Device Assurance Policy
       * Create a Device Assurance Policy
       * @param deviceAssurance
       */
   createDeviceAssurancePolicy(deviceAssurance: DeviceAssurance, _options?: Configuration): Observable<DeviceAssurance>;
   /**
-      * Delete a Device Assurance Policy by `deviceAssuranceId`. If the Device Assurance Policy is currently being used in the org Authentication Policies, the delete will not be allowed.
+      * Deletes a Device Assurance Policy by `deviceAssuranceId`. If the Device Assurance Policy is currently being used in the org Authentication Policies, the delete will not be allowed.
       * Delete a Device Assurance Policy
       * @param deviceAssuranceId Id of the Device Assurance Policy
       */
   deleteDeviceAssurancePolicy(deviceAssuranceId: string, _options?: Configuration): Observable<void>;
   /**
-      * Fetches a Device Assurance Policy by `deviceAssuranceId`.
+      * Retrieves a Device Assurance Policy by `deviceAssuranceId`
       * Retrieve a Device Assurance Policy
       * @param deviceAssuranceId Id of the Device Assurance Policy
       */
   getDeviceAssurancePolicy(deviceAssuranceId: string, _options?: Configuration): Observable<DeviceAssurance>;
   /**
-      * Enumerates Device Assurance Policies in your organization.
+      * Lists all device assurance policies
       * List all Device Assurance Policies
       */
   listDeviceAssurancePolicies(_options?: Configuration): Observable<Collection<DeviceAssurance>>;
   /**
-      * Updates a Device Assurance Policy by `deviceAssuranceId`.
+      * Replaces a Device Assurance Policy by `deviceAssuranceId`
       * Replace a Device Assurance Policy
       * @param deviceAssuranceId Id of the Device Assurance Policy
       * @param deviceAssurance
       */
-  updateDeviceAssurancePolicy(deviceAssuranceId: string, deviceAssurance: DeviceAssurance, _options?: Configuration): Observable<DeviceAssurance>;
-}
-import { DomainApiRequestFactory, DomainApiResponseProcessor } from '../apis/DomainApi';
-export declare class ObservableDomainApi {
-  private requestFactory;
-  private responseProcessor;
-  private configuration;
-  constructor(configuration: Configuration, requestFactory?: DomainApiRequestFactory, responseProcessor?: DomainApiResponseProcessor);
-  /**
-      * Creates the Certificate for the Domain.
-      * Replace the Certificate
-      * @param domainId
-      * @param certificate
-      */
-  createCertificate(domainId: string, certificate: DomainCertificate, _options?: Configuration): Observable<void>;
-  /**
-      * Creates your domain.
-      * Create a Domain
-      * @param domain
-      */
-  createDomain(domain: Domain, _options?: Configuration): Observable<DomainResponse>;
-  /**
-      * Deletes a Domain by `id`.
-      * Delete a Domain
-      * @param domainId
-      */
-  deleteDomain(domainId: string, _options?: Configuration): Observable<void>;
-  /**
-      * Fetches a Domain by `id`.
-      * Retrieve a Domain
-      * @param domainId
-      */
-  getDomain(domainId: string, _options?: Configuration): Observable<DomainResponse>;
-  /**
-      * List all verified custom Domains for the org.
-      * List all Domains
-      */
-  listDomains(_options?: Configuration): Observable<DomainListResponse>;
-  /**
-      * Verifies the Domain by `id`.
-      * Verify a Domain
-      * @param domainId
-      */
-  verifyDomain(domainId: string, _options?: Configuration): Observable<DomainResponse>;
+  replaceDeviceAssurancePolicy(deviceAssuranceId: string, deviceAssurance: DeviceAssurance, _options?: Configuration): Observable<DeviceAssurance>;
 }
 import { EmailDomainApiRequestFactory, EmailDomainApiResponseProcessor } from '../apis/EmailDomainApi';
 export declare class ObservableEmailDomainApi {
@@ -1345,44 +1540,44 @@ export declare class ObservableEmailDomainApi {
   private configuration;
   constructor(configuration: Configuration, requestFactory?: EmailDomainApiRequestFactory, responseProcessor?: EmailDomainApiResponseProcessor);
   /**
-      * Creates a custom email domain.
+      * Creates an Email Domain in your org, along with associated username and sender display name
       * Create an Email Domain
       * @param emailDomain
       */
   createEmailDomain(emailDomain: EmailDomain, _options?: Configuration): Observable<EmailDomainResponse>;
   /**
-      * Deletes an Email Domain by `emailDomainId`.
+      * Deletes an Email Domain by `emailDomainId`
       * Delete an Email Domain
       * @param emailDomainId
       */
   deleteEmailDomain(emailDomainId: string, _options?: Configuration): Observable<void>;
   /**
-      * Fetches an Email Domain by `emailDomainId`.
+      * Retrieves an Email Domain by `emailDomainId`, along with associated username and sender display name
       * Retrieve a Email Domain
       * @param emailDomainId
       */
   getEmailDomain(emailDomainId: string, _options?: Configuration): Observable<EmailDomainResponse>;
   /**
-      * List all brands linked to an email domain.
+      * Lists all brands linked to an email domain
       * List all brands linked to an email domain
       * @param emailDomainId
       */
   listEmailDomainBrands(emailDomainId: string, _options?: Configuration): Observable<Collection<Brand>>;
   /**
-      * List all the email domains in your org.
-      * List all email domains
+      * Lists all the Email Domains in your org, along with associated username and sender display name
+      * List all Email Domains
       */
   listEmailDomains(_options?: Configuration): Observable<EmailDomainListResponse>;
   /**
-      * Updates an email domain by `emailDomainId`
-      * Update an Email Domain
+      * Replaces associated username and sender display name by `emailDomainId`
+      * Replace an Email Domain
       * @param emailDomainId
       * @param updateEmailDomain
       */
-  updateEmailDomain(emailDomainId: string, updateEmailDomain: UpdateEmailDomain, _options?: Configuration): Observable<EmailDomainResponse>;
+  replaceEmailDomain(emailDomainId: string, updateEmailDomain: UpdateEmailDomain, _options?: Configuration): Observable<EmailDomainResponse>;
   /**
-      * Verifies the Email Domain by `id`.
-      * Verify Email Domain
+      * Verifies an Email Domain by `emailDomainId`
+      * Verify an Email Domain
       * @param emailDomainId
       */
   verifyEmailDomain(emailDomainId: string, _options?: Configuration): Observable<EmailDomainResponse>;
@@ -1394,49 +1589,49 @@ export declare class ObservableEventHookApi {
   private configuration;
   constructor(configuration: Configuration, requestFactory?: EventHookApiRequestFactory, responseProcessor?: EventHookApiResponseProcessor);
   /**
-      * Success
+      * Activates an event hook
       * Activate an Event Hook
       * @param eventHookId
       */
   activateEventHook(eventHookId: string, _options?: Configuration): Observable<EventHook>;
   /**
-      * Success
+      * Creates an event hook
       * Create an Event Hook
       * @param eventHook
       */
   createEventHook(eventHook: EventHook, _options?: Configuration): Observable<EventHook>;
   /**
-      * Success
+      * Deactivates an event hook
       * Deactivate an Event Hook
       * @param eventHookId
       */
   deactivateEventHook(eventHookId: string, _options?: Configuration): Observable<EventHook>;
   /**
-      * Success
+      * Deletes an event hook
       * Delete an Event Hook
       * @param eventHookId
       */
   deleteEventHook(eventHookId: string, _options?: Configuration): Observable<void>;
   /**
-      * Success
+      * Retrieves an event hook
       * Retrieve an Event Hook
       * @param eventHookId
       */
   getEventHook(eventHookId: string, _options?: Configuration): Observable<EventHook>;
   /**
-      * Success
+      * Lists all event hooks
       * List all Event Hooks
       */
   listEventHooks(_options?: Configuration): Observable<Collection<EventHook>>;
   /**
-      * Success
+      * Replaces an event hook
       * Replace an Event Hook
       * @param eventHookId
       * @param eventHook
       */
-  updateEventHook(eventHookId: string, eventHook: EventHook, _options?: Configuration): Observable<EventHook>;
+  replaceEventHook(eventHookId: string, eventHook: EventHook, _options?: Configuration): Observable<EventHook>;
   /**
-      * Success
+      * Verifies an event hook
       * Verify an Event Hook
       * @param eventHookId
       */
@@ -1449,30 +1644,30 @@ export declare class ObservableFeatureApi {
   private configuration;
   constructor(configuration: Configuration, requestFactory?: FeatureApiRequestFactory, responseProcessor?: FeatureApiResponseProcessor);
   /**
-      * Success
+      * Retrieves a feature
       * Retrieve a Feature
       * @param featureId
       */
   getFeature(featureId: string, _options?: Configuration): Observable<Feature>;
   /**
-      * Success
+      * Lists all dependencies
       * List all Dependencies
       * @param featureId
       */
   listFeatureDependencies(featureId: string, _options?: Configuration): Observable<Collection<Feature>>;
   /**
-      * Success
+      * Lists all dependents
       * List all Dependents
       * @param featureId
       */
   listFeatureDependents(featureId: string, _options?: Configuration): Observable<Collection<Feature>>;
   /**
-      * Success
+      * Lists all features
       * List all Features
       */
   listFeatures(_options?: Configuration): Observable<Collection<Feature>>;
   /**
-      * Success
+      * Updates a feature lifecycle
       * Update a Feature Lifecycle
       * @param featureId
       * @param lifecycle
@@ -1487,53 +1682,27 @@ export declare class ObservableGroupApi {
   private configuration;
   constructor(configuration: Configuration, requestFactory?: GroupApiRequestFactory, responseProcessor?: GroupApiResponseProcessor);
   /**
-      * Activates a specific group rule by id from your organization
+      * Activates a specific group rule by `ruleId`
       * Activate a Group Rule
       * @param ruleId
       */
   activateGroupRule(ruleId: string, _options?: Configuration): Observable<void>;
   /**
-      * Add App Instance Target to App Administrator Role given to a Group
-      * Assign an Application Instance Target to Application Administrator Role
+      * Assigns a group owner
+      * Assign a Group Owner
       * @param groupId
-      * @param roleId
-      * @param appName
-      * @param applicationId
+      * @param GroupOwner
       */
-  addApplicationInstanceTargetToAppAdminRoleGivenToGroup(groupId: string, roleId: string, appName: string, applicationId: string, _options?: Configuration): Observable<void>;
+  assignGroupOwner(groupId: string, GroupOwner: GroupOwner, _options?: Configuration): Observable<GroupOwner>;
   /**
-      * Success
-      * Assign an Application Target to Administrator Role
-      * @param groupId
-      * @param roleId
-      * @param appName
-      */
-  addApplicationTargetToAdminRoleGivenToGroup(groupId: string, roleId: string, appName: string, _options?: Configuration): Observable<void>;
-  /**
-      * Enumerates group targets for a group role.
-      * Assign a Group Target for Group Role
-      * @param groupId
-      * @param roleId
-      * @param targetGroupId
-      */
-  addGroupTargetToGroupAdministratorRoleForGroup(groupId: string, roleId: string, targetGroupId: string, _options?: Configuration): Observable<void>;
-  /**
-      * Adds a user to a group with 'OKTA_GROUP' type.
+      * Assigns a user to a group with 'OKTA_GROUP' type
       * Assign a User
       * @param groupId
       * @param userId
       */
-  addUserToGroup(groupId: string, userId: string, _options?: Configuration): Observable<void>;
+  assignUserToGroup(groupId: string, userId: string, _options?: Configuration): Observable<void>;
   /**
-      * Assigns a Role to a Group
-      * Assign a Role
-      * @param groupId
-      * @param assignRoleRequest
-      * @param disableNotifications
-      */
-  assignRoleToGroup(groupId: string, assignRoleRequest: AssignRoleRequest, disableNotifications?: boolean, _options?: Configuration): Observable<Role | void>;
-  /**
-      * Adds a new group with `OKTA_GROUP` type to your organization.
+      * Creates a new group with `OKTA_GROUP` type
       * Create a Group
       * @param group
       */
@@ -1545,55 +1714,46 @@ export declare class ObservableGroupApi {
       */
   createGroupRule(groupRule: GroupRule, _options?: Configuration): Observable<GroupRule>;
   /**
-      * Deactivates a specific group rule by id from your organization
+      * Deactivates a specific group rule by `ruleId`
       * Deactivate a Group Rule
       * @param ruleId
       */
   deactivateGroupRule(ruleId: string, _options?: Configuration): Observable<void>;
   /**
-      * Removes a group with `OKTA_GROUP` type from your organization.
+      * Deletes a group with `OKTA_GROUP` type
       * Delete a Group
       * @param groupId
       */
   deleteGroup(groupId: string, _options?: Configuration): Observable<void>;
   /**
-      * Removes a specific group rule by id from your organization
+      * Deletes a group owner from a specific group
+      * Delete a Group Owner
+      * @param groupId
+      * @param ownerId
+      */
+  deleteGroupOwner(groupId: string, ownerId: string, _options?: Configuration): Observable<void>;
+  /**
+      * Deletes a specific group rule by `ruleId`
       * Delete a group Rule
       * @param ruleId
       * @param removeUsers Indicates whether to keep or remove users from groups assigned by this rule.
       */
   deleteGroupRule(ruleId: string, removeUsers?: boolean, _options?: Configuration): Observable<void>;
   /**
-      * Fetches a group from your organization.
-      * List all Group Rules
+      * Retrieves a group by `groupId`
+      * Retrieve a Group
       * @param groupId
       */
   getGroup(groupId: string, _options?: Configuration): Observable<Group>;
   /**
-      * Fetches a specific group rule by id from your organization
+      * Retrieves a specific group rule by `ruleId`
       * Retrieve a Group Rule
       * @param ruleId
       * @param expand
       */
   getGroupRule(ruleId: string, expand?: string, _options?: Configuration): Observable<GroupRule>;
   /**
-      * Success
-      * Retrieve a Role
-      * @param groupId
-      * @param roleId
-      */
-  getRole(groupId: string, roleId: string, _options?: Configuration): Observable<Role>;
-  /**
-      * Lists all App targets for an `APP_ADMIN` Role assigned to a Group. This methods return list may include full Applications or Instances. The response for an instance will have an `ID` value, while Application will not have an ID.
-      * List all Application Targets for an Application Administrator Role
-      * @param groupId
-      * @param roleId
-      * @param after
-      * @param limit
-      */
-  listApplicationTargetsForApplicationAdministratorRoleForGroup(groupId: string, roleId: string, after?: string, limit?: number, _options?: Configuration): Observable<Collection<CatalogApplication>>;
-  /**
-      * Enumerates all applications that are assigned to a group.
+      * Lists all applications that are assigned to a group
       * List all Assigned Applications
       * @param groupId
       * @param after Specifies the pagination cursor for the next page of apps
@@ -1601,14 +1761,16 @@ export declare class ObservableGroupApi {
       */
   listAssignedApplicationsForGroup(groupId: string, after?: string, limit?: number, _options?: Configuration): Observable<Collection<Application>>;
   /**
-      * Success
-      * List all Assigned Roles
+      * Lists all owners for a specific group
+      * List all Group Owners
       * @param groupId
-      * @param expand
+      * @param filter SCIM Filter expression for group owners. Allows to filter owners by type.
+      * @param after Specifies the pagination cursor for the next page of owners
+      * @param limit Specifies the number of owner results in a page
       */
-  listGroupAssignedRoles(groupId: string, expand?: string, _options?: Configuration): Observable<Collection<Role>>;
+  listGroupOwners(groupId: string, filter?: string, after?: string, limit?: number, _options?: Configuration): Observable<Collection<GroupOwner>>;
   /**
-      * Lists all group rules for your organization.
+      * Lists all group rules
       * List all Group Rules
       * @param limit Specifies the number of rule results in a page
       * @param after Specifies the pagination cursor for the next page of rules
@@ -1617,16 +1779,7 @@ export declare class ObservableGroupApi {
       */
   listGroupRules(limit?: number, after?: string, search?: string, expand?: string, _options?: Configuration): Observable<Collection<GroupRule>>;
   /**
-      * Enumerates group targets for a group role.
-      * List all Group Targets for a Group Role
-      * @param groupId
-      * @param roleId
-      * @param after
-      * @param limit
-      */
-  listGroupTargetsForGroupRole(groupId: string, roleId: string, after?: string, limit?: number, _options?: Configuration): Observable<Collection<Group>>;
-  /**
-      * Enumerates all users that are a member of a group.
+      * Lists all users that are a member of a group
       * List all Member Users
       * @param groupId
       * @param after Specifies the pagination cursor for the next page of users
@@ -1634,7 +1787,7 @@ export declare class ObservableGroupApi {
       */
   listGroupUsers(groupId: string, after?: string, limit?: number, _options?: Configuration): Observable<Collection<User>>;
   /**
-      * Enumerates groups in your organization with pagination. A subset of groups can be returned that match a supported filter expression or query.
+      * Lists all groups with pagination support. A subset of groups can be returned that match a supported filter expression or query.
       * List all Groups
       * @param q Searches the name property of groups for matching value
       * @param filter Filter expression for groups
@@ -1645,58 +1798,69 @@ export declare class ObservableGroupApi {
       */
   listGroups(q?: string, filter?: string, after?: string, limit?: number, expand?: string, search?: string, _options?: Configuration): Observable<Collection<Group>>;
   /**
-      * Remove App Instance Target to App Administrator Role given to a Group
-      * Delete an Application Instance Target to Application Administrator Role
-      * @param groupId
-      * @param roleId
-      * @param appName
-      * @param applicationId
-      */
-  removeApplicationTargetFromAdministratorRoleGivenToGroup(groupId: string, roleId: string, appName: string, applicationId: string, _options?: Configuration): Observable<void>;
-  /**
-      * Success
-      * Delete an Application Target from Application Administrator Role
-      * @param groupId
-      * @param roleId
-      * @param appName
-      */
-  removeApplicationTargetFromApplicationAdministratorRoleGivenToGroup(groupId: string, roleId: string, appName: string, _options?: Configuration): Observable<void>;
-  /**
-      * remove group target for a group role.
-      * Delete a Group Target for Group Role
-      * @param groupId
-      * @param roleId
-      * @param targetGroupId
-      */
-  removeGroupTargetFromGroupAdministratorRoleGivenToGroup(groupId: string, roleId: string, targetGroupId: string, _options?: Configuration): Observable<void>;
-  /**
-      * Unassigns a Role from a Group
-      * Delete a Role
-      * @param groupId
-      * @param roleId
-      */
-  removeRoleFromGroup(groupId: string, roleId: string, _options?: Configuration): Observable<void>;
-  /**
-      * Removes a user from a group with 'OKTA_GROUP' type.
-      * Unassign a User
-      * @param groupId
-      * @param userId
-      */
-  removeUserFromGroup(groupId: string, userId: string, _options?: Configuration): Observable<void>;
-  /**
-      * Updates the profile for a group with `OKTA_GROUP` type from your organization.
+      * Replaces the profile for a group with `OKTA_GROUP` type
       * Replace a Group
       * @param groupId
       * @param group
       */
-  updateGroup(groupId: string, group: Group, _options?: Configuration): Observable<Group>;
+  replaceGroup(groupId: string, group: Group, _options?: Configuration): Observable<Group>;
   /**
-      * Updates a group rule. Only `INACTIVE` rules can be updated.
+      * Replaces a group rule. Only `INACTIVE` rules can be updated.
       * Replace a Group Rule
       * @param ruleId
       * @param groupRule
       */
-  updateGroupRule(ruleId: string, groupRule: GroupRule, _options?: Configuration): Observable<GroupRule>;
+  replaceGroupRule(ruleId: string, groupRule: GroupRule, _options?: Configuration): Observable<GroupRule>;
+  /**
+      * Unassigns a user from a group with 'OKTA_GROUP' type
+      * Unassign a User
+      * @param groupId
+      * @param userId
+      */
+  unassignUserFromGroup(groupId: string, userId: string, _options?: Configuration): Observable<void>;
+}
+import { HookKeyApiRequestFactory, HookKeyApiResponseProcessor } from '../apis/HookKeyApi';
+export declare class ObservableHookKeyApi {
+  private requestFactory;
+  private responseProcessor;
+  private configuration;
+  constructor(configuration: Configuration, requestFactory?: HookKeyApiRequestFactory, responseProcessor?: HookKeyApiResponseProcessor);
+  /**
+      * Creates a key
+      * Create a key
+      * @param keyRequest
+      */
+  createHookKey(keyRequest: KeyRequest, _options?: Configuration): Observable<HookKey>;
+  /**
+      * Deletes a key by `hookKeyId`. Once deleted, the Hook Key is unrecoverable. As a safety precaution, unused keys are eligible for deletion.
+      * Delete a key
+      * @param hookKeyId
+      */
+  deleteHookKey(hookKeyId: string, _options?: Configuration): Observable<void>;
+  /**
+      * Retrieves a key by `hookKeyId`
+      * Retrieve a key
+      * @param hookKeyId
+      */
+  getHookKey(hookKeyId: string, _options?: Configuration): Observable<HookKey>;
+  /**
+      * Retrieves a public key by `keyId`
+      * Retrieve a public key
+      * @param keyId
+      */
+  getPublicKey(keyId: string, _options?: Configuration): Observable<JsonWebKey>;
+  /**
+      * Lists all keys
+      * List all keys
+      */
+  listHookKeys(_options?: Configuration): Observable<Collection<HookKey>>;
+  /**
+      * Replaces a key by `hookKeyId`
+      * Replace a key
+      * @param hookKeyId
+      * @param keyRequest
+      */
+  replaceHookKey(hookKeyId: string, keyRequest: KeyRequest, _options?: Configuration): Observable<HookKey>;
 }
 import { IdentityProviderApiRequestFactory, IdentityProviderApiResponseProcessor } from '../apis/IdentityProviderApi';
 export declare class ObservableIdentityProviderApi {
@@ -1705,7 +1869,7 @@ export declare class ObservableIdentityProviderApi {
   private configuration;
   constructor(configuration: Configuration, requestFactory?: IdentityProviderApiRequestFactory, responseProcessor?: IdentityProviderApiResponseProcessor);
   /**
-      * Activates an inactive IdP.
+      * Activates an inactive IdP
       * Activate an Identity Provider
       * @param idpId
       */
@@ -1719,37 +1883,37 @@ export declare class ObservableIdentityProviderApi {
       */
   cloneIdentityProviderKey(idpId: string, keyId: string, targetIdpId: string, _options?: Configuration): Observable<JsonWebKey>;
   /**
-      * Adds a new IdP to your organization.
+      * Creates a new identity provider integration
       * Create an Identity Provider
       * @param identityProvider
       */
   createIdentityProvider(identityProvider: IdentityProvider, _options?: Configuration): Observable<IdentityProvider>;
   /**
-      * Adds a new X.509 certificate credential to the IdP key store.
+      * Creates a new X.509 certificate credential to the IdP key store.
       * Create an X.509 Certificate Public Key
       * @param jsonWebKey
       */
   createIdentityProviderKey(jsonWebKey: JsonWebKey, _options?: Configuration): Observable<JsonWebKey>;
   /**
-      * Deactivates an active IdP.
+      * Deactivates an active IdP
       * Deactivate an Identity Provider
       * @param idpId
       */
   deactivateIdentityProvider(idpId: string, _options?: Configuration): Observable<IdentityProvider>;
   /**
-      * Removes an IdP from your organization.
+      * Deletes an identity provider integration by `idpId`
       * Delete an Identity Provider
       * @param idpId
       */
   deleteIdentityProvider(idpId: string, _options?: Configuration): Observable<void>;
   /**
-      * Deletes a specific IdP Key Credential by `kid` if it is not currently being used by an Active or Inactive IdP.
+      * Deletes a specific IdP Key Credential by `kid` if it is not currently being used by an Active or Inactive IdP
       * Delete a Signing Credential Key
       * @param keyId
       */
   deleteIdentityProviderKey(keyId: string, _options?: Configuration): Observable<void>;
   /**
-      * Generates a new key pair and returns a Certificate Signing Request for it.
+      * Generates a new key pair and returns a Certificate Signing Request for it
       * Generate a Certificate Signing Request
       * @param idpId
       * @param metadata
@@ -1763,33 +1927,33 @@ export declare class ObservableIdentityProviderApi {
       */
   generateIdentityProviderSigningKey(idpId: string, validityYears: number, _options?: Configuration): Observable<JsonWebKey>;
   /**
-      * Gets a specific Certificate Signing Request model by id
+      * Retrieves a specific Certificate Signing Request model by id
       * Retrieve a Certificate Signing Request
       * @param idpId
       * @param csrId
       */
   getCsrForIdentityProvider(idpId: string, csrId: string, _options?: Configuration): Observable<Csr>;
   /**
-      * Fetches an IdP by `id`.
+      * Retrieves an identity provider integration by `idpId`
       * Retrieve an Identity Provider
       * @param idpId
       */
   getIdentityProvider(idpId: string, _options?: Configuration): Observable<IdentityProvider>;
   /**
-      * Fetches a linked IdP user by ID
+      * Retrieves a linked IdP user by ID
       * Retrieve a User
       * @param idpId
       * @param userId
       */
   getIdentityProviderApplicationUser(idpId: string, userId: string, _options?: Configuration): Observable<IdentityProviderApplicationUser>;
   /**
-      * Gets a specific IdP Key Credential by `kid`
+      * Retrieves a specific IdP Key Credential by `kid`
       * Retrieve an Credential Key
       * @param keyId
       */
   getIdentityProviderKey(keyId: string, _options?: Configuration): Observable<JsonWebKey>;
   /**
-      * Gets a specific IdP Key Credential by `kid`
+      * Retrieves a specific IdP Key Credential by `kid`
       * Retrieve a Signing Credential Key
       * @param idpId
       * @param keyId
@@ -1804,32 +1968,32 @@ export declare class ObservableIdentityProviderApi {
       */
   linkUserToIdentityProvider(idpId: string, userId: string, userIdentityProviderLinkRequest: UserIdentityProviderLinkRequest, _options?: Configuration): Observable<IdentityProviderApplicationUser>;
   /**
-      * Enumerates Certificate Signing Requests for an IdP
+      * Lists all Certificate Signing Requests for an IdP
       * List all Certificate Signing Requests
       * @param idpId
       */
   listCsrsForIdentityProvider(idpId: string, _options?: Configuration): Observable<Collection<Csr>>;
   /**
-      * Find all the users linked to an identity provider
+      * Lists all users linked to the identity provider
       * List all Users
       * @param idpId
       */
   listIdentityProviderApplicationUsers(idpId: string, _options?: Configuration): Observable<Collection<IdentityProviderApplicationUser>>;
   /**
-      * Enumerates IdP key credentials.
+      * Lists all IdP key credentials
       * List all Credential Keys
       * @param after Specifies the pagination cursor for the next page of keys
       * @param limit Specifies the number of key results in a page
       */
   listIdentityProviderKeys(after?: string, limit?: number, _options?: Configuration): Observable<Collection<JsonWebKey>>;
   /**
-      * Enumerates signing key credentials for an IdP
+      * Lists all signing key credentials for an IdP
       * List all Signing Credential Keys
       * @param idpId
       */
   listIdentityProviderSigningKeys(idpId: string, _options?: Configuration): Observable<Collection<JsonWebKey>>;
   /**
-      * Enumerates IdPs in your organization with pagination. A subset of IdPs can be returned that match a supported filter expression or query.
+      * Lists all identity provider integrations with pagination. A subset of IdPs can be returned that match a supported filter expression or query.
       * List all Identity Providers
       * @param q Searches the name property of IdPs for matching value
       * @param after Specifies the pagination cursor for the next page of IdPs
@@ -1838,14 +2002,14 @@ export declare class ObservableIdentityProviderApi {
       */
   listIdentityProviders(q?: string, after?: string, limit?: number, type?: string, _options?: Configuration): Observable<Collection<IdentityProvider>>;
   /**
-      * Fetches the tokens minted by the Social Authentication Provider when the user authenticates with Okta via Social Auth.
+      * Lists the tokens minted by the Social Authentication Provider when the user authenticates with Okta via Social Auth
       * List all Tokens from a OIDC Identity Provider
       * @param idpId
       * @param userId
       */
   listSocialAuthTokens(idpId: string, userId: string, _options?: Configuration): Observable<Collection<SocialAuthToken>>;
   /**
-      * Update the Certificate Signing Request with a signed X.509 certificate and add it into the signing key credentials for the IdP.
+      * Publishes a certificate signing request with a signed X.509 certificate and adds it into the signing key credentials for the IdP
       * Publish a Certificate Signing Request
       * @param idpId
       * @param csrId
@@ -1853,26 +2017,82 @@ export declare class ObservableIdentityProviderApi {
       */
   publishCsrForIdentityProvider(idpId: string, csrId: string, body: HttpFile, _options?: Configuration): Observable<JsonWebKey>;
   /**
-      * Revoke a Certificate Signing Request and delete the key pair from the IdP
+      * Replaces an identity provider integration by `idpId`
+      * Replace an Identity Provider
+      * @param idpId
+      * @param identityProvider
+      */
+  replaceIdentityProvider(idpId: string, identityProvider: IdentityProvider, _options?: Configuration): Observable<IdentityProvider>;
+  /**
+      * Revokes a certificate signing request and deletes the key pair from the IdP
       * Revoke a Certificate Signing Request
       * @param idpId
       * @param csrId
       */
   revokeCsrForIdentityProvider(idpId: string, csrId: string, _options?: Configuration): Observable<void>;
   /**
-      * Removes the link between the Okta user and the IdP user.
+      * Unlinks the link between the Okta user and the IdP user
       * Unlink a User from IdP
       * @param idpId
       * @param userId
       */
   unlinkUserFromIdentityProvider(idpId: string, userId: string, _options?: Configuration): Observable<void>;
+}
+import { IdentitySourceApiRequestFactory, IdentitySourceApiResponseProcessor } from '../apis/IdentitySourceApi';
+export declare class ObservableIdentitySourceApi {
+  private requestFactory;
+  private responseProcessor;
+  private configuration;
+  constructor(configuration: Configuration, requestFactory?: IdentitySourceApiRequestFactory, responseProcessor?: IdentitySourceApiResponseProcessor);
   /**
-      * Updates the configuration for an IdP.
-      * Replace an Identity Provider
-      * @param idpId
-      * @param identityProvider
+      * Creates an identity source session for the given identity source instance
+      * Create an Identity Source Session
+      * @param identitySourceId
       */
-  updateIdentityProvider(idpId: string, identityProvider: IdentityProvider, _options?: Configuration): Observable<IdentityProvider>;
+  createIdentitySourceSession(identitySourceId: string, _options?: Configuration): Observable<Collection<IdentitySourceSession>>;
+  /**
+      * Deletes an identity source session for a given `identitySourceId` and `sessionId`
+      * Delete an Identity Source Session
+      * @param identitySourceId
+      * @param sessionId
+      */
+  deleteIdentitySourceSession(identitySourceId: string, sessionId: string, _options?: Configuration): Observable<void>;
+  /**
+      * Retrieves an identity source session for a given identity source id and session id
+      * Retrieve an Identity Source Session
+      * @param identitySourceId
+      * @param sessionId
+      */
+  getIdentitySourceSession(identitySourceId: string, sessionId: string, _options?: Configuration): Observable<IdentitySourceSession>;
+  /**
+      * Lists all identity source sessions for the given identity source instance
+      * List all Identity Source Sessions
+      * @param identitySourceId
+      */
+  listIdentitySourceSessions(identitySourceId: string, _options?: Configuration): Observable<Collection<IdentitySourceSession>>;
+  /**
+      * Starts the import from the identity source described by the uploaded bulk operations
+      * Start the import from the Identity Source
+      * @param identitySourceId
+      * @param sessionId
+      */
+  startImportFromIdentitySource(identitySourceId: string, sessionId: string, _options?: Configuration): Observable<Collection<IdentitySourceSession>>;
+  /**
+      * Uploads entities that need to be deleted in Okta from the identity source for the given session
+      * Upload the data to be deleted in Okta
+      * @param identitySourceId
+      * @param sessionId
+      * @param BulkDeleteRequestBody
+      */
+  uploadIdentitySourceDataForDelete(identitySourceId: string, sessionId: string, BulkDeleteRequestBody?: BulkDeleteRequestBody, _options?: Configuration): Observable<void>;
+  /**
+      * Uploads entities that need to be upserted in Okta from the identity source for the given session
+      * Upload the data to be upserted in Okta
+      * @param identitySourceId
+      * @param sessionId
+      * @param BulkUpsertRequestBody
+      */
+  uploadIdentitySourceDataForUpsert(identitySourceId: string, sessionId: string, BulkUpsertRequestBody?: BulkUpsertRequestBody, _options?: Configuration): Observable<void>;
 }
 import { InlineHookApiRequestFactory, InlineHookApiResponseProcessor } from '../apis/InlineHookApi';
 export declare class ObservableInlineHookApi {
@@ -1881,55 +2101,55 @@ export declare class ObservableInlineHookApi {
   private configuration;
   constructor(configuration: Configuration, requestFactory?: InlineHookApiRequestFactory, responseProcessor?: InlineHookApiResponseProcessor);
   /**
-      * Activates the Inline Hook matching the provided id
+      * Activates the inline hook by `inlineHookId`
       * Activate an Inline Hook
       * @param inlineHookId
       */
   activateInlineHook(inlineHookId: string, _options?: Configuration): Observable<InlineHook>;
   /**
-      * Success
+      * Creates an inline hook
       * Create an Inline Hook
       * @param inlineHook
       */
   createInlineHook(inlineHook: InlineHook, _options?: Configuration): Observable<InlineHook>;
   /**
-      * Deactivates the Inline Hook matching the provided id
+      * Deactivates the inline hook by `inlineHookId`
       * Deactivate an Inline Hook
       * @param inlineHookId
       */
   deactivateInlineHook(inlineHookId: string, _options?: Configuration): Observable<InlineHook>;
   /**
-      * Deletes the Inline Hook matching the provided id. Once deleted, the Inline Hook is unrecoverable. As a safety precaution, only Inline Hooks with a status of INACTIVE are eligible for deletion.
+      * Deletes an inline hook by `inlineHookId`. Once deleted, the Inline Hook is unrecoverable. As a safety precaution, only Inline Hooks with a status of INACTIVE are eligible for deletion.
       * Delete an Inline Hook
       * @param inlineHookId
       */
   deleteInlineHook(inlineHookId: string, _options?: Configuration): Observable<void>;
   /**
-      * Executes the Inline Hook matching the provided inlineHookId using the request body as the input. This will send the provided data through the Channel and return a response if it matches the correct data contract. This execution endpoint should only be used for testing purposes.
+      * Executes the inline hook by `inlineHookId` using the request body as the input. This will send the provided data through the Channel and return a response if it matches the correct data contract. This execution endpoint should only be used for testing purposes.
       * Execute an Inline Hook
       * @param inlineHookId
       * @param payloadData
       */
   executeInlineHook(inlineHookId: string, payloadData: any, _options?: Configuration): Observable<InlineHookResponse>;
   /**
-      * Gets an inline hook by ID
+      * Retrieves an inline hook by `inlineHookId`
       * Retrieve an Inline Hook
       * @param inlineHookId
       */
   getInlineHook(inlineHookId: string, _options?: Configuration): Observable<InlineHook>;
   /**
-      * Success
+      * Lists all inline hooks
       * List all Inline Hooks
       * @param type
       */
   listInlineHooks(type?: string, _options?: Configuration): Observable<Collection<InlineHook>>;
   /**
-      * Updates an inline hook by ID
+      * Replaces an inline hook by `inlineHookId`
       * Replace an Inline Hook
       * @param inlineHookId
       * @param inlineHook
       */
-  updateInlineHook(inlineHookId: string, inlineHook: InlineHook, _options?: Configuration): Observable<InlineHook>;
+  replaceInlineHook(inlineHookId: string, inlineHook: InlineHook, _options?: Configuration): Observable<InlineHook>;
 }
 import { LinkedObjectApiRequestFactory, LinkedObjectApiResponseProcessor } from '../apis/LinkedObjectApi';
 export declare class ObservableLinkedObjectApi {
@@ -1938,28 +2158,80 @@ export declare class ObservableLinkedObjectApi {
   private configuration;
   constructor(configuration: Configuration, requestFactory?: LinkedObjectApiRequestFactory, responseProcessor?: LinkedObjectApiResponseProcessor);
   /**
-      * Success
+      * Creates a linked object definition
       * Create a Linked Object Definition
       * @param linkedObject
       */
-  addLinkedObjectDefinition(linkedObject: LinkedObject, _options?: Configuration): Observable<LinkedObject>;
+  createLinkedObjectDefinition(linkedObject: LinkedObject, _options?: Configuration): Observable<LinkedObject>;
   /**
-      * Success
+      * Deletes a linked object definition
       * Delete a Linked Object Definition
       * @param linkedObjectName
       */
   deleteLinkedObjectDefinition(linkedObjectName: string, _options?: Configuration): Observable<void>;
   /**
-      * Success
+      * Retrieves a linked object definition
       * Retrieve a Linked Object Definition
       * @param linkedObjectName
       */
   getLinkedObjectDefinition(linkedObjectName: string, _options?: Configuration): Observable<LinkedObject>;
   /**
-      * Success
+      * Lists all linked object definitions
       * List all Linked Object Definitions
       */
   listLinkedObjectDefinitions(_options?: Configuration): Observable<Collection<LinkedObject>>;
+}
+import { LogStreamApiRequestFactory, LogStreamApiResponseProcessor } from '../apis/LogStreamApi';
+export declare class ObservableLogStreamApi {
+  private requestFactory;
+  private responseProcessor;
+  private configuration;
+  constructor(configuration: Configuration, requestFactory?: LogStreamApiRequestFactory, responseProcessor?: LogStreamApiResponseProcessor);
+  /**
+      * Activates a log stream by `logStreamId`
+      * Activate a Log Stream
+      * @param logStreamId id of the log stream
+      */
+  activateLogStream(logStreamId: string, _options?: Configuration): Observable<LogStream>;
+  /**
+      * Creates a new log stream
+      * Create a Log Stream
+      * @param instance
+      */
+  createLogStream(instance: LogStream, _options?: Configuration): Observable<LogStream>;
+  /**
+      * Deactivates a log stream by `logStreamId`
+      * Deactivate a Log Stream
+      * @param logStreamId id of the log stream
+      */
+  deactivateLogStream(logStreamId: string, _options?: Configuration): Observable<LogStream>;
+  /**
+      * Deletes a log stream by `logStreamId`
+      * Delete a Log Stream
+      * @param logStreamId id of the log stream
+      */
+  deleteLogStream(logStreamId: string, _options?: Configuration): Observable<void>;
+  /**
+      * Retrieves a log stream by `logStreamId`
+      * Retrieve a Log Stream
+      * @param logStreamId id of the log stream
+      */
+  getLogStream(logStreamId: string, _options?: Configuration): Observable<LogStream>;
+  /**
+      * Lists all log streams. You can request a paginated list or a subset of Log Streams that match a supported filter expression.
+      * List all Log Streams
+      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](/#pagination) for more information.
+      * @param limit A limit on the number of objects to return.
+      * @param filter SCIM filter expression that filters the results. This expression only supports the &#x60;eq&#x60; operator on either the &#x60;status&#x60; or &#x60;type&#x60;.
+      */
+  listLogStreams(after?: string, limit?: number, filter?: string, _options?: Configuration): Observable<Collection<LogStream>>;
+  /**
+      * Replaces a log stream by `logStreamId`
+      * Replace a Log Stream
+      * @param logStreamId id of the log stream
+      * @param instance
+      */
+  replaceLogStream(logStreamId: string, instance: LogStream, _options?: Configuration): Observable<LogStream>;
 }
 import { NetworkZoneApiRequestFactory, NetworkZoneApiResponseProcessor } from '../apis/NetworkZoneApi';
 export declare class ObservableNetworkZoneApi {
@@ -1968,37 +2240,37 @@ export declare class ObservableNetworkZoneApi {
   private configuration;
   constructor(configuration: Configuration, requestFactory?: NetworkZoneApiRequestFactory, responseProcessor?: NetworkZoneApiResponseProcessor);
   /**
-      * Activate Network Zone
+      * Activates a network zone by `zoneId`
       * Activate a Network Zone
       * @param zoneId
       */
   activateNetworkZone(zoneId: string, _options?: Configuration): Observable<NetworkZone>;
   /**
-      * Adds a new network zone to your Okta organization.
+      * Creates a new network zone. * At least one of either the `gateways` attribute or `proxies` attribute must be defined when creating a Network Zone. * At least one of the following attributes must be defined: `proxyType`, `locations`, or `asns`.
       * Create a Network Zone
       * @param zone
       */
   createNetworkZone(zone: NetworkZone, _options?: Configuration): Observable<NetworkZone>;
   /**
-      * Deactivates a network zone.
+      * Deactivates a network zone by `zoneId`
       * Deactivate a Network Zone
       * @param zoneId
       */
   deactivateNetworkZone(zoneId: string, _options?: Configuration): Observable<NetworkZone>;
   /**
-      * Removes network zone.
+      * Deletes network zone by `zoneId`
       * Delete a Network Zone
       * @param zoneId
       */
   deleteNetworkZone(zoneId: string, _options?: Configuration): Observable<void>;
   /**
-      * Fetches a network zone from your Okta organization by `id`.
+      * Retrieves a network zone by `zoneId`
       * Retrieve a Network Zone
       * @param zoneId
       */
   getNetworkZone(zoneId: string, _options?: Configuration): Observable<NetworkZone>;
   /**
-      * Enumerates network zones added to your organization with pagination. A subset of zones can be returned that match a supported filter expression or query.
+      * Lists all network zones with pagination. A subset of zones can be returned that match a supported filter expression or query.  This operation requires URL encoding. For example, `filter=(id eq \"nzoul0wf9jyb8xwZm0g3\" or id eq \"nzoul1MxmGN18NDQT0g3\")` is encoded as `filter=%28id+eq+%22nzoul0wf9jyb8xwZm0g3%22+or+id+eq+%22nzoul1MxmGN18NDQT0g3%22%29`.  Okta supports filtering on the `id` and `usage` properties. See [Filtering](https://developer.okta.com/docs/reference/core-okta-api/#filter) for more information on the expressions that are used in filtering.
       * List all Network Zones
       * @param after Specifies the pagination cursor for the next page of network zones
       * @param limit Specifies the number of results for a page
@@ -2006,12 +2278,12 @@ export declare class ObservableNetworkZoneApi {
       */
   listNetworkZones(after?: string, limit?: number, filter?: string, _options?: Configuration): Observable<Collection<NetworkZone>>;
   /**
-      * Updates a network zone in your organization.
+      * Replaces a network zone by `zoneId`. The replaced network zone type must be the same as the existing type. You may replace the usage (`POLICY`, `BLOCKLIST`) of a network zone by updating the `usage` attribute.
       * Replace a Network Zone
       * @param zoneId
       * @param zone
       */
-  updateNetworkZone(zoneId: string, zone: NetworkZone, _options?: Configuration): Observable<NetworkZone>;
+  replaceNetworkZone(zoneId: string, zone: NetworkZone, _options?: Configuration): Observable<NetworkZone>;
 }
 import { OrgSettingApiRequestFactory, OrgSettingApiResponseProcessor } from '../apis/OrgSettingApi';
 export declare class ObservableOrgSettingApi {
@@ -2020,7 +2292,7 @@ export declare class ObservableOrgSettingApi {
   private configuration;
   constructor(configuration: Configuration, requestFactory?: OrgSettingApiRequestFactory, responseProcessor?: OrgSettingApiResponseProcessor);
   /**
-      * A list of email addresses to be removed from the set of email addresses that are bounced.
+      * Removes a list of email addresses to be removed from the set of email addresses that are bounced
       * Remove Emails from Email Provider Bounce List
       * @param BouncesRemoveListObj
       */
@@ -2031,91 +2303,96 @@ export declare class ObservableOrgSettingApi {
       */
   extendOktaSupport(_options?: Configuration): Observable<OrgOktaSupportSettingsObj>;
   /**
-      * Gets Okta Communication Settings of your organization.
-      * Retreive the Okta Communication Settings
+      * Retrieves Okta Communication Settings of your organization
+      * Retrieve the Okta Communication Settings
       */
   getOktaCommunicationSettings(_options?: Configuration): Observable<OrgOktaCommunicationSetting>;
   /**
-      * Gets Contact Types of your organization.
+      * Retrieves Contact Types of your organization
       * Retrieve the Org Contact Types
       */
   getOrgContactTypes(_options?: Configuration): Observable<Collection<OrgContactTypeObj>>;
   /**
-      * Retrieves the URL of the User associated with the specified Contact Type.
+      * Retrieves the URL of the User associated with the specified Contact Type
       * Retrieve the User of the Contact Type
       * @param contactType
       */
   getOrgContactUser(contactType: string, _options?: Configuration): Observable<OrgContactUser>;
   /**
-      * Gets Okta Support Settings of your organization.
+      * Retrieves Okta Support Settings of your organization
       * Retrieve the Okta Support Settings
       */
   getOrgOktaSupportSettings(_options?: Configuration): Observable<OrgOktaSupportSettingsObj>;
   /**
-      * Gets preferences of your organization.
+      * Retrieves preferences of your organization
       * Retrieve the Org Preferences
       */
   getOrgPreferences(_options?: Configuration): Observable<OrgPreferences>;
   /**
-      * Get settings of your organization.
+      * Retrieves the org settings
       * Retrieve the Org Settings
       */
   getOrgSettings(_options?: Configuration): Observable<OrgSetting>;
   /**
-      * Enables you to temporarily allow Okta Support to access your org as an administrator for eight hours.
+      * Retrieves the well-known org metadata, which includes the id, configured custom domains, authentication pipeline, and various other org settings
+      * Retrieve the Well-Known Org Metadata
+      */
+  getWellknownOrgMetadata(_options?: Configuration): Observable<WellKnownOrgMetadata>;
+  /**
+      * Grants Okta Support temporary access your org as an administrator for eight hours
       * Grant Okta Support Access to your Org
       */
   grantOktaSupport(_options?: Configuration): Observable<OrgOktaSupportSettingsObj>;
   /**
-      * Hide the Okta UI footer for all end users of your organization.
-      * Update the Preference to Hide the Okta Dashboard Footer
-      */
-  hideOktaUIFooter(_options?: Configuration): Observable<OrgPreferences>;
-  /**
-      * Opts in all users of this org to Okta Communication emails.
+      * Opts in all users of this org to Okta Communication emails
       * Opt in all Users to Okta Communication emails
       */
   optInUsersToOktaCommunicationEmails(_options?: Configuration): Observable<OrgOktaCommunicationSetting>;
   /**
-      * Opts out all users of this org from Okta Communication emails.
+      * Opts out all users of this org from Okta Communication emails
       * Opt out all Users from Okta Communication emails
       */
   optOutUsersFromOktaCommunicationEmails(_options?: Configuration): Observable<OrgOktaCommunicationSetting>;
   /**
-      * Partial update settings of your organization.
-      * Update the Org Settings
-      * @param OrgSetting
-      */
-  partialUpdateOrgSetting(OrgSetting?: OrgSetting, _options?: Configuration): Observable<OrgSetting>;
-  /**
-      * Revokes Okta Support access to your organization.
-      * Revoke Okta Support Access
-      */
-  revokeOktaSupport(_options?: Configuration): Observable<OrgOktaSupportSettingsObj>;
-  /**
-      * Makes the Okta UI footer visible for all end users of your organization.
-      * Update the Preference to Show the Okta Dashboard Footer
-      */
-  showOktaUIFooter(_options?: Configuration): Observable<OrgPreferences>;
-  /**
-      * Updates the User associated with the specified Contact Type.
+      * Replaces the User associated with the specified Contact Type
       * Replace the User of the Contact Type
       * @param contactType
       * @param orgContactUser
       */
-  updateOrgContactUser(contactType: string, orgContactUser: OrgContactUser, _options?: Configuration): Observable<OrgContactUser>;
+  replaceOrgContactUser(contactType: string, orgContactUser: OrgContactUser, _options?: Configuration): Observable<OrgContactUser>;
   /**
-      * Updates the logo for your organization.
-      * Upload the Org Logo
-      * @param file
-      */
-  updateOrgLogo(file: HttpFile, _options?: Configuration): Observable<void>;
-  /**
-      * Update settings of your organization.
+      * Replaces the settings of your organization
       * Replace the Org Settings
       * @param orgSetting
       */
-  updateOrgSetting(orgSetting: OrgSetting, _options?: Configuration): Observable<OrgSetting>;
+  replaceOrgSettings(orgSetting: OrgSetting, _options?: Configuration): Observable<OrgSetting>;
+  /**
+      * Revokes Okta Support access to your organization
+      * Revoke Okta Support Access
+      */
+  revokeOktaSupport(_options?: Configuration): Observable<OrgOktaSupportSettingsObj>;
+  /**
+      * Updates the preference hide the Okta UI footer for all end users of your organization
+      * Update the Preference to Hide the Okta Dashboard Footer
+      */
+  updateOrgHideOktaUIFooter(_options?: Configuration): Observable<OrgPreferences>;
+  /**
+      * Partially updates the org settings depending on provided fields
+      * Update the Org Settings
+      * @param OrgSetting
+      */
+  updateOrgSettings(OrgSetting?: OrgSetting, _options?: Configuration): Observable<OrgSetting>;
+  /**
+      * Updates the preference to show the Okta UI footer for all end users of your organization
+      * Update the Preference to Show the Okta Dashboard Footer
+      */
+  updateOrgShowOktaUIFooter(_options?: Configuration): Observable<OrgPreferences>;
+  /**
+      * Uploads and replaces the logo for your organization. The file must be in PNG, JPG, or GIF format and less than 100kB in size. For best results use landscape orientation, a transparent background, and a minimum size of 300px by 50px to prevent upscaling.
+      * Upload the Org Logo
+      * @param file
+      */
+  uploadOrgLogo(file: HttpFile, _options?: Configuration): Observable<void>;
 }
 import { PolicyApiRequestFactory, PolicyApiResponseProcessor } from '../apis/PolicyApi';
 export declare class ObservablePolicyApi {
@@ -2124,80 +2401,80 @@ export declare class ObservablePolicyApi {
   private configuration;
   constructor(configuration: Configuration, requestFactory?: PolicyApiRequestFactory, responseProcessor?: PolicyApiResponseProcessor);
   /**
-      * Activates a policy.
+      * Activates a policy
       * Activate a Policy
       * @param policyId
       */
   activatePolicy(policyId: string, _options?: Configuration): Observable<void>;
   /**
-      * Activates a policy rule.
+      * Activates a policy rule
       * Activate a Policy Rule
       * @param policyId
       * @param ruleId
       */
   activatePolicyRule(policyId: string, ruleId: string, _options?: Configuration): Observable<void>;
   /**
-      * Clones an existing policy.
+      * Clones an existing policy
       * Clone an existing policy
       * @param policyId
       */
   clonePolicy(policyId: string, _options?: Configuration): Observable<Policy>;
   /**
-      * Creates a policy.
+      * Creates a policy
       * Create a Policy
       * @param policy
       * @param activate
       */
   createPolicy(policy: Policy, activate?: boolean, _options?: Configuration): Observable<Policy>;
   /**
-      * Creates a policy rule.
+      * Creates a policy rule
       * Create a Policy Rule
       * @param policyId
       * @param policyRule
       */
   createPolicyRule(policyId: string, policyRule: PolicyRule, _options?: Configuration): Observable<PolicyRule>;
   /**
-      * Deactivates a policy.
+      * Deactivates a policy
       * Deactivate a Policy
       * @param policyId
       */
   deactivatePolicy(policyId: string, _options?: Configuration): Observable<void>;
   /**
-      * Deactivates a policy rule.
+      * Deactivates a policy rule
       * Deactivate a Policy Rule
       * @param policyId
       * @param ruleId
       */
   deactivatePolicyRule(policyId: string, ruleId: string, _options?: Configuration): Observable<void>;
   /**
-      * Removes a policy.
+      * Deletes a policy
       * Delete a Policy
       * @param policyId
       */
   deletePolicy(policyId: string, _options?: Configuration): Observable<void>;
   /**
-      * Removes a policy rule.
+      * Deletes a policy rule
       * Delete a Policy Rule
       * @param policyId
       * @param ruleId
       */
   deletePolicyRule(policyId: string, ruleId: string, _options?: Configuration): Observable<void>;
   /**
-      * Gets a policy.
+      * Retrieves a policy
       * Retrieve a Policy
       * @param policyId
       * @param expand
       */
   getPolicy(policyId: string, expand?: string, _options?: Configuration): Observable<Policy>;
   /**
-      * Gets a policy rule.
+      * Retrieves a policy rule
       * Retrieve a Policy Rule
       * @param policyId
       * @param ruleId
       */
   getPolicyRule(policyId: string, ruleId: string, _options?: Configuration): Observable<PolicyRule>;
   /**
-      * Gets all policies with the specified type.
+      * Lists all policies with the specified type
       * List all Policies
       * @param type
       * @param status
@@ -2205,26 +2482,32 @@ export declare class ObservablePolicyApi {
       */
   listPolicies(type: string, status?: string, expand?: string, _options?: Configuration): Observable<Collection<Policy>>;
   /**
-      * Enumerates all policy rules.
+      * Lists all applications mapped to a policy identified by `policyId`
+      * List all Applications mapped to a Policy
+      * @param policyId
+      */
+  listPolicyApps(policyId: string, _options?: Configuration): Observable<Collection<Application>>;
+  /**
+      * Lists all policy rules
       * List all Policy Rules
       * @param policyId
       */
   listPolicyRules(policyId: string, _options?: Configuration): Observable<Collection<PolicyRule>>;
   /**
-      * Updates a policy.
+      * Replaces a policy
       * Replace a Policy
       * @param policyId
       * @param policy
       */
-  updatePolicy(policyId: string, policy: Policy, _options?: Configuration): Observable<Policy>;
+  replacePolicy(policyId: string, policy: Policy, _options?: Configuration): Observable<Policy>;
   /**
-      * Updates a policy rule.
+      * Replaces a policy rules
       * Replace a Policy Rule
       * @param policyId
       * @param ruleId
       * @param policyRule
       */
-  updatePolicyRule(policyId: string, ruleId: string, policyRule: PolicyRule, _options?: Configuration): Observable<PolicyRule>;
+  replacePolicyRule(policyId: string, ruleId: string, policyRule: PolicyRule, _options?: Configuration): Observable<PolicyRule>;
 }
 import { PrincipalRateLimitApiRequestFactory, PrincipalRateLimitApiResponseProcessor } from '../apis/PrincipalRateLimitApi';
 export declare class ObservablePrincipalRateLimitApi {
@@ -2233,19 +2516,19 @@ export declare class ObservablePrincipalRateLimitApi {
   private configuration;
   constructor(configuration: Configuration, requestFactory?: PrincipalRateLimitApiRequestFactory, responseProcessor?: PrincipalRateLimitApiResponseProcessor);
   /**
-      * Adds a new Principal Rate Limit entity to your organization. In the current release, we only allow one Principal Rate Limit entity per org and principal.
+      * Creates a new Principal Rate Limit entity. In the current release, we only allow one Principal Rate Limit entity per org and principal.
       * Create a Principal Rate Limit
       * @param entity
       */
   createPrincipalRateLimitEntity(entity: PrincipalRateLimitEntity, _options?: Configuration): Observable<PrincipalRateLimitEntity>;
   /**
-      * Fetches a Principal Rate Limit entity by `principalRateLimitId`.
+      * Retrieves a Principal Rate Limit entity by `principalRateLimitId`
       * Retrieve a Principal Rate Limit
       * @param principalRateLimitId id of the Principal Rate Limit
       */
   getPrincipalRateLimitEntity(principalRateLimitId: string, _options?: Configuration): Observable<PrincipalRateLimitEntity>;
   /**
-      * Lists all Principal Rate Limit entities considering the provided parameters.
+      * Lists all Principal Rate Limit entities considering the provided parameters
       * List all Principal Rate Limits
       * @param filter
       * @param after
@@ -2253,12 +2536,12 @@ export declare class ObservablePrincipalRateLimitApi {
       */
   listPrincipalRateLimitEntities(filter?: string, after?: string, limit?: number, _options?: Configuration): Observable<Collection<PrincipalRateLimitEntity>>;
   /**
-      * Update a  Principal Rate Limit entity by `principalRateLimitId`.
+      * Replaces a principal rate limit entity by `principalRateLimitId`
       * Replace a Principal Rate Limit
       * @param principalRateLimitId id of the Principal Rate Limit
       * @param entity
       */
-  updatePrincipalRateLimitEntity(principalRateLimitId: string, entity: PrincipalRateLimitEntity, _options?: Configuration): Observable<PrincipalRateLimitEntity>;
+  replacePrincipalRateLimitEntity(principalRateLimitId: string, entity: PrincipalRateLimitEntity, _options?: Configuration): Observable<PrincipalRateLimitEntity>;
 }
 import { ProfileMappingApiRequestFactory, ProfileMappingApiResponseProcessor } from '../apis/ProfileMappingApi';
 export declare class ObservableProfileMappingApi {
@@ -2267,13 +2550,13 @@ export declare class ObservableProfileMappingApi {
   private configuration;
   constructor(configuration: Configuration, requestFactory?: ProfileMappingApiRequestFactory, responseProcessor?: ProfileMappingApiResponseProcessor);
   /**
-      * Fetches a single Profile Mapping referenced by its ID.
+      * Retrieves a single Profile Mapping referenced by its ID
       * Retrieve a Profile Mapping
       * @param mappingId
       */
   getProfileMapping(mappingId: string, _options?: Configuration): Observable<ProfileMapping>;
   /**
-      * Enumerates Profile Mappings in your organization with pagination.
+      * Lists all profile mappings with pagination
       * List all Profile Mappings
       * @param after
       * @param limit
@@ -2282,7 +2565,7 @@ export declare class ObservableProfileMappingApi {
       */
   listProfileMappings(after?: string, limit?: number, sourceId?: string, targetId?: string, _options?: Configuration): Observable<Collection<ProfileMapping>>;
   /**
-      * Updates an existing Profile Mapping by adding, updating, or removing one or many Property Mappings.
+      * Updates an existing Profile Mapping by adding, updating, or removing one or many Property Mappings
       * Update a Profile Mapping
       * @param mappingId
       * @param profileMapping
@@ -2296,36 +2579,513 @@ export declare class ObservablePushProviderApi {
   private configuration;
   constructor(configuration: Configuration, requestFactory?: PushProviderApiRequestFactory, responseProcessor?: PushProviderApiResponseProcessor);
   /**
-      * Adds a new push provider to your organization.
+      * Creates a new push provider
       * Create a Push Provider
       * @param pushProvider
       */
   createPushProvider(pushProvider: PushProvider, _options?: Configuration): Observable<PushProvider>;
   /**
-      * Delete a push provider by `pushProviderId`. If the push provider is currently being used in the org by a custom authenticator, the delete will not be allowed.
+      * Deletes a push provider by `pushProviderId`. If the push provider is currently being used in the org by a custom authenticator, the delete will not be allowed.
       * Delete a Push Provider
       * @param pushProviderId Id of the push provider
       */
   deletePushProvider(pushProviderId: string, _options?: Configuration): Observable<void>;
   /**
-      * Fetches a push provider by `pushProviderId`.
+      * Retrieves a push provider by `pushProviderId`
       * Retrieve a Push Provider
       * @param pushProviderId Id of the push provider
       */
   getPushProvider(pushProviderId: string, _options?: Configuration): Observable<PushProvider>;
   /**
-      * Enumerates push providers in your organization.
+      * Lists all push providers
       * List all Push Providers
       * @param type Filters push providers by &#x60;providerType&#x60;
       */
   listPushProviders(type?: ProviderType, _options?: Configuration): Observable<Collection<PushProvider>>;
   /**
-      * Updates a push provider by `pushProviderId`.
+      * Replaces a push provider by `pushProviderId`
       * Replace a Push Provider
       * @param pushProviderId Id of the push provider
       * @param pushProvider
       */
-  updatePushProvider(pushProviderId: string, pushProvider: PushProvider, _options?: Configuration): Observable<PushProvider>;
+  replacePushProvider(pushProviderId: string, pushProvider: PushProvider, _options?: Configuration): Observable<PushProvider>;
+}
+import { RateLimitSettingsApiRequestFactory, RateLimitSettingsApiResponseProcessor } from '../apis/RateLimitSettingsApi';
+export declare class ObservableRateLimitSettingsApi {
+  private requestFactory;
+  private responseProcessor;
+  private configuration;
+  constructor(configuration: Configuration, requestFactory?: RateLimitSettingsApiRequestFactory, responseProcessor?: RateLimitSettingsApiResponseProcessor);
+  /**
+      * Retrieves the currently configured Rate Limit Admin Notification Settings
+      * Retrieve the Rate Limit Admin Notification Settings
+      */
+  getRateLimitSettingsAdminNotifications(_options?: Configuration): Observable<RateLimitAdminNotifications>;
+  /**
+      * Retrieves the currently configured Per-Client Rate Limit Settings
+      * Retrieve the Per-Client Rate Limit Settings
+      */
+  getRateLimitSettingsPerClient(_options?: Configuration): Observable<PerClientRateLimitSettings>;
+  /**
+      * Replaces the Rate Limit Admin Notification Settings and returns the configured properties
+      * Replace the Rate Limit Admin Notification Settings
+      * @param RateLimitAdminNotifications
+      */
+  replaceRateLimitSettingsAdminNotifications(RateLimitAdminNotifications: RateLimitAdminNotifications, _options?: Configuration): Observable<RateLimitAdminNotifications>;
+  /**
+      * Replaces the Per-Client Rate Limit Settings and returns the configured properties
+      * Replace the Per-Client Rate Limit Settings
+      * @param perClientRateLimitSettings
+      */
+  replaceRateLimitSettingsPerClient(perClientRateLimitSettings: PerClientRateLimitSettings, _options?: Configuration): Observable<PerClientRateLimitSettings>;
+}
+import { ResourceSetApiRequestFactory, ResourceSetApiResponseProcessor } from '../apis/ResourceSetApi';
+export declare class ObservableResourceSetApi {
+  private requestFactory;
+  private responseProcessor;
+  private configuration;
+  constructor(configuration: Configuration, requestFactory?: ResourceSetApiRequestFactory, responseProcessor?: ResourceSetApiResponseProcessor);
+  /**
+      * Adds more members to a resource set binding
+      * Add more Members to a binding
+      * @param resourceSetId &#x60;id&#x60; of a resource set
+      * @param roleIdOrLabel &#x60;id&#x60; or &#x60;label&#x60; of the role
+      * @param instance
+      */
+  addMembersToBinding(resourceSetId: string, roleIdOrLabel: string, instance: ResourceSetBindingAddMembersRequest, _options?: Configuration): Observable<ResourceSetBindingResponse>;
+  /**
+      * Adds more resources to a resource set
+      * Add more Resource to a resource set
+      * @param resourceSetId &#x60;id&#x60; of a resource set
+      * @param instance
+      */
+  addResourceSetResource(resourceSetId: string, instance: ResourceSetResourcePatchRequest, _options?: Configuration): Observable<ResourceSet>;
+  /**
+      * Creates a new resource set
+      * Create a Resource Set
+      * @param instance
+      */
+  createResourceSet(instance: ResourceSet, _options?: Configuration): Observable<ResourceSet>;
+  /**
+      * Creates a new resource set binding
+      * Create a Resource Set Binding
+      * @param resourceSetId &#x60;id&#x60; of a resource set
+      * @param instance
+      */
+  createResourceSetBinding(resourceSetId: string, instance: ResourceSetBindingCreateRequest, _options?: Configuration): Observable<ResourceSetBindingResponse>;
+  /**
+      * Deletes a resource set binding by `resourceSetId` and `roleIdOrLabel`
+      * Delete a Binding
+      * @param resourceSetId &#x60;id&#x60; of a resource set
+      * @param roleIdOrLabel &#x60;id&#x60; or &#x60;label&#x60; of the role
+      */
+  deleteBinding(resourceSetId: string, roleIdOrLabel: string, _options?: Configuration): Observable<void>;
+  /**
+      * Deletes a role by `resourceSetId`
+      * Delete a Resource Set
+      * @param resourceSetId &#x60;id&#x60; of a resource set
+      */
+  deleteResourceSet(resourceSetId: string, _options?: Configuration): Observable<void>;
+  /**
+      * Deletes a resource identified by `resourceId` from a resource set
+      * Delete a Resource from a resource set
+      * @param resourceSetId &#x60;id&#x60; of a resource set
+      * @param resourceId &#x60;id&#x60; of a resource
+      */
+  deleteResourceSetResource(resourceSetId: string, resourceId: string, _options?: Configuration): Observable<void>;
+  /**
+      * Retrieves a resource set binding by `resourceSetId` and `roleIdOrLabel`
+      * Retrieve a Binding
+      * @param resourceSetId &#x60;id&#x60; of a resource set
+      * @param roleIdOrLabel &#x60;id&#x60; or &#x60;label&#x60; of the role
+      */
+  getBinding(resourceSetId: string, roleIdOrLabel: string, _options?: Configuration): Observable<ResourceSetBindingResponse>;
+  /**
+      * Retrieves a member identified by `memberId` for a binding
+      * Retrieve a Member of a binding
+      * @param resourceSetId &#x60;id&#x60; of a resource set
+      * @param roleIdOrLabel &#x60;id&#x60; or &#x60;label&#x60; of the role
+      * @param memberId &#x60;id&#x60; of a member
+      */
+  getMemberOfBinding(resourceSetId: string, roleIdOrLabel: string, memberId: string, _options?: Configuration): Observable<ResourceSetBindingMember>;
+  /**
+      * Retrieves a resource set by `resourceSetId`
+      * Retrieve a Resource Set
+      * @param resourceSetId &#x60;id&#x60; of a resource set
+      */
+  getResourceSet(resourceSetId: string, _options?: Configuration): Observable<ResourceSet>;
+  /**
+      * Lists all resource set bindings with pagination support
+      * List all Bindings
+      * @param resourceSetId &#x60;id&#x60; of a resource set
+      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](/#pagination) for more information.
+      */
+  listBindings(resourceSetId: string, after?: string, _options?: Configuration): Observable<ResourceSetBindings>;
+  /**
+      * Lists all members of a resource set binding with pagination support
+      * List all Members of a binding
+      * @param resourceSetId &#x60;id&#x60; of a resource set
+      * @param roleIdOrLabel &#x60;id&#x60; or &#x60;label&#x60; of the role
+      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](/#pagination) for more information.
+      */
+  listMembersOfBinding(resourceSetId: string, roleIdOrLabel: string, after?: string, _options?: Configuration): Observable<ResourceSetBindingMembers>;
+  /**
+      * Lists all resources that make up the resource set
+      * List all Resources of a resource set
+      * @param resourceSetId &#x60;id&#x60; of a resource set
+      */
+  listResourceSetResources(resourceSetId: string, _options?: Configuration): Observable<ResourceSetResources>;
+  /**
+      * Lists all resource sets with pagination support
+      * List all Resource Sets
+      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](/#pagination) for more information.
+      */
+  listResourceSets(after?: string, _options?: Configuration): Observable<ResourceSets>;
+  /**
+      * Replaces a resource set by `resourceSetId`
+      * Replace a Resource Set
+      * @param resourceSetId &#x60;id&#x60; of a resource set
+      * @param instance
+      */
+  replaceResourceSet(resourceSetId: string, instance: ResourceSet, _options?: Configuration): Observable<ResourceSet>;
+  /**
+      * Unassigns a member identified by `memberId` from a binding
+      * Unassign a Member from a binding
+      * @param resourceSetId &#x60;id&#x60; of a resource set
+      * @param roleIdOrLabel &#x60;id&#x60; or &#x60;label&#x60; of the role
+      * @param memberId &#x60;id&#x60; of a member
+      */
+  unassignMemberFromBinding(resourceSetId: string, roleIdOrLabel: string, memberId: string, _options?: Configuration): Observable<void>;
+}
+import { RiskEventApiRequestFactory, RiskEventApiResponseProcessor } from '../apis/RiskEventApi';
+export declare class ObservableRiskEventApi {
+  private requestFactory;
+  private responseProcessor;
+  private configuration;
+  constructor(configuration: Configuration, requestFactory?: RiskEventApiRequestFactory, responseProcessor?: RiskEventApiResponseProcessor);
+  /**
+      * Sends multiple risk events to Okta. This API is intended for Risk Providers. This API has a rate limit of 30 requests per minute. The caller should include multiple Risk Events (up to a maximum of 20 events) in a single payload to reduce the number of API calls. If a client has more risk signals to send than what the API supports, we recommend prioritizing posting high risk signals.
+      * Send multiple Risk Events
+      * @param instance
+      */
+  sendRiskEvents(instance: Array<RiskEvent>, _options?: Configuration): Observable<void>;
+}
+import { RiskProviderApiRequestFactory, RiskProviderApiResponseProcessor } from '../apis/RiskProviderApi';
+export declare class ObservableRiskProviderApi {
+  private requestFactory;
+  private responseProcessor;
+  private configuration;
+  constructor(configuration: Configuration, requestFactory?: RiskProviderApiRequestFactory, responseProcessor?: RiskProviderApiResponseProcessor);
+  /**
+      * Creates a risk provider. A maximum of 3 providers can be created. By default, one risk provider is created by Okta.
+      * Create a Risk Provider
+      * @param instance
+      */
+  createRiskProvider(instance: RiskProvider, _options?: Configuration): Observable<RiskProvider>;
+  /**
+      * Deletes a CAPTCHA instance by `riskProviderId`
+      * Delete a Risk Provider
+      * @param riskProviderId &#x60;id&#x60; of the risk provider
+      */
+  deleteRiskProvider(riskProviderId: string, _options?: Configuration): Observable<void>;
+  /**
+      * Retrieves a risk provider by `riskProviderId`
+      * Retrieve a Risk Provider
+      * @param riskProviderId &#x60;id&#x60; of the risk provider
+      */
+  getRiskProvider(riskProviderId: string, _options?: Configuration): Observable<RiskProvider>;
+  /**
+      * Lists all Risk Providers
+      * List all Risk Providers
+      */
+  listRiskProviders(_options?: Configuration): Observable<Collection<RiskProvider>>;
+  /**
+      * Replaces a risk provider by `riskProviderId`
+      * Replace a Risk Provider
+      * @param riskProviderId &#x60;id&#x60; of the risk provider
+      * @param instance
+      */
+  replaceRiskProvider(riskProviderId: string, instance: RiskProvider, _options?: Configuration): Observable<RiskProvider>;
+}
+import { RoleApiRequestFactory, RoleApiResponseProcessor } from '../apis/RoleApi';
+export declare class ObservableRoleApi {
+  private requestFactory;
+  private responseProcessor;
+  private configuration;
+  constructor(configuration: Configuration, requestFactory?: RoleApiRequestFactory, responseProcessor?: RoleApiResponseProcessor);
+  /**
+      * Creates a new role
+      * Create a Role
+      * @param instance
+      */
+  createRole(instance: IamRole, _options?: Configuration): Observable<IamRole>;
+  /**
+      * Creates a permission specified by `permissionType` to the role
+      * Create a Permission
+      * @param roleIdOrLabel &#x60;id&#x60; or &#x60;label&#x60; of the role
+      * @param permissionType An okta permission type
+      */
+  createRolePermission(roleIdOrLabel: string, permissionType: string, _options?: Configuration): Observable<void>;
+  /**
+      * Deletes a role by `roleIdOrLabel`
+      * Delete a Role
+      * @param roleIdOrLabel &#x60;id&#x60; or &#x60;label&#x60; of the role
+      */
+  deleteRole(roleIdOrLabel: string, _options?: Configuration): Observable<void>;
+  /**
+      * Deletes a permission from a role by `permissionType`
+      * Delete a Permission
+      * @param roleIdOrLabel &#x60;id&#x60; or &#x60;label&#x60; of the role
+      * @param permissionType An okta permission type
+      */
+  deleteRolePermission(roleIdOrLabel: string, permissionType: string, _options?: Configuration): Observable<void>;
+  /**
+      * Retrieves a role by `roleIdOrLabel`
+      * Retrieve a Role
+      * @param roleIdOrLabel &#x60;id&#x60; or &#x60;label&#x60; of the role
+      */
+  getRole(roleIdOrLabel: string, _options?: Configuration): Observable<IamRole>;
+  /**
+      * Retrieves a permission by `permissionType`
+      * Retrieve a Permission
+      * @param roleIdOrLabel &#x60;id&#x60; or &#x60;label&#x60; of the role
+      * @param permissionType An okta permission type
+      */
+  getRolePermission(roleIdOrLabel: string, permissionType: string, _options?: Configuration): Observable<Permission>;
+  /**
+      * Lists all permissions of the role by `roleIdOrLabel`
+      * List all Permissions
+      * @param roleIdOrLabel &#x60;id&#x60; or &#x60;label&#x60; of the role
+      */
+  listRolePermissions(roleIdOrLabel: string, _options?: Configuration): Observable<Permissions>;
+  /**
+      * Lists all roles with pagination support
+      * List all Roles
+      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](/#pagination) for more information.
+      */
+  listRoles(after?: string, _options?: Configuration): Observable<IamRoles>;
+  /**
+      * Replaces a role by `roleIdOrLabel`
+      * Replace a Role
+      * @param roleIdOrLabel &#x60;id&#x60; or &#x60;label&#x60; of the role
+      * @param instance
+      */
+  replaceRole(roleIdOrLabel: string, instance: IamRole, _options?: Configuration): Observable<IamRole>;
+}
+import { RoleAssignmentApiRequestFactory, RoleAssignmentApiResponseProcessor } from '../apis/RoleAssignmentApi';
+export declare class ObservableRoleAssignmentApi {
+  private requestFactory;
+  private responseProcessor;
+  private configuration;
+  constructor(configuration: Configuration, requestFactory?: RoleAssignmentApiRequestFactory, responseProcessor?: RoleAssignmentApiResponseProcessor);
+  /**
+      * Assigns a role to a group
+      * Assign a Role to a Group
+      * @param groupId
+      * @param assignRoleRequest
+      * @param disableNotifications Setting this to &#x60;true&#x60; grants the group third-party admin status
+      */
+  assignRoleToGroup(groupId: string, assignRoleRequest: AssignRoleRequest, disableNotifications?: boolean, _options?: Configuration): Observable<Role | void>;
+  /**
+      * Assigns a role to a user identified by `userId`
+      * Assign a Role to a User
+      * @param userId
+      * @param assignRoleRequest
+      * @param disableNotifications Setting this to &#x60;true&#x60; grants the user third-party admin status
+      */
+  assignRoleToUser(userId: string, assignRoleRequest: AssignRoleRequest, disableNotifications?: boolean, _options?: Configuration): Observable<Role>;
+  /**
+      * Retrieves a role identified by `roleId` assigned to group identified by `groupId`
+      * Retrieve a Role assigned to Group
+      * @param groupId
+      * @param roleId
+      */
+  getGroupAssignedRole(groupId: string, roleId: string, _options?: Configuration): Observable<Role>;
+  /**
+      * Retrieves a role identified by `roleId` assigned to a user identified by `userId`
+      * Retrieve a Role assigned to a User
+      * @param userId
+      * @param roleId
+      */
+  getUserAssignedRole(userId: string, roleId: string, _options?: Configuration): Observable<Role>;
+  /**
+      * Lists all roles assigned to a user identified by `userId`
+      * List all Roles assigned to a User
+      * @param userId
+      * @param expand
+      */
+  listAssignedRolesForUser(userId: string, expand?: string, _options?: Configuration): Observable<Collection<Role>>;
+  /**
+      * Lists all assigned roles of group identified by `groupId`
+      * List all Assigned Roles of Group
+      * @param groupId
+      * @param expand
+      */
+  listGroupAssignedRoles(groupId: string, expand?: string, _options?: Configuration): Observable<Collection<Role>>;
+  /**
+      * Unassigns a role identified by `roleId` assigned to group identified by `groupId`
+      * Unassign a Role from a Group
+      * @param groupId
+      * @param roleId
+      */
+  unassignRoleFromGroup(groupId: string, roleId: string, _options?: Configuration): Observable<void>;
+  /**
+      * Unassigns a role identified by `roleId` from a user identified by `userId`
+      * Unassign a Role from a User
+      * @param userId
+      * @param roleId
+      */
+  unassignRoleFromUser(userId: string, roleId: string, _options?: Configuration): Observable<void>;
+}
+import { RoleTargetApiRequestFactory, RoleTargetApiResponseProcessor } from '../apis/RoleTargetApi';
+export declare class ObservableRoleTargetApi {
+  private requestFactory;
+  private responseProcessor;
+  private configuration;
+  constructor(configuration: Configuration, requestFactory?: RoleTargetApiRequestFactory, responseProcessor?: RoleTargetApiResponseProcessor);
+  /**
+      * Assigns all Apps as Target to Role
+      * Assign all Apps as Target to Role
+      * @param userId
+      * @param roleId
+      */
+  assignAllAppsAsTargetToRoleForUser(userId: string, roleId: string, _options?: Configuration): Observable<void>;
+  /**
+      * Assigns App Instance Target to App Administrator Role given to a Group
+      * Assign an Application Instance Target to Application Administrator Role
+      * @param groupId
+      * @param roleId
+      * @param appName
+      * @param applicationId
+      */
+  assignAppInstanceTargetToAppAdminRoleForGroup(groupId: string, roleId: string, appName: string, applicationId: string, _options?: Configuration): Observable<void>;
+  /**
+      * Assigns anapplication instance target to appplication administrator role
+      * Assign an Application Instance Target to an Application Administrator Role
+      * @param userId
+      * @param roleId
+      * @param appName
+      * @param applicationId
+      */
+  assignAppInstanceTargetToAppAdminRoleForUser(userId: string, roleId: string, appName: string, applicationId: string, _options?: Configuration): Observable<void>;
+  /**
+      * Assigns an application target to administrator role
+      * Assign an Application Target to Administrator Role
+      * @param groupId
+      * @param roleId
+      * @param appName
+      */
+  assignAppTargetToAdminRoleForGroup(groupId: string, roleId: string, appName: string, _options?: Configuration): Observable<void>;
+  /**
+      * Assigns an application target to administrator role
+      * Assign an Application Target to Administrator Role
+      * @param userId
+      * @param roleId
+      * @param appName
+      */
+  assignAppTargetToAdminRoleForUser(userId: string, roleId: string, appName: string, _options?: Configuration): Observable<void>;
+  /**
+      * Assigns a group target to a group role
+      * Assign a Group Target to a Group Role
+      * @param groupId
+      * @param roleId
+      * @param targetGroupId
+      */
+  assignGroupTargetToGroupAdminRole(groupId: string, roleId: string, targetGroupId: string, _options?: Configuration): Observable<void>;
+  /**
+      * Assigns a Group Target to Role
+      * Assign a Group Target to Role
+      * @param userId
+      * @param roleId
+      * @param groupId
+      */
+  assignGroupTargetToUserRole(userId: string, roleId: string, groupId: string, _options?: Configuration): Observable<void>;
+  /**
+      * Lists all App targets for an `APP_ADMIN` Role assigned to a Group. This methods return list may include full Applications or Instances. The response for an instance will have an `ID` value, while Application will not have an ID.
+      * List all Application Targets for an Application Administrator Role
+      * @param groupId
+      * @param roleId
+      * @param after
+      * @param limit
+      */
+  listApplicationTargetsForApplicationAdministratorRoleForGroup(groupId: string, roleId: string, after?: string, limit?: number, _options?: Configuration): Observable<Collection<CatalogApplication>>;
+  /**
+      * Lists all App targets for an `APP_ADMIN` Role assigned to a User. This methods return list may include full Applications or Instances. The response for an instance will have an `ID` value, while Application will not have an ID.
+      * List all Application Targets for Application Administrator Role
+      * @param userId
+      * @param roleId
+      * @param after
+      * @param limit
+      */
+  listApplicationTargetsForApplicationAdministratorRoleForUser(userId: string, roleId: string, after?: string, limit?: number, _options?: Configuration): Observable<Collection<CatalogApplication>>;
+  /**
+      * Lists all group targets for a group role
+      * List all Group Targets for a Group Role
+      * @param groupId
+      * @param roleId
+      * @param after
+      * @param limit
+      */
+  listGroupTargetsForGroupRole(groupId: string, roleId: string, after?: string, limit?: number, _options?: Configuration): Observable<Collection<Group>>;
+  /**
+      * Lists all group targets for role
+      * List all Group Targets for Role
+      * @param userId
+      * @param roleId
+      * @param after
+      * @param limit
+      */
+  listGroupTargetsForRole(userId: string, roleId: string, after?: string, limit?: number, _options?: Configuration): Observable<Collection<Group>>;
+  /**
+      * Unassigns an application instance target from an application administrator role
+      * Unassign an Application Instance Target from an Application Administrator Role
+      * @param userId
+      * @param roleId
+      * @param appName
+      * @param applicationId
+      */
+  unassignAppInstanceTargetFromAdminRoleForUser(userId: string, roleId: string, appName: string, applicationId: string, _options?: Configuration): Observable<void>;
+  /**
+      * Unassigns an application instance target from application administrator role
+      * Unassign an Application Instance Target from an Application Administrator Role
+      * @param groupId
+      * @param roleId
+      * @param appName
+      * @param applicationId
+      */
+  unassignAppInstanceTargetToAppAdminRoleForGroup(groupId: string, roleId: string, appName: string, applicationId: string, _options?: Configuration): Observable<void>;
+  /**
+      * Unassigns an application target from application administrator role
+      * Unassign an Application Target from an Application Administrator Role
+      * @param userId
+      * @param roleId
+      * @param appName
+      */
+  unassignAppTargetFromAppAdminRoleForUser(userId: string, roleId: string, appName: string, _options?: Configuration): Observable<void>;
+  /**
+      * Unassigns an application target from application administrator role
+      * Unassign an Application Target from Application Administrator Role
+      * @param groupId
+      * @param roleId
+      * @param appName
+      */
+  unassignAppTargetToAdminRoleForGroup(groupId: string, roleId: string, appName: string, _options?: Configuration): Observable<void>;
+  /**
+      * Unassigns a group target from a group role
+      * Unassign a Group Target from a Group Role
+      * @param groupId
+      * @param roleId
+      * @param targetGroupId
+      */
+  unassignGroupTargetFromGroupAdminRole(groupId: string, roleId: string, targetGroupId: string, _options?: Configuration): Observable<void>;
+  /**
+      * Unassigns a Group Target from Role
+      * Unassign a Group Target from Role
+      * @param userId
+      * @param roleId
+      * @param groupId
+      */
+  unassignGroupTargetFromUserAdminRole(userId: string, roleId: string, groupId: string, _options?: Configuration): Observable<void>;
 }
 import { SchemaApiRequestFactory, SchemaApiResponseProcessor } from '../apis/SchemaApi';
 export declare class ObservableSchemaApi {
@@ -2334,43 +3094,62 @@ export declare class ObservableSchemaApi {
   private configuration;
   constructor(configuration: Configuration, requestFactory?: SchemaApiRequestFactory, responseProcessor?: SchemaApiResponseProcessor);
   /**
-      * Takes an Application name as an input parameter and retrieves the App Instance page Layout for that Application.
-      * Retrieve the UI Layout for an Application
+      * Retrieves the UI schema for an Application given `appName`, `section` and `operation`
+      * Retrieve the UI schema for a section
+      * @param appName
+      * @param section
+      * @param operation
+      */
+  getAppUISchema(appName: string, section: string, operation: string, _options?: Configuration): Observable<ApplicationLayout>;
+  /**
+      * Retrieves the links for UI schemas for an Application given `appName`
+      * Retrieve the links for UI schemas for an Application
       * @param appName
       */
-  getApplicationLayout(appName: string, _options?: Configuration): Observable<ApplicationLayout>;
+  getAppUISchemaLinks(appName: string, _options?: Configuration): Observable<ApplicationLayouts>;
   /**
-      * Fetches the Schema for an App User
+      * Retrieves the Schema for an App User
       * Retrieve the default Application User Schema for an Application
       * @param appInstanceId
       */
   getApplicationUserSchema(appInstanceId: string, _options?: Configuration): Observable<UserSchema>;
   /**
-      * Fetches the group schema
+      * Retrieves the group schema
       * Retrieve the default Group Schema
       */
   getGroupSchema(_options?: Configuration): Observable<GroupSchema>;
   /**
-      * Fetches the schema for a Schema Id.
+      * Retrieves the schema for a Log Stream type. The `logStreamType` element in the URL specifies the Log Stream type, which is either `aws_eventbridge` or `splunk_cloud_logstreaming`. Use the `aws_eventbridge` literal to retrieve the AWS EventBridge type schema, and use the `splunk_cloud_logstreaming` literal retrieve the Splunk Cloud type schema.
+      * Retrieve the Log Stream Schema for the schema type
+      * @param logStreamType
+      */
+  getLogStreamSchema(logStreamType: LogStreamType, _options?: Configuration): Observable<LogStreamSchema>;
+  /**
+      * Retrieves the schema for a Schema Id
       * Retrieve a User Schema
       * @param schemaId
       */
   getUserSchema(schemaId: string, _options?: Configuration): Observable<UserSchema>;
   /**
-      * Partial updates on the User Profile properties of the Application User Schema.
+      * Lists the schema for all log stream types visible for this org
+      * List the Log Stream Schemas
+      */
+  listLogStreamSchemas(_options?: Configuration): Observable<Collection<LogStreamSchema>>;
+  /**
+      * Partially updates on the User Profile properties of the Application User Schema
       * Update the default Application User Schema for an Application
       * @param appInstanceId
       * @param body
       */
   updateApplicationUserProfile(appInstanceId: string, body?: UserSchema, _options?: Configuration): Observable<UserSchema>;
   /**
-      * Updates, adds or removes one or more custom Group Profile properties in the schema
+      * Updates the default group schema. This updates, adds, or removes one or more custom Group Profile properties in the schema.
       * Update the default Group Schema
       * @param GroupSchema
       */
   updateGroupSchema(GroupSchema?: GroupSchema, _options?: Configuration): Observable<GroupSchema>;
   /**
-      * Partial updates on the User Profile properties of the user schema.
+      * Partially updates on the User Profile properties of the user schema
       * Update a User Schema
       * @param schemaId
       * @param userSchema
@@ -2390,23 +3169,23 @@ export declare class ObservableSessionApi {
       */
   createSession(createSessionRequest: CreateSessionRequest, _options?: Configuration): Observable<Session>;
   /**
-      * End a session.
-      * Delete a Session
-      * @param sessionId
-      */
-  endSession(sessionId: string, _options?: Configuration): Observable<void>;
-  /**
-      * Get details about a session.
+      * Retrieves the details about a session
       * Retrieve a Session
       * @param sessionId
       */
   getSession(sessionId: string, _options?: Configuration): Observable<Session>;
   /**
-      * Refresh a session.
+      * Refreshes a session
       * Refresh a Session
       * @param sessionId
       */
   refreshSession(sessionId: string, _options?: Configuration): Observable<Session>;
+  /**
+      * Revokes a session
+      * Revoke a Session
+      * @param sessionId
+      */
+  revokeSession(sessionId: string, _options?: Configuration): Observable<void>;
 }
 import { SubscriptionApiRequestFactory, SubscriptionApiResponseProcessor } from '../apis/SubscriptionApi';
 export declare class ObservableSubscriptionApi {
@@ -2415,33 +3194,33 @@ export declare class ObservableSubscriptionApi {
   private configuration;
   constructor(configuration: Configuration, requestFactory?: SubscriptionApiRequestFactory, responseProcessor?: SubscriptionApiResponseProcessor);
   /**
-      * When roleType Get subscriptions of a Role with a specific notification type. Else when roleId Get subscription of a Custom Role with a specific notification type.
-      * List all Subscriptions of a Custom Role with a specific notification type
-      * @param roleTypeOrRoleId
-      * @param notificationType
-      */
-  getRoleSubscriptionByNotificationType(roleTypeOrRoleId: string, notificationType: string, _options?: Configuration): Observable<Subscription>;
-  /**
-      * Get the subscriptions of a User with a specific notification type. Only gets subscriptions for current user. An AccessDeniedException message is sent if requests are made from other users.
-      * List all Subscriptions by type
-      * @param userId
-      * @param notificationType
-      */
-  getUserSubscriptionByNotificationType(userId: string, notificationType: string, _options?: Configuration): Observable<Subscription>;
-  /**
-      * When roleType List all subscriptions of a Role. Else when roleId List subscriptions of a Custom Role
+      * Lists all subscriptions of a Role identified by `roleType` or of a Custom Role identified by `roleId`
       * List all Subscriptions of a Custom Role
       * @param roleTypeOrRoleId
       */
   listRoleSubscriptions(roleTypeOrRoleId: string, _options?: Configuration): Observable<Collection<Subscription>>;
   /**
-      * List subscriptions of a User. Only lists subscriptions for current user. An AccessDeniedException message is sent if requests are made from other users.
+      * Lists all subscriptions with a specific notification type of a Role identified by `roleType` or of a Custom Role identified by `roleId`
+      * List all Subscriptions of a Custom Role with a specific notification type
+      * @param roleTypeOrRoleId
+      * @param notificationType
+      */
+  listRoleSubscriptionsByNotificationType(roleTypeOrRoleId: string, notificationType: string, _options?: Configuration): Observable<Subscription>;
+  /**
+      * Lists all subscriptions of a user. Only lists subscriptions for current user. An AccessDeniedException message is sent if requests are made from other users.
       * List all Subscriptions
       * @param userId
       */
   listUserSubscriptions(userId: string, _options?: Configuration): Observable<Collection<Subscription>>;
   /**
-      * When roleType Subscribes a Role to a specific notification type. When you change the subscription status of a Role, it overrides the subscription of any individual user of that Role. Else when roleId Subscribes a Custom Role to a specific notification type. When you change the subscription status of a Custom Role, it overrides the subscription of any individual user of that Custom Role.
+      * Lists all the subscriptions of a User with a specific notification type. Only gets subscriptions for current user. An AccessDeniedException message is sent if requests are made from other users.
+      * List all Subscriptions by type
+      * @param userId
+      * @param notificationType
+      */
+  listUserSubscriptionsByNotificationType(userId: string, notificationType: string, _options?: Configuration): Observable<Subscription>;
+  /**
+      * Subscribes a Role identified by `roleType` or of a Custom Role identified by `roleId` to a specific notification type. When you change the subscription status of a Role or Custom Role, it overrides the subscription of any individual user of that Role or Custom Role.
       * Subscribe a Custom Role to a specific notification type
       * @param roleTypeOrRoleId
       * @param notificationType
@@ -2455,7 +3234,7 @@ export declare class ObservableSubscriptionApi {
       */
   subscribeUserSubscriptionByNotificationType(userId: string, notificationType: string, _options?: Configuration): Observable<void>;
   /**
-      * When roleType Unsubscribes a Role from a specific notification type. When you change the subscription status of a Role, it overrides the subscription of any individual user of that Role. Else when roleId Unsubscribes a Custom Role from a specific notification type. When you change the subscription status of a Custom Role, it overrides the subscription of any individual user of that Custom Role.
+      * Unsubscribes a Role identified by `roleType` or of a Custom Role identified by `roleId` from a specific notification type. When you change the subscription status of a Role or Custom Role, it overrides the subscription of any individual user of that Role or Custom Role.
       * Unsubscribe a Custom Role from a specific notification type
       * @param roleTypeOrRoleId
       * @param notificationType
@@ -2476,7 +3255,7 @@ export declare class ObservableSystemLogApi {
   private configuration;
   constructor(configuration: Configuration, requestFactory?: SystemLogApiRequestFactory, responseProcessor?: SystemLogApiResponseProcessor);
   /**
-      * The Okta System Log API provides read access to your organization’s system log. This API provides more functionality than the Events API
+      * Lists all system log events. The Okta System Log API provides read access to your organization’s system log. This API provides more functionality than the Events API
       * List all System Log Events
       * @param since
       * @param until
@@ -2486,7 +3265,7 @@ export declare class ObservableSystemLogApi {
       * @param sortOrder
       * @param after
       */
-  getLogs(since?: Date, until?: Date, filter?: string, q?: string, limit?: number, sortOrder?: string, after?: string, _options?: Configuration): Observable<Collection<LogEvent>>;
+  listLogEvents(since?: Date, until?: Date, filter?: string, q?: string, limit?: number, sortOrder?: string, after?: string, _options?: Configuration): Observable<Collection<LogEvent>>;
 }
 import { TemplateApiRequestFactory, TemplateApiResponseProcessor } from '../apis/TemplateApi';
 export declare class ObservableTemplateApi {
@@ -2495,39 +3274,39 @@ export declare class ObservableTemplateApi {
   private configuration;
   constructor(configuration: Configuration, requestFactory?: TemplateApiRequestFactory, responseProcessor?: TemplateApiResponseProcessor);
   /**
-      * Adds a new custom SMS template to your organization.
+      * Creates a new custom SMS template
       * Create an SMS Template
       * @param smsTemplate
       */
   createSmsTemplate(smsTemplate: SmsTemplate, _options?: Configuration): Observable<SmsTemplate>;
   /**
-      * Removes an SMS template.
+      * Deletes an SMS template
       * Delete an SMS Template
       * @param templateId
       */
   deleteSmsTemplate(templateId: string, _options?: Configuration): Observable<void>;
   /**
-      * Fetches a specific template by `id`
+      * Retrieves a specific template by `id`
       * Retrieve an SMS Template
       * @param templateId
       */
   getSmsTemplate(templateId: string, _options?: Configuration): Observable<SmsTemplate>;
   /**
-      * Enumerates custom SMS templates in your organization. A subset of templates can be returned that match a template type.
+      * Lists all custom SMS templates. A subset of templates can be returned that match a template type.
       * List all SMS Templates
       * @param templateType
       */
   listSmsTemplates(templateType?: SmsTemplateType, _options?: Configuration): Observable<Collection<SmsTemplate>>;
   /**
-      * Updates only some of the SMS template properties:
-      * Update an SMS Template
+      * Replaces the SMS template
+      * Replace an SMS Template
       * @param templateId
       * @param smsTemplate
       */
-  partialUpdateSmsTemplate(templateId: string, smsTemplate: SmsTemplate, _options?: Configuration): Observable<SmsTemplate>;
+  replaceSmsTemplate(templateId: string, smsTemplate: SmsTemplate, _options?: Configuration): Observable<SmsTemplate>;
   /**
-      * Updates the SMS template.
-      * Replace an SMS Template
+      * Updates an SMS template
+      * Update an SMS Template
       * @param templateId
       * @param smsTemplate
       */
@@ -2540,7 +3319,7 @@ export declare class ObservableThreatInsightApi {
   private configuration;
   constructor(configuration: Configuration, requestFactory?: ThreatInsightApiRequestFactory, responseProcessor?: ThreatInsightApiResponseProcessor);
   /**
-      * Gets current ThreatInsight configuration
+      * Retrieves current ThreatInsight configuration
       * Retrieve the ThreatInsight Configuration
       */
   getCurrentConfiguration(_options?: Configuration): Observable<ThreatInsightConfiguration>;
@@ -2558,51 +3337,51 @@ export declare class ObservableTrustedOriginApi {
   private configuration;
   constructor(configuration: Configuration, requestFactory?: TrustedOriginApiRequestFactory, responseProcessor?: TrustedOriginApiResponseProcessor);
   /**
-      * Success
+      * Activates a trusted origin
       * Activate a Trusted Origin
       * @param trustedOriginId
       */
-  activateOrigin(trustedOriginId: string, _options?: Configuration): Observable<TrustedOrigin>;
+  activateTrustedOrigin(trustedOriginId: string, _options?: Configuration): Observable<TrustedOrigin>;
   /**
-      * Success
+      * Creates a trusted origin
       * Create a Trusted Origin
       * @param trustedOrigin
       */
-  createOrigin(trustedOrigin: TrustedOrigin, _options?: Configuration): Observable<TrustedOrigin>;
+  createTrustedOrigin(trustedOrigin: TrustedOrigin, _options?: Configuration): Observable<TrustedOrigin>;
   /**
-      * Success
+      * Deactivates a trusted origin
       * Deactivate a Trusted Origin
       * @param trustedOriginId
       */
-  deactivateOrigin(trustedOriginId: string, _options?: Configuration): Observable<TrustedOrigin>;
+  deactivateTrustedOrigin(trustedOriginId: string, _options?: Configuration): Observable<TrustedOrigin>;
   /**
-      * Success
+      * Deletes a trusted origin
       * Delete a Trusted Origin
       * @param trustedOriginId
       */
-  deleteOrigin(trustedOriginId: string, _options?: Configuration): Observable<void>;
+  deleteTrustedOrigin(trustedOriginId: string, _options?: Configuration): Observable<void>;
   /**
-      * Success
+      * Retrieves a trusted origin
       * Retrieve a Trusted Origin
       * @param trustedOriginId
       */
-  getOrigin(trustedOriginId: string, _options?: Configuration): Observable<TrustedOrigin>;
+  getTrustedOrigin(trustedOriginId: string, _options?: Configuration): Observable<TrustedOrigin>;
   /**
-      * Success
+      * Lists all trusted origins
       * List all Trusted Origins
       * @param q
       * @param filter
       * @param after
       * @param limit
       */
-  listOrigins(q?: string, filter?: string, after?: string, limit?: number, _options?: Configuration): Observable<Collection<TrustedOrigin>>;
+  listTrustedOrigins(q?: string, filter?: string, after?: string, limit?: number, _options?: Configuration): Observable<Collection<TrustedOrigin>>;
   /**
-      * Success
+      * Replaces a trusted origin
       * Replace a Trusted Origin
       * @param trustedOriginId
       * @param trustedOrigin
       */
-  updateOrigin(trustedOriginId: string, trustedOrigin: TrustedOrigin, _options?: Configuration): Observable<TrustedOrigin>;
+  replaceTrustedOrigin(trustedOriginId: string, trustedOrigin: TrustedOrigin, _options?: Configuration): Observable<TrustedOrigin>;
 }
 import { UserApiRequestFactory, UserApiResponseProcessor } from '../apis/UserApi';
 export declare class ObservableUserApi {
@@ -2617,46 +3396,6 @@ export declare class ObservableUserApi {
       * @param sendEmail Sends an activation email to the user if true
       */
   activateUser(userId: string, sendEmail: boolean, _options?: Configuration): Observable<UserActivationToken>;
-  /**
-      * Assign all Apps as Target to Role
-      * Assign all Apps as Target to Role
-      * @param userId
-      * @param roleId
-      */
-  addAllAppsAsTargetToRole(userId: string, roleId: string, _options?: Configuration): Observable<void>;
-  /**
-      * Success
-      * Assign an Application Target to Administrator Role
-      * @param userId
-      * @param roleId
-      * @param appName
-      */
-  addApplicationTargetToAdminRoleForUser(userId: string, roleId: string, appName: string, _options?: Configuration): Observable<void>;
-  /**
-      * Add App Instance Target to App Administrator Role given to a User
-      * Assign an Application Instance Target to an Application Administrator Role
-      * @param userId
-      * @param roleId
-      * @param appName
-      * @param applicationId
-      */
-  addApplicationTargetToAppAdminRoleForUser(userId: string, roleId: string, appName: string, applicationId: string, _options?: Configuration): Observable<void>;
-  /**
-      * Assign a Group Target to Role
-      * Assign a Group Target to Role
-      * @param userId
-      * @param roleId
-      * @param groupId
-      */
-  addGroupTargetToRole(userId: string, roleId: string, groupId: string, _options?: Configuration): Observable<void>;
-  /**
-      * Assigns a role to a user.
-      * Assign a Role
-      * @param userId
-      * @param assignRoleRequest
-      * @param disableNotifications
-      */
-  assignRoleToUser(userId: string, assignRoleRequest: AssignRoleRequest, disableNotifications?: boolean, _options?: Configuration): Observable<Role>;
   /**
       * Changes a user's password by validating the user's current password. This operation can only be performed on users in `STAGED`, `ACTIVE`, `PASSWORD_EXPIRED`, or `RECOVERY` status that have a valid password credential
       * Change Password
@@ -2673,14 +3412,7 @@ export declare class ObservableUserApi {
       */
   changeRecoveryQuestion(userId: string, userCredentials: UserCredentials, _options?: Configuration): Observable<UserCredentials>;
   /**
-      * Removes all active identity provider sessions. This forces the user to authenticate on the next operation. Optionally revokes OpenID Connect and OAuth refresh and access tokens issued to the user.
-      * Delete all User Sessions
-      * @param userId
-      * @param oauthTokens Revoke issued OpenID Connect and OAuth refresh and access tokens
-      */
-  clearUserSessions(userId: string, oauthTokens?: boolean, _options?: Configuration): Observable<void>;
-  /**
-      * Creates a new user in your Okta organization with or without credentials.
+      * Creates a new user in your Okta organization with or without credentials
       * Create a User
       * @param body
       * @param activate Executes activation lifecycle operation when creating the user
@@ -2689,13 +3421,6 @@ export declare class ObservableUserApi {
       */
   createUser(body: CreateUserRequest, activate?: boolean, provider?: boolean, nextLogin?: UserNextLogin, _options?: Configuration): Observable<User>;
   /**
-      * Deletes a user permanently.  This operation can only be performed on users that have a `DEPROVISIONED` status.  **This action cannot be recovered!**
-      * Delete a User
-      * @param userId
-      * @param sendEmail
-      */
-  deactivateOrDeleteUser(userId: string, sendEmail?: boolean, _options?: Configuration): Observable<void>;
-  /**
       * Deactivates a user. This operation can only be performed on users that do not have a `DEPROVISIONED` status. While the asynchronous operation (triggered by HTTP header `Prefer: respond-async`) is proceeding the user's `transitioningToStatus` property is `DEPROVISIONED`. The user's status is `DEPROVISIONED` when the deactivation process is complete.
       * Deactivate a User
       * @param userId
@@ -2703,26 +3428,40 @@ export declare class ObservableUserApi {
       */
   deactivateUser(userId: string, sendEmail?: boolean, _options?: Configuration): Observable<void>;
   /**
-      * This operation transitions the user to the status of `PASSWORD_EXPIRED` so that the user is required to change their password at their next login.
+      * Deletes linked objects for a user, relationshipName can be ONLY a primary relationship name
+      * Delete a Linked Object
+      * @param userId
+      * @param relationshipName
+      */
+  deleteLinkedObjectForUser(userId: string, relationshipName: string, _options?: Configuration): Observable<void>;
+  /**
+      * Deletes a user permanently. This operation can only be performed on users that have a `DEPROVISIONED` status.  **This action cannot be recovered!**. Calling this on an `ACTIVE` user will transition the user to `DEPROVISIONED`.
+      * Delete a User
+      * @param userId
+      * @param sendEmail
+      */
+  deleteUser(userId: string, sendEmail?: boolean, _options?: Configuration): Observable<void>;
+  /**
+      * Expires a user's password and transitions the user to the status of `PASSWORD_EXPIRED` so that the user is required to change their password at their next login
       * Expire Password
       * @param userId
       */
   expirePassword(userId: string, _options?: Configuration): Observable<User>;
   /**
-      * This operation transitions the user to the status of `PASSWORD_EXPIRED` so that the user is required to change their password at their next login, and also sets the user's password to a temporary password returned in the response.
+      * Expires a user's password and transitions the user to the status of `PASSWORD_EXPIRED` so that the user is required to change their password at their next login, and also sets the user's password to a temporary password returned in the response
       * Expire Password and Set Temporary Password
       * @param userId
       */
   expirePasswordAndGetTemporaryPassword(userId: string, _options?: Configuration): Observable<TempPassword>;
   /**
-      * Initiate forgot password flow. Generates a one-time token (OTT) that can be used to reset a user's password.
+      * Initiates the forgot password flow. Generates a one-time token (OTT) that can be used to reset a user's password.
       * Initiate Forgot Password
       * @param userId
       * @param sendEmail
       */
   forgotPassword(userId: string, sendEmail?: boolean, _options?: Configuration): Observable<ForgotPasswordResponse>;
   /**
-      * Resets the user's password to the specified password if the provided answer to the recovery question is correct.
+      * Resets the user's password to the specified password if the provided answer to the recovery question is correct
       * Reset Password with Recovery Question
       * @param userId
       * @param userCredentials
@@ -2730,16 +3469,14 @@ export declare class ObservableUserApi {
       */
   forgotPasswordSetNewPassword(userId: string, userCredentials: UserCredentials, sendEmail?: boolean, _options?: Configuration): Observable<UserCredentials>;
   /**
-      * Get linked objects for a user, relationshipName can be a primary or associated relationship name
-      * List all Linked Objects
+      * Generates a one-time token (OTT) that can be used to reset a user's password.  The OTT link can be automatically emailed to the user or returned to the API caller and distributed using a custom flow.
+      * Generate a Reset Password Token
       * @param userId
-      * @param relationshipName
-      * @param after
-      * @param limit
+      * @param sendEmail
       */
-  getLinkedObjectsForUser(userId: string, relationshipName: string, after?: string, limit?: number, _options?: Configuration): Observable<Collection<any>>;
+  generateResetPasswordToken(userId: string, sendEmail: boolean, _options?: Configuration): Observable<ResetPasswordToken>;
   /**
-      * Gets a refresh token issued for the specified User and Client.
+      * Retrieves a refresh token issued for the specified User and Client
       * Retrieve a Refresh Token for a Client
       * @param userId
       * @param clientId
@@ -2750,13 +3487,14 @@ export declare class ObservableUserApi {
       */
   getRefreshTokenForUserAndClient(userId: string, clientId: string, tokenId: string, expand?: string, limit?: number, after?: string, _options?: Configuration): Observable<OAuth2RefreshToken>;
   /**
-      * Fetches a user from your Okta organization.
+      * Retrieves a user from your Okta organization
       * Retrieve a User
       * @param userId
+      * @param expand Specifies additional metadata to include in the response. Possible value: &#x60;blocks&#x60;
       */
-  getUser(userId: string, _options?: Configuration): Observable<User>;
+  getUser(userId: string, expand?: string, _options?: Configuration): Observable<User>;
   /**
-      * Gets a grant for the specified user
+      * Retrieves a grant for the specified user
       * Retrieve a User Grant
       * @param userId
       * @param grantId
@@ -2764,34 +3502,11 @@ export declare class ObservableUserApi {
       */
   getUserGrant(userId: string, grantId: string, expand?: string, _options?: Configuration): Observable<OAuth2ScopeConsentGrant>;
   /**
-      * Gets role that is assigned to user.
-      * Retrieve a Role
-      * @param userId
-      * @param roleId
-      */
-  getUserRole(userId: string, roleId: string, _options?: Configuration): Observable<Role>;
-  /**
-      * Fetches appLinks for all direct or indirect (via group membership) assigned applications.
+      * Lists all appLinks for all direct or indirect (via group membership) assigned applications
       * List all Assigned Application Links
       * @param userId
       */
   listAppLinks(userId: string, _options?: Configuration): Observable<Collection<AppLink>>;
-  /**
-      * Lists all App targets for an `APP_ADMIN` Role assigned to a User. This methods return list may include full Applications or Instances. The response for an instance will have an `ID` value, while Application will not have an ID.
-      * List all Application Targets for Application Administrator Role
-      * @param userId
-      * @param roleId
-      * @param after
-      * @param limit
-      */
-  listApplicationTargetsForApplicationAdministratorRoleForUser(userId: string, roleId: string, after?: string, limit?: number, _options?: Configuration): Observable<Collection<CatalogApplication>>;
-  /**
-      * Lists all roles assigned to a user.
-      * List all Assigned Roles
-      * @param userId
-      * @param expand
-      */
-  listAssignedRolesForUser(userId: string, expand?: string, _options?: Configuration): Observable<Collection<Role>>;
   /**
       * Lists all grants for a specified user and client
       * List all Grants for a Client
@@ -2803,16 +3518,16 @@ export declare class ObservableUserApi {
       */
   listGrantsForUserAndClient(userId: string, clientId: string, expand?: string, after?: string, limit?: number, _options?: Configuration): Observable<Collection<OAuth2ScopeConsentGrant>>;
   /**
-      * Success
-      * List all Group Targets for Role
+      * Lists all linked objects for a user, relationshipName can be a primary or associated relationship name
+      * List all Linked Objects
       * @param userId
-      * @param roleId
+      * @param relationshipName
       * @param after
       * @param limit
       */
-  listGroupTargetsForRole(userId: string, roleId: string, after?: string, limit?: number, _options?: Configuration): Observable<Collection<Group>>;
+  listLinkedObjectsForUser(userId: string, relationshipName: string, after?: string, limit?: number, _options?: Configuration): Observable<Collection<any>>;
   /**
-      * Lists all refresh tokens issued for the specified User and Client.
+      * Lists all refresh tokens issued for the specified User and Client
       * List all Refresh Tokens for a Client
       * @param userId
       * @param clientId
@@ -2822,7 +3537,13 @@ export declare class ObservableUserApi {
       */
   listRefreshTokensForUserAndClient(userId: string, clientId: string, expand?: string, after?: string, limit?: number, _options?: Configuration): Observable<Collection<OAuth2RefreshToken>>;
   /**
-      * Lists all client resources for which the specified user has grants or tokens.
+      * Lists information about how the user is blocked from accessing their account
+      * List all User Blocks
+      * @param userId
+      */
+  listUserBlocks(userId: string, _options?: Configuration): Observable<Collection<UserBlock>>;
+  /**
+      * Lists all client resources for which the specified user has grants or tokens
       * List all Clients
       * @param userId
       */
@@ -2838,37 +3559,29 @@ export declare class ObservableUserApi {
       */
   listUserGrants(userId: string, scopeId?: string, expand?: string, after?: string, limit?: number, _options?: Configuration): Observable<Collection<OAuth2ScopeConsentGrant>>;
   /**
-      * Fetches the groups of which the user is a member.
+      * Lists all groups of which the user is a member
       * List all Groups
       * @param userId
       */
   listUserGroups(userId: string, _options?: Configuration): Observable<Collection<Group>>;
   /**
-      * Lists the IdPs associated with the user.
+      * Lists the IdPs associated with the user
       * List all Identity Providers
       * @param userId
       */
   listUserIdentityProviders(userId: string, _options?: Configuration): Observable<Collection<IdentityProvider>>;
   /**
-      * Lists users in your organization with pagination in most cases.  A subset of users can be returned that match a supported filter expression or search criteria.
+      * Lists all users that do not have a status of 'DEPROVISIONED' (by default), up to the maximum (200 for most orgs), with pagination.  A subset of users can be returned that match a supported filter expression or search criteria.
       * List all Users
       * @param q Finds a user that matches firstName, lastName, and email properties
-      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](https://developer.okta.com/docs/reference/core-okta-api/#pagination) for more information.
+      * @param after The cursor to use for pagination. It is an opaque string that specifies your current location in the list and is obtained from the &#x60;Link&#x60; response header. See [Pagination](/#pagination) for more information.
       * @param limit Specifies the number of results returned. Defaults to 10 if &#x60;q&#x60; is provided.
       * @param filter Filters users with a supported expression for a subset of properties
-      * @param search Searches for users with a supported filtering  expression for most properties
+      * @param search Searches for users with a supported filtering expression for most properties. Okta recommends using this parameter for search for best performance.
       * @param sortBy
       * @param sortOrder
       */
   listUsers(q?: string, after?: string, limit?: number, filter?: string, search?: string, sortBy?: string, sortOrder?: string, _options?: Configuration): Observable<Collection<User>>;
-  /**
-      * Fetch a user by `id`, `login`, or `login shortname` if the short name is unambiguous.
-      * Update a User
-      * @param userId
-      * @param user
-      * @param strict
-      */
-  partialUpdateUser(userId: string, user: UpdateUserRequest, strict?: boolean, _options?: Configuration): Observable<User>;
   /**
       * Reactivates a user.  This operation can only be performed on users with a `PROVISIONED` status.  This operation restarts the activation workflow if for some reason the user activation was not completed when using the activationToken from [Activate User](#activate-user).
       * Reactivate a User
@@ -2877,57 +3590,19 @@ export declare class ObservableUserApi {
       */
   reactivateUser(userId: string, sendEmail?: boolean, _options?: Configuration): Observable<UserActivationToken>;
   /**
-      * Remove App Instance Target to App Administrator Role given to a User
-      * Unassign an Application Instance Target to Application Administrator Role
+      * Replaces a user's profile and/or credentials using strict-update semantics
+      * Replace a User
       * @param userId
-      * @param roleId
-      * @param appName
-      * @param applicationId
+      * @param user
+      * @param strict
       */
-  removeApplicationTargetFromAdministratorRoleForUser(userId: string, roleId: string, appName: string, applicationId: string, _options?: Configuration): Observable<void>;
+  replaceUser(userId: string, user: UpdateUserRequest, strict?: boolean, _options?: Configuration): Observable<User>;
   /**
-      * Success
-      * Unassign an Application Target from Application Administrator Role
-      * @param userId
-      * @param roleId
-      * @param appName
-      */
-  removeApplicationTargetFromApplicationAdministratorRoleForUser(userId: string, roleId: string, appName: string, _options?: Configuration): Observable<void>;
-  /**
-      * Unassign a Group Target from Role
-      * Unassign a Group Target from Role
-      * @param userId
-      * @param roleId
-      * @param groupId
-      */
-  removeGroupTargetFromRole(userId: string, roleId: string, groupId: string, _options?: Configuration): Observable<void>;
-  /**
-      * Delete linked objects for a user, relationshipName can be ONLY a primary relationship name
-      * Delete a Linked Object
-      * @param userId
-      * @param relationshipName
-      */
-  removeLinkedObjectForUser(userId: string, relationshipName: string, _options?: Configuration): Observable<void>;
-  /**
-      * Unassigns a role from a user.
-      * Delete a Role
-      * @param userId
-      * @param roleId
-      */
-  removeRoleFromUser(userId: string, roleId: string, _options?: Configuration): Observable<void>;
-  /**
-      * This operation resets all factors for the specified user. All MFA factor enrollments returned to the unenrolled state. The user's status remains ACTIVE. This link is present only if the user is currently enrolled in one or more MFA factors.
+      * Resets all factors for the specified user. All MFA factor enrollments returned to the unenrolled state. The user's status remains ACTIVE. This link is present only if the user is currently enrolled in one or more MFA factors.
       * Reset all Factors
       * @param userId
       */
   resetFactors(userId: string, _options?: Configuration): Observable<void>;
-  /**
-      * Generates a one-time token (OTT) that can be used to reset a user's password.  The OTT link can be automatically emailed to the user or returned to the API caller and distributed using a custom flow.
-      * Reset Password
-      * @param userId
-      * @param sendEmail
-      */
-  resetPassword(userId: string, sendEmail: boolean, _options?: Configuration): Observable<ResetPasswordToken>;
   /**
       * Revokes all grants for the specified user and client
       * Revoke all Grants for a Client
@@ -2936,7 +3611,7 @@ export declare class ObservableUserApi {
       */
   revokeGrantsForUserAndClient(userId: string, clientId: string, _options?: Configuration): Observable<void>;
   /**
-      * Revokes the specified refresh token.
+      * Revokes the specified refresh token
       * Revoke a Token for a Client
       * @param userId
       * @param clientId
@@ -2944,7 +3619,7 @@ export declare class ObservableUserApi {
       */
   revokeTokenForUserAndClient(userId: string, clientId: string, tokenId: string, _options?: Configuration): Observable<void>;
   /**
-      * Revokes all refresh tokens issued for the specified User and Client.
+      * Revokes all refresh tokens issued for the specified User and Client
       * Revoke all Refresh Tokens for a Client
       * @param userId
       * @param clientId
@@ -2964,7 +3639,14 @@ export declare class ObservableUserApi {
       */
   revokeUserGrants(userId: string, _options?: Configuration): Observable<void>;
   /**
-      * Sets a linked object for two users.
+      * Revokes all active identity provider sessions of the user. This forces the user to authenticate on the next operation. Optionally revokes OpenID Connect and OAuth refresh and access tokens issued to the user.
+      * Revoke all User Sessions
+      * @param userId
+      * @param oauthTokens Revoke issued OpenID Connect and OAuth refresh and access tokens
+      */
+  revokeUserSessions(userId: string, oauthTokens?: boolean, _options?: Configuration): Observable<void>;
+  /**
+      * Creates a linked object for two users
       * Create a Linked Object for two User
       * @param associatedUserId
       * @param primaryRelationshipName
@@ -2978,7 +3660,7 @@ export declare class ObservableUserApi {
       */
   suspendUser(userId: string, _options?: Configuration): Observable<void>;
   /**
-      * Unlocks a user with a `LOCKED_OUT` status and returns them to `ACTIVE` status.  Users will be able to login with their current password.
+      * Unlocks a user with a `LOCKED_OUT` status or unlocks a user with an `ACTIVE` status that is blocked from unknown devices. Unlocked users have an `ACTIVE` status and can sign in with their current password.
       * Unlock a User
       * @param userId
       */
@@ -2990,8 +3672,8 @@ export declare class ObservableUserApi {
       */
   unsuspendUser(userId: string, _options?: Configuration): Observable<void>;
   /**
-      * Update a user's profile and/or credentials using strict-update semantics.
-      * Replace a User
+      * Updates a user partially determined by the request parameters
+      * Update a User
       * @param userId
       * @param user
       * @param strict
@@ -3005,7 +3687,7 @@ export declare class ObservableUserFactorApi {
   private configuration;
   constructor(configuration: Configuration, requestFactory?: UserFactorApiRequestFactory, responseProcessor?: UserFactorApiResponseProcessor);
   /**
-      * The `sms` and `token:software:totp` factor types require activation to complete the enrollment process.
+      * Activates a factor. The `sms` and `token:software:totp` factor types require activation to complete the enrollment process.
       * Activate a Factor
       * @param userId
       * @param factorId
@@ -3013,15 +3695,7 @@ export declare class ObservableUserFactorApi {
       */
   activateFactor(userId: string, factorId: string, body?: ActivateFactorRequest, _options?: Configuration): Observable<UserFactor>;
   /**
-      * Unenrolls an existing factor for the specified user, allowing the user to enroll a new factor.
-      * Delete a Factor
-      * @param userId
-      * @param factorId
-      * @param removeEnrollmentRecovery
-      */
-  deleteFactor(userId: string, factorId: string, removeEnrollmentRecovery?: boolean, _options?: Configuration): Observable<void>;
-  /**
-      * Enrolls a user with a supported factor.
+      * Enrolls a user with a supported factor
       * Enroll a Factor
       * @param userId
       * @param body Factor
@@ -3032,14 +3706,14 @@ export declare class ObservableUserFactorApi {
       */
   enrollFactor(userId: string, body: UserFactor, updatePhone?: boolean, templateId?: string, tokenLifetimeSeconds?: number, activate?: boolean, _options?: Configuration): Observable<UserFactor>;
   /**
-      * Fetches a factor for the specified user
+      * Retrieves a factor for the specified user
       * Retrieve a Factor
       * @param userId
       * @param factorId
       */
   getFactor(userId: string, factorId: string, _options?: Configuration): Observable<UserFactor>;
   /**
-      * Polls factors verification transaction for status.
+      * Retrieves the factors verification transaction status
       * Retrieve a Factor Transaction Status
       * @param userId
       * @param factorId
@@ -3047,23 +3721,31 @@ export declare class ObservableUserFactorApi {
       */
   getFactorTransactionStatus(userId: string, factorId: string, transactionId: string, _options?: Configuration): Observable<VerifyUserFactorResponse>;
   /**
-      * Enumerates all the enrolled factors for the specified user
+      * Lists all the enrolled factors for the specified user
       * List all Factors
       * @param userId
       */
   listFactors(userId: string, _options?: Configuration): Observable<Collection<UserFactor>>;
   /**
-      * Enumerates all the supported factors that can be enrolled for the specified user
+      * Lists all the supported factors that can be enrolled for the specified user
       * List all Supported Factors
       * @param userId
       */
   listSupportedFactors(userId: string, _options?: Configuration): Observable<Collection<UserFactor>>;
   /**
-      * Enumerates all available security questions for a user's `question` factor
+      * Lists all available security questions for a user's `question` factor
       * List all Supported Security Questions
       * @param userId
       */
   listSupportedSecurityQuestions(userId: string, _options?: Configuration): Observable<Collection<SecurityQuestion>>;
+  /**
+      * Unenrolls an existing factor for the specified user, allowing the user to enroll a new factor
+      * Unenroll a Factor
+      * @param userId
+      * @param factorId
+      * @param removeEnrollmentRecovery
+      */
+  unenrollFactor(userId: string, factorId: string, removeEnrollmentRecovery?: boolean, _options?: Configuration): Observable<void>;
   /**
       * Verifies an OTP for a `token` or `token:hardware` factor
       * Verify an MFA Factor
@@ -3097,18 +3779,18 @@ export declare class ObservableUserTypeApi {
       */
   deleteUserType(typeId: string, _options?: Configuration): Observable<void>;
   /**
-      * Fetches a User Type by ID. The special identifier `default` may be used to fetch the default User Type.
+      * Retrieves a User Type by ID. The special identifier `default` may be used to fetch the default User Type.
       * Retrieve a User Type
       * @param typeId
       */
   getUserType(typeId: string, _options?: Configuration): Observable<UserType>;
   /**
-      * Fetches all User Types in your org
+      * Lists all User Types in your org
       * List all User Types
       */
   listUserTypes(_options?: Configuration): Observable<Collection<UserType>>;
   /**
-      * Replace an existing User Type
+      * Replaces an existing user type
       * Replace a User Type
       * @param typeId
       * @param userType

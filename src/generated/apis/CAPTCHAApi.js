@@ -25,7 +25,7 @@ const util_1 = require('../util');
  */
 class CAPTCHAApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   /**
-     * Adds a new CAPTCHA instance to your organization. In the current release, we only allow one CAPTCHA instance per org.
+     * Creates a new CAPTCHA instance. In the current release, we only allow one CAPTCHA instance per org.
      * Create a CAPTCHA instance
      * @param instance
      */
@@ -50,12 +50,12 @@ class CAPTCHAApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     requestContext.setBody(serializedBody);
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -66,7 +66,7 @@ class CAPTCHAApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     return requestContext;
   }
   /**
-     * Delete a CAPTCHA instance by `captchaId`. If the CAPTCHA instance is currently being used in the org, the delete will not be allowed.
+     * Deletes a CAPTCHA instance by `captchaId`. If the CAPTCHA instance is currently being used in the org, the delete will not be allowed.
      * Delete a CAPTCHA Instance
      * @param captchaId id of the CAPTCHA
      */
@@ -86,12 +86,12 @@ class CAPTCHAApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -102,7 +102,7 @@ class CAPTCHAApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     return requestContext;
   }
   /**
-     * Fetches a CAPTCHA instance by `captchaId`.
+     * Retrieves a CAPTCHA instance by `captchaId`
      * Retrieve a CAPTCHA Instance
      * @param captchaId id of the CAPTCHA
      */
@@ -122,12 +122,12 @@ class CAPTCHAApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -138,7 +138,7 @@ class CAPTCHAApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     return requestContext;
   }
   /**
-     * Enumerates CAPTCHA instances in your organization with pagination. A subset of CAPTCHA instances can be returned that match a supported filter expression or query.
+     * Lists all CAPTCHA instances with pagination support. A subset of CAPTCHA instances can be returned that match a supported filter expression or query.
      * List all CAPTCHA instances
      */
   async listCaptchaInstances(_options) {
@@ -150,12 +150,12 @@ class CAPTCHAApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -166,69 +166,20 @@ class CAPTCHAApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     return requestContext;
   }
   /**
-     * Partially update a CAPTCHA instance by `captchaId`.
-     * Update a CAPTCHA instance
-     * @param captchaId id of the CAPTCHA
-     * @param instance
-     */
-  async partialUpdateCaptchaInstance(captchaId, instance, _options) {
-    let _config = _options || this.configuration;
-    // verify required parameter 'captchaId' is not null or undefined
-    if (captchaId === null || captchaId === undefined) {
-      throw new baseapi_1.RequiredError('CAPTCHAApi', 'partialUpdateCaptchaInstance', 'captchaId');
-    }
-    // verify required parameter 'instance' is not null or undefined
-    if (instance === null || instance === undefined) {
-      throw new baseapi_1.RequiredError('CAPTCHAApi', 'partialUpdateCaptchaInstance', 'instance');
-    }
-    // Path Params
-    const path = '/api/v1/captchas/{captchaId}';
-    const vars = {
-      ['captchaId']: String(captchaId),
-    };
-    // Make Request Context
-    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
-    requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
-    // Body Params
-    const [contentType, contentEncoding] = ObjectSerializer_1.ObjectSerializer.getPreferredMediaTypeAndEncoding([
-      'application/json'
-    ], instance);
-    requestContext.setHeaderParam('Content-Type', contentType);
-    requestContext.setHeaderParam('Content-Transfer-Encoding', contentEncoding);
-    const serializedBody = ObjectSerializer_1.ObjectSerializer.stringify(ObjectSerializer_1.ObjectSerializer.serialize(instance, 'CAPTCHAInstance', ''), contentType);
-    requestContext.setBody(serializedBody);
-    let authMethod;
-    // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
-    if (authMethod?.applySecurityAuthentication) {
-      await authMethod?.applySecurityAuthentication(requestContext);
-    }
-    // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
-    if (authMethod?.applySecurityAuthentication) {
-      await authMethod?.applySecurityAuthentication(requestContext);
-    }
-    const defaultAuth = _options?.authMethods?.default || this.configuration?.authMethods?.default;
-    if (defaultAuth?.applySecurityAuthentication) {
-      await defaultAuth?.applySecurityAuthentication(requestContext);
-    }
-    return requestContext;
-  }
-  /**
-     * Update a CAPTCHA instance by `captchaId`.
+     * Replaces a CAPTCHA instance by `captchaId`
      * Replace a CAPTCHA instance
      * @param captchaId id of the CAPTCHA
      * @param instance
      */
-  async updateCaptchaInstance(captchaId, instance, _options) {
+  async replaceCaptchaInstance(captchaId, instance, _options) {
     let _config = _options || this.configuration;
     // verify required parameter 'captchaId' is not null or undefined
     if (captchaId === null || captchaId === undefined) {
-      throw new baseapi_1.RequiredError('CAPTCHAApi', 'updateCaptchaInstance', 'captchaId');
+      throw new baseapi_1.RequiredError('CAPTCHAApi', 'replaceCaptchaInstance', 'captchaId');
     }
     // verify required parameter 'instance' is not null or undefined
     if (instance === null || instance === undefined) {
-      throw new baseapi_1.RequiredError('CAPTCHAApi', 'updateCaptchaInstance', 'instance');
+      throw new baseapi_1.RequiredError('CAPTCHAApi', 'replaceCaptchaInstance', 'instance');
     }
     // Path Params
     const path = '/api/v1/captchas/{captchaId}';
@@ -248,12 +199,61 @@ class CAPTCHAApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     requestContext.setBody(serializedBody);
     let authMethod;
     // Apply auth methods
-    authMethod = _config.authMethods['API_Token'];
+    authMethod = _config.authMethods['apiToken'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
     // Apply auth methods
-    authMethod = _config.authMethods['OAuth_2.0'];
+    authMethod = _config.authMethods['oauth2'];
+    if (authMethod?.applySecurityAuthentication) {
+      await authMethod?.applySecurityAuthentication(requestContext);
+    }
+    const defaultAuth = _options?.authMethods?.default || this.configuration?.authMethods?.default;
+    if (defaultAuth?.applySecurityAuthentication) {
+      await defaultAuth?.applySecurityAuthentication(requestContext);
+    }
+    return requestContext;
+  }
+  /**
+     * Partially updates a CAPTCHA instance by `captchaId`
+     * Update a CAPTCHA instance
+     * @param captchaId id of the CAPTCHA
+     * @param instance
+     */
+  async updateCaptchaInstance(captchaId, instance, _options) {
+    let _config = _options || this.configuration;
+    // verify required parameter 'captchaId' is not null or undefined
+    if (captchaId === null || captchaId === undefined) {
+      throw new baseapi_1.RequiredError('CAPTCHAApi', 'updateCaptchaInstance', 'captchaId');
+    }
+    // verify required parameter 'instance' is not null or undefined
+    if (instance === null || instance === undefined) {
+      throw new baseapi_1.RequiredError('CAPTCHAApi', 'updateCaptchaInstance', 'instance');
+    }
+    // Path Params
+    const path = '/api/v1/captchas/{captchaId}';
+    const vars = {
+      ['captchaId']: String(captchaId),
+    };
+    // Make Request Context
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
+    requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
+    // Body Params
+    const [contentType, contentEncoding] = ObjectSerializer_1.ObjectSerializer.getPreferredMediaTypeAndEncoding([
+      'application/json'
+    ], instance);
+    requestContext.setHeaderParam('Content-Type', contentType);
+    requestContext.setHeaderParam('Content-Transfer-Encoding', contentEncoding);
+    const serializedBody = ObjectSerializer_1.ObjectSerializer.stringify(ObjectSerializer_1.ObjectSerializer.serialize(instance, 'CAPTCHAInstance', ''), contentType);
+    requestContext.setBody(serializedBody);
+    let authMethod;
+    // Apply auth methods
+    authMethod = _config.authMethods['apiToken'];
+    if (authMethod?.applySecurityAuthentication) {
+      await authMethod?.applySecurityAuthentication(requestContext);
+    }
+    // Apply auth methods
+    authMethod = _config.authMethods['oauth2'];
     if (authMethod?.applySecurityAuthentication) {
       await authMethod?.applySecurityAuthentication(requestContext);
     }
@@ -393,10 +393,10 @@ class CAPTCHAApiResponseProcessor {
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
-     * @params response Response returned by the server for a request to partialUpdateCaptchaInstance
+     * @params response Response returned by the server for a request to replaceCaptchaInstance
      * @throws ApiException if the response code was not in [200, 299]
      */
-  async partialUpdateCaptchaInstance(response) {
+  async replaceCaptchaInstance(response) {
     const contentType = ObjectSerializer_1.ObjectSerializer.normalizeMediaType(response.headers['content-type']);
     if ((0, util_1.isCodeInRange)('200', response.httpStatusCode)) {
       const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'CAPTCHAInstance', '');

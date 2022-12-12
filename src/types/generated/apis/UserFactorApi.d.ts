@@ -24,7 +24,7 @@ import { VerifyUserFactorResponse } from '../models/VerifyUserFactorResponse';
  */
 export declare class UserFactorApiRequestFactory extends BaseAPIRequestFactory {
   /**
-     * The `sms` and `token:software:totp` factor types require activation to complete the enrollment process.
+     * Activates a factor. The `sms` and `token:software:totp` factor types require activation to complete the enrollment process.
      * Activate a Factor
      * @param userId
      * @param factorId
@@ -32,15 +32,7 @@ export declare class UserFactorApiRequestFactory extends BaseAPIRequestFactory {
      */
   activateFactor(userId: string, factorId: string, body?: ActivateFactorRequest, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Unenrolls an existing factor for the specified user, allowing the user to enroll a new factor.
-     * Delete a Factor
-     * @param userId
-     * @param factorId
-     * @param removeEnrollmentRecovery
-     */
-  deleteFactor(userId: string, factorId: string, removeEnrollmentRecovery?: boolean, _options?: Configuration): Promise<RequestContext>;
-  /**
-     * Enrolls a user with a supported factor.
+     * Enrolls a user with a supported factor
      * Enroll a Factor
      * @param userId
      * @param body Factor
@@ -51,14 +43,14 @@ export declare class UserFactorApiRequestFactory extends BaseAPIRequestFactory {
      */
   enrollFactor(userId: string, body: UserFactor, updatePhone?: boolean, templateId?: string, tokenLifetimeSeconds?: number, activate?: boolean, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Fetches a factor for the specified user
+     * Retrieves a factor for the specified user
      * Retrieve a Factor
      * @param userId
      * @param factorId
      */
   getFactor(userId: string, factorId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Polls factors verification transaction for status.
+     * Retrieves the factors verification transaction status
      * Retrieve a Factor Transaction Status
      * @param userId
      * @param factorId
@@ -66,23 +58,31 @@ export declare class UserFactorApiRequestFactory extends BaseAPIRequestFactory {
      */
   getFactorTransactionStatus(userId: string, factorId: string, transactionId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Enumerates all the enrolled factors for the specified user
+     * Lists all the enrolled factors for the specified user
      * List all Factors
      * @param userId
      */
   listFactors(userId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Enumerates all the supported factors that can be enrolled for the specified user
+     * Lists all the supported factors that can be enrolled for the specified user
      * List all Supported Factors
      * @param userId
      */
   listSupportedFactors(userId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Enumerates all available security questions for a user's `question` factor
+     * Lists all available security questions for a user's `question` factor
      * List all Supported Security Questions
      * @param userId
      */
   listSupportedSecurityQuestions(userId: string, _options?: Configuration): Promise<RequestContext>;
+  /**
+     * Unenrolls an existing factor for the specified user, allowing the user to enroll a new factor
+     * Unenroll a Factor
+     * @param userId
+     * @param factorId
+     * @param removeEnrollmentRecovery
+     */
+  unenrollFactor(userId: string, factorId: string, removeEnrollmentRecovery?: boolean, _options?: Configuration): Promise<RequestContext>;
   /**
      * Verifies an OTP for a `token` or `token:hardware` factor
      * Verify an MFA Factor
@@ -106,14 +106,6 @@ export declare class UserFactorApiResponseProcessor {
      * @throws ApiException if the response code was not in [200, 299]
      */
   activateFactor(response: ResponseContext): Promise<UserFactor>;
-  /**
-     * Unwraps the actual response sent by the server from the response context and deserializes the response content
-     * to the expected objects
-     *
-     * @params response Response returned by the server for a request to deleteFactor
-     * @throws ApiException if the response code was not in [200, 299]
-     */
-  deleteFactor(response: ResponseContext): Promise<void>;
   /**
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
@@ -162,6 +154,14 @@ export declare class UserFactorApiResponseProcessor {
      * @throws ApiException if the response code was not in [200, 299]
      */
   listSupportedSecurityQuestions(response: ResponseContext): Promise<Array<SecurityQuestion>>;
+  /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
+     * @params response Response returned by the server for a request to unenrollFactor
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+  unenrollFactor(response: ResponseContext): Promise<void>;
   /**
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects

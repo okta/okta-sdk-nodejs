@@ -28,20 +28,20 @@ import { OAuth2Scope } from '../models/OAuth2Scope';
  */
 export declare class AuthorizationServerApiRequestFactory extends BaseAPIRequestFactory {
   /**
-     * Success
+     * Activates an authorization server
      * Activate an Authorization Server
      * @param authServerId
      */
   activateAuthorizationServer(authServerId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Activate Authorization Server Policy
+     * Activates an authorization server policy
      * Activate a Policy
      * @param authServerId
      * @param policyId
      */
   activateAuthorizationServerPolicy(authServerId: string, policyId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Activate Authorization Server Policy Rule
+     * Activates an authorization server policy rule
      * Activate a Policy Rule
      * @param authServerId
      * @param policyId
@@ -49,20 +49,20 @@ export declare class AuthorizationServerApiRequestFactory extends BaseAPIRequest
      */
   activateAuthorizationServerPolicyRule(authServerId: string, policyId: string, ruleId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Success
+     * Creates an authorization server
      * Create an Authorization Server
      * @param authorizationServer
      */
   createAuthorizationServer(authorizationServer: AuthorizationServer, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Success
+     * Creates a policy
      * Create a Policy
      * @param authServerId
      * @param policy
      */
   createAuthorizationServerPolicy(authServerId: string, policy: AuthorizationServerPolicy, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Creates a policy rule for the specified Custom Authorization Server and Policy.
+     * Creates a policy rule for the specified Custom Authorization Server and Policy
      * Create a Policy Rule
      * @param policyId
      * @param authServerId
@@ -70,34 +70,34 @@ export declare class AuthorizationServerApiRequestFactory extends BaseAPIRequest
      */
   createAuthorizationServerPolicyRule(policyId: string, authServerId: string, policyRule: AuthorizationServerPolicyRule, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Success
+     * Creates a custom token claim
      * Create a Custom Token Claim
      * @param authServerId
      * @param oAuth2Claim
      */
   createOAuth2Claim(authServerId: string, oAuth2Claim: OAuth2Claim, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Success
+     * Creates a custom token scope
      * Create a Custom Token Scope
      * @param authServerId
      * @param oAuth2Scope
      */
   createOAuth2Scope(authServerId: string, oAuth2Scope: OAuth2Scope, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Success
+     * Deactivates an authorization server
      * Deactivate an Authorization Server
      * @param authServerId
      */
   deactivateAuthorizationServer(authServerId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Deactivate Authorization Server Policy
+     * Deactivates an authorization server policy
      * Deactivate a Policy
      * @param authServerId
      * @param policyId
      */
   deactivateAuthorizationServerPolicy(authServerId: string, policyId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Deactivate Authorization Server Policy Rule
+     * Deactivates an authorization server policy rule
      * Deactivate a Policy Rule
      * @param authServerId
      * @param policyId
@@ -105,20 +105,20 @@ export declare class AuthorizationServerApiRequestFactory extends BaseAPIRequest
      */
   deactivateAuthorizationServerPolicyRule(authServerId: string, policyId: string, ruleId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Success
+     * Deletes an authorization server
      * Delete an Authorization Server
      * @param authServerId
      */
   deleteAuthorizationServer(authServerId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Success
+     * Deletes a policy
      * Delete a Policy
      * @param authServerId
      * @param policyId
      */
   deleteAuthorizationServerPolicy(authServerId: string, policyId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Deletes a Policy Rule defined in the specified Custom Authorization Server and Policy.
+     * Deletes a Policy Rule defined in the specified Custom Authorization Server and Policy
      * Delete a Policy Rule
      * @param policyId
      * @param authServerId
@@ -126,34 +126,34 @@ export declare class AuthorizationServerApiRequestFactory extends BaseAPIRequest
      */
   deleteAuthorizationServerPolicyRule(policyId: string, authServerId: string, ruleId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Success
+     * Deletes a custom token claim
      * Delete a Custom Token Claim
      * @param authServerId
      * @param claimId
      */
   deleteOAuth2Claim(authServerId: string, claimId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Success
+     * Deletes a custom token scope
      * Delete a Custom Token Scope
      * @param authServerId
      * @param scopeId
      */
   deleteOAuth2Scope(authServerId: string, scopeId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Success
+     * Retrieves an authorization server
      * Retrieve an Authorization Server
      * @param authServerId
      */
   getAuthorizationServer(authServerId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Success
+     * Retrieves a policy
      * Retrieve a Policy
      * @param authServerId
      * @param policyId
      */
   getAuthorizationServerPolicy(authServerId: string, policyId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Returns a Policy Rule by ID that is defined in the specified Custom Authorization Server and Policy.
+     * Retrieves a policy rule by `ruleId`
      * Retrieve a Policy Rule
      * @param policyId
      * @param authServerId
@@ -161,21 +161,21 @@ export declare class AuthorizationServerApiRequestFactory extends BaseAPIRequest
      */
   getAuthorizationServerPolicyRule(policyId: string, authServerId: string, ruleId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Success
+     * Retrieves a custom token claim
      * Retrieve a Custom Token Claim
      * @param authServerId
      * @param claimId
      */
   getOAuth2Claim(authServerId: string, claimId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Success
+     * Retrieves a custom token scope
      * Retrieve a Custom Token Scope
      * @param authServerId
      * @param scopeId
      */
   getOAuth2Scope(authServerId: string, scopeId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Success
+     * Retrieves a refresh token for a client
      * Retrieve a Refresh Token for a Client
      * @param authServerId
      * @param clientId
@@ -184,26 +184,26 @@ export declare class AuthorizationServerApiRequestFactory extends BaseAPIRequest
      */
   getRefreshTokenForAuthorizationServerAndClient(authServerId: string, clientId: string, tokenId: string, expand?: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Success
+     * Lists all credential keys
      * List all Credential Keys
      * @param authServerId
      */
   listAuthorizationServerKeys(authServerId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Success
+     * Lists all policies
      * List all Policies
      * @param authServerId
      */
   listAuthorizationServerPolicies(authServerId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Enumerates all policy rules for the specified Custom Authorization Server and Policy.
+     * Lists all policy rules for the specified Custom Authorization Server and Policy
      * List all Policy Rules
      * @param policyId
      * @param authServerId
      */
   listAuthorizationServerPolicyRules(policyId: string, authServerId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Success
+     * Lists all authorization servers
      * List all Authorization Servers
      * @param q
      * @param limit
@@ -211,19 +211,19 @@ export declare class AuthorizationServerApiRequestFactory extends BaseAPIRequest
      */
   listAuthorizationServers(q?: string, limit?: number, after?: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Success
+     * Lists all custom token claims
      * List all Custom Token Claims
      * @param authServerId
      */
   listOAuth2Claims(authServerId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Success
+     * Lists all clients
      * List all Clients
      * @param authServerId
      */
   listOAuth2ClientsForAuthorizationServer(authServerId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Success
+     * Lists all custom token scopes
      * List all Custom Token Scopes
      * @param authServerId
      * @param q
@@ -233,7 +233,7 @@ export declare class AuthorizationServerApiRequestFactory extends BaseAPIRequest
      */
   listOAuth2Scopes(authServerId: string, q?: string, filter?: string, cursor?: string, limit?: number, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Success
+     * Lists all refresh tokens for a client
      * List all Refresh Tokens for a Client
      * @param authServerId
      * @param clientId
@@ -243,7 +243,47 @@ export declare class AuthorizationServerApiRequestFactory extends BaseAPIRequest
      */
   listRefreshTokensForAuthorizationServerAndClient(authServerId: string, clientId: string, expand?: string, after?: string, limit?: number, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Success
+     * Replaces an authorization server
+     * Replace an Authorization Server
+     * @param authServerId
+     * @param authorizationServer
+     */
+  replaceAuthorizationServer(authServerId: string, authorizationServer: AuthorizationServer, _options?: Configuration): Promise<RequestContext>;
+  /**
+     * Replaces a policy
+     * Replace a Policy
+     * @param authServerId
+     * @param policyId
+     * @param policy
+     */
+  replaceAuthorizationServerPolicy(authServerId: string, policyId: string, policy: AuthorizationServerPolicy, _options?: Configuration): Promise<RequestContext>;
+  /**
+     * Replaces the configuration of the Policy Rule defined in the specified Custom Authorization Server and Policy
+     * Replace a Policy Rule
+     * @param policyId
+     * @param authServerId
+     * @param ruleId
+     * @param policyRule
+     */
+  replaceAuthorizationServerPolicyRule(policyId: string, authServerId: string, ruleId: string, policyRule: AuthorizationServerPolicyRule, _options?: Configuration): Promise<RequestContext>;
+  /**
+     * Replaces a custom token claim
+     * Replace a Custom Token Claim
+     * @param authServerId
+     * @param claimId
+     * @param oAuth2Claim
+     */
+  replaceOAuth2Claim(authServerId: string, claimId: string, oAuth2Claim: OAuth2Claim, _options?: Configuration): Promise<RequestContext>;
+  /**
+     * Replaces a custom token scope
+     * Replace a Custom Token Scope
+     * @param authServerId
+     * @param scopeId
+     * @param oAuth2Scope
+     */
+  replaceOAuth2Scope(authServerId: string, scopeId: string, oAuth2Scope: OAuth2Scope, _options?: Configuration): Promise<RequestContext>;
+  /**
+     * Revokes a refresh token for a client
      * Revoke a Refresh Token for a Client
      * @param authServerId
      * @param clientId
@@ -251,59 +291,19 @@ export declare class AuthorizationServerApiRequestFactory extends BaseAPIRequest
      */
   revokeRefreshTokenForAuthorizationServerAndClient(authServerId: string, clientId: string, tokenId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Success
+     * Revokes all refresh tokens for a client
      * Revoke all Refresh Tokens for a Client
      * @param authServerId
      * @param clientId
      */
   revokeRefreshTokensForAuthorizationServerAndClient(authServerId: string, clientId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Success
+     * Rotates all credential keys
      * Rotate all Credential Keys
      * @param authServerId
      * @param use
      */
   rotateAuthorizationServerKeys(authServerId: string, use: JwkUse, _options?: Configuration): Promise<RequestContext>;
-  /**
-     * Success
-     * Replace an Authorization Server
-     * @param authServerId
-     * @param authorizationServer
-     */
-  updateAuthorizationServer(authServerId: string, authorizationServer: AuthorizationServer, _options?: Configuration): Promise<RequestContext>;
-  /**
-     * Success
-     * Replace a Policy
-     * @param authServerId
-     * @param policyId
-     * @param policy
-     */
-  updateAuthorizationServerPolicy(authServerId: string, policyId: string, policy: AuthorizationServerPolicy, _options?: Configuration): Promise<RequestContext>;
-  /**
-     * Updates the configuration of the Policy Rule defined in the specified Custom Authorization Server and Policy.
-     * Replace a Policy Rule
-     * @param policyId
-     * @param authServerId
-     * @param ruleId
-     * @param policyRule
-     */
-  updateAuthorizationServerPolicyRule(policyId: string, authServerId: string, ruleId: string, policyRule: AuthorizationServerPolicyRule, _options?: Configuration): Promise<RequestContext>;
-  /**
-     * Success
-     * Replace a Custom Token Claim
-     * @param authServerId
-     * @param claimId
-     * @param oAuth2Claim
-     */
-  updateOAuth2Claim(authServerId: string, claimId: string, oAuth2Claim: OAuth2Claim, _options?: Configuration): Promise<RequestContext>;
-  /**
-     * Success
-     * Replace a Custom Token Scope
-     * @param authServerId
-     * @param scopeId
-     * @param oAuth2Scope
-     */
-  updateOAuth2Scope(authServerId: string, scopeId: string, oAuth2Scope: OAuth2Scope, _options?: Configuration): Promise<RequestContext>;
 }
 export declare class AuthorizationServerApiResponseProcessor {
   /**
@@ -550,6 +550,46 @@ export declare class AuthorizationServerApiResponseProcessor {
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
+     * @params response Response returned by the server for a request to replaceAuthorizationServer
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+  replaceAuthorizationServer(response: ResponseContext): Promise<AuthorizationServer>;
+  /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
+     * @params response Response returned by the server for a request to replaceAuthorizationServerPolicy
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+  replaceAuthorizationServerPolicy(response: ResponseContext): Promise<AuthorizationServerPolicy>;
+  /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
+     * @params response Response returned by the server for a request to replaceAuthorizationServerPolicyRule
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+  replaceAuthorizationServerPolicyRule(response: ResponseContext): Promise<AuthorizationServerPolicyRule>;
+  /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
+     * @params response Response returned by the server for a request to replaceOAuth2Claim
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+  replaceOAuth2Claim(response: ResponseContext): Promise<OAuth2Claim>;
+  /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
+     * @params response Response returned by the server for a request to replaceOAuth2Scope
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+  replaceOAuth2Scope(response: ResponseContext): Promise<OAuth2Scope>;
+  /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
      * @params response Response returned by the server for a request to revokeRefreshTokenForAuthorizationServerAndClient
      * @throws ApiException if the response code was not in [200, 299]
      */
@@ -570,44 +610,4 @@ export declare class AuthorizationServerApiResponseProcessor {
      * @throws ApiException if the response code was not in [200, 299]
      */
   rotateAuthorizationServerKeys(response: ResponseContext): Promise<Array<JsonWebKey>>;
-  /**
-     * Unwraps the actual response sent by the server from the response context and deserializes the response content
-     * to the expected objects
-     *
-     * @params response Response returned by the server for a request to updateAuthorizationServer
-     * @throws ApiException if the response code was not in [200, 299]
-     */
-  updateAuthorizationServer(response: ResponseContext): Promise<AuthorizationServer>;
-  /**
-     * Unwraps the actual response sent by the server from the response context and deserializes the response content
-     * to the expected objects
-     *
-     * @params response Response returned by the server for a request to updateAuthorizationServerPolicy
-     * @throws ApiException if the response code was not in [200, 299]
-     */
-  updateAuthorizationServerPolicy(response: ResponseContext): Promise<AuthorizationServerPolicy>;
-  /**
-     * Unwraps the actual response sent by the server from the response context and deserializes the response content
-     * to the expected objects
-     *
-     * @params response Response returned by the server for a request to updateAuthorizationServerPolicyRule
-     * @throws ApiException if the response code was not in [200, 299]
-     */
-  updateAuthorizationServerPolicyRule(response: ResponseContext): Promise<AuthorizationServerPolicyRule>;
-  /**
-     * Unwraps the actual response sent by the server from the response context and deserializes the response content
-     * to the expected objects
-     *
-     * @params response Response returned by the server for a request to updateOAuth2Claim
-     * @throws ApiException if the response code was not in [200, 299]
-     */
-  updateOAuth2Claim(response: ResponseContext): Promise<OAuth2Claim>;
-  /**
-     * Unwraps the actual response sent by the server from the response context and deserializes the response content
-     * to the expected objects
-     *
-     * @params response Response returned by the server for a request to updateOAuth2Scope
-     * @throws ApiException if the response code was not in [200, 299]
-     */
-  updateOAuth2Scope(response: ResponseContext): Promise<OAuth2Scope>;
 }
