@@ -50,14 +50,14 @@ const client = new Client();
     releaseChannel: 'GA',
   };
 
-  const { value: pool } = await (await client.agentPoolsApi.getAgentPools({
+  const { value: pool } = await (await client.agentPoolsApi.listAgentPools({
     limitPerPoolType: 5,
     poolType: 'AD',
     after: 'testCursorId',
   })).next();
   expectType<AgentPool | null>(pool);
 
-  const { value: upd } = await (await client.agentPoolsApi.getAgentPoolsUpdates({
+  const { value: upd } = await (await client.agentPoolsApi.listAgentPoolsUpdates({
     poolId: 'testPoolId',
     scheduled: false,
   })).next();
@@ -118,7 +118,7 @@ const client = new Client();
     poolId: 'testPoolId',
   }));
 
-  expectType<AgentPoolUpdateSetting>(await client.agentPoolsApi.setAgentPoolsUpdateSettings({
+  expectType<AgentPoolUpdateSetting>(await client.agentPoolsApi.updateAgentPoolsUpdateSettings({
     poolId: 'testPoolId',
     AgentPoolUpdateSetting: agentPoolUpdateSetting,
   }));
