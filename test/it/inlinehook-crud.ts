@@ -3,6 +3,7 @@ import {
   Collection,
   DefaultRequestExecutor,
   InlineHook,
+  InlineHookChannelHttp
 } from '@okta/okta-sdk-nodejs';
 import faker = require('@faker-js/faker');
 import getMockInlineHook = require('./mocks/inlinehook');
@@ -92,7 +93,7 @@ describe('Inline Hook Crud API', () => {
       const updatedInlineHook = await client.updateInlineHook(inlineHook.id, inlineHook);
       expect(updatedInlineHook.id).to.equal(inlineHook.id);
       expect(updatedInlineHook.name).to.equal(inlineHook.name);
-      expect(updatedInlineHook.channel.config.headers[0].value).to.equal('my-header-value-updated');
+      expect((updatedInlineHook.channel as InlineHookChannelHttp).config.headers[0].value).to.equal('my-header-value-updated');
     });
   });
 

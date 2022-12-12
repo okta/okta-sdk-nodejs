@@ -72,7 +72,7 @@ describe('Principal Rate Limit API', () => {
 
     // Update
     prl2.defaultConcurrencyPercentage = prl2.defaultConcurrencyPercentage === 90 ? 95 : 90;
-    const updatedPrl = await client.principalRateLimitApi.updatePrincipalRateLimitEntity({
+    const updatedPrl = await client.principalRateLimitApi.replacePrincipalRateLimitEntity({
       principalRateLimitId: prl2.id,
       entity: prl2,
     });
