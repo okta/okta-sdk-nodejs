@@ -1,8 +1,8 @@
 import { expect } from 'chai';
 import * as okta from '@okta/okta-sdk-nodejs';
-import type { GeneratedApiClient as V2Client } from '../../src/types/generated-client';
 
 import utils = require('../utils');
+import { Client } from '@okta/okta-sdk-nodejs';
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -10,7 +10,7 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/application-list-users`;
 }
 
-const client: V2Client = utils.getV2Client({
+const client = new Client({
   scopes: ['okta.apps.manage', 'okta.users.manage'],
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
@@ -36,18 +36,19 @@ describe('Application.listUsers()', () => {
     try {
       await utils.removeAppByLabel(client, application.label);
       await utils.cleanup(client, user);
-      createdApplication = await client.createApplication(application);
-      createdUser = await client.createUser(user);
-      createdAppUser = await client.assignUserToApplication(createdApplication.id, {
-        id: createdUser.id
+      createdApplication = await client.applicationApi.createApplication({application});
+      createdUser = await client.userApi.createUser({body: user});
+      createdAppUser = await client.applicationApi.assignUserToApplication({
+        appId: createdApplication.id, 
+        appUser: createdUser
       });
-      await(await client.listApplicationUsers(createdApplication.id)).each(async (appUser) => {
+      await(await client.applicationApi.listApplicationUsers({appId: createdApplication.id})).each(async (appUser) => {
         expect(appUser.id).to.equal(createdAppUser.id);
       });
     } finally {
       if (createdApplication) {
-        await client.deactivateApplication(createdApplication.id);
-        await client.deleteApplication(createdApplication.id);
+        await client.applicationApi.deactivateApplication({appId: createdApplication.id});
+        await client.applicationApi.deleteApplication({appId: createdApplication.id});
       }
       if (createdUser) {
         await utils.cleanup(client, createdUser);

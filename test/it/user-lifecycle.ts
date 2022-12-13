@@ -1,7 +1,6 @@
 import { expect } from 'chai';
 import utils = require('../utils');
 import * as okta from '@okta/okta-sdk-nodejs';
-import type { GeneratedApiClient as V2Client } from '../../src/types/generated-client';
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -9,7 +8,7 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/user-lifecycle`;
 }
 
-const client: V2Client = utils.getV2Client({
+const client = new Client({
   scopes: ['okta.users.manage'],
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,

@@ -1,13 +1,13 @@
 import {
+  Client,
   Theme,
 } from '@okta/okta-sdk-nodejs';
-import type { GeneratedApiClient as V2Client } from '../../src/types/generated-client';
 
 import { expect } from 'chai';
 
 import utils = require('../utils');
 
-const client: V2Client = utils.getV2Client({
+const client = new Client({
   orgUrl: process.env.OKTA_CLIENT_ORGURL,
   token: process.env.OKTA_CLIENT_TOKEN,
 });
@@ -16,26 +16,26 @@ const client: V2Client = utils.getV2Client({
 describe('Brand API', () => {
   it('lists all Brands, gets Brand by ID and updates it', async () => {
     const brands = [];
-    const collection = await client.listBrands();
+    const collection = await client.customizationApi.listBrands();
     await collection.each(brand => brands.push(brand));
     expect(brands.length).to.be.greaterThanOrEqual(1);
 
-    const brand = await client.getBrand(brands[0].id);
+    const brand = await client.customizationApi.getBrand({brandId: brands[0].id});
     const originalFlagValue = brand.removePoweredByOkta;
     brand.removePoweredByOkta = !originalFlagValue;
-    const updatedBrand = await client.updateBrand(brand.id, brand);
+    const updatedBrand = await client.customizationApi.replaceBrand({brandId: brand.id, brand});
     expect(updatedBrand.removePoweredByOkta).to.equal(!originalFlagValue);
   });
 
   describe('Brand Theme API', () => {
 
     it('lists all Brand Themes, gets Brand Theme by ID and updates it', async () => {
-      const { value: brand } = await (await client.listBrands()).next();
+      const { value: brand } = await (await client.customizationApi.listBrands()).next();
       const themes = [];
-      await (await client.listBrandThemes(brand.id)).each(theme => themes.push(theme));
+      await (await client.customizationApi.listBrandThemes({brandId: brand.id})).each(theme => themes.push(theme));
       expect(themes.length).to.be.greaterThanOrEqual(1);
 
-      const theme = await client.getBrandTheme(brand.id, themes[0].id);
+      const theme = await client.customizationApi.getBrandTheme({brandId: brand.id, themeId: themes[0].id});
       const originalColorValue = theme.primaryColorHex;
       const newColorValue = '#badbed';
       const themeOptions: Theme = {
@@ -46,48 +46,52 @@ describe('Brand API', () => {
         errorPageTouchPointVariant: 'OKTA_DEFAULT',
         emailTemplateTouchPointVariant: 'OKTA_DEFAULT'
       };
-      const themeResponse = await client.updateBrandTheme(brand.id, theme.id, {
-        ...themeOptions,
-        primaryColorHex: newColorValue
+      const themeResponse = await client.customizationApi.replaceBrandTheme({brandId: brand.id, themeId: theme.id,
+        theme: {
+          ...themeOptions,
+          primaryColorHex: newColorValue
+        }
       });
 
       expect(themeResponse.primaryColorHex).to.equal(newColorValue);
-      await client.updateBrandTheme(brand.id, theme.id, {
-        ...themeOptions,
-        primaryColorHex: originalColorValue,
+      await client.customizationApi.replaceBrandTheme({brandId: brand.id, themeId: theme.id,
+        theme: {
+          ...themeOptions,
+          primaryColorHex: newColorValue
+        }
       });
     });
 
     it('uploads and deletes Theme background image', async () => {
-      const { value: brand } = await (await client.listBrands()).next();
-      const { value: theme } = await (await client.listBrandThemes(brand.id)).next();
+      const { value: brand } = await (await client.customizationApi.listBrands()).next();
+      const { value: theme } = await (await client.customizationApi.listBrandThemes({brandId: brand.id})).next();
       const file = utils.getMockImage('logo.png');
-      const response = await client.uploadBrandThemeBackgroundImage(brand.id, theme.id, file);
+      const response = await client.customizationApi.uploadBrandThemeBackgroundImage({brandId: brand.id, themeId: theme.id, file});
       expect(response.url).to.be.not.empty;
 
-      const deleteResponse = await client.deleteBrandThemeBackgroundImage(brand.id, theme.id);
+      const deleteResponse = await client.customizationApi.deleteBrandThemeBackgroundImage({brandId: brand.id, themeId: theme.id});
       expect(deleteResponse).to.be.undefined;
     });
 
     it('uploads and deletes Theme favicon', async () => {
-      const { value: brand } = await (await client.listBrands()).next();
-      const { value: theme } = await (await client.listBrandThemes(brand.id)).next();
+      const { value: brand } = await (await client.customizationApi.listBrands()).next();
+      const { value: theme } = await (await client.customizationApi.listBrandThemes({brandId: brand.id})).next();
       const file = utils.getMockImage('favicon.png');
-      const response = await client.uploadBrandThemeFavicon(brand.id, theme.id, file);
+      const response = await client.customizationApi.uploadBrandThemeFavicon({brandId: brand.id, themeId: theme.id, file});
       expect(response.url).to.be.not.empty;
 
-      const deleteResponse = await client.deleteBrandThemeFavicon(brand.id, theme.id);
+      const deleteResponse = await client.customizationApi.deleteBrandThemeFavicon({brandId: brand.id, themeId: theme.id});
       expect(deleteResponse).to.be.undefined;
     });
 
     it('uploads and deletes Theme logo image', async () => {
-      const { value: brand } = await (await client.listBrands()).next();
-      const { value: theme } = await (await client.listBrandThemes(brand.id)).next();
+      const { value: brand } = await (await client.customizationApi.listBrands()).next();
+      const { value: theme } = await (await client.customizationApi.listBrandThemes({brandId: brand.id})).next();
       const file = utils.getMockImage('logo.png');
-      const response = await client.uploadBrandThemeLogo(brand.id, theme.id, file);
+      const response = await client.customizationApi.uploadBrandThemeLogo({brandId: brand.id, themeId: theme.id, file});
       expect(response.url).to.be.not.empty;
 
-      const deleteResponse = await client.deleteBrandThemeLogo(brand.id, theme.id);
+      const deleteResponse = await client.customizationApi.deleteBrandThemeLogo({brandId: brand.id, themeId: theme.id});
       expect(deleteResponse).to.be.undefined;
     });
   });

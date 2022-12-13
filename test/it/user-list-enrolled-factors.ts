@@ -1,12 +1,12 @@
 import utils = require('../utils');
 import {
   CallUserFactor,
+  Client,
   DefaultRequestExecutor,
   Policy,
   SecurityQuestionUserFactor,
 } from '@okta/okta-sdk-nodejs';
 import { expect } from 'chai';
-import type { GeneratedApiClient as V2Client } from '../../src/types/generated-client';
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -14,7 +14,7 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/user-list-enrolled-factors`;
 }
 
-const client: V2Client = utils.getV2Client({
+const client = new Client({
   scopes: ['okta.users.manage'],
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
@@ -39,10 +39,10 @@ describe('User API tests', () => {
     };
     // Cleanup the user if user exists
     await utils.cleanup(client, newUser);
-    createdUser = await client.createUser(newUser);
+    createdUser = await client.userApi.createUser({body: newUser});
 
     const authenticatorPolicies: Policy[] = [];
-    for await (const policy of (await client.listPolicies({type: 'MFA_ENROLL'}))) {
+    for await (const policy of (await client.policyApi.listPolicies({type: 'MFA_ENROLL'}))) {
       authenticatorPolicies.push(policy);
     }
     const defaultPolicy = authenticatorPolicies.find(policy => policy.name === 'Default Policy');
@@ -59,7 +59,7 @@ describe('User API tests', () => {
       key: 'okta_password',
       enroll: {self: 'REQUIRED'}
     }];
-    await client.updatePolicy(defaultPolicy.id, defaultPolicy);
+    await client.policyApi.replacePolicy({policyId: defaultPolicy.id, policy: defaultPolicy});
   });
 
   after(async () => {

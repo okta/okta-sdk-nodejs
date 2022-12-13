@@ -12,6 +12,7 @@ import {
   BookmarkApplicationSettings,
   BookmarkApplicationSettingsApplication,
   BrowserPluginApplication,
+  Client,
   DefaultRequestExecutor,
   OAuthApplicationCredentials,
   OpenIdConnectApplication,
@@ -29,7 +30,6 @@ import {
   WsFederationApplicationSettings,
   WsFederationApplicationSettingsApplication,
 } from '@okta/okta-sdk-nodejs';
-import type { GeneratedApiClient as V2Client } from '../../src/types/generated-client';
 
 import utils = require('../utils');
 import faker = require('@faker-js/faker');
@@ -40,7 +40,7 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/application-create`;
 }
 
-const client: V2Client = utils.getV2Client({
+const client = new Client({
   scopes: ['okta.clients.manage', 'okta.apps.manage'],
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
@@ -65,7 +65,7 @@ describe('client.createApplication()', () => {
 
     try {
       await utils.removeAppByLabel(client, application.label);
-      createdApplication = await client.createApplication(application);
+      createdApplication = await client.applicationApi.createApplication({application});
       expect(createdApplication).to.be.instanceof(Application);
       expect(createdApplication).to.be.instanceof(BookmarkApplication);
       expect(createdApplication.name).to.equal(application.name);
@@ -79,8 +79,8 @@ describe('client.createApplication()', () => {
       expect(createdApplication.settings.app.url).to.equal(application.settings.app.url);
     } finally {
       if (createdApplication) {
-        await client.deactivateApplication(createdApplication.id);
-        await client.deleteApplication(createdApplication.id);
+        await client.applicationApi.deactivateApplication({appId: createdApplication.id});
+        await client.applicationApi.deleteApplication({appId: createdApplication.id});
       }
     }
   });
@@ -101,7 +101,7 @@ describe('client.createApplication()', () => {
 
     try {
       await utils.removeAppByLabel(client, application.label);
-      createdApplication = await client.createApplication(application);
+      createdApplication = await client.applicationApi.createApplication({application});
       expect(createdApplication).to.be.instanceof(Application);
       expect(createdApplication).to.be.instanceof(BasicAuthApplication);
       expect(createdApplication.name).to.equal(application.name);
@@ -115,8 +115,8 @@ describe('client.createApplication()', () => {
       expect(createdApplication.settings.app.url).to.equal(application.settings.app.url);
     } finally {
       if (createdApplication) {
-        await client.deactivateApplication(createdApplication.id);
-        await client.deleteApplication(createdApplication.id);
+        await client.applicationApi.deactivateApplication({appId: createdApplication.id});
+        await client.applicationApi.deleteApplication({appId: createdApplication.id});
       }
     }
   });
@@ -140,7 +140,7 @@ describe('client.createApplication()', () => {
 
     try {
       await utils.removeAppByLabel(client, application.label);
-      createdApplication = await client.createApplication(application);
+      createdApplication = await client.applicationApi.createApplication({application});
       expect(createdApplication).to.be.instanceof(Application);
       expect(createdApplication).to.be.instanceof(BrowserPluginApplication);
       expect(createdApplication.name).to.equal(application.name);
@@ -156,8 +156,8 @@ describe('client.createApplication()', () => {
       expect(createdApplication.settings.app.url).to.equal(application.settings.app.url);
     } finally {
       if (createdApplication) {
-        await client.deactivateApplication(createdApplication.id);
-        await client.deleteApplication(createdApplication.id);
+        await client.applicationApi.deactivateApplication({appId: createdApplication.id});
+        await client.applicationApi.deleteApplication({appId: createdApplication.id});
       }
     }
   });
@@ -183,7 +183,7 @@ describe('client.createApplication()', () => {
 
     try {
       await utils.removeAppByLabel(client, application.label);
-      createdApplication = await client.createApplication(application);
+      createdApplication = await client.applicationApi.createApplication({application});
       expect(createdApplication).to.be.instanceof(Application);
       expect(createdApplication).to.be.instanceof(BrowserPluginApplication);
       expect(createdApplication.name).to.equal(application.name);
@@ -199,8 +199,8 @@ describe('client.createApplication()', () => {
       expect(createdApplication.settings.app.targetURL).to.equal(application.settings.app.targetURL);
     } finally {
       if (createdApplication) {
-        await client.deactivateApplication(createdApplication.id);
-        await client.deleteApplication(createdApplication.id);
+        await client.applicationApi.deactivateApplication({appId: createdApplication.id});
+        await client.applicationApi.deleteApplication({appId: createdApplication.id});
       }
     }
   });
@@ -229,7 +229,7 @@ describe('client.createApplication()', () => {
 
     try {
       await utils.removeAppByLabel(client, application.label);
-      createdApplication = await client.createApplication(application);
+      createdApplication = await client.applicationApi.createApplication({application});
       expect(createdApplication).to.be.instanceof(Application);
       expect(createdApplication).to.be.instanceof(SecurePasswordStoreApplication);
       expect(createdApplication.name).to.equal(application.name);
@@ -250,8 +250,8 @@ describe('client.createApplication()', () => {
       expect(createdApplication.settings.app.optionalField3Value).to.equal(application.settings.app.optionalField3Value);
     } finally {
       if (createdApplication) {
-        await client.deactivateApplication(createdApplication.id);
-        await client.deleteApplication(createdApplication.id);
+        await client.applicationApi.deactivateApplication({appId: createdApplication.id});
+        await client.applicationApi.deleteApplication({appId: createdApplication.id});
       }
     }
   });
@@ -285,7 +285,7 @@ describe('client.createApplication()', () => {
 
     try {
       await utils.removeAppByLabel(client, application.label);
-      createdApplication = await client.createApplication(application);
+      createdApplication = await client.applicationApi.createApplication({application});
       expect(createdApplication).to.be.instanceof(Application);
       expect(createdApplication).to.be.instanceof(AutoLoginApplication);
       expect(createdApplication.name).to.contain('examplecustomswaapp');
@@ -297,8 +297,8 @@ describe('client.createApplication()', () => {
       expect(createdApplication.settings.signOn.loginUrl).to.equal(application.settings.signOn.loginUrl);
     } finally {
       if (createdApplication) {
-        await client.deactivateApplication(createdApplication.id);
-        await client.deleteApplication(createdApplication.id);
+        await client.applicationApi.deactivateApplication({appId: createdApplication.id});
+        await client.applicationApi.deleteApplication({appId: createdApplication.id});
       }
     }
   });
@@ -358,7 +358,7 @@ describe('client.createApplication()', () => {
 
     try {
       await utils.removeAppByLabel(client, application.label);
-      createdApplication = await client.createApplication(application);
+      createdApplication = await client.applicationApi.createApplication({application});
       expect(createdApplication).to.be.instanceof(Application);
       expect(createdApplication).to.be.instanceof(SamlApplication);
       expect(createdApplication.name).to.contain('examplecustomsaml20app');
@@ -387,8 +387,8 @@ describe('client.createApplication()', () => {
 
     } finally {
       if (createdApplication) {
-        await client.deactivateApplication(createdApplication.id);
-        await client.deleteApplication(createdApplication.id);
+        await client.applicationApi.deactivateApplication({appId: createdApplication.id});
+        await client.applicationApi.deleteApplication({appId: createdApplication.id});
       }
     }
   });
@@ -421,7 +421,7 @@ describe('client.createApplication()', () => {
 
     try {
       await utils.removeAppByLabel(client, application.label);
-      createdApplication = await client.createApplication(application);
+      createdApplication = await client.applicationApi.createApplication({application});
       expect(createdApplication).to.be.instanceof(Application);
       expect(createdApplication).to.be.instanceof(WsFederationApplication);
       expect(createdApplication.name).to.equal(application.name);
@@ -444,8 +444,8 @@ describe('client.createApplication()', () => {
       expect(createdApplication.settings.app.wReplyURL).to.equal(application.settings.app.wReplyURL);
     } finally {
       if (createdApplication) {
-        await client.deactivateApplication(createdApplication.id);
-        await client.deleteApplication(createdApplication.id);
+        await client.applicationApi.deactivateApplication({appId: createdApplication.id});
+        await client.applicationApi.deleteApplication({appId: createdApplication.id});
       }
     }
   });
@@ -487,7 +487,7 @@ describe('client.createApplication()', () => {
 
     try {
       await utils.removeAppByLabel(client, application.label);
-      createdApplication = await client.createApplication(application);
+      createdApplication = await client.applicationApi.createApplication({application});
       expect(createdApplication).to.be.instanceof(Application);
       expect(createdApplication).to.be.instanceof(OpenIdConnectApplication);
       expect(createdApplication.name).to.equal(application.name);
@@ -508,8 +508,8 @@ describe('client.createApplication()', () => {
       expect(createdApplication.settings.oauthClient.response_types).to.deep.equal(application.settings.oauthClient.response_types);
     } finally {
       if (createdApplication) {
-        await client.deactivateApplication(createdApplication.id);
-        await client.deleteApplication(createdApplication.id);
+        await client.applicationApi.deactivateApplication({appId: createdApplication.id});
+        await client.applicationApi.deleteApplication({appId: createdApplication.id});
       }
     }
   });

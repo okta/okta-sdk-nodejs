@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import utils = require('../utils');
 import * as okta from '@okta/okta-sdk-nodejs';
-import type { GeneratedApiClient as V2Client } from '../../src/types/generated-client';
+import { Client } from '@okta/okta-sdk-nodejs';
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -9,7 +9,7 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/user-profile-update`;
 }
 
-const client: V2Client = utils.getV2Client({
+const client = new Client({
   scopes: ['okta.users.manage'],
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
@@ -30,7 +30,7 @@ describe('User API Tests', () => {
     await utils.cleanup(client, newUser);
 
     const queryParameters = { activate : false };
-    const createdUser = await client.createUser(newUser, queryParameters);
+    const createdUser = await client.userApi.createUser({body: newUser, ...queryParameters});
     utils.validateUser(createdUser, newUser);
 
     // 2. Update the user profile and verify that profile was updated

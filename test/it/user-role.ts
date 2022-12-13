@@ -1,6 +1,7 @@
 import { expect } from 'chai';
 import {
   CatalogApplication,
+  Client,
   Collection,
   DefaultRequestExecutor,
   Group,
@@ -9,7 +10,6 @@ import {
 import getMockGroup = require('./mocks/group');
 import getMockUser = require('./mocks/user-without-credentials');
 import utils = require('../utils');
-import type { GeneratedApiClient as V2Client } from '../../src/types/generated-client';
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -17,7 +17,7 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/user-role`;
 }
 
-const client: V2Client = utils.getV2Client({
+const client = new Client({
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
   requestExecutor: new DefaultRequestExecutor()
@@ -83,11 +83,11 @@ describe('User role API', () => {
     beforeEach(async () => {
       role = await client.assignRoleToUser(user.id, { type: 'APP_ADMIN' });
       const mockApplication = utils.getBookmarkApplication();
-      application = await client.createApplication(mockApplication);
+      application = await client.applicationApi.createApplication({application: mockApplication});
     });
     afterEach(async () => {
-      await client.deactivateApplication(application.id);
-      await client.deleteApplication(application.id);
+      await client.applicationApi.deactivateApplication({appId: application.id});
+      await client.applicationApi.deleteApplication({appId: application.id});
       await client.removeRoleFromUser(user.id, role.id);
     });
 
@@ -119,11 +119,11 @@ describe('User role API', () => {
     let group;
     beforeEach(async () => {
       role = await client.assignRoleToUser(user.id, { type: 'USER_ADMIN' });
-      group = await client.createGroup(getMockGroup());
+      group = await client.groupApi.createGroup({group: getMockGroup()});
     });
     afterEach(async () => {
       await client.removeRoleFromUser(user.id, role.id);
-      await client.deleteGroup(group.id);
+      await client.groupApi.deleteGroup({groupId: group.id});
     });
 
     describe('Add group target', () => {

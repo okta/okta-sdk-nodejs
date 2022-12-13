@@ -1,8 +1,8 @@
 import { expect } from 'chai';
 import * as okta from '@okta/okta-sdk-nodejs';
 import getMockInlineHook = require('./mocks/inlinehook');
-import type { GeneratedApiClient as V2Client } from '../../src/types/generated-client';
 import utils = require('../utils');
+import { Client } from '@okta/okta-sdk-nodejs';
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -10,7 +10,7 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/inlinehook-lifecycle`;
 }
 
-const client: V2Client = utils.getV2Client({
+const client = new Client({
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
   requestExecutor: new okta.DefaultRequestExecutor()
@@ -19,21 +19,21 @@ const client: V2Client = utils.getV2Client({
 describe('Inline Hook Lifecycle API', () => {
   let inlineHook;
   beforeEach(async () => {
-    inlineHook = await client.createInlineHook(getMockInlineHook());
+    inlineHook = await client.inlineHookApi.createInlineHook({inlineHook: getMockInlineHook()});
   });
 
   afterEach(async () => {
-    await client.deactivateInlineHook(inlineHook.id);
-    await client.deleteInlineHook(inlineHook.id);
+    await client.inlineHookApi.deactivateInlineHook({inlineHookId: inlineHook.id});
+    await client.inlineHookApi.deleteInlineHook({inlineHookId: inlineHook.id});
   });
 
   it('should activate inline hook', async () => {
-    const res = await client.activateInlineHook(inlineHook.id);
+    const res = await client.inlineHookApi.activateInlineHook({inlineHookId: inlineHook.id});
     expect(res.status).to.equal('ACTIVE');
   });
 
   it('should deactive inline hook', async () => {
-    const res = await client.deactivateInlineHook(inlineHook.id);
+    const res = await client.inlineHookApi.deactivateInlineHook({inlineHookId: inlineHook.id});
     expect(res.status).to.equal('INACTIVE');
   });
 });

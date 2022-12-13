@@ -1,12 +1,12 @@
 import { expect } from 'chai';
 import {
   Application,
+  Client,
   Collection,
   DefaultRequestExecutor,
 } from '@okta/okta-sdk-nodejs';
 import utils = require('../utils');
 import getMockGroup = require('./mocks/group');
-import type { GeneratedApiClient as V2Client } from '../../src/types/generated-client';
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -14,7 +14,7 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/group-app`;
 }
 
-const client: V2Client = utils.getV2Client({
+const client = new Client({
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
   requestExecutor: new DefaultRequestExecutor()
@@ -26,24 +26,24 @@ describe('Group App API', () => {
     let group;
     beforeEach(async () => {
       const mockApplication = utils.getBookmarkApplication();
-      application = await client.createApplication(mockApplication);
-      group = await client.createGroup(getMockGroup());
-      await client.createApplicationGroupAssignment(application.id, group.id);
+      application = await client.applicationApi.createApplication({application: mockApplication});
+      group = await client.groupApi.createGroup({group: getMockGroup()});
+      await client.applicationApi.assignGroupToApplication({appId: application.id, groupId: group.id});
     });
     afterEach(async () => {
-      await client.deleteApplicationGroupAssignment(application.id, group.id);
-      await client.deactivateApplication(application.id);
-      await client.deleteApplication(application.id);
-      await client.deleteGroup(group.id);
+      await client.applicationApi.unassignApplicationFromGroup({appId: application.id, groupId: group.id});
+      await client.applicationApi.deactivateApplication({appId: application.id});
+      await client.applicationApi.deleteApplication({appId: application.id});
+      await client.groupApi.deleteGroup({groupId: group.id});
     });
 
     it('should return a Collection', async () => {
-      const applications = await client.listAssignedApplicationsForGroup(group.id);
+      const applications = await client.groupApi.listAssignedApplicationsForGroup({groupId: group.id});
       expect(applications).to.be.instanceOf(Collection);
     });
 
     it('should resolve Application in collection', async () => {
-      await (await client.listAssignedApplicationsForGroup(group.id)).each(application => {
+      await (await client.groupApi.listAssignedApplicationsForGroup({groupId: group.id})).each(application => {
         expect(application).to.be.instanceOf(Application);
       });
     });

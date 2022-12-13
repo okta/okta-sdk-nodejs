@@ -2,8 +2,8 @@ import { expect } from 'chai';
 import faker = require('@faker-js/faker');
 
 import * as okta from '@okta/okta-sdk-nodejs';
-import type { GeneratedApiClient as V2Client } from '../../src/types/generated-client';
 import utils = require('../utils');
+import { Client } from '@okta/okta-sdk-nodejs';
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -11,7 +11,7 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/application-list-group-assignments`;
 }
 
-const client: V2Client = utils.getV2Client({
+const client = new Client({
   scopes: ['okta.apps.manage', 'okta.groups.manage'],
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
@@ -35,17 +35,17 @@ describe('Application.listGroupAssignments()', () => {
     try {
       await utils.removeAppByLabel(client, application.label);
       await utils.cleanup(client, null, group);
-      createdApplication = await client.createApplication(application);
-      createdGroup = await client.createGroup(group);
-      const assignment = await client.createApplicationGroupAssignment(createdApplication.id, createdGroup.id);
-      await (await client.listApplicationGroupAssignments(createdApplication.id)).each(async (fetchedAssignment) => {
+      createdApplication = await client.applicationApi.createApplication({application});
+      createdGroup = await client.groupApi.createGroup({group});
+      const assignment = await client.applicationApi.assignGroupToApplication({appId: createdApplication.id, groupId: createdGroup.id});
+      await (await client.applicationApi.listApplicationGroupAssignments({appId: createdApplication.id})).each(async (fetchedAssignment) => {
         // there should be only one assignment
         expect(fetchedAssignment.id).to.equal(assignment.id);
       });
     } finally {
       if (createdApplication) {
-        await client.deactivateApplication(createdApplication.id);
-        await client.deleteApplication(createdApplication.id);
+        await client.applicationApi.deactivateApplication({appId: createdApplication.id});
+        await client.applicationApi.deleteApplication({appId: createdApplication.id});
       }
       if (createdGroup) {
         await utils.cleanup(client, null, createdGroup);

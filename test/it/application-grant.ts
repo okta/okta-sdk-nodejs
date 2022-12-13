@@ -1,12 +1,11 @@
 import { expect } from 'chai';
 import {
+  Client,
   Collection,
   DefaultRequestExecutor,
   OAuth2ScopeConsentGrant,
 } from '@okta/okta-sdk-nodejs';
-import type { GeneratedApiClient as V2Client } from '../../src/types/generated-client';
 import getMockApplication = require('./mocks/application-oidc');
-import utils = require('../utils');
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 const issuer = orgUrl.replace(/\/$/, '');
@@ -15,7 +14,7 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/application-grant`;
 }
 
-const client: V2Client = utils.getV2Client({
+const client = new Client({
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
   requestExecutor: new DefaultRequestExecutor()
@@ -25,18 +24,20 @@ describe('Application OAuth2 grant API', () => {
   let application;
   let grant;
   beforeEach(async () => {
-    application = await client.createApplication(getMockApplication());
+    application = await client.applicationApi.createApplication({application: getMockApplication()});
   });
   afterEach(async () => {
-    await client.deactivateApplication(application.id);
-    await client.deleteApplication(application.id);
+    await client.applicationApi.deactivateApplication({appId: application.id});
+    await client.applicationApi.deleteApplication({appId: application.id});
   });
 
   describe('Grant consent', () => {
     it('should grant consent to scope', async () => {
-      grant = await client.grantConsentToScope(application.id, {
-        issuer,
-        scopeId: 'okta.users.manage'
+      grant = await client.applicationApi.grantConsentToScope({appId: application.id,
+        oAuth2ScopeConsentGrant: {
+          issuer,
+          scopeId: 'okta.users.manage'
+        }
       });
       expect(grant).to.be.instanceOf(OAuth2ScopeConsentGrant);
       expect(grant.issuer).to.equal(issuer);
@@ -46,17 +47,19 @@ describe('Application OAuth2 grant API', () => {
 
   describe('List scope consent grants', () => {
     beforeEach(async () => {
-      grant = await client.grantConsentToScope(application.id, {
-        issuer,
-        scopeId: 'okta.users.manage'
+      grant = await client.applicationApi.grantConsentToScope({appId: application.id,
+        oAuth2ScopeConsentGrant: {
+          issuer,
+          scopeId: 'okta.users.manage'
+        }
       });
     });
     afterEach(async () => {
-      await client.revokeScopeConsentGrant(application.id, grant.id);
+      await client.applicationApi.revokeScopeConsentGrant({appId: application.id, grantId: grant.id});
     });
 
     it('should return a collection of OAuth2ScopeConsentGrant', async () => {
-      const grants = await client.listScopeConsentGrants(application.id);
+      const grants = await client.applicationApi.listScopeConsentGrants({appId: application.id});
       expect(grants).to.be.instanceOf(Collection);
       await grants.each(grantFromCollection => {
         expect(grantFromCollection).to.be.instanceOf(OAuth2ScopeConsentGrant);
@@ -67,17 +70,19 @@ describe('Application OAuth2 grant API', () => {
 
   describe('Get scope consent grant', () => {
     beforeEach(async () => {
-      grant = await client.grantConsentToScope(application.id, {
-        issuer,
-        scopeId: 'okta.users.manage'
+      grant = await client.applicationApi.grantConsentToScope({appId: application.id,
+        oAuth2ScopeConsentGrant: {
+          issuer,
+          scopeId: 'okta.users.manage'
+        }
       });
     });
     afterEach(async () => {
-      await client.revokeScopeConsentGrant(application.id, grant.id);
+      await client.applicationApi.revokeScopeConsentGrant({appId: application.id, grantId: grant.id});
     });
 
     it('should get grant by id', async () => {
-      const grantFromGet = await client.getScopeConsentGrant(application.id, grant.id);
+      const grantFromGet = await client.applicationApi.getScopeConsentGrant({appId: application.id, grantId: grant.id});
       expect(grantFromGet).to.be.exist;
       expect(grantFromGet).to.be.instanceOf(OAuth2ScopeConsentGrant);
     });
@@ -85,16 +90,18 @@ describe('Application OAuth2 grant API', () => {
 
   describe('Revoke grant', () => {
     beforeEach(async () => {
-      grant = await client.grantConsentToScope(application.id, {
-        issuer,
-        scopeId: 'okta.users.manage'
+      grant = await client.applicationApi.grantConsentToScope({appId: application.id,
+        oAuth2ScopeConsentGrant: {
+          issuer,
+          scopeId: 'okta.users.manage'
+        }
       });
     });
 
     it('should revoke grant', async () => {
-      await client.revokeScopeConsentGrant(application.id, grant.id);
+      await client.applicationApi.revokeScopeConsentGrant({appId: application.id, grantId: grant.id});
       try {
-        await client.getScopeConsentGrant(application.id, grant.id);
+        await client.applicationApi.getScopeConsentGrant({appId: application.id, grantId: grant.id});
       } catch (err) {
         expect(err.status).to.equal(404);
       }

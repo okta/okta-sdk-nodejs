@@ -1,5 +1,6 @@
 import utils = require('../utils');
 import {
+  Client,
   DefaultRequestExecutor,
   OktaSignOnPolicy,
   OktaSignOnPolicyRule,
@@ -9,7 +10,6 @@ import {
 } from '@okta/okta-sdk-nodejs';
 import faker = require('@faker-js/faker');
 import { expect } from 'chai';
-import type { GeneratedApiClient as V2Client } from '../../src/types/generated-client';
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -17,7 +17,7 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/policies`;
 }
 
-const client: V2Client = utils.getV2Client({
+const client = new Client({
   scopes: ['okta.policies.manage', 'okta.groups.manage'],
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
@@ -33,8 +33,8 @@ describe('Policy Scenarios', () => {
       name: `node-sdk: CreateSignOnPolicy ${faker.random.word()}`.substring(0, 49), // policy name length is limited to 50 characters
       description: 'The default policy applies in all situations if no other policy applies.',
     };
-    const createdPolicy = await client.createPolicy(policy);
-    await client.deletePolicy(createdPolicy.id);
+    const createdPolicy = await client.policyApi.createPolicy({policy});
+    await client.policyApi.deletePolicy({policyId: createdPolicy.id});
 
     expect(createdPolicy).to.not.be.undefined;
     expect(createdPolicy.name).to.equal(policy.name);
@@ -50,9 +50,9 @@ describe('Policy Scenarios', () => {
       name: `node-sdk: GetPolicy ${faker.random.word()}`.substring(0, 49),
       description: 'The default policy applies in all situations if no other policy applies.',
     };
-    const createdPolicy = await client.createPolicy(policy);
-    const retrievedPolicy = await client.getPolicy(createdPolicy.id);
-    await client.deletePolicy(createdPolicy.id);
+    const createdPolicy = await client.policyApi.createPolicy({policy});
+    const retrievedPolicy = await client.policyApi.getPolicy({policyId: policy.id});
+    await client.policyApi.deletePolicy({policyId: createdPolicy.id});
 
     expect(retrievedPolicy).to.not.be.undefined;
     expect(retrievedPolicy.name).to.equal(policy.name);
@@ -72,7 +72,7 @@ describe('Policy Scenarios', () => {
     // Cleanup the group if it exists
     await utils.cleanup(client, null, newGroup);
 
-    const createdGroup = await client.createGroup(newGroup);
+    const createdGroup = await client.groupApi.createGroup({group: newGroup});
     utils.validateGroup(createdGroup, newGroup);
 
     // 2. Set Up Policy JSON
@@ -91,9 +91,9 @@ describe('Policy Scenarios', () => {
         }
       }
     };
-    const createdPolicy: OktaSignOnPolicy = await client.createPolicy(policy);
-    await client.deletePolicy(createdPolicy.id);
-    await client.deleteGroup(createdGroup.id);
+    const createdPolicy: OktaSignOnPolicy = await client.policyApi.createPolicy({policy});
+    await client.policyApi.deletePolicy({policyId: createdPolicy.id});
+    await client.groupApi.deleteGroup({groupId: createdGroup.id});
 
     expect(createdPolicy).to.not.be.undefined;
     expect(createdPolicy.name).to.equal(policy.name);
@@ -161,7 +161,7 @@ describe('Policy Scenarios', () => {
       description: 'The default policy applies in all situations if no other policy applies.',
     };
     const createdPolicy = await client.createPolicy(policyobj);
-    const retrievedPolicy = await client.getPolicy(createdPolicy.id);
+    const retrievedPolicy = await client.policyApi.getPolicy({policyId: policy.id});
     expect(retrievedPolicy).to.not.be.undefined;
 
     const response = await client.deletePolicy(retrievedPolicy.id);
@@ -169,7 +169,7 @@ describe('Policy Scenarios', () => {
     expect(response).to.be.undefined;
     let policy;
     try {
-      policy = await client.getPolicy(createdPolicy.id);
+      policy = await client.policyApi.getPolicy({policyId: policy.id});
     } catch (e) {
       expect(e.status).to.equal(404);
     }
@@ -186,14 +186,14 @@ describe('Policy Scenarios', () => {
       description: 'The default policy applies in all situations if no other policy applies.',
     };
 
-    const createdPolicy = await client.createPolicy(policy);
+    const createdPolicy = await client.policyApi.createPolicy({policy});
 
     createdPolicy.name = `node-sdk: Updated ${faker.random.word()}`.substring(0, 49);
 
     await client.updatePolicy(createdPolicy.id, createdPolicy);
 
-    const retrievedPolicy = await client.getPolicy(createdPolicy.id);
-    await client.deletePolicy(createdPolicy.id);
+    const retrievedPolicy = await client.policyApi.getPolicy({policyId: policy.id});
+    await client.policyApi.deletePolicy({policyId: createdPolicy.id});
 
     expect(retrievedPolicy.name).to.contains(createdPolicy.name);
   });
@@ -206,21 +206,21 @@ describe('Policy Scenarios', () => {
       description: 'The default policy applies in all situations if no other policy applies.',
     };
 
-    let createdPolicy = await client.createPolicy(policy);
+    let createdPolicy = await client.policyApi.createPolicy({policy});
 
     expect(createdPolicy.status).to.be.equal('ACTIVE');
 
     await client.deactivatePolicy(createdPolicy.id);
-    createdPolicy = await client.getPolicy(createdPolicy.id);
+    createdPolicy = await client.policyApi.getPolicy({policyId: policy.id});
 
     expect(createdPolicy.status).to.be.equal('INACTIVE');
 
     await client.activatePolicy(createdPolicy.id);
-    createdPolicy = await client.getPolicy(createdPolicy.id);
+    createdPolicy = await client.policyApi.getPolicy({policyId: policy.id});
 
     expect(createdPolicy.status).to.be.equal('ACTIVE');
 
-    await client.deletePolicy(createdPolicy.id);
+    await client.policyApi.deletePolicy({policyId: createdPolicy.id});
 
   });
 
@@ -231,7 +231,7 @@ describe('Policy Scenarios', () => {
       name: `node-sdk: PolicyWithRule ${faker.random.word()}`.substring(0, 49),
       description: 'The default policy applies in all situations if no other policy applies.',
     };
-    const createdPolicy = await client.createPolicy(policy);
+    const createdPolicy = await client.policyApi.createPolicy({policy});
     const policyRuleActionSignOn: OktaSignOnPolicyRuleSignonActions = {
       access: 'DENY',
       requireFactor: false
@@ -252,7 +252,7 @@ describe('Policy Scenarios', () => {
     expect(createdPolicyRule).to.not.be.undefined;
     expect(createdPolicyRule.name).to.equal(policyRuleName);
 
-    await client.deletePolicy(createdPolicy.id);
+    await client.policyApi.deletePolicy({policyId: createdPolicy.id});
   });
 
 });

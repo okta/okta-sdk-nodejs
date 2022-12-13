@@ -3,7 +3,6 @@ import faker = require('@faker-js/faker');
 
 import * as okta from '@okta/okta-sdk-nodejs';
 import utils = require('../utils');
-import type { GeneratedApiClient as V2Client } from '../../src/types/generated-client';
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -11,7 +10,7 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/client-update-application`;
 }
 
-const client: V2Client = utils.getV2Client({
+const client = new Client({
   scopes: ['okta.clients.manage', 'okta.apps.manage'],
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
@@ -27,18 +26,18 @@ describe('client.updateApplication()', () => {
 
     try {
       await utils.removeAppByLabel(client, application.label);
-      createdApplication = await client.createApplication(application);
+      createdApplication = await client.applicationApi.createApplication({application});
 
       const updatedLabel = faker.random.word();
       createdApplication.label = updatedLabel;
-      await client.updateApplication(createdApplication.id, createdApplication);
+      await client.applicationApi.replaceApplication({appId: createdApplication.id, application: createdApplication});
       expect(createdApplication.label).to.equal(updatedLabel);
-      const fetchedApplication = await client.getApplication(createdApplication.id);
+      const fetchedApplication = await client.applicationApi.getApplication({appId: createdApplication.id});
       expect(fetchedApplication.label).to.equal(updatedLabel);
     } finally {
       if (createdApplication) {
-        await client.deactivateApplication(createdApplication.id);
-        await client.deleteApplication(createdApplication.id);
+        await client.applicationApi.deactivateApplication({appId: createdApplication.id});
+        await client.applicationApi.deleteApplication({appId: createdApplication.id});
       }
     }
   });

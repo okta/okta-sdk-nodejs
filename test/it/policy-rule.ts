@@ -1,5 +1,6 @@
 import { expect } from 'chai';
 import {
+  Client,
   Collection,
   DefaultRequestExecutor,
   OktaSignOnPolicyRule,
@@ -8,7 +9,6 @@ import {
 import getMockGroup = require('./mocks/group');
 import getMockOktaSignOnPolicy = require('./mocks/okta-sign-on-policy');
 import getMockRule = require('./mocks/policy-deny-rule');
-import type { GeneratedApiClient as V2Client } from '../../src/types/generated-client';
 import utils = require('../utils');
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
@@ -17,7 +17,7 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/policy-rule`;
 }
 
-const client: V2Client = utils.getV2Client({
+const client = new Client({
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
   requestExecutor: new DefaultRequestExecutor()
@@ -28,14 +28,14 @@ describe('Policy Rule API', () => {
   let mockPolicy;
   let policy;
   beforeEach(async () => {
-    group = await client.createGroup(getMockGroup());
+    group = await client.groupApi.createGroup({group: getMockGroup()});
     mockPolicy = getMockOktaSignOnPolicy();
     mockPolicy.conditions.people.groups.include.push(group.id);
-    policy = await client.createPolicy(mockPolicy);
+    policy = client.policyApi.createPolicy(mockPolicy);
   });
   afterEach(async () => {
-    await client.deletePolicy(policy.id);
-    await client.deleteGroup(group.id);
+    await client.policyApi.deletePolicy({policyId: policy.id});
+    await client.groupApi.deleteGroup({groupId: group.id});
   });
 
   describe('Policy rule crud', () => {

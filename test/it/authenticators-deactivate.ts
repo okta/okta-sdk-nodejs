@@ -1,7 +1,6 @@
-import { DefaultRequestExecutor, Policy } from '@okta/okta-sdk-nodejs';
+import { Client, DefaultRequestExecutor, Policy } from '@okta/okta-sdk-nodejs';
 import { expect } from 'chai';
 import utils = require('../utils');
-import type { GeneratedApiClient as V2Client } from '../../src/types/generated-client';
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -9,7 +8,7 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/authenticators-active`;
 }
 
-const client: V2Client = utils.getV2Client({
+const client = new Client({
   scopes: ['okta.authenticators.read', 'okta.authenticators.manage'],
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
@@ -24,7 +23,7 @@ describe('Authenticators API tests', () => {
       this.skip();
     }
     const authenticatorPolicies: Policy[] = [];
-    for await (const policy of await client.listPolicies({type: 'MFA_ENROLL'})) {
+    for await (const policy of await client.policyApi.listPolicies({type: 'MFA_ENROLL'})) {
       authenticatorPolicies.push(policy);
     }
     const defaultPolicy = authenticatorPolicies.find(policy => policy.name === 'Default Policy');
@@ -38,11 +37,11 @@ describe('Authenticators API tests', () => {
       key: 'okta_password',
       enroll: {self: 'REQUIRED'}
     }];
-    await client.updatePolicy(defaultPolicy.id, defaultPolicy);
+    await client.policyApi.replacePolicy({policyId: defaultPolicy.id, policy: defaultPolicy});
   });
 
   it('should deactivate an active Authenticator', async () => {
-    const authenticators = await client.listAuthenticators();   // returns Collection<Authenticator>
+    const authenticators = await client.authenticatorApi.listAuthenticators();   // returns Collection<Authenticator>
 
     await authenticators.each(async (item) => {
       if (item.type === 'security_question') {
@@ -50,11 +49,11 @@ describe('Authenticators API tests', () => {
         let sqAuthenticator = item;
         expect(sqAuthenticator).to.include({type: 'security_question', name: 'Security Question', status: 'ACTIVE'});
 
-        sqAuthenticator = await client.deactivateAuthenticator(sqAuthenticator.id);
+        sqAuthenticator = await client.authenticatorApi.deactivateAuthenticator({authenticatorId: sqAuthenticator.id});
         expect(sqAuthenticator).to.include({type: 'security_question', name: 'Security Question', status: 'INACTIVE'});
 
         // return to previous state
-        sqAuthenticator = await client.activateAuthenticator(sqAuthenticator.id);
+        sqAuthenticator = await client.authenticatorApi.activateAuthenticator({authenticatorId: sqAuthenticator.id});
         expect(sqAuthenticator).to.include({type: 'security_question', name: 'Security Question', status: 'ACTIVE'});
       }
     });

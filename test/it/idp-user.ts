@@ -7,7 +7,6 @@ import {
 import getMockGenericOidcIdp = require('./mocks/generic-oidc-idp');
 import getMockUser = require('./mocks/user-without-credentials');
 import utils = require('../utils');
-import type { GeneratedApiClient as V2Client } from '../../src/types/generated-client';
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -15,7 +14,7 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/idp-user`;
 }
 
-const client: V2Client = utils.getV2Client({
+const client = new Client({
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
   requestExecutor: new DefaultRequestExecutor()
@@ -25,12 +24,12 @@ describe('Idp User API', () => {
   let idp;
   let user;
   before(async () => {
-    idp = await client.createIdentityProvider(getMockGenericOidcIdp());
+    idp = await client.identityProviderApi.createIdentityProvider({identityProvider: getMockGenericOidcIdp()};
     user = await client.createUser(getMockUser(), { activate: false });
   });
 
   after(async () => {
-    await client.deleteIdentityProvider(idp.id);
+    await client.identityProviderApi.deleteIdentityProvider({idpId: idp.id});
     await utils.cleanupUser(client, user);
   });
 

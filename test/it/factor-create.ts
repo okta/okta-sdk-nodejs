@@ -1,6 +1,7 @@
 import utils = require('../utils');
 import {
   CallUserFactor,
+  Client,
   DefaultRequestExecutor,
   Policy,
   PushUserFactor,
@@ -8,7 +9,6 @@ import {
   SmsUserFactor,
   UserFactor,
 } from '@okta/okta-sdk-nodejs';
-import type { GeneratedApiClient as V2Client } from '../../src/types/generated-client';
 import { expect } from 'chai';
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -16,7 +16,7 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/factor-create`;
 }
 
-const client: V2Client = utils.getV2Client({
+const client = new Client({
   scopes: ['okta.factors.manage', 'okta.users.manage'],
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
@@ -41,10 +41,10 @@ describe('Factors API', () => {
     };
     // Cleanup the user if user exists
     await utils.cleanup(client, newUser);
-    createdUser = await client.createUser(newUser);
+    createdUser = await client.userApi.createUser({body: newUser});
 
     const authenticatorPolicies: Policy[] = [];
-    for await (const policy of (await client.listPolicies({type: 'MFA_ENROLL'}))) {
+    for await (const policy of (await client.policyApi.listPolicies({type: 'MFA_ENROLL'}))) {
       authenticatorPolicies.push(policy);
     }
     const defaultPolicy = authenticatorPolicies.find(policy => policy.name === 'Default Policy');
@@ -64,7 +64,7 @@ describe('Factors API', () => {
       key: 'okta_password',
       enroll: {self: 'REQUIRED'}
     }];
-    await client.updatePolicy(defaultPolicy.id, defaultPolicy);
+    await client.policyApi.replacePolicy({policyId: defaultPolicy.id, policy: defaultPolicy});
   });
 
   after(async () => {
@@ -79,7 +79,7 @@ describe('Factors API', () => {
         phoneNumber: '162 840 01133‬'
       }
     };
-    const createdFactor = await client.enrollFactor(createdUser.id, factor);
+    const createdFactor = await client.userFactorApi.enrollFactor({userId: createdUser.id, body: factor});
     expect(createdFactor.factorType).to.equal('call');
     expect(createdFactor).to.be.instanceof(UserFactor);
     expect(createdFactor).to.be.instanceof(CallUserFactor);
@@ -90,7 +90,7 @@ describe('Factors API', () => {
       factorType: 'push',
       provider: 'OKTA'
     };
-    const createdFactor = await client.enrollFactor(createdUser.id, factor);
+    const createdFactor = await client.userFactorApi.enrollFactor({userId: createdUser.id, body: factor});
     expect(createdFactor.factorType).to.equal('push');
     expect(createdFactor).to.be.instanceof(UserFactor);
     expect(createdFactor).to.be.instanceof(PushUserFactor);
@@ -105,7 +105,7 @@ describe('Factors API', () => {
         answer: 'pizza'
       }
     };
-    const createdFactor = await client.enrollFactor(createdUser.id, factor);
+    const createdFactor = await client.userFactorApi.enrollFactor({userId: createdUser.id, body: factor});
     expect(createdFactor.factorType).to.equal('question');
     expect(createdFactor).to.be.instanceof(UserFactor);
     expect(createdFactor).to.be.instanceof(SecurityQuestionUserFactor);
@@ -120,7 +120,7 @@ describe('Factors API', () => {
       }
     };
     try {
-      const createdFactor = await client.enrollFactor(createdUser.id, factor);
+      const createdFactor = await client.userFactorApi.enrollFactor({userId: createdUser.id, body: factor});
       expect(createdFactor.factorType).to.equal('sms');
       expect(createdFactor).to.be.instanceof(UserFactor);
       expect(createdFactor).to.be.instanceof(SmsUserFactor);

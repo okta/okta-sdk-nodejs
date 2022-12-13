@@ -1,9 +1,8 @@
 import { expect } from 'chai';
 import utils = require('../utils');
 
-import type { GeneratedApiClient as V2Client } from '../../src/types/generated-client';
 
-const client: V2Client = utils.getV2Client({
+const client = new Client({
   orgUrl: process.env.OKTA_CLIENT_ORGURL,
   token: process.env.OKTA_CLIENT_TOKEN,
 });

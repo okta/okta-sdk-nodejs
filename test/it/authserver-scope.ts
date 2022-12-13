@@ -2,6 +2,7 @@ import { expect } from 'chai';
 import { spy } from 'sinon';
 import {
   AuthorizationServer,
+  Client,
   Collection,
   DefaultRequestExecutor,
   OAuth2Scope,
@@ -9,7 +10,6 @@ import {
 import getMockAuthorizationServer = require('./mocks/authorization-server');
 import mockScope = require('./mocks/scope.json');
 import faker = require('@faker-js/faker');
-import type { GeneratedApiClient as V2Client } from '../../src/types/generated-client';
 import utils = require('../utils');
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
@@ -18,7 +18,7 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/authserver-scope`;
 }
 
-const client: V2Client = utils.getV2Client({
+const client = new Client({
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
   requestExecutor: new DefaultRequestExecutor()
@@ -27,24 +27,24 @@ const client: V2Client = utils.getV2Client({
 describe('Authorization Server Scope API', () => {
   let authServer: AuthorizationServer;
   before(async () => {
-    authServer = await client.createAuthorizationServer(getMockAuthorizationServer());
+    authServer = await client.authorizationServerApi.createAuthorizationServer({authorizationServer: getMockAuthorizationServer()});
   });
   after(async () => {
-    await client.deactivateAuthorizationServer(authServer.id);
-    await client.deleteAuthorizationServer(authServer.id);
+    await client.authorizationServerApi.deactivateAuthorizationServer({authServerId: authServer.id});
+    await client.authorizationServerApi.deleteAuthorizationServer({authServerId: authServer.id});
   });
 
   describe('List all scopes', () => {
     let scope: OAuth2Scope;
     beforeEach(async () => {
-      scope = await client.createOAuth2Scope(authServer.id, mockScope as OAuth2Scope);
+      scope = await client.authorizationServerApi.createAuthorizationServer({authorizationServer: getMockAuthorizationServer()});;
     });
     afterEach(async () => {
-      await client.deleteOAuth2Scope(authServer.id, scope.id);
+      await client.authorizationServerApi.deleteOAuth2Scope({authServerId: authServer.id, scopeId: scope.id});
     });
 
     it('should return a collection of scopes', async () => {
-      const collection = await client.listOAuth2Scopes(authServer.id);
+      const collection = await client.authorizationServerApi.listOAuth2Scopes({authServerId: authServer.id});
       expect(collection).to.be.instanceOf(Collection);
       const scopes = [];
       await collection.each(s => scopes.push(s));
@@ -71,21 +71,21 @@ describe('Authorization Server Scope API', () => {
             description: suf,
             consent: 'REQUIRED'
           };
-          const scope = await client.createOAuth2Scope(authServer.id, mockScope as OAuth2Scope);
+          const scope = await client.authorizationServerApi.createAuthorizationServer({authorizationServer: getMockAuthorizationServer()});;
           scopes.push(scope);
         }
       }
     });
     after(async () => {
       for (const scope of scopes) {
-        await client.deleteOAuth2Scope(authServer.id, scope.id);
+        await client.authorizationServerApi.deleteOAuth2Scope({authServerId: authServer.id, scopeId: scope.id});
       }
     });
 
     // Pagination does not work
     xit('should paginate results', async () => {
       const filtered = new Set();
-      const collection = await client.listOAuth2Scopes(authServer.id, {
+      const collection = await client.authorizationServerApi.listOAuth2Scopes({authServerId: authServer.id,
         limit: 2
       });
       const pageSpy = spy(collection, 'getNextPage');
@@ -104,7 +104,7 @@ describe('Authorization Server Scope API', () => {
         q: 'nodesdk1'
       };
       const filtered = new Set();
-      await (await client.listOAuth2Scopes(authServer.id, queryParameters)).each(scope => {
+      await (await client.authorizationServerApi.listOAuth2Scopes({authServerId: authServer.id, ...queryParameters})).each(scope => {
         expect(scope).to.be.an.instanceof(OAuth2Scope);
         expect(scope.name).to.match(new RegExp(queryParameters.q));
         expect(filtered.has(scope.name)).to.be.false;
@@ -117,11 +117,11 @@ describe('Authorization Server Scope API', () => {
   describe('Create a scope', () => {
     let scope: OAuth2Scope;
     afterEach(async () => {
-      await client.deleteOAuth2Scope(authServer.id, scope.id);
+      await client.authorizationServerApi.deleteOAuth2Scope({authServerId: authServer.id, scopeId: scope.id});
     });
 
     it('should get scope from auth server with created scope id', async () => {
-      scope = await client.createOAuth2Scope(authServer.id, mockScope as OAuth2Scope);
+      scope = await client.authorizationServerApi.createAuthorizationServer({authorizationServer: getMockAuthorizationServer()});;
       expect(scope).to.be.exist;
       expect(scope.name).to.equal(mockScope.name);
     });
@@ -130,14 +130,14 @@ describe('Authorization Server Scope API', () => {
   describe('Get a scope', () => {
     let scope: OAuth2Scope;
     beforeEach(async () => {
-      scope = await client.createOAuth2Scope(authServer.id, mockScope as OAuth2Scope);
+      scope = await client.authorizationServerApi.createAuthorizationServer({authorizationServer: getMockAuthorizationServer()});;
     });
     afterEach(async () => {
-      await client.deleteOAuth2Scope(authServer.id, scope.id);
+      await client.authorizationServerApi.deleteOAuth2Scope({authServerId: authServer.id, scopeId: scope.id});
     });
 
     it('should get scope from auth server by id', async () => {
-      const scopeFromGet = await client.getOAuth2Scope(authServer.id, scope.id);
+      const scopeFromGet = await client.authorizationServerApi.getOAuth2Scope({authServerId: authServer.id, scopeId: scope.id});
       expect(scopeFromGet).to.be.instanceOf(OAuth2Scope);
       expect(scopeFromGet.id).to.equal(scope.id);
     });
@@ -146,16 +146,16 @@ describe('Authorization Server Scope API', () => {
   describe('Update scope', () => {
     let scope: OAuth2Scope;
     beforeEach(async () => {
-      scope = await client.createOAuth2Scope(authServer.id, mockScope as OAuth2Scope);
+      scope = await client.authorizationServerApi.createAuthorizationServer({authorizationServer: getMockAuthorizationServer()});;
     });
     afterEach(async () => {
-      await client.deleteOAuth2Scope(authServer.id, scope.id);
+      await client.authorizationServerApi.deleteOAuth2Scope({authServerId: authServer.id, scopeId: scope.id});
     });
 
     it('should update desciption for created scope', async () => {
       const mockDescription = 'Mock update scope';
       scope.description = mockDescription;
-      const updatedScope = await client.updateOAuth2Scope(authServer.id, scope.id, scope);
+      const updatedScope = await client.authorizationServerApi.replaceOAuth2Scope({authServerId: authServer.id, scopeId: scope.id, oAuth2Scope: scope});
       expect(updatedScope.id).to.equal(scope.id);
       expect(updatedScope.description).to.equal(mockDescription);
     });
@@ -164,14 +164,14 @@ describe('Authorization Server Scope API', () => {
   describe('Delete scope', () => {
     let scope: OAuth2Scope;
     beforeEach(async () => {
-      scope = await client.createOAuth2Scope(authServer.id, mockScope as OAuth2Scope);
+      scope = await client.authorizationServerApi.createAuthorizationServer({authorizationServer: getMockAuthorizationServer()});;
     });
 
     it('should not get scope after deletion', async () => {
-      const res = await client.deleteOAuth2Scope(authServer.id, scope.id);
+      const res = await client.authorizationServerApi.deleteOAuth2Scope({authServerId: authServer.id, scopeId: scope.id});
       expect(res).to.equal(undefined);
       try {
-        await client.getOAuth2Scope(authServer.id, scope.id);
+        await client.authorizationServerApi.getOAuth2Scope({authServerId: authServer.id, scopeId: scope.id});
       } catch (e) {
         expect(e.status).to.equal(404);
       }

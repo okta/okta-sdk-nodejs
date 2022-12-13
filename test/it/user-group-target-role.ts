@@ -3,7 +3,7 @@ import faker = require('@faker-js/faker');
 import { expect } from 'chai';
 import utils = require('../utils');
 import * as okta from '@okta/okta-sdk-nodejs';
-import type { GeneratedApiClient as V2Client } from '../../src/types/generated-client';
+import { Client } from '@okta/okta-sdk-nodejs';
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -11,7 +11,7 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/user-group-target-role`;
 }
 
-const client: V2Client = utils.getV2Client({
+const client = new Client({
   scopes: ['okta.users.manage', 'okta.groups.manage', 'okta.roles.manage'],
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
@@ -37,8 +37,8 @@ describe('User Role API Tests', () => {
     // Cleanup the user & group if they exist
     await utils.cleanup(client, newUser, newGroup);
     const queryParameters = { activate : true };
-    const createdUser = await client.createUser(newUser, queryParameters);
-    const createdGroup = await client.createGroup(newGroup);
+    const createdUser = await client.userApi.createUser({body: newUser, ...queryParameters});
+    const createdGroup = await client.groupApi.createGroup({group: newGroup});
 
     // 2. Assign USER_ADMIN role to the user
     const roleType: okta.AssignRoleRequest = { type: 'USER_ADMIN'  };
@@ -62,7 +62,7 @@ describe('User Role API Tests', () => {
 
     await utils.cleanup(client, null, group);
 
-    const adminGroup = await client.createGroup(group);
+    const adminGroup = await client.groupApi.createGroup({group});
     await client.addGroupTargetToRole(createdUser.id, role.id, adminGroup.id);
 
     await client.removeGroupTargetFromRole(createdUser.id, role.id, createdGroup.id);
