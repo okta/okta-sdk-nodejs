@@ -10,6 +10,7 @@ if (process.env.OKTA_USE_MOCK) {
 }
 
 const client = new Client({
+  scopes: ['okta.apps.manage'],
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
   requestExecutor: new DefaultRequestExecutor()
