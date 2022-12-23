@@ -1,8 +1,7 @@
 import { expect } from 'chai';
-import * as okta from '@okta/okta-sdk-nodejs';
 
 import utils = require('../utils');
-import { Client } from '@okta/okta-sdk-nodejs';
+import { Client, DefaultRequestExecutor } from '@okta/okta-sdk-nodejs';
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -14,7 +13,7 @@ const client = new Client({
   scopes: ['okta.apps.manage'],
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
-  requestExecutor: new okta.DefaultRequestExecutor()
+  requestExecutor: new DefaultRequestExecutor()
 });
 
 describe('Application.getApplicationKey() / Application.listKeys()', () => {
