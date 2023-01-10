@@ -5,6 +5,7 @@ import {
   DefaultRequestExecutor,
   Policy,
   SecurityQuestionUserFactor,
+  User
 } from '@okta/okta-sdk-nodejs';
 import { expect } from 'chai';
 
@@ -28,7 +29,7 @@ const client = new Client({
  */
 
 describe('User API tests', () => {
-  let createdUser;
+  let createdUser: User;
   before(async () => {
     // 1. Create a user
     const newUser = {
@@ -83,9 +84,17 @@ describe('User API tests', () => {
         answer: 'pizza'
       }
     };
-    await client.enrollFactor(createdUser.id, callFactor);
-    await client.enrollFactor(createdUser.id, securityQuestionFactor);
-    const collection = await client.listFactors(createdUser.id);
+    await client.userFactorApi.enrollFactor({
+      userId: createdUser.id, 
+      body: callFactor
+    });
+    await client.userFactorApi.enrollFactor({
+      userId: createdUser.id, 
+      body: securityQuestionFactor
+    });
+    const collection = await client.userFactorApi.listFactors({
+      userId: createdUser.id
+    });
     const factors = [];
     await collection.each(factor => factors.push(factor));
     expect(factors[1]).to.be.instanceof(CallUserFactor);

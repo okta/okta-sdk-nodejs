@@ -188,8 +188,10 @@ class Http {
 
   postJson(uri, request, context, hasContent = true) {
     request = request || {};
-    request.method = 'post',
-    request.body = JSON.stringify(request.body);
+    request.method = 'post';
+    if (typeof request.body !== 'string') {
+      request.body = JSON.stringify(request.body);
+    }
     return this.json(uri, request, context, hasContent);
   }
 
@@ -206,7 +208,9 @@ class Http {
   putJson(uri, request, context, hasContent = true) {
     request = request || {};
     request.method = 'put';
-    request.body = JSON.stringify(request.body);
+    if (typeof request.body !== 'string') {
+      request.body = JSON.stringify(request.body);
+    }
     return this.json(uri, request, context, hasContent);
   }
 

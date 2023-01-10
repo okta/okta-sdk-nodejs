@@ -3,6 +3,7 @@ import {
   Client,
   DefaultRequestExecutor,
   Role,
+  Group,
 } from '@okta/okta-sdk-nodejs';
 import getMockGroup = require('./mocks/group');
 
@@ -21,7 +22,7 @@ const client = new Client({
 // no group roles in v3?
 xdescribe('Group role API', () => {
   describe('Role assignment', () => {
-    let group;
+    let group: Group;
     beforeEach(async () => {
       group = await client.groupApi.createGroup({group: getMockGroup()});
     });
@@ -30,18 +31,33 @@ xdescribe('Group role API', () => {
     });
 
     it('should assign and unassign role to/from group', async () => {
-      // const role = await client.groupApi.assignRoleToGroup(group.id, { type: 'APP_ADMIN' });
-      // if (role instanceof Role) {
-      //   const res = await client.groupApi.removeRoleFromGroup(group.id, role.id);
-      //   expect(res).to.be.undefined;
-      // } else {
-      //   const collection = await client.groupApi.listGroupAssignedRoles(group.id);
-      //   const roles: Role[] = [];
-      //   for await (const role of collection) {
-      //     roles.push(role);
-      //   }
-      //   expect(roles.some(role => role.type === 'APP_ADMIN')).to.be.true;
-      // }
+      const role = await client.roleAssignmentApi.assignRoleToGroup({
+        groupId: group.id,
+        assignRoleRequest: {
+          type: 'APP_ADMIN'
+        }
+      });
+      if (role instanceof Role) {
+        const resRole = await client.roleAssignmentApi.getGroupAssignedRole({
+          groupId: group.id,
+          roleId: role.id
+        });
+        expect(resRole.id).to.not.be.undefined;
+        const res = await client.roleAssignmentApi.unassignRoleFromGroup({
+          groupId: group.id,
+          roleId: role.id
+        });
+        expect(res).to.be.undefined;
+      } else {
+        const collection = await client.roleAssignmentApi.listGroupAssignedRoles({
+          groupId: group.id
+        });
+        const roles: Role[] = [];
+        for await (const role of collection) {
+          roles.push(role);
+        }
+        expect(roles.some(role => role.type === 'APP_ADMIN')).to.be.true;
+      }
     });
   });
 });

@@ -45,6 +45,8 @@ import {
   PrincipalRateLimitApi,
   PushProviderApi,
   DeviceAssuranceApi,
+  RoleAssignmentApi,
+  RoleTargetApi,
 } from './generated';
 export declare class Client {
   constructor(config?: V2Configuration);
@@ -90,4 +92,6 @@ export declare class Client {
   subscriptionApi: SubscriptionApi;
   pushProviderApi: PushProviderApi;
   deviceAssuranceApi: DeviceAssuranceApi;
+  roleAssignmentApi: RoleAssignmentApi;
+  roleTargetApi: RoleTargetApi;
 }

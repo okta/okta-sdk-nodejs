@@ -1,12 +1,18 @@
-const { Group, Role, User } = require('../src/generated');
-
+import {
+  Client,
+  User, Group, Role,
+  UserApiListUsersRequest,
+  GroupApiListGroupsRequest,
+  RoleType,
+  Csr,
+  BookmarkApplication
+} from '@okta/okta-sdk-nodejs';
+import * as forge from 'node-forge';
 const expect = require('chai').expect;
 const faker = require('@faker-js/faker');
 const path = require('path');
 const { createReadStream } = require('fs');
-const forge = require('node-forge');
-const { Client } = require('@okta/okta-sdk-nodejs');
-const GeneratedApiClient = require('../src/generated-client');
+
 
 function delay(t) {
   return new Promise(function (resolve) {
@@ -14,7 +20,7 @@ function delay(t) {
   });
 }
 
-function validateUser(user, expectedUser) {
+function validateUser(user: User, expectedUser: User) {
   expect(user).to.be.an.instanceof(User);
   expect(user.profile.firstName).to.equal(expectedUser.profile.firstName);
   expect(user.profile.lastName).to.equal(expectedUser.profile.lastName);
@@ -22,7 +28,7 @@ function validateUser(user, expectedUser) {
   expect(user.profile.login).to.equal(expectedUser.profile.login);
 }
 
-function authenticateUser(client, userName, password) {
+function authenticateUser(client: Client, userName: string, password: string) {
   const data = {
     username: userName,
     password: password,
@@ -31,19 +37,21 @@ function authenticateUser(client, userName, password) {
   const url = `${client.baseUrl}/api/v1/authn`;
 
   return client.http.postJson(url, {
-    body: data
+    body: JSON.stringify(data)
   });
 }
 
-function validateGroup(group, expectedGroup) {
+function validateGroup(group: Group, expectedGroup: Group) {
   expect(group).to.be.an.instanceof(Group);
   expect(group.profile.name).to.equal(expectedGroup.profile.name);
   expect(group.type).to.equal('OKTA_GROUP');
 }
 
-async function isUserInGroup(client, groupUser, group) {
+async function isUserInGroup(client: Client, groupUser: User, group: Group) {
   let userPresent = false;
-  const collection = await client.listGroupUsers(group.id);
+  const collection = await client.groupApi.listGroupUsers({
+    groupId: group.id
+  });
   await collection.each(user => {
     if (user.id === groupUser.id) {
       userPresent = true;
@@ -53,7 +61,7 @@ async function isUserInGroup(client, groupUser, group) {
   return userPresent;
 }
 
-async function waitTillUserInGroup(client, user, group, condition) {
+async function waitTillUserInGroup(client: Client, user: User, group: Group, condition: boolean) {
   let userInGroup = await isUserInGroup(client, user, group);
   let timeOut = 0;
   while (userInGroup !== condition) {
@@ -71,14 +79,18 @@ async function waitTillUserInGroup(client, user, group, condition) {
   return userInGroup;
 }
 
-async function deleteUser(user, client) {
-  await client.deactivateUser(user.id);
-  await client.deactivateOrDeleteUser(user.id);
+async function deleteUser(user: User, client: Client) {
+  await client.userApi.deactivateUser({
+    userId: user.id
+  });
+  await client.userApi.deleteUser({
+    userId: user.id
+  });
 }
 
-async function isUserPresent(client, expectedUser, queryParameters) {
+async function isUserPresent(client: Client, expectedUser: User, queryParameters: UserApiListUsersRequest) {
   let userPresent = false;
-  const collection = await client.listUsers(queryParameters);
+  const collection = await client.userApi.listUsers(queryParameters);
   await collection.each(user => {
     expect(user).to.be.an.instanceof(User);
     if (user.profile.login === expectedUser.profile.login) {
@@ -89,9 +101,9 @@ async function isUserPresent(client, expectedUser, queryParameters) {
   return userPresent;
 }
 
-async function isGroupPresent(client, expectedGroup, queryParameters) {
+async function isGroupPresent(client: Client, expectedGroup: Group, queryParameters: GroupApiListGroupsRequest) {
   let groupPresent = false;
-  const collection = await client.listGroups(queryParameters);
+  const collection = await client.groupApi.listGroups(queryParameters);
   await collection.each(async group => {
     expect(group).to.be.an.instanceof(Group);
     if (group.profile.name === expectedGroup.profile.name) {
@@ -102,9 +114,11 @@ async function isGroupPresent(client, expectedGroup, queryParameters) {
   return groupPresent;
 }
 
-async function doesUserHaveRole(user, roleType, client) {
+async function doesUserHaveRole(user: User, roleType: RoleType, client: Client) {
   let hasRole = false;
-  await (await client.listAssignedRolesForUser(user.id)).each(role => {
+  await (await client.roleAssignmentApi.listAssignedRolesForUser({
+    userId: user.id
+  })).each(role => {
     expect(role).to.be.an.instanceof(Role);
     if (role.type === roleType) {
       hasRole = true;
@@ -114,9 +128,12 @@ async function doesUserHaveRole(user, roleType, client) {
   return hasRole;
 }
 
-async function isGroupTargetPresent(user, userGroup, role, client) {
+async function isGroupTargetPresent(user: User, userGroup: Group, role: Role, client: Client) {
   let groupTargetPresent = false;
-  const groupTargets = await client.listGroupTargetsForRole(user.id, role.id);
+  const groupTargets = await client.roleTargetApi.listGroupTargetsForRole({
+    userId: user.id, 
+    roleId: role.id
+  });
   await groupTargets.each(group => {
     if (group.profile.name === userGroup.profile.name) {
       groupTargetPresent = true;
@@ -126,35 +143,43 @@ async function isGroupTargetPresent(user, userGroup, role, client) {
   return groupTargetPresent;
 }
 
-async function cleanupUser(client, user) {
+async function cleanupUser(client: Client, user: User) {
   if (!user.profile.login) {
     return;
   }
 
   try {
-    const existingUser = await client.getUser(user.profile.login);
-    await client.deactivateUser(existingUser.id);
-    await client.deactivateOrDeleteUser(existingUser.id);
+    const existingUser = await client.userApi.getUser({
+      userId: user.profile.login
+    });
+    await client.userApi.deactivateUser({
+      userId: existingUser.id
+    });
+    await client.userApi.deleteUser({
+      userId: existingUser.id
+    });
   } catch (err) {
     // expect(err.message).to.contain('Okta HTTP 404');
   }
 }
 
-async function cleanupGroup(client, expectedGroup) {
+async function cleanupGroup(client: Client, expectedGroup: Group) {
   let queryParameters = { q : `${expectedGroup.profile.name}` };
-  await (await client.listGroups(queryParameters)).each(async (group) => {
+  await (await client.groupApi.listGroups(queryParameters)).each(async (group) => {
     expect(group).to.be.an.instanceof(Group);
     // If search doesn't return any results, listGroups() returns empty collection
     // eslint-disable-next-line no-prototype-builtins
     if (group.hasOwnProperty('profile')) {
       if (group.profile.name === expectedGroup.profile.name) {
-        await client.deleteGroup(group.id);
+        await client.groupApi.deleteGroup({
+          groupId: group.id
+        });
       }
     }
   });
 }
 
-async function cleanup(client, users = null, groups = null) {
+async function cleanup(client: Client, users: User[]|User = null, groups: Group[]|Group = null) {
   // Cleanup the entities only if user is running a real OKTA server
   if (process.env.OKTA_USE_MOCK) {
     return;
@@ -171,7 +196,7 @@ async function cleanup(client, users = null, groups = null) {
   }
 }
 
-async function removeAppByLabel(client, label) {
+async function removeAppByLabel(client: Client, label: string) {
   return (await client.applicationApi.listApplications()).each(async (application) => {
     if (application.label === label) {
       await client.applicationApi.deactivateApplication({appId: application.id});
@@ -180,7 +205,7 @@ async function removeAppByLabel(client, label) {
   });
 }
 
-function getMockProfile(testName) {
+function getMockProfile(testName: string) {
   return {
     firstName: testName,
     lastName: 'okta-sdk-nodejs',
@@ -223,7 +248,7 @@ function getOIDCApplication() {
   };
 }
 
-function getBookmarkApplication() {
+function getBookmarkApplication(): BookmarkApplication {
   return {
     name: 'bookmark',
     label: `node-sdk: Bookmark ${faker.random.words()}`.substring(0, 99),
@@ -252,7 +277,7 @@ function getOrg2OrgApplicationOptions() {
   };
 }
 
-async function verifyOrgIsOIE(client) {
+async function verifyOrgIsOIE(client: Client) {
   const url = `${client.baseUrl}/.well-known/okta-organization`;
   const request = {
     method: 'get'
@@ -262,11 +287,11 @@ async function verifyOrgIsOIE(client) {
   return body.pipeline === 'idx';
 }
 
-function getMockImage(filename) {
+function getMockImage(filename: string) {
   return createReadStream(path.join(__dirname, `it/mocks/images/${filename}`));
 }
 
-async function runWithRetry(clientMethod) {
+async function runWithRetry(clientMethod: () => Promise<any>) {
   try {
     return await clientMethod();
   } catch (err) {
@@ -278,11 +303,11 @@ async function runWithRetry(clientMethod) {
   }
 }
 
-function base64ToUrlBase64(str) {
+function base64ToUrlBase64(str: string) {
   return str.replace(/\+/g, '-').replace(/\//g, '_').replace(/=/g, '');
 }
 
-function bigintToBase64(bi) {
+function bigintToBase64(bi: forge.jsbn.BigInteger) {
   return base64ToUrlBase64(
     Buffer.from(
       new Int8Array(bi.toByteArray().slice(1))
@@ -290,13 +315,13 @@ function bigintToBase64(bi) {
   );
 }
 
-function parseCsr(csr) {
+function parseCsr(csr: Csr): forge.pki.CertificateRequest {
   const csrDer = forge.util.decode64(csr.csr);
   const csrAsn1 = forge.asn1.fromDer(csrDer);
-  return forge.pki.certificationRequestFromAsn1(csrAsn1);
+  return forge.pki.certificationRequestFromAsn1(csrAsn1) as forge.pki.CertificateRequest;
 }
 
-function createCertFromCsr(csr, keys) {
+function createCertFromCsr(csr: Csr, keys: forge.pki.KeyPair) {
   const csrF = parseCsr(csr);
   const certF = forge.pki.createCertificate();
   certF.publicKey = csrF.publicKey;
@@ -312,60 +337,51 @@ function createCertFromCsr(csr, keys) {
   return certF;
 }
 
-function certToDer(certF) {
+function certToDer(certF: forge.pki.Certificate) {
   const certAsn1 = forge.pki.certificateToAsn1(certF);
   const certDer = forge.asn1.toDer(certAsn1);
   return certDer.data;
 }
 
-function certToBase64(certF) {
+function certToBase64(certF: forge.pki.Certificate) {
   return forge.util.encode64(certToDer(certF));
 }
 
-function csrToN(csr) {
-  return bigintToBase64(parseCsr(csr).publicKey.n);
+function csrToN(csr: Csr) {
+  return bigintToBase64((parseCsr(csr).publicKey as forge.pki.rsa.PublicKey).n);
 }
 
-function certToPem(certF) {
+function certToPem(certF: forge.pki.Certificate) {
   return forge.pki.certificateToPem(certF);
 }
 
-function getV2Client(params) {
-  const client = new Client(params);
-  const [_, ...v2Methods] = Object.getOwnPropertyNames(GeneratedApiClient.prototype);
-  for (const method of v2Methods) {
-    client[method] = GeneratedApiClient.prototype[method];
-  }
-  return client;
-}
-
-module.exports = {
-  delay: delay,
-  validateUser: validateUser,
-  authenticateUser: authenticateUser,
-  validateGroup: validateGroup,
-  isUserInGroup: isUserInGroup,
-  waitTillUserInGroup: waitTillUserInGroup,
-  deleteUser: deleteUser,
-  isUserPresent: isUserPresent,
-  isGroupPresent: isGroupPresent,
-  doesUserHaveRole: doesUserHaveRole,
-  isGroupTargetPresent: isGroupTargetPresent,
-  cleanupUser: cleanupUser,
-  cleanupGroup: cleanupGroup,
-  cleanup: cleanup,
-  removeAppByLabel: removeAppByLabel,
-  getMockProfile: getMockProfile,
-  getBookmarkApplication: getBookmarkApplication,
-  getOrg2OrgApplicationOptions: getOrg2OrgApplicationOptions,
-  getOIDCApplication: getOIDCApplication,
+export {
+  delay,
+  validateUser,
+  authenticateUser,
+  validateGroup,
+  isUserInGroup,
+  waitTillUserInGroup,
+  deleteUser,
+  isUserPresent,
+  isGroupPresent,
+  doesUserHaveRole,
+  isGroupTargetPresent,
+  cleanupUser,
+  cleanupGroup,
+  cleanup,
+  removeAppByLabel,
+  getMockProfile,
+  getBookmarkApplication,
+  getOrg2OrgApplicationOptions,
+  getOIDCApplication,
   verifyOrgIsOIE,
-  getMockImage: getMockImage,
+  getMockImage,
   runWithRetry,
   createCertFromCsr,
   certToDer,
   certToBase64,
   certToPem,
   csrToN,
-  getV2Client,
+  //getV2Client,
 };

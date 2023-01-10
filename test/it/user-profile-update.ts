@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import utils = require('../utils');
 import * as okta from '@okta/okta-sdk-nodejs';
-import { Client } from '@okta/okta-sdk-nodejs';
+import { Client, User, CreateUserRequest } from '@okta/okta-sdk-nodejs';
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -19,7 +19,7 @@ const client = new Client({
 describe('User API Tests', () => {
   it('should update the user profile', async () => {
     // 1. Create a user
-    const newUser = {
+    const newUser: CreateUserRequest = {
       profile: utils.getMockProfile('user-profile-update'),
       credentials: {
         password: { value: 'Abcd1234#@' }
@@ -30,7 +30,7 @@ describe('User API Tests', () => {
     await utils.cleanup(client, newUser);
 
     const queryParameters = { activate : false };
-    const createdUser = await client.userApi.createUser({body: newUser, ...queryParameters});
+    const createdUser: User = await client.userApi.createUser({body: newUser, ...queryParameters});
     utils.validateUser(createdUser, newUser);
 
     // 2. Update the user profile and verify that profile was updated
@@ -38,10 +38,15 @@ describe('User API Tests', () => {
     await utils.delay(1000);
     createdUser.profile.nickName = 'Batman';
     // TODO: receiving 403: invalid session
-    const profileUpdateUser = await client.updateUser(createdUser.id, createdUser);
+    const profileUpdateUser = await client.userApi.updateUser({
+      userId: createdUser.id,
+      user: createdUser
+    });
     expect(new Date(profileUpdateUser.lastUpdated)).to.be.gt(new Date(createdUser.lastUpdated));
 
-    const updatedUser = await client.getUser(createdUser.id);
+    const updatedUser = await client.userApi.getUser({
+      userId: createdUser.id
+    });
     expect(updatedUser.profile.nickName).to.equal('Batman');
 
     // 3. Delete the user

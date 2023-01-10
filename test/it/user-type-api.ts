@@ -21,34 +21,19 @@ describe('User Type API', () => {
     expect(userTypes.length).to.be.greaterThan(0);
   });
 
-  describe('when used through v2 client', () => {
+  it('can be invoked through userTypeApi property', async () => {
     const orgUrl = process.env.OKTA_CLIENT_ORGURL;
     const token = process.env.OKTA_CLIENT_TOKEN;
-
-    it('is invoked on v2 client ', async () => {
-      const client = new Client({
-        orgUrl,
-        token
-      });
-      const userTypes = [];
-      const collection = await client.listUserTypes();
-      for await (const userType of collection) {
-        userTypes.push(userType);
-      }
-      expect(userTypes.length).to.be.greaterThan(0);
+    const client = new Client({
+      orgUrl,
+      token
     });
 
-    it('can be invoked through userTypeApi property', async () => {
-      const client = new Client({
-        orgUrl,
-        token
-      });
-      const userTypes = [];
-      const collection = await client.userTypeApi.listUserTypes();
-      for await (const userType of collection) {
-        userTypes.push(userType);
-      }
-      expect(userTypes.length).to.be.greaterThan(0);
-    });
+    const collection = await client.userTypeApi.listUserTypes();
+    const userTypes: UserType[] = [];
+    for await (const userType of collection) {
+      userTypes.push(userType);
+    }
+    expect(userTypes.length).to.be.greaterThan(0);
   });
 });

@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-
+import { Readable } from 'stream';
 import utils = require('../utils');
 import forge = require('node-forge');
 import getMockApplication = require('./mocks/application-oidc');
@@ -97,7 +97,7 @@ describe('Application CSR API', () => {
       const key = await client.applicationApi.publishCsrFromApplication({
         appId: app.id,
         csrId: csr.id,
-        body: b64
+        body: Readable.from(b64)
       });
       expect(key).to.be.instanceOf(JsonWebKey);
       expect(key.n).to.equal(n);
@@ -119,7 +119,7 @@ describe('Application CSR API', () => {
       const key = await client.applicationApi.publishCsrFromApplication({
         appId: app.id,
         csrId: csr.id,
-        body: pem
+        body: Readable.from(pem)
       });
       expect(key).to.be.instanceOf(JsonWebKey);
       expect(key.n).to.equal(n);
@@ -141,7 +141,7 @@ describe('Application CSR API', () => {
       const key = await client.applicationApi.publishCsrFromApplication({
         appId: app.id,
         csrId: csr.id,
-        body: der
+        body: Readable.from(der)
       });
       expect(key).to.be.instanceOf(JsonWebKey);
       expect(key.n).to.equal(n);

@@ -1,7 +1,6 @@
 import { expect } from 'chai';
 import utils = require('../utils');
-import * as okta from '@okta/okta-sdk-nodejs';
-import { Client } from '@okta/okta-sdk-nodejs';
+import { Client, DefaultRequestExecutor, Policy, UserFactor } from '@okta/okta-sdk-nodejs';
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -13,12 +12,12 @@ const client = new Client({
   scopes: ['okta.users.manage'],
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
-  requestExecutor: new okta.DefaultRequestExecutor()
+  requestExecutor: new DefaultRequestExecutor()
 });
 
 describe('User API Tests', () => {
   beforeEach(async () => {
-    const authenticatorPolicies: okta.Policy[] = [];
+    const authenticatorPolicies: Policy[] = [];
     for await (const policy of (await client.policyApi.listPolicies({type: 'MFA_ENROLL'}))) {
       authenticatorPolicies.push(policy);
     }
@@ -50,10 +49,12 @@ describe('User API Tests', () => {
     const createdUser = await client.userApi.createUser({body: newUser});
 
     const factors = [];
-    await (await client.listSupportedFactors(createdUser.id)).each(factor => factors.push(factor));
+    await (await client.userFactorApi.listSupportedFactors({
+      userId: createdUser.id
+    })).each(factor => factors.push(factor));
     expect(factors.length).to.be.greaterThan(1);
     factors.forEach(factor =>
-      expect(factor).to.be.instanceof(okta.UserFactor)
+      expect(factor).to.be.instanceof(UserFactor)
     );
     return await utils.deleteUser(createdUser, client);
   });
