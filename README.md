@@ -97,7 +97,7 @@ const client = new okta.Client({
   authorizationMode: 'PrivateKey',
   clientId: '{oauth application ID}',
   scopes: ['okta.users.manage'],
-  privateKey: '{JWK}' // <-- see notes below
+  privateKey: '{JWK}', // <-- see notes below
   keyId: 'kidValue'
 });
 ```
