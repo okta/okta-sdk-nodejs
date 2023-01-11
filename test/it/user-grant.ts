@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { Collection, DefaultRequestExecutor } from '@okta/okta-sdk-nodejs';
+import { Collection, DefaultRequestExecutor, Client, User } from '@okta/okta-sdk-nodejs';
 import utils = require('../utils');
 import getMockUser = require('./mocks/user-without-credentials');
 
@@ -17,9 +17,12 @@ const client = new Client({
 
 describe('User grants API', () => {
   describe('List grants', () => {
-    let user;
+    let user: User;
     beforeEach(async () => {
-      user = await client.createUser(getMockUser(), { activate: false });
+      user = await client.userApi.createUser({
+        body: getMockUser(),
+        activate: false
+      });
     });
     afterEach(async () => {
       await utils.cleanupUser(client, user);
@@ -27,7 +30,9 @@ describe('User grants API', () => {
 
     // Only test on if Collection is returned, since no api has been provided to assign grant to user
     it('should return a Collection', async () => {
-      const grants = await client.listUserGrants(user.id);
+      const grants = await client.userApi.listUserGrants({
+        userId: user.id
+      });
       expect(grants).to.be.instanceOf(Collection);
     });
   });

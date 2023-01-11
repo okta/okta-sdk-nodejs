@@ -1,7 +1,6 @@
 import { expect } from 'chai';
 import utils = require('../utils');
-import * as okta from '@okta/okta-sdk-nodejs';
-import { Client } from '@okta/okta-sdk-nodejs';
+import { Client, DefaultRequestExecutor } from '@okta/okta-sdk-nodejs';
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -13,7 +12,7 @@ const client = new Client({
   scopes: ['okta.users.manage'],
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
-  requestExecutor: new okta.DefaultRequestExecutor()
+  requestExecutor: new DefaultRequestExecutor()
 });
 
 describe('User API Tests', () => {
@@ -34,11 +33,15 @@ describe('User API Tests', () => {
     utils.validateUser(createdUser, newUser);
 
     // 2. Get the user by user ID
-    const userByID = await client.getUser(createdUser.id);
+    const userByID = await client.userApi.getUser({
+      userId: createdUser.id
+    });
     utils.validateUser(userByID, createdUser);
 
     // 3. Get the user by user login
-    const userByLogin = await client.getUser(createdUser.profile.login);
+    const userByLogin = await client.userApi.getUser({
+      userId: createdUser.profile.login
+    });
     utils.validateUser(userByLogin, createdUser);
 
     // 4. Delete the user
@@ -47,7 +50,9 @@ describe('User API Tests', () => {
     // 5. Verify user was deleted
     let err;
     try {
-      await client.getUser(createdUser.profile.login);
+      await client.userApi.getUser({
+        userId: createdUser.profile.login
+      });
     } catch (e) {
       err = e;
     } finally {

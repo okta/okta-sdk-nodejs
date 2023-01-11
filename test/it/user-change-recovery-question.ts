@@ -1,7 +1,6 @@
 import { expect } from 'chai';
 import utils = require('../utils');
-import * as okta from '@okta/okta-sdk-nodejs';
-import { Client } from '@okta/okta-sdk-nodejs';
+import { Client, DefaultRequestExecutor, UserCredentials } from '@okta/okta-sdk-nodejs';
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -13,7 +12,7 @@ const client = new Client({
   scopes: ['okta.users.manage'],
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
-  requestExecutor: new okta.DefaultRequestExecutor()
+  requestExecutor: new DefaultRequestExecutor()
 });
 
 describe('User API Tests', () => {
@@ -34,7 +33,7 @@ describe('User API Tests', () => {
     utils.validateUser(createdUser, newUser);
 
     // 2. Change the recovery question
-    let userCredentials = {
+    let userCredentials: UserCredentials = {
       password: { value: 'Abcd1234#@' },
       recovery_question: {
         question: 'How many roads must a man walk down?',
@@ -42,7 +41,10 @@ describe('User API Tests', () => {
       }
     };
 
-    const response = await client.changeRecoveryQuestion(createdUser.id, userCredentials);
+    const response = await client.userApi.changeRecoveryQuestion({
+      userId: createdUser.id, 
+      userCredentials
+    });
     expect(response.provider.type).to.equal('OKTA');
     expect(response.recovery_question.question).to.equal('How many roads must a man walk down?');
 
@@ -54,10 +56,15 @@ describe('User API Tests', () => {
 
     // Need to wait 1 second here as that is the minimum time resolution of the 'passwordChanged' field
     await utils.delay(1000);
-    await client.forgotPasswordSetNewPassword(createdUser.id, userCredentials);
+    await client.userApi.forgotPasswordSetNewPassword({
+      userId: createdUser.id, 
+      userCredentials
+    });
 
     // 4. Verify that password was updated
-    const updatedUser = await client.getUser(createdUser.id);
+    const updatedUser = await client.userApi.getUser({
+      userId: createdUser.id
+    });
     expect(new Date(updatedUser.passwordChanged)).to.be.gt(new Date(createdUser.passwordChanged));
 
     // 5. Delete the user

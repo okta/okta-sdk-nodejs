@@ -33,9 +33,12 @@ describe('User API Tests', () => {
     utils.validateUser(createdUser, newUser);
 
     // 2. Get the reset password link
-    const sendEmail = { sendEmail : false };
+    const sendEmail = false;
     // TODO: receiving 403: invalid session
-    const link = await client.resetPassword(createdUser.id, sendEmail);
+    const link = await client.userApi.generateResetPasswordToken({
+      userId: createdUser.id, 
+      sendEmail
+    });
     expect(link.resetPasswordUrl).to.not.be.null;
 
     // 3. Delete the user

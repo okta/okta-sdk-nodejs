@@ -2,8 +2,14 @@ import faker = require('@faker-js/faker');
 
 import { expect } from 'chai';
 import utils = require('../utils');
-import * as okta from '@okta/okta-sdk-nodejs';
-import { Client } from '@okta/okta-sdk-nodejs';
+import {
+  Client,
+  DefaultRequestExecutor,
+  AssignRoleRequest,
+  User,
+  CreateUserRequest,
+  Group
+} from '@okta/okta-sdk-nodejs';
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -15,20 +21,20 @@ const client = new Client({
   scopes: ['okta.users.manage', 'okta.groups.manage', 'okta.roles.manage'],
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
-  requestExecutor: new okta.DefaultRequestExecutor()
+  requestExecutor: new DefaultRequestExecutor()
 });
 
 describe('User Role API Tests', () => {
   it('should add/remove Group Target to User Admin Role', async () => {
     // 1. Create a user and a group
-    const newUser = {
+    const newUser: CreateUserRequest = {
       profile: utils.getMockProfile('user-group-target-role'),
       credentials: {
         password: {value: 'Abcd1234#@'}
       }
     };
 
-    const newGroup = {
+    const newGroup: Group = {
       profile: {
         name: `node-sdk: Group Target Test Group ${faker.random.word()}`.substring(0, 49)
       }
@@ -41,11 +47,18 @@ describe('User Role API Tests', () => {
     const createdGroup = await client.groupApi.createGroup({group: newGroup});
 
     // 2. Assign USER_ADMIN role to the user
-    const roleType: okta.AssignRoleRequest = { type: 'USER_ADMIN'  };
-    const role = await client.assignRoleToUser(createdUser.id, roleType);
+    const assignRoleRequest: AssignRoleRequest = { type: 'USER_ADMIN'  };
+    const role = await client.roleAssignmentApi.assignRoleToUser({
+      userId: createdUser.id, 
+      assignRoleRequest
+    });
 
     // 3. Add Group Target to User Admin Role
-    await client.addGroupTargetToRole(createdUser.id, role.id, createdGroup.id);
+    await client.roleTargetApi.assignGroupTargetToUserRole({
+      userId: createdUser.id,
+      roleId: role.id,
+      groupId: createdGroup.id,
+    });
 
     // 4. List Group Targets for Role
     let groupTargetPresent = await utils.isGroupTargetPresent(createdUser, createdGroup, role, client);
@@ -63,9 +76,18 @@ describe('User Role API Tests', () => {
     await utils.cleanup(client, null, group);
 
     const adminGroup = await client.groupApi.createGroup({group});
-    await client.addGroupTargetToRole(createdUser.id, role.id, adminGroup.id);
+    await client.roleTargetApi.assignGroupTargetToUserRole({
+      userId: createdUser.id,
+      roleId: role.id,
+      groupId: adminGroup.id,
+    });
 
-    await client.removeGroupTargetFromRole(createdUser.id, role.id, createdGroup.id);
+    await client.roleTargetApi.unassignGroupTargetFromUserAdminRole({
+      userId: createdUser.id,
+      roleId: role.id,
+      groupId: adminGroup.id,
+    });
+    //removeGroupTargetFromRole(createdUser.id, role.id, createdGroup.id);
     groupTargetPresent = await utils.isGroupTargetPresent(createdUser, createdGroup, role, client);
     expect(groupTargetPresent).to.equal(false);
 
