@@ -3,6 +3,7 @@ import { spy } from 'sinon';
 import {
   DefaultRequestExecutor,
   NetworkZone,
+  Client
 } from '@okta/okta-sdk-nodejs';
 import faker = require('@faker-js/faker');
 import utils = require('../utils');
@@ -71,15 +72,19 @@ const buildNetworkZone = (): NetworkZone => {
 describe('Network Zone CRUD', () => {
   let networkZone: NetworkZone;
   beforeEach(async () => {
-    networkZone = await client.createNetworkZone(buildNetworkZone());
+    networkZone = await client.networkZoneApi.createNetworkZone({
+      zone: buildNetworkZone()
+    });
   });
 
   afterEach(async () => {
-    await client.deleteNetworkZone(networkZone.id);
+    await client.networkZoneApi.deleteNetworkZone({
+      zoneId: networkZone.id
+    });
   });
 
   it('lists network zones', async () => {
-    const collection = await client.listNetworkZones();
+    const collection = await client.networkZoneApi.listNetworkZones();
     const networkZones: NetworkZone[] = [];
     await collection.each(async networkZone => networkZones.push(networkZone));
     expect(networkZones).to.be.an('array').that.is.not.empty;
@@ -87,20 +92,23 @@ describe('Network Zone CRUD', () => {
 
   it('updates network zone', async () => {
     networkZone.name = 'updated network zone';
-    const updatedNetworkZone = await client.updateNetworkZone(networkZone.id, networkZone);
+    const updatedNetworkZone = await client.networkZoneApi.replaceNetworkZone({
+      zoneId: networkZone.id, 
+      zone: networkZone
+    });
     expect(updatedNetworkZone.name).to.equal('updated network zone');
   });
 
   it('activates and deactivates network zone', async () => {
     expect(networkZone.status).to.equal('ACTIVE');
-    let response = await client.deactivateNetworkZone(networkZone.id);
+    let response = await client.networkZoneApi.deactivateNetworkZone({ zoneId: networkZone.id });
     expect(response.status).to.equal('INACTIVE');
-    let updatedNetworkZone = await client.getNetworkZone(networkZone.id);
+    let updatedNetworkZone = await client.networkZoneApi.getNetworkZone({ zoneId: networkZone.id });
     expect(updatedNetworkZone.status).to.equal('INACTIVE');
 
-    response = await client.activateNetworkZone(networkZone.id);
+    response = await client.networkZoneApi.activateNetworkZone({ zoneId: networkZone.id });
     expect(response.status).to.equal('ACTIVE');
-    updatedNetworkZone = await client.getNetworkZone(networkZone.id);
+    updatedNetworkZone = await client.networkZoneApi.getNetworkZone({ zoneId: networkZone.id });
     expect(updatedNetworkZone.status).to.equal('ACTIVE');
   });
 });
@@ -115,10 +123,12 @@ describe('List Network Zones', () => {
     ];
     for (const prefix of namePrefixes) {
       for (let i = 0 ; i < 2 ; i++) {
-        const networkZone = await client.createNetworkZone({
-          ...(prefix === 'NZ_POLICY' ? buildNetworkZone() : buildBlockedNetworkZone()),
-          name: `node-sdk: ${prefix} ${i} ${faker.random.word()}`.substring(0, 49),
-          usage: prefix === 'NZ_POLICY' ? 'POLICY' : 'BLOCKLIST'
+        const networkZone = await client.networkZoneApi.createNetworkZone({
+          zone: {
+            ...(prefix === 'NZ_POLICY' ? buildNetworkZone() : buildBlockedNetworkZone()),
+            name: `node-sdk: ${prefix} ${i} ${faker.random.word()}`.substring(0, 49),
+            usage: prefix === 'NZ_POLICY' ? 'POLICY' : 'BLOCKLIST'
+          }
         });
         networkZones.push(networkZone);
       }
@@ -127,13 +137,13 @@ describe('List Network Zones', () => {
 
   after(async () => {
     for (const networkZone of networkZones) {
-      await client.deleteNetworkZone(networkZone.id);
+      await client.networkZoneApi.deleteNetworkZone({ zoneId: networkZone.id });
     }
   });
 
   it('should paginate results', async () => {
     const filtered = new Set();
-    const collection = await client.listNetworkZones({ limit: 3 });
+    const collection = await client.networkZoneApi.listNetworkZones({ limit: 3 });
     const pageSpy = spy(collection, 'getNextPage');
     await collection.each(nz => {
       expect(nz).to.be.an.instanceof(NetworkZone);
@@ -150,7 +160,7 @@ describe('List Network Zones', () => {
       filter: 'usage eq "POLICY"'
     };
     const filtered = new Set();
-    await (await client.listNetworkZones(queryParameters)).each(nz => {
+    await (await client.networkZoneApi.listNetworkZones(queryParameters)).each(nz => {
       expect(nz).to.be.an.instanceof(NetworkZone);
       expect(filtered.has(nz.name)).to.be.false;
       filtered.add(nz.name);

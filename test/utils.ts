@@ -5,7 +5,9 @@ import {
   GroupApiListGroupsRequest,
   RoleType,
   Csr,
-  BookmarkApplication
+  BookmarkApplication,
+  SamlApplication,
+  OpenIdConnectApplication
 } from '@okta/okta-sdk-nodejs';
 import * as forge from 'node-forge';
 const expect = require('chai').expect;
@@ -105,7 +107,7 @@ async function isUserPresent(client: Client, expectedUser: User, queryParameters
   return userPresent;
 }
 
-async function isGroupPresent(client: Client, expectedGroup: Group, queryParameters: GroupApiListGroupsRequest) {
+async function isGroupPresent(client: Client, expectedGroup: Group, queryParameters: GroupApiListGroupsRequest = {}) {
   let groupPresent = false;
   const collection = await client.groupApi.listGroups(queryParameters);
   await collection.each(async group => {
@@ -218,7 +220,7 @@ function getMockProfile(testName: string) {
   };
 }
 
-function getOIDCApplication() {
+function getOIDCApplication(): OpenIdConnectApplication {
   return  {
     name: 'oidc_client',
     label: `node-sdk: Sample Client - ${faker.random.word()}`.substring(0, 49),
@@ -266,7 +268,7 @@ function getBookmarkApplication(): BookmarkApplication {
   };
 }
 
-function getOrg2OrgApplicationOptions() {
+function getOrg2OrgApplicationOptions(): SamlApplication {
   return {
     name: 'okta_org2org',
     label: 'node-sdk: Sample Okta Org2Org App',

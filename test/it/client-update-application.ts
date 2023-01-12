@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import faker = require('@faker-js/faker');
 
-import * as okta from '@okta/okta-sdk-nodejs';
+import { Client, DefaultRequestExecutor } from '@okta/okta-sdk-nodejs';
 import utils = require('../utils');
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
@@ -14,7 +14,7 @@ const client = new Client({
   scopes: ['okta.clients.manage', 'okta.apps.manage'],
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
-  requestExecutor: new okta.DefaultRequestExecutor()
+  requestExecutor: new DefaultRequestExecutor()
 });
 
 describe('client.updateApplication()', () => {

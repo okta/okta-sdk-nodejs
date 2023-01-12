@@ -27,7 +27,9 @@ describe('App User Schema', () => {
   let createdApplication: BookmarkApplication;
 
   beforeEach(async () => {
-    createdApplication = await client.applicationApi.createApplication({application: applicationOptions});
+    createdApplication = await client.applicationApi.createApplication({
+      application: applicationOptions
+    });
   });
   afterEach(async () => {
     await client.applicationApi.deactivateApplication({appId: createdApplication.id});
@@ -35,25 +37,36 @@ describe('App User Schema', () => {
   });
 
   it('gets UserSchema for application', async () => {
-    const userSchema: UserSchema = await client.schemaApi.getApplicationUserSchema({appInstanceId: createdApplication.id});
+    const userSchema: UserSchema = await client.schemaApi.getApplicationUserSchema({
+      appInstanceId: createdApplication.id
+    });
     expect(userSchema.definitions).is.not.null;
   });
 
   it('adds property to application\'s UserSchema', async () => {
-    const userSchema = await client.schemaApi.getApplicationUserSchema({appInstanceId: createdApplication.id});
+    const userSchema = await client.schemaApi.getApplicationUserSchema({
+      appInstanceId: createdApplication.id
+    });
     expect(Object.keys(userSchema.definitions.custom.properties)).to.be.an('array').that.is.empty;
-    const updatedSchema = await client.schemaApi.updateApplicationUserProfile({appInstanceId: createdApplication.id, body: getMockSchemaProperty()});
+    const updatedSchema = await client.schemaApi.updateApplicationUserProfile({
+      appInstanceId: createdApplication.id, 
+      body: getMockSchemaProperty()
+    });
     expect(Object.keys(updatedSchema.definitions.custom.properties)).to.be.an('array').that.contains('twitterUserName');
   });
 
   it('updates application\'s UserSchema', async () => {
-    const mockSchemaProperty = getMockSchemaProperty();
-    let updatedSchema = await client.schemaApi.updateApplicationUserProfile({appInstanceId: createdApplication.id, body: mockSchemaProperty});
+    const mockSchemaProperty: UserSchema = getMockSchemaProperty();
+    let updatedSchema = await client.schemaApi.updateApplicationUserProfile({
+      appInstanceId: createdApplication.id, 
+      body: mockSchemaProperty
+    });
     let customProperty = updatedSchema.definitions.custom.properties.twitterUserName as Record<string, string>;
     expect(customProperty.title).to.equal('Twitter username');
-    updatedSchema = await client.schemaApi.updateApplicationUserProfile({appInstanceId: createdApplication.id, ...Object.assign(
-      mockSchemaProperty,
-      {
+    updatedSchema = await client.schemaApi.updateApplicationUserProfile({
+      appInstanceId: createdApplication.id, 
+      body: {
+        ...mockSchemaProperty,
         definitions: {
           custom: {
             id: '#custom',
@@ -66,18 +79,22 @@ describe('App User Schema', () => {
           }
         }
       }
-    )});
+    });
     customProperty = updatedSchema.definitions.custom.properties.twitterUserName as Record<string, string>;
     expect(customProperty.title).to.equal('Twitter handle');
   });
 
   it('removes custom user type UserSchema property', async () => {
     const mockSchemaProperty = getMockSchemaProperty();
-    let updatedSchema = await client.schemaApi.updateApplicationUserProfile({appInstanceId: createdApplication.id, body: mockSchemaProperty});
+    let updatedSchema = await client.schemaApi.updateApplicationUserProfile({
+      appInstanceId: createdApplication.id, 
+      body: mockSchemaProperty
+    });
     expect(Object.keys(updatedSchema.definitions.custom.properties)).to.contain('twitterUserName');
-    updatedSchema = await client.schemaApi.updateApplicationUserProfile({ appInstanceId: createdApplication.id, ...Object.assign(
-      mockSchemaProperty,
-      {
+    updatedSchema = await client.schemaApi.updateApplicationUserProfile({
+      appInstanceId: createdApplication.id,
+      body: {
+        ...mockSchemaProperty,
         definitions: {
           custom: {
             id: '#custom',
@@ -88,7 +105,7 @@ describe('App User Schema', () => {
           }
         }
       }
-    )});
+    });
     expect(Object.keys(updatedSchema.definitions.custom.properties)).not.to.contain('twitterUserName');
   });
 

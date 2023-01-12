@@ -39,7 +39,7 @@ describe('Inline Hook Crud API', () => {
   });
 
   describe('List Inline Hooks', () => {
-    let inlineHook;
+    let inlineHook: InlineHook;
     beforeEach(async () => {
       inlineHook = await client.inlineHookApi.createInlineHook({inlineHook: getMockInlineHook()});
     });
@@ -51,7 +51,7 @@ describe('Inline Hook Crud API', () => {
     it('should return a collection of InlineHooks', async () => {
       const collection = await client.inlineHookApi.listInlineHooks();
       expect(collection).to.be.instanceOf(Collection);
-      const inlineHooks = [];
+      const inlineHooks: InlineHook[] = [];
       await collection.each(ih => {
         inlineHooks.push(ih);
       });
@@ -61,7 +61,7 @@ describe('Inline Hook Crud API', () => {
   });
 
   describe('Get InlineHook', () => {
-    let inlineHook;
+    let inlineHook: InlineHook;
     beforeEach(async () => {
       inlineHook = await client.inlineHookApi.createInlineHook({inlineHook: getMockInlineHook()});
     });
@@ -77,7 +77,7 @@ describe('Inline Hook Crud API', () => {
   });
 
   describe('Update InlineHook', () => {
-    let inlineHook;
+    let inlineHook: InlineHook;
     beforeEach(async () => {
       inlineHook = await client.inlineHookApi.createInlineHook({inlineHook: getMockInlineHook()});
     });
@@ -88,8 +88,8 @@ describe('Inline Hook Crud API', () => {
 
     it('should update name for created inlineHook', async () => {
       inlineHook.name = `node-sdk: Mock inline hook updated ${faker.random.word()}`.substring(0, 49);
-      inlineHook.channel.config.headers[0].value = 'my-header-value-updated';
-      inlineHook.channel.config.authScheme.value = 'my-shared-secret-updated';
+      (inlineHook.channel as InlineHookChannelHttp).config.headers[0].value = 'my-header-value-updated';
+      (inlineHook.channel as InlineHookChannelHttp).config.authScheme.value = 'my-shared-secret-updated';
       const updatedInlineHook = await client.inlineHookApi.replaceInlineHook({inlineHookId: inlineHook.id, inlineHook});
       expect(updatedInlineHook.id).to.equal(inlineHook.id);
       expect(updatedInlineHook.name).to.equal(inlineHook.name);
@@ -98,7 +98,7 @@ describe('Inline Hook Crud API', () => {
   });
 
   describe('Delete InlineHook', () => {
-    let inlineHook;
+    let inlineHook: InlineHook;
     beforeEach(async () => {
       inlineHook = await client.inlineHookApi.createInlineHook({inlineHook: getMockInlineHook()});
     });
@@ -107,7 +107,7 @@ describe('Inline Hook Crud API', () => {
       await client.inlineHookApi.deactivateInlineHook({inlineHookId: inlineHook.id});
       await client.inlineHookApi.deleteInlineHook({inlineHookId: inlineHook.id});
       try {
-        await client.getInlineHook(inlineHook.id);
+        await client.inlineHookApi.getInlineHook({inlineHookId: inlineHook.id});
       } catch (e) {
         expect(e.status).to.equal(404);
       }

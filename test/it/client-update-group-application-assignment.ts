@@ -4,6 +4,7 @@ import faker = require('@faker-js/faker');
 import {
   ApplicationGroupAssignment,
   DefaultRequestExecutor,
+  Client
 } from '@okta/okta-sdk-nodejs';
 import utils = require('../utils');
 

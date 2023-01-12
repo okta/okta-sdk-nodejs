@@ -6,6 +6,7 @@ import {
   Collection,
   DefaultRequestExecutor,
   User,
+  CreateUserRequest
 } from '@okta/okta-sdk-nodejs';
 
 import utils = require('../utils');
@@ -23,10 +24,10 @@ const client = new Client({
 });
 
 describe('client.userApi.listUsers()', () => {
-  let _user;
+  let _user: User;
 
   before(async () => {
-    const newUser = {
+    const newUser: CreateUserRequest = {
       profile: utils.getMockProfile('client-list-users-1'),
       credentials: {
         password: {value: 'Abcd1234#@'}
@@ -76,7 +77,7 @@ describe('client.listUsers({ })', () => {
   const users = [];
 
   const createUser = async (name) => {
-    const newUser = {
+    const newUser: CreateUserRequest = {
       profile: {
         ...utils.getMockProfile(name),
         lastName: 'okta-sdk-nodejs-users-filter',
@@ -200,10 +201,10 @@ describe('client.userApi.listUsers().each()', () => {
 });
 
 describe('client.userApi.listUsers().next()', () => {
-  let _user;
+  let _user: User;
 
   before(async () => {
-    const newUser = {
+    const newUser: CreateUserRequest = {
       profile: utils.getMockProfile('client-list-users-2'),
       credentials: {
         password: {value: 'Abcd1234#@'}

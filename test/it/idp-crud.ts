@@ -25,16 +25,16 @@ const client = new Client({
 
 describe('Idp Crud API', () => {
   describe('List idps', () => {
-    const idps = [];
+    const idps: IdentityProvider[] = [];
     before(async () => {
-      const mockIdps = [
+      const mockIdps: IdentityProvider[] = [
         getMockGenericOidcIdp(),
         getMockGenericOidcIdp(),
         getMockFacebookIdp(),
         getMockGoogleIdp()
       ];
       for (const mockIdp of mockIdps) {
-        const idp = await client.identityProviderApi.createIdentityProvider(mockIdp);
+        const idp = await client.identityProviderApi.createIdentityProvider({ identityProvider: mockIdp });
         idps.push(idp);
       }
     });
@@ -95,7 +95,7 @@ describe('Idp Crud API', () => {
   });
 
   describe('Create idp', () => {
-    let idp;
+    let idp: IdentityProvider;
     afterEach(async () => {
       await client.identityProviderApi.deleteIdentityProvider({idpId: idp.id});
     });
@@ -112,7 +112,7 @@ describe('Idp Crud API', () => {
   });
 
   describe('Get idp', () => {
-    let idp;
+    let idp: IdentityProvider;
     beforeEach(async () => {
       idp = await client.identityProviderApi.createIdentityProvider({identityProvider: getMockGenericOidcIdp()});
     });
@@ -129,8 +129,8 @@ describe('Idp Crud API', () => {
   });
 
   describe('Update idp', () => {
-    let idp;
-    let updatedIdp;
+    let idp: IdentityProvider;
+    let updatedIdp: IdentityProvider;
     beforeEach(async () => {
       idp = await client.identityProviderApi.createIdentityProvider({identityProvider: getMockGenericOidcIdp()});
     });
@@ -149,7 +149,7 @@ describe('Idp Crud API', () => {
   });
 
   describe('Delete idp', () => {
-    let idp;
+    let idp: IdentityProvider;
     beforeEach(async () => {
       idp = await client.identityProviderApi.createIdentityProvider({identityProvider: getMockGenericOidcIdp()});
     });
