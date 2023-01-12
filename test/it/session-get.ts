@@ -46,12 +46,16 @@ describe('Sessions API', () => {
 
     // 1 - create session
     const transaction = await utils.authenticateUser(client, createdUser.profile.login, 'Abcd1234#@');
-    const session = await client.createSession({
-      sessionToken: transaction.sessionToken
+    const session = await client.sessionApi.createSession({
+      createSessionRequest: {
+        sessionToken: transaction.sessionToken
+      }
     });
 
     // 2 - retrieve session
-    const sess = await client.getSession(session.id);
+    const sess = await client.sessionApi.getSession({
+      sessionId: session.id
+    });
 
     expect(sess).to.be.instanceOf(Session);
   });

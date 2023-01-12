@@ -43,23 +43,29 @@ describe('Sessions API', () => {
 
     // 1 - create session
     const transaction1 = await utils.authenticateUser(client, createdUser.profile.login, 'Abcd1234#@');
-    const session1 = await client.createSession({
-      sessionToken: transaction1.sessionToken
+    const session1 = await client.sessionApi.createSession({
+      createSessionRequest: {
+        sessionToken: transaction1.sessionToken
+      }
     });
 
     // 2 - create another session
     const transaction2 = await utils.authenticateUser(client, createdUser.profile.login, 'Abcd1234#@');
-    const session2 = await client.createSession({
-      sessionToken: transaction2.sessionToken
+    const session2 = await client.sessionApi.createSession({
+      createSessionRequest: {
+        sessionToken: transaction2.sessionToken
+      }
     });
 
     // 3 - end all user sessions
-    await client.clearUserSessions(createdUser.id);
+    await client.userApi.revokeUserSessions(createdUser.id);
 
     // 4 - attempt to retrieve session1
     let sess1;
     try {
-      sess1 = await client.getSession(session1.id);
+      sess1 = await client.sessionApi.getSession({
+        sessionId: session1.id
+      });
     } catch (e) {
       expect(e.status).to.equal(404);
     }
@@ -68,7 +74,9 @@ describe('Sessions API', () => {
     // 5 - attempt to retrieve session2
     let sess2;
     try {
-      sess2 = await client.getSession(session2.id);
+      sess2 = await client.sessionApi.getSession({
+        sessionId: session2.id
+      });
     } catch (e) {
       expect(e.status).to.equal(404);
     }

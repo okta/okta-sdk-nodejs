@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 
-import { ApplicationFeature, Client } from '@okta/okta-sdk-nodejs';
+import { Application, ApplicationFeature, Client } from '@okta/okta-sdk-nodejs';
 import utils = require('../utils');
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
@@ -17,7 +17,10 @@ const client = new Client({
 describe('Application API: applicaton features', () => {
   let application;
   beforeEach(async () => {
-    application = await client.applicationApi.createApplication({application: utils.getOrg2OrgApplicationOptions()});
+    application = await client.applicationApi.createApplication({
+      //TODO: Org2OrgApplication
+      application: utils.getOrg2OrgApplicationOptions() as Application
+    });
   });
 
   afterEach(async () => {

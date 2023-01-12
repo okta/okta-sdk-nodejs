@@ -1,9 +1,8 @@
 import { expect } from 'chai';
-import * as okta from '@okta/okta-sdk-nodejs';
 import getMockGroup = require('./mocks/group');
 import getMockOktaSignOnPolicy = require('./mocks/okta-sign-on-policy');
 import utils = require('../utils');
-import { Client } from '@okta/okta-sdk-nodejs';
+import { Client, DefaultRequestExecutor, Policy, Group, AccessPolicy } from '@okta/okta-sdk-nodejs';
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -14,18 +13,20 @@ if (process.env.OKTA_USE_MOCK) {
 const client = new Client({
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
-  requestExecutor: new okta.DefaultRequestExecutor()
+  requestExecutor: new DefaultRequestExecutor()
 });
 
 describe('Policy Lifecycle API', () => {
-  let group;
-  let mockPolicy;
-  let policy;
+  let group: Group;
+  let mockPolicy: AccessPolicy;
+  let policy: Policy;
   beforeEach(async () => {
     group = await client.groupApi.createGroup({group: getMockGroup()});
     mockPolicy = getMockOktaSignOnPolicy();
     mockPolicy.conditions.people.groups.include.push(group.id);
-    policy = client.policyApi.createPolicy(mockPolicy);
+    policy = await client.policyApi.createPolicy({
+      policy: mockPolicy
+    });
   });
   afterEach(async () => {
     await client.policyApi.deletePolicy({policyId: policy.id});
@@ -33,12 +34,16 @@ describe('Policy Lifecycle API', () => {
   });
 
   it('should activate policy', async () => {
-    const response = await client.activatePolicy(policy.id);
+    const response = await client.policyApi.activatePolicy({
+      policyId: policy.id
+    });
     expect(response).to.be.undefined;
   });
 
   it('should deactive policy', async () => {
-    const response = await client.deactivatePolicy(policy.id);
+    const response = await client.policyApi.deactivatePolicy({
+      policyId: policy.id
+    });
     expect(response).to.be.undefined;
   });
 });

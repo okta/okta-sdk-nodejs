@@ -121,12 +121,12 @@ describe('Policy Scenarios', () => {
       description: 'The default policy applies in all situations if no other policy applies.',
     };
 
-    const createdPolicy1 = await client.createPolicy(policy1);
+    const createdPolicy1 = await client.policyApi.createPolicy({ policy: policy1 });
 
-    const createdPolicy2 = await client.createPolicy(policy2);
+    const createdPolicy2 = await client.policyApi.createPolicy({ policy: policy2 });
 
     let signonCount = 0;
-    await (await client.listPolicies({type: 'OKTA_SIGN_ON'})).each(policy => {
+    await (await client.policyApi.listPolicies({type: 'OKTA_SIGN_ON'})).each(policy => {
       if (policy.name === policy1Name) {
         expect(policy.name).to.equal(createdPolicy1.name);
         expect(policy.type).to.equal(createdPolicy1.type);
@@ -138,7 +138,7 @@ describe('Policy Scenarios', () => {
     expect(signonCount).to.be.equal(1);
 
     let passwordCount = 0;
-    await (await client.listPolicies({type: 'PASSWORD'})).each(policy => {
+    await (await client.policyApi.listPolicies({type: 'PASSWORD'})).each(policy => {
       if (policy.name === policy2Name) {
         expect(policy.name).to.equal(createdPolicy2.name);
         expect(policy.type).to.equal(createdPolicy2.type);
@@ -149,8 +149,8 @@ describe('Policy Scenarios', () => {
     });
     expect(passwordCount).to.be.equal(1);
 
-    await client.deletePolicy(createdPolicy1.id);
-    await client.deletePolicy(createdPolicy2.id);
+    await client.policyApi.deletePolicy({ policyId: createdPolicy1.id });
+    await client.policyApi.deletePolicy({ policyId: createdPolicy2.id });
   });
 
   it('can delete a policy', async () => {
@@ -160,11 +160,11 @@ describe('Policy Scenarios', () => {
       name: `node-sdk: DeletePolicy ${faker.random.word()}`.substring(0, 49),
       description: 'The default policy applies in all situations if no other policy applies.',
     };
-    const createdPolicy = await client.createPolicy(policyobj);
-    const retrievedPolicy = await client.policyApi.getPolicy({policyId: policy.id});
+    const createdPolicy = await client.policyApi.createPolicy({ policy: policyobj });
+    const retrievedPolicy = await client.policyApi.getPolicy({ policyId: createdPolicy.id });
     expect(retrievedPolicy).to.not.be.undefined;
 
-    const response = await client.deletePolicy(retrievedPolicy.id);
+    const response = await client.policyApi.deletePolicy({ policyId: retrievedPolicy.id });
 
     expect(response).to.be.undefined;
     let policy;
@@ -190,7 +190,10 @@ describe('Policy Scenarios', () => {
 
     createdPolicy.name = `node-sdk: Updated ${faker.random.word()}`.substring(0, 49);
 
-    await client.updatePolicy(createdPolicy.id, createdPolicy);
+    await client.policyApi.replacePolicy({
+      policyId: createdPolicy.id, 
+      policy: createdPolicy
+    });
 
     const retrievedPolicy = await client.policyApi.getPolicy({policyId: policy.id});
     await client.policyApi.deletePolicy({policyId: createdPolicy.id});
@@ -210,12 +213,12 @@ describe('Policy Scenarios', () => {
 
     expect(createdPolicy.status).to.be.equal('ACTIVE');
 
-    await client.deactivatePolicy(createdPolicy.id);
+    await client.policyApi.deactivatePolicy({ policyId: createdPolicy.id });
     createdPolicy = await client.policyApi.getPolicy({policyId: policy.id});
 
     expect(createdPolicy.status).to.be.equal('INACTIVE');
 
-    await client.activatePolicy(createdPolicy.id);
+    await client.policyApi.activatePolicy({ policyId: createdPolicy.id });
     createdPolicy = await client.policyApi.getPolicy({policyId: policy.id});
 
     expect(createdPolicy.status).to.be.equal('ACTIVE');
@@ -247,7 +250,10 @@ describe('Policy Scenarios', () => {
       actions: policyRuleAction
     };
 
-    const createdPolicyRule: OktaSignOnPolicyRule = await client.createPolicyRule(createdPolicy.id, policyRule);
+    const createdPolicyRule: OktaSignOnPolicyRule = await client.policyApi.createPolicyRule({
+      policyId: createdPolicy.id, 
+      policyRule
+    });
 
     expect(createdPolicyRule).to.not.be.undefined;
     expect(createdPolicyRule.name).to.equal(policyRuleName);

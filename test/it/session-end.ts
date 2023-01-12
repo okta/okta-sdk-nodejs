@@ -1,7 +1,6 @@
 import utils = require('../utils');
-import * as okta from '@okta/okta-sdk-nodejs';
 import { expect } from 'chai';
-import { Client } from '@okta/okta-sdk-nodejs';
+import { Client, DefaultRequestExecutor } from '@okta/okta-sdk-nodejs';
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -13,7 +12,7 @@ const client = new Client({
   scopes: ['okta.users.manage'],
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
-  requestExecutor: new okta.DefaultRequestExecutor()
+  requestExecutor: new DefaultRequestExecutor()
 });
 
 describe('Sessions API', () => {
@@ -43,17 +42,23 @@ describe('Sessions API', () => {
 
     // 1 - create session
     const transaction = await utils.authenticateUser(client, createdUser.profile.login, 'Abcd1234#@');
-    const session = await client.createSession({
-      sessionToken: transaction.sessionToken
+    const session = await client.sessionApi.createSession({
+      createSessionRequest: {
+        sessionToken: transaction.sessionToken
+      }
     });
 
     // 2 - end session
-    await client.endSession(session.id);
+    await client.sessionApi.revokeSession({
+      sessionId: session.id
+    });
 
     // 3 - attempt to retrieve session
     let sess;
     try {
-      sess = await client.getSession(session.id);
+      sess = await client.sessionApi.getSession({
+        sessionId: session.id
+      });
     } catch (e) {
       expect(e.status).to.equal(404);
     }

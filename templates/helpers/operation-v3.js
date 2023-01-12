@@ -381,8 +381,8 @@ const V3ApiOperations = {
     'updatePolicyRule'
   ],
   SubscriptionApi: [
-    'getRoleSubscriptionByNotificationType',
-    'getUserSubscriptionByNotificationType',
+    'listRoleSubscriptionsByNotificationType',
+    'listUserSubscriptionsByNotificationType',
     'listRoleSubscriptions',
     'listUserSubscriptions',
     'subscribeRoleSubscriptionByNotificationType',

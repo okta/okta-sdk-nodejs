@@ -28,6 +28,10 @@ function validateUser(user: User, expectedUser: User) {
   expect(user.profile.login).to.equal(expectedUser.profile.login);
 }
 
+interface AuthTransaction {
+  sessionToken?: string;
+};
+
 function authenticateUser(client: Client, userName: string, password: string) {
   const data = {
     username: userName,
@@ -38,7 +42,7 @@ function authenticateUser(client: Client, userName: string, password: string) {
 
   return client.http.postJson(url, {
     body: JSON.stringify(data)
-  });
+  }) as Promise<AuthTransaction>;
 }
 
 function validateGroup(group: Group, expectedGroup: Group) {

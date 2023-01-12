@@ -84,7 +84,6 @@ export declare class Client {
   sessionApi: SessionApi;
   templateApi: TemplateApi;
   policyApi: PolicyApi;
-  subscription: SubscriptionApi;
   agentPoolsApi: AgentPoolsApi;
   apiTokenApi: ApiTokenApi;
   behaviorApi: BehaviorApi;

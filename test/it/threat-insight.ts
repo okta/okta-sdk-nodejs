@@ -2,6 +2,7 @@ import { expect } from 'chai';
 import {
   DefaultRequestExecutor,
   ThreatInsightConfiguration,
+  Client
 } from '@okta/okta-sdk-nodejs';
 import utils = require('../utils');
 
@@ -18,25 +19,31 @@ const client = new Client({
 
 describe('Threat Insight API', () => {
   afterEach(async () => {
-    await client.updateConfiguration({
-      action: 'none'
+    await client.threatInsightApi.updateConfiguration({
+      threatInsightConfiguration: {
+        action: 'none'
+      }
     });
   });
 
   beforeEach(async () => {
-    await client.updateConfiguration({
-      action: 'none'
+    await client.threatInsightApi.updateConfiguration({
+      threatInsightConfiguration: {
+        action: 'none'
+      }
     });
   });
 
   it('gets configuration', async () => {
-    const configuration = await client.getCurrentConfiguration();
+    const configuration = await client.threatInsightApi.getCurrentConfiguration();
     expect(configuration).to.be.instanceOf(ThreatInsightConfiguration);
   });
 
   it('updates configuration', async () => {
-    const configuration = await client.updateConfiguration({
-      action: 'audit'
+    const configuration = await client.threatInsightApi.updateConfiguration({
+      threatInsightConfiguration: {
+        action: 'audit'
+      }
     });
     expect(configuration).to.be.instanceOf(ThreatInsightConfiguration);
     expect(configuration.action).to.equal('audit');
