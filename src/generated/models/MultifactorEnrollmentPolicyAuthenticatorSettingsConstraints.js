@@ -11,6 +11,7 @@
  */
 
 
+'use strict';
 /**
  * Okta Admin Management
  * Allows customers to easily access the Okta Management APIs
@@ -22,23 +23,22 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-export declare class CreateSessionRequest {
-  /**
-    * The session token obtained during authentication
-    */
-  'sessionToken'?: string;
-  static readonly discriminator: string | undefined;
-  static readonly attributeTypeMap: Array<{
-        name: string;
-        baseName: string;
-        type: string;
-        format: string;
-    }>;
-  static getAttributeTypeMap(): {
-        name: string;
-        baseName: string;
-        type: string;
-        format: string;
-    }[];
-  constructor();
+Object.defineProperty(exports, '__esModule', { value: true });
+exports.MultifactorEnrollmentPolicyAuthenticatorSettingsConstraints = void 0;
+class MultifactorEnrollmentPolicyAuthenticatorSettingsConstraints {
+  constructor() {
+  }
+  static getAttributeTypeMap() {
+    return MultifactorEnrollmentPolicyAuthenticatorSettingsConstraints.attributeTypeMap;
+  }
 }
+exports.MultifactorEnrollmentPolicyAuthenticatorSettingsConstraints = MultifactorEnrollmentPolicyAuthenticatorSettingsConstraints;
+MultifactorEnrollmentPolicyAuthenticatorSettingsConstraints.discriminator = undefined;
+MultifactorEnrollmentPolicyAuthenticatorSettingsConstraints.attributeTypeMap = [
+  {
+    'name': 'aaguidGroups',
+    'baseName': 'aaguidGroups',
+    'type': 'Array<string>',
+    'format': ''
+  }
+];

@@ -24,9 +24,11 @@
  */
 import { IdentitySourceSessionStatus } from './../models/IdentitySourceSessionStatus';
 export declare class IdentitySourceSession {
+  'created'?: Date;
   'id'?: string;
   'identitySourceId'?: string;
   'importType'?: string;
+  'lastUpdated'?: Date;
   'status'?: IdentitySourceSessionStatus;
   static readonly discriminator: string | undefined;
   static readonly attributeTypeMap: Array<{

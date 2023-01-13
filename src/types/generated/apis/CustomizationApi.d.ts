@@ -18,12 +18,12 @@ import { Brand } from '../models/Brand';
 import { BrandDomains } from '../models/BrandDomains';
 import { BrandRequest } from '../models/BrandRequest';
 import { CreateBrandRequest } from '../models/CreateBrandRequest';
-import { CustomizablePage } from '../models/CustomizablePage';
 import { EmailCustomization } from '../models/EmailCustomization';
 import { EmailDefaultContent } from '../models/EmailDefaultContent';
 import { EmailPreview } from '../models/EmailPreview';
 import { EmailSettings } from '../models/EmailSettings';
 import { EmailTemplate } from '../models/EmailTemplate';
+import { ErrorPage } from '../models/ErrorPage';
 import { HostedPage } from '../models/HostedPage';
 import { ImageUploadResponse } from '../models/ImageUploadResponse';
 import { PageRoot } from '../models/PageRoot';
@@ -83,6 +83,18 @@ export declare class CustomizationApiRequestFactory extends BaseAPIRequestFactor
      */
   deleteBrandThemeLogo(brandId: string, themeId: string, _options?: Configuration): Promise<RequestContext>;
   /**
+     * Deletes the customized error page. As a result, the default error page appears in your live environment.
+     * Delete the Customized Error Page
+     * @param brandId The ID of the brand.
+     */
+  deleteCustomizedErrorPage(brandId: string, _options?: Configuration): Promise<RequestContext>;
+  /**
+     * Deletes the customized sign-in page. As a result, the default sign-in page appears in your live environment.
+     * Delete the Customized Sign-in Page
+     * @param brandId The ID of the brand.
+     */
+  deleteCustomizedSignInPage(brandId: string, _options?: Configuration): Promise<RequestContext>;
+  /**
      * Deletes an email customization by its unique identifier
      * Delete an Email Customization
      * @param brandId The ID of the brand.
@@ -90,6 +102,18 @@ export declare class CustomizationApiRequestFactory extends BaseAPIRequestFactor
      * @param customizationId The ID of the email customization.
      */
   deleteEmailCustomization(brandId: string, templateName: string, customizationId: string, _options?: Configuration): Promise<RequestContext>;
+  /**
+     * Deletes the preview error page. The preview error page contains unpublished changes and isn't shown in your live environment. Preview it at `${yourOktaDomain}/error/preview`.
+     * Delete the Preview Error Page
+     * @param brandId The ID of the brand.
+     */
+  deletePreviewErrorPage(brandId: string, _options?: Configuration): Promise<RequestContext>;
+  /**
+     * Deletes the preview sign-in page. The preview sign-in page contains unpublished changes and isn't shown in your live environment. Preview it at `${yourOktaDomain}/login/preview`.
+     * Delete the Preview Sign-in Page
+     * @param brandId The ID of the brand.
+     */
+  deletePreviewSignInPage(brandId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Retrieves a brand by `brandId`
      * Retrieve a Brand
@@ -112,25 +136,25 @@ export declare class CustomizationApiRequestFactory extends BaseAPIRequestFactor
      */
   getCustomizationPreview(brandId: string, templateName: string, customizationId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Retrieves the customized error page
+     * Retrieves the customized error page. The customized error page appears in your live environment.
      * Retrieve the Customized Error Page
      * @param brandId The ID of the brand.
      */
   getCustomizedErrorPage(brandId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Retrieves the customized sign-in page
+     * Retrieves the customized sign-in page. The customized sign-in page appears in your live environment.
      * Retrieve the Customized Sign-in Page
      * @param brandId The ID of the brand.
      */
   getCustomizedSignInPage(brandId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Retrieves the default error page
+     * Retrieves the default error page. The default error page appears when no customized error page exists.
      * Retrieve the Default Error Page
      * @param brandId The ID of the brand.
      */
   getDefaultErrorPage(brandId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Retrieves the default sign-in page
+     * Retrieves the default sign-in page. The default sign-in page appears when no customized sign-in page exists.
      * Retrieve the Default Sign-in Page
      * @param brandId The ID of the brand.
      */
@@ -175,27 +199,27 @@ export declare class CustomizationApiRequestFactory extends BaseAPIRequestFactor
      */
   getEmailTemplate(brandId: string, templateName: string, expand?: Array<'settings' | 'customizationCount'>, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Retrieves the error page
-     * Retrieve the Error Page
+     * Retrieves the error page sub-resources. The `expand` query parameter specifies which sub-resources to include in the response.
+     * Retrieve the Error Page Sub-Resources
      * @param brandId The ID of the brand.
      * @param expand Specifies additional metadata to be included in the response.
      */
   getErrorPage(brandId: string, expand?: Array<'default' | 'customized' | 'customizedUrl' | 'preview' | 'previewUrl'>, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Retrieves the preview error page
+     * Retrieves the preview error page. The preview error page contains unpublished changes and isn't shown in your live environment. Preview it at `${yourOktaDomain}/error/preview`.
      * Retrieve the Preview Error Page Preview
      * @param brandId The ID of the brand.
      */
   getPreviewErrorPage(brandId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Retrieves the preview sign-in page
+     * Retrieves the preview sign-in page. The preview sign-in page contains unpublished changes and isn't shown in your live environment. Preview it at `${yourOktaDomain}/login/preview`.
      * Retrieve the Preview Sign-in Page Preview
      * @param brandId The ID of the brand.
      */
   getPreviewSignInPage(brandId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Retrieves the sign-in page
-     * Retrieve the Sign-in Page
+     * Retrieves the sign-in page sub-resources. The `expand` query parameter specifies which sub-resources to include in the response.
+     * Retrieve the Sign-in Page Sub-Resources
      * @param brandId The ID of the brand.
      * @param expand Specifies additional metadata to be included in the response.
      */
@@ -207,7 +231,7 @@ export declare class CustomizationApiRequestFactory extends BaseAPIRequestFactor
      */
   getSignOutPageSettings(brandId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Lists all sign-in widget versions
+     * Lists all sign-in widget versions supported by the current org
      * List all Sign-in Widget Versions
      * @param brandId The ID of the brand.
      */
@@ -263,14 +287,14 @@ export declare class CustomizationApiRequestFactory extends BaseAPIRequestFactor
      */
   replaceBrandTheme(brandId: string, themeId: string, theme: Theme, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Replaces the customized error page
+     * Replaces the customized error page. The customized error page appears in your live environment.
      * Replace the Customized Error Page
      * @param brandId The ID of the brand.
-     * @param CustomizablePage
+     * @param ErrorPage
      */
-  replaceCustomizedErrorPage(brandId: string, CustomizablePage: CustomizablePage, _options?: Configuration): Promise<RequestContext>;
+  replaceCustomizedErrorPage(brandId: string, ErrorPage: ErrorPage, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Replaces the customized sign-in page
+     * Replaces the customized sign-in page. The customized sign-in page appears in your live environment.
      * Replace the Customized Sign-in Page
      * @param brandId The ID of the brand.
      * @param SignInPage
@@ -294,14 +318,14 @@ export declare class CustomizationApiRequestFactory extends BaseAPIRequestFactor
      */
   replaceEmailSettings(brandId: string, templateName: string, EmailSettings?: EmailSettings, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Replaces the preview error page
+     * Replaces the preview error page. The preview error page contains unpublished changes and isn't shown in your live environment. Preview it at `${yourOktaDomain}/error/preview`.
      * Replace the Preview Error Page
      * @param brandId The ID of the brand.
-     * @param CustomizablePage
+     * @param ErrorPage
      */
-  replacePreviewErrorPage(brandId: string, CustomizablePage: CustomizablePage, _options?: Configuration): Promise<RequestContext>;
+  replacePreviewErrorPage(brandId: string, ErrorPage: ErrorPage, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Replaces the preview sign-in page
+     * Replaces the preview sign-in page. The preview sign-in page contains unpublished changes and isn't shown in your live environment. Preview it at `${yourOktaDomain}/login/preview`.
      * Replace the Preview Sign-in Page
      * @param brandId The ID of the brand.
      * @param SignInPage
@@ -314,30 +338,6 @@ export declare class CustomizationApiRequestFactory extends BaseAPIRequestFactor
      * @param HostedPage
      */
   replaceSignOutPageSettings(brandId: string, HostedPage: HostedPage, _options?: Configuration): Promise<RequestContext>;
-  /**
-     * Resets the customized error page
-     * Reset the Customized Error Page
-     * @param brandId The ID of the brand.
-     */
-  resetCustomizedErrorPage(brandId: string, _options?: Configuration): Promise<RequestContext>;
-  /**
-     * Resets the customized sign-in page
-     * Reset the Customized Sign-in Page
-     * @param brandId The ID of the brand.
-     */
-  resetCustomizedSignInPage(brandId: string, _options?: Configuration): Promise<RequestContext>;
-  /**
-     * Resets the preview error page
-     * Reset the Preview Error Page
-     * @param brandId The ID of the brand.
-     */
-  resetPreviewErrorPage(brandId: string, _options?: Configuration): Promise<RequestContext>;
-  /**
-     * Resets the preview sign-in page
-     * Reset the Preview Sign-in Page
-     * @param brandId The ID of the brand.
-     */
-  resetPreviewSignInPage(brandId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Sends a test email to the current user’s primary and secondary email addresses. The email content is selected based on the following priority: 1. The email customization for the language specified in the `language` query parameter. 2. The email template's default customization. 3. The email template’s default content, translated to the current user's language.
      * Send a Test Email
@@ -432,10 +432,42 @@ export declare class CustomizationApiResponseProcessor {
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
+     * @params response Response returned by the server for a request to deleteCustomizedErrorPage
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+  deleteCustomizedErrorPage(response: ResponseContext): Promise<void>;
+  /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
+     * @params response Response returned by the server for a request to deleteCustomizedSignInPage
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+  deleteCustomizedSignInPage(response: ResponseContext): Promise<void>;
+  /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
      * @params response Response returned by the server for a request to deleteEmailCustomization
      * @throws ApiException if the response code was not in [200, 299]
      */
   deleteEmailCustomization(response: ResponseContext): Promise<void>;
+  /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
+     * @params response Response returned by the server for a request to deletePreviewErrorPage
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+  deletePreviewErrorPage(response: ResponseContext): Promise<void>;
+  /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
+     * @params response Response returned by the server for a request to deletePreviewSignInPage
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+  deletePreviewSignInPage(response: ResponseContext): Promise<void>;
   /**
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
@@ -467,7 +499,7 @@ export declare class CustomizationApiResponseProcessor {
      * @params response Response returned by the server for a request to getCustomizedErrorPage
      * @throws ApiException if the response code was not in [200, 299]
      */
-  getCustomizedErrorPage(response: ResponseContext): Promise<CustomizablePage>;
+  getCustomizedErrorPage(response: ResponseContext): Promise<ErrorPage>;
   /**
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
@@ -483,7 +515,7 @@ export declare class CustomizationApiResponseProcessor {
      * @params response Response returned by the server for a request to getDefaultErrorPage
      * @throws ApiException if the response code was not in [200, 299]
      */
-  getDefaultErrorPage(response: ResponseContext): Promise<CustomizablePage>;
+  getDefaultErrorPage(response: ResponseContext): Promise<ErrorPage>;
   /**
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
@@ -547,7 +579,7 @@ export declare class CustomizationApiResponseProcessor {
      * @params response Response returned by the server for a request to getPreviewErrorPage
      * @throws ApiException if the response code was not in [200, 299]
      */
-  getPreviewErrorPage(response: ResponseContext): Promise<CustomizablePage>;
+  getPreviewErrorPage(response: ResponseContext): Promise<ErrorPage>;
   /**
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
@@ -643,7 +675,7 @@ export declare class CustomizationApiResponseProcessor {
      * @params response Response returned by the server for a request to replaceCustomizedErrorPage
      * @throws ApiException if the response code was not in [200, 299]
      */
-  replaceCustomizedErrorPage(response: ResponseContext): Promise<CustomizablePage>;
+  replaceCustomizedErrorPage(response: ResponseContext): Promise<ErrorPage>;
   /**
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
@@ -675,7 +707,7 @@ export declare class CustomizationApiResponseProcessor {
      * @params response Response returned by the server for a request to replacePreviewErrorPage
      * @throws ApiException if the response code was not in [200, 299]
      */
-  replacePreviewErrorPage(response: ResponseContext): Promise<CustomizablePage>;
+  replacePreviewErrorPage(response: ResponseContext): Promise<ErrorPage>;
   /**
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
@@ -692,38 +724,6 @@ export declare class CustomizationApiResponseProcessor {
      * @throws ApiException if the response code was not in [200, 299]
      */
   replaceSignOutPageSettings(response: ResponseContext): Promise<HostedPage>;
-  /**
-     * Unwraps the actual response sent by the server from the response context and deserializes the response content
-     * to the expected objects
-     *
-     * @params response Response returned by the server for a request to resetCustomizedErrorPage
-     * @throws ApiException if the response code was not in [200, 299]
-     */
-  resetCustomizedErrorPage(response: ResponseContext): Promise<void>;
-  /**
-     * Unwraps the actual response sent by the server from the response context and deserializes the response content
-     * to the expected objects
-     *
-     * @params response Response returned by the server for a request to resetCustomizedSignInPage
-     * @throws ApiException if the response code was not in [200, 299]
-     */
-  resetCustomizedSignInPage(response: ResponseContext): Promise<void>;
-  /**
-     * Unwraps the actual response sent by the server from the response context and deserializes the response content
-     * to the expected objects
-     *
-     * @params response Response returned by the server for a request to resetPreviewErrorPage
-     * @throws ApiException if the response code was not in [200, 299]
-     */
-  resetPreviewErrorPage(response: ResponseContext): Promise<void>;
-  /**
-     * Unwraps the actual response sent by the server from the response context and deserializes the response content
-     * to the expected objects
-     *
-     * @params response Response returned by the server for a request to resetPreviewSignInPage
-     * @throws ApiException if the response code was not in [200, 299]
-     */
-  resetPreviewSignInPage(response: ResponseContext): Promise<void>;
   /**
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects

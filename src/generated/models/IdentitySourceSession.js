@@ -36,6 +36,12 @@ exports.IdentitySourceSession = IdentitySourceSession;
 IdentitySourceSession.discriminator = undefined;
 IdentitySourceSession.attributeTypeMap = [
   {
+    'name': 'created',
+    'baseName': 'created',
+    'type': 'Date',
+    'format': 'date-time'
+  },
+  {
     'name': 'id',
     'baseName': 'id',
     'type': 'string',
@@ -52,6 +58,12 @@ IdentitySourceSession.attributeTypeMap = [
     'baseName': 'importType',
     'type': 'string',
     'format': ''
+  },
+  {
+    'name': 'lastUpdated',
+    'baseName': 'lastUpdated',
+    'type': 'Date',
+    'format': 'date-time'
   },
   {
     'name': 'status',

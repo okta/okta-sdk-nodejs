@@ -49,7 +49,6 @@ import { CreateSessionRequest } from '../models/CreateSessionRequest';
 import { CreateUserRequest } from '../models/CreateUserRequest';
 import { Csr } from '../models/Csr';
 import { CsrMetadata } from '../models/CsrMetadata';
-import { CustomizablePage } from '../models/CustomizablePage';
 import { Device } from '../models/Device';
 import { DeviceAssurance } from '../models/DeviceAssurance';
 import { Domain } from '../models/Domain';
@@ -64,6 +63,7 @@ import { EmailDomainResponse } from '../models/EmailDomainResponse';
 import { EmailPreview } from '../models/EmailPreview';
 import { EmailSettings } from '../models/EmailSettings';
 import { EmailTemplate } from '../models/EmailTemplate';
+import { ErrorPage } from '../models/ErrorPage';
 import { EventHook } from '../models/EventHook';
 import { Feature } from '../models/Feature';
 import { ForgotPasswordResponse } from '../models/ForgotPasswordResponse';
@@ -156,6 +156,7 @@ import { UserSchema } from '../models/UserSchema';
 import { UserType } from '../models/UserType';
 import { VerifyFactorRequest } from '../models/VerifyFactorRequest';
 import { VerifyUserFactorResponse } from '../models/VerifyUserFactorResponse';
+import { WellKnownAppAuthenticatorConfiguration } from '../models/WellKnownAppAuthenticatorConfiguration';
 import { WellKnownOrgMetadata } from '../models/WellKnownOrgMetadata';
 import { AgentPoolsApiRequestFactory, AgentPoolsApiResponseProcessor } from '../apis/AgentPoolsApi';
 export declare class PromiseAgentPoolsApi {
@@ -652,6 +653,12 @@ export declare class PromiseAuthenticatorApi {
       */
   getAuthenticator(authenticatorId: string, _options?: Configuration): Promise<Authenticator>;
   /**
+      * Retrieves the well-known app authenticator configuration, which includes an app authenticator's settings, supported methods and various other configuration details
+      * Retrieve the Well-Known App Authenticator Configuration
+      * @param oauthClientId Filters app authenticator configurations by &#x60;oauthClientId&#x60;
+      */
+  getWellKnownAppAuthenticatorConfiguration(oauthClientId: string, _options?: Configuration): Promise<Collection<WellKnownAppAuthenticatorConfiguration>>;
+  /**
       * Lists all authenticators
       * List all Authenticators
       */
@@ -1136,6 +1143,18 @@ export declare class PromiseCustomizationApi {
       */
   deleteBrandThemeLogo(brandId: string, themeId: string, _options?: Configuration): Promise<void>;
   /**
+      * Deletes the customized error page. As a result, the default error page appears in your live environment.
+      * Delete the Customized Error Page
+      * @param brandId The ID of the brand.
+      */
+  deleteCustomizedErrorPage(brandId: string, _options?: Configuration): Promise<void>;
+  /**
+      * Deletes the customized sign-in page. As a result, the default sign-in page appears in your live environment.
+      * Delete the Customized Sign-in Page
+      * @param brandId The ID of the brand.
+      */
+  deleteCustomizedSignInPage(brandId: string, _options?: Configuration): Promise<void>;
+  /**
       * Deletes an email customization by its unique identifier
       * Delete an Email Customization
       * @param brandId The ID of the brand.
@@ -1143,6 +1162,18 @@ export declare class PromiseCustomizationApi {
       * @param customizationId The ID of the email customization.
       */
   deleteEmailCustomization(brandId: string, templateName: string, customizationId: string, _options?: Configuration): Promise<void>;
+  /**
+      * Deletes the preview error page. The preview error page contains unpublished changes and isn't shown in your live environment. Preview it at `${yourOktaDomain}/error/preview`.
+      * Delete the Preview Error Page
+      * @param brandId The ID of the brand.
+      */
+  deletePreviewErrorPage(brandId: string, _options?: Configuration): Promise<void>;
+  /**
+      * Deletes the preview sign-in page. The preview sign-in page contains unpublished changes and isn't shown in your live environment. Preview it at `${yourOktaDomain}/login/preview`.
+      * Delete the Preview Sign-in Page
+      * @param brandId The ID of the brand.
+      */
+  deletePreviewSignInPage(brandId: string, _options?: Configuration): Promise<void>;
   /**
       * Retrieves a brand by `brandId`
       * Retrieve a Brand
@@ -1165,25 +1196,25 @@ export declare class PromiseCustomizationApi {
       */
   getCustomizationPreview(brandId: string, templateName: string, customizationId: string, _options?: Configuration): Promise<EmailPreview>;
   /**
-      * Retrieves the customized error page
+      * Retrieves the customized error page. The customized error page appears in your live environment.
       * Retrieve the Customized Error Page
       * @param brandId The ID of the brand.
       */
-  getCustomizedErrorPage(brandId: string, _options?: Configuration): Promise<CustomizablePage>;
+  getCustomizedErrorPage(brandId: string, _options?: Configuration): Promise<ErrorPage>;
   /**
-      * Retrieves the customized sign-in page
+      * Retrieves the customized sign-in page. The customized sign-in page appears in your live environment.
       * Retrieve the Customized Sign-in Page
       * @param brandId The ID of the brand.
       */
   getCustomizedSignInPage(brandId: string, _options?: Configuration): Promise<SignInPage>;
   /**
-      * Retrieves the default error page
+      * Retrieves the default error page. The default error page appears when no customized error page exists.
       * Retrieve the Default Error Page
       * @param brandId The ID of the brand.
       */
-  getDefaultErrorPage(brandId: string, _options?: Configuration): Promise<CustomizablePage>;
+  getDefaultErrorPage(brandId: string, _options?: Configuration): Promise<ErrorPage>;
   /**
-      * Retrieves the default sign-in page
+      * Retrieves the default sign-in page. The default sign-in page appears when no customized sign-in page exists.
       * Retrieve the Default Sign-in Page
       * @param brandId The ID of the brand.
       */
@@ -1228,27 +1259,27 @@ export declare class PromiseCustomizationApi {
       */
   getEmailTemplate(brandId: string, templateName: string, expand?: Array<'settings' | 'customizationCount'>, _options?: Configuration): Promise<EmailTemplate>;
   /**
-      * Retrieves the error page
-      * Retrieve the Error Page
+      * Retrieves the error page sub-resources. The `expand` query parameter specifies which sub-resources to include in the response.
+      * Retrieve the Error Page Sub-Resources
       * @param brandId The ID of the brand.
       * @param expand Specifies additional metadata to be included in the response.
       */
   getErrorPage(brandId: string, expand?: Array<'default' | 'customized' | 'customizedUrl' | 'preview' | 'previewUrl'>, _options?: Configuration): Promise<PageRoot>;
   /**
-      * Retrieves the preview error page
+      * Retrieves the preview error page. The preview error page contains unpublished changes and isn't shown in your live environment. Preview it at `${yourOktaDomain}/error/preview`.
       * Retrieve the Preview Error Page Preview
       * @param brandId The ID of the brand.
       */
-  getPreviewErrorPage(brandId: string, _options?: Configuration): Promise<CustomizablePage>;
+  getPreviewErrorPage(brandId: string, _options?: Configuration): Promise<ErrorPage>;
   /**
-      * Retrieves the preview sign-in page
+      * Retrieves the preview sign-in page. The preview sign-in page contains unpublished changes and isn't shown in your live environment. Preview it at `${yourOktaDomain}/login/preview`.
       * Retrieve the Preview Sign-in Page Preview
       * @param brandId The ID of the brand.
       */
   getPreviewSignInPage(brandId: string, _options?: Configuration): Promise<SignInPage>;
   /**
-      * Retrieves the sign-in page
-      * Retrieve the Sign-in Page
+      * Retrieves the sign-in page sub-resources. The `expand` query parameter specifies which sub-resources to include in the response.
+      * Retrieve the Sign-in Page Sub-Resources
       * @param brandId The ID of the brand.
       * @param expand Specifies additional metadata to be included in the response.
       */
@@ -1260,7 +1291,7 @@ export declare class PromiseCustomizationApi {
       */
   getSignOutPageSettings(brandId: string, _options?: Configuration): Promise<HostedPage>;
   /**
-      * Lists all sign-in widget versions
+      * Lists all sign-in widget versions supported by the current org
       * List all Sign-in Widget Versions
       * @param brandId The ID of the brand.
       */
@@ -1316,14 +1347,14 @@ export declare class PromiseCustomizationApi {
       */
   replaceBrandTheme(brandId: string, themeId: string, theme: Theme, _options?: Configuration): Promise<ThemeResponse>;
   /**
-      * Replaces the customized error page
+      * Replaces the customized error page. The customized error page appears in your live environment.
       * Replace the Customized Error Page
       * @param brandId The ID of the brand.
-      * @param CustomizablePage
+      * @param ErrorPage
       */
-  replaceCustomizedErrorPage(brandId: string, CustomizablePage: CustomizablePage, _options?: Configuration): Promise<CustomizablePage>;
+  replaceCustomizedErrorPage(brandId: string, ErrorPage: ErrorPage, _options?: Configuration): Promise<ErrorPage>;
   /**
-      * Replaces the customized sign-in page
+      * Replaces the customized sign-in page. The customized sign-in page appears in your live environment.
       * Replace the Customized Sign-in Page
       * @param brandId The ID of the brand.
       * @param SignInPage
@@ -1347,14 +1378,14 @@ export declare class PromiseCustomizationApi {
       */
   replaceEmailSettings(brandId: string, templateName: string, EmailSettings?: EmailSettings, _options?: Configuration): Promise<void>;
   /**
-      * Replaces the preview error page
+      * Replaces the preview error page. The preview error page contains unpublished changes and isn't shown in your live environment. Preview it at `${yourOktaDomain}/error/preview`.
       * Replace the Preview Error Page
       * @param brandId The ID of the brand.
-      * @param CustomizablePage
+      * @param ErrorPage
       */
-  replacePreviewErrorPage(brandId: string, CustomizablePage: CustomizablePage, _options?: Configuration): Promise<CustomizablePage>;
+  replacePreviewErrorPage(brandId: string, ErrorPage: ErrorPage, _options?: Configuration): Promise<ErrorPage>;
   /**
-      * Replaces the preview sign-in page
+      * Replaces the preview sign-in page. The preview sign-in page contains unpublished changes and isn't shown in your live environment. Preview it at `${yourOktaDomain}/login/preview`.
       * Replace the Preview Sign-in Page
       * @param brandId The ID of the brand.
       * @param SignInPage
@@ -1367,30 +1398,6 @@ export declare class PromiseCustomizationApi {
       * @param HostedPage
       */
   replaceSignOutPageSettings(brandId: string, HostedPage: HostedPage, _options?: Configuration): Promise<HostedPage>;
-  /**
-      * Resets the customized error page
-      * Reset the Customized Error Page
-      * @param brandId The ID of the brand.
-      */
-  resetCustomizedErrorPage(brandId: string, _options?: Configuration): Promise<void>;
-  /**
-      * Resets the customized sign-in page
-      * Reset the Customized Sign-in Page
-      * @param brandId The ID of the brand.
-      */
-  resetCustomizedSignInPage(brandId: string, _options?: Configuration): Promise<void>;
-  /**
-      * Resets the preview error page
-      * Reset the Preview Error Page
-      * @param brandId The ID of the brand.
-      */
-  resetPreviewErrorPage(brandId: string, _options?: Configuration): Promise<void>;
-  /**
-      * Resets the preview sign-in page
-      * Reset the Preview Sign-in Page
-      * @param brandId The ID of the brand.
-      */
-  resetPreviewSignInPage(brandId: string, _options?: Configuration): Promise<void>;
   /**
       * Sends a test email to the current user’s primary and secondary email addresses. The email content is selected based on the following priority: 1. The email customization for the language specified in the `language` query parameter. 2. The email template's default customization. 3. The email template’s default content, translated to the current user's language.
       * Send a Test Email
@@ -1762,8 +1769,10 @@ export declare class PromiseGroupApi {
       * @param limit Specifies the number of group results in a page
       * @param expand If specified, it causes additional metadata to be included in the response.
       * @param search Searches for groups with a supported filtering expression for all attributes except for _embedded, _links, and objectClass
+      * @param sortBy Specifies field to sort by and can be any single property (for search queries only).
+      * @param sortOrder Specifies sort order &#x60;asc&#x60; or &#x60;desc&#x60; (for search queries only). This parameter is ignored if &#x60;sortBy&#x60; is not present. Groups with the same value for the &#x60;sortBy&#x60; parameter are ordered by &#x60;id&#x60;.
       */
-  listGroups(q?: string, filter?: string, after?: string, limit?: number, expand?: string, search?: string, _options?: Configuration): Promise<Collection<Group>>;
+  listGroups(q?: string, filter?: string, after?: string, limit?: number, expand?: string, search?: string, sortBy?: string, sortOrder?: string, _options?: Configuration): Promise<Collection<Group>>;
   /**
       * Replaces the profile for a group with `OKTA_GROUP` type
       * Replace a Group
@@ -2701,7 +2710,7 @@ export declare class PromiseRiskEventApi {
   private api;
   constructor(configuration: Configuration, requestFactory?: RiskEventApiRequestFactory, responseProcessor?: RiskEventApiResponseProcessor);
   /**
-      * Sends multiple risk events to Okta. This API is intended for Risk Providers. This API has a rate limit of 30 requests per minute. The caller should include multiple Risk Events (up to a maximum of 20 events) in a single payload to reduce the number of API calls. If a client has more risk signals to send than what the API supports, we recommend prioritizing posting high risk signals.
+      * Sends multiple IP risk events to Okta. This request is used by a third-party risk provider to send IP risk events to Okta. The third-party risk provider needs to be registered with Okta before they can send events to Okta. See [Risk Providers](/openapi/okta-management/management/tag/RiskProvider/). This API has a rate limit of 30 requests per minute. You can include multiple risk events (up to a maximum of 20 events) in a single payload to reduce the number of API calls. Prioritize sending high risk signals if you have a burst of signals to send that would exceed the maximum request limits.
       * Send multiple Risk Events
       * @param instance
       */
@@ -2712,32 +2721,32 @@ export declare class PromiseRiskProviderApi {
   private api;
   constructor(configuration: Configuration, requestFactory?: RiskProviderApiRequestFactory, responseProcessor?: RiskProviderApiResponseProcessor);
   /**
-      * Creates a risk provider. A maximum of 3 providers can be created. By default, one risk provider is created by Okta.
+      * Creates a Risk Provider object. A maximum of three Risk Provider objects can be created.
       * Create a Risk Provider
       * @param instance
       */
   createRiskProvider(instance: RiskProvider, _options?: Configuration): Promise<RiskProvider>;
   /**
-      * Deletes a CAPTCHA instance by `riskProviderId`
+      * Deletes a Risk Provider object by its ID
       * Delete a Risk Provider
-      * @param riskProviderId &#x60;id&#x60; of the risk provider
+      * @param riskProviderId &#x60;id&#x60; of the Risk Provider object
       */
   deleteRiskProvider(riskProviderId: string, _options?: Configuration): Promise<void>;
   /**
-      * Retrieves a risk provider by `riskProviderId`
+      * Retrieves a Risk Provider object by ID
       * Retrieve a Risk Provider
-      * @param riskProviderId &#x60;id&#x60; of the risk provider
+      * @param riskProviderId &#x60;id&#x60; of the Risk Provider object
       */
   getRiskProvider(riskProviderId: string, _options?: Configuration): Promise<RiskProvider>;
   /**
-      * Lists all Risk Providers
+      * Lists all Risk Provider objects
       * List all Risk Providers
       */
   listRiskProviders(_options?: Configuration): Promise<Collection<RiskProvider>>;
   /**
-      * Replaces a risk provider by `riskProviderId`
+      * Replaces the properties for a given Risk Provider object ID
       * Replace a Risk Provider
-      * @param riskProviderId &#x60;id&#x60; of the risk provider
+      * @param riskProviderId &#x60;id&#x60; of the Risk Provider object
       * @param instance
       */
   replaceRiskProvider(riskProviderId: string, instance: RiskProvider, _options?: Configuration): Promise<RiskProvider>;
@@ -3088,27 +3097,27 @@ export declare class PromiseSessionApi {
   private api;
   constructor(configuration: Configuration, requestFactory?: SessionApiRequestFactory, responseProcessor?: SessionApiResponseProcessor);
   /**
-      * Creates a new session for a user with a valid session token. Use this API if, for example, you want to set the session cookie yourself instead of allowing Okta to set it, or want to hold the session ID in order to delete a session via the API instead of visiting the logout URL.
-      * Create a Session with Session Token
+      * Creates a new Session for a user with a valid session token. Use this API if, for example, you want to set the session cookie yourself instead of allowing Okta to set it, or want to hold the session ID to delete a session through the API instead of visiting the logout URL.
+      * Create a Session with session token
       * @param createSessionRequest
       */
   createSession(createSessionRequest: CreateSessionRequest, _options?: Configuration): Promise<Session>;
   /**
-      * Retrieves the details about a session
+      * Retrieves information about the Session specified by the given session ID
       * Retrieve a Session
-      * @param sessionId
+      * @param sessionId &#x60;id&#x60; of a valid Session
       */
   getSession(sessionId: string, _options?: Configuration): Promise<Session>;
   /**
-      * Refreshes a session
+      * Refreshes an existing Session using the `id` for that Session. A successful response contains the refreshed Session with an updated `expiresAt` timestamp.
       * Refresh a Session
-      * @param sessionId
+      * @param sessionId &#x60;id&#x60; of a valid Session
       */
   refreshSession(sessionId: string, _options?: Configuration): Promise<Session>;
   /**
-      * Revokes a session
+      * Revokes the specified Session
       * Revoke a Session
-      * @param sessionId
+      * @param sessionId &#x60;id&#x60; of a valid Session
       */
   revokeSession(sessionId: string, _options?: Configuration): Promise<void>;
 }
@@ -3303,7 +3312,7 @@ export declare class PromiseUserApi {
   private api;
   constructor(configuration: Configuration, requestFactory?: UserApiRequestFactory, responseProcessor?: UserApiResponseProcessor);
   /**
-      * Activates a user.  This operation can only be performed on users with a `STAGED` status.  Activation of a user is an asynchronous operation. The user will have the `transitioningToStatus` property with a value of `ACTIVE` during activation to indicate that the user hasn't completed the asynchronous operation.  The user will have a status of `ACTIVE` when the activation process is complete.
+      * Activates a user. This operation can only be performed on users with a `STAGED` status. Activation of a user is an asynchronous operation. The user will have the `transitioningToStatus` property with a value of `ACTIVE` during activation to indicate that the user hasn't completed the asynchronous operation. The user will have a status of `ACTIVE` when the activation process is complete. > **Legal Disclaimer**<br> After a user is added to the Okta directory, they receive an activation email. As part of signing up for this service, you agreed not to use Okta's service/product to spam and/or send unsolicited messages. Please refrain from adding unrelated accounts to the directory as Okta is not responsible for, and disclaims any and all liability associated with, the activation email's content. You, and you alone, bear responsibility for the emails sent to any recipients.
       * Activate a User
       * @param userId
       * @param sendEmail Sends an activation email to the user if true
@@ -3325,7 +3334,7 @@ export declare class PromiseUserApi {
       */
   changeRecoveryQuestion(userId: string, userCredentials: UserCredentials, _options?: Configuration): Promise<UserCredentials>;
   /**
-      * Creates a new user in your Okta organization with or without credentials
+      * Creates a new user in your Okta organization with or without credentials<br> > **Legal Disclaimer**<br> After a user is added to the Okta directory, they receive an activation email. As part of signing up for this service, you agreed not to use Okta's service/product to spam and/or send unsolicited messages. Please refrain from adding unrelated accounts to the directory as Okta is not responsible for, and disclaims any and all liability associated with, the activation email's content. You, and you alone, bear responsibility for the emails sent to any recipients.
       * Create a User
       * @param body
       * @param activate Executes activation lifecycle operation when creating the user
@@ -3364,8 +3373,9 @@ export declare class PromiseUserApi {
       * Expires a user's password and transitions the user to the status of `PASSWORD_EXPIRED` so that the user is required to change their password at their next login, and also sets the user's password to a temporary password returned in the response
       * Expire Password and Set Temporary Password
       * @param userId
+      * @param revokeSessions When set to &#x60;true&#x60; (and the session is a user session), all user sessions are revoked except the current session.
       */
-  expirePasswordAndGetTemporaryPassword(userId: string, _options?: Configuration): Promise<TempPassword>;
+  expirePasswordAndGetTemporaryPassword(userId: string, revokeSessions?: boolean, _options?: Configuration): Promise<TempPassword>;
   /**
       * Initiates the forgot password flow. Generates a one-time token (OTT) that can be used to reset a user's password.
       * Initiate Forgot Password
@@ -3386,8 +3396,9 @@ export declare class PromiseUserApi {
       * Generate a Reset Password Token
       * @param userId
       * @param sendEmail
+      * @param revokeSessions When set to &#x60;true&#x60; (and the session is a user session), all user sessions are revoked except the current session.
       */
-  generateResetPasswordToken(userId: string, sendEmail: boolean, _options?: Configuration): Promise<ResetPasswordToken>;
+  generateResetPasswordToken(userId: string, sendEmail: boolean, revokeSessions?: boolean, _options?: Configuration): Promise<ResetPasswordToken>;
   /**
       * Retrieves a refresh token issued for the specified User and Client
       * Retrieve a Refresh Token for a Client

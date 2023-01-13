@@ -46,5 +46,11 @@ ChangePasswordRequest.attributeTypeMap = [
     'baseName': 'oldPassword',
     'type': 'PasswordCredential',
     'format': ''
+  },
+  {
+    'name': 'revokeSessions',
+    'baseName': 'revokeSessions',
+    'type': 'boolean',
+    'format': ''
   }
 ];

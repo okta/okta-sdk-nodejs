@@ -137,8 +137,10 @@ export declare class GroupApiRequestFactory extends BaseAPIRequestFactory {
      * @param limit Specifies the number of group results in a page
      * @param expand If specified, it causes additional metadata to be included in the response.
      * @param search Searches for groups with a supported filtering expression for all attributes except for _embedded, _links, and objectClass
+     * @param sortBy Specifies field to sort by and can be any single property (for search queries only).
+     * @param sortOrder Specifies sort order &#x60;asc&#x60; or &#x60;desc&#x60; (for search queries only). This parameter is ignored if &#x60;sortBy&#x60; is not present. Groups with the same value for the &#x60;sortBy&#x60; parameter are ordered by &#x60;id&#x60;.
      */
-  listGroups(q?: string, filter?: string, after?: string, limit?: number, expand?: string, search?: string, _options?: Configuration): Promise<RequestContext>;
+  listGroups(q?: string, filter?: string, after?: string, limit?: number, expand?: string, search?: string, sortBy?: string, sortOrder?: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Replaces the profile for a group with `OKTA_GROUP` type
      * Replace a Group

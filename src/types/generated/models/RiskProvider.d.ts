@@ -22,8 +22,8 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { ApiTokenLink } from './../models/ApiTokenLink';
 import { RiskProviderAction } from './../models/RiskProviderAction';
+import { RiskProviderLinks } from './../models/RiskProviderLinks';
 export declare class RiskProvider {
   'action'?: RiskProviderAction;
   /**
@@ -31,22 +31,22 @@ export declare class RiskProvider {
     */
   'clientId': string;
   /**
-    * Timestamp when the risk provider was created
+    * Timestamp when the Risk Provider object was created
     */
   'created'?: Date;
   /**
-    * The ID of the risk provider
+    * The ID of the Risk Provider object
     */
   'id'?: string;
   /**
-    * Timestamp when the risk provider was last updated
+    * Timestamp when the Risk Provider object was last updated
     */
   'lastUpdated'?: Date;
   /**
     * Name of the risk provider
     */
   'name': string;
-  '_links'?: ApiTokenLink;
+  '_links'?: RiskProviderLinks;
   static readonly discriminator: string | undefined;
   static readonly attributeTypeMap: Array<{
         name: string;

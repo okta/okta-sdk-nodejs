@@ -25,14 +25,14 @@
 import { RiskEventSubjectRiskLevel } from './../models/RiskEventSubjectRiskLevel';
 export declare class RiskEventSubject {
   /**
-    * Either an IpV4 or IpV6 address.
+    * The risk event subject IP address (either an IPv4 or IPv6 address)
     */
   'ip': string;
   /**
-    * Any additional message that the provider can send specifying the reason for the risk level of the IP.
+    * Additional reasons for the risk level of the IP
     */
   'message'?: string;
-  'riskLevel'?: RiskEventSubjectRiskLevel;
+  'riskLevel': RiskEventSubjectRiskLevel;
   static readonly discriminator: string | undefined;
   static readonly attributeTypeMap: Array<{
         name: string;

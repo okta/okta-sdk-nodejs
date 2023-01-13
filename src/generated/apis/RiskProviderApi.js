@@ -25,7 +25,7 @@ const util_1 = require('../util');
  */
 class RiskProviderApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   /**
-     * Creates a risk provider. A maximum of 3 providers can be created. By default, one risk provider is created by Okta.
+     * Creates a Risk Provider object. A maximum of three Risk Provider objects can be created.
      * Create a Risk Provider
      * @param instance
      */
@@ -66,9 +66,9 @@ class RiskProviderApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     return requestContext;
   }
   /**
-     * Deletes a CAPTCHA instance by `riskProviderId`
+     * Deletes a Risk Provider object by its ID
      * Delete a Risk Provider
-     * @param riskProviderId &#x60;id&#x60; of the risk provider
+     * @param riskProviderId &#x60;id&#x60; of the Risk Provider object
      */
   async deleteRiskProvider(riskProviderId, _options) {
     let _config = _options || this.configuration;
@@ -102,9 +102,9 @@ class RiskProviderApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     return requestContext;
   }
   /**
-     * Retrieves a risk provider by `riskProviderId`
+     * Retrieves a Risk Provider object by ID
      * Retrieve a Risk Provider
-     * @param riskProviderId &#x60;id&#x60; of the risk provider
+     * @param riskProviderId &#x60;id&#x60; of the Risk Provider object
      */
   async getRiskProvider(riskProviderId, _options) {
     let _config = _options || this.configuration;
@@ -138,7 +138,7 @@ class RiskProviderApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     return requestContext;
   }
   /**
-     * Lists all Risk Providers
+     * Lists all Risk Provider objects
      * List all Risk Providers
      */
   async listRiskProviders(_options) {
@@ -166,9 +166,9 @@ class RiskProviderApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     return requestContext;
   }
   /**
-     * Replaces a risk provider by `riskProviderId`
+     * Replaces the properties for a given Risk Provider object ID
      * Replace a Risk Provider
-     * @param riskProviderId &#x60;id&#x60; of the risk provider
+     * @param riskProviderId &#x60;id&#x60; of the Risk Provider object
      * @param instance
      */
   async replaceRiskProvider(riskProviderId, instance, _options) {

@@ -22,9 +22,11 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { MultifactorEnrollmentPolicyAuthenticatorSettingsConstraints } from './../models/MultifactorEnrollmentPolicyAuthenticatorSettingsConstraints';
 import { MultifactorEnrollmentPolicyAuthenticatorSettingsEnroll } from './../models/MultifactorEnrollmentPolicyAuthenticatorSettingsEnroll';
 import { MultifactorEnrollmentPolicyAuthenticatorType } from './../models/MultifactorEnrollmentPolicyAuthenticatorType';
 export declare class MultifactorEnrollmentPolicyAuthenticatorSettings {
+  'constraints'?: MultifactorEnrollmentPolicyAuthenticatorSettingsConstraints;
   'enroll'?: MultifactorEnrollmentPolicyAuthenticatorSettingsEnroll;
   'key'?: MultifactorEnrollmentPolicyAuthenticatorType;
   static readonly discriminator: string | undefined;

@@ -25,7 +25,7 @@ const util_1 = require('../util');
  */
 class UserApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   /**
-     * Activates a user.  This operation can only be performed on users with a `STAGED` status.  Activation of a user is an asynchronous operation. The user will have the `transitioningToStatus` property with a value of `ACTIVE` during activation to indicate that the user hasn't completed the asynchronous operation.  The user will have a status of `ACTIVE` when the activation process is complete.
+     * Activates a user. This operation can only be performed on users with a `STAGED` status. Activation of a user is an asynchronous operation. The user will have the `transitioningToStatus` property with a value of `ACTIVE` during activation to indicate that the user hasn't completed the asynchronous operation. The user will have a status of `ACTIVE` when the activation process is complete. > **Legal Disclaimer**<br> After a user is added to the Okta directory, they receive an activation email. As part of signing up for this service, you agreed not to use Okta's service/product to spam and/or send unsolicited messages. Please refrain from adding unrelated accounts to the directory as Okta is not responsible for, and disclaims any and all liability associated with, the activation email's content. You, and you alone, bear responsibility for the emails sent to any recipients.
      * Activate a User
      * @param userId
      * @param sendEmail Sends an activation email to the user if true
@@ -173,7 +173,7 @@ class UserApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     return requestContext;
   }
   /**
-     * Creates a new user in your Okta organization with or without credentials
+     * Creates a new user in your Okta organization with or without credentials<br> > **Legal Disclaimer**<br> After a user is added to the Okta directory, they receive an activation email. As part of signing up for this service, you agreed not to use Okta's service/product to spam and/or send unsolicited messages. Please refrain from adding unrelated accounts to the directory as Okta is not responsible for, and disclaims any and all liability associated with, the activation email's content. You, and you alone, bear responsibility for the emails sent to any recipients.
      * Create a User
      * @param body
      * @param activate Executes activation lifecycle operation when creating the user
@@ -392,8 +392,9 @@ class UserApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
      * Expires a user's password and transitions the user to the status of `PASSWORD_EXPIRED` so that the user is required to change their password at their next login, and also sets the user's password to a temporary password returned in the response
      * Expire Password and Set Temporary Password
      * @param userId
+     * @param revokeSessions When set to &#x60;true&#x60; (and the session is a user session), all user sessions are revoked except the current session.
      */
-  async expirePasswordAndGetTemporaryPassword(userId, _options) {
+  async expirePasswordAndGetTemporaryPassword(userId, revokeSessions, _options) {
     let _config = _options || this.configuration;
     // verify required parameter 'userId' is not null or undefined
     if (userId === null || userId === undefined) {
@@ -407,6 +408,10 @@ class UserApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     // Make Request Context
     const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.POST, vars);
     requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
+    // Query Params
+    if (revokeSessions !== undefined) {
+      requestContext.setQueryParam('revokeSessions', ObjectSerializer_1.ObjectSerializer.serialize(revokeSessions, 'boolean', ''));
+    }
     let authMethod;
     // Apply auth methods
     authMethod = _config.authMethods['apiToken'];
@@ -524,8 +529,9 @@ class UserApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
      * Generate a Reset Password Token
      * @param userId
      * @param sendEmail
+     * @param revokeSessions When set to &#x60;true&#x60; (and the session is a user session), all user sessions are revoked except the current session.
      */
-  async generateResetPasswordToken(userId, sendEmail, _options) {
+  async generateResetPasswordToken(userId, sendEmail, revokeSessions, _options) {
     let _config = _options || this.configuration;
     // verify required parameter 'userId' is not null or undefined
     if (userId === null || userId === undefined) {
@@ -546,6 +552,10 @@ class UserApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     // Query Params
     if (sendEmail !== undefined) {
       requestContext.setQueryParam('sendEmail', ObjectSerializer_1.ObjectSerializer.serialize(sendEmail, 'boolean', ''));
+    }
+    // Query Params
+    if (revokeSessions !== undefined) {
+      requestContext.setQueryParam('revokeSessions', ObjectSerializer_1.ObjectSerializer.serialize(revokeSessions, 'boolean', ''));
     }
     let authMethod;
     // Apply auth methods

@@ -36,6 +36,12 @@ exports.MultifactorEnrollmentPolicyAuthenticatorSettings = MultifactorEnrollment
 MultifactorEnrollmentPolicyAuthenticatorSettings.discriminator = undefined;
 MultifactorEnrollmentPolicyAuthenticatorSettings.attributeTypeMap = [
   {
+    'name': 'constraints',
+    'baseName': 'constraints',
+    'type': 'MultifactorEnrollmentPolicyAuthenticatorSettingsConstraints',
+    'format': ''
+  },
+  {
     'name': 'enroll',
     'baseName': 'enroll',
     'type': 'MultifactorEnrollmentPolicyAuthenticatorSettingsEnroll',

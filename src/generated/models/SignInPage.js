@@ -42,6 +42,12 @@ SignInPage.attributeTypeMap = [
     'format': ''
   },
   {
+    'name': 'contentSecurityPolicySetting',
+    'baseName': 'contentSecurityPolicySetting',
+    'type': 'ContentSecurityPolicySetting',
+    'format': ''
+  },
+  {
     'name': 'widgetCustomizations',
     'baseName': 'widgetCustomizations',
     'type': 'SignInPageAllOfWidgetCustomizations',

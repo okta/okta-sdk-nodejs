@@ -151,6 +151,7 @@ __exportStar(require("./ChangePasswordRequest"), exports);
 __exportStar(require("./ChannelBinding"), exports);
 __exportStar(require("./ClientPolicyCondition"), exports);
 __exportStar(require("./Compliance"), exports);
+__exportStar(require("./ContentSecurityPolicySetting"), exports);
 __exportStar(require("./ContextPolicyRuleCondition"), exports);
 __exportStar(require("./CreateBrandRequest"), exports);
 __exportStar(require("./CreateSessionRequest"), exports);
@@ -212,6 +213,7 @@ __exportStar(require("./EmailUserFactorProfile"), exports);
 __exportStar(require("./EnabledStatus"), exports);
 __exportStar(require("./EndUserDashboardTouchPointVariant"), exports);
 __exportStar(require("./ErrorErrorCausesInner"), exports);
+__exportStar(require("./ErrorPage"), exports);
 __exportStar(require("./ErrorPageTouchPointVariant"), exports);
 __exportStar(require("./EventHook"), exports);
 __exportStar(require("./EventHookChannel"), exports);
@@ -358,6 +360,7 @@ __exportStar(require("./MDMEnrollmentPolicyRuleCondition"), exports);
 __exportStar(require("./ModelError"), exports);
 __exportStar(require("./MultifactorEnrollmentPolicy"), exports);
 __exportStar(require("./MultifactorEnrollmentPolicyAuthenticatorSettings"), exports);
+__exportStar(require("./MultifactorEnrollmentPolicyAuthenticatorSettingsConstraints"), exports);
 __exportStar(require("./MultifactorEnrollmentPolicyAuthenticatorSettingsEnroll"), exports);
 __exportStar(require("./MultifactorEnrollmentPolicyAuthenticatorStatus"), exports);
 __exportStar(require("./MultifactorEnrollmentPolicyAuthenticatorType"), exports);
@@ -563,6 +566,7 @@ __exportStar(require("./RiskEventSubjectRiskLevel"), exports);
 __exportStar(require("./RiskPolicyRuleCondition"), exports);
 __exportStar(require("./RiskProvider"), exports);
 __exportStar(require("./RiskProviderAction"), exports);
+__exportStar(require("./RiskProviderLinks"), exports);
 __exportStar(require("./RiskScorePolicyRuleCondition"), exports);
 __exportStar(require("./Role"), exports);
 __exportStar(require("./RoleAssignmentType"), exports);
@@ -601,6 +605,10 @@ __exportStar(require("./SocialAuthToken"), exports);
 __exportStar(require("./SpCertificate"), exports);
 __exportStar(require("./Subscription"), exports);
 __exportStar(require("./SubscriptionStatus"), exports);
+__exportStar(require("./SupportedMethods"), exports);
+__exportStar(require("./SupportedMethodsAlgorithms"), exports);
+__exportStar(require("./SupportedMethodsSettings"), exports);
+__exportStar(require("./SupportedMethodsTransactionTypes"), exports);
 __exportStar(require("./SwaApplicationSettings"), exports);
 __exportStar(require("./SwaApplicationSettingsApplication"), exports);
 __exportStar(require("./TempPassword"), exports);
@@ -669,6 +677,8 @@ __exportStar(require("./WebAuthnUserFactor"), exports);
 __exportStar(require("./WebAuthnUserFactorProfile"), exports);
 __exportStar(require("./WebUserFactor"), exports);
 __exportStar(require("./WebUserFactorProfile"), exports);
+__exportStar(require("./WellKnownAppAuthenticatorConfiguration"), exports);
+__exportStar(require("./WellKnownAppAuthenticatorConfigurationSettings"), exports);
 __exportStar(require("./WellKnownOrgMetadata"), exports);
 __exportStar(require("./WellKnownOrgMetadataLinks"), exports);
 __exportStar(require("./WellKnownOrgMetadataSettings"), exports);
@@ -783,6 +793,7 @@ const ChangePasswordRequest_1 = require("./ChangePasswordRequest");
 const ChannelBinding_1 = require("./ChannelBinding");
 const ClientPolicyCondition_1 = require("./ClientPolicyCondition");
 const Compliance_1 = require("./Compliance");
+const ContentSecurityPolicySetting_1 = require("./ContentSecurityPolicySetting");
 const ContextPolicyRuleCondition_1 = require("./ContextPolicyRuleCondition");
 const CreateBrandRequest_1 = require("./CreateBrandRequest");
 const CreateSessionRequest_1 = require("./CreateSessionRequest");
@@ -829,6 +840,7 @@ const EmailTemplateLinks_1 = require("./EmailTemplateLinks");
 const EmailUserFactor_1 = require("./EmailUserFactor");
 const EmailUserFactorProfile_1 = require("./EmailUserFactorProfile");
 const ErrorErrorCausesInner_1 = require("./ErrorErrorCausesInner");
+const ErrorPage_1 = require("./ErrorPage");
 const EventHook_1 = require("./EventHook");
 const EventHookChannel_1 = require("./EventHookChannel");
 const EventHookChannelConfig_1 = require("./EventHookChannelConfig");
@@ -935,6 +947,7 @@ const MDMEnrollmentPolicyRuleCondition_1 = require("./MDMEnrollmentPolicyRuleCon
 const ModelError_1 = require("./ModelError");
 const MultifactorEnrollmentPolicy_1 = require("./MultifactorEnrollmentPolicy");
 const MultifactorEnrollmentPolicyAuthenticatorSettings_1 = require("./MultifactorEnrollmentPolicyAuthenticatorSettings");
+const MultifactorEnrollmentPolicyAuthenticatorSettingsConstraints_1 = require("./MultifactorEnrollmentPolicyAuthenticatorSettingsConstraints");
 const MultifactorEnrollmentPolicyAuthenticatorSettingsEnroll_1 = require("./MultifactorEnrollmentPolicyAuthenticatorSettingsEnroll");
 const MultifactorEnrollmentPolicySettings_1 = require("./MultifactorEnrollmentPolicySettings");
 const NetworkZone_1 = require("./NetworkZone");
@@ -1080,6 +1093,7 @@ const RiskEvent_1 = require("./RiskEvent");
 const RiskEventSubject_1 = require("./RiskEventSubject");
 const RiskPolicyRuleCondition_1 = require("./RiskPolicyRuleCondition");
 const RiskProvider_1 = require("./RiskProvider");
+const RiskProviderLinks_1 = require("./RiskProviderLinks");
 const RiskScorePolicyRuleCondition_1 = require("./RiskScorePolicyRuleCondition");
 const Role_1 = require("./Role");
 const SamlApplication_1 = require("./SamlApplication");
@@ -1107,6 +1121,10 @@ const SmsUserFactorProfile_1 = require("./SmsUserFactorProfile");
 const SocialAuthToken_1 = require("./SocialAuthToken");
 const SpCertificate_1 = require("./SpCertificate");
 const Subscription_1 = require("./Subscription");
+const SupportedMethods_1 = require("./SupportedMethods");
+const SupportedMethodsAlgorithms_1 = require("./SupportedMethodsAlgorithms");
+const SupportedMethodsSettings_1 = require("./SupportedMethodsSettings");
+const SupportedMethodsTransactionTypes_1 = require("./SupportedMethodsTransactionTypes");
 const SwaApplicationSettings_1 = require("./SwaApplicationSettings");
 const SwaApplicationSettingsApplication_1 = require("./SwaApplicationSettingsApplication");
 const TempPassword_1 = require("./TempPassword");
@@ -1164,6 +1182,8 @@ const WebAuthnUserFactor_1 = require("./WebAuthnUserFactor");
 const WebAuthnUserFactorProfile_1 = require("./WebAuthnUserFactorProfile");
 const WebUserFactor_1 = require("./WebUserFactor");
 const WebUserFactorProfile_1 = require("./WebUserFactorProfile");
+const WellKnownAppAuthenticatorConfiguration_1 = require("./WellKnownAppAuthenticatorConfiguration");
+const WellKnownAppAuthenticatorConfigurationSettings_1 = require("./WellKnownAppAuthenticatorConfigurationSettings");
 const WellKnownOrgMetadata_1 = require("./WellKnownOrgMetadata");
 const WellKnownOrgMetadataLinks_1 = require("./WellKnownOrgMetadataLinks");
 const WellKnownOrgMetadataSettings_1 = require("./WellKnownOrgMetadataSettings");
@@ -1211,6 +1231,7 @@ let enumsMap = new Set([
     'CAPTCHAType',
     'CatalogApplicationStatus',
     'ChangeEnum',
+    'ContentSecurityPolicySettingModeEnum',
     'DNSRecordType',
     'DevicePlatform',
     'DevicePolicyMDMFramework',
@@ -1338,6 +1359,7 @@ let enumsMap = new Set([
     'SignInPageTouchPointVariant',
     'SmsTemplateType',
     'SubscriptionStatus',
+    'SupportedMethodsTypeEnum',
     'TrustedOriginScopeType',
     'UserIdentifierMatchType',
     'UserIdentifierType',
@@ -1349,6 +1371,7 @@ let enumsMap = new Set([
     'UserStatus',
     'UserVerificationEnum',
     'VerifyUserFactorResult',
+    'WellKnownAppAuthenticatorConfigurationTypeEnum',
 ]);
 let typeMap = {
     'APNSConfiguration': APNSConfiguration_1.APNSConfiguration,
@@ -1459,6 +1482,7 @@ let typeMap = {
     'ChannelBinding': ChannelBinding_1.ChannelBinding,
     'ClientPolicyCondition': ClientPolicyCondition_1.ClientPolicyCondition,
     'Compliance': Compliance_1.Compliance,
+    'ContentSecurityPolicySetting': ContentSecurityPolicySetting_1.ContentSecurityPolicySetting,
     'ContextPolicyRuleCondition': ContextPolicyRuleCondition_1.ContextPolicyRuleCondition,
     'CreateBrandRequest': CreateBrandRequest_1.CreateBrandRequest,
     'CreateSessionRequest': CreateSessionRequest_1.CreateSessionRequest,
@@ -1505,6 +1529,7 @@ let typeMap = {
     'EmailUserFactor': EmailUserFactor_1.EmailUserFactor,
     'EmailUserFactorProfile': EmailUserFactorProfile_1.EmailUserFactorProfile,
     'ErrorErrorCausesInner': ErrorErrorCausesInner_1.ErrorErrorCausesInner,
+    'ErrorPage': ErrorPage_1.ErrorPage,
     'EventHook': EventHook_1.EventHook,
     'EventHookChannel': EventHookChannel_1.EventHookChannel,
     'EventHookChannelConfig': EventHookChannelConfig_1.EventHookChannelConfig,
@@ -1611,6 +1636,7 @@ let typeMap = {
     'ModelError': ModelError_1.ModelError,
     'MultifactorEnrollmentPolicy': MultifactorEnrollmentPolicy_1.MultifactorEnrollmentPolicy,
     'MultifactorEnrollmentPolicyAuthenticatorSettings': MultifactorEnrollmentPolicyAuthenticatorSettings_1.MultifactorEnrollmentPolicyAuthenticatorSettings,
+    'MultifactorEnrollmentPolicyAuthenticatorSettingsConstraints': MultifactorEnrollmentPolicyAuthenticatorSettingsConstraints_1.MultifactorEnrollmentPolicyAuthenticatorSettingsConstraints,
     'MultifactorEnrollmentPolicyAuthenticatorSettingsEnroll': MultifactorEnrollmentPolicyAuthenticatorSettingsEnroll_1.MultifactorEnrollmentPolicyAuthenticatorSettingsEnroll,
     'MultifactorEnrollmentPolicySettings': MultifactorEnrollmentPolicySettings_1.MultifactorEnrollmentPolicySettings,
     'NetworkZone': NetworkZone_1.NetworkZone,
@@ -1756,6 +1782,7 @@ let typeMap = {
     'RiskEventSubject': RiskEventSubject_1.RiskEventSubject,
     'RiskPolicyRuleCondition': RiskPolicyRuleCondition_1.RiskPolicyRuleCondition,
     'RiskProvider': RiskProvider_1.RiskProvider,
+    'RiskProviderLinks': RiskProviderLinks_1.RiskProviderLinks,
     'RiskScorePolicyRuleCondition': RiskScorePolicyRuleCondition_1.RiskScorePolicyRuleCondition,
     'Role': Role_1.Role,
     'SamlApplication': SamlApplication_1.SamlApplication,
@@ -1783,6 +1810,10 @@ let typeMap = {
     'SocialAuthToken': SocialAuthToken_1.SocialAuthToken,
     'SpCertificate': SpCertificate_1.SpCertificate,
     'Subscription': Subscription_1.Subscription,
+    'SupportedMethods': SupportedMethods_1.SupportedMethods,
+    'SupportedMethodsAlgorithms': SupportedMethodsAlgorithms_1.SupportedMethodsAlgorithms,
+    'SupportedMethodsSettings': SupportedMethodsSettings_1.SupportedMethodsSettings,
+    'SupportedMethodsTransactionTypes': SupportedMethodsTransactionTypes_1.SupportedMethodsTransactionTypes,
     'SwaApplicationSettings': SwaApplicationSettings_1.SwaApplicationSettings,
     'SwaApplicationSettingsApplication': SwaApplicationSettingsApplication_1.SwaApplicationSettingsApplication,
     'TempPassword': TempPassword_1.TempPassword,
@@ -1840,6 +1871,8 @@ let typeMap = {
     'WebAuthnUserFactorProfile': WebAuthnUserFactorProfile_1.WebAuthnUserFactorProfile,
     'WebUserFactor': WebUserFactor_1.WebUserFactor,
     'WebUserFactorProfile': WebUserFactorProfile_1.WebUserFactorProfile,
+    'WellKnownAppAuthenticatorConfiguration': WellKnownAppAuthenticatorConfiguration_1.WellKnownAppAuthenticatorConfiguration,
+    'WellKnownAppAuthenticatorConfigurationSettings': WellKnownAppAuthenticatorConfigurationSettings_1.WellKnownAppAuthenticatorConfigurationSettings,
     'WellKnownOrgMetadata': WellKnownOrgMetadata_1.WellKnownOrgMetadata,
     'WellKnownOrgMetadataLinks': WellKnownOrgMetadataLinks_1.WellKnownOrgMetadataLinks,
     'WellKnownOrgMetadataSettings': WellKnownOrgMetadataSettings_1.WellKnownOrgMetadataSettings,
@@ -1884,7 +1917,9 @@ let typeMap = {
     'BehaviorRule_ANOMALOUS_IP': BehaviorRuleAnomalousIP_1.BehaviorRuleAnomalousIP,
     'BehaviorRule_VELOCITY': BehaviorRuleVelocity_1.BehaviorRuleVelocity,
     'APNS': APNSPushProvider_1.APNSPushProvider,
-    'FCM': FCMPushProvider_1.FCMPushProvider
+    'FCM': FCMPushProvider_1.FCMPushProvider,
+    'InlineHookChannel_HTTP': InlineHookChannelHttp_1.InlineHookChannelHttp,
+    'InlineHookChannel_OAUTH': InlineHookChannelOAuth_1.InlineHookChannelOAuth,
 };
 class ObjectSerializer {
     static findCorrectType(data, expectedType, discriminator) {
@@ -1953,14 +1988,15 @@ class ObjectSerializer {
                 return data.getFullYear() + '-' + month + '-' + day;
             }
             else {
-                // format == 'date-time'
+                // format === 'date-time'
                 return data.toISOString().replace(/\.\d{3}/, '');
             }
         }
         else if (type === 'HttpFile') {
             if (data instanceof Buffer) {
                 return data.toString();
-            } else {
+            }
+            else {
                 return data;
             }
         }

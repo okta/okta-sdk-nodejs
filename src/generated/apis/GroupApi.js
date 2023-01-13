@@ -665,8 +665,10 @@ class GroupApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
      * @param limit Specifies the number of group results in a page
      * @param expand If specified, it causes additional metadata to be included in the response.
      * @param search Searches for groups with a supported filtering expression for all attributes except for _embedded, _links, and objectClass
+     * @param sortBy Specifies field to sort by and can be any single property (for search queries only).
+     * @param sortOrder Specifies sort order &#x60;asc&#x60; or &#x60;desc&#x60; (for search queries only). This parameter is ignored if &#x60;sortBy&#x60; is not present. Groups with the same value for the &#x60;sortBy&#x60; parameter are ordered by &#x60;id&#x60;.
      */
-  async listGroups(q, filter, after, limit, expand, search, _options) {
+  async listGroups(q, filter, after, limit, expand, search, sortBy, sortOrder, _options) {
     let _config = _options || this.configuration;
     // Path Params
     const path = '/api/v1/groups';
@@ -696,6 +698,14 @@ class GroupApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     // Query Params
     if (search !== undefined) {
       requestContext.setQueryParam('search', ObjectSerializer_1.ObjectSerializer.serialize(search, 'string', ''));
+    }
+    // Query Params
+    if (sortBy !== undefined) {
+      requestContext.setQueryParam('sortBy', ObjectSerializer_1.ObjectSerializer.serialize(sortBy, 'string', ''));
+    }
+    // Query Params
+    if (sortOrder !== undefined) {
+      requestContext.setQueryParam('sortOrder', ObjectSerializer_1.ObjectSerializer.serialize(sortOrder, 'string', ''));
     }
     let authMethod;
     // Apply auth methods

@@ -22,9 +22,11 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { ContentSecurityPolicySetting } from './../models/ContentSecurityPolicySetting';
 import { SignInPageAllOfWidgetCustomizations } from './../models/SignInPageAllOfWidgetCustomizations';
 export declare class SignInPage {
   'pageContent'?: string;
+  'contentSecurityPolicySetting'?: ContentSecurityPolicySetting;
   'widgetCustomizations'?: SignInPageAllOfWidgetCustomizations;
   /**
     * The version specified as a [Semantic Version](https://semver.org/).

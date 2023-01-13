@@ -22,20 +22,25 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { RiskEventSubject } from './../models/RiskEventSubject';
-export declare class RiskEvent {
+import { SupportedMethods } from './../models/SupportedMethods';
+import { WellKnownAppAuthenticatorConfigurationSettings } from './../models/WellKnownAppAuthenticatorConfigurationSettings';
+export declare class WellKnownAppAuthenticatorConfiguration {
+  'appAuthenticatorEnrollEndpoint'?: string;
   /**
-    * Timestamp at which the event expires (expressed as a UTC time zone using ISO 8601 format: yyyy-MM-dd`T`HH:mm:ss.SSS`Z`). If this optional field is not included, Okta automatically expires the event 24 hours after the event is consumed.
+    * The unique identifier of the app authenticator
     */
-  'expiresAt'?: Date;
+  'authenticatorId'?: string;
+  'createdDate'?: Date;
+  'key'?: string;
+  'lastUpdated'?: Date;
   /**
-    * List of Risk Event Subjects
+    * The authenticator display name
     */
-  'subjects': Array<RiskEventSubject>;
-  /**
-    * Timestamp of when the event is produced (expressed as a UTC time zone using ISO 8601 format: yyyy-MM-dd`T`HH:mm:ss.SSS`Z`)
-    */
-  'timestamp'?: Date;
+  'name'?: string;
+  'orgId'?: string;
+  'settings'?: WellKnownAppAuthenticatorConfigurationSettings;
+  'supportedMethods'?: Array<SupportedMethods>;
+  'type'?: WellKnownAppAuthenticatorConfigurationTypeEnum;
   static readonly discriminator: string | undefined;
   static readonly attributeTypeMap: Array<{
         name: string;
@@ -51,3 +56,4 @@ export declare class RiskEvent {
     }[];
   constructor();
 }
+export declare type WellKnownAppAuthenticatorConfigurationTypeEnum = 'app';

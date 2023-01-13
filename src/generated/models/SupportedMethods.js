@@ -11,6 +11,7 @@
  */
 
 
+'use strict';
 /**
  * Okta Admin Management
  * Allows customers to easily access the Okta Management APIs
@@ -22,23 +23,34 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-export declare class CreateSessionRequest {
-  /**
-    * The session token obtained during authentication
-    */
-  'sessionToken'?: string;
-  static readonly discriminator: string | undefined;
-  static readonly attributeTypeMap: Array<{
-        name: string;
-        baseName: string;
-        type: string;
-        format: string;
-    }>;
-  static getAttributeTypeMap(): {
-        name: string;
-        baseName: string;
-        type: string;
-        format: string;
-    }[];
-  constructor();
+Object.defineProperty(exports, '__esModule', { value: true });
+exports.SupportedMethods = void 0;
+class SupportedMethods {
+  constructor() {
+  }
+  static getAttributeTypeMap() {
+    return SupportedMethods.attributeTypeMap;
+  }
 }
+exports.SupportedMethods = SupportedMethods;
+SupportedMethods.discriminator = undefined;
+SupportedMethods.attributeTypeMap = [
+  {
+    'name': 'settings',
+    'baseName': 'settings',
+    'type': 'SupportedMethodsSettings',
+    'format': ''
+  },
+  {
+    'name': 'status',
+    'baseName': 'status',
+    'type': 'string',
+    'format': ''
+  },
+  {
+    'name': 'type',
+    'baseName': 'type',
+    'type': 'SupportedMethodsTypeEnum',
+    'format': ''
+  }
+];

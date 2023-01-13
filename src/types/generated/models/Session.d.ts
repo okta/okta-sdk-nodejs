@@ -26,15 +26,36 @@ import { SessionAuthenticationMethod } from './../models/SessionAuthenticationMe
 import { SessionIdentityProvider } from './../models/SessionIdentityProvider';
 import { SessionStatus } from './../models/SessionStatus';
 export declare class Session {
+  /**
+    * Authentication method reference
+    */
   'amr'?: Array<SessionAuthenticationMethod>;
   'createdAt'?: Date;
+  /**
+    * A timestamp when the Session expires
+    */
   'expiresAt'?: Date;
+  /**
+    * A unique key for the Session
+    */
   'id'?: string;
   'idp'?: SessionIdentityProvider;
+  /**
+    * A timestamp when the user last performed multifactor authentication
+    */
   'lastFactorVerification'?: Date;
+  /**
+    * A timestamp when the user last performed the primary or step-up authentication with a password
+    */
   'lastPasswordVerification'?: Date;
+  /**
+    * A unique identifier for the user (username)
+    */
   'login'?: string;
   'status'?: SessionStatus;
+  /**
+    * A unique key for the user
+    */
   'userId'?: string;
   '_links'?: {
         [key: string]: any;

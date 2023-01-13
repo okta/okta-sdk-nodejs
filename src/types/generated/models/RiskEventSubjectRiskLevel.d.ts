@@ -22,4 +22,7 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+/**
+* The risk level associated with the IP
+*/
 export declare type RiskEventSubjectRiskLevel = 'HIGH' | 'LOW' | 'MEDIUM';

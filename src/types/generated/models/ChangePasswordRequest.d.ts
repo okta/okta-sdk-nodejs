@@ -26,6 +26,7 @@ import { PasswordCredential } from './../models/PasswordCredential';
 export declare class ChangePasswordRequest {
   'newPassword'?: PasswordCredential;
   'oldPassword'?: PasswordCredential;
+  'revokeSessions'?: boolean;
   static readonly discriminator: string | undefined;
   static readonly attributeTypeMap: Array<{
         name: string;

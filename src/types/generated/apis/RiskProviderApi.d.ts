@@ -20,32 +20,32 @@ import { RiskProvider } from '../models/RiskProvider';
  */
 export declare class RiskProviderApiRequestFactory extends BaseAPIRequestFactory {
   /**
-     * Creates a risk provider. A maximum of 3 providers can be created. By default, one risk provider is created by Okta.
+     * Creates a Risk Provider object. A maximum of three Risk Provider objects can be created.
      * Create a Risk Provider
      * @param instance
      */
   createRiskProvider(instance: RiskProvider, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Deletes a CAPTCHA instance by `riskProviderId`
+     * Deletes a Risk Provider object by its ID
      * Delete a Risk Provider
-     * @param riskProviderId &#x60;id&#x60; of the risk provider
+     * @param riskProviderId &#x60;id&#x60; of the Risk Provider object
      */
   deleteRiskProvider(riskProviderId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Retrieves a risk provider by `riskProviderId`
+     * Retrieves a Risk Provider object by ID
      * Retrieve a Risk Provider
-     * @param riskProviderId &#x60;id&#x60; of the risk provider
+     * @param riskProviderId &#x60;id&#x60; of the Risk Provider object
      */
   getRiskProvider(riskProviderId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Lists all Risk Providers
+     * Lists all Risk Provider objects
      * List all Risk Providers
      */
   listRiskProviders(_options?: Configuration): Promise<RequestContext>;
   /**
-     * Replaces a risk provider by `riskProviderId`
+     * Replaces the properties for a given Risk Provider object ID
      * Replace a Risk Provider
-     * @param riskProviderId &#x60;id&#x60; of the risk provider
+     * @param riskProviderId &#x60;id&#x60; of the Risk Provider object
      * @param instance
      */
   replaceRiskProvider(riskProviderId: string, instance: RiskProvider, _options?: Configuration): Promise<RequestContext>;

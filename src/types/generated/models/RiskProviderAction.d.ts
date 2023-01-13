@@ -23,6 +23,6 @@
  * Do not edit the class manually.
  */
 /**
-* The action taken by Okta during authentication attempts based on the risk events sent by this provider. Logging can be found in the SystemLogs.
+* The action taken by Okta during authentication attempts based on the risk events sent by this provider. Possible values:   * `none`: No action   * `log_only`: Include risk event information in the System Log   * `enforce_and_log`: Use risk event information to evaluate risk during authentication attempts and include risk event information in the System Log
 */
 export declare type RiskProviderAction = 'enforce_and_log' | 'log_only' | 'none';

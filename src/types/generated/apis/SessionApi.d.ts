@@ -21,27 +21,27 @@ import { Session } from '../models/Session';
  */
 export declare class SessionApiRequestFactory extends BaseAPIRequestFactory {
   /**
-     * Creates a new session for a user with a valid session token. Use this API if, for example, you want to set the session cookie yourself instead of allowing Okta to set it, or want to hold the session ID in order to delete a session via the API instead of visiting the logout URL.
-     * Create a Session with Session Token
+     * Creates a new Session for a user with a valid session token. Use this API if, for example, you want to set the session cookie yourself instead of allowing Okta to set it, or want to hold the session ID to delete a session through the API instead of visiting the logout URL.
+     * Create a Session with session token
      * @param createSessionRequest
      */
   createSession(createSessionRequest: CreateSessionRequest, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Retrieves the details about a session
+     * Retrieves information about the Session specified by the given session ID
      * Retrieve a Session
-     * @param sessionId
+     * @param sessionId &#x60;id&#x60; of a valid Session
      */
   getSession(sessionId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Refreshes a session
+     * Refreshes an existing Session using the `id` for that Session. A successful response contains the refreshed Session with an updated `expiresAt` timestamp.
      * Refresh a Session
-     * @param sessionId
+     * @param sessionId &#x60;id&#x60; of a valid Session
      */
   refreshSession(sessionId: string, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Revokes a session
+     * Revokes the specified Session
      * Revoke a Session
-     * @param sessionId
+     * @param sessionId &#x60;id&#x60; of a valid Session
      */
   revokeSession(sessionId: string, _options?: Configuration): Promise<RequestContext>;
 }

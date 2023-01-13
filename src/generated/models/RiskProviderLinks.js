@@ -11,6 +11,7 @@
  */
 
 
+'use strict';
 /**
  * Okta Admin Management
  * Allows customers to easily access the Okta Management APIs
@@ -22,23 +23,25 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-export declare class CreateSessionRequest {
-  /**
-    * The session token obtained during authentication
-    */
-  'sessionToken'?: string;
-  static readonly discriminator: string | undefined;
-  static readonly attributeTypeMap: Array<{
-        name: string;
-        baseName: string;
-        type: string;
-        format: string;
-    }>;
-  static getAttributeTypeMap(): {
-        name: string;
-        baseName: string;
-        type: string;
-        format: string;
-    }[];
-  constructor();
+Object.defineProperty(exports, '__esModule', { value: true });
+exports.RiskProviderLinks = void 0;
+/**
+* Link relations for this object
+*/
+class RiskProviderLinks {
+  constructor() {
+  }
+  static getAttributeTypeMap() {
+    return RiskProviderLinks.attributeTypeMap;
+  }
 }
+exports.RiskProviderLinks = RiskProviderLinks;
+RiskProviderLinks.discriminator = undefined;
+RiskProviderLinks.attributeTypeMap = [
+  {
+    'name': 'self',
+    'baseName': 'self',
+    'type': 'HrefObject',
+    'format': ''
+  }
+];

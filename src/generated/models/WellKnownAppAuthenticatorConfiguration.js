@@ -24,38 +24,38 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, '__esModule', { value: true });
-exports.RiskProvider = void 0;
-class RiskProvider {
+exports.WellKnownAppAuthenticatorConfiguration = void 0;
+class WellKnownAppAuthenticatorConfiguration {
   constructor() {
   }
   static getAttributeTypeMap() {
-    return RiskProvider.attributeTypeMap;
+    return WellKnownAppAuthenticatorConfiguration.attributeTypeMap;
   }
 }
-exports.RiskProvider = RiskProvider;
-RiskProvider.discriminator = undefined;
-RiskProvider.attributeTypeMap = [
+exports.WellKnownAppAuthenticatorConfiguration = WellKnownAppAuthenticatorConfiguration;
+WellKnownAppAuthenticatorConfiguration.discriminator = undefined;
+WellKnownAppAuthenticatorConfiguration.attributeTypeMap = [
   {
-    'name': 'action',
-    'baseName': 'action',
-    'type': 'RiskProviderAction',
-    'format': ''
-  },
-  {
-    'name': 'clientId',
-    'baseName': 'clientId',
+    'name': 'appAuthenticatorEnrollEndpoint',
+    'baseName': 'appAuthenticatorEnrollEndpoint',
     'type': 'string',
     'format': ''
   },
   {
-    'name': 'created',
-    'baseName': 'created',
+    'name': 'authenticatorId',
+    'baseName': 'authenticatorId',
+    'type': 'string',
+    'format': ''
+  },
+  {
+    'name': 'createdDate',
+    'baseName': 'createdDate',
     'type': 'Date',
     'format': 'date-time'
   },
   {
-    'name': 'id',
-    'baseName': 'id',
+    'name': 'key',
+    'baseName': 'key',
     'type': 'string',
     'format': ''
   },
@@ -72,9 +72,27 @@ RiskProvider.attributeTypeMap = [
     'format': ''
   },
   {
-    'name': '_links',
-    'baseName': '_links',
-    'type': 'RiskProviderLinks',
+    'name': 'orgId',
+    'baseName': 'orgId',
+    'type': 'string',
+    'format': ''
+  },
+  {
+    'name': 'settings',
+    'baseName': 'settings',
+    'type': 'WellKnownAppAuthenticatorConfigurationSettings',
+    'format': ''
+  },
+  {
+    'name': 'supportedMethods',
+    'baseName': 'supportedMethods',
+    'type': 'Array<SupportedMethods>',
+    'format': ''
+  },
+  {
+    'name': 'type',
+    'baseName': 'type',
+    'type': 'WellKnownAppAuthenticatorConfigurationTypeEnum',
     'format': ''
   }
 ];

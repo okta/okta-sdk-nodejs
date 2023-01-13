@@ -24,6 +24,9 @@
  */
 import { SessionIdentityProviderType } from './../models/SessionIdentityProviderType';
 export declare class SessionIdentityProvider {
+  /**
+    * Identity Provider ID. If the `type` is `OKTA`, then the `id` is the org ID.
+    */
   'id'?: string;
   'type'?: SessionIdentityProviderType;
   static readonly discriminator: string | undefined;

@@ -15,6 +15,7 @@ import { BaseAPIRequestFactory } from './baseapi';
 import { Configuration } from '../configuration';
 import { RequestContext, ResponseContext } from '../http/http';
 import { Authenticator } from '../models/Authenticator';
+import { WellKnownAppAuthenticatorConfiguration } from '../models/WellKnownAppAuthenticatorConfiguration';
 /**
  * no description
  */
@@ -44,6 +45,12 @@ export declare class AuthenticatorApiRequestFactory extends BaseAPIRequestFactor
      * @param authenticatorId
      */
   getAuthenticator(authenticatorId: string, _options?: Configuration): Promise<RequestContext>;
+  /**
+     * Retrieves the well-known app authenticator configuration, which includes an app authenticator's settings, supported methods and various other configuration details
+     * Retrieve the Well-Known App Authenticator Configuration
+     * @param oauthClientId Filters app authenticator configurations by &#x60;oauthClientId&#x60;
+     */
+  getWellKnownAppAuthenticatorConfiguration(oauthClientId: string, _options?: Configuration): Promise<RequestContext>;
   /**
      * Lists all authenticators
      * List all Authenticators
@@ -90,6 +97,14 @@ export declare class AuthenticatorApiResponseProcessor {
      * @throws ApiException if the response code was not in [200, 299]
      */
   getAuthenticator(response: ResponseContext): Promise<Authenticator>;
+  /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
+     * @params response Response returned by the server for a request to getWellKnownAppAuthenticatorConfiguration
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+  getWellKnownAppAuthenticatorConfiguration(response: ResponseContext): Promise<Array<WellKnownAppAuthenticatorConfiguration>>;
   /**
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects

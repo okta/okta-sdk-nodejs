@@ -25,8 +25,8 @@ const util_1 = require('../util');
  */
 class SessionApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
   /**
-     * Creates a new session for a user with a valid session token. Use this API if, for example, you want to set the session cookie yourself instead of allowing Okta to set it, or want to hold the session ID in order to delete a session via the API instead of visiting the logout URL.
-     * Create a Session with Session Token
+     * Creates a new Session for a user with a valid session token. Use this API if, for example, you want to set the session cookie yourself instead of allowing Okta to set it, or want to hold the session ID to delete a session through the API instead of visiting the logout URL.
+     * Create a Session with session token
      * @param createSessionRequest
      */
   async createSession(createSessionRequest, _options) {
@@ -61,9 +61,9 @@ class SessionApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     return requestContext;
   }
   /**
-     * Retrieves the details about a session
+     * Retrieves information about the Session specified by the given session ID
      * Retrieve a Session
-     * @param sessionId
+     * @param sessionId &#x60;id&#x60; of a valid Session
      */
   async getSession(sessionId, _options) {
     let _config = _options || this.configuration;
@@ -97,9 +97,9 @@ class SessionApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     return requestContext;
   }
   /**
-     * Refreshes a session
+     * Refreshes an existing Session using the `id` for that Session. A successful response contains the refreshed Session with an updated `expiresAt` timestamp.
      * Refresh a Session
-     * @param sessionId
+     * @param sessionId &#x60;id&#x60; of a valid Session
      */
   async refreshSession(sessionId, _options) {
     let _config = _options || this.configuration;
@@ -133,9 +133,9 @@ class SessionApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     return requestContext;
   }
   /**
-     * Revokes a session
+     * Revokes the specified Session
      * Revoke a Session
-     * @param sessionId
+     * @param sessionId &#x60;id&#x60; of a valid Session
      */
   async revokeSession(sessionId, _options) {
     let _config = _options || this.configuration;

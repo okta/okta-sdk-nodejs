@@ -24,7 +24,6 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.wrapHttpLibrary = exports.ResponseContext = exports.SelfDecodingBody = exports.RequestContext = exports.HttpException = exports.HttpMethodEnum = void 0;
-const stream_1 = require("stream");
 // typings of url-parse are incorrect...
 // @ts-ignore
 const URLParse = require("url-parse");
@@ -202,7 +201,7 @@ class ResponseContext {
     }
     async getBodyAsFile() {
         const data = await this.body.binary();
-        return stream_1.Readable.from(data);
+        return data;
     }
     /**
      * Use a heuristic to get a body of unknown data structure.

@@ -36,7 +36,7 @@ import { UserNextLogin } from '../models/UserNextLogin';
  */
 export declare class UserApiRequestFactory extends BaseAPIRequestFactory {
   /**
-     * Activates a user.  This operation can only be performed on users with a `STAGED` status.  Activation of a user is an asynchronous operation. The user will have the `transitioningToStatus` property with a value of `ACTIVE` during activation to indicate that the user hasn't completed the asynchronous operation.  The user will have a status of `ACTIVE` when the activation process is complete.
+     * Activates a user. This operation can only be performed on users with a `STAGED` status. Activation of a user is an asynchronous operation. The user will have the `transitioningToStatus` property with a value of `ACTIVE` during activation to indicate that the user hasn't completed the asynchronous operation. The user will have a status of `ACTIVE` when the activation process is complete. > **Legal Disclaimer**<br> After a user is added to the Okta directory, they receive an activation email. As part of signing up for this service, you agreed not to use Okta's service/product to spam and/or send unsolicited messages. Please refrain from adding unrelated accounts to the directory as Okta is not responsible for, and disclaims any and all liability associated with, the activation email's content. You, and you alone, bear responsibility for the emails sent to any recipients.
      * Activate a User
      * @param userId
      * @param sendEmail Sends an activation email to the user if true
@@ -58,7 +58,7 @@ export declare class UserApiRequestFactory extends BaseAPIRequestFactory {
      */
   changeRecoveryQuestion(userId: string, userCredentials: UserCredentials, _options?: Configuration): Promise<RequestContext>;
   /**
-     * Creates a new user in your Okta organization with or without credentials
+     * Creates a new user in your Okta organization with or without credentials<br> > **Legal Disclaimer**<br> After a user is added to the Okta directory, they receive an activation email. As part of signing up for this service, you agreed not to use Okta's service/product to spam and/or send unsolicited messages. Please refrain from adding unrelated accounts to the directory as Okta is not responsible for, and disclaims any and all liability associated with, the activation email's content. You, and you alone, bear responsibility for the emails sent to any recipients.
      * Create a User
      * @param body
      * @param activate Executes activation lifecycle operation when creating the user
@@ -97,8 +97,9 @@ export declare class UserApiRequestFactory extends BaseAPIRequestFactory {
      * Expires a user's password and transitions the user to the status of `PASSWORD_EXPIRED` so that the user is required to change their password at their next login, and also sets the user's password to a temporary password returned in the response
      * Expire Password and Set Temporary Password
      * @param userId
+     * @param revokeSessions When set to &#x60;true&#x60; (and the session is a user session), all user sessions are revoked except the current session.
      */
-  expirePasswordAndGetTemporaryPassword(userId: string, _options?: Configuration): Promise<RequestContext>;
+  expirePasswordAndGetTemporaryPassword(userId: string, revokeSessions?: boolean, _options?: Configuration): Promise<RequestContext>;
   /**
      * Initiates the forgot password flow. Generates a one-time token (OTT) that can be used to reset a user's password.
      * Initiate Forgot Password
@@ -119,8 +120,9 @@ export declare class UserApiRequestFactory extends BaseAPIRequestFactory {
      * Generate a Reset Password Token
      * @param userId
      * @param sendEmail
+     * @param revokeSessions When set to &#x60;true&#x60; (and the session is a user session), all user sessions are revoked except the current session.
      */
-  generateResetPasswordToken(userId: string, sendEmail: boolean, _options?: Configuration): Promise<RequestContext>;
+  generateResetPasswordToken(userId: string, sendEmail: boolean, revokeSessions?: boolean, _options?: Configuration): Promise<RequestContext>;
   /**
      * Retrieves a refresh token issued for the specified User and Client
      * Retrieve a Refresh Token for a Client

@@ -576,6 +576,14 @@ class ObjectAuthenticatorApi {
         return this.api.getAuthenticator(param.authenticatorId, options).toPromise();
     }
     /**
+      * Retrieves the well-known app authenticator configuration, which includes an app authenticator's settings, supported methods and various other configuration details
+      * Retrieve the Well-Known App Authenticator Configuration
+      * @param param the request object
+      */
+    getWellKnownAppAuthenticatorConfiguration(param, options) {
+        return this.api.getWellKnownAppAuthenticatorConfiguration(param.oauthClientId, options).toPromise();
+    }
+    /**
       * Lists all authenticators
       * List all Authenticators
       * @param param the request object
@@ -1147,12 +1155,44 @@ class ObjectCustomizationApi {
         return this.api.deleteBrandThemeLogo(param.brandId, param.themeId, options).toPromise();
     }
     /**
+      * Deletes the customized error page. As a result, the default error page appears in your live environment.
+      * Delete the Customized Error Page
+      * @param param the request object
+      */
+    deleteCustomizedErrorPage(param, options) {
+        return this.api.deleteCustomizedErrorPage(param.brandId, options).toPromise();
+    }
+    /**
+      * Deletes the customized sign-in page. As a result, the default sign-in page appears in your live environment.
+      * Delete the Customized Sign-in Page
+      * @param param the request object
+      */
+    deleteCustomizedSignInPage(param, options) {
+        return this.api.deleteCustomizedSignInPage(param.brandId, options).toPromise();
+    }
+    /**
       * Deletes an email customization by its unique identifier
       * Delete an Email Customization
       * @param param the request object
       */
     deleteEmailCustomization(param, options) {
         return this.api.deleteEmailCustomization(param.brandId, param.templateName, param.customizationId, options).toPromise();
+    }
+    /**
+      * Deletes the preview error page. The preview error page contains unpublished changes and isn't shown in your live environment. Preview it at `${yourOktaDomain}/error/preview`.
+      * Delete the Preview Error Page
+      * @param param the request object
+      */
+    deletePreviewErrorPage(param, options) {
+        return this.api.deletePreviewErrorPage(param.brandId, options).toPromise();
+    }
+    /**
+      * Deletes the preview sign-in page. The preview sign-in page contains unpublished changes and isn't shown in your live environment. Preview it at `${yourOktaDomain}/login/preview`.
+      * Delete the Preview Sign-in Page
+      * @param param the request object
+      */
+    deletePreviewSignInPage(param, options) {
+        return this.api.deletePreviewSignInPage(param.brandId, options).toPromise();
     }
     /**
       * Retrieves a brand by `brandId`
@@ -1179,7 +1219,7 @@ class ObjectCustomizationApi {
         return this.api.getCustomizationPreview(param.brandId, param.templateName, param.customizationId, options).toPromise();
     }
     /**
-      * Retrieves the customized error page
+      * Retrieves the customized error page. The customized error page appears in your live environment.
       * Retrieve the Customized Error Page
       * @param param the request object
       */
@@ -1187,7 +1227,7 @@ class ObjectCustomizationApi {
         return this.api.getCustomizedErrorPage(param.brandId, options).toPromise();
     }
     /**
-      * Retrieves the customized sign-in page
+      * Retrieves the customized sign-in page. The customized sign-in page appears in your live environment.
       * Retrieve the Customized Sign-in Page
       * @param param the request object
       */
@@ -1195,7 +1235,7 @@ class ObjectCustomizationApi {
         return this.api.getCustomizedSignInPage(param.brandId, options).toPromise();
     }
     /**
-      * Retrieves the default error page
+      * Retrieves the default error page. The default error page appears when no customized error page exists.
       * Retrieve the Default Error Page
       * @param param the request object
       */
@@ -1203,7 +1243,7 @@ class ObjectCustomizationApi {
         return this.api.getDefaultErrorPage(param.brandId, options).toPromise();
     }
     /**
-      * Retrieves the default sign-in page
+      * Retrieves the default sign-in page. The default sign-in page appears when no customized sign-in page exists.
       * Retrieve the Default Sign-in Page
       * @param param the request object
       */
@@ -1251,15 +1291,15 @@ class ObjectCustomizationApi {
         return this.api.getEmailTemplate(param.brandId, param.templateName, param.expand, options).toPromise();
     }
     /**
-      * Retrieves the error page
-      * Retrieve the Error Page
+      * Retrieves the error page sub-resources. The `expand` query parameter specifies which sub-resources to include in the response.
+      * Retrieve the Error Page Sub-Resources
       * @param param the request object
       */
     getErrorPage(param, options) {
         return this.api.getErrorPage(param.brandId, param.expand, options).toPromise();
     }
     /**
-      * Retrieves the preview error page
+      * Retrieves the preview error page. The preview error page contains unpublished changes and isn't shown in your live environment. Preview it at `${yourOktaDomain}/error/preview`.
       * Retrieve the Preview Error Page Preview
       * @param param the request object
       */
@@ -1267,7 +1307,7 @@ class ObjectCustomizationApi {
         return this.api.getPreviewErrorPage(param.brandId, options).toPromise();
     }
     /**
-      * Retrieves the preview sign-in page
+      * Retrieves the preview sign-in page. The preview sign-in page contains unpublished changes and isn't shown in your live environment. Preview it at `${yourOktaDomain}/login/preview`.
       * Retrieve the Preview Sign-in Page Preview
       * @param param the request object
       */
@@ -1275,8 +1315,8 @@ class ObjectCustomizationApi {
         return this.api.getPreviewSignInPage(param.brandId, options).toPromise();
     }
     /**
-      * Retrieves the sign-in page
-      * Retrieve the Sign-in Page
+      * Retrieves the sign-in page sub-resources. The `expand` query parameter specifies which sub-resources to include in the response.
+      * Retrieve the Sign-in Page Sub-Resources
       * @param param the request object
       */
     getSignInPage(param, options) {
@@ -1291,7 +1331,7 @@ class ObjectCustomizationApi {
         return this.api.getSignOutPageSettings(param.brandId, options).toPromise();
     }
     /**
-      * Lists all sign-in widget versions
+      * Lists all sign-in widget versions supported by the current org
       * List all Sign-in Widget Versions
       * @param param the request object
       */
@@ -1355,15 +1395,15 @@ class ObjectCustomizationApi {
         return this.api.replaceBrandTheme(param.brandId, param.themeId, param.theme, options).toPromise();
     }
     /**
-      * Replaces the customized error page
+      * Replaces the customized error page. The customized error page appears in your live environment.
       * Replace the Customized Error Page
       * @param param the request object
       */
     replaceCustomizedErrorPage(param, options) {
-        return this.api.replaceCustomizedErrorPage(param.brandId, param.CustomizablePage, options).toPromise();
+        return this.api.replaceCustomizedErrorPage(param.brandId, param.ErrorPage, options).toPromise();
     }
     /**
-      * Replaces the customized sign-in page
+      * Replaces the customized sign-in page. The customized sign-in page appears in your live environment.
       * Replace the Customized Sign-in Page
       * @param param the request object
       */
@@ -1387,15 +1427,15 @@ class ObjectCustomizationApi {
         return this.api.replaceEmailSettings(param.brandId, param.templateName, param.EmailSettings, options).toPromise();
     }
     /**
-      * Replaces the preview error page
+      * Replaces the preview error page. The preview error page contains unpublished changes and isn't shown in your live environment. Preview it at `${yourOktaDomain}/error/preview`.
       * Replace the Preview Error Page
       * @param param the request object
       */
     replacePreviewErrorPage(param, options) {
-        return this.api.replacePreviewErrorPage(param.brandId, param.CustomizablePage, options).toPromise();
+        return this.api.replacePreviewErrorPage(param.brandId, param.ErrorPage, options).toPromise();
     }
     /**
-      * Replaces the preview sign-in page
+      * Replaces the preview sign-in page. The preview sign-in page contains unpublished changes and isn't shown in your live environment. Preview it at `${yourOktaDomain}/login/preview`.
       * Replace the Preview Sign-in Page
       * @param param the request object
       */
@@ -1409,38 +1449,6 @@ class ObjectCustomizationApi {
       */
     replaceSignOutPageSettings(param, options) {
         return this.api.replaceSignOutPageSettings(param.brandId, param.HostedPage, options).toPromise();
-    }
-    /**
-      * Resets the customized error page
-      * Reset the Customized Error Page
-      * @param param the request object
-      */
-    resetCustomizedErrorPage(param, options) {
-        return this.api.resetCustomizedErrorPage(param.brandId, options).toPromise();
-    }
-    /**
-      * Resets the customized sign-in page
-      * Reset the Customized Sign-in Page
-      * @param param the request object
-      */
-    resetCustomizedSignInPage(param, options) {
-        return this.api.resetCustomizedSignInPage(param.brandId, options).toPromise();
-    }
-    /**
-      * Resets the preview error page
-      * Reset the Preview Error Page
-      * @param param the request object
-      */
-    resetPreviewErrorPage(param, options) {
-        return this.api.resetPreviewErrorPage(param.brandId, options).toPromise();
-    }
-    /**
-      * Resets the preview sign-in page
-      * Reset the Preview Sign-in Page
-      * @param param the request object
-      */
-    resetPreviewSignInPage(param, options) {
-        return this.api.resetPreviewSignInPage(param.brandId, options).toPromise();
     }
     /**
       * Sends a test email to the current user’s primary and secondary email addresses. The email content is selected based on the following priority: 1. The email customization for the language specified in the `language` query parameter. 2. The email template's default customization. 3. The email template’s default content, translated to the current user's language.
@@ -1898,7 +1906,7 @@ class ObjectGroupApi {
       * @param param the request object
       */
     listGroups(param = {}, options) {
-        return this.api.listGroups(param.q, param.filter, param.after, param.limit, param.expand, param.search, options).toPromise();
+        return this.api.listGroups(param.q, param.filter, param.after, param.limit, param.expand, param.search, param.sortBy, param.sortOrder, options).toPromise();
     }
     /**
       * Replaces the profile for a group with `OKTA_GROUP` type
@@ -3078,7 +3086,7 @@ class ObjectRiskEventApi {
         this.api = new ObservableAPI_31.ObservableRiskEventApi(configuration, requestFactory, responseProcessor);
     }
     /**
-      * Sends multiple risk events to Okta. This API is intended for Risk Providers. This API has a rate limit of 30 requests per minute. The caller should include multiple Risk Events (up to a maximum of 20 events) in a single payload to reduce the number of API calls. If a client has more risk signals to send than what the API supports, we recommend prioritizing posting high risk signals.
+      * Sends multiple IP risk events to Okta. This request is used by a third-party risk provider to send IP risk events to Okta. The third-party risk provider needs to be registered with Okta before they can send events to Okta. See [Risk Providers](/openapi/okta-management/management/tag/RiskProvider/). This API has a rate limit of 30 requests per minute. You can include multiple risk events (up to a maximum of 20 events) in a single payload to reduce the number of API calls. Prioritize sending high risk signals if you have a burst of signals to send that would exceed the maximum request limits.
       * Send multiple Risk Events
       * @param param the request object
       */
@@ -3093,7 +3101,7 @@ class ObjectRiskProviderApi {
         this.api = new ObservableAPI_32.ObservableRiskProviderApi(configuration, requestFactory, responseProcessor);
     }
     /**
-      * Creates a risk provider. A maximum of 3 providers can be created. By default, one risk provider is created by Okta.
+      * Creates a Risk Provider object. A maximum of three Risk Provider objects can be created.
       * Create a Risk Provider
       * @param param the request object
       */
@@ -3101,7 +3109,7 @@ class ObjectRiskProviderApi {
         return this.api.createRiskProvider(param.instance, options).toPromise();
     }
     /**
-      * Deletes a CAPTCHA instance by `riskProviderId`
+      * Deletes a Risk Provider object by its ID
       * Delete a Risk Provider
       * @param param the request object
       */
@@ -3109,7 +3117,7 @@ class ObjectRiskProviderApi {
         return this.api.deleteRiskProvider(param.riskProviderId, options).toPromise();
     }
     /**
-      * Retrieves a risk provider by `riskProviderId`
+      * Retrieves a Risk Provider object by ID
       * Retrieve a Risk Provider
       * @param param the request object
       */
@@ -3117,7 +3125,7 @@ class ObjectRiskProviderApi {
         return this.api.getRiskProvider(param.riskProviderId, options).toPromise();
     }
     /**
-      * Lists all Risk Providers
+      * Lists all Risk Provider objects
       * List all Risk Providers
       * @param param the request object
       */
@@ -3125,7 +3133,7 @@ class ObjectRiskProviderApi {
         return this.api.listRiskProviders(options).toPromise();
     }
     /**
-      * Replaces a risk provider by `riskProviderId`
+      * Replaces the properties for a given Risk Provider object ID
       * Replace a Risk Provider
       * @param param the request object
       */
@@ -3520,15 +3528,15 @@ class ObjectSessionApi {
         this.api = new ObservableAPI_37.ObservableSessionApi(configuration, requestFactory, responseProcessor);
     }
     /**
-      * Creates a new session for a user with a valid session token. Use this API if, for example, you want to set the session cookie yourself instead of allowing Okta to set it, or want to hold the session ID in order to delete a session via the API instead of visiting the logout URL.
-      * Create a Session with Session Token
+      * Creates a new Session for a user with a valid session token. Use this API if, for example, you want to set the session cookie yourself instead of allowing Okta to set it, or want to hold the session ID to delete a session through the API instead of visiting the logout URL.
+      * Create a Session with session token
       * @param param the request object
       */
     createSession(param, options) {
         return this.api.createSession(param.createSessionRequest, options).toPromise();
     }
     /**
-      * Retrieves the details about a session
+      * Retrieves information about the Session specified by the given session ID
       * Retrieve a Session
       * @param param the request object
       */
@@ -3536,7 +3544,7 @@ class ObjectSessionApi {
         return this.api.getSession(param.sessionId, options).toPromise();
     }
     /**
-      * Refreshes a session
+      * Refreshes an existing Session using the `id` for that Session. A successful response contains the refreshed Session with an updated `expiresAt` timestamp.
       * Refresh a Session
       * @param param the request object
       */
@@ -3544,7 +3552,7 @@ class ObjectSessionApi {
         return this.api.refreshSession(param.sessionId, options).toPromise();
     }
     /**
-      * Revokes a session
+      * Revokes the specified Session
       * Revoke a Session
       * @param param the request object
       */
@@ -3786,7 +3794,7 @@ class ObjectUserApi {
         this.api = new ObservableAPI_43.ObservableUserApi(configuration, requestFactory, responseProcessor);
     }
     /**
-      * Activates a user.  This operation can only be performed on users with a `STAGED` status.  Activation of a user is an asynchronous operation. The user will have the `transitioningToStatus` property with a value of `ACTIVE` during activation to indicate that the user hasn't completed the asynchronous operation.  The user will have a status of `ACTIVE` when the activation process is complete.
+      * Activates a user. This operation can only be performed on users with a `STAGED` status. Activation of a user is an asynchronous operation. The user will have the `transitioningToStatus` property with a value of `ACTIVE` during activation to indicate that the user hasn't completed the asynchronous operation. The user will have a status of `ACTIVE` when the activation process is complete. > **Legal Disclaimer**<br> After a user is added to the Okta directory, they receive an activation email. As part of signing up for this service, you agreed not to use Okta's service/product to spam and/or send unsolicited messages. Please refrain from adding unrelated accounts to the directory as Okta is not responsible for, and disclaims any and all liability associated with, the activation email's content. You, and you alone, bear responsibility for the emails sent to any recipients.
       * Activate a User
       * @param param the request object
       */
@@ -3810,7 +3818,7 @@ class ObjectUserApi {
         return this.api.changeRecoveryQuestion(param.userId, param.userCredentials, options).toPromise();
     }
     /**
-      * Creates a new user in your Okta organization with or without credentials
+      * Creates a new user in your Okta organization with or without credentials<br> > **Legal Disclaimer**<br> After a user is added to the Okta directory, they receive an activation email. As part of signing up for this service, you agreed not to use Okta's service/product to spam and/or send unsolicited messages. Please refrain from adding unrelated accounts to the directory as Okta is not responsible for, and disclaims any and all liability associated with, the activation email's content. You, and you alone, bear responsibility for the emails sent to any recipients.
       * Create a User
       * @param param the request object
       */
@@ -3855,7 +3863,7 @@ class ObjectUserApi {
       * @param param the request object
       */
     expirePasswordAndGetTemporaryPassword(param, options) {
-        return this.api.expirePasswordAndGetTemporaryPassword(param.userId, options).toPromise();
+        return this.api.expirePasswordAndGetTemporaryPassword(param.userId, param.revokeSessions, options).toPromise();
     }
     /**
       * Initiates the forgot password flow. Generates a one-time token (OTT) that can be used to reset a user's password.
@@ -3879,7 +3887,7 @@ class ObjectUserApi {
       * @param param the request object
       */
     generateResetPasswordToken(param, options) {
-        return this.api.generateResetPasswordToken(param.userId, param.sendEmail, options).toPromise();
+        return this.api.generateResetPasswordToken(param.userId, param.sendEmail, param.revokeSessions, options).toPromise();
     }
     /**
       * Retrieves a refresh token issued for the specified User and Client

@@ -179,6 +179,32 @@ class AuthenticatorApiRequestFactory extends baseapi_1.BaseAPIRequestFactory {
     return requestContext;
   }
   /**
+     * Retrieves the well-known app authenticator configuration, which includes an app authenticator's settings, supported methods and various other configuration details
+     * Retrieve the Well-Known App Authenticator Configuration
+     * @param oauthClientId Filters app authenticator configurations by &#x60;oauthClientId&#x60;
+     */
+  async getWellKnownAppAuthenticatorConfiguration(oauthClientId, _options) {
+    let _config = _options || this.configuration;
+    // verify required parameter 'oauthClientId' is not null or undefined
+    if (oauthClientId === null || oauthClientId === undefined) {
+      throw new baseapi_1.RequiredError('AuthenticatorApi', 'getWellKnownAppAuthenticatorConfiguration', 'oauthClientId');
+    }
+    // Path Params
+    const path = '/.well-known/app-authenticator-configuration';
+    // Make Request Context
+    const requestContext = _config.baseServer.makeRequestContext(path, http_1.HttpMethodEnum.GET);
+    requestContext.setHeaderParam('Accept', 'application/json, */*;q=0.8');
+    // Query Params
+    if (oauthClientId !== undefined) {
+      requestContext.setQueryParam('oauthClientId', ObjectSerializer_1.ObjectSerializer.serialize(oauthClientId, 'string', ''));
+    }
+    const defaultAuth = _options?.authMethods?.default || this.configuration?.authMethods?.default;
+    if (defaultAuth?.applySecurityAuthentication) {
+      await defaultAuth?.applySecurityAuthentication(requestContext);
+    }
+    return requestContext;
+  }
+  /**
      * Lists all authenticators
      * List all Authenticators
      */
@@ -382,6 +408,34 @@ class AuthenticatorApiResponseProcessor {
     // Work around for missing responses in specification, e.g. for petstore.yaml
     if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
       const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Authenticator', '');
+      return body;
+    }
+    throw new exception_1.ApiException(response.httpStatusCode, 'Unknown API Status Code!', await response.getBodyAsAny(), response.headers);
+  }
+  /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
+     * @params response Response returned by the server for a request to getWellKnownAppAuthenticatorConfiguration
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+  async getWellKnownAppAuthenticatorConfiguration(response) {
+    const contentType = ObjectSerializer_1.ObjectSerializer.normalizeMediaType(response.headers['content-type']);
+    if ((0, util_1.isCodeInRange)('200', response.httpStatusCode)) {
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Array<WellKnownAppAuthenticatorConfiguration>', '');
+      return body;
+    }
+    if ((0, util_1.isCodeInRange)('400', response.httpStatusCode)) {
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      throw new exception_1.ApiException(400, 'Bad Request', body, response.headers);
+    }
+    if ((0, util_1.isCodeInRange)('429', response.httpStatusCode)) {
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Error', '');
+      throw new exception_1.ApiException(429, 'Too Many Requests', body, response.headers);
+    }
+    // Work around for missing responses in specification, e.g. for petstore.yaml
+    if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
+      const body = ObjectSerializer_1.ObjectSerializer.deserialize(ObjectSerializer_1.ObjectSerializer.parse(await response.body.text(), contentType), 'Array<WellKnownAppAuthenticatorConfiguration>', '');
       return body;
     }
     throw new exception_1.ApiException(response.httpStatusCode, 'Unknown API Status Code!', await response.getBodyAsAny(), response.headers);
