@@ -10,7 +10,6 @@ import {
 import getMockAuthorizationServer = require('./mocks/authorization-server');
 import mockScope = require('./mocks/scope.json');
 import faker = require('@faker-js/faker');
-import utils = require('../utils');
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 

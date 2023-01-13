@@ -1,4 +1,5 @@
 {
+  "ignorePatterns": ["jsdocs/**/*.js"],
   "parserOptions": {
     "ecmaVersion": 2020
   },

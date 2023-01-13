@@ -43,15 +43,15 @@ describe('User idp API', () => {
   describe('List Linked IdPs for User', () => {
     beforeEach(async () => {
       await client.identityProviderApi.linkUserToIdentityProvider({
-        idpId: idp.id, 
-        userId: user.id, 
+        idpId: idp.id,
+        userId: user.id,
         userIdentityProviderLinkRequest: { externalId: 'externalId' }
       });
     });
 
     afterEach(async () => {
       await client.identityProviderApi.unlinkUserFromIdentityProvider({
-        idpId: idp.id, 
+        idpId: idp.id,
         userId: user.id
       });
     });

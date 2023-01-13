@@ -8,7 +8,6 @@ import {
   EmailCustomization,
   Client
 } from '@okta/okta-sdk-nodejs';
-import utils = require('../utils');
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -56,7 +55,7 @@ describe('Email Template API', () => {
   it('can get template', async () => {
     const { value } = await (await client.customizationApi.listEmailTemplates({brandId})).next();
     const template = await client.customizationApi.getEmailTemplate({
-      brandId, 
+      brandId,
       templateName: value.name
     });
     expect(template.name).to.equal(value.name);
@@ -64,7 +63,7 @@ describe('Email Template API', () => {
 
   it('can get email template default content', async () => {
     const res = await client.customizationApi.getEmailDefaultContent({
-      brandId, 
+      brandId,
       templateName: template.name
     });
     expect(res).to.be.instanceOf(EmailDefaultContent);
@@ -72,7 +71,7 @@ describe('Email Template API', () => {
 
   it('can get email template default content preview', async () => {
     const res = await client.customizationApi.getEmailDefaultPreview({
-      brandId, 
+      brandId,
       templateName: template.name
     });
     expect(res).to.be.instanceOf(EmailPreview);
@@ -80,8 +79,8 @@ describe('Email Template API', () => {
 
   it('can send test email', async () => {
     const res = await client.customizationApi.sendTestEmail({
-      brandId, 
-      templateName: template.name, 
+      brandId,
+      templateName: template.name,
       language: 'eng'
     });
     expect(res).to.be.undefined;
@@ -99,8 +98,8 @@ describe('Email Template API', () => {
       };
       // create
       const customization = await client.customizationApi.createEmailCustomization({
-        brandId, 
-        templateName, 
+        brandId,
+        templateName,
         instance: customizationRequest
       });
       expect(customization.subject).to.equal('fake subject');
@@ -115,7 +114,7 @@ describe('Email Template API', () => {
 
       // get
       const newCustomization = await client.customizationApi.getEmailCustomization({
-        brandId, 
+        brandId,
         templateName,
         customizationId: customization.id
       });
@@ -123,7 +122,7 @@ describe('Email Template API', () => {
 
       // get preview
       const preview = await client.customizationApi.getCustomizationPreview({
-        brandId, 
+        brandId,
         templateName,
         customizationId: customization.id
       });
@@ -131,7 +130,7 @@ describe('Email Template API', () => {
 
       // update
       const updatedCustomization = await client.customizationApi.replaceEmailCustomization({
-        brandId, 
+        brandId,
         templateName,
         customizationId: customization.id,
         instance: {
@@ -145,8 +144,8 @@ describe('Email Template API', () => {
 
       // delete
       const nonDefaultTemplate = await client.customizationApi.createEmailCustomization({
-        brandId, 
-        templateName, 
+        brandId,
+        templateName,
         instance: {
           subject: 'fake subject - es',
           language: 'es',
@@ -154,7 +153,7 @@ describe('Email Template API', () => {
         }
       });
       const res = await client.customizationApi.deleteEmailCustomization({
-        brandId, 
+        brandId,
         templateName,
         customizationId: nonDefaultTemplate.id
       });

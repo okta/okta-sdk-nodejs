@@ -46,13 +46,13 @@ describe('Application API: applicaton features', () => {
 
   xit('updates application feature', async () => {
     let feature = await client.applicationApi.updateFeatureForApplication({appId: application.id, name: 'USER_PROVISIONING',
-    CapabilitiesObject: {
-      update: {
-        lifecycleDeactivate: {
-          status: 'DISABLED'
+      CapabilitiesObject: {
+        update: {
+          lifecycleDeactivate: {
+            status: 'DISABLED'
+          }
         }
       }
-    }
     });
     expect(feature.capabilities.update.lifecycleDeactivate.status).to.equal('DISABLED');
     feature = await client.applicationApi.updateFeatureForApplication({appId: application.id, name: 'USER_PROVISIONING',

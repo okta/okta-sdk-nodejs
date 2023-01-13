@@ -162,8 +162,8 @@ describe('Idp credential API', () => {
         const n = utils.csrToN(csr);
 
         const key = await client.identityProviderApi.publishCsrForIdentityProvider({
-          idpId: idp.id, 
-          csrId: csr.id, 
+          idpId: idp.id,
+          csrId: csr.id,
           body: Buffer.from(b64)
         });
         expect(key).to.be.instanceOf(JsonWebKey);
@@ -184,8 +184,8 @@ describe('Idp credential API', () => {
         const n = utils.csrToN(csr);
 
         const key = await client.identityProviderApi.publishCsrForIdentityProvider({
-          idpId: idp.id, 
-          csrId: csr.id, 
+          idpId: idp.id,
+          csrId: csr.id,
           body: Buffer.from(pem)
         });
         expect(key).to.be.instanceOf(JsonWebKey);
@@ -206,8 +206,8 @@ describe('Idp credential API', () => {
         const n = utils.csrToN(csr);
 
         const key = await client.identityProviderApi.publishCsrForIdentityProvider({
-          idpId: idp.id, 
-          csrId: csr.id, 
+          idpId: idp.id,
+          csrId: csr.id,
           body: Buffer.from(der)
         });
         expect(key).to.be.instanceOf(JsonWebKey);

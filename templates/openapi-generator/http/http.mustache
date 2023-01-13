@@ -308,12 +308,13 @@ export class ResponseContext {
 
     public async getBodyAsFile(): Promise<HttpFile> {
         const data = await this.body.binary();
+        const fileName = this.getParsedHeader('content-disposition')['filename'] || '';
         {{#platforms}}
         {{#node}}
-        return Readable.from(data);
+        data.name = fileName;
+        return data;
         {{/node}}
         {{^node}}
-        const fileName = this.getParsedHeader('content-disposition')['filename'] || '';
         const contentType = this.headers['content-type'] || '';
         try {
             return new File([data], fileName, { type: contentType });

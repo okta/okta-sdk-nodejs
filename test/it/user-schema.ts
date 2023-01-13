@@ -50,7 +50,7 @@ describe('User Schema API', () => {
     });
     expect(Object.keys(userSchema.definitions.custom.properties)).to.be.an('array').that.is.empty;
     const updatedSchema = await client.schemaApi.updateUserProfile({
-      schemaId, 
+      schemaId,
       userSchema: getMockSchemaProperty()
     });
     expect(Object.keys(updatedSchema.definitions.custom.properties)).to.be.an('array').that.contains('twitterUserName');
@@ -59,13 +59,13 @@ describe('User Schema API', () => {
   it('updates custom user type UserSchema property', async () => {
     const mockSchemaProperty = getMockSchemaProperty();
     let updatedSchema = await client.schemaApi.updateUserProfile({
-      schemaId, 
+      schemaId,
       userSchema: mockSchemaProperty
     });
     let customProperty = updatedSchema.definitions.custom.properties.twitterUserName as Record<string, string>;
     expect(customProperty.title).to.equal('Twitter username');
     updatedSchema = await client.schemaApi.updateUserProfile({
-      schemaId, 
+      schemaId,
       userSchema: {
         ...mockSchemaProperty,
         definitions: {
@@ -88,12 +88,12 @@ describe('User Schema API', () => {
   it('removes custom user type UserSchema property', async () => {
     const mockSchemaProperty = getMockSchemaProperty();
     let updatedSchema = await client.schemaApi.updateUserProfile({
-      schemaId, 
+      schemaId,
       userSchema: mockSchemaProperty
     });
     expect(Object.keys(updatedSchema.definitions.custom.properties)).to.contain('twitterUserName');
     updatedSchema = await client.schemaApi.updateUserProfile({
-      schemaId, 
+      schemaId,
       userSchema: {
         ...mockSchemaProperty,
         definitions: {

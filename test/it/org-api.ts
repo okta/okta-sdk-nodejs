@@ -64,14 +64,14 @@ describe('Org API', () => {
       });
 
       const updatedOrgContactUser = await client.orgSettingApi.replaceOrgContactUser({
-        contactType, 
+        contactType,
         orgContactUser: {
           userId: createdUser.id
         }
       });
       expect(updatedOrgContactUser.userId).to.equal(createdUser.id);
       await client.orgSettingApi.replaceOrgContactUser({
-        contactType, 
+        contactType,
         orgContactUser: {
           userId: defaultOrgContactUser.userId
         }

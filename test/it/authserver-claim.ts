@@ -7,11 +7,9 @@ import {
   OAuth2Claim,
   OAuth2Scope
 } from '@okta/okta-sdk-nodejs';
-import type { GeneratedApiClient as V2Client } from '../../src/types/generated-client';
 import getMockAuthorizationServer = require('./mocks/authorization-server');
 import mockScope = require('./mocks/scope.json');
 import mockClaim = require('./mocks/claim.json');
-import utils = require('../utils');
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 

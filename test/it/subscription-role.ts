@@ -1,7 +1,6 @@
 import { expect } from 'chai';
 
 import { Client } from '@okta/okta-sdk-nodejs';
-import utils = require('../utils');
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -36,7 +35,7 @@ describe('Subscription API', () => {
 
   it('provides methods for subscribing/unsubscribing to/from notification subscribtion for given user role and notfication type', async () => {
     let response = await client.subscriptionApi.unsubscribeRoleSubscriptionByNotificationType({
-      roleTypeOrRoleId: 'ORG_ADMIN', 
+      roleTypeOrRoleId: 'ORG_ADMIN',
       notificationType: 'OKTA_UPDATE'
     });
     expect(response).to.be.undefined;
@@ -46,7 +45,7 @@ describe('Subscription API', () => {
     });
     expect(subscription.status).to.equal('unsubscribed');
     response = await client.subscriptionApi.subscribeRoleSubscriptionByNotificationType({
-      roleTypeOrRoleId: 'ORG_ADMIN', 
+      roleTypeOrRoleId: 'ORG_ADMIN',
       notificationType: 'OKTA_UPDATE'
     });
     expect(response).to.be.undefined;

@@ -9,7 +9,6 @@ import {
 } from '@okta/okta-sdk-nodejs';
 import getMockTrustedOrigin = require('./mocks/trusted-origin');
 import faker = require('@faker-js/faker');
-import utils = require('../utils');
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -203,7 +202,7 @@ describe('Trusted Origin API', () => {
       const mockName = 'Mock update trusted origin';
       trustedOrigin.name = mockName;
       const updatedTrustedOrigin = await client.trustedOriginApi.replaceTrustedOrigin({
-        trustedOriginId: trustedOrigin.id, 
+        trustedOriginId: trustedOrigin.id,
         trustedOrigin
       });
       expect(updatedTrustedOrigin.id).to.equal(trustedOrigin.id);
@@ -214,7 +213,7 @@ describe('Trusted Origin API', () => {
       const mockOrigin = 'https://example.com/';
       trustedOrigin.origin = mockOrigin;
       const updatedTrustedOrigin = await client.trustedOriginApi.replaceTrustedOrigin({
-        trustedOriginId: trustedOrigin.id, 
+        trustedOriginId: trustedOrigin.id,
         trustedOrigin
       });
       expect(updatedTrustedOrigin.id).to.equal(trustedOrigin.id);
@@ -229,7 +228,7 @@ describe('Trusted Origin API', () => {
       ] as Array<TrustedOriginScope>;
       trustedOrigin.scopes = mockScopes;
       const updatedTrustedOrigin = await client.trustedOriginApi.replaceTrustedOrigin({
-        trustedOriginId: trustedOrigin.id, 
+        trustedOriginId: trustedOrigin.id,
         trustedOrigin
       });
       expect(updatedTrustedOrigin.id).to.equal(trustedOrigin.id);

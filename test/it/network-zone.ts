@@ -6,7 +6,6 @@ import {
   Client
 } from '@okta/okta-sdk-nodejs';
 import faker = require('@faker-js/faker');
-import utils = require('../utils');
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 if (process.env.OKTA_USE_MOCK) {
@@ -93,7 +92,7 @@ describe('Network Zone CRUD', () => {
   it('updates network zone', async () => {
     networkZone.name = 'updated network zone';
     const updatedNetworkZone = await client.networkZoneApi.replaceNetworkZone({
-      zoneId: networkZone.id, 
+      zoneId: networkZone.id,
       zone: networkZone
     });
     expect(updatedNetworkZone.name).to.equal('updated network zone');

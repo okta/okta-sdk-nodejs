@@ -85,11 +85,11 @@ describe('User API tests', () => {
       }
     };
     await client.userFactorApi.enrollFactor({
-      userId: createdUser.id, 
+      userId: createdUser.id,
       body: callFactor
     });
     await client.userFactorApi.enrollFactor({
-      userId: createdUser.id, 
+      userId: createdUser.id,
       body: securityQuestionFactor
     });
     const collection = await client.userFactorApi.listFactors({

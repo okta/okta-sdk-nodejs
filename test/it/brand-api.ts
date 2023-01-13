@@ -57,7 +57,7 @@ describe('Brand API', () => {
       await client.customizationApi.replaceBrandTheme({brandId: brand.id, themeId: theme.id,
         theme: {
           ...themeOptions,
-          primaryColorHex: newColorValue
+          primaryColorHex: originalColorValue
         }
       });
     });

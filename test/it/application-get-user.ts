@@ -36,7 +36,7 @@ describe('Application.getApplicationUser()', () => {
       await utils.removeAppByLabel(client, application.label);
       await utils.cleanup(client, user);
       createdApplication = await client.applicationApi.createApplication({application});
-      createdUser = await client.userApi.createUser({body: user})
+      createdUser = await client.userApi.createUser({body: user});
       createdAppUser = await client.applicationApi.assignUserToApplication({
         appId: createdApplication.id,
         appUser: {
@@ -44,7 +44,7 @@ describe('Application.getApplicationUser()', () => {
         }
       });
       const appUser = await client.applicationApi.getApplicationUser({
-        appId: createdApplication.id, 
+        appId: createdApplication.id,
         userId: createdAppUser.id
       });
       expect(appUser.id).to.equal(createdAppUser.id);

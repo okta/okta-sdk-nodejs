@@ -35,7 +35,7 @@ describe('User Role API Tests', () => {
     // 2. Assign USER_ADMIN role to the user
     const assignRoleRequest: AssignRoleRequest = { type: 'USER_ADMIN'  };
     const role = await client.roleAssignmentApi.assignRoleToUser({
-      userId: createdUser.id, 
+      userId: createdUser.id,
       assignRoleRequest
     });
 
@@ -46,7 +46,7 @@ describe('User Role API Tests', () => {
     // 4. Remove role for the user
     if (role) {
       await client.roleAssignmentApi.unassignRoleFromUser({
-        userId: createdUser.id, 
+        userId: createdUser.id,
         roleId: role.id
       });
     }

@@ -106,7 +106,7 @@ describe('User linked object API', () => {
 
     it('should return 204 after deleting linked object', async () => {
       const res = await client.userApi.deleteLinkedObjectForUser({
-        userId: associateUser.id, 
+        userId: associateUser.id,
         relationshipName: linkedObject.primary.name
       });
       expect(res).to.be.undefined;

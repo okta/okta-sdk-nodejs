@@ -42,7 +42,7 @@ describe('User API Tests', () => {
     };
 
     const response = await client.userApi.changeRecoveryQuestion({
-      userId: createdUser.id, 
+      userId: createdUser.id,
       userCredentials
     });
     expect(response.provider.type).to.equal('OKTA');
@@ -57,7 +57,7 @@ describe('User API Tests', () => {
     // Need to wait 1 second here as that is the minimum time resolution of the 'passwordChanged' field
     await utils.delay(1000);
     await client.userApi.forgotPasswordSetNewPassword({
-      userId: createdUser.id, 
+      userId: createdUser.id,
       userCredentials
     });
 

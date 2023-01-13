@@ -1,7 +1,6 @@
 import { expect } from 'chai';
 import getMockGroup = require('./mocks/group');
 import getMockOktaSignOnPolicy = require('./mocks/okta-sign-on-policy');
-import utils = require('../utils');
 import { Client, DefaultRequestExecutor, Policy, Group, AccessPolicy } from '@okta/okta-sdk-nodejs';
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;

@@ -6,7 +6,6 @@ import {
   Client,
   DefaultRequestExecutor,
   AssignRoleRequest,
-  User,
   CreateUserRequest,
   Group
 } from '@okta/okta-sdk-nodejs';
@@ -49,7 +48,7 @@ describe('User Role API Tests', () => {
     // 2. Assign USER_ADMIN role to the user
     const assignRoleRequest: AssignRoleRequest = { type: 'USER_ADMIN'  };
     const role = await client.roleAssignmentApi.assignRoleToUser({
-      userId: createdUser.id, 
+      userId: createdUser.id,
       assignRoleRequest
     });
 

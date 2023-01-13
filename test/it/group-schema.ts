@@ -3,7 +3,6 @@ import faker = require('@faker-js/faker');
 import { expect } from 'chai';
 
 import { Client } from '@okta/okta-sdk-nodejs';
-import utils = require('../utils');
 
 const client = new Client({
   orgUrl: process.env.OKTA_CLIENT_ORGURL,

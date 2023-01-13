@@ -5,7 +5,7 @@ import {
 import { expect } from 'chai';
 import utils = require('../utils');
 
-let orgUrl = process.env.OKTA_CLIENT_ORGURL;
+const orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
 const client = new Client({
   scopes: ['okta.clients.manage', 'okta.logs.read'],
@@ -37,7 +37,7 @@ describe('Domains API', () => {
       });
       expect(createdDomain.dnsRecords.length).to.be.greaterThanOrEqual(1);
 
-      const domainsList = await client.customDomainApi.listCustomDomains()
+      const domainsList = await client.customDomainApi.listCustomDomains();
       expect(domainsList.domains.length).to.equal(1);
 
       const fetchedDomain = await client.customDomainApi.getCustomDomain({

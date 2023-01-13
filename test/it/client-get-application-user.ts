@@ -44,7 +44,7 @@ describe('client.getApplicationUser()', () => {
       createdApplication = await client.applicationApi.createApplication({application});
       createdUser = await client.userApi.createUser({body: user});
       createdAppUser = await client.applicationApi.assignUserToApplication({
-        appId: createdApplication.id, 
+        appId: createdApplication.id,
         appUser: {
           id: createdUser.id
         }

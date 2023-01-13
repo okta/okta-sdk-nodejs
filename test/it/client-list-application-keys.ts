@@ -35,7 +35,7 @@ describe('client.listApplicationKeys()', () => {
     try {
       await utils.removeAppByLabel(client, application.label);
       createdApplication = await client.applicationApi.createApplication({application});
-      const applicationKeys = await client.applicationApi.listApplicationKeys({appId: createdApplication.id})
+      const applicationKeys = await client.applicationApi.listApplicationKeys({appId: createdApplication.id});
       await applicationKeys.each(key => {
         expect(key).to.be.instanceof(JsonWebKey);
       });

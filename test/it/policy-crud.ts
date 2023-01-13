@@ -7,7 +7,6 @@ import {
   AccessPolicy,
   Group
 } from '@okta/okta-sdk-nodejs';
-import utils = require('../utils');
 import getMockGroup = require('./mocks/group');
 import getMockOktaSignOnPolicy = require('./mocks/okta-sign-on-policy');
 

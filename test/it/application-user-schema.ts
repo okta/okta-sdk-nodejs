@@ -49,7 +49,7 @@ describe('App User Schema', () => {
     });
     expect(Object.keys(userSchema.definitions.custom.properties)).to.be.an('array').that.is.empty;
     const updatedSchema = await client.schemaApi.updateApplicationUserProfile({
-      appInstanceId: createdApplication.id, 
+      appInstanceId: createdApplication.id,
       body: getMockSchemaProperty()
     });
     expect(Object.keys(updatedSchema.definitions.custom.properties)).to.be.an('array').that.contains('twitterUserName');
@@ -58,13 +58,13 @@ describe('App User Schema', () => {
   it('updates application\'s UserSchema', async () => {
     const mockSchemaProperty: UserSchema = getMockSchemaProperty();
     let updatedSchema = await client.schemaApi.updateApplicationUserProfile({
-      appInstanceId: createdApplication.id, 
+      appInstanceId: createdApplication.id,
       body: mockSchemaProperty
     });
     let customProperty = updatedSchema.definitions.custom.properties.twitterUserName as Record<string, string>;
     expect(customProperty.title).to.equal('Twitter username');
     updatedSchema = await client.schemaApi.updateApplicationUserProfile({
-      appInstanceId: createdApplication.id, 
+      appInstanceId: createdApplication.id,
       body: {
         ...mockSchemaProperty,
         definitions: {
@@ -87,7 +87,7 @@ describe('App User Schema', () => {
   it('removes custom user type UserSchema property', async () => {
     const mockSchemaProperty = getMockSchemaProperty();
     let updatedSchema = await client.schemaApi.updateApplicationUserProfile({
-      appInstanceId: createdApplication.id, 
+      appInstanceId: createdApplication.id,
       body: mockSchemaProperty
     });
     expect(Object.keys(updatedSchema.definitions.custom.properties)).to.contain('twitterUserName');

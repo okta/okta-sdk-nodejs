@@ -8,7 +8,6 @@ import {
 } from '@okta/okta-sdk-nodejs';
 import faker = require('@faker-js/faker');
 import getMockInlineHook = require('./mocks/inlinehook');
-import utils = require('../utils');
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 

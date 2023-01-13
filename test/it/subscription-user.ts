@@ -1,7 +1,6 @@
 import { expect } from 'chai';
 
 import { Subscription, Client, User } from '@okta/okta-sdk-nodejs';
-import utils = require('../utils');
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 const orgUser = process.env.ORG_USER;
@@ -42,27 +41,27 @@ describe('Subscription API', () => {
       notificationType: 'OKTA_ISSUE',
     });
     expect(subscription.notificationType).to.equal('OKTA_ISSUE');
-  }); 
+  });
 
   it('provides methods for subscribing/unsubscribing to/from notification subscribtion for given user role and notfication type', async () => {
     let response = await client.subscriptionApi.unsubscribeUserSubscriptionByNotificationType({
-      userId: user.id, 
+      userId: user.id,
       notificationType: 'OKTA_ISSUE'
     });
     expect(response).to.be.undefined;
     let subscription = await client.subscriptionApi.listUserSubscriptionsByNotificationType({
-      userId: user.id, 
+      userId: user.id,
       notificationType: 'OKTA_ISSUE'
     });
     expect(subscription.status).to.equal('unsubscribed');
 
     response = await client.subscriptionApi.subscribeUserSubscriptionByNotificationType({
-      userId: user.id, 
+      userId: user.id,
       notificationType: 'OKTA_ISSUE'
     });
     expect(response).to.be.undefined;
     subscription = await client.subscriptionApi.listUserSubscriptionsByNotificationType({
-      userId: user.id, 
+      userId: user.id,
       notificationType: 'OKTA_ISSUE'
     });
     expect(subscription.status).to.equal('subscribed');

@@ -1,6 +1,5 @@
 import { expect } from 'chai';
 import getMockGenericOidcIdp = require('./mocks/generic-oidc-idp');
-import utils = require('../utils');
 import { Client, IdentityProvider, DefaultRequestExecutor } from '@okta/okta-sdk-nodejs';
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;

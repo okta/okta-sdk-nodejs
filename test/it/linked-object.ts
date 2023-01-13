@@ -6,7 +6,6 @@ import {
   LinkedObject,
 } from '@okta/okta-sdk-nodejs';
 import getMockLinkedObject = require('./mocks/linked-object');
-import utils = require('../utils');
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -53,7 +52,7 @@ describe('Linked Object API', () => {
       });
 
       it('should return LinkedObject by associated name', async () => {
-        linkedObjectFromGet = await client.linkedObjectApi.getLinkedObjectDefinition({linkedObjectName: linkedObject.associated.name})
+        linkedObjectFromGet = await client.linkedObjectApi.getLinkedObjectDefinition({linkedObjectName: linkedObject.associated.name});
         expect(linkedObjectFromGet).to.be.instanceOf(LinkedObject);
         expect(linkedObjectFromGet.associated.name).to.equal(linkedObject.associated.name);
       });

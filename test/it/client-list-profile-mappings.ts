@@ -4,7 +4,6 @@ import {
   DefaultRequestExecutor,
   ProfileMapping,
 } from '@okta/okta-sdk-nodejs';
-import utils = require('../utils');
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 

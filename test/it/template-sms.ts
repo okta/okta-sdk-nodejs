@@ -6,7 +6,6 @@ import {
   Client
 } from '@okta/okta-sdk-nodejs';
 import getGeneralFakeTemplateObj = require('./mocks/template-sms');
-import utils = require('../utils');
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -49,10 +48,12 @@ describe('SmsTemplate API', () => {
     });
 
     it('should return a collection of templates by templateType', async () => {
+      /* eslint-disable @typescript-eslint/no-explicit-any */
       (fakeTemplateObj as any).type = 'fake_type';
       const fakeTemplateInstance = await client.templateApi.createSmsTemplate({
         smsTemplate: fakeTemplateObj
       });
+      /* eslint-disable @typescript-eslint/no-explicit-any */
       const collection = await client.templateApi.listSmsTemplates({
         templateType: 'fake_type'
       } as any);
@@ -151,7 +152,7 @@ describe('SmsTemplate API', () => {
 
     it('should update template name property', async () => {
       const updatedTemplate = await client.templateApi.updateSmsTemplate({
-        templateId: template.id, 
+        templateId: template.id,
         smsTemplate: { name: 'fake updated name' }
       });
       expect(updatedTemplate).to.be.instanceOf(SmsTemplate);

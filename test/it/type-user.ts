@@ -7,7 +7,6 @@ import {
   Client
 } from '@okta/okta-sdk-nodejs';
 import getMockUserType = require('./mocks/user-type');
-import utils = require('../utils');
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -114,7 +113,7 @@ describe('User Type API', async () => {
       userType.displayName = faker.random.word();
       // const updatedUserType = await userType.update();
       const updatedUserType = await client.userTypeApi.updateUserType({
-        typeId: userType.id, 
+        typeId: userType.id,
         userType
       });
       expect(updatedUserType.id).to.equal(userType.id);
@@ -124,7 +123,7 @@ describe('User Type API', async () => {
     it('should replace userType with a new resource', async () => {
       mockType.displayName = faker.random.word();
       const replacedUserType = await client.userTypeApi.replaceUserType({
-        typeId: userType.id, 
+        typeId: userType.id,
         userType: mockType
       });
       expect(replacedUserType.id).to.be.equal(userType.id);

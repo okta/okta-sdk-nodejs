@@ -12,7 +12,6 @@ import {
 import getMockGroup = require('./mocks/group');
 import getMockOktaSignOnPolicy = require('./mocks/okta-sign-on-policy');
 import getMockRule = require('./mocks/policy-deny-rule');
-import utils = require('../utils');
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -48,13 +47,13 @@ describe('Policy Rule API', () => {
       let rule: PolicyRule;
       beforeEach(async () => {
         rule = await client.policyApi.createPolicyRule({
-          policyId: policy.id, 
+          policyId: policy.id,
           policyRule: getMockRule()
         });
       });
       afterEach(async () => {
         await client.policyApi.deletePolicyRule({
-          policyId: policy.id, 
+          policyId: policy.id,
           ruleId: rule.id
         });
       });
@@ -75,7 +74,7 @@ describe('Policy Rule API', () => {
       let rule: PolicyRule;
       afterEach(async () => {
         await client.policyApi.deletePolicyRule({
-          policyId: policy.id, 
+          policyId: policy.id,
           ruleId: rule.id
         });
       });
@@ -83,7 +82,7 @@ describe('Policy Rule API', () => {
       it('should return instance of PolicyRule', async () => {
         const mockRule: PolicyRule = getMockRule();
         rule = await client.policyApi.createPolicyRule({
-          policyId: policy.id, 
+          policyId: policy.id,
           policyRule: mockRule
         });
         expect(rule).to.be.instanceOf(PolicyRule);
@@ -96,20 +95,20 @@ describe('Policy Rule API', () => {
       let rule: PolicyRule;
       beforeEach(async () => {
         rule = await client.policyApi.createPolicyRule({
-          policyId: policy.id, 
+          policyId: policy.id,
           policyRule: getMockRule()
         });
       });
       afterEach(async () => {
         await client.policyApi.deletePolicyRule({
-          policyId: policy.id, 
+          policyId: policy.id,
           ruleId: rule.id
         });
       });
 
       it('should get PolicyRule by id', async () => {
         const ruleFromGet: OktaSignOnPolicyRule = await client.policyApi.getPolicyRule({
-          policyId: policy.id, 
+          policyId: policy.id,
           ruleId: rule.id
         });
         expect(ruleFromGet).to.be.instanceOf(PolicyRule);
@@ -121,13 +120,13 @@ describe('Policy Rule API', () => {
       let rule: PolicyRule;
       beforeEach(async () => {
         rule = await client.policyApi.createPolicyRule({
-          policyId: policy.id, 
+          policyId: policy.id,
           policyRule: getMockRule()
         });
       });
       afterEach(async () => {
         await client.policyApi.deletePolicyRule({
-          policyId: policy.id, 
+          policyId: policy.id,
           ruleId: rule.id
         });
       });
@@ -136,8 +135,8 @@ describe('Policy Rule API', () => {
         const mockName = 'Mock update policy rule';
         rule.name = mockName;
         const updatedPolicyRule = await client.policyApi.replacePolicyRule({
-          policyId: policy.id, 
-          ruleId: rule.id, 
+          policyId: policy.id,
+          ruleId: rule.id,
           policyRule: rule
         });
         expect(updatedPolicyRule.id).to.equal(rule.id);
@@ -149,19 +148,19 @@ describe('Policy Rule API', () => {
       let rule: PolicyRule;
       beforeEach(async () => {
         rule = await client.policyApi.createPolicyRule({
-          policyId: policy.id, 
+          policyId: policy.id,
           policyRule: getMockRule()
         });
       });
 
       it('should not get rule after deletion', async () => {
         await client.policyApi.deletePolicyRule({
-          policyId: policy.id, 
+          policyId: policy.id,
           ruleId: rule.id
         });
         try {
           await client.policyApi.getPolicyRule({
-            policyId: policy.id, 
+            policyId: policy.id,
             ruleId: rule.id
           });
         } catch (e) {
@@ -175,20 +174,20 @@ describe('Policy Rule API', () => {
     let rule: PolicyRule;
     beforeEach(async () => {
       rule = await client.policyApi.createPolicyRule({
-        policyId: policy.id, 
+        policyId: policy.id,
         policyRule: getMockRule()
       });
     });
     afterEach(async () => {
       await client.policyApi.deletePolicyRule({
-        policyId: policy.id, 
+        policyId: policy.id,
         ruleId: rule.id
       });
     });
 
     it('should activate rule', async () => {
       const response = await client.policyApi.activatePolicyRule({
-        policyId: policy.id, 
+        policyId: policy.id,
         ruleId: rule.id
       });
       expect(response).to.be.undefined;
@@ -196,7 +195,7 @@ describe('Policy Rule API', () => {
 
     it('should deactive rule', async () => {
       const response = await client.policyApi.deactivatePolicyRule({
-        policyId: policy.id, 
+        policyId: policy.id,
         ruleId: rule.id
       });
       expect(response).to.be.undefined;

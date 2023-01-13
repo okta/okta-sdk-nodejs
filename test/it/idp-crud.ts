@@ -9,7 +9,6 @@ import {
 import getMockGenericOidcIdp = require('./mocks/generic-oidc-idp');
 import getMockFacebookIdp = require('./mocks/facebook-idp.js');
 import getMockGoogleIdp = require('./mocks/google-idp.js');
-import utils = require('../utils');
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 

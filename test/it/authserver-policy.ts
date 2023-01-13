@@ -13,7 +13,6 @@ import {
 import getMockAuthorizationServer = require('./mocks/authorization-server');
 import getMockPolicy = require('./mocks/policy-oauth-authorization');
 import getMockPolicyRule = require('./mocks/authz-server-policy-rule');
-import utils = require('../utils');
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 

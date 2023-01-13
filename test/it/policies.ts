@@ -191,7 +191,7 @@ describe('Policy Scenarios', () => {
     createdPolicy.name = `node-sdk: Updated ${faker.random.word()}`.substring(0, 49);
 
     await client.policyApi.replacePolicy({
-      policyId: createdPolicy.id, 
+      policyId: createdPolicy.id,
       policy: createdPolicy
     });
 
@@ -251,7 +251,7 @@ describe('Policy Scenarios', () => {
     };
 
     const createdPolicyRule: OktaSignOnPolicyRule = await client.policyApi.createPolicyRule({
-      policyId: createdPolicy.id, 
+      policyId: createdPolicy.id,
       policyRule
     });
 

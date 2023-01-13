@@ -1,6 +1,5 @@
 const okta = require('../');
 const utils = require('./utils');
-import { Client, DefaultRequestExecutor } from '@okta/okta-sdk-nodejs';
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -8,11 +7,11 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/application-get-user`;
 }
 
-const client = new Client({
+const client = new okta.Client({
   scopes: ['okta.apps.manage', 'okta.users.manage'],
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
-  requestExecutor: new DefaultRequestExecutor()
+  requestExecutor: new okta.DefaultRequestExecutor()
 });
 
 async function cleanInlineHooks() {

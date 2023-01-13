@@ -1,7 +1,6 @@
 import { expect } from 'chai';
 import * as okta from '@okta/okta-sdk-nodejs';
 import getMockInlineHook = require('./mocks/inlinehook');
-import utils = require('../utils');
 import { Client } from '@okta/okta-sdk-nodejs';
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
