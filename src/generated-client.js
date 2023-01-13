@@ -3032,7 +3032,7 @@ class GeneratedApiClient {
     if (queryParameters) {
       params.expand = queryParameters.expand;
     }
-    return this.groupApi.listGroupAssignedRoles(params);
+    return this.roleAssignmentApi.listGroupAssignedRoles(params);
   }
 
   /**
@@ -3058,7 +3058,7 @@ class GeneratedApiClient {
     if (queryParameters) {
       params.disableNotifications = queryParameters.disableNotifications;
     }
-    return this.groupApi.assignRoleToGroup(params);
+    return this.roleAssignmentApi.assignRoleToGroup(params);
   }
 
   /**
@@ -3078,7 +3078,7 @@ class GeneratedApiClient {
     const params = {};
     params.groupId = groupId;
     params.roleId = roleId;
-    return this.groupApi.removeRoleFromGroup(params);
+    return this.roleAssignmentApi.unassignRoleFromGroup(params);
   }
 
   /**
@@ -3127,7 +3127,7 @@ class GeneratedApiClient {
       params.after = queryParameters.after;
       params.limit = queryParameters.limit;
     }
-    return this.groupApi.listApplicationTargetsForApplicationAdministratorRoleForGroup(params);
+    return this.roleTargetApi.listApplicationTargetsForApplicationAdministratorRoleForGroup(params);
   }
 
   /**
@@ -4969,7 +4969,7 @@ class GeneratedApiClient {
     const params = {};
     params.roleTypeOrRoleId = roleTypeOrRoleId;
     params.notificationType = notificationType;
-    return this.subscriptionApi.getRoleSubscriptionByNotificationType(params);
+    return this.subscriptionApi.listRoleSubscriptionsByNotificationType(params);
   }
 
   /**
@@ -6353,7 +6353,7 @@ class GeneratedApiClient {
     if (queryParameters) {
       params.expand = queryParameters.expand;
     }
-    return this.userApi.listAssignedRolesForUser(params);
+    return this.roleAssignmentApi.listAssignedRolesForUser(params);
   }
 
   /**
@@ -6379,7 +6379,7 @@ class GeneratedApiClient {
     if (queryParameters) {
       params.disableNotifications = queryParameters.disableNotifications;
     }
-    return this.userApi.assignRoleToUser(params);
+    return this.roleAssignmentApi.assignRoleToUser(params);
   }
 
   /**
@@ -6399,7 +6399,7 @@ class GeneratedApiClient {
     const params = {};
     params.userId = userId;
     params.roleId = roleId;
-    return this.userApi.removeRoleFromUser(params);
+    return this.userApi.unassignRoleFromUser(params);
   }
 
   /**
@@ -6713,7 +6713,7 @@ class GeneratedApiClient {
     const params = {};
     params.userId = userId;
     params.notificationType = notificationType;
-    return this.subscriptionApi.getUserSubscriptionByNotificationType(params);
+    return this.subscriptionApi.listUserSubscriptionsByNotificationType(params);
   }
 
   /**

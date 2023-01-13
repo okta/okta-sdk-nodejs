@@ -381,8 +381,8 @@ const V3ApiOperations = {
     'updatePolicyRule'
   ],
   SubscriptionApi: [
-    'listRoleSubscriptionsByNotificationType',
-    'listUserSubscriptionsByNotificationType',
+    'getRoleSubscriptionByNotificationType',
+    'getUserSubscriptionByNotificationType',
     'listRoleSubscriptions',
     'listUserSubscriptions',
     'subscribeRoleSubscriptionByNotificationType',
@@ -394,11 +394,11 @@ const V3ApiOperations = {
     'listGroupAssignedRoles',
     'assignRoleToGroup',
     'getGroupAssignedRole',
-    'unassignRoleFromGroup',
+    'removeRoleFromGroup',
     'listAssignedRolesForUser',
     'assignRoleToUser',
     'getUserAssignedRole',
-    'unassignRoleFromUser',
+    'removeRoleFromUser',
   ],
   RoleTargetApi: [
     'listApplicationTargetsForApplicationAdministratorRoleForGroup',
@@ -483,6 +483,11 @@ function getV3ArgumentsOverride(argumentName, operationId) {
 
 function getV3MethodName(v2OperationId) {
   return {
+    removeRoleFromGroup: 'unassignRoleFromGroup',
+    removeRoleFromUser: 'unassignRoleFromUser',
+    getRoleSubscriptionByNotificationType: 'listRoleSubscriptionsByNotificationType',
+    getUserSubscriptionByNotificationType: 'listUserSubscriptionsByNotificationType',
+
     createEmailTemplateCustomization: 'createEmailCustomization',
     deleteEmailTemplateCustomizations: 'deleteAllCustomizations',
     deleteEmailTemplateCustomization: 'deleteEmailCustomization',
