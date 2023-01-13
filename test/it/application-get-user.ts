@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 
 import utils = require('../utils');
-import { Client, DefaultRequestExecutor } from '@okta/okta-sdk-nodejs';
+import { Client, DefaultRequestExecutor, User, AppUser, Application } from '@okta/okta-sdk-nodejs';
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -28,22 +28,26 @@ describe('Application.getApplicationUser()', () => {
       }
     };
 
-    let createdApplication;
-    let createdUser;
-    let createdAppUser;
+    let createdApplication: Application;
+    let createdUser: User;
+    let createdAppUser: AppUser;
 
     try {
       await utils.removeAppByLabel(client, application.label);
       await utils.cleanup(client, user);
       createdApplication = await client.applicationApi.createApplication({application});
       createdUser = await client.userApi.createUser({body: user})
-      createdAppUser = await client.applicationApi.assignUserToApplication({ appId: createdApplication.id,
-        appUser: createdUser
+      createdAppUser = await client.applicationApi.assignUserToApplication({
+        appId: createdApplication.id,
+        appUser: {
+          id: createdUser.id
+        }
       });
-      await client.applicationApi.getApplicationUser({appId: createdApplication.id, userId: createdAppUser.id})
-        .then(appUser => {
-          expect(appUser.id).to.equal(createdAppUser.id);
-        });
+      const appUser = await client.applicationApi.getApplicationUser({
+        appId: createdApplication.id, 
+        userId: createdAppUser.id
+      });
+      expect(appUser.id).to.equal(createdAppUser.id);
     } finally {
       if (createdApplication) {
         await client.applicationApi.deactivateApplication({appId: createdApplication.id});
@@ -53,7 +57,7 @@ describe('Application.getApplicationUser()', () => {
         await utils.cleanup(client, createdUser);
       }
       if (createdAppUser) {
-        await utils.cleanup(client, createdAppUser);
+        await utils.cleanup(client, createdAppUser as User);
       }
     }
   });

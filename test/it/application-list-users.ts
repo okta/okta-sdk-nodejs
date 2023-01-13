@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 
 import utils = require('../utils');
-import { Client, DefaultRequestExecutor } from '@okta/okta-sdk-nodejs';
+import { Application, Client, DefaultRequestExecutor, User, AppUser } from '@okta/okta-sdk-nodejs';
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -28,9 +28,9 @@ describe('Application.listUsers()', () => {
       }
     };
 
-    let createdApplication;
-    let createdUser;
-    let createdAppUser;
+    let createdApplication: Application;
+    let createdUser: User;
+    let createdAppUser: AppUser;
 
     try {
       await utils.removeAppByLabel(client, application.label);
@@ -39,7 +39,9 @@ describe('Application.listUsers()', () => {
       createdUser = await client.userApi.createUser({body: user});
       createdAppUser = await client.applicationApi.assignUserToApplication({
         appId: createdApplication.id, 
-        appUser: createdUser
+        appUser: {
+          id: createdUser.id
+        }
       });
       await(await client.applicationApi.listApplicationUsers({appId: createdApplication.id})).each(async (appUser) => {
         expect(appUser.id).to.equal(createdAppUser.id);
@@ -53,7 +55,7 @@ describe('Application.listUsers()', () => {
         await utils.cleanup(client, createdUser);
       }
       if (createdAppUser) {
-        await utils.cleanup(client, createdAppUser);
+        await utils.cleanup(client, createdAppUser as User);
       }
     }
   });

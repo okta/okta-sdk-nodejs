@@ -2,7 +2,7 @@ import { expect } from 'chai';
 import * as okta from '@okta/okta-sdk-nodejs';
 
 import utils = require('../utils');
-import { Client } from '@okta/okta-sdk-nodejs';
+import { Application, AppUser, Client, User } from '@okta/okta-sdk-nodejs';
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -30,9 +30,9 @@ xdescribe('client.deleteApplicationUser()', () => {
       }
     };
 
-    let createdApplication;
-    let createdUser;
-    let createdAppUser;
+    let createdApplication: Application;
+    let createdUser: User;
+    let createdAppUser: AppUser;
 
     try {
       await utils.removeAppByLabel(client, application.label);
@@ -41,7 +41,9 @@ xdescribe('client.deleteApplicationUser()', () => {
       createdUser = await client.userApi.createUser({body: user});
       createdAppUser = await client.applicationApi.assignUserToApplication({
         appId: createdApplication.id, 
-        appUser: createdUser
+        appUser: {
+          id: createdUser.id
+        }
       });
       const resp = await client.userApi.deleteUser({userId: createdAppUser.id});
       expect(resp).to.be.undefined;
@@ -54,7 +56,7 @@ xdescribe('client.deleteApplicationUser()', () => {
         await utils.cleanup(client, createdUser);
       }
       if (createdAppUser) {
-        await utils.cleanup(client, createdAppUser);
+        await utils.cleanup(client, createdAppUser as User);
       }
     }
   });

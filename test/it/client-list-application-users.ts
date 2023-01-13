@@ -2,9 +2,11 @@ import { expect } from 'chai';
 import { spy } from 'sinon';
 
 import {
+  Application,
   AppUser,
   Client,
   DefaultRequestExecutor,
+  User,
 } from '@okta/okta-sdk-nodejs';
 import utils = require('../utils');
 
@@ -33,9 +35,9 @@ describe('client.listApplicationUsers()', () => {
       }
     };
 
-    let createdApplication;
-    let createdUser;
-    let createdAppUser;
+    let createdApplication: Application;
+    let createdUser: User;
+    let createdAppUser: AppUser;
 
     try {
       await utils.removeAppByLabel(client, application.label);
@@ -44,7 +46,9 @@ describe('client.listApplicationUsers()', () => {
       createdUser = await client.userApi.createUser({body: user});
       createdAppUser = await client.applicationApi.assignUserToApplication({
         appId: createdApplication.id, 
-        appUser: createdUser
+        appUser: {
+          id: createdUser.id
+        }
       });
       await (await client.applicationApi.listApplicationUsers({appId: createdApplication.id})).each(async (appUser) => {
         expect(appUser).to.be.instanceof(AppUser);
@@ -60,7 +64,7 @@ describe('client.listApplicationUsers()', () => {
         await utils.cleanup(client, createdUser);
       }
       if (createdAppUser) {
-        await utils.cleanup(client, createdAppUser);
+        await utils.cleanup(client, createdAppUser as User);
       }
     }
   });
@@ -68,9 +72,9 @@ describe('client.listApplicationUsers()', () => {
 });
 
 describe('client.listApplicationUsers({ })', () => {
-  let app;
-  const users = [];
-  const appUsers = [];
+  let app: Application;
+  const users: User[] = [];
+  const appUsers: AppUser[] = [];
 
   const createUser = async (name) => {
     const newUser = {
@@ -99,7 +103,9 @@ describe('client.listApplicationUsers({ })', () => {
 
     for (const user of users.slice(1)) {
       const appUser = await client.applicationApi.assignUserToApplication({appId: app.id,
-        appUser: user
+        appUser: {
+          id: user.id
+        }
       });
       appUsers.push(appUser);
     }
@@ -114,8 +120,12 @@ describe('client.listApplicationUsers({ })', () => {
       await client.userApi.deleteUser({userId: appUser.id});
     }
 
-    await client.applicationApi.deactivateApplication(app.id);
-    await client.applicationApi.deleteApplication(app.id);
+    await client.applicationApi.deactivateApplication({
+      appId: app.id
+    });
+    await client.applicationApi.deleteApplication({
+      appId: app.id
+    });
 
     await utils.cleanup(client, users);
   });

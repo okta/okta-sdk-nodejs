@@ -1,9 +1,11 @@
 import { expect } from 'chai';
 
 import {
+  Application,
   AppUser,
   Client,
   DefaultRequestExecutor,
+  User,
 } from '@okta/okta-sdk-nodejs';
 import utils = require('../utils');
 
@@ -32,9 +34,9 @@ describe('client.getApplicationUser()', () => {
       }
     };
 
-    let createdApplication;
-    let createdUser;
-    let createdAppUser;
+    let createdApplication: Application;
+    let createdUser: User;
+    let createdAppUser: AppUser;
 
     try {
       await utils.removeAppByLabel(client, application.label);
@@ -43,7 +45,9 @@ describe('client.getApplicationUser()', () => {
       createdUser = await client.userApi.createUser({body: user});
       createdAppUser = await client.applicationApi.assignUserToApplication({
         appId: createdApplication.id, 
-        appUser: createdUser
+        appUser: {
+          id: createdUser.id
+        }
       });
       const fetchedAppUser = await client.applicationApi.getApplicationUser({appId: createdApplication.id, userId: createdAppUser.id});
       expect(fetchedAppUser).to.be.instanceof(AppUser);
@@ -59,7 +63,7 @@ describe('client.getApplicationUser()', () => {
         await utils.cleanup(client, createdUser);
       }
       if (createdAppUser) {
-        await utils.cleanup(client, createdAppUser);
+        await utils.cleanup(client, createdAppUser as User);
       }
     }
   });
