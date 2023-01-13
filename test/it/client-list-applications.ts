@@ -2,6 +2,7 @@ import { expect } from 'chai';
 import { spy } from 'sinon';
 import faker = require('@faker-js/faker');
 import {
+  Application,
   BasicAuthApplication,
   BookmarkApplication,
   Client,
@@ -92,7 +93,7 @@ describe('client.listApplications()', () => {
 });
 
 describe('client.listApplications({ })', () => {
-  const apps = [];
+  const apps: Application[] = [];
 
   before(async () => {
     const stagedApp = await createBookmarkApp();
@@ -110,8 +111,8 @@ describe('client.listApplications({ })', () => {
 
   after(async () => {
     for (const app of apps) {
-      await client.applicationApi.deactivateApplication(app.id);
-      await client.applicationApi.deleteApplication(app.id);
+      await client.applicationApi.deactivateApplication({appId: app.id});
+      await client.applicationApi.deleteApplication({appId: app.id});
     }
   });
 

@@ -50,6 +50,8 @@ const {
   PrincipalRateLimitApi,
   PushProviderApi,
   DeviceAssuranceApi,
+  RoleTargetApi,
+  CustomDomainApi,
 } = require('./generated');
 const { createConfiguration } = require('./generated/configuration');
 const { ServerConfiguration } = require('./generated/servers');
@@ -155,6 +157,8 @@ class Client {
     this.principalRateLimitApi = new PrincipalRateLimitApi(configuration);
     this.pushProviderApi = new PushProviderApi(configuration);
     this.deviceAssuranceApi = new DeviceAssuranceApi(configuration);
+    this.roleTargetApi = new RoleTargetApi(configuration);
+    this.customDomainApi = new CustomDomainApi(configuration);
   }
 }
 

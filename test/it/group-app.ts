@@ -4,6 +4,7 @@ import {
   Client,
   Collection,
   DefaultRequestExecutor,
+  Group,
 } from '@okta/okta-sdk-nodejs';
 import utils = require('../utils');
 import getMockGroup = require('./mocks/group');
@@ -22,8 +23,8 @@ const client = new Client({
 
 describe('Group App API', () => {
   describe('List assigned applications', () => {
-    let application;
-    let group;
+    let application: Application;
+    let group: Group;
     beforeEach(async () => {
       const mockApplication = utils.getBookmarkApplication();
       application = await client.applicationApi.createApplication({application: mockApplication});

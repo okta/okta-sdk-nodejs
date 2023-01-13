@@ -1934,9 +1934,6 @@ class ObjectSerializer {
         else if (primitives.indexOf(type.toLowerCase()) !== -1) {
             return data;
         }
-        else if (format === 'date-time') {
-            return data;
-        }
         else if (type.lastIndexOf('Array<', 0) === 0) { // string.startsWith pre es6
             let subType = type.replace('Array<', ''); // Array<Type> => Type>
             subType = subType.substring(0, subType.length - 1); // Type> => Type
@@ -1956,7 +1953,8 @@ class ObjectSerializer {
                 return data.getFullYear() + '-' + month + '-' + day;
             }
             else {
-                return data.toISOString();
+                // format == 'date-time'
+                return data.toISOString().replace(/\.\d{3}/, '');
             }
         }
         else if (type === 'HttpFile') {

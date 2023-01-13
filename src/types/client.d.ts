@@ -47,6 +47,7 @@ import {
   DeviceAssuranceApi,
   RoleAssignmentApi,
   RoleTargetApi,
+  CustomDomainApi,
 } from './generated';
 export declare class Client {
   constructor(config?: V2Configuration);
@@ -93,4 +94,5 @@ export declare class Client {
   deviceAssuranceApi: DeviceAssuranceApi;
   roleAssignmentApi: RoleAssignmentApi;
   roleTargetApi: RoleTargetApi;
+  customDomainApi: CustomDomainApi;
 }
