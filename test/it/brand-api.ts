@@ -67,8 +67,8 @@ describe('Brand API', () => {
       const { value: theme } = await (await client.customizationApi.listBrandThemes({brandId: brand.id})).next();
       const file = utils.getMockImage('logo.png');
       const response = await client.customizationApi.uploadBrandThemeBackgroundImage({
-        brandId: brand.id, 
-        themeId: theme.id, 
+        brandId: brand.id,
+        themeId: theme.id,
         file: {
           data: file,
           name: 'logo.png'
@@ -85,8 +85,8 @@ describe('Brand API', () => {
       const { value: theme } = await (await client.customizationApi.listBrandThemes({brandId: brand.id})).next();
       const file = utils.getMockImage('favicon.png');
       const response = await client.customizationApi.uploadBrandThemeFavicon({
-        brandId: brand.id, 
-        themeId: theme.id, 
+        brandId: brand.id,
+        themeId: theme.id,
         file: {
           data: file,
           name: 'favicon.png'
@@ -103,8 +103,8 @@ describe('Brand API', () => {
       const { value: theme } = await (await client.customizationApi.listBrandThemes({brandId: brand.id})).next();
       const file = utils.getMockImage('logo.png');
       const response = await client.customizationApi.uploadBrandThemeLogo({
-        brandId: brand.id, 
-        themeId: theme.id, 
+        brandId: brand.id,
+        themeId: theme.id,
         file: {
           data: file,
           name: 'logo.png'

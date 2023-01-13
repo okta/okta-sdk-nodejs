@@ -1,5 +1,9 @@
-const okta = require('../');
-const utils = require('./utils');
+
+import {
+  Client,
+  DefaultRequestExecutor
+} from '..';
+import * as utils from './utils';
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -7,41 +11,47 @@ if (process.env.OKTA_USE_MOCK) {
   orgUrl = `${orgUrl}/application-get-user`;
 }
 
-const client = new okta.Client({
+const client = new Client({
   scopes: ['okta.apps.manage', 'okta.users.manage'],
   orgUrl: orgUrl,
   token: process.env.OKTA_CLIENT_TOKEN,
-  requestExecutor: new okta.DefaultRequestExecutor()
+  requestExecutor: new DefaultRequestExecutor()
 });
 
 async function cleanInlineHooks() {
-  const collection = await client.listInlineHooks();
+  const collection = await client.inlineHookApi.listInlineHooks();
   await collection.each(async (inlineHook) => {
-    await client.deactivateInlineHook(inlineHook.id);
-    await client.deleteInlineHook(inlineHook.id);
+    await client.inlineHookApi.deactivateInlineHook({
+      inlineHookId: inlineHook.id!
+    });
+    await client.inlineHookApi.deleteInlineHook({
+      inlineHookId: inlineHook.id!
+    });
   });
 }
 
 async function cleanAuthorizationServers() {
-  await (await client.listAuthorizationServers()).each(
+  await (await client.authorizationServerApi.listAuthorizationServers()).each(
     async authorizationServer => {
-      await client.deleteAuthorizationServer(authorizationServer.id);
+      await client.authorizationServerApi.deleteAuthorizationServer({
+        authServerId: authorizationServer.id!
+      });
     }
   );
 }
 
 async function cleanApplications() {
-  await (await client.listApplications()).each(async application => {
+  await (await client.applicationApi.listApplications()).each(async application => {
     const canDelete = ![
       'Okta Admin Console',
       'Okta Dashboard',
       'Okta Browser Plugin',
       'Node SDK Service App',
       'Bacon Service Client'
-    ].includes(application.label) && application.label.startsWith('node-sdk: ');
+    ].includes(application.label!) && application.label!.startsWith('node-sdk: ');
     if (canDelete) {
       try {
-        await utils.removeAppByLabel(client, application.label);
+        await utils.removeAppByLabel(client, application.label!);
       } catch (err) {
         console.error(err);
       }
@@ -52,8 +62,8 @@ async function cleanApplications() {
 }
 
 async function cleanTestUsers() {
-  await (await client.listUsers()).each(async user => {
-    const canDelete = !user.profile.email.endsWith('okta.com');
+  await (await client.userApi.listUsers()).each(async user => {
+    const canDelete = !user.profile!.email!.endsWith('okta.com');
     if (canDelete) {
       try {
         await utils.deleteUser(user, client);
@@ -61,14 +71,14 @@ async function cleanTestUsers() {
         console.error(err);
       }
     } else {
-      console.log(`Skipped user to remove ${user.profile.email}`);
+      console.log(`Skipped user to remove ${user.profile!.email}`);
     }
   });
 }
 
 async function cleanTestGroups() {
-  await (await client.listGroups()).each(async (group) => {
-    const canDelete = group.profile.name !== 'Everyone' && group.profile.name.startsWith('node-sdk:');
+  await (await client.groupApi.listGroups()).each(async (group) => {
+    const canDelete = group.profile!.name !== 'Everyone' && group.profile!.name!.startsWith('node-sdk:');
     if (canDelete) {
       try {
         await utils.cleanupGroup(client, group);
@@ -76,17 +86,19 @@ async function cleanTestGroups() {
         console.error(err);
       }
     } else {
-      console.log(`Skipped group to remove ${group.profile.name}`);
+      console.log(`Skipped group to remove ${group.profile!.name}`);
     }
   });
 }
 
 async function cleanTestPolicies() {
-  await (await client.listPolicies({ type: 'OKTA_SIGN_ON' })).each(async policy => {
-    const canDelete = policy.name.startsWith('node-sdk:');
+  await (await client.policyApi.listPolicies({ type: 'OKTA_SIGN_ON' })).each(async policy => {
+    const canDelete = policy.name!.startsWith('node-sdk:');
     if (canDelete) {
       try {
-        await client.deletePolicy(policy.id);
+        await client.policyApi.deletePolicy({
+          policyId: policy.id!
+        });
       } catch (err) {
         console.error(err);
       }
@@ -97,12 +109,12 @@ async function cleanTestPolicies() {
 }
 
 async function cleanTestIdps() {
-  await (await client.listIdentityProviders()).each(async idp => {
-    const canDelete = idp.name.startsWith('node-sdk:');
+  await (await client.identityProviderApi.listIdentityProviders()).each(async idp => {
+    const canDelete = idp.name!.startsWith('node-sdk:');
     if (canDelete) {
       try {
-        await client.deactivateIdentityProvider(idp.id);
-        await client.deleteIdentityProvider(idp.id);
+        await client.identityProviderApi.deactivateIdentityProvider({ idpId: idp.id! });
+        await client.identityProviderApi.deleteIdentityProvider({ idpId: idp.id! });
       } catch (err) {
         console.error(err);
       }

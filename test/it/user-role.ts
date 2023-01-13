@@ -1,6 +1,5 @@
 import { expect } from 'chai';
 import {
-  Application,
   BookmarkApplication,
   CatalogApplication,
   Client,

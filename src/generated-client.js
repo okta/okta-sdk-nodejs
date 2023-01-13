@@ -6631,7 +6631,7 @@ class GeneratedApiClient {
     params.userId = userId;
     params.roleId = roleId;
     params.groupId = groupId;
-    return this.userApi.removeGroupTargetFromRole(params);
+    return this.userApi.unassignGroupTargetFromUserAdminRole(params);
   }
 
   /**

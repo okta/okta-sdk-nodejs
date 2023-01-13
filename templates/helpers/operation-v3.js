@@ -483,6 +483,7 @@ function getV3ArgumentsOverride(argumentName, operationId) {
 
 function getV3MethodName(v2OperationId) {
   return {
+    removeGroupTargetFromRole: 'unassignGroupTargetFromUserAdminRole',
     removeRoleFromGroup: 'unassignRoleFromGroup',
     removeRoleFromUser: 'unassignRoleFromUser',
     getRoleSubscriptionByNotificationType: 'listRoleSubscriptionsByNotificationType',
