@@ -69,7 +69,13 @@ describe('Application API: applicaton features', () => {
 
   it('provides method for uploading application logo', async () => {
     const file = utils.getMockImage('logo.png');
-    const response = await client.applicationApi.uploadApplicationLogo({appId: application.id, file});
+    const response = await client.applicationApi.uploadApplicationLogo({
+      appId: application.id, 
+      file: {
+        data: file,
+        name: 'logo.png'
+      }
+    });
     expect(response).to.equal(undefined);
   });
 });
