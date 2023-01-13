@@ -35,9 +35,10 @@ export declare enum HttpMethodEnum {
 /**
  * Represents an HTTP file which will be transferred from or to a server.
  */
-export declare type HttpFile = Buffer & {
-    readonly name?: string;
-} | string;
+export declare type HttpFile = {
+    data: Buffer;
+    name: string;
+};
 export declare class HttpException extends Error {
   constructor(msg: string);
 }

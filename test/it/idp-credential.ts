@@ -164,7 +164,10 @@ describe('Idp credential API', () => {
         const key = await client.identityProviderApi.publishCsrForIdentityProvider({
           idpId: idp.id,
           csrId: csr.id,
-          body: Buffer.from(b64)
+          body: {
+            data: Buffer.from(b64),
+            name: 'csr.der'
+          }
         });
         expect(key).to.be.instanceOf(JsonWebKey);
         expect(key.n).to.equal(n);
@@ -186,7 +189,10 @@ describe('Idp credential API', () => {
         const key = await client.identityProviderApi.publishCsrForIdentityProvider({
           idpId: idp.id,
           csrId: csr.id,
-          body: Buffer.from(pem)
+          body: {
+            data: Buffer.from(pem),
+            name: 'csr.pem'
+          }
         });
         expect(key).to.be.instanceOf(JsonWebKey);
         expect(key.n).to.equal(n);
@@ -208,7 +214,10 @@ describe('Idp credential API', () => {
         const key = await client.identityProviderApi.publishCsrForIdentityProvider({
           idpId: idp.id,
           csrId: csr.id,
-          body: Buffer.from(der)
+          body: {
+            data: Buffer.from(der),
+            name: 'csr.der'
+          }
         });
         expect(key).to.be.instanceOf(JsonWebKey);
         expect(key.n).to.equal(n);

@@ -50,7 +50,10 @@ export enum HttpMethodEnum {
  */
 {{#platforms}}
 {{#node}}
-export type HttpFile = {{{fileContentDataType}}} & { readonly name?: string } | string;
+export type HttpFile = {
+  data: {{{fileContentDataType}}},
+  name: string
+};
 {{/node}}
 {{^node}}
 export type HttpFile = {{{fileContentDataType}}} & { readonly name: string };
@@ -308,12 +311,12 @@ export class ResponseContext {
 
     public async getBodyAsFile(): Promise<HttpFile> {
         const data = await this.body.binary();
+        const fileName = this.getParsedHeader('content-disposition')['filename'] || '';
         {{#platforms}}
         {{#node}}
-        return data;
+        return { data, name: fileName };
         {{/node}}
         {{^node}}
-        const fileName = this.getParsedHeader('content-disposition')['filename'] || '';
         const contentType = this.headers['content-type'] || '';
         try {
             return new File([data], fileName, { type: contentType });

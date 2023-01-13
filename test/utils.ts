@@ -13,7 +13,7 @@ import * as forge from 'node-forge';
 const expect = require('chai').expect;
 const faker = require('@faker-js/faker');
 const path = require('path');
-const { createReadStream } = require('fs');
+const { readFileSync } = require('fs');
 
 
 function delay(t) {
@@ -293,8 +293,8 @@ async function verifyOrgIsOIE(client: Client) {
   return body.pipeline === 'idx';
 }
 
-function getMockImage(filename: string) {
-  return createReadStream(path.join(__dirname, `it/mocks/images/${filename}`));
+function getMockImage(filename: string): Buffer {
+  return readFileSync(path.join(__dirname, `it/mocks/images/${filename}`));
 }
 
 async function runWithRetry(clientMethod: () => Promise<any>) {

@@ -11,7 +11,6 @@
  */
 
 
-/// <reference types="node" />
 export * from './APNSConfiguration';
 export * from './APNSPushProvider';
 export * from './AccessPolicy';
@@ -685,14 +684,14 @@ export declare class ObjectSerializer {
       */
   static normalizeMediaType(mediaType: string | undefined): string | undefined;
   static isCertMediaType(mediaType: string): boolean;
-  static getPreferredMediaTypeForCert(body?: string | Buffer): string | undefined;
+  static getPreferredMediaTypeForCert(body?: any): string | undefined;
   /**
       * From a list of possible media types and body, choose the one we can handle it best.
       *
       * The order of the given media types does not have any impact on the choice
       * made.
       */
-  static getPreferredMediaTypeAndEncoding(mediaTypes: Array<string>, body?: string): [string, string | undefined];
+  static getPreferredMediaTypeAndEncoding(mediaTypes: Array<string>, body?: any): [string, string | undefined];
   /**
       * From a list of possible media types, choose the one we can handle best.
       * TODO: remove this method in favour of getPreferredMediaTypeAndEncoding

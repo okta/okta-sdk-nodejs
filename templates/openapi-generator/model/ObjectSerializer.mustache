@@ -170,6 +170,9 @@ export class ObjectSerializer {
       } else if (type === 'HttpFile') {
         {{#platforms}}
         {{#node}}
+        if (data.data) {
+          data = data.data;
+        }
         if (data instanceof Buffer) {
           return data.toString();
         } else {
@@ -268,9 +271,12 @@ export class ObjectSerializer {
     return certMediaTypes.includes(mediaType);
   }
 
-  public static getPreferredMediaTypeForCert(body?: string | Buffer): string | undefined {
+  public static getPreferredMediaTypeForCert(body?: any): string | undefined {
     {{#platforms}}
     {{#node}}
+    if (body.data) {
+      body = body.data;
+    }
     if (body instanceof Buffer) {
       body = body.toString();
     }
@@ -302,7 +308,7 @@ export class ObjectSerializer {
     * The order of the given media types does not have any impact on the choice
     * made.
     */
-  public static getPreferredMediaTypeAndEncoding(mediaTypes: Array<string>, body?: string): [string, string | undefined] {
+  public static getPreferredMediaTypeAndEncoding(mediaTypes: Array<string>, body?: any): [string, string | undefined] {
     /** According to OAS 3 we should default to json */
     if (!mediaTypes) {
       return ['application/json', undefined];

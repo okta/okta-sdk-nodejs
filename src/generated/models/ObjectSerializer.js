@@ -1993,6 +1993,9 @@ class ObjectSerializer {
             }
         }
         else if (type === 'HttpFile') {
+            if (data.data) {
+                data = data.data;
+            }
             if (data instanceof Buffer) {
                 return data.toString();
             }
@@ -2078,6 +2081,9 @@ class ObjectSerializer {
         return certMediaTypes.includes(mediaType);
     }
     static getPreferredMediaTypeForCert(body) {
+        if (body.data) {
+            body = body.data;
+        }
         if (body instanceof Buffer) {
             body = body.toString();
         }

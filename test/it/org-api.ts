@@ -117,7 +117,12 @@ describe('Org API', () => {
 
   it('updates Org logo', async () => {
     const file = utils.getMockImage('logo.png');
-    const response = await client.orgSettingApi.uploadOrgLogo(file);
+    const response = await client.orgSettingApi.uploadOrgLogo({
+      file: {
+        data: file,
+        name: 'logo.png'
+      }
+    });
     expect(response).to.equal(undefined);
   });
 });

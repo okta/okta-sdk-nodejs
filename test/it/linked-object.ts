@@ -21,7 +21,7 @@ const client = new Client({
 
 describe('Linked Object API', () => {
   describe('Link Definition Operations', () => {
-    let linkedObject;
+    let linkedObject: LinkedObject;
     describe('Add linked object definition', () => {
       afterEach(async () => {
         await client.linkedObjectApi.deleteLinkedObjectDefinition({linkedObjectName: linkedObject.primary.name});
@@ -29,7 +29,7 @@ describe('Linked Object API', () => {
 
       it('should return instance of LinkedObject model', async () => {
         const mockLinkedObject = getMockLinkedObject();
-        linkedObject = await client.linkedObjectApi.createLinkedObjectDefinition({linkedObject: linkedObject});
+        linkedObject = await client.linkedObjectApi.createLinkedObjectDefinition({linkedObject: mockLinkedObject});
         expect(linkedObject).to.be.instanceOf(LinkedObject);
         expect(linkedObject.primary.name).to.equal(mockLinkedObject.primary.name);
         expect(linkedObject.associated.name).to.equal(mockLinkedObject.associated.name);

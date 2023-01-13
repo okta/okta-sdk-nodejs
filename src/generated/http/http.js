@@ -201,7 +201,8 @@ class ResponseContext {
     }
     async getBodyAsFile() {
         const data = await this.body.binary();
-        return data;
+        const fileName = this.getParsedHeader('content-disposition')['filename'] || '';
+        return { data, name: fileName };
     }
     /**
      * Use a heuristic to get a body of unknown data structure.
