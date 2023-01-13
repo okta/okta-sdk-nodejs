@@ -1959,6 +1959,13 @@ class ObjectSerializer {
                 return data.toISOString();
             }
         }
+        else if (type === 'HttpFile') {
+            if (data instanceof Buffer) {
+                return data.toString();
+            } else {
+                return data;
+            }
+        }
         else {
             if (enumsMap.has(type)) {
                 return data;
@@ -2037,6 +2044,9 @@ class ObjectSerializer {
         return certMediaTypes.includes(mediaType);
     }
     static getPreferredMediaTypeForCert(body) {
+        if (body instanceof Buffer) {
+            body = body.toString();
+        }
         const isPem = typeof body === 'string' && body.indexOf('-----BEGIN') === 0;
         const isDer = typeof body === 'string' && body.charCodeAt(0) === 0x30;
         const isBase64 = typeof body === 'string' && !isPem && !isDer && /^[A-Za-z0-9+\/=\-_]+$/.test(body);

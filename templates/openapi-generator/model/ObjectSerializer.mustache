@@ -168,6 +168,26 @@ export class ObjectSerializer {
         } else {
           return data.toISOString();
         }
+      } else if (type === 'HttpFile') {
+        {{#platforms}}
+        {{#node}}
+        if (data instanceof Buffer) {
+          return data.toString();
+        } else {
+          return data;
+        }
+        {{/node}}
+        {{#browser}}
+        // @ts-ignore
+        if (data.text) {
+          // TODO: serialize method should be async then
+          // @ts-ignore
+          return await data.text();
+        } else {
+          return data;
+        }
+        {{/browser}}
+        {{/platforms}}
       } else {
         if (enumsMap.has(type)) {
           return data;
@@ -249,7 +269,22 @@ export class ObjectSerializer {
     return certMediaTypes.includes(mediaType);
   }
 
-  public static getPreferredMediaTypeForCert(body?: string): string | undefined {
+  public static getPreferredMediaTypeForCert(body?: string | Buffer): string | undefined {
+    {{#platforms}}
+    {{#node}}
+    if (body instanceof Buffer) {
+      body = body.toString();
+    }
+    {{/node}}
+    {{#browser}}
+    // @ts-ignore
+    if (body.text) {
+      // TODO: getPreferredMediaTypeForCert method should be async then
+      // @ts-ignore
+      body = await body.text();
+    }
+    {{/browser}}
+    {{/platforms}}
     const isPem = typeof body === 'string' && body.indexOf('-----BEGIN') === 0;
     const isDer = typeof body === 'string' && body.charCodeAt(0) === 0x30;
     const isBase64 = typeof body === 'string' && !isPem && !isDer && /^[A-Za-z0-9+\/=\-_]+$/.test(body);

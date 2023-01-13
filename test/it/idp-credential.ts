@@ -1,5 +1,4 @@
 import { expect } from 'chai';
-import { Readable } from 'stream';
 import {
   Client,
   Collection,
@@ -165,7 +164,7 @@ describe('Idp credential API', () => {
         const key = await client.identityProviderApi.publishCsrForIdentityProvider({
           idpId: idp.id, 
           csrId: csr.id, 
-          body: Readable.from(b64)
+          body: Buffer.from(b64)
         });
         expect(key).to.be.instanceOf(JsonWebKey);
         expect(key.n).to.equal(n);
@@ -187,7 +186,7 @@ describe('Idp credential API', () => {
         const key = await client.identityProviderApi.publishCsrForIdentityProvider({
           idpId: idp.id, 
           csrId: csr.id, 
-          body: Readable.from(pem)
+          body: Buffer.from(pem)
         });
         expect(key).to.be.instanceOf(JsonWebKey);
         expect(key.n).to.equal(n);
@@ -209,7 +208,7 @@ describe('Idp credential API', () => {
         const key = await client.identityProviderApi.publishCsrForIdentityProvider({
           idpId: idp.id, 
           csrId: csr.id, 
-          body: Readable.from(der)
+          body: Buffer.from(der)
         });
         expect(key).to.be.instanceOf(JsonWebKey);
         expect(key.n).to.equal(n);

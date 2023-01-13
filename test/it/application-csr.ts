@@ -1,5 +1,4 @@
 import { expect } from 'chai';
-import { Readable } from 'stream';
 import utils = require('../utils');
 import forge = require('node-forge');
 import getMockApplication = require('./mocks/application-oidc');
@@ -50,7 +49,7 @@ describe('Application CSR API', () => {
 
   describe('List signing csrs', () => {
     beforeEach(async () => {
-      csr = await client.applicationApi.revokeCsrFromApplication({appId: app.id, csrId: csr.id});
+      csr = await client.applicationApi.generateCsrForApplication({appId: app.id, metadata: mockCsr});
     });
     afterEach(async () => {
       await client.applicationApi.revokeCsrFromApplication({appId: app.id, csrId: csr.id});
@@ -70,7 +69,7 @@ describe('Application CSR API', () => {
 
   describe('Delete signing csr', () => {
     beforeEach(async () => {
-      csr = await client.applicationApi.revokeCsrFromApplication({appId: app.id, csrId: csr.id});
+      csr = await client.applicationApi.generateCsrForApplication({appId: app.id, metadata: mockCsr});
     });
 
     it('should delete csr', async () => {
@@ -86,7 +85,7 @@ describe('Application CSR API', () => {
   describe('Publish signing csr', () => {
     beforeEach(async () => {
       keys = forge.pki.rsa.generateKeyPair(2048);
-      csr = await client.applicationApi.revokeCsrFromApplication({appId: app.id, csrId: csr.id});
+      csr = await client.applicationApi.generateCsrForApplication({appId: app.id, metadata: mockCsr});
     });
 
     it('should publish cert and remove csr (DER base64)', async () => {
@@ -97,7 +96,7 @@ describe('Application CSR API', () => {
       const key = await client.applicationApi.publishCsrFromApplication({
         appId: app.id,
         csrId: csr.id,
-        body: Readable.from(b64)
+        body: Buffer.from(b64)
       });
       expect(key).to.be.instanceOf(JsonWebKey);
       expect(key.n).to.equal(n);
@@ -119,7 +118,7 @@ describe('Application CSR API', () => {
       const key = await client.applicationApi.publishCsrFromApplication({
         appId: app.id,
         csrId: csr.id,
-        body: Readable.from(pem)
+        body: Buffer.from(pem)
       });
       expect(key).to.be.instanceOf(JsonWebKey);
       expect(key.n).to.equal(n);
@@ -141,7 +140,7 @@ describe('Application CSR API', () => {
       const key = await client.applicationApi.publishCsrFromApplication({
         appId: app.id,
         csrId: csr.id,
-        body: Readable.from(der)
+        body: Buffer.from(der)
       });
       expect(key).to.be.instanceOf(JsonWebKey);
       expect(key.n).to.equal(n);

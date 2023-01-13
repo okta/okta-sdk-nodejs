@@ -16,7 +16,6 @@ import * as FormData from 'form-data';
 import { URLSearchParams } from 'url';
 import * as http from 'http';
 import * as https from 'https';
-import { Readable } from 'stream';
 import { Observable } from '../rxjsStub';
 export * from './isomorphic-fetch';
 /**
@@ -36,7 +35,7 @@ export declare enum HttpMethodEnum {
 /**
  * Represents an HTTP file which will be transferred from or to a server.
  */
-export declare type HttpFile = Readable;
+export declare type HttpFile = Buffer & { readonly name?: string } | string;
 export declare class HttpException extends Error {
   constructor(msg: string);
 }

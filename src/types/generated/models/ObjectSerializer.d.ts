@@ -674,7 +674,7 @@ export declare class ObjectSerializer {
       */
   static normalizeMediaType(mediaType: string | undefined): string | undefined;
   static isCertMediaType(mediaType: string): boolean;
-  static getPreferredMediaTypeForCert(body?: string): string | undefined;
+  static getPreferredMediaTypeForCert(body?: string | Buffer): string | undefined;
   /**
       * From a list of possible media types and body, choose the one we can handle it best.
       *

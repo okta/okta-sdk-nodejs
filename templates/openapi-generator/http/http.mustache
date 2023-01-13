@@ -50,7 +50,7 @@ export enum HttpMethodEnum {
  */
 {{#platforms}}
 {{#node}}
-export type HttpFile = Readable;
+export type HttpFile = {{{fileContentDataType}}} & { readonly name?: string } | string;
 {{/node}}
 {{^node}}
 export type HttpFile = {{{fileContentDataType}}} & { readonly name: string };
