@@ -24,6 +24,7 @@ describe('Subscription API', () => {
         user = usr;
       }
     }
+    expect(user?.id).to.not.be.undefined;
   });
 
   it('provides method for listing user\'s notification subscriptions', async () => {

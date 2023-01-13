@@ -1,5 +1,7 @@
 import { expect } from 'chai';
 import {
+  Application,
+  BookmarkApplication,
   CatalogApplication,
   Client,
   Collection,
@@ -37,7 +39,7 @@ describe('User role API', () => {
   });
 
   describe('Role assignment', () => {
-    let role;
+    let role: Role;
     afterEach(async () => {
       await client.roleAssignmentApi.unassignRoleFromUser({
         userId: user.id,
@@ -57,7 +59,7 @@ describe('User role API', () => {
   });
 
   describe('Role unassignment', () => {
-    let role;
+    let role: Role;
     beforeEach(async () => {
       role = await client.roleAssignmentApi.assignRoleToUser({
         userId: user.id,
@@ -102,8 +104,8 @@ describe('User role API', () => {
   });
 
   describe('App targets for admin role', () => {
-    let role;
-    let application;
+    let role: Role;
+    let application: BookmarkApplication;
     beforeEach(async () => {
       role = await client.roleAssignmentApi.assignRoleToUser({
         userId: user.id,
@@ -158,12 +160,12 @@ describe('User role API', () => {
   });
 
   describe('Group targets for admin role', () => {
-    let role;
-    let group;
+    let role: Role;
+    let group: Group;
     beforeEach(async () => {
       role = await client.roleAssignmentApi.assignRoleToUser({
         userId: user.id,
-        assignRoleRequest: { type: 'APP_ADMIN' }
+        assignRoleRequest: { type: 'USER_ADMIN' }
       });
       group = await client.groupApi.createGroup({group: getMockGroup()});
     });

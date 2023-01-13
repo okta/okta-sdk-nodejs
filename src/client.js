@@ -51,6 +51,7 @@ const {
   PushProviderApi,
   DeviceAssuranceApi,
   RoleTargetApi,
+  RoleAssignmentApi,
   CustomDomainApi,
 } = require('./generated');
 const { createConfiguration } = require('./generated/configuration');
@@ -158,6 +159,7 @@ class Client {
     this.pushProviderApi = new PushProviderApi(configuration);
     this.deviceAssuranceApi = new DeviceAssuranceApi(configuration);
     this.roleTargetApi = new RoleTargetApi(configuration);
+    this.roleAssignmentApi = new RoleAssignmentApi(configuration);
     this.customDomainApi = new CustomDomainApi(configuration);
   }
 }

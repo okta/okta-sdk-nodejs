@@ -84,9 +84,8 @@ describe('User Role API Tests', () => {
     await client.roleTargetApi.unassignGroupTargetFromUserAdminRole({
       userId: createdUser.id,
       roleId: role.id,
-      groupId: adminGroup.id,
+      groupId: createdGroup.id,
     });
-    //removeGroupTargetFromRole(createdUser.id, role.id, createdGroup.id);
     groupTargetPresent = await utils.isGroupTargetPresent(createdUser, createdGroup, role, client);
     expect(groupTargetPresent).to.equal(false);
 

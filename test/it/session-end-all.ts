@@ -1,7 +1,7 @@
 import utils = require('../utils');
 import * as okta from '@okta/okta-sdk-nodejs';
 import { expect } from 'chai';
-import { Client } from '@okta/okta-sdk-nodejs';
+import { Client, User } from '@okta/okta-sdk-nodejs';
 
 let orgUrl = process.env.OKTA_CLIENT_ORGURL;
 
@@ -17,7 +17,7 @@ const client = new Client({
 });
 
 describe('Sessions API', () => {
-  let createdUser;
+  let createdUser: User;
   before(async () => {
     // 1. Create a user
     const newUser = {
@@ -58,7 +58,9 @@ describe('Sessions API', () => {
     });
 
     // 3 - end all user sessions
-    await client.userApi.revokeUserSessions(createdUser.id);
+    await client.userApi.revokeUserSessions({
+      userId: createdUser.id
+    });
 
     // 4 - attempt to retrieve session1
     let sess1;

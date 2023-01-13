@@ -51,7 +51,7 @@ describe('Policy Scenarios', () => {
       description: 'The default policy applies in all situations if no other policy applies.',
     };
     const createdPolicy = await client.policyApi.createPolicy({policy});
-    const retrievedPolicy = await client.policyApi.getPolicy({policyId: policy.id});
+    const retrievedPolicy = await client.policyApi.getPolicy({policyId: createdPolicy.id});
     await client.policyApi.deletePolicy({policyId: createdPolicy.id});
 
     expect(retrievedPolicy).to.not.be.undefined;
@@ -169,7 +169,7 @@ describe('Policy Scenarios', () => {
     expect(response).to.be.undefined;
     let policy;
     try {
-      policy = await client.policyApi.getPolicy({policyId: policy.id});
+      policy = await client.policyApi.getPolicy({policyId: createdPolicy.id});
     } catch (e) {
       expect(e.status).to.equal(404);
     }
@@ -195,7 +195,7 @@ describe('Policy Scenarios', () => {
       policy: createdPolicy
     });
 
-    const retrievedPolicy = await client.policyApi.getPolicy({policyId: policy.id});
+    const retrievedPolicy = await client.policyApi.getPolicy({policyId: createdPolicy.id});
     await client.policyApi.deletePolicy({policyId: createdPolicy.id});
 
     expect(retrievedPolicy.name).to.contains(createdPolicy.name);
@@ -214,12 +214,12 @@ describe('Policy Scenarios', () => {
     expect(createdPolicy.status).to.be.equal('ACTIVE');
 
     await client.policyApi.deactivatePolicy({ policyId: createdPolicy.id });
-    createdPolicy = await client.policyApi.getPolicy({policyId: policy.id});
+    createdPolicy = await client.policyApi.getPolicy({policyId: createdPolicy.id});
 
     expect(createdPolicy.status).to.be.equal('INACTIVE');
 
     await client.policyApi.activatePolicy({ policyId: createdPolicy.id });
-    createdPolicy = await client.policyApi.getPolicy({policyId: policy.id});
+    createdPolicy = await client.policyApi.getPolicy({policyId: createdPolicy.id});
 
     expect(createdPolicy.status).to.be.equal('ACTIVE');
 
