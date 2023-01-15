@@ -97,20 +97,30 @@ describe('Email Template API', () => {
         body
       };
       // create
-      const customization = await client.customizationApi.createEmailCustomization({
-        brandId,
-        templateName,
-        instance: customizationRequest
-      });
-      expect(customization.subject).to.equal('fake subject');
+      let customization: EmailCustomization;
+      try {
+        customization = await client.customizationApi.createEmailCustomization({
+          brandId,
+          templateName,
+          instance: customizationRequest
+        });
+        expect(customization.subject).to.equal('fake subject');
+      } catch(e) {
+        // Okta HTTP 409 E0000183 An email template customization for that language already exists.. 
+        expect(e.status).to.equal(409);
+      }
 
       // list
-      const customizations = [];
+      const customizations: EmailCustomization[] = [];
       const collection = await client.customizationApi.listEmailCustomizations({
         brandId, templateName
       });
       await collection.each(customization => customizations.push(customization));
       expect(customizations.length).to.be.greaterThanOrEqual(1);
+      if (!customization) {
+        // Get already existing template customization
+        customization = customizations[0];
+      }
 
       // get
       const newCustomization = await client.customizationApi.getEmailCustomization({

@@ -91,6 +91,24 @@ async function cleanTestGroups() {
   });
 }
 
+async function cleanTestGroupRules() {
+  await (await client.groupApi.listGroupRules()).each(async (rule) => {
+    const canDelete = rule.name!.startsWith('node-sdk:');
+    if (canDelete) {
+      try {
+        if (rule.status !== 'INVALID') {
+          await client.groupApi.deactivateGroupRule({ruleId: rule.id!});
+        }
+        await client.groupApi.deleteGroupRule({ruleId: rule.id!});
+      } catch (err) {
+        console.error(err);
+      }
+    } else {
+      console.log(`Skipped group rule to remove ${rule.name}`);
+    }
+  });
+}
+
 async function cleanTestPolicies() {
   await (await client.policyApi.listPolicies({ type: 'OKTA_SIGN_ON' })).each(async policy => {
     const canDelete = policy.name!.startsWith('node-sdk:');
@@ -124,14 +142,48 @@ async function cleanTestIdps() {
   });
 }
 
+async function getBrandId() {
+  const { value: brand } = await (await client.customizationApi.listBrands()).next();
+  return brand ? brand.id : null;
+}
+
+async function cleanEmailCustomizations() {
+  const templateName = 'ForgotPassword';
+  const brandId: string = await getBrandId() as string;
+
+  const list = await client.customizationApi.listEmailCustomizations({
+    brandId,
+    templateName,
+  });
+  await list.each(async ec => {
+    const canDelete = (ec.subject.includes('fake subject') || ec.subject.includes('updated subject')) && !ec.isDefault;
+    if (canDelete) {
+      try {
+        await client.customizationApi.deleteEmailCustomization({
+          customizationId: ec.id!,
+          brandId,
+          templateName
+        });
+      } catch (err) {
+        console.error(err);
+      }
+    } else {
+      console.log(`Skipped Email customization to remove ${ec.subject} for language ${ec.language}`);
+    }
+  });
+}
+
+
 describe('Clean', () => {
   it('all test resources', async () => {
     await cleanAuthorizationServers();
     await cleanTestUsers();
+    await cleanTestGroupRules();
     await cleanTestGroups();
     await cleanApplications();
     await cleanInlineHooks();
     await cleanTestPolicies();
     await cleanTestIdps();
+    await cleanEmailCustomizations();
   });
 });

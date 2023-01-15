@@ -45,8 +45,8 @@ describe('Group-Rule API tests', () => {
     // 2. Create group rules
     const rules = [];
     const namePrefixes = [
-      'RULE_AB',
-      'RULE_XY'
+      'RULE_ABC',
+      'RULE_XYZ'
     ];
     for (const prefix of namePrefixes) {
       for (let i = 0 ; i < 2 ; i++) {
@@ -97,14 +97,14 @@ describe('Group-Rule API tests', () => {
     // 3b. Search group rules with pagination
     const filtered = new Set();
     const collection = await client.groupApi.listGroupRules({
-      search: 'RULE_AB',
+      search: 'RULE_ABC',
       limit: 1
     });
     const pageSpy = spy(collection, 'getNextPage');
     await collection.each(rule => {
       expect(filtered.has(rule.name)).to.be.false;
       filtered.add(rule.name);
-      expect(rule.name.indexOf('RULE_AB')).to.not.equal(-1);
+      expect(rule.name.indexOf('RULE_ABC')).to.not.equal(-1);
     });
     expect(filtered.size).to.equal(2);
     expect(pageSpy.getCalls().length).to.equal(2);
@@ -117,7 +117,7 @@ describe('Group-Rule API tests', () => {
     // 4. Deactivate the rule and update it
     await client.groupApi.deactivateGroupRule({ruleId: firstRule.id});
 
-    firstRule.name = faker.random.word();
+    firstRule.name = `node-sdk: ${faker.random.word()}`;
     firstRule.conditions.expression.value = 'user.lastName=="incorrect"';
     const updatedRule = await client.groupApi.replaceGroupRule({ruleId: firstRule.id, groupRule: firstRule});
     await client.groupApi.activateGroupRule({ruleId: updatedRule.id});

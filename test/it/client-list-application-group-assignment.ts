@@ -3,6 +3,7 @@ import { spy } from 'sinon';
 import faker = require('@faker-js/faker');
 
 import {
+  Application,
   ApplicationGroupAssignment,
   Client,
   DefaultRequestExecutor,
@@ -65,7 +66,7 @@ describe('client.listApplicationGroupAssignments()', () => {
 });
 
 describe('client.listApplicationGroupAssignments({ })', () => {
-  let app;
+  let app: Application;
   const groups = [];
 
   const createGroup = async (name) => {
@@ -83,10 +84,10 @@ describe('client.listApplicationGroupAssignments({ })', () => {
     await utils.removeAppByLabel(client, application.label);
     app = await client.applicationApi.createApplication({application});
 
-    groups.push(await createGroup('client-list-app-groups-unassigned'));
-    groups.push(await createGroup('client-list-app-groups'));
-    groups.push(await createGroup('client-list-app-groups-filtered-1'));
-    groups.push(await createGroup('client-list-app-groups-filtered-2'));
+    groups.push(await createGroup('node-sdk: client-list-app-groups-unassigned'));
+    groups.push(await createGroup('node-sdk: client-list-app-groups'));
+    groups.push(await createGroup('node-sdk: client-list-app-groups-filtered-1'));
+    groups.push(await createGroup('node-sdk: client-list-app-groups-filtered-2'));
 
     for (const group of groups.slice(1)) {
       await client.applicationApi.assignGroupToApplication({appId: app.id, groupId: group.id, applicationGroupAssignment: {}});
@@ -94,8 +95,10 @@ describe('client.listApplicationGroupAssignments({ })', () => {
   });
 
   after(async () => {
-    await client.applicationApi.deactivateApplication(app.id);
-    await client.applicationApi.deleteApplication(app.id);
+    if (app?.id) {
+      await client.applicationApi.deactivateApplication({ appId: app.id });
+      await client.applicationApi.deleteApplication({ appId: app.id });
+    }
 
     await utils.cleanup(client, null, groups);
   });
@@ -116,7 +119,7 @@ describe('client.listApplicationGroupAssignments({ })', () => {
 
   it('should search groups with q and paginate results', async () => {
     const queryParameters = {
-      q: 'client-list-app-groups-filtered',
+      q: 'node-sdk: client-list-app-groups-filtered',
       limit: 1
     };
     const collection = await client.applicationApi.listApplicationGroupAssignments({appId: app.id, ...queryParameters});
