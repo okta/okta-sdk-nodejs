@@ -6656,7 +6656,7 @@ class GeneratedApiClient {
     params.userId = userId;
     params.roleId = roleId;
     params.groupId = groupId;
-    return this.userApi.addGroupTargetToRole(params);
+    return this.userApi.assignGroupTargetToUserRole(params);
   }
 
   /**

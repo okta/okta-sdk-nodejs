@@ -271,7 +271,6 @@ const V3ApiOperations = {
     'addAllAppsAsTargetToRole',
     'addApplicationTargetToAdminRoleForUser',
     'addApplicationTargetToAppAdminRoleForUser',
-    'addGroupTargetToRole',
     'changePassword',
     'changeRecoveryQuestion',
     'clearUserSessions',
@@ -416,7 +415,7 @@ const V3ApiOperations = {
     'assignAppInstanceTargetToAppAdminRoleForUser',
     'unassignAppInstanceTargetFromAdminRoleForUser',
     'listGroupTargetsForRole',
-    'assignGroupTargetToUserRole',
+    'addGroupTargetToRole',
     'unassignGroupTargetFromUserAdminRole',
   ],
 };
@@ -483,6 +482,7 @@ function getV3ArgumentsOverride(argumentName, operationId) {
 
 function getV3MethodName(v2OperationId) {
   return {
+    addGroupTargetToRole: 'assignGroupTargetToUserRole',
     removeGroupTargetFromRole: 'unassignGroupTargetFromUserAdminRole',
     removeRoleFromGroup: 'unassignRoleFromGroup',
     removeRoleFromUser: 'unassignRoleFromUser',

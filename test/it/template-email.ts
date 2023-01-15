@@ -105,8 +105,8 @@ describe('Email Template API', () => {
           instance: customizationRequest
         });
         expect(customization.subject).to.equal('fake subject');
-      } catch(e) {
-        // Okta HTTP 409 E0000183 An email template customization for that language already exists.. 
+      } catch (e) {
+        // Okta HTTP 409 E0000183 An email template customization for that language already exists..
         expect(e.status).to.equal(409);
       }
 
