@@ -98,7 +98,8 @@ const client = new okta.Client({
   authorizationMode: 'PrivateKey',
   clientId: '{oauth application ID}',
   scopes: ['okta.users.manage'],
-  privateKey: '{JWK}' // <-- see notes below
+  privateKey: '{JWK}', // <-- see notes below
+  keyId: 'kidValue'
 });
 ```
 
@@ -107,7 +108,7 @@ The `privateKey` can be passed in the following ways:
 - A string in PEM format
 - As a JSON object, in JWK format
 
-> Note: in case OAuth client app uses multiple JWKs, `privateKey` should specify `kid` attribute.
+> Note: in case OAuth client app uses multiple JWKs, `privateKey` should specify `kid` attribute. When `privateKey` is passed in PEM format, `keyId` value should be provided in SDK configuation.
 
 
 ## Examples
@@ -592,7 +593,7 @@ To prevent this behavior, and instead remove expired values from memory proactiv
 
 ```javascript
 const okta = require('@okta/okta-sdk-nodejs');
-const MemoryStore = require('@okta/okta-sdk-nodejs/src/memory-store');
+const MemoryStore = okta.MemoryStore;
 
 const client = new okta.Client({
   orgUrl: 'https://dev-1234.oktapreview.com/',

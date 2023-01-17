@@ -10,19 +10,9 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
-const Client = require('./client');
-const RequestExecutor = require('./request-executor');
-const { DefaultRequestExecutor } = require('./default-request-executor');
-const { Collection } = require('./collection');
-const MemoryStore = require('./memory-store');
 
-module.exports = Object.assign(
-  {}, {
-    Client,
-    RequestExecutor,
-    DefaultRequestExecutor,
-    Collection,
-    MemoryStore,
-  },
-  require('./generated'),
-);
+type CustomAttributeValue = boolean | number | string;
+
+export {
+  CustomAttributeValue
+};
